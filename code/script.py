@@ -28,9 +28,9 @@ proposicao = pd.DataFrame(proposicao['dados'], range(len(proposicao['dados'])))
 
 
 arq = open('tramitacao.csv', 'w')
-arq.write(tramitacao.to_csv())
+arq.write(tramitacao.to_csv(index=False))
 arq.close()
 
 arq = open('proposicao.csv', 'w')
-arq.write(proposicao.to_csv())
+arq.write(proposicao.to_csv(index=False))
 arq.close()
