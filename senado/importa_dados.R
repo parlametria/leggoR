@@ -37,6 +37,8 @@ df_voting_parliamentarians_csv <- df_voting_parliamentarians %>%
                                                                        SiglaSubtipoMateria = bill_type,
                                                                        NumeroMateria = bill_number)
 
+write.csv(df_voting_parliamentarians_csv, paste(bill_id, "_parliamentarians_votes.csv", sep = "_"))
+
 #Passage Data
 url <- paste(url_base_passage, bill_id, sep = "")
 json_passage <- jsonlite::fromJSON(url, flatten = T)
@@ -51,9 +53,11 @@ df_bill_passages_csv <- df_bill_passages %>%
                                                         IdentificacaoTramitacao.OrigemTramitacao.Local.NomeLocal,
                                                         IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
                                                         IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
-                                                        IdentificacaoTramitacao.Situacao.SiglaSituacao)) %>%
+                                                        IdentificacaoTramitacao.Situacao.SiglaSituacao,
+                                                        Textos.Texto,
+                                                        Publicacoes.Publicacao)) %>%
                                               mutate(CodigoMateria = bill_id, 
                                                      SiglaSubtipoMateria = bill_type,
                                                      NumeroMateria = bill_number)
-  
+write.csv(df_bill_passages_csv, paste(bill_id, "_passage.csv", sep = "_"))
 
