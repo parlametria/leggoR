@@ -1,45 +1,22 @@
-library(dplyr)
-
-#CongressBr
+library(tidyverse)
+library(here)
+library(jsonlite)
 #install.packages("congressbr")
-#library(congressbr)
-#bill_id <- 91341
+# library(congressbr)
+source(here("code/senado-lib.R"))
+
 #tramitacao_91341 <- sen_bills_passage(bill_id = bill_id) %>% filter(!is.na(bill_passage_text))
 
 
-url_base_voting <- "http://legis.senado.leg.br/dadosabertos/materia/votacoes/"
-url_base_passage <- "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes/"
 bill_id <- 91341
 
 #Voting data
-url <- paste(url_base_voting, bill_id, sep = "")
-json_voting <- jsonlite::fromJSON(url, flatten = T)
-list_bill_voting_data <- json_voting$VotacaoMateria[4]$Materia
-df_bill_voting_identification <- list_bill_voting_data$IdentificacaoMateria %>% purrr::map_df(~ .)
-bill_type <- df_bill_voting_identification$SiglaSubtipoMateria
-bill_number <- df_bill_voting_identification$NumeroMateria
-df_voting_general <- list_bill_voting_data$Votacoes %>% purrr::map_df(~ .)
-df_voting_parliamentarians <- tidyr::unnest(df_voting_general) 
-df_voting_parliamentarians_csv <- df_voting_parliamentarians %>% 
-                                                                select(-c(SessaoPlenaria.NomeCasaSessao, 
-                                                                          Tramitacao.IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
-                                                                          Tramitacao.IdentificacaoTramitacao.OrigemTramitacao.Local.NomeLocal,
-                                                                          Tramitacao.IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
-                                                                          Tramitacao.IdentificacaoTramitacao.OrigemTramitacao.Local.NomeCasaLocal,
-                                                                          Tramitacao.IdentificacaoTramitacao.Situacao.SiglaSituacao,
-                                                                          IdentificacaoParlamentar.EmailParlamentar,
-                                                                          IdentificacaoParlamentar.NomeCompletoParlamentar,
-                                                                          IdentificacaoParlamentar.FormaTratamento,
-                                                                          IdentificacaoParlamentar.UrlFotoParlamentar,
-                                                                          IdentificacaoParlamentar.UrlPaginaParlamentar,
-                                                                          IdentificacaoParlamentar.EmailParlamentar)) %>%
-                                                                mutate(CodigoMateria = bill_id, 
-                                                                       SiglaSubtipoMateria = bill_type,
-                                                                       NumeroMateria = bill_number)
-
-write.csv(df_voting_parliamentarians_csv, paste(bill_id, "_parliamentarians_votes.csv", sep = "_"))
+voting <- fetch_voting(bill_id)
+voting %>% 
+    write_csv(here(paste0("data/", bill_id, "-votacoes-senado.csv")))
 
 #Passage Data
+url_base_passage <- "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes/"
 url <- paste(url_base_passage, bill_id, sep = "")
 json_passage <- jsonlite::fromJSON(url, flatten = T)
 list_bill_passage_data <- json_passage$MovimentacaoMateria[4]$Materia
