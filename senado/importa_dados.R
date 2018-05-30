@@ -1,40 +1,39 @@
 library(tidyverse)
 library(here)
 library(jsonlite)
-#install.packages("congressbr")
-# library(congressbr)
 source(here("code/senado-lib.R"))
 
-#tramitacao_91341 <- sen_bills_passage(bill_id = bill_id) %>% filter(!is.na(bill_passage_text))
-
+to_underscore <- function(x) {
+  x2 <- gsub("([A-Za-z])([A-Z])([a-z])", "\\1_\\2\\3", x)
+  x3 <- gsub(".", "_", x2, fixed = TRUE)
+  x4 <- gsub("([a-z])([A-Z])", "\\1_\\2", x3)
+  x5 <- tolower(x4)
+  x5
+}
 
 bill_id <- 91341
 
 #Voting data
 voting <- fetch_voting(bill_id)
+new_names = names(voting) %>% 
+  to_underscore() %>% 
+  str_replace("sessao_plenaria_|tramitacao_identificacao_tramitacao_|identificacao_parlamentar_", "")
+
+names(voting) <- new_names
+
 voting %>% 
     write_csv(here(paste0("data/", bill_id, "-votacoes-senado.csv")))
 
 #Passage Data
-url_base_passage <- "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes/"
-url <- paste(url_base_passage, bill_id, sep = "")
-json_passage <- jsonlite::fromJSON(url, flatten = T)
-list_bill_passage_data <- json_passage$MovimentacaoMateria[4]$Materia
-df_bill_passage_identification <- list_bill_passage_data$IdentificacaoMateria %>% purrr::map_df(~ .)
-bill_type <- df_bill_passage_identification$SiglaSubtipoMateria
-bill_number <- df_bill_passage_identification$NumeroMateria
-df_bill_actual_situation <- list_bill_passage_data$SituacaoAtual$Autuacoes$Autuacao$Situacao %>% purrr::map_df(~ .)
-df_bill_passages <- list_bill_passage_data$Tramitacoes %>% purrr::map_df(~ .)
-df_bill_passages_csv <- df_bill_passages %>% 
-                                              select(-c(IdentificacaoTramitacao.OrigemTramitacao.Local.NomeCasaLocal,
-                                                        IdentificacaoTramitacao.OrigemTramitacao.Local.NomeLocal,
-                                                        IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
-                                                        IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
-                                                        IdentificacaoTramitacao.Situacao.SiglaSituacao,
-                                                        Textos.Texto,
-                                                        Publicacoes.Publicacao)) %>%
-                                              mutate(CodigoMateria = bill_id, 
-                                                     SiglaSubtipoMateria = bill_type,
-                                                     NumeroMateria = bill_number)
-write.csv(df_bill_passages_csv, paste(bill_id, "_passage.csv", sep = "_"))
+passage <- fetch_passage(bill_id)
+new_names = names(passage) %>% 
+  to_underscore() %>% 
+  str_replace("identificacao_tramitacao_|
+                   identificacao_tramitacao_origem_tramitacao_local_|
+                   identificacao_tramitacao_destino_tramitacao_local_|
+                   identificacao_tramitacao_situacao_", "")
 
+names(passage) <- new_names
+
+passage %>%
+    write_csv(here(paste0("data/", bill_id, "-passage-senado.csv")))
