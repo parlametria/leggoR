@@ -51,6 +51,7 @@ Glossário
     - **Ordinário:** tramitação padrão, de menor urgência.
     - **Prioridade:** tramitação com alguma urgência.
     - **Urgência:** tramitação como maior urgência.
+- **Regime de apreciação:** se a proposição será apreciada apenas pelas comissões (regime conclusivo), ou também pelo plenário da casa.
 - **Pedido de urgência do executivo:** faz com que uma proposição tenha 45 dias para ser votada no Congresso, se não "tranca" a pauta.
 - **Lei:** uma norma criada para estabelecer as regras que devem ser seguidas sob pena.
 - **Constituição Federal (CF):** lei maior do país, atualmente a CF/88.
