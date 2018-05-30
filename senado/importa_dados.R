@@ -1,8 +1,8 @@
-install.packages("congressbr")
-library(congressbr)
 library(dplyr)
 
 #CongressBr
+#install.packages("congressbr")
+#library(congressbr)
 #bill_id <- 91341
 #tramitacao_91341 <- sen_bills_passage(bill_id = bill_id) %>% filter(!is.na(bill_passage_text))
 
@@ -15,15 +15,45 @@ bill_id <- 91341
 url <- paste(url_base_voting, bill_id, sep = "")
 json_voting <- jsonlite::fromJSON(url, flatten = T)
 list_bill_voting_data <- json_voting$VotacaoMateria[4]$Materia
-df_bill_voting_identification <- list_bill_voting_data$IdentificacaoMateria %>% purrr::map_df(~ .) 
+df_bill_voting_identification <- list_bill_voting_data$IdentificacaoMateria %>% purrr::map_df(~ .)
+bill_type <- df_bill_voting_identification$SiglaSubtipoMateria
+bill_number <- df_bill_voting_identification$NumeroMateria
 df_voting_general <- list_bill_voting_data$Votacoes %>% purrr::map_df(~ .)
-df_voting_parliamentarians <- tidyr::unnest(df_voting_general)
+df_voting_parliamentarians <- tidyr::unnest(df_voting_general) 
+df_voting_parliamentarians_csv <- df_voting_parliamentarians %>% 
+                                                                select(-c(SessaoPlenaria.NomeCasaSessao, 
+                                                                          Tramitacao.IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
+                                                                          Tramitacao.IdentificacaoTramitacao.OrigemTramitacao.Local.NomeLocal,
+                                                                          Tramitacao.IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
+                                                                          Tramitacao.IdentificacaoTramitacao.OrigemTramitacao.Local.NomeCasaLocal,
+                                                                          Tramitacao.IdentificacaoTramitacao.Situacao.SiglaSituacao,
+                                                                          IdentificacaoParlamentar.EmailParlamentar,
+                                                                          IdentificacaoParlamentar.NomeCompletoParlamentar,
+                                                                          IdentificacaoParlamentar.FormaTratamento,
+                                                                          IdentificacaoParlamentar.UrlFotoParlamentar,
+                                                                          IdentificacaoParlamentar.UrlPaginaParlamentar,
+                                                                          IdentificacaoParlamentar.EmailParlamentar)) %>%
+                                                                mutate(CodigoMateria = bill_id, 
+                                                                       SiglaSubtipoMateria = bill_type,
+                                                                       NumeroMateria = bill_number)
 
 #Passage Data
 url <- paste(url_base_passage, bill_id, sep = "")
 json_passage <- jsonlite::fromJSON(url, flatten = T)
 list_bill_passage_data <- json_passage$MovimentacaoMateria[4]$Materia
 df_bill_passage_identification <- list_bill_passage_data$IdentificacaoMateria %>% purrr::map_df(~ .)
+bill_type <- df_bill_passage_identification$SiglaSubtipoMateria
+bill_number <- df_bill_passage_identification$NumeroMateria
 df_bill_actual_situation <- list_bill_passage_data$SituacaoAtual$Autuacoes$Autuacao$Situacao %>% purrr::map_df(~ .)
 df_bill_passages <- list_bill_passage_data$Tramitacoes %>% purrr::map_df(~ .)
+df_bill_passages_csv <- df_bill_passages %>% 
+                                              select(-c(IdentificacaoTramitacao.OrigemTramitacao.Local.NomeCasaLocal,
+                                                        IdentificacaoTramitacao.OrigemTramitacao.Local.NomeLocal,
+                                                        IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
+                                                        IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
+                                                        IdentificacaoTramitacao.Situacao.SiglaSituacao)) %>%
+                                              mutate(CodigoMateria = bill_id, 
+                                                     SiglaSubtipoMateria = bill_type,
+                                                     NumeroMateria = bill_number)
+  
 
