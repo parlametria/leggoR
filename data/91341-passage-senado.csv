@@ -1,0 +1,579 @@
+codigo_tramitacao,numero_autuacao,data_tramitacao,numero_ordem_tramitacao,texto_tramitacao,indicador_recebimento,data_recebimento,origem_tramitacao_local_codigo_local,origem_tramitacao_local_tipo_local,origem_tramitacao_local_sigla_casa_local,origem_tramitacao_local_sigla_local,destino_tramitacao_local_codigo_local,destino_tramitacao_local_tipo_local,destino_tramitacao_local_sigla_casa_local,destino_tramitacao_local_sigla_local,situacao_codigo_situacao,situacao_descricao_situacao,codigo_materia,sigla_casa_identificacao_materia,nome_casa_identificacao_materia,sigla_subtipo_materia,descricao_subtipo_materia,numero_materia,ano_materia,indicador_tramitando
+2346685,1,2016-06-21,1,"Remessa Ofício SF n.º 762, de 21/06/2016, ao Senhor Primeiro-Secretário da Câmara dos Deputados, encaminhando autógrafos do projeto para revisão, nos termos do art. 65 da Constituição Federal (fls. 749 a 782).",S,NA,440,A,SF,SEXPE,440,A,SF,SEXPE,52,REMETIDA À CÂMARA DOS DEPUTADOS,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2346271,1,2016-06-16,1,Anexado o texto revisado (fls. 716 a 746).,S,NA,440,A,SF,SEXPE,440,A,SF,SEXPE,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2344908,1,2016-06-07,2,"Aprovado o Substitutivo - Emenda nº 3-CAE, com novas emendas apresentadas no turno suplementar.
+      À Câmara dos Deputados.
+      *** DETALHAMENTO DA AÇÃO LEGISLATIVA ***
+      Discussão encerrada.
+      Aprovada a Emenda nº 3-CAE – Substitutivo, com o seguinte resultado: Sim 64, Abst. 2, Presidente 1, Total 67.
+      Ficam prejudicados o projeto e as Emendas nºs 1 e 2-CCJ.
+      Encaminhado à publicação o Parecer nº 534, de 2016-CDIR, apresentando a redação do vencido para o turno suplementar.
+      Encaminhadas à publicação as Emendas nºs 4, 5, 6, 7, 8 e 9-PLEN, todas de autoria do Senador Aloysio Nunes Ferreira.
+      Proferido pelo Senado Ricardo Ferraço o Parecer nº 535, de 2016-PLEN, favorável às Emendas nº 4 a 9-PLEN.
+      Discussão encerrada, em turno suplementar.
+      Aprovados, em globo, em turno suplementar, o Substitutivo (Emenda nº 3-PLEN) e as Emendas nº 4 a 9-PLEN, com o seguinte resultado: Sim 52, Abst. 2, Presidente 1, Total 55.
+      Aprovada a redação final da matéria. (Parecer nº 536, de 2016-CDIR – Publicada em Suplemento ao DSF nº 80, de 08/06/2016)
+      À Câmara dos Deputados.",S,2016-06-16,1998,C,SF,PLEN,440,A,SF,SEXPE,113,APROVADO O SUBSTITUTIVO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2344786,1,2016-06-07,1,Matéria incluída na pauta da sessão deliberativa ordinária de 7.6.2016,S,2016-06-07,443,A,SF,SLSF,543,A,SF,SEADI,78,INCLUÍDA EM ORDEM DO DIA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2343607,1,2016-05-30,3,"Aguardando inclusão em Ordem do Dia.
+      Discussão, em turno único.",S,NA,443,A,SF,SLSF,443,A,SF,SLSF,8,PRONTO PARA DELIBERAÇÃO DO PLENÁRIO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2343589,1,2016-05-30,2,"Anunciado o término do prazo, em 27 de maio, para apresentação de emendas à matéria.
+      Não foram oferecidas emendas.
+      A matéria será incluída em Ordem do Dia oportunamente.",S,2016-05-30,1998,C,SF,PLEN,443,A,SF,SLSF,8,PRONTO PARA DELIBERAÇÃO DO PLENÁRIO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2343469,1,2016-05-30,1,Encaminhado ao Plenário para comunicação do término do prazo para apresentação de emendas.,S,2016-05-30,443,A,SF,SLSF,1998,C,SF,PLEN,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2342813,1,2016-05-19,3,"Prazo: Recebimento de emendas perante a Mesa (Art. 235, II, ""d"", do RISF)
+      
+      De 20/05/2016 a 27/05/2016",S,NA,443,A,SF,SLSF,443,A,SF,SLSF,88,AGUARDANDO RECEBIMENTO DE EMENDAS PERANTE A MESA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2342791,1,2016-05-19,2,"Tendo sido lidos os Pareceres nº 503 a 505, de 2016, a matéria ficará perante a Mesa pelo prazo de cinco dias úteis para recebimento de emendas, nos termos do art. 235, II, ""d"", do Regimento Interno.",S,2016-05-19,1998,C,SF,PLEN,443,A,SF,SLSF,88,AGUARDANDO RECEBIMENTO DE EMENDAS PERANTE A MESA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2342740,1,2016-05-19,1,Encaminhado ao Plenário.,S,2016-05-19,443,A,SF,SLSF,543,A,SF,SEADI,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2342541,1,2016-05-18,2,"Encaminhados à publicação os seguintes pareceres:
+      - Parecer nº 503, de 2016-CCJ, 1º pronunciamento, relator Senador Arthur Virgílio, favorável, nos termos do Substitutivo que apresenta - Emenda nº 1-CCJ; 
+      - Parecer nº 504, de 2016-CCJ, 2º pronunciamento, relator Senador Arthur Virgílio, favorável, nos termos do Substitutivo que apresenta - Emenda nº 2-CCJ; e 
+      - Parecer nº 505, de 2016-CCJ, relator Senador Ricardo Ferraço, favorável, nos termos do Substitutivo que apresenta - Emenda nº 3-CAE.
+      ************* Retificado em 19/05/2016*************
+      ONDE SE LÊ:
+      - Parecer nº 505, de 2016-CCJ, relator Senador Ricardo Ferraço, favorável, nos termos do Substitutivo que apresenta - Emenda nº 3-CAE.
+      
+      LEIA-SE:
+      - Parecer nº 505, de 2016-CAE, relator Senador Ricardo Ferraço, favorável, nos termos do Substitutivo que apresenta - Emenda nº 3-CAE",S,2016-05-18,1998,C,SF,PLEN,443,A,SF,SLSF,8,PRONTO PARA DELIBERAÇÃO DO PLENÁRIO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2342428,1,2016-05-18,1,Aguardando leitura de pareceres da CCJ e CAE.,S,2016-05-18,443,A,SF,SLSF,1998,C,SF,PLEN,14,AGUARDANDO LEITURA PARECER (ES),91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2342225,1,2016-05-17,2,À SLSF.,S,2016-05-17,38,C,SF,CAE,443,A,SF,SLSF,89,APROVADO PARECER NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2342210,1,2016-05-17,1,"Em reunião realizada nesta data, a Comissão aprova o relatório do senador Ricardo Ferraço, que passa a constituir o parecer da CAE, favorável ao projeto nos termos da Emenda nº 2-CAE (substitutivo). Anexada, à fl. 639, cópia do relatório de registro de presença.",S,NA,38,C,SF,CAE,38,C,SF,CAE,89,APROVADO PARECER NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2342070,1,2016-05-16,1,"O relator, senador Ricardo Ferraço, apresentou relatório reformulado, favorável ao projeto nos termos do substitutivo que apresenta (fls 594-638).",S,NA,38,C,SF,CAE,38,C,SF,CAE,138,INCLUÍDA NA PAUTA DA REUNIÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2341830,1,2016-05-12,1,"Matéria constante da Pauta da 13ª Reunião da Comissão de Assuntos Econômicos, agendada para o dia 17/05/2016.",S,NA,38,C,SF,CAE,38,C,SF,CAE,138,INCLUÍDA NA PAUTA DA REUNIÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2340342,1,2016-04-29,1,"Matéria constante da Pauta da 12ª Reunião da Comissão de Assuntos Econômicos, agendada para o dia 03/05/2016.",S,NA,38,C,SF,CAE,38,C,SF,CAE,138,INCLUÍDA NA PAUTA DA REUNIÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2339739,1,2016-04-26,1,"Em reunião realizada em 26/04/2016, a apreciação da matéria foi adiada.",S,NA,38,C,SF,CAE,38,C,SF,CAE,42,PRONTA PARA A PAUTA NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2339358,1,2016-04-20,1,"Matéria constante da Pauta da 11ª Reunião da Comissão de Assuntos Econômicos, agendada para o dia 26/04/2016.",S,NA,38,C,SF,CAE,38,C,SF,CAE,138,INCLUÍDA NA PAUTA DA REUNIÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2338289,1,2016-04-12,1,"Em reunião realizada em 12/04/2016, a apreciação da matéria foi adiada.",S,NA,38,C,SF,CAE,38,C,SF,CAE,42,PRONTA PARA A PAUTA NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2337861,1,2016-04-08,1,"Matéria constante da Pauta da 9ª Reunião da Comissão de Assuntos Econômicos, agendada para o dia 12/04/2016.",S,NA,38,C,SF,CAE,38,C,SF,CAE,138,INCLUÍDA NA PAUTA DA REUNIÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2337083,1,2016-04-05,1,"Em reunião realizada em 05/04/2016, a apreciação da matéria foi adiada.",S,NA,38,C,SF,CAE,38,C,SF,CAE,42,PRONTA PARA A PAUTA NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2336667,1,2016-04-01,1,"Matéria constante da Pauta da 8ª Reunião da Comissão de Assuntos Econômicos, agendada para o dia 05/04/2016.",S,NA,38,C,SF,CAE,38,C,SF,CAE,138,INCLUÍDA NA PAUTA DA REUNIÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2332715,1,2016-03-15,1,"Reunida a Comissão nesta data, a apreciação da matéria é adiada.",S,NA,38,C,SF,CAE,38,C,SF,CAE,42,PRONTA PARA A PAUTA NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2331791,1,2016-03-10,1,"Matéria constante da Pauta da 5ª Reunião da Comissão de Assuntos Econômicos, agendada para o dia 15/03/2016.",S,NA,38,C,SF,CAE,38,C,SF,CAE,138,INCLUÍDA NA PAUTA DA REUNIÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2330976,1,2016-03-08,1,"Em reunião realizada em 8/3/2016, foi concedida vista coletiva, nos termos do art. 132 do Regimento Interno do Senado Federal.",S,NA,38,C,SF,CAE,38,C,SF,CAE,90,PEDIDO DE VISTA CONCEDIDO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2330529,1,2016-03-03,1,"Matéria constante da Pauta da 4ª Reunião da Comissão de Assuntos Econômicos, agendada para o dia 08/03/2016.",S,NA,38,C,SF,CAE,38,C,SF,CAE,138,INCLUÍDA NA PAUTA DA REUNIÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2318279,1,2015-12-02,1,"O relator, senador Ricardo Ferraço, apresentou nesta data relatório reformulado, favorável ao projeto nos termos do substitutivo que apresenta (fls. 540-593).",S,NA,38,C,SF,CAE,38,C,SF,CAE,42,PRONTA PARA A PAUTA NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2294769,1,2015-09-24,1,"Realizada, em 23/9/2015, audiência pública com a finalidade de instruir o PLS nº 229 de 2009 – Complementar, com a presença do srs. Tarcísio José Massote de Godoy, secretário executivo do Ministério da Fazenda; Dyogo Henrique de Oliveira, secretário executivo do Ministério do Planejamento, Orçamento e Gestão; Hélio Tollini, consultor de orçamento da Câmara dos Deputados; Fernando Moutinho, consultor de orçamento, fiscalização e controle do Senado Federal; e Marcos José Mendes, consultor legislativo do Senado Federal.",S,NA,38,C,SF,CAE,38,C,SF,CAE,42,PRONTA PARA A PAUTA NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2283598,1,2015-08-25,1,"Em reunião realizada em 25/8/2015, foi aprovado o Requerimento nº 30/2015-CAE, de iniciativa do Senador Delcídio do Amaral, o qual requer a realização de audiência pública com a finalidade de instruir o Projeto de Lei do Senado nº 229 de 2009.
+      	
+      Requerimento anexado ao processado (fls. 535-536).",S,NA,38,C,SF,CAE,38,C,SF,CAE,110,AUDIÊNCIA PÚBLICA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2272657,1,2015-07-09,2,"A matéria encontra-se pronta para a pauta, com relatório do Senador Ricardo Ferraço, favorável ao projeto nos termos do substitutivo que apresenta (fls.480-534).",S,NA,38,C,SF,CAE,38,C,SF,CAE,42,PRONTA PARA A PAUTA NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2272625,1,2015-07-09,1,Devolvido à CAE para prosseguimento da tramitação.,S,2015-07-09,197,A,SF,SSCLSF,38,C,SF,CAE,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2271378,1,2015-07-07,1,"À SCLSF, a pedido.",S,2015-07-07,38,A,SF,CAE,197,A,SF,SSCLSF,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2270385,1,2015-07-02,1,"Devolvido pelo relator, Senador Ricardo Ferraço, com relatório favorável ao projeto nos termos do substitutivo que apresenta (fls. 480-534).",S,NA,38,A,SF,CAE,38,A,SF,CAE,42,PRONTA PARA A PAUTA NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2251881,1,2015-05-04,1,"O Presidente da Comissão, Senador Delcídio do Amaral, designa o Senador Ricardo Ferraço relator da Matéria.
+      
+      Ao Relator.
+      ",S,NA,38,A,SF,CAE,38,A,SF,CAE,91,MATÉRIA COM A RELATORIA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2250121,1,2015-04-28,2,"Recebido nesta Comissão, nesta data.
+      
+      Matéria aguardando distribuição.
+      ",S,NA,38,A,SF,CAE,38,A,SF,CAE,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2249989,1,2015-04-28,1,"Aprovado o Requerimento nº 226, de 2015, a matéria é desapensada das demais e, uma vez que já se encontra instruída pela CCJ, volta ao exame da CAE.",S,NA,153,A,SF,ATA-PLEN,38,A,SF,CAE,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2240973,1,2015-03-26,1,"Aguardando Inclusão em Ordem do Dia do Requerimento nº 226, de 2015, de autoria do Senador Tasso Jereissati, solicitando o desapensamento do Projeto de Lei do Senado 229, de 2009.",S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2240320,1,2015-03-25,2,"Encaminhado à publicação o Requerimento nº 226, de 2015, de autoria do Senador Tasso Jereissati, solicitando, nos termos regimentais, o desapensamento, para que tenha tramitação autônoma, do Projeto de Lei do Senado nº 229, de 2009 - Complementar, que se encontra tramitando em conjunto com os Projetos de Lei do Senado nº 150 de 2005; 90, 180, 298, 414 e 540 de 2007; 66, 72, 265 e 482 de 2008; 12, 128, 175, 230, 243, 248, 302, 315, 350, 450 e 507 de 2009; 21, 75, 538 e 719 de 2011; 113, 135, e 382 de 2012, todos complementares.
+      O Requerimento será incluído em Ordem do Dia oportunamente.",S,NA,153,A,SF,ATA-PLEN,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2239550,1,2015-03-25,1,Encaminhado ao plenário.,S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2238216,1,2015-03-20,1,"Aguardando inclusão em Ordem do Dia dos Requerimentos nºs 1.237, de 2013; 93 e 946, de 2014, de desapensamento dos PLS nºs 229, de 2009; 540 e 298, de 2007, dos PLS nºs 150, de 2005; 90, 180 e 414, de 2007; 66, 72, 265 e 482, de 2008; 12, 128, 175, 230, 243, 248, 302, 315, 350, 450 e 507, de 2009; 21, 75, 538 e 719, de 2011; 113, 135 e 382, de 2012.",S,NA,197,A,SF,SSCLSF,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2237530,1,2015-03-19,1,"Os Projetos de Lei do Senado nºs 150, de 2005; 90, 180, 298, 414 e 540, de 2007; 66, 72, 265 e 482, de 2008; 12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507, de 2009; 21, 75, 538 e 719, de 2011; 113, 135 e 382, de 2012; todos Complementares, continuam tramitando em conjunto, nos termos do art. 332 do Regimento Interno. 
+      
+      Os Requerimentos nºs 1.237, de 2013; 93 e 946, de 2014, referentes às matérias acima relacionadas, serão incluídos em Ordem do Dia oportunamente.",S,NA,153,A,SF,ATA-PLEN,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2233757,1,2015-03-11,1,Encaminhado ao Plenário.,S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2211573,1,2014-12-18,1,"Aguardando inclusão em Ordem do Dia dos Requerimentos nºs 1.237, de 2013, do Senador Francisco Dornelles,  e 93, de 2014, do Senador Cristovam Buarque, solicitando o desapensamento dos Projetos de Lei do Senado nºs 229, de 2009; e 540, de 2007,-Complementares, respectivamente, dos Projetos de Lei do Senado nºs 150, de 2005; 90, 180, 298 e 414 de 2007; 66, 72, 265 e 482, de 2008; 12, 128, 175, 230, 243, 248, 302, 315, 350, 450 e 507, de 2009; 21, 75, 538 e 719, de 2011; 113, 135 e 382, de 2012, Complementares, a fim de que tenham tramitação autônoma (alteram a Lei de Responsabilidade Fiscal).
+      
+      Votação, em turno único.",S,NA,197,A,SF,SSCLSF,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2196006,1,2014-11-25,2,"Aguardando inclusão em Ordem do Dia dos Requerimentos nºs 1.237, de 2013, e 946, de 2014.
+      
+      ************* Retificado em 25/11/2014*************
+      Incluído em Ordem do Dia o Requerimento nº 1.237, de 2013.
+      Aguardando inclusão em Ordem do Dia dos Requerimentos nºs 93 e 946, de 2014.
+      
+      
+      Requerimento não apreciado na sessão do dia 25/11/2014, transferida para a sessão deliberativa ordinária de 26/11/2014.
+      
+      Requerimento não apreciado na sessão do dia 26/11/2014, transferido para a sessão deliberativa ordinária de 27/11/2014.
+      
+      Matéria não apreciada na sessão do dia 26/11/2014, transferida para a sessão deliberativa ordinária de 27/11/2014.
+      
+      Requerimento não apreciado na sessão de 27/11/2014, transferido para a sessão deliberativa ordinária de 2/12/2014.
+      
+      Requerimento não apreciado na sessão do dia 02/12/2014, transferido para a sessão deliberativa ordinária de 03/12/2014.
+      
+      Agendado para a Ordem do Dia da sessão deliberativa ordinária de 11.12.2014 o Requerimento nº 93, de 2014, do Senador Cristovam Buarque, que solicita o desapensamento do Projeto de Lei do Senado nº 540, de 2007-Complementar, dos Projetos de Lei do Senado nºs 150, de 2005; 90, 180, 298 e 414, de 2007; 66, 72, 265 e 482, de 2008; 12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507, de 2009; 21, 75, 538 e  719, de 2011; e 113, 135 e 382, de 2012, Complementares.
+      
+      Não houve sessão no Senado Federal, apreciação transferida para a sessão deliberativa ordinária de 04/12/2014.
+      
+      Não houve sessão no Senado Federal, apreciação transferida para a sessão deliberativa ordinária de 9/12/2014.
+      
+      Requerimento não apreciado na sessão de 09/12/2014, transferido para a sessão deliberativa ordinária de 10/12/2014.
+      
+      Requerimento não apreciado na sessão de 10/12/2014, transferido para a sessão deliberativa ordinária de 11/12/2014.
+      
+      Incluído em Ordem do Dia da sessão deliberativa ordinária do dia 11.12.2014, o Requerimento nº 93, de 2014, do Senador Cristovam Buarque, que solicita o desapensamento do Projeto de Lei do Senado nº 540, de 2007 - Complementar dos  Projetos de Lei do Senado nºs 150, de 2005; 180, 298, 414 e 90 de 2007; 66, 72, 265 e 482, de 2008; 12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507, de 2009; 21, 75, 538 e 719, de 2011; e 113, 135, 376 e 382, de 2012, todos complementares, a fim de que tenha tramitação autônoma.
+      Votação, em turno único.
+      
+      Requerimento não apreciado na sessão do dia 11/12/2014, transferido para a sessão deliberativa ordinária de 16/12/2014.
+      
+      Não houve sessão deliberativa ordinária no Senado Federal, apreciação transferida para a sessão deliberativa ordinária de 17/12/2014.
+      
+      Requerimento retirado da pauta em virtude do término da sessão legislativa.",S,NA,197,A,SF,SSCLSF,197,A,SF,SSCLSF,114,INCLUÍDO REQUERIMENTO EM ORDEM DO DIA DA SESSÃO DELIBERATIVA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2195888,1,2014-11-25,1,"Encaminhado à publicação o Requerimento nº 946, de 2014, de autoria do Senador Marcelo Crivella, solicitando o desapensamento do PLS 298/2007-Complementar, para que tenha tramitação autônoma.
+      O Requerimentoº 946, de 2014, será incluído em Ordem do Dia oportunamente.
+      (tramitam em conjunto: PLS 90/2007; PLS 150/2007; PLS 180/2007; PLS 298/2007; PLS 414/2007; PLS 540/2007; PLS 66/2008; PLS 72/2008; PLS 265/2008; PLS 482/2008; PLS 12/2009; PLS 128/2009; PLS 175/2009; PLS 229/2009; PLS 230/2009; PLS 243/2009; PLS 248/2009; PLS 302/2009; PLS 315/2009; PLS 350/2009; PLS 450/2009; PLS 507/2009; PLS 21/2011; PLS 75/2011; PLS 538/2011; PLS 719/2011; PLS 113/2012; PLS 135/2012; PLS 382/2012, todos Complementares)",S,NA,153,A,SF,ATA-PLEN,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2183738,1,2014-10-02,1,"Incluído em Ordem do dia da sessão deliberativa de 28/10/2014.
+      Votação, em turno único, do Requerimento nº 1.237, de 2013, do Senador Francisco Dornelles, solicitando o desapensamento do Projeto de Lei do Senado nº 229, de 2009-Complementar, dos Projetos de Lei do Senado nºs 150, de 2005; 90, 180, 298, 414 e 540, de 2007; 66, 72, 265 e 482, de 2008; 12, 128, 175, 230, 243, 248, 302, 315, 350, 450 e 507, de 2009; 21, 75, 538 e  719, de 2011; 113, 135 e 382, de 2012, Complementares, a fim de que tenha tramitação autônoma (alteram a Lei de Responsabilidade Fiscal).
+      
+      Requerimento não apreciado na sessão de 28.10.2014, transferido para a ordem do dia da sessão deliberativa ordinária de 29.10.2014.
+      
+      Requerimento não apreciado na sessão do dia 29/10/2014, transferida para a sessão deliberativa ordinária de 04/11/2014.
+      
+      Requerimento não apreciado na sessão do dia 04/10/2014, transferido para a sessão deliberativa ordinária de 05/11/2014.
+      
+      Requerimento não apreciado na sessão do dia 05/11/2014, transferida para a sessão deliberativa ordinária de 06/11/2014.
+      
+      Requerimento não apreciado na sessão do dia 06/11/2014, transferido para a sessão deliberativa ordinária de 11/11/2014.
+      
+      Requerimento não apreciado na sessão de 11.11.2014, transferido para a ordem do dia da sessão deliberativa ordinária de 12.11.2014.
+      
+      Requerimento não apreciado na sessão de 12/11/2014, transferido para a sessão deliberativa ordinária de 13/11/2014.
+      
+      Requerimento não apreciada na sessão do dia 12/11/2014, transferida para a sessão deliberativa ordinária de 18/11/2014.
+      
+      Requerimento não apreciado na sessão do dia 18/11/2014, transferido para a sessão deliberativa ordinária de 19/11/2014.
+      
+      Requerimento não apreciado na sessão de 19.11.2014, transferido para a sessão deliberativa ordinária de 20.11.2014.
+      
+      Requerimento não apreciado na sessão de 19/11/2014, transferido para a sessão deliberativa ordinária do dia 20/11/2014.
+      
+      Requerimentonão apreciado na sessão de 20/11/2014, transferido para a sessão deliberativa ordinária do dia 25/11/2014.",S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,114,INCLUÍDO REQUERIMENTO EM ORDEM DO DIA DA SESSÃO DELIBERATIVA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2180476,1,2014-09-02,1,"Aprovado o Requerimento nº 85, de 2014, sendo desapensado o PLS 376/2012-Complementar.
+      As demais matérias continuam tramitando em conjunto e aguardarão na SGM a inclusão em Ordem do Dia dos RQS 1237/2013 e 94/2014, que solicitam outros desapensamentos.
+      
+      (Tramitam em conjunto: PLS 150/2005; PLS 90, 180, 298, 414 e 540/2007; PLS 66, 72, 265 e 482/2008; PLS 12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507/2009; PLS 21, 75, 538 e 719/2011; PLS 113, 135 e 382/2012 - todos Complementares)
+      
+      Matéria não apreciada na sessão de 2/9/2014, transferida para a próxima sessão deliberativa ordinária.
+      
+      ************* Retificado em 02/09/2014*************
+      Aprovado o Requerimento nº 85, de 2014, sendo desapensado o PLS 376/2012-Complementar.
+      As demais matérias continuam tramitando em conjunto e aguardarão na SGM a inclusão em Ordem do Dia dos RQS 1237/2013 e 94/2014, que solicitam outros desapensamentos.
+      
+      (Tramitam em conjunto: PLS 150/2005; PLS 90, 180, 298, 414 e 540/2007; PLS 66, 72, 265 e 482/2008; PLS 12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507/2009; PLS 21, 75, 538 e 719/2011; PLS 113, 135 e 382/2012 - todos Complementares)
+      
+      
+      ************* Retificado em 04/09/2014*************
+      Onde se lê: ...As demais matérias continuam tramitando em conjunto e aguardarão na SGM a inclusão em Ordem do Dia dos RQS 1237/2013 e 94/2014, que solicitam outros desapensamentos.
+      
+      Leia-se: ...As demais matérias continuam tramitando em conjunto e aguardarão na SGM a inclusão em Ordem do Dia dos RQS 1237/2013 e 93/2014, que solicitam outros desapensamentos.",S,NA,153,A,SF,ATA-PLEN,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2180475,1,2014-08-01,1,"A partir de 1º de agosto de 2014 os boletins de ação legislativa não mais serão impressos, nos termos da Instrução Normativa nº 1, de 2014, do Secretário-Geral da Mesa. As consultas sobre a tramitação da matéria devem ser realizadas diretamente no sistema eletrônico próprio.",S,NA,153,A,SF,ATA-PLEN,153,A,SF,ATA-PLEN,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2165499,1,2014-05-30,1,"Incluído em Ordem do Dia da Sessão Deliberativa de 02/06/2014.
+      Votação do Requerimento nº 1.237, de 2013, do Senador Francisco Dornelles, de desapensamento do Projeto de Lei do Senado nº 229/2009-Complementar.
+      
+      ************* Retificado em 30/05/2014*************
+      Incluído em Ordem do Dia da Sessão Deliberativa Ordinária de 02/06/2014 o Requerimento nº 1.237, de 2013, do Senador Francisco Dornelles, de desapensamento do Projeto de Lei do Senado nº 229/2009-Complementar dos 
+      Projetos de Lei do Senado nºs 150, de 2005; 90, 180, 298 e 414, de 2007; 66, 72, 265 e 482, de 2008; 12, 128, 175, 230, 243, 248, 302, 315, 350, 450 e 507, de 2009; 21, 75, 538 e  719, de 2011; 113, 135 e 382, de 2012, Complementares.
+      
+      Votação, em turno único.
+      
+      Matéria não apreciada na sessão do dia 02/06/2014, transferida para a sessão deliberativa ordinária de 03/06/2014.
+      
+      Matéria não apreciada na sessão do dia 03/06/2014, transferida para a sessão deliberativa ordinária de 04/06/2014.
+      
+      Matéria não apreciada na sessão de 4.6.2014, transferida para a sessão deliberativa ordinária de 5.6.2014.
+      
+      Matéria não apreciada na sessão de 5.6.2014, transferida para a sessão deliberativa ordinária de 10.6.2014.
+      
+      Matéria não apreciada na sessão de 10.06.2014, transferida para a sessão deliberativa ordinária de 15.07.2014.
+      
+      Matéria não apreciada na sessão de 15/7/2014, transferida para a sessão deliberativa ordinária de 16/7/2014.
+      
+      Matéria não apreciada na sessão de 16/7/2014, transferida para a sessão deliberativa ordinária de 5/8/2014
+      
+      Matéria não apreciada na sessão do dia 05/08/2014, transferida para a sessão deliberativa ordinária de 06/08/2014.
+      
+      Matéria não apreciada na sessão de 06/08/2014, transferida para a próxima sessão deliberativa ordinária.",S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,114,INCLUÍDO REQUERIMENTO EM ORDEM DO DIA DA SESSÃO DELIBERATIVA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2141732,1,2014-03-19,1,"Incluído na Ordem do Dia da sessão deliberativa de 20/03/2014, o Requerimento nº 85, de 2014, da Senadora Ana Amélia, que solicita o desapensamento do Projeto de Lei do Senado nº 376, de 2012-complementar, dos Projetos de Lei do Senado nºs 150, de 2005; 90, 180, 298, 414 e 540, de 2007; 66, 72, 265 e 482, de 2008; 12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507, de 2009; 21, 75, 538 e  719, de 2011; 113, 135 e 382, de 2012, todos complementares, a fim de que tenha tramitação autônoma.
+      
+      Votação, em turno único.
+      
+      Matéria não apreciada na sessão de 20.03.2014, transferida para a sessão deliberativa ordinária de 25.03.2014.
+      
+      Matéria não apreciada na sessão de 25.03.2014, transferida para a sessã odeliberativa ordinária do dia 26.03.2014.
+      
+      Matéria não apreciada na sessã ode 26.03.2014, transferida para sessão deliberativa ordinária do dia 27.03.2014.
+      
+      Matéria não apreciada na sessão de 27.03.2014, transferida para a sessão deliberativa ordinária do dia 1.4.2014.
+      
+      Matéria não apreciada na sessão de 1.4.2014, transferida para a sessão deliberativa ordinária do dia 2.4.2014.
+      
+      
+      Matéria não apreciada na sessão de 02.04.2014, transferida para a sessão deliberativa ordinária do dia 03.04.2014.
+      
+      Matéria não apreciada na sessão de 03.04.2014, transferida para a sessão deliberativa ordinária de 08.03.2014.
+      
+      Matéria não apreciada na sessão de 8.4.2014, transferida para a sessão deliberativa ordinária de 9.4.2014.
+      
+      Matéria não apreciada na sessão de 09.04.2014, transferida para a sessão deliberativa ordinária do dia 10.04.2014.
+      
+      Matéria não apreciada na sessão de 10.04.2014, transferida para a sessão deliberativa ordinária do dia 15.04.2014.
+      
+      Matéria não apreciada na sessão de 15.4.2014, transferida para a sessão deliberativa ordinária de 16.4.2014.
+      
+      Matéria não apreciada na sessão de 16.04.2014, transferida para a sessão deliberativa ordinária de 22.04.2014.
+      
+      Matéria não apreciada na sessão de 22.04.2014, transferida para a sessão deliberativa ordinária de 23.04.2014.
+      
+       Matéria não apreciada na sessão de 23.04.2014, transferida para a sessão deliberativa ordinária do dia 24.04.2014.
+      
+      Matéria não apreciada na sessão de 24.04.2014, transferida para a sessão deliberativa ordinária do dia 29.04.2014.
+      
+      Matéria não apreciada na sessão de 29.04.2014, transferida para a sessão deliberativa ordinária de 30.04.2014.
+      
+      Matéria não apreciada na sessão de 30.04.2014, transferida para a sessão deliberativa ordinária de 06.05.2014.
+      
+      Matéria não apreciada na sessão de 6.5.2014, transferida para a sessão deliberativa ordinária de 7.5.2014.
+      
+      Matéria não apreciada na sessão de 07.05.2014, transferida para a sessão deliberativa ordinária do dia 08.05.2014.
+      
+      Matéria não apreciada na sessão de 08.05.2014, transferida para a sessão deliberativa ordinária de 13.05.2014.
+      
+      
+      Matéria não apreciada na sessão de 13.05.2014, transferida para a sessão deliberativa ordinária de 14.05.2014
+      
+      Matéria não apreciada na sessão de 14.05.2014, transferida para a sessão deliberativa ordinária do dia 15.05.2014.
+      
+      Matéria não apreciada na sessão de 15.05.2014, transferida para a sessão deliberativa ordinária do dia 20.05.2014.
+      
+      Matéria não apreciada na sessão de 20.05.2014, transferida para a sessão deliberativa ordinária do dia 21.05.2014.
+      
+      Matéria não apreciada na sessão do dia 21/05/2014, transferida para a sessão deliberativa ordinária de 22/05/2014.
+      
+      Matéria não apreciada na sessão do dia 22/05/2014, transferida para a sessão deliberativa ordinária de 26/05/2014.
+      
+      Matéria não apreciada na sessão do dia 27/05/2014, transferida para a sessão deliberativa ordinária de 28/05/2014.
+      
+      Matéria não apreciada na sessão do dia 28/05/2014, transferida para a sessão deliberativa ordinária de 29/05/2014.
+      
+      Matéria não apreciada na sessão do dia 29/05/2014, transferida para a sessão deliberativa ordinária de 02/06/2014.",S,NA,197,A,SF,SSCLSF,197,A,SF,SSCLSF,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2140659,1,2014-03-18,1,"Aguardando inclusão em Ordem do Dia dos Requerimentos nºs 1.237, de 2013; 85 e 93, de 2014, de desapensamento.",S,NA,197,A,SF,SSCLSF,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2140410,1,2014-03-17,2,"Juntado o Ofícion° 404/2014_CNM/ASPAR_192, da Confederação Nacional de Municípios-CNM ( fls.473 a 475)
+      Devolvido à SSCLSF.",S,NA,176,A,SF,SGM,197,A,SF,SSCLSF,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2140399,1,2014-03-17,1,"Encaminhado à SGM, a pedido.",S,NA,197,A,SF,SSCLSF,176,A,SF,SGM,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2135933,1,2014-02-21,1,"Aguardando inclusão em Ordem do Dia dos Requerimentos nºs 1.237, de 2013; 85 e 93, de 2014, de desapensamento.",S,NA,197,A,SF,SSCLSF,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2134421,1,2014-02-18,2,"Leitura do Requerimento nº 93, de 2014, de autoria do Senador Cristovam Buarque, que solicita, nos termos do Regimento Interno do Senado Federal, o desapensamento, para que tenha tramitação autônoma, do Projeto de Lei do Senado nº 540, de 2007 - Complementar, que se encontra apensado aos Projetos de Lei do Senado nºs  150, de 2005; 90, 18, 298, 414, de 2007; 66, 72, 265 e 482, de 2008; 12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507, de 2009; 21, 75, 538 e 719, de 2011; e 113, 135, 376 e 382, de 2012, todos complementares, haja vista o projeto versar sobre matéria diversa dos demais projetos a ele apensados..
+      O Requerimento será incluído em Ordem do Dia, oportunamente.
+      À SGLSF.
+      
+      ************* Retificado em 18/02/2014*************
+      Leitura do Requerimento nº 93, de 2014, de autoria do Senador Cristovam Buarque, que requer, nos termos do Regimento Interno do Senado Federal, o desapensamento, para que tenha tramitação autônoma, do Projeto de Lei do Senado nº 540, de 2007 - Complementar, que se encontra apensado aos Projetos de Lei do Senado nºs  150, de 2005; 180, 298, 414 e 90 de 2007; 66, 72, 265 e 482, de 2008; 12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507, de 2009; 21, 75, 538 e 719, de 2011; e 113, 135, 376 e 382, de 2012, todos complementares, haja vista o projeto versar sobre matéria diversa dos demais projetos a ele apensados.
+      O requerimento lido será incluído em Ordem do Dia oportunamente.
+      À SGLSF.
+      ",S,NA,153,A,SF,ATA-PLEN,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2133835,1,2014-02-18,1,Encaminhado ao Plenário.,S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2133484,1,2014-02-17,2,"Leitura do Requerimento nº 85, de 2014, de autoria da Senadora Ana Amélia, que requer, nos termos regimentais, o desapensamento do Projeto de Lei do Senado nº 376, de 2012, para que tenha tramitação autônoma, que se encontra tramitando em conjuntos com os Projetos de Lei do Senado nºs 150, de 2005; 90, 180, 298, 414 e 540, de 2007; 66, 72, 265 e 482, de 2008; 12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507, de 2009; 21, 75, 538 e 719, de 2011; 113, 135 e 382, de 2012, todos complementares.
+      O requerimento lido será incluído em Ordem do Dia oportunamente.
+      À SGCLSF.",S,NA,153,A,SF,ATA-PLEN,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2133432,1,2014-02-17,1,Encaminhado ao Plenário.,S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2126281,1,2014-01-09,1,"Aguardando inclusão em Ordem do Dia o Requerimento nº 1.237, de 2013, de desapensamento.",S,NA,197,A,SF,SSCLSF,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2107052,1,2013-11-06,1,"Incluído na Ordem do Dia da sessão deliberativa ordinária de 7.11.2013, o Requerimento nº 1.237, de 2013, de desapensamento.
+      Votação, em turno único.
+      
+      Matéria não apreciada na sessão do dia 07/11/2013, transferida para a sessão deliberativa ordinária de 12/11/2013.
+      
+      Matéria não apreciada na sessão do dia 12/11/2013, transferida para a sessão deliberativa ordinária de 13/11/2013.
+      
+      Matéria não apreciada na sessão do dia 13.11.2013, transferida para a sessão deliberativa ordinária do dia 14.11.2013.
+      
+      Matéria não apreciada na sessã ode 14.11.2013, transferida para a sessão deliberativa ordinária do dia 19.11.2013.
+      
+      Matéria não apreciada na sessão de 19.11.2013, transferida para a sessão deliberativa ordinária do dia 20.11.2013.
+      
+      Matéria não apreciada na sessão de 20.11.2013, transferida para a sessão deliberativa ordinária do dia 21.11.2013.
+      
+      Matéria não apreciada na sessão de 21.11.2013, transferida para a sessão deliberativa ordinária de 26.11.2013.
+      
+      Matéria não apreciada na sessão de 26.11.2013, transferida para a sessão deliberativa ordinária de 27.11.2013.
+      
+      Matéria não apreciada na sessão de 27.11.2013, transferida para a sessão deliberativa ordinária do dia 28.11.2013.
+      
+      Matéria não apreciada na sessão do dia 28/11/2013, transferida para a sessão deliberativa ordinária de 3/12/2013.
+      
+      Matéria não apreciada na sessão do dia 03/12/2013, transferida para a sessão deliberativa ordinária de 04/12/2013.
+      
+      Matéria não apreciada na sessão do dia 04/12/2013, transferida para a sessão deliberativa ordinária de 05/12/2013.
+      
+      Matéria não apreciada na sessão do dia 05/12/2013, transferida para a sessão deliberativa ordinária de 10/12/2013.
+      
+      Matéria transferida para a sessão deliberativa ordinária do dia 11.12.2013.
+      
+      Matéria não apreciada na sessão de 11.12.2013, transferida para a sessão deliberativa ordinária do dia 12.12.2013.
+      
+      Matéria não apreciada na sessão de 17.12.2013, transferida para a sessão deliberativa ordinária do dia 19.12.2013.",S,NA,197,A,SF,SSCLSF,197,A,SF,SSCLSF,114,INCLUÍDO REQUERIMENTO EM ORDEM DO DIA DA SESSÃO DELIBERATIVA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2104937,1,2013-10-30,1,"Agendado para a Ordem do Dia da sessão deliberativa ordinária de 07.11.2013, o Requerimento nº 1.237, de 2013, de desapensamento.
+      Votação, em turno único.",S,NA,197,A,SF,SSCLSF,197,A,SF,SSCLSF,126,AGENDADO REQUERIMENTO PARA A ORDEM DO DIA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2102336,1,2013-10-22,1,"Leitura do Requerimento nº 1237, de 2013, de autoria do Senador Francisco Dornelles, solicitando, nos termos regimentais, o desapensamento do PLS 229/2009 - Complementar para que tenha tramitação autônoma. (Tramitam em conjunto as seguintes matérias: PLS 150/2005; PLS 90/2007; PLS 180/2007; PLS 298/2007; PLS 414/2007; PLS 540/2007; PLS 66/2008; PLS 72/2008; PLS 265/2008; PLS 482/2008; PLS 12/2009; PLS 128/2009; PLS 175/2009; PLS 229/2009; PLS 230/2009; PLS 243/2009; PLS 248/2009; PLS 302/2009; PLS 315/2009; PLS 350/2009; PLS 450/2009; PLS 507/2009; PLS 21/2011; PLS 75/2011; PLS 538/2011; PLS 719/2011; PLS 113/2012; PLS 135/2012; PLS 376/2012; e PLS 382/2012, todos Complementares) 
+      O requerimento lido será incluído em Ordem do Dia, oportunamente.
+      À SCLSF.",S,NA,153,A,SF,ATA-PLEN,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2101561,1,2013-10-21,1,"Recebido neste Órgão, às 16h50.
+      
+      Aguardando leitura de requerimento do Senador Francisco Dornelles, que solicita a tramitação autônoma do Projeto de Lei do Senado nº 229, de 2009 - Complementar.",S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,118,AGUARDANDO LEITURA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2101337,1,2013-10-18,2,"Projeto remetido à Secretaria-Geral da Mesa para leitura de Requerimento de autoria do Senador Francisco Dornelles, nos termos do contido no OF. SF/2216/2013, do Excelentíssimo Senhor Presidente do Senado Federal, Senador Renan Calheiros (cópias anexadas ao processado fls. 468-469).
+      
+      Tramitam em conjunto os PLS nºs: 150/2005; 90, 180, 298, 414 e 540/2007; 66, 72, 265 e 482/2008; 12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507/2009; 21, 75, 538 e 719/2011; 113, 135, 376 e 382/2012, todos Complementares.
+      
+      À SCLSF.
+      
+      
+      ************* Retificado em 21/10/2013*************
+      onde lê-se ""Projeto remetido à Secretaria-Geral da Mesa (...)"", leia-se ""Projeto remetido, em 21/10/2013, à Secretaria-Geral da Mesa (...)"".",S,NA,339,A,SF,CDR,197,A,SF,SSCLSF,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2101319,1,2013-10-18,1,"Recebido do Gabinete do Senador Romero Jucá às 18h.
+      Tramitam em conjunto os PLS nºs: 150/2005; 90, 180, 298, 414 e 540/2007; 66, 72, 265 e 482/2008; 12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507/2009; 21, 75, 538 e 719/2011; 113, 135, 376 e 382/2012, todos Complementares.
+      ",S,NA,339,A,SF,CDR,339,A,SF,CDR,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2076425,1,2013-08-07,2,"Devolvido pela SSCLSF, em 07/08/2013.
+      Retorna ao gabinete do Relator para emitir seu relatório.
+      
+      Ao Gabinete.
+      
+      Tramitam em conjunto os PLS nºs: 150/2005;  90, 180, 298, 414 e 540/2007; 66, 72, 265 e 482/2008; 12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507/2009; 21, 75, 538 e 719/2011; 113, 135, 376 e 382/2012, todos Complementares.",S,NA,339,A,SF,CDR,339,A,SF,CDR,91,MATÉRIA COM A RELATORIA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2075865,1,2013-08-07,1,"Aprovado o Requerimento nº 705, de 2013.
+      O Projeto de Lei do Senado nº 62, de 2012 - Complementar é desapensado e volta a ter tramitação autônoma.
+      As demais matérias continuam tramitando em conjunto e retornam ao exame da Comissão de Desenvolvimento Regional e Turismo; seguindo posteriormente às Comissões de Assuntos Sociais; de Agricultura e Reforma Agrária; de Direitos Humanos e Legislação Participativa; de Meio Ambiente, Defesa do Consumidor e Fiscalização e Controle; de Educação, Cultura e Esporte; de Constituição, Justiça e Cidadania; e de Assuntos Econômcios.",S,NA,153,A,SF,ATA-PLEN,339,A,SF,CDR,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2068216,1,2013-07-04,1,"Incluído em Ordem do Dia da sessão deliberativa ordinária do dia 05/07/2013. 
+      Votação, em turno único, do Requerimento nº 705, de 2013, de desapensamento.
+      
+      Matéria não apreciada na sessão do dia 5/7/2013, transferida para a sessão delibertaiva ordinária de 8/7/2013.
+      
+      Matéria não apreciada na sessão de 08.07.2013, transferida para a sessão deliberativa ordinária de 09.07.2013.
+      
+      Matéria não apreciada na sessão do dia 9/7/2013, transferida para sessão deliberativa ordinária de 10/7/2013.
+      
+      Matéria não apreciada na sessão de 10.07.2013, transferida para a sessão deliberativa ordinária de 11.07.2013.
+      
+      Matéria não apreciada na sessão do dia 11/7/2013, transferida para sessão deliberativa ordinária de 12/7/2013.
+      
+      Matéria não apreciada na sessão do dia 16/07/2013, transferida para a sessão deliberativa ordinária de 01/08/2013.
+      
+      Matéria não apreciada na sessão do dia 01/08/2013, transferida para a sessão deliberativa ordinária de 06/08/2013.",S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,114,INCLUÍDO REQUERIMENTO EM ORDEM DO DIA DA SESSÃO DELIBERATIVA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2065056,1,2013-06-27,1,"Agendado para a Ordem do Dia da sessão deliberativa ordinária de 04.07.2013 o Requerimento nº 705, de 2013, de desapensamento.",S,NA,197,A,SF,SSCLSF,197,A,SF,SSCLSF,126,AGENDADO REQUERIMENTO PARA A ORDEM DO DIA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2064272,1,2013-06-25,1,"Leitura do Requerimento nº 705, de 2013, de autoria do Senador Randolfe Rodrigues, solicitando que o PLS 62/2012-Complementar seja desapensado das seguintes matérias: PLS 150/2005; PLS 90/2007; PLS 180/2007; PLS 298/2007; PLS 414/2007; PLS 540/2007; PLS 66/2008; PLS 72/2008; PLS 265/2008; PLS 482/2008; PLS 12/2009; PLS 128/2009; PLS 175/2009; PLS 229/2009; PLS 230/2009; PLS 243/2009; PLS 248/2009; PLS 302/2009; PLS 315/2009; PLS 350/2009; PLS 450/2009; PLS 507/2009; PLS 21/2011; PLS 75/2011; PLS 538/2011; PLS 719/2011; PLS 113/2012; PLS 135/2012; PLS 376/2012 e PLS 382/2012, todos Complementares, que tramitam em conjunto.
+      O Requerimento nº 705, de 2013, será incluído em Ordem do Dia, oportunamente.
+      À SCLSF.
+      ",S,NA,153,A,SF,ATA-PLEN,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2063027,1,2013-06-20,2,"Recebido neste Órgão, às 19h10.
+      
+      Aguardando leitura de requerimento, do Senador Randolfe Rodrigues, de tramitação autônoma do PLS nº 62, de 2012-Complementar.",S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,118,AGUARDANDO LEITURA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2062911,1,2013-06-20,1,"Em 20 de junho de 2013, às 12h20, foi recebido, do Gabinete do Senador Romero Jucá, o presente processado para leitura de Requerimento de autoria do Senador Randolfe Rodrigues, nos termos do contido no OF/1408/2013 do Excelentíssimo Senhor Presidente do Senado Federal, Senador Renan Calheiros (cópia anexada ao processado).
+      
+      Tramitam em conjunto os PLS nºs: 150/2005;  90, 180, 298, 414 e 540/2007;  66, 72, 265 e 482/2008;  12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507/2009; 21, 75, 538 e 719/2011;  62, 113, 135, 376 e 382/2012, todos Complementares.
+      
+      À SCLSF.",S,NA,339,A,SF,CDR,197,A,SF,SSCLSF,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2060652,1,2013-06-13,1,"Em 12/06/2013, o Presidente da Comissão, Senador Antonio Carlos Valadares, distribui a presente proposição ao Senador Romero Jucá para emitir relatório.
+      
+      Tramitam em conjunto os PLS nºs: 150/2005;  90, 180, 298, 414 e 540/2007;  66, 72, 265 e 482/2008;  12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507/2009; 21, 75, 538 e 719/2011;  62, 113, 135, 376 e 382/2012, todos Complementares.
+      ",S,NA,339,A,SF,CDR,339,A,SF,CDR,91,MATÉRIA COM A RELATORIA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2053498,1,2013-05-27,1,"Recebido na Comissão em 27/05/13.
+      
+      Matéria aguardando designação de Relator.
+      
+      Tramitam em conjunto os PLS nºs: 150/2005;  90, 180, 298, 414 e 540/2007;  66, 72, 265 e 482/2008;  12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507/2009; 21, 75, 538 e 719/2011;  62, 113, 135, 376 e 382/2012, todos Complementares.",S,NA,339,A,SF,CDR,339,A,SF,CDR,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2053160,1,2013-05-22,1,"Aprovado o Requerimento nº 387, de 2013, sendo desapensado o PLS 591/2011.
+      Aprovado o Requerimento nº 388, de 2013, sendo desapensado o PLS 86/2012. 
+      Lido e aprovado o Requerimento nº 499, de 2013, de autoria do Senador Wellington Dias, solicitando a retirada em caráter definitivo do PLS 124/2013, ficando prejudicado o Requerimento nº 390, de 2013.
+      Continuam a tramitar em conjunto as seguintes matérias: PLS 150/2005; PLS 90, 180, 298, 414 e 540/2007; PLS 66, 72, 265 e 482/2008; PLS 12, 128, 175, 229, 230, 243, 248, 302, 315, 350, 450 e 507/2009; PLS 21, 75, 538 e 719/2011; PLS 62, 113, 135, 376 e 382/2012, todos Complementares.    
+      Às Comissões de Desenvolvimento Regional e Turismo; de Assuntos Sociais; de Agricultura e Reforma Agrária; de Direitos Humanos e Legislação Participativa; de Meio Ambiente, Defesa do Consumidor e Fiscalização e Controle; de Educação, Cultura e Esporte; de Constituição, Justiça e Cidadania; e de Assuntos Econômicos.",S,NA,153,A,SF,ATA-PLEN,339,A,SF,CDR,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2047398,1,2013-05-13,1,"Incluídos em Ordem do Dia da sessão deliberativa ordinária de 21.05.2013, Requerimentos de tramitação conjunta e desapensamentos de matérias.",S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,114,INCLUÍDO REQUERIMENTO EM ORDEM DO DIA DA SESSÃO DELIBERATIVA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2045390,1,2013-05-07,2,"Leitura dos seguintes requerimentos:
+      - Requerimento nº 387, de 2013, de autoria do Senador Ruben Figueiró, solicitando o desapensamento do PLS 591/2011-Complementar, das demais matérias que tramitam em conjunto;  
+      - Requerimento nº 388, de 2013, de autoria do Senador Francisco Dornelles, solicitando o desapensamento do PLS 86/2012-Complementar, das demais matérias que tramitam em conjunto;
+      - Requerimento nº 390, de 2013, de autoria do Senador Aloysio Nunes Ferreira, solicitando que o PLS 124/2013-Complementar, passe a tramitar em conjunto com as matérias elencadas a seguir.
+      (Tramitam em conjunto as seguintes matérias: PLS 150/2005; PLS 90/2007; PLS 180/2007; PLS 298/2007; PLS 414/2007; PLS 540/2007; PLS 72/2008; PLS 265/2008; PLS 482/2008; PLS 12/2009; PLS 128/2009; PLS 175/2009; PLS 229/2009; PLS 230/2009; PLS 243/2009; PLS 248/2009; PLS 302/2009; PLS 315/2009; PLS 350/2009; PLS 450/2009; PLS 507/2009; PLS 21/2011; PLS 75/2011; PLS 538/2011; PLS 591/2011; PLS 719/2011; PLS 62/2012; PLS 86/2012; PLS 113/2012; PLS 135/2012; PLS 376/2012; e PLS 382/2012)
+      
+      ************* Retificado em 08/05/2013*************
+      Acrescente-se à relação das matérias que tramitam em conjunto o seguinte projeto: PLS 66/2008.",S,NA,153,A,SF,ATA-PLEN,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2045363,1,2013-05-07,1,"Aguardando leitura dos seguintes requerimentos:
+      
+      - do Senador Aloysio Nunes Ferreira, solicitando a tramitação conjunta do Projeto de Lei do Senado nº 124, de 2013, com os Projetos de Lei do Senado nºs 150, de 2005; 298, de 2007 (que tramita em conjunto com os de nºs 414, de 2007; 66 e 72, de 2008); 229, de 2009 (que tramita em conjunto com os de nºs 175, 248 e 450, de 2009); 230, de 2009 (que tramita em conjunto o de nº 302, de 2009); e com os Projetos de Lei do Senado nºs 180 e 540, de 2007; 265 e 482, de 2008; 12, 128, 243, 315, 350 e 507, de 2009; 21, 75, 538, 591 e 719, de 2011; e 62, 86, 99, 113, 135, 376 e 382, de 2012 - todos complementares, que se dará quando todas as matérias estiverem sobre a mesa, nos termos do art. 266 do RISF;
+      
+      - do Senador Ruben Figueiró, solicitando a tramitação autônoma do Projeto de Lei do Senado nº 591, de 2011 – Complementar, que tramita em conjunto com as matérias acima relacionadas; e
+      
+      - do Senador Francisco Dornelles, solicitando a tramitação autônoma do Projeto de Lei do Senado nº 86, de 2012 – Complementar, que tramita em conjunto com as matérias acima relacionadas.",S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,118,AGUARDANDO LEITURA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2039696,1,2013-04-17,1,"Aprovado o Requerimento nº 173, de 2013.
+      As matérias passam a tramitar em conjunto e seguem ao exame das Comissões de Desenvolvimento Regional e Turismo; de Assuntos Sociais; de Agricultura e Reforma Agrária; de Direitos Humanos e Legislação Participativa; de Meio Ambiente, Defesa do Consumidor e Fiscalização e Controle; de Educação, Cultura e Esporte; de Constituição, Justiça e Cidadania; e de Assuntos Econômicos.",S,NA,153,A,SF,ATA-PLEN,197,A,SF,SSCLSF,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2033021,1,2013-04-01,1,"Incluído em Ordem do Dia da sessão deliberativa ordinária de 10.4.2013 o Requerimento nº 173, de 2013, de tramitação conjunta .
+      Votação, em turno único.
+      
+      
+      Matéria não apreciada na sessão de 10.04.2013, transferida para a sessão deliberativa ordinária de 11.04.2013.
+      
+      Matéria não apreciada na sessão de 11.04.2013, transferida para a sessão deliberativa ordinária de 16.04.2013
+      
+      Matéria não apreciada na sessão do dia 16/04/2013, transferida para a sessão deliberativa ordinária de 17/04/2013.",S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,114,INCLUÍDO REQUERIMENTO EM ORDEM DO DIA DA SESSÃO DELIBERATIVA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2028939,1,2013-03-19,1,"Leitura do Requerimento nº 173, de 2013, de autoria do Senador José Pimentel, que requer, na forma do disposto no caput do art. 258 do Regimento Interno do Senado Federal, a tramitação em conjunto dos seguintes Projetos de Lei do Senado,  todos complementares:
+      PLS nº 90/2007( que já tramita em conjunto com os PLS nºs 150/2005 e 21/2011),  com os PLS nºs 229/2009(que já tramita em conjunto com os PLS nºs 175, 248 e 450/2009); com o PLS nº 230/2009(que tramita em conjunto com  o PLS nº 302/2009); com o PLS nº 298/2007(que tramita em conjunto com os PLS nºs 414/2007; 66 e 72/2008); com os PLS nºs 62,86,113,135,376, e 382/2012; 75, 538, 591 e 719/2011; e 12, 128,243,315,350  e 507/2009; 265 e 482/2008; 180 e 540/2007, por versarem sobre a mesma matéria.
+      O requerimento lido será incluído em Ordem do Dia oportunamente.",S,NA,153,A,SF,ATA-PLEN,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2024102,1,2013-03-07,1,"Aguardando leitura de requerimento de tramitação conjunta, que se dará quando os Projetos de Lei do Senado de nºs 90 de 2007; 180 de 2007; 298 de 2007; 540 de 2007; 265 de 2008; 482 de 2008; 12 de 2009; 128 de 2009; 229 de 2009; 230 de 2009; 243 de 2009; 315 de 2009; 350 de 2009; 507 de 2009; 75 de 2011; 538 de 2011; 591 de 2011; 719 de 2011; 62 de 2012; 86 de 2012; 113 de 2012; 135 de 2012; 376 de 2012 e 382 de 2012, estiverem sobre a mesa, nos termos do art. 266 do RISF.",S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,118,AGUARDANDO LEITURA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+2022178,1,2013-03-04,1,"Anexada, à fl. 457, cópia do OF. SF/459/2012, do Presidente do Senado Federal, Senador Renan Calheiros, que solicita, nos termos do art. 266 do R.I.S.F., o envio da Matéria à Secretaria-Geral da Mesa, para atender requerimento de autoria do Senador José Pimentel, que requer a tramitação conjunta dos Projetos de Lei do Senado nºs 90 de 2007; 180 de 2007; 298 de 2007; 540 de 2007; 265 de 2008; 482 de 2008; 12 de 2009; 128 de 2009; 229 de 2009, que tramita em conjunto com os PLS nºs 175, 248 e 450 de 2009; 230 de 2009; 243 de 2009; 315 de 2009; 350 de 2009; 507 de 2009; 75 de 2011; 538 de 2011; 591 de 2011; 719 de 2011; 62 de 2012; 86 de 2012; 113 de 2012; 135 de 2012; 376 de 2012 e 382 de 2012. 
+      Anexada, à fl. 458, cópia do referido requerimento.
+      
+      À SCLSF.
+      
+      (Tramitam em conjunto os PLSs nºs 175, 229, 248 e 450 de 2009).",S,NA,38,A,SF,CAE,197,A,SF,SSCLSF,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1948872,1,2012-07-10,1,"Em reunião realizada nesta data, foi aprovado o Requerimento nº 28/2012-CAE, de iniciativa do Senador Francisco Dornelles, o qual requer seja realizado um ciclo de audiências públicas para debater o Substitutivo apresentado por ele, como relator da Matéria, aos Projetos de Lei do Senado, que tramitam em conjunto, nºs 175, 229, 248 e 450 de 2009 – Complementares, com os seguintes convidados: Sr. Guido Mantega, Ministro de Estado da Fazenda; Sra. Miriam Belchior, Ministra de Estado do Planejamento, Orçamento e Gestão; Sr. Claudio Trinchão, Coordenador dos Estados no Conselho Nacional de Política Fazendária - Confaz; Sr. Alexandre Cialdini, Presidente da Associação Brasileira das Secretarias de Finanças das Capitais - Abrasf; e representante da Confederação Nacional de Municípios - CNM.
+      
+      Cópia do requerimento anexada ao processado (fl. 456).
+      
+      (Tramitam em conjunto os PLSs nºs 175, 229, 248 e 450 de 2009).",S,NA,38,A,SF,CAE,38,A,SF,CAE,110,AUDIÊNCIA PÚBLICA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1938975,1,2012-06-18,1,"Devolvido pelo Relator, Senador Francisco Dornelles, com relatório favorável ao PLS nº 229 de 2009, nos termos do Substitutivo que apresenta, e pela rejeição dos PLS nºs 175 de 2009, 248 de 2009 e 450 de 2009. Cópia anexada ao processado às fls. 423-455.
+      
+      (Tramitam em conjunto os PLS's nºs 175, 229, 248 e 450 de 2009)",S,NA,38,A,SF,CAE,38,A,SF,CAE,42,PRONTA PARA A PAUTA NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1784794,1,2011-03-04,1,"O Presidente da Comissão, Senador Delcídio do Amaral, designa o Senador Francisco Dornelles Relator da Matéria.
+      
+      (Tramitam em conjunto os PLS's nºs 175, 229, 248 e 450 de 2009)",S,NA,38,A,SF,CAE,38,A,SF,CAE,91,MATÉRIA COM A RELATORIA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1771025,1,2011-01-20,2,"Recebido na Comissão nesta data.
+      
+      Matéria aguardando designação de Relator.
+      
+      (Tramitam em conjunto os PLS's nºs 175, 229, 248 e 450 de 2009)",S,NA,38,A,SF,CAE,38,A,SF,CAE,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1770846,1,2011-01-20,1,"A presente proposição continua a tramitar, nos termos dos incisos do art. 332 do Regimento Interno e do Ato nº 4, de 2010, da Mesa do Senado Federal.
+      
+      A matéria volta à CAE. 	
+      ",S,NA,197,A,SF,SSCLSF,38,A,SF,CAE,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1759963,1,2010-12-22,1,"À SCLSF, em cumprimento ao disposto no art. 332 do Regimento Interno do Senado Federal.",S,NA,38,A,SF,CAE,197,A,SF,SSCLSF,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1758093,1,2010-12-21,1,"Devolvido pelo Relator, Senador Francisco Dornelles, com relatório favorável ao PLS nº 229 de 2009, nos termos do Substitutivo que apresenta, e pela rejeição dos PLS nºs 248 de 2009, 450 de 2009 e 175 de 2009. Cópia anexada ao processado às fls. 331 a 422.",S,NA,38,A,SF,CAE,38,A,SF,CAE,42,PRONTA PARA A PAUTA NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1704285,1,2010-07-08,1,"O Presidente da Comissão, Senador Garibaldi Alves Filho, designa o Senador Francisco Dornelles Relator da Matéria.
+      
+      
+      
+      (Tramitam em conjunto os PLS nºs 175, 229, 248 e 450 de 2009).",S,NA,38,A,SF,CAE,38,A,SF,CAE,91,MATÉRIA COM A RELATORIA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1698220,1,2010-06-24,2,"Recebido nesta Comissão, nesta data.
+      
+      Em 13/4/2010, foi realizada Audiência Pública nesta Comissão, em atendimento ao Requerimento nº 3/2010-CAE e a seu aditamento, de iniciativa do Senador Francisco Dornelles, para instruir os Projetos de Lei do Senado nº 229 e 248 de 2009, com a participação do Exmo. Sr. João Bernardo Bringel - Secretário-Executivo do Ministério do Planejamento, Orçamento e Gestão; do Exmo. Sr. Nelson Machado - Secretário-Executivo do Ministério da Fazenda; e do Exmo. Sr. Simão Cirineu - Secretário de Estado de Fazenda de Minas Gerais. Anexado ao processado às fls. 296-330 o registro de estenotipia informatizada da referida reunião. 
+      
+      Matéria aguardando distribuição.
+      
+      (Tramitam em conjunto os PLS nºs 175, 229, 248 e 450 de 2009).
+      
+      ",S,NA,38,A,SF,CAE,38,A,SF,CAE,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1697788,1,2010-06-24,1,"À Comissão de Assuntos Econômicos, para prosseguimento da tramitação.
+      
+      (Tramitam em conjunto os PLS's nºs 175, 229, 248 e 450, de 2009).",S,NA,34,A,SF,CCJ,38,A,SF,CAE,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1696848,1,2010-06-23,1,"Na 34ª Reunião Ordinária, realizada nesta data, a Comissão aprova o Relatório do Senador Arthur Virgílio, que passa a constituir o Parecer da CCJ, favorável aos PLS nº 175, 229 e 248, de 2009, nos termos da Emenda nº 1-CCJ (Substitutivo) ao PLS nº 229, de 2009, e pela prejudicialidade do PLS nº 450, de 2009.
+      
+      (Tramitam em conjunto os PLS's nºs 175, 229, 248 e 450, de 2009).",S,NA,34,A,SF,CCJ,34,A,SF,CCJ,89,APROVADO PARECER NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1695295,1,2010-06-21,1,"Matéria incluída na Pauta da Comissão.
+      
+      (Tramitam em conjunto os PLS's nºs 175, 229, 248 e 450, de 2009).",S,NA,34,A,SF,CCJ,34,A,SF,CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1692819,1,2010-06-15,1,"Recebido o relatório do Senador Arthur Virgílio, com voto favorável aos Projetos de Lei do Senado nºs 175, 229, e 248, de 2009, nos termos do Substitutivo que apresenta, e pela prejudicialidade do PLS nº 450, de 2009.
+      Matéria pronta para a Pauta na Comissão.
+      
+      (Tramitam em conjunto os PLS's nºs 175, 229, 248 e 450, de 2009).
+      ",S,NA,34,A,SF,CCJ,34,A,SF,CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1683324,1,2010-05-25,1,"Distribuído ao Senador Arthur Virgílio, para emitir relatório.
+      
+      (Tramitam em conjunto os PLS's nºs 175, 229, 248 e 450, de 2009).",S,NA,34,A,SF,CCJ,34,A,SF,CCJ,91,MATÉRIA COM A RELATORIA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1683009,1,2010-05-24,1,"Distribuído ao Senador Francisco Dornelles, para emitir relatório.
+      
+      (Tramitam em conjunto os PLS's nºs 175, 229, 248 e 450, de 2009).
+      
+      ************* Retificado em 25/05/2010*************
+      Ação Legislativa acima lançada indevidamente, devendo ser desconsiderada.",S,NA,34,A,SF,CCJ,34,A,SF,CCJ,91,MATÉRIA COM A RELATORIA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1681734,1,2010-05-20,1,"Recebido na CCJ.
+      matéria aguardando distribuição.
+      
+      (Tramitam em conjunto os PLS's 175, 229,248 e 450, de 2009)",S,NA,34,A,SF,CCJ,34,A,SF,CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1681667,1,2010-05-19,3,"16:44 - (Requerimento apreciado na Ordem do Dia, extrapauta, com aquiescência do Plenário)
+      Aprovado o Requerimento nº 525, de 2010.
+      Passam a tramitar em conjunto as seguintes matérias: PLS 175/2009, PLS 229/2009, PLS 248/2009 e PLS 450/2009, todos Complementares.
+      As matérias vão ao exame das Comissões de Constituição, Justiça e Cidadania e de Assuntos Econômicos.
+      ",S,NA,153,A,SF,ATA-PLEN,34,A,SF,CCJ,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1681597,1,2010-05-19,2,Encaminhado ao Plenário.,S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1680445,1,2010-05-19,1,"Aguardando inclusão em Ordem do Dia do Requerimento nº 525, de 2010, de tramitação conjunta.
+      
+      ",S,NA,197,A,SF,SSCLSF,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1680070,1,2010-05-18,2,"Leitura do Requerimento nº 525, de 2010, do Senador Romero Jucá, solicitando, nos termos do art. 258 do RISF, a tramitação conjunta do PLS nº 175, de 2009, com os PLS nºs 229 e 248, de 2009, que já tramitam conjuntamente.
+      À SCLSF, para inclusão do requerimento lido em Ordem do Dia oportunamente.
+      
+      
+      ************* Retificado em 18/05/2010*************
+      Aprovado o Requerimento nº 249, de 2010,  de tramitação conjunta dos Projetos de Lei do Senado nºs 229 e 450, de 2009-Complementares.
+      Leitura do Requerimento nº 525, de 2010, do Senador Romero Jucá, de tramitação conjunta dos Projetos de Lei do Senado nºs 175, 229 e 248, de 2009-Complementares.
+      O Requerimento nº 525, de 2010, será incluído em Ordem do Dia oportunamente.
+      À SCLSF
+      
+      
+      
+      ************* Retificado em 26/05/2010*************
+      Onde se le:
+      Aprovado o Requerimento nº 249, de 2010-248, de tramitação conjunta dos Projetos de Lei do Senado nºs 229 e
+      450, de 2009-Complementares.
+      Leia-se:
+      Aprovado o Requerimento nº 249, de 2010, de tramitação conjunta dos Projetos de Lei do Senado nºs 229, 248 e
+      450, de 2009-Complementares.
+      
+      ************* Retificado em 26/05/2010*************
+      Onde se lê:
+      Aprovado o Requerimento nº 249, de 2010, de tramitação conjunta dos Projetos de Lei do Senado nºs 229, 248 e 450, de 2009-Complementares.
+      Leitura do Requerimento nº 525, de 2010, do Senador Romero Jucá, de tramitação conjunta dos Projetos de Lei do Senado nºs 175, 229 e 248, de 2009-Complementares.
+      O Requerimento nº 525, de 2010, será incluído em Ordem do Dia oportunamente.
+      À SCLSF. 
+      Leia-se:
+      Aprovado o Requerimento nº 249, de 2010 (apreciado na Ordem do Dia da presente sessão, extrapauta, com aquiescência do Plenário), de tramitação conjunta dos Projetos de Lei do Senado nºs 229, 248 e 450, de 2009-Complementares.
+      Leitura do Requerimento nº 525, de 2010, do Senador Romero Jucá, de tramitação conjunta dos Projetos de Lei do Senado nºs 175, 229 e 248, de 2009-Complementares.
+      O Requerimento nº 525, de 2010, será incluído em Ordem do Dia oportunamente.
+      À SCLSF.
+      ",S,NA,153,A,SF,ATA-PLEN,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1679918,1,2010-05-18,1,Encaminhado ao Plenário.,S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1654977,1,2010-03-23,2,"Aguardando inclusão em Ordem do Dia do Requerimento nº 249, de 2010, de tramitação conjunta.
+      
+      Votação, em turno único, do Requerimento.",S,NA,197,A,SF,SSCLSF,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1654839,1,2010-03-23,1,"Leitura do Requerimento nº 249, de 2010, de autoria do Senador Raimundo Colombo, solicitando a tramitação conjunta do PLS 450/2009-Complementar com o PLS 229/2009-Complementar, que já tramita em conjunto com o PLS 248/2009-Complementar.
+      À SCLSF, para inlcusão em Ordem do Dia do requerimento lido, oportunamente.",S,NA,153,A,SF,ATA-PLEN,197,A,SF,SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1651933,1,2010-03-15,1,"Recebido neste Órgão, nesta data .
+      Encaminhado ao Plenário.",S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1651547,1,2010-03-12,1,"Anexado OF. SF/349/2010 do Presidente do Senado Federal, Senador José Sarney, que requer, nos termos do art. 266 do R.I.S.F., o envio da Matéria à Secretaria Geral da Mesa, em virtude de requerimento, de autoria do Senador Raimundo Colombo, que solicita a tramitação conjunta dos Projetos de Lei do Senado nºs 229 e 450 de 2009. 
+      
+      À SCLSF.
+      ",S,NA,38,A,SF,CAE,197,A,SF,SSCLSF,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1644980,1,2010-03-02,1,"A Comissão aprovou o Requerimento nº 03/2010-CAE e seu aditamento, ambos de autoria do Senador Francisco Dornelles, requerendo a realização de audiência pública com a participação dos representantes do Poder Executivo Federal: Nelson Machado - Secretário-Executivo do Ministério da Fazenda, Arno Augustin - Secretário do Tesouro Nacional, João Bernardo Bringel - Secretário-Executivo do Ministério do Planejamento, Célia Correa - Secretária de Orçamento, e Jorge Hage Sobrinho - Ministro de Estado do Controle e da Transparência; dos representantes do Poder Executivo Estadual e Municipal: Joaquim Levy - Secretário de Estado de Fazenda do Rio de Janeiro, Simão Cirineu - Secretário de Estado de Fazenda de Minas Gerais, Alexandre Cialdini - Secretário de Finanças do Município de Fortaleza, Guilherme Gomes Dias - Secretário de Estado de Desenvolvimento do Espírito Santo, e André Clemente Lara de Oliveira - Secretário de Fazenda do Distrito Federal; dos Economistas: Maílson da Nóbrega, Bernard Appy, Fernando Rezende, Amir Khair, Martus Tavares, Rubens Penha Cysne e Carlos Ivan Simonsen Leal - presidente da Fundação Getúlio Vargas; dos representantes dos Tribunais de Contas: Ubiratan Aguiar - ministro presidente do TCU, Salomão Ribas - conselheiro do TCE-SC e presidente ATRICOM (Associação Membros dos Tribunais), Sérgio Rossi - diretor geral do TCE-SP, Luiz Genédio - TC-DF (líder do PROMOEX); dos Juristas: Ricardo Lobo Torres, Heraldo da Costa Reis e Lino Martins; e dos representantes da Sociedade Civil (Transparência): Jorge Gerdau - presidente da Ação Empresarial, Gil Castelo Branco - presidente da ONG Contas Abertas, e Douglas Melo - juiz, assessor CNJ e movimento mãos limpas. O requerimento e seu aditamento foram anexados ao processado.
+      ",S,NA,38,A,SF,CAE,38,A,SF,CAE,110,AUDIÊNCIA PÚBLICA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1615336,1,2009-12-03,3,"O Presidente da Comissão, Senador Garibaldi Alves Filho, designa o Senador Francisco Dornelles Relator da Matéria.",S,NA,38,A,SF,CAE,38,A,SF,CAE,91,MATÉRIA COM A RELATORIA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1615312,1,2009-12-03,2,"Recebido nesta Comissão, nesta data.
+      
+      Aguardando designação de relator.",S,NA,38,A,SF,CAE,38,A,SF,CAE,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1615226,1,2009-12-03,1,"À Comissão de Assuntos Econômicos, para prosseguimento da tramitação.
+      
+      (Tramitam em conjunto os PLS's nºs 229, de 2009-Complementar, e 248, de 2009-Complementar).",S,NA,34,A,SF,CCJ,38,A,SF,CAE,89,APROVADO PARECER NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1609836,1,2009-11-25,1,"Na 53ª Reunião Ordinária, convocada para os dias 25 e 26 de novembro de 2009, a Comissão aprova o Relatório do Senador Arthur Virgílio, que passa a constituir o Parecer da CCJ, favorável ao Projeto nos termos da Emenda nº 1-CCJ (Substitutivo), em 25/11/2009.
+      
+      (Tramitam em conjunto os PLS nº 229, de 2009-Complementar, e 248, de 2009-Complementar)",S,NA,34,A,SF,CCJ,34,A,SF,CCJ,89,APROVADO PARECER NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1608097,1,2009-11-23,1,"Matéria incluída na Pauta da Comissão.
+      
+      (Tramitam em conjunto os PLS's nºs 229 e 248, de 2009 - Complementares).
+      ",S,NA,34,A,SF,CCJ,34,A,SF,CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1603701,1,2009-11-13,1,"Recebido o Relatório do Senador Arthur Virgílio, com voto pela aprovação dos PLS's n°s 229 e 248, de 2009, nos termos da Emenda Substitutiva que apresenta.
+      Matéria pronta para a Pauta na Comissão.
+      
+      (Tramitam em conjunto os PLS's nºs 229 e 248, de 2009 - Complementares).",S,NA,34,A,SF,CCJ,34,A,SF,CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1578654,1,2009-09-24,1,"Distribuído ao Senador Arthur Virgílio, para emitir relatório.
+      
+      (Tramitam em conjunto os PLS's nºs 229 e 248, de 2009 - Complementares)",S,NA,34,A,SF,CCJ,34,A,SF,CCJ,91,MATÉRIA COM A RELATORIA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1577995,1,2009-09-23,1,"Recebido nesta Comissão. Matéria aguardando distribuição.
+      
+      (Tramitam em conjunto os PLS's nºs 229 e 248, de 2009 - Complementares)",S,NA,34,A,SF,CCJ,34,A,SF,CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1577816,1,2009-09-22,2,"A Presidência comunica ao Plenário que foi deferido, nos termos do Ato da Mesa nº 2, de 2009, o Requerimento nº 1.237, de 2009, do Senador Arthur Virgílio, que solicita a tramitação conjunta do Projeto de Lei do Senado nº 229, de 2009- Complementar com o Projeto de Lei do Senado nº 248, de 2009-Complementar.
+      Deferido o requerimento, as matérias passam a tramitar em conjunto e vão às Comissões de Constituição, Justiça e Cidadania, e de Assuntos Econômicos.
+      ",S,NA,153,A,SF,ATA-PLEN,34,A,SF,CCJ,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1577434,1,2009-09-22,1,Encaminhado ao Plenário.,S,NA,176,A,SF,SGM,153,A,SF,ATA-PLEN,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1574226,1,2009-09-15,1,"Leitura do Requerimento n° 1.237, de 2009, do Senador Arthur Virgílio, em que solicita, nos termos do art. 258 do Regimento Interno do Senado Federal, a tramitação conjunta do PLS nº 229, de 2009, e do PLS nº 248, de 2009, todos Complementares, por tratarem da mesma matéria.
+      À Mesa, para decisão.
+      À SGM.",S,NA,153,A,SF,ATA-PLEN,176,A,SF,SGM,16,AGUARDANDO DECISÃO DA MESA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1572720,1,2009-09-11,2,"Recebido neste Órgão, nesta data.
+      
+      Encaminhado ao Plenário.",S,NA,197,A,SF,SSCLSF,153,A,SF,ATA-PLEN,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1572693,1,2009-09-11,1,"Devolvido pelo Senador Arthur Virgílio para atender Solicitação constante do Oficio nº 1946/2009, da Presidência do Senado Federal, referente a requerimento de tramitação em conjunto (fls. nº 110). 
+      
+      À SSCLSF.",S,NA,34,A,SF,CCJ,197,A,SF,SSCLSF,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1548305,1,2009-07-15,1,"Distribuído ao Senador Arthur Virgílio, para emitir relatório.",S,NA,34,A,SF,CCJ,34,A,SF,CCJ,91,MATÉRIA COM A RELATORIA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1519794,1,2009-05-29,1,Recebido nesta Comissão. Matéria aguardando distribuição.,S,NA,34,A,SF,CCJ,34,A,SF,CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1519206,1,2009-05-28,2,"Leitura.
+      Às Comissões de Constituição, Justiça e Cidadania; e de Assuntos Econômicos.",S,NA,153,A,SF,ATA-PLEN,34,A,SF,CCJ,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
+1519205,1,2009-05-28,1,Este processo contém 109 (cento e nove)  folhas numeradas e rubricadas.,S,NA,165,A,SF,PLEG,153,A,SF,ATA-PLEN,NA,NA,91341,SF,Senado Federal,PLS,PROJETO DE LEI DO SENADO,00229,2009,Não
