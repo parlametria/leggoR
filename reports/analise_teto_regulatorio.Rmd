@@ -1,0 +1,61 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(here)
+library(rcongresso)
+library(tidyverse)
+library(dplyr)
+library(DescTools)
+library(stringr)
+
+pl6726_id <- fetch_id_proposicao(tipo = "PL", numero = 6726, ano = 2016)
+```
+
+```{r}
+tramitacao <- read_csv(here('data/from_rcongresso_ext/df_tramitacao.csv'))
+proposicao <- read_csv(here('data/from_rcongresso_ext/df_proposicoes.csv'))
+```
+
+```{r}
+primeira_fase <- c ('Apresentação de Proposição', 'Recebimento', 
+                    'Distribuição', 'Encaminhamento', 
+                    'Publicação de Proposição', 'Devolução', 'Constituição de Comissão Temporária',
+                    'Criação de Comissão Temporária')
+
+segunda_fase <- c('Designação de Relator', 'Notificação de Apensação')
+
+terceira_fase <- c('Requerimento de Prorrogação de prazo', 'Requerimento de Audiência Pública', 'audiência pública')
+
+tramitacao <- tramitacao %>%
+  mutate(fase = case_when(descricaoTramitacao %like% primeira_fase ~ 'fase 1',
+                          descricaoTramitacao %like% segunda_fase ~ 'fase 2',
+                         descricaoTramitacao %like% terceira_fase  ~ 'fase 3',
+                         descricaoSituacao %like% 'Pronta para Pauta' ~ 'fase 3',
+                         TRUE ~ 'outro')) 
+```
+
+
+```{r}
+tramitacao %>% ggplot(aes(descricaoTramitacao, fill = fase)) +
+  geom_histogram(stat = 'count') + coord_flip()
+
+req_aprovados <- tramitacao %>% filter(descricaoTramitacao %like% 'Aprovação de Requerimento')
+req_aprovados %>% filter(despacho %like% 'audiência pública')
+
+exp = 'audiência pública'
+exp2 = 'audiências públicas'
+
+test_re <- function(text) {
+  str_detect(text, coll(exp, ignore_case = TRUE, locale = 'pt-br'))  || str_detect(text, coll(exp2, ignore_case = TRUE, locale = 'pt-br')) 
+}
+req_aprovados['regex'] <- apply(req_aprovados['despacho'], 1, test_re)
+
+```
+
