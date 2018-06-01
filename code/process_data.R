@@ -8,12 +8,11 @@ library(stringr)
 pl6726_id <- fetch_id_proposicao(tipo = "PL", numero = 6726, ano = 2016)
 tramitacao_pl_6726 <- fetch_tramitacao(id_prop = pl6726_id)
 
-phase_one <- c('Recebimento', 'Apresentação de Proposição')
-phase_two <- c('Designação de Relator')
-phase_three <- c('Pronta para Pauta')
-phase_four <- c('Enviada ao Senado Federal')
-#TODO implements phase_five expressions.
-phase_five <- c()
+phase_one <- c(100, 500)
+phase_two <- c(320)
+phase_three <- c(194)
+phase_four <- c(128)
+phase_five <- c(502, 251)
 
 detect_phase <- function(text, exp) {
     text %in% exp
@@ -21,10 +20,12 @@ detect_phase <- function(text, exp) {
 
 extract_phase <- function(dataframe) {
   dataframe <- dataframe %>%
-    mutate(fase = case_when(detect_phase(descricao_tramitacao, phase_one) ~ 'iniciativa',
-                             detect_phase(descricao_tramitacao, phase_two) ~ 'relatoria',
-                             detect_phase(descricao_situacao, phase_three) ~ 'debate_deliberacao',
-                             detect_phase(descricao_situacao, phase_four) ~ 'virada_casa'))
+    mutate(fase = case_when(detect_phase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
+                            detect_phase(id_tipo_tramitacao, phase_two) ~ 'relatoria',
+                            detect_phase(id_tipo_tramitacao, phase_three) ~ 'debate_deliberacao',
+                            detect_phase(id_tipo_tramitacao, phase_four) ~ 'virada_casa',
+                            detect_phase(id_tipo_tramitacao, phase_five) ~ 'final',
+                            detect_phase(id_situacao, 937) ~ 'final'))
 }
 
 to_underscore <- function(x) {
@@ -49,4 +50,3 @@ replace_phase_with_last <-function(x,a=!is.na(x)){
 tramitacao_pl_6726 <- rename_df_columns(tramitacao_pl_6726)
 tramitacao_pl_6726 <- extract_phase(tramitacao_pl_6726)
 tramitacao_pl_6726$fase <- replace_phase_with_last(tramitacao_pl_6726$fase)
-
