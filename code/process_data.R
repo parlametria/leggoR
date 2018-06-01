@@ -22,10 +22,28 @@ detect_phase <- function(text, exp) {
 
 extract_phase <- function(dataframe) {
   dataframe <- dataframe %>%
-    mutate(phase = case_when(detect_phase(descricaoTramitacao, phase_one) ~ 'iniciativa',
-                             detect_phase(descricaoTramitacao, phase_two) ~ 'relatoria',
-                             detect_phase(descricaoSituacao, phase_three) ~ 'discussao_deliberacao',
-                             detect_phase(descricaoSituacao, phase_four) ~ 'virada_de_casa'))
+    mutate(phase = case_when(detect_phase(descricao_tramitacao, phase_one) ~ 1,
+                             detect_phase(descricao_tramitacao, 'Apresentação de Proposição') ~ 1,
+                             detect_phase(descricao_tramitacao, phase_two) ~ 2,
+                             detect_phase(descricao_situacao, phase_three) ~ 3,
+                             detect_phase(descricao_situacao, phase_four) ~ 4))
 }
 
+to_underscore <- function(x) {
+  x2 <- gsub("([A-Za-z])([A-Z])([a-z])", "\\1_\\2\\3", x)
+  x3 <- gsub(".", "_", x2, fixed = TRUE)
+  x4 <- gsub("([a-z])([A-Z])", "\\1_\\2", x3)
+  x5 <- tolower(x4)
+  x5
+}
+
+rename_df_columns <- function(df) {
+  new_names <- names(df) %>% to_underscore()
+  names(df) <- new_names
+
+  df
+}
+
+tramitacao_pl_6726 <- rename_df_columns(tramitacao_pl_6726)
 tramitacao_pl_6726 <- extract_phase(tramitacao_pl_6726)
+
