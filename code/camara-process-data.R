@@ -22,8 +22,8 @@ extract_phase <- function(dataframe) {
   dataframe <- dataframe %>%
     mutate(fase = case_when(detect_phase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
                             detect_phase(id_tipo_tramitacao, phase_two) ~ 'relatoria',
-                            detect_phase(id_tipo_tramitacao, phase_three) ~ 'debate_deliberacao',
-                            detect_phase(id_tipo_tramitacao, phase_four) ~ 'virada_casa',
+                            detect_phase(id_tipo_tramitacao, phase_three) ~ 'discussao_deliberacao',
+                            detect_phase(id_tipo_tramitacao, phase_four) ~ 'virada_de_casa',
                             detect_phase(id_tipo_tramitacao, phase_five) ~ 'final',
                             detect_phase(id_situacao, 937) ~ 'final'))
 }
