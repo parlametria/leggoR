@@ -1,0 +1,56 @@
+---
+title: "Relatório do Projeto de Lei do Senado 229"
+output: html_notebook
+---
+
+```{r, echo = FALSE}
+library(tidyverse)
+library(here)
+library(jsonlite)
+source(here("/Documents/ufcg/agora-digital/agora-digital/code/senado-lib.R"))
+```
+
+```{r, echo = FALSE}
+bill_id <- 91341
+bill_data <- fetch_bill(bill_id)
+```
+
+Apelido da proposição:
+```{r, echo = FALSE}
+bill_data$apelido_materia
+```
+
+Autor da proposição:
+```{r, echo = FALSE}
+bill_data$nome_autor
+```
+
+Data de apresentação:
+```{r, echo = FALSE}
+bill_data$data_apresentacao
+```
+
+Casa de origem:
+```{r, echo = FALSE}
+bill_data$nome_casa_origem
+```
+
+Assunto geral:
+```{r, echo = FALSE}
+bill_data$assunto_geral
+```
+
+Assunto específico:
+```{r, echo = FALSE}
+bill_data$assunto_especifico
+```
+
+Ementa:
+```{r, echo = FALSE}
+bill_data$ementa_materia
+```
+
+Explicação da ementa:
+```{r, echo = FALSE}
+bill_data$explicacao_ementa_materia
+```
