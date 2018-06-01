@@ -7,7 +7,7 @@ output: html_notebook
 library(tidyverse)
 library(here)
 library(jsonlite)
-source(here("/Documents/ufcg/agora-digital/agora-digital/code/senado-lib.R"))
+source(here("code/senado-lib.R"))
 ```
 
 ```{r, echo = FALSE}
