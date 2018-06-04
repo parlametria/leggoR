@@ -17,4 +17,4 @@ situacoes$Situacao.DataCriacao <- NULL
 names(situacoes) <- c("codigo", "sigla", "descricao")
 
 #create file
-write.csv(situacoes, file = "data/situacoes-glossary-senado.csv",row.names=FALSE)
+write_csv(situacoes, "data/situacoes-glossary-senado.csv")

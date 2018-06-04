@@ -20,4 +20,4 @@ names(glossary) <- c("termo", "significado", "codigo")
 glossary <- glossary[c("codigo", "termo", "significado")]
 
 #create file
-write.csv(glossary, file = "docs/glossario-termos-senado.csv", row.names=FALSE)
+write_csv(glossary, "docs/glossario-termos-senado.csv")
