@@ -5,7 +5,7 @@ url_glossary <- "http://legis.senado.leg.br/dadosabertos/glossario/lista?v=4"
 
 json_glossary <- fromJSON(url_glossary, flatten = T)
 
-#extract situacoes objects
+#extract termos objects
 glossary_data <-
   json_glossary %>%
   extract2("Glossario") %>%
