@@ -1,9 +1,7 @@
-library(here)
 library(rcongresso)
 library(tidyverse)
 library(dplyr)
-library(DescTools)
-library(stringr)
+library(magrittr)
 
 pl6726_id <- fetch_id_proposicao(tipo = "PL", numero = 6726, ano = 2016)
 tramitacao_pl_6726 <- fetch_tramitacao(id_prop = pl6726_id)
@@ -19,7 +17,7 @@ detect_phase <- function(text, exp) {
 }
 
 extract_phase <- function(dataframe) {
-  dataframe <- dataframe %>%
+  dataframe %<>%
     mutate(fase = case_when(detect_phase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
                             detect_phase(id_tipo_tramitacao, phase_two) ~ 'relatoria',
                             detect_phase(id_tipo_tramitacao, phase_three) ~ 'discussao_deliberacao',
@@ -29,24 +27,17 @@ extract_phase <- function(dataframe) {
 }
 
 to_underscore <- function(x) {
-  x2 <- gsub("([A-Za-z])([A-Z])([a-z])", "\\1_\\2\\3", x)
-  x3 <- gsub(".", "_", x2, fixed = TRUE)
-  x4 <- gsub("([a-z])([A-Z])", "\\1_\\2", x3)
-  x5 <- tolower(x4)
-  x5
+  x %<>% 
+    gsub("([A-Za-z])([A-Z])([a-z])", "\\1_\\2\\3", .) %>%
+    gsub(".", "_", ., fixed = TRUE) %>%
+    gsub("([a-z])([A-Z])", "\\1_\\2", .) %>%
+    tolower
 }
 
 rename_df_columns <- function(df) {
-  new_names <- names(df) %>% to_underscore()
-  names(df) <- new_names
-
+  names(df) %<>% to_underscore
   df
 }
 
-replace_phase_with_last <-function(x,a=!is.na(x)){
-  x[which(a)[c(1,1:sum(a))][cumsum(a)+1]]
-}
-
-tramitacao_pl_6726 <- rename_df_columns(tramitacao_pl_6726)
-tramitacao_pl_6726 <- extract_phase(tramitacao_pl_6726)
-tramitacao_pl_6726$fase <- replace_phase_with_last(tramitacao_pl_6726$fase)
+tramitacao_pl_6726 %<>% rename_df_columns %>% extract_phase
+tramitacao_pl_6726 %<>% fill(fase)
