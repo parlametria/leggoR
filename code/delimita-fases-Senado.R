@@ -3,15 +3,15 @@ library(dplyr)
 bill_passage_91341 <- read.csv("data/91341-passage-senado.csv") %>% arrange(data_tramitacao)
 
 phase_one <- c('^Este processo contém')
-phase_two <- 91
-phase_three <- 42
+phase_two <- c(91, 99)
+phase_three <- c(42, 110)
 phase_four <- 52
 
 extract_phase <- function(dataframe) {
   dataframe <- dataframe %>%
         mutate(fase = case_when( (grepl(phase_one, texto_tramitacao)) ~ 'iniciativa',
-                                 (situacao_codigo_situacao == phase_two) ~ 'relatoria',
-                                 (situacao_codigo_situacao == phase_three) ~ 'discussao_deliberacao',
+                                 (situacao_codigo_situacao %in% phase_two) ~ 'relatoria',
+                                 (situacao_codigo_situacao %in% phase_three) ~ 'discussao_deliberacao',
                                  (situacao_codigo_situacao == phase_four) ~ 'virada_de_casa'))
 }
 
@@ -20,7 +20,7 @@ replace_na_with_last <-function(x,a=!is.na(x)){
 }
 
 bill_passage_91341 <- extract_phase(bill_passage_91341) %>% arrange(data_tramitacao, numero_ordem_tramitacao)
-bill_passage_91341$fase <- replace_na_with_last(bill_passage_91341$fase)
+bill_passage_91341$fase <- replace_na_with_last(bill_passage_91341$fase) 
 
 phase_aprovacao_audiencia <- 110
 phase_aprovacao_parecer <- 89
