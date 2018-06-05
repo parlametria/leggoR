@@ -199,7 +199,7 @@ to_underscore <- function(x) {
 }
 
 rename_relatorias_df <- function(df) {
-  names(df) <- c("data_desinacao", "data_destituicao", "descricao_motivo_destituicao", "codigo_parlamentar",
+  names(df) <- c("data_designacao", "data_destituicao", "descricao_motivo_destituicao", "codigo_parlamentar",
                  "nome_parlamentar", "partido", "comissao", "sigla_comissao", "codigo_comissao")
   df
 }

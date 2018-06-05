@@ -1,4 +1,4 @@
-data_desinacao,data_destituicao,descricao_motivo_destituicao,codigo_parlamentar,nome_parlamentar,partido,comissao,sigla_comissao,codigo_comissao
+data_designacao,data_destituicao,descricao_motivo_destituicao,codigo_parlamentar,nome_parlamentar,partido,comissao,sigla_comissao,codigo_comissao
 2015-05-04,2016-05-17,Deliberação da matéria,635,Ricardo Ferraço,MDB,Comissão de Assuntos Econômicos,CAE,38
 2011-03-04,2014-12-22,Fim de Legislatura,765,Francisco Dornelles,PP,Comissão de Assuntos Econômicos,CAE,38
 2010-07-08,2010-12-22,Fim de Legislatura,765,Francisco Dornelles,PP,Comissão de Assuntos Econômicos,CAE,38
