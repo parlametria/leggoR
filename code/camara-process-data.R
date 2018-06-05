@@ -4,6 +4,7 @@ library(dplyr)
 library(magrittr)
 library(stringr)
 library(here)
+library(htmlTable)
 
 data_path <- here('data/')
 
@@ -44,7 +45,7 @@ detect_phase <- function(text, exp) {
   text %in% exp
 }
 
-extract_phase <- function(dataframe) {
+extract_phases <- function(dataframe) {
   dataframe %<>%
     mutate(fase = case_when(detect_phase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
                             detect_phase(id_tipo_tramitacao, phase_two) ~ 'relatoria',
@@ -54,14 +55,12 @@ extract_phase <- function(dataframe) {
                             detect_phase(id_situacao, 937) ~ 'final'))
 }
 
-
-
 detect_event <- function(text, exp) {
   str_detect(tolower(text), exp)
 }
 
-extract_event <- function(dataframe) {
-  dataframe <- dataframe %>%
+extract_events <- function(dataframe) {
+  dataframe %<>%
     mutate(evento = case_when(detect_event(id_tipo_tramitacao, special_commission) ~ 'criacao_comissao_temporaria',
                               detect_event(despacho, public_hearing_requirement_exp) ~ 'requerimento_audiencia_publica',
                               detect_event(despacho, approved_public_hearing_requirement_exp) ~ 'aprovacao_audiencia_publica',
@@ -72,7 +71,17 @@ extract_event <- function(dataframe) {
                               detect_event(despacho, extends_deadline_exp) ~ 'requerimento_prorrogacao'))
 }
 
-tramitacao_pl_6726 %<>% rename_df_columns %>% extract_phase
-tramitacao_pl_6726 %<>% fill(fase)
-tramitacao_pl_6726 <- extract_event(tramitacao_pl_6726)
-readr::write_csv(tramitacao_pl_6726, csv_path)
+# Extract phases, events and writh CSV
+tramitacao_pl_6726 %<>%
+  rename_df_columns %>% 
+  extract_phases %>%
+  fill(fase) %>%
+  extract_events %>%
+  readr::write_csv(csv_path)
+
+# Print evento freq table
+tramitacao_pl_6726$evento %>% 
+  table %>%
+  as.data.frame %>% 
+  arrange(desc(Freq)) %>%
+  htmlTable(header=c('evento', 'frequência'), rnames=FALSE)
