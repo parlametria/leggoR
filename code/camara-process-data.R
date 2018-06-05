@@ -39,5 +39,7 @@ rename_df_columns <- function(df) {
   df
 }
 
-tramitacao_pl_6726 %<>% rename_df_columns %>% extract_phase
-tramitacao_pl_6726 %<>% fill(fase)
+tramitacao_pl_6726 %<>% 
+  rename_df_columns %>% 
+  extract_phase %>%
+  fill(fase)
