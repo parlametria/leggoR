@@ -37,9 +37,10 @@ phase_aprovacao_substitutivo <- 113
 
 extract_event <- function(dataframe) {
   dataframe <- dataframe %>%
-    mutate(evento = case_when( (situacao_codigo_situacao == phase_aprovacao_audiencia) ~ 'aprovacao_audiencia_publica',
-                               (situacao_codigo_situacao == phase_aprovacao_parecer) ~ 'aprovacao_parecer',
-                               (situacao_codigo_situacao == phase_aprovacao_substitutivo) ~ 'aprovacao_substitutivo'))
+    mutate(evento = case_when( situacao_codigo_situacao == phase_aprovacao_audiencia ~ 'aprovacao_audiencia_publica',
+                               situacao_codigo_situacao == phase_aprovacao_parecer ~ 'aprovacao_parecer',
+                               situacao_codigo_situacao == phase_aprovacao_substitutivo ~ 'aprovacao_substitutivo',
+                               TRUE ~ situacao_descricao_situacao))
 }
 
 bill_passage_91341 <- extract_event(bill_passage_91341)
