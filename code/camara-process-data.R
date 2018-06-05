@@ -10,6 +10,8 @@ data_path <- here('data/')
 pl6726_id <- fetch_id_proposicao(tipo = "PL", numero = 6726, ano = 2016)
 tramitacao_pl_6726 <- fetch_tramitacao(id_prop = pl6726_id)
 
+csv_path <- paste(c(data_path,'tramitacao_camara_', pl6726_id, '.csv'),  collapse = '')
+
 phase_one <- c(100, 500)
 phase_two <- c(320)
 phase_three <- c(924)
@@ -73,6 +75,4 @@ extract_event <- function(dataframe) {
 tramitacao_pl_6726 %<>% rename_df_columns %>% extract_phase
 tramitacao_pl_6726 %<>% fill(fase)
 tramitacao_pl_6726 <- extract_event(tramitacao_pl_6726)
-
-csv_path <- paste(c(data_path,'tramitacao_camara_', pl6726_id, '.csv'),  collapse = '')
 readr::write_csv(tramitacao_pl_6726, csv_path)
