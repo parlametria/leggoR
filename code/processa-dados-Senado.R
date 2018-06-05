@@ -1,6 +1,5 @@
 library(tidyverse)
 library(here)
-library(jsonlite)
 source(here("code/senado-lib.R"))
 
 bill_passage_91341 <- read.csv("data/91341-passage-senado.csv")
