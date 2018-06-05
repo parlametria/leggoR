@@ -5,6 +5,8 @@ library(magrittr)
 library(stringr)
 library(here)
 library(htmlTable)
+library(lubridate)
+
 
 data_path <- here('data/')
 
@@ -71,6 +73,38 @@ extract_events <- function(dataframe) {
                               detect_event(despacho, extends_deadline_exp) ~ 'requerimento_prorrogacao'))
 }
 
+refact_date <- function(df) {
+  mutate(df, data_hora = ymd_hm(data_hora))
+}
+
+# sort the 'tramitacao' dataframe by date
+sort_by_date <- function(df) {
+  arrange(df, data_hora, sequencia)
+}
+
+# extract the duration in minutes for each row
+extract_duration <- function(df) {
+  if(dim(df)[1] > 1) {
+    
+    df %<>% sort_by_date()
+    
+    for(i in 1:(dim(df)[1] - 1)) {
+      df$duracao[i] <- difftime(df$data_hora[i+1], df$data_hora[i], units='mins')
+    }
+    df$duracao[dim(df)[1]] = 0
+    
+    # when two rows have the same date, the duration of one of them is equal to 0, this code fixes this
+    df %<>% 
+      group_by(data_hora) %>% 
+      mutate(duracao = max(duracao)) %>% 
+      ungroup()
+  } else {
+    df$duracao[1] = 0
+  }
+  
+  df
+}
+
 # Extract phases, events and writh CSV
 tramitacao_pl_6726 %<>%
   rename_df_columns %>%
@@ -85,3 +119,6 @@ tramitacao_pl_6726$evento %>%
   as.data.frame %>%
   arrange(desc(Freq)) %>%
   htmlTable(header=c('evento', 'frequência'), rnames=FALSE)
+
+tramitacao_pl_6726 %<>% refact_date()
+tramitacao_pl_6726 %<>% extract_duration()
