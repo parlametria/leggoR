@@ -1,0 +1,8 @@
+data_desinacao,data_destituicao,descricao_motivo_destituicao,codigo_parlamentar,nome_parlamentar,partido,comissao,sigla_comissao,codigo_comissao
+2015-05-04,2016-05-17,Deliberação da matéria,635,Ricardo Ferraço,MDB,Comissão de Assuntos Econômicos,CAE,38
+2011-03-04,2014-12-22,Fim de Legislatura,765,Francisco Dornelles,PP,Comissão de Assuntos Econômicos,CAE,38
+2010-07-08,2010-12-22,Fim de Legislatura,765,Francisco Dornelles,PP,Comissão de Assuntos Econômicos,CAE,38
+2010-05-25,2010-06-23,Deliberação da matéria,551,Arthur Virgílio,PSDB,"Comissão de Constituição, Justiça e Cidadania",CCJ,34
+2010-05-24,2010-05-25,Redistribuição,765,Francisco Dornelles,PP,"Comissão de Constituição, Justiça e Cidadania",CCJ,34
+2009-09-24,2009-11-25,Deliberação da matéria,551,Arthur Virgílio,PSDB,"Comissão de Constituição, Justiça e Cidadania",CCJ,34
+2009-07-15,2009-09-24,Redistribuição,551,Arthur Virgílio,PSDB,"Comissão de Constituição, Justiça e Cidadania",CCJ,34
