@@ -3,6 +3,9 @@ library(tidyverse)
 library(dplyr)
 library(magrittr)
 library(stringr)
+library(here)
+
+data_path <- here('data/')
 
 pl6726_id <- fetch_id_proposicao(tipo = "PL", numero = 6726, ano = 2016)
 tramitacao_pl_6726 <- fetch_tramitacao(id_prop = pl6726_id)
@@ -22,6 +25,19 @@ apensacao_requirement_exp <- '^apresentação do requerimento de apensação'
 urgence_requirement_exp <- '^apresentação do requerimento de urgência'
 extends_deadline_exp <- '^apresentação do requerimento de prorrogação de prazo de comissão temporária'
 
+to_underscore <- function(x) {
+  x %<>%
+    gsub("([A-Za-z])([A-Z])([a-z])", "\\1_\\2\\3", .) %>%
+    gsub(".", "_", ., fixed = TRUE) %>%
+    gsub("([a-z])([A-Z])", "\\1_\\2", .) %>%
+    tolower
+}
+
+rename_df_columns <- function(df) {
+  names(df) %<>% to_underscore
+  df
+}
+
 detect_phase <- function(text, exp) {
   text %in% exp
 }
@@ -36,18 +52,7 @@ extract_phase <- function(dataframe) {
                             detect_phase(id_situacao, 937) ~ 'final'))
 }
 
-to_underscore <- function(x) {
-  x %<>%
-    gsub("([A-Za-z])([A-Z])([a-z])", "\\1_\\2\\3", .) %>%
-    gsub(".", "_", ., fixed = TRUE) %>%
-    gsub("([a-z])([A-Z])", "\\1_\\2", .) %>%
-    tolower
-}
 
-rename_df_columns <- function(df) {
-  names(df) %<>% to_underscore
-  df
-}
 
 detect_event <- function(text, exp) {
   str_detect(tolower(text), exp)
@@ -68,3 +73,6 @@ extract_event <- function(dataframe) {
 tramitacao_pl_6726 %<>% rename_df_columns %>% extract_phase
 tramitacao_pl_6726 %<>% fill(fase)
 tramitacao_pl_6726 <- extract_event(tramitacao_pl_6726)
+
+csv_path <- paste(c(data_path,'tramitacao_camara_', pl6726_id, '.csv'),  collapse = '')
+readr::write_csv(tramitacao_pl_6726, csv_path)
