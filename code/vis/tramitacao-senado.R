@@ -4,7 +4,8 @@
 library(vistime)
 library(dplyr)
 library(purrr)
-data <- read.csv("data/bill_passage_91341_visualization")
+
+data <- read_csv("data/bill_passage_91341_visualization")
 
 # Create data frame to display phases inline
 format_phase_data <- function(df) {
@@ -21,13 +22,19 @@ format_phase_data <- function(df) {
       data_tramitacao = as.Date(data_tramitacao),
       local = as.character(origem_tramitacao_local_sigla_local)
     )
-
+  
     df %>%
-      mutate(z = cumsum(local != lag(local, default='NULL'))) %>%
-      group_by(local, z) %>%
+      mutate(z = cumsum(local != lag(local, default='NULL')), 
+             end_data = lead(data_tramitacao)) %>%
+      group_by(local, sequence = data.table::rleid(z)) %>%
       summarize(start = min(data_tramitacao),
-                end = max(data_tramitacao) + 1,
-                time_interval = end - start) #%>%
+                end = max(end_data),
+                time_interval = end - start) %>%
+      ungroup() %>% 
+      arrange(sequence) %>% 
+      select(-sequence) %>%
+      filter(time_interval > 0)
+    #%>%
       # mutate(
       #   line = "Local",
       #   color = case_when(
@@ -42,8 +49,6 @@ fase_rows <- format_phase_data(data)
 
 # Create chart with all tasks.
 vistime(fase_rows, events="local", colors="color", groups="line", title="Fases da tramitação", showLabels=FALSE)
-
-
 
 
 ######################### TARGET ############################################

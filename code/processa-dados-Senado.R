@@ -48,4 +48,6 @@ bill_passage_91341_visualization <-
   bill_passage_91341 %>%
   select(data_tramitacao, origem_tramitacao_local_sigla_local, fase, evento)
 
+bill_passage_91341_visualization %>%
+  write_csv("data/bill_passage_91341_visualization")
 
