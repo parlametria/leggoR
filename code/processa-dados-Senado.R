@@ -2,7 +2,9 @@ library(tidyverse)
 library(here)
 source(here("code/senado-lib.R"))
 
-bill_passage_91341 <- read.csv("data/91341-passage-senado.csv")
+bill_id <- 127753
+
+bill_passage <- read.csv(paste0("data/", bill_id, "-passage-senado.csv"))
 
 phase_one <- c('^Este processo contém')
 phase_two <- c(91, 99)
@@ -21,13 +23,13 @@ extract_phase <- function(dataframe) {
                                  detect_phase(situacao_codigo_situacao, phase_four) ~ 'virada_de_casa'))
 }
 
-bill_passage_91341 <- 
-  extract_phase(bill_passage_91341) %>% 
+bill_passage <- 
+  extract_phase(bill_passage) %>% 
   arrange(data_tramitacao, numero_ordem_tramitacao) %>%
   fill(fase)
 
-bill_passage_91341$situacao_descricao_situacao <- 
-  to_underscore(bill_passage_91341$situacao_descricao_situacao) %>% 
+bill_passage$situacao_descricao_situacao <- 
+  to_underscore(bill_passage$situacao_descricao_situacao) %>% 
   str_replace_all("\\s+","_")
 
 
@@ -39,15 +41,16 @@ extract_event <- function(dataframe) {
   dataframe <- dataframe %>%
     mutate(evento = case_when( (situacao_codigo_situacao == phase_aprovacao_audiencia) ~ 'aprovacao_audiencia_publica',
                                (situacao_codigo_situacao == phase_aprovacao_parecer) ~ 'aprovacao_parecer',
-                               (situacao_codigo_situacao == phase_aprovacao_substitutivo) ~ 'aprovacao_substitutivo'))
+                               (situacao_codigo_situacao == phase_aprovacao_substitutivo) ~ 'aprovacao_substitutivo',
+                               TRUE ~ situacao_descricao_situacao))
 }
 
-bill_passage_91341 <- extract_event(bill_passage_91341)
+bill_passage <- extract_event(bill_passage)
 
-bill_passage_91341_visualization <- 
-  bill_passage_91341 %>%
+bill_passage_visualization <- 
+  bill_passage %>%
   select(data_tramitacao, origem_tramitacao_local_sigla_local, fase, evento)
 
-bill_passage_91341_visualization %>%
-  write_csv("data/bill_passage_91341_visualization")
+bill_passage_visualization %>%
+  write_csv(paste0("data/", "bill-passage-", bill_id, "-visualization-senado"))
 
