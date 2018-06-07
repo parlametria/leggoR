@@ -145,12 +145,63 @@ fetch_bill <- function(bill_id){
   rename_bill_df(bill_complete)
 }
 
+fetch_relatorias <- function(bill_id) {
+  require(tidyverse)
+  require(magrittr)
+  library(jsonlite)
+  
+  url_relatorias <- "http://legis.senado.leg.br/dadosabertos/materia/relatorias/"
+  
+  url <- paste0(url_relatorias, bill_id)
+  json_relatorias <- fromJSON(url, flatten = T)
+  
+  #extract relatores objects
+  relatorias_data <-
+    json_relatorias %>%
+    extract2("RelatoriaMateria") %>%
+    extract2("Materia") %>%
+    extract2("HistoricoRelatoria")
+  
+  
+  relatorias_df <-
+    relatorias_data %>% 
+    extract2("Relator") %>% 
+    map_df(~ .) %>% 
+    unnest()
+  
+  #select columns
+  relatorias_df <-
+    relatorias_df %>%
+    select(
+      DataDesignacao,
+      DataDestituicao,
+      DescricaoMotivoDestituicao,
+      IdentificacaoParlamentar.CodigoParlamentar,
+      IdentificacaoParlamentar.NomeParlamentar,
+      IdentificacaoParlamentar.SiglaPartidoParlamentar,
+      IdentificacaoComissao.NomeComissao,
+      IdentificacaoComissao.SiglaComissao,
+      IdentificacaoComissao.CodigoComissao
+    ) %>% 
+    
+    add_column()
+  
+  rename_relatorias_df(relatorias_df)
+}
+
+
 to_underscore <- function(x) {
   x2 <- gsub("([A-Za-z])([A-Z])([a-z])", "\\1_\\2\\3", x)
   x3 <- gsub(".", "_", x2, fixed = TRUE)
   x4 <- gsub("([a-z])([A-Z])", "\\1_\\2", x3)
   x5 <- tolower(x4)
   x5
+}
+
+rename_relatorias_df <- function(df) {
+  names(df) <- c("data_designacao", "data_destituicao", "descricao_motivo_destituicao", "codigo_parlamentar",
+                 "nome_parlamentar", "partido", "comissao", "sigla_comissao", "codigo_comissao")
+  df
 }
 
 rename_voting_df <- function(df) {
@@ -185,5 +236,3 @@ rename_bill_df <- function(df) {
   
   df
 }
-
-
