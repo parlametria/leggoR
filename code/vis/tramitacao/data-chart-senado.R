@@ -51,5 +51,30 @@ format_fase <- function(df) {
     mutate(group = "Fase")
 }
 
-rbind(format_local(data), format_fase(data)) %>%
+#Create data to display events inlines
+format_eventos <- function(df) {
+  df <-
+    # Improve the phases names and convert data_tramitacao to Date
+    df %>%
+    mutate(
+      data_tramitacao = as.Date(data_tramitacao),
+      evento = as.character(evento)
+    )
+  
+  df %>%
+    mutate(z = cumsum(evento != lag(evento, default='NULL')),
+           end_data = lead(data_tramitacao)) %>%
+    group_by(evento, sequence = data.table::rleid(z)) %>%
+    summarize(start = min(data_tramitacao),
+              end = start,
+              time_interval = end - start) %>%
+    ungroup() %>%
+    arrange(sequence) %>%
+    select(-sequence) %>%
+    filter(!is.na(evento)) %>%
+    rename(label=evento) %>%
+    mutate(group = "Evento")
+}
+
+rbind(format_local(data), format_fase(data), format_eventos(data)) %>%
   write_csv("data/vis/tramitacao/data-senado.csv")
