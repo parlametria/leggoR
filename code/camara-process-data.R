@@ -98,3 +98,4 @@ tramitacao_pl_6726$evento %>%
   as.data.frame %>%
   arrange(desc(Freq)) %>%
   htmlTable(header=c('evento', 'frequência'), rnames=FALSE)
+
