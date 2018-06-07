@@ -3,7 +3,7 @@ library(here)
 library(htmlTable)
 source(here("code/senado-lib.R"))
 
-bill_id <- 91341
+bill_id <- 129808
 
 bill_passage <- read_csv(paste0("data/Senado/", bill_id, "-passage-senado.csv")) %>% arrange(data_tramitacao)
 
@@ -37,13 +37,14 @@ bill_passage$situacao_descricao_situacao <-
 phase_aprovacao_audiencia <- 110
 phase_aprovacao_parecer <- 89
 phase_aprovacao_substitutivo <- 113
+phase_pedido_vista <- 90
 
 extract_event <- function(dataframe) {
   dataframe <- dataframe %>%
     mutate(evento = case_when( situacao_codigo_situacao == phase_aprovacao_audiencia ~ 'aprovacao_audiencia_publica',
                                situacao_codigo_situacao == phase_aprovacao_parecer ~ 'aprovacao_parecer',
                                situacao_codigo_situacao == phase_aprovacao_substitutivo ~ 'aprovacao_substitutivo',
-                               TRUE ~ situacao_descricao_situacao))
+                               situacao_codigo_situacao == phase_pedido_vista ~ 'pedido_vista'))
 }
 
 bill_passage <- extract_event(bill_passage)
@@ -61,5 +62,5 @@ bill_passage_visualization$evento %>%
 
 
 bill_passage_visualization %>%
-  write_csv(paste0("data/", bill_id, "-bill-passage-visualization-senado.csv"))
+  write_csv(paste0("data/Senado/", bill_id, "-bill-passage-visualization-senado.csv"))
 
