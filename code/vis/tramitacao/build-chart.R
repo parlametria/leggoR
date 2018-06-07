@@ -6,8 +6,9 @@ library(tidyverse)
 
 
 # Create chart with all tasks.
-read_csv("data/vis/tramitacao/data-senado.csv") %>%
-vistime(events="label", groups="group", title="Fases da tramitação", showLabels=FALSE)
+a <- read_csv("data/vis/tramitacao/data-camara.csv") 
+summary(a$group)
+vistime(a, events="label", groups="group", title="Fases da tramitação", showLabels=FALSE)
 
 
 ######################### TARGET ############################################
