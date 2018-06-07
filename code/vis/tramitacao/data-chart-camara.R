@@ -3,7 +3,7 @@ library(dplyr)
 library(lubridate)
 library(here)
 
-tramitacao <- read_csv('data/tramitacao_camara_2121442.csv')
+tramitacao <- read_csv('data/camara/tramitacao_camara_2121442.csv')
 
 data_path <- here::here('data/vis/tramitacao/')
 file_path <- paste(c(data_path,'data-camara.csv'),  collapse = '')
@@ -40,11 +40,12 @@ data_local <- function(df) {
     arrange(sequence) %>% select(-sequence) %>%
     rename(label = sigla_orgao) %>%
     mutate(group = "Local",
-           color = case_when(label == "iniciativa" ~ "#7fc97f",
-                             label == "relatoria" ~ "#fdc086",
-                             label == "discussao_deliberacao" ~ "#beaed4",
-                             label == "virada_de_casa" ~ "#ffff99",
-                             label == "final" ~ "#f4fa58"))
+           color = case_when(label == "MESA" ~ "#E2E3D9",
+                             label == "PLEN" ~ "#5496cf",
+                             label == "PL672616" ~ "#ff9c37",
+                             label == "CCP" ~ "#8bca42",
+                             label == "SEPRO" ~ "#ca4242",
+                             label == "CTASP" ~ "#ea81b1"))
   
   df$end[nrow(df)] <- ymd(Sys.Date())
   df
