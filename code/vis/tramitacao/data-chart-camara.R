@@ -1,6 +1,12 @@
 library(data.table)
 library(dplyr)
 library(lubridate)
+library(here)
+
+tramitacao <- read_csv('data/tramitacao_camara_2121442.csv')
+
+data_path <- here::here('data/vis/tramitacao/')
+file_path <- paste(c(data_path,'data-camara.csv'),  collapse = '')
 
 data_fase <- function(df) {
   df %<>%
@@ -11,7 +17,7 @@ data_fase <- function(df) {
       ungroup() %>% 
     arrange(sequence) %>%
     select(-sequence) %>%
-    setnames("fase", "label") %>% 
+    rename(label = fase) %>% 
     mutate(group = "Fase",
            color = case_when(label == "iniciativa" ~ "#7fc97f",
                              label == "relatoria" ~ "#fdc086",
@@ -31,7 +37,7 @@ data_local <- function(df) {
               end = max(end_data)) %>%
     ungroup() %>%
     arrange(sequence) %>% select(-sequence) %>%
-    setnames("sigla_orgao", "label") %>%
+    rename(label = sigla_orgao) %>%
     mutate(group = "Local",
            color = case_when(label == "iniciativa" ~ "#7fc97f",
                              label == "relatoria" ~ "#fdc086",
@@ -42,3 +48,17 @@ data_local <- function(df) {
   df$end[nrow(df)] <- ymd(Sys.Date())
   df
 }
+
+data_evento <- function(df) {
+  df %<>%
+    group_by(evento) %>%
+    filter(!is.na(evento)) %>% 
+    rename(label = evento) %>%
+    mutate(start = data_hora, end = data_hora, group = 'Evento') %>%
+    select(label, start, end, group) %>% 
+    mutate(color = 'Color')
+  df
+}
+
+data <- bind_rows(data_evento(t), data_fase(t), data_local(t))
+readr::write_csv(data, file_path)
