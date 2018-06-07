@@ -1,8 +1,0 @@
-data_tramitacao,origem_tramitacao_local_sigla_local,fase,evento
-2016-12-08,SEADI,NA,pronto_para_deliberação_do_plenário
-2016-12-09,SEPRTL,iniciativa,NA
-2016-12-09,PLEN,iniciativa,aguardando_recebimento_de_emendas_perante_a_mesa
-2016-12-09,PLEN,iniciativa,incluída_em_ordem_do_dia
-2016-12-13,PLEN,iniciativa,aprovada
-2016-12-14,SEXPE,iniciativa,NA
-2016-12-14,SEXPE,virada_de_casa,remetida_à_câmara_dos_deputados

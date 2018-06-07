@@ -1,14 +1,14 @@
 library(tidyverse)
 library(here)
-source(here("code/senado-lib.R"))
+source(here("Documents/agora-digital/code/senado-lib.R"))
 
 bill_id <- 127753
 
-bill_passage <- read.csv(paste0("data/", bill_id, "-passage-senado.csv"))
+bill_passage <- read_csv(paste0("data/", bill_id, "-passage-senado.csv")) %>% arrange(data_tramitacao)
 
 phase_one <- c('^Este processo contém')
 phase_two <- c(91, 99)
-phase_three <- c(42, 110)
+phase_three <- c(42, 110, 88)
 phase_four <- c(52)
 
 detect_phase <- function(text, exp) {
@@ -52,5 +52,5 @@ bill_passage_visualization <-
   select(data_tramitacao, origem_tramitacao_local_sigla_local, fase, evento)
 
 bill_passage_visualization %>%
-  write_csv(paste0("data/", "bill-passage-", bill_id, "-visualization-senado"))
+  write_csv(paste0("data/", "bill-passage-", bill_id, "-visualization-senado.csv"))
 
