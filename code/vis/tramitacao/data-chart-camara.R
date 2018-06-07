@@ -56,7 +56,8 @@ data_evento <- function(df) {
     mutate(start = data_hora, end = data_hora, group = 'Evento') %>% 
     group_by(evento) %>%
     rename(label = evento) %>%
-    select(label, start, end, group)
+    select(label, start, end, group) %>%
+    mutate(color = '#a9a9a9')
   df
 }
 

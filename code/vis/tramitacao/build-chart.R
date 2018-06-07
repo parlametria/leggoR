@@ -6,9 +6,14 @@ library(tidyverse)
 
 
 # Create chart with all tasks.
-a <- read_csv("data/vis/tramitacao/data-camara.csv") 
-summary(a$group)
-vistime(a, events="label", groups="group", title="Fases da tramitação", showLabels=FALSE)
+data <- read_csv("data/vis/tramitacao/data-camara.csv") 
+
+# Custom tooltip
+data$tooltip <- paste0("<b>", data$label, 
+                       "</b> \n Início: ", data$start,
+                       "\n Fim: ", data$end)
+
+vistime(data, events="label", groups="group", title="Fases da tramitação", tooltips = "tooltip", colors = "color", showLabels=FALSE)
 
 
 ######################### TARGET ############################################
