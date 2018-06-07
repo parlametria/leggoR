@@ -38,14 +38,6 @@ to_underscore <- function(x) {
     tolower
 }
 
-rename_df_columns <- function(df) {
-  names(df) %<>% to_underscore
-  df
-}
-
-detect_phase <- function(text, exp) {
-  text %in% exp
-}
 
 extract_phases <- function(dataframe) {
   dataframe %<>%
@@ -59,6 +51,14 @@ extract_phases <- function(dataframe) {
 
 detect_event <- function(text, exp) {
   str_detect(tolower(text), exp)
+}
+rename_df_columns <- function(df) {
+  names(df) %<>% to_underscore
+  df
+}
+
+detect_phase <- function(text, exp) {
+  text %in% exp
 }
 
 extract_events <- function(dataframe) {
@@ -82,35 +82,14 @@ sort_by_date <- function(df) {
   arrange(df, data_hora, sequencia)
 }
 
-# extract the duration in minutes for each row
-extract_duration <- function(df) {
-  if(dim(df)[1] > 1) {
-    
-    df %<>% sort_by_date()
-    
-    for(i in 1:(dim(df)[1] - 1)) {
-      df$duracao[i] <- difftime(df$data_hora[i+1], df$data_hora[i], units='mins')
-    }
-    df$duracao[dim(df)[1]] = 0
-    
-    # when two rows have the same date, the duration of one of them is equal to 0, this code fixes this
-    df %<>% 
-      group_by(data_hora) %>% 
-      mutate(duracao = max(duracao)) %>% 
-      ungroup()
-  } else {
-    df$duracao[1] = 0
-  }
-  
-  df
-}
-
 # Extract phases, events and writh CSV
 tramitacao_pl_6726 %<>%
   rename_df_columns %>%
   extract_phases %>%
   fill(fase) %>%
   extract_events %>%
+  refact_date() %>% 
+  sort_by_date() %>% 
   readr::write_csv(csv_path)
 
 # Print evento freq table
@@ -119,6 +98,3 @@ tramitacao_pl_6726$evento %>%
   as.data.frame %>%
   arrange(desc(Freq)) %>%
   htmlTable(header=c('evento', 'frequência'), rnames=FALSE)
-
-tramitacao_pl_6726 %<>% refact_date()
-tramitacao_pl_6726 %<>% extract_duration()
