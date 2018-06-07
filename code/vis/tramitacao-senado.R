@@ -2,10 +2,9 @@
 # install.packages("vistime")
 
 library(vistime)
-library(dplyr)
-library(purrr)
+library(tidyverse)
 
-data <- read_csv("data/bill_passage_91341_visualization")
+data <- read_csv("data/91341-bill-passage-visualization-senado.csv")
 
 # Create data frame to display phases inline
 format_phase_data <- function(df) {
