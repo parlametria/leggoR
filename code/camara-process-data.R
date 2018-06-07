@@ -5,6 +5,8 @@ library(magrittr)
 library(stringr)
 library(here)
 library(htmlTable)
+library(lubridate)
+
 
 data_path <- here('data/')
 
@@ -36,14 +38,6 @@ to_underscore <- function(x) {
     tolower
 }
 
-rename_df_columns <- function(df) {
-  names(df) %<>% to_underscore
-  df
-}
-
-detect_phase <- function(text, exp) {
-  text %in% exp
-}
 
 extract_phases <- function(dataframe) {
   dataframe %<>%
@@ -58,6 +52,14 @@ extract_phases <- function(dataframe) {
 detect_event <- function(text, exp) {
   str_detect(tolower(text), exp)
 }
+rename_df_columns <- function(df) {
+  names(df) %<>% to_underscore
+  df
+}
+
+detect_phase <- function(text, exp) {
+  text %in% exp
+}
 
 extract_events <- function(dataframe) {
   dataframe %<>%
@@ -71,12 +73,23 @@ extract_events <- function(dataframe) {
                               detect_event(despacho, extends_deadline_exp) ~ 'requerimento_prorrogacao'))
 }
 
+refact_date <- function(df) {
+  mutate(df, data_hora = ymd_hm(data_hora))
+}
+
+# sort the 'tramitacao' dataframe by date
+sort_by_date <- function(df) {
+  arrange(df, data_hora, sequencia)
+}
+
 # Extract phases, events and writh CSV
 tramitacao_pl_6726 %<>%
   rename_df_columns %>%
   extract_phases %>%
   fill(fase) %>%
   extract_events %>%
+  refact_date() %>% 
+  sort_by_date() %>% 
   readr::write_csv(csv_path)
 
 # Print evento freq table
@@ -85,3 +98,4 @@ tramitacao_pl_6726$evento %>%
   as.data.frame %>%
   arrange(desc(Freq)) %>%
   htmlTable(header=c('evento', 'frequência'), rnames=FALSE)
+
