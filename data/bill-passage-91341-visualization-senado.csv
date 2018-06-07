@@ -1,4 +1,4 @@
-data_tramitacao,origem_tramitacao_local_sigla_local,fase,evento
+data_tramitacao,local,fase,evento
 2009-05-28,PLEG,iniciativa,NA
 2009-05-28,ATA-PLEN,iniciativa,NA
 2009-05-29,CCJ,iniciativa,aguardando_designação_do_relator

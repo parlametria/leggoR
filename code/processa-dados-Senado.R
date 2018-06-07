@@ -3,7 +3,7 @@ library(here)
 library(htmlTable)
 source(here("code/senado-lib.R"))
 
-bill_id <- 91341
+bill_id <- 127753
 
 bill_passage <- read_csv(paste0("data/", bill_id, "-passage-senado.csv")) %>% arrange(data_tramitacao)
 
@@ -50,7 +50,7 @@ bill_passage <- extract_event(bill_passage)
 
 bill_passage_visualization <- 
   bill_passage %>%
-  select(data_tramitacao, origem_tramitacao_local_sigla_local, fase, evento)
+  select(data_tramitacao, local = origem_tramitacao_local_sigla_local, fase, evento)
 
 # Print evento freq table
 bill_passage_visualization$evento %>%
