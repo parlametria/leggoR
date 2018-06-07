@@ -35,6 +35,7 @@ data_local <- function(df) {
     group_by(sigla_orgao, sequence = rleid(sigla_orgao)) %>%
     summarise(start = min(data_hora),
               end = max(end_data)) %>%
+    filter(end - start > 0) %>%
     ungroup() %>%
     arrange(sequence) %>% select(-sequence) %>%
     rename(label = sigla_orgao) %>%
@@ -51,14 +52,14 @@ data_local <- function(df) {
 
 data_evento <- function(df) {
   df %<>%
-    group_by(evento) %>%
     filter(!is.na(evento)) %>% 
+    mutate(start = data_hora, end = data_hora, group = 'Evento') %>% 
+    group_by(evento) %>%
     rename(label = evento) %>%
-    mutate(start = data_hora, end = data_hora, group = 'Evento') %>%
-    select(label, start, end, group) %>% 
-    mutate(color = 'Color')
+    select(label, start, end, group)
   df
 }
 
-data <- bind_rows(data_evento(t), data_fase(t), data_local(t))
+data <- bind_rows(data_evento(tramitacao), data_fase(tramitacao), data_local(tramitacao))
 readr::write_csv(data, file_path)
+
