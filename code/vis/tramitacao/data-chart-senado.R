@@ -1,6 +1,6 @@
 library(tidyverse)
 
-data <- read_csv("data/91341-bill-passage-visualization-senado.csv")
+data <- read_csv("data/Senado/91341-bill-passage-visualization-senado.csv")
 
 # Create data frame to display local inline
 format_local <- function(df) {
@@ -8,7 +8,7 @@ format_local <- function(df) {
     df %>%
     mutate(
       data_tramitacao = as.Date(data_tramitacao),
-      local = as.character(origem_tramitacao_local_sigla_local)
+      local = as.character(local)
     )
   
   df %>%

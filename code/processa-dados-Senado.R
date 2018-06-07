@@ -5,7 +5,7 @@ source(here("code/senado-lib.R"))
 
 bill_id <- 91341
 
-bill_passage <- read_csv(paste0("data/", bill_id, "-passage-senado.csv")) %>% arrange(data_tramitacao)
+bill_passage <- read_csv(paste0("data/Senado/", bill_id, "-passage-senado.csv")) %>% arrange(data_tramitacao)
 
 phase_one <- c('^Este processo contém')
 phase_two <- c(91, 99)
