@@ -21,7 +21,7 @@ tramitacao <- read_csv("../data/camara/tramitacao_camara_2121442.csv")
 ##### Emenda: `r toString(proposicao$ementa)`
 
 ```{r echo=FALSE}
-vistime(data_unique, events="label", groups="group", title="Fases da tramitação", colors = "color", showLabels=FALSE)
+vistime(data, events="label", groups="group", title="Fases da tramitação", colors = "color", showLabels=FALSE)
 ```
 
 #### Eventos que ocorrem durante a tramitação
