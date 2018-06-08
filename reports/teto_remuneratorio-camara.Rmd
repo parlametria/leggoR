@@ -1,0 +1,34 @@
+---
+title: "Teto Remuneratório (PL 6726/2016)"
+output: html_notebook
+---
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(vistime)
+library(tidyverse)
+library(rcongresso)
+data <- read_csv("../data/vis/tramitacao/data-camara.csv") %>% unique()
+
+tramita_id <- fetch_id_proposicao(tipo = "PL", ano = "2016", numero = "6726")
+proposicao <- fetch_proposicao(id = tramita_id)
+tramitacao <- read_csv("../data/camara/tramitacao_camara_2121442.csv")
+```
+
+##### Nome da Proposição: `r toString(proposicao$siglaTipo)` `r toString(proposicao$numero)`/`r toString(proposicao$ano)`
+##### Tipo da Proposição: `r toString(proposicao$descricaoTipo)`
+##### Regime: `r toString(proposicao$statusProposicao.regime)`
+##### Atual status: `r toString(proposicao$statusProposicao.descricaoTramitacao)`
+##### Emenda: `r toString(proposicao$ementa)`
+
+```{r echo=FALSE}
+vistime(data_unique, events="label", groups="group", title="Fases da tramitação", colors = "color", showLabels=FALSE)
+```
+
+#### Eventos que ocorrem durante a tramitação
+
+```{r echo=FALSE}
+tramitacao %>% select(evento) %>% group_by(evento) %>% 
+  filter(!is.na(evento)) %>% summarise(frequência = n()) %>% 
+  arrange(-frequência)
+```
+
