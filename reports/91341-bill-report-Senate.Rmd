@@ -7,6 +7,7 @@ output: html_notebook
 library(tidyverse)
 library(here)
 library(jsonlite)
+library(vistime)
 source(here("code/senado-lib.R"))
 ```
 
@@ -53,4 +54,9 @@ bill_data$ementa_materia
 Explicação da ementa:
 ```{r, echo = FALSE}
 bill_data$explicacao_ementa_materia
+```
+
+```{r, echo = FALSE}
+read_csv("data-senado.csv") %>%
+vistime(events="label", groups="group", title="Fases da tramitação", showLabels=FALSE)
 ```
