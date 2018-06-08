@@ -1,24 +1,25 @@
 ---
 title: "Teto Remuneratório (PL 6726/2016)"
-output: html_document
+output: html_notebook
 ---
 
-```{r message=FALSE, warning=FALSE}
+```{r echo=FALSE, warning=FALSE}
 library(vistime)
 library(tidyverse)
-library(lubridate)
+data <- read_csv("../data/vis/tramitacao/data-camara.csv") %>% unique()
 
-# Create chart with all tasks.
-data <- read_csv("../data/vis/tramitacao/data-camara.csv")
-
-# Custom tooltip
-data$tooltip <- ifelse(data$end == ymd(Sys.Date()),
-                       paste0("<b>", data$label,
-                              "</b> \n Início: ", data$start,
-                              "<b>\n Em andamento </b>"),
-                       paste0("<b>", data$label,
-                              "</b> \n Início: ", data$start,
-                              "\n Fim: ", data$end))
-
-vistime(data, events="label", groups="group", title="Fases da tramitação", tooltips = "tooltip", colors = "color", showLabels=FALSE)
+tramitacao <- read_csv("../data/camara/tramitacao_camara_2121442.csv")
 ```
+
+```{r}
+vistime(data_unique, events="label", groups="group", title="Fases da tramitação", colors = "color", showLabels=FALSE)
+```
+
+#### Eventos que ocorrem durante a tramitação
+
+```{r}
+tramitacao %>% select(evento) %>% group_by(evento) %>% 
+  filter(!is.na(evento)) %>% summarise(frequência = n()) %>% 
+  arrange(-frequência)
+```
+
