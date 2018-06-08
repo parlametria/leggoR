@@ -1,6 +1,8 @@
 library(tidyverse)
 
-data <- read_csv("data/Senado/91341-bill-passage-visualization-senado.csv")
+bill_id <- 91341
+
+data <- read_csv(paste0("data/Senado/",bill_id,"-bill-passage-visualization-senado.csv"))
 
 # Create data frame to display local inline
 format_local <- function(df) {
@@ -30,7 +32,12 @@ format_local <- function(df) {
     mutate(group = "Local")
 
   df %>%
-    mutate(color = case_when(grepl('^S', label) | label == 'ATA-PLEN' ~ "#e2e3d9"))
+    mutate(color = case_when((grepl('^S', label) | 
+                               label == 'ATA-PLEN') ~ "#e2e3d9",
+                               label == 'PLEN' ~ "#5496cf",
+                               label == 'CCJ' ~ "#ffffcc",
+                               label == 'CAE' ~ "#a1dab4",
+                               label == 'CDR' ~ "#225ea8"))
 }
 
 # Create data frame to display phases inline
@@ -53,9 +60,9 @@ format_fase <- function(df) {
     ungroup() %>% 
     arrange(sequence) %>% 
     select(-sequence) %>%
-    filter(time_interval > 0) %>%
+    #filter(time_interval > 0) %>%
     rename(label=fase) %>%
-    mutate(group = "Fase")
+    mutate(group = "Sub-Fase")
   
   df %>% 
     mutate(color = case_when(label == "iniciativa" ~ "#7fc97f",
@@ -92,7 +99,6 @@ format_eventos <- function(df) {
   
 }
 
-local_df <- format_local(data)
-
 rbind(format_local(data), format_fase(data), format_eventos(data)) %>%
-  write_csv("data/vis/tramitacao/data-senado.csv")
+  write_csv(paste0("data/vis/tramitacao/",bill_id,"-data-senado.csv"))
+

@@ -3,7 +3,7 @@ library(here)
 library(jsonlite)
 source(here("code/senado-lib.R"))
 
-bill_id <- 129808
+bill_id <- 91341
 
 #Voting data
 voting <- fetch_voting(bill_id)
