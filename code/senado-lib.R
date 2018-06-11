@@ -236,3 +236,8 @@ rename_bill_df <- function(df) {
   
   df
 }
+
+get_nome_ementa_Senado <- function(bill_id) {
+  bill <- fetch_bill(bill_id_Senado)
+  bill %>% select(ementa_materia, sigla_subtipo_materia, numero_materia)
+}
