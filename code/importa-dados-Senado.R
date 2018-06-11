@@ -23,3 +23,9 @@ bill_data %>%
 relatorias <- fetch_relatorias(bill_id)
 relatorias %>%
   write_csv(here(paste0("data/Senado/", bill_id, "-relatorias-senado.csv")))
+
+#Last Relatoria
+last_relatoria <- fetch_relatoria_atual(bill_id)
+last_relatoria %>%
+  write_csv(here(paste0("data/Senado/", bill_id, "-last-relatoria-senado.csv")))
+
