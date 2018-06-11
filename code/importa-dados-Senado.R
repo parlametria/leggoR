@@ -19,7 +19,12 @@ bill_data <- fetch_bill(bill_id)
 bill_data %>%
   write_csv(here(paste0("data/Senado/", bill_id, "-bill-senado.csv")))
 
-#Relatorias Data
+#Relatorias data
 relatorias <- fetch_relatorias(bill_id)
 relatorias %>%
   write_csv(here(paste0("data/Senado/", bill_id, "-relatorias-senado.csv")))
+
+#Current Relatoria data
+current_relatoria <- fetch_current_relatoria(bill_id)
+current_relatoria %>%
+  write_csv(here(paste0("data/Senado/", bill_id, "-current-relatoria-senado.csv")))
