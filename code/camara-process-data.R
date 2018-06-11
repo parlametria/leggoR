@@ -13,6 +13,7 @@ pl6726_id <- fetch_id_proposicao(tipo = "PL", numero = 6726, ano = 2016)
 tramitacao_pl_6726 <- fetch_tramitacao(id_prop = pl6726_id)
 
 csv_path <- paste(c(data_path,'tramitacao_camara_', pl6726_id, '.csv'),  collapse = '')
+proposicao_csv_path <- paste(c(data_path,'proposicao_camara_', pl6726_id, '.csv'),  collapse = '')
 
 phase_one <- c(100, 500)
 phase_two <- c(320)
@@ -46,4 +47,16 @@ tramitacao_pl_6726 %<>%
 tramitacao %>% select(evento) %>% group_by(evento) %>% 
     filter(!is.na(evento)) %>% summarise(frequência = n()) %>% 
     arrange(-frequência)
+
+#Fetch a bill with renamed columns
+fetch_proposicao_renamed <- function(id) {
+  df <-
+    fetch_proposicao(pl6726_id) %>%
+    rename_df_columns
+  df
+}
+
+proposicao_pl_6726 <- 
+  fetch_proposicao_renamed(pl6726_id) %>%
+  readr::write_csv(proposicao_csv_path)
 
