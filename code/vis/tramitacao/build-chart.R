@@ -6,7 +6,9 @@ library(tidyverse)
 
 
 # Create chart with all tasks.
-data <- read_csv("data/vis/tramitacao/data-camara.csv") 
+bill_id <- 91341
+house <- 'senado'
+data <- read_csv(paste0("data/vis/tramitacao/",bill_id,"-data-", house, ".csv")) %>%
 
 # Custom tooltip
 data$tooltip <- ifelse(data$end == ymd(Sys.Date()), 

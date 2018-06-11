@@ -1,0 +1,114 @@
+---
+title: "Automatização da Análise da Tramitação de Proposições no Senado"
+output: 
+  html_notebook:
+    fig_height: 8
+    fig_width: 20
+---
+
+# Aquisição de Dados
+
+Para analisar a tramitação de uma proposição, faz-se necessário obter os dados dessa proposição. Os dados foram importados utilizando a [API do Senado](http://legis.senado.leg.br/dadosabertos/).
+Implementamos a lib-senado.R, que é capaz de importar dados de:
+
+  * Informações Gerais
+  * Tramitação
+  * Relatorias
+  * Votações
+  
+Abaixo, mostramos um exemplo das tabelas geradas com os dados importados.
+
+```{r, echo = FALSE, message=FALSE}
+library(tidyverse)
+library(here)
+source(here("code/senado-lib.R"))
+
+bill_id <- 91341
+base_dir <- '../data/Senado/'
+```
+
+## Dados Gerais
+
+```{r, echo = FALSE, message=FALSE}
+bill_data <- read_csv(paste0(base_dir,bill_id,'-bill-senado.csv'))
+head(bill_data)
+```
+
+## Tramitação
+
+```{r, echo = FALSE, message=FALSE}
+bill_passage_data <- read_csv(paste0(base_dir,bill_id,'-passage-senado.csv'))
+head(bill_passage_data)
+```
+
+## Votações
+
+```{r, echo = FALSE, message=FALSE}
+bill_voting_data <- read_csv(paste0(base_dir,bill_id,'-votacoes-senado.csv'))
+head(bill_voting_data)
+```
+
+## Relatorias
+
+```{r, echo = FALSE, message=FALSE}
+bill_relatorias_data <- read_csv(paste0(base_dir,bill_id,'-relatorias-senado.csv'))
+head(bill_relatorias_data)
+```
+
+# Processamento dos dados
+
+De posse dos dados, é necessário preprocessá-los para que se possa extrair as informações importantes para a análise/entendimento da tramitação de uma proposição.
+
+Construímos nossa análise com base em eventos considerados importantes na tramitação de uma proposição, como: ingresso em comissões, pareceres de relatores, audiências públicas, votações, etc. A partir desses eventos, inferimos as fases da tramitação e o período compreendido em cada uma.
+
+A partir daí, construímos uma tabela com informações resumidas da tramitação, facilitando a análise.
+
+## Tramitação Resumida
+
+```{r, echo = FALSE, message=FALSE}
+bill_passage_summary_data <- read_csv(paste0(base_dir,bill_id,'-bill-passage-visualization-senado.csv'))
+head(bill_passage_summary_data)
+```
+
+Para visualizar os dados, pensamos num gráfico de timeline que mostra ao mesmo tempo uma visão macro e micro da tramitação, destacando:
+
+  * Locais (comissões, plenários)
+  * Fases (iniciativa, relatoria, discussão e deliberação)
+  * Eventos (aprovação de substitutivo, audiência pública, entre outros)
+
+## Tramitação para Visualização
+
+```{r, echo = FALSE, message=FALSE}
+vis_base_dir <- '../data/vis/tramitacao/'
+bill_passage_visualization_data <- read_csv(paste0(vis_base_dir,bill_id,'-data-senado.csv'))
+head(bill_passage_visualization_data)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
