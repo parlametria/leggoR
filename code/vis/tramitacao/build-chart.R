@@ -6,9 +6,10 @@ library(tidyverse)
 
 
 # Create chart with all tasks.
-bill_id <- 91341
-house <- 'senado'
-data <- read_csv(paste0("data/vis/tramitacao/",bill_id,"-data-", house, ".csv")) %>%
+bill_id <- 2121442
+house <- 'camara'
+data <- read_csv(paste0("data/vis/tramitacao/",bill_id,"-data-", house, ".csv")) 
+
 
 # Custom tooltip
 data$tooltip <- ifelse(data$end == ymd(Sys.Date()), 
@@ -18,8 +19,6 @@ data$tooltip <- ifelse(data$end == ymd(Sys.Date()),
                        paste0("<b>", data$label, 
                               "</b> \n Início: ", data$start,
                               "\n Fim: ", data$end))
-
-
 
 vistime(data, events="label", groups="group", title="Fases da tramitação", tooltips = "tooltip", colors = "color", showLabels=FALSE)
 

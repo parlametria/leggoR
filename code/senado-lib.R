@@ -1,3 +1,6 @@
+library(here)
+source(here("code/congresso-lib.R"))
+
 fetch_voting <- function(bill_id){
     require(tidyverse)
     require(magrittr)
@@ -189,15 +192,6 @@ fetch_relatorias <- function(bill_id) {
   rename_relatorias_df(relatorias_df)
 }
 
-
-to_underscore <- function(x) {
-  x2 <- gsub("([A-Za-z])([A-Z])([a-z])", "\\1_\\2\\3", x)
-  x3 <- gsub(".", "_", x2, fixed = TRUE)
-  x4 <- gsub("([a-z])([A-Z])", "\\1_\\2", x3)
-  x5 <- tolower(x4)
-  x5
-}
-
 rename_relatorias_df <- function(df) {
   names(df) <- c("data_designacao", "data_destituicao", "descricao_motivo_destituicao", "codigo_parlamentar",
                  "nome_parlamentar", "partido", "comissao", "sigla_comissao", "codigo_comissao")
@@ -238,13 +232,44 @@ rename_bill_df <- function(df) {
 }
 
 get_nome_ementa_Senado <- function(bill_id) {
+  require(tidyverse)
+  
   bill <- fetch_bill(bill_id_Senado)
   bill %>% select(ementa_materia, sigla_subtipo_materia, numero_materia)
 }
 
 tail_descricao_despacho_Senado <- function(df, qtd=1) {
+  require(tidyverse)
+  
   df %>% 
   arrange(data_tramitacao) %>% 
   tail(qtd) %>% 
     select(data_tramitacao, situacao_descricao_situacao, texto_tramitacao)
 }
+
+extract_phase_Senado <- function(dataframe, phase_one, phase_two, phase_three, phase_four) {
+  require(tidyverse)
+  
+  dataframe %>%
+    mutate(fase = case_when( grepl(phase_one, texto_tramitacao) ~ 'iniciativa',
+                             detect_phase(situacao_codigo_situacao, phase_two) ~ 'relatoria',
+                             detect_phase(situacao_codigo_situacao, phase_three) ~ 'discussao_deliberacao',
+                             detect_phase(situacao_codigo_situacao, phase_four) ~ 'virada_de_casa')) 
+}
+
+extract_event_Senado <- function(tramitacao_df, phases_df) {
+  require(tidyverse)
+  
+  left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao")
+}
+
+extract_n_last_events_Senado <- function(df, num) {
+  require(tidyverse)
+  
+  df %>%
+    filter(!is.na(evento)) %>%
+    arrange(data_tramitacao) %>%
+    tail(n = num) %>%
+    select(data_tramitacao, evento)
+}
+
