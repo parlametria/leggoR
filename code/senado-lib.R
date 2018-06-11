@@ -241,3 +241,7 @@ get_nome_ementa_Senado <- function(bill_id) {
   bill <- fetch_bill(bill_id_Senado)
   bill %>% select(ementa_materia, sigla_subtipo_materia, numero_materia)
 }
+
+tail_descricao_despacho_Senado <- function(df, qtd=1) {
+  df[(nrow(df)-(qtd-1)):nrow(df), c('data_tramitacao', 'situacao_descricao_situacao', 'texto_tramitacao')]
+}
