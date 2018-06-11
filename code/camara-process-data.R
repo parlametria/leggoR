@@ -3,9 +3,9 @@ library(tidyverse)
 library(dplyr)
 library(magrittr)
 library(stringr)
-library(here)
 library(htmlTable)
 library(lubridate)
+library(here)
 
 
 data_path <- here('data/camara/')
