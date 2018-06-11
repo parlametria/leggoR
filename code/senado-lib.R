@@ -243,5 +243,8 @@ get_nome_ementa_Senado <- function(bill_id) {
 }
 
 tail_descricao_despacho_Senado <- function(df, qtd=1) {
-  df[(nrow(df)-(qtd-1)):nrow(df), c('data_tramitacao', 'situacao_descricao_situacao', 'texto_tramitacao')]
+  df %>% 
+  arrange(data_tramitacao) %>% 
+  tail(qtd) %>% 
+    select(data_tramitacao, situacao_descricao_situacao, texto_tramitacao)
 }

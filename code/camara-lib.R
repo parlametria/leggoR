@@ -5,5 +5,9 @@ get_nome_ementa_Camara <- function(bill_id) {
 }
 
 tail_descricao_despacho_Camara <- function(df, qtd=1) {
-  df[(nrow(df)-(qtd-1)):nrow(df), c('data_hora', 'descricao_tramitacao', 'despacho')]
+  require(dplyr)
+  df %>% 
+    arrange(data_hora) %>% 
+    tail(qtd) %>% 
+    select(data_hora, descricao_tramitacao, despacho)
 }
