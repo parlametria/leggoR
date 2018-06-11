@@ -3,12 +3,12 @@ library(tidyverse)
 library(dplyr)
 library(magrittr)
 library(stringr)
-library(here)
 library(htmlTable)
 library(lubridate)
+library(here)
 
 
-data_path <- here('data/')
+data_path <- here('data/camara/')
 
 pl6726_id <- fetch_id_proposicao(tipo = "PL", numero = 6726, ano = 2016)
 tramitacao_pl_6726 <- fetch_tramitacao(id_prop = pl6726_id)
@@ -17,7 +17,7 @@ csv_path <- paste(c(data_path,'tramitacao_camara_', pl6726_id, '.csv'),  collaps
 
 phase_one <- c(100, 500)
 phase_two <- c(320)
-phase_three <- c(924)
+phase_three <- c(322)
 phase_four <- c(128)
 phase_five <- c(502, 251)
 
@@ -43,7 +43,7 @@ extract_phases <- function(dataframe) {
   dataframe %<>%
     mutate(fase = case_when(detect_phase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
                             detect_phase(id_tipo_tramitacao, phase_two) ~ 'relatoria',
-                            detect_phase(id_situacao, phase_three) ~ 'discussao_deliberacao',
+                            detect_phase(id_tipo_tramitacao, phase_three) ~ 'discussao_deliberacao',
                             detect_phase(id_tipo_tramitacao, phase_four) ~ 'virada_de_casa',
                             detect_phase(id_tipo_tramitacao, phase_five) ~ 'final',
                             detect_phase(id_situacao, 937) ~ 'final'))

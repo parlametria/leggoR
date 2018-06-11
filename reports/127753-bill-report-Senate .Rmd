@@ -1,5 +1,5 @@
 ---
-title: "Relatório do Projeto de Lei do Senado 229"
+title: "Relatório do Projeto de Lei do Senado 449"
 output: html_notebook
 ---
 
@@ -12,7 +12,7 @@ source(here("code/senado-lib.R"))
 ```
 
 ```{r, echo = FALSE}
-bill_id <- 91341
+bill_id <- 127753
 bill_data <- fetch_bill(bill_id)
 ```
 
@@ -49,11 +49,6 @@ bill_data$assunto_especifico
 Ementa:
 ```{r, echo = FALSE}
 bill_data$ementa_materia
-```
-
-Explicação da ementa:
-```{r, echo = FALSE}
-bill_data$explicacao_ementa_materia
 ```
 
 Tabela de frequência de eventos importantes:
