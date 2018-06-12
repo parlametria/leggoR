@@ -33,7 +33,6 @@ extract_n_last_events_Camara <- function(df, num) {
   require(tidyverse)
   
   df %>%
-    filter(!is.na(evento)) %>%
     arrange(data_hora) %>%
     tail(n = num) %>%
     select(data_hora, evento)
@@ -70,4 +69,29 @@ sort_by_date <- function(df) {
   require(tidyverse)
   
   arrange(df, data_hora, sequencia)
+}
+
+extract_autor <- function(prop_id) {
+  require(magrittr)
+  require(jsonlite)
+  require(stringr)
+  
+  camara_exp <- 'câmara dos deputados'
+  senado_exp <- 'senado federal'
+  
+  url_base_autores <- 'https://dadosabertos.camara.leg.br/api/v2/proposicoes/'
+  url <- paste0(url_base_autores, prop_id, '/autores')
+  json_voting <- fromJSON(url, flatten = T)
+  
+  autores <- json_voting %>% 
+    extract2("dados") %>%
+    rename(autor.uri = uri,
+           autor.nome = nome,
+           autor.tipo = tipo,
+           autor.cod_tipo = codTipo) %>% 
+    mutate(casa_origem = case_when(
+      str_detect(tolower(autor.nome), camara_exp) | autor.tipo == 'Deputado' ~ 'Câmara dos Deputados',
+      str_detect(tolower(autor.nome), senado_exp) | autor.tipo == 'Senador' ~ 'Senado Federal'))
+  
+  autores
 }
