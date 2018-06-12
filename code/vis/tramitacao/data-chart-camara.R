@@ -3,10 +3,12 @@ library(dplyr)
 library(lubridate)
 library(here)
 
-tramitacao <- read_csv('data/camara/tramitacao_camara_2121442.csv')
+bill_id <- 2121442
+tramitacao <- read_csv(paste0('data/camara/tramitacao_camara_', bill_id, '.csv'))
 
 data_path <- here::here('data/vis/tramitacao/')
-file_path <- paste(c(data_path,'data-camara.csv'),  collapse = '')
+file_path <- paste0(data_path, bill_id, '-data-camara.csv')
+
 
 data_fase <- function(df) {
   df %>%

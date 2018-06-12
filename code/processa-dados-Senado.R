@@ -1,9 +1,8 @@
 library(tidyverse)
 library(here)
-library(htmlTable)
 source(here("code/senado-lib.R"))
 
-bill_id <- 91341
+bill_id <- 127753
 
 bill_passage <- read_csv(paste0("data/Senado/", bill_id, "-passage-senado.csv")) %>% arrange(data_tramitacao)
 
@@ -12,20 +11,8 @@ phase_two <- c(91, 99)
 phase_three <- c(42, 110, 88)
 phase_four <- c(52)
 
-detect_phase <- function(text, exp) {
-  text %in% exp
-}
-
-extract_phase <- function(dataframe) {
-  dataframe <- dataframe %>%
-        mutate(fase = case_when( grepl(phase_one, texto_tramitacao) ~ 'iniciativa',
-                                 detect_phase(situacao_codigo_situacao, phase_two) ~ 'relatoria',
-                                 detect_phase(situacao_codigo_situacao, phase_three) ~ 'discussao_deliberacao',
-                                 detect_phase(situacao_codigo_situacao, phase_four) ~ 'virada_de_casa')) 
-}
-
 bill_passage <- 
-  extract_phase(bill_passage) %>% 
+  extract_phase_Senado(bill_passage, phase_one, phase_two, phase_three, phase_four) %>% 
   arrange(data_tramitacao, numero_ordem_tramitacao) %>%
   fill(fase) %>%
   filter(!is.na(fase))
@@ -34,23 +21,17 @@ bill_passage$situacao_descricao_situacao <-
   to_underscore(bill_passage$situacao_descricao_situacao) %>% 
   str_replace_all("\\s+","_")
 
+importants_phases <- frame_data(~ evento, ~ situacao_codigo_situacao,
+           "aprovacao_audiencia_publica", 110,
+           "aprovacao_parecer", 89,
+           "aprovacao_substitutivo", 113,
+           "pedido_vista", 90,
+           "aprovacao_projeto", 25)
 
-phase_aprovacao_audiencia <- 110
-phase_aprovacao_parecer <- 89
-phase_aprovacao_substitutivo <- 113
-phase_pedido_vista <- 90
-phase_aprovacao_projeto <- 25
 
-extract_event <- function(dataframe) {
-  dataframe <- dataframe %>%
-    mutate(evento = case_when( situacao_codigo_situacao == phase_aprovacao_audiencia ~ 'aprovacao_audiencia_publica',
-                               situacao_codigo_situacao == phase_aprovacao_parecer ~ 'aprovacao_parecer',
-                               situacao_codigo_situacao == phase_aprovacao_substitutivo ~ 'aprovacao_substitutivo',
-                               situacao_codigo_situacao == phase_pedido_vista ~ 'pedido_vista',
-                               situacao_codigo_situacao == phase_aprovacao_projeto ~ 'aprovacao_projeto'))
-}
-
-bill_passage <- extract_event(bill_passage)
+bill_passage <- extract_event_Senado(bill_passage, importants_phases)
+bill_passage %>%
+  write_csv(paste0("data/Senado/", bill_id, "-bill-passage-phases-senado.csv"))
 
 bill_passage_visualization <- 
   bill_passage %>%
