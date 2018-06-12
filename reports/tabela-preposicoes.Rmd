@@ -27,8 +27,8 @@ nome_ementa_senado <- get_nome_ementa_Senado(bill_id_teto_remunatorio_senado)
 ```
 
 ```{r, echo = FALSE, message = FALSE}
-tramitacao_camara <- read_csv(paste0("data/camara/", "tramitacao_camara_",bill_id_teto_remunatorio_camara,".csv"))
-tramitacao_senado <- read_csv(paste0("data/Senado/", bill_id_teto_remunatorio_senado, "-bill-passage-phases-senado.csv"))
+tramitacao_camara <- read_csv(paste0("../data/camara/", "tramitacao_camara_",bill_id_teto_remunatorio_camara,".csv"))
+tramitacao_senado <- read_csv(paste0("../data/Senado/", bill_id_teto_remunatorio_senado, "-bill-passage-phases-senado.csv"))
 despacho_camara <- tail_descricao_despacho_Camara(tramitacao_camara)
 despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
 ```
@@ -47,7 +47,7 @@ if(casa == "Câmara") {eventos <- as.list(last_events_camara$evento)} else { eve
 proposiçoes_df <- 
   frame_data(~ nome, ~ casa, ~ ementa, ~ despacho_atual, ~ ultimos_eventos, 
            nome, casa, nome_ementa_camara$ementa, despacho, eventos)
-urls <- rep("https://stackoverflow.com/", 1)
+urls <- rep("https://analytics-ufcg.github.io/agora-digital/reports/teto_remuneratorio-camara.html", 1)
 proposiçoes_df$nome <-paste0("[", proposiçoes_df$nome, "](", urls, ")")
 ```
 
