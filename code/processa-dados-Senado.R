@@ -30,6 +30,8 @@ importants_phases <- frame_data(~ evento, ~ situacao_codigo_situacao,
 
 
 bill_passage <- extract_event_Senado(bill_passage, importants_phases)
+bill_passage %>%
+  write_csv(paste0("data/Senado/", bill_id, "-bill-passage-phases-senado.csv"))
 
 bill_passage_visualization <- 
   bill_passage %>%

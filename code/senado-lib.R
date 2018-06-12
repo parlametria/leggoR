@@ -122,7 +122,8 @@ fetch_bill <- function(bill_id){
     extract2("Autoria") %>%
     extract2("Autor") %>%
     as.tibble() %>%
-    select(NomeAutor, UfAutor, IdentificacaoParlamentar.CodigoParlamentar, IdentificacaoParlamentar.SiglaPartidoParlamentar)
+    #select(NomeAutor, UfAutor, IdentificacaoParlamentar.CodigoParlamentar, IdentificacaoParlamentar.SiglaPartidoParlamentar)
+    select(NomeAutor)
   bill_specific_subject <-
     bill_data %>%
     extract2("Assunto") %>% 
@@ -241,8 +242,10 @@ rename_bill_df <- function(df) {
 get_nome_ementa_Senado <- function(bill_id) {
   require(tidyverse)
   
-  bill <- fetch_bill(bill_id_Senado)
-  bill %>% select(ementa_materia, sigla_subtipo_materia, numero_materia)
+  bill <- fetch_bill(bill_id)
+  bill %>%
+    select(ementa_materia, sigla_subtipo_materia, numero_materia) %>%
+    unique
 }
 
 tail_descricao_despacho_Senado <- function(df, qtd=1) {
