@@ -1,0 +1,41 @@
+---
+title: "Projeto de Lei `r toString('foo')`"
+output: html_document
+params:
+  lei: "lei"
+  senado_id: 127753
+---
+```{r imports}
+library(tidyverse)
+library(here)
+```
+
+
+### Informações Gerais
+
+```{r}
+params$lei
+```
+
+#### Data de Apresentação
+
+```{r}
+  data <- data.frame("nome" = "PLP12", "casa_atual" = "Senado", "ementa" = "foo", "despacho_atual" = "foo", "ultimos_eventos" = "foo")
+
+```
+
+#### Assunto Geral
+`r data$nome`
+
+#### Ementa
+`r data$ementa`
+
+#### Status Atual
+`r data$despacho_atual`
+
+#### Tramitação no Senado
+```{r}
+source(here("code/vis/tramitacao/build-chart.R"))
+read_csv()
+```
+
