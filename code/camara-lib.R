@@ -71,7 +71,7 @@ sort_by_date <- function(df) {
   arrange(df, data_hora, sequencia)
 }
 
-extract_autor <- function(prop_id) {
+extract_autor_Camara <- function(prop_id) {
   require(magrittr)
   require(jsonlite)
   require(stringr)
