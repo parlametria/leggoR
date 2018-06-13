@@ -10,7 +10,7 @@ regexes <-
            "indeferido", '^Indefiro',
            "deferido", '^(Defiro)|(Aprovado)')
 
-fetch_requerimentos <- function(id, mark_deferimento=TRUE) {
+fetch_requerimentos_relacionados <- function(id, mark_deferimento=TRUE) {
   relacionadas <- 
     fetch_relacionadas(id)$uri %>% 
     strsplit('/') %>% 
@@ -20,7 +20,7 @@ fetch_requerimentos <- function(id, mark_deferimento=TRUE) {
   
   requerimentos <- 
     relacionadas %>% 
-    filter(str_detect(.$descricaoTipo, '^Requerimento'))
+    filter(str_detect(.$sigleTipo, '^REQ'))
   
   if(!mark_deferimento) return(requerimentos)
   
