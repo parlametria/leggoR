@@ -44,7 +44,7 @@ tramitacao_pl_6726 %<>%
   readr::write_csv(csv_path)
 
 # Print evento freq table
-tramitacao %>% select(evento) %>% group_by(evento) %>% 
+tramitacao_pl_6726 %>% select(evento) %>% group_by(evento) %>% 
     filter(!is.na(evento)) %>% summarise(frequência = n()) %>% 
     arrange(-frequência)
 
