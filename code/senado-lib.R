@@ -102,49 +102,42 @@ fetch_bill <- function(bill_id){
   
   url_base_bill <- "http://legis.senado.leg.br/dadosabertos/materia/"
   
-  url <- paste0(url_base_bill, bill_id, sep = "")
+  url <- paste0(url_base_bill, bill_id)
   json_bill <- fromJSON(url, flatten = T)
   bill_data <- 
-    json_bill %>% 
-    extract2("DetalheMateria") %>% 
-    extract2("Materia")
+    json_bill$DetalheMateria$Materia
   bill_ids <-
-    bill_data %>% 
-    extract2("IdentificacaoMateria") %>% 
-    as.tibble()  %>%
+    bill_data$IdentificacaoMateria %>%
+    as.tibble  %>%
     select(CodigoMateria, SiglaSubtipoMateria, NumeroMateria)
   bill_basic_data <-
-    bill_data %>%
-    extract2("DadosBasicosMateria") %>%
-    as.tibble()
+    bill_data$DadosBasicosMateria %>%
+    as.tibble
   bill_author <-
-    bill_data %>%
-    extract2("Autoria") %>%
-    extract2("Autor") %>%
-    as.tibble() %>%
-    #select(NomeAutor, UfAutor, IdentificacaoParlamentar.CodigoParlamentar, IdentificacaoParlamentar.SiglaPartidoParlamentar)
+    bill_data$Autoria$Autor %>%
+    as.tibble %>%
     select(NomeAutor)
   bill_specific_subject <-
-    bill_data %>%
-    extract2("Assunto") %>% 
-    extract2("AssuntoEspecifico") %>%
-    as.tibble() %>%
+    bill_data$Assunto$AssuntoEspecifico %>%
+    as.tibble %>%
     rename(assunto_especifico = Descricao, codigo_assunto_especifico = Codigo)
   bill_general_subject <-
-    bill_data %>%
-    extract2("Assunto") %>% 
-    extract2("AssuntoGeral") %>%
-    as.tibble() %>%
+    bill_data$Assunto$AssuntoGeral %>%
+    as.tibble %>%
     rename(assunto_geral = Descricao, codigo_assunto_geral = Codigo)
   bill_source <-
-    bill_data %>%
-    extract2("OrigemMateria") %>%
-    as.tibble()
+    bill_data$OrigemMateria %>%
+    as.tibble
+  bill_anexadas <- 
+    bill_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria %>%
+    paste(collapse = ' ')
   
-  bill_complete <- 
+  bill_complete <-
     bill_basic_data %>%
-    add_column(!!! bill_ids, !!! bill_author, 
+    add_column(!!! bill_ids, !!! bill_author,
                !!! bill_specific_subject, !!! bill_general_subject, !!! bill_source)
+  
+  bill_complete$proposicoes_apensadas <- bill_anexadas
   
   rename_bill_df(bill_complete)
 }
@@ -341,4 +334,3 @@ extract_n_last_events_Senado <- function(df, num) {
     tail(n = num) %>%
     select(data_tramitacao, evento)
 }
-
