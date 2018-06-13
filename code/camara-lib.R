@@ -192,3 +192,49 @@ extract_n_last_events_Camara <- function(df, num=1) {
     tail(n = num) %>%
     select(data_hora, evento)
 }
+
+fetch_proposicao_com_apensamentos <- function(prop_id) {
+  prop <- rcongresso::fetch_proposicao(prop_id)
+  prop$proposicoes_apensadas <- fetch_apensadas(prop_id) %>% paste(collapse = ' ')
+  prop
+}
+
+fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {
+  require(dplyr)
+  regexes <- 
+    frame_data(~ deferimento, ~ regex,
+               "indeferido", '^Indefiro',
+               "deferido", '^(Defiro)|(Aprovado)')
+  
+  relacionadas <- 
+    rcongresso::fetch_relacionadas(id)$uri %>% 
+    strsplit('/') %>% 
+    vapply(last, '') %>% 
+    unique %>% 
+    rcongresso::fetch_proposicao()
+  
+  requerimentos <- 
+    relacionadas %>% 
+    filter(stringr::str_detect(.$siglaTipo, '^REQ'))
+  
+  if(!mark_deferimento) return(requerimentos)
+  
+  tramitacoes <- 
+    requerimentos$id %>% 
+    rcongresso::fetch_tramitacao()
+  
+  relacionadas <-
+    tramitacoes %>% 
+    # mark tramitacoes rows based on regexes
+    fuzzyjoin::regex_left_join(regexes, by=c(despacho="regex")) %>% 
+    group_by(id_prop) %>% 
+    # fill down marks
+    tidyr::fill(deferimento) %>%
+    # get last mark on each tramitacao
+    do(tail(., n=1)) %>%
+    ungroup %>% 
+    select(id_prop, deferimento) %>% 
+    # and mark proposicoes based on last tramitacao mark
+    left_join(relacionadas, by=c('id_prop' = 'id'))
+}
+
