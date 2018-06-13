@@ -124,7 +124,8 @@ fetch_apensadas <- function(prop_id) {
   require(xml2)
   api_v1_proposicao = 'http://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID?IdProp='
   read_xml(paste0(api_v1_proposicao, prop_id)) %>% 
-    xml_find_all('//apensadas/proposicao/codProposicao/text()')
+    xml_find_all('//apensadas/proposicao/codProposicao/text()') %>%
+    as.tibble
 }
 
 fetch_proposicao <- function(prop_id) {
