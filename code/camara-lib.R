@@ -1,55 +1,6 @@
 library(here)
 source(here("code/congresso-lib.R"))
 
-#' @title Recupera o número, o tipo e ementa de uma proposição na Câmara
-#' @description Retorna um dataframe contendo o número, o tipo e a ementa de uma proposição na Câmara através do ID da proposição
-#' @param bill_id ID da proposição
-#' @return Dataframe com o número, o tipo e a ementa da proposição na Câmara.
-#' @examples
-#' get_nome_ementa_Camara(2121442)
-#' @export
-get_nome_ementa_Camara <- function(bill_id) {
-  require(dplyr)
-  require(rcongresso)
-  
-  fetch_proposicao(bill_id) %>% select(ementa, siglaTipo, numero)
-}
-
-#' @title Recupera os n últimos despachos na Câmara
-#' @description Retorna um dataframe das últimas n tramitações na Câmara contendo a hora, a descrição e o despacho 
-#' @param df Dataframe da tramitação na Câmara
-#' @param qtd  (opcional) Quantidade de eventos a serem recuperados
-#' @return Dataframe com as última n tramitações da Câmara.
-#' @examples
-#' tramitacao %>% tail_descricao_despacho_Camara()
-#' tramitacao %>% tail_descricao_despacho_Camara(4)
-#' @export
-tail_descricao_despacho_Camara <- function(df, qtd=1) {
-  require(dplyr)
-  
-  df %>% 
-    arrange(data_hora) %>% 
-    tail(qtd) %>% 
-    select(data_hora, descricao_tramitacao, despacho)
-}
-
-#' @title Cria coluna com os relatores na tramitação na Câmara
-#' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no 
-#' envento pontual em que ele é designado
-#' @param df Dataframe da tramitação na Câmara
-#' @return Dataframe com a coluna "relator" adicionada.
-#' @examples
-#' tramitacao %>% extract_relator_Camara()
-#' @export
-extract_relator_Camara <- function(df) {
-  require(dplyr)
-  require(stringr)
-  
-  df %>% 
-    mutate(relator = 
-             case_when(str_detect(tolower(despacho), '^designad. relat.r') ~ str_extract(despacho, regex('dep.+', ignore_case=TRUE))))
-}
-
 #' @title Cria coluna com as fases da tramitação na Câmara
 #' @description Cria uma nova coluna com as fases na Câmara.
 #' @param df Dataframe da tramitação na Câmara
@@ -67,37 +18,6 @@ extract_phases_Camara <- function(dataframe, phase_one, phase_two, phase_three, 
                             detect_phase(id_tipo_tramitacao, phase_four) ~ 'virada_de_casa',
                             detect_phase(id_tipo_tramitacao, phase_five) ~ 'final',
                             detect_phase(id_situacao, 937) ~ 'final'))
-}
-
-#' @title Busca os últimos n eventos da tramitação na Câmara
-#' @description Recupera os útimos n eventos da tramitação na Cãmara, caso nenhuma quantidade seja informada, assume-se que é 1
-#' @param df Dataframe da tramitação na Câmara
-#' @return Dataframe dos últimos n eventos na Câmara contendo hora e evento.
-#' @examples
-#' tramitacao %>% extract_n_last_events_Camara()
-#' tramitacao %>% extract_n_last_events_Camara(3)
-#' @export
-extract_n_last_events_Camara <- function(df, num=1) {
-  require(tidyverse)
-  
-  df %>%
-    arrange(data_hora) %>%
-    tail(n = num) %>%
-    select(data_hora, evento)
-}
-
-#' @title Renomeia as colunas do dataframe
-#' @description Renomeia as colunas do dataframe usando o padrão de letras minúsculas e underscore
-#' @param df Dataframe 
-#' @return Dataframe com as colunas renomeadas.
-#' @examples
-#' df %>% rename_df_columns()
-#' @export
-rename_df_columns <- function(df) {
-  require(magrittr)
-  
-  names(df) %<>% to_underscore
-  df
 }
 
 #' @title Extrai os eventos importantes que aconteceram na Câmara
@@ -121,8 +41,25 @@ extract_events_Camara <- function(tramitacao_df, events_df) {
                               TRUE ~ evento))
 }
 
-#' @title Altera as datas da tramitação em um formato mais fácil de tratar 
-#' @description Refatora cada data da coluna para o formato POSIXct
+#' @title Cria coluna com os relatores na tramitação na Câmara
+#' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no 
+#' envento pontual em que ele é designado
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe com a coluna "relator" adicionada.
+#' @examples
+#' tramitacao %>% extract_relator_Camara()
+#' @export
+extract_relator_Camara <- function(df) {
+  require(dplyr)
+  require(stringr)
+  
+  df %>% 
+    mutate(relator = 
+             case_when(str_detect(tolower(despacho), '^designad. relat.r') ~ str_extract(despacho, regex('dep.+', ignore_case=TRUE))))
+}
+
+#' @title Altera as datas da tramitação para formato mais fácil de tratar 
+#' @description Formata cada data da coluna para o formato POSIXct
 #' @param df Dataframe da tramitação na Cãmara
 #' @return Dataframe com a coluna de datas refatorada para um formato tratável.
 #' @examples
@@ -132,6 +69,20 @@ refact_date <- function(df) {
   require(lubridate)
   
   mutate(df, data_hora = ymd_hm(data_hora))
+}
+
+#' @title Renomeia as colunas do dataframe
+#' @description Renomeia as colunas do dataframe usando o padrão de letras minúsculas e underscore
+#' @param df Dataframe 
+#' @return Dataframe com as colunas renomeadas.
+#' @examples
+#' df %>% rename_df_columns()
+#' @export
+rename_df_columns <- function(df) {
+  require(magrittr)
+  
+  names(df) %<>% to_underscore
+  df
 }
 
 #' @title Ordena o dataframe de acordo com a data
@@ -191,4 +142,53 @@ fetch_apensadas <- function(prop_id) {
   api_v1_proposicao = 'http://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID?IdProp='
   read_xml(paste0(api_v1_proposicao, prop_id)) %>% 
     xml_find_all('//apensadas/proposicao/codProposicao/text()')
+}
+
+#' @title Recupera o número, o tipo e ementa de uma proposição na Câmara
+#' @description Retorna um dataframe contendo o número, o tipo e a ementa de uma proposição na Câmara através do ID da proposição
+#' @param bill_id ID da proposição
+#' @return Dataframe com o número, o tipo e a ementa da proposição na Câmara.
+#' @examples
+#' get_nome_ementa_Camara(2121442)
+#' @export
+get_nome_ementa_Camara <- function(bill_id) {
+  require(dplyr)
+  require(rcongresso)
+  
+  fetch_proposicao(bill_id) %>% select(ementa, siglaTipo, numero)
+}
+
+#' @title Recupera os n últimos despachos na Câmara
+#' @description Retorna um dataframe das últimas n tramitações na Câmara contendo a hora, a descrição e o despacho 
+#' @param df Dataframe da tramitação na Câmara
+#' @param qtd  (opcional) Quantidade de eventos a serem recuperados
+#' @return Dataframe com as última n tramitações da Câmara.
+#' @examples
+#' tramitacao %>% tail_descricao_despacho_Camara()
+#' tramitacao %>% tail_descricao_despacho_Camara(4)
+#' @export
+tail_descricao_despacho_Camara <- function(df, qtd=1) {
+  require(dplyr)
+  
+  df %>% 
+    arrange(data_hora) %>% 
+    tail(qtd) %>% 
+    select(data_hora, descricao_tramitacao, despacho)
+}
+
+#' @title Busca os últimos n eventos da tramitação na Câmara
+#' @description Recupera os útimos n eventos da tramitação na Cãmara, caso nenhuma quantidade seja informada, assume-se que é 1
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe dos últimos n eventos na Câmara contendo hora e evento.
+#' @examples
+#' tramitacao %>% extract_n_last_events_Camara()
+#' tramitacao %>% extract_n_last_events_Camara(3)
+#' @export
+extract_n_last_events_Camara <- function(df, num=1) {
+  require(tidyverse)
+  
+  df %>%
+    arrange(data_hora) %>%
+    tail(n = num) %>%
+    select(data_hora, evento)
 }
