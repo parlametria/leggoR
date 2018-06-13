@@ -245,13 +245,6 @@ fetch_current_relatoria <- function(bill_id) {
   rename_relatoria(current_relatoria_df)
 }
 
-to_underscore <- function(x) {
-  x2 <- gsub("([A-Za-z])([A-Z])([a-z])", "\\1_\\2\\3", x)
-  x3 <- gsub(".", "_", x2, fixed = TRUE)
-  x4 <- gsub("([a-z])([A-Z])", "\\1_\\2", x3)
-  x5 <- tolower(x4)
-  x5
-
 fetch_last_relatoria <- function(bill_id) {
   relatoria <- fetch_relatorias(bill_id)
   relatoria <- relatoria[1,]

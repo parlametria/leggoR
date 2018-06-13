@@ -30,6 +30,6 @@ current_relatoria %>%
   write_csv(here(paste0("data/Senado/", bill_id, "-current-relatoria-senado.csv")))
 
 #Last Relatoria
-last_relatoria <- fetch_relatoria_atual(bill_id)
+last_relatoria <- fetch_last_relatoria(bill_id)
 last_relatoria %>%
   write_csv(here(paste0("data/Senado/", bill_id, "-last-relatoria-senado.csv")))
