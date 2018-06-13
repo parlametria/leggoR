@@ -126,3 +126,9 @@ fetch_apensadas <- function(prop_id) {
   read_xml(paste0(api_v1_proposicao, prop_id)) %>% 
     xml_find_all('//apensadas/proposicao/codProposicao/text()')
 }
+
+fetch_proposicao <- function(prop_id) {
+  prop <- rcongresso::fetch_proposicao(prop_id)
+  prop$proposicoes_apensadas <- fetch_apensadas(prop_id) %>% paste(collapse = ' ')
+  prop
+}
