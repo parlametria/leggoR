@@ -147,10 +147,11 @@ fetch_relatorias <- function(bill_id) {
     magrittr::extract2("Materia") %>%
     magrittr::extract2("HistoricoRelatoria")
   
-  
+ 
   relatorias_df <-
     relatorias_data %>% 
     magrittr::extract2("Relator") %>% 
+    as.data.frame() %>%
     purrr::map_df(~ .) %>% 
     tidyr::unnest()
   
@@ -193,6 +194,8 @@ fetch_current_relatoria <- function(bill_id) {
     magrittr::extract2("Relator") %>% 
     purrr::map_df(~ .) %>% 
     tidyr::unnest()
+    as.data.frame() %>%
+
   
   #fixing bug when api repeats relatorias
   current_relatoria_df <- current_relatoria_df[1,]
