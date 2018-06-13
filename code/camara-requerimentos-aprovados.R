@@ -6,11 +6,11 @@ library(fuzzyjoin)
 
 
 regexes <- 
-  frame_data(~ status, ~ regex,
+  frame_data(~ deferimento, ~ regex,
            "indeferido", '^Indefiro',
-           "deferido", '^Defiro')
+           "deferido", '^(Defiro)|(Aprovado)')
 
-fetch_requerimentos <- function(id, mark_status=TRUE) {
+fetch_requerimentos <- function(id, mark_deferimento=TRUE) {
   relacionadas <- 
     fetch_relacionadas(id)$uri %>% 
     strsplit('/') %>% 
@@ -22,7 +22,7 @@ fetch_requerimentos <- function(id, mark_status=TRUE) {
     relacionadas %>% 
     filter(str_detect(.$descricaoTipo, '^Requerimento'))
   
-  if(!mark_status) return(requerimentos)
+  if(!mark_deferimento) return(requerimentos)
   
   tramitacoes <- 
     requerimentos$id %>% 
@@ -34,11 +34,11 @@ fetch_requerimentos <- function(id, mark_status=TRUE) {
     regex_left_join(regexes, by=c(despacho="regex")) %>% 
     group_by(id_prop) %>% 
     # fill down marks
-    fill(status) %>%
+    fill(deferimento) %>%
     # get last mark on each tramitacao
     do(tail(., n=1)) %>%
     ungroup %>% 
-    select(id_prop, status) %>% 
+    select(id_prop, deferimento) %>% 
     # and mark proposicoes based on last tramitacao mark
     left_join(relacionadas, by=c('id_prop' = 'id'))
 }
