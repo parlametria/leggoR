@@ -44,5 +44,7 @@ gera_tabela_proposicoes <- function(dataframe) {
     do(extract_informations(.$id_camara, .$id_senado, .$url)) %>%
     rbind(propositions,.)
   
+  propositions %<>% mutate(ultimos_eventos = toString(ultimos_eventos))
+  
   propositions
 }
