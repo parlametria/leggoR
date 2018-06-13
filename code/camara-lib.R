@@ -26,6 +26,19 @@ extract_relator_Camara <- function(df) {
              case_when(str_detect(tolower(despacho), '^designad. relat.r') ~ str_extract(despacho, regex('dep.+', ignore_case=TRUE))))
 }
 
+extract_last_relator_Camara <- function(df) {
+  require(dplyr)
+  
+  relatores <- extract_relator_Camara(df)
+  relator <- 
+    relatores %>%
+    filter(!is.na(relator)) %>%
+    arrange(desc(data_hora)) %>%
+    select(relator) 
+  
+  relator$relator[1]
+}
+
 extract_phases_Camara <- function(dataframe, phase_one, phase_two, phase_three, phase_four, phase_five) {
   require(magrittr)
   
@@ -42,6 +55,7 @@ extract_n_last_events_Camara <- function(df, num) {
   require(tidyverse)
   
   df %>%
+    filter(!is.na(evento)) %>%
     arrange(data_hora) %>%
     tail(n = num) %>%
     select(data_hora, evento)
