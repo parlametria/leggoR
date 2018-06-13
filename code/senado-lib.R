@@ -163,6 +163,7 @@ fetch_relatorias <- function(bill_id) {
   relatorias_df <-
     relatorias_data %>% 
     extract2("Relator") %>% 
+    as.data.frame() %>%
     map_df(~ .) %>% 
     unnest()
   
@@ -207,6 +208,7 @@ fetch_current_relatoria <- function(bill_id) {
     relatorias_data %>% 
     extract2("RelatoriaAtual") %>%
     extract2("Relator") %>% 
+    as.data.frame() %>%
     map_df(~ .) %>% 
     unnest()
   
