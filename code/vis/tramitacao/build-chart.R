@@ -3,11 +3,15 @@
 
 library(vistime)
 library(tidyverse)
+library(lubridate)
+library(here)
 
-create_chart <- function(bill_id, house){
+create_chart <- function(bill_id = 2121442, house = 'camara'){
   # Create chart with all tasks.
-  bill_id <- 2121442
-  house <- 'camara'
+  source(here::here(paste0("code/vis/tramitacao/data-chart-", ".R", sep=house)))
+  setwd("../")
+  build_vis_csv(bill_id)
+  
   data <- read_csv(paste0("data/vis/tramitacao/",bill_id,"-data-", house, ".csv")) 
   
   
