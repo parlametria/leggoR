@@ -20,7 +20,7 @@ fetch_requerimentos_relacionados <- function(id, mark_deferimento=TRUE) {
   
   requerimentos <- 
     relacionadas %>% 
-    filter(str_detect(.$sigleTipo, '^REQ'))
+    filter(str_detect(.$siglaTipo, '^REQ'))
   
   if(!mark_deferimento) return(requerimentos)
   
