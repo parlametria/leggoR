@@ -17,6 +17,28 @@ tail_descricao_despacho_Camara <- function(df, qtd=1) {
     select(data_hora, descricao_tramitacao, despacho)
 }
 
+extract_relator_Camara <- function(df) {
+  require(dplyr)
+  require(stringr)
+  
+  df %>% 
+    mutate(relator = 
+             case_when(str_detect(tolower(despacho), '^designad. relat.r') ~ str_extract(despacho, regex('dep.+', ignore_case=TRUE))))
+}
+
+extract_last_relator_Camara <- function(df) {
+  require(dplyr)
+  
+  relatores <- extract_relator_Camara(df)
+  relator <- 
+    relatores %>%
+    filter(!is.na(relator)) %>%
+    arrange(desc(data_hora)) %>%
+    select(relator) 
+  
+  relator$relator[1]
+}
+
 extract_phases_Camara <- function(dataframe, phase_one, phase_two, phase_three, phase_four, phase_five) {
   require(magrittr)
   
@@ -33,6 +55,7 @@ extract_n_last_events_Camara <- function(df, num) {
   require(tidyverse)
   
   df %>%
+    filter(!is.na(evento)) %>%
     arrange(data_hora) %>%
     tail(n = num) %>%
     select(data_hora, evento)
@@ -71,7 +94,7 @@ sort_by_date <- function(df) {
   arrange(df, data_hora, sequencia)
 }
 
-extract_autor <- function(prop_id) {
+extract_autor_Camara <- function(prop_id) {
   require(magrittr)
   require(jsonlite)
   require(stringr)
@@ -94,4 +117,58 @@ extract_autor <- function(prop_id) {
       str_detect(tolower(autor.nome), senado_exp) | autor.tipo == 'Senador' ~ 'Senado Federal'))
   
   autores
+}
+
+# Retorna a lista de IDs das proposições apensadas
+fetch_apensadas <- function(prop_id) {
+  require(xml2)
+  api_v1_proposicao = 'http://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID?IdProp='
+  read_xml(paste0(api_v1_proposicao, prop_id)) %>% 
+    xml_find_all('//apensadas/proposicao/codProposicao/text()') %>%
+    as.tibble
+}
+
+fetch_proposicao_com_apensamentos <- function(prop_id) {
+  prop <- rcongresso::fetch_proposicao(prop_id)
+  prop$proposicoes_apensadas <- fetch_apensadas(prop_id) %>% paste(collapse = ' ')
+  prop
+}
+
+fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {
+  require(dplyr)
+  regexes <- 
+    frame_data(~ deferimento, ~ regex,
+             "indeferido", '^Indefiro',
+             "deferido", '^(Defiro)|(Aprovado)')
+
+  relacionadas <- 
+    rcongresso::fetch_relacionadas(id)$uri %>% 
+    strsplit('/') %>% 
+    vapply(last, '') %>% 
+    unique %>% 
+    rcongresso::fetch_proposicao()
+  
+  requerimentos <- 
+    relacionadas %>% 
+    filter(stringr::str_detect(.$siglaTipo, '^REQ'))
+  
+  if(!mark_deferimento) return(requerimentos)
+  
+  tramitacoes <- 
+    requerimentos$id %>% 
+    rcongresso::fetch_tramitacao()
+  
+  relacionadas <-
+    tramitacoes %>% 
+    # mark tramitacoes rows based on regexes
+    fuzzyjoin::regex_left_join(regexes, by=c(despacho="regex")) %>% 
+    group_by(id_prop) %>% 
+    # fill down marks
+    tidyr::fill(deferimento) %>%
+    # get last mark on each tramitacao
+    do(tail(., n=1)) %>%
+    ungroup %>% 
+    select(id_prop, deferimento) %>% 
+    # and mark proposicoes based on last tramitacao mark
+    left_join(relacionadas, by=c('id_prop' = 'id'))
 }

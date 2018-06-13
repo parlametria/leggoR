@@ -86,7 +86,7 @@ fetch_passage <- function(bill_id){
              IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
              IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
              IdentificacaoTramitacao.Situacao.SiglaSituacao,
-             Textos.Texto,
+             #,Textos.Texto,
              Publicacoes.Publicacao
             )
           ) %>%
@@ -102,49 +102,42 @@ fetch_bill <- function(bill_id){
   
   url_base_bill <- "http://legis.senado.leg.br/dadosabertos/materia/"
   
-  url <- paste0(url_base_bill, bill_id, sep = "")
+  url <- paste0(url_base_bill, bill_id)
   json_bill <- fromJSON(url, flatten = T)
   bill_data <- 
-    json_bill %>% 
-    extract2("DetalheMateria") %>% 
-    extract2("Materia")
+    json_bill$DetalheMateria$Materia
   bill_ids <-
-    bill_data %>% 
-    extract2("IdentificacaoMateria") %>% 
-    as.tibble()  %>%
+    bill_data$IdentificacaoMateria %>%
+    as.tibble  %>%
     select(CodigoMateria, SiglaSubtipoMateria, NumeroMateria)
   bill_basic_data <-
-    bill_data %>%
-    extract2("DadosBasicosMateria") %>%
-    as.tibble()
+    bill_data$DadosBasicosMateria %>%
+    as.tibble
   bill_author <-
-    bill_data %>%
-    extract2("Autoria") %>%
-    extract2("Autor") %>%
-    as.tibble() %>%
-    #select(NomeAutor, UfAutor, IdentificacaoParlamentar.CodigoParlamentar, IdentificacaoParlamentar.SiglaPartidoParlamentar)
+    bill_data$Autoria$Autor %>%
+    as.tibble %>%
     select(NomeAutor)
   bill_specific_subject <-
-    bill_data %>%
-    extract2("Assunto") %>% 
-    extract2("AssuntoEspecifico") %>%
-    as.tibble() %>%
+    bill_data$Assunto$AssuntoEspecifico %>%
+    as.tibble %>%
     rename(assunto_especifico = Descricao, codigo_assunto_especifico = Codigo)
   bill_general_subject <-
-    bill_data %>%
-    extract2("Assunto") %>% 
-    extract2("AssuntoGeral") %>%
-    as.tibble() %>%
+    bill_data$Assunto$AssuntoGeral %>%
+    as.tibble %>%
     rename(assunto_geral = Descricao, codigo_assunto_geral = Codigo)
   bill_source <-
-    bill_data %>%
-    extract2("OrigemMateria") %>%
-    as.tibble()
+    bill_data$OrigemMateria %>%
+    as.tibble
+  bill_anexadas <- 
+    bill_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria %>%
+    paste(collapse = ' ')
   
-  bill_complete <- 
+  bill_complete <-
     bill_basic_data %>%
-    add_column(!!! bill_ids, !!! bill_author, 
+    add_column(!!! bill_ids, !!! bill_author,
                !!! bill_specific_subject, !!! bill_general_subject, !!! bill_source)
+  
+  bill_complete$proposicoes_apensadas <- bill_anexadas
   
   rename_bill_df(bill_complete)
 }
@@ -170,6 +163,7 @@ fetch_relatorias <- function(bill_id) {
   relatorias_df <-
     relatorias_data %>% 
     extract2("Relator") %>% 
+    as.data.frame() %>%
     map_df(~ .) %>% 
     unnest()
   
@@ -193,16 +187,76 @@ fetch_relatorias <- function(bill_id) {
   rename_relatorias_df(relatorias_df)
 }
 
+
+fetch_current_relatoria <- function(bill_id) {
+  require(tidyverse)
+  require(magrittr)
+  library(jsonlite)
+  
+  url_relatorias <- "http://legis.senado.leg.br/dadosabertos/materia/relatorias/"
+  
+  url <- paste0(url_relatorias, bill_id)
+  json_relatorias <- fromJSON(url, flatten = T)
+  
+  #extract relatores objects
+  relatorias_data <-
+    json_relatorias %>%
+    extract2("RelatoriaMateria") %>%
+    extract2("Materia")
+  
+  current_relatoria_df <-
+    relatorias_data %>% 
+    extract2("RelatoriaAtual") %>%
+    extract2("Relator") %>% 
+    as.data.frame() %>%
+    map_df(~ .) %>% 
+    unnest()
+  
+  #fixing bug when api repeats relatorias
+  current_relatoria_df <- current_relatoria_df[1,]
+  print(colnames(current_relatoria_df))
+  
+  #verify if relator atual exists
+  if(ncol(current_relatoria_df) == 0){
+    return(rename_relatoria(data.frame(matrix(ncol = 7, nrow = 1))))
+  }
+  
+ 
+  #select columns
+  current_relatoria_df <-
+    current_relatoria_df %>%
+    select(
+      DataDesignacao,
+      IdentificacaoParlamentar.CodigoParlamentar,
+      IdentificacaoParlamentar.NomeParlamentar,
+      IdentificacaoParlamentar.SiglaPartidoParlamentar,
+      IdentificacaoComissao.NomeComissao,
+      IdentificacaoComissao.SiglaComissao,
+      IdentificacaoComissao.CodigoComissao
+    ) %>% 
+    
+    add_column()
+  
+  rename_relatoria(current_relatoria_df)
+}
+
 fetch_last_relatoria <- function(bill_id) {
   relatoria <- fetch_relatorias(bill_id)
   relatoria <- relatoria[1,]
   
   relatoria
+
 }
 
 rename_relatorias_df <- function(df) {
   names(df) <- c("data_designacao", "data_destituicao", "descricao_motivo_destituicao", "codigo_parlamentar",
                  "nome_parlamentar", "partido", "comissao", "sigla_comissao", "codigo_comissao")
+  df
+}
+
+rename_relatoria <- function(df) {
+  names(df) <- c("data_designacao", "codigo_parlamentar", "nome_parlamentar", "partido", 
+                 "comissao", "sigla_comissao", "codigo_comissao")
   df
 }
 
@@ -282,4 +336,3 @@ extract_n_last_events_Senado <- function(df, num) {
     tail(n = num) %>%
     select(data_tramitacao, evento)
 }
-
