@@ -19,38 +19,51 @@ bill_id_pl_veneno_camara <- 46249
 bill_id_pl_veneno_senado <- 41703
 bill_id_teto_remunatorio_camara <- 2121442
 bill_id_teto_remunatorio_senado <- 127753
+
+ids_df <- 
+    frame_data(~ id_camara, ~ id_senado, 
+             bill_id_cadastro_positivo_camara, bill_id_cadastro_positivo_senado,
+             bill_id_pl_veneno_camara, bill_id_pl_veneno_senado,
+             bill_id_teto_remunatorio_camara, bill_id_teto_remunatorio_senado)
 ```
 
 ```{r, echo = FALSE}
-nome_ementa_camara <- get_nome_ementa_Camara(bill_id_teto_remunatorio_camara)
-nome_ementa_senado <- get_nome_ementa_Senado(bill_id_teto_remunatorio_senado)
+gera_tabela_proposicoes <- function(bill_id_camara, bill_id_senado) {
+  nome_ementa_camara <- get_nome_ementa_Camara(bill_id_camara)
+  nome_ementa_senado <- get_nome_ementa_Senado(bill_id_senado)
+  
+  tramitacao_camara <- read_csv(paste0("../data/camara/", "tramitacao_camara_",bill_id_camara,".csv"))
+  tramitacao_senado <- read_csv(paste0("../data/Senado/", bill_id_senado, "-bill-passage-phases-senado.csv"))
+  despacho_camara <- tail_descricao_despacho_Camara(tramitacao_camara)
+  despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
+  
+  last_events_senado <- extract_n_last_events_Senado(tramitacao_senado, 3)
+  last_events_camara <- extract_n_last_events_Camara(tramitacao_camara, 3)
+  
+  nome <- paste0(nome_ementa_senado$sigla_subtipo_materia, nome_ementa_senado$numero_materia, " / ", nome_ementa_camara$siglaTipo, nome_ementa_camara$numero)
+  casa <- if_else(despacho_camara$data_hora > despacho_senado$data_tramitacao, "Câmara", "Senado")
+  despacho <- if_else(casa == "Câmara", despacho_camara$descricao_tramitacao, despacho_senado$situacao_descricao_situacao)
+  if(casa == "Câmara") {eventos <- as.list(last_events_camara$evento)} else { eventos <- as.list(last_events_senado$evento)}
+
+  proposicoes_df <- 
+    frame_data(~ nome, ~ casa_atual, ~ ementa, ~ despacho_atual, ~ ultimos_eventos, 
+             nome, casa, nome_ementa_camara$ementa, despacho, eventos)
+  urls <- rep("https://analytics-ufcg.github.io/agora-digital/reports/teto_remuneratorio-camara.html", 1)
+  proposicoes_df$nome <-paste0("[", proposicoes_df$nome, "](", urls, ")")
+  
+  proposicoes_df
+}
 ```
 
 ```{r, echo = FALSE, message = FALSE}
-tramitacao_camara <- read_csv(paste0("../data/camara/", "tramitacao_camara_",bill_id_teto_remunatorio_camara,".csv"))
-tramitacao_senado <- read_csv(paste0("../data/Senado/", bill_id_teto_remunatorio_senado, "-bill-passage-phases-senado.csv"))
-despacho_camara <- tail_descricao_despacho_Camara(tramitacao_camara)
-despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
-```
-
-```{r, echo = FALSE}
-last_events_senado <- extract_n_last_events_Senado(tramitacao_senado, 3)
-last_events_camara <- extract_n_last_events_Camara(tramitacao_camara, 3)
-```
-
-```{r, echo = FALSE}
-nome <- paste0(nome_ementa_senado$sigla_subtipo_materia, nome_ementa_senado$numero_materia, " / ", nome_ementa_camara$siglaTipo, nome_ementa_camara$numero)
-casa <- if_else(despacho_camara$data_hora > despacho_senado$data_tramitacao, "Câmara", "Senado")
-despacho <- if_else(casa == "Câmara", despacho_camara$descricao_tramitacao, despacho_senado$situacao_descricao_situacao)
-if(casa == "Câmara") {eventos <- as.list(last_events_camara$evento)} else { eventos <- as.list(last_events_senado$evento)}
-
-proposiçoes_df <- 
-  frame_data(~ nome, ~ casa, ~ ementa, ~ despacho_atual, ~ ultimos_eventos, 
-           nome, casa, nome_ementa_camara$ementa, despacho, eventos)
-urls <- rep("https://analytics-ufcg.github.io/agora-digital/reports/teto_remuneratorio-camara.html", 1)
-proposiçoes_df$nome <-paste0("[", proposiçoes_df$nome, "](", urls, ")")
+veneno_df <- gera_tabela_proposicoes(bill_id_pl_veneno_camara, bill_id_pl_veneno_senado)
+cadastro_df <- gera_tabela_proposicoes(bill_id_cadastro_positivo_camara, bill_id_cadastro_positivo_senado)
+teto_df <- gera_tabela_proposicoes(bill_id_teto_remunatorio_camara, bill_id_teto_remunatorio_senado)
+proposicoes_df <- rbind(veneno_df, cadastro_df, teto_df)
 ```
 
 ```{r, echo = FALSE, results='asis'}
-knitr::kable(proposiçoes_df, caption = "Proposições")
+knitr::kable(proposicoes_df, caption = "Proposições")
 ```
+
+

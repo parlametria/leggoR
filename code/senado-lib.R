@@ -86,7 +86,7 @@ fetch_passage <- function(bill_id){
              IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
              IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
              IdentificacaoTramitacao.Situacao.SiglaSituacao,
-             Textos.Texto,
+             #,Textos.Texto,
              Publicacoes.Publicacao
             )
           ) %>%

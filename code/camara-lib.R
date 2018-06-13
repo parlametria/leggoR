@@ -33,6 +33,7 @@ extract_n_last_events_Camara <- function(df, num) {
   require(tidyverse)
   
   df %>%
+    filter(!is.na(evento)) %>%
     arrange(data_hora) %>%
     tail(n = num) %>%
     select(data_hora, evento)
