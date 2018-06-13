@@ -193,16 +193,75 @@ fetch_relatorias <- function(bill_id) {
   rename_relatorias_df(relatorias_df)
 }
 
+
+fetch_current_relatoria <- function(bill_id) {
+  require(tidyverse)
+  require(magrittr)
+  library(jsonlite)
+  
+  url_relatorias <- "http://legis.senado.leg.br/dadosabertos/materia/relatorias/"
+  
+  url <- paste0(url_relatorias, bill_id)
+  json_relatorias <- fromJSON(url, flatten = T)
+  
+  #extract relatores objects
+  relatorias_data <-
+    json_relatorias %>%
+    extract2("RelatoriaMateria") %>%
+    extract2("Materia")
+  
+  current_relatoria_df <-
+    relatorias_data %>% 
+    extract2("RelatoriaAtual") %>%
+    extract2("Relator") %>% 
+    map_df(~ .) %>% 
+    unnest()
+  
+  #fixing bug when api repeats relatorias
+  current_relatoria_df <- current_relatoria_df[1,]
+  print(colnames(current_relatoria_df))
+  
+  #verify if relator atual exists
+  if(ncol(current_relatoria_df) == 0){
+    return(rename_relatoria(data.frame(matrix(ncol = 7, nrow = 1))))
+  }
+  
+ 
+  #select columns
+  current_relatoria_df <-
+    current_relatoria_df %>%
+    select(
+      DataDesignacao,
+      IdentificacaoParlamentar.CodigoParlamentar,
+      IdentificacaoParlamentar.NomeParlamentar,
+      IdentificacaoParlamentar.SiglaPartidoParlamentar,
+      IdentificacaoComissao.NomeComissao,
+      IdentificacaoComissao.SiglaComissao,
+      IdentificacaoComissao.CodigoComissao
+    ) %>% 
+    
+    add_column()
+  
+  rename_relatoria(current_relatoria_df)
+}
+
 fetch_last_relatoria <- function(bill_id) {
   relatoria <- fetch_relatorias(bill_id)
   relatoria <- relatoria[1,]
   
   relatoria
+
 }
 
 rename_relatorias_df <- function(df) {
   names(df) <- c("data_designacao", "data_destituicao", "descricao_motivo_destituicao", "codigo_parlamentar",
                  "nome_parlamentar", "partido", "comissao", "sigla_comissao", "codigo_comissao")
+  df
+}
+
+rename_relatoria <- function(df) {
+  names(df) <- c("data_designacao", "codigo_parlamentar", "nome_parlamentar", "partido", 
+                 "comissao", "sigla_comissao", "codigo_comissao")
   df
 }
 
