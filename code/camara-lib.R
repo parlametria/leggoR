@@ -17,6 +17,15 @@ tail_descricao_despacho_Camara <- function(df, qtd=1) {
     select(data_hora, descricao_tramitacao, despacho)
 }
 
+extract_relator_Camara <- function(df) {
+  require(dplyr)
+  require(stringr)
+  
+  df %>% 
+    mutate(relator = 
+             case_when(str_detect(tolower(despacho), '^designad. relat.r') ~ str_extract(despacho, regex('dep.+', ignore_case=TRUE))))
+}
+
 extract_phases_Camara <- function(dataframe, phase_one, phase_two, phase_three, phase_four, phase_five) {
   require(magrittr)
   
