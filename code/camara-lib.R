@@ -128,7 +128,7 @@ fetch_apensadas <- function(prop_id) {
     as.tibble
 }
 
-fetch_proposicao <- function(prop_id) {
+fetch_proposicao_com_apensamentos <- function(prop_id) {
   prop <- rcongresso::fetch_proposicao(prop_id)
   prop$proposicoes_apensadas <- fetch_apensadas(prop_id) %>% paste(collapse = ' ')
   prop
