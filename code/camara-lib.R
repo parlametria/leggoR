@@ -22,7 +22,9 @@ extract_relator_Camara <- function(df) {
   require(stringr)
   
   df %>% 
-    mutate(relator = case_when(str_detect(tolower(despacho), '^designad. relat.r') ~ str_extract(despacho, regex('dep.+', ignore_case=TRUE))))
+    mutate(relator = 
+             case_when(str_detect(tolower(despacho), '^designad. relat.r') ~ str_extract(despacho, regex('dep.+', ignore_case=TRUE))))
+}
 
 extract_phases_Camara <- function(dataframe, phase_one, phase_two, phase_three, phase_four, phase_five) {
   require(magrittr)
