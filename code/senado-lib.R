@@ -57,7 +57,7 @@ fetch_voting <- function(bill_id){
 #' @title Busca a movimentação da proposição
 #' @description Retorna dataframe com os dados da movimentação da proposição, incluindo tramitação, prazos, despachos e situação
 #' @param bill_id ID de uma proposição do Senado
-#' @return Dataframe com as informações sobre a mobimentação de uma proposição no Senado
+#' @return Dataframe com as informações sobre a movimentação de uma proposição no Senado
 #' @examples
 #' fetch_passage(91341)
 #' @export
@@ -167,7 +167,7 @@ fetch_bill <- function(bill_id){
 #' @description Retorna dataframe com o histórico de relatorias detalhado de uma proposição no Senado, incluindo a data
 #' de designação e destituição, o relator e seu partido e a comissão
 #' @param bill_id ID de uma proposição do Senado
-#' @return Dataframe com as informações detalhadas do histórico de uma proposição no Senado
+#' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
 #' @examples
 #' fetch_relatorias(91341)
 #' @export
@@ -393,8 +393,8 @@ get_nome_ementa_Senado <- function(bill_id) {
 }
 
 #' @title Recupera os n últimos despachos no Senado
-#' @description Retorna um dataframe das últimas n tramitações na Câmara contendo a data, a descrição e o despacho 
-#' @param df Dataframe da tramitação na Câmara
+#' @description Retorna um dataframe das últimas n tramitações no Senado contendo a data, a descrição e o despacho 
+#' @param df Dataframe da tramitação no Senado
 #' @param qtd  (opcional) Quantidade de eventos a serem recuperados
 #' @return Dataframe com as últimas n tramitações no Senado.
 #' @examples
