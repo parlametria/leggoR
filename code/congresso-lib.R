@@ -1,3 +1,10 @@
+#' @title Renomeia um vetor com o padrão de underscores e minúsculas
+#' @description Renomeia cada item do vetor com o padrão: separado por underscore e letras minúsculas
+#' @param x Vetor de strings
+#' @return Vetor contendo as strings renomeadas.
+#' @examples
+#' to_underscore(c("testName", "TESTNAME"))
+#' @export
 to_underscore <- function(x) {
   x2 <- gsub("([A-Za-z])([A-Z])([a-z])", "\\1_\\2\\3", x)
   x3 <- gsub(".", "_", x2, fixed = TRUE)
@@ -6,6 +13,14 @@ to_underscore <- function(x) {
   x5
 }
 
-detect_phase <- function(text, exp) {
-  text %in% exp
+#' @title Verfica se um elemento está contido em um vetor
+#' @description Verfica se um elemento está contido em um vetor
+#' @param text Elemento que pode estar contido
+#' @param exp Vetor de elementos
+#' @return Valor booleano que indica se o elemento está contido no vetor.
+#' @examples
+#' to_underscore(c("testName", "TESTNAME"))
+#' @export
+detect_phase <- function(element, set) {
+  element %in% set
 }
