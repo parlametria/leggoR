@@ -121,6 +121,7 @@ fetch_bill <- function(bill_id){
     dplyr::select(CodigoMateria, SiglaSubtipoMateria, NumeroMateria)
   bill_basic_data <-
     bill_data$DadosBasicosMateria %>%
+    flatten %>%
     tibble::as.tibble()
   bill_author <-
     bill_data$Autoria$Autor %>%
@@ -140,6 +141,9 @@ fetch_bill <- function(bill_id){
   bill_anexadas <- 
     bill_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria %>%
     paste(collapse = ' ')
+  bill_relacionadas <- 
+    bill_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria %>%
+    paste(collapse = ' ')
   
   bill_complete <-
     bill_basic_data %>%
@@ -147,6 +151,7 @@ fetch_bill <- function(bill_id){
                !!! bill_specific_subject, !!! bill_general_subject, !!! bill_source)
   
   bill_complete$proposicoes_apensadas <- bill_anexadas
+  bill_complete$proposicoes_relacionadas <- bill_relacionadas
   
   rename_bill_df(bill_complete)
 }
