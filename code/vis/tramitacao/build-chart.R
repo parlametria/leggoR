@@ -1,17 +1,14 @@
 # SETUP
 # install.packages("vistime")
-
+args = commandArgs(trailingOnly=TRUE)
 library(vistime)
 library(tidyverse)
 library(lubridate)
-library(here)
 
+
+# Received the project id and the home and returns a graph with the timeline of the process.
 create_chart <- function(bill_id = 2121442, house = 'camara'){
-  # Create chart with all tasks.
-  source(here::here(paste0("code/vis/tramitacao/data-chart-", ".R", sep=house)))
-  setwd("../")
-  build_vis_csv(bill_id)
-  
+    
   data <- read_csv(paste0("data/vis/tramitacao/",bill_id,"-data-", house, ".csv")) 
   
   
@@ -26,3 +23,7 @@ create_chart <- function(bill_id = 2121442, house = 'camara'){
   
   vistime(data, events="label", groups="group", title="Fases da tramitação", tooltips = "tooltip", colors = "color", showLabels=FALSE)
 }
+
+if(length(args) == 2){
+  create_chart(args[1], args[2])
+} 
