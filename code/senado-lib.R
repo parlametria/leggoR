@@ -1,5 +1,4 @@
-library(here)
-source(here("code/congresso-lib.R"))
+source(here::here("code/congresso-lib.R"))
 
 #' @title Busca votações de uma proposição no Senado
 #' @description Retorna dataframe com os dados das votações de uma proposição no Senado
