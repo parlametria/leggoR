@@ -26,22 +26,6 @@ fetch_voting <- function(bill_id){
     
     voting_df <-
       voting_df %>%
-        select(
-            -c(
-                SessaoPlenaria.NomeCasaSessao,
-                Tramitacao.IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
-                Tramitacao.IdentificacaoTramitacao.OrigemTramitacao.Local.NomeLocal,
-                Tramitacao.IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
-                Tramitacao.IdentificacaoTramitacao.OrigemTramitacao.Local.NomeCasaLocal,
-                Tramitacao.IdentificacaoTramitacao.Situacao.SiglaSituacao,
-                IdentificacaoParlamentar.EmailParlamentar,
-                IdentificacaoParlamentar.NomeCompletoParlamentar,
-                IdentificacaoParlamentar.FormaTratamento,
-                IdentificacaoParlamentar.UrlFotoParlamentar,
-                IdentificacaoParlamentar.UrlPaginaParlamentar,
-                IdentificacaoParlamentar.EmailParlamentar
-            )
-        ) %>% 
         add_column(!!! voting_ids)
     
     rename_voting_df(voting_df)
@@ -76,21 +60,36 @@ fetch_passage <- function(bill_id){
       extract2("Tramitacoes") %>%
       extract2("Tramitacao") %>%
       as.tibble()
-  
-    bill_passages_df <-
-      bill_passages_df %>%
-      select(
+    str(bill_passages_df)
+    if(any(names(bill_passages_df) == 'Textos.Texto')){
+      bill_passages_df <-
+        bill_passages_df %>%
+        select(
           -c(
-             IdentificacaoTramitacao.OrigemTramitacao.Local.NomeCasaLocal,
-             IdentificacaoTramitacao.OrigemTramitacao.Local.NomeLocal,
-             IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
-             IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
-             IdentificacaoTramitacao.Situacao.SiglaSituacao,
-             Textos.Texto,
-             Publicacoes.Publicacao
-            )
-          ) %>%
-          add_column(!!! passage_ids)
+            IdentificacaoTramitacao.OrigemTramitacao.Local.NomeCasaLocal,
+            IdentificacaoTramitacao.OrigemTramitacao.Local.NomeLocal,
+            IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
+            IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
+            IdentificacaoTramitacao.Situacao.SiglaSituacao,
+            Textos.Texto,
+            Publicacoes.Publicacao
+          )
+        )
+    }else{
+      bill_passages_df <-
+        bill_passages_df %>%
+        select(
+          -c(
+            IdentificacaoTramitacao.OrigemTramitacao.Local.NomeCasaLocal,
+            IdentificacaoTramitacao.OrigemTramitacao.Local.NomeLocal,
+            IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
+            IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
+            IdentificacaoTramitacao.Situacao.SiglaSituacao,
+            Publicacoes.Publicacao
+          )
+        ) %>%
+      add_column(!!! passage_ids)
+    }
     
     rename_passage_df(bill_passages_df)
 }
@@ -122,7 +121,6 @@ fetch_bill <- function(bill_id){
     extract2("Autoria") %>%
     extract2("Autor") %>%
     as.tibble() %>%
-    #select(NomeAutor, UfAutor, IdentificacaoParlamentar.CodigoParlamentar, IdentificacaoParlamentar.SiglaPartidoParlamentar)
     select(NomeAutor)
   bill_specific_subject <-
     bill_data %>%
@@ -144,7 +142,8 @@ fetch_bill <- function(bill_id){
   bill_complete <- 
     bill_basic_data %>%
     add_column(!!! bill_ids, !!! bill_author, 
-               !!! bill_specific_subject, !!! bill_general_subject, !!! bill_source)
+               !!! bill_specific_subject, !!! bill_general_subject, !!! bill_source) %>%
+    unnest()
   
   rename_bill_df(bill_complete)
 }
@@ -154,7 +153,7 @@ fetch_relatorias <- function(bill_id) {
   require(magrittr)
   library(jsonlite)
   
-  url_relatorias <- "http://legis.senado.leg.br/dadosabertos/materia/relatorias/"
+    url_relatorias <- "http://legis.senado.leg.br/dadosabertos/materia/relatorias/"
   
   url <- paste0(url_relatorias, bill_id)
   json_relatorias <- fromJSON(url, flatten = T)
@@ -166,29 +165,11 @@ fetch_relatorias <- function(bill_id) {
     extract2("Materia") %>%
     extract2("HistoricoRelatoria")
   
-  
   relatorias_df <-
     relatorias_data %>% 
     extract2("Relator") %>% 
     map_df(~ .) %>% 
     unnest()
-  
-  #select columns
-  relatorias_df <-
-    relatorias_df %>%
-    select(
-      DataDesignacao,
-      DataDestituicao,
-      DescricaoMotivoDestituicao,
-      IdentificacaoParlamentar.CodigoParlamentar,
-      IdentificacaoParlamentar.NomeParlamentar,
-      IdentificacaoParlamentar.SiglaPartidoParlamentar,
-      IdentificacaoComissao.NomeComissao,
-      IdentificacaoComissao.SiglaComissao,
-      IdentificacaoComissao.CodigoComissao
-    ) %>% 
-    
-    add_column()
   
   rename_relatorias_df(relatorias_df)
 }
@@ -230,16 +211,6 @@ fetch_current_relatoria <- function(bill_id) {
   #select columns
   current_relatoria_df <-
     current_relatoria_df %>%
-    select(
-      DataDesignacao,
-      IdentificacaoParlamentar.CodigoParlamentar,
-      IdentificacaoParlamentar.NomeParlamentar,
-      IdentificacaoParlamentar.SiglaPartidoParlamentar,
-      IdentificacaoComissao.NomeComissao,
-      IdentificacaoComissao.SiglaComissao,
-      IdentificacaoComissao.CodigoComissao
-    ) %>% 
-    
     add_column()
   
   rename_relatoria(current_relatoria_df)
@@ -254,15 +225,24 @@ fetch_last_relatoria <- function(bill_id) {
 }
 
 rename_relatorias_df <- function(df) {
-  names(df) <- c("data_designacao", "data_destituicao", "descricao_motivo_destituicao", "codigo_parlamentar",
-                 "nome_parlamentar", "partido", "comissao", "sigla_comissao", "codigo_comissao")
+  new_names = names(df) %>%
+    to_underscore() %>%
+    str_replace("identificacao_parlamentar_|identificacao_comissao_", "")
+  
+  names(df) <- new_names
+  
   df
 }
 
 rename_relatoria <- function(df) {
-  names(df) <- c("data_designacao", "codigo_parlamentar", "nome_parlamentar", "partido", 
-                 "comissao", "sigla_comissao", "codigo_comissao")
+  
+  new_names = names(df) %>%
+    to_underscore() 
+  
+  names(df) <- new_names
+  
   df
+
 }
 
 rename_voting_df <- function(df) {
