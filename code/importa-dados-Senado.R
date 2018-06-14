@@ -1,6 +1,5 @@
 library(tidyverse)
 library(here)
-library(jsonlite)
 source(here("code/senado-lib.R"))
 
 bill_id <- 91341
