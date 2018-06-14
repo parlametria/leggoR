@@ -1,5 +1,4 @@
-library(here)
-source(here("code/congresso-lib.R"))
+source(here::here("code/congresso-lib.R"))
 
 get_nome_ementa_Camara <- function(bill_id) {
   require(dplyr)
@@ -54,13 +53,13 @@ rename_df_columns <- function(df) {
   df
 }
 
-extract_events_Camara <- function(tramitacao_df, events_df) {
+extract_events_Camara <- function(tramitacao_df, events_df, special_commission) {
   require(magrittr)
   require(tidyverse)
   
   tramitacao_df %<>%
     mutate(despacho_lower = tolower(despacho)) %>%
-    regex_left_join(importants_events, by = c(despacho_lower = "regex")) %>%
+    regex_left_join(events_df, by = c(despacho_lower = "regex")) %>%
     select(-c(despacho_lower, regex))
   tramitacao_df %<>%
     mutate(evento = case_when(id_tipo_tramitacao == special_commission ~ 'criacao_comissao_temporaria', 
