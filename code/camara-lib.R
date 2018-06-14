@@ -85,7 +85,7 @@ extract_autor_Camara <- function(prop_id) {
            autor.nome = nome,
            autor.tipo = tipo,
            autor.cod_tipo = codTipo) %>% 
-    dplyrmutate(casa_origem = dplyr::case_when(
+    dplyr::mutate(casa_origem = dplyr::case_when(
       stringr::str_detect(tolower(autor.nome), camara_exp) | autor.tipo == 'Deputado' ~ 'Câmara dos Deputados',
       stringr::str_detect(tolower(autor.nome), senado_exp) | autor.tipo == 'Senador' ~ 'Senado Federal'))
   
@@ -95,9 +95,10 @@ extract_autor_Camara <- function(prop_id) {
 # Retorna a lista de IDs das proposições apensadas
 fetch_apensadas <- function(prop_id) {
   api_v1_proposicao = 'http://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID?IdProp='
-  xml2::read_xml(paste0(api_v1_proposicao, prop_id)) %>% 
-    xml2::xml_find_all('//apensadas/proposicao/codProposicao/text()') %>%
-    tibble::as.tibble
+  xml2::read_xml(paste0(api_v1_proposicao, prop_id)) %>%
+    xml2::xml_find_all('//apensadas/proposicao/codProposicao') %>%
+    xml2::xml_text() %>%
+    tibble::tibble(apensadas=.)
 }
 
 fetch_proposicao_com_apensamentos <- function(prop_id) {
