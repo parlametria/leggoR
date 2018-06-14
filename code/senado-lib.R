@@ -1,5 +1,4 @@
-library(here)
-source(here("code/congresso-lib.R"))
+source(here::here("code/congresso-lib.R"))
 
 fetch_voting <- function(bill_id){
     
