@@ -190,16 +190,15 @@ fetch_current_relatoria <- function(bill_id) {
   
   current_relatoria_df <-
     relatorias_data %>% 
-    magrittr::extract2("RelatoriaAtual") %>%
+    magrittr::extract2("HistoricoRelatoria") %>%
     magrittr::extract2("Relator") %>% 
     purrr::map_df(~ .) %>% 
     tidyr::unnest()
-    as.data.frame() %>%
 
   
   #fixing bug when api repeats relatorias
   current_relatoria_df <- current_relatoria_df[1,]
-  print(colnames(current_relatoria_df))
+  # print(colnames(current_relatoria_df))
   
   #verify if relator atual exists
   if(ncol(current_relatoria_df) == 0){
