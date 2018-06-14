@@ -111,11 +111,11 @@ fetch_bill <- function(bill_id){
   bill_specific_subject <-
     bill_data$Assunto$AssuntoEspecifico %>%
     tibble::as.tibble() %>%
-    rename(assunto_especifico = Descricao, codigo_assunto_especifico = Codigo)
+    dplyr::rename(assunto_especifico = Descricao, codigo_assunto_especifico = Codigo)
   bill_general_subject <-
     bill_data$Assunto$AssuntoGeral %>%
     tibble::as.tibble() %>%
-    rename(assunto_geral = Descricao, codigo_assunto_geral = Codigo)
+    dplyr::rename(assunto_geral = Descricao, codigo_assunto_geral = Codigo)
   bill_source <-
     bill_data$OrigemMateria %>%
     tibble::as.tibble()
@@ -289,9 +289,9 @@ get_nome_ementa_Senado <- function(bill_id) {
 tail_descricao_despacho_Senado <- function(df, qtd=1) {
   
   df %>% 
-  dplyr::arrange(data_tramitacao) %>% 
-  tail(qtd) %>% 
-    dplyr::select(data_tramitacao, situacao_descricao_situacao, texto_tramitacao)
+    dplyr::arrange(data_tramitacao) %>% 
+    tail(qtd) %>% 
+      dplyr::select(data_tramitacao, situacao_descricao_situacao, texto_tramitacao)
 }
 
 extract_phase_Senado <- function(dataframe, phase_one, phase_two, phase_three, phase_four) {
