@@ -26,14 +26,24 @@ import_project <- function(bill_id){
   relatorias %>%
     write_csv(here(paste0("data/Senado/", bill_id, "-relatorias-senado.csv")))
 
+  #Relatorias data
+  relatorias <- fetch_relatorias(bill_id)
+  relatorias %>%
+    write_csv(here(paste0("data/Senado/", bill_id, "-relatorias-senado.csv")))
+    
+  #Current Relatoria data
+  current_relatoria <- fetch_current_relatoria(bill_id)
+  current_relatoria %>%
+    write_csv(here(paste0("data/Senado/", bill_id, "-current-relatoria-senado.csv")))
+  
   #Last Relatoria
   last_relatoria <- fetch_last_relatoria(bill_id)
   last_relatoria %>%
     write_csv(here(paste0("data/Senado/", bill_id, "-last-relatoria-senado.csv")))
 }
 
+
 if(length(args) == 1){
   import_project(args[1])
 } 
        
-

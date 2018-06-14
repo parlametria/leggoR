@@ -17,6 +17,15 @@ tail_descricao_despacho_Camara <- function(df, qtd=1) {
     select(data_hora, descricao_tramitacao, despacho)
 }
 
+extract_relator_Camara <- function(df) {
+  require(dplyr)
+  require(stringr)
+  
+  df %>% 
+    mutate(relator = 
+             case_when(str_detect(tolower(despacho), '^designad. relat.r') ~ str_extract(despacho, regex('dep.+', ignore_case=TRUE))))
+}
+
 extract_phases_Camara <- function(dataframe, phase_one, phase_two, phase_three, phase_four, phase_five) {
   require(magrittr)
   
@@ -94,4 +103,12 @@ extract_autor_Camara <- function(prop_id) {
       str_detect(tolower(autor.nome), senado_exp) | autor.tipo == 'Senador' ~ 'Senado Federal'))
   
   autores
+}
+
+# Retorna a lista de IDs das proposições apensadas
+fetch_apensadas <- function(prop_id) {
+  require(xml2)
+  api_v1_proposicao = 'http://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID?IdProp='
+  read_xml(paste0(api_v1_proposicao, prop_id)) %>% 
+    xml_find_all('//apensadas/proposicao/codProposicao/text()')
 }
