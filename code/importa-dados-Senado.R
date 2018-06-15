@@ -1,8 +1,7 @@
 args = commandArgs(trailingOnly=TRUE)
 library(tidyverse)
 library(here)
-library(jsonlite)
-source(here::here("code/senado-lib.R"))
+source(here("code/senado-lib.R"))
 
 #It receives a project id and creates a csv with the main information.
 import_project <- function(bill_id){
@@ -19,7 +18,7 @@ import_project <- function(bill_id){
   #Votacao Data
   bill_data <- fetch_bill(bill_id)
   bill_data %>%
-    write_csv(paste0(here("data/Senado/"), bill_id , "-bill-senado.csv"))
+    write_csv(paste0(here("data/Senado/"), bill_id, "-bill-senado.csv"))
 
   #Relatorias Data
   relatorias <- fetch_relatorias(bill_id)
