@@ -37,6 +37,8 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
 }
 
 gera_tabela_proposicoes <- function(dataframe) {
+  require(magrittr)
+  
   propositions <- data.frame()
   
   propositions <- dataframe %>% 
