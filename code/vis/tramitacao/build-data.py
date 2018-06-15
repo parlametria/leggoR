@@ -1,23 +1,35 @@
 import sys
 import subprocess
- 
-# Get the arguments list 
-cmdargs = str(sys.argv)
- 
-# Print it
-if len(sys.argv) >= 3:
-    id_project = sys.argv[1]
-    house = str(sys.argv[2])
-    year = str()
+
+"""Receives a id_project and house and build the data for visualization.
+
+    Args:
+        args: An array with id_project and house.
+
+    Returns:
+        Return True for success, False otherwise.
+
+"""
+def build_csv(args):
+    id_project = args[1]
+    house = str(args[2])
+    script_result = False
+    r_script = "Rscript --vanilla "
     if house.upper() == "SENADO":
-        if(not subprocess.call ("Rscript --vanilla ../../importa-dados-Senado.R {}".format(id_project), shell=True)):
-            if(not subprocess.call ("Rscript --vanilla ../../processa-dados-Senado.R {}".format(id_project), shell=True)):
-                subprocess.call("Rscript --vanilla build-chart-{}.R {}".format(house, id_project), shell=True)
+        if(not subprocess.call ("{} ../../importa-dados-Senado.R {}".format(r_script, id_project), shell=True)):
+            script_result = not subprocess.call ("{} ../../processa-dados-Senado.R {}".format(r_script, id_project), shell=True)
     elif house.upper() == "CAMARA":
-        if(not subprocess.call ("Rscript --vanilla ../../camara-process-data.R {}".format(id_project), shell=True)):
-            subprocess.call("Rscript --vanilla build-chart-{}.R {}".format(house, id_project), shell=True)
+        script_result = not subprocess.call ("{} ../../camara-process-data.R {}".format(r_script, id_project), shell=True)
     else:
         print("Wrong parameter: House just can be 'Camara' or 'Senado'")
+    if(script_result):
+        subprocess.call("Rscript --vanilla data-chart-{}.R {}".format(house, id_project), shell=True)
+    return script_result
+
+args = sys.argv
+
+if len(args) >= 3:
+    build_csv(args)
 else:
     print("Wrong number of parameters")
     print("Usage:")
