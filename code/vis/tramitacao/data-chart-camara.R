@@ -3,13 +3,6 @@ library(dplyr)
 library(lubridate)
 library(here)
 
-bill_id <- 2121442
-tramitacao <- read_csv(paste0('data/camara/tramitacao_camara_', bill_id, '.csv'))
-
-data_path <- here::here('data/vis/tramitacao/')
-file_path <- paste0(data_path, bill_id, '-data-camara.csv')
-
-
 data_fase <- function(df) {
   df %>%
     mutate(end_data = lead(data_hora, default=Sys.time())) %>% 
@@ -58,5 +51,12 @@ data_evento <- function(df) {
     mutate(color = '#a9a9a9')
 }
 
-data <- bind_rows(data_evento(tramitacao), data_fase(tramitacao), data_local(tramitacao))
-readr::write_csv(data, file_path)
+build_vis_csv <- function(bill_id = 2121442) {
+  tramitacao <- read_csv(paste0('data/camara/tramitacao_camara_', bill_id, '.csv'))
+  
+  data_path <- here::here('data/vis/tramitacao/')
+  file_path <- paste0(data_path, bill_id, '-data-camara.csv')
+  
+  data <- bind_rows(data_evento(tramitacao), data_fase(tramitacao), data_local(tramitacao))
+  readr::write_csv(data, file_path)
+} 
