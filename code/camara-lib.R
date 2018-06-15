@@ -93,6 +93,42 @@ extract_n_last_events_Camara <- function(df, num) {
     dplyr::select(data_hora, evento)
 }
 
+#' @title Recupera relatores de uma proposição
+#' @description Recupera todos os relatores de uma proposição, junto com suas informações de parlamentar e comissão
+#' @param tramitacao_df Dataframe da tramitação na Câmara
+#' @return Dataframe que contém todos os relatores
+#' @examples
+#' tramitacao %>% extract_relatorias_camara()
+#' @export
+extract_relatorias_camara <- function(tramitacao_df) {
+  require(magrittr)
+  require(rcongresso)
+  require(dplyr)
+  library(stringr)
+  
+  relatorias_rows <-
+    filter(tramitacao_df, id_tipo_tramitacao == '320')
+  
+  relatorias_rows
+  
+  #select columns
+  relatorias_df <-
+    relatorias_rows %>%
+    select(
+      data_hora,
+      despacho,
+      sigla_orgao
+    ) %>% 
+    
+    add_column()
+  # print(str_match("Rubens Bueno (PPS-PR)", ".*Dep. (.*?) \\("))
+  relatorias_df %<>%
+    mutate(nome = str_match(despacho, ".*Dep. (.*?) \\("))
+  
+  
+  relatorias_df
+}
+
 #' @title Renomeia as colunas do dataframe
 #' @description Renomeia as colunas do dataframe usando o padrão de letras minúsculas e underscore
 #' @param df Dataframe 
