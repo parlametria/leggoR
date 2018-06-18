@@ -120,11 +120,18 @@ fetch_bill <- function(bill_id){
     tibble::add_column(!!! bill_ids, !!! bill_author,
                !!! bill_specific_subject, !!! bill_general_subject, !!! bill_source)
   
-  bill_complete$proposicoes_apensadas <- bill_anexadas
+  #Retorna NA se não tiver apensadas
+  if (!("" %in% bill_anexadas)) {
+    bill_complete$proposicoes_apensadas <- bill_anexadas
+  } else {
+    bill_complete$proposicoes_apensadas <- NA
+  }
+  
   
   
   bill_complete <- bill_complete[, !sapply(bill_complete, is.list)]
   rename_bill_df(bill_complete)
+  
 }
 
 #' @title Recupera o histórico de relatorias de uma proposição no Senado
