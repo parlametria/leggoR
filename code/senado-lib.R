@@ -436,6 +436,13 @@ extract_n_last_events_Senado <- function(df, num) {
     dplyr::select(data_tramitacao, evento)
 }
 
+#' @title Recupera as comissões do Senado
+#' @description Retorna dataframe contendo o código da proposição e as comissões
+#' @param tramitacao_df Dataframe da tramitação no Senado
+#' @return Dataframe contendo o código da proposição e as comissões
+#' @examples
+#' df %>% extract_comissoes_Senado()
+#' @export
 extract_comissoes_Senado <- function(df) {
   
   comissoes_permanentes <- 
@@ -456,6 +463,4 @@ extract_comissoes_Senado <- function(df) {
     mutate(comissoes =
              stringr::str_extract_all(comissoes, regex(comissoes_permanentes, ignore_case=TRUE))) %>%
     unique()
-  
-  
 }
