@@ -27,6 +27,14 @@ tail_descricao_despacho_Camara <- function(df, qtd=1) {
     dplyr::select(data_hora, descricao_tramitacao, despacho)
 }
 
+#' @title Recupera as comissões pelas quais a proposição irá passar
+#' @description Retorna um dataframe aas comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
+#' as próximas comissões 
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe com as próximas comissões que a proposição irá passar.
+#' @examples
+#' tramitacao %>% get_ditribuicao_comissoes_Camara()
+#' @export
 get_ditribuicao_comissoes_Camara <- function(df) {
   df %>%
     dplyr::mutate(proximas_comissoes = case_when(stringr::str_detect(tolower(despacho), 'às comiss..s ') ~ despacho)) %>%
