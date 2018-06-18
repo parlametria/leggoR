@@ -27,6 +27,13 @@ tail_descricao_despacho_Camara <- function(df, qtd=1) {
     dplyr::select(data_hora, descricao_tramitacao, despacho)
 }
 
+get_ditribuicao_comissoes_Camara <- function(df) {
+  df %>%
+    dplyr::mutate(proximas_comissoes = case_when(stringr::str_detect(tolower(despacho), 'às comiss..s ') ~ despacho)) %>%
+    dplyr::filter(!is.na(proximas_comissoes)) %>% 
+    dplyr::select(c('data_hora', 'id_prop', 'proximas_comissoes'))
+}
+
 #' @title Cria coluna com os relatores na tramitação na Câmara
 #' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no 
 #' envento pontual em que ele é designado
