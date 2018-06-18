@@ -7,7 +7,7 @@ library(lubridate)
 
 
 # Received the project id and the home and returns a graph with the timeline of the process.
-create_chart <- function(bill_id = 2121442, house = 'camara'){
+create_chart <- function(bill_id, house){
     
   data <- read_csv(paste0(here::here("data/vis/tramitacao/"),bill_id,"-data-", house, ".csv")) 
   
@@ -21,7 +21,7 @@ create_chart <- function(bill_id = 2121442, house = 'camara'){
                                 "</b> \n Início: ", data$start,
                                 "\n Fim: ", data$end))
   
-  vistime(data, events="label", groups="group", title="Fases da tramitação", tooltips = "tooltip", colors = "color", showLabels=FALSE)
+  vistime(data, events="label", groups="group", title=paste0("Tramitação em ", house), tooltips = "tooltip", colors = "color", showLabels=FALSE)
 }
 
 if(length(args) == 2){

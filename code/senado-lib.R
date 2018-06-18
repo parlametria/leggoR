@@ -44,7 +44,6 @@ fetch_voting <- function(bill_id){
 #' fetch_passage(91341)
 #' @export
 fetch_passage <- function(bill_id){
-    bill_id <- 91341
     url_base_passage <- "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes/"
     
     url <- paste0(url_base_passage, bill_id, sep = "")
@@ -74,7 +73,7 @@ fetch_passage <- function(bill_id){
     rename_passage_df(bill_passages_df)
 }
 
-#' @title Recupera os deatlhes de uma proposição no Senado
+#' @title Recupera os detalhes de uma proposição no Senado
 #' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param bill_id ID de uma proposição do Senado
@@ -83,7 +82,6 @@ fetch_passage <- function(bill_id){
 #' fetch_bill(91341)
 #' @export
 fetch_bill <- function(bill_id){
-  bill_id <- 91341
   url_base_bill <- "http://legis.senado.leg.br/dadosabertos/materia/"
   
   url <- paste0(url_base_bill, bill_id)
