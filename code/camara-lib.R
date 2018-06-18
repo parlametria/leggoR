@@ -36,8 +36,11 @@ tail_descricao_despacho_Camara <- function(df, qtd=1) {
 #' tramitacao %>% get_ditribuicao_comissoes_Camara()
 #' @export
 get_ditribuicao_comissoes_Camara <- function(df) {
+  comissoes_permanentes <- "agricultura, pecu.ria, abastecimento e desenvolvimento rural|ci.ncia e tecnologia, comunica..o e informatica|constitui..o e justi.a e de cidadania|cultura|defesa do consumidor|defesa dos direitos da mulher|defesa dos direitos da pessoa idosa|defesa dos direitos das pessoas com defici.ncia|desenvolvimento urbano|desenvolvimento econ.mico, ind.stria, com.rcio e servi.os|direitos humanos e minorias|educa..o|comiss.o do esporte|finan.as e tributa..o|fiscaliza..o financeira e controle|integra..o nacional, desenvolvimento regional e da amaz.nia|legisla..o participativa|meio ambiente e desenvolvimento sustent.vel|minas e energia|rela..es exteriores e de defesa nacional|seguran.a p.blica e combate ao crime organizado|seguridade social e fam.lia|trabalho, de administra..o e servi.o p.blico|turismo|via..o e transportes"
+  
   df %>%
-    dplyr::mutate(proximas_comissoes = case_when(stringr::str_detect(tolower(despacho), 'às comiss..s ') ~ despacho)) %>%
+    dplyr::mutate(proximas_comissoes = ifelse(stringr::str_detect(despacho, regex("às comiss..s", ignore_case=TRUE)), 
+                                                   stringr::str_extract_all(despacho, regex(comissoes_permanentes, ignore_case=TRUE)), NA)) %>%
     dplyr::filter(!is.na(proximas_comissoes)) %>% 
     dplyr::select(c('data_hora', 'id_prop', 'proximas_comissoes'))
 }
@@ -50,7 +53,7 @@ get_ditribuicao_comissoes_Camara <- function(df) {
 #' @examples
 #' tramitacao %>% extract_relator_Camara()
 #' @export
-extract_relator_Camara <- function(df) {
+extract_relator_Camara <- function(df, comissoes) {
   df %>% 
     dplyr::mutate(relator = 
                     case_when(stringr::str_detect(tolower(despacho), '^designad. relat.r') ~ 
