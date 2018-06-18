@@ -1,6 +1,0 @@
-label,start,end,time_interval,group,color
-PLEN,2016-12-09,2016-12-13,4,Local,#5496cf
-iniciativa,2016-12-09,2016-12-09,0,Sub-Fase,#7fc97f
-discussao_deliberacao,2016-12-09,2016-12-14,5,Sub-Fase,#beaed4
-virada_de_casa,2016-12-14,2016-12-14,0,Sub-Fase,#ffff99
-aprovacao_projeto,2016-12-13,2016-12-13,0,Evento,#a9a9a9

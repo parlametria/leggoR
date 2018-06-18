@@ -97,18 +97,26 @@ gera_tabela_apensadas <- function(bill_id_camara, bill_id_senado) {
     mutate(casa = "Câmara", apensadas = paste0("[", apensadas, "](", paste0(url_camara, apensadas), ")"))
   
   senado <- 
-    fetch_bill(bill_id_senado)  %>% 
-    mutate(proposicoes_apensadas = strsplit(.$proposicoes_apensadas, " ")) %>%
-    unnest() %>%
-    select(apensadas = proposicoes_apensadas)
-  
-  senado <-
-    senado %>%
-    mutate(casa = "Senado", apensadas = paste0("[", apensadas, "](", paste0(url_senado, apensadas), ")"))
-  
-  rbind(camara, senado)
-}
-
-get_tramitacao <- function(bill_id_camara, bill_id_senado) {
+    fetch_bill(bill_id_senado)
+  if (!is.na(senado$proposicoes_apensadas)) {
+    senado <- 
+      senado  %>% 
+      mutate(proposicoes_apensadas = strsplit(.$proposicoes_apensadas, " ")) %>%
+      unnest() 
+    
+    senado <-
+      senado %>%
+      select(apensadas = proposicoes_apensadas) %>%
+      mutate(casa = "Senado", apensadas = paste0("[", apensadas, "](", paste0(url_senado, apensadas), ")"))
+    
+    x <- rbind(camara, senado)
+  }else {
+    senado <-
+      senado %>%
+      select(apensadas = proposicoes_apensadas) %>%
+      mutate(casa = "Senado", apensadas = paste0("[", apensadas, "](", paste0(url_senado, apensadas), ")"))
+    
+    x <- rbind(camara, senado[0,])
+  }
   
 }

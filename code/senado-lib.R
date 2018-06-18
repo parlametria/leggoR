@@ -1,7 +1,8 @@
 source(here::here("code/congresso-lib.R"))
 
 #' @title Busca votações de uma proposição no Senado
-#' @description Retorna dataframe com os dados das votações de uma proposição no Senado
+#' @description Retorna dataframe com os dados das votações de uma proposição no Senado.
+#' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param bill_id ID de uma proposição do Senado
 #' @return Dataframe com as informações sobre as votações de uma proposição no Senado
 #' @examples
@@ -28,29 +29,15 @@ fetch_voting <- function(bill_id){
     
     voting_df <-
       voting_df %>%
-        dplyr::select(
-            -c(
-                SessaoPlenaria.NomeCasaSessao,
-                Tramitacao.IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
-                Tramitacao.IdentificacaoTramitacao.OrigemTramitacao.Local.NomeLocal,
-                Tramitacao.IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
-                Tramitacao.IdentificacaoTramitacao.OrigemTramitacao.Local.NomeCasaLocal,
-                Tramitacao.IdentificacaoTramitacao.Situacao.SiglaSituacao,
-                IdentificacaoParlamentar.EmailParlamentar,
-                IdentificacaoParlamentar.NomeCompletoParlamentar,
-                IdentificacaoParlamentar.FormaTratamento,
-                IdentificacaoParlamentar.UrlFotoParlamentar,
-                IdentificacaoParlamentar.UrlPaginaParlamentar,
-                IdentificacaoParlamentar.EmailParlamentar
-            )
-        ) %>% 
       tibble::add_column(!!! voting_ids)
     
+    voting_df <- voting_df[, !sapply(voting_df, is.list)]
     rename_voting_df(voting_df)
 }
 
 #' @title Busca a movimentação da proposição
 #' @description Retorna dataframe com os dados da movimentação da proposição, incluindo tramitação, prazos, despachos e situação
+#' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param bill_id ID de uma proposição do Senado
 #' @return Dataframe com as informações sobre a movimentação de uma proposição no Senado
 #' @examples
@@ -82,33 +69,19 @@ fetch_passage <- function(bill_id){
       magrittr::extract2("Tramitacao") %>%
       tibble::as.tibble()
   
-    bill_passages_df <-
-      bill_passages_df %>%
-      dplyr::select(
-          -c(
-             IdentificacaoTramitacao.OrigemTramitacao.Local.NomeCasaLocal,
-             IdentificacaoTramitacao.OrigemTramitacao.Local.NomeLocal,
-             IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
-             IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
-             IdentificacaoTramitacao.Situacao.SiglaSituacao,
-             #,Textos.Texto,
-             Publicacoes.Publicacao
-            )
-          ) %>%
-          tibble::add_column(!!! passage_ids)
-    
+    bill_passages_df <- bill_passages_df[, !sapply(bill_passages_df, is.list)]
     rename_passage_df(bill_passages_df)
 }
 
-#' @title Recupera os deatlhes de uma proposição no Senado
-#' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação
+#' @title Recupera os detalhes de uma proposição no Senado
+#' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
+#' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param bill_id ID de uma proposição do Senado
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
 #' fetch_bill(91341)
 #' @export
 fetch_bill <- function(bill_id){
-  
   url_base_bill <- "http://legis.senado.leg.br/dadosabertos/materia/"
   
   url <- paste0(url_base_bill, bill_id)
@@ -117,15 +90,14 @@ fetch_bill <- function(bill_id){
     json_bill$DetalheMateria$Materia
   bill_ids <-
     bill_data$IdentificacaoMateria %>%
-    tibble::as.tibble()  %>%
-    dplyr::select(CodigoMateria, SiglaSubtipoMateria, NumeroMateria)
+    tibble::as.tibble()  
   bill_basic_data <-
     bill_data$DadosBasicosMateria %>%
-    tibble::as.tibble()
+    tibble::as.tibble() 
+  
   bill_author <-
     bill_data$Autoria$Autor %>%
-    tibble::as.tibble() %>%
-    dplyr::select(NomeAutor)
+    tibble::as.tibble() 
   bill_specific_subject <-
     bill_data$Assunto$AssuntoEspecifico %>%
     tibble::as.tibble() %>%
@@ -146,14 +118,24 @@ fetch_bill <- function(bill_id){
     tibble::add_column(!!! bill_ids, !!! bill_author,
                !!! bill_specific_subject, !!! bill_general_subject, !!! bill_source)
   
-  bill_complete$proposicoes_apensadas <- bill_anexadas
+  #Retorna NA se não tiver apensadas
+  if (!("" %in% bill_anexadas)) {
+    bill_complete$proposicoes_apensadas <- bill_anexadas
+  } else {
+    bill_complete$proposicoes_apensadas <- NA
+  }
   
+  
+  
+  bill_complete <- bill_complete[, !sapply(bill_complete, is.list)]
   rename_bill_df(bill_complete)
+  
 }
 
 #' @title Recupera o histórico de relatorias de uma proposição no Senado
 #' @description Retorna dataframe com o histórico de relatorias detalhado de uma proposição no Senado, incluindo a data
-#' de designação e destituição, o relator e seu partido e a comissão
+#' de designação e destituição, o relator e seu partido e a comissão. 
+#' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param bill_id ID de uma proposição do Senado
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
 #' @examples
@@ -184,25 +166,15 @@ fetch_relatorias <- function(bill_id) {
   #select columns
   relatorias_df <-
     relatorias_df %>%
-    dplyr::select(
-      DataDesignacao,
-      DataDestituicao,
-      DescricaoMotivoDestituicao,
-      IdentificacaoParlamentar.CodigoParlamentar,
-      IdentificacaoParlamentar.NomeParlamentar,
-      IdentificacaoParlamentar.SiglaPartidoParlamentar,
-      IdentificacaoComissao.NomeComissao,
-      IdentificacaoComissao.SiglaComissao,
-      IdentificacaoComissao.CodigoComissao
-    ) %>% 
-    
     tibble::add_column()
   
+  relatorias_df <- relatorias_df[, !sapply(relatorias_df, is.list)]
   rename_relatorias_df(relatorias_df)
 }
 
 #' @title Recupera a relatoria atual no Senado
 #' @description Retorna dataframe com a relatoria atual no senado, contendo a data de designação, o relator e seu partido e a comissão
+#' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param bill_id ID de uma proposição do Senado
 #' @return Dataframe com as informações da relatoria atual no Senado
 #' @examples
@@ -225,6 +197,7 @@ fetch_current_relatoria <- function(bill_id) {
     relatorias_data %>% 
     magrittr::extract2("HistoricoRelatoria") %>%
     magrittr::extract2("Relator") %>% 
+    as.data.frame() %>%
     purrr::map_df(~ .) %>% 
     tidyr::unnest()
   
@@ -242,24 +215,15 @@ fetch_current_relatoria <- function(bill_id) {
   #select columns
   current_relatoria_df <-
     current_relatoria_df %>%
-    dplyr::select(
-      DataDesignacao,
-      IdentificacaoParlamentar.CodigoParlamentar,
-      IdentificacaoParlamentar.NomeParlamentar,
-      IdentificacaoParlamentar.SiglaPartidoParlamentar,
-      IdentificacaoComissao.NomeComissao,
-      IdentificacaoComissao.SiglaComissao,
-      IdentificacaoComissao.CodigoComissao
-    ) %>% 
-    
     tibble::add_column()
   
+  current_relatoria_df <- current_relatoria_df[, !sapply(current_relatoria_df, is.list)]
   rename_relatoria(current_relatoria_df)
 }
 
 #' @title Recupera a última relatoria de uma proposição no Senado
 #' @description Retorna dataframe com a última relatoria de uma proposição no Senado, incluindo a data
-#' de designação e destituição, o relator e seu partido e a comissão
+#' de designação e destituição, o relator e seu partido e a comissão.
 #' @param bill_id ID de uma proposição do Senado
 #' @return Dataframe com as informações da última relatoria de uma proposição no Senado
 #' @examples
@@ -282,8 +246,12 @@ fetch_last_relatoria <- function(bill_id) {
 #' df %>% rename_relatorias_df()
 #' @export
 rename_relatorias_df <- function(df) {
-  names(df) <- c("data_designacao", "data_destituicao", "descricao_motivo_destituicao", "codigo_parlamentar",
-                 "nome_parlamentar", "partido", "comissao", "sigla_comissao", "codigo_comissao")
+  new_names = names(df) %>% 
+    to_underscore() %>% 
+    stringr::str_replace("identificacao_parlamentar_|identificacao_comissao_", "")
+  
+  names(df) <- new_names
+  
   df
 }
 
@@ -296,8 +264,11 @@ rename_relatorias_df <- function(df) {
 #' df %>% rename_relatoria()
 #' @export
 rename_relatoria <- function(df) {
-  names(df) <- c("data_designacao", "codigo_parlamentar", "nome_parlamentar", "partido", 
-                 "comissao", "sigla_comissao", "codigo_comissao")
+  new_names = names(df) %>% 
+    to_underscore() 
+  
+  names(df) <- new_names
+  
   df
 }
 
@@ -400,7 +371,7 @@ tail_descricao_despacho_Senado <- function(df, qtd=1) {
 extract_phase_Senado <- function(dataframe, phase_one, phase_two, phase_three, phase_four) {
   
   dataframe %>%
-    dplyr::mutate(fase = dplyr::case_when( grepl(phase_one, texto_tramitacao) ~ 'iniciativa',
+    dplyr::mutate(fase = dplyr::case_when( grepl(phase_one, phase_one) ~ 'iniciativa',
                              detect_phase(situacao_codigo_situacao, phase_two) ~ 'relatoria',
                              detect_phase(situacao_codigo_situacao, phase_three) ~ 'discussao_deliberacao',
                              detect_phase(situacao_codigo_situacao, phase_four) ~ 'virada_de_casa')) 
