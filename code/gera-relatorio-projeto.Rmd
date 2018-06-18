@@ -48,6 +48,11 @@ bill_id_teto_remunatorio_senado <- 127753
 ```{r}
 # TODO
 ```
+
+#### Tramitação na Câmara
+```{r}
+# TODO
+```
 #### Tabelas de apensação
 ```{r echo=FALSE, message=FALSE}
 table_apensadas <- gera_tabela_apensadas(bill_id_pl_veneno_camara, bill_id_pl_veneno_senado) %>% rename(Apensada = apensadas, Casa_Origem = casa)

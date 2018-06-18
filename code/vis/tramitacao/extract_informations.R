@@ -108,3 +108,7 @@ gera_tabela_apensadas <- function(bill_id_camara, bill_id_senado) {
   
   rbind(camara, senado)
 }
+
+get_tramitacao <- function(bill_id_camara, bill_id_senado) {
+  
+}
