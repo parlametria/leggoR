@@ -90,9 +90,9 @@ fetch_passage <- function(bill_id){
              IdentificacaoTramitacao.OrigemTramitacao.Local.NomeLocal,
              IdentificacaoTramitacao.DestinoTramitacao.Local.NomeCasaLocal,
              IdentificacaoTramitacao.DestinoTramitacao.Local.NomeLocal,
-             IdentificacaoTramitacao.Situacao.SiglaSituacao,
+             IdentificacaoTramitacao.Situacao.SiglaSituacao
              #,Textos.Texto,
-             Publicacoes.Publicacao
+             #Publicacoes.Publicacao
             )
           ) %>%
           tibble::add_column(!!! passage_ids)
@@ -445,8 +445,8 @@ extract_n_last_events_Senado <- function(df, num) {
 #' @export
 extract_comissoes_Senado <- function(df) {
   
-  comissoes_permanentes <- 
-    "(Comiss..s*)* de Assuntos Econômicos|(Comiss..s*)* de Assuntos Sociais|(Comiss..s*)* de Constituição, Justiça e Cidadania|(Comiss..s*)* de Ciência, Tecnologia, Inovação, Comunicação e Informática|(Comiss..s*)* de Direitos Humanos e Legislação Participativa|(Comiss..s*)* Diretora|(Comiss..s*)* de Desenvolvimento Regional e Turismo|(Comiss..s*)* de Educação, Cultura e Esporte|(Comiss..s*)* de Serviços de Infraestrutura|(Comiss..s*)* de Meio Ambiente|(Comiss..s*)* de Agricultura e Reforma Agrária|(Comiss..s*)* de Relações Exteriores e Defesa Nacional|(Comiss..s*)* Senado do Futuro|(Comiss..s*)* de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor|(Comiss..s*)* Mista de Controle das Atividades de Inteligência|(Comiss..s*)* Mista de Consolidação da Legislação Federal|(Comiss..s*)* Mista do Congresso Nacional de Assuntos Relacionados à Comunidade dos Países de Língua Portuguesa|(Comiss..s*)* Permanente Mista de Combate à Violência contra a Mulher|(Comiss..s*)* Mista Permanente sobre Mudanças Climáticas|(Comiss..s*)* Mista de Planos, Orçamentos Públicos e Fiscalização|(Comiss..s*)* Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas"
+  comissoes_permanentes_especiais <- 
+    "(Comiss..s*)* Especial|(Comiss..s*)* de Assuntos Econômicos|(Comiss..s*)* de Assuntos Sociais|(Comiss..s*)* de Constituição, Justiça e Cidadania|(Comiss..s*)* de Ciência, Tecnologia, Inovação, Comunicação e Informática|(Comiss..s*)* de Direitos Humanos e Legislação Participativa|(Comiss..s*)* Diretora|(Comiss..s*)* de Desenvolvimento Regional e Turismo|(Comiss..s*)* de Educação, Cultura e Esporte|(Comiss..s*)* de Serviços de Infraestrutura|(Comiss..s*)* de Meio Ambiente|(Comiss..s*)* de Agricultura e Reforma Agrária|(Comiss..s*)* de Relações Exteriores e Defesa Nacional|(Comiss..s*)* Senado do Futuro|(Comiss..s*)* de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor|(Comiss..s*)* Mista de Controle das Atividades de Inteligência|(Comiss..s*)* Mista de Consolidação da Legislação Federal|(Comiss..s*)* Mista do Congresso Nacional de Assuntos Relacionados à Comunidade dos Países de Língua Portuguesa|(Comiss..s*)* Permanente Mista de Combate à Violência contra a Mulher|(Comiss..s*)* Mista Permanente sobre Mudanças Climáticas|(Comiss..s*)* Mista de Planos, Orçamentos Públicos e Fiscalização|(Comiss..s*)* Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas"
   
   df <-
     df %>%
@@ -461,6 +461,6 @@ extract_comissoes_Senado <- function(df) {
   df %>%
     rowwise() %>%
     mutate(comissoes =
-             stringr::str_extract_all(comissoes, regex(comissoes_permanentes, ignore_case=TRUE))) %>%
+             stringr::str_extract_all(comissoes, regex(comissoes_permanentes_especiais, ignore_case=TRUE))) %>%
     unique()
 }
