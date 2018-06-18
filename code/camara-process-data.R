@@ -60,3 +60,4 @@ proposicao_pl_6726 <-
   fetch_proposicao_renamed(pl6726_id) %>%
   readr::write_csv(proposicao_csv_path)
 
+relatorias <- extract_relatorias_camara(as.data.frame(read_csv(csv_path)))
