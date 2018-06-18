@@ -1,7 +1,7 @@
 args = commandArgs(trailingOnly=TRUE)
 library(tidyverse)
 library(here)
-source(here("code/senado-lib.R"))
+source(here::here("code/senado-lib.R"))
 
 #It receives a project id and creates a csv with the main information.
 import_project <- function(bill_id){
