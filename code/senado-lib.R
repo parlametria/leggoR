@@ -435,3 +435,27 @@ extract_n_last_events_Senado <- function(df, num) {
     tail(n = num) %>%
     dplyr::select(data_tramitacao, evento)
 }
+
+extract_comissoes_Senado <- function(df) {
+  
+  comissoes_permanentes <- 
+    "(Comiss..s*)* de Assuntos Econômicos|(Comiss..s*)* de Assuntos Sociais|(Comiss..s*)* de Constituição, Justiça e Cidadania|(Comiss..s*)* de Ciência, Tecnologia, Inovação, Comunicação e Informática|(Comiss..s*)* de Direitos Humanos e Legislação Participativa|(Comiss..s*)* Diretora|(Comiss..s*)* de Desenvolvimento Regional e Turismo|(Comiss..s*)* de Educação, Cultura e Esporte|(Comiss..s*)* de Serviços de Infraestrutura|(Comiss..s*)* de Meio Ambiente|(Comiss..s*)* de Agricultura e Reforma Agrária|(Comiss..s*)* de Relações Exteriores e Defesa Nacional|(Comiss..s*)* Senado do Futuro|(Comiss..s*)* de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor|(Comiss..s*)* Mista de Controle das Atividades de Inteligência|(Comiss..s*)* Mista de Consolidação da Legislação Federal|(Comiss..s*)* Mista do Congresso Nacional de Assuntos Relacionados à Comunidade dos Países de Língua Portuguesa|(Comiss..s*)* Permanente Mista de Combate à Violência contra a Mulher|(Comiss..s*)* Mista Permanente sobre Mudanças Climáticas|(Comiss..s*)* Mista de Planos, Orçamentos Públicos e Fiscalização|(Comiss..s*)* Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas"
+  
+  df <-
+    df %>%
+    dplyr::mutate(comissoes = 
+                    dplyr::case_when(
+                    stringr::str_detect(tolower(texto_tramitacao), 'às* comiss..s*') ~ 
+                    stringr::str_extract(texto_tramitacao, regex('comiss..s*.+', ignore_case=TRUE)))) %>%
+    dplyr::filter(!is.na(comissoes)) %>%
+    dplyr::arrange(data_tramitacao) %>%
+    dplyr::select(codigo_materia, comissoes)
+  
+  df %>%
+    rowwise() %>%
+    mutate(comissoes =
+             stringr::str_extract_all(comissoes, regex(comissoes_permanentes, ignore_case=TRUE))) %>%
+    unique()
+  
+  
+}
