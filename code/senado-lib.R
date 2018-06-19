@@ -155,6 +155,13 @@ fetch_bill <- function(bill_id){
   rename_bill_df(bill_complete)
 }
 
+#' @title Deferimento de requerimentos
+#' @description Verifica deferimento ou não para uma lista de IDs de requerimentos.
+#' @param bill_id ID de um ou vários requerimentos
+#' @return Dataframe com IDs dos requerimentos e informação sobre deferimento.
+#' @examples
+#' fetch_deferimento(c("102343", "109173", "115853"))
+#' @export
 fetch_deferimento <- function(bill_id) {
 
   regexes <-
