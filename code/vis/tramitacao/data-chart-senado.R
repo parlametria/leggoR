@@ -6,7 +6,6 @@ data <- read_csv(paste0("data/Senado/",bill_id,"-bill-passage-visualization-sena
 
 # Create data frame to display local inline
 format_local <- function(df) {
-  locais_pouco_importantes <- c('SGM', 'SLSF','SSCLSF','ATA-PLEN', 'SEXPE')
   
   df <- 
     df %>%
