@@ -64,3 +64,4 @@ if(length(args) == 1){
   process_project(args[1])
 } 
 
+relatorias <- extract_relatorias_camara(as.data.frame(read_csv(csv_path)))
