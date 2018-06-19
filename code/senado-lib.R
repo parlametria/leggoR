@@ -153,39 +153,6 @@ fetch_bill <- function(bill_id){
       proposicoes_apensadas = list(anexadas))
 
   rename_bill_df(bill_complete)
-  
-}
-
-fetch_deferimento <- function(bill_id) {
-
-  regexes <-
-    frame_data(~ deferimento, ~ regex,
-               "indeferido", '^Indefiro',
-               "deferido", '^(Defiro)|(Aprovado)')
-
-  fetch_one_deferimento <- function(bill_id) {
-    json <-
-      paste0(url_base_passage, bill_id) %>%
-      jsonlite::fromJSON()
-
-    resultados <- json$MovimentacaoMateria$Materia$OrdensDoDia$OrdemDoDia$DescricaoResultado
-    # handle NULL
-    if (is.null(resultados)) resultados <- c('')
-
-    resultados %>%
-      tibble::as.tibble() %>%
-      mutate(bill_id=bill_id) %>%
-      fuzzyjoin::regex_left_join(regexes, by=c(value="regex")) %>%
-      tidyr::fill(deferimento) %>%
-      tail(., n=1) %>%
-      dplyr::select(bill_id, deferimento)
-  }
-
-  bill_id %>%
-    unlist %>%
-    unique %>%
-    lapply(fetch_one_deferimento) %>%
-    plyr::rbind.fill()
 }
 
 fetch_deferimento <- function(bill_id) {
