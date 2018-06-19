@@ -67,7 +67,8 @@ fetch_passage <- function(bill_id){
       passage_data %>%
       magrittr::extract2("Tramitacoes") %>%
       magrittr::extract2("Tramitacao") %>%
-      tibble::as.tibble()
+      tibble::as.tibble() %>%
+      tibble::add_column(!!! passage_ids)
   
     bill_passages_df <- bill_passages_df[, !sapply(bill_passages_df, is.list)]
     rename_passage_df(bill_passages_df)
@@ -125,8 +126,6 @@ fetch_bill <- function(bill_id){
     bill_complete$proposicoes_apensadas <- NA
   }
   
-  
-  
   bill_complete <- bill_complete[, !sapply(bill_complete, is.list)]
   rename_bill_df(bill_complete)
   
@@ -181,7 +180,6 @@ fetch_relatorias <- function(bill_id) {
 #' fetch_current_relatoria(91341)
 #' @export
 fetch_current_relatoria <- function(bill_id) {
-  
   url_relatorias <- "http://legis.senado.leg.br/dadosabertos/materia/relatorias/"
   
   url <- paste0(url_relatorias, bill_id)
@@ -371,7 +369,7 @@ tail_descricao_despacho_Senado <- function(df, qtd=1) {
 extract_phase_Senado <- function(dataframe, phase_one, phase_two, phase_three, phase_four) {
   
   dataframe %>%
-    dplyr::mutate(fase = dplyr::case_when( grepl(phase_one, phase_one) ~ 'iniciativa',
+    dplyr::mutate(fase = dplyr::case_when( grepl(phase_one, texto_tramitacao) ~ 'iniciativa',
                              detect_phase(situacao_codigo_situacao, phase_two) ~ 'relatoria',
                              detect_phase(situacao_codigo_situacao, phase_three) ~ 'discussao_deliberacao',
                              detect_phase(situacao_codigo_situacao, phase_four) ~ 'virada_de_casa')) 

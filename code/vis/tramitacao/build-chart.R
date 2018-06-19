@@ -1,16 +1,21 @@
 # SETUP
 # install.packages("vistime")
-args = commandArgs(trailingOnly=TRUE)
 library(vistime)
 library(tidyverse)
 library(lubridate)
 
 
-# Received the project id and the home and returns a graph with the timeline of the process.
+#' @title Cria gráfico para demonstração da tramitação de uma proposição.
+#' @description Recebido um id e uma casa a função pesquisa o csv de visualização correspondente
+#' em data/vis/tramitacao e cria a visualização em timeline da tramitação da proposição.
+#' @param bill_id Identificador da proposição.
+#' @param house Casa a que pertence essa proposição.
+#' @examples
+#' create_chart(91341, "senado")
+#' @export
 create_chart <- function(bill_id, house){
     
-  data <- read_csv(paste0(here::here("data/vis/tramitacao/"),bill_id,"-data-", house, ".csv")) 
-  
+  data <- read_csv(paste0(here::here("data/vis/tramitacao/"),bill_id,"-data-", tolower(house), ".csv")) 
   
   # Custom tooltip
   data$tooltip <- ifelse(data$end == ymd(Sys.Date()), 
@@ -23,7 +28,3 @@ create_chart <- function(bill_id, house){
   
   vistime(data, events="label", groups="group", title=paste0("Tramitação em ", house), tooltips = "tooltip", colors = "color", showLabels=FALSE)
 }
-
-if(length(args) == 2){
-  create_chart(args[1], args[2])
-} 

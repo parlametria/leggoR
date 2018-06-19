@@ -1,4 +1,3 @@
-args = commandArgs(trailingOnly=TRUE)
 library(data.table)
 library(tidyverse)
 library(lubridate)
@@ -61,9 +60,4 @@ build_vis_csv <- function(bill_id = 2121442) {
   data <- bind_rows(data_evento(tramitacao), data_fase(tramitacao), data_local(tramitacao))
   readr::write_csv(data, file_path)
 } 
-
-if(length(args) == 1){
-  build_vis_csv(args[1])
-} 
-
 

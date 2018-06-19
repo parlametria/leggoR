@@ -1,9 +1,15 @@
-args = commandArgs(trailingOnly=TRUE)
 library(tidyverse)
 library(here)
 source(here::here("code/senado-lib.R"))
 
-process_project <- function(bill_id = 127753){
+#' @title Processa dados de um proposição do senado.
+#' @description Recebido um bill_id a função recupera informações sobre uma proposição
+#' e sua tramitação e as salva em data/Senado.
+#' @param bill_id Identificador da proposição que pode ser recuperado no site da câmara.
+#' @examples
+#' process_proposicao(91341)
+#' @export
+process_proposicao <- function(bill_id){
   bill_passage <- read_csv(paste0(here::here("data/Senado/"), bill_id, "-passage-senado.csv")) %>% arrange(data_tramitacao)
 
   phase_one <- c('^Este processo contém')
@@ -21,7 +27,7 @@ process_project <- function(bill_id = 127753){
     to_underscore(bill_passage$situacao_descricao_situacao) %>% 
     str_replace_all("\\s+","_")
 
-  importants_phases <- frame_data(~ evento, ~ situacao_codigo_situacao,
+  important_phases <- frame_data(~ evento, ~ situacao_codigo_situacao,
             "aprovacao_audiencia_publica", 110,
             "aprovacao_parecer", 89,
             "aprovacao_substitutivo", 113,
@@ -29,7 +35,7 @@ process_project <- function(bill_id = 127753){
             "aprovacao_projeto", 25)
 
 
-  bill_passage <- extract_event_Senado(bill_passage, importants_phases)
+  bill_passage <- extract_event_Senado(bill_passage, important_phases)
   bill_passage %>%
     write_csv(paste0(here::here("data/Senado/"), bill_id, "-bill-passage-phases-senado.csv"))
 
@@ -46,7 +52,3 @@ process_project <- function(bill_id = 127753){
   bill_passage_visualization %>%
     write_csv(paste0(here::here("data/Senado/"), bill_id, "-bill-passage-visualization-senado.csv"))
 }
-
-if(length(args) == 1){
-  process_project(args[1])
-} 

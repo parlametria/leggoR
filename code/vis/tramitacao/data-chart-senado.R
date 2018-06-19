@@ -1,6 +1,5 @@
 library(tidyverse)
 library(here)
-args = commandArgs(trailingOnly=TRUE)
 
 # Create data frame to display local inline
 format_local <- function(df) {
@@ -97,14 +96,9 @@ format_eventos <- function(df) {
   
 }
 
-build_vis_csv <- function(bill_id = 91341) {
+build_vis_csv <- function(bill_id) {
   data <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-bill-passage-visualization-senado.csv"))
   
   rbind(format_local(data), format_fase(data), format_eventos(data)) %>%
     write_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))
 }
-
-
-if(length(args) == 1){
-  build_vis_csv(args[1])
-} 

@@ -1,10 +1,15 @@
-args = commandArgs(trailingOnly=TRUE)
 library(tidyverse)
 library(here)
 source(here::here("code/senado-lib.R"))
 
-#It receives a project id and creates a csv with the main information.
-import_project <- function(bill_id){
+#' @title Importa as informações de uma proposição da internet.
+#' @description Recebido um id a função roda os scripts para 
+#' importar os dados daquela proposição.
+#' @param bill_id Identificador da proposição que pode ser recuperado no site da casa legislativa.
+#' @examples
+#' import_proposicao(91341)
+#' @export
+import_proposicao <- function(bill_id){
   #Voting data
   voting <- fetch_voting(bill_id)
   voting %>% 
@@ -40,9 +45,3 @@ import_project <- function(bill_id){
   last_relatoria %>%
     write_csv(paste0(here("data/Senado/"), bill_id, "-last-relatoria-senado.csv"))
 }
-
-
-if(length(args) == 1){
-  import_project(args[1])
-} 
-       
