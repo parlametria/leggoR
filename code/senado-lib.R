@@ -161,6 +161,7 @@ fetch_bill <- function(bill_id){
 #' @return Dataframe com IDs dos requerimentos e informação sobre deferimento.
 #' @examples
 #' fetch_deferimento(c("102343", "109173", "115853"))
+#' fetch_bill("81668")$proposicoes_relacionadas %>% fetch_deferimento
 #' @export
 fetch_deferimento <- function(bill_id) {
 
