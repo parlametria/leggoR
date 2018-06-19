@@ -9,7 +9,7 @@ library(lubridate)
 # Received the project id and the home and returns a graph with the timeline of the process.
 create_chart <- function(bill_id, house){
     
-  data <- read_csv(paste0(here::here("data/vis/tramitacao/"),bill_id,"-data-", house, ".csv")) 
+  data <- read_csv(paste0(here::here("data/vis/tramitacao/"),bill_id,"-data-", house, ".csv")) %>% unique()
   
   
   # Custom tooltip
