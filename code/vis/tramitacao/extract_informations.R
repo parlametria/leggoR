@@ -66,36 +66,38 @@ extract_informations_from_single_house <- function(id, casa, url) {
   casa <- tolower(casa)
   
   if (casa == 'camara') {
-    nome_camara <- get_nome_ementa_Camara(id)
+    nome_camara <- get_nome_ementa_Camara(id) %>% tail(1)
     tramitacao_camara = read_csv(paste0("../data/camara/", "tramitacao_camara_", id, ".csv"))
     despacho_camara <- tail_descricao_despacho_Camara(tramitacao_camara)
     nome <- paste0(nome_camara$siglaTipo, nome_camara$numero) 
-    autor <- extract_autor_Camara(id)
+    autor <- extract_autor_Camara(id) %>% tail(1)
     casa_origem <- autor$casa_origem
     nome_autor <- autor$autor.nome
     despacho <- despacho_camara$descricao_tramitacao 
     relator <- extract_last_relator_Camara(tramitacao_camara)
     ementa <- nome_camara$ementa
     data_apresentacao <- format(as.Date(fetch_proposicao(id)$dataApresentacao), "%d/%m/%Y")
+    eventos <- as.list(extract_n_last_events_Camara(tramitacao_camara, 3)$evento)
     
   } else if (casa == 'senado') {
     tramitacao_senado <- read_csv(paste0("../data/Senado/", id, "-bill-passage-phases-senado.csv"))
-    proposicao <- fetch_bill(id)
+    proposicao <- fetch_bill(id) %>% tail(1)
     despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
     nome_senado <- proposicao %>% select(ementa_materia, sigla_subtipo_materia, numero_materia) %>% unique
     nome <- paste0(nome_senado$sigla_subtipo_materia, nome_senado$numero_materia)
     casa_origem <- proposicao$nome_casa_origem
     nome_autor <- proposicao$nome_autor
     despacho <- despacho_senado$texto_tramitacao
-    relatoria <- fetch_last_relatoria(id)
-    relator <- relatoria$nome_parlamentar
+    relatoria <- fetch_last_relatoria(id) %>% tail(1)
+    relator <- as.character(relatoria$nome_parlamentar)
     ementa <- proposicao$ementa_materia
-    data_apresentacao <- format(as.Date(proposicao$data_apresentacao), "%d/%m/%Y")
+    data_apresentacao <- format(as.Date(proposicao$data_apresentacao), "%d/%m/%Y") %>% tail(1)
+    eventos <-  as.list(extract_n_last_events_Senado(tramitacao_senado, 3)$evento)
   }
   
   proposicoes_df <- 
-    frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator,
-               nome, nome_autor, casa_origem, data_apresentacao, ementa, despacho, relator)
+    frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator, ~ ultimos_eventos,
+               nome, nome_autor, casa_origem, data_apresentacao, ementa, despacho, relator, eventos)
   proposicoes_df$nome <-paste0("[", proposicoes_df$nome, "](", url, ")")
   
   proposicoes_df
