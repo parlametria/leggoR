@@ -8,7 +8,7 @@ library(here)
 
 create_chart <- function(bill_id = 2121442, house = 'camara'){
   # Create chart with all tasks.
-  source(here::here(paste0("code/vis/tramitacao/data-chart-", ".R", sep=house)))
+  source(here::here(paste0("code/vis/tramitacao/data-chart-", house, ".R")))
   setwd("../")
   build_vis_csv(bill_id)
   
