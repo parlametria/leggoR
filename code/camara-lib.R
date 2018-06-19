@@ -266,3 +266,50 @@ fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {
     # and mark proposicoes based on last tramitacao mark
     dplyr::left_join(relacionadas, by=c('id_prop' = 'id'))
 }
+
+#' @title Recupera os eventos (sessões/reuniões) de uma proposição na Câmara
+#' @description Retorna um dataframe contendo o timestamp, o local e a descrição do evento
+#' @param bill_id ID da proposição
+#' @return Dataframe contendo o timestamp, o local e a descrição do evento.
+#' @examples
+#' fetch_events(2121442)
+#' @export
+fetch_events <- function(bill_id) {
+  events_base_url <- 'http://www.camara.gov.br/proposicoesWeb/sessoes_e_reunioes?idProposicao='
+  bill_events_url <- paste0(events_base_url,bill_id)
+  events <- bill_events_url %>%
+    xml2::read_html() %>%
+    rvest::html_nodes(xpath='//*[@id="content"]/table') %>%
+    rvest::html_table()
+  events_df <- events[[1]]
+  names(events_df) <- c('timestamp','origem','descricao','links')
+  events_df <- events_df %>% 
+    dplyr::select(-links) %>%
+    dplyr::mutate(timestamp = lubridate::dmy_hm(timestamp))
+  
+  return(events_df)
+}
+
+#' @title Recupera os últimos eventos (sessões/reuniões) de uma proposição na Câmara
+#' @description Retorna um dataframe contendo o timestamp, o local e a descrição do evento
+#' @param bill_id ID da proposição
+#' @return Dataframe contendo o timestamp, o local e a descrição do evento.
+#' @examples
+#' get_latest_events(2121442)
+#' @export
+get_latest_events <- function(bill_id) {
+  fetch_events(bill_id) %>%
+    dplyr::filter(timestamp <= lubridate::now())
+}
+
+#' @title Recupera os próximos eventos (sessões/reuniões) de uma proposição na Câmara
+#' @description Retorna um dataframe contendo o timestamp, o local e a descrição do evento
+#' @param bill_id ID da proposição
+#' @return Dataframe contendo o timestamp, o local e a descrição do evento.
+#' @examples
+#' get_next_events(2121442)
+#' @export
+get_next_events <- function(bill_id) {
+  fetch_events(bill_id) %>%  
+    dplyr::filter(timestamp > lubridate::now())
+}
