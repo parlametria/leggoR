@@ -188,6 +188,38 @@ fetch_deferimento <- function(bill_id) {
     plyr::rbind.fill()
 }
 
+fetch_deferimento <- function(bill_id) {
+
+  regexes <-
+    frame_data(~ deferimento, ~ regex,
+               "indeferido", '^Indefiro',
+               "deferido", '^(Defiro)|(Aprovado)')
+
+  fetch_one_deferimento <- function(bill_id) {
+    json <-
+      paste0(url_base_passage, bill_id) %>%
+      jsonlite::fromJSON()
+
+    resultados <- json$MovimentacaoMateria$Materia$OrdensDoDia$OrdemDoDia$DescricaoResultado
+    # handle NULL
+    if (is.null(resultados)) resultados <- c('')
+
+    resultados %>%
+      tibble::as.tibble() %>%
+      mutate(bill_id=bill_id) %>%
+      fuzzyjoin::regex_left_join(regexes, by=c(value="regex")) %>%
+      tidyr::fill(deferimento) %>%
+      tail(., n=1) %>%
+      dplyr::select(bill_id, deferimento)
+  }
+
+  bill_id %>%
+    unlist %>%
+    unique %>%
+    lapply(fetch_one_deferimento) %>%
+    plyr::rbind.fill()
+}
+
 #' @title Recupera o histórico de relatorias de uma proposição no Senado
 #' @description Retorna dataframe com o histórico de relatorias detalhado de uma proposição no Senado, incluindo a data
 #' de designação e destituição, o relator e seu partido e a comissão
