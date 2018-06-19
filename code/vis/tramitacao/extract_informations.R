@@ -36,7 +36,7 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   proposicoes_df
 }
 
-gera_tabela_proposicoes <- function(dataframe) {
+gera_tabela_proposicoes_congresso <- function(dataframe) {
   require(magrittr)
   
   propositions <- data.frame()
@@ -51,7 +51,18 @@ gera_tabela_proposicoes <- function(dataframe) {
   propositions
 }
 
-extract_informations_from_single_house <- function(id, casa) {
+gera_tabela_proposicoes_uma_casa <- function(dataframe) {
+  propositions <- data.frame()
+  
+  propositions <- dataframe %>% 
+    rowwise() %>%
+    do(extract_informations_from_single_house(.$id, .$casa, .$url)) %>%
+    rbind(propositions,.)
+  
+  propositions
+}
+
+extract_informations_from_single_house <- function(id, casa, url) {
   casa <- tolower(casa)
   
   if (casa == 'camara') {
@@ -85,6 +96,8 @@ extract_informations_from_single_house <- function(id, casa) {
   proposicoes_df <- 
     frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator,
                nome, nome_autor, casa_origem, data_apresentacao, ementa, despacho, relator)
+  proposicoes_df$nome <-paste0("[", proposicoes_df$nome, "](", url, ")")
+  
   proposicoes_df
 }
 

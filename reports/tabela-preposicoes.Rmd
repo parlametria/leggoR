@@ -25,13 +25,23 @@ ids_df <-
              bill_id_cadastro_positivo_camara, bill_id_cadastro_positivo_senado, url,
              bill_id_pl_veneno_camara, bill_id_pl_veneno_senado, url,
              bill_id_teto_remunatorio_camara, bill_id_teto_remunatorio_senado, url)
+
+ids_df_single_house <-
+  frame_data(~ id, ~ casa, ~ url,
+             132865, "senado", url,
+             257161, "camara", url,
+             345311, "camara", url,
+             2056568, "camara", url,
+             2120775, "camara", url)
 ```
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
-a <- gera_tabela_proposicoes(ids_df)
+a <- gera_tabela_proposicoes_congresso(ids_df)
+b <- gera_tabela_proposicoes_uma_casa(ids_df_single_house)
 ```
 
 ```{r, echo = FALSE, results='asis'}
 knitr::kable(a, caption = "Proposições")
+knitr::kable(b, caption = "Proposições")
 ```
 
