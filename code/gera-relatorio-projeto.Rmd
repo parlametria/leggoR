@@ -50,7 +50,7 @@ bill_id_teto_remunatorio_senado <- 127753
 ```
 #### Tabelas de apensação
 ```{r echo=FALSE, message=FALSE}
-table_apensadas <- gera_tabela_apensadas(bill_id_pl_veneno_camara, bill_id_pl_veneno_senado) %>% rename(Apensada = apensadas, Casa_Origem = casa)
+table_apensadas <- gera_tabela_apensadas_senado(bill_id_pl_veneno_senado)
 knitr::kable(table_apensadas, caption = "Lista de Leis Apensadas")
 ```
 
