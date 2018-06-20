@@ -490,7 +490,7 @@ extract_comissoes_Senado <- function(df) {
     regex(ignore_case=TRUE)
 
   # Faz com que os nomes comecem com 'Comissão'.
-  fix_name <- function(name) {
+  fix_names <- function(name) {
     name %>%
       stringr::str_replace('Comissões', 'Comissão') %>%
       sapply(
@@ -504,9 +504,9 @@ extract_comissoes_Senado <- function(df) {
   df %>%
     dplyr::mutate(
       comissoes =
-            dplyr::case_when(
-            stringr::str_detect(tolower(texto_tramitacao), 'às* comiss..s*') ~
-              stringr::str_extract(texto_tramitacao, regex('comiss..s*.+', ignore_case=TRUE)))
+        dplyr::case_when(
+        stringr::str_detect(tolower(texto_tramitacao), 'às* comiss..s*') ~
+          stringr::str_extract(texto_tramitacao, regex('comiss..s*.+', ignore_case=TRUE)))
     ) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_tramitacao) %>%
@@ -516,5 +516,5 @@ extract_comissoes_Senado <- function(df) {
       comissoes = stringr::str_extract_all(comissoes, comissoes_permanentes_especiais)
     ) %>%
     unique() %>%
-    mutate(comissoes = sapply(comissoes, fix_name))
+    mutate(comissoes = sapply(comissoes, fix_names))
 }
