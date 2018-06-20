@@ -486,21 +486,35 @@ extract_comissoes_Senado <- function(df) {
     sapply(trimws) %>%
     magrittr::extract(. != '') %>%
     paste0(prefix, .) %>%
-    paste(collapse='|')
+    paste(collapse='|') %>%
+    regex(ignore_case=TRUE)
 
-  df <-
-    df %>%
-    dplyr::mutate(comissoes =
-                    dplyr::case_when(
-                    stringr::str_detect(tolower(texto_tramitacao), 'às* comiss..s*') ~
-                    stringr::str_extract(texto_tramitacao, regex('comiss..s*.+', ignore_case=TRUE)))) %>%
-    dplyr::filter(!is.na(comissoes)) %>%
-    dplyr::arrange(data_tramitacao) %>%
-    dplyr::select(codigo_materia, comissoes, data_tramitacao)
+  # Faz com que os nomes comecem com 'Comissão'.
+  fix_name <- function(name) {
+    name %>%
+      stringr::str_replace('Comissões', 'Comissão') %>%
+      sapply(
+        function(name) {
+          if(!str_detect(name, 'Comissão')) paste0('Comissão', name)
+          else name
+        },
+        USE.NAMES=FALSE)
+  }
 
   df %>%
+    dplyr::mutate(
+      comissoes =
+            dplyr::case_when(
+            stringr::str_detect(tolower(texto_tramitacao), 'às* comiss..s*') ~
+              stringr::str_extract(texto_tramitacao, regex('comiss..s*.+', ignore_case=TRUE)))
+    ) %>%
+    dplyr::filter(!is.na(comissoes)) %>%
+    dplyr::arrange(data_tramitacao) %>%
+    dplyr::select(codigo_materia, comissoes, data_tramitacao) %>%
     rowwise() %>%
-    mutate(comissoes =
-             stringr::str_extract_all(comissoes, regex(comissoes_permanentes_especiais, ignore_case=TRUE))) %>%
-    unique()
+    mutate(
+      comissoes = stringr::str_extract_all(comissoes, comissoes_permanentes_especiais)
+    ) %>%
+    unique() %>%
+    mutate(comissoes = sapply(comissoes, fix_name))
 }
