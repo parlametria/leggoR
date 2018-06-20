@@ -148,10 +148,10 @@ rename_df_columns <- function(df) {
 #' @examples
 #' df %>% extract_events_Camara(importants_events)
 #' @export
-extract_events_Camara <- function(tramitacao_df, events_df) {
+extract_events_Camara <- function(tramitacao_df, events_df, special_commission) {
   tramitacao_df %<>%
     dplyr::mutate(despacho_lower = tolower(despacho)) %>%
-    fuzzyjoin::regex_left_join(importants_events, by = c(despacho_lower = "regex")) %>%
+    fuzzyjoin::regex_left_join(events_df, by = c(despacho_lower = "regex")) %>%
     dplyr::select(-c(despacho_lower, regex))
   tramitacao_df %<>%
     dplyr::mutate(evento = dplyr::case_when(id_tipo_tramitacao == special_commission ~ 'criacao_comissao_temporaria', 

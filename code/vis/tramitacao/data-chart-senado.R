@@ -1,8 +1,5 @@
 library(tidyverse)
-
-bill_id <- 91341
-
-data <- read_csv(paste0("data/Senado/",bill_id,"-bill-passage-visualization-senado.csv"))
+library(here)
 
 # Create data frame to display local inline
 format_local <- function(df) {
@@ -98,6 +95,9 @@ format_eventos <- function(df) {
   
 }
 
-rbind(format_local(data), format_fase(data), format_eventos(data)) %>%
-  write_csv(paste0("data/vis/tramitacao/",bill_id,"-data-senado.csv"))
-
+build_vis_csv <- function(bill_id) {
+  data <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-bill-passage-visualization-senado.csv"))
+  
+  rbind(format_local(data), format_fase(data), format_eventos(data)) %>%
+    write_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))
+}
