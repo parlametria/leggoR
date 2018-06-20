@@ -148,10 +148,10 @@ rename_df_columns <- function(df) {
 #' @examples
 #' df %>% extract_events_Camara(importants_events)
 #' @export
-extract_events_Camara <- function(tramitacao_df, events_df) {
+extract_events_Camara <- function(tramitacao_df, events_df, special_commission) {
   tramitacao_df %<>%
     dplyr::mutate(despacho_lower = tolower(despacho)) %>%
-    fuzzyjoin::regex_left_join(importants_events, by = c(despacho_lower = "regex")) %>%
+    fuzzyjoin::regex_left_join(events_df, by = c(despacho_lower = "regex")) %>%
     dplyr::select(-c(despacho_lower, regex))
   tramitacao_df %<>%
     dplyr::mutate(evento = dplyr::case_when(id_tipo_tramitacao == special_commission ~ 'criacao_comissao_temporaria', 
@@ -224,9 +224,8 @@ fetch_apensadas <- function(prop_id) {
 }
 
 fetch_proposicao_com_apensamentos <- function(prop_id) {
-  prop <- rcongresso::fetch_proposicao(prop_id)
-  prop$proposicoes_apensadas <- fetch_apensadas(prop_id) %>% paste(collapse = ' ')
-  prop
+  rcongresso::fetch_proposicao(prop_id) %>%
+    mutate(proposicoes_apensadas = list(fetch_apensadas(prop_id)))
 }
 
 fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {
@@ -261,7 +260,7 @@ fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {
     tidyr::fill(deferimento) %>%
     # get last mark on each tramitacao
     dplyr::do(tail(., n=1)) %>%
-    dplyr::ungroup %>% 
+    dplyr::ungroup() %>% 
     dplyr::select(id_prop, deferimento) %>% 
     # and mark proposicoes based on last tramitacao mark
     dplyr::left_join(relacionadas, by=c('id_prop' = 'id'))

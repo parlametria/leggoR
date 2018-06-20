@@ -1,5 +1,5 @@
 library(data.table)
-library(dplyr)
+library(tidyverse)
 library(lubridate)
 library(here)
 
@@ -22,6 +22,10 @@ data_fase <- function(df) {
 }
 
 data_local <- function(df) {
+  df <- 
+    df %>%
+    filter((!(grepl('^S', sigla_orgao) | sigla_orgao == 'MESA')))
+  
   df %>% 
     mutate(end_data = lead(data_hora, default=Sys.time())) %>%
     group_by(sigla_orgao, sequence = rleid(sigla_orgao)) %>%
@@ -33,11 +37,9 @@ data_local <- function(df) {
     select(-sequence) %>%
     rename(label = sigla_orgao) %>%
     mutate(group = "Local",
-           color = case_when(label == "MESA" ~ "#E2E3D9",
-                             label == "PLEN" ~ "#5496cf",
+           color = case_when(label == "PLEN" ~ "#5496cf",
                              label == "PL672616" ~ "#ff9c37",
                              label == "CCP" ~ "#8bca42",
-                             label == "SEPRO" ~ "#ca4242",
                              label == "CTASP" ~ "#ea81b1"))
 }
 
@@ -51,8 +53,8 @@ data_evento <- function(df) {
     mutate(color = '#a9a9a9')
 }
 
-build_vis_csv <- function(bill_id = 2121442) {
-  tramitacao <- read_csv(paste0('data/camara/tramitacao_camara_', bill_id, '.csv'))
+build_vis_csv <- function(bill_id) {
+  tramitacao <- read_csv(paste0(here::here('data/camara/tramitacao_camara_'), bill_id, '.csv'))
   
   data_path <- here::here('data/vis/tramitacao/')
   file_path <- paste0(data_path, bill_id, '-data-camara.csv')
@@ -60,3 +62,4 @@ build_vis_csv <- function(bill_id = 2121442) {
   data <- bind_rows(data_evento(tramitacao), data_fase(tramitacao), data_local(tramitacao))
   readr::write_csv(data, file_path)
 } 
+
