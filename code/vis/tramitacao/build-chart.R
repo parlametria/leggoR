@@ -13,7 +13,6 @@ library(lubridate)
 #' create_chart(91341, "senado")
 #' @export
 create_chart <- function(bill_id, house){
-    
   data <- read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-", tolower(house), ".csv")) 
   
   # Custom tooltip
