@@ -39,7 +39,7 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
 gera_tabela_proposicoes_congresso <- function(dataframe) {
   require(magrittr)
   
-  propositions <- data.frame()
+  propositions <- tibble::as.tibble()
   
   propositions <- dataframe %>% 
     rowwise() %>%
@@ -52,7 +52,7 @@ gera_tabela_proposicoes_congresso <- function(dataframe) {
 }
 
 gera_tabela_proposicoes_uma_casa <- function(dataframe) {
-  propositions <- data.frame()
+  propositions <- tibble::as.tibble()
   
   propositions <- dataframe %>% 
     rowwise() %>%
