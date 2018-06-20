@@ -1,8 +1,8 @@
 library(here)
 library(tidyverse)
 library(rcongresso)
-source(here("code/senado-lib.R"))
-source(here("code/camara-lib.R"))
+source(here::here("code/senado-lib.R"))
+source(here::here("code/camara-lib.R"))
 
 extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   nome_ementa_camara <- get_nome_ementa_Camara(bill_id_camara)
@@ -64,7 +64,6 @@ gera_tabela_proposicoes_uma_casa <- function(dataframe) {
 
 extract_informations_from_single_house <- function(id, casa, url) {
   casa <- tolower(casa)
-  
   if (casa == 'camara') {
     nome_camara <- get_nome_ementa_Camara(id) %>% tail(1)
     tramitacao_camara = read_csv(paste0("../data/camara/", "tramitacao_camara_", id, ".csv"))
@@ -107,22 +106,50 @@ gera_tabela_apensadas_senado <- function(bill_id_senado) {
   url_senado <- "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
   
   senado <- 
-    fetch_bill(bill_id_senado)
+    fetch_bill(bill_id_senado) 
   
-  #se não tiver proposição
-  if (!is.na(senado$proposicoes_apensadas)) {
-    senado <- 
-      senado  %>% 
-      mutate(proposicoes_apensadas = strsplit(.$proposicoes_apensadas, " ")) %>%
-      unnest() 
-    
+  if(!is.null(senado$proposicoes_apensadas[[1]])) {
     senado %>%
+      unnest(proposicoes_apensadas) %>%
       select(apensadas = proposicoes_apensadas) %>%
       mutate(casa = "Senado", apensadas = paste0("[", apensadas, "](", paste0(url_senado, apensadas), ")"))
-
   }else {
     NA
   }
+
+}
+
+extract_informations_all_houses <- function(senado_id, camara_id) {
+  df_camara <- extract_informations_from_single_house(camara_id, 'camara')
+  df_senado <- extract_informations_from_single_house(senado_id, 'senado')
+ 
+  data <- frame_data()
+  
+  if (tolower(df_camara$casa_origem) == 'senado federal') {
+    nome <- df_senado$nome
+    data_apresentacao <- df_senado$data_apresentacao
+    ementa <- df_senado$ementa
+    autor <- df_senado$autor
+    casa_origem <- df_senado$casa_origem
+    status_atual <- df_camara$status_atual
+    ultimo_relator <- df_camara$ultimo_relator
+    casa_atual <- 'Câmara dos Deputados'
+    
+  } else {
+    nome <- df_camara$nome
+    data_apresentacao <- df_camara$data_apresentacao
+    ementa <- df_camara$ementa
+    autor <- df_camara$autor
+    casa_origem <- df_camara$casa_origem
+    status_atual <- df_senado$status_atual
+    ultimo_relator <- df_senado$ultimo_relator
+    casa_atual <- 'Senado Federal'
+  }
+
+  proposicoes_df <- 
+    frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator, ~casa_atual,
+               nome, autor, casa_origem, data_apresentacao, ementa, status_atual, ultimo_relator, casa_atual)
+  proposicoes_df
 }
 
 gera_tabela_apensadas_camara <- function(bill_id_camara) {
@@ -132,3 +159,4 @@ gera_tabela_apensadas_camara <- function(bill_id_camara) {
     mutate(casa = "Câmara", apensadas = paste0("[", apensadas, "](", paste0(url_camara, apensadas), ")"))
   
 }
+

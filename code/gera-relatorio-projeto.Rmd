@@ -6,12 +6,10 @@ params:
 ---
 ```{r imports, echo=FALSE, message=FALSE}
 library(tidyverse)
-library(here)
 
-source(here('code/vis/tramitacao/extract_informations.R'))
+source(here::here('code/vis/tramitacao/extract-informations.R'))
 
-dataa<- extract_informations_from_single_house(41703, 'senado')
-data <- extract_informations_from_single_house(46249, 'camara')
+data <- extract_informations_from_single_house(345311, 'camara', 'https://analytics-ufcg.github.io/agora-digital/reports/report_345311_camara.html')
 ```
 # Projeto de Lei `r toString(data$nome)`
 
@@ -50,10 +48,15 @@ bill_id_teto_remunatorio_senado <- 127753
 ```
 #### Tabelas de apensação
 ```{r echo=FALSE, message=FALSE}
+
 table_apensadas_camara <- gera_tabela_apensadas_camara(46249) 
 table_apensadas_senado <- gera_tabela_apensadas_senado(71687) 
 knitr::kable(table_apensadas_camara, caption = "Lista de Leis Apensadas Câmara")
 knitr::kable(table_apensadas_senado, caption = "Lista de Leis Apensadas Senado")
+
+# table_apensadas <- gera_tabela_apensadas_senado(bill_id_pl_veneno_senado)
+# knitr::kable(table_apensadas, caption = "Lista de Leis Apensadas")
+
 ```
 
 
