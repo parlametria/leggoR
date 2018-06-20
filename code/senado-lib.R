@@ -115,7 +115,7 @@ fetch_bill <- function(bill_id){
     bill_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria
   relacionadas <-
     bill_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria
-
+  
   bill_complete <-
     bill_basic_data %>%
     tibble::add_column(
@@ -123,6 +123,8 @@ fetch_bill <- function(bill_id){
       !!! bill_general_subject, !!! bill_source,
       proposicoes_relacionadas = paste(relacionadas, collapse=' '),
       proposicoes_apensadas = paste(anexadas, collapse=' '))
+  
+  bill_complete <- bill_complete[, !sapply(bill_complete, is.list)]
 
   rename_bill_df(bill_complete)
 }

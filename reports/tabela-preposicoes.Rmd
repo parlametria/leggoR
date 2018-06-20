@@ -5,10 +5,9 @@ output: html_notebook
 
 
 ```{r, echo = FALSE, message=FALSE}
-library(here)
 library(tidyverse)
 library(rcongresso)
-source(here("code/vis/tramitacao/extract_informations.R"))
+source(here::here("code/vis/tramitacao/extract-informations.R"))
 ```
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
@@ -25,13 +24,23 @@ ids_df <-
              bill_id_cadastro_positivo_camara, bill_id_cadastro_positivo_senado, url,
              bill_id_pl_veneno_camara, bill_id_pl_veneno_senado, url,
              bill_id_teto_remunatorio_camara, bill_id_teto_remunatorio_senado, url)
+
+ids_df_single_house <-
+  frame_data(~ id, ~ casa, ~ url,
+             132865, "senado", "https://analytics-ufcg.github.io/agora-digital/reports/report_132865_senado.html",
+             257161, "camara", "https://analytics-ufcg.github.io/agora-digital/reports/report_257161_camara.html",
+             345311, "camara", "https://analytics-ufcg.github.io/agora-digital/reports/report_345311_camara.html",
+             2056568, "camara", "https://analytics-ufcg.github.io/agora-digital/reports/report_2056568_camara.html",
+             2120775, "camara", "https://analytics-ufcg.github.io/agora-digital/reports/report_2120775_camara.html")
 ```
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
-a <- gera_tabela_proposicoes(ids_df)
+a <- gera_tabela_proposicoes_congresso(ids_df)
+b <- gera_tabela_proposicoes_uma_casa(ids_df_single_house)
 ```
 
 ```{r, echo = FALSE, results='asis'}
-knitr::kable(a, caption = "Proposições")
+#knitr::kable(a, caption = "Proposições")
+knitr::kable(b, caption = "Proposições")
 ```
 
