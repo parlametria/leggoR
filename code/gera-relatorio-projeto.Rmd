@@ -50,7 +50,7 @@ bill_id_teto_remunatorio_senado <- 127753
 ```{r echo=FALSE, message=FALSE}
 
 table_apensadas_camara <- gera_tabela_apensadas_camara(46249) 
-table_apensadas_senado <- gera_tabela_apensadas_senado(71687) 
+table_apensadas_senado <- gera_tabela_apensadas_senado(127753) 
 knitr::kable(table_apensadas_camara, caption = "Lista de Leis Apensadas Câmara")
 knitr::kable(table_apensadas_senado, caption = "Lista de Leis Apensadas Senado")
 
