@@ -15,7 +15,7 @@ library(lubridate)
 #' @export
 create_chart <- function(bill_id, house){
     
-  data <- read_csv(paste0(here::here("data/vis/tramitacao/"),bill_id,"-data-", tolower(house), ".csv")) 
+  data <- read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id,"-data-", tolower(house), ".csv")) 
   
   # Custom tooltip
   data$tooltip <- ifelse(data$end == ymd(Sys.Date()), 
