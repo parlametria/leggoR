@@ -4,7 +4,6 @@ library(vistime)
 library(tidyverse)
 library(lubridate)
 
-
 #' @title Cria gráfico para demonstração da tramitação de uma proposição.
 #' @description Recebido um id e uma casa a função pesquisa o csv de visualização correspondente
 #' em data/vis/tramitacao e cria a visualização em timeline da tramitação da proposição.
@@ -15,7 +14,7 @@ library(lubridate)
 #' @export
 create_chart <- function(bill_id, house){
     
-  data <- read_csv(paste0(here::here("data/vis/tramitacao/"),bill_id,"-data-", tolower(house), ".csv")) 
+  data <- read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-", tolower(house), ".csv")) 
   
   # Custom tooltip
   data$tooltip <- ifelse(data$end == ymd(Sys.Date()), 

@@ -21,7 +21,7 @@ build_camara <- function(id){
 #' @export
 build_senado <- function(id){
   source(here::here("code/importa-dados-Senado.R"))
-  import_project(id)
+  import_proposicao(id)
   source(here::here("code/processa-dados-Senado.R"))
   process_proposicao(id)
 }
