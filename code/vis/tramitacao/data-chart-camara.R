@@ -1,5 +1,5 @@
 library(data.table)
-library(dplyr)
+library(tidyverse)
 library(lubridate)
 library(here)
 
@@ -52,7 +52,7 @@ data_evento <- function(df) {
 }
 
 build_vis_csv <- function(bill_id = 2121442) {
-  tramitacao <- read_csv(paste0('data/camara/tramitacao_camara_', bill_id, '.csv'))
+  tramitacao <- read_csv(paste0(here::here('data/camara/tramitacao_camara_'), bill_id, '.csv'))
   
   data_path <- here::here('data/vis/tramitacao/')
   file_path <- paste0(data_path, bill_id, '-data-camara.csv')
@@ -60,3 +60,4 @@ build_vis_csv <- function(bill_id = 2121442) {
   data <- bind_rows(data_evento(tramitacao), data_fase(tramitacao), data_local(tramitacao))
   readr::write_csv(data, file_path)
 } 
+
