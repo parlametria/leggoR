@@ -8,7 +8,7 @@ output: html_notebook
 library(here)
 library(tidyverse)
 library(rcongresso)
-source(here("code/vis/tramitacao/extract_informations.R"))
+source(here("code/vis/tramitacao/extract-informations.R"))
 ```
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
