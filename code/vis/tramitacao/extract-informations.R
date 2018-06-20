@@ -92,22 +92,17 @@ gera_tabela_apensadas_senado <- function(bill_id_senado) {
   url_senado <- "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
   
   senado <- 
-    fetch_bill(bill_id_senado)
+    fetch_bill(bill_id_senado) 
   
-  #se não tiver proposição
-  if (!is.na(senado$proposicoes_apensadas)) {
-    senado <- 
-      senado  %>% 
-      mutate(proposicoes_apensadas = strsplit(.$proposicoes_apensadas, " ")) %>%
-      unnest() 
-    
+  if(!is.null(senado$proposicoes_apensadas[[1]])) {
     senado %>%
+      unnest(proposicoes_apensadas) %>%
       select(apensadas = proposicoes_apensadas) %>%
       mutate(casa = "Senado", apensadas = paste0("[", apensadas, "](", paste0(url_senado, apensadas), ")"))
-
   }else {
     NA
   }
+
 }
 
 extract_informations_all_houses <- function(senado_id, camara_id) {

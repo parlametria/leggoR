@@ -8,7 +8,15 @@ library(lubridate)
 library(fuzzyjoin)
 source(here::here("code/camara-lib.R"))
 
-process_project <- function(pl_id = 2121442) {
+
+#' @title Processa dados de um proposição da câmara.
+#' @description Recebido um pl_id a função recupera informações sobre uma proposição
+#' e sua tramitação e as salva em data/camara.
+#' @param pl_id Identificador da proposição que pode ser recuperado no site da câmara.
+#' @examples
+#' process_proposicao(257161)
+#' @export
+process_proposicao <- function(pl_id) {
   data_path <- here::here('data/camara/')
   tramitacao_pl <- fetch_tramitacao(id_prop = pl_id)
   
@@ -50,6 +58,8 @@ process_project <- function(pl_id = 2121442) {
   proposicao_pl <- 
     fetch_proposicao_renamed(pl_id) %>%
     readr::write_csv(proposicao_csv_path)
+  
+  relatorias <- extract_relatorias_camara(as.data.frame(read_csv(csv_path)))
 }
 
 #Fetch a bill with renamed columns
@@ -60,8 +70,5 @@ fetch_proposicao_renamed <- function(id) {
   df
 }
 
-if(length(args) == 1){
-  process_project(args[1])
-} 
 
-relatorias <- extract_relatorias_camara(as.data.frame(read_csv(csv_path)))
+
