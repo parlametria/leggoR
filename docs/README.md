@@ -9,4 +9,4 @@ Documentação
 ## Relatórios
 
 - [Teto Remuneratório (Câmara)](reports/teto_remuneratorio-camara.html)
-- [Nova Lei das Finanças Públicas (Senado)](https://analytics-ufcg.github.io/agora-digital/reports/91341-bill-report-Senate.html)
+- [Nova Lei das Finanças Públicas (Senado)](reports/91341-bill-report-Senate.html)
