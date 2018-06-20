@@ -496,7 +496,7 @@ extract_comissoes_Senado <- function(df) {
                     stringr::str_extract(texto_tramitacao, regex('comiss..s*.+', ignore_case=TRUE)))) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_tramitacao) %>%
-    dplyr::select(codigo_materia, comissoes)
+    dplyr::select(codigo_materia, comissoes, data_tramitacao)
 
   df %>%
     rowwise() %>%
