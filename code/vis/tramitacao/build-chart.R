@@ -13,16 +13,16 @@ library(lubridate)
 #' create_chart(91341, "senado")
 #' @export
 create_chart <- function(bill_id, house){
-  data <- read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-", tolower(house), ".csv")) 
-  
+  data <- read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-", tolower(house), ".csv"))
+
   # Custom tooltip
-  data$tooltip <- ifelse(data$end == ymd(Sys.Date()), 
-                         paste0("<b>", data$label, 
+  data$tooltip <- ifelse(data$end == ymd(Sys.Date()),
+                         paste0("<b>", data$label,
                                 "</b> \n Início: ", data$start,
                                 "<b>\n Em andamento </b>"),
-                         paste0("<b>", data$label, 
+                         paste0("<b>", data$label,
                                 "</b> \n Início: ", data$start,
                                 "\n Fim: ", data$end))
-  
+
   vistime(data, events="label", groups="group", title=paste0("Tramitação em ", house), tooltips = "tooltip", colors = "color", showLabels=FALSE)
 }
