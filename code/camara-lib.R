@@ -39,10 +39,10 @@ get_ditribuicao_comissoes_Camara <- function(df) {
   comissoes_permanentes <- "agricultura, pecu.ria, abastecimento e desenvolvimento rural|ci.ncia e tecnologia, comunica..o e informatica|constitui..o e justi.a e de cidadania|cultura|defesa do consumidor|defesa dos direitos da mulher|defesa dos direitos da pessoa idosa|defesa dos direitos das pessoas com defici.ncia|desenvolvimento urbano|desenvolvimento econ.mico, ind.stria, com.rcio e servi.os|direitos humanos e minorias|educa..o|comiss.o do esporte|finan.as e tributa..o|fiscaliza..o financeira e controle|integra..o nacional, desenvolvimento regional e da amaz.nia|legisla..o participativa|meio ambiente e desenvolvimento sustent.vel|minas e energia|rela..es exteriores e de defesa nacional|seguran.a p.blica e combate ao crime organizado|seguridade social e fam.lia|trabalho, de administra..o e servi.o p.blico|turismo|via..o e transportes"
   
   df %>%
-    dplyr::mutate(proximas_comissoes = dplyr::case_when(stringr::str_detect(despacho, regex("às comiss..s|despacho à", ignore_case=TRUE)) ~ stringr::str_extract_all(despacho, regex(comissoes_permanentes, ignore_case=TRUE)),
+    dplyr::mutate(proximas_comissoes = dplyr::case_when(stringr::str_detect(descricao_tramitacao, regex("distribui..o", ignore_case=TRUE)) & stringr::str_detect(despacho, regex(comissoes_permanentes, ignore_case=TRUE)) ~ stringr::str_extract_all(despacho, regex(comissoes_permanentes, ignore_case=TRUE)),
                                                         stringr::str_detect(descricao_tramitacao, regex("cria..o de comiss.o tempor.ria", ignore_case=TRUE)) ~ list("Especial"),
                                                         TRUE ~ list(NA))) %>%
-    dplyr::filter(!is.na(proximas_comissoes)) %>% 
+    dplyr::filter(!is.na(proximas_comissoes) & !identical(proximas_comissoes, character(0)) ) %>% 
     dplyr::select(c('data_hora', 'id_prop', 'proximas_comissoes'))
 }
 
