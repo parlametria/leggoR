@@ -53,7 +53,7 @@ data_evento <- function(df) {
     mutate(color = '#a9a9a9')
 }
 
-build_vis_csv <- function(bill_id = 2121442) {
+build_vis_csv <- function(bill_id) {
   tramitacao <- read_csv(paste0(here::here('data/camara/tramitacao_camara_'), bill_id, '.csv'))
   
   data_path <- here::here('data/vis/tramitacao/')
