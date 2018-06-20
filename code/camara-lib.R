@@ -225,7 +225,7 @@ fetch_apensadas <- function(prop_id) {
 
 fetch_proposicao_com_apensamentos <- function(prop_id) {
   rcongresso::fetch_proposicao(prop_id) %>%
-    mutate(proposicoes_apensadas = list(fetch_apensadas(prop_id)))
+    mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse=' '))
 }
 
 fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {
