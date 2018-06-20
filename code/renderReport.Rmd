@@ -19,9 +19,6 @@ pl_6670_camara <- 2120775
 lei_teto_remuneratorio_senado <- 127753
 lei_teto_remuneratorio_camara <- 2121442
 
-render_plot_single_house(pls_168_senado, 'senado')
-render_plot_all(lei_teto_remuneratorio_senado, lei_teto_remuneratorio_camara)
-
 render_plot_single_house <- function(param_id, param_casa) {
   render("gera-relatorio-projeto-por-casa.Rmd", "html_document", output_dir = output_dir, output_file = paste0('report_', param_id, '_', param_casa, '.html'), 
        params = list(
@@ -40,4 +37,8 @@ render_plot_all <- function(senado_id, camara_id) {
          )
        )
 }
+
+render_plot_single_house(pls_168_senado, 'senado')
+render_plot_all(lei_teto_remuneratorio_senado, lei_teto_remuneratorio_camara)
+
 ```
