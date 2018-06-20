@@ -123,8 +123,8 @@ fetch_bill <- function(bill_id){
     tibble::add_column(
       !!! bill_ids, !!! bill_author, !!! bill_specific_subject,
       !!! bill_general_subject, !!! bill_source,
-      proposicoes_relacionadas = list(relacionadas),
-      proposicoes_apensadas = list(anexadas))
+      proposicoes_relacionadas = paste(relacionadas, collapse=' '),
+      proposicoes_apensadas = paste(anexadas, collapse=' '))
 
   rename_bill_df(bill_complete)
 }
@@ -204,7 +204,7 @@ fetch_relatorias <- function(bill_id) {
   relatorias_df <-
     relatorias_df %>%
     tibble::add_column()
-  
+
   relatorias_df <- relatorias_df[, !sapply(relatorias_df, is.list)]
   rename_relatorias_df(relatorias_df)
 }
