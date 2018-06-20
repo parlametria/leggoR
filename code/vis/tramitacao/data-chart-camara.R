@@ -22,6 +22,10 @@ data_fase <- function(df) {
 }
 
 data_local <- function(df) {
+  df <- 
+    df %>%
+    filter((!(grepl('^S', sigla_orgao) | sigla_orgao == 'MESA')))
+  
   df %>% 
     mutate(end_data = lead(data_hora, default=Sys.time())) %>%
     group_by(sigla_orgao, sequence = rleid(sigla_orgao)) %>%
@@ -33,11 +37,9 @@ data_local <- function(df) {
     select(-sequence) %>%
     rename(label = sigla_orgao) %>%
     mutate(group = "Local",
-           color = case_when(label == "MESA" ~ "#E2E3D9",
-                             label == "PLEN" ~ "#5496cf",
+           color = case_when(label == "PLEN" ~ "#5496cf",
                              label == "PL672616" ~ "#ff9c37",
                              label == "CCP" ~ "#8bca42",
-                             label == "SEPRO" ~ "#ca4242",
                              label == "CTASP" ~ "#ea81b1"))
 }
 

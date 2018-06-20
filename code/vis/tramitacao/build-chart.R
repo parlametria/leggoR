@@ -4,7 +4,6 @@ library(vistime)
 library(tidyverse)
 library(lubridate)
 
-
 #' @title Cria gráfico para demonstração da tramitação de uma proposição.
 #' @description Recebido um id e uma casa a função pesquisa o csv de visualização correspondente
 #' em data/vis/tramitacao e cria a visualização em timeline da tramitação da proposição.
