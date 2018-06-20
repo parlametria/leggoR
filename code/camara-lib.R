@@ -93,6 +93,41 @@ extract_n_last_events_Camara <- function(df, num) {
     dplyr::select(data_hora, evento)
 }
 
+#' @title Recupera relatores de uma proposição
+#' @description Recupera todos os relatores de uma proposição, junto com suas informações de parlamentar e comissão
+#' @param tramitacao_df Dataframe da tramitação na Câmara
+#' @return Dataframe que contém todos os relatores
+#' @examples
+#' tramitacao %>% extract_relatorias_camara()
+#' @export
+extract_relatorias_camara <- function(tramitacao_df) {
+  
+  #extract line when a relator is designated by the code
+  relatorias_rows <-
+    dplyr::filter(tramitacao_df, id_tipo_tramitacao == '320')
+  
+  #select columns
+  relatorias_df <-
+    relatorias_rows %>%
+    dplyr::select(
+      data_hora,
+      despacho,
+      sigla_orgao
+    ) %>% 
+    add_column()
+  
+  #extract relator's name and partido
+  relatorias_df %<>%
+    dplyr::mutate(nome_parlamentar = stringr::str_match(despacho,'Dep. (.*?) [(]')[,2], 
+           partido = stringr::str_match(despacho,'[(](.*?)[)]')[,2])
+  
+  #remove despacho column
+  relatorias_df %<>%
+    dplyr::select(-c(despacho))
+  
+  relatorias_df
+}
+
 #' @title Renomeia as colunas do dataframe
 #' @description Renomeia as colunas do dataframe usando o padrão de letras minúsculas e underscore
 #' @param df Dataframe 
@@ -189,9 +224,8 @@ fetch_apensadas <- function(prop_id) {
 }
 
 fetch_proposicao_com_apensamentos <- function(prop_id) {
-  prop <- rcongresso::fetch_proposicao(prop_id)
-  prop$proposicoes_apensadas <- fetch_apensadas(prop_id) %>% paste(collapse = ' ')
-  prop
+  rcongresso::fetch_proposicao(prop_id) %>%
+    mutate(proposicoes_apensadas = list(fetch_apensadas(prop_id)))
 }
 
 fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {
@@ -226,8 +260,55 @@ fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {
     tidyr::fill(deferimento) %>%
     # get last mark on each tramitacao
     dplyr::do(tail(., n=1)) %>%
-    dplyr::ungroup %>% 
+    dplyr::ungroup() %>% 
     dplyr::select(id_prop, deferimento) %>% 
     # and mark proposicoes based on last tramitacao mark
     dplyr::left_join(relacionadas, by=c('id_prop' = 'id'))
+}
+
+#' @title Recupera os eventos (sessões/reuniões) de uma proposição na Câmara
+#' @description Retorna um dataframe contendo o timestamp, o local e a descrição do evento
+#' @param bill_id ID da proposição
+#' @return Dataframe contendo o timestamp, o local e a descrição do evento.
+#' @examples
+#' fetch_events(2121442)
+#' @export
+fetch_events <- function(bill_id) {
+  events_base_url <- 'http://www.camara.gov.br/proposicoesWeb/sessoes_e_reunioes?idProposicao='
+  bill_events_url <- paste0(events_base_url,bill_id)
+  events <- bill_events_url %>%
+    xml2::read_html() %>%
+    rvest::html_nodes(xpath='//*[@id="content"]/table') %>%
+    rvest::html_table()
+  events_df <- events[[1]]
+  names(events_df) <- c('timestamp','origem','descricao','links')
+  events_df <- events_df %>% 
+    dplyr::select(-links) %>%
+    dplyr::mutate(timestamp = lubridate::dmy_hm(timestamp))
+  
+  return(events_df)
+}
+
+#' @title Recupera os últimos eventos (sessões/reuniões) de uma proposição na Câmara
+#' @description Retorna um dataframe contendo o timestamp, o local e a descrição do evento
+#' @param bill_id ID da proposição
+#' @return Dataframe contendo o timestamp, o local e a descrição do evento.
+#' @examples
+#' get_latest_events(2121442)
+#' @export
+get_latest_events <- function(bill_id) {
+  fetch_events(bill_id) %>%
+    dplyr::filter(timestamp <= lubridate::now())
+}
+
+#' @title Recupera os próximos eventos (sessões/reuniões) de uma proposição na Câmara
+#' @description Retorna um dataframe contendo o timestamp, o local e a descrição do evento
+#' @param bill_id ID da proposição
+#' @return Dataframe contendo o timestamp, o local e a descrição do evento.
+#' @examples
+#' get_next_events(2121442)
+#' @export
+get_next_events <- function(bill_id) {
+  fetch_events(bill_id) %>%  
+    dplyr::filter(timestamp > lubridate::now())
 }

@@ -69,3 +69,4 @@ fetch_proposicao_renamed <- function(id) {
 }
 
 
+relatorias <- extract_relatorias_camara(as.data.frame(read_csv(csv_path)))

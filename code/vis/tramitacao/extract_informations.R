@@ -88,36 +88,27 @@ extract_informations_from_single_house <- function(id, casa) {
   proposicoes_df
 }
 
-gera_tabela_apensadas <- function(bill_id_camara, bill_id_senado) {
+gera_tabela_apensadas_senado <- function(bill_id_senado) {
   url_senado <- "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
-  url_camara <- "http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao="
-  
-  camara <- 
-    fetch_apensadas(bill_id_camara) %>%
-    mutate(casa = "Câmara", apensadas = paste0("[", apensadas, "](", paste0(url_camara, apensadas), ")"))
   
   senado <- 
-    fetch_bill(bill_id_senado)
-  if (!is.na(senado$proposicoes_apensadas)) {
-    senado <- 
-      senado  %>% 
-      mutate(proposicoes_apensadas = strsplit(.$proposicoes_apensadas, " ")) %>%
-      unnest() 
-    
-    senado <-
-      senado %>%
-      select(apensadas = proposicoes_apensadas) %>%
-      mutate(casa = "Senado", apensadas = paste0("[", apensadas, "](", paste0(url_senado, apensadas), ")"))
-    
-    x <- rbind(camara, senado)
-  }else {
-    senado <-
-      senado %>%
-      select(apensadas = proposicoes_apensadas) %>%
-      mutate(casa = "Senado", apensadas = paste0("[", apensadas, "](", paste0(url_senado, apensadas), ")"))
-    
-    x <- rbind(camara, senado[0,])
-  }
+    fetch_bill(bill_id_senado) 
   
+  if(!is.null(senado$proposicoes_apensadas[[1]])) {
+    senado %>%
+      unnest(proposicoes_apensadas) %>%
+      select(apensadas = proposicoes_apensadas) %>%
+      mutate(casa = "Senado", apensadas = paste0("[", apensadas, "](", paste0(url_senado, apensadas), ")"))
+  }else {
+    NA
+  }
+
 }
 
+gera_tabela_apensadas_camara <- function(bill_id_camara) {
+  url_camara <- "http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao="
+
+  fetch_apensadas(bill_id_camara) %>%
+    mutate(casa = "Câmara", apensadas = paste0("[", apensadas, "](", paste0(url_camara, apensadas), ")"))
+  
+}
