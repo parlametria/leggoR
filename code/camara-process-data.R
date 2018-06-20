@@ -58,6 +58,8 @@ process_proposicao <- function(pl_id) {
   proposicao_pl <- 
     fetch_proposicao_renamed(pl_id) %>%
     readr::write_csv(proposicao_csv_path)
+  
+  relatorias <- extract_relatorias_camara(as.data.frame(read_csv(csv_path)))
 }
 
 #Fetch a bill with renamed columns
@@ -69,4 +71,4 @@ fetch_proposicao_renamed <- function(id) {
 }
 
 
-relatorias <- extract_relatorias_camara(as.data.frame(read_csv(csv_path)))
+
