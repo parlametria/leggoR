@@ -8,5 +8,5 @@ Documentação
 
 ## Relatórios
 
-- [Teto Remuneratório (Câmara)](https://analytics-ufcg.github.io/agora-digital/reports/teto_remuneratorio-camara.html)
+- [Teto Remuneratório (Câmara)](reports/teto_remuneratorio-camara.html)
 - [Nova Lei das Finanças Públicas (Senado)](https://analytics-ufcg.github.io/agora-digital/reports/91341-bill-report-Senate.html)
