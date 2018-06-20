@@ -19,8 +19,8 @@ bill_id_teto_remunatorio_camara <- 2121442
 bill_id_teto_remunatorio_senado <- 127753
 url <- "https://analytics-ufcg.github.io/agora-digital/reports/teto_remuneratorio-camara.html"
 
-ids_df <- 
-    frame_data(~ id_camara, ~ id_senado, ~ url, 
+ids_df <-
+    frame_data(~ id_camara, ~ id_senado, ~ url,
              bill_id_cadastro_positivo_camara, bill_id_cadastro_positivo_senado, url,
              bill_id_pl_veneno_camara, bill_id_pl_veneno_senado, url,
              bill_id_teto_remunatorio_camara, bill_id_teto_remunatorio_senado, url)
@@ -43,4 +43,3 @@ b <- gera_tabela_proposicoes_uma_casa(ids_df_single_house)
 #knitr::kable(a, caption = "Proposições")
 knitr::kable(b, caption = "Proposições")
 ```
-
