@@ -50,7 +50,8 @@ data_evento <- function(df) {
     group_by(evento) %>%
     rename(label = evento) %>%
     select(label, start, end, group) %>%
-    mutate(color = '#a9a9a9')
+    mutate(color = '#a9a9a9') %>%
+    unique()
 }
 
 build_vis_csv <- function(bill_id) {
