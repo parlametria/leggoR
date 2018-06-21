@@ -43,3 +43,11 @@ chart
 #table_apensadas <- gera_tabela_apensadas(bill_id_pl_veneno_camara, bill_id_pl_veneno_senado) %>% rename(Apensada = apensadas, Casa_Origem = casa)
 #knitr::kable(table_apensadas, caption = "Lista de Leis Apensadas")
 ```
+#### Requerimentos
+```{r, echo = FALSE, message = FALSE, warning=FALSE}
+reqs <- gera_tabela_requerimentos(params$id,params$casa)
+```
+
+```{r, echo = FALSE, results='asis'}
+knitr::kable(reqs)
+```

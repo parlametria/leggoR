@@ -62,7 +62,7 @@ gera_tabela_proposicoes_uma_casa <- function(dataframe) {
   propositions
 }
 
-extract_informations_from_single_house <- function(id, casa, url) {
+extract_informations_from_single_house <- function(id, casa, url=NULL) {
   casa <- tolower(casa)
   if (casa == 'camara') {
     nome_camara <- get_nome_ementa_Camara(id) %>% tail(1)
@@ -157,6 +157,16 @@ extract_informations_all_houses <- function(senado_id, camara_id) {
     frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator, ~casa_atual,
                nome, autor, casa_origem, data_apresentacao, ementa, status_atual, ultimo_relator, casa_atual)
   proposicoes_df
+}
+
+gera_tabela_requerimentos <- function(bill_id, house) {
+  requerimentos <- data.frame()
+  if (house == 'camara') {
+    requerimentos <- fetch_requerimentos_relacionados(bill_id) %>% select(dataApresentacao,descricaoTipo,ementa,deferimento,statusProposicao.despacho)
+  } else if (house == 'senado') {
+    requerimentos <- as.array(strsplit(fetch_bill(bill_id)$proposicoes_relacionadas, " ")[[1]]) %>% fetch_deferimento()
+  }
+  requerimentos
 }
 
 gera_tabela_apensadas_camara <- function(bill_id_camara) {

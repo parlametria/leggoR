@@ -4,7 +4,7 @@ params:
   senado_id: 127753
   camara_id: 2121442
 ---
-```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, timeout= 4000000}
 source(here::here('code/vis/tramitacao/extract-informations.R'))
 source(here::here('code/vis/tramitacao/build-chart.R'))
 
