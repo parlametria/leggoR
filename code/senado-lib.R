@@ -8,9 +8,9 @@ url_base_tramitacao <- "http://legis.senado.leg.br/dadosabertos/materia/moviment
 #' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações sobre as votações de uma proposição no Senado
 #' @examples
-#' fetch_voting(91341)
+#' fetch_votacoes(91341)
 #' @export
-fetch_voting <- function(proposicao_id){
+fetch_votacoes <- function(proposicao_id){
     url_base_votacoes <- "http://legis.senado.leg.br/dadosabertos/materia/votacoes/"
 
     url <- paste0(url_base_votacoes, proposicao_id)
@@ -43,37 +43,37 @@ fetch_voting <- function(proposicao_id){
 #' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações sobre a movimentação de uma proposição no Senado
 #' @examples
-#' fetch_passage(91341)
+#' fetch_tramitacao(91341)
 #' @export
-fetch_passage <- function(proposicao_id){
+fetch_tramitacao <- function(proposicao_id){
 
     url <- paste0(url_base_tramitacao, proposicao_id)
-    json_passage <- jsonlite::fromJSON(url, flatten = T)
-    passage_data <-
-      json_passage %>%
+    json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
+    tramitacao_data <-
+      json_tramitacao %>%
       magrittr::extract2("MovimentacaoMateria") %>%
       magrittr::extract2("Materia")
-    passage_ids <-
-      passage_data %>%
+    tramitacao_ids <-
+      tramitacao_data %>%
       magrittr::extract2("IdentificacaoMateria") %>%
       tibble::as.tibble()
-    passage_actual_situation <-
-      passage_data %>%
+    tramitacao_actual_situation <-
+      tramitacao_data %>%
       magrittr::extract2("SituacaoAtual") %>%
       magrittr::extract2("Autuacoes") %>%
       magrittr::extract2("Autuacao") %>%
       magrittr::extract2("Situacao") %>%
       tibble::as.tibble()
-    proposicao_passages_df <-
-      passage_data %>%
+    proposicao_tramitacoes_df <-
+      tramitacao_data %>%
       magrittr::extract2("Tramitacoes") %>%
       magrittr::extract2("Tramitacao") %>%
       tibble::as.tibble() %>%
-      tibble::add_column(!!! passage_ids)
+      tibble::add_column(!!! tramitacao_ids)
 
-    proposicao_passages_df <- proposicao_passages_df[, !sapply(proposicao_passages_df, is.list)]
+    proposicao_tramitacoes_df <- proposicao_tramitacoes_df[, !sapply(proposicao_tramitacoes_df, is.list)]
 
-    rename_passage_df(proposicao_passages_df)
+    rename_tramitacao_df(proposicao_tramitacoes_df)
 }
 
 #' @title Recupera os detalhes de uma proposição no Senado
@@ -192,7 +192,6 @@ fetch_relatorias <- function(proposicao_id) {
     magrittr::extract2("RelatoriaMateria") %>%
     magrittr::extract2("Materia") %>%
     magrittr::extract2("HistoricoRelatoria")
-
 
   relatorias_df <-
     relatorias_data %>%
@@ -334,9 +333,9 @@ rename_votacoes_df <- function(df) {
 #' @param df Dataframe da votação no Senado
 #' @return Dataframe com as colunas renomeadas
 #' @examples
-#' df %>% rename_passage_df()
+#' df %>% rename_tramitacao_df()
 #' @export
-rename_passage_df <- function(df) {
+rename_tramitacao_df <- function(df) {
   new_names = names(df) %>%
     to_underscore() %>%
     stringr::str_replace("identificacao_tramitacao_|
@@ -404,9 +403,9 @@ tail_descricao_despacho_Senado <- function(df, qtd=1) {
 #' @param df Dataframe da tramitação no Senado
 #' @return Dataframe com a coluna "fase" adicionada.
 #' @examples
-#' tramitacao %>% extract_phase_Senado()
+#' tramitacao %>% extract_fase_Senado()
 #' @export
-extract_phase_Senado <- function(dataframe, phase_one, phase_two, phase_three, phase_four) {
+extract_fase_Senado <- function(dataframe, phase_one, phase_two, phase_three, phase_four) {
 
   dataframe %>%
     dplyr::mutate(fase = dplyr::case_when( grepl(phase_one, texto_tramitacao) ~ 'iniciativa',
@@ -421,9 +420,9 @@ extract_phase_Senado <- function(dataframe, phase_one, phase_two, phase_three, p
 #' @param events_df Dataframe com os eventos contendo as colunas "evento" e "regex"
 #' @return Dataframe com a coluna "evento" adicionada.
 #' @examples
-#' df %>% extract_event_Senado(importants_events)
+#' df %>% extract_evento_Senado(importants_events)
 #' @export
-extract_event_Senado <- function(tramitacao_df, phases_df) {
+extract_evento_Senado <- function(tramitacao_df, phases_df) {
 
   dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao")
 }
@@ -434,9 +433,9 @@ extract_event_Senado <- function(tramitacao_df, phases_df) {
 #' @param num Quantidade de eventos a serem recuperados
 #' @return Dataframe contendo os n últimos eventos importantes que aconteceram no Senado
 #' @examples
-#' df %>% extract_n_last_events_Senado(4)
+#' df %>% extract_n_last_eventos_Senado(4)
 #' @export
-extract_n_last_events_Senado <- function(df, num) {
+extract_n_last_eventos_Senado <- function(df, num) {
 
   df %>%
     dplyr::filter(!is.na(evento)) %>%

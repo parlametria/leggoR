@@ -11,12 +11,12 @@ source(here::here("code/senado-lib.R"))
 #' @export
 import_proposicao <- function(bill_id){
   #Voting data
-  voting <- fetch_voting(bill_id)
+  voting <- fetch_votacoes(bill_id)
   voting %>% 
       write_csv(paste0(here::here("data/Senado/"), bill_id, "-votacoes-senado.csv"))
 
   #Passage Data
-  passage <- fetch_passage(bill_id)
+  passage <- fetch_tramitacao(bill_id)
   passage %>%
       write_csv(paste0(here::here("data/Senado/"), bill_id, "-passage-senado.csv"))
 

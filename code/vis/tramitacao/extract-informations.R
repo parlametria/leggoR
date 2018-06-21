@@ -13,7 +13,7 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   despacho_camara <- tail_descricao_despacho_Camara(tramitacao_camara)
   despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
   
-  last_events_senado <- extract_n_last_events_Senado(tramitacao_senado, 3)
+  last_events_senado <- extract_n_last_eventos_Senado(tramitacao_senado, 3)
   last_events_camara <- extract_n_last_events_Camara(tramitacao_camara, 3)
   
   nome <- paste0(nome_ementa_senado$sigla_subtipo_materia, nome_ementa_senado$numero_materia, " / ", nome_ementa_camara$siglaTipo, nome_ementa_camara$numero)
@@ -80,7 +80,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     
   } else if (casa == 'senado') {
     tramitacao_senado <- read_csv(paste0("../data/Senado/", id, "-bill-passage-phases-senado.csv"))
-    proposicao <- fetch_bill(id) %>% tail(1)
+    proposicao <- fetch_proposicao(id) %>% tail(1)
     despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
     nome_senado <- proposicao %>% select(ementa_materia, sigla_subtipo_materia, numero_materia) %>% unique
     nome <- paste0(nome_senado$sigla_subtipo_materia, nome_senado$numero_materia)
@@ -91,7 +91,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     relator <- as.character(relatoria$nome_parlamentar)
     ementa <- proposicao$ementa_materia
     data_apresentacao <- format(as.Date(proposicao$data_apresentacao), "%d/%m/%Y") %>% tail(1)
-    eventos <-  as.list(extract_n_last_events_Senado(tramitacao_senado, 3)$evento)
+    eventos <-  as.list(extract_n_last_eventos_Senado(tramitacao_senado, 3)$evento)
   }
   
   proposicoes_df <- 
@@ -106,7 +106,7 @@ gera_tabela_apensadas_senado <- function(bill_id_senado) {
   url_senado <- "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
   
   senado <- 
-    fetch_bill(bill_id_senado) 
+    fetch_proposicao(bill_id_senado) 
   
   #se não tiver proposição
   if (!("" %in% senado$proposicoes_apensadas)) {
@@ -164,7 +164,7 @@ gera_tabela_requerimentos <- function(bill_id, house) {
   if (house == 'camara') {
     requerimentos <- fetch_requerimentos_relacionados(bill_id) %>% select(dataApresentacao,descricaoTipo,ementa,deferimento,statusProposicao.despacho)
   } else if (house == 'senado') {
-    requerimentos <- as.array(strsplit(fetch_bill(bill_id)$proposicoes_relacionadas, " ")[[1]]) %>% fetch_deferimento()
+    requerimentos <- as.array(strsplit(fetch_proposicao(bill_id)$proposicoes_relacionadas, " ")[[1]]) %>% fetch_deferimento()
   }
   requerimentos
 }
