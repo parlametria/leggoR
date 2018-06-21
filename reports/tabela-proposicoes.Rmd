@@ -39,7 +39,7 @@ a <- gera_tabela_proposicoes_congresso(ids_df)
 b <- gera_tabela_proposicoes_uma_casa(ids_df_single_house)
 ```
 
-```{r, echo = FALSE, results='asis'}
+```{r, echo = FALSE, message = FALSE, results='asis'}
 #knitr::kable(a, caption = "Proposições")
 knitr::kable(b, caption = "Proposições")
 ```

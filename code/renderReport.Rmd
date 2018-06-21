@@ -38,7 +38,11 @@ render_plot_all <- function(senado_id, camara_id) {
        )
 }
 
+render_plot_single_house(pls_168_senado, 'senado')
+render_plot_single_house(pl_3729_camara, 'camara')
+render_plot_single_house(pl_490_camara, 'camara')
+render_plot_single_house(pl_3751_camara, 'camara')
 render_plot_single_house(pl_6670_camara, 'camara')
-#render_plot_all(lei_teto_remuneratorio_senado, lei_teto_remuneratorio_camara)
+render_plot_all(lei_teto_remuneratorio_senado, lei_teto_remuneratorio_camara)
 
 ```
