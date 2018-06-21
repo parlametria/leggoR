@@ -48,11 +48,14 @@ if(params$casa == "camara") {
 }
 ```
 
-#### Tabelas de apensação
+#### Tabelas de eventos
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 if(params$casa == "camara") {
   table_proximo_evento_camara <- get_next_events(params$id) 
-  knitr::kable(table_proximo_evento_camara, caption = "Lista de Leis Apensadas Câmara")
+  knitr::kable(table_proximo_evento_camara, caption = "Lista de Próximos eventos")
+  
+  table_ultimos_eventos_camara <- get_latest_events(params$id) 
+  knitr::kable(table_ultimos_eventos_camara, caption = "Lista de Últimos eventos")
 }
 ```
 
