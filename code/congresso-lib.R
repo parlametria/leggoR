@@ -15,12 +15,10 @@ to_underscore <- function(x) {
 
 #' @title Verfica se um elemento está contido em um vetor
 #' @description Verfica se um elemento está contido em um vetor
-#' @param text Elemento que pode estar contido
-#' @param exp Vetor de elementos
+#' @param element Elemento que pode estar contido
+#' @param set Vetor de elementos
 #' @return Valor booleano que indica se o elemento está contido no vetor.
-#' @examples
-#' to_underscore(c("testName", "TESTNAME"))
 #' @export
-detect_phase <- function(element, set) {
+detect_fase <- function(element, set) {
   element %in% set
 }
