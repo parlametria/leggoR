@@ -68,3 +68,12 @@ if (nrow(reqs) != 0) {
   knitr::kable(reqs)
 }
 ```
+
+#### Tabelas de apensação
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+if(params$casa == "camara") {
+  table_proximo_evento_camara <- get_next_events(params$id) 
+  knitr::kable(table_proximo_evento_camara, caption = "Lista de Leis Apensadas Câmara")
+}
+```

@@ -27,6 +27,63 @@ tail_descricao_despacho_Camara <- function(df, qtd=1) {
     dplyr::select(data_hora, descricao_tramitacao, despacho)
 }
 
+#' @title Recupera as comissões pelas quais a proposição irá passar
+#' @description Retorna um dataframe aas comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
+#' as próximas comissões 
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe com as próximas comissões que a proposição irá passar.
+#' @examples
+#' tramitacao %>% get_ditribuicao_comissoes_Camara()
+#' @export
+get_ditribuicao_comissoes_Camara <- function(df) {
+  comissoes_permanentes <- "
+    Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural
+    Ciência e Tecnologia, Comunicação e Informática
+    Constituição e Justiça e de Cidadania
+    Cultura
+    Defesa do Consumidor
+    Defesa dos Direitos da Mulher
+    Defesa dos Direitos da Pessoa Idosa
+    Defesa dos Direitos das Pessoas com Deficiência
+    Desenvolvimento Urbano
+    Desenvolvimento Econômico, Indústria, Comércio e Serviços
+    Direitos Humanos e Minorias
+    Educação
+    Esporte
+    Finanças e Tributação
+    Fiscalização Financeira e Controle
+    Integração Nacional, Desenvolvimento Regional e da Amazônia
+    Legislação Participativa
+    Meio Ambiente e Desenvolvimento Sustentável
+    Minas e Energia
+    Relações Exteriores e de Defesa Nacional
+    Segurança Pública e Combate ao Crime Organizado
+    Seguridade Social e Família
+      Trabalho, de Administração e Serviço Público
+    Turismo
+    Viação e Transportes
+    " %>%
+    strsplit('\n') %>% 
+    magrittr::extract2(1) %>%
+    sapply(trimws) %>%
+    magrittr::extract(. != '') %>% 
+    paste(collapse='|') %>%
+    regex(ignore_case=TRUE)
+    
+  
+  df %>%
+    dplyr::mutate(
+      proximas_comissoes = 
+        dplyr::case_when(
+        stringr::str_detect(descricao_tramitacao, regex("distribui..o", ignore_case=TRUE)) & stringr::str_detect(despacho, regex(comissoes_permanentes, ignore_case=TRUE)) ~
+          stringr::str_extract_all(despacho, regex(comissoes_permanentes, ignore_case=TRUE)),
+        stringr::str_detect(descricao_tramitacao, regex("cria..o de comiss.o tempor.ria", ignore_case=TRUE)) ~
+          list("ComissãoEspecial"),
+        TRUE ~ list(NA))) %>%
+    dplyr::filter(!is.na(proximas_comissoes) & !identical(proximas_comissoes, character(0)) ) %>% 
+    dplyr::select(c('data_hora', 'id_prop', 'proximas_comissoes'))
+}
+
 #' @title Cria coluna com os relatores na tramitação na Câmara
 #' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no
 #' envento pontual em que ele é designado
