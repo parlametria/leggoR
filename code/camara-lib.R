@@ -36,12 +36,50 @@ tail_descricao_despacho_Camara <- function(df, qtd=1) {
 #' tramitacao %>% get_ditribuicao_comissoes_Camara()
 #' @export
 get_ditribuicao_comissoes_Camara <- function(df) {
-  comissoes_permanentes <- "agricultura, pecu.ria, abastecimento e desenvolvimento rural|ci.ncia e tecnologia, comunica..o e informatica|constitui..o e justi.a e de cidadania|cultura|defesa do consumidor|defesa dos direitos da mulher|defesa dos direitos da pessoa idosa|defesa dos direitos das pessoas com defici.ncia|desenvolvimento urbano|desenvolvimento econ.mico, ind.stria, com.rcio e servi.os|direitos humanos e minorias|educa..o|comiss.o do esporte|finan.as e tributa..o|fiscaliza..o financeira e controle|integra..o nacional, desenvolvimento regional e da amaz.nia|legisla..o participativa|meio ambiente e desenvolvimento sustent.vel|minas e energia|rela..es exteriores e de defesa nacional|seguran.a p.blica e combate ao crime organizado|seguridade social e fam.lia|trabalho, de administra..o e servi.o p.blico|turismo|via..o e transportes"
+  comissoes_permanentes <- "
+    Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural
+    Ciência e Tecnologia, Comunicação e Informática
+    Constituição e Justiça e de Cidadania
+    Cultura
+    Defesa do Consumidor
+    Defesa dos Direitos da Mulher
+    Defesa dos Direitos da Pessoa Idosa
+    Defesa dos Direitos das Pessoas com Deficiência
+    Desenvolvimento Urbano
+    Desenvolvimento Econômico, Indústria, Comércio e Serviços
+    Direitos Humanos e Minorias
+    Educação
+    Esporte
+    Finanças e Tributação
+    Fiscalização Financeira e Controle
+    Integração Nacional, Desenvolvimento Regional e da Amazônia
+    Legislação Participativa
+    Meio Ambiente e Desenvolvimento Sustentável
+    Minas e Energia
+    Relações Exteriores e de Defesa Nacional
+    Segurança Pública e Combate ao Crime Organizado
+    Seguridade Social e Família
+      Trabalho, de Administração e Serviço Público
+    Turismo
+    Viação e Transportes
+    " %>%
+    strsplit('\n') %>% 
+    magrittr::extract2(1) %>%
+    sapply(trimws) %>%
+    magrittr::extract(. != '') %>% 
+    paste(collapse='|') %>%
+    regex(ignore_case=TRUE)
+    
   
   df %>%
-    dplyr::mutate(proximas_comissoes = dplyr::case_when(stringr::str_detect(descricao_tramitacao, regex("distribui..o", ignore_case=TRUE)) & stringr::str_detect(despacho, regex(comissoes_permanentes, ignore_case=TRUE)) ~ stringr::str_extract_all(despacho, regex(comissoes_permanentes, ignore_case=TRUE)),
-                                                        stringr::str_detect(descricao_tramitacao, regex("cria..o de comiss.o tempor.ria", ignore_case=TRUE)) ~ list("Especial"),
-                                                        TRUE ~ list(NA))) %>%
+    dplyr::mutate(
+      proximas_comissoes = 
+        dplyr::case_when(
+        stringr::str_detect(descricao_tramitacao, regex("distribui..o", ignore_case=TRUE)) & stringr::str_detect(despacho, regex(comissoes_permanentes, ignore_case=TRUE)) ~
+          stringr::str_extract_all(despacho, regex(comissoes_permanentes, ignore_case=TRUE)),
+        stringr::str_detect(descricao_tramitacao, regex("cria..o de comiss.o tempor.ria", ignore_case=TRUE)) ~
+          list("ComissãoEspecial"),
+        TRUE ~ list(NA))) %>%
     dplyr::filter(!is.na(proximas_comissoes) & !identical(proximas_comissoes, character(0)) ) %>% 
     dplyr::select(c('data_hora', 'id_prop', 'proximas_comissoes'))
 }
