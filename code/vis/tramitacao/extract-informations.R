@@ -62,7 +62,7 @@ gera_tabela_proposicoes_uma_casa <- function(dataframe) {
   propositions
 }
 
-extract_informations_from_single_house <- function(id, casa, url) {
+extract_informations_from_single_house <- function(id, casa, url=NULL) {
   casa <- tolower(casa)
   if (casa == 'camara') {
     nome_camara <- get_nome_ementa_Camara(id) %>% tail(1)
