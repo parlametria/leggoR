@@ -1,0 +1,45 @@
+---
+output: html_document
+params:
+  id: 345311
+  casa: 'camara'
+---
+```{r imports, echo=FALSE, message=FALSE, error=FALSE}
+source(here::here('code/vis/tramitacao/extract-informations.R'))
+source(here::here('code/vis/tramitacao/build-chart.R'))
+
+data <- extract_informations_from_single_house(params$id, params$casa)
+chart <- create_chart(params$id, params$casa)
+```
+# Projeto de Lei `r toString(paste0(data$nome))`
+
+### Informações Gerais
+
+#### Autor:
+ `r toString(data$autor)`
+
+#### Casa de Origem:
+ `r toString(data$casa_origem)`
+
+#### Data de Apresentação:
+ `r toString(data$data_apresentacao)`
+
+#### Ementa:
+`r toString(data$ementa)`
+
+#### Status Atual:
+`r toString(data$status_atual)`
+
+#### Último Relator:
+`r toString(data$ultimo_relator)`
+
+#### Tramitação na casa `r toString(data$casa)`
+```{r echo=FALSE, message=FALSE}
+chart
+```
+#### Tabelas de apensação
+**TODO**
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#table_apensadas <- gera_tabela_apensadas(bill_id_pl_veneno_camara, bill_id_pl_veneno_senado) %>% rename(Apensada = apensadas, Casa_Origem = casa)
+#knitr::kable(table_apensadas, caption = "Lista de Leis Apensadas")
+```

@@ -32,7 +32,7 @@ fetch_voting <- function(bill_id){
     voting_df <-
       voting_df %>%
       tibble::add_column(!!! voting_ids)
-    
+
     voting_df <- voting_df[, !sapply(voting_df, is.list)]
     rename_voting_df(voting_df)
 }
@@ -70,8 +70,9 @@ fetch_passage <- function(bill_id){
       magrittr::extract2("Tramitacao") %>%
       tibble::as.tibble() %>%
       tibble::add_column(!!! passage_ids)
-  
+
     bill_passages_df <- bill_passages_df[, !sapply(bill_passages_df, is.list)]
+
     rename_passage_df(bill_passages_df)
 }
 
@@ -92,14 +93,14 @@ fetch_bill <- function(bill_id){
     json_bill$DetalheMateria$Materia
   bill_ids <-
     bill_data$IdentificacaoMateria %>%
-    tibble::as.tibble()  
+    tibble::as.tibble()
   bill_basic_data <-
     bill_data$DadosBasicosMateria %>%
     purrr::flatten() %>%
     tibble::as.tibble()
   bill_author <-
     bill_data$Autoria$Autor %>%
-    tibble::as.tibble() 
+    tibble::as.tibble()
   bill_specific_subject <-
     bill_data$Assunto$AssuntoEspecifico %>%
     tibble::as.tibble() %>%
@@ -115,16 +116,17 @@ fetch_bill <- function(bill_id){
     bill_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria
   relacionadas <-
     bill_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria
-
+  
   bill_complete <-
     bill_basic_data %>%
     tibble::add_column(
       !!! bill_ids, !!! bill_author, !!! bill_specific_subject,
       !!! bill_general_subject, !!! bill_source,
-      proposicoes_relacionadas = list(relacionadas),
-      proposicoes_apensadas = list(anexadas))
-
+      proposicoes_relacionadas = paste(relacionadas, collapse=' '),
+      proposicoes_apensadas = paste(anexadas, collapse=' '))
+  
   bill_complete <- bill_complete[, !sapply(bill_complete, is.list)]
+
   rename_bill_df(bill_complete)
 }
 
@@ -170,7 +172,7 @@ fetch_deferimento <- function(bill_id) {
 
 #' @title Recupera o histórico de relatorias de uma proposição no Senado
 #' @description Retorna dataframe com o histórico de relatorias detalhado de uma proposição no Senado, incluindo a data
-#' de designação e destituição, o relator e seu partido e a comissão. 
+#' de designação e destituição, o relator e seu partido e a comissão.
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param bill_id ID de uma proposição do Senado
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
@@ -203,7 +205,7 @@ fetch_relatorias <- function(bill_id) {
   relatorias_df <-
     relatorias_df %>%
     tibble::add_column()
-  
+
   relatorias_df <- relatorias_df[, !sapply(relatorias_df, is.list)]
   rename_relatorias_df(relatorias_df)
 }
@@ -232,9 +234,9 @@ fetch_current_relatoria <- function(bill_id) {
   current_relatoria_df <-
     relatorias_data %>%
     magrittr::extract2("HistoricoRelatoria") %>%
-    magrittr::extract2("Relator") %>% 
+    magrittr::extract2("Relator") %>%
     as.data.frame() %>%
-    purrr::map_df(~ .) %>% 
+    purrr::map_df(~ .) %>%
     tidyr::unnest()
 
 
@@ -252,7 +254,7 @@ fetch_current_relatoria <- function(bill_id) {
   current_relatoria_df <-
     current_relatoria_df %>%
     tibble::add_column()
-  
+
   current_relatoria_df <- current_relatoria_df[, !sapply(current_relatoria_df, is.list)]
   rename_relatoria(current_relatoria_df)
 }
@@ -282,12 +284,12 @@ fetch_last_relatoria <- function(bill_id) {
 #' df %>% rename_relatorias_df()
 #' @export
 rename_relatorias_df <- function(df) {
-  new_names = names(df) %>% 
-    to_underscore() %>% 
+  new_names = names(df) %>%
+    to_underscore() %>%
     stringr::str_replace("identificacao_parlamentar_|identificacao_comissao_", "")
-  
+
   names(df) <- new_names
-  
+
   df
 }
 
@@ -300,11 +302,11 @@ rename_relatorias_df <- function(df) {
 #' df %>% rename_relatoria()
 #' @export
 rename_relatoria <- function(df) {
-  new_names = names(df) %>% 
-    to_underscore() 
-  
+  new_names = names(df) %>%
+    to_underscore()
+
   names(df) <- new_names
-  
+
   df
 }
 
@@ -441,4 +443,79 @@ extract_n_last_events_Senado <- function(df, num) {
     dplyr::arrange(data_tramitacao) %>%
     tail(n = num) %>%
     dplyr::select(data_tramitacao, evento)
+}
+
+#' @title Recupera as comissões do Senado
+#' @description Retorna dataframe contendo o código da proposição e as comissões
+#' @param tramitacao_df Dataframe da tramitação no Senado
+#' @return Dataframe contendo o código da proposição e as comissões
+#' @examples
+#' df %>% extract_comissoes_Senado()
+#' @export
+extract_comissoes_Senado <- function(df) {
+
+  prefix <- '(Comiss..s*)* '
+
+  comissoes_permanentes_especiais <- '
+    Especial
+    de Assuntos Econômicos
+    de Assuntos Sociais
+    de Constituição, Justiça e Cidadania
+    de Ciência, Tecnologia, Inovação, Comunicação e Informática
+    de Direitos Humanos e Legislação Participativa
+    Diretora
+    de Desenvolvimento Regional e Turismo
+    de Educação, Cultura e Esporte
+    de Serviços de Infraestrutura
+    de Meio Ambiente
+    de Agricultura e Reforma Agrária
+    de Relações Exteriores e Defesa Nacional
+    Senado do Futuro
+    de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor
+    Mista de Controle das Atividades de Inteligência
+    Mista de Consolidação da Legislação Federal
+    Mista do Congresso Nacional de Assuntos Relacionados à Comunidade dos Países de Língua Portuguesa
+    Permanente Mista de Combate à Violência contra a Mulher
+    Mista Permanente sobre Mudanças Climáticas
+    Mista de Planos, Orçamentos Públicos e Fiscalização
+    Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas
+    ' %>%
+    # Constrói expressão regular adicionando `prefix` ao começo de cada linha
+    # e concatenando todas as linhas com `|`.
+    strsplit('\n') %>%
+    magrittr::extract2(1) %>%
+    sapply(trimws) %>%
+    magrittr::extract(. != '') %>%
+    paste0(prefix, .) %>%
+    paste(collapse='|') %>%
+    regex(ignore_case=TRUE)
+
+  # Faz com que os nomes comecem com 'Comissão'.
+  fix_names <- function(name) {
+    name %>%
+      stringr::str_replace('Comissões', 'Comissão') %>%
+      sapply(
+        function(name) {
+          if(!str_detect(name, 'Comissão')) paste0('Comissão', name)
+          else name
+        },
+        USE.NAMES=FALSE)
+  }
+
+  df %>%
+    dplyr::mutate(
+      comissoes =
+        dplyr::case_when(
+        stringr::str_detect(tolower(texto_tramitacao), 'às* comiss..s*') ~
+          stringr::str_extract(texto_tramitacao, regex('comiss..s*.+', ignore_case=TRUE)))
+    ) %>%
+    dplyr::filter(!is.na(comissoes)) %>%
+    dplyr::arrange(data_tramitacao) %>%
+    dplyr::select(codigo_materia, comissoes, data_tramitacao) %>%
+    rowwise() %>%
+    mutate(
+      comissoes = stringr::str_extract_all(comissoes, comissoes_permanentes_especiais)
+    ) %>%
+    unique() %>%
+    mutate(comissoes = sapply(comissoes, fix_names))
 }

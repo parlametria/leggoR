@@ -5,14 +5,14 @@ library(here)
 
 data_fase <- function(df) {
   df %>%
-    mutate(end_data = lead(data_hora, default=Sys.time())) %>% 
+    mutate(end_data = lead(data_hora, default=Sys.time())) %>%
     group_by(fase, sequence = rleid(fase)) %>%
       summarise(start = min(data_hora),
-              end = max(end_data)) %>% 
-      ungroup() %>% 
+              end = max(end_data)) %>%
+      ungroup() %>%
     arrange(sequence) %>%
     select(-sequence) %>%
-    rename(label = fase) %>% 
+    rename(label = fase) %>%
     mutate(group = "Fase",
            color = case_when(label == "iniciativa" ~ "#7fc97f",
                              label == "relatoria" ~ "#fdc086",
@@ -22,11 +22,11 @@ data_fase <- function(df) {
 }
 
 data_local <- function(df) {
-  df <- 
+  df <-
     df %>%
     filter((!(grepl('^S', sigla_orgao) | sigla_orgao == 'MESA')))
-  
-  df %>% 
+
+  df %>%
     mutate(end_data = lead(data_hora, default=Sys.time())) %>%
     group_by(sigla_orgao, sequence = rleid(sigla_orgao)) %>%
     summarise(start = min(data_hora),
@@ -45,8 +45,8 @@ data_local <- function(df) {
 
 data_evento <- function(df) {
   df %>%
-    filter(!is.na(evento)) %>% 
-    mutate(start = data_hora, end = data_hora, group = 'Evento') %>% 
+    filter(!is.na(evento)) %>%
+    mutate(start = data_hora, end = data_hora, group = 'Evento') %>%
     group_by(evento) %>%
     rename(label = evento) %>%
     select(label, start, end, group) %>%
@@ -55,11 +55,10 @@ data_evento <- function(df) {
 
 build_vis_csv <- function(bill_id) {
   tramitacao <- read_csv(paste0(here::here('data/camara/tramitacao_camara_'), bill_id, '.csv'))
-  
+
   data_path <- here::here('data/vis/tramitacao/')
   file_path <- paste0(data_path, bill_id, '-data-camara.csv')
-  
+
   data <- bind_rows(data_evento(tramitacao), data_fase(tramitacao), data_local(tramitacao))
   readr::write_csv(data, file_path)
-} 
-
+}

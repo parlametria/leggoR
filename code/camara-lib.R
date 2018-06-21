@@ -12,7 +12,7 @@ get_nome_ementa_Camara <- function(bill_id) {
 }
 
 #' @title Recupera os n últimos despachos na Câmara
-#' @description Retorna um dataframe das últimas n tramitações na Câmara contendo a hora, a descrição e o despacho 
+#' @description Retorna um dataframe das últimas n tramitações na Câmara contendo a hora, a descrição e o despacho
 #' @param df Dataframe da tramitação na Câmara
 #' @param qtd  (opcional) Quantidade de eventos a serem recuperados
 #' @return Dataframe com as última n tramitações da Câmara.
@@ -21,14 +21,14 @@ get_nome_ementa_Camara <- function(bill_id) {
 #' tramitacao %>% tail_descricao_despacho_Camara(4)
 #' @export
 tail_descricao_despacho_Camara <- function(df, qtd=1) {
-  df %>% 
-    dplyr::arrange(data_hora) %>% 
-    tail(qtd) %>% 
+  df %>%
+    dplyr::arrange(data_hora) %>%
+    tail(qtd) %>%
     dplyr::select(data_hora, descricao_tramitacao, despacho)
 }
 
 #' @title Cria coluna com os relatores na tramitação na Câmara
-#' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no 
+#' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no
 #' envento pontual em que ele é designado
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe com a coluna "relator" adicionada.
@@ -36,9 +36,9 @@ tail_descricao_despacho_Camara <- function(df, qtd=1) {
 #' tramitacao %>% extract_relator_Camara()
 #' @export
 extract_relator_Camara <- function(df) {
-  df %>% 
-    dplyr::mutate(relator = 
-                    case_when(stringr::str_detect(tolower(despacho), '^designad. relat.r') ~ 
+  df %>%
+    dplyr::mutate(relator =
+                    case_when(stringr::str_detect(tolower(despacho), '^designad. relat.r') ~
                                 stringr::str_extract(despacho, regex('dep.+', ignore_case=TRUE))))
 }
 
@@ -51,12 +51,12 @@ extract_relator_Camara <- function(df) {
 #' @export
 extract_last_relator_Camara <- function(df) {
   relatores <- extract_relator_Camara(df)
-  relator <- 
+  relator <-
     relatores %>%
     dplyr::filter(!is.na(relator)) %>%
     dplyr::arrange(desc(data_hora)) %>%
-    dplyr::select(relator) 
-  
+    dplyr::select(relator)
+
   relator$relator[1]
 }
 
@@ -101,11 +101,11 @@ extract_n_last_events_Camara <- function(df, num) {
 #' tramitacao %>% extract_relatorias_camara()
 #' @export
 extract_relatorias_camara <- function(tramitacao_df) {
-  
+
   #extract line when a relator is designated by the code
   relatorias_rows <-
     dplyr::filter(tramitacao_df, id_tipo_tramitacao == '320')
-  
+
   #select columns
   relatorias_df <-
     relatorias_rows %>%
@@ -113,24 +113,24 @@ extract_relatorias_camara <- function(tramitacao_df) {
       data_hora,
       despacho,
       sigla_orgao
-    ) %>% 
+    ) %>%
     add_column()
-  
+
   #extract relator's name and partido
   relatorias_df %<>%
-    dplyr::mutate(nome_parlamentar = stringr::str_match(despacho,'Dep. (.*?) [(]')[,2], 
+    dplyr::mutate(nome_parlamentar = stringr::str_match(despacho,'Dep. (.*?) [(]')[,2],
            partido = stringr::str_match(despacho,'[(](.*?)[)]')[,2])
-  
+
   #remove despacho column
   relatorias_df %<>%
     dplyr::select(-c(despacho))
-  
+
   relatorias_df
 }
 
 #' @title Renomeia as colunas do dataframe
 #' @description Renomeia as colunas do dataframe usando o padrão de letras minúsculas e underscore
-#' @param df Dataframe 
+#' @param df Dataframe
 #' @return Dataframe com as colunas renomeadas.
 #' @examples
 #' df %>% rename_df_columns()
@@ -154,11 +154,11 @@ extract_events_Camara <- function(tramitacao_df, events_df, special_commission) 
     fuzzyjoin::regex_left_join(events_df, by = c(despacho_lower = "regex")) %>%
     dplyr::select(-c(despacho_lower, regex))
   tramitacao_df %<>%
-    dplyr::mutate(evento = dplyr::case_when(id_tipo_tramitacao == special_commission ~ 'criacao_comissao_temporaria', 
+    dplyr::mutate(evento = dplyr::case_when(id_tipo_tramitacao == special_commission ~ 'criacao_comissao_temporaria',
                                             TRUE ~ evento))
 }
 
-#' @title Altera as datas da tramitação para formato mais fácil de tratar 
+#' @title Altera as datas da tramitação para formato mais fácil de tratar
 #' @description Formata cada data da coluna para o formato POSIXct
 #' @param df Dataframe da tramitação na Cãmara
 #' @return Dataframe com a coluna de datas refatorada para um formato tratável.
@@ -190,21 +190,21 @@ sort_by_date <- function(df) {
 extract_autor_Camara <- function(prop_id) {
   camara_exp <- 'câmara dos deputados'
   senado_exp <- 'senado federal'
-  
+
   url_base_autores <- 'https://dadosabertos.camara.leg.br/api/v2/proposicoes/'
   url <- paste0(url_base_autores, prop_id, '/autores')
   json_voting <- jsonlite::fromJSON(url, flatten = T)
-  
-  autores <- json_voting %>% 
+
+  autores <- json_voting %>%
     magrittr::extract2("dados") %>%
     dplyr::rename(autor.uri = uri,
                   autor.nome = nome,
                   autor.tipo = tipo,
-                  autor.cod_tipo = codTipo) %>% 
+                  autor.cod_tipo = codTipo) %>%
     dplyr::mutate(casa_origem = dplyr::case_when(
       stringr::str_detect(tolower(autor.nome), camara_exp) | autor.tipo == 'Deputado' ~ 'Câmara dos Deputados',
       stringr::str_detect(tolower(autor.nome), senado_exp) | autor.tipo == 'Senador' ~ 'Senado Federal'))
-  
+
   autores
 }
 
@@ -225,43 +225,43 @@ fetch_apensadas <- function(prop_id) {
 
 fetch_proposicao_com_apensamentos <- function(prop_id) {
   rcongresso::fetch_proposicao(prop_id) %>%
-    mutate(proposicoes_apensadas = list(fetch_apensadas(prop_id)))
+    mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse=' '))
 }
 
 fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {
-  regexes <- 
+  regexes <-
     frame_data(~ deferimento, ~ regex,
                "indeferido", '^Indefiro',
                "deferido", '^(Defiro)|(Aprovado)')
-  
-  relacionadas <- 
-    rcongresso::fetch_relacionadas(id)$uri %>% 
-    strsplit('/') %>% 
-    vapply(last, '') %>% 
-    unique %>% 
-    rcongresso::fetch_proposicao()
-  
-  requerimentos <- 
-    relacionadas %>% 
-    dplyr::filter(stringr::str_detect(.$siglaTipo, '^REQ'))
-  
-  if(!mark_deferimento) return(requerimentos)
-  
-  tramitacoes <- 
-    requerimentos$id %>% 
-    rcongresso::fetch_tramitacao()
-  
+
   relacionadas <-
-    tramitacoes %>% 
+    rcongresso::fetch_relacionadas(id)$uri %>%
+    strsplit('/') %>%
+    vapply(last, '') %>%
+    unique %>%
+    rcongresso::fetch_proposicao()
+
+  requerimentos <-
+    relacionadas %>%
+    dplyr::filter(stringr::str_detect(.$siglaTipo, '^REQ'))
+
+  if(!mark_deferimento) return(requerimentos)
+
+  tramitacoes <-
+    requerimentos$id %>%
+    rcongresso::fetch_tramitacao()
+
+  relacionadas <-
+    tramitacoes %>%
     # mark tramitacoes rows based on regexes
-    fuzzyjoin::regex_left_join(regexes, by=c(despacho="regex")) %>% 
-    dplyr::group_by(id_prop) %>% 
+    fuzzyjoin::regex_left_join(regexes, by=c(despacho="regex")) %>%
+    dplyr::group_by(id_prop) %>%
     # fill down marks
     tidyr::fill(deferimento) %>%
     # get last mark on each tramitacao
     dplyr::do(tail(., n=1)) %>%
-    dplyr::ungroup() %>% 
-    dplyr::select(id_prop, deferimento) %>% 
+    dplyr::ungroup() %>%
+    dplyr::select(id_prop, deferimento) %>%
     # and mark proposicoes based on last tramitacao mark
     dplyr::left_join(relacionadas, by=c('id_prop' = 'id'))
 }
@@ -282,10 +282,10 @@ fetch_events <- function(bill_id) {
     rvest::html_table()
   events_df <- events[[1]]
   names(events_df) <- c('timestamp','origem','descricao','links')
-  events_df <- events_df %>% 
+  events_df <- events_df %>%
     dplyr::select(-links) %>%
     dplyr::mutate(timestamp = lubridate::dmy_hm(timestamp))
-  
+
   return(events_df)
 }
 
@@ -309,6 +309,6 @@ get_latest_events <- function(bill_id) {
 #' get_next_events(2121442)
 #' @export
 get_next_events <- function(bill_id) {
-  fetch_events(bill_id) %>%  
+  fetch_events(bill_id) %>%
     dplyr::filter(timestamp > lubridate::now())
 }
