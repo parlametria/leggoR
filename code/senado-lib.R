@@ -238,10 +238,8 @@ fetch_current_relatoria <- function(proposicao_id) {
     purrr::map_df(~ .) %>%
     tidyr::unnest()
 
-
   #fixing bug when api repeats relatorias
   current_relatoria_df <- current_relatoria_df[1,]
-  # print(colnames(current_relatoria_df))
 
   #verify if relator atual exists
   if(ncol(current_relatoria_df) == 0){
