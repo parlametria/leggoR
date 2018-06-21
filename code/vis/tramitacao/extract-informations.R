@@ -109,15 +109,18 @@ gera_tabela_apensadas_senado <- function(bill_id_senado) {
     fetch_bill(bill_id_senado) 
   
   #se não tiver proposição
-  if (!is.na(senado$proposicoes_apensadas)) {
+  if (!("" %in% senado$proposicoes_apensadas)) {
     senado <- 
       senado %>%
       mutate(proposicoes_apensadas = strsplit(.$proposicoes_apensadas, " ")) %>%
-      unnest()
+      unnest() %>%
+      select(apensadas = proposicoes_apensadas)
     
-    senado %>%
-      select(apensadas = proposicoes_apensadas) %>%
-      mutate(casa = "Senado", apensadas = paste0("[", apensadas, "](", paste0(url_senado, apensadas), ")"))
+    senado  %>%
+      rowwise() %>%
+      mutate(casa = "Senado", 
+             apensadas = paste0("[", paste0(get_nome_ementa_Senado(apensadas)$sigla_subtipo_materia, get_nome_ementa_Senado(apensadas)$numero_materia), "](", paste0(url_senado, apensadas), ")")) %>%
+      select(apensadas, casa)
   }else {
     NA
   }
@@ -159,8 +162,16 @@ extract_informations_all_houses <- function(senado_id, camara_id) {
 gera_tabela_apensadas_camara <- function(bill_id_camara) {
   url_camara <- "http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao="
 
-  fetch_apensadas(bill_id_camara) %>%
-    mutate(casa = "Câmara", apensadas = paste0("[", apensadas, "](", paste0(url_camara, apensadas), ")"))
+  apensadas <-
+    fetch_apensadas(bill_id_camara) 
   
+  if (nrow(apensadas) != 0) {
+    apensadas %>%
+      mutate(casa = "Câmara", 
+             apensadas = paste0("[", paste0(get_nome_ementa_Camara(apensadas)$siglaTipo, get_nome_ementa_Camara(apensadas)$numero), "](", paste0(url_camara, apensadas), ")"))
+  }else {
+    apensadas %>%
+      mutate(casa = "Câmara")
+  }
 }
 
