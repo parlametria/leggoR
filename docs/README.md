@@ -8,7 +8,7 @@ Documentação
 
 ## Relatórios
 
-- [Tabela](reports/tabela-preposicoes.html)
+- [Tabela](reports/tabela-proposicoes.html)
 - [Teto Remuneratório (Câmara)](reports/teto_remuneratorio-camara.html)
 - [Nova Lei das Finanças Públicas (Senado)](reports/91341-bill-report-Senate.html)
 - [127753 (Senado)](reports/127753-bill-report-Senate.html)
