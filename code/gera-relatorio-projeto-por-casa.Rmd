@@ -1,8 +1,8 @@
 ---
 output: html_document
 params:
-  id: 345311
-  casa: 'camara'
+  id: 132865
+  casa: 'senado'
 ---
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE}
 source(here::here('code/vis/tramitacao/extract-informations.R'))
@@ -37,7 +37,9 @@ chart <- create_chart(params$id, params$casa)
 ```{r echo=FALSE, message=FALSE}
 chart
 ```
+
 #### Tabelas de apensação
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 if(params$casa == "camara") {
   table_apensadas_camara <- gera_tabela_apensadas_camara(params$id) 
@@ -47,11 +49,22 @@ if(params$casa == "camara") {
   knitr::kable(table_apensadas_senado, caption = "Lista de Leis Apensadas Senado")
 }
 ```
+
 #### Requerimentos
+
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
-reqs <- gera_tabela_requerimentos(params$id,params$casa)
+reqs <- data.frame()
+
+reqs <- tryCatch({
+    return(gera_tabela_requerimentos(params$id,params$casa))
+}, error = function(e) {
+    return(data.frame())
+})
 ```
 
 ```{r, echo = FALSE, results='asis'}
-knitr::kable(reqs)
+
+if (nrow(reqs) != 0) {
+  knitr::kable(reqs)
+}
 ```
