@@ -1,53 +1,53 @@
 source(here::here("code/congresso-lib.R"))
 
-url_base_passage <- "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes/"
+url_base_tramitacao <- "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes/"
 
 #' @title Busca votações de uma proposição no Senado
 #' @description Retorna dataframe com os dados das votações de uma proposição no Senado.
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
-#' @param bill_id ID de uma proposição do Senado
+#' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações sobre as votações de uma proposição no Senado
 #' @examples
 #' fetch_voting(91341)
 #' @export
-fetch_voting <- function(bill_id){
-    url_base_voting <- "http://legis.senado.leg.br/dadosabertos/materia/votacoes/"
+fetch_voting <- function(proposicao_id){
+    url_base_votacoes <- "http://legis.senado.leg.br/dadosabertos/materia/votacoes/"
 
-    url <- paste0(url_base_voting, bill_id)
-    json_voting <- jsonlite::fromJSON(url, flatten = T)
-    voting_data <-
-      json_voting %>%
+    url <- paste0(url_base_votacoes, proposicao_id)
+    json_votacoes <- jsonlite::fromJSON(url, flatten = T)
+    votacoes_data <-
+      json_votacoes %>%
       magrittr::extract2("VotacaoMateria") %>%
       magrittr::extract2("Materia")
-    voting_ids <-
-        voting_data %>%
+    votacoes_ids <-
+        votacoes_data %>%
         magrittr::extract2("IdentificacaoMateria") %>%
         tibble::as.tibble()
-    voting_df <-
-        voting_data %>%
+    votacoes_df <-
+        votacoes_data %>%
         magrittr::extract2("Votacoes") %>%
         purrr::map_df(~ .) %>%
         tidyr::unnest()
 
-    voting_df <-
-      voting_df %>%
-      tibble::add_column(!!! voting_ids)
+    votacoes_df <-
+      votacoes_df %>%
+      tibble::add_column(!!! votacoes_ids)
 
-    voting_df <- voting_df[, !sapply(voting_df, is.list)]
-    rename_voting_df(voting_df)
+    votacoes_df <- votacoes_df[, !sapply(votacoes_df, is.list)]
+    rename_votacoes_df(votacoes_df)
 }
 
 #' @title Busca a movimentação da proposição
 #' @description Retorna dataframe com os dados da movimentação da proposição, incluindo tramitação, prazos, despachos e situação
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
-#' @param bill_id ID de uma proposição do Senado
+#' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações sobre a movimentação de uma proposição no Senado
 #' @examples
 #' fetch_passage(91341)
 #' @export
-fetch_passage <- function(bill_id){
+fetch_passage <- function(proposicao_id){
 
-    url <- paste0(url_base_passage, bill_id)
+    url <- paste0(url_base_tramitacao, proposicao_id)
     json_passage <- jsonlite::fromJSON(url, flatten = T)
     passage_data <-
       json_passage %>%
@@ -64,90 +64,90 @@ fetch_passage <- function(bill_id){
       magrittr::extract2("Autuacao") %>%
       magrittr::extract2("Situacao") %>%
       tibble::as.tibble()
-    bill_passages_df <-
+    proposicao_passages_df <-
       passage_data %>%
       magrittr::extract2("Tramitacoes") %>%
       magrittr::extract2("Tramitacao") %>%
       tibble::as.tibble() %>%
       tibble::add_column(!!! passage_ids)
 
-    bill_passages_df <- bill_passages_df[, !sapply(bill_passages_df, is.list)]
+    proposicao_passages_df <- proposicao_passages_df[, !sapply(proposicao_passages_df, is.list)]
 
-    rename_passage_df(bill_passages_df)
+    rename_passage_df(proposicao_passages_df)
 }
 
 #' @title Recupera os detalhes de uma proposição no Senado
 #' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
-#' @param bill_id ID de uma proposição do Senado
+#' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
-#' fetch_bill(91341)
+#' fetch_proposicao(91341)
 #' @export
-fetch_bill <- function(bill_id){
-  url_base_bill <- "http://legis.senado.leg.br/dadosabertos/materia/"
+fetch_proposicao <- function(proposicao_id){
+  url_base_proposicao <- "http://legis.senado.leg.br/dadosabertos/materia/"
 
-  url <- paste0(url_base_bill, bill_id)
-  json_bill <- jsonlite::fromJSON(url, flatten = T)
-  bill_data <-
-    json_bill$DetalheMateria$Materia
-  bill_ids <-
-    bill_data$IdentificacaoMateria %>%
+  url <- paste0(url_base_proposicao, proposicao_id)
+  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
+  proposicao_data <-
+    json_proposicao$DetalheMateria$Materia
+  proposicao_ids <-
+    proposicao_data$IdentificacaoMateria %>%
     tibble::as.tibble()
-  bill_basic_data <-
-    bill_data$DadosBasicosMateria %>%
+  proposicao_basic_data <-
+    proposicao_data$DadosBasicosMateria %>%
     purrr::flatten() %>%
     tibble::as.tibble()
-  bill_author <-
-    bill_data$Autoria$Autor %>%
+  proposicao_author <-
+    proposicao_data$Autoria$Autor %>%
     tibble::as.tibble()
-  bill_specific_subject <-
-    bill_data$Assunto$AssuntoEspecifico %>%
+  proposicao_specific_subject <-
+    proposicao_data$Assunto$AssuntoEspecifico %>%
     tibble::as.tibble() %>%
     dplyr::rename(assunto_especifico = Descricao, codigo_assunto_especifico = Codigo)
-  bill_general_subject <-
-    bill_data$Assunto$AssuntoGeral %>%
+  proposicao_general_subject <-
+    proposicao_data$Assunto$AssuntoGeral %>%
     tibble::as.tibble() %>%
     dplyr::rename(assunto_geral = Descricao, codigo_assunto_geral = Codigo)
-  bill_source <-
-    bill_data$OrigemMateria %>%
+  proposicao_source <-
+    proposicao_data$OrigemMateria %>%
     tibble::as.tibble()
   anexadas <-
-    bill_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria
+    proposicao_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria
   relacionadas <-
-    bill_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria
+    proposicao_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria
   
-  bill_complete <-
-    bill_basic_data %>%
+  proposicao_complete <-
+    proposicao_basic_data %>%
     tibble::add_column(
-      !!! bill_ids, !!! bill_author, !!! bill_specific_subject,
-      !!! bill_general_subject, !!! bill_source,
+      !!! proposicao_ids, !!! proposicao_author, !!! proposicao_specific_subject,
+      !!! proposicao_general_subject, !!! proposicao_source,
       proposicoes_relacionadas = paste(relacionadas, collapse=' '),
       proposicoes_apensadas = paste(anexadas, collapse=' '))
   
-  bill_complete <- bill_complete[, !sapply(bill_complete, is.list)]
+  proposicao_complete <- proposicao_complete[, !sapply(proposicao_complete, is.list)]
 
-  rename_bill_df(bill_complete)
+  rename_proposicao_df(proposicao_complete)
 }
 
 #' @title Deferimento de requerimentos
 #' @description Verifica deferimento ou não para uma lista de IDs de requerimentos.
-#' @param bill_id ID de um ou vários requerimentos
+#' @param proposicao_id ID de um ou vários requerimentos
 #' @return Dataframe com IDs dos requerimentos e informação sobre deferimento.
 #' @examples
 #' fetch_deferimento(c("102343", "109173", "115853"))
-#' fetch_bill("81668")$proposicoes_relacionadas %>% fetch_deferimento
+#' fetch_proposicao("81668")$proposicoes_relacionadas %>% fetch_deferimento
 #' @export
-fetch_deferimento <- function(bill_id) {
+fetch_deferimento <- function(proposicao_id) {
 
   regexes <-
     frame_data(~ deferimento, ~ regex,
                "indeferido", '^Indefiro',
                "deferido", '^(Defiro)|(Aprovado)')
 
-  fetch_one_deferimento <- function(bill_id) {
+  fetch_one_deferimento <- function(proposicao_id) {
     json <-
-      paste0(url_base_passage, bill_id) %>%
+      paste0(url_base_tramitacao, proposicao_id) %>%
       jsonlite::fromJSON()
 
     resultados <- json$MovimentacaoMateria$Materia$OrdensDoDia$OrdemDoDia$DescricaoResultado
@@ -156,14 +156,14 @@ fetch_deferimento <- function(bill_id) {
 
     resultados %>%
       tibble::as.tibble() %>%
-      mutate(bill_id=bill_id) %>%
+      mutate(proposicao_id=proposicao_id) %>%
       fuzzyjoin::regex_left_join(regexes, by=c(value="regex")) %>%
       tidyr::fill(deferimento) %>%
       tail(., n=1) %>%
-      dplyr::select(bill_id, deferimento)
+      dplyr::select(proposicao_id, deferimento)
   }
 
-  bill_id %>%
+  proposicao_id %>%
     unlist %>%
     unique %>%
     lapply(fetch_one_deferimento) %>%
@@ -174,16 +174,16 @@ fetch_deferimento <- function(bill_id) {
 #' @description Retorna dataframe com o histórico de relatorias detalhado de uma proposição no Senado, incluindo a data
 #' de designação e destituição, o relator e seu partido e a comissão.
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
-#' @param bill_id ID de uma proposição do Senado
+#' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
 #' @examples
 #' fetch_relatorias(91341)
 #' @export
-fetch_relatorias <- function(bill_id) {
+fetch_relatorias <- function(proposicao_id) {
 
   url_relatorias <- "http://legis.senado.leg.br/dadosabertos/materia/relatorias/"
 
-  url <- paste0(url_relatorias, bill_id)
+  url <- paste0(url_relatorias, proposicao_id)
   json_relatorias <- jsonlite::fromJSON(url, flatten = T)
 
   #extract relatores objects
@@ -213,16 +213,16 @@ fetch_relatorias <- function(bill_id) {
 #' @title Recupera a relatoria atual no Senado
 #' @description Retorna dataframe com a relatoria atual no senado, contendo a data de designação, o relator e seu partido e a comissão
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
-#' @param bill_id ID de uma proposição do Senado
+#' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações da relatoria atual no Senado
 #' @examples
 #' fetch_current_relatoria(91341)
 #' @export
-fetch_current_relatoria <- function(bill_id) {
+fetch_current_relatoria <- function(proposicao_id) {
 
   url_relatorias <- "http://legis.senado.leg.br/dadosabertos/materia/relatorias/"
 
-  url <- paste0(url_relatorias, bill_id)
+  url <- paste0(url_relatorias, proposicao_id)
   json_relatorias <- jsonlite::fromJSON(url, flatten = T)
 
   #extract relatores objects
@@ -262,13 +262,13 @@ fetch_current_relatoria <- function(bill_id) {
 #' @title Recupera a última relatoria de uma proposição no Senado
 #' @description Retorna dataframe com a última relatoria de uma proposição no Senado, incluindo a data
 #' de designação e destituição, o relator e seu partido e a comissão.
-#' @param bill_id ID de uma proposição do Senado
+#' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações da última relatoria de uma proposição no Senado
 #' @examples
 #' fetch_relatorias(91341)
 #' @export
-fetch_last_relatoria <- function(bill_id) {
-  relatoria <- fetch_relatorias(bill_id)
+fetch_last_relatoria <- function(proposicao_id) {
+  relatoria <- fetch_relatorias(proposicao_id)
   relatoria <- relatoria[1,]
 
   relatoria
@@ -316,9 +316,9 @@ rename_relatoria <- function(df) {
 #' @param df Dataframe da votação no Senado
 #' @return Dataframe com as colunas renomeadas
 #' @examples
-#' df %>% rename_voting_df()
+#' df %>% rename_votacoes_df()
 #' @export
-rename_voting_df <- function(df) {
+rename_votacoes_df <- function(df) {
   new_names = names(df) %>%
     to_underscore() %>%
     stringr::str_replace("sessao_plenaria_|tramitacao_identificacao_tramitacao_|identificacao_parlamentar_", "")
@@ -355,9 +355,9 @@ rename_passage_df <- function(df) {
 #' @param df Dataframe dos detalhes da proposição no Senado
 #' @return Dataframe com as colunas renomeadas
 #' @examples
-#' df %>% rename_bill_df()
+#' df %>% rename_proposicao_df()
 #' @export
-rename_bill_df <- function(df) {
+rename_proposicao_df <- function(df) {
   new_names = names(df) %>%
     to_underscore() %>%
     stringr::str_replace("identificacao_parlamentar_", "")
@@ -374,10 +374,10 @@ rename_bill_df <- function(df) {
 #' @examples
 #' get_nome_ementa_Senado(91341)
 #' @export
-get_nome_ementa_Senado <- function(bill_id) {
+get_nome_ementa_Senado <- function(proposicao_id) {
 
-  bill <- fetch_bill(bill_id)
-  bill %>%
+  proposicao <- fetch_proposicao(proposicao_id)
+  proposicao %>%
     dplyr::select(ementa_materia, sigla_subtipo_materia, numero_materia) %>%
     unique
 }
