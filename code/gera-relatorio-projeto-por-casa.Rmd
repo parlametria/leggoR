@@ -38,8 +38,12 @@ chart <- create_chart(params$id, params$casa)
 chart
 ```
 #### Tabelas de apensação
-**TODO**
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-#table_apensadas <- gera_tabela_apensadas(bill_id_pl_veneno_camara, bill_id_pl_veneno_senado) %>% rename(Apensada = apensadas, Casa_Origem = casa)
-#knitr::kable(table_apensadas, caption = "Lista de Leis Apensadas")
+if(params$casa == "camara") {
+  table_apensadas_camara <- gera_tabela_apensadas_camara(params$id) 
+  knitr::kable(table_apensadas_camara, caption = "Lista de Leis Apensadas Câmara")
+}else {
+  table_apensadas_senado <- gera_tabela_apensadas_senado(params$id) 
+  knitr::kable(table_apensadas_senado, caption = "Lista de Leis Apensadas Senado")
+}
 ```
