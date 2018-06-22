@@ -502,7 +502,8 @@ extract_comissoes_Senado <- function(df) {
         USE.NAMES=FALSE)
   }
 
-  df %>%
+  df <-
+    df %>%
     dplyr::mutate(
       comissoes =
         dplyr::case_when(
@@ -518,4 +519,6 @@ extract_comissoes_Senado <- function(df) {
     ) %>%
     unique() %>%
     mutate(comissoes = sapply(comissoes, fix_names))
+  
+  df[1,]
 }
