@@ -32,7 +32,8 @@ build_senado <- function(id){
 #' @param id Identificador da proposição que pode ser recuperado no site da casa legislativa.
 #' @param house Casa a que pertence essa proposição.
 #' @examples
-#' build_csvs(91341, "senado"))
+#' build_csvs(91341, "senado")
+#' build_csvs(257161, "camara")
 #' @export
 build_csvs <- function(id, house) {
   if("CAMARA" == toupper(house)){

@@ -410,9 +410,9 @@ extract_phase_Senado <- function(dataframe, phase_one, phase_two, phase_three, p
 
   dataframe %>%
     dplyr::mutate(fase = dplyr::case_when( grepl(phase_one, texto_tramitacao) ~ 'iniciativa',
-                             detect_phase(situacao_codigo_situacao, phase_two) ~ 'relatoria',
-                             detect_phase(situacao_codigo_situacao, phase_three) ~ 'discussao_deliberacao',
-                             detect_phase(situacao_codigo_situacao, phase_four) ~ 'virada_de_casa'))
+                             detect_fase(situacao_codigo_situacao, phase_two) ~ 'relatoria',
+                             detect_fase(situacao_codigo_situacao, phase_three) ~ 'discussao_deliberacao',
+                             detect_fase(situacao_codigo_situacao, phase_four) ~ 'virada_de_casa'))
 }
 
 #' @title Extrai os eventos importantes que aconteceram no Senado

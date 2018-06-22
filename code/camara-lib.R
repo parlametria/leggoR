@@ -126,12 +126,12 @@ extract_last_relator_Camara <- function(df) {
 #' @export
 extract_phases_Camara <- function(dataframe, phase_one, phase_two, phase_three, phase_four, phase_five) {
   dataframe %<>%
-    dplyr::mutate(fase = dplyr::case_when(detect_phase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
-                                          detect_phase(id_tipo_tramitacao, phase_two) ~ 'relatoria',
-                                          detect_phase(id_tipo_tramitacao, phase_three) ~ 'discussao_deliberacao',
-                                          detect_phase(id_tipo_tramitacao, phase_four) ~ 'virada_de_casa',
-                                          detect_phase(id_tipo_tramitacao, phase_five) ~ 'final',
-                                          detect_phase(id_situacao, 937) ~ 'final'))
+    dplyr::mutate(fase = dplyr::case_when(detect_fase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
+                                          detect_fase(id_tipo_tramitacao, phase_two) ~ 'relatoria',
+                                          detect_fase(id_tipo_tramitacao, phase_three) ~ 'discussao_deliberacao',
+                                          detect_fase(id_tipo_tramitacao, phase_four) ~ 'virada_de_casa',
+                                          detect_fase(id_tipo_tramitacao, phase_five) ~ 'final',
+                                          detect_fase(id_situacao, 937) ~ 'final'))
 }
 
 #' @title Busca os últimos n eventos da tramitação na Câmara
