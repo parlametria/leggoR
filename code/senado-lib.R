@@ -130,7 +130,7 @@ fetch_proposicao <- function(proposicao_id){
   rename_proposicao_df(proposicao_complete)
 }
 
-#' @title Deferimento de requerimentos
+#' @title Deferimento de requerimentos.
 #' @description Verifica deferimento ou não para uma lista de IDs de requerimentos.
 #' @param proposicao_id ID de um ou vários requerimentos
 #' @return Dataframe com IDs dos requerimentos e informação sobre deferimento.
