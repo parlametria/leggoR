@@ -101,11 +101,11 @@ fetch_proposicao <- function(proposicao_id){
   proposicao_author <-
     proposicao_data$Autoria$Autor %>%
     tibble::as.tibble()
-  proposicao_specific_subject <-
+  proposicao_specific_assunto <-
     proposicao_data$Assunto$AssuntoEspecifico %>%
     tibble::as.tibble() %>%
     dplyr::rename(assunto_especifico = Descricao, codigo_assunto_especifico = Codigo)
-  proposicao_general_subject <-
+  proposicao_general_assunto <-
     proposicao_data$Assunto$AssuntoGeral %>%
     tibble::as.tibble() %>%
     dplyr::rename(assunto_geral = Descricao, codigo_assunto_geral = Codigo)
@@ -120,8 +120,8 @@ fetch_proposicao <- function(proposicao_id){
   proposicao_complete <-
     proposicao_basic_data %>%
     tibble::add_column(
-      !!! proposicao_ids, !!! proposicao_author, !!! proposicao_specific_subject,
-      !!! proposicao_general_subject, !!! proposicao_source,
+      !!! proposicao_ids, !!! proposicao_author, !!! proposicao_specific_assunto,
+      !!! proposicao_general_assunto, !!! proposicao_source,
       proposicoes_relacionadas = paste(relacionadas, collapse=' '),
       proposicoes_apensadas = paste(anexadas, collapse=' '))
   
