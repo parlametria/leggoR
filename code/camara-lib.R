@@ -285,6 +285,25 @@ fetch_proposicao_com_apensamentos <- function(prop_id) {
     mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse=' '))
 }
 
+#' @title Baixa dados sobre uma proposição
+#' @description Retorna um dataframe contendo dados sobre uma proposição
+#' @param prop_id Um ou mais IDs de proposições
+#' @return Dataframe
+#' @examples
+#' fetch_proposicao(2056568)
+#' @export
+fetch_proposicao <- function(prop_id) {
+  regexes <-
+    frame_data(~ regime_tramitacao, ~ regex,
+               'ordinaria', 'Ordinária',
+               'prioridade', 'Prioridade',
+               'urgencia', 'Urgência')
+
+  rcongresso::fetch_proposicao(prop_id) %>%
+    # Padroniza valor sobre regime de tramitação
+    fuzzyjoin::regex_left_join(regexes, by=c(statusProposicao.regime="regex"))
+}
+
 fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {
   regexes <-
     frame_data(~ deferimento, ~ regex,
