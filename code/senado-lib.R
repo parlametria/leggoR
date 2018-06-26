@@ -479,6 +479,27 @@ extract_comissoes_Senado <- function(df) {
     Mista Permanente sobre Mudanças Climáticas
     Mista de Planos, Orçamentos Públicos e Fiscalização
     Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas
+    CAE
+    CAS
+    CCJ
+    CCT
+    CDH
+    CDIR
+    CDR
+    CE
+    CI
+    CMA
+    CRA
+    CRE
+    CSF
+    CTFC
+    CCAI
+    CMCF
+    CMCPLP
+    CMCVM
+    CMMC
+    CMO
+    FIPA
     ' %>%
     # Constrói expressão regular adicionando `prefix` ao começo de cada linha
     # e concatenando todas as linhas com `|`.
@@ -502,12 +523,16 @@ extract_comissoes_Senado <- function(df) {
         USE.NAMES=FALSE)
   }
 
-  df %>%
+  x <- df %>%
     dplyr::mutate(
       comissoes =
         dplyr::case_when(
-        stringr::str_detect(tolower(texto_tramitacao), 'às* comiss..s*') ~
-          stringr::str_extract(texto_tramitacao, regex('comiss..s*.+', ignore_case=TRUE)))
+        stringr::str_detect(tolower(texto_tramitacao),  '(à|a)s? comiss..s*') ~
+          stringr::str_extract(texto_tramitacao, regex('comiss..s*.+',, ignore_case=TRUE)),
+        stringr::str_detect(tolower(texto_tramitacao),  'às c.+ e c.+, cabendo à última a decisão terminativa') ~
+          stringr::str_extract(texto_tramitacao, regex('c.+ e c.+',, ignore_case=TRUE)),
+        stringr::str_detect(tolower(texto_tramitacao),  'à [A-Z]+, em decisão terminativa, onde poderá receber emendas pelo prazo de cinco dias úteis, após sua publicação e distribuição em avulsos.') ~
+          stringr::str_extract(texto_tramitacao, regex('$,',, ignore_case=TRUE)))
     ) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_tramitacao) %>%
@@ -516,6 +541,10 @@ extract_comissoes_Senado <- function(df) {
     mutate(
       comissoes = stringr::str_extract_all(comissoes, comissoes_permanentes_especiais)
     ) %>%
-    unique() %>%
-    mutate(comissoes = sapply(comissoes, fix_names))
+    unique() 
 }
+
+extract_first_comissoes_Senado <- function(df) {
+  extract_comissoes_Senado(df)[1, ]
+}
+
