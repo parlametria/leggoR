@@ -3,4 +3,4 @@
 Raiz do projeto Ágora Digital
 
 - [Documentação](/docs)
-- [Scripts](/code)
+- [Scripts](/scripts)
