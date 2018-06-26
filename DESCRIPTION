@@ -1,0 +1,17 @@
+Package: agoradigital
+Type: Package
+Version: 0.0.1
+Encoding: UTF-8
+LazyData: true
+Imports: magrittr,
+    dplyr,
+    tibble,
+    tidyr,
+    stringr,
+    jsonlite,
+    rvest,
+    rcongresso
+Suggests: testthat,
+    knitr
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
