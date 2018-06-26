@@ -7,6 +7,8 @@ params:
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE}
 source(here::here('code/vis/tramitacao/extract-informations.R'))
 source(here::here('code/vis/tramitacao/build-chart.R'))
+source(here::here('code/senado-lib.R'))
+library(rcongresso)
 
 data <- extract_informations_from_single_house(params$id, params$casa)
 chart <- create_chart(params$id, params$casa)
@@ -78,4 +80,15 @@ if(params$casa == "camara") {
   table_ultimos_eventos_camara <- get_latest_events(params$id) 
   knitr::kable(table_ultimos_eventos_camara, caption = "Lista de Últimos eventos")
 }
+```
+
+#### Tabelas de comissões
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+data_path <- here::here('data/')
+if(params$casa == "camara") {
+  comissoes <- get_ditribuicao_comissoes_Camara(read_csv(paste0(data_path, "camara/tramitacao_camara_", params$id, ".csv")))
+}else {
+  comissoes <- extract_comissoes_Senado(read_csv(paste0(data_path, "Senado/", params$id, "-passage-senado.csv")))
+}
+  knitr::kable(comissoes, caption = "Lista de Comissões")
 ```

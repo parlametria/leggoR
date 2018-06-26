@@ -285,6 +285,48 @@ fetch_proposicao_com_apensamentos <- function(prop_id) {
     mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse=' '))
 }
 
+#' @title Baixa dados sobre uma proposição
+#' @description Retorna um dataframe contendo dados sobre uma proposição
+#' @param prop_id Um ou mais IDs de proposições
+#' @return Dataframe
+#' @examples
+#' fetch_proposicao(2056568)
+#' @export
+fetch_proposicao <- function(prop_id) {
+  base_url <- 'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
+
+  regex_regime <-
+    frame_data(~ regime_tramitacao, ~ regex,
+               'ordinaria', 'Ordinária',
+               'prioridade', 'Prioridade',
+               'urgencia', 'Urgência')
+
+  regex_apreciacao <-
+    frame_data(~ forma_apreciacao, ~ regex,
+               'conclusiva', 'Sujeita à Apreciação Conclusiva pelas Comissões',
+               'plenario', 'Sujeita à Apreciação do Plenário')
+
+  rcongresso::fetch_proposicao(prop_id) %>%
+    # Adiciona url das páginas das proposições
+    mutate(page_url=paste0(base_url, prop_id)) %>%
+    # Adiciona html das páginas das proposições
+    rowwise() %>%
+    mutate(page_html=list(xml2::read_html(page_url))) %>%
+
+    # Padroniza valor sobre regime de tramitação
+    fuzzyjoin::regex_left_join(regex_regime, by=c(statusProposicao.regime="regex")) %>%
+    select(-'regex') %>%
+
+    # Adiciona coluna sobre forma de apreciação
+    rowwise() %>%
+    mutate(temp=
+      rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
+      rvest::html_text()
+    ) %>%
+    fuzzyjoin::regex_left_join(regex_apreciacao, by=c(temp="regex")) %>%
+    select(-c('temp', 'regex'))
+}
+
 fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {
   regexes <-
     frame_data(~ deferimento, ~ regex,

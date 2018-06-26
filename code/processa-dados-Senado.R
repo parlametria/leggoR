@@ -18,7 +18,7 @@ process_proposicao <- function(bill_id){
   phase_four <- c(52)
 
   bill_passage <- 
-    extract_phase_Senado(bill_passage, phase_one, phase_two, phase_three, phase_four) %>% 
+    extract_fase_Senado(bill_passage, phase_one, phase_two, phase_three, phase_four) %>% 
     arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     fill(fase) %>%
     filter(!is.na(fase))
@@ -35,7 +35,7 @@ process_proposicao <- function(bill_id){
             "aprovacao_projeto", 25)
 
 
-  bill_passage <- extract_event_Senado(bill_passage, important_phases)
+  bill_passage <- extract_evento_Senado(bill_passage, important_phases)
   bill_passage %>%
     write_csv(paste0(here::here("data/Senado/"), bill_id, "-bill-passage-phases-senado.csv"))
 
