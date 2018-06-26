@@ -315,16 +315,16 @@ fetch_proposicao <- function(prop_id) {
 
     # Padroniza valor sobre regime de tramitação
     fuzzyjoin::regex_left_join(regex_regime, by=c(statusProposicao.regime="regex")) %>%
+    select(-'regex') %>%
 
     # Adiciona coluna sobre forma de apreciação
+    rowwise() %>%
     mutate(temp=
       rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
       rvest::html_text()
     ) %>%
     fuzzyjoin::regex_left_join(regex_apreciacao, by=c(temp="regex")) %>%
-
-    # Limpa data frame
-    select(-'temp')
+    select(-c('temp', 'regex'))
 }
 
 fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {
