@@ -90,13 +90,16 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     relatoria <- fetch_last_relatoria(id) %>% tail(1)
     relator <- as.character(relatoria$nome_parlamentar)
     ementa <- proposicao$ementa_materia
+    ultimo_relator <- fetch_current_relatoria(id)
+    uf_ultimo_relator <- as.character(ultimo_relator$identificacao_parlamentar_uf_parlamentar)
+    partido_relator <- as.character(ultimo_relator$identificacao_parlamentar_sigla_partido_parlamentar)
     data_apresentacao <- format(as.Date(proposicao$data_apresentacao), "%d/%m/%Y") %>% tail(1)
     eventos <-  as.list(extract_n_last_eventos_Senado(tramitacao_senado, 3)$evento)
   }
   
   proposicoes_df <- 
-    frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator, ~ ultimos_eventos,
-               nome, nome_autor, casa_origem, data_apresentacao, ementa, despacho, relator, eventos)
+    frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator, ~ ultimos_eventos, ~uf_ultimo_relator, ~partido_relator,
+               nome, nome_autor, casa_origem, data_apresentacao, ementa, despacho, relator, eventos, uf_ultimo_relator, partido_relator)
   proposicoes_df$nome <-paste0("[", proposicoes_df$nome, "](", url, ")")
   
   proposicoes_df
