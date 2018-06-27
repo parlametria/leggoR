@@ -326,6 +326,7 @@ fetch_proposicao <- function(prop_id) {
     fuzzyjoin::regex_left_join(regex_apreciacao, by=c(temp="regex")) %>%
     dplyr::select(-c('temp', 'regex'))
 }
+camara_fetch_proposicao <- fetch_proposicao
 
 fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {
   regexes <-
