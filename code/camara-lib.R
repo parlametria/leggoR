@@ -5,22 +5,22 @@ source(here::here("code/congresso-lib.R"))
 #' @param bill_id ID da proposição
 #' @return Dataframe com o número, o tipo e a ementa da proposição na Câmara.
 #' @examples
-#' get_nome_ementa_Camara(2121442)
+#' get_ementas_in_camara(2121442)
 #' @export
-get_nome_ementa_Camara <- function(bill_id) {
+get_ementas_in_camara <- function(bill_id) {
   rcongresso::fetch_proposicao(bill_id) %>% dplyr::select(ementa, siglaTipo, numero)
 }
 
 #' @title Recupera os n últimos despachos na Câmara
 #' @description Retorna um dataframe das últimas n tramitações na Câmara contendo a hora, a descrição e o despacho
 #' @param df Dataframe da tramitação na Câmara
-#' @param qtd  (opcional) Quantidade de eventos a serem recuperados
+#' @param qtd  (opcional) Quantidade de eventos a serem recuperados. (Default: qtd = 1)
 #' @return Dataframe com as última n tramitações da Câmara.
 #' @examples
-#' tramitacao %>% tail_descricao_despacho_Camara()
-#' tramitacao %>% tail_descricao_despacho_Camara(4)
+#' tramitacao %>% last_n_despacho_in_camara()
+#' tramitacao %>% last_n_despacho_in_camara(4)
 #' @export
-tail_descricao_despacho_Camara <- function(df, qtd=1) {
+last_n_despacho_in_camara <- function(df, qtd=1) {
   df %>%
     dplyr::arrange(data_hora) %>%
     tail(qtd) %>%
@@ -33,9 +33,9 @@ tail_descricao_despacho_Camara <- function(df, qtd=1) {
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe com as próximas comissões que a proposição irá passar.
 #' @examples
-#' tramitacao %>% get_ditribuicao_comissoes_Camara()
+#' tramitacao %>% get_comissoes_in_camara(df)
 #' @export
-get_ditribuicao_comissoes_Camara <- function(df) {
+get_comissoes_in_camara <- function(df) {
   comissoes_permanentes <- "
     Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural
     Ciência e Tecnologia, Comunicação e Informática
@@ -59,7 +59,7 @@ get_ditribuicao_comissoes_Camara <- function(df) {
     Relações Exteriores e de Defesa Nacional
     Segurança Pública e Combate ao Crime Organizado
     Seguridade Social e Família
-      Trabalho, de Administração e Serviço Público
+    Trabalho, de Administração e Serviço Público
     Turismo
     Viação e Transportes
     " %>%
@@ -73,14 +73,14 @@ get_ditribuicao_comissoes_Camara <- function(df) {
   
   df %>%
     dplyr::mutate(
-      proximas_comissoes = 
+      next_comissoes = 
         dplyr::case_when(
         stringr::str_detect(descricao_tramitacao, regex("distribui..o", ignore_case=TRUE)) & stringr::str_detect(despacho, regex(comissoes_permanentes, ignore_case=TRUE)) ~
           stringr::str_extract_all(despacho, regex(comissoes_permanentes, ignore_case=TRUE)),
         stringr::str_detect(descricao_tramitacao, regex("cria..o de comiss.o tempor.ria", ignore_case=TRUE)) ~
           list("ComissãoEspecial"),
         TRUE ~ list(NA))) %>%
-    dplyr::filter(!is.na(proximas_comissoes) & !identical(proximas_comissoes, character(0)) ) %>% 
+    dplyr::filter(!is.na(next_comissoes) & !identical(next_comissoes, character(0)) ) %>% 
     dplyr::select(c('data_hora', 'id_prop', 'proximas_comissoes'))
 }
 
@@ -90,9 +90,9 @@ get_ditribuicao_comissoes_Camara <- function(df) {
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe com a coluna "relator" adicionada.
 #' @examples
-#' tramitacao %>% extract_relator_Camara()
+#' tramitacao %>% extract_relator_in_camara()
 #' @export
-extract_relator_Camara <- function(df) {
+extract_relator_in_camara <- function(df) {
   df %>%
     dplyr::mutate(relator =
                     case_when(stringr::str_detect(tolower(despacho), '^designad. relat.r') ~
@@ -104,10 +104,10 @@ extract_relator_Camara <- function(df) {
 #' @param df Dataframe da tramitação na Câmara
 #' @return String do nome do último relator na Câmara
 #' @examples
-#' tramitacao %>% extract_last_relator_Camara()
+#' tramitacao %>% extract_last_relator_in_camara()
 #' @export
-extract_last_relator_Camara <- function(df) {
-  relatores <- extract_relator_Camara(df)
+extract_last_relator_in_camara <- function(df) {
+  relatores <- extract_relator_in_camara(df)
   relator <-
     relatores %>%
     dplyr::filter(!is.na(relator)) %>%
@@ -122,9 +122,9 @@ extract_last_relator_Camara <- function(df) {
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe com a coluna "fase" adicionada.
 #' @examples
-#' tramitacao %>% extract_phases_Camara()
+#' tramitacao %>% extract_phases_in_camara()
 #' @export
-extract_phases_Camara <- function(dataframe, phase_one, phase_two, phase_three, phase_four, phase_five) {
+extract_phases_in_camara <- function(dataframe, phase_one, phase_two, phase_three, phase_four, phase_five) {
   dataframe %<>%
     dplyr::mutate(fase = dplyr::case_when(detect_fase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
                                           detect_fase(id_tipo_tramitacao, phase_two) ~ 'relatoria',
