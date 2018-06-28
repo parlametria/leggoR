@@ -292,7 +292,7 @@ fetch_proposicao_com_apensamentos <- function(prop_id) {
 #' @examples
 #' fetch_proposicao(2056568)
 #' @export
-fetch_proposicao <- function(prop_id) {
+fetch_proposicao_camara <- function(prop_id) {
   base_url <- 'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
 
   regex_regime <-

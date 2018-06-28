@@ -1,8 +1,8 @@
 ---
 output: html_document
 params:
-  id: 91341
-  casa: 'senado'
+  id: 257161
+  casa: 'camara'
 ---
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE}
 source(here::here('code/vis/tramitacao/extract-informations.R'))
@@ -33,23 +33,7 @@ chart <- create_chart(params$id, params$casa)
 `r toString(data$status_atual)`
 
 #### Último Relator:
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-ultimo_relator <- function(){
-  if(!identical(data$ultimo_relator[[1]], character(0))){
-    paste0(data$ultimo_relator, ' - ',
-      ifelse(
-        identical(data$partido_relator[[1]], character(0)) | identical(data$uf_ultimo_relator[[1]], character(0)),
-        '',
-        paste0(data$partido_relator, '/', data$uf_ultimo_relator)
-      )
-    )
-  }else {
-    'Não encontrado'
-  }
-}
-
-```
-`r toString(ultimo_relator())`
+`r toString(data$ultimo_relator)`
 
 #### Tramitação na casa `r toString(data$casa)`
 ```{r echo=FALSE, message=FALSE}
