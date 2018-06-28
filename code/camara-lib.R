@@ -269,6 +269,13 @@ extract_autor_Camara <- function(prop_id) {
     mutate(autor.nome = paste0(autor.nome, " ", partido_estado))
 }
 
+#' @title Recupera o estado e partido de um autor
+#' @description Retorna o estado e partido
+#' @param uri uri que contém dados sobre o autor 
+#' @return Estado e partido
+#' @examples
+#' partido_estado <- extract_partido_estado_autor(autores$autor.uri %>% tail(1))
+#' @export
 extract_partido_estado_autor <- function(uri) {
   if(!is.na(uri)) {
     json_autor <- jsonlite::fromJSON(uri, flatten = T)
