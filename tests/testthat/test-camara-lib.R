@@ -4,7 +4,7 @@ setup <- function(){
   
   #PL 3729/2004 e PL 490/2007
   PROPOSICOES_ID <<- c(2121442, 345311)
-  TAM_LISTA_PROPOSICOES <<- 4
+  TAM_LISTA_PROPOSICOES <<- 2
   
   proposicoes_dados <<- fetch_proposicao(PROPOSICOES_ID)
   
@@ -17,16 +17,13 @@ check_script <- function(){
 
 test <- function(){
   
-  context("Testing integrity data")
+  context("Testing data integrity")
   
   test_that('fetch_proposicao retorna uma row por id', {
-    props <- camara_fetch_proposicao(2056568)
-    expect_equal(nrow(props), 1)
-    
-    prop_id <- c(257161, 345311)
-    props <- camara_fetch_proposicao(prop_id)
-    expect_equal(nrow(props), 2)
+    props <- camara_fetch_proposicao(PROPOSICOES_ID)
+    expect_equal(nrow(props), TAM_LISTA_PROPOSICOES)
   })
+  
 }
 
 if(check_script()){
