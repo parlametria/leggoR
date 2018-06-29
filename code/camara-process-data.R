@@ -18,7 +18,7 @@ source(here::here("code/camara-lib.R"))
 #' @export
 process_proposicao <- function(pl_id) {
   data_path <- here::here('data/camara/')
-  tramitacao_pl <- fetch_tramitacao(pl_id)
+  tramitacao_pl <- rcongresso::fetch_tramitacao(pl_id)
 
   csv_path <- paste(c(data_path,'tramitacao-camara-', pl_id, '.csv'),  collapse = '') 
   proposicao_csv_path <- paste(c(data_path,'proposicao-camara-', pl_id, '.csv'),  collapse = '')

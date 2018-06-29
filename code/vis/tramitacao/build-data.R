@@ -43,6 +43,30 @@ build_csvs <- function(id, house) {
   }
   source(here::here(paste0("code/vis/tramitacao/data-chart-", tolower(house), ".R")))
   build_vis_csv(id)
+  
+  as.tibble(NULL)
+}
+
+df <- frame_data(~ id, ~ casa,
+                  132865, 'senado',
+                  91341, 'senado',
+                 41703, 'senado',
+                 127753, 'senado',
+                 129808, 'senado',
+                 257161, 'camara',
+                 345311, 'camara',
+                 2056568, 'camara',
+                 46249, 'camara',
+                 2121442, 'camara',
+                 2160860, 'camara',
+                 2120775, 'camara'
+                 )
+
+build_all_csvs <- function(df) {
+  df %>%
+    rowwise() %>%
+    do (build_csvs(.$id, .$casa))
+  
 }
 
 if(length(args) == 2){
