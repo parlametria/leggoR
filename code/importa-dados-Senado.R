@@ -18,12 +18,12 @@ import_proposicao <- function(bill_id){
   #Passage Data
   passage <- fetch_tramitacao(bill_id)
   passage %>%
-      write_csv(paste0(here::here("data/Senado/"), bill_id, "-passage-senado.csv"))
+      write_csv(paste0(here::here("data/Senado/"), bill_id, "-tramitacao-senado.csv"))
 
   #Votacao Data
   bill_data <- fetch_proposicao(bill_id, 'senado')
   bill_data %>%
-    write_csv(paste0(here::here("data/Senado/"), bill_id, "-bill-senado.csv"))
+    write_csv(paste0(here::here("data/Senado/"), bill_id, "-proposicao-senado.csv"))
 
   #Relatorias Data
   relatorias <- fetch_relatorias(bill_id)
