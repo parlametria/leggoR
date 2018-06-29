@@ -13,7 +13,7 @@ data <- read_csv("../data/vis/tramitacao/data-camara.csv") %>% unique()
 
 tramita_id <- fetch_id_proposicao(tipo = "PL", ano = "2016", numero = "6726")
 proposicao <- fetch_proposicao(id = tramita_id)
-tramitacao <- read_csv("../data/camara/tramitacao_camara_2121442.csv")
+tramitacao <- read_csv("../data/camara/tramitacao-camara-2121442.csv")
 ```
 
 ##### Nome da Proposição: `r toString(proposicao$siglaTipo)` `r toString(proposicao$numero)`/`r toString(proposicao$ano)`

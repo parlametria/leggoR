@@ -55,7 +55,7 @@ data_evento <- function(df) {
 }
 
 build_vis_csv <- function(bill_id) {
-  tramitacao <- read_csv(paste0(here::here('data/camara/tramitacao_camara_'), bill_id, '.csv'))
+  tramitacao <- read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv'))
 
   data_path <- here::here('data/vis/tramitacao/')
   file_path <- paste0(data_path, bill_id, '-data-camara.csv')

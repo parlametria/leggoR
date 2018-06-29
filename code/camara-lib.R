@@ -252,7 +252,8 @@ extract_autor_Camara <- function(prop_id) {
   url <- paste0(url_base_autores, prop_id, '/autores')
   json_voting <- jsonlite::fromJSON(url, flatten = T)
 
-  autores <- json_voting %>%
+  autores <- 
+    json_voting %>%
     magrittr::extract2("dados") %>%
     dplyr::rename(autor.uri = uri,
                   autor.nome = nome,
@@ -261,8 +262,41 @@ extract_autor_Camara <- function(prop_id) {
     dplyr::mutate(casa_origem = dplyr::case_when(
       stringr::str_detect(tolower(autor.nome), camara_exp) | autor.tipo == 'Deputado' ~ 'Câmara dos Deputados',
       stringr::str_detect(tolower(autor.nome), senado_exp) | autor.tipo == 'Senador' ~ 'Senado Federal'))
+  
+  partido_estado <- extract_partido_estado_autor(autores$autor.uri %>% tail(1))
 
-  autores
+  autores %>%
+    mutate(autor.nome = paste0(autor.nome, " ", partido_estado))
+}
+
+#' @title Recupera o estado e partido de um autor
+#' @description Retorna o estado e partido
+#' @param uri uri que contém dados sobre o autor 
+#' @return Estado e partido
+#' @examples
+#' partido_estado <- extract_partido_estado_autor(autores$autor.uri %>% tail(1))
+#' @export
+extract_partido_estado_autor <- function(uri) {
+  if(!is.na(uri)) {
+    json_autor <- jsonlite::fromJSON(uri, flatten = T)
+    
+    autor <- 
+      json_autor %>%
+      magrittr::extract2("dados")
+    
+    autor_uf <- 
+      autor %>%
+      magrittr::extract2("ufNascimento")
+    
+    autor_partido <-
+      autor %>%
+      magrittr::extract2("ultimoStatus") %>%
+      magrittr::extract2("siglaPartido")
+    
+    paste0(autor_partido, "/", autor_uf)
+  }else {
+    ""
+  }
 }
 
 #' @title Recupera as proposições apensadas
