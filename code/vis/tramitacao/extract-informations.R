@@ -86,6 +86,9 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     nome <- paste0(nome_senado$sigla_subtipo_materia, nome_senado$numero_materia)
     casa_origem <- proposicao$nome_casa_origem
     nome_autor <- proposicao$nome_autor
+    partido_autor <- proposicao$sigla_partido_parlamentar
+    uf_autor <- proposicao$uf_parlamentar
+    nome_autor <- ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, " ", partido_autor, "/", uf_autor))
     despacho <- despacho_senado$texto_tramitacao
     relatoria <- fetch_last_relatoria(id) %>% tail(1)
     ementa <- proposicao$ementa_materia
