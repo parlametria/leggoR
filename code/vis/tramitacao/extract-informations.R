@@ -66,7 +66,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
   casa <- tolower(casa)
   if (casa == 'camara') {
     nome_camara <- get_nome_ementa_Camara(id) %>% tail(1)
-    tramitacao_camara = read_csv(paste0("../data/camara/", "tramitacao_camara_", id, ".csv"))
+    tramitacao_camara <- read_csv(paste0("../data/camara/", "tramitacao_camara_", id, ".csv"))
     despacho_camara <- tail_descricao_despacho_Camara(tramitacao_camara)
     nome <- paste0(nome_camara$siglaTipo, nome_camara$numero) 
     autor <- extract_autor_Camara(id) %>% tail(1)
@@ -75,7 +75,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     despacho <- despacho_camara$descricao_tramitacao 
     relator <- extract_last_relator_Camara(tramitacao_camara)
     ementa <- nome_camara$ementa
-    data_apresentacao <- format(as.Date(fetch_proposicao(id)$dataApresentacao), "%d/%m/%Y")
+    data_apresentacao <- format(as.Date(fetch_proposicao_camara(id)$dataApresentacao), "%d/%m/%Y")
     eventos <- as.list(extract_n_last_events_Camara(tramitacao_camara, 3)$evento)
     
   } else if (casa == 'senado') {
@@ -88,8 +88,8 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     nome_autor <- proposicao$nome_autor
     despacho <- despacho_senado$texto_tramitacao
     relatoria <- fetch_last_relatoria(id) %>% tail(1)
-    relator <- as.character(relatoria$nome_parlamentar)
     ementa <- proposicao$ementa_materia
+    relator <- extract_ultimo_relator(id)
     data_apresentacao <- format(as.Date(proposicao$data_apresentacao), "%d/%m/%Y") %>% tail(1)
     eventos <-  as.list(extract_n_last_eventos_Senado(tramitacao_senado, 3)$evento)
   }
@@ -100,6 +100,22 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
   proposicoes_df$nome <-paste0("[", proposicoes_df$nome, "](", url, ")")
   
   proposicoes_df
+}
+
+extract_ultimo_relator <- function(id){
+  data <- fetch_current_relatoria(id)
+  if(ncol(data)){
+    paste0(data$identificacao_parlamentar_nome_parlamentar, ' - ',
+           ifelse(
+             identical(data$identificacao_parlamentar_sigla_partido_parlamentar[[1]], character(0)) | 
+               identical(data$identificacao_parlamentar_uf_parlamentar[[1]], character(0)),
+             '',
+             paste0(data$identificacao_parlamentar_sigla_partido_parlamentar, '/', data$identificacao_parlamentar_uf_parlamentar)
+           )
+    )
+  } else {
+    'Não encontrado'
+  }
 }
 
 gera_tabela_apensadas_senado <- function(bill_id_senado) {

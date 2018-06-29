@@ -243,7 +243,7 @@ fetch_current_relatoria <- function(proposicao_id) {
 
   #verify if relator atual exists
   if(ncol(current_relatoria_df) == 0){
-    return(rename_relatoria(data.frame(matrix(ncol = 7, nrow = 1))))
+    return(current_relatoria_df)
   }
 
 
