@@ -75,12 +75,12 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     despacho <- despacho_camara$descricao_tramitacao 
     relator <- extract_last_relator_Camara(tramitacao_camara)
     ementa <- nome_camara$ementa
-    data_apresentacao <- format(as.Date(fetch_proposicao_camara(id)$dataApresentacao), "%d/%m/%Y")
+    data_apresentacao <- format(as.Date(fetch_proposicao(id, 'camara')$dataApresentacao), "%d/%m/%Y")
     eventos <- as.list(extract_n_last_events_Camara(tramitacao_camara, 3)$evento)
     
   } else if (casa == 'senado') {
     tramitacao_senado <- read_csv(paste0("../data/Senado/", id, "-fases-tramitacao-senado.csv"))
-    proposicao <- fetch_proposicao(id) %>% tail(1)
+    proposicao <- fetch_proposicao(id, 'senado') %>% tail(1)
     despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
     nome_senado <- proposicao %>% select(ementa_materia, sigla_subtipo_materia, numero_materia) %>% unique
     nome <- paste0(nome_senado$sigla_subtipo_materia, nome_senado$numero_materia)
@@ -125,7 +125,7 @@ gera_tabela_apensadas_senado <- function(bill_id_senado) {
   url_senado <- "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
   
   senado <- 
-    fetch_proposicao(bill_id_senado) 
+    fetch_proposicao(bill_id_senado, 'senado') 
   
   #se não tiver proposição
   if (!("" %in% senado$proposicoes_apensadas)) {
@@ -183,7 +183,7 @@ gera_tabela_requerimentos <- function(bill_id, house) {
   if (house == 'camara') {
     requerimentos <- fetch_requerimentos_relacionados(bill_id) %>% select(dataApresentacao,descricaoTipo,ementa,deferimento,statusProposicao.despacho)
   } else if (house == 'senado') {
-    requerimentos <- as.array(strsplit(fetch_proposicao(bill_id)$proposicoes_relacionadas, " ")[[1]]) %>% fetch_deferimento()
+    requerimentos <- as.array(strsplit(fetch_proposicao(bill_id, 'senado')$proposicoes_relacionadas, " ")[[1]]) %>% fetch_deferimento()
   }
   requerimentos
 }

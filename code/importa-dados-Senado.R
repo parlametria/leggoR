@@ -21,7 +21,7 @@ import_proposicao <- function(bill_id){
       write_csv(paste0(here::here("data/Senado/"), bill_id, "-tramitacao-senado.csv"))
 
   #Votacao Data
-  bill_data <- fetch_proposicao(bill_id)
+  bill_data <- fetch_proposicao(bill_id, 'senado')
   bill_data %>%
     write_csv(paste0(here::here("data/Senado/"), bill_id, "-proposicao-senado.csv"))
 

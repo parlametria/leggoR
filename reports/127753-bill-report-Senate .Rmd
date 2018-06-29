@@ -13,7 +13,7 @@ source(here::here("code/senado-lib.R"))
 
 ```{r, echo = FALSE}
 bill_id <- 127753
-bill_data <- fetch_proposicao(bill_id)
+bill_data <- fetch_proposicao(bill_id, 'senado')
 ```
 
 Apelido da proposição:
