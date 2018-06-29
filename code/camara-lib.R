@@ -70,18 +70,31 @@ get_ditribuicao_comissoes_Camara <- function(df) {
     paste(collapse='|') %>%
     regex(ignore_case=TRUE)
     
+  # Faz com que os nomes comecem com 'Comissão'.
+  fix_names <- function(name) {
+    name %>%
+      sapply(
+        function(name) {
+          if(!str_detect(name, 'Comissão')) paste0('Comissão de ', name)
+          else name
+        },
+        USE.NAMES=FALSE)
+  }
   
   df %>%
     dplyr::mutate(
       proximas_comissoes = 
         dplyr::case_when(
-        stringr::str_detect(descricao_tramitacao, regex("distribui..o", ignore_case=TRUE)) & stringr::str_detect(despacho, regex(comissoes_permanentes, ignore_case=TRUE)) ~
-          stringr::str_extract_all(despacho, regex(comissoes_permanentes, ignore_case=TRUE)),
-        stringr::str_detect(descricao_tramitacao, regex("cria..o de comiss.o tempor.ria", ignore_case=TRUE)) ~
-          list("ComissãoEspecial"),
-        TRUE ~ list(NA))) %>%
-    dplyr::filter(!is.na(proximas_comissoes) & !identical(proximas_comissoes, character(0)) ) %>% 
-    dplyr::select(c('data_hora', 'id_prop', 'proximas_comissoes'))
+                  stringr::str_detect(descricao_tramitacao, regex("distribui..o", ignore_case=TRUE)) &
+                  stringr::str_detect(despacho, regex(comissoes_permanentes, ignore_case=TRUE)) ~
+                      stringr::str_extract_all(despacho, regex(comissoes_permanentes)),
+                  stringr::str_detect(descricao_tramitacao, regex("cria..o de comiss.o tempor.ria", ignore_case=TRUE)) ~
+                      list("Comissão Especial"),
+                  TRUE ~ list(NA)
+                  )) %>%
+    dplyr::filter(!is.na(proximas_comissoes) & !identical(proximas_comissoes, list()) ) %>% 
+    dplyr::select(c('data_hora', 'id_prop', 'proximas_comissoes')) %>% 
+    mutate(proximas_comissoes = sapply(proximas_comissoes, fix_names))
 }
 
 #' @title Cria coluna com os relatores na tramitação na Câmara
