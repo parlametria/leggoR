@@ -1,3 +1,4 @@
+source('test-camara-lib.R')
 context('test-camara-lib.R')
 
 setup <- function(){
@@ -16,13 +17,22 @@ check_script <- function(){
 }
 
 test <- function(){
-
-  test_that('fetch_proposicao() returns one row per id', {
-    props <- camara_fetch_proposicao(PROPOSICOES_ID)
-    expect_equal(nrow(props), TAM_LISTA_PROPOSICOES)
+  
+  # test camara_fetch_proposicao()
+  test_that('camara_fetch_proposicao() is dataframe', {
+    expect_true(is.data.frame(proposicoes_dados))
   })
   
-  test_that('fetch_proposicao()')
+  test_that('camara_fetch_proposicao() returns one row per id', {
+    proposicoes_dados <- camara_fetch_proposicao(PROPOSICOES_ID)
+    expect_equal(nrow(proposicoes_dados), TAM_LISTA_PROPOSICOES)
+  })
+  
+  test_that("camara_fetch_proposicao() doesn't have any lines with NA or NULL", {
+    expect_true(is.data.frame(proposicoes_dados))
+  })
+  
+  
 }
 
 if(check_script()){
