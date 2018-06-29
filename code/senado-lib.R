@@ -76,60 +76,6 @@ fetch_tramitacao <- function(proposicao_id){
     rename_tramitacao_df(proposicao_tramitacoes_df)
 }
 
-#' @title Recupera os detalhes de uma proposição no Senado
-#' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
-#' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
-#' @param proposicao_id ID de uma proposição do Senado
-#' @return Dataframe com as informações detalhadas de uma proposição no Senado
-#' @examples
-#' fetch_proposicao(91341)
-#' @export
-fetch_proposicao <- function(proposicao_id){
-  url_base_proposicao <- "http://legis.senado.leg.br/dadosabertos/materia/"
-
-  url <- paste0(url_base_proposicao, proposicao_id)
-  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
-  proposicao_data <-
-    json_proposicao$DetalheMateria$Materia
-  proposicao_ids <-
-    proposicao_data$IdentificacaoMateria %>%
-    tibble::as.tibble()
-  proposicao_basic_data <-
-    proposicao_data$DadosBasicosMateria %>%
-    purrr::flatten() %>%
-    tibble::as.tibble()
-  proposicao_author <-
-    proposicao_data$Autoria$Autor %>%
-    tibble::as.tibble()
-  proposicao_specific_assunto <-
-    proposicao_data$Assunto$AssuntoEspecifico %>%
-    tibble::as.tibble() %>%
-    dplyr::rename(assunto_especifico = Descricao, codigo_assunto_especifico = Codigo)
-  proposicao_general_assunto <-
-    proposicao_data$Assunto$AssuntoGeral %>%
-    tibble::as.tibble() %>%
-    dplyr::rename(assunto_geral = Descricao, codigo_assunto_geral = Codigo)
-  proposicao_source <-
-    proposicao_data$OrigemMateria %>%
-    tibble::as.tibble()
-  anexadas <-
-    proposicao_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria
-  relacionadas <-
-    proposicao_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria
-  
-  proposicao_complete <-
-    proposicao_basic_data %>%
-    tibble::add_column(
-      !!! proposicao_ids, !!! proposicao_author, !!! proposicao_specific_assunto,
-      !!! proposicao_general_assunto, !!! proposicao_source,
-      proposicoes_relacionadas = paste(relacionadas, collapse=' '),
-      proposicoes_apensadas = paste(anexadas, collapse=' '))
-  
-  proposicao_complete <- proposicao_complete[, !sapply(proposicao_complete, is.list)]
-
-  rename_proposicao_df(proposicao_complete)
-}
-
 #' @title Deferimento de requerimentos.
 #' @description Verifica deferimento ou não para uma lista de IDs de requerimentos.
 #' @param proposicao_id ID de um ou vários requerimentos
@@ -243,7 +189,7 @@ fetch_current_relatoria <- function(proposicao_id) {
 
   #verify if relator atual exists
   if(ncol(current_relatoria_df) == 0){
-    return(rename_relatoria(data.frame(matrix(ncol = 7, nrow = 1))))
+    return(current_relatoria_df)
   }
 
 
@@ -373,7 +319,7 @@ rename_proposicao_df <- function(df) {
 #' @export
 get_nome_ementa_Senado <- function(proposicao_id) {
 
-  proposicao <- fetch_proposicao(proposicao_id)
+  proposicao <- fetch_proposicao(proposicao_id, 'senado')
   proposicao %>%
     dplyr::select(ementa_materia, sigla_subtipo_materia, numero_materia) %>%
     unique

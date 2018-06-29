@@ -96,7 +96,7 @@ format_eventos <- function(df) {
 }
 
 build_vis_csv <- function(bill_id) {
-  data <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-bill-passage-visualization-senado.csv"))
+  data <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-visualizacao-tramitacao-senado.csv"))
   
   rbind(format_local(data), format_fase(data), format_eventos(data)) %>%
     write_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))

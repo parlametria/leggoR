@@ -1,8 +1,8 @@
 label,start,end,time_interval,group,color
 CCJ,2017-07-04,2017-09-27,85,Local,#ffffcc
 PLEN,2017-09-27,2017-11-07,41,Local,#5496cf
-relatoria,2017-07-04,2017-09-19,77,Sub-Fase,#fdc086
-discussao_deliberacao,2017-09-19,2017-11-08,50,Sub-Fase,#beaed4
-virada_de_casa,2017-11-08,2017-11-08,0,Sub-Fase,#ffff99
+relatoria,2017-07-04,2017-09-19,77,Fase,#fdc086
+discussao_deliberacao,2017-09-19,2017-11-08,50,Fase,#beaed4
+virada_de_casa,2017-11-08,2017-11-08,0,Fase,#ffff99
 aprovacao_parecer,2017-09-27,2017-09-27,0,Evento,#a9a9a9
 aprovacao_substitutivo,2017-10-25,2017-10-25,0,Evento,#a9a9a9

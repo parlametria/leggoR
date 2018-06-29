@@ -252,7 +252,8 @@ extract_autor_Camara <- function(prop_id) {
   url <- paste0(url_base_autores, prop_id, '/autores')
   json_voting <- jsonlite::fromJSON(url, flatten = T)
 
-  autores <- json_voting %>%
+  autores <- 
+    json_voting %>%
     magrittr::extract2("dados") %>%
     dplyr::rename(autor.uri = uri,
                   autor.nome = nome,
@@ -261,8 +262,41 @@ extract_autor_Camara <- function(prop_id) {
     dplyr::mutate(casa_origem = dplyr::case_when(
       stringr::str_detect(tolower(autor.nome), camara_exp) | autor.tipo == 'Deputado' ~ 'Câmara dos Deputados',
       stringr::str_detect(tolower(autor.nome), senado_exp) | autor.tipo == 'Senador' ~ 'Senado Federal'))
+  
+  partido_estado <- extract_partido_estado_autor(autores$autor.uri %>% tail(1))
 
-  autores
+  autores %>%
+    mutate(autor.nome = paste0(autor.nome, " ", partido_estado))
+}
+
+#' @title Recupera o estado e partido de um autor
+#' @description Retorna o estado e partido
+#' @param uri uri que contém dados sobre o autor 
+#' @return Estado e partido
+#' @examples
+#' partido_estado <- extract_partido_estado_autor(autores$autor.uri %>% tail(1))
+#' @export
+extract_partido_estado_autor <- function(uri) {
+  if(!is.na(uri)) {
+    json_autor <- jsonlite::fromJSON(uri, flatten = T)
+    
+    autor <- 
+      json_autor %>%
+      magrittr::extract2("dados")
+    
+    autor_uf <- 
+      autor %>%
+      magrittr::extract2("ufNascimento")
+    
+    autor_partido <-
+      autor %>%
+      magrittr::extract2("ultimoStatus") %>%
+      magrittr::extract2("siglaPartido")
+    
+    paste0(autor_partido, "/", autor_uf)
+  }else {
+    ""
+  }
 }
 
 #' @title Recupera as proposições apensadas
@@ -283,48 +317,6 @@ fetch_apensadas <- function(prop_id) {
 fetch_proposicao_com_apensamentos <- function(prop_id) {
   rcongresso::fetch_proposicao(prop_id) %>%
     mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse=' '))
-}
-
-#' @title Baixa dados sobre uma proposição
-#' @description Retorna um dataframe contendo dados sobre uma proposição
-#' @param prop_id Um ou mais IDs de proposições
-#' @return Dataframe
-#' @examples
-#' fetch_proposicao(2056568)
-#' @export
-fetch_proposicao <- function(prop_id) {
-  base_url <- 'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
-
-  regex_regime <-
-    frame_data(~ regime_tramitacao, ~ regex,
-               'ordinaria', 'Ordinária',
-               'prioridade', 'Prioridade',
-               'urgencia', 'Urgência')
-
-  regex_apreciacao <-
-    frame_data(~ forma_apreciacao, ~ regex,
-               'conclusiva', 'Sujeita à Apreciação Conclusiva pelas Comissões',
-               'plenario', 'Sujeita à Apreciação do Plenário')
-
-  rcongresso::fetch_proposicao(prop_id) %>%
-    # Adiciona url das páginas das proposições
-    mutate(page_url=paste0(base_url, prop_id)) %>%
-    # Adiciona html das páginas das proposições
-    rowwise() %>%
-    mutate(page_html=list(xml2::read_html(page_url))) %>%
-
-    # Padroniza valor sobre regime de tramitação
-    fuzzyjoin::regex_left_join(regex_regime, by=c(statusProposicao.regime="regex")) %>%
-    select(-'regex') %>%
-
-    # Adiciona coluna sobre forma de apreciação
-    rowwise() %>%
-    mutate(temp=
-      rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
-      rvest::html_text()
-    ) %>%
-    fuzzyjoin::regex_left_join(regex_apreciacao, by=c(temp="regex")) %>%
-    select(-c('temp', 'regex'))
 }
 
 fetch_requerimentos_relacionados <- function(id, mark_deferimento=T) {

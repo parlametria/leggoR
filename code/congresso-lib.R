@@ -22,3 +22,116 @@ to_underscore <- function(x) {
 detect_fase <- function(element, set) {
   element %in% set
 }
+
+#' @title Recupera os detalhes de uma proposição no Senado ou na Câmara
+#' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
+#' @param id ID de uma proposição
+#' @param casa casa de onde a proposição esta
+#' @return Dataframe com as informações detalhadas de uma proposição
+#' @examples
+#' fetch_proposicao(91341)
+#' @export
+fetch_proposicao <- function(id, casa) {
+  if (tolower(casa) == 'camara') {
+    fetch_proposicao_camara(id)
+  }else {
+    fetch_proposicao_senado(id)
+  }
+}
+
+#' @title Recupera os detalhes de uma proposição no Senado
+#' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
+#' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
+#' @param proposicao_id ID de uma proposição do Senado
+#' @return Dataframe com as informações detalhadas de uma proposição no Senado
+#' @examples
+#' fetch_proposicao_senado(91341)
+#' @export
+fetch_proposicao_senado <- function(proposicao_id){
+  url_base_proposicao <- "http://legis.senado.leg.br/dadosabertos/materia/"
+  
+  url <- paste0(url_base_proposicao, proposicao_id)
+  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
+  proposicao_data <-
+    json_proposicao$DetalheMateria$Materia
+  proposicao_ids <-
+    proposicao_data$IdentificacaoMateria %>%
+    tibble::as.tibble()
+  proposicao_basic_data <-
+    proposicao_data$DadosBasicosMateria %>%
+    purrr::flatten() %>%
+    tibble::as.tibble()
+  proposicao_author <-
+    proposicao_data$Autoria$Autor %>%
+    tibble::as.tibble()
+  proposicao_specific_assunto <-
+    proposicao_data$Assunto$AssuntoEspecifico %>%
+    tibble::as.tibble() %>%
+    dplyr::rename(assunto_especifico = Descricao, codigo_assunto_especifico = Codigo)
+  proposicao_general_assunto <-
+    proposicao_data$Assunto$AssuntoGeral %>%
+    tibble::as.tibble() %>%
+    dplyr::rename(assunto_geral = Descricao, codigo_assunto_geral = Codigo)
+  proposicao_source <-
+    proposicao_data$OrigemMateria %>%
+    tibble::as.tibble()
+  anexadas <-
+    proposicao_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria
+  relacionadas <-
+    proposicao_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria
+  
+  proposicao_complete <-
+    proposicao_basic_data %>%
+    tibble::add_column(
+      !!! proposicao_ids, !!! proposicao_author, !!! proposicao_specific_assunto,
+      !!! proposicao_general_assunto, !!! proposicao_source,
+      proposicoes_relacionadas = paste(relacionadas, collapse=' '),
+      proposicoes_apensadas = paste(anexadas, collapse=' '))
+  
+  proposicao_complete <- proposicao_complete[, !sapply(proposicao_complete, is.list)]
+  
+  rename_proposicao_df(proposicao_complete)
+}
+
+
+#' @title Baixa dados sobre uma proposição
+#' @description Retorna um dataframe contendo dados sobre uma proposição
+#' @param prop_id Um ou mais IDs de proposições
+#' @return Dataframe
+#' @examples
+#' fetch_proposicao_camara(2056568)
+#' @export
+fetch_proposicao_camara <- function(prop_id) {
+  base_url <- 'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
+  
+  regex_regime <-
+    frame_data(~ regime_tramitacao, ~ regex,
+               'ordinaria', 'Ordinária',
+               'prioridade', 'Prioridade',
+               'urgencia', 'Urgência')
+  
+  regex_apreciacao <-
+    frame_data(~ forma_apreciacao, ~ regex,
+               'conclusiva', 'Sujeita à Apreciação Conclusiva pelas Comissões',
+               'plenario', 'Sujeita à Apreciação do Plenário')
+  
+  rcongresso::fetch_proposicao(prop_id) %>%
+    # Adiciona url das páginas das proposições
+    mutate(page_url=paste0(base_url, prop_id)) %>%
+    # Adiciona html das páginas das proposições
+    rowwise() %>%
+    mutate(page_html=list(xml2::read_html(page_url))) %>%
+    
+    # Padroniza valor sobre regime de tramitação
+    fuzzyjoin::regex_left_join(regex_regime, by=c(statusProposicao.regime="regex")) %>%
+    select(-'regex') %>%
+    
+    # Adiciona coluna sobre forma de apreciação
+    rowwise() %>%
+    mutate(temp=
+             rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
+             rvest::html_text()
+    ) %>%
+    fuzzyjoin::regex_left_join(regex_apreciacao, by=c(temp="regex")) %>%
+    select(-c('temp', 'regex'))
+}

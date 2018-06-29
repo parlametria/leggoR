@@ -18,10 +18,10 @@ source(here::here("code/camara-lib.R"))
 #' @export
 process_proposicao <- function(pl_id) {
   data_path <- here::here('data/camara/')
-  tramitacao_pl <- fetch_tramitacao(id_prop = pl_id)
+  tramitacao_pl <- fetch_tramitacao(pl_id)
 
-  csv_path <- paste(c(data_path,'tramitacao_camara_', pl_id, '.csv'),  collapse = '')
-  proposicao_csv_path <- paste(c(data_path,'proposicao_camara_', pl_id, '.csv'),  collapse = '')
+  csv_path <- paste(c(data_path,'tramitacao-camara-', pl_id, '.csv'),  collapse = '') 
+  proposicao_csv_path <- paste(c(data_path,'proposicao-camara-', pl_id, '.csv'),  collapse = '')
 
   phase_one <- c(100)
   phase_two <- c(320)
@@ -65,7 +65,9 @@ process_proposicao <- function(pl_id) {
 #Fetch a bill with renamed columns
 fetch_proposicao_renamed <- function(id) {
   df <-
-    fetch_proposicao(id) %>%
+    fetch_proposicao(id, 'camara') %>%
     rename_df_columns
-  df
+  
+  df[, !sapply(df, is.list)]
 }
+
