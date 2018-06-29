@@ -9,7 +9,7 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   nome_ementa_senado <- get_nome_ementa_Senado(bill_id_senado)
   
   tramitacao_camara <- read_csv(paste0("../data/camara/", "tramitacao_camara_",bill_id_camara,".csv"))
-  tramitacao_senado <- read_csv(paste0("../data/Senado/", bill_id_senado, "-bill-passage-phases-senado.csv"))
+  tramitacao_senado <- read_csv(paste0("../data/Senado/", bill_id_senado, "-fases-tramitacao-senado.csv"))
   despacho_camara <- tail_descricao_despacho_Camara(tramitacao_camara)
   despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
   
@@ -79,7 +79,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     eventos <- as.list(extract_n_last_events_Camara(tramitacao_camara, 3)$evento)
     
   } else if (casa == 'senado') {
-    tramitacao_senado <- read_csv(paste0("../data/Senado/", id, "-bill-passage-phases-senado.csv"))
+    tramitacao_senado <- read_csv(paste0("../data/Senado/", id, "-fases-tramitacao-senado.csv"))
     proposicao <- fetch_proposicao(id) %>% tail(1)
     despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
     nome_senado <- proposicao %>% select(ementa_materia, sigla_subtipo_materia, numero_materia) %>% unique

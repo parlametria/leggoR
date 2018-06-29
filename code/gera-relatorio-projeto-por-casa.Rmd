@@ -1,7 +1,7 @@
 ---
 output: html_document
 params:
-  id: 132865
+  id: 41703
   casa: 'senado'
 ---
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE}
@@ -88,7 +88,7 @@ data_path <- here::here('data/')
 if(params$casa == "camara") {
   comissoes <- get_ditribuicao_comissoes_Camara(read_csv(paste0(data_path, "camara/tramitacao_camara_", params$id, ".csv")))
 }else {
-  comissoes <- extract_comissoes_Senado(read_csv(paste0(data_path, "Senado/", params$id, "-passage-senado.csv")))
+  comissoes <- extract_comissoes_Senado(read_csv(paste0(data_path, "Senado/", params$id, "-tramitacao-senado.csv")))
 }
   knitr::kable(comissoes, caption = "Lista de Comissões")
 ```
