@@ -5,23 +5,23 @@ source(here::here("code/senado-lib.R"))
 source(here::here("code/camara-lib.R"))
 
 extract_informations <- function(bill_id_camara, bill_id_senado, url) {
-  nome_ementa_camara <- get_nome_ementa_Camara(bill_id_camara)
+  nome_ementa_camara <- get_ementas_in_camara(bill_id_camara)
   nome_ementa_senado <- get_nome_ementa_Senado(bill_id_senado)
   
   tramitacao_camara <- read_csv(paste0("../data/camara/", "tramitacao_camara_",bill_id_camara,".csv"))
   tramitacao_senado <- read_csv(paste0("../data/Senado/", bill_id_senado, "-bill-passage-phases-senado.csv"))
-  despacho_camara <- tail_descricao_despacho_Camara(tramitacao_camara)
+  despacho_camara <- last_n_despacho_in_camara(tramitacao_camara)
   despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
   
   last_events_senado <- extract_n_last_eventos_Senado(tramitacao_senado, 3)
-  last_events_camara <- extract_n_last_events_Camara(tramitacao_camara, 3)
+  last_events_camara <- extract_last_n_events_in_camara(tramitacao_camara, 3)
   
   nome <- paste0(nome_ementa_senado$sigla_subtipo_materia, nome_ementa_senado$numero_materia, " / ", nome_ementa_camara$siglaTipo, nome_ementa_camara$numero)
   casa <- if_else(despacho_camara$data_hora > despacho_senado$data_tramitacao, "Câmara", "Senado")
   if(casa == "Câmara") {
     eventos <- as.list(last_events_camara$evento)
     despacho <- despacho_camara$descricao_tramitacao 
-    relator <- extract_last_relator_Camara(tramitacao_camara)
+    relator <- extract_last_relator_in_camara(tramitacao_camara)
   } else { 
     eventos <- as.list(last_events_senado$evento)
     despacho <- despacho_senado$situacao_descricao_situacao
@@ -65,21 +65,22 @@ gera_tabela_proposicoes_uma_casa <- function(dataframe) {
 extract_informations_from_single_house <- function(id, casa, url=NULL) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    nome_camara <- get_nome_ementa_Camara(id) %>% tail(1)
-    tramitacao_camara = read_csv(paste0("../data/camara/", "tramitacao_camara_", id, ".csv"))
-    despacho_camara <- tail_descricao_despacho_Camara(tramitacao_camara)
+    nome_camara <- get_ementas_in_camara(id) %>% tail(1)
+    tramitacao_camara = read_csv(paste0("data/camara/", "tramitacao_camara_", id, ".csv"))
+    despacho_camara <- last_n_despacho_in_camara(tramitacao_camara)
     nome <- paste0(nome_camara$siglaTipo, nome_camara$numero) 
-    autor <- extract_autor_Camara(id) %>% tail(1)
+    autor <- extract_autor_in_camara(id) %>% tail(1)
     casa_origem <- autor$casa_origem
     nome_autor <- autor$autor.nome
     despacho <- despacho_camara$descricao_tramitacao 
-    relator <- extract_last_relator_Camara(tramitacao_camara)
+    relator <- extract_last_relator_in_camara(tramitacao_camara)
     ementa <- nome_camara$ementa
-    data_apresentacao <- format(as.Date(fetch_proposicao(id)$dataApresentacao), "%d/%m/%Y")
-    eventos <- as.list(extract_n_last_events_Camara(tramitacao_camara, 3)$evento)
+    data_apresentacao <- format(as.Date(fetch_proposicao_in_camara(id)$dataApresentacao), "%d/%m/%Y")
+    eventos <- as.list(extract_last_n_events_in_camara(tramitacao_camara, 3)$evento)
     
   } else if (casa == 'senado') {
-    tramitacao_senado <- read_csv(paste0("../data/Senado/", id, "-bill-passage-phases-senado.csv"))
+    id = 41703
+    tramitacao_senado <- read_csv(paste0("data/Senado/", id, "-bill-passage-phases-senado.csv"))
     proposicao <- fetch_proposicao(id) %>% tail(1)
     despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
     nome_senado <- proposicao %>% select(ementa_materia, sigla_subtipo_materia, numero_materia) %>% unique
@@ -124,7 +125,7 @@ gera_tabela_apensadas_senado <- function(bill_id_senado) {
   }else {
     NA
   }
-}
+ }
 
 extract_informations_all_houses <- function(senado_id, camara_id) {
   df_camara <- extract_informations_from_single_house(camara_id, 'camara')
@@ -162,7 +163,7 @@ extract_informations_all_houses <- function(senado_id, camara_id) {
 gera_tabela_requerimentos <- function(bill_id, house) {
   requerimentos <- data.frame()
   if (house == 'camara') {
-    requerimentos <- fetch_requerimentos_relacionados(bill_id) %>% select(dataApresentacao,descricaoTipo,ementa,deferimento,statusProposicao.despacho)
+    requerimentos <- fetch_related_requerimentos(bill_id) %>% select(dataApresentacao,descricaoTipo,ementa,deferimento,statusProposicao.despacho)
   } else if (house == 'senado') {
     requerimentos <- as.array(strsplit(fetch_proposicao(bill_id)$proposicoes_relacionadas, " ")[[1]]) %>% fetch_deferimento()
   }
@@ -178,7 +179,7 @@ gera_tabela_apensadas_camara <- function(bill_id_camara) {
   if (nrow(apensadas) != 0) {
     apensadas %>%
       mutate(casa = "Câmara", 
-             apensadas = paste0("[", paste0(get_nome_ementa_Camara(apensadas)$siglaTipo, get_nome_ementa_Camara(apensadas)$numero), "](", paste0(url_camara, apensadas), ")"))
+             apensadas = paste0("[", paste0(get_ementas_in_camara(apensadas)$siglaTipo, get_ementas_in_camara(apensadas)$numero), "](", paste0(url_camara, apensadas), ")"))
   }else {
     apensadas %>%
       mutate(casa = "Câmara")
