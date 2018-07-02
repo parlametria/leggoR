@@ -47,21 +47,13 @@ build_csvs <- function(id, house) {
   as.tibble(NULL)
 }
 
-df <- frame_data(~ id, ~ casa,
-                  132865, 'senado',
-                  91341, 'senado',
-                 41703, 'senado',
-                 127753, 'senado',
-                 129808, 'senado',
-                 257161, 'camara',
-                 345311, 'camara',
-                 2056568, 'camara',
-                 46249, 'camara',
-                 2121442, 'camara',
-                 2160860, 'camara',
-                 2120775, 'camara'
-                 )
-
+#' @title Cria todos os csvs de todas as proposições da tabela.
+#' @description Recebido um dataframe com as colunas id e casa a função roda os scripts para 
+#' importar, processar e adaptar para visualização; os dados daquela proposição.
+#' @param df Dataframe com as colunas id e casa
+#' @examples
+#' readr::read_csv("data/tabela_geral_ids_casa.csv") %>% build_all_csvs()
+#' @export
 build_all_csvs <- function(df) {
   df %>%
     rowwise() %>%
