@@ -275,7 +275,7 @@ extract_autor_in_camara <- function(prop_id) {
       stringr::str_detect(tolower(autor.nome), camara_exp) | autor.tipo == 'Deputado' ~ 'Câmara dos Deputados',
       stringr::str_detect(tolower(autor.nome), senado_exp) | autor.tipo == 'Senador' ~ 'Senado Federal'))
   
-  partido_estado <- extract_partido_estado_autor(autores$autor.uri %>% tail(1))
+  partido_estado <- extract_partido_estado_autor(authors$autor.uri %>% tail(1))
 
   authors %>%
     mutate(autor.nome = paste0(autor.nome, " ", partido_estado))

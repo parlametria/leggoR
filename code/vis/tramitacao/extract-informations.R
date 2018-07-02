@@ -3,12 +3,13 @@ library(tidyverse)
 library(rcongresso)
 source(here::here("code/senado-lib.R"))
 source(here::here("code/camara-lib.R"))
+source(here::here("code/congresso-lib.R"))
 
 extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   nome_ementa_camara <- get_ementas_in_camara(bill_id_camara)
   nome_ementa_senado <- get_nome_ementa_Senado(bill_id_senado)
   
-  tramitacao_camara <- read_csv(paste0("../data/camara/", "tramitacao_camara_",bill_id_camara,".csv"))
+  tramitacao_camara <- read_csv(paste0("../data/camara/", "tramitacao-camara-",bill_id_camara,".csv"))
   tramitacao_senado <- read_csv(paste0("../data/Senado/", bill_id_senado, "-bill-passage-phases-senado.csv"))
   despacho_camara <- last_n_despacho_in_camara(tramitacao_camara)
   despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
@@ -66,7 +67,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
   casa <- tolower(casa)
   if (casa == 'camara') {
     nome_camara <- get_ementas_in_camara(id) %>% tail(1)
-    tramitacao_camara = read_csv(paste0("data/camara/", "tramitacao_camara_", id, ".csv"))
+    tramitacao_camara = read_csv(paste0("../data/camara/", "tramitacao-camara-", id, ".csv"))
     despacho_camara <- last_n_despacho_in_camara(tramitacao_camara)
     nome <- paste0(nome_camara$siglaTipo, nome_camara$numero) 
     autor <- extract_autor_in_camara(id) %>% tail(1)
@@ -75,7 +76,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     despacho <- despacho_camara$descricao_tramitacao 
     relator <- extract_last_relator_in_camara(tramitacao_camara)
     ementa <- nome_camara$ementa
-    data_apresentacao <- format(as.Date(fetch_proposicao_in_camara(id)$dataApresentacao), "%d/%m/%Y")
+    data_apresentacao <- format(as.Date(fetch_proposicao(id, 'camara')$dataApresentacao), "%d/%m/%Y")
     eventos <- as.list(extract_last_n_events_in_camara(tramitacao_camara, 3)$evento)
   } else if (casa == 'senado') {
     tramitacao_senado <- read_csv(paste0("../data/Senado/", id, "-fases-tramitacao-senado.csv"))

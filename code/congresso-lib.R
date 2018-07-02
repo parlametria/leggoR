@@ -29,7 +29,7 @@ detect_fase <- function(element, set) {
 #' @param casa casa de onde a proposição esta
 #' @return Dataframe com as informações detalhadas de uma proposição
 #' @examples
-#' fetch_proposicao(91341)
+#' fetch_proposicao(91341, 'senado')
 #' @export
 fetch_proposicao <- function(id, casa) {
   if (tolower(casa) == 'camara') {
