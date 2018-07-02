@@ -70,18 +70,31 @@ get_comissoes_in_camara <- function(df) {
     paste(collapse='|') %>%
     regex(ignore_case=TRUE)
     
+  # Faz com que os nomes comecem com 'Comissão'.
+  fix_names <- function(name) {
+    name %>%
+      sapply(
+        function(name) {
+          if(!str_detect(name, 'Comissão')) paste0('Comissão de ', name)
+          else name
+        },
+        USE.NAMES=FALSE)
+  }
   
   df %>%
     dplyr::mutate(
-      next_comissoes = 
+      proximas_comissoes = 
         dplyr::case_when(
-        stringr::str_detect(descricao_tramitacao, regex("distribui..o", ignore_case=TRUE)) & stringr::str_detect(despacho, regex(comissoes_permanentes, ignore_case=TRUE)) ~
-          stringr::str_extract_all(despacho, regex(comissoes_permanentes, ignore_case=TRUE)),
-        stringr::str_detect(descricao_tramitacao, regex("cria..o de comiss.o tempor.ria", ignore_case=TRUE)) ~
-          list("ComissãoEspecial"),
-        TRUE ~ list(NA))) %>%
-    dplyr::filter(!is.na(next_comissoes) & !identical(next_comissoes, character(0)) ) %>% 
-    dplyr::select(c('data_hora', 'id_prop', 'proximas_comissoes'))
+          stringr::str_detect(descricao_tramitacao, regex("distribui..o", ignore_case=TRUE)) &
+                  stringr::str_detect(despacho, regex(comissoes_permanentes, ignore_case=TRUE)) ~
+                      stringr::str_extract_all(despacho, regex(comissoes_permanentes)),
+                  stringr::str_detect(descricao_tramitacao, regex("cria..o de comiss.o tempor.ria", ignore_case=TRUE)) ~
+                      list("Comissão Especial"),
+                  TRUE ~ list(NA)
+                  )) %>%
+    dplyr::filter(!is.na(proximas_comissoes) & !identical(proximas_comissoes, list()) ) %>% 
+    dplyr::select(c('data_hora', 'id_prop', 'proximas_comissoes')) %>% 
+    mutate(proximas_comissoes = sapply(proximas_comissoes, fix_names))
 }
 
 #' @title Cria coluna com os relatores na tramitação na Câmara
@@ -261,8 +274,41 @@ extract_autor_in_camara <- function(prop_id) {
     dplyr::mutate(casa_origem = dplyr::case_when(
       stringr::str_detect(tolower(autor.nome), camara_exp) | autor.tipo == 'Deputado' ~ 'Câmara dos Deputados',
       stringr::str_detect(tolower(autor.nome), senado_exp) | autor.tipo == 'Senador' ~ 'Senado Federal'))
+  
+  partido_estado <- extract_partido_estado_autor(autores$autor.uri %>% tail(1))
 
-  authors
+  authors %>%
+    mutate(autor.nome = paste0(autor.nome, " ", partido_estado))
+}
+
+#' @title Recupera o estado e partido de um autor
+#' @description Retorna o estado e partido
+#' @param uri uri que contém dados sobre o autor 
+#' @return Estado e partido
+#' @examples
+#' partido_estado <- extract_partido_estado_autor(autores$autor.uri %>% tail(1))
+#' @export
+extract_partido_estado_autor <- function(uri) {
+  if(!is.na(uri)) {
+    json_autor <- jsonlite::fromJSON(uri, flatten = T)
+    
+    autor <- 
+      json_autor %>%
+      magrittr::extract2("dados")
+    
+    autor_uf <- 
+      autor %>%
+      magrittr::extract2("ufNascimento")
+    
+    autor_partido <-
+      autor %>%
+      magrittr::extract2("ultimoStatus") %>%
+      magrittr::extract2("siglaPartido")
+    
+    paste0(autor_partido, "/", autor_uf)
+  }else {
+    ""
+  }
 }
 
 #' @title Recupera as proposições apensadas
