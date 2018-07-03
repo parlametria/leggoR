@@ -371,6 +371,14 @@ extract_evento_Senado <- function(tramitacao_df, phases_df) {
   dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao")
 }
 
+#' @title Extrai o regime de apreciação do Senado
+#' @description Verifica o regime de apreciação de um dataframe. Se apresentar as
+#' palavras 'em decisão terminativa' é retornado 'conclusivo' como resposta.
+#' @param df Dataframe com os eventos contendo as colunas "evento" e "regex"
+#' @return String com a situação da pl.
+#' @examples
+#' extract_apreciacao_Senado(fetch_tramitacao(93418))
+#' @export
 extract_apreciacao_Senado <- function(df) {
   df <-
     df %>%
@@ -383,7 +391,11 @@ extract_apreciacao_Senado <- function(df) {
     ) %>%
     tidyr::fill(apreciacao)
   
-  df[nrow(df), ]$apreciacao
+  if(is.na(df[nrow(df), ]$apreciacao)){
+    'plenario'
+  } else{
+    df[nrow(df), ]$apreciacao
+  }
 }
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
