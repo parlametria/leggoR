@@ -371,6 +371,21 @@ extract_evento_Senado <- function(tramitacao_df, phases_df) {
   dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao")
 }
 
+extract_apreciacao_Senado <- function(df) {
+  df <-
+    df %>%
+    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::mutate(
+      apreciacao =
+        dplyr::case_when(
+          stringr::str_detect(tolower(texto_tramitacao), '(em|a) decisão terminativa') ~
+            'conclusiva')
+    ) %>%
+    tidyr::fill(apreciacao)
+  
+  df[nrow(df), ]$apreciacao
+}
+
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
 #' @description Retona dataframe contendo os n últimos eventos importantes que aconteceram no Senado
 #' @param tramitacao_df Dataframe da tramitação no Senado
