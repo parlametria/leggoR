@@ -474,12 +474,12 @@ extract_comissoes_Senado <- function(df) {
 #'  extract_locais(fetch_tramitacao(91341))
 #' @export
 extract_locais <- function(df) {
-  descricoes_plenario <- c('INCLUÍDO REQUERIMENTO EM ORDEM DO DIA DA SESSÃO DELIBERATIVA',
-                           'PRONTO PARA DELIBERAÇÃO DO PLENÁRIO',
-                           'AGUARDANDO RECEBIMENTO DE EMENDAS PERANTE A MESA',
-                           'INCLUÍDA EM ORDEM DO DIA')
-  descricoes_comissoes <- c('MATÉRIA COM A RELATORIA',
-                            'AGUARDANDO DESIGNAÇÃO DO RELATOR' )
+  descricoes_plenario <- c('incluído_requerimento_em_ordem_do_dia_da_sessão_deliberativa',
+                           'pronto_para_deliberação_do_plenário',
+                           'aguardando_recebimento_de_emendas_perante_a_mesa',
+                           'incluída_em_ordem_do_dia')
+  descricoes_comissoes <- c('matéria_com_a_relatoria',
+                            'aguardando_designação_do_relator' )
   
     df <- df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
@@ -491,7 +491,7 @@ extract_locais <- function(df) {
           (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') | 
              situacao_descricao_situacao %in% descricoes_comissoes) ~
             origem_tramitacao_local_sigla_local,
-          situacao_descricao_situacao == 'REMETIDA À CÂMARA DOS DEPUTADOS' ~
+          situacao_descricao_situacao == 'remetida_à_câmara_dos_deputados' ~
             'Câmara')
     )
     

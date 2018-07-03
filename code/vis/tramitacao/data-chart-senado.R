@@ -4,14 +4,6 @@ library(here)
 # Create data frame to display local inline
 format_local <- function(df) {
   
-  df <- 
-    df %>%
-    filter(!(grepl('^S', local) | local == 'ATA-PLEN')) %>%
-    mutate(
-      data_tramitacao = as.Date(data_tramitacao),
-      local = as.character(local)
-    )
-  
   df <-
     df %>%
     mutate(z = cumsum(local != lag(local, default='NULL')), 
