@@ -465,3 +465,15 @@ extract_comissoes_Senado <- function(df) {
   
   df[1,]
 }
+
+extract_locais <- function(df) {
+    df %>%
+    dplyr::mutate(
+      local =
+        dplyr::case_when(
+          stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') ~
+            origem_tramitacao_local_sigla_local)
+    )
+}
+
+x <- extract_locais(X91341_tramitacao_senado)
