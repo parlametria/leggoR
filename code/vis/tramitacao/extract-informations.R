@@ -91,7 +91,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     nome_autor <- ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, " ", partido_autor, "/", uf_autor))
     despacho <- despacho_senado$texto_tramitacao
     relatoria <- fetch_last_relatoria(id) %>% tail(1)
-    ementa <- proposicao$ementa_materia
+    ementa <- if_else(is.null(proposicao$explicacao_ementa_materia), proposicao$ementa_materia, proposicao$explicacao_ementa_materia)
     relator <- extract_ultimo_relator(id)
     data_apresentacao <- format(as.Date(proposicao$data_apresentacao), "%d/%m/%Y") %>% tail(1)
     eventos <-  as.list(extract_n_last_eventos_Senado(tramitacao_senado, 3)$evento)
