@@ -373,7 +373,8 @@ extract_evento_Senado <- function(tramitacao_df, phases_df) {
 
 #' @title Extrai o regime de apreciação do Senado
 #' @description Verifica o regime de apreciação de um dataframe. Se apresentar as
-#' palavras 'em decisão terminativa' é retornado 'conclusivo' como resposta.
+#' palavras '(em|a) decisão terminativa' é retornado 'conclusivo' como resposta, caso contrário
+#' é retornado 'plenário'.
 #' @param df Dataframe com os eventos contendo as colunas "evento" e "regex"
 #' @return String com a situação da pl.
 #' @examples
