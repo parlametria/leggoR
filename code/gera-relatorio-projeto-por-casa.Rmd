@@ -4,7 +4,7 @@ params:
   id: 41703
   casa: 'senado'
 ---
-```{r imports, echo=FALSE, message=FALSE, error=FALSE}
+```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
 source(here::here('code/vis/tramitacao/extract-informations.R'))
 source(here::here('code/vis/tramitacao/build-chart.R'))
 source(here::here('code/senado-lib.R'))
