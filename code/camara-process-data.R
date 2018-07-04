@@ -46,6 +46,7 @@ process_proposicao <- function(pl_id) {
     extract_phases_in_camara(phase_one, phase_two, phase_three, phase_four, phase_five) %>%
     fill(fase) %>%
     extract_events_in_camara(important_events, special_commission) %>%
+    extract_locais_in_camara() %>%
     refact_date() %>%
     sort_by_date() %>%
     readr::write_csv(csv_path)
@@ -62,6 +63,7 @@ process_proposicao <- function(pl_id) {
   readr::write_csv(proposicao_csv_path)
 
   relatorias <- extract_relatorias_in_camara(as.data.frame(read_csv(csv_path)))
+  
 }
 
 #Fetch a bill with renamed columns
