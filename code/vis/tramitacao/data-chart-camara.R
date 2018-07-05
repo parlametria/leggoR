@@ -28,16 +28,16 @@ data_local <- function(df) {
 
   df %>%
     mutate(end_data = lead(data_hora, default=Sys.time())) %>%
-    group_by(sigla_orgao, sequence = rleid(sigla_orgao)) %>%
+    group_by(local, sequence = rleid(local)) %>%
     summarise(start = min(data_hora),
               end = max(end_data)) %>%
     filter(end - start > 0) %>%
     ungroup() %>%
     arrange(sequence) %>%
     select(-sequence) %>%
-    rename(label = sigla_orgao) %>%
+    rename(label = local) %>%
     mutate(group = "Local",
-           color = case_when(label == "PLEN" ~ "#5496cf",
+           color = case_when(label == "Plenário" ~ "#5496cf",
                              label == "PL672616" ~ "#ff9c37",
                              label == "CCP" ~ "#8bca42",
                              label == "CTASP" ~ "#ea81b1"))
@@ -55,7 +55,7 @@ data_evento <- function(df) {
 }
 
 build_vis_csv <- function(bill_id) {
-  tramitacao <- read_csv(paste0(here::here('data/camara/tramitacao_camara_'), bill_id, '.csv'))
+  tramitacao <- read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv'))
 
   data_path <- here::here('data/vis/tramitacao/')
   file_path <- paste0(data_path, bill_id, '-data-camara.csv')
