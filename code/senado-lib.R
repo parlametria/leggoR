@@ -415,7 +415,7 @@ extract_regime_Senado <- function(df) {
     dplyr::mutate(
       regime =
         dplyr::case_when(
-          stringr::str_detect(tolower(texto_tramitacao), 'estando a matéria em regime de urgência') ~
+          stringr::str_detect(tolower(texto_tramitacao), 'em regime de urg(ê|e)ncia') ~
             'Urgência')
     ) %>%
     tidyr::fill(regime)
