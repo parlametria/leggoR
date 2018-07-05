@@ -522,3 +522,41 @@ extract_comissoes_Senado <- function(df) {
   
   df[1,]
 }
+
+#' @title Recupera os locais do Senado
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada local
+#' @param df Dataframe da tramitação no Senado
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada local
+#' @examples
+#'  extract_locais(fetch_tramitacao(91341))
+#' @export
+extract_locais <- function(df) {
+  descricoes_plenario <- c('incluído_requerimento_em_ordem_do_dia_da_sessão_deliberativa',
+                           'pronto_para_deliberação_do_plenário',
+                           'aguardando_recebimento_de_emendas_perante_a_mesa',
+                           'incluída_em_ordem_do_dia')
+  descricoes_comissoes <- c('matéria_com_a_relatoria',
+                            'aguardando_designação_do_relator' )
+  
+    df <- df %>%
+    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::mutate(
+      local =
+        dplyr::case_when(
+          situacao_descricao_situacao %in% descricoes_plenario ~
+            'Plenário',
+          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') | 
+             situacao_descricao_situacao %in% descricoes_comissoes) ~
+            origem_tramitacao_local_sigla_local,
+          situacao_descricao_situacao == 'remetida_à_câmara_dos_deputados' ~
+            'Câmara')
+    )
+    
+    if (is.na(df[1, ]$local)) {
+      df[1, ]$local = 'SF-ATA-PLEN'
+    }
+    
+    df %>%
+      tidyr::fill(local)
+}
+
