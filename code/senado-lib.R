@@ -375,29 +375,58 @@ extract_evento_Senado <- function(tramitacao_df, phases_df) {
 #' @description Verifica o regime de apreciação de um dataframe. Se apresentar as
 #' palavras '(em|a) decisão terminativa' é retornado 'conclusivo' como resposta, caso contrário
 #' é retornado 'plenário'.
-#' @param df Dataframe com os eventos contendo as colunas "evento" e "regex"
+#' @param df Dataframe da tramitação no Senado.
 #' @return String com a situação da pl.
 #' @examples
-#' extract_apreciacao_Senado(fetch_tramitacao(93418))
+#' extract_apreciacao_Senado(93418)
 #' @export
-extract_apreciacao_Senado <- function(df) {
+extract_apreciacao_Senado <- function(proposicao_id) {
+  url <- paste0(url_base_tramitacao, proposicao_id)
+  json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
+  tramitacao_data <-
+    json_tramitacao %>%
+    magrittr::extract2("MovimentacaoMateria") %>%
+    magrittr::extract2("Materia") %>%
+    magrittr::extract2("Despachos") %>%
+    magrittr::extract2("Despacho") 
+  if(!is.null(tramitacao_data)){
+    tramitacao_data <- tramitacao_data %>%
+      tidyr::unnest(ComissoesDespacho.ComissaoDespacho) %>%
+      filter(IndicadorDespachoTerminativo == "Sim")
+    if_else(nrow(tramitacao_data) != 0, "Sim", "Não")
+  } else{
+    "Não"
+  }
+}
+
+#' @title Extrai o regime de tramitação do Senado
+#' @description Verifica o regime de tramitação de um dataframe. Se apresentar as
+#' palavras 'estando a matéria em regime de urgência' é retornado 'Urgência' como resposta, caso contrário
+#' é retornado 'Ordinária'.
+#' @param df Dataframe da tramitação no Senado.
+#' @return String com a situação do regime de tramitação da pl.
+#' @examples
+#' extract_regime_Senado(fetch_tramitacao(93418))
+#' @export
+extract_regime_Senado <- function(df) {
   df <-
     df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     dplyr::mutate(
-      apreciacao =
+      regime =
         dplyr::case_when(
-          stringr::str_detect(tolower(texto_tramitacao), '(em|a) decisão terminativa') ~
-            'conclusiva')
+          stringr::str_detect(tolower(texto_tramitacao), 'estando a matéria em regime de urgência') ~
+            'Urgência')
     ) %>%
-    tidyr::fill(apreciacao)
+    tidyr::fill(regime)
   
-  if(is.na(df[nrow(df), ]$apreciacao)){
-    'plenario'
+  if(is.na(df[nrow(df), ]$regime)){
+    ''
   } else{
-    df[nrow(df), ]$apreciacao
+    df[nrow(df), ]$regime
   }
 }
+
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
 #' @description Retona dataframe contendo os n últimos eventos importantes que aconteceram no Senado
