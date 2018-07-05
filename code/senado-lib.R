@@ -421,7 +421,7 @@ extract_regime_Senado <- function(df) {
     tidyr::fill(regime)
   
   if(is.na(df[nrow(df), ]$regime)){
-    ''
+    'Ordinária'
   } else{
     df[nrow(df), ]$regime
   }
