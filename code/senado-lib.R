@@ -375,7 +375,7 @@ extract_evento_Senado <- function(tramitacao_df, phases_df) {
 #' @description Verifica o regime de apreciação de um dataframe. Se apresentar as
 #' palavras '(em|a) decisão terminativa' é retornado 'conclusivo' como resposta, caso contrário
 #' é retornado 'plenário'.
-#' @param df Dataframe com os eventos contendo as colunas "evento" e "regex"
+#' @param df Dataframe da tramitação no Senado.
 #' @return String com a situação da pl.
 #' @examples
 #' extract_apreciacao_Senado(fetch_tramitacao(93418))
@@ -398,6 +398,35 @@ extract_apreciacao_Senado <- function(df) {
     df[nrow(df), ]$apreciacao
   }
 }
+
+#' @title Extrai o regime de tramitação do Senado
+#' @description Verifica o regime de tramitação de um dataframe. Se apresentar as
+#' palavras 'estando a matéria em regime de urgência' é retornado 'Urgência' como resposta, caso contrário
+#' é retornado 'Ordinária'.
+#' @param df Dataframe da tramitação no Senado.
+#' @return String com a situação do regime de tramitação da pl.
+#' @examples
+#' extract_regime_Senado(fetch_tramitacao(93418))
+#' @export
+extract_regime_Senado <- function(df) {
+  df <-
+    df %>%
+    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::mutate(
+      regime =
+        dplyr::case_when(
+          stringr::str_detect(tolower(texto_tramitacao), 'em regime de urg(ê|e)ncia') ~
+            'Urgência')
+    ) %>%
+    tidyr::fill(regime)
+  
+  if(is.na(df[nrow(df), ]$regime)){
+    ''
+  } else{
+    df[nrow(df), ]$regime
+  }
+}
+
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
 #' @description Retona dataframe contendo os n últimos eventos importantes que aconteceram no Senado
