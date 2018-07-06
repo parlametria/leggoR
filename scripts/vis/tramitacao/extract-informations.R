@@ -3,7 +3,7 @@ library(tidyverse)
 library(rcongresso)
 source(here::here("R/senado-lib.R"))
 source(here::here("R/camara-lib.R"))
-source(here::here("code/congresso-lib.R"))
+source(here::here("R/congresso-lib.R"))
 
 extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   nome_ementa_camara <- get_ementas_in_camara(bill_id_camara)

@@ -1,3 +1,5 @@
+library(dplyr)
+
 args = commandArgs(trailingOnly=TRUE)
 
 #' @title Cria todos os csvs de um proposição na câmara.
