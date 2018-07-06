@@ -8,7 +8,7 @@ library(tidyverse)
 library(here)
 library(jsonlite)
 library(vistime)
-source(here::here("code/senado-lib.R"))
+source(here("R/senado-lib.R"))
 ```
 
 ```{r, echo = FALSE}

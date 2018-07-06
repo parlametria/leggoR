@@ -1,6 +1,6 @@
 library(tidyverse)
 library(here)
-source(here::here("code/senado-lib.R"))
+source(here::here("R/senado-lib.R"))
 
 #' @title Importa as informações de uma proposição da internet.
 #' @description Recebido um id a função roda os scripts para 
