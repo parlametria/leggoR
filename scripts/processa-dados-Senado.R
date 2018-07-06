@@ -1,8 +1,7 @@
 library(tidyverse)
-library(here)
-source(here::here("code/senado-lib.R"))
+source(here::here("R/senado-lib.R"))
 
-#' @title Processa dados de um proposição do senado.
+#' @title Processa dados de uma proposição do senado.
 #' @description Recebido um bill_id a função recupera informações sobre uma proposição
 #' e sua tramitação e as salva em data/Senado.
 #' @param bill_id Identificador da proposição que pode ser recuperado no site da câmara.

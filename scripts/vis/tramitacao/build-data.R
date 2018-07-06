@@ -1,3 +1,5 @@
+library(dplyr)
+
 args = commandArgs(trailingOnly=TRUE)
 
 #' @title Cria todos os csvs de um proposição na câmara.
@@ -8,7 +10,7 @@ args = commandArgs(trailingOnly=TRUE)
 #' build_camara(257161)
 #' @export
 build_camara <- function(id){
-  source(here::here("code/camara-process-data.R"))
+  source(here::here("scripts/camara-process-data.R"))
   process_proposicao(id)
 }
 
@@ -20,9 +22,9 @@ build_camara <- function(id){
 #' build_senado(91341)
 #' @export
 build_senado <- function(id){
-  source(here::here("code/importa-dados-Senado.R"))
+  source(here::here("scripts/importa-dados-Senado.R"))
   import_proposicao(id)
-  source(here::here("code/processa-dados-Senado.R"))
+  source(here::here("scripts/processa-dados-Senado.R"))
   process_proposicao(id)
 }
 
@@ -41,7 +43,7 @@ build_csvs <- function(id, house) {
   } else if("SENADO" == toupper(house)){
     build_senado(id)
   }
-  source(here::here(paste0("code/vis/tramitacao/data-chart-", tolower(house), ".R")))
+  source(here::here(paste0("scripts/vis/tramitacao/data-chart-", tolower(house), ".R")))
   build_vis_csv(id)
   
   as.tibble(NULL)

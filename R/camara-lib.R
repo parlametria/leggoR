@@ -1,4 +1,4 @@
-  source(here::here("code/congresso-lib.R"))
+  source(here::here("R/congresso-lib.R"))
   
   #' @title Recupera o número, o tipo e ementa de uma proposição na Câmara
   #' @description Retorna um dataframe contendo o número, o tipo e a ementa de uma proposição na Câmara através do ID da proposição

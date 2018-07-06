@@ -21,7 +21,7 @@ Abaixo, mostramos um exemplo das tabelas geradas com os dados importados.
 ```{r, echo = FALSE, message=FALSE}
 library(tidyverse)
 library(here)
-source(here::here("code/senado-lib.R"))
+source(here("R/senado-lib.R"))
 
 bill_id <- 91341
 base_dir <- '../data/Senado/'

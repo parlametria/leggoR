@@ -3,4 +3,14 @@
 Raiz do projeto Ágora Digital
 
 - [Documentação](/docs)
-- [Scripts](/code)
+- [Scripts](/scripts)
+
+## Comandos
+
+Gerar documentação:
+
+    devtools::document()
+
+Rodar testes:
+
+    devtools::test()

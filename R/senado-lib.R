@@ -1,4 +1,4 @@
-source(here::here("code/congresso-lib.R"))
+source(here::here("R/congresso-lib.R"))
 
 url_base_tramitacao <- "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes/"
 
@@ -421,7 +421,7 @@ extract_regime_Senado <- function(df) {
     tidyr::fill(regime)
   
   if(is.na(df[nrow(df), ]$regime)){
-    ''
+    'Ordinária'
   } else{
     df[nrow(df), ]$regime
   }
