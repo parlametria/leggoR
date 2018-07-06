@@ -526,8 +526,7 @@ extract_comissoes_Senado <- function(df) {
         USE.NAMES=FALSE)
   }
 
-
-    y <- df %>%
+    df %>%
     dplyr::mutate(
       comissoes =
         dplyr::case_when(
@@ -538,6 +537,7 @@ extract_comissoes_Senado <- function(df) {
         stringr::str_detect(tolower(texto_tramitacao),  '(à|a)s? comiss..s*') ~
           stringr::str_extract(texto_tramitacao, regex('comiss..s*.+',, ignore_case=TRUE))
 )
+
     ) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_tramitacao) %>%
@@ -562,6 +562,7 @@ extract_comissoes_Senado <- function(df) {
 #' @export
 extract_first_comissoes_Senado <- function(df) {
   extract_comissoes_Senado(df)[1, ]
+
 }
 
 #' @title Recupera os locais do Senado
