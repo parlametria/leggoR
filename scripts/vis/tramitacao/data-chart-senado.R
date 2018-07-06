@@ -4,14 +4,6 @@ library(here)
 # Create data frame to display local inline
 format_local <- function(df) {
   
-  df <- 
-    df %>%
-    filter(!(grepl('^S', local) | local == 'ATA-PLEN')) %>%
-    mutate(
-      data_tramitacao = as.Date(data_tramitacao),
-      local = as.character(local)
-    )
-  
   df <-
     df %>%
     mutate(z = cumsum(local != lag(local, default='NULL')), 
@@ -96,7 +88,7 @@ format_eventos <- function(df) {
 }
 
 build_vis_csv <- function(bill_id) {
-  data <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-bill-passage-visualization-senado.csv"))
+  data <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-visualizacao-tramitacao-senado.csv"))
   
   rbind(format_local(data), format_fase(data), format_eventos(data)) %>%
     write_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))

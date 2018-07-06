@@ -76,60 +76,6 @@ fetch_tramitacao <- function(proposicao_id){
     rename_tramitacao_df(proposicao_tramitacoes_df)
 }
 
-#' @title Recupera os detalhes de uma proposição no Senado
-#' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
-#' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
-#' @param proposicao_id ID de uma proposição do Senado
-#' @return Dataframe com as informações detalhadas de uma proposição no Senado
-#' @examples
-#' fetch_proposicao(91341)
-#' @export
-fetch_proposicao <- function(proposicao_id){
-  url_base_proposicao <- "http://legis.senado.leg.br/dadosabertos/materia/"
-
-  url <- paste0(url_base_proposicao, proposicao_id)
-  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
-  proposicao_data <-
-    json_proposicao$DetalheMateria$Materia
-  proposicao_ids <-
-    proposicao_data$IdentificacaoMateria %>%
-    tibble::as.tibble()
-  proposicao_basic_data <-
-    proposicao_data$DadosBasicosMateria %>%
-    purrr::flatten() %>%
-    tibble::as.tibble()
-  proposicao_author <-
-    proposicao_data$Autoria$Autor %>%
-    tibble::as.tibble()
-  proposicao_specific_assunto <-
-    proposicao_data$Assunto$AssuntoEspecifico %>%
-    tibble::as.tibble() %>%
-    dplyr::rename(assunto_especifico = Descricao, codigo_assunto_especifico = Codigo)
-  proposicao_general_assunto <-
-    proposicao_data$Assunto$AssuntoGeral %>%
-    tibble::as.tibble() %>%
-    dplyr::rename(assunto_geral = Descricao, codigo_assunto_geral = Codigo)
-  proposicao_source <-
-    proposicao_data$OrigemMateria %>%
-    tibble::as.tibble()
-  anexadas <-
-    proposicao_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria
-  relacionadas <-
-    proposicao_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria
-  
-  proposicao_complete <-
-    proposicao_basic_data %>%
-    tibble::add_column(
-      !!! proposicao_ids, !!! proposicao_author, !!! proposicao_specific_assunto,
-      !!! proposicao_general_assunto, !!! proposicao_source,
-      proposicoes_relacionadas = paste(relacionadas, collapse=' '),
-      proposicoes_apensadas = paste(anexadas, collapse=' '))
-  
-  proposicao_complete <- proposicao_complete[, !sapply(proposicao_complete, is.list)]
-
-  rename_proposicao_df(proposicao_complete)
-}
-
 #' @title Deferimento de requerimentos.
 #' @description Verifica deferimento ou não para uma lista de IDs de requerimentos.
 #' @param proposicao_id ID de um ou vários requerimentos
@@ -243,7 +189,7 @@ fetch_current_relatoria <- function(proposicao_id) {
 
   #verify if relator atual exists
   if(ncol(current_relatoria_df) == 0){
-    return(rename_relatoria(data.frame(matrix(ncol = 7, nrow = 1))))
+    return(current_relatoria_df)
   }
 
 
@@ -373,7 +319,7 @@ rename_proposicao_df <- function(df) {
 #' @export
 get_nome_ementa_Senado <- function(proposicao_id) {
 
-  proposicao <- fetch_proposicao(proposicao_id)
+  proposicao <- fetch_proposicao(proposicao_id, 'senado')
   proposicao %>%
     dplyr::select(ementa_materia, sigla_subtipo_materia, numero_materia) %>%
     unique
@@ -424,6 +370,63 @@ extract_evento_Senado <- function(tramitacao_df, phases_df) {
 
   dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao")
 }
+
+#' @title Extrai o regime de apreciação do Senado
+#' @description Verifica o regime de apreciação de um dataframe. Se apresentar as
+#' palavras '(em|a) decisão terminativa' é retornado 'conclusivo' como resposta, caso contrário
+#' é retornado 'plenário'.
+#' @param df Dataframe da tramitação no Senado.
+#' @return String com a situação da pl.
+#' @examples
+#' extract_apreciacao_Senado(fetch_tramitacao(93418))
+#' @export
+extract_apreciacao_Senado <- function(df) {
+  df <-
+    df %>%
+    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::mutate(
+      apreciacao =
+        dplyr::case_when(
+          stringr::str_detect(tolower(texto_tramitacao), '(em|a) decisão terminativa') ~
+            'conclusiva')
+    ) %>%
+    tidyr::fill(apreciacao)
+  
+  if(is.na(df[nrow(df), ]$apreciacao)){
+    'plenario'
+  } else{
+    df[nrow(df), ]$apreciacao
+  }
+}
+
+#' @title Extrai o regime de tramitação do Senado
+#' @description Verifica o regime de tramitação de um dataframe. Se apresentar as
+#' palavras 'estando a matéria em regime de urgência' é retornado 'Urgência' como resposta, caso contrário
+#' é retornado 'Ordinária'.
+#' @param df Dataframe da tramitação no Senado.
+#' @return String com a situação do regime de tramitação da pl.
+#' @examples
+#' extract_regime_Senado(fetch_tramitacao(93418))
+#' @export
+extract_regime_Senado <- function(df) {
+  df <-
+    df %>%
+    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::mutate(
+      regime =
+        dplyr::case_when(
+          stringr::str_detect(tolower(texto_tramitacao), 'em regime de urg(ê|e)ncia') ~
+            'Urgência')
+    ) %>%
+    tidyr::fill(regime)
+  
+  if(is.na(df[nrow(df), ]$regime)){
+    'Ordinária'
+  } else{
+    df[nrow(df), ]$regime
+  }
+}
+
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
 #' @description Retona dataframe contendo os n últimos eventos importantes que aconteceram no Senado
@@ -519,3 +522,41 @@ extract_comissoes_Senado <- function(df) {
   
   df[1,]
 }
+
+#' @title Recupera os locais do Senado
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada local
+#' @param df Dataframe da tramitação no Senado
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada local
+#' @examples
+#'  extract_locais(fetch_tramitacao(91341))
+#' @export
+extract_locais <- function(df) {
+  descricoes_plenario <- c('incluído_requerimento_em_ordem_do_dia_da_sessão_deliberativa',
+                           'pronto_para_deliberação_do_plenário',
+                           'aguardando_recebimento_de_emendas_perante_a_mesa',
+                           'incluída_em_ordem_do_dia')
+  descricoes_comissoes <- c('matéria_com_a_relatoria',
+                            'aguardando_designação_do_relator' )
+  
+    df <- df %>%
+    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::mutate(
+      local =
+        dplyr::case_when(
+          situacao_descricao_situacao %in% descricoes_plenario ~
+            'Plenário',
+          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') | 
+             situacao_descricao_situacao %in% descricoes_comissoes) ~
+            origem_tramitacao_local_sigla_local,
+          situacao_descricao_situacao == 'remetida_à_câmara_dos_deputados' ~
+            'Câmara')
+    )
+    
+    if (is.na(df[1, ]$local)) {
+      df[1, ]$local = 'SF-ATA-PLEN'
+    }
+    
+    df %>%
+      tidyr::fill(local)
+}
+

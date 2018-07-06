@@ -9,7 +9,7 @@ source(here::here("R/senado-lib.R"))
 #' process_proposicao(91341)
 #' @export
 process_proposicao <- function(bill_id){
-  bill_passage <- read_csv(paste0(here::here("data/Senado/"), bill_id, "-passage-senado.csv")) %>% arrange(data_tramitacao)
+  bill_passage <- read_csv(paste0(here::here("data/Senado/"), bill_id, "-tramitacao-senado.csv")) %>% arrange(data_tramitacao)
 
   phase_one <- c('^Este processo contém')
   phase_two <- c(91, 99)
@@ -35,12 +35,13 @@ process_proposicao <- function(bill_id){
 
 
   bill_passage <- extract_evento_Senado(bill_passage, important_phases)
+  bill_passage <- extract_locais(bill_passage)
   bill_passage %>%
-    write_csv(paste0(here::here("data/Senado/"), bill_id, "-bill-passage-phases-senado.csv"))
+    write_csv(paste0(here::here("data/Senado/"), bill_id, "-fases-tramitacao-senado.csv"))
 
   bill_passage_visualization <- 
     bill_passage %>%
-    select(data_tramitacao, local = origem_tramitacao_local_sigla_local, fase, evento)
+    select(data_tramitacao, local, fase, evento)
 
   # Print evento freq table
   bill_passage_visualization %>% select(evento) %>% group_by(evento) %>%
@@ -49,5 +50,5 @@ process_proposicao <- function(bill_id){
 
 
   bill_passage_visualization %>%
-    write_csv(paste0(here::here("data/Senado/"), bill_id, "-bill-passage-visualization-senado.csv"))
+    write_csv(paste0(here::here("data/Senado/"), bill_id, "-visualizacao-tramitacao-senado.csv"))
 }

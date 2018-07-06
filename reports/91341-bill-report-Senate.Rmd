@@ -13,7 +13,7 @@ source(here("R/senado-lib.R"))
 
 ```{r, echo = FALSE}
 bill_id <- 91341
-bill_data <- fetch_proposicao(bill_id)
+bill_data <- fetch_proposicao(bill_id, 'senado')
 ```
 
 Apelido da proposição:
@@ -59,7 +59,7 @@ bill_data$explicacao_ementa_materia
 Tabela de frequência de eventos importantes:
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 setwd('../data/Senado/')
-bill_passage_visualization <- read_csv(paste0(bill_id,"-bill-passage-visualization-senado.csv"))
+bill_passage_visualization <- read_csv(paste0(bill_id,"-visualizacao-tramitacao-senado.csv"))
 bill_passage_visualization %>% select(evento) %>% group_by(evento) %>%
   filter(!is.na(evento)) %>% summarise(frequência = n()) %>%
   arrange(-frequência)
