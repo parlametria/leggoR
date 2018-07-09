@@ -4,16 +4,16 @@ params:
   id: 41703
   casa: 'senado'
 ---
-```{r imports, echo=FALSE, message=FALSE, error=FALSE}
-source(here::here('code/vis/tramitacao/extract-informations.R'))
-source(here::here('code/vis/tramitacao/build-chart.R'))
-source(here::here('code/senado-lib.R'))
+```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+source(here::here('scripts/vis/tramitacao/extract-informations.R'))
+source(here::here('scripts/vis/tramitacao/build-chart.R'))
+source(here::here('R/senado-lib.R'))
 library(rcongresso)
 
 data <- extract_informations_from_single_house(params$id, params$casa)
 chart <- create_chart(params$id, params$casa)
 ```
-# Projeto de Lei `r toString(paste0(data$nome))`
+###`r toString(paste0(data$nome))`
 
 ### Informações Gerais
 

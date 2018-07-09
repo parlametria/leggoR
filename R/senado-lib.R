@@ -1,4 +1,4 @@
-source(here::here("code/congresso-lib.R"))
+source(here::here("R/congresso-lib.R"))
 
 url_base_tramitacao <- "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes/"
 
@@ -391,7 +391,6 @@ extract_apreciacao_Senado <- function(proposicao_id) {
     magrittr::extract2("Despacho") 
     
   if(!is.null(tramitacao_data)){
-    
     if(!is.list(tramitacao_data$ComissoesDespacho.ComissaoDespacho)){
       tramitacao_data <- tramitacao_data %>%
         magrittr::extract2("ComissoesDespacho") %>%
@@ -409,6 +408,7 @@ extract_apreciacao_Senado <- function(proposicao_id) {
   }
 }
 
+
 #' @title Extrai o regime de tramitação do Senado
 #' @description Verifica o regime de tramitação de um dataframe. Se apresentar as
 #' palavras 'estando a matéria em regime de urgência' é retornado 'Urgência' como resposta, caso contrário
@@ -425,18 +425,17 @@ extract_regime_Senado <- function(df) {
     dplyr::mutate(
       regime =
         dplyr::case_when(
-          stringr::str_detect(tolower(texto_tramitacao), 'estando a matéria em regime de urgência') ~
+          stringr::str_detect(tolower(texto_tramitacao), 'em regime de urg(ê|e)ncia') ~
             'Urgência')
     ) %>%
     tidyr::fill(regime)
   
   if(is.na(df[nrow(df), ]$regime)){
-    ''
+    'Ordinária'
   } else{
     df[nrow(df), ]$regime
   }
 }
-
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
 #' @description Retona dataframe contendo os n últimos eventos importantes que aconteceram no Senado
@@ -455,17 +454,40 @@ extract_n_last_eventos_Senado <- function(df, num) {
     dplyr::select(data_tramitacao, evento)
 }
 
-#' @title Recupera as comissões do Senado
-#' @description Retorna dataframe contendo o código da proposição e as comissões
-#' @param tramitacao_df Dataframe da tramitação no Senado
-#' @return Dataframe contendo o código da proposição e as comissões
+#' @title Recupera todas as comissões do Senado
+#' @description Retorna dataframe contendo o código da proposição, as comissões e a data
+#' @param df Dataframe da tramitação no Senado
+#' @return Dataframe contendo o código da proposição, as comissões e a data
 #' @examples
-#' df %>% extract_comissoes_Senado()
+#' extract_comissoes_Senado(fetch_tramitacao(129808))
 #' @export
 extract_comissoes_Senado <- function(df) {
 
   prefix <- '(Comiss..s*)* '
 
+  siglas_comissoes <- '
+    CAE
+    CAS
+    CCJ
+    CCT
+    CDH
+    CDIR
+    CDR
+    CE
+    CI
+    CMA
+    CRA
+    CRE
+    CSF
+    CTFC
+    CCAI
+    CMCF
+    CMCPLP
+    CMCVM
+    CMMC
+    CMO
+    FIPA
+  '
   comissoes_permanentes_especiais <- '
     Especial
     de Assuntos Econômicos
@@ -490,6 +512,7 @@ extract_comissoes_Senado <- function(df) {
     Mista de Planos, Orçamentos Públicos e Fiscalização
     Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas
     ' %>%
+    paste0(siglas_comissoes) %>%
     # Constrói expressão regular adicionando `prefix` ao começo de cada linha
     # e concatenando todas as linhas com `|`.
     strsplit('\n') %>%
@@ -498,7 +521,7 @@ extract_comissoes_Senado <- function(df) {
     magrittr::extract(. != '') %>%
     paste0(prefix, .) %>%
     paste(collapse='|') %>%
-    regex(ignore_case=TRUE)
+    regex(ignore_case=FALSE)
 
   # Faz com que os nomes comecem com 'Comissão'.
   fix_names <- function(name) {
@@ -506,19 +529,24 @@ extract_comissoes_Senado <- function(df) {
       stringr::str_replace('Comissões', 'Comissão') %>%
       sapply(
         function(name) {
-          if(!str_detect(name, 'Comissão')) paste0('Comissão', name)
+          if(!str_detect(name, 'Comissão') & !str_detect(siglas_comissoes, name)) paste0('Comissão', name)
           else name
         },
         USE.NAMES=FALSE)
   }
 
-  df <-
     df %>%
     dplyr::mutate(
       comissoes =
         dplyr::case_when(
-        stringr::str_detect(tolower(texto_tramitacao), 'às* comiss..s*') ~
-          stringr::str_extract(texto_tramitacao, regex('comiss..s*.+', ignore_case=TRUE)))
+          stringr::str_detect(tolower(texto_tramitacao),  'às c.+ e c.+, cabendo à última') ~
+            stringr::str_extract(texto_tramitacao, regex('às c.+ e c.+, cabendo à última', ignore_case=TRUE)),
+          stringr::str_detect(tolower(texto_tramitacao),  'à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo') ~
+            stringr::str_extract(texto_tramitacao, regex('à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo',, ignore_case=TRUE)),
+        stringr::str_detect(tolower(texto_tramitacao),  '(à|a)s? comiss..s*') ~
+          stringr::str_extract(texto_tramitacao, regex('comiss..s*.+',, ignore_case=TRUE))
+)
+
     ) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_tramitacao) %>%
@@ -528,7 +556,57 @@ extract_comissoes_Senado <- function(df) {
       comissoes = stringr::str_extract_all(comissoes, comissoes_permanentes_especiais)
     ) %>%
     unique() %>%
-    mutate(comissoes = sapply(comissoes, fix_names))
+      mutate(comissoes = sapply(comissoes, fix_names)) %>%
+      rowwise() %>%
+      filter(length(comissoes) != 0) 
+}
+
+
+#' @title Recupera as comissões que a proposição originalmente vai passar
+#' @description Retorna dataframe contendo o código da proposição, as comissões e a data
+#' @param df Dataframe da tramitação no Senado
+#' @return Dataframe contendo o código da proposição, as comissões e a data
+#' @examples
+#' extract_first_comissoes_Senado(fetch_tramitacao(129808))
+#' @export
+extract_first_comissoes_Senado <- function(df) {
+  extract_comissoes_Senado(df)[1, ]
+
+}
+
+#' @title Recupera os locais do Senado
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada local
+#' @param df Dataframe da tramitação no Senado
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada local
+#' @examples
+#'  extract_locais(fetch_tramitacao(91341))
+#' @export
+extract_locais <- function(df) {
+  descricoes_plenario <- c('incluído_requerimento_em_ordem_do_dia_da_sessão_deliberativa',
+                           'pronto_para_deliberação_do_plenário',
+                           'aguardando_recebimento_de_emendas_perante_a_mesa',
+                           'incluída_em_ordem_do_dia')
+  descricoes_comissoes <- c('matéria_com_a_relatoria',
+                            'aguardando_designação_do_relator' )
   
-  df[1,]
+    df <- df %>%
+    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::mutate(
+      local =
+        dplyr::case_when(
+          situacao_descricao_situacao %in% descricoes_plenario ~
+            'Plenário',
+          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') | 
+             situacao_descricao_situacao %in% descricoes_comissoes) ~
+            origem_tramitacao_local_sigla_local,
+          situacao_descricao_situacao == 'remetida_à_câmara_dos_deputados' ~
+            'Câmara')
+    )
+    
+    if (is.na(df[1, ]$local)) {
+      df[1, ]$local = 'SF-ATA-PLEN'
+    }
+    
+    df %>%
+      tidyr::fill(local)
 }

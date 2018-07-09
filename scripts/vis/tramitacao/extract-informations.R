@@ -1,9 +1,9 @@
 library(here)
 library(tidyverse)
 library(rcongresso)
-source(here::here("code/senado-lib.R"))
-source(here::here("code/camara-lib.R"))
-source(here::here("code/congresso-lib.R"))
+source(here::here("R/senado-lib.R"))
+source(here::here("R/camara-lib.R"))
+source(here::here("R/congresso-lib.R"))
 
 extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   nome_ementa_camara <- get_ementas_in_camara(bill_id_camara)
@@ -69,7 +69,8 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     nome_camara <- get_ementas_in_camara(id) %>% tail(1)
     tramitacao_camara = read_csv(paste0("../data/camara/", "tramitacao-camara-", id, ".csv"))
     despacho_camara <- last_n_despacho_in_camara(tramitacao_camara)
-    nome <- paste0(nome_camara$siglaTipo, nome_camara$numero) 
+    ano <- rcongresso::fetch_proposicao(id)$ano
+    nome <- paste0(nome_camara$siglaTipo, nome_camara$numero, "/", ano) 
     autor <- extract_autor_in_camara(id) %>% tail(1)
     casa_origem <- autor$casa_origem
     nome_autor <- autor$autor.nome
@@ -81,9 +82,10 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
   } else if (casa == 'senado') {
     tramitacao_senado <- read_csv(paste0("../data/Senado/", id, "-fases-tramitacao-senado.csv"))
     proposicao <- fetch_proposicao(id, 'senado') %>% tail(1)
+    ano <- proposicao$ano_materia
     despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
     nome_senado <- proposicao %>% select(ementa_materia, sigla_subtipo_materia, numero_materia) %>% unique
-    nome <- paste0(nome_senado$sigla_subtipo_materia, nome_senado$numero_materia)
+    nome <- paste0(nome_senado$sigla_subtipo_materia, nome_senado$numero_materia, "/", ano)
     casa_origem <- proposicao$nome_casa_origem
     nome_autor <- proposicao$nome_autor
     partido_autor <- proposicao$sigla_partido_parlamentar
@@ -91,7 +93,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     nome_autor <- ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, " ", partido_autor, "/", uf_autor))
     despacho <- despacho_senado$texto_tramitacao
     relatoria <- fetch_last_relatoria(id) %>% tail(1)
-    ementa <- proposicao$ementa_materia
+    ementa <- if_else(is.null(proposicao$explicacao_ementa_materia), proposicao$ementa_materia, proposicao$explicacao_ementa_materia)
     relator <- extract_ultimo_relator(id)
     data_apresentacao <- format(as.Date(proposicao$data_apresentacao), "%d/%m/%Y") %>% tail(1)
     eventos <-  as.list(extract_n_last_eventos_Senado(tramitacao_senado, 3)$evento)

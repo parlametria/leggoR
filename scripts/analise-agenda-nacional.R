@@ -2,7 +2,7 @@ library(rcongresso)
 library(dplyr)
 library(ggplot2)
 
-#agenda_nacional <- 
+#agenda_nacional <-
 
 plp_441_2017_id <- fetch_id_proposicao("PLP", 441, 2017)
 
@@ -16,7 +16,7 @@ plp_441_2017_votos <- plp_441_2017_votacoes %>%
 plp_441_2017_orientacoes <- plp_441_2017_votacoes %>%
   rowwise() %>%
   do(fetch_orientacoes(.$id)) %>%
-  rename(orientacao = voto) 
+  rename(orientacao = voto)
 
 plp_441_2017_orientacao_gov <- plp_441_2017_orientacoes %>%
   filter(nomeBancada == "GOV.") %>%
@@ -54,7 +54,7 @@ obediencia_partidos %>%
   geom_bar(stat='identity') +
   coord_flip() +
   ggtitle('Temerômetro')
-                
+
 obediencia_partidos %>%
   ggplot(aes(x=reorder(parlamentar.siglaPartido,obediencia_partido),y=obediencia_partido)) +
   geom_bar(stat='identity') +
