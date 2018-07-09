@@ -445,17 +445,40 @@ extract_n_last_eventos_Senado <- function(df, num) {
     dplyr::select(data_tramitacao, evento)
 }
 
-#' @title Recupera as comissões do Senado
-#' @description Retorna dataframe contendo o código da proposição e as comissões
-#' @param tramitacao_df Dataframe da tramitação no Senado
-#' @return Dataframe contendo o código da proposição e as comissões
+#' @title Recupera todas as comissões do Senado
+#' @description Retorna dataframe contendo o código da proposição, as comissões e a data
+#' @param df Dataframe da tramitação no Senado
+#' @return Dataframe contendo o código da proposição, as comissões e a data
 #' @examples
-#' df %>% extract_comissoes_Senado()
+#' extract_comissoes_Senado(fetch_tramitacao(129808))
 #' @export
 extract_comissoes_Senado <- function(df) {
 
   prefix <- '(Comiss..s*)* '
 
+  siglas_comissoes <- '
+    CAE
+    CAS
+    CCJ
+    CCT
+    CDH
+    CDIR
+    CDR
+    CE
+    CI
+    CMA
+    CRA
+    CRE
+    CSF
+    CTFC
+    CCAI
+    CMCF
+    CMCPLP
+    CMCVM
+    CMMC
+    CMO
+    FIPA
+  '
   comissoes_permanentes_especiais <- '
     Especial
     de Assuntos Econômicos
@@ -480,6 +503,7 @@ extract_comissoes_Senado <- function(df) {
     Mista de Planos, Orçamentos Públicos e Fiscalização
     Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas
     ' %>%
+    paste0(siglas_comissoes) %>%
     # Constrói expressão regular adicionando `prefix` ao começo de cada linha
     # e concatenando todas as linhas com `|`.
     strsplit('\n') %>%
@@ -488,7 +512,7 @@ extract_comissoes_Senado <- function(df) {
     magrittr::extract(. != '') %>%
     paste0(prefix, .) %>%
     paste(collapse='|') %>%
-    regex(ignore_case=TRUE)
+    regex(ignore_case=FALSE)
 
   # Faz com que os nomes comecem com 'Comissão'.
   fix_names <- function(name) {
@@ -496,19 +520,24 @@ extract_comissoes_Senado <- function(df) {
       stringr::str_replace('Comissões', 'Comissão') %>%
       sapply(
         function(name) {
-          if(!str_detect(name, 'Comissão')) paste0('Comissão', name)
+          if(!str_detect(name, 'Comissão') & !str_detect(siglas_comissoes, name)) paste0('Comissão', name)
           else name
         },
         USE.NAMES=FALSE)
   }
 
-  df <-
     df %>%
     dplyr::mutate(
       comissoes =
         dplyr::case_when(
-        stringr::str_detect(tolower(texto_tramitacao), 'às* comiss..s*') ~
-          stringr::str_extract(texto_tramitacao, regex('comiss..s*.+', ignore_case=TRUE)))
+          stringr::str_detect(tolower(texto_tramitacao),  'às c.+ e c.+, cabendo à última') ~
+            stringr::str_extract(texto_tramitacao, regex('às c.+ e c.+, cabendo à última', ignore_case=TRUE)),
+          stringr::str_detect(tolower(texto_tramitacao),  'à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo') ~
+            stringr::str_extract(texto_tramitacao, regex('à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo',, ignore_case=TRUE)),
+        stringr::str_detect(tolower(texto_tramitacao),  '(à|a)s? comiss..s*') ~
+          stringr::str_extract(texto_tramitacao, regex('comiss..s*.+',, ignore_case=TRUE))
+)
+
     ) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_tramitacao) %>%
@@ -518,9 +547,22 @@ extract_comissoes_Senado <- function(df) {
       comissoes = stringr::str_extract_all(comissoes, comissoes_permanentes_especiais)
     ) %>%
     unique() %>%
-    mutate(comissoes = sapply(comissoes, fix_names))
-  
-  df[1,]
+      mutate(comissoes = sapply(comissoes, fix_names)) %>%
+      rowwise() %>%
+      filter(length(comissoes) != 0) 
+}
+
+
+#' @title Recupera as comissões que a proposição originalmente vai passar
+#' @description Retorna dataframe contendo o código da proposição, as comissões e a data
+#' @param df Dataframe da tramitação no Senado
+#' @return Dataframe contendo o código da proposição, as comissões e a data
+#' @examples
+#' extract_first_comissoes_Senado(fetch_tramitacao(129808))
+#' @export
+extract_first_comissoes_Senado <- function(df) {
+  extract_comissoes_Senado(df)[1, ]
+
 }
 
 #' @title Recupera os locais do Senado
@@ -559,4 +601,3 @@ extract_locais <- function(df) {
     df %>%
       tidyr::fill(local)
 }
-
