@@ -2,6 +2,7 @@ library(data.table)
 library(tidyverse)
 library(lubridate)
 library(here)
+source(here::here("R/camara-lib.R"))
 
 data_fase <- function(df) {
   df %>%
@@ -54,9 +55,22 @@ data_evento <- function(df) {
     unique()
 }
 
+format_fase_global <- function(bill_id, proposicao, tramitacao) {
+  data_prop <- extract_autor_in_camara(bill_id)
+  casa_origem <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Tramitação - Casa de Origem", "Tramitação - Casa Revisora")
+  end <- 
+    tramitacao %>%
+    arrange(desc(data_hora)) %>%
+    select(data_hora)
+  
+  frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
+             casa_origem, data_prop$data_apresentacao, end[1, ][[1]], 0, 'global', "#f37340")
+}
+
 build_vis_csv <- function(bill_id) {
   tramitacao <- read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv'))
-
+  proposicao <- read_csv(paste0(here::here('data/camara/proposicao-camara-'), bill_id, '.csv'))
+  
   data_path <- here::here('data/vis/tramitacao/')
   file_path <- paste0(data_path, bill_id, '-data-camara.csv')
 
