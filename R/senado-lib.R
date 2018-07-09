@@ -378,26 +378,36 @@ extract_evento_Senado <- function(tramitacao_df, phases_df) {
 #' @param df Dataframe da tramitação no Senado.
 #' @return String com a situação da pl.
 #' @examples
-#' extract_apreciacao_Senado(fetch_tramitacao(93418))
+#' extract_apreciacao_Senado(93418)
 #' @export
-extract_apreciacao_Senado <- function(df) {
-  df <-
-    df %>%
-    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
-    dplyr::mutate(
-      apreciacao =
-        dplyr::case_when(
-          stringr::str_detect(tolower(texto_tramitacao), '(em|a) decisão terminativa') ~
-            'conclusiva')
-    ) %>%
-    tidyr::fill(apreciacao)
-  
-  if(is.na(df[nrow(df), ]$apreciacao)){
-    'plenario'
-  } else{
-    df[nrow(df), ]$apreciacao
+extract_apreciacao_Senado <- function(proposicao_id) {
+  url <- paste0(url_base_tramitacao, proposicao_id)
+  json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
+  tramitacao_data <-
+    json_tramitacao %>%
+    magrittr::extract2("MovimentacaoMateria") %>%
+    magrittr::extract2("Materia") %>%
+    magrittr::extract2("Despachos") %>%
+    magrittr::extract2("Despacho") 
+    
+  if(!is.null(tramitacao_data)){
+    if(!is.list(tramitacao_data$ComissoesDespacho.ComissaoDespacho)){
+      tramitacao_data <- tramitacao_data %>%
+        magrittr::extract2("ComissoesDespacho") %>%
+        magrittr::extract2("ComissaoDespacho") %>%
+        as.tibble()
+    } else {
+      tramitacao_data <- tramitacao_data %>%
+        tidyr::unnest(ComissoesDespacho.ComissaoDespacho) 
+    }
+    tramitacao_data <- tramitacao_data %>%
+        filter(IndicadorDespachoTerminativo == "Sim")
+    if_else(nrow(tramitacao_data) != 0, "conclusiva", "plenario")
+  } else {
+    "plenario"
   }
 }
+
 
 #' @title Extrai o regime de tramitação do Senado
 #' @description Verifica o regime de tramitação de um dataframe. Se apresentar as
@@ -426,7 +436,6 @@ extract_regime_Senado <- function(df) {
     df[nrow(df), ]$regime
   }
 }
-
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
 #' @description Retona dataframe contendo os n últimos eventos importantes que aconteceram no Senado
