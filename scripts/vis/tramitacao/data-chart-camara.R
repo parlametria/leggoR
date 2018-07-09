@@ -56,7 +56,7 @@ data_evento <- function(df) {
 }
 
 format_fase_global <- function(bill_id, proposicao, tramitacao) {
-  data_prop <- extract_autor_in_camara(bill_id)
+  data_prop <- extract_autor_in_camara(bill_id) %>% tail(1)
   casa_origem <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Tramitação - Casa de Origem", "Tramitação - Casa Revisora")
   end <- 
     tramitacao %>%
@@ -64,7 +64,7 @@ format_fase_global <- function(bill_id, proposicao, tramitacao) {
     select(data_hora)
   
   frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
-             casa_origem, data_prop$data_apresentacao, end[1, ][[1]], 0, 'global', "#f37340")
+             casa_origem, proposicao$data_apresentacao, end[1, ][[1]], 0, 'global', "#f37340")
 }
 
 build_vis_csv <- function(bill_id) {
@@ -74,6 +74,6 @@ build_vis_csv <- function(bill_id) {
   data_path <- here::here('data/vis/tramitacao/')
   file_path <- paste0(data_path, bill_id, '-data-camara.csv')
 
-  data <- bind_rows(data_evento(tramitacao), data_fase(tramitacao), data_local(tramitacao))
+  data <- bind_rows(data_evento(tramitacao), data_fase(tramitacao), data_local(tramitacao), format_fase_global(bill_id, proposicao, tramitacao))
   readr::write_csv(data, file_path)
 }
