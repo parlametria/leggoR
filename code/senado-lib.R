@@ -389,12 +389,22 @@ extract_apreciacao_Senado <- function(proposicao_id) {
     magrittr::extract2("Materia") %>%
     magrittr::extract2("Despachos") %>%
     magrittr::extract2("Despacho") 
+    
   if(!is.null(tramitacao_data)){
+    
+    if(!is.list(tramitacao_data$ComissoesDespacho.ComissaoDespacho)){
+      tramitacao_data <- tramitacao_data %>%
+        magrittr::extract2("ComissoesDespacho") %>%
+        magrittr::extract2("ComissaoDespacho") %>%
+        as.tibble()
+    } else {
+      tramitacao_data <- tramitacao_data %>%
+        tidyr::unnest(ComissoesDespacho.ComissaoDespacho) 
+    }
     tramitacao_data <- tramitacao_data %>%
-      tidyr::unnest(ComissoesDespacho.ComissaoDespacho) %>%
-      filter(IndicadorDespachoTerminativo == "Sim")
+        filter(IndicadorDespachoTerminativo == "Sim")
     if_else(nrow(tramitacao_data) != 0, "Sim", "Não")
-  } else{
+  } else {
     "Não"
   }
 }
