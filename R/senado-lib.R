@@ -402,9 +402,9 @@ extract_apreciacao_Senado <- function(proposicao_id) {
     }
     tramitacao_data <- tramitacao_data %>%
         filter(IndicadorDespachoTerminativo == "Sim")
-    if_else(nrow(tramitacao_data) != 0, "Sim", "Não")
+    if_else(nrow(tramitacao_data) != 0, "conclusiva", "plenario")
   } else {
-    "Não"
+    "plenario"
   }
 }
 
