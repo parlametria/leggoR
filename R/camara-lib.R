@@ -27,19 +27,12 @@
       dplyr::select(data_hora, descricao_tramitacao, despacho)
   }
   
-  #' @title Recupera as comissões pelas quais a proposição irá passar
-  #' @description Retorna um dataframe aas comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
-  #' as próximas comissões 
-  #' @param df Dataframe da tramitação na Câmara
-  #' @return Dataframe com as próximas comissões que a proposição irá passar.
-  #' @examples
-  #' tramitacao %>% get_comissoes_in_camara(df)
-  #' @export
-  get_comissoes_in_camara <- function(df) {
+  get_comissoes_camara <- function() {
+    
     siglas_comissoes_antigas <- '
     CDCMAM
     CAPR
-    CCJR
+    CCJRZ
     '
     
     siglas_comissoes <- '
@@ -101,14 +94,32 @@
     comissoes_temporarias <- '
     Comissão Especial
     '
+    
+    to_list <- function(name) {
+      name %>%  
+        trimws() %>% 
+        strsplit("\n") %>% 
+        sapply(trimws)
+    }
+    
+    dplyr::tibble(siglas_comissoes_antigas=list(siglas_comissoes_antigas %>% to_list),
+                  siglas_comissoes=list(siglas_comissoes %>% to_list),
+                  comissoes_temporarias=list(comissoes_temporarias %>% to_list),
+                  comissoes_permanentes=list(comissoes_permanentes %>% to_list),)
+  }
   
+  #' @title Recupera as comissões pelas quais a proposição irá passar
+  #' @description Retorna um dataframe aas comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
+  #' as próximas comissões 
+  #' @param df Dataframe da tramitação na Câmara
+  #' @return Dataframe com as próximas comissões que a proposição irá passar.
+  #' @examples
+  #' tramitacao %>% get_comissoes_in_camara(df)
+  #' @export
+  get_comissoes_in_camara <- function(df) {
     # concatena todas as linhas com `|`.
     reg <- 
-      paste0(comissoes_temporarias, siglas_comissoes_antigas, siglas_comissoes, comissoes_permanentes, sep="\n") %>%
-      strsplit('\n') %>%
-      magrittr::extract2(1) %>%
-      sapply(trimws) %>%
-      magrittr::extract(. != '') %>%
+      unlist(get_comissoes_camara()) %>%
       paste(collapse='|') %>%
       regex(ignore_case=TRUE)
 
@@ -522,4 +533,22 @@
     
     df %>%
       tidyr::fill(local)
-}
+  }
+  
+  # Extrai a situção da comissão. Ex: (Recebimento, Análise do relator, discussão e votação, etc)
+  # Recebe o dataframe da tramitacao da pl
+  extract_situacao_comissao <- function(df) {
+    recebimento <- c(500)
+    analise_do_relator <- c(320)
+    discussao_votacao <- c(322, 240)
+    encaminhamento <- c(180)
+    
+    df %>% 
+      dplyr::mutate(
+        situacao_comissao =
+          dplyr::case_when(id_tipo_tramitacao %in% recebimento ~ "Recebimento")
+      ) %>% 
+      dplyr::select(data_hora, despacho, local, situacao_comissao)
+    
+    
+  }
