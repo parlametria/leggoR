@@ -27,7 +27,7 @@
       dplyr::select(data_hora, descricao_tramitacao, despacho)
   }
   
-  #' @title Recupera as comissões pelas quais a proposição irá passar
+   #' @title Recupera as comissões pelas quais a proposição irá passar
   #' @description Retorna um dataframe aas comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
   #' as próximas comissões 
   #' @param df Dataframe da tramitação na Câmara
@@ -36,66 +36,86 @@
   #' tramitacao %>% get_comissoes_in_camara(df)
   #' @export
   get_comissoes_in_camara <- function(df) {
-    comissoes_permanentes <- "
-      Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural
-      Ciência e Tecnologia, Comunicação e Informática
-      Constituição e Justiça e de Cidadania
-      Cultura
-      Defesa do Consumidor
-      Defesa dos Direitos da Mulher
-      Defesa dos Direitos da Pessoa Idosa
-      Defesa dos Direitos das Pessoas com Deficiência
-      Desenvolvimento Urbano
-      Desenvolvimento Econômico, Indústria, Comércio e Serviços
-      Direitos Humanos e Minorias
-      Educação
-      Esporte
-      Finanças e Tributação
-      Fiscalização Financeira e Controle
-      Integração Nacional, Desenvolvimento Regional e da Amazônia
-      Legislação Participativa
-      Meio Ambiente e Desenvolvimento Sustentável
-      Minas e Energia
-      Relações Exteriores e de Defesa Nacional
-      Segurança Pública e Combate ao Crime Organizado
-      Seguridade Social e Família
-      Trabalho, de Administração e Serviço Público
-      Turismo
-      Viação e Transportes
-      " %>%
-      strsplit('\n') %>% 
+    siglas_comissoes_antigas <- '
+    CDCMAM
+    CAPR
+    CCJR
+    '
+    
+    siglas_comissoes <- '
+    CAPADR
+    CCTCI
+    CCJC
+    CCULT
+    CDC
+    CMULHER
+    CIDOSO
+    CPD
+    CDU
+    CDEICS
+    CDHM
+    CE
+    CESPO
+    CFT
+    CFFC
+    CINDRA
+    CLP
+    CMADS
+    CME
+    CREDN
+    CSPCCO
+    CSSF
+    CTASP
+    CTUR
+    CVT
+    '
+    
+    comissoes_permanentes <- '
+    Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural
+    Ciência e Tecnologia, Comunicação e Informática
+    Constituição e Justiça e de Cidadania
+    Cultura
+    Defesa do Consumidor
+    Defesa dos Direitos da Mulher
+    Defesa dos Direitos da Pessoa Idosa
+    Defesa dos Direitos das Pessoas com Deficiência
+    Desenvolvimento Urbano
+    Desenvolvimento Econômico, Indústria, Comércio e Serviços
+    Direitos Humanos e Minorias
+    Educação
+    Esporte
+    Finanças e Tributação
+    Fiscalização Financeira e Controle
+    Integração Nacional, Desenvolvimento Regional e da Amazônia
+    Legislação Participativa
+    Meio Ambiente e Desenvolvimento Sustentável
+    Minas e Energia
+    Relações Exteriores e de Defesa Nacional
+    Segurança Pública e Combate ao Crime Organizado
+    Seguridade Social e Família
+    Trabalho, de Administração e Serviço Público
+    Turismo
+    Viação e Transportes
+    '
+    
+    comissoes_temporarias <- '
+    Comissão Especial
+    '
+  
+    # concatena todas as linhas com `|`.
+    reg <- 
+      paste0(comissoes_temporarias, siglas_comissoes_antigas, siglas_comissoes, comissoes_permanentes, sep="\n") %>%
+      strsplit('\n') %>%
       magrittr::extract2(1) %>%
       sapply(trimws) %>%
-      magrittr::extract(. != '') %>% 
+      magrittr::extract(. != '') %>%
       paste(collapse='|') %>%
       regex(ignore_case=TRUE)
-      
-    # Faz com que os nomes comecem com 'Comissão'.
-    fix_names <- function(name) {
-      name %>%
-        sapply(
-          function(name) {
-            if(!str_detect(name, 'Comissão')) paste0('Comissão de ', name)
-            else name
-          },
-          USE.NAMES=FALSE)
-    }
-    
-    df %>%
-      dplyr::mutate(
-        proximas_comissoes = 
-          dplyr::case_when(
-            stringr::str_detect(descricao_tramitacao, regex("distribui..o", ignore_case=TRUE)) &
-                    stringr::str_detect(despacho, regex(comissoes_permanentes, ignore_case=TRUE)) ~
-                        stringr::str_extract_all(despacho, regex(comissoes_permanentes)),
-                    stringr::str_detect(descricao_tramitacao, regex("cria..o de comiss.o tempor.ria", ignore_case=TRUE)) ~
-                        list("Comissão Especial"),
-                    TRUE ~ list(NA)
-                    )) %>%
-      dplyr::filter(!is.na(proximas_comissoes) & !identical(proximas_comissoes, list()) ) %>% 
-      dplyr::select(c('data_hora', 'id_prop', 'proximas_comissoes')) %>% 
-      mutate(proximas_comissoes = sapply(proximas_comissoes, fix_names))
-  }
+
+  fix_names <- function(name) { 
+    if(!str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name)) paste("Comissão de", name)
+    else name
+}
   
   #' @title Cria coluna com os relatores na tramitação na Câmara
   #' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no
