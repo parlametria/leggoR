@@ -87,9 +87,35 @@ format_eventos <- function(df) {
   
 }
 
-build_vis_csv <- function(bill_id) {
-  data <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-visualizacao-tramitacao-senado.csv"))
+#Create data to display global phase inlines
+format_fase_global <- function(bill_id, data_tramitacao) {
+  data_prop <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-proposicao-senado.csv"))
+  casa_origem <- if_else(data_prop$nome_casa_origem == "Senado Federal", "Tramitação - Casa de Origem", "Tramitação - Casa Revisora")
+  end <- 
+    data_tramitacao %>%
+    arrange(desc(data_tramitacao)) %>%
+    select(data_tramitacao)
   
-  rbind(format_local(data), format_fase(data), format_eventos(data)) %>%
+  virada_de_casa <- 
+    data_tramitacao %>%
+    filter(fase == "virada_de_casa") %>%
+    arrange(data_tramitacao) %>%
+    select(data_tramitacao)
+  
+  if(nrow(virada_de_casa) == 0) {
+    frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
+                casa_origem, data_prop$data_apresentacao, end[1, ][[1]], 0, 'global', "#f37340")
+  }else {
+    casa_atual <- if_else(casa_origem == "Tramitação - Casa de Origem", "Tramitação - Casa Revisora", "Tramitação - Casa de Origem")
+    frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
+               casa_origem, data_prop$data_apresentacao, virada_de_casa[1, ][[1]], 0, 'global', "#f37340",
+               casa_atual, virada_de_casa[1, ][[1]], end[1, ][[1]], 0, 'global', "#546452")
+  }
+}
+
+build_vis_csv <- function(bill_id) {
+  data_tramitacao <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-visualizacao-tramitacao-senado.csv"))
+  
+  rbind(format_local(data_tramitacao), format_fase(data_tramitacao), format_eventos(data_tramitacao), format_fase_global(bill_id, data_tramitacao)) %>%
     write_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))
 }

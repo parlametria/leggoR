@@ -1,5 +1,5 @@
 label,start,end,time_interval,group,color
-PLEN,2016-12-09,2016-12-14,5,Local,#5496cf
+Plenário,2016-12-09,2016-12-14,5,Local,NA
 iniciativa,2016-12-09,2016-12-09,0,Fase,#7fc97f
 discussao_deliberacao,2016-12-09,2016-12-14,5,Fase,#beaed4
 virada_de_casa,2016-12-14,2016-12-14,0,Fase,#ffff99

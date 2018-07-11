@@ -1,0 +1,16 @@
+codigo_tramitacao,numero_autuacao,data_tramitacao,numero_ordem_tramitacao,texto_tramitacao,indicador_recebimento,origem_tramitacao_local_codigo_local,origem_tramitacao_local_tipo_local,origem_tramitacao_local_sigla_casa_local,origem_tramitacao_local_nome_casa_local,origem_tramitacao_local_sigla_local,origem_tramitacao_local_nome_local,destino_tramitacao_local_tipo_local,destino_tramitacao_local_codigo_local,destino_tramitacao_local_sigla_casa_local,destino_tramitacao_local_nome_casa_local,destino_tramitacao_local_sigla_local,destino_tramitacao_local_nome_local,situacao_codigo_situacao,situacao_sigla_situacao,situacao_descricao_situacao,codigo_materia,sigla_casa_identificacao_materia,nome_casa_identificacao_materia,sigla_subtipo_materia,descricao_subtipo_materia,numero_materia,ano_materia,indicador_tramitando
+552619,1,1989-08-22,1,"PARECER, SEN MEIRA FILHO, FAVORAVEL NOS TERMOS DO PDF     
+      00042 1989 QUE OFERECE.                                   
+      DCN2 26 08 PAG 4265.                                      
+      ",S,64,A,SF,Senado Federal,DF,COMISSÃO DO DISTRITO FEDERAL,A,NA,NA,NA,NA,NA,65,TPDF,TRANSFORMADA EM PROJETO DE LEI DO DF,2085,SF,Senado Federal,ADF,ANTEPROJETO DE LEI DO DF,00008,1989,Não
+26900,1,1989-08-09,1,"REDISTRIBUIÇÃO AO SEN JOÃO LOBO.                          
+      ",S,64,A,SF,Senado Federal,DF,COMISSÃO DO DISTRITO FEDERAL,A,64,SF,Senado Federal,DF,COMISSÃO DO DISTRITO FEDERAL,NA,NA,NA,2085,SF,Senado Federal,ADF,ANTEPROJETO DE LEI DO DF,00008,1989,Não
+26899,1,1989-06-30,1,"DEVOLUÇÃO PELO SEN CHAGAS RODRIGUES PARA REDISTRIBUÇÃO.   
+      ",S,64,A,SF,Senado Federal,DF,COMISSÃO DO DISTRITO FEDERAL,A,64,SF,Senado Federal,DF,COMISSÃO DO DISTRITO FEDERAL,NA,NA,NA,2085,SF,Senado Federal,ADF,ANTEPROJETO DE LEI DO DF,00008,1989,Não
+26896,1,1989-06-29,1,"LEITURA.                                                  
+      ",S,153,A,SF,Senado Federal,ATA-PLEN,SUBSECRETARIA DE ATA - PLENÁRIO,A,143,SF,Senado Federal,MESA,MESA DIRETORA,NA,NA,NA,2085,SF,Senado Federal,ADF,ANTEPROJETO DE LEI DO DF,00008,1989,Não
+26897,1,1989-06-29,1,"DESPACHO A DF.                                            
+      DCN2 30 06 PAG 3276.                                      
+      ",S,143,A,SF,Senado Federal,MESA,MESA DIRETORA,A,64,SF,Senado Federal,DF,COMISSÃO DO DISTRITO FEDERAL,NA,NA,NA,2085,SF,Senado Federal,ADF,ANTEPROJETO DE LEI DO DF,00008,1989,Não
+26898,1,1989-06-29,1,"RELATOR SEN CHAGAS RODRIGUES.                             
+      ",S,64,A,SF,Senado Federal,DF,COMISSÃO DO DISTRITO FEDERAL,A,64,SF,Senado Federal,DF,COMISSÃO DO DISTRITO FEDERAL,NA,NA,NA,2085,SF,Senado Federal,ADF,ANTEPROJETO DE LEI DO DF,00008,1989,Não
