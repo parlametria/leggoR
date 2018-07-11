@@ -1,13 +1,6 @@
 label,start,end,time_interval,group,color
 CCJ,2017-07-04,2017-09-27,85,Local,#ffffcc
-SEADI,2017-09-27,2017-09-28,1,Local,#e2e3d9
-PLEN,2017-09-28,2017-10-03,5,Local,#5496cf
-SLSF,2017-10-03,2017-10-09,6,Local,#e2e3d9
-PLEN,2017-10-09,2017-10-10,1,Local,#5496cf
-SLSF,2017-10-10,2017-10-24,14,Local,#e2e3d9
-PLEN,2017-10-24,2017-10-25,1,Local,#5496cf
-SEADI,2017-10-25,2017-11-07,13,Local,#e2e3d9
-SEXPE,2017-11-07,2017-11-08,1,Local,#e2e3d9
+Plenário,2017-09-27,2017-11-08,42,Local,NA
 relatoria,2017-07-04,2017-09-19,77,Fase,#fdc086
 discussao_deliberacao,2017-09-19,2017-11-08,50,Fase,#beaed4
 virada_de_casa,2017-11-08,2017-11-08,0,Fase,#ffff99
