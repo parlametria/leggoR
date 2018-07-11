@@ -116,6 +116,27 @@
     if(!str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name)) paste("Comissão de", name)
     else name
 }
+    df %>%
+    dplyr::mutate(
+      comissoes =
+        dplyr::case_when(
+                stringr::str_detect(descricao_tramitacao, regex("distribuição", ignore_case=TRUE)) &
+               (stringr::str_detect(descricao_tramitacao, regex("cria..o de comiss.o tempor.ria", ignore_case=TRUE)) |
+                stringr::str_detect(despacho, regex("especial", ignore_case=TRUE))) ~
+                  "Comissão Especial",
+                (stringr::str_detect(despacho, regex("às* comiss..s*|despacho à", ignore_case=TRUE)) |
+                stringr::str_detect(despacho, regex("novo despacho", ignore_case=TRUE))) & 
+                stringr::str_detect(descricao_tramitacao, regex("distribuição", ignore_case=TRUE)) ~
+                  despacho
+                )) %>%
+    dplyr::filter(!is.na(comissoes)) %>%
+    dplyr::mutate(
+      proximas_comissoes = stringr::str_extract_all(comissoes, reg) %>% as.list()
+    ) %>%
+    dplyr::select(data_hora, id_prop, proximas_comissoes) %>%
+    mutate(proximas_comissoes = map(proximas_comissoes, fix_names) ) %>% 
+    mutate(proximas_comissoes = unique(proximas_comissoes, incomparables = FALSE) )
+  }
   
   #' @title Cria coluna com os relatores na tramitação na Câmara
   #' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no
