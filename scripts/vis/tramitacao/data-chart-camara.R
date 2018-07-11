@@ -58,13 +58,30 @@ data_evento <- function(df) {
 format_fase_global <- function(bill_id, proposicao, tramitacao) {
   data_prop <- extract_autor_in_camara(bill_id) %>% tail(1)
   casa_origem <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Tramitação - Casa de Origem", "Tramitação - Casa Revisora")
+  tramitacao <- 
+    tramitacao %>%
+    mutate(end_data = lead(data_hora, default=Sys.time()))
+  
   end <- 
     tramitacao %>%
-    arrange(desc(data_hora)) %>%
+    arrange(desc(end_data)) %>%
+    select(end_data)
+  
+  virada_de_casa <- 
+    tramitacao %>%
+    filter(fase == "virada_de_casa") %>%
+    arrange(data_hora) %>%
     select(data_hora)
   
-  frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
-             casa_origem, proposicao$data_apresentacao, end[1, ][[1]], 0, 'global', "#f37340")
+  if(nrow(virada_de_casa) == 0) {
+    frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
+               casa_origem, proposicao$data_apresentacao, end[1, ][[1]], 0, 'global', "#f37340")
+  }else {
+    casa_atual <- if_else(casa_origem == "Tramitação - Casa de Origem", "Tramitação - Casa Revisora", "Tramitação - Casa de Origem")
+    frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
+               casa_origem, proposicao$data_apresentacao, virada_de_casa[1, ][[1]], 0, 'global', "#f37340",
+               casa_atual, virada_de_casa[1, ][[1]], end[1, ][[1]], 0, 'global', "#546452")
+  }
 }
 
 build_vis_csv <- function(bill_id) {
@@ -74,6 +91,6 @@ build_vis_csv <- function(bill_id) {
   data_path <- here::here('data/vis/tramitacao/')
   file_path <- paste0(data_path, bill_id, '-data-camara.csv')
 
-  data <- bind_rows(data_evento(tramitacao), data_fase(tramitacao), data_local(tramitacao), format_fase_global(bill_id, proposicao, tramitacao))
+  data <- bind_rows(data_evento(tramitacao), data_fase(tramitacao), data_local(tramitacao), format_fase_global(bill_id, proposicao %>% tail(1), tramitacao))
   readr::write_csv(data, file_path)
 }

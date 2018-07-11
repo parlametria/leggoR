@@ -95,8 +95,21 @@ format_fase_global <- function(bill_id, data_tramitacao) {
     arrange(desc(data_tramitacao)) %>%
     select(data_tramitacao)
   
-  frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
-              casa_origem, data_prop$data_apresentacao, end[1, ][[1]], 0, 'global', "#f37340")
+  virada_de_casa <- 
+    data_tramitacao %>%
+    filter(fase == "virada_de_casa") %>%
+    arrange(data_tramitacao) %>%
+    select(data_tramitacao)
+  
+  if(nrow(virada_de_casa) == 0) {
+    frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
+                casa_origem, data_prop$data_apresentacao, end[1, ][[1]], 0, 'global', "#f37340")
+  }else {
+    casa_atual <- if_else(casa_origem == "Tramitação - Casa de Origem", "Tramitação - Casa Revisora", "Tramitação - Casa de Origem")
+    frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
+               casa_origem, data_prop$data_apresentacao, virada_de_casa[1, ][[1]], 0, 'global', "#f37340",
+               casa_atual, virada_de_casa[1, ][[1]], end[1, ][[1]], 0, 'global', "#546452")
+  }
 }
 
 build_vis_csv <- function(bill_id) {
