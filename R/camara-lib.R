@@ -179,11 +179,12 @@ extract_last_relator_in_camara <- function(df) {
 #' @examples
 #' tramitacao %>% extract_phases_in_camara()
 #' @export
-extract_phases_in_camara <- function(dataframe, phase_one, phase_two, phase_three, phase_four, phase_five) {
+extract_phases_in_camara <- function(dataframe, phase_one, phase_two, phase_three, encaminhamento_phase, phase_four, phase_five) {
   dataframe %<>%
     dplyr::mutate(fase = dplyr::case_when(detect_fase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
                                           detect_fase(id_tipo_tramitacao, phase_two) ~ 'relatoria',
                                           detect_fase(id_tipo_tramitacao, phase_three) ~ 'discussao_deliberacao',
+                                          detect_fase(id_tipo_tramitacao, encaminhamento_phase) ~ 'encaminhamento',
                                           detect_fase(id_tipo_tramitacao, phase_four) ~ 'virada_de_casa',
                                           detect_fase(id_tipo_tramitacao, phase_five) ~ 'final',
                                           detect_fase(id_situacao, 937) ~ 'final'))

@@ -25,7 +25,8 @@ process_proposicao <- function(pl_id) {
 
   phase_one <- c(100)
   phase_two <- c(320)
-  phase_three <- c(322)
+  phase_three <- c(335, 336, 420, 431)
+  encaminhamento_phase <- c(180)
   phase_four <- c(128)
   phase_five <- c(502, 251)
 
@@ -43,7 +44,7 @@ process_proposicao <- function(pl_id) {
   # Extract phases, events and writh CSV
   tramitacao_pl %<>%
     rename_df_columns %>%
-    extract_phases_in_camara(phase_one, phase_two, phase_three, phase_four, phase_five) %>%
+    extract_phases_in_camara(phase_one, phase_two, phase_three, encaminhamento_phase, phase_four, phase_five) %>%
     fill(fase) %>%
     extract_events_in_camara(important_events, special_commission) %>%
     extract_locais_in_camara() %>%
