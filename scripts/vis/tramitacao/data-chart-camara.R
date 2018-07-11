@@ -4,6 +4,13 @@ library(lubridate)
 library(here)
 source(here::here("R/camara-lib.R"))
 
+#' @title Adiciona a fase para o vistime
+#' @description Adiciona o label fase com suas respectivas cores no formato
+#' suportado pelo vistime
+#' @param df Dataframe com a tramitacao
+#' @examples
+#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_fase()
+#' @export
 data_fase <- function(df) {
   df %>%
     mutate(end_data = lead(data_hora, default=Sys.time())) %>%
@@ -22,6 +29,13 @@ data_fase <- function(df) {
                              label == "final" ~ "#f4fa58"))
 }
 
+#' @title Adiciona o local para o vistime
+#' @description Adiciona o label local com suas respectivas cores no formato
+#' suportado pelo vistime
+#' @param df Dataframe com a tramitacao
+#' @examples
+#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_local()
+#' @export
 data_local <- function(df) {
   df <-
     df %>%
@@ -44,6 +58,13 @@ data_local <- function(df) {
                              label == "CTASP" ~ "#ea81b1"))
 }
 
+#' @title Adiciona o evento para o vistime
+#' @description Adiciona o label evento com suas respectivas cores no formato
+#' suportado pelo vistime
+#' @param df Dataframe com a tramitacao
+#' @examples
+#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_evento()
+#' @export
 data_evento <- function(df) {
   df %>%
     filter(!is.na(evento)) %>%
@@ -55,6 +76,15 @@ data_evento <- function(df) {
     unique()
 }
 
+#' @title Adiciona a local para o vistime
+#' @description Adiciona o label local com suas respectivas cores no formato
+#' suportado pelo vistime
+#' @param bill_id id da proposição
+#' @param proposicao Dataframe com a proposição
+#' @param tramitacao Dataframe com a tramitacao
+#' @examples
+#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% format_fase_global()
+#' @export
 format_fase_global <- function(bill_id, proposicao, tramitacao) {
   data_prop <- extract_autor_in_camara(bill_id) %>% tail(1)
   casa_origem <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Tramitação - Casa de Origem", "Tramitação - Casa Revisora")
@@ -84,6 +114,13 @@ format_fase_global <- function(bill_id, proposicao, tramitacao) {
   }
 }
 
+#' @title Formata tabela para o vistime
+#' @description Formata a tabela final que será usado para fazer a visualização
+#' usando o vistime
+#' @param bill_id id da proposição
+#' @examples
+#' build_vis_csv(2121442)
+#' @export
 build_vis_csv <- function(bill_id) {
   tramitacao <- read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv'))
   proposicao <- read_csv(paste0(here::here('data/camara/proposicao-camara-'), bill_id, '.csv'))

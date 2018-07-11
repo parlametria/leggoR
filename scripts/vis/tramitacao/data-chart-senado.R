@@ -87,6 +87,7 @@ format_eventos <- function(df) {
   
 }
 
+#Create data to display global phase inlines
 format_fase_global <- function(bill_id, data_tramitacao) {
   data_prop <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-proposicao-senado.csv"))
   casa_origem <- if_else(data_prop$nome_casa_origem == "Senado Federal", "Tramitação - Casa de Origem", "Tramitação - Casa Revisora")
