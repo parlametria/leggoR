@@ -27,19 +27,12 @@
       dplyr::select(data_hora, descricao_tramitacao, despacho)
   }
   
-   #' @title Recupera as comissões pelas quais a proposição irá passar
-  #' @description Retorna um dataframe aas comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
-  #' as próximas comissões 
-  #' @param df Dataframe da tramitação na Câmara
-  #' @return Dataframe com as próximas comissões que a proposição irá passar.
-  #' @examples
-  #' tramitacao %>% get_comissoes_in_camara(df)
-  #' @export
-  get_comissoes_in_camara <- function(df) {
+  get_comissoes_camara <- function() {
+    
     siglas_comissoes_antigas <- '
     CDCMAM
     CAPR
-    CCJR
+    CCJRZ
     '
     
     siglas_comissoes <- '
@@ -101,14 +94,32 @@
     comissoes_temporarias <- '
     Comissão Especial
     '
+    
+    to_list <- function(name) {
+      name %>%  
+        trimws() %>% 
+        strsplit("\n") %>% 
+        sapply(trimws)
+    }
+    
+    dplyr::tibble(siglas_comissoes_antigas=list(siglas_comissoes_antigas %>% to_list),
+                  siglas_comissoes=list(siglas_comissoes %>% to_list),
+                  comissoes_temporarias=list(comissoes_temporarias %>% to_list),
+                  comissoes_permanentes=list(comissoes_permanentes %>% to_list),)
+  }
   
+  #' @title Recupera as comissões pelas quais a proposição irá passar
+  #' @description Retorna um dataframe aas comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
+  #' as próximas comissões 
+  #' @param df Dataframe da tramitação na Câmara
+  #' @return Dataframe com as próximas comissões que a proposição irá passar.
+  #' @examples
+  #' tramitacao %>% get_comissoes_in_camara(df)
+  #' @export
+  get_comissoes_in_camara <- function(df) {
     # concatena todas as linhas com `|`.
     reg <- 
-      paste0(comissoes_temporarias, siglas_comissoes_antigas, siglas_comissoes, comissoes_permanentes, sep="\n") %>%
-      strsplit('\n') %>%
-      magrittr::extract2(1) %>%
-      sapply(trimws) %>%
-      magrittr::extract(. != '') %>%
+      unlist(get_comissoes_camara()) %>%
       paste(collapse='|') %>%
       regex(ignore_case=TRUE)
 
@@ -116,7 +127,8 @@
     if(!str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name)) paste("Comissão de", name)
     else name
 }
-    df %>%
+  
+  df %>%
     dplyr::mutate(
       comissoes =
         dplyr::case_when(
@@ -136,21 +148,6 @@
     dplyr::select(data_hora, id_prop, proximas_comissoes) %>%
     mutate(proximas_comissoes = map(proximas_comissoes, fix_names) ) %>% 
     mutate(proximas_comissoes = unique(proximas_comissoes, incomparables = FALSE) )
-  }
-  
-  #' @title Cria coluna com os relatores na tramitação na Câmara
-  #' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no
-  #' envento pontual em que ele é designado
-  #' @param df Dataframe da tramitação na Câmara
-  #' @return Dataframe com a coluna "relator" adicionada.
-  #' @examples
-  #' tramitacao %>% extract_relator_in_camara()
-  #' @export
-  extract_relator_in_camara <- function(df) {
-    df %>%
-      dplyr::mutate(relator =
-                      case_when(stringr::str_detect(tolower(despacho), '^designad. relat.r') ~
-                                  stringr::str_extract(despacho, regex('dep.+', ignore_case=TRUE))))
   }
   
   #' @title Recupera o último relator na Câmara
@@ -536,4 +533,4 @@
     
     df %>%
       tidyr::fill(local)
-}
+  }
