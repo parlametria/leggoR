@@ -534,21 +534,3 @@
     df %>%
       tidyr::fill(local)
   }
-  
-  # Extrai a situção da comissão. Ex: (Recebimento, Análise do relator, discussão e votação, etc)
-  # Recebe o dataframe da tramitacao da pl
-  extract_situacao_comissao <- function(df) {
-    recebimento <- c(500)
-    analise_do_relator <- c(320)
-    discussao_votacao <- c(322, 240)
-    encaminhamento <- c(180)
-    
-    df %>% 
-      dplyr::mutate(
-        situacao_comissao =
-          dplyr::case_when(id_tipo_tramitacao %in% recebimento ~ "Recebimento")
-      ) %>% 
-      dplyr::select(data_hora, despacho, local, situacao_comissao)
-    
-    
-  }
