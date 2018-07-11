@@ -118,79 +118,8 @@ get_comissoes_camara <- function() {
 #' tramitacao %>% get_comissoes_in_camara(df)
 #' @export
 get_comissoes_in_camara <- function(df) {
-  siglas_comissoes_antigas <- '
-  CDCMAM
-  CAPR
-  CCJR
-  '
-
-  siglas_comissoes <- '
-  CAPADR
-  CCTCI
-  CCJC
-  CCULT
-  CDC
-  CMULHER
-  CIDOSO
-  CPD
-  CDU
-  CDEICS
-  CDHM
-  CE
-  CESPO
-  CFT
-  CFFC
-  CINDRA
-  CLP
-  CMADS
-  CME
-  CREDN
-  CSPCCO
-  CSSF
-  CTASP
-  CTUR
-  CVT
-  '
-
-  comissoes_permanentes <- '
-  Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural
-  Ciência e Tecnologia, Comunicação e Informática
-  Constituição e Justiça e de Cidadania
-  Cultura
-  Defesa do Consumidor
-  Defesa dos Direitos da Mulher
-  Defesa dos Direitos da Pessoa Idosa
-  Defesa dos Direitos das Pessoas com Deficiência
-  Desenvolvimento Urbano
-  Desenvolvimento Econômico, Indústria, Comércio e Serviços
-  Direitos Humanos e Minorias
-  Educação
-  Esporte
-  Finanças e Tributação
-  Fiscalização Financeira e Controle
-  Integração Nacional, Desenvolvimento Regional e da Amazônia
-  Legislação Participativa
-  Meio Ambiente e Desenvolvimento Sustentável
-  Minas e Energia
-  Relações Exteriores e de Defesa Nacional
-  Segurança Pública e Combate ao Crime Organizado
-  Seguridade Social e Família
-  Trabalho, de Administração e Serviço Público
-  Turismo
-  Viação e Transportes
-  '
-
-  comissoes_temporarias <- '
-  Comissão Especial
-  '
-
-  # concatena todas as linhas com `|`.
-  reg <-
-    paste0(comissoes_temporarias, siglas_comissoes_antigas, siglas_comissoes, comissoes_permanentes, sep="\n") %>%
-    strsplit('\n') %>%
-    magrittr::extract2(1) %>%
-    sapply(trimws) %>%
-    magrittr::extract(. != '') %>%
+  reg <- 
+    unlist(get_comissoes_camara()) %>%
     paste(collapse='|') %>%
     regex(ignore_case=TRUE)
 
