@@ -4,31 +4,6 @@ library(lubridate)
 library(here)
 source(here::here("R/camara-lib.R"))
 
-#' @title Adiciona a fase para o vistime
-#' @description Adiciona o label fase com suas respectivas cores no formato
-#' suportado pelo vistime
-#' @param df Dataframe com a tramitacao
-#' @examples
-#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_fase()
-#' @export
-data_fase <- function(df) {
-  df %>%
-    mutate(end_data = lead(data_hora, default=Sys.time())) %>%
-    group_by(fase, sequence = rleid(fase)) %>%
-      summarise(start = min(data_hora),
-              end = max(end_data)) %>%
-      ungroup() %>%
-    arrange(sequence) %>%
-    select(-sequence) %>%
-    rename(label = fase) %>%
-    mutate(group = "Fase",
-           color = case_when(label == "iniciativa" ~ "#7fc97f",
-                             label == "relatoria" ~ "#fdc086",
-                             label == "discussao_deliberacao" ~ "#beaed4",
-                             label == "virada_de_casa" ~ "#ffff99",
-                             label == "final" ~ "#f4fa58"))
-}
-
 #' @title Adiciona o local para o vistime
 #' @description Adiciona o label local com suas respectivas cores no formato
 #' suportado pelo vistime
@@ -174,6 +149,6 @@ build_vis_csv <- function(bill_id) {
   data_path <- here::here('data/vis/tramitacao/')
   file_path <- paste0(data_path, bill_id, '-data-camara.csv')
 
-  data <- bind_rows(data_evento(tramitacao), data_fase(tramitacao), data_local(tramitacao), data_situacao_comissao(tramitacao), format_fase_global(bill_id, proposicao %>% tail(1), tramitacao))
+  data <- bind_rows(data_evento(tramitacao), data_local(tramitacao), data_situacao_comissao(tramitacao), format_fase_global(bill_id, proposicao %>% tail(1), tramitacao))
   readr::write_csv(data, file_path)
 }
