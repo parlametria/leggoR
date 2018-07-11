@@ -23,6 +23,7 @@ process_proposicao <- function(pl_id) {
   csv_path <- paste(c(data_path,'tramitacao-camara-', pl_id, '.csv'),  collapse = '') 
   proposicao_csv_path <- paste(c(data_path,'proposicao-camara-', pl_id, '.csv'),  collapse = '')
 
+  recebimento_phase <- c(500)
   phase_one <- c(100)
   phase_two <- c(320)
   phase_three <- c(335, 336, 420, 431)
@@ -44,7 +45,7 @@ process_proposicao <- function(pl_id) {
   # Extract phases, events and writh CSV
   tramitacao_pl %<>%
     rename_df_columns %>%
-    extract_phases_in_camara(phase_one, phase_two, phase_three, encaminhamento_phase, phase_four, phase_five) %>%
+    extract_phases_in_camara(recebimento_phase, phase_one, phase_two, phase_three, encaminhamento_phase, phase_four, phase_five) %>%
     fill(fase) %>%
     extract_events_in_camara(important_events, special_commission) %>%
     extract_locais_in_camara() %>%
