@@ -356,7 +356,7 @@ extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_t
                              stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') ~ 'recebimento',
                              detect_fase(situacao_codigo_situacao, phase_two) ~ 'analise_relator',
                              detect_fase(situacao_codigo_situacao, phase_three) ~ 'discussao_deliberacao',
-                             detect_fase(id_tipo_tramitacao, encaminhamento_phase) ~ 'encaminhamento',
+                             detect_fase(situacao_codigo_situacao, encaminhamento_phase) ~ 'encaminhamento',
                              detect_fase(situacao_codigo_situacao, phase_four) ~ 'virada_de_casa'))
 }
 
