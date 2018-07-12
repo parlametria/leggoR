@@ -23,7 +23,7 @@ process_proposicao <- function(pl_id) {
   csv_path <- paste(c(data_path,'tramitacao-camara-', pl_id, '.csv'),  collapse = '') 
   proposicao_csv_path <- paste(c(data_path,'proposicao-camara-', pl_id, '.csv'),  collapse = '')
 
-  recebimento_phase <- c(500)
+  recebimento_phase <- c(500, 640)
   phase_one <- c(100)
   phase_two <- c(320)
   phase_three <- c(335, 336, 420, 431)
