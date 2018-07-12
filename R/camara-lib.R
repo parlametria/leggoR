@@ -549,3 +549,37 @@ extract_locais_in_camara <- function(df) {
   df %>%
     tidyr::fill(local)
 }
+
+# Extrai a situação das comissões (ex. Recebimento, Análise do Relator, Discussão e votação...)
+# Necessita do dataframe da tramitação
+extract_situacao_comissao <- function(df) {
+  recebimento <- c(500)
+  analise_do_relator <- c(320)
+  discussao_votacao <- c(322, 240)
+  encaminhamento <- c(180)
+  
+  reg <- 
+    unlist(get_comissoes_camara()) %>%
+    paste(collapse='|') %>%
+    regex(ignore_case=TRUE)
+  
+  df %>%
+    dplyr::mutate(
+      comissao =
+        dplyr::case_when(str_detect(local, reg) ~ str_extract(local, reg))
+    ) %>% 
+    # dplyr::filter(!is.na(comissao)) %>%
+    dplyr::mutate(
+      situacao_comissao =
+        dplyr::case_when(id_tipo_tramitacao %in% recebimento & !is.na(comissao) ~ "Recebimento",
+                         id_tipo_tramitacao %in% analise_do_relator & !is.na(comissao) ~ "Análise do relator",
+                         id_tipo_tramitacao %in% discussao_votacao& !is.na(comissao)  ~ "Discussão e votação",
+                         id_tipo_tramitacao %in% encaminhamento & !is.na(comissao) ~ "Encaminhamento")
+    ) %>%  
+    dplyr::select(-comissao)
+    # tidyr::fill(situacao_comissao)
+  
+}
+
+
+
