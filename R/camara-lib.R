@@ -540,6 +540,10 @@ extract_locais_in_camara <- function(df) {
           (stringr::str_detect(tolower(despacho), '^recebimento pela') |
             tolower(despacho) %in% descricoes_comissoes) & sigla_orgao != 'CCP' ~ sigla_orgao,
           tolower(descricao_tramitacao) == 'remessa ao senado federal' ~ 'Câmara')
+    ) %>%
+    dplyr::mutate(
+      local =
+        case_when(stringr::str_detect(local, "^PL") ~ "Comissão Especial")
     )
 
   if (is.na(df[1, ]$local)) {
@@ -549,6 +553,7 @@ extract_locais_in_camara <- function(df) {
   df %>%
     tidyr::fill(local)
 }
+
 
 # Extrai a situação das comissões (ex. Recebimento, Análise do Relator, Discussão e votação...)
 # Necessita do dataframe da tramitação
