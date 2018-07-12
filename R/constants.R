@@ -50,3 +50,24 @@ COMISSOES_CAMARA <- data.frame("comissao" = c("Comissão de Agricultura, Pecuár
                                          c("comiss.o de trabalho, de administra..o e servi.o p.blico", "ctasp"),
                                          c("comiss.o de turismo", "ctur"),
                                          c("comiss.o de via..o e transportes", "cvt")))
+
+#Senado
+.COLNAMES_VOT_SEN <- c("indicador_votacao_secreta" , "descricao_votacao" , "descricao_resultado" , "codigo_sessao" ,                              
+"sigla_casa_sessao" , "nome_casa_sessao" , "codigo_sessao_legislativa" , "sigla_tipo_sessao" , "numero_sessao" , 
+"data_sessao" , "hora_inicio_sessao" , "codigo_tramitacao" , "numero_autuacao" , "data_tramitacao" , 
+"numero_ordem_tramitacao" , "texto_tramitacao" , "indicador_recebimento" , "data_recebimento" ,                          
+ "origem_tramitacao_local_codigo_local" , "origem_tramitacao_local_tipo_local" , "origem_tramitacao_local_sigla_casa_local" ,  
+"origem_tramitacao_local_nome_casa_local" , "origem_tramitacao_local_sigla_local" , "origem_tramitacao_local_nome_local" ,        
+"destino_tramitacao_local_codigo_local" , "destino_tramitacao_local_tipo_local" , "destino_tramitacao_local_sigla_casa_local" , 
+"destino_tramitacao_local_nome_casa_local" , "destino_tramitacao_local_sigla_local" , "destino_tramitacao_local_nome_local" ,       
+ "situacao_codigo_situacao" , "situacao_sigla_situacao" , "situacao_descricao_situacao" , "descricao_voto" , "codigo_parlamentar" , 
+"nome_parlamentar" , "nome_completo_parlamentar" , "sexo_parlamentar" , "forma_tratamento"  ,                         
+ "url_foto_parlamentar" , "url_pagina_parlamentar" , "email_parlamentar" , "sigla_partido_parlamentar" , "uf_parlamentar" , 
+"codigo_materia" , "sigla_casa_identificacao_materia" , "nome_casa_identificacao_materia" , "sigla_subtipo_materia" ,                     
+ "descricao_subtipo_materia" , "numero_materia" , "ano_materia" , "indicador_tramitando" )
+
+.COLNAMES_TRAMI_SEN <- c("codigo_tramitacao", "numero_autuacao", "data_tramitacao", "numero_ordem_tramitacao", "texto_tramitacao", "indicador_recebimento", "data_recebimento",  "origem_tramitacao_local_codigo_local", 
+"origem_tramitacao_local_tipo_local", "origem_tramitacao_local_sigla_casa_local", "origem_tramitacao_local_nome_casa_local", "origem_tramitacao_local_sigla_local", "origem_tramitacao_local_nome_local",
+"destino_tramitacao_local_codigo_local", "destino_tramitacao_local_tipo_local", "destino_tramitacao_local_sigla_casa_local", "destino_tramitacao_local_nome_casa_local", "destino_tramitacao_local_sigla_local", 
+"destino_tramitacao_local_nome_local", "situacao_codigo_situacao", "situacao_sigla_situacao", "situacao_descricao_situacao", "codigo_materia", "sigla_casa_identificacao_materia", "nome_casa_identificacao_materia",
+"sigla_subtipo_materia", "descricao_subtipo_materia", "numero_materia", "ano_materia", "indicador_tramitando")
