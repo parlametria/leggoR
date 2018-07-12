@@ -581,4 +581,3 @@ extract_fase_casa_in_camara <- function(df) {
   df %>%
     tidyr::fill(casa)
 }
->>>>>>> a880a3066d5e832194230ee5fa51ed143fa88da6
