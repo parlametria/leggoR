@@ -349,12 +349,14 @@ tail_descricao_despacho_Senado <- function(df, qtd=1) {
 #' @examples
 #' tramitacao %>% extract_fase_Senado()
 #' @export
-extract_fase_Senado <- function(dataframe, phase_one, phase_two, phase_three, phase_four) {
+extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_two, phase_three, encaminhamento_phase, phase_four) {
 
   dataframe %>%
     dplyr::mutate(fase = dplyr::case_when( grepl(phase_one, texto_tramitacao) ~ 'iniciativa',
-                             detect_fase(situacao_codigo_situacao, phase_two) ~ 'relatoria',
+                             stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') ~ 'recebimento',
+                             detect_fase(situacao_codigo_situacao, phase_two) ~ 'analise_relator',
                              detect_fase(situacao_codigo_situacao, phase_three) ~ 'discussao_deliberacao',
+                             detect_fase(id_tipo_tramitacao, encaminhamento_phase) ~ 'encaminhamento',
                              detect_fase(situacao_codigo_situacao, phase_four) ~ 'virada_de_casa'))
 }
 
