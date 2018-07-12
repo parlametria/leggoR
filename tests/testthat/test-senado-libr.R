@@ -84,3 +84,23 @@ test_that("fetch_votacoes()", {
 test_that("fetch_votacoes()", {
   expect_true(all(names(fetch_tramitacao(PROPOSICOES_ID)) %in% .COLNAMES_TRAMI_SEN))
 })
+
+test_that("fetch_deferimento()", {
+  expect_true(all(names(fetch_deferimento("109173")) %in% .COLNAMES_DEFE_SEN))
+})
+
+test_that("fetch_deferimento()", {
+  expect_true(all(names(fetch_deferimento("109173")) %in% .COLNAMES_RELATORAIS_SEN))
+})
+
+test_that("get_nome_ementa_Senado()", {
+  expect_true(all(names(get_nome_ementa_Senado(91341)) %in% .COLNAMES_EMENTA_SEN))
+})
+
+test_that("tail_descricao_despacho_Senado()", {
+  expect_true(all(names(tail_descricao_despacho_Senado(fetch_tramitacao(91341))) %in% .COLNAMES_DESPACHO_SEN))
+})
+
+test_that("extract_comissoes_Senado()", {
+  expect_true(all(names(extract_comissoes_Senado(fetch_tramitacao(91341))) %in% .COLNAMES_DESPACHO_SEN))
+})

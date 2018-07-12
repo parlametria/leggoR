@@ -71,3 +71,15 @@ COMISSOES_CAMARA <- data.frame("comissao" = c("Comissão de Agricultura, Pecuár
 "destino_tramitacao_local_codigo_local", "destino_tramitacao_local_tipo_local", "destino_tramitacao_local_sigla_casa_local", "destino_tramitacao_local_nome_casa_local", "destino_tramitacao_local_sigla_local", 
 "destino_tramitacao_local_nome_local", "situacao_codigo_situacao", "situacao_sigla_situacao", "situacao_descricao_situacao", "codigo_materia", "sigla_casa_identificacao_materia", "nome_casa_identificacao_materia",
 "sigla_subtipo_materia", "descricao_subtipo_materia", "numero_materia", "ano_materia", "indicador_tramitando")
+
+.COLNAMES_DEFE_SEN <- c("proposicao_id", "deferimento")
+
+.COLNAMES_RELATORAIS_SEN <- c("codigo_tipo_relator","descricao_tipo_relator", "data_designacao", "data_destituicao", "descricao_motivo_destituicao", "codigo_parlamentar", "nome_parlamentar", "nome_completo_parlamentar",
+ "sexo_parlamentar", "forma_tratamento", "url_foto_parlamentar", "url_pagina_parlamentar", "email_parlamentar", "sigla_partido_parlamentar", "uf_parlamentar", "codigo_comissao", "sigla_comissao", "nome_comissao", "sigla_casa_comissao",
+ "nome_casa_comissao")
+
+.COLNAMES_EMENTA_SEN <- c("ementa_materia", "sigla_subtipo_materia", "numero_materia")
+
+.COLNAMES_DESPACHO_SEN <- c("data_tramitacao", "situacao_descricao_situacao", "texto_tramitacao")
+
+.COLNAMES_DESPACHO_SEN <- c("codigo_materia", "comissoes", "data_tramitacao")
