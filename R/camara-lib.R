@@ -27,21 +27,15 @@ last_n_despacho_in_camara <- function(df, qtd=1) {
     dplyr::select(data_hora, descricao_tramitacao, despacho)
 }
 
-#' @title Recupera as comissões pelas quais a proposição irá passar
-#' @description Retorna um dataframe aas comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
-#' as próximas comissões
-#' @param df Dataframe da tramitação na Câmara
-#' @return Dataframe com as próximas comissões que a proposição irá passar.
-#' @examples
-#' tramitacao %>% get_comissoes_in_camara(df)
-#' @export
-get_comissoes_in_camara <- function(df) {
+
+get_comissoes_camara <- function() {
+  
   siglas_comissoes_antigas <- '
   CDCMAM
   CAPR
   CCJR
   '
-
+  
   siglas_comissoes <- '
   CAPADR
   CCTCI
@@ -69,46 +63,63 @@ get_comissoes_in_camara <- function(df) {
   CTUR
   CVT
   '
-
+  
   comissoes_permanentes <- '
-  Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural
-  Ciência e Tecnologia, Comunicação e Informática
-  Constituição e Justiça e de Cidadania
-  Cultura
-  Defesa do Consumidor
-  Defesa dos Direitos da Mulher
-  Defesa dos Direitos da Pessoa Idosa
-  Defesa dos Direitos das Pessoas com Deficiência
-  Desenvolvimento Urbano
-  Desenvolvimento Econômico, Indústria, Comércio e Serviços
-  Direitos Humanos e Minorias
-  Educação
-  Esporte
-  Finanças e Tributação
-  Fiscalização Financeira e Controle
-  Integração Nacional, Desenvolvimento Regional e da Amazônia
-  Legislação Participativa
-  Meio Ambiente e Desenvolvimento Sustentável
-  Minas e Energia
-  Relações Exteriores e de Defesa Nacional
-  Segurança Pública e Combate ao Crime Organizado
-  Seguridade Social e Família
-  Trabalho, de Administração e Serviço Público
-  Turismo
-  Viação e Transportes
-  '
-
+    Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural
+    Ciência e Tecnologia, Comunicação e Informática
+    Constituição e Justiça e de Cidadania
+    Cultura
+    Defesa do Consumidor
+    Defesa dos Direitos da Mulher
+    Defesa dos Direitos da Pessoa Idosa
+    Defesa dos Direitos das Pessoas com Deficiência
+    Desenvolvimento Urbano
+    Desenvolvimento Econômico, Indústria, Comércio e Serviços
+    Direitos Humanos e Minorias
+    Educação
+    Esporte
+    Finanças e Tributação
+    Fiscalização Financeira e Controle
+    Integração Nacional, Desenvolvimento Regional e da Amazônia
+    Legislação Participativa
+    Meio Ambiente e Desenvolvimento Sustentável
+    Minas e Energia
+    Relações Exteriores e de Defesa Nacional
+    Segurança Pública e Combate ao Crime Organizado
+    Seguridade Social e Família
+    Trabalho, de Administração e Serviço Público
+    Turismo
+    Viação e Transportes
+    '
+  
   comissoes_temporarias <- '
-  Comissão Especial
-  '
+    Comissão Especial
+    '
+  
+  to_list <- function(name) {
+    name %>%  
+      trimws() %>% 
+      strsplit("\n") %>% 
+      sapply(trimws)
+  }
+  
+  dplyr::tibble(siglas_comissoes_antigas=list(siglas_comissoes_antigas %>% to_list),
+                siglas_comissoes=list(siglas_comissoes %>% to_list),
+                comissoes_temporarias=list(comissoes_temporarias %>% to_list),
+                comissoes_permanentes=list(comissoes_permanentes %>% to_list),)
+}
 
-  # concatena todas as linhas com `|`.
-  reg <-
-    paste0(comissoes_temporarias, siglas_comissoes_antigas, siglas_comissoes, comissoes_permanentes, sep="\n") %>%
-    strsplit('\n') %>%
-    magrittr::extract2(1) %>%
-    sapply(trimws) %>%
-    magrittr::extract(. != '') %>%
+#' @title Recupera as comissões pelas quais a proposição irá passar
+#' @description Retorna um dataframe aas comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
+#' as próximas comissões
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe com as próximas comissões que a proposição irá passar.
+#' @examples
+#' tramitacao %>% get_comissoes_in_camara(df)
+#' @export
+get_comissoes_in_camara <- function(df) {
+  reg <- 
+    unlist(get_comissoes_camara()) %>%
     paste(collapse='|') %>%
     regex(ignore_case=TRUE)
 
