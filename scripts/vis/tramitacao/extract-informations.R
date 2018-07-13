@@ -9,8 +9,10 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   nome_ementa_camara <- get_ementas_in_camara(bill_id_camara)
   nome_ementa_senado <- get_nome_ementa_Senado(bill_id_senado)
 
-  tramitacao_camara <- read_csv(here::here(paste0('data/camara/', 'tramitacao-camara-',bill_id_camara,'.csv')))
-  tramitacao_senado <- read_csv(here::here(paste0('data/Senado/', bill_id_senado, '-fases-tramitacao-senado.csv')))
+  tramitacao_camara <- read_csv(
+    here::here(paste0('data/camara/', 'tramitacao-camara-',bill_id_camara,'.csv')))
+  tramitacao_senado <- read_csv(
+    here::here(paste0('data/Senado/', bill_id_senado, '-fases-tramitacao-senado.csv')))
   despacho_camara <- last_n_despacho_in_camara(tramitacao_camara)
   despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
 
@@ -57,49 +59,47 @@ gera_tabela_proposicoes_congresso <- function(dataframe) {
 }
 
 gera_tabela_proposicoes_uma_casa <- function(dataframe) {
-  propositions <- tibble::as.tibble()
-
-  propositions <- dataframe %>%
+  dataframe %>%
     rowwise() %>%
     do(extract_informations_from_single_house(.$id, .$casa, .$url)) %>%
-    rbind(propositions,.)
-
-  propositions
+    tibble::as.tibble()
 }
 
 extract_informations_from_single_house <- function(id, casa, url=NULL) {
   casa <- tolower(casa)
   if (casa == 'camara') {
     nome_camara <- get_ementas_in_camara(id) %>% tail(1)
-    tramitacao_camara = read_csv(paste0("../data/camara/", "tramitacao-camara-", id, ".csv"))
+    tramitacao_camara = read_csv(
+      here::here(paste0('data/camara/tramitacao-camara-', id, '.csv')))
     despacho_camara <- last_n_despacho_in_camara(tramitacao_camara)
     ano <- rcongresso::fetch_proposicao(id)$ano
     nome <- paste0(nome_camara$siglaTipo, nome_camara$numero, "/", ano)
     autor <- extract_autor_in_camara(id) %>% tail(1)
-    casa_origem <- autor$casa_origem
-    nome_autor <- autor$autor.nome
-    despacho <- despacho_camara$descricao_tramitacao
-    relator <- extract_last_relator_in_camara(tramitacao_camara)
     ementa <- nome_camara$ementa
-    data_apresentacao <- format(as.Date(fetch_proposicao(id, 'camara')$dataApresentacao), "%d/%m/%Y")
+    relator <- extract_last_relator_in_camara(tramitacao_camara)
+    despacho <- despacho_camara$descricao_tramitacao
+    nome_autor <- autor$autor.nome
+    casa_origem <- autor$casa_origem
+    data_apresentacao <- format(as.Date(fetch_proposicao(id, 'camara')$dataApresentacao), '%d/%m/%Y')
     eventos <- as.list(extract_last_n_events_in_camara(tramitacao_camara, 3)$evento)
   } else if (casa == 'senado') {
-    tramitacao_senado <- read_csv(paste0("../data/Senado/", id, "-fases-tramitacao-senado.csv"))
+    tramitacao_senado <- read_csv(
+      here::here(paste0('data/Senado/', id, '-fases-tramitacao-senado.csv')))
     proposicao <- fetch_proposicao(id, 'senado') %>% tail(1)
     ano <- proposicao$ano_materia
     despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
     nome_senado <- proposicao %>% select(ementa_materia, sigla_subtipo_materia, numero_materia) %>% unique
-    nome <- paste0(nome_senado$sigla_subtipo_materia, nome_senado$numero_materia, "/", ano)
+    nome <- paste0(nome_senado$sigla_subtipo_materia, nome_senado$numero_materia, '/', ano)
     casa_origem <- proposicao$nome_casa_origem
     nome_autor <- proposicao$nome_autor
     partido_autor <- proposicao$sigla_partido_parlamentar
     uf_autor <- proposicao$uf_parlamentar
-    nome_autor <- ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, " ", partido_autor, "/", uf_autor))
+    nome_autor <- ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, ' ', partido_autor, '/', uf_autor))
     despacho <- despacho_senado$texto_tramitacao
     relatoria <- fetch_last_relatoria(id) %>% tail(1)
     ementa <- if_else(is.null(proposicao$explicacao_ementa_materia), proposicao$ementa_materia, proposicao$explicacao_ementa_materia)
     relator <- extract_ultimo_relator(id)
-    data_apresentacao <- format(as.Date(proposicao$data_apresentacao), "%d/%m/%Y") %>% tail(1)
+    data_apresentacao <- format(as.Date(proposicao$data_apresentacao), '%d/%m/%Y') %>% tail(1)
     eventos <-  as.list(extract_n_last_eventos_Senado(tramitacao_senado, 3)$evento)
   }
 
