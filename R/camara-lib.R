@@ -277,7 +277,18 @@ rename_df_columns <- function(df) {
 #' @examples
 #' df %>% extract_events_in_camara(importants_events)
 #' @export
-extract_events_in_camara <- function(tramitacao_df, events_df, special_comissao) {
+extract_events_in_camara <- function(tramitacao_df) {
+  events_df <- frame_data(~ evento, ~ regex,
+                                 "requerimento_audiencia_publica", '^apresentação do requerimento.*requer a realização d.* audiências? públicas?',
+                                 "aprovacao_audiencia_publica", '^aprovado requerimento.*requer a realização d.* audiências? públicas?',
+                                 "aprovacao_parecer", 'aprovado.*parecer',
+                                 "requerimento_redistribuicao", '^apresentação do requerimento de redistribuição',
+                                 "requerimento_apensacao", '^apresentação do requerimento de apensação',
+                                 "requerimento_urgencia", '^apresentação do requerimento de urgência',
+                                 "requerimento_prorrogacao", '^apresentação do requerimento de prorrogação de prazo de comissão temporária')
+  
+  special_comissao <- c('120')
+  
   tramitacao_df %<>%
     dplyr::mutate(despacho_lower = tolower(despacho)) %>%
     fuzzyjoin::regex_left_join(events_df, by = c(despacho_lower = "regex")) %>%
