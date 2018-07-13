@@ -41,5 +41,8 @@ b <- gera_tabela_proposicoes_uma_casa(ids_df_single_house)
 
 ```{r, echo = FALSE, message = FALSE, results='asis'}
 #knitr::kable(a, caption = "Proposições")
+
+# kable no html_notebook não lida direito com \n
+b <- as.data.frame(sapply(b, function(x) gsub('\n', '', x)))
 knitr::kable(b, caption = "Proposições")
 ```
