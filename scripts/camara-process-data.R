@@ -23,12 +23,6 @@ process_proposicao <- function(pl_id) {
   csv_path <- paste(c(data_path,'tramitacao-camara-', pl_id, '.csv'),  collapse = '') 
   proposicao_csv_path <- paste(c(data_path,'proposicao-camara-', pl_id, '.csv'),  collapse = '')
 
-  phase_one <- c(100)
-  phase_two <- c(320)
-  phase_three <- c(322)
-  phase_four <- c(128)
-  phase_five <- c(502, 251)
-
   important_events <- frame_data(~ evento, ~ regex,
              "requerimento_audiencia_publica", '^apresentação do requerimento.*requer a realização d.* audiências? públicas?',
              "aprovacao_audiencia_publica", '^aprovado requerimento.*requer a realização d.* audiências? públicas?',
@@ -43,7 +37,7 @@ process_proposicao <- function(pl_id) {
   # Extract phases, events and writh CSV
   tramitacao_pl %<>%
     rename_df_columns %>%
-    extract_phases_in_camara(phase_one, phase_two, phase_three, phase_four, phase_five) %>%
+    extract_phases_in_camara() %>%
     fill(fase) %>%
     extract_events_in_camara(important_events, special_commission) %>%
     extract_locais_in_camara() %>%
@@ -63,7 +57,8 @@ process_proposicao <- function(pl_id) {
   readr::write_csv(proposicao_csv_path)
 
   relatorias <- extract_relatorias_in_camara(as.data.frame(read_csv(csv_path)))
-  
+ 
+  tramitacao_pl
 }
 
 #Fetch a bill with renamed columns
