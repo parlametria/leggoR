@@ -1,3 +1,5 @@
 label,start,end,time_interval,group,color
-CCJ,2018-04-19,2018-05-02,13,Local,#ffffcc
-relatoria,2018-04-19,2018-05-02,13,Fase,#fdc086
+Tramitação - Casa de Origem (Senado),2018-04-10,2018-07-05,0,Global,#f37340
+Comissões,2018-04-19,2018-07-05,77,Casa,#938ecc
+CCJ,2018-04-19,2018-07-05,77,Comissão,#ffffcc
+relatoria,2018-04-19,2018-07-05,77,Sub-fase Comissão,#fdc086

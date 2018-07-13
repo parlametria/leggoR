@@ -538,7 +538,9 @@ extract_locais_in_camara <- function(df) {
           (tolower(despacho) %in% descricoes_plenario & sigla_orgao == 'PLEN' |
             stringr::str_detect(tolower(descricao_tramitacao), '^votação')) ~ 'Plenário',
           (stringr::str_detect(tolower(despacho), '^recebimento pela') |
-            tolower(despacho) %in% descricoes_comissoes) & sigla_orgao != 'CCP' ~ sigla_orgao,
+            tolower(despacho) %in% descricoes_comissoes) & 
+            sigla_orgao != 'CCP' &
+            stringr::str_detect(tolower(sigla_orgao), '^s') ~ sigla_orgao,
           tolower(descricao_tramitacao) == 'remessa ao senado federal' ~ 'Câmara')
     )
 
@@ -569,8 +571,7 @@ extract_fase_casa_in_camara <- function(df) {
           (tolower(despacho) %in% descricoes_plenario & sigla_orgao == 'PLEN' |
              stringr::str_detect(tolower(descricao_tramitacao), '^votação')) ~ 'Plenário',
           (stringr::str_detect(tolower(despacho), '^recebimento pela') | 
-             tolower(despacho) %in% descricoes_comissoes) & sigla_orgao != 'CCP' & !stringr::str_detect(tolower(sigla_orgao), '^s') ~ "Comissões",
-          tolower(descricao_tramitacao) == 'remessa ao senado federal' ~ 'Senado')
+             tolower(despacho) %in% descricoes_comissoes) & sigla_orgao != 'CCP' & !stringr::str_detect(tolower(sigla_orgao), '^s') ~ "Comissões")
     )
   
   

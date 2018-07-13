@@ -47,7 +47,7 @@ process_proposicao <- function(bill_id){
 
   bill_passage_visualization <- 
     bill_passage %>%
-    select(data_tramitacao, local, fase, evento)
+    select(data_tramitacao, local, fase, evento, casa)
 
   # Print evento freq table
   bill_passage_visualization %>% select(evento) %>% group_by(evento) %>%

@@ -384,10 +384,9 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
             'Plenário',
           (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') | 
              situacao_descricao_situacao %in% descricoes_comissoes) ~
-            'Comissões',
-          situacao_descricao_situacao == 'remetida_à_câmara_dos_deputados' ~
-            'Câmara')
-    )
+            'Comissões')
+    ) %>%
+    tidyr::fill(casa)
                   
   
 }
