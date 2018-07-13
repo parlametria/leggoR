@@ -110,7 +110,7 @@ get_comissoes_camara <- function() {
 }
 
 #' @title Recupera as comissões pelas quais a proposição irá passar
-#' @description Retorna um dataframe aas comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
+#' @description Retorna um dataframe das comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
 #' as próximas comissões
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe com as próximas comissões que a proposição irá passar.
@@ -548,4 +548,11 @@ extract_locais_in_camara <- function(df) {
 
   df %>%
     tidyr::fill(local)
+}
+
+extract_tramitacao <- function(prop_id){
+  t <-
+    rcongresso::fetch_tramitacao(PROPOSICOES_ID) %>%
+    rename_df_columns 
+  return(t)
 }
