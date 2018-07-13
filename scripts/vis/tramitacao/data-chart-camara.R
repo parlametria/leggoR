@@ -90,49 +90,23 @@ format_fase_global <- function(bill_id, proposicao, tramitacao) {
 }
 
 data_situacao_comissao <- function(df) {
-  recebimento <- c(500)
-  analise_do_relator <- c(320)
-  discussao_votacao <- c(322, 240)
-  encaminhamento <- c(180)
-  
-  reg <- 
-    unlist(get_comissoes_camara()) %>%
-    paste(collapse='|') %>%
-    regex(ignore_case=TRUE)
-  
-  # Designa o tipo de situação para cada comissão
-  df %<>%
-    dplyr::mutate(
-      local =
-        dplyr::case_when(str_detect(local, reg) ~ str_extract(local, reg))
-    ) %>% 
-    dplyr::filter(!is.na(local)) %>% 
-    dplyr::mutate(
-      situacao_comissao =
-        dplyr::case_when(id_tipo_tramitacao %in% recebimento ~ "Recebimento",
-                         id_tipo_tramitacao %in% analise_do_relator ~ "Análise do relator",
-                         id_tipo_tramitacao %in% discussao_votacao ~ "Discussão e votação",
-                         id_tipo_tramitacao %in% encaminhamento ~ "Encaminhamento")
-    ) %>%
-    dplyr::select(data_hora, despacho, local, situacao_comissao) %>% 
-    tidyr::fill(situacao_comissao)
-  
-  # Agrupamento
-  df %>%
-    mutate(end_data = lead(data_hora, default=Sys.time())) %>%
-    group_by(situacao_comissao, sequence = data.table::rleid(situacao_comissao)) %>%
-    summarise(start = min(data_hora),
-              end = max(end_data)) %>%
-    filter(end - start > 0) %>%
-    ungroup() %>% 
-    arrange(sequence) %>%
-    select(-sequence) %>% 
-    rename(label = situacao_comissao) %>% 
-    mutate(group = "Situação na comissão",
-           color = case_when(label == "Recebimento" ~ "#5496cf",
-                             label == "Análise do relator" ~ "#ff9c37",
-                             label == "Discussão e votação" ~ "#8bca42",
-                             label == "Encaminhamento" ~ "#ea81b1"))
+  extract_situacao_comissao(df) %>% 
+  dplyr::select(data_hora, situacao_comissao) %>%
+  dplyr::filter(!is.na(situacao_comissao)) %>% 
+  mutate(end_data = lead(data_hora, default=Sys.time())) %>%
+  group_by(situacao_comissao, sequence = data.table::rleid(situacao_comissao)) %>%
+  summarise(start = min(data_hora),
+            end = max(end_data)) %>%
+  filter(end - start > 0) %>%
+  ungroup() %>% 
+  arrange(sequence) %>%
+  select(-sequence) %>% 
+  rename(label = situacao_comissao) %>% 
+  mutate(group = "Situação na comissão",
+         color = case_when(label == "Recebimento" ~ "#5496cf",
+                           label == "Análise do relator" ~ "#ff9c37",
+                           label == "Discussão e votação" ~ "#8bca42",
+                           label == "Encaminhamento" ~ "#ea81b1"))
 }
 
 #' @title Formata tabela para o vistime

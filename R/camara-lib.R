@@ -582,8 +582,11 @@ extract_situacao_comissao <- function(df) {
                          id_tipo_tramitacao %in% discussao_votacao& !is.na(comissao)  ~ "Discussão e votação",
                          id_tipo_tramitacao %in% encaminhamento & !is.na(comissao) ~ "Encaminhamento")
     ) %>%  
-    dplyr::select(-comissao)
-    # tidyr::fill(situacao_comissao)
+    dplyr::select(-comissao) %>% 
+    tidyr::fill(situacao_comissao) %>% 
+    dplyr::mutate(situacao_comissao = dplyr::case_when(stringr::str_detect(local, reg) ~ situacao_comissao))
+                    # dplyr::case_when(!stringr::str_detect(local, reg)) ~ "NA",
+                    #                                    TRUE ~ situacao_comissao)
   
 }
 
