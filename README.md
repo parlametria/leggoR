@@ -9,10 +9,14 @@ Raiz do projeto Ágora Digital
 
 ## Comandos
 
+Baixar dados e gerar relatórios:
+
+    $ ./scripts/build_all.R
+
 Gerar documentação:
 
-    devtools::document()
+    > devtools::document()
 
 Rodar testes:
 
-    devtools::test()
+    > devtools::test()
