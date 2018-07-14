@@ -553,6 +553,11 @@ extract_locais_in_camara <- function(df) {
           (stringr::str_detect(tolower(despacho), '^recebimento pela') |
             tolower(despacho) %in% descricoes_comissoes) & sigla_orgao != 'CCP' ~ sigla_orgao,
           tolower(descricao_tramitacao) == 'remessa ao senado federal' ~ 'Câmara')
+    ) %>%
+    dplyr::mutate(
+      local =
+        case_when(stringr::str_detect(local, "^PL") ~ "Comissão Especial",
+                  TRUE ~ local)
     )
 
   if (is.na(df[1, ]$local)) {
@@ -565,4 +570,38 @@ extract_locais_in_camara <- function(df) {
 
 extract_tramitacao <- function(prop_id){
   rcongresso::fetch_tramitacao(prop_id) %>% rename_df_columns
+}
+
+# Extrai a situação das comissões (ex. Recebimento, Análise do Relator, Discussão e votação...)
+# Necessita do dataframe da tramitação
+extract_situacao_comissao <- function(df) {
+  recebimento <- c(500)
+  analise_do_relator <- c(320)
+  discussao_votacao <- c(322, 240)
+  encaminhamento <- c(180)
+
+  reg <-
+    unlist(get_comissoes_camara()) %>%
+    paste(collapse='|') %>%
+    regex(ignore_case=TRUE)
+
+  df %>%
+    dplyr::mutate(
+      comissao =
+        dplyr::case_when(str_detect(local, reg) ~ str_extract(local, reg))
+    ) %>%
+    # dplyr::filter(!is.na(comissao)) %>%
+    dplyr::mutate(
+      situacao_comissao =
+        dplyr::case_when(id_tipo_tramitacao %in% recebimento & !is.na(comissao) ~ "Recebimento",
+                         id_tipo_tramitacao %in% analise_do_relator & !is.na(comissao) ~ "Análise do relator",
+                         id_tipo_tramitacao %in% discussao_votacao& !is.na(comissao)  ~ "Discussão e votação",
+                         id_tipo_tramitacao %in% encaminhamento & !is.na(comissao) ~ "Encaminhamento")
+    ) %>%
+    dplyr::select(-comissao) %>%
+    tidyr::fill(situacao_comissao) %>%
+    dplyr::mutate(situacao_comissao = dplyr::case_when(stringr::str_detect(local, reg) ~ situacao_comissao))
+                    # dplyr::case_when(!stringr::str_detect(local, reg)) ~ "NA",
+                    #                                    TRUE ~ situacao_comissao)
+
 }
