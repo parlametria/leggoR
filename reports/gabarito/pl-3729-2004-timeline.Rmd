@@ -1,3 +1,11 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Gabarito da Timeline do PL 3729/2004.
+
+```{r, echo=FALSE, message=FALSE, fig.width=10, fig.height=10}
 library(vistime)
 library(dplyr)
 
@@ -122,3 +130,5 @@ pl_3729_2004_data_general <- bind_rows(pl_3729_2004_data_estado,
                                        pl_3729_2004_data_eventos)
 
 vistime(pl_3729_2004_data_general)
+
+```

@@ -1,4 +1,5 @@
 #' @importFrom magrittr %>%
+#' @importFrom magrittr %<>%
 
 COMISSOES_CAMARA <- data.frame("comissao" = c("Comissão de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural",
                                               "Comissão de Ciência e Tecnologia, Comunicação e Informática",
