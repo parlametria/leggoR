@@ -369,7 +369,6 @@ extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_t
 #' df %>% extract_evento_Senado(importants_events)
 #' @export
 extract_evento_Senado <- function(tramitacao_df, phases_df) {
-
   dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao")
 }
 
@@ -390,8 +389,8 @@ extract_apreciacao_Senado <- function(proposicao_id) {
     magrittr::extract2("MovimentacaoMateria") %>%
     magrittr::extract2("Materia") %>%
     magrittr::extract2("Despachos") %>%
-    magrittr::extract2("Despacho") 
-    
+    magrittr::extract2("Despacho")
+
   if(!is.null(tramitacao_data)){
     if(!is.list(tramitacao_data$ComissoesDespacho.ComissaoDespacho)){
       tramitacao_data <- tramitacao_data %>%
@@ -400,13 +399,13 @@ extract_apreciacao_Senado <- function(proposicao_id) {
         as.tibble()
     } else {
       tramitacao_data <- tramitacao_data %>%
-        tidyr::unnest(ComissoesDespacho.ComissaoDespacho) 
+        tidyr::unnest(ComissoesDespacho.ComissaoDespacho)
     }
     tramitacao_data <- tramitacao_data %>%
         filter(IndicadorDespachoTerminativo == "Sim")
-    if_else(nrow(tramitacao_data) != 0, "conclusiva", "plenario")
+    if_else(nrow(tramitacao_data) != 0, "Conclusiva", "Plenário")
   } else {
-    "plenario"
+    "Plenário"
   }
 }
 
@@ -418,9 +417,10 @@ extract_apreciacao_Senado <- function(proposicao_id) {
 #' @param df Dataframe da tramitação no Senado.
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
-#' extract_regime_Senado(fetch_tramitacao(93418))
+#' extract_regime_Senado(93418)
 #' @export
-extract_regime_Senado <- function(df) {
+extract_regime_Senado <- function(proposicao_id) {
+  df <- fetch_tramitacao(proposicao_id)
   df <-
     df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
@@ -431,7 +431,7 @@ extract_regime_Senado <- function(df) {
             'Urgência')
     ) %>%
     tidyr::fill(regime)
-  
+
   if(is.na(df[nrow(df), ]$regime)){
     'Ordinária'
   } else{
@@ -560,7 +560,7 @@ extract_comissoes_Senado <- function(df) {
     unique() %>%
       mutate(comissoes = sapply(comissoes, fix_names)) %>%
       rowwise() %>%
-      filter(length(comissoes) != 0) 
+      filter(length(comissoes) != 0)
 }
 
 
@@ -590,7 +590,7 @@ extract_locais <- function(df) {
                            'incluída_em_ordem_do_dia')
   descricoes_comissoes <- c('matéria_com_a_relatoria',
                             'aguardando_designação_do_relator' )
-  
+
     df <- df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     dplyr::mutate(
@@ -598,17 +598,17 @@ extract_locais <- function(df) {
         dplyr::case_when(
           situacao_descricao_situacao %in% descricoes_plenario ~
             'Plenário',
-          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') | 
+          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') |
              situacao_descricao_situacao %in% descricoes_comissoes) ~
             origem_tramitacao_local_sigla_local,
           situacao_descricao_situacao == 'remetida_à_câmara_dos_deputados' ~
             'Câmara')
     )
-    
+
     if (is.na(df[1, ]$local)) {
       df[1, ]$local = 'SF-ATA-PLEN'
     }
-    
+
     df %>%
       tidyr::fill(local)
 }
