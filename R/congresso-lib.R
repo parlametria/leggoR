@@ -6,11 +6,10 @@
 #' to_underscore(c("testName", "TESTNAME"))
 #' @export
 to_underscore <- function(x) {
-  x2 <- gsub("([A-Za-z])([A-Z])([a-z])", "\\1_\\2\\3", x)
-  x3 <- gsub(".", "_", x2, fixed = TRUE)
-  x4 <- gsub("([a-z])([A-Z])", "\\1_\\2", x3)
-  x5 <- tolower(x4)
-  x5
+  gsub('([A-Za-z])([A-Z])([a-z])', '\\1_\\2\\3', x) %>%
+    gsub('.', '_', ., fixed = TRUE) %>%
+    gsub('([a-z])([A-Z])', '\\1_\\2', .) %>%
+    tolower()
 }
 
 #' @title Verfica se um elemento está contido em um vetor
@@ -49,7 +48,7 @@ fetch_proposicao <- function(id, casa) {
 #' @export
 fetch_proposicao_senado <- function(proposicao_id){
   url_base_proposicao <- "http://legis.senado.leg.br/dadosabertos/materia/"
-  
+
   url <- paste0(url_base_proposicao, proposicao_id)
   json_proposicao <- jsonlite::fromJSON(url, flatten = T)
   proposicao_data <-
@@ -79,7 +78,7 @@ fetch_proposicao_senado <- function(proposicao_id){
     proposicao_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria
   relacionadas <-
     proposicao_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria
-  
+
   proposicao_complete <-
     proposicao_basic_data %>%
     tibble::add_column(
@@ -87,9 +86,9 @@ fetch_proposicao_senado <- function(proposicao_id){
       !!! proposicao_general_assunto, !!! proposicao_source,
       proposicoes_relacionadas = paste(relacionadas, collapse=' '),
       proposicoes_apensadas = paste(anexadas, collapse=' '))
-  
+
   proposicao_complete <- proposicao_complete[, !sapply(proposicao_complete, is.list)]
-  
+
   rename_proposicao_df(proposicao_complete)
 }
 
@@ -106,32 +105,32 @@ fetch_proposicao_camara <- function(prop_id) {
   
   regex_regime <-
     frame_data(~ regime_tramitacao, ~ regex,
-               'ordinaria', 'Ordinária',
-               'prioridade', 'Prioridade',
-               'urgencia', 'Urgência')
+               'Ordinária', 'Ordinária',
+               'Prioridade', 'Prioridade',
+               'Urgência', 'Urgência')
   
   regex_apreciacao <-
     frame_data(~ forma_apreciacao, ~ regex,
-               'conclusiva', 'Sujeita à Apreciação Conclusiva pelas Comissões',
-               'plenario', 'Sujeita à Apreciação do Plenário')
-  
+               'Conclusiva', 'Sujeita à Apreciação Conclusiva pelas Comissões',
+               'Plenário', 'Sujeita à Apreciação do Plenário')
+
   rcongresso::fetch_proposicao(prop_id) %>%
     # Adiciona url das páginas das proposições
-    mutate(page_url=paste0(base_url, prop_id)) %>%
+    dplyr::mutate(page_url=paste0(base_url, prop_id)) %>%
     # Adiciona html das páginas das proposições
-    rowwise() %>%
-    mutate(page_html=list(xml2::read_html(page_url))) %>%
-    
+    dplyr::rowwise() %>%
+    dplyr::mutate(page_html=list(xml2::read_html(page_url))) %>%
+
     # Padroniza valor sobre regime de tramitação
     fuzzyjoin::regex_left_join(regex_regime, by=c(statusProposicao.regime="regex")) %>%
-    select(-'regex') %>%
-    
+    dplyr::select(-'regex') %>%
+
     # Adiciona coluna sobre forma de apreciação
-    rowwise() %>%
-    mutate(temp=
+    dplyr::rowwise() %>%
+    dplyr::mutate(temp=
              rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
              rvest::html_text()
     ) %>%
     fuzzyjoin::regex_left_join(regex_apreciacao, by=c(temp="regex")) %>%
-    select(-c('temp', 'regex'))
+    dplyr::select(-c('temp', 'regex'))
 }
