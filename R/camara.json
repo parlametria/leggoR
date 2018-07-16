@@ -1,0 +1,10 @@
+{
+  "situacao_comissao": {
+    "code": {
+      "recebimento": [500],
+      "analise_do_relator": [320],
+      "discussao_votacao": [322, 240],
+      "encaminhamento": [180]
+    }
+  }
+}

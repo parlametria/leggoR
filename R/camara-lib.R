@@ -1,4 +1,5 @@
 source(here::here("R/congresso-lib.R"))
+camara_codes <- rjson::fromJSON(file=here::here("R/camara.json"))
 
 #' @title Recupera o número, o tipo e ementa de uma proposição na Câmara
 #' @description Retorna um dataframe contendo o número, o tipo e a ementa de uma proposição na Câmara através do ID da proposição
@@ -575,10 +576,10 @@ extract_tramitacao <- function(prop_id){
 # Extrai a situação das comissões (ex. Recebimento, Análise do Relator, Discussão e votação...)
 # Necessita do dataframe da tramitação
 extract_situacao_comissao <- function(df) {
-  recebimento <- c(500)
-  analise_do_relator <- c(320)
-  discussao_votacao <- c(322, 240)
-  encaminhamento <- c(180)
+  recebimento <- camara_codes$situacao_comissao$code$recebimento
+  analise_do_relator <- camara_codes$situacao_comissao$code$analise_do_relator
+  discussao_votacao <- camara_codes$situacao_comissao$code$discussao_votacao
+  encaminhamento <- camara_codes$situacao_comissao$code$encaminhamento
 
   reg <-
     unlist(get_comissoes_camara()) %>%
