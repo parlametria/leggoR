@@ -1,9 +1,12 @@
 context('test-senado-lib.R')
-source(here::here("R/congresso-lib.R"))
-source(here::here("R/senado-lib.R"))
-source(here::here("R/constants.R"))
 
-#PLS 229/2009 e PL 526/1999
+# Constantes
+PROPOSICOES_ID <<- c(91341)
+TAM_LISTA_PROPOSICOES <<- 2
+APRECIACAO_91341 <<- 'plenario'
+TRAMITACAO_91341 <<- 'Ordinária'
+
+# PLS 229/2009 e PL 526/1999
 # Setup
 setup <- function(){
   proposicao_data <<- read_csv(paste0(here::here("data/Senado/"), 91341, "-proposicao-senado.csv"))
@@ -31,7 +34,7 @@ test <- function(){
   test_that('fetch_votacoes() is dataframe', {
     expect_true(is.data.frame(fetch_votacoes(PROPOSICOES_ID)))
   })
-  
+
   test_that('fetch_tramitacao() is dataframe', {
     expect_true(is.data.frame(fetch_tramitacao(PROPOSICOES_ID)))
   })
@@ -44,19 +47,19 @@ test <- function(){
   test_that('fetch_relatorias() is dataframe', {
     expect_true(is.data.frame(fetch_relatorias(PROPOSICOES_ID)))
   })
-  
+
   test_that('fetch_current_relatoria() is dataframe', {
     expect_true(is.data.frame(fetch_current_relatoria(PROPOSICOES_ID)))
   })
-  
+
   test_that('fetch_last_relatoria() is dataframe', {
     expect_true(is.data.frame(fetch_last_relatoria(PROPOSICOES_ID)))
   })
-  
+
   test_that('get_nome_ementa_Senado() is dataframe', {
     expect_true(is.data.frame(get_nome_ementa_Senado(PROPOSICOES_ID)))
   })
-  
+
   test_that('tail_descricao_despacho_Senado() is dataframe', {
     expect_true(is.data.frame(tramitacao_data %>% tail_descricao_despacho_Senado()))
   })
@@ -75,33 +78,33 @@ test <- function(){
   test_that('extract_evento_Senado() is dataframe', {
     expect_true(is.data.frame(extract_evento_Senado(tramitacao_data, important_eventos)))
   })
-  
+
   test_that('extract_n_last_eventos_Senado() is dataframe', {
     expect_true(is.data.frame(extract_n_last_eventos_Senado(extract_evento_Senado(tramitacao_data, important_eventos), 3)))
   })
-  
+
   test_that('extract_comissoes_Senado() is dataframe', {
     expect_true(is.data.frame(extract_comissoes_Senado(tramitacao_data)))
   })
-  
+
   test_that('extract_first_comissoes_Senado() is dataframe', {
     expect_true(is.data.frame(extract_first_comissoes_Senado(tramitacao_data)))
   })
-  
+
   test_that('extract_locais() is dataframe', {
     expect_true(is.data.frame(extract_locais(tramitacao_data)))
   })
-  
-  test_that("fetch_votacoes()", {
+
+  test_that('fetch_votacoes()', {
     expect_true(all(names(fetch_votacoes(PROPOSICOES_ID)) %in% .COLNAMES_VOT_SEN))
   })
-  
-  test_that("fetch_votacoes()", {
+
+  test_that('fetch_votacoes()', {
     expect_true(all(names(fetch_tramitacao(PROPOSICOES_ID)) %in% .COLNAMES_TRAMI_SEN))
   })
-  
-  test_that("fetch_deferimento()", {
-    expect_true(all(names(fetch_deferimento("109173")) %in% .COLNAMES_DEFE_SEN))
+
+  test_that('fetch_deferimento()', {
+    expect_true(all(names(fetch_deferimento('109173')) %in% .COLNAMES_DEFE_SEN))
   })
   
   test_that("get_nome_ementa_Senado()", {
@@ -118,6 +121,11 @@ test <- function(){
   
   test_that("Regime de apreciacao", {expect_equal(extract_apreciacao_Senado(PROPOSICOES_ID), APRECIACAO_91341)})
   test_that("Regime de tramitacao", {expect_equal(extract_regime_Senado(PROPOSICOES_ID), TRAMITACAO_91341)})
+
+  test_that('Regime de apreciacao', {
+    expect_equal(extract_apreciacao_Senado(91341), APRECIACAO_91341)})
+  test_that('Regime de tramitacao', {
+    expect_equal(extract_regime_Senado(fetch_tramitacao(91341)), TRAMITACAO_91341)})
 
 }
 
