@@ -194,20 +194,19 @@ extract_last_relator_in_camara <- function(df) {
 #' @examples
 #' tramitacao %>% extract_phases_in_camara()
 #' @export
-extract_phases_in_camara <- function(dataframe) {
-  iniciativa <- c(100)
-  relatoria <- c(320)
-  discussao_deliberacao <- c(322)
-  virada_de_casa <- c(128)
-  final <- c(502, 251)
 
+extract_phases_in_camara <- function(dataframe, recebimento_phase, phase_one, phase_two, phase_three, encaminhamento_phase, phase_four, phase_five) {
   dataframe %<>%
-    dplyr::mutate(fase = dplyr::case_when(detect_fase(id_tipo_tramitacao, iniciativa) ~ 'iniciativa',
-                                          detect_fase(id_tipo_tramitacao, relatoria) ~ 'relatoria',
-                                          detect_fase(id_tipo_tramitacao, discussao_deliberacao) ~ 'discussao_deliberacao',
-                                          detect_fase(id_tipo_tramitacao, virada_de_casa) ~ 'virada_de_casa',
-                                          detect_fase(id_tipo_tramitacao, final) ~ 'final',
-                                          detect_fase(id_situacao, 937) ~ 'final'))
+    dplyr::mutate(fase = dplyr::case_when(
+                                          detect_fase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
+                                          detect_fase(id_tipo_tramitacao, recebimento_phase) ~ 'recebimento',
+                                          detect_fase(id_tipo_tramitacao, phase_two) ~ 'analise_relator',
+                                          detect_fase(id_tipo_tramitacao, phase_three) ~ 'discussao_deliberacao',
+                                          detect_fase(id_tipo_tramitacao, encaminhamento_phase) ~ 'encaminhamento',
+                                          detect_fase(id_tipo_tramitacao, phase_four) ~ 'virada_de_casa',
+                                          detect_fase(id_tipo_tramitacao, phase_five) ~ 'final',
+                                          detect_fase(id_situacao, 937) ~ 'final')
+                                          )
 }
 
 #' @title Busca os últimos n eventos da tramitação na Câmara
