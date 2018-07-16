@@ -31,7 +31,8 @@ test <- function(){
 
   test_that('fetch_deferimento() is dataframe', {
     expect_true(is.data.frame(
-      fetch_proposicao(PROPOSICOES_ID)$proposicoes_relacionadas %>% fetch_deferimento))
+      strsplit(fetch_proposicao(PROPOSICOES_ID, 'senado')$proposicoes_relacionadas, ' ') %>%
+      fetch_deferimento))
   })
 
   test_that('fetch_relatorias() is dataframe', {
