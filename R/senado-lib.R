@@ -350,12 +350,12 @@ tail_descricao_despacho_Senado <- function(df, qtd=1) {
 #' tramitacao %>% extract_fase_Senado()
 #' @export
 extract_fase_Senado <- function(dataframe, phase_one, phase_two, phase_three, phase_four) {
-
   dataframe %>%
-    dplyr::mutate(fase = dplyr::case_when( grepl(phase_one, texto_tramitacao) ~ 'iniciativa',
-                             detect_fase(situacao_codigo_situacao, phase_two) ~ 'relatoria',
-                             detect_fase(situacao_codigo_situacao, phase_three) ~ 'discussao_deliberacao',
-                             detect_fase(situacao_codigo_situacao, phase_four) ~ 'virada_de_casa'))
+    dplyr::mutate(fase = dplyr::case_when(
+      grepl(phase_one, texto_tramitacao) ~ 'iniciativa',
+      detect_fase(situacao_codigo_situacao, phase_two) ~ 'relatoria',
+      detect_fase(situacao_codigo_situacao, phase_three) ~ 'discussao_deliberacao',
+      detect_fase(situacao_codigo_situacao, phase_four) ~ 'virada_de_casa'))
 }
 
 #' @title Extrai os eventos importantes que aconteceram no Senado
@@ -367,7 +367,6 @@ extract_fase_Senado <- function(dataframe, phase_one, phase_two, phase_three, ph
 #' df %>% extract_evento_Senado(importants_events)
 #' @export
 extract_evento_Senado <- function(tramitacao_df, phases_df) {
-
   dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao")
 }
 
