@@ -124,9 +124,9 @@ test <- function(){
   test_that("Regime de tramitacao", {expect_equal(extract_regime_Senado(PROPOSICOES_ID), TRAMITACAO_91341)})
 
   test_that('Regime de apreciacao', {
-    expect_equal(extract_apreciacao_Senado(91341), APRECIACAO_91341)})
+    expect_equal(extract_apreciacao_Senado(PROPOSICOES_ID), APRECIACAO_91341)})
   test_that('Regime de tramitacao', {
-    expect_equal(extract_regime_Senado(fetch_tramitacao(91341)), TRAMITACAO_91341)})
+    expect_equal(extract_regime_Senado(PROPOSICOES_ID), TRAMITACAO_91341)})
 
 }
 
