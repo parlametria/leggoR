@@ -38,24 +38,24 @@ pl_3729_2004_data_comissao <- frame_data(~ event, ~ group, ~ start, ~ end, ~ col
                                          "Análise do Relator", "Comissão", "2009-03-19", "2009-12-16","#a6cee3",
                                          "Análise do Relator", "Comissão", "2011-03-28", "2013-10-23","#a6cee3",
                                          "Análise do Relator", "Comissão", "2013-12-04", "2013-12-17","#a6cee3",
-                                         
+
                                          #CAPADR
                                          "Receb.", "Comissão", "2014-02-10", "2014-03-12","#1f78b4",
                                          "Análise do Relator", "Comissão", "2014-03-12", "2014-04-29","#1f78b4",
                                          "Discussão e Votação", "Comissão", "2014-04-29", "2014-04-14","#1f78b4",
-                                         
+
                                          #CMADS
                                          "Receb.", "Comissão", "2014-05-16", "2014-05-22","#a6cee3",
                                          "Análise do Relator", "Comissão", "2014-05-22", "2014-12-18","#a6cee3",
                                          "Análise do Relator", "Comissão", "2015-04-09", "2015-09-23","#a6cee3",
                                          "Discussão e Votação", "Comissão", "2015-10-07", "2015-10-14","#a6cee3",
-                                         
+
                                          #CTF
                                          "Receb.", "Comissão", "2015-10-20", "2015-10-27","#b2df8a",
                                          "Análise do Relator", "Comissão", "2015-10-28", "2015-12-09","#b2df8a",
                                          "Análise do Relator", "Comissão", "2015-12-17", "2017-08-29","#b2df8a",
                                          "Análise do Relator", "Comissão", "2018-04-11", "2018-07-10","#b2df8a",
-                                         
+
                                          #CCJC
                                          "Receb.", "Comissão", "2016-05-09", "2016-05-11","#814FBD",
                                          "Análise do Relator", "Comissão", "2016-05-11", "2016-05-23","#814FBD",

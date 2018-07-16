@@ -50,10 +50,10 @@ chart
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 if(params$casa == "camara") {
-  table_apensadas_camara <- gera_tabela_apensadas_camara(params$id) 
+  table_apensadas_camara <- gera_tabela_apensadas_camara(params$id)
   knitr::kable(table_apensadas_camara, caption = "Lista de Leis Apensadas Câmara")
 }else {
-  table_apensadas_senado <- gera_tabela_apensadas_senado(params$id) 
+  table_apensadas_senado <- gera_tabela_apensadas_senado(params$id)
   knitr::kable(table_apensadas_senado, caption = "Lista de Leis Apensadas Senado")
 }
 ```
@@ -80,10 +80,10 @@ if (nrow(reqs) != 0) {
 #### Tabelas de eventos
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 if(params$casa == "camara") {
-  table_proximo_evento_camara <- get_next_events(params$id) 
+  table_proximo_evento_camara <- get_next_events(params$id)
   knitr::kable(table_proximo_evento_camara, caption = "Lista de Próximos eventos")
-  
-  table_ultimos_eventos_camara <- get_latest_events(params$id) 
+
+  table_ultimos_eventos_camara <- get_latest_events(params$id)
   knitr::kable(table_ultimos_eventos_camara, caption = "Lista de Últimos eventos")
 }
 ```
@@ -93,8 +93,8 @@ if(params$casa == "camara") {
 data_path <- here::here('data/')
 if(params$casa == "camara") {
   comissoes <- get_comissoes_in_camara(read_csv(paste0(data_path, "camara/tramitacao-camara-", params$id, ".csv")))
-}else {
+} else {
   comissoes <- extract_comissoes_Senado(read_csv(paste0(data_path, "Senado/", params$id, "-tramitacao-senado.csv")))
 }
-  knitr::kable(comissoes, caption = "Lista de Comissões")
+knitr::kable(comissoes, caption = "Lista de Comissões")
 ```
