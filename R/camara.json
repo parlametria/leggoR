@@ -7,6 +7,20 @@
       "encaminhamento": [180]
     }
   },
+  "eventos": {
+    "regex": {
+      "requerimento_audiencia_publica": "^apresentação do requerimento.*requer a realização d.* audiências? públicas?",
+      "aprovacao_audiencia_publica": "^aprovado requerimento.*requer a realização d.* audiências? públicas?",
+      "aprovacao_parecer": "aprovado.*parecer",
+      "requerimento_redistribuicao": "^apresentação do requerimento de redistribuição",
+      "requerimento_apensacao": "^apresentação do requerimento de apensação",
+      "requerimento_urgencia": "^apresentação do requerimento de urgência",
+      "requerimento_prorrogacao": "^apresentação do requerimento de prorrogação de prazo de comissão temporária"
+    },
+    "code": {
+      "comissao_especial": [120]
+    } 
+  },
   "comissoes": {
     "siglas_comissoes_antigas": [
       "CDCMAM",

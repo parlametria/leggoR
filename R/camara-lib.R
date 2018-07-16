@@ -202,17 +202,19 @@ rename_df_columns <- function(df) {
 #' df %>% extract_events_in_camara(importants_events)
 #' @export
 extract_events_in_camara <- function(tramitacao_df) {
+  c <- camara_codes$eventos$regex
+  
   events_df <- frame_data(
     ~ evento, ~ regex,
-    'requerimento_audiencia_publica', '^apresentação do requerimento.*requer a realização d.* audiências? públicas?',
-    'aprovacao_audiencia_publica', '^aprovado requerimento.*requer a realização d.* audiências? públicas?',
-    'aprovacao_parecer', 'aprovado.*parecer',
-    'requerimento_redistribuicao', '^apresentação do requerimento de redistribuição',
-    'requerimento_apensacao', '^apresentação do requerimento de apensação',
-    'requerimento_urgencia', '^apresentação do requerimento de urgência',
-    'requerimento_prorrogacao', '^apresentação do requerimento de prorrogação de prazo de comissão temporária')
+    'requerimento_audiencia_publica', c$requerimento_audiencia_publica,
+    'aprovacao_audiencia_publica', c$aprovacao_audiencia_publica,
+    'aprovacao_parecer', c$aprovacao_parecer,
+    'requerimento_redistribuicao', $requerimento_redistribuicao,
+    'requerimento_apensacao', c$requerimento_apensacao,
+    'requerimento_urgencia', c$requerimento_urgencia,
+    'requerimento_prorrogacao', c$requerimento_prorrogacao)
 
-  special_comissao <- c('120')
+  special_comissao <- camara_codes$eventos$code$comissao_especial
 
   tramitacao_df %>%
     dplyr::mutate(despacho_lower = tolower(despacho)) %>%
