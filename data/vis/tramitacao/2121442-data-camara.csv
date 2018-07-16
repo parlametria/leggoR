@@ -30,13 +30,11 @@ requerimento_prorrogacao,2018-04-11T09:04:00Z,2018-04-11T09:04:00Z,Evento,#a9a9a
 requerimento_prorrogacao,2018-05-04T15:48:00Z,2018-05-04T15:48:00Z,Evento,#a9a9a9,NA
 requerimento_prorrogacao,2018-05-29T09:14:00Z,2018-05-29T09:14:00Z,Evento,#a9a9a9,NA
 requerimento_prorrogacao,2018-06-26T09:47:00Z,2018-06-26T09:47:00Z,Evento,#a9a9a9,NA
-CD-MESA-PLEN,2016-03-16T14:03:00Z,2016-12-15T15:33:00Z,Local,NA,NA
+CD-MESA-PLEN,2016-03-16T14:03:00Z,2016-12-15T10:46:00Z,Local,NA,NA
+SECAP(SGM),2016-12-15T10:46:00Z,2016-12-15T15:33:00Z,Local,NA,NA
 CTASP,2016-12-15T15:33:00Z,2017-08-29T17:06:00Z,Local,#ea81b1,NA
-Comissão Especial,2017-08-29T17:06:00Z,2018-07-16T19:56:05Z,Local,NA,NA
+PL672616,2017-08-29T17:06:00Z,2018-07-12T13:48:14Z,Local,#ff9c37,NA
 Recebimento,2016-12-15T15:33:00Z,2017-08-15T19:01:00Z,Situação na comissão,#5496cf,NA
 Encaminhamento,2017-08-15T19:01:00Z,2017-08-23T08:59:00Z,Situação na comissão,#ea81b1,NA
-Recebimento,2017-08-23T08:59:00Z,2017-08-29T18:59:00Z,Situação na comissão,#5496cf,NA
-Encaminhamento,2017-08-29T18:59:00Z,2017-09-12T00:00:00Z,Situação na comissão,#ea81b1,NA
-Análise do relator,2017-09-12T00:00:00Z,2018-06-11T17:08:00Z,Situação na comissão,#ff9c37,NA
-Discussão e votação,2018-06-11T17:08:00Z,2018-07-16T19:56:05Z,Situação na comissão,#8bca42,NA
-Tramitação - Casa Revisora,2016-12-14T22:16:00Z,2018-07-16T19:56:05Z,global,#f37340,0
+Recebimento,2017-08-23T08:59:00Z,2018-07-12T13:48:14Z,Situação na comissão,#5496cf,NA
+Tramitação - Casa Revisora,2016-12-14T22:16:00Z,2018-07-12T13:48:14Z,global,#f37340,0

@@ -110,7 +110,7 @@ pl_3729_2004_data_eventos <- frame_data(~ event, ~ group, ~ start, ~ end, ~ colo
                                         "Parecer CTF 11", "Evento", "2017-08-08", "2017-08-08","#a561a2",
                                         "Parecer CTF 12", "Evento", "2017-08-08", "2017-08-08","#a561a2",
                                         "Parecer CTF 13", "Evento", "2017-08-29", "2017-08-29","#a561a2",
-                                        "Retirada de pauta CTF", "Evento", "2017-09-13", "2017-09-13","#a561a2",
+                                        "Retirada de pauta CTF", "Evento", "2018-09-13", "2018-09-13","#a561a2",
                                         "Desapensação", "Evento", "2017-10-18", "2017-10-18", "#938ecc",
                                         "Designado relator", "Evento", "2018-04-11", "2018-04-11","#87c465")
 
