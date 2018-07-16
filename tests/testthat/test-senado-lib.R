@@ -1,27 +1,26 @@
 context('test-senado-lib.R')
 
 # Constantes
-PROPOSICOES_ID <<- tibble::as_tibble(91341)
+PROPOSICOES_ID <<- c(91341)
 TAM_LISTA_PROPOSICOES <<- 2
-APRECIACAO_91341 <<- 'plenario'
+APRECIACAO_91341 <<- 'Plenário'
 TRAMITACAO_91341 <<- 'Ordinária'
+phase_one <- c('^Este processo contém')
+phase_two <- c(91, 99)
+phase_three <- c(42, 110, 88)
+phase_four <- c(52)
+
+important_eventos <- tibble::frame_data(~ evento, ~ situacao_codigo_situacao,
+                                        "aprovacao_audiencia_publica", 110,
+                                        "aprovacao_parecer", 89,
+                                        "aprovacao_substitutivo", 113,
+                                        "pedido_vista", 90,
+                                        "aprovacao_projeto", 25)
 
 # PLS 229/2009 e PL 526/1999
 # Setup
 setup <- function(){
-  proposicao_data <<- read_csv(paste0(here::here("data/Senado/"), 91341, "-proposicao-senado.csv"))
   tramitacao_data <<- read_csv(paste0(here::here("data/Senado/"), 91341, "-tramitacao-senado.csv"))
-  
-  
-  APRECIACAO_91341 <<- 'Plenário'
-  TRAMITACAO_91341 <<- 'Ordinária'
-  PROPOSICOES_ID <<- c(91341)
-  TAM_LISTA_PROPOSICOES <<- 2
-  phase_one <- c('^Este processo contém')
-  phase_two <- c(91, 99)
-  phase_three <- c(42, 110, 88)
-  phase_four <- c(52)
-  
   return(TRUE)
 }
 
@@ -68,13 +67,6 @@ test <- function(){
     expect_true(is.data.frame(
       extract_fase_Senado(tramitacao_data, phase_one, phase_two, phase_three, phase_four)))
   })
-  
-  important_eventos <- tibble::frame_data(~ evento, ~ situacao_codigo_situacao,
-                                          "aprovacao_audiencia_publica", 110,
-                                          "aprovacao_parecer", 89,
-                                          "aprovacao_substitutivo", 113,
-                                          "pedido_vista", 90,
-                                          "aprovacao_projeto", 25)
   
   test_that('extract_evento_Senado() is dataframe', {
     expect_true(is.data.frame(extract_evento_Senado(tramitacao_data, important_eventos)))
