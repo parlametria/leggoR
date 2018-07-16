@@ -1,7 +1,13 @@
 ---
-title: "Gabarito da Timeline do PL 490/2007"
-output: html_notebook
+title: "PL 490/2007"
+output: html_document
 ---
+
+[Link oficial](http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao=345311)
+
+## Resumo da tramitação
+
+A proposta de lei 490 de 2007 foi criada há mais de 11 anos pelo Deputado Homero Pereira do partido PR-MT, que tinha como profissão Produtor Rural e Técnico em Agropecuária, em regime de tramitação Ordinária e atualmente está passando pelas comissões da sua Casa Iniciadora (Câmara dos Deputados). O encaminhamento da proposta de lei foi inicialmente previsto para passar pelas seguintes comissões: CDHM e CCJC. Mas, com o deferimento de um requerimento de redistribuição, a proposta foi encaminhada também à CAPADR, passando a ter a seguinte ordem de comissões: CAPADR,CDHM e CCJC. Na primeira comissão, foi aprovada com apensados em 8 meses após substitutivo. O relator era o Dep. Waldir Neves (PSDB-MS). De volta à CDHM, foi rejeitada em 1 mês, sob relatoria da Dep. Iriny Lopes (PT-ES). Há nove anos, encontra-se na terceira comissão (CCJC) esperando a votação do parecer do relator, Deputado Jerônimo Goergen (PP-RS), após arquivamento, desarquivamento e apensamentos.
 
 ```{r, echo=FALSE, message=FALSE, fig.width=10, fig.height=10}
 library(vistime)
