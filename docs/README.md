@@ -9,7 +9,7 @@ Documentação
 
 ## Relatórios
 
-- [Tabela](reports/tabela-proposicoes.nb.html)
+- [Tabela](reports/tabela-proposicoes.html)
 
 ## Gabaritos
 
