@@ -1,7 +1,7 @@
 context('test-senado-lib.R')
 
 # Constantes
-PROPOSICOES_ID <<- c(91341)
+PROPOSICOES_ID <<- tibble::as_tibble(91341)
 TAM_LISTA_PROPOSICOES <<- 2
 APRECIACAO_91341 <<- 'plenario'
 TRAMITACAO_91341 <<- 'Ordinária'
@@ -65,7 +65,8 @@ test <- function(){
   })
   
   test_that('extract_fase_Senado() is dataframe', {
-    expect_true(is.data.frame(extract_fase_Senado(tramitacao_data, phase_one, phase_two, phase_three, phase_four)))
+    expect_true(is.data.frame(
+      extract_fase_Senado(tramitacao_data, phase_one, phase_two, phase_three, phase_four)))
   })
   
   important_eventos <- tibble::frame_data(~ evento, ~ situacao_codigo_situacao,
