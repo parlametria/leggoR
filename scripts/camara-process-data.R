@@ -53,7 +53,7 @@ process_proposicao <- function(pl_id) {
 #Fetch a bill with renamed columns
 fetch_proposicao_renamed <- function(id) {
   df <-
-    fetch_proposicao_in_camara(id) %>%
+    fetch_proposicao_camara(id, 'camara') %>%
     rename_df_columns
   
   df[, !sapply(df, is.list)]
