@@ -83,4 +83,4 @@ COMISSOES_CAMARA <- data.frame("comissao" = c("Comissão de Agricultura, Pecuár
 
 .COLNAMES_DESPACHO_SEN <- c("data_tramitacao", "situacao_descricao_situacao", "texto_tramitacao")
 
-.COLNAMES_DESPACHO_SEN <- c("codigo_materia", "comissoes", "data_tramitacao")
+.COLNAMES_COMISSAO_SEN <- c("codigo_materia", "comissoes", "data_tramitacao")

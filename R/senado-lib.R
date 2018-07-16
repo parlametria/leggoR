@@ -416,7 +416,7 @@ extract_apreciacao_Senado <- function(proposicao_id) {
 #' @param df Dataframe da tramitação no Senado.
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
-#' extract_regime_Senado(fetch_tramitacao(93418))
+#' extract_regime_Senado(93418)
 #' @export
 extract_regime_Senado <- function(proposicao_id) {
   df <- fetch_tramitacao(proposicao_id)
