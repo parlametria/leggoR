@@ -95,7 +95,6 @@ pl_3729_2004_data_eventos <- frame_data(~ event, ~ group, ~ start, ~ end, ~ colo
                                         "Designado relator", "Evento", "2015-10-28", "2015-10-28","#87c465",
                                         "Designado relator", "Evento", "2015-12-17", "2015-12-17","#87c465",
                                         "Alteração de regime", "Evento","2016-03-22", "2016-03-22", "#938ecc",
-                                        "Designado relator", "Evento","2016-05-11", "2016-05-11", "#87c465",
                                         "Designado relator CCJC", "Evento", "2016-06-30", "2016-06-30","#87c465",
                                         "Parecer CTF 1", "Evento", "2016-07-05", "2016-07-05","#a561a2",
                                         "Parecer CTF 2", "Evento", "2016-07-27", "2016-07-27","#a561a2",
