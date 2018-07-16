@@ -87,7 +87,7 @@ fetch_tramitacao <- function(proposicao_id){
 fetch_deferimento <- function(proposicao_id) {
 
   regexes <-
-    frame_data(~ deferimento, ~ regex,
+    tibble::frame_data(~ deferimento, ~ regex,
                "indeferido", '^Indefiro',
                "deferido", '^(Defiro)|(Aprovado)')
 
@@ -102,7 +102,7 @@ fetch_deferimento <- function(proposicao_id) {
 
     resultados %>%
       tibble::as.tibble() %>%
-      mutate(proposicao_id=proposicao_id) %>%
+      dplyr::mutate(proposicao_id=proposicao_id) %>%
       fuzzyjoin::regex_left_join(regexes, by=c(value="regex")) %>%
       tidyr::fill(deferimento) %>%
       tail(., n=1) %>%
@@ -400,8 +400,8 @@ extract_apreciacao_Senado <- function(proposicao_id) {
         tidyr::unnest(ComissoesDespacho.ComissaoDespacho)
     }
     tramitacao_data <- tramitacao_data %>%
-        filter(IndicadorDespachoTerminativo == "Sim")
-    if_else(nrow(tramitacao_data) != 0, "Conclusiva", "Plenário")
+        dplyr::filter(IndicadorDespachoTerminativo == "Sim")
+    dplyr::if_else(nrow(tramitacao_data) != 0, "Conclusiva", "Plenário")
   } else {
     "Plenário"
   }
@@ -521,7 +521,7 @@ extract_comissoes_Senado <- function(df) {
     magrittr::extract(. != '') %>%
     paste0(prefix, .) %>%
     paste(collapse='|') %>%
-    regex(ignore_case=FALSE)
+    stringr::regex(ignore_case=FALSE)
 
   # Faz com que os nomes comecem com 'Comissão'.
   fix_names <- function(name) {
@@ -529,36 +529,40 @@ extract_comissoes_Senado <- function(df) {
       stringr::str_replace('Comissões', 'Comissão') %>%
       sapply(
         function(name) {
-          if(!str_detect(name, 'Comissão') & !str_detect(siglas_comissoes, name)) paste0('Comissão', name)
+          if(!stringr::str_detect(name, 'Comissão') & !stringr::str_detect(siglas_comissoes, name)) paste0('Comissão', name)
           else name
         },
         USE.NAMES=FALSE)
   }
 
-    df %>%
+  detect <- function(texto_tramitacao, regex1, regex2=NULL) {
+    if (is.null(regex2)) regex2 <- regex1
+    stringr::str_detect(tolower(texto_tramitacao), regex1) ~
+      stringr::str_extract(texto_tramitacao, stringr::regex(regex2, ignore_case=TRUE))
+  }
+
+  df %>%
     dplyr::mutate(
       comissoes =
         dplyr::case_when(
-          stringr::str_detect(tolower(texto_tramitacao),  'às c.+ e c.+, cabendo à última') ~
-            stringr::str_extract(texto_tramitacao, regex('às c.+ e c.+, cabendo à última', ignore_case=TRUE)),
-          stringr::str_detect(tolower(texto_tramitacao),  'à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo') ~
-            stringr::str_extract(texto_tramitacao, regex('à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo',, ignore_case=TRUE)),
-        stringr::str_detect(tolower(texto_tramitacao),  '(à|a)s? comiss..s*') ~
-          stringr::str_extract(texto_tramitacao, regex('comiss..s*.+',, ignore_case=TRUE))
-)
-
+          detect(texto_tramitacao,
+            'às c.+ e c.+, cabendo à última', 'às c.+ e c.+, cabendo à última'),
+          detect(texto_tramitacao,
+            'à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo'),
+          detect(texto_tramitacao,
+            '(à|a)s? comiss..s*', 'comiss..s*.+'))
     ) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_tramitacao) %>%
     dplyr::select(codigo_materia, comissoes, data_tramitacao) %>%
-    rowwise() %>%
-    mutate(
+    dplyr::rowwise() %>%
+    dplyr::mutate(
       comissoes = stringr::str_extract_all(comissoes, comissoes_permanentes_especiais)
     ) %>%
     unique() %>%
-      mutate(comissoes = sapply(comissoes, fix_names)) %>%
-      rowwise() %>%
-      filter(length(comissoes) != 0)
+    dplyr::mutate(comissoes = sapply(comissoes, fix_names)) %>%
+    dplyr::rowwise() %>%
+    dplyr::filter(length(comissoes) != 0)
 }
 
 
