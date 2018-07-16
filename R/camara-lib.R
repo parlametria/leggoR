@@ -396,14 +396,14 @@ fetch_proposicao_in_camara <- function(prop_id) {
 
   regime_regex <-
     frame_data(~ regime_tramitacao, ~ regex,
-                'ordinaria', 'Ordinária',
-                'prioridade', 'Prioridade',
-                'urgencia', 'Urgência')
+                'Ordinária', 'Ordinária',
+                'Prioridade', 'Prioridade',
+                'Urgência', 'Urgência')
 
   apreciacao_regex <-
     frame_data(~ forma_apreciacao, ~ regex,
-                'conclusiva', 'Sujeita à Apreciação Conclusiva pelas Comissões',
-                'plenario', 'Sujeita à Apreciação do Plenário')
+                'Conclusiva', 'Sujeita à Apreciação Conclusiva pelas Comissões',
+                'Plenário', 'Sujeita à Apreciação do Plenário')
 
   rcongresso::fetch_proposicao(prop_id) %>%
     # Adiciona url das páginas das proposições

@@ -402,9 +402,9 @@ extract_apreciacao_Senado <- function(proposicao_id) {
     }
     tramitacao_data <- tramitacao_data %>%
         filter(IndicadorDespachoTerminativo == "Sim")
-    if_else(nrow(tramitacao_data) != 0, "conclusiva", "plenario")
+    if_else(nrow(tramitacao_data) != 0, "Conclusiva", "Plenário")
   } else {
-    "plenario"
+    "Plenário"
   }
 }
 
@@ -418,7 +418,8 @@ extract_apreciacao_Senado <- function(proposicao_id) {
 #' @examples
 #' extract_regime_Senado(fetch_tramitacao(93418))
 #' @export
-extract_regime_Senado <- function(df) {
+extract_regime_Senado <- function(proposicao_id) {
+  df <- fetch_tramitacao(proposicao_id)
   df <-
     df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
