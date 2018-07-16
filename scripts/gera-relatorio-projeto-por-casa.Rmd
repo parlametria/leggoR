@@ -1,8 +1,8 @@
 ---
 output: html_document
 params:
-  id: 41703
-  casa: 'senado'
+  id: 46249
+  casa: 'camara'
 ---
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
 source(here::here('scripts/vis/tramitacao/extract-informations.R'))
@@ -31,6 +31,12 @@ chart <- create_chart(params$id, params$casa)
 
 #### Status Atual:
 `r toString(data$status_atual)`
+
+#### Regime de Apreciação
+`r toString(data$apreciacao)`
+
+#### Regime de Tramitação
+`r toString(data$regime)`
 
 #### Último Relator:
 `r toString(data$ultimo_relator)`
