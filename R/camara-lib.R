@@ -122,20 +122,19 @@ extract_last_relator_in_camara <- function(df) {
 #' @examples
 #' tramitacao %>% extract_phases_in_camara()
 #' @export
-extract_phases_in_camara <- function(dataframe) {
-  iniciativa <- c(100)
-  relatoria <- c(320)
-  discussao_deliberacao <- c(322)
-  virada_de_casa <- c(128)
-  final <- c(502, 251)
 
+extract_phases_in_camara <- function(dataframe, recebimento_phase, phase_one, phase_two, phase_three, encaminhamento_phase, phase_four, phase_five) {
   dataframe %<>%
-    dplyr::mutate(fase = dplyr::case_when(detect_fase(id_tipo_tramitacao, iniciativa) ~ 'iniciativa',
-                                          detect_fase(id_tipo_tramitacao, relatoria) ~ 'relatoria',
-                                          detect_fase(id_tipo_tramitacao, discussao_deliberacao) ~ 'discussao_deliberacao',
-                                          detect_fase(id_tipo_tramitacao, virada_de_casa) ~ 'virada_de_casa',
-                                          detect_fase(id_tipo_tramitacao, final) ~ 'final',
-                                          detect_fase(id_situacao, 937) ~ 'final'))
+    dplyr::mutate(fase = dplyr::case_when(
+                                          detect_fase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
+                                          detect_fase(id_tipo_tramitacao, recebimento_phase) ~ 'recebimento',
+                                          detect_fase(id_tipo_tramitacao, phase_two) ~ 'analise_relator',
+                                          detect_fase(id_tipo_tramitacao, phase_three) ~ 'discussao_deliberacao',
+                                          detect_fase(id_tipo_tramitacao, encaminhamento_phase) ~ 'encaminhamento',
+                                          detect_fase(id_tipo_tramitacao, phase_four) ~ 'virada_de_casa',
+                                          detect_fase(id_tipo_tramitacao, phase_five) ~ 'final',
+                                          detect_fase(id_situacao, 937) ~ 'final')
+                                          )
 }
 
 #' @title Busca os últimos n eventos da tramitação na Câmara
@@ -204,7 +203,7 @@ rename_df_columns <- function(df) {
 extract_events_in_camara <- function(tramitacao_df) {
   c <- camara_codes$eventos$regex
   
-  events_df <- frame_data(
+  events_df <- tibble::frame_data(
     ~ evento, ~ regex,
     'requerimento_audiencia_publica', c$requerimento_audiencia_publica,
     'aprovacao_audiencia_publica', c$aprovacao_audiencia_publica,
@@ -329,49 +328,6 @@ fetch_proposicao_with_apensamentos <- function(prop_id) {
     dplyr::mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse=' '))
 }
 
-#' @title Baixa dados sobre uma proposição
-#' @description Retorna um dataframe contendo dados sobre uma proposição
-#' @param prop_id Um ou mais IDs de proposições
-#' @return Dataframe
-#' @examples
-#' fetch_proposicao_in_camara(2056568)
-#' @export
-fetch_proposicao_in_camara <- function(prop_id) {
-  base_url <- 'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
-
-  regime_regex <-
-    frame_data(~ regime_tramitacao, ~ regex,
-               'ordinaria', 'Ordinária',
-               'prioridade', 'Prioridade',
-               'urgencia', 'Urgência')
-
-  apreciacao_regex <-
-    frame_data(~ forma_apreciacao, ~ regex,
-               'conclusiva', 'Sujeita à Apreciação Conclusiva pelas Comissões',
-               'plenario', 'Sujeita à Apreciação do Plenário')
-
-  rcongresso::fetch_proposicao(prop_id) %>%
-    # Adiciona url das páginas das proposições
-    dplyr::mutate(page_url=paste0(base_url, prop_id)) %>%
-
-    # Adiciona html das páginas das proposições
-    dplyr::rowwise() %>%
-    dplyr::mutate(page_html=list(xml2::read_html(page_url))) %>%
-
-    # Padroniza valor sobre regime de tramitação
-    fuzzyjoin::regex_left_join(regime_regex, by=c(statusProposicao.regime="regex")) %>%
-    select(-'regex') %>%
-
-    # Adiciona coluna sobre forma de apreciação
-    dplyr::rowwise() %>%
-    dplyr::mutate(temp=
-      rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
-      rvest::html_text()
-    ) %>%
-    fuzzyjoin::regex_left_join(apreciacao_regex, by=c(temp="regex")) %>%
-    select(-c('temp', 'regex'))
-}
-
 #' @title Baixa dados de requerimentos relacionados
 #' @description Retorna um dataframe contendo dados sobre os requerimentos relacionados a uma proposição
 #' @param prop_id ID de uma proposição
@@ -381,7 +337,7 @@ fetch_proposicao_in_camara <- function(prop_id) {
 #' @export
 fetch_related_requerimentos <- function(id, mark_deferimento=T) {
   regexes <-
-    frame_data(~ deferimento, ~ regex,
+    tibble::frame_data(~ deferimento, ~ regex,
                'indeferido', '^Indefiro',
                'deferido', '^(Defiro)|(Aprovado)')
 
@@ -486,7 +442,7 @@ extract_locais_in_camara <- function(df) {
     ) %>%
     dplyr::mutate(
       local =
-        case_when(stringr::str_detect(local, "^PL") ~ "Comissão Especial",
+        dplyr::case_when(stringr::str_detect(local, "^PL") ~ "Comissão Especial",
                   TRUE ~ local)
     )
 

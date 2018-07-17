@@ -6,10 +6,16 @@ Documentação
 - [Reflexões:](reflexoes.md) reflexões nossas sobre o tema.
 - [Dados:](dados.md) links e análises sobre APIs e extratores de dados.
 - [Links:](links.md) links gerais, plataformas, ferramentas e análises sobre eles.
+- [Demonstração:](reports/tabela-demo.html) site simples de demonstração.
 
 ## Relatórios
 
-- [Tabela](reports/tabela-proposicoes.nb.html)
+- [Tabela](reports/tabela-proposicoes.html)
+
+## Gabaritos
+
+- [PL 3729/2004](reports/pl-3729-2004-timeline.html)
+- [PL 490/2007](reports/pl-490-2007-timeline.html)
 
 ### Antigos
 

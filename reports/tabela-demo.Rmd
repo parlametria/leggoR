@@ -1,0 +1,29 @@
+---
+  title: "Ágora Digital"
+  output: html_document
+---
+
+```{css, echo=FALSE}
+h1 {
+  text-align: center;
+  margin: 50pt;
+}
+```
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+ids <- frame_data(
+  ~ id, ~ casa, ~ url,
+  257161, 'camara', 'pl-3729-2004-timeline.html',
+  345311, 'camara', 'pl-490-2007-timeline.html')
+
+t <- gera_tabela_proposicoes_uma_casa(ids) %>%
+  dplyr::select(c('nome', 'autor', 'status_atual', 'ementa')) %>%
+  dplyr::rename(
+    'Proposições' = 'nome',
+    'Author(a)' = 'autor',
+    'Situação' = 'status_atual',
+    'Ementa' = 'ementa',
+  )
+
+knitr::kable(t)
+```
