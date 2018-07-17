@@ -3,6 +3,13 @@
   output: html_document
 ---
 
+```{css, echo=FALSE}
+h1 {
+  text-align: center;
+  margin: 50pt;
+}
+```
+
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 ids <- frame_data(
   ~ id, ~ casa, ~ url,

@@ -5,6 +5,7 @@ library(rmarkdown)
 library(here)
 source(here::here('scripts/vis/tramitacao/build-data.R'))
 source(here::here('scripts/renderReport.R'))
+source(here::here('scripts/vis/tramitacao/extract-informations.R'))
 
 output_dir = here::here('docs/reports')
 
