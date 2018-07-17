@@ -1,6 +1,6 @@
 ---
 title: "Visualização das proposições"
-output: html_notebook
+output: html_document
 ---
 
 
@@ -33,14 +33,12 @@ ids_df_single_house <-
              345311, 'camara', 'https://analytics-ufcg.github.io/agora-digital/reports/report_345311_camara.html',
              2056568, 'camara', 'https://analytics-ufcg.github.io/agora-digital/reports/report_2056568_camara.html',
              2120775, 'camara', 'https://analytics-ufcg.github.io/agora-digital/reports/report_2120775_camara.html')
-```
 
-```{r, echo = FALSE, message = FALSE, warning=FALSE}
 a <- gera_tabela_proposicoes_congresso(ids_df)
 b <- gera_tabela_proposicoes_uma_casa(ids_df_single_house)
 ```
 
-```{r, echo = FALSE, message = FALSE, results='asis'}
+```{r, echo = FALSE, message = FALSE}
 #knitr::kable(a, caption = "Proposições")
 
 # kable no html_notebook não lida direito com \n

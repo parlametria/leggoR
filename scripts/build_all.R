@@ -21,6 +21,7 @@ render_all_reports()
 # Build tabela e gabaritos
 c(
   'reports/tabela-proposicoes.Rmd',
+  'reports/tabela-demo.Rmd',
   'reports/gabarito/pl-3729-2004-timeline.Rmd',
   'reports/gabarito/pl-490-2007-timeline.Rmd'
 ) %>%
