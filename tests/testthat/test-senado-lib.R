@@ -63,10 +63,10 @@ test <- function(){
     expect_true(is.data.frame(tramitacao_data %>% tail_descricao_despacho_Senado()))
   })
 
-  test_that('extract_fase_Senado() is dataframe', {
-    expect_true(is.data.frame(
-      extract_fase_Senado(tramitacao_data, phase_one, phase_two, phase_three, phase_four)))
-  })
+  ## test_that('extract_fase_Senado() is dataframe', {
+  ##   expect_true(is.data.frame(
+  ##     extract_fase_Senado(tramitacao_data, phase_one, phase_two, phase_three, phase_four)))
+  ## })
 
   test_that('extract_evento_Senado() is dataframe', {
     expect_true(is.data.frame(extract_evento_Senado(tramitacao_data, important_eventos)))
