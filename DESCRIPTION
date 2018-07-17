@@ -1,9 +1,14 @@
 Package: agoradigital
 Type: Package
+Title: Wraps the API for the Brazilian Chamber of Deputies
 Version: 0.0.1
 Authors@R: c(
-    person("Laboratório Analytics (UFCG)", role = c("aut", "cre", "cph", "fnd"))
-)
+    person("Laboratório Analytics (UFCG)", , , "a@a.com", role = c("aut", "cre", "cph", "fnd"))
+    )
+URL: https://github.com/analytics-ufcg/agora-digital
+Description: Provides propositions, votings, deputies and parties data from 
+    Brazilian lower house <https://dadosabertos.camara.leg.br> in data frames.
+License: Other
 Encoding: UTF-8
 LazyData: true
 Imports: magrittr,
