@@ -34,6 +34,7 @@ pages:
   script:
     - install2.r pkgdown
     - r -e 'devtools::install()'
+    - r -e 'devtools::document()'
     - r -e 'pkgdown::build_site(override = list(destination = "public"))'
   artifacts:
     paths:
