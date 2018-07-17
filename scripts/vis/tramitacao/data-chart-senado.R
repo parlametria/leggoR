@@ -53,11 +53,10 @@ format_fase <- function(df) {
     mutate(group = "Fase")
   
   df %>% 
-    mutate(color = case_when(label == "iniciativa" ~ "#7fc97f",
-                           label == "relatoria" ~ "#fdc086",
-                           label == "discussao_deliberacao" ~ "#beaed4",
-                           label == "virada_de_casa" ~ "#ffff99",
-                           label == "final" ~ "#f4fa58"))
+    mutate(color = case_when(label == "Recebimento" ~ "#d7191c",
+                           label == "Análise do relator" ~ "#fdae61",
+                           label == "Discussão e votação" ~ "#ffffbf",
+                           label == "Encaminhamento" ~ "#abd9e9"))
 }
 
 #Create data to display events inlines
