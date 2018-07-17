@@ -18,7 +18,7 @@ chart_camara <- create_chart(params$camara_id, 'camara')
 
 #### Autor:
  `r toString(data$autor)`
-
+ 
 #### Casa de Origem:
  `r toString(data$casa_origem)`
 
@@ -49,3 +49,5 @@ chart_camara
 #table_apensadas <- gera_tabela_apensadas(params$senado_id, params$camara_id) %>% rename(Apensada = apensadas, Casa_Origem = casa)
 #knitr::kable(table_apensadas, caption = "Lista de Leis Apensadas")
 ```
+
+

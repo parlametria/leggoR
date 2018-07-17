@@ -29,7 +29,95 @@ last_n_despacho_in_camara <- function(df, qtd=1) {
 
 
 get_comissoes_camara <- function() {
+  
+  siglas_comissoes_antigas <- '
+  CDCMAM
+  CAPR
+  CCJR
+  '
+  
+  siglas_comissoes <- '
+  CAPADR
+  CCTCI
+  CCJC
+  CCULT
+  CDC
+  CMULHER
+  CIDOSO
+  CPD
+  CDU
+  CDEICS
+  CDHM
+  CE
+  CESPO
+  CFT
+  CFFC
+  CINDRA
+  CLP
+  CMADS
+  CME
+  CREDN
+  CSPCCO
+  CSSF
+  CTASP
+  CTUR
+  CVT
+  '
+  
+  comissoes_permanentes <- '
+    Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural
+    Ciência e Tecnologia, Comunicação e Informática
+    Constituição e Justiça e de Cidadania
+    Cultura
+    Defesa do Consumidor
+    Defesa dos Direitos da Mulher
+    Defesa dos Direitos da Pessoa Idosa
+    Defesa dos Direitos das Pessoas com Deficiência
+    Desenvolvimento Urbano
+    Desenvolvimento Econômico, Indústria, Comércio e Serviços
+    Direitos Humanos e Minorias
+    Educação
+    Esporte
+    Finanças e Tributação
+    Fiscalização Financeira e Controle
+    Integração Nacional, Desenvolvimento Regional e da Amazônia
+    Legislação Participativa
+    Meio Ambiente e Desenvolvimento Sustentável
+    Minas e Energia
+    Relações Exteriores e de Defesa Nacional
+    Segurança Pública e Combate ao Crime Organizado
+    Seguridade Social e Família
+    Trabalho, de Administração e Serviço Público
+    Turismo
+    Viação e Transportes
+    '
+  
+  comissoes_temporarias <- '
+    Comissão Especial
+    '
+  
+  to_list <- function(name) {
+    name %>%  
+      trimws() %>% 
+      strsplit("\n") %>% 
+      sapply(trimws)
+  }
+  
+  dplyr::tibble(siglas_comissoes_antigas=list(siglas_comissoes_antigas %>% to_list),
+                siglas_comissoes=list(siglas_comissoes %>% to_list),
+                comissoes_temporarias=list(comissoes_temporarias %>% to_list),
+                comissoes_permanentes=list(comissoes_permanentes %>% to_list),)
+}
 
+#' @title Recupera as comissões pelas quais a proposição irá passar
+#' @description Retorna um dataframe aas comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
+#' as próximas comissões
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe com as próximas comissões que a proposição irá passar.
+#' @examples
+#' tramitacao %>% get_comissoes_in_camara(df)
+#' @export
+get_comissoes_in_camara <- function(df) {
   siglas_comissoes_antigas <- '
   CDCMAM
   CAPR
@@ -65,93 +153,72 @@ get_comissoes_camara <- function() {
   '
 
   comissoes_permanentes <- '
-    Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural
-    Ciência e Tecnologia, Comunicação e Informática
-    Constituição e Justiça e de Cidadania
-    Cultura
-    Defesa do Consumidor
-    Defesa dos Direitos da Mulher
-    Defesa dos Direitos da Pessoa Idosa
-    Defesa dos Direitos das Pessoas com Deficiência
-    Desenvolvimento Urbano
-    Desenvolvimento Econômico, Indústria, Comércio e Serviços
-    Direitos Humanos e Minorias
-    Educação
-    Esporte
-    Finanças e Tributação
-    Fiscalização Financeira e Controle
-    Integração Nacional, Desenvolvimento Regional e da Amazônia
-    Legislação Participativa
-    Meio Ambiente e Desenvolvimento Sustentável
-    Minas e Energia
-    Relações Exteriores e de Defesa Nacional
-    Segurança Pública e Combate ao Crime Organizado
-    Seguridade Social e Família
-    Trabalho, de Administração e Serviço Público
-    Turismo
-    Viação e Transportes
-    '
+  Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural
+  Ciência e Tecnologia, Comunicação e Informática
+  Constituição e Justiça e de Cidadania
+  Cultura
+  Defesa do Consumidor
+  Defesa dos Direitos da Mulher
+  Defesa dos Direitos da Pessoa Idosa
+  Defesa dos Direitos das Pessoas com Deficiência
+  Desenvolvimento Urbano
+  Desenvolvimento Econômico, Indústria, Comércio e Serviços
+  Direitos Humanos e Minorias
+  Educação
+  Esporte
+  Finanças e Tributação
+  Fiscalização Financeira e Controle
+  Integração Nacional, Desenvolvimento Regional e da Amazônia
+  Legislação Participativa
+  Meio Ambiente e Desenvolvimento Sustentável
+  Minas e Energia
+  Relações Exteriores e de Defesa Nacional
+  Segurança Pública e Combate ao Crime Organizado
+  Seguridade Social e Família
+  Trabalho, de Administração e Serviço Público
+  Turismo
+  Viação e Transportes
+  '
 
   comissoes_temporarias <- '
-    Comissão Especial
-    '
+  Comissão Especial
+  '
 
-  to_list <- function(name) {
-    name %>%
-      trimws() %>%
-      strsplit('\n') %>%
-      sapply(trimws)
-  }
-
-  dplyr::tibble(siglas_comissoes_antigas=list(siglas_comissoes_antigas %>% to_list),
-                siglas_comissoes=list(siglas_comissoes %>% to_list),
-                comissoes_temporarias=list(comissoes_temporarias %>% to_list),
-                comissoes_permanentes=list(comissoes_permanentes %>% to_list),)
-}
-
-#' @title Recupera as comissões pelas quais a proposição irá passar
-#' @description Retorna um dataframe das comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
-#' as próximas comissões
-#' @param df Dataframe da tramitação na Câmara
-#' @return Dataframe com as próximas comissões que a proposição irá passar.
-#' @examples
-#' tramitacao %>% get_comissoes_in_camara(df)
-#' @export
-get_comissoes_in_camara <- function(df) {
+  # concatena todas as linhas com `|`.
   reg <-
-    unlist(get_comissoes_camara()) %>%
+    paste0(comissoes_temporarias, siglas_comissoes_antigas, siglas_comissoes, comissoes_permanentes, sep="\n") %>%
+    strsplit('\n') %>%
+    magrittr::extract2(1) %>%
+    sapply(trimws) %>%
+    magrittr::extract(. != '') %>%
     paste(collapse='|') %>%
-    stringr::regex(ignore_case=TRUE)
+    regex(ignore_case=TRUE)
 
   fix_names <- function(name) {
-    if(!str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name))
-      paste("Comissão de", name)
+    if(!str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name)) paste("Comissão de", name)
     else name
   }
 
-  detect <- function(str, regex) {
-    stringr::str_detect(str, stringr::regex(regex, ignore_case=TRUE))
-  }
-
   df %>%
-    dplyr::mutate(
-      comissoes = dplyr::case_when(
-        (detect(descricao_tramitacao, 'distribuição') &
-          (detect(descricao_tramitacao, 'cria..o de comiss.o tempor.ria') |
-           detect(despacho, 'especial'))
-        ) ~ 'Comissão Especial',
-        (detect(descricao_tramitacao, 'distribuição') &
-         (detect(despacho, 'às* comiss..s*|despacho à') |
-          detect(despacho, 'novo despacho'))
-        ) ~ despacho
-    )) %>%
-    dplyr::filter(!is.na(comissoes)) %>%
-    dplyr::mutate(
-      proximas_comissoes = stringr::str_extract_all(comissoes, reg) %>% as.list()
-    ) %>%
-    dplyr::select(data_hora, id_prop, proximas_comissoes) %>%
-    dplyr::mutate(proximas_comissoes = map(proximas_comissoes, fix_names) ) %>%
-    dplyr::mutate(proximas_comissoes = unique(proximas_comissoes, incomparables = FALSE))
+  dplyr::mutate(
+    comissoes =
+      dplyr::case_when(
+              stringr::str_detect(descricao_tramitacao, regex("distribuição", ignore_case=TRUE)) &
+              (stringr::str_detect(descricao_tramitacao, regex("cria..o de comiss.o tempor.ria", ignore_case=TRUE)) |
+              stringr::str_detect(despacho, regex("especial", ignore_case=TRUE))) ~
+                "Comissão Especial",
+              (stringr::str_detect(despacho, regex("às* comiss..s*|despacho à", ignore_case=TRUE)) |
+              stringr::str_detect(despacho, regex("novo despacho", ignore_case=TRUE))) &
+              stringr::str_detect(descricao_tramitacao, regex("distribuição", ignore_case=TRUE)) ~
+                despacho
+              )) %>%
+  dplyr::filter(!is.na(comissoes)) %>%
+  dplyr::mutate(
+    proximas_comissoes = stringr::str_extract_all(comissoes, reg) %>% as.list()
+  ) %>%
+  dplyr::select(data_hora, id_prop, proximas_comissoes) %>%
+  mutate(proximas_comissoes = map(proximas_comissoes, fix_names) ) %>%
+  mutate(proximas_comissoes = unique(proximas_comissoes, incomparables = FALSE) )
 }
 
 #' @title Cria coluna com os relatores na tramitação na Câmara
@@ -164,9 +231,9 @@ get_comissoes_in_camara <- function(df) {
 #' @export
 extract_relator_in_camara <- function(df) {
   df %>%
-    dplyr::mutate(relator=dplyr::case_when(
-      stringr::str_detect(tolower(despacho), '^designad. relat.r') ~
-        stringr::str_extract(despacho, stringr::regex('dep.+', ignore_case=TRUE))))
+    dplyr::mutate(relator =
+                    case_when(stringr::str_detect(tolower(despacho), '^designad. relat.r') ~
+                                stringr::str_extract(despacho, regex('dep.+', ignore_case=TRUE))))
 }
 
 #' @title Recupera o último relator na Câmara
@@ -233,23 +300,31 @@ extract_last_n_events_in_camara <- function(df, num) {
 #' tramitacao %>% extract_relatorias_in_camara()
 #' @export
 extract_relatorias_in_camara <- function(tramitacao_df) {
-  tramitacao_df %>%
-    # extract line when a relator is designated by the code
-    dplyr::filter(id_tipo_tramitacao == '320') %>%
-    # select columns
+
+  #extract line when a relator is designated by the code
+  relatorias_rows <-
+    dplyr::filter(tramitacao_df, id_tipo_tramitacao == '320')
+
+  #select columns
+  relatorias_df <-
+    relatorias_rows %>%
     dplyr::select(
       data_hora,
       despacho,
       sigla_orgao
     ) %>%
-    add_column() %>%
-    # extract relator's name and partido
-    dplyr::mutate(
-      nome_parlamentar = stringr::str_match(despacho,'Dep. (.*?) [(]')[,2],
-      partido = stringr::str_match(despacho,'[(](.*?)[)]')[,2]
-    ) %>%
-    # remove despacho column and return
+    add_column()
+
+  #extract relator's name and partido
+  relatorias_df %<>%
+    dplyr::mutate(nome_parlamentar = stringr::str_match(despacho,'Dep. (.*?) [(]')[,2],
+            partido = stringr::str_match(despacho,'[(](.*?)[)]')[,2])
+
+  #remove despacho column
+  relatorias_df %<>%
     dplyr::select(-c(despacho))
+
+  relatorias_df
 }
 
 #' @title Renomeia as colunas do dataframe
@@ -288,10 +363,10 @@ extract_events_in_camara <- function(tramitacao_df) {
   tramitacao_df %>%
     dplyr::mutate(despacho_lower = tolower(despacho)) %>%
     fuzzyjoin::regex_left_join(events_df, by = c(despacho_lower = "regex")) %>%
-    dplyr::select(-c(despacho_lower, regex)) %>%
-    dplyr::mutate(evento = dplyr::case_when(
-      id_tipo_tramitacao == special_comissao ~ 'criacao_comissao_temporaria',
-      TRUE ~ evento))
+    dplyr::select(-c(despacho_lower, regex))
+  tramitacao_df %<>%
+    dplyr::mutate(evento = dplyr::case_when(id_tipo_tramitacao == special_comissao ~ 'criacao_comissao_temporaria',
+                                            TRUE ~ evento))
 }
 
 #' @title Altera as datas da tramitação para formato mais fácil de tratar
@@ -333,11 +408,10 @@ extract_autor_in_camara <- function(prop_id) {
 
   authors <- json_voting %>%
     magrittr::extract2("dados") %>%
-    dplyr::rename(
-      autor.uri = uri,
-      autor.nome = nome,
-      autor.tipo = tipo,
-      autor.cod_tipo = codTipo) %>%
+    dplyr::rename(autor.uri = uri,
+                  autor.nome = nome,
+                  autor.tipo = tipo,
+                  autor.cod_tipo = codTipo) %>%
     dplyr::mutate(casa_origem = dplyr::case_when(
       stringr::str_detect(tolower(autor.nome), camara_exp) | autor.tipo == 'Deputado' ~ 'Câmara dos Deputados',
       stringr::str_detect(tolower(autor.nome), senado_exp) | autor.tipo == 'Senador' ~ 'Senado Federal'))
@@ -345,7 +419,7 @@ extract_autor_in_camara <- function(prop_id) {
   partido_estado <- extract_partido_estado_autor(authors$autor.uri %>% tail(1))
 
   authors %>%
-    dplyr::mutate(autor.nome = paste0(autor.nome, " ", partido_estado))
+    mutate(autor.nome = paste0(autor.nome, " ", partido_estado))
 }
 
 #' @title Recupera o estado e partido de um autor
@@ -361,20 +435,20 @@ extract_partido_estado_autor <- function(uri) {
 
     autor <-
       json_autor %>%
-      magrittr::extract2('dados')
+      magrittr::extract2("dados")
 
     autor_uf <-
       autor %>%
-      magrittr::extract2('ufNascimento')
+      magrittr::extract2("ufNascimento")
 
     autor_partido <-
       autor %>%
-      magrittr::extract2('ultimoStatus') %>%
-      magrittr::extract2('siglaPartido')
+      magrittr::extract2("ultimoStatus") %>%
+      magrittr::extract2("siglaPartido")
 
-    paste0(autor_partido, '/', autor_uf)
+    paste0(autor_partido, "/", autor_uf)
   }else {
-    ''
+    ""
   }
 }
 
@@ -395,7 +469,50 @@ fetch_apensadas <- function(prop_id) {
 
 fetch_proposicao_with_apensamentos <- function(prop_id) {
   rcongresso::fetch_proposicao(prop_id) %>%
-    dplyr::mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse=' '))
+    mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse=' '))
+}
+
+#' @title Baixa dados sobre uma proposição
+#' @description Retorna um dataframe contendo dados sobre uma proposição
+#' @param prop_id Um ou mais IDs de proposições
+#' @return Dataframe
+#' @examples
+#' fetch_proposicao_in_camara(2056568)
+#' @export
+fetch_proposicao_in_camara <- function(prop_id) {
+  base_url <- 'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
+
+  regime_regex <-
+    frame_data(~ regime_tramitacao, ~ regex,
+                'ordinaria', 'Ordinária',
+                'prioridade', 'Prioridade',
+                'urgencia', 'Urgência')
+
+  apreciacao_regex <-
+    frame_data(~ forma_apreciacao, ~ regex,
+                'conclusiva', 'Sujeita à Apreciação Conclusiva pelas Comissões',
+                'plenario', 'Sujeita à Apreciação do Plenário')
+
+  rcongresso::fetch_proposicao(prop_id) %>%
+    # Adiciona url das páginas das proposições
+    mutate(page_url=paste0(base_url, prop_id)) %>%
+
+    # Adiciona html das páginas das proposições
+    rowwise() %>%
+    mutate(page_html=list(xml2::read_html(page_url))) %>%
+
+    # Padroniza valor sobre regime de tramitação
+    fuzzyjoin::regex_left_join(regime_regex, by=c(statusProposicao.regime="regex")) %>%
+    select(-'regex') %>%
+
+    # Adiciona coluna sobre forma de apreciação
+    rowwise() %>%
+    mutate(temp=
+      rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
+      rvest::html_text()
+    ) %>%
+    fuzzyjoin::regex_left_join(apreciacao_regex, by=c(temp="regex")) %>%
+    select(-c('temp', 'regex'))
 }
 
 #' @title Baixa dados de requerimentos relacionados
@@ -431,7 +548,7 @@ fetch_related_requerimentos <- function(id, mark_deferimento=T) {
   related <-
     tramitacoes %>%
     # mark tramitacoes rows based on regexes
-    fuzzyjoin::regex_left_join(regexes, by=c(despacho='regex')) %>%
+    fuzzyjoin::regex_left_join(regexes, by=c(despacho="regex")) %>%
     dplyr::group_by(id_prop) %>%
     # fill down marks
     tidyr::fill(deferimento) %>%
@@ -459,9 +576,11 @@ fetch_events <- function(prop_id) {
     rvest::html_table()
   events_df <- events[[1]]
   names(events_df) <- c('timestamp','origem','descricao','links')
-  events_df %>%
+  events_df <- events_df %>%
     dplyr::select(-links) %>%
     dplyr::mutate(timestamp = lubridate::dmy_hm(timestamp))
+
+  return(events_df)
 }
 
 #' @title Recupera os últimos eventos (sessões/reuniões) de uma proposição na Câmara
@@ -499,7 +618,7 @@ extract_locais_in_camara <- function(df) {
   descricoes_plenario <- c('votação', 'pronta para pauta', 'apresentação de proposição', 'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
 
-  df %<>%
+  df <- df %>%
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(
       local =
@@ -507,7 +626,7 @@ extract_locais_in_camara <- function(df) {
           (tolower(despacho) %in% descricoes_plenario & sigla_orgao == 'PLEN' |
             stringr::str_detect(tolower(descricao_tramitacao), '^votação')) ~ 'Plenário',
           (stringr::str_detect(tolower(despacho), '^recebimento pela') |
-            tolower(despacho) %in% descricoes_comissoes) & sigla_orgao != 'CCP' ~ sigla_orgao,
+            tolower(despacho) %in% descricoes_comissoes) & sigla_orgao != 'CCP' & sigla_orgao != 'SECAP(SGM)' ~ sigla_orgao,
           tolower(descricao_tramitacao) == 'remessa ao senado federal' ~ 'Câmara')
     ) %>%
     dplyr::mutate(
@@ -522,42 +641,4 @@ extract_locais_in_camara <- function(df) {
 
   df %>%
     tidyr::fill(local)
-}
-
-extract_tramitacao <- function(prop_id){
-  rcongresso::fetch_tramitacao(prop_id) %>% rename_df_columns
-}
-
-# Extrai a situação das comissões (ex. Recebimento, Análise do Relator, Discussão e votação...)
-# Necessita do dataframe da tramitação
-extract_situacao_comissao <- function(df) {
-  recebimento <- c(500)
-  analise_do_relator <- c(320)
-  discussao_votacao <- c(322, 240)
-  encaminhamento <- c(180)
-
-  reg <-
-    unlist(get_comissoes_camara()) %>%
-    paste(collapse='|') %>%
-    regex(ignore_case=TRUE)
-
-  df %>%
-    dplyr::mutate(
-      comissao =
-        dplyr::case_when(str_detect(local, reg) ~ str_extract(local, reg))
-    ) %>%
-    # dplyr::filter(!is.na(comissao)) %>%
-    dplyr::mutate(
-      situacao_comissao =
-        dplyr::case_when(id_tipo_tramitacao %in% recebimento & !is.na(comissao) ~ "Recebimento",
-                         id_tipo_tramitacao %in% analise_do_relator & !is.na(comissao) ~ "Análise do relator",
-                         id_tipo_tramitacao %in% discussao_votacao& !is.na(comissao)  ~ "Discussão e votação",
-                         id_tipo_tramitacao %in% encaminhamento & !is.na(comissao) ~ "Encaminhamento")
-    ) %>%
-    dplyr::select(-comissao) %>%
-    tidyr::fill(situacao_comissao) %>%
-    dplyr::mutate(situacao_comissao = dplyr::case_when(stringr::str_detect(local, reg) ~ situacao_comissao))
-                    # dplyr::case_when(!stringr::str_detect(local, reg)) ~ "NA",
-                    #                                    TRUE ~ situacao_comissao)
-
 }

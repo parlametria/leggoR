@@ -2,7 +2,6 @@ Documentação
 ============
 
 - [Glossário](glossario.md)
-- [Fluxogramas da Tramitação de um PL:](flowchart-tramitacao-vertical.png) nossa visão da tramitação.
 - [Reflexões:](reflexoes.md) reflexões nossas sobre o tema.
 - [Dados:](dados.md) links e análises sobre APIs e extratores de dados.
 - [Links:](links.md) links gerais, plataformas, ferramentas e análises sobre eles.
@@ -11,7 +10,6 @@ Documentação
 ## Relatórios
 
 - [Tabela](reports/tabela-proposicoes.html)
-
 ## Gabaritos
 
 - [PL 3729/2004](reports/pl-3729-2004-timeline.html)

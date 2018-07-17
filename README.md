@@ -1,7 +1,5 @@
 # Ágora Digital
 
-- [Link para página](https://analytics-ufcg.github.io/agora-digital/)
-
 Raiz do projeto Ágora Digital
 
 - [Documentação](/docs)
@@ -9,14 +7,10 @@ Raiz do projeto Ágora Digital
 
 ## Comandos
 
-Baixar dados e gerar relatórios:
-
-    $ ./scripts/build_all.R
-
 Gerar documentação:
 
-    > devtools::document()
+    devtools::document()
 
 Rodar testes:
 
-    > devtools::test()
+    devtools::test()
