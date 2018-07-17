@@ -38,18 +38,11 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
 }
 
 gera_tabela_proposicoes_congresso <- function(dataframe) {
-  require(magrittr)
-  
-  propositions <- tibble::as.tibble()
-  
-  propositions <- dataframe %>% 
+  dataframe %>%
     rowwise() %>%
     do(extract_informations(.$id_camara, .$id_senado, .$url)) %>%
-    rbind(propositions,.)
-  
-  propositions %<>% mutate(ultimos_eventos = toString(ultimos_eventos))
-  
-  propositions
+    rbind(tibble::as.tibble(),.) %>%
+    mutate(ultimos_eventos = toString(ultimos_eventos))
 }
 
 gera_tabela_proposicoes_uma_casa <- function(dataframe) {
@@ -67,7 +60,13 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
   casa <- tolower(casa)
   if (casa == 'camara') {
     nome_camara <- get_ementas_in_camara(id) %>% tail(1)
-    tramitacao_camara = read_csv(paste0("../data/camara/", "tramitacao-camara-", id, ".csv"))
+    info <- fetch_proposicao_camara(id)
+    ano <- info$ano
+    regime <- info$regime_tramitacao
+    apreciacao <- info$forma_apreciacao
+    nome <- paste0(nome_camara$siglaTipo, nome_camara$numero, "/", ano)
+    tramitacao_camara = read_csv(
+      here::here(paste0('data/camara/tramitacao-camara-', id, '.csv')))
     despacho_camara <- last_n_despacho_in_camara(tramitacao_camara)
     ano <- rcongresso::fetch_proposicao(id)$ano
     nome <- paste0(nome_camara$siglaTipo, nome_camara$numero, "/", ano) 
@@ -98,10 +97,10 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     data_apresentacao <- format(as.Date(proposicao$data_apresentacao), "%d/%m/%Y") %>% tail(1)
     eventos <-  as.list(extract_n_last_eventos_Senado(tramitacao_senado, 3)$evento)
   }
-  
-  proposicoes_df <- 
-    frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator, ~ ultimos_eventos,
-               nome, nome_autor, casa_origem, data_apresentacao, ementa, despacho, relator, eventos)
+  proposicoes_df <-
+    frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator, ~ ultimos_eventos, ~ regime, ~ apreciacao,
+               nome, nome_autor, casa_origem, data_apresentacao, ementa, despacho, relator, eventos, regime, apreciacao)
+
   proposicoes_df$nome <-paste0("[", proposicoes_df$nome, "](", url, ")")
   
   proposicoes_df

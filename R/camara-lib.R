@@ -261,6 +261,7 @@ extract_last_relator_in_camara <- function(df) {
 #' @examples
 #' tramitacao %>% extract_phases_in_camara()
 #' @export
+
 extract_phases_in_camara <- function(dataframe, recebimento_phase, phase_one, phase_two, phase_three, encaminhamento_phase, phase_four, phase_five) {
   dataframe %<>%
     dplyr::mutate(fase = dplyr::case_when(
@@ -346,8 +347,20 @@ rename_df_columns <- function(df) {
 #' @examples
 #' df %>% extract_events_in_camara(importants_events)
 #' @export
-extract_events_in_camara <- function(tramitacao_df, events_df, special_comissao) {
-  tramitacao_df %<>%
+extract_events_in_camara <- function(tramitacao_df) {
+  events_df <- tibble::frame_data(
+    ~ evento, ~ regex,
+    'requerimento_audiencia_publica', '^apresentação do requerimento.*requer a realização d.* audiências? públicas?',
+    'aprovacao_audiencia_publica', '^aprovado requerimento.*requer a realização d.* audiências? públicas?',
+    'aprovacao_parecer', 'aprovado.*parecer',
+    'requerimento_redistribuicao', '^apresentação do requerimento de redistribuição',
+    'requerimento_apensacao', '^apresentação do requerimento de apensação',
+    'requerimento_urgencia', '^apresentação do requerimento de urgência',
+    'requerimento_prorrogacao', '^apresentação do requerimento de prorrogação de prazo de comissão temporária')
+
+  special_comissao <- c('120')
+
+  tramitacao_df %>%
     dplyr::mutate(despacho_lower = tolower(despacho)) %>%
     fuzzyjoin::regex_left_join(events_df, by = c(despacho_lower = "regex")) %>%
     dplyr::select(-c(despacho_lower, regex))
@@ -511,9 +524,9 @@ fetch_proposicao_in_camara <- function(prop_id) {
 #' @export
 fetch_related_requerimentos <- function(id, mark_deferimento=T) {
   regexes <-
-    frame_data(~ deferimento, ~ regex,
-                "indeferido", '^Indefiro',
-                "deferido", '^(Defiro)|(Aprovado)')
+    tibble::frame_data(~ deferimento, ~ regex,
+               'indeferido', '^Indefiro',
+               'deferido', '^(Defiro)|(Aprovado)')
 
   related <-
     rcongresso::fetch_relacionadas(id)$uri %>%
@@ -615,6 +628,11 @@ extract_locais_in_camara <- function(df) {
           (stringr::str_detect(tolower(despacho), '^recebimento pela') |
             tolower(despacho) %in% descricoes_comissoes) & sigla_orgao != 'CCP' & sigla_orgao != 'SECAP(SGM)' ~ sigla_orgao,
           tolower(descricao_tramitacao) == 'remessa ao senado federal' ~ 'Câmara')
+    ) %>%
+    dplyr::mutate(
+      local =
+        dplyr::case_when(stringr::str_detect(local, "^PL") ~ "Comissão Especial",
+                  TRUE ~ local)
     )
 
   if (is.na(df[1, ]$local)) {
