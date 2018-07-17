@@ -1,16 +1,17 @@
 label,start,end,time_interval,group,color
-SF-ATA-PLEN,1999-08-31,1999-11-18,79,Local,#e2e3d9
 CAS,1999-11-18,2002-03-12,845,Local,NA
 Câmara,2002-03-12,2007-02-28,1814,Local,NA
-iniciativa,1999-08-31,1999-11-18,79,Fase,#7fc97f
-relatoria,1999-11-18,2000-04-18,152,Fase,#fdc086
+analise_relator,1999-11-18,2000-04-18,152,Fase,NA
 discussao_deliberacao,2000-04-18,2000-05-10,22,Fase,#beaed4
-relatoria,2000-05-10,2000-08-02,84,Fase,#fdc086
+analise_relator,2000-05-10,2000-08-02,84,Fase,NA
 discussao_deliberacao,2000-08-02,2000-08-10,8,Fase,#beaed4
-relatoria,2000-08-10,2001-05-08,271,Fase,#fdc086
-discussao_deliberacao,2001-05-08,2001-08-15,99,Fase,#beaed4
-relatoria,2001-08-15,2001-11-05,82,Fase,#fdc086
-discussao_deliberacao,2001-11-05,2002-03-12,127,Fase,#beaed4
+analise_relator,2000-08-10,2001-05-08,271,Fase,NA
+discussao_deliberacao,2001-05-08,2001-06-20,43,Fase,#beaed4
+encaminhamento,2001-06-20,2001-08-15,56,Fase,NA
+analise_relator,2001-08-15,2001-11-05,82,Fase,NA
+discussao_deliberacao,2001-11-05,2001-12-12,37,Fase,#beaed4
+encaminhamento,2001-12-12,2001-12-18,6,Fase,NA
+discussao_deliberacao,2001-12-18,2002-03-12,84,Fase,#beaed4
 virada_de_casa,2002-03-12,2007-02-28,1814,Fase,#ffff99
 aprovacao_parecer,2001-06-20,2001-06-20,0,Evento,#a9a9a9
 Tramitação - Casa de Origem,1999-08-31,2002-03-12,0,global,#f37340
