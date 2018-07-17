@@ -102,15 +102,15 @@ fetch_proposicao_senado <- function(proposicao_id){
 #' @export
 fetch_proposicao_camara <- function(prop_id) {
   base_url <- 'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
-  
+
   regex_regime <-
-    frame_data(~ regime_tramitacao, ~ regex,
+    tibble::frame_data(~ regime_tramitacao, ~ regex,
                'Ordinária', 'Ordinária',
                'Prioridade', 'Prioridade',
                'Urgência', 'Urgência')
-  
+
   regex_apreciacao <-
-    frame_data(~ forma_apreciacao, ~ regex,
+    tibble::frame_data(~ forma_apreciacao, ~ regex,
                'Conclusiva', 'Sujeita à Apreciação Conclusiva pelas Comissões',
                'Plenário', 'Sujeita à Apreciação do Plenário')
 

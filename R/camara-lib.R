@@ -273,7 +273,7 @@ rename_df_columns <- function(df) {
 #' df %>% extract_events_in_camara(importants_events)
 #' @export
 extract_events_in_camara <- function(tramitacao_df) {
-  events_df <- frame_data(
+  events_df <- tibble::frame_data(
     ~ evento, ~ regex,
     'requerimento_audiencia_publica', '^apresentação do requerimento.*requer a realização d.* audiências? públicas?',
     'aprovacao_audiencia_publica', '^aprovado requerimento.*requer a realização d.* audiências? públicas?',
@@ -407,7 +407,7 @@ fetch_proposicao_with_apensamentos <- function(prop_id) {
 #' @export
 fetch_related_requerimentos <- function(id, mark_deferimento=T) {
   regexes <-
-    frame_data(~ deferimento, ~ regex,
+    tibble::frame_data(~ deferimento, ~ regex,
                'indeferido', '^Indefiro',
                'deferido', '^(Defiro)|(Aprovado)')
 
