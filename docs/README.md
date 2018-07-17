@@ -10,3 +10,13 @@ Documentação
 ## Relatórios
 
 - [Tabela](reports/tabela-proposicoes.html)
+## Gabaritos
+
+- [PL 3729/2004](reports/pl-3729-2004-timeline.html)
+- [PL 490/2007](reports/pl-490-2007-timeline.html)
+
+### Antigos
+
+- [Teto Remuneratório (Câmara)](old_reports/teto_remuneratorio-camara.html)
+- [Nova Lei das Finanças Públicas (Senado)](old_reports/91341-bill-report-Senate.html)
+- [127753 (Senado)](old_reports/127753-bill-report-Senate.html)

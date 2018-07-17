@@ -404,7 +404,7 @@ extract_apreciacao_Senado <- function(proposicao_id) {
         tidyr::unnest(ComissoesDespacho.ComissaoDespacho) 
     }
     tramitacao_data <- tramitacao_data %>%
-        dplyr::filter(IndicadorDespachoTerminativo == "Sim")
+      dplyr::filter(IndicadorDespachoTerminativo == "Sim")
     dplyr::if_else(nrow(tramitacao_data) != 0, "Conclusiva", "Plenário")
   } else {
     "plenario"
