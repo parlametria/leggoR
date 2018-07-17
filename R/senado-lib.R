@@ -87,7 +87,7 @@ fetch_tramitacao <- function(proposicao_id){
 fetch_deferimento <- function(proposicao_id) {
 
   regexes <-
-    frame_data(~ deferimento, ~ regex,
+    tibble::frame_data(~ deferimento, ~ regex,
                "indeferido", '^Indefiro',
                "deferido", '^(Defiro)|(Aprovado)')
 
@@ -102,7 +102,7 @@ fetch_deferimento <- function(proposicao_id) {
 
     resultados %>%
       tibble::as.tibble() %>%
-      mutate(proposicao_id=proposicao_id) %>%
+      dplyr::mutate(proposicao_id=proposicao_id) %>%
       fuzzyjoin::regex_left_join(regexes, by=c(value="regex")) %>%
       tidyr::fill(deferimento) %>%
       tail(., n=1) %>%
@@ -349,12 +349,14 @@ tail_descricao_despacho_Senado <- function(df, qtd=1) {
 #' @examples
 #' tramitacao %>% extract_fase_Senado()
 #' @export
-extract_fase_Senado <- function(dataframe, phase_one, phase_two, phase_three, phase_four) {
+extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_two, phase_three, encaminhamento_phase, phase_four) {
 
   dataframe %>%
     dplyr::mutate(fase = dplyr::case_when( grepl(phase_one, texto_tramitacao) ~ 'iniciativa',
-                             detect_fase(situacao_codigo_situacao, phase_two) ~ 'relatoria',
+                             stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') ~ 'recebimento',
+                             detect_fase(situacao_codigo_situacao, phase_two) ~ 'analise_relator',
                              detect_fase(situacao_codigo_situacao, phase_three) ~ 'discussao_deliberacao',
+                             detect_fase(situacao_codigo_situacao, encaminhamento_phase) ~ 'encaminhamento',
                              detect_fase(situacao_codigo_situacao, phase_four) ~ 'virada_de_casa'))
 }
 
@@ -397,10 +399,10 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
 #' @param events_df Dataframe com os eventos contendo as colunas "evento" e "regex"
 #' @return Dataframe com a coluna "evento" adicionada.
 #' @examples
-#' df %>% extract_evento_Senado(importants_events)
+#' df <- fetch_tramitacao(91341)
+#' extract_evento_Senado(df, importants_events)
 #' @export
 extract_evento_Senado <- function(tramitacao_df, phases_df) {
-
   dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao")
 }
 
@@ -421,23 +423,23 @@ extract_apreciacao_Senado <- function(proposicao_id) {
     magrittr::extract2("MovimentacaoMateria") %>%
     magrittr::extract2("Materia") %>%
     magrittr::extract2("Despachos") %>%
-    magrittr::extract2("Despacho") 
-    
+    magrittr::extract2("Despacho")
+
   if(!is.null(tramitacao_data)){
     if(!is.list(tramitacao_data$ComissoesDespacho.ComissaoDespacho)){
       tramitacao_data <- tramitacao_data %>%
         magrittr::extract2("ComissoesDespacho") %>%
         magrittr::extract2("ComissaoDespacho") %>%
-        as.tibble()
+        tibble::as.tibble()
     } else {
       tramitacao_data <- tramitacao_data %>%
-        tidyr::unnest(ComissoesDespacho.ComissaoDespacho) 
+        tidyr::unnest(ComissoesDespacho.ComissaoDespacho)
     }
     tramitacao_data <- tramitacao_data %>%
-        filter(IndicadorDespachoTerminativo == "Sim")
-    if_else(nrow(tramitacao_data) != 0, "conclusiva", "plenario")
+        dplyr::filter(IndicadorDespachoTerminativo == "Sim")
+    dplyr::if_else(nrow(tramitacao_data) != 0, "Conclusiva", "Plenário")
   } else {
-    "plenario"
+    "Plenário"
   }
 }
 
@@ -449,9 +451,10 @@ extract_apreciacao_Senado <- function(proposicao_id) {
 #' @param df Dataframe da tramitação no Senado.
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
-#' extract_regime_Senado(fetch_tramitacao(93418))
+#' extract_regime_Senado(93418)
 #' @export
-extract_regime_Senado <- function(df) {
+extract_regime_Senado <- function(proposicao_id) {
+  df <- fetch_tramitacao(proposicao_id)
   df <-
     df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
@@ -462,7 +465,7 @@ extract_regime_Senado <- function(df) {
             'Urgência')
     ) %>%
     tidyr::fill(regime)
-  
+
   if(is.na(df[nrow(df), ]$regime)){
     'Ordinária'
   } else{
@@ -554,7 +557,7 @@ extract_comissoes_Senado <- function(df) {
     magrittr::extract(. != '') %>%
     paste0(prefix, .) %>%
     paste(collapse='|') %>%
-    regex(ignore_case=FALSE)
+    stringr::regex(ignore_case=FALSE)
 
   # Faz com que os nomes comecem com 'Comissão'.
   fix_names <- function(name) {
@@ -562,36 +565,40 @@ extract_comissoes_Senado <- function(df) {
       stringr::str_replace('Comissões', 'Comissão') %>%
       sapply(
         function(name) {
-          if(!str_detect(name, 'Comissão') & !str_detect(siglas_comissoes, name)) paste0('Comissão', name)
+          if(!stringr::str_detect(name, 'Comissão') & !stringr::str_detect(siglas_comissoes, name)) paste0('Comissão', name)
           else name
         },
         USE.NAMES=FALSE)
   }
 
-    df %>%
+  detect <- function(texto_tramitacao, regex1, regex2=NULL) {
+    if (is.null(regex2)) regex2 <- regex1
+    stringr::str_detect(tolower(texto_tramitacao), regex1) ~
+      stringr::str_extract(texto_tramitacao, stringr::regex(regex2, ignore_case=TRUE))
+  }
+
+  df %>%
     dplyr::mutate(
       comissoes =
         dplyr::case_when(
-          stringr::str_detect(tolower(texto_tramitacao),  'às c.+ e c.+, cabendo à última') ~
-            stringr::str_extract(texto_tramitacao, regex('às c.+ e c.+, cabendo à última', ignore_case=TRUE)),
-          stringr::str_detect(tolower(texto_tramitacao),  'à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo') ~
-            stringr::str_extract(texto_tramitacao, regex('à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo',, ignore_case=TRUE)),
-        stringr::str_detect(tolower(texto_tramitacao),  '(à|a)s? comiss..s*') ~
-          stringr::str_extract(texto_tramitacao, regex('comiss..s*.+',, ignore_case=TRUE))
-)
-
+          detect(texto_tramitacao,
+            'às c.+ e c.+, cabendo à última', 'às c.+ e c.+, cabendo à última'),
+          detect(texto_tramitacao,
+            'à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo'),
+          detect(texto_tramitacao,
+            '(à|a)s? comiss..s*', 'comiss..s*.+'))
     ) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_tramitacao) %>%
     dplyr::select(codigo_materia, comissoes, data_tramitacao) %>%
-    rowwise() %>%
-    mutate(
+    dplyr::rowwise() %>%
+    dplyr::mutate(
       comissoes = stringr::str_extract_all(comissoes, comissoes_permanentes_especiais)
     ) %>%
     unique() %>%
-      mutate(comissoes = sapply(comissoes, fix_names)) %>%
-      rowwise() %>%
-      filter(length(comissoes) != 0) 
+    dplyr::mutate(comissoes = sapply(comissoes, fix_names)) %>%
+    dplyr::rowwise() %>%
+    dplyr::filter(length(comissoes) != 0)
 }
 
 
@@ -621,7 +628,7 @@ extract_locais <- function(df) {
                            'incluída_em_ordem_do_dia')
   descricoes_comissoes <- c('matéria_com_a_relatoria',
                             'aguardando_designação_do_relator' )
-  
+
     df <- df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     dplyr::mutate(
@@ -629,17 +636,17 @@ extract_locais <- function(df) {
         dplyr::case_when(
           situacao_descricao_situacao %in% descricoes_plenario ~
             'Plenário',
-          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') | 
+          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') |
              situacao_descricao_situacao %in% descricoes_comissoes) ~
             origem_tramitacao_local_sigla_local,
           situacao_descricao_situacao == 'remetida_à_câmara_dos_deputados' ~
             'Câmara')
     )
-    
+
     if (is.na(df[1, ]$local)) {
       df[1, ]$local = 'SF-ATA-PLEN'
     }
-    
+
     df %>%
       tidyr::fill(local)
 }

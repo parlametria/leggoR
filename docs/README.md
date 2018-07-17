@@ -9,7 +9,12 @@ Documentação
 
 ## Relatórios
 
-- [Tabela](reports/tabela-proposicoes.nb.html)
+- [Tabela](reports/tabela-proposicoes.html)
+
+## Gabaritos
+
+- [PL 3729/2004](reports/pl-3729-2004-timeline.html)
+- [PL 490/2007](reports/pl-490-2007-timeline.html)
 
 ### Antigos
 
