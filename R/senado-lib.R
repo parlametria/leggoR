@@ -366,7 +366,8 @@ extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_t
 #' @param events_df Dataframe com os eventos contendo as colunas "evento" e "regex"
 #' @return Dataframe com a coluna "evento" adicionada.
 #' @examples
-#' df %>% extract_evento_Senado(importants_events)
+#' df <- fetch_tramitacao(91341)
+#' extract_evento_Senado(df, importants_events)
 #' @export
 extract_evento_Senado <- function(tramitacao_df, phases_df) {
   dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao")
@@ -396,7 +397,7 @@ extract_apreciacao_Senado <- function(proposicao_id) {
       tramitacao_data <- tramitacao_data %>%
         magrittr::extract2("ComissoesDespacho") %>%
         magrittr::extract2("ComissaoDespacho") %>%
-        as.tibble()
+        tibble::as.tibble()
     } else {
       tramitacao_data <- tramitacao_data %>%
         tidyr::unnest(ComissoesDespacho.ComissaoDespacho)
