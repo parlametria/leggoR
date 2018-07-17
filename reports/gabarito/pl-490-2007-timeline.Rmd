@@ -13,24 +13,12 @@ A proposta de lei 490 de 2007 foi criada há mais de 11 anos pelo Deputado Homer
 library(vistime)
 library(dplyr)
 
-pl_490_2007_data_estado <- frame_data(
-  ~ event, ~ group, ~ start, ~ end, ~ color,
-  'Sob Análise', 'Estado', '2007-03-20', '2011-01-30','#57d39b',
-  'Arquivado', 'Estado', '2011-01-31', '2011-02-15','#f37340',
-  'Sob Análise', 'Estado', '2011-02-16', '2015-01-30','#57d39b',
-  'Arquivado', 'Estado', '2015-01-31', '2015-02-09','#f37340',
-  'Sob Análise', 'Estado', '2015-02-10', '2018-06-12','#57d39b')
-
 pl_490_2007_data_global <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,
-  'Tramitação - Casa de Origem', 'Global', '2007-03-20', '2018-06-12','#87c465')
-
-pl_490_2007_data_casa_origem <- frame_data(
-  ~ event, ~ group, ~ start, ~ end, ~ color,
-  'Apresentação', 'Casa', '2007-03-20', '2007-03-28','#d6952a',
-  'Comissões', 'Casa', '2007-03-29', '2011-01-30','#938ecc',
-  'Comissões', 'Casa', '2011-02-16', '2015-01-30','#938ecc',
-  'Comissões', 'Casa', '2015-02-10', '2018-06-12','#938ecc')
+  'Apresentação - Casa de Origem', 'Global', '2007-03-20', '2007-03-28','#d6952a',
+  'Comissões - Casa de Origem', 'Global', '2007-03-29', '2011-01-30','#938ecc',
+  'Comissões - Casa de Origem', 'Global', '2011-02-16', '2015-01-30','#938ecc',
+  'Comissões - Casa de Origem', 'Global', '2015-02-10', '2018-06-12','#938ecc')
 
 pl_490_2007_data_comissoes <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,
@@ -52,7 +40,7 @@ pl_490_2007_data_comissao <- frame_data(
   'Discussão e Votação', 'Comissão', '2009-06-24', '2009-08-05','#a561a2',
   'Receb.', 'Comissão', '2009-08-07', '2010-03-03','#e08c2d',
   'Análise do Relator', 'Comissão', '2010-03-04', '2011-01-31','#7ac974',
-  'Receb.', 'Comissão', '2011-02-10', '2013-05-13','#e08c2d',
+  'Receb.', 'Comissão', '2011-02-16', '2013-05-13','#e08c2d',
   'Análise do Relator', 'Comissão', '2013-05-14', '2015-01-31','#7ac974',
   'Receb.', 'Comissão', '2015-02-10', '2018-01-31','#e08c2d',
   'Análise do Relator', 'Comissão', '2018-02-01', '2018-05-21','#7ac974',
@@ -94,9 +82,7 @@ pl_490_2007_data_eventos <- frame_data(
   'Retirado de pauta', 'Evento', '2018-06-12', '2018-06-12','#bd0624')
 
 pl_490_2007_data_general <- bind_rows(
-  pl_490_2007_data_estado,
   pl_490_2007_data_global,
-  pl_490_2007_data_casa_origem,
   pl_490_2007_data_comissoes,
   pl_490_2007_data_comissao,
   pl_490_2007_data_eventos)
