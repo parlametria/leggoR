@@ -26,7 +26,7 @@ data_local <- function(df) {
     arrange(sequence) %>%
     select(-sequence) %>%
     rename(label = local) %>%
-    mutate(group = "Local",
+    mutate(group = "Comissão",
            color = case_when(label == "Plenário" ~ "#5496cf",
                              label == "PL672616" ~ "#ff9c37",
                              label == "CCP" ~ "#8bca42",
@@ -62,7 +62,7 @@ data_evento <- function(df) {
 #' @export
 format_fase_global <- function(bill_id, proposicao, tramitacao) {
   data_prop <- extract_autor_in_camara(bill_id) %>% tail(1)
-  casa_origem <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Tramitação - Casa de Origem", "Tramitação - Casa Revisora")
+  casa_origem <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Tramitação - Casa de Origem (Câmara)", "Tramitação - Casa Revisora (Senado)")
   tramitacao <- 
     tramitacao %>%
     mutate(end_data = lead(data_hora, default=Sys.time()))
@@ -80,13 +80,30 @@ format_fase_global <- function(bill_id, proposicao, tramitacao) {
   
   if(nrow(virada_de_casa) == 0) {
     frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
-               casa_origem, proposicao$data_apresentacao, end[1, ][[1]], 0, 'global', "#f37340")
+               casa_origem, proposicao$data_apresentacao, end[1, ][[1]], 0, 'Global', "#f37340")
   }else {
     casa_atual <- if_else(casa_origem == "Tramitação - Casa de Origem", "Tramitação - Casa Revisora", "Tramitação - Casa de Origem")
     frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
-               casa_origem, proposicao$data_apresentacao, virada_de_casa[1, ][[1]], 0, 'global', "#f37340",
-               casa_atual, virada_de_casa[1, ][[1]], end[1, ][[1]], 0, 'global', "#546452")
+               casa_origem, proposicao$data_apresentacao, virada_de_casa[1, ][[1]], 0, 'Global', "#f37340",
+               casa_atual, virada_de_casa[1, ][[1]], end[1, ][[1]], 0, 'Global', "#546452")
   }
+}
+
+format_fase_casa <- function(df) {
+  df %>%
+    mutate(end_data = lead(data_hora, default=Sys.time())) %>%
+    group_by(casa, sequence = rleid(casa)) %>%
+    summarise(start = min(data_hora),
+              end = max(end_data)) %>%
+    filter(end - start > 0) %>%
+    ungroup() %>%
+    arrange(sequence) %>%
+    select(-sequence) %>%
+    rename(label = casa) %>%
+    mutate(group = "Casa",
+           color = case_when(label == "Plenário" ~ "#5496cf",
+                             label == "Comissões" ~ "#938ecc",
+                             label == "Apresentação" ~ "#d6952a"))
 }
 
 data_situacao_comissao <- function(df) {
@@ -123,6 +140,10 @@ build_vis_csv <- function(bill_id) {
   data_path <- here::here('data/vis/tramitacao/')
   file_path <- paste0(data_path, bill_id, '-data-camara.csv')
 
-  data <- bind_rows(data_evento(tramitacao), data_local(tramitacao), data_situacao_comissao(tramitacao), format_fase_global(bill_id, proposicao %>% tail(1), tramitacao))
+  data <- bind_rows(format_fase_global(bill_id, proposicao %>% tail(1), tramitacao), 
+                    format_fase_casa(tramitacao),
+                     data_local(tramitacao),
+                    data_situacao_comissao(tramitacao), 
+                    data_evento(tramitacao))
   readr::write_csv(data, file_path)
 }

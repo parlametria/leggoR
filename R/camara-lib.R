@@ -437,7 +437,9 @@ extract_locais_in_camara <- function(df) {
           (tolower(despacho) %in% descricoes_plenario & sigla_orgao == 'PLEN' |
             stringr::str_detect(tolower(descricao_tramitacao), '^votação')) ~ 'Plenário',
           (stringr::str_detect(tolower(despacho), '^recebimento pela') |
-            tolower(despacho) %in% descricoes_comissoes) & sigla_orgao != 'CCP' ~ sigla_orgao,
+            tolower(despacho) %in% descricoes_comissoes) & 
+            sigla_orgao != 'CCP' &
+            !stringr::str_detect(tolower(sigla_orgao), '^s') ~ sigla_orgao,
           tolower(descricao_tramitacao) == 'remessa ao senado federal' ~ 'Câmara')
     ) %>%
     dplyr::mutate(
@@ -449,12 +451,43 @@ extract_locais_in_camara <- function(df) {
   if (is.na(df[1, ]$local)) {
     df[1, ]$local = 'CD-MESA-PLEN'
   }
-
+  
   df %>%
     tidyr::fill(local)
 }
 
-extract_tramitacao <- function(prop_id){
+#' @title Recupera as casas da Câmara
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada casa
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada casa
+#' @examples
+#'  extract_fase_casa_in_camara(fetch_tramitacao(91341))
+#' @export
+extract_fase_casa_in_camara <- function(df) {
+  descricoes_plenario <- c('votação', 'pronta para pauta', 'apresentação de proposição', 'sessão deliberativa')
+  descricoes_comissoes <- c('recebimento pela')
+  
+  df <- df %>%
+    dplyr::arrange(data_hora, sequencia) %>%
+    dplyr::mutate(
+      casa =
+        dplyr::case_when(
+          (tolower(despacho) %in% descricoes_plenario & sigla_orgao == 'PLEN' |
+             stringr::str_detect(tolower(descricao_tramitacao), '^votação')) ~ 'Plenário',
+          (stringr::str_detect(tolower(despacho), '^recebimento pela') | 
+             tolower(despacho) %in% descricoes_comissoes) & sigla_orgao != 'CCP' & !stringr::str_detect(tolower(sigla_orgao), '^s') ~ "Comissões")
+    )
+  
+  
+  if (is.na(df[1, ]$casa)) {
+    df[1, ]$casa = 'Apresentação'
+  }
+  
+  df %>%
+    tidyr::fill(casa)
+}
+
+extract_tramitacao <- function(prop_id) {
   rcongresso::fetch_tramitacao(prop_id) %>% rename_df_columns
 }
 
