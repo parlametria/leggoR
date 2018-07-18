@@ -20,3 +20,7 @@ Gerar documentação:
 Rodar testes:
 
     > devtools::test()
+
+Mostrar cobertura do código:
+
+    > library(covr);package_coverage()
