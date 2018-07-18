@@ -18,6 +18,7 @@ r-release:
     - docker
   image: rocker/r-ver:latest
   script:
+    - r -e 'devtools::install_github("analytics-ufcg/rcongresso")'
     - Rscript -e 'stopifnot(length(devtools::check(check_dir = ".", args = c("--no-examples", "--as-cran", "--no-manual", "--no-tests"))$errors) == 0L)'
     - Rscript -e 'res=devtools::test(reporter="summary");df=as.data.frame(res);if(sum(df$failed) > 0 || any(df$error)) {q(status=1)}'
   artifacts:
@@ -33,6 +34,7 @@ pages:
   image: rocker/tidyverse:latest
   script:
     - install2.r pkgdown
+    - r -e 'devtools::install_github("analytics-ufcg/rcongresso")'
     - r -e 'devtools::install()'
     - r -e 'devtools::document()'
     - r -e 'pkgdown::build_site(override = list(destination = "public"))'
