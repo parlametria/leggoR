@@ -21,6 +21,7 @@ Imports: magrittr,
     rvest,
     rcongresso,
     fuzzyjoin,
+    lubridate,
     rjson
 Suggests: testthat,
     knitr
