@@ -1,13 +1,11 @@
 label,start,end,time_interval,group,color
 CCJ,2017-07-04,2017-09-27,85,Local,#ffffcc
 Plenário,2017-09-27,2017-11-08,42,Local,NA
-analise_relator,2017-07-04,2017-09-19,77,Fase,NA
-discussao_deliberacao,2017-09-19,2017-09-27,8,Fase,#beaed4
-encaminhamento,2017-09-27,2017-09-27,0,Fase,NA
-discussao_deliberacao,2017-09-27,2017-10-18,21,Fase,#beaed4
-recebimento,2017-10-18,2017-11-08,21,Fase,NA
-virada_de_casa,2017-11-08,2017-11-08,0,Fase,#ffff99
+Análise do relator,2017-07-04,2017-09-19,77,Fase,#fdae61
+Discussão e votação,2017-09-19,2017-09-27,8,Fase,#ffffbf
+Encaminhamento,2017-09-27,2017-09-27,0,Fase,#abd9e9
+Discussão e votação,2017-09-27,2017-10-18,21,Fase,#ffffbf
+Recebimento,2017-10-18,2017-11-08,21,Fase,#d7191c
 aprovacao_parecer,2017-09-27,2017-09-27,0,Evento,#a9a9a9
 aprovacao_substitutivo,2017-10-25,2017-10-25,0,Evento,#a9a9a9
 Tramitação - Casa de Origem,2017-06-28,2017-11-08,0,global,#f37340
-Tramitação - Casa Revisora,2017-11-08,2017-11-08,0,global,#546452
