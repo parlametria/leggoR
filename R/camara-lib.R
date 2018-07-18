@@ -211,16 +211,21 @@ extract_events_in_camara <- function(tramitacao_df) {
     'requerimento_redistribuicao', c$requerimento_redistribuicao,
     'requerimento_apensacao', c$requerimento_apensacao,
     'requerimento_urgencia', c$requerimento_urgencia,
-    'requerimento_prorrogacao', c$requerimento_prorrogacao)
+    'requerimento_prorrogacao', c$requerimento_prorrogacao,
+    'redistribuicao', c$redistribuicao)
 
   special_comissao <- camara_codes$eventos$code$comissao_especial
-
+  designado_relator <- camara_codes$eventos$code$designado_relator
+  parecer <- camara_codes$eventos$code$parecer
+  
   tramitacao_df %>%
     dplyr::mutate(despacho_lower = tolower(despacho)) %>%
     fuzzyjoin::regex_left_join(events_df, by = c(despacho_lower = "regex")) %>%
     dplyr::select(-c(despacho_lower, regex)) %>%
     dplyr::mutate(evento = dplyr::case_when(
       id_tipo_tramitacao == special_comissao ~ 'criacao_comissao_temporaria',
+      id_tipo_tramitacao == designado_relator ~ 'designado_relator',
+      id_tipo_tramitacao == parecer ~ 'parecer',
       TRUE ~ evento))
 }
 

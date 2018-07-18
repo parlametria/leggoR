@@ -15,10 +15,13 @@
       "requerimento_redistribuicao": "^apresentação do requerimento de redistribuição",
       "requerimento_apensacao": "^apresentação do requerimento de apensação",
       "requerimento_urgencia": "^apresentação do requerimento de urgência",
-      "requerimento_prorrogacao": "^apresentação do requerimento de prorrogação de prazo de comissão temporária"
+      "requerimento_prorrogacao": "^apresentação do requerimento de prorrogação de prazo de comissão temporária",
+      "redistribuicao": "novo despacho"
     },
     "code": {
-      "comissao_especial": [120]
+      "comissao_especial": [120],
+      "designado_relator": [320],
+      "parecer": [322]
     } 
   },
   "comissoes": {
