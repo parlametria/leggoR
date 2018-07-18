@@ -36,6 +36,8 @@ pages:
     - r -e 'devtools::install()'
     - r -e 'devtools::document()'
     - r -e 'pkgdown::build_site(override = list(destination = "public"))'
+    - ./scripts/build_all.R
+    - mv docs public/
   artifacts:
     paths:
       - public
