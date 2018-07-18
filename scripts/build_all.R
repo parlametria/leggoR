@@ -5,6 +5,7 @@ library(rmarkdown)
 library(here)
 source(here::here('scripts/vis/tramitacao/build-data.R'))
 source(here::here('scripts/renderReport.R'))
+source(here::here('scripts/vis/tramitacao/extract-informations.R'))
 
 output_dir = here::here('docs/reports')
 
@@ -21,6 +22,8 @@ render_all_reports()
 # Build tabela e gabaritos
 c(
   'reports/tabela-proposicoes.Rmd',
+  'reports/tabela-demo.Rmd',
+  'reports/gabarito/pls-559-2013-timeline.Rmd',
   'reports/gabarito/pl-3729-2004-timeline.Rmd',
   'reports/gabarito/pl-490-2007-timeline.Rmd'
 ) %>%

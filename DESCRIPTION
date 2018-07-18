@@ -19,7 +19,8 @@ Imports: magrittr,
     stringr,
     jsonlite,
     rvest,
-    rcongresso
+    rcongresso,
+    fuzzyjoin
 Suggests: testthat,
     knitr
 VignetteBuilder: knitr
