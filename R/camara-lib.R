@@ -1,5 +1,5 @@
 source(here::here("R/congresso-lib.R"))
-camara_codes <- rjson::fromJSON(file=here::here("R/environment_camara.json"))
+camara_codes <- rjson::fromJSON(file=here::here("data/environment_camara.json"))
 
 #' @title Recupera o número, o tipo e ementa de uma proposição na Câmara
 #' @description Retorna um dataframe contendo o número, o tipo e a ementa de uma proposição na Câmara através do ID da proposição
