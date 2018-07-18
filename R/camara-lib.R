@@ -208,7 +208,7 @@ extract_events_in_camara <- function(tramitacao_df) {
     'requerimento_audiencia_publica', c$requerimento_audiencia_publica,
     'aprovacao_audiencia_publica', c$aprovacao_audiencia_publica,
     'aprovacao_parecer', c$aprovacao_parecer,
-    'requerimento_redistribuicao', $requerimento_redistribuicao,
+    'requerimento_redistribuicao', c$requerimento_redistribuicao,
     'requerimento_apensacao', c$requerimento_apensacao,
     'requerimento_urgencia', c$requerimento_urgencia,
     'requerimento_prorrogacao', c$requerimento_prorrogacao)
