@@ -1,5 +1,5 @@
 label,start,end,time_interval,group,color
 CCJ,2018-04-18,2018-07-05,78,Local,#ffffcc
-recebimento,2018-04-18,2018-04-19,1,Fase,NA
-analise_relator,2018-04-19,2018-07-05,77,Fase,NA
+Recebimento,2018-04-18,2018-04-19,1,Fase,#d7191c
+Análise do relator,2018-04-19,2018-07-05,77,Fase,#fdae61
 Tramitação - Casa de Origem,2018-04-10,2018-07-05,0,global,#f37340

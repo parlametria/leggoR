@@ -1,26 +1,26 @@
 data_tramitacao,local,fase,evento
-2017-07-04,CCJ,analise_relator,NA
-2017-09-19,CCJ,discussao_deliberacao,NA
-2017-09-22,CCJ,discussao_deliberacao,NA
-2017-09-27,CCJ,encaminhamento,aprovacao_parecer
-2017-09-27,CCJ,encaminhamento,NA
-2017-09-27,CCJ,discussao_deliberacao,NA
-2017-09-27,Plenário,discussao_deliberacao,NA
-2017-09-28,Plenário,discussao_deliberacao,NA
-2017-10-02,Plenário,discussao_deliberacao,NA
-2017-10-03,Plenário,discussao_deliberacao,NA
-2017-10-04,Plenário,discussao_deliberacao,NA
-2017-10-05,Plenário,discussao_deliberacao,NA
-2017-10-05,Plenário,discussao_deliberacao,NA
-2017-10-06,Plenário,discussao_deliberacao,NA
-2017-10-09,Plenário,discussao_deliberacao,NA
-2017-10-09,Plenário,discussao_deliberacao,NA
-2017-10-10,Plenário,discussao_deliberacao,NA
-2017-10-17,Plenário,discussao_deliberacao,NA
-2017-10-18,Plenário,recebimento,NA
-2017-10-24,Plenário,recebimento,NA
-2017-10-25,Plenário,recebimento,NA
-2017-10-25,Plenário,recebimento,aprovacao_substitutivo
-2017-11-07,Plenário,recebimento,NA
-2017-11-07,Plenário,recebimento,NA
-2017-11-08,Câmara,virada_de_casa,NA
+2017-07-04,CCJ,Análise do relator,NA
+2017-09-19,CCJ,Discussão e votação,NA
+2017-09-22,CCJ,Discussão e votação,NA
+2017-09-27,CCJ,Encaminhamento,aprovacao_parecer
+2017-09-27,CCJ,Encaminhamento,NA
+2017-09-27,CCJ,Discussão e votação,NA
+2017-09-27,Plenário,Discussão e votação,NA
+2017-09-28,Plenário,Discussão e votação,NA
+2017-10-02,Plenário,Discussão e votação,NA
+2017-10-03,Plenário,Discussão e votação,NA
+2017-10-04,Plenário,Discussão e votação,NA
+2017-10-05,Plenário,Discussão e votação,NA
+2017-10-05,Plenário,Discussão e votação,NA
+2017-10-06,Plenário,Discussão e votação,NA
+2017-10-09,Plenário,Discussão e votação,NA
+2017-10-09,Plenário,Discussão e votação,NA
+2017-10-10,Plenário,Discussão e votação,NA
+2017-10-17,Plenário,Discussão e votação,NA
+2017-10-18,Plenário,Recebimento,NA
+2017-10-24,Plenário,Recebimento,NA
+2017-10-25,Plenário,Recebimento,NA
+2017-10-25,Plenário,Recebimento,aprovacao_substitutivo
+2017-11-07,Plenário,Recebimento,NA
+2017-11-07,Plenário,Recebimento,NA
+2017-11-08,Câmara,Recebimento,NA

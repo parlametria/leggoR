@@ -1,126 +1,126 @@
 data_tramitacao,local,fase,evento
-2009-05-29,CCJ,recebimento,NA
-2009-07-15,CCJ,analise_relator,NA
-2009-09-11,CCJ,analise_relator,NA
-2009-09-11,CCJ,analise_relator,NA
-2009-09-15,CCJ,analise_relator,NA
-2009-09-22,CCJ,analise_relator,NA
-2009-09-22,CCJ,analise_relator,NA
-2009-09-23,CCJ,recebimento,NA
-2009-09-24,CCJ,analise_relator,NA
-2009-11-13,CCJ,discussao_deliberacao,NA
-2009-11-23,CCJ,discussao_deliberacao,NA
-2009-11-25,CCJ,encaminhamento,aprovacao_parecer
-2009-12-03,CCJ,encaminhamento,aprovacao_parecer
-2009-12-03,CAE,recebimento,NA
-2009-12-03,CAE,analise_relator,NA
-2010-03-02,CAE,analise_relator,aprovacao_audiencia_publica
-2010-03-12,CAE,analise_relator,NA
-2010-03-15,CAE,analise_relator,NA
-2010-03-23,CAE,analise_relator,NA
-2010-03-23,CAE,analise_relator,NA
-2010-05-18,CAE,analise_relator,NA
-2010-05-18,CAE,analise_relator,NA
-2010-05-19,CAE,analise_relator,NA
-2010-05-19,CAE,analise_relator,NA
-2010-05-19,CAE,analise_relator,NA
-2010-05-20,CCJ,recebimento,NA
-2010-05-24,CCJ,analise_relator,NA
-2010-05-25,CCJ,analise_relator,NA
-2010-06-15,CCJ,discussao_deliberacao,NA
-2010-06-21,CCJ,discussao_deliberacao,NA
-2010-06-23,CCJ,encaminhamento,aprovacao_parecer
-2010-06-24,CCJ,encaminhamento,NA
-2010-06-24,CAE,recebimento,NA
-2010-07-08,CAE,analise_relator,NA
-2010-12-21,CAE,discussao_deliberacao,NA
-2010-12-22,CAE,discussao_deliberacao,NA
-2011-01-20,CAE,discussao_deliberacao,NA
-2011-01-20,CAE,recebimento,NA
-2011-03-04,CAE,analise_relator,NA
-2012-06-18,CAE,discussao_deliberacao,NA
-2012-07-10,CAE,discussao_deliberacao,aprovacao_audiencia_publica
-2013-03-04,CAE,discussao_deliberacao,NA
-2013-03-07,CAE,discussao_deliberacao,NA
-2013-03-19,CAE,discussao_deliberacao,NA
-2013-04-01,Plenário,discussao_deliberacao,NA
-2013-04-17,Plenário,discussao_deliberacao,NA
-2013-05-07,Plenário,discussao_deliberacao,NA
-2013-05-07,Plenário,discussao_deliberacao,NA
-2013-05-13,Plenário,discussao_deliberacao,NA
-2013-05-22,Plenário,discussao_deliberacao,NA
-2013-05-27,CDR,recebimento,NA
-2013-06-13,CDR,analise_relator,NA
-2013-06-20,CDR,analise_relator,NA
-2013-06-20,CDR,analise_relator,NA
-2013-06-25,CDR,analise_relator,NA
-2013-06-27,CDR,analise_relator,NA
-2013-07-04,Plenário,analise_relator,NA
-2013-08-07,Plenário,analise_relator,NA
-2013-08-07,CDR,analise_relator,NA
-2013-10-18,CDR,analise_relator,NA
-2013-10-18,CDR,analise_relator,NA
-2013-10-21,CDR,analise_relator,NA
-2013-10-22,CDR,analise_relator,NA
-2013-10-30,CDR,analise_relator,NA
-2013-11-06,Plenário,analise_relator,NA
-2014-01-09,Plenário,analise_relator,NA
-2014-02-17,Plenário,analise_relator,NA
-2014-02-17,Plenário,analise_relator,NA
-2014-02-18,Plenário,analise_relator,NA
-2014-02-18,Plenário,analise_relator,NA
-2014-02-21,Plenário,analise_relator,NA
-2014-03-17,Plenário,analise_relator,NA
-2014-03-17,Plenário,analise_relator,NA
-2014-03-18,Plenário,analise_relator,NA
-2014-03-19,Plenário,analise_relator,NA
-2014-05-30,Plenário,analise_relator,NA
-2014-08-01,Plenário,analise_relator,NA
-2014-09-02,Plenário,analise_relator,NA
-2014-10-02,Plenário,analise_relator,NA
-2014-11-25,Plenário,analise_relator,NA
-2014-11-25,Plenário,analise_relator,NA
-2014-12-18,Plenário,analise_relator,NA
-2015-03-11,Plenário,analise_relator,NA
-2015-03-19,Plenário,analise_relator,NA
-2015-03-20,Plenário,analise_relator,NA
-2015-03-25,Plenário,analise_relator,NA
-2015-03-25,Plenário,analise_relator,NA
-2015-03-26,Plenário,analise_relator,NA
-2015-04-28,Plenário,analise_relator,NA
-2015-04-28,CAE,recebimento,NA
-2015-05-04,CAE,analise_relator,NA
-2015-07-02,CAE,discussao_deliberacao,NA
-2015-07-07,CAE,discussao_deliberacao,NA
-2015-07-09,CAE,discussao_deliberacao,NA
-2015-07-09,CAE,discussao_deliberacao,NA
-2015-08-25,CAE,discussao_deliberacao,aprovacao_audiencia_publica
-2015-09-24,CAE,discussao_deliberacao,NA
-2015-12-02,CAE,discussao_deliberacao,NA
-2016-03-03,CAE,discussao_deliberacao,NA
-2016-03-08,CAE,discussao_deliberacao,pedido_vista
-2016-03-10,CAE,discussao_deliberacao,NA
-2016-03-15,CAE,discussao_deliberacao,NA
-2016-04-01,CAE,discussao_deliberacao,NA
-2016-04-05,CAE,discussao_deliberacao,NA
-2016-04-08,CAE,discussao_deliberacao,NA
-2016-04-12,CAE,discussao_deliberacao,NA
-2016-04-20,CAE,discussao_deliberacao,NA
-2016-04-26,CAE,discussao_deliberacao,NA
-2016-04-29,CAE,discussao_deliberacao,NA
-2016-05-12,CAE,discussao_deliberacao,NA
-2016-05-16,CAE,discussao_deliberacao,NA
-2016-05-17,CAE,encaminhamento,aprovacao_parecer
-2016-05-17,CAE,encaminhamento,aprovacao_parecer
-2016-05-18,CAE,discussao_deliberacao,NA
-2016-05-18,Plenário,discussao_deliberacao,NA
-2016-05-19,Plenário,discussao_deliberacao,NA
-2016-05-19,Plenário,discussao_deliberacao,NA
-2016-05-19,Plenário,discussao_deliberacao,NA
-2016-05-30,Plenário,discussao_deliberacao,NA
-2016-05-30,Plenário,discussao_deliberacao,NA
-2016-05-30,Plenário,discussao_deliberacao,NA
-2016-06-07,Plenário,discussao_deliberacao,NA
-2016-06-07,Plenário,discussao_deliberacao,aprovacao_substitutivo
-2016-06-16,Plenário,discussao_deliberacao,NA
-2016-06-21,Câmara,virada_de_casa,NA
+2009-05-29,CCJ,Recebimento,NA
+2009-07-15,CCJ,Análise do relator,NA
+2009-09-11,CCJ,Análise do relator,NA
+2009-09-11,CCJ,Análise do relator,NA
+2009-09-15,CCJ,Análise do relator,NA
+2009-09-22,CCJ,Análise do relator,NA
+2009-09-22,CCJ,Análise do relator,NA
+2009-09-23,CCJ,Recebimento,NA
+2009-09-24,CCJ,Análise do relator,NA
+2009-11-13,CCJ,Discussão e votação,NA
+2009-11-23,CCJ,Discussão e votação,NA
+2009-11-25,CCJ,Encaminhamento,aprovacao_parecer
+2009-12-03,CCJ,Encaminhamento,aprovacao_parecer
+2009-12-03,CAE,Recebimento,NA
+2009-12-03,CAE,Análise do relator,NA
+2010-03-02,CAE,Análise do relator,aprovacao_audiencia_publica
+2010-03-12,CAE,Análise do relator,NA
+2010-03-15,CAE,Análise do relator,NA
+2010-03-23,CAE,Análise do relator,NA
+2010-03-23,CAE,Análise do relator,NA
+2010-05-18,CAE,Análise do relator,NA
+2010-05-18,CAE,Análise do relator,NA
+2010-05-19,CAE,Análise do relator,NA
+2010-05-19,CAE,Análise do relator,NA
+2010-05-19,CAE,Análise do relator,NA
+2010-05-20,CCJ,Recebimento,NA
+2010-05-24,CCJ,Análise do relator,NA
+2010-05-25,CCJ,Análise do relator,NA
+2010-06-15,CCJ,Discussão e votação,NA
+2010-06-21,CCJ,Discussão e votação,NA
+2010-06-23,CCJ,Encaminhamento,aprovacao_parecer
+2010-06-24,CCJ,Encaminhamento,NA
+2010-06-24,CAE,Recebimento,NA
+2010-07-08,CAE,Análise do relator,NA
+2010-12-21,CAE,Discussão e votação,NA
+2010-12-22,CAE,Discussão e votação,NA
+2011-01-20,CAE,Discussão e votação,NA
+2011-01-20,CAE,Recebimento,NA
+2011-03-04,CAE,Análise do relator,NA
+2012-06-18,CAE,Discussão e votação,NA
+2012-07-10,CAE,Discussão e votação,aprovacao_audiencia_publica
+2013-03-04,CAE,Discussão e votação,NA
+2013-03-07,CAE,Discussão e votação,NA
+2013-03-19,CAE,Discussão e votação,NA
+2013-04-01,Plenário,Discussão e votação,NA
+2013-04-17,Plenário,Discussão e votação,NA
+2013-05-07,Plenário,Discussão e votação,NA
+2013-05-07,Plenário,Discussão e votação,NA
+2013-05-13,Plenário,Discussão e votação,NA
+2013-05-22,Plenário,Discussão e votação,NA
+2013-05-27,CDR,Recebimento,NA
+2013-06-13,CDR,Análise do relator,NA
+2013-06-20,CDR,Análise do relator,NA
+2013-06-20,CDR,Análise do relator,NA
+2013-06-25,CDR,Análise do relator,NA
+2013-06-27,CDR,Análise do relator,NA
+2013-07-04,Plenário,Análise do relator,NA
+2013-08-07,Plenário,Análise do relator,NA
+2013-08-07,CDR,Análise do relator,NA
+2013-10-18,CDR,Análise do relator,NA
+2013-10-18,CDR,Análise do relator,NA
+2013-10-21,CDR,Análise do relator,NA
+2013-10-22,CDR,Análise do relator,NA
+2013-10-30,CDR,Análise do relator,NA
+2013-11-06,Plenário,Análise do relator,NA
+2014-01-09,Plenário,Análise do relator,NA
+2014-02-17,Plenário,Análise do relator,NA
+2014-02-17,Plenário,Análise do relator,NA
+2014-02-18,Plenário,Análise do relator,NA
+2014-02-18,Plenário,Análise do relator,NA
+2014-02-21,Plenário,Análise do relator,NA
+2014-03-17,Plenário,Análise do relator,NA
+2014-03-17,Plenário,Análise do relator,NA
+2014-03-18,Plenário,Análise do relator,NA
+2014-03-19,Plenário,Análise do relator,NA
+2014-05-30,Plenário,Análise do relator,NA
+2014-08-01,Plenário,Análise do relator,NA
+2014-09-02,Plenário,Análise do relator,NA
+2014-10-02,Plenário,Análise do relator,NA
+2014-11-25,Plenário,Análise do relator,NA
+2014-11-25,Plenário,Análise do relator,NA
+2014-12-18,Plenário,Análise do relator,NA
+2015-03-11,Plenário,Análise do relator,NA
+2015-03-19,Plenário,Análise do relator,NA
+2015-03-20,Plenário,Análise do relator,NA
+2015-03-25,Plenário,Análise do relator,NA
+2015-03-25,Plenário,Análise do relator,NA
+2015-03-26,Plenário,Análise do relator,NA
+2015-04-28,Plenário,Análise do relator,NA
+2015-04-28,CAE,Recebimento,NA
+2015-05-04,CAE,Análise do relator,NA
+2015-07-02,CAE,Discussão e votação,NA
+2015-07-07,CAE,Discussão e votação,NA
+2015-07-09,CAE,Discussão e votação,NA
+2015-07-09,CAE,Discussão e votação,NA
+2015-08-25,CAE,Discussão e votação,aprovacao_audiencia_publica
+2015-09-24,CAE,Discussão e votação,NA
+2015-12-02,CAE,Discussão e votação,NA
+2016-03-03,CAE,Discussão e votação,NA
+2016-03-08,CAE,Discussão e votação,pedido_vista
+2016-03-10,CAE,Discussão e votação,NA
+2016-03-15,CAE,Discussão e votação,NA
+2016-04-01,CAE,Discussão e votação,NA
+2016-04-05,CAE,Discussão e votação,NA
+2016-04-08,CAE,Discussão e votação,NA
+2016-04-12,CAE,Discussão e votação,NA
+2016-04-20,CAE,Discussão e votação,NA
+2016-04-26,CAE,Discussão e votação,NA
+2016-04-29,CAE,Discussão e votação,NA
+2016-05-12,CAE,Discussão e votação,NA
+2016-05-16,CAE,Discussão e votação,NA
+2016-05-17,CAE,Encaminhamento,aprovacao_parecer
+2016-05-17,CAE,Encaminhamento,aprovacao_parecer
+2016-05-18,CAE,Discussão e votação,NA
+2016-05-18,Plenário,Discussão e votação,NA
+2016-05-19,Plenário,Discussão e votação,NA
+2016-05-19,Plenário,Discussão e votação,NA
+2016-05-19,Plenário,Discussão e votação,NA
+2016-05-30,Plenário,Discussão e votação,NA
+2016-05-30,Plenário,Discussão e votação,NA
+2016-05-30,Plenário,Discussão e votação,NA
+2016-06-07,Plenário,Discussão e votação,NA
+2016-06-07,Plenário,Discussão e votação,aprovacao_substitutivo
+2016-06-16,Plenário,Discussão e votação,NA
+2016-06-21,Câmara,Discussão e votação,NA

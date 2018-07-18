@@ -36,11 +36,11 @@ A proposta de lei nº 3.729 de 2004 foi criada há 14 anos pelos deputados Lucia
 
 pl_3729_2004_data_global <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,
-  'Apresentação - Casa de Origem', 'Casa Origem', '2004-06-08', '2004-06-18','#d6952a',
-  'Comissões - Casa de Origem', 'Casa Origem', '2004-06-22', '2007-01-30','#938ecc',
-  'Comissões - Casa de Origem', 'Casa Origem', '2007-04-26', '2011-01-31','#938ecc',
-  'Comissões - Casa de Origem', 'Casa Origem', '2011-02-14', '2015-01-31','#938ecc',
-  'Comissões - Casa de Origem', 'Casa Origem', '2015-02-04', '2018-07-10','#938ecc')
+  'Apresentação - Casa de Origem', 'Global', '2004-06-08', '2004-06-18','#d6952a',
+  'Comissões - Casa de Origem', 'Global', '2004-06-22', '2007-01-30','#938ecc',
+  'Comissões - Casa de Origem', 'Global', '2007-04-26', '2011-01-31','#938ecc',
+  'Comissões - Casa de Origem', 'Global', '2011-02-14', '2015-01-31','#938ecc',
+  'Comissões - Casa de Origem', 'Global', '2015-02-04', '2018-07-10','#938ecc')
 
 pl_3729_2004_data_comissoes <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,
