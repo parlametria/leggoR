@@ -33,7 +33,8 @@ process_proposicao <- function(bill_id){
             "aprovacao_parecer", 89,
             "aprovacao_substitutivo", 113,
             "pedido_vista", 90,
-            "aprovacao_projeto", 25)
+            "aprovacao_projeto", 25,
+            "designado_relatoria", 91)
 
 
   bill_passage <- extract_evento_Senado(bill_passage, important_phases)
