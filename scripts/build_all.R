@@ -23,6 +23,7 @@ render_all_reports()
 c(
   'reports/tabela-proposicoes.Rmd',
   'reports/tabela-demo.Rmd',
+  'reports/gabarito/pls-559-2013-timeline.Rmd',
   'reports/gabarito/pl-3729-2004-timeline.Rmd',
   'reports/gabarito/pl-490-2007-timeline.Rmd'
 ) %>%
