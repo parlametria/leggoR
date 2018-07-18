@@ -1,5 +1,5 @@
 source(here::here("R/congresso-lib.R"))
-camara_codes <- rjson::fromJSON(file=here::here("R/environment_camara.json"))
+camara_codes <- rjson::fromJSON(file=here::here("data/environment_camara.json"))
 
 #' @title Recupera o número, o tipo e ementa de uma proposição na Câmara
 #' @description Retorna um dataframe contendo o número, o tipo e a ementa de uma proposição na Câmara através do ID da proposição
@@ -208,7 +208,7 @@ extract_events_in_camara <- function(tramitacao_df) {
     'requerimento_audiencia_publica', c$requerimento_audiencia_publica,
     'aprovacao_audiencia_publica', c$aprovacao_audiencia_publica,
     'aprovacao_parecer', c$aprovacao_parecer,
-    'requerimento_redistribuicao', $requerimento_redistribuicao,
+    'requerimento_redistribuicao', c$requerimento_redistribuicao,
     'requerimento_apensacao', c$requerimento_apensacao,
     'requerimento_urgencia', c$requerimento_urgencia,
     'requerimento_prorrogacao', c$requerimento_prorrogacao)

@@ -20,7 +20,8 @@ Imports: magrittr,
     jsonlite,
     rvest,
     rcongresso,
-    fuzzyjoin
+    fuzzyjoin,
+    rjson
 Suggests: testthat,
     knitr
 VignetteBuilder: knitr
