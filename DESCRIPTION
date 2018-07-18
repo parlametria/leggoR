@@ -23,6 +23,7 @@ Imports: magrittr,
     fuzzyjoin,
     lubridate,
     vistime,
+	covr,
     rjson,
 Suggests: testthat,
     knitr
