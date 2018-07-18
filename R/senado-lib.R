@@ -360,6 +360,39 @@ extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_t
         detect_fase(situacao_codigo_situacao, encaminhamento_phase) ~ 'Encaminhamento'))
 }
 
+#' @title Cria coluna com a fase casa da tramitação no Senado
+#' @description Cria uma nova coluna com a fase casa no Senado
+#' @param df Dataframe da tramitação no Senado com as descrições formatadas
+#' @return Dataframe com a coluna "casa" adicionada.
+#' @examples
+#' bill_passage %>% extract_fase_casa_Senado(phase_one)
+#' @export
+extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
+  
+  descricoes_plenario <- c('incluído_requerimento_em_ordem_do_dia_da_sessão_deliberativa',
+                           'pronto_para_deliberação_do_plenário',
+                           'aguardando_recebimento_de_emendas_perante_a_mesa',
+                           'incluída_em_ordem_do_dia')
+  descricoes_comissoes <- c('matéria_com_a_relatoria',
+                            'aguardando_designação_do_relator' )
+  
+  dataframe %>%
+    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::mutate(
+      casa =
+        dplyr::case_when(
+          grepl(fase_apresentacao, texto_tramitacao) ~ 'Apresentação',
+          situacao_descricao_situacao %in% descricoes_plenario ~
+            'Plenário',
+          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') | 
+             situacao_descricao_situacao %in% descricoes_comissoes) ~
+            'Comissões')
+    ) %>%
+    tidyr::fill(casa)
+                  
+  
+}
+
 #' @title Extrai os eventos importantes que aconteceram no Senado
 #' @description Adiciona coluna ao dataframe com os eventos mais importantes que aconteceram no Senado
 #' @param tramitacao_df Dataframe da tramitação no Senado
