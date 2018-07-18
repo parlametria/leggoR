@@ -78,13 +78,13 @@ pl_3729_2004_data_comissao <- frame_data(
   'Receb.', 'Comissão', '2015-12-09', '2015-12-17','#92df8a',
   'Análise do Relator', 'Comissão', '2015-12-17', '2017-09-13','#b2df8a',
   'Receb.', 'Comissão', '2017-09-13', '2018-04-11','#92df8a',
-  'Análise do Relator', 'Comissão', '2018-04-11', '2018-07-10','#b2df8a',
+  'Análise do Relator', 'Comissão', '2018-04-11', '2018-07-11','#b2df8a',
 
   #CCJC
   'Receb.', 'Comissão', '2016-05-09', '2016-05-11','#d6999a',
   'Análise do Relator', 'Comissão', '2016-05-11', '2016-05-23','#d6952a',
   'Receb.', 'Comissão', '2016-05-23', '2016-06-30','#d6999a',
-  'Análise do Relator', 'Comissão', '2016-06-30', '2018-07-10','#d6952a')
+  'Análise do Relator', 'Comissão', '2016-06-30', '2018-07-11','#d6952a')
 
 pl_3729_2004_data_eventos <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,
@@ -116,7 +116,6 @@ pl_3729_2004_data_eventos <- frame_data(
   'Designado relator', 'Evento', '2015-04-09', '2015-04-09','#87c465',
   'Parecer', 'Evento', '2015-09-23', '2015-09-23','#a561a2',
   'Pedido de vista', 'Evento', '2015-10-07', '2015-10-07','#b1b03a',
-  'Aprovado Parecer', 'Evento', '2015-10-14', '2015-10-14','#b1b03a',
   'Parecer Aprovado',  'Evento', '2015-10-14', '2015-10-14','#a561a2',
   'Designado relator', 'Evento', '2015-10-28', '2015-10-28','#87c465',
   'Designado relator', 'Evento', '2015-12-17', '2015-12-17','#87c465',
@@ -137,7 +136,6 @@ pl_3729_2004_data_eventos <- frame_data(
   'Parecer CTF 12', 'Evento', '2017-08-08', '2017-08-08','#a561a2',
   'Parecer CTF 13', 'Evento', '2017-08-29', '2017-08-29','#a561a2',
   'Retirada de pauta CTF', 'Evento', '2017-09-13', '2017-09-13','#a561a2',
-  'Desapensação', 'Evento', '2017-10-18', '2017-10-18', '#938ecc',
   'Designado relator', 'Evento', '2018-04-11', '2018-04-11','#87c465')
 
 pl_3729_2004_data_general <- bind_rows(
