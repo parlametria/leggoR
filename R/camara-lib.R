@@ -1,4 +1,5 @@
 source(here::here("R/congresso-lib.R"))
+camara_codes <- rjson::fromJSON(file=here::here("R/environment_camara.json"))
 
 #' @title Recupera o número, o tipo e ementa de uma proposição na Câmara
 #' @description Retorna um dataframe contendo o número, o tipo e a ementa de uma proposição na Câmara através do ID da proposição
@@ -27,86 +28,13 @@ last_n_despacho_in_camara <- function(df, qtd=1) {
     dplyr::select(data_hora, descricao_tramitacao, despacho)
 }
 
-
 get_comissoes_camara <- function() {
-
-  siglas_comissoes_antigas <- '
-  CDCMAM
-  CAPR
-  CCJR
-  '
-
-  siglas_comissoes <- '
-  CAPADR
-  CCTCI
-  CCJC
-  CCULT
-  CDC
-  CMULHER
-  CIDOSO
-  CPD
-  CDU
-  CDEICS
-  CDHM
-  CE
-  CESPO
-  CFT
-  CFFC
-  CINDRA
-  CLP
-  CMADS
-  CME
-  CREDN
-  CSPCCO
-  CSSF
-  CTASP
-  CTUR
-  CVT
-  '
-
-  comissoes_permanentes <- '
-    Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural
-    Ciência e Tecnologia, Comunicação e Informática
-    Constituição e Justiça e de Cidadania
-    Cultura
-    Defesa do Consumidor
-    Defesa dos Direitos da Mulher
-    Defesa dos Direitos da Pessoa Idosa
-    Defesa dos Direitos das Pessoas com Deficiência
-    Desenvolvimento Urbano
-    Desenvolvimento Econômico, Indústria, Comércio e Serviços
-    Direitos Humanos e Minorias
-    Educação
-    Esporte
-    Finanças e Tributação
-    Fiscalização Financeira e Controle
-    Integração Nacional, Desenvolvimento Regional e da Amazônia
-    Legislação Participativa
-    Meio Ambiente e Desenvolvimento Sustentável
-    Minas e Energia
-    Relações Exteriores e de Defesa Nacional
-    Segurança Pública e Combate ao Crime Organizado
-    Seguridade Social e Família
-    Trabalho, de Administração e Serviço Público
-    Turismo
-    Viação e Transportes
-    '
-
-  comissoes_temporarias <- '
-    Comissão Especial
-    '
-
-  to_list <- function(name) {
-    name %>%
-      trimws() %>%
-      strsplit('\n') %>%
-      sapply(trimws)
-  }
-
-  dplyr::tibble(siglas_comissoes_antigas=list(siglas_comissoes_antigas %>% to_list),
-                siglas_comissoes=list(siglas_comissoes %>% to_list),
-                comissoes_temporarias=list(comissoes_temporarias %>% to_list),
-                comissoes_permanentes=list(comissoes_permanentes %>% to_list),)
+  c <- camara_codes$comissoes
+  
+  dplyr::tibble(siglas_comissoes_antigas=list(c$siglas_comissoes_antigas),
+                siglas_comissoes=list(c$siglas_comissoes),
+                comissoes_temporarias=list(c$comissoes_temporarias),
+                comissoes_permanentes=list(c$comissoes_permanentes))
 }
 
 #' @title Recupera as comissões pelas quais a proposição irá passar
@@ -273,17 +201,19 @@ rename_df_columns <- function(df) {
 #' df %>% extract_events_in_camara(importants_events)
 #' @export
 extract_events_in_camara <- function(tramitacao_df) {
+  c <- camara_codes$eventos$regex
+  
   events_df <- tibble::frame_data(
     ~ evento, ~ regex,
-    'requerimento_audiencia_publica', '^apresentação do requerimento.*requer a realização d.* audiências? públicas?',
-    'aprovacao_audiencia_publica', '^aprovado requerimento.*requer a realização d.* audiências? públicas?',
-    'aprovacao_parecer', 'aprovado.*parecer',
-    'requerimento_redistribuicao', '^apresentação do requerimento de redistribuição',
-    'requerimento_apensacao', '^apresentação do requerimento de apensação',
-    'requerimento_urgencia', '^apresentação do requerimento de urgência',
-    'requerimento_prorrogacao', '^apresentação do requerimento de prorrogação de prazo de comissão temporária')
+    'requerimento_audiencia_publica', c$requerimento_audiencia_publica,
+    'aprovacao_audiencia_publica', c$aprovacao_audiencia_publica,
+    'aprovacao_parecer', c$aprovacao_parecer,
+    'requerimento_redistribuicao', $requerimento_redistribuicao,
+    'requerimento_apensacao', c$requerimento_apensacao,
+    'requerimento_urgencia', c$requerimento_urgencia,
+    'requerimento_prorrogacao', c$requerimento_prorrogacao)
 
-  special_comissao <- c('120')
+  special_comissao <- camara_codes$eventos$code$comissao_especial
 
   tramitacao_df %>%
     dplyr::mutate(despacho_lower = tolower(despacho)) %>%
@@ -531,10 +461,10 @@ extract_tramitacao <- function(prop_id){
 # Extrai a situação das comissões (ex. Recebimento, Análise do Relator, Discussão e votação...)
 # Necessita do dataframe da tramitação
 extract_situacao_comissao <- function(df) {
-  recebimento <- c(500)
-  analise_do_relator <- c(320)
-  discussao_votacao <- c(322, 240)
-  encaminhamento <- c(180)
+  recebimento <- camara_codes$situacao_comissao$code$recebimento
+  analise_do_relator <- camara_codes$situacao_comissao$code$analise_do_relator
+  discussao_votacao <- camara_codes$situacao_comissao$code$discussao_votacao
+  encaminhamento <- camara_codes$situacao_comissao$code$encaminhamento
 
   reg <-
     unlist(get_comissoes_camara()) %>%
