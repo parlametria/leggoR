@@ -225,7 +225,12 @@ extract_events_in_camara <- function(tramitacao_df) {
     dplyr::mutate(evento = dplyr::case_when(
       id_tipo_tramitacao == special_comissao ~ 'criacao_comissao_temporaria',
       id_tipo_tramitacao == designado_relator ~ 'designado_relator',
-      id_tipo_tramitacao == parecer ~ 'parecer',
+      id_tipo_tramitacao == parecer ~ dplyr::case_when(
+                                                       str_detect(despacho, regex('substitutivo', ignore_case = TRUE)) ~ 'parecer_pela_aprovacao_com_substitutivo',
+                                                       str_detect(despacho, regex('rejei..o', ignore_case = TRUE)) ~ 'parecer_pela_rejeicao',
+                                                       str_detect(despacho, regex('aprovacao', ignore_case = TRUE)) ~ 'parecer_pela_aprovacao',
+                                                       TRUE ~ 'parecer'
+                                                      ),
       TRUE ~ evento))
 }
 
