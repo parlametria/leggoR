@@ -33,24 +33,28 @@ process_proposicao <- function(bill_id){
             "aprovacao_parecer", 89,
             "aprovacao_substitutivo", 113,
             "pedido_vista", 90,
-            "aprovacao_projeto", 25,
-            "designado_relatoria", 91)
-
+            "aprovacao_projeto", 25)
 
   bill_passage <- extract_evento_Senado(bill_passage, important_phases)
   bill_passage <- extract_locais(bill_passage)
   bill_passage %>%
     write_csv(paste0(here::here("data/Senado/"), bill_id, "-fases-tramitacao-senado.csv"))
-
+  
+  relatoria <- fetch_relatorias(bill_id) %>%
+    select(data_designacao, sigla_comissao) %>%
+    rename(local=sigla_comissao) %>%
+    rename(data_tramitacao=data_designacao) %>%
+    mutate(fase = "Análise do relator", evento = "designacao_relatoria")
+  
   bill_passage_visualization <- 
     bill_passage %>%
-    select(data_tramitacao, local, fase, evento)
+    select(data_tramitacao, local, fase, evento) %>%
+    rbind(relatoria)
 
   # Print evento freq table
   bill_passage_visualization %>% select(evento) %>% group_by(evento) %>%
     filter(!is.na(evento)) %>% summarise(frequência = n()) %>%
     arrange(-frequência)
-
 
   bill_passage_visualization %>%
     write_csv(paste0(here::here("data/Senado/"), bill_id, "-visualizacao-tramitacao-senado.csv"))

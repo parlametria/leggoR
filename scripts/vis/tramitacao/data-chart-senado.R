@@ -18,14 +18,14 @@ format_local <- function(df) {
     filter(time_interval > 0) %>%
     rename(label=local) %>%
     mutate(group = "Local")
-
+  
   df %>%
     mutate(color = case_when((grepl('^S', label) | 
-                               label == 'ATA-PLEN') ~ "#e2e3d9",
-                               label == 'PLEN' ~ "#5496cf",
-                               label == 'CCJ' ~ "#ffffcc",
-                               label == 'CAE' ~ "#a1dab4",
-                               label == 'CDR' ~ "#225ea8"))
+                                label == 'ATA-PLEN') ~ "#e2e3d9",
+                             label == 'PLEN' ~ "#5496cf",
+                             label == 'CCJ' ~ "#ffffcc",
+                             label == 'CAE' ~ "#a1dab4",
+                             label == 'CDR' ~ "#225ea8"))
 }
 
 # Create data frame to display phases inline
@@ -53,10 +53,11 @@ format_fase <- function(df) {
     mutate(group = "Fase")
   
   df %>% 
-    mutate(color = case_when(label == "Recebimento" ~ "#d7191c",
-                           label == "Análise do relator" ~ "#fdae61",
-                           label == "Discussão e votação" ~ "#ffffbf",
-                           label == "Encaminhamento" ~ "#abd9e9"))
+    mutate(color = case_when(label == "iniciativa" ~ "#7fc97f",
+                             label == "relatoria" ~ "#fdc086",
+                             label == "discussao_deliberacao" ~ "#beaed4",
+                             label == "virada_de_casa" ~ "#ffff99",
+                             label == "final" ~ "#f4fa58"))
 }
 
 #Create data to display events inlines
@@ -65,25 +66,21 @@ format_eventos <- function(df) {
     # Improve the phases names and convert data_tramitacao to Date
     df %>%
     mutate(
-      data_tramitacao = as.Date(data_tramitacao),
-      evento = as.character(evento)
+      start = as.Date(data_tramitacao),
+      end = as.Date(data_tramitacao),
+      label = as.character(evento)
     )
   
   df <- 
     df %>%
-    mutate(z = cumsum(evento != lag(evento, default='NULL')),
-           end_data = lead(data_tramitacao)) %>%
-    group_by(evento, sequence = data.table::rleid(z)) %>%
-    summarize(start = min(data_tramitacao),
-              end = start,
-              time_interval = end - start) %>%
-    ungroup() %>%
-    arrange(sequence) %>%
-    select(-sequence) %>%
-    filter(!is.na(evento)) %>%
-    rename(label=evento) %>%
-    mutate(group = "Evento", color = "#a9a9a9")
+    filter(!is.na(label)) %>%
+    select(-local) %>%
+    select(-evento) %>%
+    select(-fase) %>%
+    select(-data_tramitacao) %>%
+    mutate(group = "Evento", color = "#a9a9a9", time_interval = 0)
   
+  df
 }
 
 #Create data to display global phase inlines
@@ -103,7 +100,7 @@ format_fase_global <- function(bill_id, data_tramitacao) {
   
   if(nrow(virada_de_casa) == 0) {
     frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
-                casa_origem, data_prop$data_apresentacao, end[1, ][[1]], 0, 'global', "#f37340")
+               casa_origem, data_prop$data_apresentacao, end[1, ][[1]], 0, 'global', "#f37340")
   }else {
     casa_atual <- if_else(casa_origem == "Tramitação - Casa de Origem", "Tramitação - Casa Revisora", "Tramitação - Casa de Origem")
     frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
@@ -115,6 +112,8 @@ format_fase_global <- function(bill_id, data_tramitacao) {
 build_vis_csv <- function(bill_id) {
   data_tramitacao <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-visualizacao-tramitacao-senado.csv"))
   
-  rbind(format_local(data_tramitacao), format_fase(data_tramitacao), format_eventos(data_tramitacao), format_fase_global(bill_id, data_tramitacao)) %>%
+  rbind(format_local(data_tramitacao), format_fase(data_tramitacao),
+        format_eventos(data_tramitacao), 
+        format_fase_global(bill_id, data_tramitacao)) %>%
     write_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))
 }
