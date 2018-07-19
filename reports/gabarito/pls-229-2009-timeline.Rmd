@@ -13,9 +13,12 @@ library(dplyr)
 
 pl_229_2009_data_casa_origem <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,
-  'Apresentação - Casa de Origem', 'Global', '2009-05-28', '2009-05-29', '#c8e6c9',
-  'Comissões - Casa de Origem', 'Global', '2009-05-29', '2016-05-17', '#fb8c00',
-  'Plenário - Casa de Origem',  'Global', '2016-05-18', '2016-06-16', '#214523')
+  'Apresentação - Origem (Senado)', 'Global', '2009-05-28', '2009-05-29', '#c8e6c9',
+  'Comissões - Origem (Senado)', 'Global', '2009-05-29', '2016-05-17', '#fb8c00',
+  'Plenário - Origem (Senado)',  'Global', '2016-05-18', '2016-06-16', '#214523',
+  'Apresentação - Revisão (Câmara)', 'Global', '2016-06-21', '2016-06-28', '#f4e1c9',
+  'Comissões - Revisão (Câmara)', 'Global', '2016-06-28', '2017-06-07', '#2B488a'
+  )
 
 pl_229_2009_data_comissoes <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,
@@ -24,7 +27,8 @@ pl_229_2009_data_comissoes <- frame_data(
   'CJC', 'Comissões', '2010-05-20', '2010-06-24', '#d6952a',
   'CAE', 'Comissões', '2010-06-24', '2013-05-21', '#f37340',
   'CDR', 'Comissões', '2013-05-27', '2015-04-27', '#b1b03a',
-  'CAE', 'Comissões', '2015-04-28', '2016-05-17', '#f37340')
+  'CAE', 'Comissões', '2015-04-28', '2016-05-17', '#f37340',
+  'CFT', 'Comissões', '2016-06-28', '2016-11-18', '#A37340')
 
 pl_229_2009_data_comissao <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,
@@ -61,7 +65,11 @@ pl_229_2009_data_comissao <- frame_data(
   # CAE
   'Receb. CAE', 'Comissão', '2015-04-28', '2015-05-03','#a6cee3',
   'Análise do Relator CAE', 'Comissão', '2015-05-04', '2015-07-01','#7ac974',
-  'Discussão e Votação CAE', 'Comissão', '2015-07-02', '2016-05-17','#a561a2'
+  'Discussão e Votação CAE', 'Comissão', '2015-07-02', '2016-05-17','#a561a2',
+  
+  # CFT
+  'Receb. CFT', 'Comissão', '2016-06-28', '2016-07-06','#F6cee3',
+  'Análise do Relator CFT', 'Comissão', '2016-07-06', '2016-11-18','#7ac974'
 )
 
 
@@ -97,7 +105,8 @@ pl_229_2009_data_eventos <-  frame_data (
   'Pedido de vista coletivo concedido', 'Evento', '2016-03-08', '2016-03-08','#b1b03a',
   'Parecer Aprovando Substitutivo', 'Evento', '2016-05-17', '2016-05-17','#a561a2',
   'Aprovado Substitutivo - Emenda n3-CAE', 'Evento', '2016-06-07', '2016-06-07','#a561a2',
-  'Remetido À Câmara dos Deputados', 'Evento', '2016-08-21', '2016-08-21', '#938ecc'
+  'Remetido À Câmara dos Deputados', 'Evento', '2016-08-21', '2016-08-21', '#938ecc',
+  'Criação de Comissão Especial (Por Mérito)', 'Evento', '2016-11-17', '2016-11-17', '#758abb',
 )
 
 pl_229_2009_data_general <- bind_rows(
