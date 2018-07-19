@@ -1,8 +1,16 @@
-label,start,end,group,color,time_interval
-criacao_comissao_temporaria,2017-11-22T00:00:00Z,2017-11-22T00:00:00Z,Evento,#a9a9a9,NA
-requerimento_urgencia,2017-12-05T23:32:00Z,2017-12-05T23:32:00Z,Evento,#a9a9a9,NA
-requerimento_urgencia,2018-03-27T17:36:00Z,2018-03-27T17:36:00Z,Evento,#a9a9a9,NA
-CD-MESA-PLEN,2017-11-08T16:32:00Z,2017-11-09T00:00:00Z,Local,NA,NA
-SECAP(SGM),2017-11-09T00:00:00Z,2018-04-18T16:33:00Z,Local,NA,NA
-Plenário,2018-04-18T16:33:00Z,2018-07-18T17:35:06Z,Local,#5496cf,NA
-Tramitação - Casa Revisora,2017-11-08T16:32:00Z,2018-07-18T17:35:07Z,global,#f37340,0
+label,start,end,time_interval,group,color
+Tramitação - Casa Revisora (Senado),2017-11-08T16:32:00Z,2018-07-19T13:35:29Z,0,Global,#f37340
+Apresentação,2017-11-08T00:00:00Z,2018-04-18T16:33:00Z,NA,Casa,#d6952a
+Plenário,2018-04-18T16:33:00Z,2018-07-19T13:35:29Z,NA,Casa,#5496cf
+CD-MESA-PLEN,2017-11-08T16:32:00Z,2018-04-18T16:33:00Z,NA,Comissão,NA
+Plenário,2018-04-18T16:33:00Z,2018-07-19T13:35:29Z,NA,Comissão,#5496cf
+criacao_comissao_temporaria,2017-11-22T00:00:00Z,2017-11-22T00:00:00Z,NA,Evento,#a9a9a9
+requerimento_urgencia,2017-12-05T23:32:00Z,2017-12-05T23:32:00Z,NA,Evento,#a9a9a9
+requerimento_urgencia,2018-03-27T17:36:00Z,2018-03-27T17:36:00Z,NA,Evento,#a9a9a9
+designado_relator,2018-04-04T16:31:00Z,2018-04-04T16:31:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2018-04-04T16:31:00Z,2018-04-04T16:31:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2018-04-11T00:00:00Z,2018-04-11T00:00:00Z,NA,Evento,#a9a9a9
+parecer_pela_rejeicao,2018-04-11T00:00:00Z,2018-04-11T00:00:00Z,NA,Evento,#a9a9a9
+designado_relator,2018-04-11T17:52:00Z,2018-04-11T17:52:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2018-04-18T16:33:00Z,2018-04-18T16:33:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2018-05-09T00:00:00Z,2018-05-09T00:00:00Z,NA,Evento,#a9a9a9

@@ -33,7 +33,7 @@ detect_fase <- function(element, set) {
 fetch_proposicao <- function(id, casa) {
   if (tolower(casa) == 'camara') {
     fetch_proposicao_camara(id)
-  }else {
+  } else {
     fetch_proposicao_senado(id)
   }
 }
@@ -48,11 +48,12 @@ fetch_proposicao <- function(id, casa) {
 #' @export
 fetch_proposicao_senado <- function(proposicao_id){
   url_base_proposicao <- "http://legis.senado.leg.br/dadosabertos/materia/"
+  da_url <- paste0(url_base_proposicao, proposicao_id)
 
-  url <- paste0(url_base_proposicao, proposicao_id)
-  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
-  proposicao_data <-
-    json_proposicao$DetalheMateria$Materia
+  page_url_senado <- "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
+
+  json_proposicao <- jsonlite::fromJSON(da_url, flatten = T)
+  proposicao_data <- json_proposicao$DetalheMateria$Materia
   proposicao_ids <-
     proposicao_data$IdentificacaoMateria %>%
     tibble::as.tibble()
@@ -84,6 +85,7 @@ fetch_proposicao_senado <- function(proposicao_id){
     tibble::add_column(
       !!! proposicao_ids, !!! proposicao_author, !!! proposicao_specific_assunto,
       !!! proposicao_general_assunto, !!! proposicao_source,
+      page_url = paste0(page_url_senado, proposicao_id),
       proposicoes_relacionadas = paste(relacionadas, collapse=' '),
       proposicoes_apensadas = paste(anexadas, collapse=' '))
 

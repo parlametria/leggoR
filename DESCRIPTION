@@ -22,7 +22,9 @@ Imports: magrittr,
     rcongresso,
     fuzzyjoin,
     lubridate,
-    rjson
+    vistime,
+    covr,
+    rjson,
 Suggests: testthat,
     knitr
 VignetteBuilder: knitr

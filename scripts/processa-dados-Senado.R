@@ -27,6 +27,12 @@ process_proposicao <- function(bill_id){
   bill_passage$situacao_descricao_situacao <- 
     to_underscore(bill_passage$situacao_descricao_situacao) %>% 
     str_replace_all("\\s+","_")
+  
+  bill_passage <- 
+    extract_fase_casa_Senado(bill_passage, phase_one) %>% 
+    arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    fill(casa) %>%
+    filter(!is.na(casa))
 
   important_phases <- frame_data(~ evento, ~ situacao_codigo_situacao,
             "aprovacao_audiencia_publica", 110,
@@ -43,7 +49,7 @@ process_proposicao <- function(bill_id){
 
   bill_passage_visualization <- 
     bill_passage %>%
-    select(data_tramitacao, local, fase, evento)
+    select(data_tramitacao, local, fase, evento, casa)
 
   # Print evento freq table
   bill_passage_visualization %>% select(evento) %>% group_by(evento) %>%

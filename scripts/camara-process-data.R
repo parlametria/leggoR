@@ -1,9 +1,7 @@
 args = commandArgs(trailingOnly=TRUE)
 library(rcongresso)
 library(tidyverse)
-library(dplyr)
 library(magrittr)
-library(stringr)
 library(lubridate)
 library(fuzzyjoin)
 source(here::here("R/camara-lib.R"))
@@ -49,6 +47,7 @@ process_proposicao <- function(pl_id) {
     fill(fase) %>%
     extract_events_in_camara() %>%
     extract_locais_in_camara() %>%
+    extract_fase_casa_in_camara() %>%
     refact_date() %>%
     sort_by_date() %>%
     readr::write_csv(csv_path)

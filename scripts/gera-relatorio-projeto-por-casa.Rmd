@@ -1,9 +1,11 @@
 ---
+title: Relatório
 output: html_document
 params:
   id: 46249
   casa: 'camara'
 ---
+
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
 source(here::here('scripts/vis/tramitacao/extract-informations.R'))
 source(here::here('scripts/vis/tramitacao/build-chart.R'))
@@ -13,33 +15,20 @@ library(rcongresso)
 data <- extract_informations_from_single_house(params$id, params$casa)
 chart <- create_chart(params$id, params$casa)
 ```
-###`r toString(paste0(data$nome))`
 
-### Informações Gerais
+# `r data$nome`
 
-#### Autor:
- `r toString(data$autor)`
-
-#### Casa de Origem:
- `r toString(data$casa_origem)`
-
-#### Data de Apresentação:
- `r toString(data$data_apresentacao)`
-
-#### Ementa:
-`r toString(data$ementa)`
-
-#### Status Atual:
-`r toString(data$status_atual)`
-
-#### Regime de Apreciação
-`r toString(data$apreciacao)`
-
-#### Regime de Tramitação
-`r toString(data$regime)`
-
-#### Último Relator:
-`r toString(data$ultimo_relator)`
+## Informações Gerais
+- **Autor:** `r toString(data$autor)`
+- **Casa de Origem:** `r toString(data$casa_origem)`
+- **Data de Apresentação:** `r toString(data$data_apresentacao)`
+- **Ementa:** `r toString(data$ementa)`
+- **Explicação da Ementa:** ??????
+- **Status Atual:** `r toString(data$status_atual)`
+- **Forma de Apreciação:** `r toString(data$apreciacao)`
+- **Regime de Tramitação:** `r toString(data$regime)`
+- **Último Relator:** `r toString(data$ultimo_relator)`
+- [Link no site oficial](`r data$page_url`)
 
 #### Tramitação na casa `r toString(data$casa)`
 ```{r echo=FALSE, message=FALSE}
