@@ -13,9 +13,9 @@ library(dplyr)
 
 pl_229_2009_data_casa_origem <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,
-  'Apresentação - Casa de Origem', 'Casa Origem', '2009-05-28', '2009-05-29', '#c8e6c9',
-  'Comissões- Casa de Origem', 'Casa Origem', '2009-05-29', '2016-05-17', '#fb8c00',
-  'Plenário - Casa de Origem',  'Casa Origem', '2016-05-18', '2016-06-16', '#214523')
+  'Apresentação - Casa de Origem', 'Global', '2009-05-28', '2009-05-29', '#c8e6c9',
+  'Comissões - Casa de Origem', 'Global', '2009-05-29', '2016-05-17', '#fb8c00',
+  'Plenário - Casa de Origem',  'Global', '2016-05-18', '2016-06-16', '#214523')
 
 pl_229_2009_data_comissoes <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,
@@ -28,36 +28,36 @@ pl_229_2009_data_comissoes <- frame_data(
 
 pl_229_2009_data_comissao <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,
-  
+
   # CJC
   'Receb. CJC', 'Comissão', '2009-05-29', '2009-07-14','#a6cee3',
   'Análise do Relator CJC', 'Comissão', '2009-07-15', '2009-09-11','#7ac974',
   'Receb. CJC', 'Comissão', '2009-09-23', '2009-09-24','#a6cee3',
   'Análise do Relator CJC', 'Comissão', '2009-09-24', '2009-11-13','#7ac974',
   'Discussão e Votação CJC', 'Comissão', '2009-11-23', '2009-12-03','#a561a2',
-  
+
   # CAE
   'Receb. CAE', 'Comissão', '2009-12-03', '2009-12-04','#a6cee3',
   'Análise do Relator CAE', 'Comissão', '2009-12-04', '2010-03-01','#7ac974',
-  
+
   # CJC
   'Receb. CJC', 'Comissão', '2010-05-20', '2010-05-24','#a6cee3',
   'Análise do Relator CJC', 'Comissão', '2010-05-25', '2010-06-14','#7ac974',
   'Discussão e Votação CJC', 'Comissão', '2010-06-15', '2010-06-24','#a561a2',
-  
+
   # CAE
   'Receb. CAE', 'Comissão', '2010-06-24', '2010-07-07','#a6cee3',
   'Análise do Relator CAE', 'Comissão', '2010-07-08', '2010-12-20','#7ac974',
   'Discussão e Votação CAE', 'Comissão', '2010-12-21', '2010-12-22','#a561a2',
-  
+
   'Receb. CAE', 'Comissão', '2011-01-20', '2011-03-03','#a6cee3',
   'Análise do Relator CAE', 'Comissão', '2011-03-04', '2012-06-17','#7ac974',
   'Discussão e Votação CAE', 'Comissão', '2012-06-18', '2013-05-21','#a561a2',
-  
+
   # CDR
   'Receb. CDR', 'Comissão', '2013-05-27', '2013-06-12', '#a6cee3',
   'Análise do Relator CDR', 'Comissão', '2013-06-13', '2015-04-27','#7ac974',
-  
+
   # CAE
   'Receb. CAE', 'Comissão', '2015-04-28', '2015-05-03','#a6cee3',
   'Análise do Relator CAE', 'Comissão', '2015-05-04', '2015-07-01','#7ac974',
@@ -73,7 +73,7 @@ pl_229_2009_data_eventos <-  frame_data (
   'Emenda n2-CAE', 'Evento', '2016-05-17', '2016-05-17','#87c425',
   'Emenda n3-CAE', 'Evento', '2016-05-18', '2016-05-18','#87c425',
   'Fim para o prazo de emendas', 'Evento', '2016-05-27', '2016-05-27','#87c465',
-  'Designado relator (CCJ)', 'Evento', '2009-07-05', '2009-07-05','#87c465',
+  'Designado relator (CCJ)', 'Evento', '2009-07-15', '2009-07-15','#87c465',
   'Requerimento Tramitação em Conjunto aprovado', 'Evento','2009-09-22', '2009-09-22', '#938ecc',
   'Parecer Aprovando Substitutivo', 'Evento', '2009-11-25', '2009-11-25','#a561a2',
   'Designado relator (CAE)', 'Evento', '2009-12-03', '2009-12-03','#87c465',
@@ -107,5 +107,3 @@ pl_229_2009_data_general <- bind_rows(
   pl_229_2009_data_eventos)
 vistime(pl_229_2009_data_general)
 ```
-
-
