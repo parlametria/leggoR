@@ -1,0 +1,109 @@
+---
+title: "PLS 229/2009 - Lei da Qualidade Fiscal"
+output: html_document
+---
+
+[Link Oficial](https://www25.senado.leg.br/web/atividade/materias/-/materia/91341)
+
+## Resumo da Tramitação
+
+```{r, echo=FALSE, message=FALSE, fig.width=10, fig.height=10}
+library(vistime)
+library(dplyr)
+
+pl_229_2009_data_casa_origem <- frame_data(
+  ~ event, ~ group, ~ start, ~ end, ~ color,
+  'Apresentação - Casa de Origem', 'Global', '2009-05-28', '2009-05-29', '#c8e6c9',
+  'Comissões - Casa de Origem', 'Global', '2009-05-29', '2016-05-17', '#fb8c00',
+  'Plenário - Casa de Origem',  'Global', '2016-05-18', '2016-06-16', '#214523')
+
+pl_229_2009_data_comissoes <- frame_data(
+  ~ event, ~ group, ~ start, ~ end, ~ color,
+  'CJC', 'Comissões', '2009-05-29', '2009-12-03', '#d6952a',
+  'CAE', 'Comissões', '2009-12-03', '2010-05-19', '#f37340',
+  'CJC', 'Comissões', '2010-05-20', '2010-06-24', '#d6952a',
+  'CAE', 'Comissões', '2010-06-24', '2013-05-21', '#f37340',
+  'CDR', 'Comissões', '2013-05-27', '2015-04-27', '#b1b03a',
+  'CAE', 'Comissões', '2015-04-28', '2016-05-17', '#f37340')
+
+pl_229_2009_data_comissao <- frame_data(
+  ~ event, ~ group, ~ start, ~ end, ~ color,
+
+  # CJC
+  'Receb. CJC', 'Comissão', '2009-05-29', '2009-07-14','#a6cee3',
+  'Análise do Relator CJC', 'Comissão', '2009-07-15', '2009-09-22','#7ac974',
+  'Receb. CJC', 'Comissão', '2009-09-23', '2009-09-24','#a6cee3',
+  'Análise do Relator CJC', 'Comissão', '2009-09-24', '2009-11-13','#7ac974',
+  'Discussão e Votação CJC', 'Comissão', '2009-11-13', '2009-12-03','#a561a2',
+
+  # CAE
+  'Receb. CAE', 'Comissão', '2009-12-03', '2009-12-04','#a6cee3',
+  'Análise do Relator CAE', 'Comissão', '2009-12-04', '2010-05-19','#7ac974',
+
+  # CJC
+  'Receb. CJC', 'Comissão', '2010-05-20', '2010-05-24','#a6cee3',
+  'Análise do Relator CJC', 'Comissão', '2010-05-25', '2010-06-14','#7ac974',
+  'Discussão e Votação CJC', 'Comissão', '2010-06-15', '2010-06-24','#a561a2',
+
+  # CAE
+  'Receb. CAE', 'Comissão', '2010-06-24', '2010-07-07','#a6cee3',
+  'Análise do Relator CAE', 'Comissão', '2010-07-08', '2010-12-20','#7ac974',
+  'Discussão e Votação CAE', 'Comissão', '2010-12-21', '2011-01-20','#a561a2',
+
+  'Receb. CAE', 'Comissão', '2011-01-20', '2011-03-03','#a6cee3',
+  'Análise do Relator CAE', 'Comissão', '2011-03-04', '2012-06-17','#7ac974',
+  'Discussão e Votação CAE', 'Comissão', '2012-06-18', '2013-05-21','#a561a2',
+
+  # CDR
+  'Receb. CDR', 'Comissão', '2013-05-27', '2013-06-12', '#a6cee3',
+  'Análise do Relator CDR', 'Comissão', '2013-06-13', '2015-04-27','#7ac974',
+
+  # CAE
+  'Receb. CAE', 'Comissão', '2015-04-28', '2015-05-03','#a6cee3',
+  'Análise do Relator CAE', 'Comissão', '2015-05-04', '2015-07-01','#7ac974',
+  'Discussão e Votação CAE', 'Comissão', '2015-07-02', '2016-05-17','#a561a2'
+)
+
+
+pl_229_2009_data_eventos <-  frame_data (
+  ~ event, ~ group, ~ start, ~ end, ~ color,
+  'Apresentação do PLS', 'Evento', '2009-05-28', '2009-05-28', '#938ecc',
+  'Início para o prazo de emendas', 'Evento', '2016-05-20', '2016-05-20','#87c465',
+  'Emenda n1-CCJ', 'Evento', '2009-11-25', '2009-11-25','#87c425',
+  'Emenda n2-CAE', 'Evento', '2016-05-17', '2016-05-17','#87c425',
+  'Emenda n3-CAE', 'Evento', '2016-05-18', '2016-05-18','#87c425',
+  'Fim para o prazo de emendas', 'Evento', '2016-05-27', '2016-05-27','#87c465',
+  'Designado relator (CCJ)', 'Evento', '2009-07-15', '2009-07-15','#87c465',
+  'Requerimento Tramitação em Conjunto aprovado', 'Evento','2009-09-22', '2009-09-22', '#938ecc',
+  'Parecer Aprovando Substitutivo', 'Evento', '2009-11-25', '2009-11-25','#a561a2',
+  'Designado relator (CAE)', 'Evento', '2009-12-03', '2009-12-03','#87c465',
+  'Requerimento Aprovando Audiência Pública', 'Evento', '2010-03-02','2010-03-02', '#938ecc',
+  'Requerimento Tramitação em Conjunto aprovado', 'Evento','2010-05-18', '2010-05-18', '#938ecc',
+  'Requerimento Tramitação em Conjunto aprovado', 'Evento','2010-05-19', '2010-05-19', '#938ecc',
+  'Parecer Aprovando Substitutivo', 'Evento', '2010-06-23', '2010-06-23','#a561a2',
+  'Designado relator (CAE)', 'Evento', '2010-07-08', '2010-07-08','#87c465',
+  'Designado relator (CAE)', 'Evento', '2011-03-04', '2011-03-04','#87c465',
+  'Requerimento Aprovando Audiência Pública', 'Evento', '2012-07-10','2012-07-10', '#938ecc',
+  'Requerimento Tramitação em Conjunto aprovado', 'Evento','2013-04-17', '2013-04-17', '#938ecc',
+  'Requerimento Desapensação aprovado', 'Evento','2013-05-22', '2013-05-22', '#989faa',
+  'Requerimento Desapensação aprovado', 'Evento','2013-05-22', '2013-05-22', '#989faa',
+  'Requerimento Retirada de PLS possivelmente apensada aprovado', 'Evento','2013-05-22', '2013-05-22', '#989faa',
+  'Designado relator (CDR)', 'Evento', '2013-06-13', '2013-06-13','#87c465',
+  'Requerimento Tramitação Autônoma de PLS apensada aprovado', 'Evento','2013-08-07', '2013-08-07', '#989faa',
+  'Requerimento Desapensação aprovado', 'Evento','2014-09-02', '2014-09-02', '#989faa',
+  'Requerimento Desapensação aprovado', 'Evento','2015-04-28', '2015-04-28', '#989faa',
+  'Designado relator (CAE)', 'Evento', '2015-05-04', '2015-05-04','#87c465',
+  'Requerimento Aprovando Audiência Pública', 'Evento', '2015-08-25','2015-08-25', '#938ecc',
+  'Pedido de vista coletivo concedido', 'Evento', '2016-03-08', '2016-03-08','#b1b03a',
+  'Parecer Aprovando Substitutivo', 'Evento', '2016-05-17', '2016-05-17','#a561a2',
+  'Aprovado Substitutivo - Emenda n3-CAE', 'Evento', '2016-06-07', '2016-06-07','#a561a2',
+  'Remetido À Câmara dos Deputados', 'Evento', '2016-08-21', '2016-08-21', '#938ecc'
+)
+
+pl_229_2009_data_general <- bind_rows(
+  pl_229_2009_data_casa_origem,
+  pl_229_2009_data_comissoes,
+  pl_229_2009_data_comissao,
+  pl_229_2009_data_eventos)
+vistime(pl_229_2009_data_general)
+```
