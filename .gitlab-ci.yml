@@ -14,7 +14,8 @@ before_script:
   - apt-get install -y --no-install-recommends ${APT_PKGS}
   - apt-get install -y --no-install-recommends qpdf pandoc pandoc-citeproc
   - export PATH="/usr/local/lib/R/site-library/littler/examples/:${PATH}"
-  - echo "options(Ncpus = $(nproc --all))\n.libPaths(\"$PWD/cache\")" >> /usr/local/lib/R/etc/Rprofile.site
+  - echo "options(Ncpus = $(nproc --all))" >> /usr/local/lib/R/etc/Rprofile.site
+  - echo ".libPaths(\"$PWD/cache\")" >> /usr/local/lib/R/etc/Rprofile.site
   - install2.r devtools
   - r -e 'devtools::install_dev_deps()'
 
