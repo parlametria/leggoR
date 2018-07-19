@@ -3,7 +3,6 @@ library(here)
 
 # Create data frame to display local inline
 format_local <- function(df) {
-  
   df <-
     df %>%
     mutate(z = cumsum(local != lag(local, default='NULL')), 
@@ -87,33 +86,28 @@ format_eventos <- function(df) {
 }
 
 #Create data to display global phase inlines
-format_fase_global <- function(bill_id, data_tramitacao) {
+create_fase_global <- function(data_tramitacao, bill_id) {
   data_prop <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-proposicao-senado.csv"))
-  casa_origem <- if_else(data_prop$nome_casa_origem == "Senado Federal", "Tramitação - Casa de Origem (Senado)", "Tramitação - Casa Revisora (Câmara)")
-  end <- 
-    data_tramitacao %>%
-    arrange(desc(data_tramitacao)) %>%
-    select(data_tramitacao)
+  casa_origem <- if_else(data_prop$nome_casa_origem == "Senado Federal", " - Casa de Origem (Senado)", " - Casa Revisora (Câmara)")
   
   virada_de_casa <- 
     data_tramitacao %>%
-    filter(fase == "virada_de_casa") %>%
+    filter(fase == "Virada de Casa") %>%
     arrange(data_tramitacao) %>%
     select(data_tramitacao)
   
   if(nrow(virada_de_casa) == 0) {
-    frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
-                casa_origem, data_prop$data_apresentacao, end[1, ][[1]], 0, 'Global', "#f37340")
+    data_tramitacao %>%
+      mutate(casa = paste0(casa, casa_origem))
   }else {
-    casa_atual <- if_else(casa_origem == "Tramitação - Casa de Origem", "Tramitação - Casa Revisora", "Tramitação - Casa de Origem")
-    frame_data(~ label, ~ start, ~ end, ~ time_interval, ~ group,  ~ color, 
-               casa_origem, data_prop$data_apresentacao, virada_de_casa[1, ][[1]], 0, 'Global', "#f37340",
-               casa_atual, virada_de_casa[1, ][[1]], end[1, ][[1]], 0, 'Global', "#546452")
+    casa_atual <- if_else(casa_origem == " - Casa de Origem (Senado)", " - Casa Revisora (Câmara)", " - Casa de Origem (Senado)")
+    data_tramitacao %>%
+      mutate(casa = if_else(data_tramitacao < virada_de_casa[1, ][[1]], paste0(casa, casa_origem), paste0(casa, casa_atual)))
   }
 }
 
 #Create data to display casa inlines
-format_fase_casa <- function(df) {
+format_fase_global <- function(df) {
   df <-
     # Improve the phases names and convert data_tramitacao to Date
     df %>%
@@ -133,21 +127,22 @@ format_fase_casa <- function(df) {
     select(-sequence) %>%
     filter(!is.na(casa)) %>%
     rename(label=casa) %>%
-    mutate(group = "Casa",
-           color = case_when(label == "Plenário" ~ "#5496cf",
-                             label == "Comissões" ~ "#938ecc",
-                             label == "Apresentação" ~ "#d6952a"))
+    mutate(group = "Global",
+           color = case_when(stringr::str_detect(label, "Plenário") ~ "#5496cf",
+                             stringr::str_detect(label, "Comissões") ~ "#938ecc",
+                             stringr::str_detect(label, "Apresentação") ~ "#d6952a"))
   
 }
 
 
 build_vis_csv <- function(bill_id) {
-  data_tramitacao <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-visualizacao-tramitacao-senado.csv"))
-  
-  rbind(format_fase_global(bill_id, data_tramitacao), 
-        format_fase_casa(data_tramitacao),
-        format_local(data_tramitacao), 
-        format_fase(data_tramitacao),
-        format_eventos(data_tramitacao)) %>%
+  data_tramitacao <- 
+    read_csv(paste0(here::here("data/Senado/"), bill_id,"-visualizacao-tramitacao-senado.csv")) %>%
+    create_fase_global(bill_id)
+  df <- 
+    rbind(format_fase_global(data_tramitacao),
+              format_local(data_tramitacao), 
+              format_fase(data_tramitacao),
+              format_eventos(data_tramitacao))  %>%
     write_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))
 }
