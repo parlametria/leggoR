@@ -1,29 +1,44 @@
-label,start,end,group,color,time_interval
-aprovacao_parecer,2008-07-02T10:00:00Z,2008-07-02T10:00:00Z,Evento,#a9a9a9,NA
-aprovacao_parecer,2009-08-05T14:00:00Z,2009-08-05T14:00:00Z,Evento,#a9a9a9,NA
-CD-MESA-PLEN,2007-03-20T16:13:00Z,2007-03-20T17:18:00Z,Local,NA,NA
-SEPRO,2007-03-20T17:18:00Z,2007-03-28T14:36:00Z,Local,NA,NA
-SECAP(SGM),2007-03-28T14:36:00Z,2007-03-29T00:00:00Z,Local,NA,NA
-CDHM,2007-03-29T00:00:00Z,2007-11-19T14:25:00Z,Local,NA,NA
-CAPADR,2007-11-19T14:25:00Z,2008-07-03T10:10:00Z,Local,NA,NA
-CDHM,2008-07-03T10:10:00Z,2009-08-07T16:16:00Z,Local,NA,NA
-CCJC,2009-08-07T16:16:00Z,2018-07-18T17:35:01Z,Local,NA,NA
-Recebimento,2007-03-29T00:00:00Z,2007-04-11T00:00:00Z,Situação na comissão,#5496cf,NA
-Análise do relator,2007-04-11T00:00:00Z,2007-08-27T19:02:00Z,Situação na comissão,#ff9c37,NA
-Discussão e votação,2007-08-27T19:02:00Z,2007-11-06T17:29:00Z,Situação na comissão,#8bca42,NA
-Encaminhamento,2007-11-06T17:29:00Z,2007-11-16T09:59:00Z,Situação na comissão,#ea81b1,NA
-Recebimento,2007-11-16T09:59:00Z,2007-11-16T10:00:00Z,Situação na comissão,#5496cf,NA
-Encaminhamento,2007-11-16T10:00:00Z,2007-11-19T14:25:00Z,Situação na comissão,#ea81b1,NA
-Recebimento,2007-11-19T14:25:00Z,2007-11-28T00:00:00Z,Situação na comissão,#5496cf,NA
-Análise do relator,2007-11-28T00:00:00Z,2008-03-27T15:10:00Z,Situação na comissão,#ff9c37,NA
-Discussão e votação,2008-03-27T15:10:00Z,2008-07-02T19:36:00Z,Situação na comissão,#8bca42,NA
-Encaminhamento,2008-07-02T19:36:00Z,2008-07-03T10:10:00Z,Situação na comissão,#ea81b1,NA
-Recebimento,2008-07-03T10:10:00Z,2008-08-04T00:00:00Z,Situação na comissão,#5496cf,NA
-Análise do relator,2008-08-04T00:00:00Z,2009-06-22T14:51:00Z,Situação na comissão,#ff9c37,NA
-Discussão e votação,2009-06-22T14:51:00Z,2009-08-07T16:03:00Z,Situação na comissão,#8bca42,NA
-Encaminhamento,2009-08-07T16:03:00Z,2009-08-07T16:16:00Z,Situação na comissão,#ea81b1,NA
-Recebimento,2009-08-07T16:16:00Z,2009-08-27T11:35:00Z,Situação na comissão,#5496cf,NA
-Encaminhamento,2009-08-27T11:35:00Z,2010-03-04T00:00:00Z,Situação na comissão,#ea81b1,NA
-Análise do relator,2010-03-04T00:00:00Z,2018-04-10T18:15:00Z,Situação na comissão,#ff9c37,NA
-Discussão e votação,2018-04-10T18:15:00Z,2018-07-18T17:35:01Z,Situação na comissão,#8bca42,NA
-Tramitação - Casa de Origem,2007-03-20T16:13:00Z,2018-07-18T17:35:02Z,global,#f37340,0
+label,start,end,time_interval,group,color
+Tramitação - Casa de Origem (Câmara),2007-03-20T16:13:00Z,2018-07-19T13:35:23Z,0,Global,#f37340
+Apresentação,2007-03-20T16:13:00Z,2007-03-29T00:00:00Z,NA,Casa,#d6952a
+Comissões,2007-03-29T00:00:00Z,2018-07-19T13:35:23Z,NA,Casa,#938ecc
+CD-MESA-PLEN,2007-03-20T16:13:00Z,2007-03-29T00:00:00Z,NA,Comissão,NA
+CDHM,2007-03-29T00:00:00Z,2007-11-19T14:25:00Z,NA,Comissão,NA
+CAPADR,2007-11-19T14:25:00Z,2008-07-03T10:10:00Z,NA,Comissão,NA
+CDHM,2008-07-03T10:10:00Z,2009-08-07T16:16:00Z,NA,Comissão,NA
+CCJC,2009-08-07T16:16:00Z,2018-07-19T13:35:23Z,NA,Comissão,NA
+Recebimento,2007-03-29T00:00:00Z,2007-04-11T00:00:00Z,NA,Situação na comissão,#5496cf
+Análise do relator,2007-04-11T00:00:00Z,2007-08-27T19:02:00Z,NA,Situação na comissão,#ff9c37
+Discussão e votação,2007-08-27T19:02:00Z,2007-11-06T17:29:00Z,NA,Situação na comissão,#8bca42
+Encaminhamento,2007-11-06T17:29:00Z,2007-11-16T09:59:00Z,NA,Situação na comissão,#ea81b1
+Recebimento,2007-11-16T09:59:00Z,2007-11-16T10:00:00Z,NA,Situação na comissão,#5496cf
+Encaminhamento,2007-11-16T10:00:00Z,2007-11-19T14:25:00Z,NA,Situação na comissão,#ea81b1
+Recebimento,2007-11-19T14:25:00Z,2007-11-28T00:00:00Z,NA,Situação na comissão,#5496cf
+Análise do relator,2007-11-28T00:00:00Z,2008-03-27T15:10:00Z,NA,Situação na comissão,#ff9c37
+Discussão e votação,2008-03-27T15:10:00Z,2008-07-02T19:36:00Z,NA,Situação na comissão,#8bca42
+Encaminhamento,2008-07-02T19:36:00Z,2008-07-03T10:10:00Z,NA,Situação na comissão,#ea81b1
+Recebimento,2008-07-03T10:10:00Z,2008-08-04T00:00:00Z,NA,Situação na comissão,#5496cf
+Análise do relator,2008-08-04T00:00:00Z,2009-06-22T14:51:00Z,NA,Situação na comissão,#ff9c37
+Discussão e votação,2009-06-22T14:51:00Z,2009-08-07T16:03:00Z,NA,Situação na comissão,#8bca42
+Encaminhamento,2009-08-07T16:03:00Z,2009-08-07T16:16:00Z,NA,Situação na comissão,#ea81b1
+Recebimento,2009-08-07T16:16:00Z,2009-08-27T11:35:00Z,NA,Situação na comissão,#5496cf
+Encaminhamento,2009-08-27T11:35:00Z,2010-03-04T00:00:00Z,NA,Situação na comissão,#ea81b1
+Análise do relator,2010-03-04T00:00:00Z,2018-04-10T18:15:00Z,NA,Situação na comissão,#ff9c37
+Discussão e votação,2018-04-10T18:15:00Z,2018-07-19T13:35:23Z,NA,Situação na comissão,#8bca42
+designado_relator,2007-04-11T00:00:00Z,2007-04-11T00:00:00Z,NA,Evento,#a9a9a9
+parecer_pela_rejeicao,2007-08-27T19:02:00Z,2007-08-27T19:02:00Z,NA,Evento,#a9a9a9
+parecer_pela_rejeicao,2007-10-19T12:07:00Z,2007-10-19T12:07:00Z,NA,Evento,#a9a9a9
+redistribuicao,2007-11-06T00:00:00Z,2007-11-06T00:00:00Z,NA,Evento,#a9a9a9
+designado_relator,2007-11-28T00:00:00Z,2007-11-28T00:00:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2008-03-27T15:10:00Z,2008-03-27T15:10:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2008-05-13T17:52:00Z,2008-05-13T17:52:00Z,NA,Evento,#a9a9a9
+aprovacao_parecer,2008-07-02T10:00:00Z,2008-07-02T10:00:00Z,NA,Evento,#a9a9a9
+designado_relator,2008-08-04T00:00:00Z,2008-08-04T00:00:00Z,NA,Evento,#a9a9a9
+parecer_pela_rejeicao,2009-06-22T14:51:00Z,2009-06-22T14:51:00Z,NA,Evento,#a9a9a9
+aprovacao_parecer,2009-08-05T14:00:00Z,2009-08-05T14:00:00Z,NA,Evento,#a9a9a9
+designado_relator,2010-03-04T00:00:00Z,2010-03-04T00:00:00Z,NA,Evento,#a9a9a9
+designado_relator,2013-05-14T00:00:00Z,2013-05-14T00:00:00Z,NA,Evento,#a9a9a9
+designado_relator,2018-02-01T00:00:00Z,2018-02-01T00:00:00Z,NA,Evento,#a9a9a9
+parecer,2018-04-10T18:15:00Z,2018-04-10T18:15:00Z,NA,Evento,#a9a9a9
+parecer,2018-05-08T19:19:00Z,2018-05-08T19:19:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2018-05-22T14:48:00Z,2018-05-22T14:48:00Z,NA,Evento,#a9a9a9
