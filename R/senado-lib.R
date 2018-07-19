@@ -353,7 +353,7 @@ extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_t
 
   dataframe %>%
     dplyr::mutate(
-      fase = 
+      fase =
         dplyr::case_when(stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') ~ 'Recebimento',
         detect_fase(situacao_codigo_situacao, phase_two) ~ 'Análise do relator',
         detect_fase(situacao_codigo_situacao, phase_three) ~ 'Discussão e votação',

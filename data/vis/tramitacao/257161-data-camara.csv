@@ -1,47 +1,79 @@
-label,start,end,group,color,time_interval
-requerimento_apensacao,2012-06-14T15:15:00Z,2012-06-14T15:15:00Z,Evento,#a9a9a9,NA
-requerimento_redistribuicao,2013-11-28T15:14:00Z,2013-11-28T15:14:00Z,Evento,#a9a9a9,NA
-aprovacao_parecer,2014-05-14T10:00:00Z,2014-05-14T10:00:00Z,Evento,#a9a9a9,NA
-requerimento_apensacao,2015-05-19T15:58:00Z,2015-05-19T15:58:00Z,Evento,#a9a9a9,NA
-aprovacao_parecer,2015-10-14T10:00:00Z,2015-10-14T10:00:00Z,Evento,#a9a9a9,NA
-requerimento_redistribuicao,2016-08-09T17:36:00Z,2016-08-09T17:36:00Z,Evento,#a9a9a9,NA
-requerimento_urgencia,2017-04-04T18:10:00Z,2017-04-04T18:10:00Z,Evento,#a9a9a9,NA
-requerimento_apensacao,2017-05-31T18:13:00Z,2017-05-31T18:13:00Z,Evento,#a9a9a9,NA
-requerimento_apensacao,2017-08-09T11:11:00Z,2017-08-09T11:11:00Z,Evento,#a9a9a9,NA
-requerimento_apensacao,2017-08-22T15:57:00Z,2017-08-22T15:57:00Z,Evento,#a9a9a9,NA
-requerimento_audiencia_publica,2017-08-23T09:47:00Z,2017-08-23T09:47:00Z,Evento,#a9a9a9,NA
-CD-MESA-PLEN,2004-06-08T00:00:00Z,2004-06-18T16:41:00Z,Local,NA,NA
-SECAP(SGM),2004-06-18T16:41:00Z,2004-06-22T14:57:00Z,Local,NA,NA
-CMADS,2004-06-22T14:57:00Z,2014-02-10T15:23:00Z,Local,NA,NA
-CAPADR,2014-02-10T15:23:00Z,2014-05-16T10:16:00Z,Local,NA,NA
-CMADS,2014-05-16T10:16:00Z,2015-10-20T14:44:00Z,Local,NA,NA
-CFT,2015-10-20T14:44:00Z,2016-05-09T16:04:00Z,Local,NA,NA
-CCJC,2016-05-09T16:04:00Z,2018-07-18T17:34:59Z,Local,NA,NA
-Recebimento,2004-06-22T14:57:00Z,2004-07-07T00:00:00Z,Situação na comissão,#5496cf,NA
-Análise do relator,2004-07-07T00:00:00Z,2009-01-30T15:18:00Z,Situação na comissão,#ff9c37,NA
-Discussão e votação,2009-01-30T15:18:00Z,2009-03-19T00:00:00Z,Situação na comissão,#8bca42,NA
-Análise do relator,2009-03-19T00:00:00Z,2009-12-16T17:13:00Z,Situação na comissão,#ff9c37,NA
-Discussão e votação,2009-12-16T17:13:00Z,2011-03-28T00:00:00Z,Situação na comissão,#8bca42,NA
-Análise do relator,2011-03-28T00:00:00Z,2013-10-23T09:34:00Z,Situação na comissão,#ff9c37,NA
-Discussão e votação,2013-10-23T09:34:00Z,2013-12-04T00:00:00Z,Situação na comissão,#8bca42,NA
-Análise do relator,2013-12-04T00:00:00Z,2013-12-06T12:36:00Z,Situação na comissão,#ff9c37,NA
-Discussão e votação,2013-12-06T12:36:00Z,2013-12-20T10:52:00Z,Situação na comissão,#8bca42,NA
-Encaminhamento,2013-12-20T10:52:00Z,2014-01-06T15:11:00Z,Situação na comissão,#ea81b1,NA
-Recebimento,2014-01-06T15:11:00Z,2014-01-08T11:01:00Z,Situação na comissão,#5496cf,NA
-Encaminhamento,2014-01-08T11:01:00Z,2014-02-10T15:23:00Z,Situação na comissão,#ea81b1,NA
-Recebimento,2014-02-10T15:23:00Z,2014-03-12T00:00:00Z,Situação na comissão,#5496cf,NA
-Análise do relator,2014-03-12T00:00:00Z,2014-04-29T18:22:00Z,Situação na comissão,#ff9c37,NA
-Discussão e votação,2014-04-29T18:22:00Z,2014-05-14T12:55:00Z,Situação na comissão,#8bca42,NA
-Encaminhamento,2014-05-14T12:55:00Z,2014-05-16T10:16:00Z,Situação na comissão,#ea81b1,NA
-Recebimento,2014-05-16T10:16:00Z,2014-05-22T00:00:00Z,Situação na comissão,#5496cf,NA
-Análise do relator,2014-05-22T00:00:00Z,2015-09-23T00:00:00Z,Situação na comissão,#ff9c37,NA
-Discussão e votação,2015-09-23T00:00:00Z,2015-10-20T12:16:00Z,Situação na comissão,#8bca42,NA
-Encaminhamento,2015-10-20T12:16:00Z,2015-10-20T14:44:00Z,Situação na comissão,#ea81b1,NA
-Recebimento,2015-10-20T14:44:00Z,2015-10-28T00:00:00Z,Situação na comissão,#5496cf,NA
-Análise do relator,2015-10-28T00:00:00Z,2016-03-22T09:00:00Z,Situação na comissão,#ff9c37,NA
-Encaminhamento,2016-03-22T09:00:00Z,2016-05-09T16:04:00Z,Situação na comissão,#ea81b1,NA
-Recebimento,2016-05-09T16:04:00Z,2016-05-11T00:00:00Z,Situação na comissão,#5496cf,NA
-Análise do relator,2016-05-11T00:00:00Z,2016-07-27T13:21:00Z,Situação na comissão,#ff9c37,NA
-Discussão e votação,2016-07-27T13:21:00Z,2018-04-11T00:00:00Z,Situação na comissão,#8bca42,NA
-Análise do relator,2018-04-11T00:00:00Z,2018-07-18T17:34:59Z,Situação na comissão,#ff9c37,NA
-Tramitação - Casa de Origem,2004-06-08T00:00:00Z,2018-07-18T17:35:00Z,global,#f37340,0
+label,start,end,time_interval,group,color
+Tramitação - Casa de Origem (Câmara),2004-06-08T00:00:00Z,2018-07-19T13:35:21Z,0,Global,#f37340
+Apresentação,2004-06-08T00:00:00Z,2004-06-22T14:57:00Z,NA,Casa,#d6952a
+Comissões,2004-06-22T14:57:00Z,2018-07-19T13:35:21Z,NA,Casa,#938ecc
+CD-MESA-PLEN,2004-06-08T00:00:00Z,2004-06-22T14:57:00Z,NA,Comissão,NA
+CMADS,2004-06-22T14:57:00Z,2014-02-10T15:23:00Z,NA,Comissão,NA
+CAPADR,2014-02-10T15:23:00Z,2014-05-16T10:16:00Z,NA,Comissão,NA
+CMADS,2014-05-16T10:16:00Z,2015-10-20T14:44:00Z,NA,Comissão,NA
+CFT,2015-10-20T14:44:00Z,2016-05-09T16:04:00Z,NA,Comissão,NA
+CCJC,2016-05-09T16:04:00Z,2018-07-19T13:35:21Z,NA,Comissão,NA
+Recebimento,2004-06-22T14:57:00Z,2004-07-07T00:00:00Z,NA,Situação na comissão,#5496cf
+Análise do relator,2004-07-07T00:00:00Z,2009-01-30T15:18:00Z,NA,Situação na comissão,#ff9c37
+Discussão e votação,2009-01-30T15:18:00Z,2009-03-19T00:00:00Z,NA,Situação na comissão,#8bca42
+Análise do relator,2009-03-19T00:00:00Z,2009-12-16T17:13:00Z,NA,Situação na comissão,#ff9c37
+Discussão e votação,2009-12-16T17:13:00Z,2011-03-28T00:00:00Z,NA,Situação na comissão,#8bca42
+Análise do relator,2011-03-28T00:00:00Z,2013-10-23T09:34:00Z,NA,Situação na comissão,#ff9c37
+Discussão e votação,2013-10-23T09:34:00Z,2013-12-04T00:00:00Z,NA,Situação na comissão,#8bca42
+Análise do relator,2013-12-04T00:00:00Z,2013-12-06T12:36:00Z,NA,Situação na comissão,#ff9c37
+Discussão e votação,2013-12-06T12:36:00Z,2013-12-20T10:52:00Z,NA,Situação na comissão,#8bca42
+Encaminhamento,2013-12-20T10:52:00Z,2014-01-06T15:11:00Z,NA,Situação na comissão,#ea81b1
+Recebimento,2014-01-06T15:11:00Z,2014-01-08T11:01:00Z,NA,Situação na comissão,#5496cf
+Encaminhamento,2014-01-08T11:01:00Z,2014-02-10T15:23:00Z,NA,Situação na comissão,#ea81b1
+Recebimento,2014-02-10T15:23:00Z,2014-03-12T00:00:00Z,NA,Situação na comissão,#5496cf
+Análise do relator,2014-03-12T00:00:00Z,2014-04-29T18:22:00Z,NA,Situação na comissão,#ff9c37
+Discussão e votação,2014-04-29T18:22:00Z,2014-05-14T12:55:00Z,NA,Situação na comissão,#8bca42
+Encaminhamento,2014-05-14T12:55:00Z,2014-05-16T10:16:00Z,NA,Situação na comissão,#ea81b1
+Recebimento,2014-05-16T10:16:00Z,2014-05-22T00:00:00Z,NA,Situação na comissão,#5496cf
+Análise do relator,2014-05-22T00:00:00Z,2015-09-23T00:00:00Z,NA,Situação na comissão,#ff9c37
+Discussão e votação,2015-09-23T00:00:00Z,2015-10-20T12:16:00Z,NA,Situação na comissão,#8bca42
+Encaminhamento,2015-10-20T12:16:00Z,2015-10-20T14:44:00Z,NA,Situação na comissão,#ea81b1
+Recebimento,2015-10-20T14:44:00Z,2015-10-28T00:00:00Z,NA,Situação na comissão,#5496cf
+Análise do relator,2015-10-28T00:00:00Z,2016-03-22T09:00:00Z,NA,Situação na comissão,#ff9c37
+Encaminhamento,2016-03-22T09:00:00Z,2016-05-09T16:04:00Z,NA,Situação na comissão,#ea81b1
+Recebimento,2016-05-09T16:04:00Z,2016-05-11T00:00:00Z,NA,Situação na comissão,#5496cf
+Análise do relator,2016-05-11T00:00:00Z,2016-07-27T13:21:00Z,NA,Situação na comissão,#ff9c37
+Discussão e votação,2016-07-27T13:21:00Z,2018-04-11T00:00:00Z,NA,Situação na comissão,#8bca42
+Análise do relator,2018-04-11T00:00:00Z,2018-07-19T13:35:22Z,NA,Situação na comissão,#ff9c37
+designado_relator,2004-07-07T00:00:00Z,2004-07-07T00:00:00Z,NA,Evento,#a9a9a9
+designado_relator,2007-05-31T00:00:00Z,2007-05-31T00:00:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2009-01-30T15:18:00Z,2009-01-30T15:18:00Z,NA,Evento,#a9a9a9
+designado_relator,2009-03-19T00:00:00Z,2009-03-19T00:00:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2009-12-16T17:13:00Z,2009-12-16T17:13:00Z,NA,Evento,#a9a9a9
+designado_relator,2011-03-28T00:00:00Z,2011-03-28T00:00:00Z,NA,Evento,#a9a9a9
+requerimento_apensacao,2012-06-14T15:15:00Z,2012-06-14T15:15:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2013-10-23T09:34:00Z,2013-10-23T09:34:00Z,NA,Evento,#a9a9a9
+requerimento_redistribuicao,2013-11-28T15:14:00Z,2013-11-28T15:14:00Z,NA,Evento,#a9a9a9
+designado_relator,2013-12-04T00:00:00Z,2013-12-04T00:00:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2013-12-06T12:36:00Z,2013-12-06T12:36:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2013-12-17T15:06:00Z,2013-12-17T15:06:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2013-12-17T15:08:00Z,2013-12-17T15:08:00Z,NA,Evento,#a9a9a9
+designado_relator,2014-03-12T00:00:00Z,2014-03-12T00:00:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2014-04-29T18:22:00Z,2014-04-29T18:22:00Z,NA,Evento,#a9a9a9
+aprovacao_parecer,2014-05-14T10:00:00Z,2014-05-14T10:00:00Z,NA,Evento,#a9a9a9
+designado_relator,2014-05-22T00:00:00Z,2014-05-22T00:00:00Z,NA,Evento,#a9a9a9
+designado_relator,2015-04-09T00:00:00Z,2015-04-09T00:00:00Z,NA,Evento,#a9a9a9
+requerimento_apensacao,2015-05-19T15:58:00Z,2015-05-19T15:58:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2015-09-23T00:00:00Z,2015-09-23T00:00:00Z,NA,Evento,#a9a9a9
+aprovacao_parecer,2015-10-14T10:00:00Z,2015-10-14T10:00:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2015-10-14T18:33:00Z,2015-10-14T18:33:00Z,NA,Evento,#a9a9a9
+designado_relator,2015-10-28T00:00:00Z,2015-10-28T00:00:00Z,NA,Evento,#a9a9a9
+designado_relator,2015-12-17T00:00:00Z,2015-12-17T00:00:00Z,NA,Evento,#a9a9a9
+designado_relator,2016-05-11T00:00:00Z,2016-05-11T00:00:00Z,NA,Evento,#a9a9a9
+designado_relator,2016-06-30T00:00:00Z,2016-06-30T00:00:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2016-07-27T13:21:00Z,2016-07-27T13:21:00Z,NA,Evento,#a9a9a9
+requerimento_redistribuicao,2016-08-09T17:36:00Z,2016-08-09T17:36:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2016-09-01T10:57:00Z,2016-09-01T10:57:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2016-09-15T17:49:00Z,2016-09-15T17:49:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2016-12-12T11:12:00Z,2016-12-12T11:12:00Z,NA,Evento,#a9a9a9
+requerimento_urgencia,2017-04-04T18:10:00Z,2017-04-04T18:10:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2017-04-19T14:51:00Z,2017-04-19T14:51:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2017-04-27T15:20:00Z,2017-04-27T15:20:00Z,NA,Evento,#a9a9a9
+requerimento_apensacao,2017-05-31T18:13:00Z,2017-05-31T18:13:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2017-06-05T13:08:00Z,2017-06-05T13:08:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2017-08-08T19:40:00Z,2017-08-08T19:40:00Z,NA,Evento,#a9a9a9
+requerimento_apensacao,2017-08-09T11:11:00Z,2017-08-09T11:11:00Z,NA,Evento,#a9a9a9
+requerimento_apensacao,2017-08-22T15:57:00Z,2017-08-22T15:57:00Z,NA,Evento,#a9a9a9
+requerimento_audiencia_publica,2017-08-23T09:47:00Z,2017-08-23T09:47:00Z,NA,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2017-08-29T11:38:00Z,2017-08-29T11:38:00Z,NA,Evento,#a9a9a9
+designado_relator,2018-04-11T00:00:00Z,2018-04-11T00:00:00Z,NA,Evento,#a9a9a9
