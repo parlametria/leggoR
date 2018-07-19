@@ -353,7 +353,7 @@ extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_t
 
   dataframe %>%
     dplyr::mutate(
-      fase = 
+      fase =
         dplyr::case_when(stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') ~ 'Recebimento',
         detect_fase(situacao_codigo_situacao, phase_two) ~ 'Análise do relator',
         detect_fase(situacao_codigo_situacao, phase_three) ~ 'Discussão e votação',
@@ -368,14 +368,14 @@ extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_t
 #' bill_passage %>% extract_fase_casa_Senado(phase_one)
 #' @export
 extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
-  
+
   descricoes_plenario <- c('incluído_requerimento_em_ordem_do_dia_da_sessão_deliberativa',
                            'pronto_para_deliberação_do_plenário',
                            'aguardando_recebimento_de_emendas_perante_a_mesa',
                            'incluída_em_ordem_do_dia')
   descricoes_comissoes <- c('matéria_com_a_relatoria',
                             'aguardando_designação_do_relator' )
-  
+
   dataframe %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     dplyr::mutate(
@@ -384,13 +384,13 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
           grepl(fase_apresentacao, texto_tramitacao) ~ 'Apresentação',
           situacao_descricao_situacao %in% descricoes_plenario ~
             'Plenário',
-          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') | 
+          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') |
              situacao_descricao_situacao %in% descricoes_comissoes) ~
             'Comissões')
     ) %>%
     tidyr::fill(casa)
-                  
-  
+
+
 }
 
 #' @title Extrai os eventos importantes que aconteceram no Senado
