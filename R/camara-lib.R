@@ -278,9 +278,12 @@ extract_autor_in_camara <- function(prop_id) {
       autor.nome = nome,
       autor.tipo = tipo,
       autor.cod_tipo = codTipo) %>%
-    dplyr::mutate(casa_origem = dplyr::case_when(
-      stringr::str_detect(tolower(autor.nome), camara_exp) | autor.tipo == 'Deputado' ~ 'Câmara dos Deputados',
-      stringr::str_detect(tolower(autor.nome), senado_exp) | autor.tipo == 'Senador' ~ 'Senado Federal'))
+    dplyr::mutate(casa_origem = 
+      dplyr::case_when(
+        stringr::str_detect(tolower(autor.nome), camara_exp) | autor.tipo == 'Deputado' ~ 'Câmara dos Deputados',
+        stringr::str_detect(tolower(autor.nome), senado_exp) | autor.tipo == 'Senador' ~ 'Senado Federal',
+        autor.cod_tipo == 40000 ~ 'Senado Federal',
+        autor.cod_tipo == 2 ~ 'Câmara dos Deputados'))
 
   partido_estado <- extract_partido_estado_autor(authors$autor.uri %>% tail(1))
 
