@@ -90,6 +90,7 @@ pl_229_2009_data_eventos <-  frame_data (
   'Requerimento Tramitação em Conjunto aprovado', 'Evento','2010-05-19', '2010-05-19', '#938ecc',
   'Parecer Aprovando Substitutivo', 'Evento', '2010-06-23', '2010-06-23','#a561a2',
   'Designado relator (CAE)', 'Evento', '2010-07-08', '2010-07-08','#87c465',
+  'Designado relator (CCJ)', 'Evento', '2010-05-25', '2010-05-25','#87c465',
   'Designado relator (CAE)', 'Evento', '2011-03-04', '2011-03-04','#87c465',
   'Requerimento Aprovando Audiência Pública', 'Evento', '2012-07-10','2012-07-10', '#938ecc',
   'Requerimento Tramitação em Conjunto aprovado', 'Evento','2013-04-17', '2013-04-17', '#938ecc',
