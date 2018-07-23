@@ -1,5 +1,5 @@
 source(here::here("R/congresso-lib.R"))
-camara_codes <- rjson::fromJSON(file=here::here("R/environment_camara.json"))
+camara_codes <- jsonlite::fromJSON(here::here("data/environment_camara.json"))
 
 #' @title Recupera o número, o tipo e ementa de uma proposição na Câmara
 #' @description Retorna um dataframe contendo o número, o tipo e a ementa de uma proposição na Câmara através do ID da proposição
@@ -208,19 +208,29 @@ extract_events_in_camara <- function(tramitacao_df) {
     'requerimento_audiencia_publica', c$requerimento_audiencia_publica,
     'aprovacao_audiencia_publica', c$aprovacao_audiencia_publica,
     'aprovacao_parecer', c$aprovacao_parecer,
-    'requerimento_redistribuicao', $requerimento_redistribuicao,
+    'requerimento_redistribuicao', c$requerimento_redistribuicao,
     'requerimento_apensacao', c$requerimento_apensacao,
     'requerimento_urgencia', c$requerimento_urgencia,
-    'requerimento_prorrogacao', c$requerimento_prorrogacao)
+    'requerimento_prorrogacao', c$requerimento_prorrogacao,
+    'redistribuicao', c$redistribuicao)
 
   special_comissao <- camara_codes$eventos$code$comissao_especial
-
+  designado_relator <- camara_codes$eventos$code$designado_relator
+  parecer <- camara_codes$eventos$code$parecer
+  
   tramitacao_df %>%
     dplyr::mutate(despacho_lower = tolower(despacho)) %>%
     fuzzyjoin::regex_left_join(events_df, by = c(despacho_lower = "regex")) %>%
     dplyr::select(-c(despacho_lower, regex)) %>%
     dplyr::mutate(evento = dplyr::case_when(
       id_tipo_tramitacao == special_comissao ~ 'criacao_comissao_temporaria',
+      id_tipo_tramitacao == designado_relator ~ 'designado_relator',
+      id_tipo_tramitacao == parecer ~ dplyr::case_when(
+                                                       str_detect(despacho, regex('substitutivo', ignore_case = TRUE)) ~ 'parecer_pela_aprovacao_com_substitutivo',
+                                                       str_detect(despacho, regex('rejei..o', ignore_case = TRUE)) ~ 'parecer_pela_rejeicao',
+                                                       str_detect(despacho, regex('aprovacao', ignore_case = TRUE)) ~ 'parecer_pela_aprovacao',
+                                                       TRUE ~ 'parecer'
+                                                      ),
       TRUE ~ evento))
 }
 
@@ -437,7 +447,9 @@ extract_locais_in_camara <- function(df) {
           (tolower(despacho) %in% descricoes_plenario & sigla_orgao == 'PLEN' |
             stringr::str_detect(tolower(descricao_tramitacao), '^votação')) ~ 'Plenário',
           (stringr::str_detect(tolower(despacho), '^recebimento pela') |
-            tolower(despacho) %in% descricoes_comissoes) & sigla_orgao != 'CCP' ~ sigla_orgao,
+            tolower(despacho) %in% descricoes_comissoes) & 
+            sigla_orgao != 'CCP' &
+            !stringr::str_detect(tolower(sigla_orgao), '^s') ~ sigla_orgao,
           tolower(descricao_tramitacao) == 'remessa ao senado federal' ~ 'Câmara')
     ) %>%
     dplyr::mutate(
@@ -449,12 +461,43 @@ extract_locais_in_camara <- function(df) {
   if (is.na(df[1, ]$local)) {
     df[1, ]$local = 'CD-MESA-PLEN'
   }
-
+  
   df %>%
     tidyr::fill(local)
 }
 
-extract_tramitacao <- function(prop_id){
+#' @title Recupera as casas da Câmara
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada casa
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada casa
+#' @examples
+#'  extract_fase_casa_in_camara(fetch_tramitacao(91341))
+#' @export
+extract_fase_casa_in_camara <- function(df) {
+  descricoes_plenario <- c('votação', 'pronta para pauta', 'apresentação de proposição', 'sessão deliberativa')
+  descricoes_comissoes <- c('recebimento pela')
+  
+  df <- df %>%
+    dplyr::arrange(data_hora, sequencia) %>%
+    dplyr::mutate(
+      casa =
+        dplyr::case_when(
+          (tolower(despacho) %in% descricoes_plenario & sigla_orgao == 'PLEN' |
+             stringr::str_detect(tolower(descricao_tramitacao), '^votação')) ~ 'Plenário',
+          (stringr::str_detect(tolower(despacho), '^recebimento pela') | 
+             tolower(despacho) %in% descricoes_comissoes) & sigla_orgao != 'CCP' & !stringr::str_detect(tolower(sigla_orgao), '^s') ~ "Comissões")
+    )
+  
+  
+  if (is.na(df[1, ]$casa)) {
+    df[1, ]$casa = 'Apresentação'
+  }
+  
+  df %>%
+    tidyr::fill(casa)
+}
+
+extract_tramitacao <- function(prop_id) {
   rcongresso::fetch_tramitacao(prop_id) %>% rename_df_columns
 }
 

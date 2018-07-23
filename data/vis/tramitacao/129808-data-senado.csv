@@ -1,13 +1,16 @@
 label,start,end,time_interval,group,color
+Tramitação - Casa de Origem (Senado),2017-06-28,2017-11-08,0,global,#f37340
+Comissões,2017-07-04,2017-09-27,85,Casa,#938ecc
+Plenário,2017-09-27,2017-11-08,42,Casa,#5496cf
+Comissões,2017-07-04,2017-07-04,0,Casa,#938ecc
 CCJ,2017-07-04,2017-09-27,85,Local,#ffffcc
 Plenário,2017-09-27,2017-11-08,42,Local,NA
-analise_relator,2017-07-04,2017-09-19,77,Fase,NA
-discussao_deliberacao,2017-09-19,2017-09-27,8,Fase,#beaed4
-encaminhamento,2017-09-27,2017-09-27,0,Fase,NA
-discussao_deliberacao,2017-09-27,2017-10-18,21,Fase,#beaed4
-recebimento,2017-10-18,2017-11-08,21,Fase,NA
-virada_de_casa,2017-11-08,2017-11-08,0,Fase,#ffff99
+Análise do relator,2017-07-04,2017-09-19,77,Sub-fase Comissão,NA
+Discussão e votação,2017-09-19,2017-09-27,8,Sub-fase Comissão,NA
+Encaminhamento,2017-09-27,2017-09-27,0,Sub-fase Comissão,NA
+Discussão e votação,2017-09-27,2017-10-18,21,Sub-fase Comissão,NA
+Recebimento,2017-10-18,2017-11-08,21,Sub-fase Comissão,NA
+Análise do relator,2017-07-04,2017-07-04,0,Sub-fase Comissão,NA
 aprovacao_parecer,2017-09-27,2017-09-27,0,Evento,#a9a9a9
 aprovacao_substitutivo,2017-10-25,2017-10-25,0,Evento,#a9a9a9
-Tramitação - Casa de Origem,2017-06-28,2017-11-08,0,global,#f37340
-Tramitação - Casa Revisora,2017-11-08,2017-11-08,0,global,#546452
+designacao_relatoria,2017-07-04,2017-07-04,0,Evento,#a9a9a9

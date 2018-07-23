@@ -20,7 +20,11 @@ Imports: magrittr,
     jsonlite,
     rvest,
     rcongresso,
-    fuzzyjoin
+    fuzzyjoin,
+    lubridate,
+    vistime,
+    covr,
+    rjson,
 Suggests: testthat,
     knitr
 VignetteBuilder: knitr

@@ -64,6 +64,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     nome_camara <- get_ementas_in_camara(id) %>% tail(1)
     info <- fetch_proposicao_camara(id)
     ano <- info$ano
+    page_url <- info$page_url
     regime <- info$regime_tramitacao
     apreciacao <- info$forma_apreciacao
     nome <- paste0(nome_camara$siglaTipo, nome_camara$numero, "/", ano)
@@ -87,6 +88,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     regime <- extract_regime_Senado(id)
     despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
     nome_senado <- proposicao %>% select(ementa_materia, sigla_subtipo_materia, numero_materia) %>% unique
+    page_url <- proposicao$page_url
     nome <- paste0(nome_senado$sigla_subtipo_materia, nome_senado$numero_materia, '/', ano)
     casa_origem <- proposicao$nome_casa_origem
     nome_autor <- proposicao$nome_autor
@@ -101,8 +103,8 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     eventos <-  as.list(extract_n_last_eventos_Senado(tramitacao_senado, 3)$evento)
   }
   proposicoes_df <-
-    frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator, ~ ultimos_eventos, ~ regime, ~ apreciacao,
-               nome, nome_autor, casa_origem, data_apresentacao, ementa, despacho, relator, eventos, regime, apreciacao)
+    frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator, ~ ultimos_eventos, ~ regime, ~ apreciacao, ~ page_url,
+               nome, nome_autor, casa_origem, data_apresentacao, ementa, despacho, relator, eventos, regime, apreciacao, page_url)
 
   proposicoes_df$nome <-paste0("[", proposicoes_df$nome, "](", url, ")")
 

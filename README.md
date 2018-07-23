@@ -1,3 +1,6 @@
+[![pipeline status](https://gitlab.com/analytics-ufcg/agora-digital/badges/master/pipeline.svg)](https://gitlab.com/analytics-ufcg/agora-digital/commits/master)
+[![coverage report](https://gitlab.com/analytics-ufcg/agora-digital/badges/master/coverage.svg)](https://gitlab.com/analytics-ufcg/agora-digital/commits/master)
+
 # Ágora Digital
 
 - [Link para página](https://analytics-ufcg.github.io/agora-digital/)
@@ -20,3 +23,7 @@ Gerar documentação:
 Rodar testes:
 
     > devtools::test()
+
+Mostrar cobertura do código:
+
+    > library(covr);package_coverage()
