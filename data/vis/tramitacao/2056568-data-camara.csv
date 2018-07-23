@@ -1,23 +1,22 @@
-label,start,end,time_interval,group,color
-Tramitação - Casa de Origem (Câmara),2015-11-25T13:36:00Z,2018-07-19T13:35:25Z,0,Global,#f37340
-Apresentação,2015-11-25T13:36:00Z,2015-12-08T17:27:00Z,NA,Casa,#d6952a
-Comissões,2015-12-08T17:27:00Z,2018-07-19T13:35:25Z,NA,Casa,#938ecc
-CD-MESA-PLEN,2015-11-25T13:36:00Z,2015-12-08T17:27:00Z,NA,Comissão,NA
-CMADS,2015-12-08T17:27:00Z,2016-11-11T17:44:00Z,NA,Comissão,NA
-CFT,2016-11-11T17:44:00Z,2018-07-19T13:35:25Z,NA,Comissão,NA
-Recebimento,2015-12-08T17:27:00Z,2015-12-16T00:00:00Z,NA,Situação na comissão,#5496cf
-Análise do relator,2015-12-16T00:00:00Z,2016-05-25T10:23:00Z,NA,Situação na comissão,#ff9c37
-Discussão e votação,2016-05-25T10:23:00Z,2016-11-11T17:37:00Z,NA,Situação na comissão,#8bca42
-Encaminhamento,2016-11-11T17:37:00Z,2016-11-11T17:44:00Z,NA,Situação na comissão,#ea81b1
-Recebimento,2016-11-11T17:44:00Z,2016-11-23T00:00:00Z,NA,Situação na comissão,#5496cf
-Análise do relator,2016-11-23T00:00:00Z,2017-08-03T13:52:00Z,NA,Situação na comissão,#ff9c37
-Discussão e votação,2017-08-03T13:52:00Z,2018-06-13T10:45:00Z,NA,Situação na comissão,#8bca42
-Análise do relator,2018-06-13T10:45:00Z,2018-07-19T13:35:25Z,NA,Situação na comissão,#ff9c37
-designado_relator,2015-12-16T00:00:00Z,2015-12-16T00:00:00Z,NA,Evento,#a9a9a9
-parecer,2016-05-25T10:23:00Z,2016-05-25T10:23:00Z,NA,Evento,#a9a9a9
-parecer_pela_aprovacao_com_substitutivo,2016-09-22T14:40:00Z,2016-09-22T14:40:00Z,NA,Evento,#a9a9a9
-aprovacao_parecer,2016-10-25T10:00:00Z,2016-10-25T10:00:00Z,NA,Evento,#a9a9a9
-designado_relator,2016-11-23T00:00:00Z,2016-11-23T00:00:00Z,NA,Evento,#a9a9a9
-parecer_pela_aprovacao_com_substitutivo,2017-08-03T13:52:00Z,2017-08-03T13:52:00Z,NA,Evento,#a9a9a9
-parecer_pela_aprovacao_com_substitutivo,2017-09-28T09:40:00Z,2017-09-28T09:40:00Z,NA,Evento,#a9a9a9
-designado_relator,2018-06-13T10:45:00Z,2018-06-13T10:45:00Z,NA,Evento,#a9a9a9
+label,start,end,group,color
+Apresentação - Origem (Câmara),2015-11-25T13:36:00Z,2015-12-08T17:27:00Z,Global,#d6952a
+Comissões - Origem (Câmara),2015-12-08T17:27:00Z,2018-07-20T15:15:30Z,Global,#938ecc
+CD-MESA-PLEN,2015-11-25T13:36:00Z,2015-12-08T17:27:00Z,Comissão,NA
+CMADS,2015-12-08T17:27:00Z,2016-11-11T17:44:00Z,Comissão,NA
+CFT,2016-11-11T17:44:00Z,2018-07-20T15:15:30Z,Comissão,NA
+Recebimento,2015-12-08T17:27:00Z,2015-12-16T00:00:00Z,Situação na comissão,#5496cf
+Análise do relator,2015-12-16T00:00:00Z,2016-05-25T10:23:00Z,Situação na comissão,#ff9c37
+Discussão e votação,2016-05-25T10:23:00Z,2016-11-11T17:37:00Z,Situação na comissão,#8bca42
+Encaminhamento,2016-11-11T17:37:00Z,2016-11-11T17:44:00Z,Situação na comissão,#ea81b1
+Recebimento,2016-11-11T17:44:00Z,2016-11-23T00:00:00Z,Situação na comissão,#5496cf
+Análise do relator,2016-11-23T00:00:00Z,2017-08-03T13:52:00Z,Situação na comissão,#ff9c37
+Discussão e votação,2017-08-03T13:52:00Z,2018-06-13T10:45:00Z,Situação na comissão,#8bca42
+Análise do relator,2018-06-13T10:45:00Z,2018-07-20T15:15:30Z,Situação na comissão,#ff9c37
+designado_relator,2015-12-16T00:00:00Z,2015-12-16T00:00:00Z,Evento,#a9a9a9
+parecer,2016-05-25T10:23:00Z,2016-05-25T10:23:00Z,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2016-09-22T14:40:00Z,2016-09-22T14:40:00Z,Evento,#a9a9a9
+aprovacao_parecer,2016-10-25T10:00:00Z,2016-10-25T10:00:00Z,Evento,#a9a9a9
+designado_relator,2016-11-23T00:00:00Z,2016-11-23T00:00:00Z,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2017-08-03T13:52:00Z,2017-08-03T13:52:00Z,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2017-09-28T09:40:00Z,2017-09-28T09:40:00Z,Evento,#a9a9a9
+designado_relator,2018-06-13T10:45:00Z,2018-06-13T10:45:00Z,Evento,#a9a9a9
