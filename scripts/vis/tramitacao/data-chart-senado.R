@@ -88,7 +88,7 @@ format_eventos <- function(df) {
 format_fase_global <- function(df) {
   
   df %>%
-    mutate(global = paste0(casa, " ", global)) %>%
+    mutate(global = if_else(casa == "Mesa - Senado", paste0("Apresentação ", global), paste0(casa, " ", global))) %>%
     mutate(z = cumsum(global != lag(global, default='NULL')),
            end_data = lead(data_tramitacao)) %>%
     group_by(global, sequence = data.table::rleid(z)) %>%

@@ -451,7 +451,7 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
     tidyr::fill(casa)
   
   dataframe %>%
-    mutate(casa = if_else(is.na(casa), 'Plenário', casa))
+    mutate(casa = if_else(is.na(casa), 'Mesa - Senado', casa))
 }
 
 #' @title Extrai os eventos importantes que aconteceram no Senado
