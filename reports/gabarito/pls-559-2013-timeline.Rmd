@@ -14,9 +14,9 @@ library(dplyr)
 
 pl_3729_2004_data_casa_origem <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,
-  'Apresentação - Casa de Origem', 'Casa Origem', '2013-12-23', '2014-02-10','#c8e6c9',
-  'Comissões- Casa de Origem', 'Casa Origem', '2014-02-11', '2016-11-09','#fb8c00',
-  'Plenário - Casa de Origem',  'Casa Origem', '2016-11-09', '2017-02-03', '#214523')
+  'Apresentação - Origem (Senado)', 'Casa Origem', '2013-12-23', '2014-02-10','#c8e6c9',
+  'Comissões- Origem (Senado)', 'Casa Origem', '2014-02-11', '2016-11-09','#fb8c00',
+  'Plenário - Origem (Senado)',  'Casa Origem', '2016-11-09', '2017-02-03', '#214523')
 
 pl_3729_2004_data_comissoes <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,

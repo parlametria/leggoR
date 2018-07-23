@@ -2,8 +2,8 @@
 title: Relatório
 output: html_document
 params:
-  id: 46249
-  casa: 'camara'
+  id: 115926
+  casa: 'senado'
 ---
 
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
