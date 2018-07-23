@@ -24,5 +24,5 @@ create_chart <- function(bill_id, house){
                                 "</b> \n Início: ", data$start,
                                 "\n Fim: ", data$end))
 
-  vistime(data, events="label", groups="group", title=paste0("Tramitação em ", house), tooltips = "tooltip", colors = "color", showLabels=FALSE)
+  vistime(data, events="label", groups="group", title=paste0("Tramitação em ", house), colors = "color", showLabels=FALSE)
 }

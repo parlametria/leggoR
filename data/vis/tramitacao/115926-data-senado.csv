@@ -1,0 +1,56 @@
+start,end,label,group,color,time_interval
+2015-11-11,2015-11-11,pedido_vista,Evento,#a9a9a9,0
+2015-11-11,2015-11-11,pedido_vista,Evento,#a9a9a9,0
+2015-12-02,2015-12-02,aprovacao_parecer,Evento,#a9a9a9,0
+2016-07-13,2016-07-13,pedido_vista,Evento,#a9a9a9,0
+2016-07-13,2016-07-13,pedido_vista,Evento,#a9a9a9,0
+2016-08-17,2016-08-17,pedido_vista,Evento,#a9a9a9,0
+2016-12-13,2016-12-13,aprovacao_substitutivo,Evento,#a9a9a9,0
+2017-02-02,2017-02-02,aprovacao_substitutivo,Evento,#a9a9a9,0
+2017-02-02,2017-02-02,aprovacao_substitutivo,Evento,#a9a9a9,0
+2017-02-03,2017-02-03,aprovacao_substitutivo,Evento,#a9a9a9,0
+2016-11-09,2016-11-09,designacao_relatoria,Evento,#a9a9a9,0
+2016-07-05,2016-07-05,designacao_relatoria,Evento,#a9a9a9,0
+2016-02-23,2016-02-23,designacao_relatoria,Evento,#a9a9a9,0
+2015-08-13,2015-08-13,designacao_relatoria,Evento,#a9a9a9,0
+2015-03-26,2015-03-26,designacao_relatoria,Evento,#a9a9a9,0
+2014-05-29,2014-05-29,designacao_relatoria,Evento,#a9a9a9,0
+2014-02-11,2014-02-11,designacao_relatoria,Evento,#a9a9a9,0
+2013-12-23,2017-02-09,Tramitação - Casa de Origem (Senado),global,#f37340,0
+2014-02-11,2014-05-07,Comissões,Casa,#938ecc,85
+2014-05-07,2014-05-20,Plenário,Casa,#5496cf,13
+2014-05-20,2014-06-02,Comissões,Casa,#938ecc,13
+2014-06-02,2014-06-02,Apresentação,Casa,#d6952a,0
+2014-06-02,2016-02-15,Comissões,Casa,#938ecc,623
+2016-02-15,2016-02-15,Apresentação,Casa,#d6952a,0
+2016-02-15,2016-12-08,Comissões,Casa,#938ecc,297
+2016-12-08,2017-02-09,Plenário,Casa,#5496cf,63
+2014-02-11,2014-05-07,CI,Local,NA,85
+2014-05-07,2014-05-20,Plenário,Local,NA,13
+2014-05-20,2014-06-02,CCJ,Local,#ffffcc,13
+2014-06-02,2014-07-15,CCJ,Local,#ffffcc,43
+2014-07-15,2014-08-14,CAE,Local,#a1dab4,30
+2014-08-14,2014-08-18,CCJ,Local,#ffffcc,4
+2014-08-18,2014-09-10,CAE,Local,#a1dab4,23
+2014-09-10,2014-11-13,CCJ,Local,#ffffcc,64
+2014-11-13,2015-03-10,CI,Local,NA,117
+2015-03-10,2015-08-13,CCJ,Local,#ffffcc,156
+2015-08-13,2015-09-25,CI,Local,NA,43
+2015-09-25,2015-10-28,CCJ,Local,#ffffcc,33
+2015-10-28,2016-02-15,CI,Local,NA,110
+2016-02-15,2016-12-08,CAE,Local,#a1dab4,297
+2016-12-08,2017-02-03,Plenário,Local,NA,57
+2017-02-03,2017-02-09,Câmara,Local,NA,6
+2014-02-11,2014-02-11,Recebimento,Sub-fase Comissão,NA,0
+2014-02-11,2014-05-20,Análise do relator,Sub-fase Comissão,NA,98
+2014-05-20,2014-05-29,Recebimento,Sub-fase Comissão,NA,9
+2014-05-29,2014-06-02,Análise do relator,Sub-fase Comissão,NA,4
+2014-06-02,2014-06-02,Recebimento,Sub-fase Comissão,NA,0
+2014-06-02,2014-06-02,Análise do relator,Sub-fase Comissão,NA,0
+2014-06-02,2014-07-15,Recebimento,Sub-fase Comissão,NA,43
+2014-07-15,2015-10-28,Análise do relator,Sub-fase Comissão,NA,470
+2015-10-28,2015-11-26,Recebimento,Sub-fase Comissão,NA,29
+2015-11-26,2015-12-02,Discussão e votação,Sub-fase Comissão,NA,6
+2015-12-02,2016-02-23,Encaminhamento,Sub-fase Comissão,NA,83
+2016-02-23,2016-08-02,Análise do relator,Sub-fase Comissão,NA,161
+2016-08-02,2017-02-09,Discussão e votação,Sub-fase Comissão,NA,191
