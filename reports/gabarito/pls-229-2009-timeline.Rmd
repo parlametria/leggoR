@@ -82,6 +82,7 @@ pl_229_2009_data_eventos <-  frame_data (
   'Emenda n3-CAE', 'Evento', '2016-05-18', '2016-05-18','#87c425',
   'Fim para o prazo de emendas', 'Evento', '2016-05-27', '2016-05-27','#87c465',
   'Designado relator (CCJ)', 'Evento', '2009-07-15', '2009-07-15','#87c465',
+  'Designado relator (CCJ)', 'Evento', '2009-09-24', '2009-09-24','#87c465',
   'Requerimento Tramitação em Conjunto aprovado', 'Evento','2009-09-22', '2009-09-22', '#938ecc',
   'Parecer Aprovando Substitutivo', 'Evento', '2009-11-25', '2009-11-25','#a561a2',
   'Designado relator (CAE)', 'Evento', '2009-12-03', '2009-12-03','#87c465',
