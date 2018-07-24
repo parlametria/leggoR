@@ -1,6 +1,6 @@
 source(here::here("R/congresso-lib.R"))
 
-url_base_tramitacao <- "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes/"
+url_base <- "http://legis.senado.leg.br/dadosabertos/materia/"
 
 #' @title Busca votações de uma proposição no Senado
 #' @description Retorna dataframe com os dados das votações de uma proposição no Senado.
@@ -11,7 +11,7 @@ url_base_tramitacao <- "http://legis.senado.leg.br/dadosabertos/materia/moviment
 #' fetch_votacoes(91341)
 #' @export
 fetch_votacoes <- function(proposicao_id){
-    url_base_votacoes <- "http://legis.senado.leg.br/dadosabertos/materia/votacoes/"
+    url_base_votacoes <- paste0(url_base, "votacoes/")
 
     url <- paste0(url_base_votacoes, proposicao_id)
     json_votacoes <- jsonlite::fromJSON(url, flatten = T)
@@ -47,7 +47,7 @@ fetch_votacoes <- function(proposicao_id){
 #' @export
 fetch_tramitacao <- function(proposicao_id){
 
-    url <- paste0(url_base_tramitacao, proposicao_id)
+    url <- paste0(url_base, "movimentacoes/", proposicao_id)
     json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
     tramitacao_data <-
       json_tramitacao %>%
@@ -93,7 +93,7 @@ fetch_deferimento <- function(proposicao_id) {
 
   fetch_one_deferimento <- function(proposicao_id) {
     json <-
-      paste0(url_base_tramitacao, proposicao_id) %>%
+      paste0(url_base, "movimentacoes/", proposicao_id) %>%
       jsonlite::fromJSON()
 
     resultados <- json$MovimentacaoMateria$Materia$OrdensDoDia$OrdemDoDia$DescricaoResultado
@@ -127,7 +127,7 @@ fetch_deferimento <- function(proposicao_id) {
 #' @export
 fetch_relatorias <- function(proposicao_id) {
 
-  url_relatorias <- "http://legis.senado.leg.br/dadosabertos/materia/relatorias/"
+  url_relatorias <- paste0(url_base,"relatorias/")
 
   url <- paste0(url_relatorias, proposicao_id)
   json_relatorias <- jsonlite::fromJSON(url, flatten = T)
@@ -165,7 +165,7 @@ fetch_relatorias <- function(proposicao_id) {
 #' @export
 fetch_current_relatoria <- function(proposicao_id) {
 
-  url_relatorias <- "http://legis.senado.leg.br/dadosabertos/materia/relatorias/"
+  url_relatorias <- paste0(url_base, "relatorias/")
 
   url <- paste0(url_relatorias, proposicao_id)
   json_relatorias <- jsonlite::fromJSON(url, flatten = T)
@@ -400,7 +400,8 @@ extract_locais <- function(df) {
   descricoes_comissoes <- c('matéria_com_a_relatoria',
                             'aguardando_designação_do_relator' )
   
-  df <- df %>%
+  df <- 
+    df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     dplyr::mutate(
       local =
@@ -477,7 +478,7 @@ extract_evento_Senado <- function(tramitacao_df, phases_df) {
 #' extract_apreciacao_Senado(93418)
 #' @export
 extract_apreciacao_Senado <- function(proposicao_id) {
-  url <- paste0(url_base_tramitacao, proposicao_id)
+  url <- paste0(url_base, "movimentacoes/", proposicao_id)
   json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
   tramitacao_data <-
     json_tramitacao %>%
@@ -488,15 +489,18 @@ extract_apreciacao_Senado <- function(proposicao_id) {
 
   if(!is.null(tramitacao_data)){
     if(!is.list(tramitacao_data$ComissoesDespacho.ComissaoDespacho)){
-      tramitacao_data <- tramitacao_data %>%
+      tramitacao_data <-
+        tramitacao_data %>%
         magrittr::extract2("ComissoesDespacho") %>%
         magrittr::extract2("ComissaoDespacho") %>%
         tibble::as.tibble()
     } else {
-      tramitacao_data <- tramitacao_data %>%
+      tramitacao_data <- 
+        tramitacao_data %>%
         tidyr::unnest(ComissoesDespacho.ComissaoDespacho)
     }
-    tramitacao_data <- tramitacao_data %>%
+    tramitacao_data <-
+      tramitacao_data %>%
         dplyr::filter(IndicadorDespachoTerminativo == "Sim")
     dplyr::if_else(nrow(tramitacao_data) != 0, "Conclusiva", "Plenário")
   } else {
