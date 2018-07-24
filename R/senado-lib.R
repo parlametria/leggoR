@@ -675,4 +675,45 @@ extract_first_comissoes_Senado <- function(df) {
 
 }
 
+#' @title Retorna as sessões deliberativas de uma proposição no Senado
+#' @description Retorna dataframe com os dados das sessões deliberativas de uma proposição no Senado.
+#' @param bill_id ID de uma proposição do Senado
+#' @return Dataframe com as informações sobre as sessões deliberativas de uma proposição no Senado
+#' @examples
+#' fetch_sessions(91341)
+#' @export
+fetch_sessions <- function(bill_id){
+  url_base_sessions <- "http://legis.senado.leg.br/dadosabertos/materia/ordia/"
+  url <- paste0(url_base_sessions, bill_id)
+  
+  json_sessions <- jsonlite::fromJSON(url, flatten = T)
+  
+  sessions_data <- json_sessions %>%
+    magrittr::extract2("OrdiaMateria") %>%
+    magrittr::extract2("Materia")
+    
+  ordem_do_dia_df <- sessions_data %>%
+    magrittr::extract2("OrdensDoDia") %>%
+    purrr::map_df(~ .) %>%
+    tidyr::unnest() %>% 
+    rename_sessions()
+  
+  ordem_do_dia_df
+}
 
+#' @title Renomeia as colunas do dataframe de Ordem do Dia no Senado
+#' @description Renomeia as colunas do dataframe de Ordem do Dia no Senado usando o padrão
+#' de underscore e letras minúsculas
+#' @param df Dataframe de Ordem do Dia no Senado
+#' @return Dataframe com as colunas renomeadas
+#' @examples
+#' df %>% rename_sessions()
+#' @export
+rename_sessions <- function(df) {
+  new_names = names(df) %>%
+    to_underscore()
+  
+  names(df) <- new_names
+  
+  df
+}
