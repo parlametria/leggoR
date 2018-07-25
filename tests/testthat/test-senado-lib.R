@@ -1,4 +1,4 @@
-context('test-senado-lib.R')
+testthat::context('test-senado-lib.R')
 
 # Constantes
 PROPOSICOES_ID <<- c(91341)
@@ -11,16 +11,17 @@ phase_three <- c(42, 110, 88)
 phase_four <- c(52)
 
 important_eventos <- tibble::frame_data(~ evento, ~ situacao_codigo_situacao,
-                                        "aprovacao_audiencia_publica", 110,
-                                        "aprovacao_parecer", 89,
-                                        "aprovacao_substitutivo", 113,
-                                        "pedido_vista", 90,
-                                        "aprovacao_projeto", 25)
+                                        'aprovacao_audiencia_publica', '110',
+                                        'aprovacao_parecer', '89',
+                                        'aprovacao_substitutivo', '113',
+                                        'pedido_vista', '90',
+                                        'aprovacao_projeto', '25')
 
 # PLS 229/2009 e PL 526/1999
 # Setup
 setup <- function(){
-  tramitacao_data <<- readr::read_csv(paste0(here::here("data/Senado/"), 91341, "-tramitacao-senado.csv"))
+  ## tramitacao_data <<- readr::read_csv(paste0(here::here("data/Senado/"), 91341, "-tramitacao-senado.csv"))
+  tramitacao_data <<- fetch_tramitacao(PROPOSICOES_ID)
   return(TRUE)
 }
 
@@ -30,13 +31,14 @@ check_api <- function(){
 
 test <- function(){
 
+  test_that('fetch_tramitacao() is dataframe', {
+    expect_true(is.data.frame(tramitacao_data))
+  })
+
   test_that('fetch_votacoes() is dataframe', {
     expect_true(is.data.frame(fetch_votacoes(PROPOSICOES_ID)))
   })
 
-  test_that('fetch_tramitacao() is dataframe', {
-    expect_true(is.data.frame(fetch_tramitacao(PROPOSICOES_ID)))
-  })
 
   #Erro
   # test_that('fetch_deferimento() is dataframe', {
@@ -69,11 +71,14 @@ test <- function(){
   ## })
 
   test_that('extract_evento_Senado() is dataframe', {
-    expect_true(is.data.frame(extract_evento_Senado(tramitacao_data, important_eventos)))
+    expect_true(is.data.frame(
+      extract_evento_Senado(tramitacao_data, important_eventos)))
   })
 
   test_that('extract_n_last_eventos_Senado() is dataframe', {
-    expect_true(is.data.frame(extract_n_last_eventos_Senado(extract_evento_Senado(tramitacao_data, important_eventos), 3)))
+    expect_true(is.data.frame(
+      extract_n_last_eventos_Senado(
+        extract_evento_Senado(tramitacao_data, important_eventos), 3)))
   })
 
   test_that('extract_comissoes_Senado() is dataframe', {
@@ -100,28 +105,32 @@ test <- function(){
     expect_true(all(names(fetch_deferimento('109173')) %in% .COLNAMES_DEFE_SEN))
   })
 
-  test_that("get_nome_ementa_Senado()", {
-    expect_true(all(names(get_nome_ementa_Senado(PROPOSICOES_ID)) %in% .COLNAMES_EMENTA_SEN))
+  test_that('get_nome_ementa_Senado()', {
+    expect_true(
+      all(names(get_nome_ementa_Senado(PROPOSICOES_ID)) %in% .COLNAMES_EMENTA_SEN))
   })
 
-  test_that("tail_descricao_despacho_Senado()", {
-    expect_true(all(names(tail_descricao_despacho_Senado(fetch_tramitacao(PROPOSICOES_ID))) %in% .COLNAMES_DESPACHO_SEN))
+  test_that('tail_descricao_despacho_Senado()', {
+    expect_true(
+      all(names(tail_descricao_despacho_Senado(fetch_tramitacao(PROPOSICOES_ID)))
+          %in% .COLNAMES_DESPACHO_SEN))
   })
 
-  test_that("extract_comissoes_Senado()", {
-    expect_true(all(names(extract_comissoes_Senado(fetch_tramitacao(PROPOSICOES_ID))) %in% .COLNAMES_COMISSAO_SEN))
+  test_that('extract_comissoes_Senado()', {
+    expect_true(
+      all(names(extract_comissoes_Senado(fetch_tramitacao(PROPOSICOES_ID)))
+          %in% .COLNAMES_COMISSAO_SEN))
   })
-
-  test_that("Regime de apreciacao", {expect_equal(extract_apreciacao_Senado(PROPOSICOES_ID), APRECIACAO_91341)})
-  test_that("Regime de tramitacao", {expect_equal(extract_regime_Senado(PROPOSICOES_ID), TRAMITACAO_91341)})
 
   test_that('Regime de apreciacao', {
-    expect_equal(extract_apreciacao_Senado(PROPOSICOES_ID), APRECIACAO_91341)})
-  test_that('Regime de tramitacao', {
-    expect_equal(extract_regime_Senado(PROPOSICOES_ID), TRAMITACAO_91341)})
+    expect_equal(extract_apreciacao_Senado(PROPOSICOES_ID), APRECIACAO_91341)
+  })
 
+  test_that('Regime de tramitacao', {
+    expect_equal(extract_regime_Senado(PROPOSICOES_ID), TRAMITACAO_91341)
+  })
 }
 
 if(check_api()){
   test()
-} else skip('Erro no setup!')
+} else testthat::skip('Erro no setup!')
