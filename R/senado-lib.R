@@ -352,13 +352,13 @@ tail_descricao_despacho_Senado <- function(df, qtd=1) {
 extract_fase_global <- function(data_tramitacao, bill_id) {
   data_prop <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-proposicao-senado.csv"))
   casa_origem <- if_else(data_prop$nome_casa_origem == "Senado Federal", " - Origem (Senado)", " - Revisão (Câmara)")
-  
-  virada_de_casa <- 
+
+  virada_de_casa <-
     data_tramitacao %>%
     filter(local == 'Mesa - Câmara') %>%
     arrange(data_tramitacao) %>%
     select(data_tramitacao)
-  
+
   if(nrow(virada_de_casa) == 0) {
     data_tramitacao %>%
       mutate(global = paste0(casa_origem))
@@ -395,12 +395,12 @@ extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_t
 #'  extract_locais(fetch_tramitacao(91341))
 #' @export
 extract_locais <- function(df) {
-  
+
   descricoes_plenario <- c('pronto_para_deliberação_do_plenário')
   descricoes_comissoes <- c('matéria_com_a_relatoria',
                             'aguardando_designação_do_relator' )
-  
-  df <- 
+
+  df <-
     df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     dplyr::mutate(
@@ -414,11 +414,11 @@ extract_locais <- function(df) {
           situacao_descricao_situacao == 'remetida_à_câmara_dos_deputados' ~
             'Mesa - Câmara')
     )
-  
+
   if (is.na(df[1, ]$local)) {
     df[1, ]$local = 'Mesa - Senado'
   }
-  
+
   df %>%
     tidyr::fill(local)
 }
@@ -431,12 +431,12 @@ extract_locais <- function(df) {
 #' bill_passage %>% extract_fase_casa_Senado(phase_one)
 #' @export
 extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
-  
+
   descricoes_plenario <- c('pronto_para_deliberação_do_plenário')
-  
+
   descricoes_comissoes <- c('matéria_com_a_relatoria',
                             'aguardando_designação_do_relator' )
-  dataframe <- 
+  dataframe <-
     dataframe %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     dplyr::mutate(
@@ -445,12 +445,12 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
           grepl(fase_apresentacao, texto_tramitacao) ~ 'Apresentação',
           situacao_descricao_situacao %in% descricoes_plenario ~
             'Plenário',
-          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na comissão|recebido nesta comissão') | 
+          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na comissão|recebido nesta comissão') |
              situacao_descricao_situacao %in% descricoes_comissoes) ~
             'Comissões')
     ) %>%
     tidyr::fill(casa)
-  
+
   dataframe %>%
     mutate(casa = if_else(is.na(casa), 'Mesa - Senado', casa))
 }
@@ -495,7 +495,7 @@ extract_apreciacao_Senado <- function(proposicao_id) {
         magrittr::extract2("ComissaoDespacho") %>%
         tibble::as.tibble()
     } else {
-      tramitacao_data <- 
+      tramitacao_data <-
         tramitacao_data %>%
         tidyr::unnest(ComissoesDespacho.ComissaoDespacho)
     }
@@ -689,19 +689,19 @@ extract_first_comissoes_Senado <- function(df) {
 fetch_sessions <- function(bill_id){
   url_base_sessions <- "http://legis.senado.leg.br/dadosabertos/materia/ordia/"
   url <- paste0(url_base_sessions, bill_id)
-  
+
   json_sessions <- jsonlite::fromJSON(url, flatten = T)
-  
+
   sessions_data <- json_sessions %>%
     magrittr::extract2("OrdiaMateria") %>%
     magrittr::extract2("Materia")
-    
+
   ordem_do_dia_df <- sessions_data %>%
     magrittr::extract2("OrdensDoDia") %>%
     purrr::map_df(~ .) %>%
-    tidyr::unnest() %>% 
+    tidyr::unnest() %>%
     rename_sessions()
-  
+
   ordem_do_dia_df
 }
 
@@ -716,8 +716,8 @@ fetch_sessions <- function(bill_id){
 rename_sessions <- function(df) {
   new_names = names(df) %>%
     to_underscore()
-  
+
   names(df) <- new_names
-  
+
   df
 }
