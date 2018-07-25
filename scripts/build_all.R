@@ -14,10 +14,12 @@ c('data/Senado', 'data/camara', 'data/vis/tramitacao', 'docs/reports') %>%
   lapply(dir.create, recursive=TRUE, showWarnings = FALSE)
 
 # Store data
-readr::read_csv('data/tabela_geral_ids_casa.csv') %>% build_all_csvs()
+all_pls <- readr::read_csv('data/tabela_geral_ids_casa.csv')
+all_pls %>% build_all_csvs()
 
 # Build reports
-render_all_reports()
+all_pls %>% render_house_df_reports()
+#render_all_reports()
 
 # Build tabela e gabaritos
 c(
