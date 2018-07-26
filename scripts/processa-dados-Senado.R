@@ -27,21 +27,26 @@ process_proposicao <- function(bill_id){
     to_underscore(bill_passage$situacao_descricao_situacao) %>% 
     str_replace_all("\\s+","_")
   
+  important_phases <- frame_data(~ evento, ~ situacao_codigo_situacao,
+                                 "aprovacao_audiencia_publica", 110,
+                                 "aprovacao_parecer", 89,
+                                 "aprovacao_substitutivo", 113,
+                                 "pedido_vista", 90,
+                                 "aguardando_emendas_mesa", 88,
+                                 "aguardando_emendas", 20,
+                                 "aprovada_materia", 96,
+                                 "aprovacao_projeto", 25)
+  
+  
+  bill_passage <- extract_evento_Senado(bill_passage, important_phases)
+  
   bill_passage <- 
     extract_fase_casa_Senado(bill_passage, phase_one) %>% 
     arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     fill(casa) %>%
     filter(!is.na(casa))
 
-  important_phases <- frame_data(~ evento, ~ situacao_codigo_situacao,
-            "aprovacao_audiencia_publica", 110,
-            "aprovacao_parecer", 89,
-            "aprovacao_substitutivo", 113,
-            "pedido_vista", 90,
-            "aprovacao_projeto", 25)
 
-
-  bill_passage <- extract_evento_Senado(bill_passage, important_phases)
   index_of_camara <- ifelse(length(which(bill_passage$situacao_codigo_situacao == 52)) == 0, 
                              nrow(bill_passage),
                              which(bill_passage$situacao_codigo_situacao == 52)[1])
