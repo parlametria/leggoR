@@ -212,7 +212,8 @@ extract_events_in_camara <- function(tramitacao_df) {
     'requerimento_apensacao', c$requerimento_apensacao,
     'requerimento_urgencia', c$requerimento_urgencia,
     'requerimento_prorrogacao', c$requerimento_prorrogacao,
-    'redistribuicao', c$redistribuicao)
+    'redistribuicao', c$redistribuicao
+    )
 
   special_comissao <- camara_codes$eventos$code$comissao_especial
   designado_relator <- camara_codes$eventos$code$designado_relator
@@ -536,4 +537,23 @@ extract_situacao_comissao <- function(df) {
                     # dplyr::case_when(!stringr::str_detect(local, reg)) ~ "NA",
                     #                                    TRUE ~ situacao_comissao)
 
+}
+#' @title Recupera os eventos da Câmara
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada evento
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada evento
+#' @examples
+#'  extract_evento_in_camara(fetch_tramitacao(91341))
+#' @export
+extract_evento_in_camara <- function(df) {
+  c <- camara_codes$eventos$regex
+  redistribuicao <- c$redistribuicao
+  df <- df %>%
+    dplyr::mutate(
+      evento = 
+        dplyr::case_when(stringr::str_detect(tolower(despacho), stringr::regex(redistribuicao, ignore_case = TRUE) &
+                         stringr::str_detect(tolower(descricao_tramitacao), stringr::regex('distribuição', ignore_case = TRUE)) ~ "Redistribuição")
+    ) %>% dplyr::filter(!is.na(evento))
+  
+  df
 }
