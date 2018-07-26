@@ -548,12 +548,9 @@ extract_situacao_comissao <- function(df) {
 extract_evento_in_camara <- function(df) {
   c <- camara_codes$eventos$regex
   redistribuicao <- c$redistribuicao
-  df <- df %>%
+  df %>%
     dplyr::mutate(
       evento = 
-        dplyr::case_when(stringr::str_detect(tolower(despacho), stringr::regex(redistribuicao, ignore_case = TRUE) &
-                         stringr::str_detect(tolower(descricao_tramitacao), stringr::regex('distribuição', ignore_case = TRUE)) ~ "Redistribuição")
-    ) %>% dplyr::filter(!is.na(evento))
-  
-  df
+        dplyr::case_when(stringr::str_detect(tolower(despacho), stringr::regex(redistribuicao, ignore_case = TRUE)) &
+                           tolower(descricao_tramitacao) == 'distribuição' ~ "Redistribuição"))
 }
