@@ -8,11 +8,13 @@ Authors@R: c(
 URL: https://github.com/analytics-ufcg/agora-digital
 Description: Provides propositions, votings, deputies and parties data from 
     Brazilian lower house <https://dadosabertos.camara.leg.br> in data frames.
-License: Other
+License: file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: magrittr,
     here,
+    plyr,
+    purrr,
     dplyr,
     tibble,
     tidyr,
@@ -21,11 +23,11 @@ Imports: magrittr,
     rvest,
     rcongresso,
     fuzzyjoin,
-    lubridate,
-    vistime,
-    covr,
-    rjson,
+    xml2,
+    lubridate
 Suggests: testthat,
-    knitr
+    knitr,
+    vistime,
+    covr
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1

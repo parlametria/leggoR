@@ -23,6 +23,12 @@ render_plot_all <- function(senado_id, camara_id) {
   )
 }
 
+render_house_df_reports <- function(df) {
+  df %>% 
+    rowwise() %>%
+    do(render_plot_single_house(param_id = .$id, param_casa = .$casa))
+}
+
 render_all_reports <- function() {
   pls_168_senado <- 132865
   pl_3729_camara <-257161
