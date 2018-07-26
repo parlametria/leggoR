@@ -27,3 +27,7 @@ Rodar testes:
 Mostrar cobertura do código:
 
     > library(covr);package_coverage()
+
+Fazer verificações gerais um pouco mais bonitinhas:
+
+    > rcmdcheck::rcmdcheck()
