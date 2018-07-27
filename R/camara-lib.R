@@ -553,19 +553,7 @@ extract_situacao_comissao <- function(df) {
                     #                                    TRUE ~ situacao_comissao)
 
 }
-#' @title Recupera os eventos da Câmara
-#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada evento
-#' @param df Dataframe da tramitação na Câmara
-#' @return Dataframe da tramitacao contendo mais uma coluna chamada evento
-#' @examples
-#'  extract_evento_in_camara(fetch_tramitacao(91341))
-#' @export
-extract_evento_in_camara <- function(df) {
-  c <- camara_codes$eventos$regex
-  redistribuicao <- c$redistribuicao
-  df %>%
-    dplyr::mutate(
-      evento = 
-        dplyr::case_when(stringr::str_detect(tolower(despacho), stringr::regex(redistribuicao, ignore_case = TRUE)) &
-                           tolower(descricao_tramitacao) == 'distribuição' ~ "Redistribuição"))
+
+get_environment_camara_json <- function(){
+  camara_codes
 }
