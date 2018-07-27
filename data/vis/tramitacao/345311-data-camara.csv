@@ -1,11 +1,11 @@
 label,start,end,group,color
 Apresentação - Origem (Câmara),2007-03-20T16:13:00Z,2007-03-29T00:00:00Z,Global,#d6952a
-Comissões - Origem (Câmara),2007-03-29T00:00:00Z,2018-07-20T15:15:27Z,Global,#938ecc
+Comissões - Origem (Câmara),2007-03-29T00:00:00Z,2018-07-27T11:53:25Z,Global,#938ecc
 CD-MESA-PLEN,2007-03-20T16:13:00Z,2007-03-29T00:00:00Z,Comissão,NA
 CDHM,2007-03-29T00:00:00Z,2007-11-19T14:25:00Z,Comissão,NA
 CAPADR,2007-11-19T14:25:00Z,2008-07-03T10:10:00Z,Comissão,NA
 CDHM,2008-07-03T10:10:00Z,2009-08-07T16:16:00Z,Comissão,NA
-CCJC,2009-08-07T16:16:00Z,2018-07-20T15:15:27Z,Comissão,NA
+CCJC,2009-08-07T16:16:00Z,2018-07-27T11:53:25Z,Comissão,NA
 Recebimento,2007-03-29T00:00:00Z,2007-04-11T00:00:00Z,Situação na comissão,#5496cf
 Análise do relator,2007-04-11T00:00:00Z,2007-08-27T19:02:00Z,Situação na comissão,#ff9c37
 Discussão e votação,2007-08-27T19:02:00Z,2007-11-06T17:29:00Z,Situação na comissão,#8bca42
@@ -23,7 +23,7 @@ Encaminhamento,2009-08-07T16:03:00Z,2009-08-07T16:16:00Z,Situação na comissão
 Recebimento,2009-08-07T16:16:00Z,2009-08-27T11:35:00Z,Situação na comissão,#5496cf
 Encaminhamento,2009-08-27T11:35:00Z,2010-03-04T00:00:00Z,Situação na comissão,#ea81b1
 Análise do relator,2010-03-04T00:00:00Z,2018-04-10T18:15:00Z,Situação na comissão,#ff9c37
-Discussão e votação,2018-04-10T18:15:00Z,2018-07-20T15:15:27Z,Situação na comissão,#8bca42
+Discussão e votação,2018-04-10T18:15:00Z,2018-07-27T11:53:25Z,Situação na comissão,#8bca42
 designado_relator,2007-04-11T00:00:00Z,2007-04-11T00:00:00Z,Evento,#a9a9a9
 parecer_pela_rejeicao,2007-08-27T19:02:00Z,2007-08-27T19:02:00Z,Evento,#a9a9a9
 parecer_pela_rejeicao,2007-10-19T12:07:00Z,2007-10-19T12:07:00Z,Evento,#a9a9a9

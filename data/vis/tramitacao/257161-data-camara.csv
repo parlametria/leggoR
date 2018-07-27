@@ -1,12 +1,12 @@
 label,start,end,group,color
 Apresentação - Origem (Câmara),2004-06-08T00:00:00Z,2004-06-22T14:57:00Z,Global,#d6952a
-Comissões - Origem (Câmara),2004-06-22T14:57:00Z,2018-07-20T15:15:24Z,Global,#938ecc
+Comissões - Origem (Câmara),2004-06-22T14:57:00Z,2018-07-27T11:53:23Z,Global,#938ecc
 CD-MESA-PLEN,2004-06-08T00:00:00Z,2004-06-22T14:57:00Z,Comissão,NA
 CMADS,2004-06-22T14:57:00Z,2014-02-10T15:23:00Z,Comissão,NA
 CAPADR,2014-02-10T15:23:00Z,2014-05-16T10:16:00Z,Comissão,NA
 CMADS,2014-05-16T10:16:00Z,2015-10-20T14:44:00Z,Comissão,NA
 CFT,2015-10-20T14:44:00Z,2016-05-09T16:04:00Z,Comissão,NA
-CCJC,2016-05-09T16:04:00Z,2018-07-20T15:15:24Z,Comissão,NA
+CCJC,2016-05-09T16:04:00Z,2018-07-27T11:53:23Z,Comissão,NA
 Recebimento,2004-06-22T14:57:00Z,2004-07-07T00:00:00Z,Situação na comissão,#5496cf
 Análise do relator,2004-07-07T00:00:00Z,2009-01-30T15:18:00Z,Situação na comissão,#ff9c37
 Discussão e votação,2009-01-30T15:18:00Z,2009-03-19T00:00:00Z,Situação na comissão,#8bca42
@@ -33,7 +33,7 @@ Encaminhamento,2016-03-22T09:00:00Z,2016-05-09T16:04:00Z,Situação na comissão
 Recebimento,2016-05-09T16:04:00Z,2016-05-11T00:00:00Z,Situação na comissão,#5496cf
 Análise do relator,2016-05-11T00:00:00Z,2016-07-27T13:21:00Z,Situação na comissão,#ff9c37
 Discussão e votação,2016-07-27T13:21:00Z,2018-04-11T00:00:00Z,Situação na comissão,#8bca42
-Análise do relator,2018-04-11T00:00:00Z,2018-07-20T15:15:24Z,Situação na comissão,#ff9c37
+Análise do relator,2018-04-11T00:00:00Z,2018-07-27T11:53:23Z,Situação na comissão,#ff9c37
 designado_relator,2004-07-07T00:00:00Z,2004-07-07T00:00:00Z,Evento,#a9a9a9
 designado_relator,2007-05-31T00:00:00Z,2007-05-31T00:00:00Z,Evento,#a9a9a9
 parecer_pela_aprovacao_com_substitutivo,2009-01-30T15:18:00Z,2009-01-30T15:18:00Z,Evento,#a9a9a9
