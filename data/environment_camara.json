@@ -19,7 +19,8 @@
       "redistribuicao": "novo despacho",
       "projeto_reconstituido": "reconstituído",
       "desarquivada": "^desarquivado nos termos do artigo",
-      "alteracao_de_regime": "^alteração do regime de tramitação desta proposição"
+      "alteracao_de_regime": "^alteração do regime de tramitação desta proposição",
+      "distribuicao": "às* comiss..s*|despacho à"
     },
     "code": {
       "comissao_especial": [120],

@@ -215,7 +215,8 @@ extract_events_in_camara <- function(tramitacao_df) {
     'redistribuicao', c$redistribuicao,
     'projeto_reconstituido', c$projeto_reconstituido,
     'desarquivada', c$desarquivada,
-    'alteracao_de_regime', c$alteracao_de_regime)
+    'alteracao_de_regime', c$alteracao_de_regime,
+    'distribuicao', c$distribuicao)
   
   #events with code
   special_comissao <- camara_codes$eventos$code$comissao_especial
