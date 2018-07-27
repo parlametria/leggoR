@@ -54,7 +54,7 @@ process_proposicao <- function(bill_id){
     bill_passage[1:index_of_camara, ] %>% 
     extract_locais() %>%
     extract_fase_global(bill_id) %>%
-    filter(!is.na(fase))
+    filter(!is.na(fase) | !is.na(evento))
   
   bill_passage %>%
     write_csv(paste0(here::here("data/Senado/"), bill_id, "-fases-tramitacao-senado.csv"))
