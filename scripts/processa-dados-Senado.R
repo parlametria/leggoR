@@ -21,8 +21,7 @@ process_proposicao <- function(bill_id){
   bill_passage <- 
     extract_fase_Senado(bill_passage, phase_one, recebimento_phase, phase_two, phase_three, encaminhamento_phase, phase_four) %>% 
     arrange(data_tramitacao, numero_ordem_tramitacao) %>%
-    fill(fase) %>%
-    filter(!is.na(fase))
+    fill(fase) 
 
   bill_passage$situacao_descricao_situacao <- 
     to_underscore(bill_passage$situacao_descricao_situacao) %>% 
@@ -43,13 +42,21 @@ process_proposicao <- function(bill_id){
 
 
   bill_passage <- extract_evento_Senado(bill_passage, important_phases)
-  bill_passage <- extract_locais(bill_passage)
+  index_of_camara <- ifelse(length(which(bill_passage$situacao_codigo_situacao == 52)) == 0, 
+                             nrow(bill_passage),
+                             which(bill_passage$situacao_codigo_situacao == 52)[1])
+  bill_passage <- 
+    bill_passage[1:index_of_camara, ] %>% 
+    extract_locais() %>%
+    extract_fase_global(bill_id) %>%
+    filter(!is.na(fase))
+  
   bill_passage %>%
     write_csv(paste0(here::here("data/Senado/"), bill_id, "-fases-tramitacao-senado.csv"))
 
   bill_passage_visualization <- 
     bill_passage %>%
-    select(data_tramitacao, local, fase, evento, casa)
+    select(data_tramitacao, local, fase, evento, casa, global)
 
   # Print evento freq table
   bill_passage_visualization %>% select(evento) %>% group_by(evento) %>%

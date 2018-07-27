@@ -44,4 +44,9 @@ import_proposicao <- function(bill_id){
   last_relatoria <- fetch_last_relatoria(bill_id)
   last_relatoria %>%
     write_csv(paste0(here::here("data/Senado/"), bill_id, "-last-relatoria-senado.csv"))
+  
+  #Ordem do Dia data
+  sessions_data <- fetch_sessions(bill_id)
+  sessions_data %>% 
+    write_csv(paste0(here::here("data/Senado/"), bill_id, "-sessions-senado.csv"))
 }

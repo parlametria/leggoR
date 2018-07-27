@@ -1,6 +1,6 @@
 source(here::here("R/congresso-lib.R"))
 
-url_base_tramitacao <- "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes/"
+url_base <- "http://legis.senado.leg.br/dadosabertos/materia/"
 
 #' @title Busca votações de uma proposição no Senado
 #' @description Retorna dataframe com os dados das votações de uma proposição no Senado.
@@ -11,7 +11,7 @@ url_base_tramitacao <- "http://legis.senado.leg.br/dadosabertos/materia/moviment
 #' fetch_votacoes(91341)
 #' @export
 fetch_votacoes <- function(proposicao_id){
-    url_base_votacoes <- "http://legis.senado.leg.br/dadosabertos/materia/votacoes/"
+    url_base_votacoes <- paste0(url_base, "votacoes/")
 
     url <- paste0(url_base_votacoes, proposicao_id)
     json_votacoes <- jsonlite::fromJSON(url, flatten = T)
@@ -47,7 +47,7 @@ fetch_votacoes <- function(proposicao_id){
 #' @export
 fetch_tramitacao <- function(proposicao_id){
 
-    url <- paste0(url_base_tramitacao, proposicao_id)
+    url <- paste0(url_base, "movimentacoes/", proposicao_id)
     json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
     tramitacao_data <-
       json_tramitacao %>%
@@ -93,7 +93,7 @@ fetch_deferimento <- function(proposicao_id) {
 
   fetch_one_deferimento <- function(proposicao_id) {
     json <-
-      paste0(url_base_tramitacao, proposicao_id) %>%
+      paste0(url_base, "movimentacoes/", proposicao_id) %>%
       jsonlite::fromJSON()
 
     resultados <- json$MovimentacaoMateria$Materia$OrdensDoDia$OrdemDoDia$DescricaoResultado
@@ -127,7 +127,7 @@ fetch_deferimento <- function(proposicao_id) {
 #' @export
 fetch_relatorias <- function(proposicao_id) {
 
-  url_relatorias <- "http://legis.senado.leg.br/dadosabertos/materia/relatorias/"
+  url_relatorias <- paste0(url_base,"relatorias/")
 
   url <- paste0(url_relatorias, proposicao_id)
   json_relatorias <- jsonlite::fromJSON(url, flatten = T)
@@ -165,7 +165,7 @@ fetch_relatorias <- function(proposicao_id) {
 #' @export
 fetch_current_relatoria <- function(proposicao_id) {
 
-  url_relatorias <- "http://legis.senado.leg.br/dadosabertos/materia/relatorias/"
+  url_relatorias <- paste0(url_base, "relatorias/")
 
   url <- paste0(url_relatorias, proposicao_id)
   json_relatorias <- jsonlite::fromJSON(url, flatten = T)
@@ -342,6 +342,33 @@ tail_descricao_despacho_Senado <- function(df, qtd=1) {
       dplyr::select(data_tramitacao, situacao_descricao_situacao, texto_tramitacao)
 }
 
+#' @title Cria coluna com a fase global da tramitação no Senado
+#' @description Cria uma nova coluna com a fase global no Senado
+#' @param df Dataframe da tramitação no Senado
+#' @return Dataframe com a coluna "global" adicionada.
+#' @examples
+#' tramitacao %>% extract_fase_global()
+#' @export
+extract_fase_global <- function(data_tramitacao, bill_id) {
+  data_prop <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-proposicao-senado.csv"))
+  casa_origem <- if_else(data_prop$nome_casa_origem == "Senado Federal", " - Origem (Senado)", " - Revisão (Câmara)")
+
+  virada_de_casa <-
+    data_tramitacao %>%
+    filter(local == 'Mesa - Câmara') %>%
+    arrange(data_tramitacao) %>%
+    select(data_tramitacao)
+
+  if(nrow(virada_de_casa) == 0) {
+    data_tramitacao %>%
+      mutate(global = paste0(casa_origem))
+  }else {
+    casa_atual <- if_else(casa_origem == " - Origem (Senado)", " - Revisão (Câmara)", " - Origem (Senado)")
+    data_tramitacao %>%
+      mutate(global = if_else(data_tramitacao < virada_de_casa[1, ][[1]], casa_origem, casa_atual))
+  }
+}
+
 #' @title Cria coluna com as fases da tramitação no Senado
 #' @description Cria uma nova coluna com as fases no Senado
 #' @param df Dataframe da tramitação no Senado
@@ -360,6 +387,42 @@ extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_t
         detect_fase(situacao_codigo_situacao, encaminhamento_phase) ~ 'Encaminhamento'))
 }
 
+#' @title Recupera os locais do Senado
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada local
+#' @param df Dataframe da tramitação no Senado
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada local
+#' @examples
+#'  extract_locais(fetch_tramitacao(91341))
+#' @export
+extract_locais <- function(df) {
+
+  descricoes_plenario <- c('pronto_para_deliberação_do_plenário')
+  descricoes_comissoes <- c('matéria_com_a_relatoria',
+                            'aguardando_designação_do_relator' )
+
+  df <-
+    df %>%
+    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::mutate(
+      local =
+        dplyr::case_when(
+          situacao_descricao_situacao %in% descricoes_plenario ~
+            'Plenário',
+          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na comissão|recebido nesta comissão') |
+             situacao_descricao_situacao %in% descricoes_comissoes) ~
+            origem_tramitacao_local_sigla_local,
+          situacao_descricao_situacao == 'remetida_à_câmara_dos_deputados' ~
+            'Mesa - Câmara')
+    )
+
+  if (is.na(df[1, ]$local)) {
+    df[1, ]$local = 'Mesa - Senado'
+  }
+
+  df %>%
+    tidyr::fill(local)
+}
+
 #' @title Cria coluna com a fase casa da tramitação no Senado
 #' @description Cria uma nova coluna com a fase casa no Senado
 #' @param df Dataframe da tramitação no Senado com as descrições formatadas
@@ -369,14 +432,12 @@ extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_t
 #' @export
 extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
 
-  descricoes_plenario <- c('incluído_requerimento_em_ordem_do_dia_da_sessão_deliberativa',
-                           'pronto_para_deliberação_do_plenário',
-                           'aguardando_recebimento_de_emendas_perante_a_mesa',
-                           'incluída_em_ordem_do_dia')
+  descricoes_plenario <- c('pronto_para_deliberação_do_plenário')
+
   descricoes_comissoes <- c('matéria_com_a_relatoria',
                             'aguardando_designação_do_relator' )
-
-  dataframe %>%
+  dataframe <-
+    dataframe %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     dplyr::mutate(
       casa =
@@ -384,13 +445,14 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
           grepl(fase_apresentacao, texto_tramitacao) ~ 'Apresentação',
           situacao_descricao_situacao %in% descricoes_plenario ~
             'Plenário',
-          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') |
+          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na comissão|recebido nesta comissão') |
              situacao_descricao_situacao %in% descricoes_comissoes) ~
             'Comissões')
     ) %>%
     tidyr::fill(casa)
 
-
+  dataframe %>%
+    mutate(casa = if_else(is.na(casa), 'Mesa - Senado', casa))
 }
 
 #' @title Extrai os eventos importantes que aconteceram no Senado
@@ -416,7 +478,7 @@ extract_evento_Senado <- function(tramitacao_df, phases_df) {
 #' extract_apreciacao_Senado(93418)
 #' @export
 extract_apreciacao_Senado <- function(proposicao_id) {
-  url <- paste0(url_base_tramitacao, proposicao_id)
+  url <- paste0(url_base, "movimentacoes/", proposicao_id)
   json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
   tramitacao_data <-
     json_tramitacao %>%
@@ -427,15 +489,18 @@ extract_apreciacao_Senado <- function(proposicao_id) {
 
   if(!is.null(tramitacao_data)){
     if(!is.list(tramitacao_data$ComissoesDespacho.ComissaoDespacho)){
-      tramitacao_data <- tramitacao_data %>%
+      tramitacao_data <-
+        tramitacao_data %>%
         magrittr::extract2("ComissoesDespacho") %>%
         magrittr::extract2("ComissaoDespacho") %>%
         tibble::as.tibble()
     } else {
-      tramitacao_data <- tramitacao_data %>%
+      tramitacao_data <-
+        tramitacao_data %>%
         tidyr::unnest(ComissoesDespacho.ComissaoDespacho)
     }
-    tramitacao_data <- tramitacao_data %>%
+    tramitacao_data <-
+      tramitacao_data %>%
         dplyr::filter(IndicadorDespachoTerminativo == "Sim")
     dplyr::if_else(nrow(tramitacao_data) != 0, "Conclusiva", "Plenário")
   } else {
@@ -614,39 +679,45 @@ extract_first_comissoes_Senado <- function(df) {
 
 }
 
-#' @title Recupera os locais do Senado
-#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada local
-#' @param df Dataframe da tramitação no Senado
-#' @return Dataframe da tramitacao contendo mais uma coluna chamada local
+#' @title Retorna as sessões deliberativas de uma proposição no Senado
+#' @description Retorna dataframe com os dados das sessões deliberativas de uma proposição no Senado.
+#' @param bill_id ID de uma proposição do Senado
+#' @return Dataframe com as informações sobre as sessões deliberativas de uma proposição no Senado
 #' @examples
-#'  extract_locais(fetch_tramitacao(91341))
+#' fetch_sessions(91341)
 #' @export
-extract_locais <- function(df) {
-  descricoes_plenario <- c('incluído_requerimento_em_ordem_do_dia_da_sessão_deliberativa',
-                           'pronto_para_deliberação_do_plenário',
-                           'aguardando_recebimento_de_emendas_perante_a_mesa',
-                           'incluída_em_ordem_do_dia')
-  descricoes_comissoes <- c('matéria_com_a_relatoria',
-                            'aguardando_designação_do_relator' )
+fetch_sessions <- function(bill_id){
+  url_base_sessions <- "http://legis.senado.leg.br/dadosabertos/materia/ordia/"
+  url <- paste0(url_base_sessions, bill_id)
 
-    df <- df %>%
-    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
-    dplyr::mutate(
-      local =
-        dplyr::case_when(
-          situacao_descricao_situacao %in% descricoes_plenario ~
-            'Plenário',
-          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') |
-             situacao_descricao_situacao %in% descricoes_comissoes) ~
-            origem_tramitacao_local_sigla_local,
-          situacao_descricao_situacao == 'remetida_à_câmara_dos_deputados' ~
-            'Câmara')
-    )
+  json_sessions <- jsonlite::fromJSON(url, flatten = T)
 
-    if (is.na(df[1, ]$local)) {
-      df[1, ]$local = 'SF-ATA-PLEN'
-    }
+  sessions_data <- json_sessions %>%
+    magrittr::extract2("OrdiaMateria") %>%
+    magrittr::extract2("Materia")
 
-    df %>%
-      tidyr::fill(local)
+  ordem_do_dia_df <- sessions_data %>%
+    magrittr::extract2("OrdensDoDia") %>%
+    purrr::map_df(~ .) %>%
+    tidyr::unnest() %>%
+    rename_sessions()
+
+  ordem_do_dia_df
+}
+
+#' @title Renomeia as colunas do dataframe de Ordem do Dia no Senado
+#' @description Renomeia as colunas do dataframe de Ordem do Dia no Senado usando o padrão
+#' de underscore e letras minúsculas
+#' @param df Dataframe de Ordem do Dia no Senado
+#' @return Dataframe com as colunas renomeadas
+#' @examples
+#' df %>% rename_sessions()
+#' @export
+rename_sessions <- function(df) {
+  new_names = names(df) %>%
+    to_underscore()
+
+  names(df) <- new_names
+
+  df
 }

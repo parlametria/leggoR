@@ -12,6 +12,7 @@ source(here::here('scripts/vis/tramitacao/build-chart.R'))
 source(here::here('R/senado-lib.R'))
 library(rcongresso)
 
+print(params)
 data <- extract_informations_from_single_house(params$id, params$casa)
 chart <- create_chart(params$id, params$casa)
 ```
@@ -30,7 +31,7 @@ chart <- create_chart(params$id, params$casa)
 - **Último Relator:** `r toString(data$ultimo_relator)`
 - [Link no site oficial](`r data$page_url`)
 
-#### Tramitação na casa `r toString(data$casa)`
+#### Tramitação na casa `r toString(params$casa)`
 ```{r echo=FALSE, message=FALSE}
 chart
 ```
