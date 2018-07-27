@@ -1,6 +1,7 @@
 label,start,end,time_interval,group,color
-Tramitação - Casa de Origem (Senado),2018-04-10,2018-07-05,0,Global,#f37340
-Comissões,2018-04-18,2018-07-05,78,Casa,#938ecc
-CCJ,2018-04-18,2018-07-05,78,Comissão,#ffffcc
+Apresentação - Origem (Senado),2018-04-18,2018-04-19,1,Global,#d6952a
+Comissões - Origem (Senado),2018-04-19,2018-07-05,77,Global,#938ecc
+Mesa - Senado,2018-04-18,2018-04-19,1,Comissão,NA
+CCJ,2018-04-19,2018-07-05,77,Comissão,#ffffcc
 Recebimento,2018-04-18,2018-04-19,1,Sub-fase Comissão,#d7191c
 Análise do relator,2018-04-19,2018-07-05,77,Sub-fase Comissão,#fdae61

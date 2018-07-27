@@ -28,6 +28,7 @@ Imports: magrittr,
 Suggests: testthat,
     knitr,
     vistime,
-    covr
+    covr,
+    rcmdcheck
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
