@@ -16,7 +16,8 @@
       "requerimento_apensacao": "^apresentação do requerimento de apensação",
       "requerimento_urgencia": "^apresentação do requerimento de urgência",
       "requerimento_prorrogacao": "^apresentação do requerimento de prorrogação de prazo de comissão temporária",
-      "redistribuicao": "novo despacho",
+      "novo_despacho": "novo despacho",
+      "redistribuicao": "atualização do despacho",
       "projeto_reconstituido": "reconstituído",
       "desarquivada": "^desarquivado nos termos do artigo",
       "alteracao_de_regime": "^alteração do regime de tramitação desta proposição"
@@ -31,7 +32,10 @@
       "abertura_prazo_emendas": [350],
       "encerramento_prazo_emendas": [600],
       "arquivada": [502]
-    } 
+    },
+    "text":{
+      "distribuicao": "Distribuição"
+    }
 
   },
   "comissoes": {
