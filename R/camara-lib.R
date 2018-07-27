@@ -212,13 +212,22 @@ extract_events_in_camara <- function(tramitacao_df) {
     'requerimento_apensacao', c$requerimento_apensacao,
     'requerimento_urgencia', c$requerimento_urgencia,
     'requerimento_prorrogacao', c$requerimento_prorrogacao,
-    'redistribuicao', c$redistribuicao
-    )
-
+    'redistribuicao', c$redistribuicao,
+    'projeto_reconstituido', c$projeto_reconstituido,
+    'desarquivada', c$desarquivada,
+    'alteracao_de_regime', c$alteracao_de_regime)
+  
+  #events with code
   special_comissao <- camara_codes$eventos$code$comissao_especial
   designado_relator <- camara_codes$eventos$code$designado_relator
   parecer <- camara_codes$eventos$code$parecer
-  
+  apresentacao_da_pl <- camara_codes$eventos$code$apresentacao_da_pl
+  retirada_de_pauta <- camara_codes$eventos$code$retirada_de_pauta
+  pedido_de_vista <- camara_codes$eventos$code$pedido_de_vista
+  abertura_prazo_emendas <- camara_codes$eventos$code$abertura_prazo_emendas
+  encerramento_prazo_emendas <- camara_codes$eventos$code$encerramento_prazo_emendas
+  arquivada <- camara_codes$eventos$code$arquivada
+
   tramitacao_df %>%
     dplyr::mutate(despacho_lower = tolower(despacho)) %>%
     fuzzyjoin::regex_left_join(events_df, by = c(despacho_lower = "regex")) %>%
@@ -226,6 +235,12 @@ extract_events_in_camara <- function(tramitacao_df) {
     dplyr::mutate(evento = dplyr::case_when(
       id_tipo_tramitacao == special_comissao ~ 'criacao_comissao_temporaria',
       id_tipo_tramitacao == designado_relator ~ 'designado_relator',
+      id_tipo_tramitacao == apresentacao_da_pl ~ 'apresentacao_da_pl',
+      id_tipo_tramitacao == retirada_de_pauta ~ 'retirada_de_pauta',
+      id_tipo_tramitacao == pedido_de_vista ~ 'pedido_de_vista',
+      id_tipo_tramitacao == abertura_prazo_emendas ~ 'abertura_prazo_emendas',
+      id_tipo_tramitacao == encerramento_prazo_emendas ~ 'encerramento_prazo_emendas',
+      id_tipo_tramitacao == arquivada ~ 'arquivada',
       id_tipo_tramitacao == parecer ~ dplyr::case_when(
                                                        str_detect(despacho, regex('substitutivo', ignore_case = TRUE)) ~ 'parecer_pela_aprovacao_com_substitutivo',
                                                        str_detect(despacho, regex('rejei..o', ignore_case = TRUE)) ~ 'parecer_pela_rejeicao',

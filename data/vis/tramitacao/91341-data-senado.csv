@@ -1,22 +1,12 @@
 label,start,end,time_interval,group,color
-Tramitação - Casa de Origem (Senado),2009-05-28,2016-06-21,0,Global,#f37340
-Comissões,2009-05-29,2013-04-01,1403,Casa,#938ecc
-Plenário,2013-04-01,2013-05-27,56,Casa,#5496cf
-Comissões,2013-05-27,2013-07-04,38,Casa,#938ecc
-Plenário,2013-07-04,2013-08-07,34,Casa,#5496cf
-Comissões,2013-08-07,2013-11-06,91,Casa,#938ecc
-Plenário,2013-11-06,2015-04-28,538,Casa,#5496cf
-Comissões,2015-04-28,2016-05-18,386,Casa,#938ecc
-Plenário,2016-05-18,2016-06-21,34,Casa,#5496cf
+Comissões - Origem (Senado),2009-05-29,2016-05-18,2546,Global,#938ecc
+Plenário - Origem (Senado),2016-05-18,2016-06-21,34,Global,#5496cf
+Plenário - Revisão (Câmara),2016-06-21,2016-06-21,0,Global,#5496cf
 CCJ,2009-05-29,2009-12-03,188,Comissão,#ffffcc
 CAE,2009-12-03,2010-05-20,168,Comissão,#a1dab4
 CCJ,2010-05-20,2010-06-24,35,Comissão,#ffffcc
-CAE,2010-06-24,2013-04-01,1012,Comissão,#a1dab4
-Plenário,2013-04-01,2013-05-27,56,Comissão,NA
-CDR,2013-05-27,2013-07-04,38,Comissão,#225ea8
-Plenário,2013-07-04,2013-08-07,34,Comissão,NA
-CDR,2013-08-07,2013-11-06,91,Comissão,#225ea8
-Plenário,2013-11-06,2015-04-28,538,Comissão,NA
+CAE,2010-06-24,2013-05-27,1068,Comissão,#a1dab4
+CDR,2013-05-27,2015-04-28,701,Comissão,#225ea8
 CAE,2015-04-28,2016-05-18,386,Comissão,#a1dab4
 Plenário,2016-05-18,2016-06-21,34,Comissão,NA
 Recebimento,2009-05-29,2009-07-15,47,Sub-fase Comissão,#d7191c
