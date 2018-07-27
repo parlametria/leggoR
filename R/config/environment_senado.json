@@ -1,0 +1,102 @@
+{
+  "fase_casa": [
+    {"fase_casa": "plenario", "regex": "Apresentação"},
+    {"fase_casa": "comissoes", "regex": "recebido na comissão|recebido nesta comissão"}
+  ],
+  
+  "situacao_comissao": [
+    {"situacao": "analise_do_relator", "code": [91]},
+    {"situacao": "discussao_votacao", "code": [42, 14, 78, 90]},
+    {"situacao": "encaminhamento", "code": [89, 159]},
+    {"situacao": "recebimento_comissao", "regex": "recebido na|nesta comissao"}
+  ],
+  
+  "eventos": [
+    {"evento": "apresentacao_pl", "regex": "^este processo contem"},
+    {"evento": "recebimento_comissao", "regex": "recebido na|nesta comissao"},
+    {"evento": "aprovacao_parecer", "code": 89},
+    {"evento": "designado_relator", "code": 91},
+    {"evento": "pedido_vista", "code": 90},
+    {"evento": "arquivada", "code": 28},
+    {"evento": "desarquivada", "code": 149},
+    {"evento": "aprovada", "code": 25},
+    {"evento": "aprovacao_audiencia_publica", "code": 110},
+    {"evento": "aprovacao_substitutivo", "code":113},
+    {"evento": "inicio_prazo_emendas", "code": 20},
+    {"evento": "fim_prazo_emendas", "code": 153},
+    {"evento": "virada_casa", "code": 52},
+    {"evento": "remetida_a_sancao", "code": 57},
+    {"evento": "vetada", "code": 57},
+    {"evento": "pronta_para_pauta", "code": 42}
+  ],
+  
+  "regimes": [
+    {"regime": "urgencia", "regex": "em regime de urg(ê|e)ncia"},
+    {"regime": "ordinaria"}
+  ],
+  
+  "comissoes": {
+    "siglas_comissoes": [
+      "CAE",
+      "CAS",
+      "CCJ",
+      "CCT",
+      "CDH",
+      "CDIR",
+      "CDR",
+      "CE",
+      "CI",
+      "CMA",
+      "CRA",
+      "CRE",
+      "CSF",
+      "CTFC",
+      "CCAI",
+      "CMCF",
+      "CMCPLP",
+      "CMCVM",
+      "CMMC",
+      "CMO",
+      "FIPA"
+    ],
+    
+    "comissoes_permanentes_especiais": [
+      "Especial",
+      "de Assuntos Econômicos",
+      "de Assuntos Sociais",
+      "de Constituição, Justiça e Cidadania",
+      "de Ciência, Tecnologia, Inovação, Comunicação e Informática",
+      "de Direitos Humanos e Legislação Participativa",
+      "Diretora",
+      "de Desenvolvimento Regional e Turismo",
+      "de Educação, Cultura e Esporte",
+      "de Serviços de Infraestrutura",
+      "de Meio Ambiente",
+      "de Agricultura e Reforma Agrária",
+      "de Relações Exteriores e Defesa Nacional",
+      "Senado do Futuro",
+      "de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor",
+      "Mista de Controle das Atividades de Inteligência",
+      "Mista de Consolidação da Legislação Federal",
+      "Mista do Congresso Nacional de Assuntos Relacionados à Comunidade dos Países de Língua Portuguesa",
+      "Permanente Mista de Combate à Violência contra a Mulher",
+      "Mista Permanente sobre Mudanças Climáticas",
+      "Mista de Planos, Orçamentos Públicos e Fiscalização",
+      "Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas"
+    ],
+    "comissoes_temporarias": [
+      "Comissão Especial"
+    ]
+  },
+  
+  "endpoints_api": {
+    "url_base": "http://legis.senado.leg.br/dadosabertos/materia/",
+    "votacao": "http://legis.senado.leg.br/dadosabertos/materia/votacoes",
+    "movimentacoes": "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes",
+    "relatorias": "http://legis.senado.leg.br/dadosabertos/materia/relatorias",
+    "proposicao_sessoes": "http://legis.senado.leg.br/dadosabertos/materia/ordia",
+    "glossario": "http://legis.senado.leg.br/dadosabertos/materia/glossario/lista?v=4",
+    "situacoes": "http://legis.senado.leg.br/dadosabertos/materia/situacoes",
+    "page_url_senado": "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
+  }
+}
