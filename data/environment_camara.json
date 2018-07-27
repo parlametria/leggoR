@@ -21,7 +21,8 @@
     "code": {
       "comissao_especial": [120],
       "designado_relator": [320],
-      "parecer": [322]
+      "parecer": [322],
+      "voto_em_separado": [431]
     } 
   },
   "comissoes": {

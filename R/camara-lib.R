@@ -217,6 +217,7 @@ extract_events_in_camara <- function(tramitacao_df) {
   special_comissao <- camara_codes$eventos$code$comissao_especial
   designado_relator <- camara_codes$eventos$code$designado_relator
   parecer <- camara_codes$eventos$code$parecer
+  voto_em_separado <- camara_codes$eventos$code$voto_em_separado
   
   tramitacao_df %>%
     dplyr::mutate(despacho_lower = tolower(despacho)) %>%
@@ -225,6 +226,7 @@ extract_events_in_camara <- function(tramitacao_df) {
     dplyr::mutate(evento = dplyr::case_when(
       id_tipo_tramitacao == special_comissao ~ 'criacao_comissao_temporaria',
       id_tipo_tramitacao == designado_relator ~ 'designado_relator',
+      id_tipo_tramitacao == voto_em_separado ~ 'voto_em_separado',
       id_tipo_tramitacao == parecer ~ dplyr::case_when(
                                                        str_detect(despacho, regex('substitutivo', ignore_case = TRUE)) ~ 'parecer_pela_aprovacao_com_substitutivo',
                                                        str_detect(despacho, regex('rejei..o', ignore_case = TRUE)) ~ 'parecer_pela_rejeicao',
