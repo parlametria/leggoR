@@ -208,19 +208,17 @@ extract_events_in_camara <- function(tramitacao_df) {
     'requerimento_audiencia_publica', c$requerimento_audiencia_publica,
     'aprovacao_audiencia_publica', c$aprovacao_audiencia_publica,
     'aprovacao_parecer', c$aprovacao_parecer,
-    'requerimento_redistribuicao', c$requerimento_redistribuicao,
-    'requerimento_apensacao', c$requerimento_apensacao,
-    'requerimento_urgencia', c$requerimento_urgencia,
-    'requerimento_prorrogacao', c$requerimento_prorrogacao,
     'redistribuicao', c$redistribuicao,
     'projeto_reconstituido', c$projeto_reconstituido,
     'desarquivada', c$desarquivada,
-    'alteracao_de_regime', c$alteracao_de_regime)
+    'alteracao_de_regime', c$alteracao_de_regime,
+    'distribuicao', c$distribuicao)
   
   #events with code
   special_comissao <- camara_codes$eventos$code$comissao_especial
   designado_relator <- camara_codes$eventos$code$designado_relator
   parecer <- camara_codes$eventos$code$parecer
+  voto_em_separado <- camara_codes$eventos$code$voto_em_separado
   apresentacao_da_pl <- camara_codes$eventos$code$apresentacao_da_pl
   retirada_de_pauta <- camara_codes$eventos$code$retirada_de_pauta
   pedido_de_vista <- camara_codes$eventos$code$pedido_de_vista
@@ -235,6 +233,7 @@ extract_events_in_camara <- function(tramitacao_df) {
     dplyr::mutate(evento = dplyr::case_when(
       id_tipo_tramitacao == special_comissao ~ 'criacao_comissao_temporaria',
       id_tipo_tramitacao == designado_relator ~ 'designado_relator',
+      id_tipo_tramitacao == voto_em_separado ~ 'voto_em_separado',
       id_tipo_tramitacao == apresentacao_da_pl ~ 'apresentacao_da_pl',
       id_tipo_tramitacao == retirada_de_pauta ~ 'retirada_de_pauta',
       id_tipo_tramitacao == pedido_de_vista ~ 'pedido_de_vista',
