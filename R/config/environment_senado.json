@@ -4,11 +4,11 @@
     {"fase_casa": "comissoes", "regex": "recebido na comissão|recebido nesta comissão"}
   ],
   
-  "situacao_comissao": [
-    {"situacao": "analise_do_relator", "code": [91]},
-    {"situacao": "discussao_votacao", "code": [42, 14, 78, 90]},
-    {"situacao": "encaminhamento", "code": [89, 159]},
-    {"situacao": "recebimento_comissao", "regex": "recebido na|nesta comissao"}
+  "fase_comissao": [
+    {"fase": "analise_do_relator", "code": [91]},
+    {"fase": "discussao_votacao", "code": [42, 14, 78, 90]},
+    {"fase": "encaminhamento", "code": [89, 159]},
+    {"fase": "recebimento_comissao", "regex": "recebido na|nesta comissao"}
   ],
   
   "eventos": [
