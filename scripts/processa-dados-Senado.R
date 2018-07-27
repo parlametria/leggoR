@@ -75,7 +75,5 @@ extract_devolvidos_event_Senado <- function(df){
   devolvido_regex <- '^devolvido pel. redistribu.'
   df %>%
     mutate(
-      evento = case_when(stringr::str_detect(tolower(texto_tramitacao), regex(devolvido_regex), ignore_case = TRUE))
-      )
-  
+      evento = case_when(stringr::str_detect(tolower(texto_tramitacao), regex(devolvido_regex), ignore_case = TRUE)) ~ "devolvido")
 }
