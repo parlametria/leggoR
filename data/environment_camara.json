@@ -7,31 +7,27 @@
       "encaminhamento": [180]
     }
   },
-  "eventos": {
-    "regex": {
-      "requerimento_audiencia_publica": "^apresentação do requerimento.*requer a realização d.* audiências? públicas?",
-      "aprovacao_audiencia_publica": "^aprovado requerimento.*requer a realização d.* audiências? públicas?",
-      "aprovacao_parecer": "aprovado.*parecer",
-      "redistribuicao": "novo despacho",
-      "projeto_reconstituido": "reconstituído",
-      "desarquivada": "^desarquivado nos termos do artigo",
-      "alteracao_de_regime": "^alteração do regime de tramitação desta proposição",
-      "distribuicao": "às* comiss..s*|despacho à"
-    },
-    "code": {
-      "comissao_especial": [120],
-      "designado_relator": [320],
-      "parecer": [322],
-      "voto_em_separado": [431],
-      "apresentacao_da_pl": [100],
-      "retirada_de_pauta": [250],
-      "pedido_de_vista": [420],
-      "abertura_prazo_emendas": [350],
-      "encerramento_prazo_emendas": [600],
-      "arquivada": [502]
-    } 
-
-  },
+  "eventos": [
+      {"evento": "requerimento_audiencia_publica", "regex": "^apresentação do requerimento.*requer a realização d.* audiências? públicas?"},
+      {"evento": "aprovacao_audiencia_publica", "regex": "^aprovado requerimento.*requer a realização d.* audiências? públicas?"},
+      {"evento": "aprovacao_parecer", "regex": "aprovado.*parecer"},
+      {"evento": "redistribuicao", "regex": "novo despacho"},
+      {"evento": "projeto_reconstituido", "regex": "reconstituído"},
+      {"evento": "desarquivada", "regex": "^desarquivado nos termos do artigo"},
+      {"evento": "alteracao_de_regime", "regex": "^alteração do regime de tramitação desta proposição"},
+      {"evento": "distribuicao", "regex": "às* comiss..s*|despacho à"},
+      {"evento": "comissao_especial", "code": "120"},
+      {"evento": "designado_relator", "code": "320"},
+      {"evento": "parecer", "code": "322"},
+      {"evento": "voto_em_separado", "code": "431"},
+      {"evento": "apresentacao_da_pl", "code": "100"},
+      {"evento": "retirada_de_pauta", "code": "250"},
+      {"evento": "pedido_de_vista", "code": "420"},
+      {"evento": "abertura_prazo_emendas", "code": "350"},
+      {"evento": "encerramento_prazo_emendas", "code": "600"},
+      {"evento": "arquivada", "code": "502"},
+      {"evento": "parecer", "code": "322"}
+  ],
   "comissoes": {
     "siglas_comissoes_antigas": [
       "CDCMAM",
