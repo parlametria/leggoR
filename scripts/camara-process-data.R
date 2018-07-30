@@ -5,6 +5,7 @@ library(magrittr)
 library(lubridate)
 library(fuzzyjoin)
 source(here::here("R/camara-lib.R"))
+source(here::here("Controller/fetcher.R"))
 
 
 #' @title Processa dados de um proposição da câmara.

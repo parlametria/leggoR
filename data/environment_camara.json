@@ -20,12 +20,14 @@
       "redistribuicao": "atualização do despacho",
       "projeto_reconstituido": "reconstituído",
       "desarquivada": "^desarquivado nos termos do artigo",
-      "alteracao_de_regime": "^alteração do regime de tramitação desta proposição"
+      "alteracao_de_regime": "^alteração do regime de tramitação desta proposição",
+      "distribuicao": "às* comiss..s*|despacho à"
     },
     "code": {
       "comissao_especial": [120],
       "designado_relator": [320],
       "parecer": [322],
+      "voto_em_separado": [431],
       "apresentacao_da_pl": [100],
       "retirada_de_pauta": [250],
       "pedido_de_vista": [420],

@@ -22,7 +22,7 @@ build_camara <- function(id){
 #' build_senado(91341)
 #' @export
 build_senado <- function(id){
-  source(here::here("scripts/importa-dados-Senado.R"))
+  source(here::here("Controller/fetcher.R"))
   import_proposicao(id)
   source(here::here("scripts/processa-dados-Senado.R"))
   process_proposicao(id)
