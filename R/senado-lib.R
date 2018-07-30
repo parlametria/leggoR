@@ -1,6 +1,6 @@
 source(here::here("R/congresso-lib.R"))
-
-url_base <- "http://legis.senado.leg.br/dadosabertos/materia/"
+senado_codes <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
+senado_constants <- senado_codes$constants
 
 #' @title Busca votações de uma proposição no Senado
 #' @description Retorna dataframe com os dados das votações de uma proposição no Senado.
@@ -11,7 +11,7 @@ url_base <- "http://legis.senado.leg.br/dadosabertos/materia/"
 #' fetch_votacoes(91341)
 #' @export
 fetch_votacoes <- function(proposicao_id){
-    url_base_votacoes <- paste0(url_base, "votacoes/")
+   url_base_votacoes <- paste0(senado_codes$endpoints_api$url_base, "votacoes/")
 
     url <- paste0(url_base_votacoes, proposicao_id)
     json_votacoes <- jsonlite::fromJSON(url, flatten = T)
@@ -47,7 +47,7 @@ fetch_votacoes <- function(proposicao_id){
 #' @export
 fetch_tramitacao <- function(proposicao_id){
 
-    url <- paste0(url_base, "movimentacoes/", proposicao_id)
+    url <- paste0(senado_codes$endpoints_api$url_base, "movimentacoes/", proposicao_id)
     json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
     tramitacao_data <-
       json_tramitacao %>%
@@ -86,14 +86,15 @@ fetch_tramitacao <- function(proposicao_id){
 #' @export
 fetch_deferimento <- function(proposicao_id) {
 
+  deferimento_regexes <- senado_codes$deferimento
   regexes <-
     tibble::frame_data(~ deferimento, ~ regex,
-               "indeferido", '^Indefiro',
-               "deferido", '^(Defiro)|(Aprovado)')
+               "indeferido", deferimento_regexes$indeferido,
+               "deferido", deferimento_regexes$deferido)
 
   fetch_one_deferimento <- function(proposicao_id) {
     json <-
-      paste0(url_base, "movimentacoes/", proposicao_id) %>%
+      paste0(senado_codes$endpoints_api$url_base, "movimentacoes/", proposicao_id) %>%
       jsonlite::fromJSON()
 
     resultados <- json$MovimentacaoMateria$Materia$OrdensDoDia$OrdemDoDia$DescricaoResultado
@@ -127,7 +128,7 @@ fetch_deferimento <- function(proposicao_id) {
 #' @export
 fetch_relatorias <- function(proposicao_id) {
 
-  url_relatorias <- paste0(url_base,"relatorias/")
+  url_relatorias <- paste0(senado_codes$endpoints_api$url_base,"relatorias/")
 
   url <- paste0(url_relatorias, proposicao_id)
   json_relatorias <- jsonlite::fromJSON(url, flatten = T)
@@ -165,7 +166,7 @@ fetch_relatorias <- function(proposicao_id) {
 #' @export
 fetch_current_relatoria <- function(proposicao_id) {
 
-  url_relatorias <- paste0(url_base, "relatorias/")
+  url_relatorias <- paste0(senado_codes$endpoints_api$url_base, "relatorias/")
 
   url <- paste0(url_relatorias, proposicao_id)
   json_relatorias <- jsonlite::fromJSON(url, flatten = T)
@@ -350,8 +351,9 @@ tail_descricao_despacho_Senado <- function(df, qtd=1) {
 #' tramitacao %>% extract_fase_global()
 #' @export
 extract_fase_global <- function(data_tramitacao, bill_id) {
+  fase_global_constants <- senado_codes$fase_global
   data_prop <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-proposicao-senado.csv"))
-  casa_origem <- if_else(data_prop$nome_casa_origem == "Senado Federal", " - Origem (Senado)", " - Revisão (Câmara)")
+  casa_origem <- if_else(data_prop$nome_casa_origem == "Senado Federal", fase_global_constants$origem_senado, fase_global_constants$revisao_camara)
 
   virada_de_casa <-
     data_tramitacao %>%
@@ -363,7 +365,7 @@ extract_fase_global <- function(data_tramitacao, bill_id) {
     data_tramitacao %>%
       mutate(global = paste0(casa_origem))
   }else {
-    casa_atual <- if_else(casa_origem == " - Origem (Senado)", " - Revisão (Câmara)", " - Origem (Senado)")
+    casa_atual <- if_else(casa_origem == " - Origem (Senado)", fase_global_constants$revisao_camara, fase_global_constants$origem_senado)
     data_tramitacao %>%
       mutate(global = if_else(data_tramitacao < virada_de_casa[1, ][[1]], casa_origem, casa_atual))
   }
@@ -378,13 +380,14 @@ extract_fase_global <- function(data_tramitacao, bill_id) {
 #' @export
 extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_two, phase_three, encaminhamento_phase, phase_four) {
 
+  fases <- senado_codes$fase_subfase_comissoes
   dataframe %>%
     dplyr::mutate(
       fase =
-        dplyr::case_when(stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') ~ 'Recebimento',
-        detect_fase(situacao_codigo_situacao, phase_two) ~ 'Análise do relator',
-        detect_fase(situacao_codigo_situacao, phase_three) ~ 'Discussão e votação',
-        detect_fase(situacao_codigo_situacao, encaminhamento_phase) ~ 'Encaminhamento'))
+        dplyr::case_when(stringr::str_detect(tolower(texto_tramitacao), fase$regex) ~ fases$recebimento,
+        detect_fase(situacao_codigo_situacao, phase_two) ~ fases$analise,
+        detect_fase(situacao_codigo_situacao, phase_three) ~ fases$discussao,
+        detect_fase(situacao_codigo_situacao, encaminhamento_phase) ~ fases$encaminhamento))
 }
 
 #' @title Recupera os locais do Senado
@@ -395,28 +398,25 @@ extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_t
 #'  extract_locais(fetch_tramitacao(91341))
 #' @export
 extract_locais <- function(df) {
-
-  descricoes_plenario <- c('pronto_para_deliberação_do_plenário')
-  descricoes_comissoes <- c('matéria_com_a_relatoria',
-                            'aguardando_designação_do_relator' )
-
+  
+  comissao_json <- senado_codes$fase_comissao
   df <-
     df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     dplyr::mutate(
       local =
         dplyr::case_when(
-          situacao_descricao_situacao %in% descricoes_plenario ~
-            'Plenário',
-          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na comissão|recebido nesta comissão') |
-             situacao_descricao_situacao %in% descricoes_comissoes) ~
+          situacao_descricao_situacao %in% constants$regex_plenario ~
+            constants$plenario,
+          (stringr::str_detect(tolower(texto_tramitacao), constants$regex_recebimento_comissoes) |
+             situacao_descricao_situacao %in% constants$regex_comissoes_vector) ~
             origem_tramitacao_local_sigla_local,
-          situacao_descricao_situacao == 'remetida_à_câmara_dos_deputados' ~
-            'Mesa - Câmara')
+          situacao_descricao_situacao == constants$regex_camara ~
+            constants$mesa_camara)
     )
 
   if (is.na(df[1, ]$local)) {
-    df[1, ]$local = 'Mesa - Senado'
+    df[1, ]$local = constants$mesa_senado
   }
 
   df %>%
@@ -432,10 +432,6 @@ extract_locais <- function(df) {
 #' @export
 extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
 
-  descricoes_plenario <- c('pronto_para_deliberação_do_plenário')
-
-  descricoes_comissoes <- c('matéria_com_a_relatoria',
-                            'aguardando_designação_do_relator' )
   dataframe <-
     dataframe %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
@@ -443,16 +439,16 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
       casa =
         dplyr::case_when(
           grepl(fase_apresentacao, texto_tramitacao) ~ 'Apresentação',
-          situacao_descricao_situacao %in% descricoes_plenario ~
-            'Plenário',
-          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na comissão|recebido nesta comissão') |
+          situacao_descricao_situacao %in% constants$regex_plenario ~
+            constants$plenario,
+          (stringr::str_detect(tolower(texto_tramitacao), constants$regex_recebimento_comissoes) |
              situacao_descricao_situacao %in% descricoes_comissoes) ~
-            'Comissões')
+            constants$comissoes)
     ) %>%
     tidyr::fill(casa)
 
   dataframe %>%
-    mutate(casa = if_else(is.na(casa), 'Mesa - Senado', casa))
+    mutate(casa = if_else(is.na(casa), constants$mesa_senado, casa))
 }
 
 #' @title Extrai os eventos importantes que aconteceram no Senado
@@ -478,7 +474,7 @@ extract_evento_Senado <- function(tramitacao_df, phases_df) {
 #' extract_apreciacao_Senado(93418)
 #' @export
 extract_apreciacao_Senado <- function(proposicao_id) {
-  url <- paste0(url_base, "movimentacoes/", proposicao_id)
+  url <- paste0(senado_codes$endpoints_api$url_base, "movimentacoes/", proposicao_id)
   json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
   tramitacao_data <-
     json_tramitacao %>%
@@ -499,12 +495,14 @@ extract_apreciacao_Senado <- function(proposicao_id) {
         tramitacao_data %>%
         tidyr::unnest(ComissoesDespacho.ComissaoDespacho)
     }
+    
+    apreciacao <- senado_codes$apreciacao 
     tramitacao_data <-
       tramitacao_data %>%
         dplyr::filter(IndicadorDespachoTerminativo == "Sim")
-    dplyr::if_else(nrow(tramitacao_data) != 0, "Conclusiva", "Plenário")
+    dplyr::if_else(nrow(tramitacao_data) != 0, apreciacao$conclusiva, apreciacao$plenario)
   } else {
-    "Plenário"
+    apreciacao$plenario
   }
 }
 
@@ -520,19 +518,20 @@ extract_apreciacao_Senado <- function(proposicao_id) {
 #' @export
 extract_regime_Senado <- function(proposicao_id) {
   df <- fetch_tramitacao(proposicao_id)
+  regime <- senado_codes$regimes
   df <-
     df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     dplyr::mutate(
       regime =
         dplyr::case_when(
-          stringr::str_detect(tolower(texto_tramitacao), 'em regime de urg(ê|e)ncia') ~
-            'Urgência')
+          stringr::str_detect(tolower(texto_tramitacao), regime$regex) ~
+            regime$urgencia)
     ) %>%
     tidyr::fill(regime)
 
   if(is.na(df[nrow(df), ]$regime)){
-    'Ordinária'
+    regime$ordinaria
   } else{
     df[nrow(df), ]$regime
   }
@@ -563,8 +562,8 @@ extract_n_last_eventos_Senado <- function(df, num) {
 #' extract_comissoes_Senado(fetch_tramitacao(129808))
 #' @export
 extract_comissoes_Senado <- function(df) {
-
-  prefix <- '(Comiss..s*)* '
+  
+  codigos_comissoes <- senado_codes$comissoes
 
   siglas_comissoes <- '
     CAE
@@ -620,7 +619,7 @@ extract_comissoes_Senado <- function(df) {
     magrittr::extract2(1) %>%
     sapply(trimws) %>%
     magrittr::extract(. != '') %>%
-    paste0(prefix, .) %>%
+    paste0(codigos_comissoes$prefixo, .) %>%
     paste(collapse='|') %>%
     stringr::regex(ignore_case=FALSE)
 
@@ -647,11 +646,11 @@ extract_comissoes_Senado <- function(df) {
       comissoes =
         dplyr::case_when(
           detect(texto_tramitacao,
-            'às c.+ e c.+, cabendo à última', 'às c.+ e c.+, cabendo à última'),
+                 codigos_comissoes$regex_1),
           detect(texto_tramitacao,
-            'à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo'),
+                 codigos_comissoes$regex_2),
           detect(texto_tramitacao,
-            '(à|a)s? comiss..s*', 'comiss..s*.+'))
+                 codigos_comissoes$regex_3))
     ) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_tramitacao) %>%
