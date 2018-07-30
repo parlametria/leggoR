@@ -89,5 +89,5 @@ extract_evento_in_camara <- function(df) {
       evento = 
         case_when((str_detect(tolower(despacho), regex(redistribuicao_regex, ignore_case = TRUE)) |
                      str_detect(tolower(despacho), regex(novo_despacho_regex, ignore_case = TRUE))) &
-                  tolower(descricao_tramitacao) == redistribuicao_text ~ "Redistribuição"))
+                  tolower(descricao_tramitacao) == redistribuicao_text ~ "redistribuicao"))
 }
