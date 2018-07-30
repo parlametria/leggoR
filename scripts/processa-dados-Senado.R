@@ -1,6 +1,7 @@
 library(tidyverse)
 library(stringr)
 source(here::here("R/senado-lib.R"))
+source(here::here("Controller/fetcher.R"))
 
 #' @title Processa dados de uma proposição do senado.
 #' @description Recebido um bill_id a função recupera informações sobre uma proposição
@@ -34,7 +35,7 @@ process_proposicao <- function(bill_id){
     fill(casa) %>%
     filter(!is.na(casa))
 
-  important_phases <- frame_data(~ evento, ~ situacao_codigo_situacao,
+  important_events <- frame_data(~ evento, ~ situacao_codigo_situacao,
             "aprovacao_audiencia_publica", 110,
             "aprovacao_parecer", 89,
             "aprovacao_substitutivo", 113,
