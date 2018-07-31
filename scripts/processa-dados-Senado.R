@@ -40,12 +40,10 @@ process_proposicao <- function(bill_id){
             "aprovacao_parecer", 89,
             "aprovacao_substitutivo", 113,
             "pedido_vista", 90,
-            "aprovacao_projeto", 25,
-            "devolvido", 87)
+            "aprovacao_projeto", 25)
 
-
-  bill_passage <- extract_evento_Senado(bill_passage, important_events) %>%
-    extract_devolvidos_event_Senado()
+  evento_devolucao <- c('devolvido pel.*redistribu.*')
+  bill_passage <- extract_evento_Senado(bill_passage, important_events, phase_one, evento_devolucao)
   index_of_camara <- ifelse(length(which(bill_passage$situacao_codigo_situacao == 52)) == 0, 
                              nrow(bill_passage),
                              which(bill_passage$situacao_codigo_situacao == 52)[1])
@@ -70,11 +68,4 @@ process_proposicao <- function(bill_id){
 
   bill_passage_visualization %>%
     write_csv(paste0(here::here("data/Senado/"), bill_id, "-visualizacao-tramitacao-senado.csv"))
-}
-
-extract_devolvidos_event_Senado <- function(df){
-  devolvido_regex <- '^devolvido pel. redistribu.'
-  df %>%
-    mutate(
-      evento = case_when(stringr::str_detect(tolower(texto_tramitacao), regex(devolvido_regex), ignore_case = TRUE)) ~ "devolvido")
 }
