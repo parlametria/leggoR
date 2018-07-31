@@ -44,7 +44,7 @@ process_proposicao <- function(bill_id){
             "devolvido", 87)
 
 
-  bill_passage <- extract_evento_Senado(bill_passage, important_phases) %>%
+  bill_passage <- extract_evento_Senado(bill_passage, important_events) %>%
     extract_devolvidos_event_Senado()
   index_of_camara <- ifelse(length(which(bill_passage$situacao_codigo_situacao == 52)) == 0, 
                              nrow(bill_passage),
