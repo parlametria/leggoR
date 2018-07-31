@@ -482,3 +482,7 @@ extract_situacao_comissao <- function(df) {
                     #                                    TRUE ~ situacao_comissao)
 
 }
+
+get_environment_camara_json <- function(){
+  camara_codes
+}

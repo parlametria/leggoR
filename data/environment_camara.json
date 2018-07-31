@@ -10,7 +10,12 @@
       "requerimento_audiencia_publica": "^apresentação do requerimento.*requer a realização d.* audiências? públicas?",
       "aprovacao_audiencia_publica": "^aprovado requerimento.*requer a realização d.* audiências? públicas?",
       "aprovacao_parecer": "aprovado.*parecer",
-      "redistribuicao": "novo despacho",
+      "requerimento_redistribuicao": "^apresentação do requerimento de redistribuição",
+      "requerimento_apensacao": "^apresentação do requerimento de apensação",
+      "requerimento_urgencia": "^apresentação do requerimento de urgência",
+      "requerimento_prorrogacao": "^apresentação do requerimento de prorrogação de prazo de comissão temporária",
+      "novo_despacho": "novo despacho",
+      "redistribuicao": "atualização do despacho",
       "projeto_reconstituido": "reconstituído",
       "desarquivada": "^desarquivado nos termos do artigo",
       "alteracao_de_regime": "^alteração do regime de tramitação desta proposição",
@@ -27,7 +32,10 @@
       "abertura_prazo_emendas": [350],
       "encerramento_prazo_emendas": [600],
       "arquivada": [502]
-    } 
+    },
+    "text":{
+      "distribuicao": "Distribuição"
+    }
 
   },
   "fase_casa": [
