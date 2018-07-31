@@ -69,18 +69,14 @@ format_eventos <- function(df) {
     )
   
   df %>%
-    mutate(z = cumsum(evento != lag(evento, default='NULL')),
-           end_data = lead(data_tramitacao)) %>%
-    group_by(evento, sequence = data.table::rleid(z)) %>%
-    summarize(start = min(data_tramitacao),
-              end = start,
-              time_interval = end - start) %>%
-    ungroup() %>%
-    arrange(sequence) %>%
-    select(-sequence) %>%
     filter(!is.na(evento)) %>%
+    mutate(start = data_tramitacao,
+           end = start,
+           time_interval = end - start) %>%
     rename(label=evento) %>%
-    mutate(group = "Evento", color = "#a9a9a9")
+    unique() %>%
+    mutate(group = "Evento", color = "#a9a9a9") %>%
+    select(label, start, end, time_interval, group, color)
   
 }
 
