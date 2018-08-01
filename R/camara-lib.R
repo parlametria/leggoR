@@ -29,6 +29,12 @@ last_n_despacho_in_camara <- function(df, qtd=1) {
     dplyr::select(data_hora, descricao_tramitacao, despacho)
 }
 
+#' @title Retorna o dataframe das comissões na Câmara
+#' @description Retorna o dataframe das comissões na Câmara, contendo as colunas: siglas_comissoes_antigas, siglas_comissoes, comissoes_temporarias, comissoes_permanentes
+#' @return Dataframe das comissões na Câmara
+#' @examples
+#' get_comissoes_camara()
+#' @export
 get_comissoes_camara <- function() {
   c <- camara_codes$comissoes
   
@@ -417,6 +423,13 @@ extract_situacao_comissao <- function(df) {
 
 }
 
+#' @title Recupera a proposição com as colunas renomeadas
+#' @description Recupera o Dataframe contendo os detalhes da proposição com as colunas renomeadas
+#' @param id ID da proposição
+#' @return Dataframe da proposição
+#' @examples
+#'  fetch_proposicao_camara(345311)
+#' @export
 #Fetch a bill with renamed columns
 fetch_proposicao_renamed <- function(id) {
   df <-
