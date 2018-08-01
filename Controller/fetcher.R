@@ -366,7 +366,6 @@ fetch_sessions <- function(bill_id){
 #' fetch_emendas(91341)
 #' @export
 fetch_emendas <- function(bill_id){
-  bill_id = 132865
   url_base_emendas <- "http://legis.senado.leg.br/dadosabertos/materia/emendas/"
   url <- paste0(url_base_emendas, bill_id)
   
@@ -378,21 +377,44 @@ fetch_emendas <- function(bill_id){
   
   emendas_df <- emendas_data %>%
     magrittr::extract2("Emendas") %>%
-    purrr::map_df(~ .) %>%
-    tidyr::unnest() %>%
-    rename_table_to_underscore() 
+    purrr::map_df(~ .) 
   
-  emendas_df %>%
-    dplyr::select(codigo_emenda, numero_emenda, colegiado_apresentacao, autoria_emenda_autor_nome_autor,
-           autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar,
-           autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar) %>%
-    dplyr::mutate(partido = paste0(autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar,
-                                   "/",
-                                   autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar)) %>%
-    select(-autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar, 
-           -autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar) %>%
-    plyr::rename(c("codigo_emenda" = "codigo", "numero_emenda" = "numero", "colegiado_apresentacao" = "local", 
-                 "autoria_emenda_autor_nome_autor" = "autor"))
+  if(nrow(emendas_df) == 0){
+    emendas_df <-  frame_data(~ codigo, ~numero, ~ local, ~ autor, ~partido)
+    
+  } else if(nrow(emendas_df) == 1) {
+    emendas_df <- emendas_df %>%
+      rename_table_to_underscore() 
+    
+    autoria <- as.data.frame(emendas_df$autoria_emenda) %>%
+      rename_table_to_underscore() %>% 
+      dplyr::mutate(partido = paste0(identificacao_parlamentar_sigla_partido_parlamentar,
+                                     "/",
+                                     identificacao_parlamentar_uf_parlamentar))
+    emendas_df <- emendas_df %>%
+      rename_table_to_underscore() %>%
+      plyr::rename(c("codigo_emenda" = "codigo", "numero_emenda" = "numero", "colegiado_apresentacao" = "local")) %>%
+      dplyr::mutate(autor = autoria$nome_autor,
+                    partido = autoria$partido) %>%
+      select(codigo, numero, local, autor, partido)
+    
+  }else{
+    emendas_df <- emendas_df %>%
+      tidyr::unnest() %>%
+      rename_table_to_underscore() %>%
+      dplyr::select(codigo_emenda, numero_emenda, colegiado_apresentacao, autoria_emenda_autor_nome_autor,
+                    autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar,
+                    autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar) %>%
+      dplyr::mutate(partido = paste0(autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar,
+                                     "/",
+                                     autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar)) %>%
+      select(-autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar, 
+             -autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar) %>%
+      plyr::rename(c("codigo_emenda" = "codigo", "numero_emenda" = "numero", "colegiado_apresentacao" = "local", 
+                     "autoria_emenda_autor_nome_autor" = "autor"))
+  }
+  
+  emendas_df
   
 }
 #' @title Importa as informações de uma proposição da internet.
