@@ -56,7 +56,7 @@ tail_descricao_despacho_Senado <- function(df, qtd=1) {
 #' tramitacao %>% extract_fase_global()
 #' @export
 extract_fase_global <- function(data_tramitacao, bill_id) {
-  data_prop <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-proposicao-senado.csv"))
+  data_prop <- readr::read_csv(paste0(here::here("data/Senado/"), bill_id,"-proposicao-senado.csv"))
   casa_origem <- if_else(data_prop$nome_casa_origem == "Senado Federal", " - Origem (Senado)", " - Revisão (Câmara)")
 
   virada_de_casa <-
