@@ -170,7 +170,7 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
 #' df <- fetch_tramitacao(91341)
 #' extract_evento_Senado(df, importants_events)
 #' @export
-extract_evento_Senado <- function(tramitacao_df, phases_df, evento_apresentacao) {
+extract_evento_Senado <- function(tramitacao_df, phases_df, evento_apresentacao, evento_devolucao) {
   df <- dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao")
   comissoes <- extract_comissoes_Senado(tramitacao_df)
   date_comissao_especial <- comissoes[match("Comissão Especial", comissoes$comissoes), ]$data_tramitacao
@@ -181,6 +181,7 @@ extract_evento_Senado <- function(tramitacao_df, phases_df, evento_apresentacao)
                       dplyr::case_when(
                         grepl(evento_apresentacao, texto_tramitacao) ~ 'Apresentação',
                         data_tramitacao == date_comissao_especial ~ 'Comissão Especial',
+                        grepl(evento_devolucao, tolower(texto_tramitacao)) ~ 'devolvido',
                         TRUE ~ evento
                       ))
   }else {
@@ -188,9 +189,11 @@ extract_evento_Senado <- function(tramitacao_df, phases_df, evento_apresentacao)
       dplyr::mutate(evento = 
                       dplyr::case_when(
                         grepl(evento_apresentacao, texto_tramitacao) ~ 'Apresentação',
+                        grepl(evento_devolucao, tolower(texto_tramitacao)) ~ 'devolvido',
                         TRUE ~ evento
                       ))
   }
+
 }
 
 
