@@ -1,7 +1,7 @@
 library(rmarkdown)
 library(here)
 
-output_dir = here::here('docs/reports')
+output_dir <- here::here('docs/reports')
 
 render_plot_single_house <- function(param_id, param_casa) {
   render(
@@ -10,7 +10,8 @@ render_plot_single_house <- function(param_id, param_casa) {
     output_dir = output_dir,
     output_file = paste0('report_', param_id, '_', param_casa, '.html'),
     params = list(id = param_id, casa = param_casa)
-  )
+  ) %>% as.tibble()
+  # TODO: tirar esse tibble de cima e fazer o render_house_df_reports funcionar.
 }
 
 render_plot_all <- function(senado_id, camara_id) {
@@ -24,7 +25,7 @@ render_plot_all <- function(senado_id, camara_id) {
 }
 
 render_house_df_reports <- function(df) {
-  df %>% 
+  df %>%
     rowwise() %>%
     do(render_plot_single_house(param_id = .$id, param_casa = .$casa))
 }

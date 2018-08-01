@@ -1,5 +1,6 @@
 library(tidyverse)
 source(here::here("R/senado-lib.R"))
+source(here::here("Controller/fetcher.R"))
 
 #' @title Processa dados de uma proposição do senado.
 #' @description Recebido um bill_id a função recupera informações sobre uma proposição
@@ -46,7 +47,15 @@ process_proposicao <- function(bill_id){
     fill(casa) %>%
     filter(!is.na(casa))
 
+  important_events <- frame_data(~ evento, ~ situacao_codigo_situacao,
+            "aprovacao_audiencia_publica", 110,
+            "aprovacao_parecer", 89,
+            "aprovacao_substitutivo", 113,
+            "pedido_vista", 90,
+            "aprovacao_projeto", 25)
 
+
+  bill_passage <- extract_evento_Senado(bill_passage, important_events, phase_one)
   index_of_camara <- ifelse(length(which(bill_passage$situacao_codigo_situacao == 52)) == 0, 
                              nrow(bill_passage),
                              which(bill_passage$situacao_codigo_situacao == 52)[1])

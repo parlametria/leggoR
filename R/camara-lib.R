@@ -208,16 +208,24 @@ extract_events_in_camara <- function(tramitacao_df) {
     'requerimento_audiencia_publica', c$requerimento_audiencia_publica,
     'aprovacao_audiencia_publica', c$aprovacao_audiencia_publica,
     'aprovacao_parecer', c$aprovacao_parecer,
-    'requerimento_redistribuicao', c$requerimento_redistribuicao,
-    'requerimento_apensacao', c$requerimento_apensacao,
-    'requerimento_urgencia', c$requerimento_urgencia,
-    'requerimento_prorrogacao', c$requerimento_prorrogacao,
-    'redistribuicao', c$redistribuicao)
-
+    'redistribuicao', c$redistribuicao,
+    'projeto_reconstituido', c$projeto_reconstituido,
+    'desarquivada', c$desarquivada,
+    'alteracao_de_regime', c$alteracao_de_regime,
+    'distribuicao', c$distribuicao)
+  
+  #events with code
   special_comissao <- camara_codes$eventos$code$comissao_especial
   designado_relator <- camara_codes$eventos$code$designado_relator
   parecer <- camara_codes$eventos$code$parecer
-  
+  voto_em_separado <- camara_codes$eventos$code$voto_em_separado
+  apresentacao_da_pl <- camara_codes$eventos$code$apresentacao_da_pl
+  retirada_de_pauta <- camara_codes$eventos$code$retirada_de_pauta
+  pedido_de_vista <- camara_codes$eventos$code$pedido_de_vista
+  abertura_prazo_emendas <- camara_codes$eventos$code$abertura_prazo_emendas
+  encerramento_prazo_emendas <- camara_codes$eventos$code$encerramento_prazo_emendas
+  arquivada <- camara_codes$eventos$code$arquivada
+
   tramitacao_df %>%
     dplyr::mutate(despacho_lower = tolower(despacho)) %>%
     fuzzyjoin::regex_left_join(events_df, by = c(despacho_lower = "regex")) %>%
@@ -225,6 +233,13 @@ extract_events_in_camara <- function(tramitacao_df) {
     dplyr::mutate(evento = dplyr::case_when(
       id_tipo_tramitacao == special_comissao ~ 'criacao_comissao_temporaria',
       id_tipo_tramitacao == designado_relator ~ 'designado_relator',
+      id_tipo_tramitacao == voto_em_separado ~ 'voto_em_separado',
+      id_tipo_tramitacao == apresentacao_da_pl ~ 'apresentacao_da_pl',
+      id_tipo_tramitacao == retirada_de_pauta ~ 'retirada_de_pauta',
+      id_tipo_tramitacao == pedido_de_vista ~ 'pedido_de_vista',
+      id_tipo_tramitacao == abertura_prazo_emendas ~ 'abertura_prazo_emendas',
+      id_tipo_tramitacao == encerramento_prazo_emendas ~ 'encerramento_prazo_emendas',
+      id_tipo_tramitacao == arquivada ~ 'arquivada',
       id_tipo_tramitacao == parecer ~ dplyr::case_when(
                                                        str_detect(despacho, regex('substitutivo', ignore_case = TRUE)) ~ 'parecer_pela_aprovacao_com_substitutivo',
                                                        str_detect(despacho, regex('rejei..o', ignore_case = TRUE)) ~ 'parecer_pela_rejeicao',
@@ -291,51 +306,6 @@ extract_autor_in_camara <- function(prop_id) {
     dplyr::mutate(autor.nome = paste0(autor.nome, " ", partido_estado))
 }
 
-#' @title Recupera o estado e partido de um autor
-#' @description Retorna o estado e partido
-#' @param uri uri que contém dados sobre o autor
-#' @return Estado e partido
-#' @examples
-#' partido_estado <- extract_partido_estado_autor(autores$autor.uri %>% tail(1))
-#' @export
-extract_partido_estado_autor <- function(uri) {
-  if(!is.na(uri)) {
-    json_autor <- jsonlite::fromJSON(uri, flatten = T)
-
-    autor <-
-      json_autor %>%
-      magrittr::extract2('dados')
-
-    autor_uf <-
-      autor %>%
-      magrittr::extract2('ufNascimento')
-
-    autor_partido <-
-      autor %>%
-      magrittr::extract2('ultimoStatus') %>%
-      magrittr::extract2('siglaPartido')
-
-    paste0(autor_partido, '/', autor_uf)
-  }else {
-    ''
-  }
-}
-
-#' @title Recupera as proposições apensadas
-#' @description Retorna os IDs das proposições apensadas a uma determinada proposição
-#' @param prop_id ID da proposição
-#' @return Ventor contendo os IDs das proposições apensadas
-#' @examples
-#' fetch_apensadas(2121442)
-#' @export
-fetch_apensadas <- function(prop_id) {
-  api_v1_proposicao_url = 'http://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID?IdProp='
-  xml2::read_xml(paste0(api_v1_proposicao_url, prop_id)) %>%
-    xml2::xml_find_all('//apensadas/proposicao/codProposicao') %>%
-    xml2::xml_text() %>%
-    tibble::tibble(apensadas=.)
-}
-
 fetch_proposicao_with_apensamentos <- function(prop_id) {
   rcongresso::fetch_proposicao(prop_id) %>%
     dplyr::mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse=' '))
@@ -384,27 +354,6 @@ fetch_related_requerimentos <- function(id, mark_deferimento=T) {
     dplyr::select(id_prop, deferimento) %>%
     # and mark proposicoes based on last tramitacao mark
     dplyr::left_join(related, by=c('id_prop' = 'id'))
-}
-
-#' @title Recupera os eventos (sessões/reuniões) de uma proposição na Câmara
-#' @description Retorna um dataframe contendo o timestamp, o local e a descrição do evento
-#' @param prop_id ID da proposição
-#' @return Dataframe contendo o timestamp, o local e a descrição do evento.
-#' @examples
-#' fetch_events(2121442)
-#' @export
-fetch_events <- function(prop_id) {
-  events_base_url <- 'http://www.camara.gov.br/proposicoesWeb/sessoes_e_reunioes?idProposicao='
-  bill_events_url <- paste0(events_base_url,prop_id)
-  events <- bill_events_url %>%
-    xml2::read_html() %>%
-    rvest::html_nodes(xpath='//*[@id="content"]/table') %>%
-    rvest::html_table()
-  events_df <- events[[1]]
-  names(events_df) <- c('timestamp','origem','descricao','links')
-  events_df %>%
-    dplyr::select(-links) %>%
-    dplyr::mutate(timestamp = lubridate::dmy_hm(timestamp))
 }
 
 #' @title Recupera os últimos eventos (sessões/reuniões) de uma proposição na Câmara
@@ -500,10 +449,6 @@ extract_fase_casa_in_camara <- function(df) {
     tidyr::fill(casa)
 }
 
-extract_tramitacao <- function(prop_id) {
-  rcongresso::fetch_tramitacao(prop_id) %>% rename_df_columns
-}
-
 # Extrai a situação das comissões (ex. Recebimento, Análise do Relator, Discussão e votação...)
 # Necessita do dataframe da tramitação
 extract_situacao_comissao <- function(df) {
@@ -536,4 +481,8 @@ extract_situacao_comissao <- function(df) {
                     # dplyr::case_when(!stringr::str_detect(local, reg)) ~ "NA",
                     #                                    TRUE ~ situacao_comissao)
 
+}
+
+get_environment_camara_json <- function(){
+  camara_codes
 }

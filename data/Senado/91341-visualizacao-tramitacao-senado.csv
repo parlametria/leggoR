@@ -1,126 +1,126 @@
-data_tramitacao,local,fase,evento,casa
-2009-05-29,CCJ,Recebimento,NA,Comissões
-2009-07-15,CCJ,Análise do relator,NA,Comissões
-2009-09-11,CCJ,Análise do relator,NA,Comissões
-2009-09-11,CCJ,Análise do relator,NA,Comissões
-2009-09-15,CCJ,Análise do relator,NA,Comissões
-2009-09-22,CCJ,Análise do relator,NA,Comissões
-2009-09-22,CCJ,Análise do relator,NA,Comissões
-2009-09-23,CCJ,Recebimento,NA,Comissões
-2009-09-24,CCJ,Análise do relator,NA,Comissões
-2009-11-13,CCJ,Discussão e votação,NA,Comissões
-2009-11-23,CCJ,Discussão e votação,NA,Comissões
-2009-11-25,CCJ,Encaminhamento,aprovacao_parecer,Comissões
-2009-12-03,CCJ,Encaminhamento,aprovacao_parecer,Comissões
-2009-12-03,CAE,Recebimento,NA,Comissões
-2009-12-03,CAE,Análise do relator,NA,Comissões
-2010-03-02,CAE,Análise do relator,aprovacao_audiencia_publica,Comissões
-2010-03-12,CAE,Análise do relator,NA,Comissões
-2010-03-15,CAE,Análise do relator,NA,Comissões
-2010-03-23,CAE,Análise do relator,NA,Comissões
-2010-03-23,CAE,Análise do relator,NA,Comissões
-2010-05-18,CAE,Análise do relator,NA,Comissões
-2010-05-18,CAE,Análise do relator,NA,Comissões
-2010-05-19,CAE,Análise do relator,NA,Comissões
-2010-05-19,CAE,Análise do relator,NA,Comissões
-2010-05-19,CAE,Análise do relator,NA,Comissões
-2010-05-20,CCJ,Recebimento,NA,Comissões
-2010-05-24,CCJ,Análise do relator,NA,Comissões
-2010-05-25,CCJ,Análise do relator,NA,Comissões
-2010-06-15,CCJ,Discussão e votação,NA,Comissões
-2010-06-21,CCJ,Discussão e votação,NA,Comissões
-2010-06-23,CCJ,Encaminhamento,aprovacao_parecer,Comissões
-2010-06-24,CCJ,Encaminhamento,NA,Comissões
-2010-06-24,CAE,Recebimento,NA,Comissões
-2010-07-08,CAE,Análise do relator,NA,Comissões
-2010-12-21,CAE,Discussão e votação,NA,Comissões
-2010-12-22,CAE,Discussão e votação,NA,Comissões
-2011-01-20,CAE,Discussão e votação,NA,Comissões
-2011-01-20,CAE,Recebimento,NA,Comissões
-2011-03-04,CAE,Análise do relator,NA,Comissões
-2012-06-18,CAE,Discussão e votação,NA,Comissões
-2012-07-10,CAE,Discussão e votação,aprovacao_audiencia_publica,Comissões
-2013-03-04,CAE,Discussão e votação,NA,Comissões
-2013-03-07,CAE,Discussão e votação,NA,Comissões
-2013-03-19,CAE,Discussão e votação,NA,Comissões
-2013-04-01,Plenário,Discussão e votação,NA,Plenário
-2013-04-17,Plenário,Discussão e votação,NA,Plenário
-2013-05-07,Plenário,Discussão e votação,NA,Plenário
-2013-05-07,Plenário,Discussão e votação,NA,Plenário
-2013-05-13,Plenário,Discussão e votação,NA,Plenário
-2013-05-22,Plenário,Discussão e votação,NA,Plenário
-2013-05-27,CDR,Recebimento,NA,Comissões
-2013-06-13,CDR,Análise do relator,NA,Comissões
-2013-06-20,CDR,Análise do relator,NA,Comissões
-2013-06-20,CDR,Análise do relator,NA,Comissões
-2013-06-25,CDR,Análise do relator,NA,Comissões
-2013-06-27,CDR,Análise do relator,NA,Comissões
-2013-07-04,Plenário,Análise do relator,NA,Plenário
-2013-08-07,Plenário,Análise do relator,NA,Plenário
-2013-08-07,CDR,Análise do relator,NA,Comissões
-2013-10-18,CDR,Análise do relator,NA,Comissões
-2013-10-18,CDR,Análise do relator,NA,Comissões
-2013-10-21,CDR,Análise do relator,NA,Comissões
-2013-10-22,CDR,Análise do relator,NA,Comissões
-2013-10-30,CDR,Análise do relator,NA,Comissões
-2013-11-06,Plenário,Análise do relator,NA,Plenário
-2014-01-09,Plenário,Análise do relator,NA,Plenário
-2014-02-17,Plenário,Análise do relator,NA,Plenário
-2014-02-17,Plenário,Análise do relator,NA,Plenário
-2014-02-18,Plenário,Análise do relator,NA,Plenário
-2014-02-18,Plenário,Análise do relator,NA,Plenário
-2014-02-21,Plenário,Análise do relator,NA,Plenário
-2014-03-17,Plenário,Análise do relator,NA,Plenário
-2014-03-17,Plenário,Análise do relator,NA,Plenário
-2014-03-18,Plenário,Análise do relator,NA,Plenário
-2014-03-19,Plenário,Análise do relator,NA,Plenário
-2014-05-30,Plenário,Análise do relator,NA,Plenário
-2014-08-01,Plenário,Análise do relator,NA,Plenário
-2014-09-02,Plenário,Análise do relator,NA,Plenário
-2014-10-02,Plenário,Análise do relator,NA,Plenário
-2014-11-25,Plenário,Análise do relator,NA,Plenário
-2014-11-25,Plenário,Análise do relator,NA,Plenário
-2014-12-18,Plenário,Análise do relator,NA,Plenário
-2015-03-11,Plenário,Análise do relator,NA,Plenário
-2015-03-19,Plenário,Análise do relator,NA,Plenário
-2015-03-20,Plenário,Análise do relator,NA,Plenário
-2015-03-25,Plenário,Análise do relator,NA,Plenário
-2015-03-25,Plenário,Análise do relator,NA,Plenário
-2015-03-26,Plenário,Análise do relator,NA,Plenário
-2015-04-28,Plenário,Análise do relator,NA,Plenário
-2015-04-28,CAE,Recebimento,NA,Comissões
-2015-05-04,CAE,Análise do relator,NA,Comissões
-2015-07-02,CAE,Discussão e votação,NA,Comissões
-2015-07-07,CAE,Discussão e votação,NA,Comissões
-2015-07-09,CAE,Discussão e votação,NA,Comissões
-2015-07-09,CAE,Discussão e votação,NA,Comissões
-2015-08-25,CAE,Discussão e votação,aprovacao_audiencia_publica,Comissões
-2015-09-24,CAE,Discussão e votação,NA,Comissões
-2015-12-02,CAE,Discussão e votação,NA,Comissões
-2016-03-03,CAE,Discussão e votação,NA,Comissões
-2016-03-08,CAE,Discussão e votação,pedido_vista,Comissões
-2016-03-10,CAE,Discussão e votação,NA,Comissões
-2016-03-15,CAE,Discussão e votação,NA,Comissões
-2016-04-01,CAE,Discussão e votação,NA,Comissões
-2016-04-05,CAE,Discussão e votação,NA,Comissões
-2016-04-08,CAE,Discussão e votação,NA,Comissões
-2016-04-12,CAE,Discussão e votação,NA,Comissões
-2016-04-20,CAE,Discussão e votação,NA,Comissões
-2016-04-26,CAE,Discussão e votação,NA,Comissões
-2016-04-29,CAE,Discussão e votação,NA,Comissões
-2016-05-12,CAE,Discussão e votação,NA,Comissões
-2016-05-16,CAE,Discussão e votação,NA,Comissões
-2016-05-17,CAE,Encaminhamento,aprovacao_parecer,Comissões
-2016-05-17,CAE,Encaminhamento,aprovacao_parecer,Comissões
-2016-05-18,CAE,Discussão e votação,NA,Comissões
-2016-05-18,Plenário,Discussão e votação,NA,Plenário
-2016-05-19,Plenário,Discussão e votação,NA,Plenário
-2016-05-19,Plenário,Discussão e votação,NA,Plenário
-2016-05-19,Plenário,Discussão e votação,NA,Plenário
-2016-05-30,Plenário,Discussão e votação,NA,Plenário
-2016-05-30,Plenário,Discussão e votação,NA,Plenário
-2016-05-30,Plenário,Discussão e votação,NA,Plenário
-2016-06-07,Plenário,Discussão e votação,NA,Plenário
-2016-06-07,Plenário,Discussão e votação,aprovacao_substitutivo,Plenário
-2016-06-16,Plenário,Discussão e votação,NA,Plenário
-2016-06-21,Câmara,Discussão e votação,NA,Plenário
+data_tramitacao,local,fase,evento,casa,global
+2009-05-29,CCJ,Recebimento,NA,Comissões, - Origem (Senado)
+2009-07-15,CCJ,Análise do relator,NA,Comissões, - Origem (Senado)
+2009-09-11,CCJ,Análise do relator,NA,Comissões, - Origem (Senado)
+2009-09-11,CCJ,Análise do relator,NA,Comissões, - Origem (Senado)
+2009-09-15,CCJ,Análise do relator,NA,Comissões, - Origem (Senado)
+2009-09-22,CCJ,Análise do relator,NA,Comissões, - Origem (Senado)
+2009-09-22,CCJ,Análise do relator,NA,Comissões, - Origem (Senado)
+2009-09-23,CCJ,Recebimento,NA,Comissões, - Origem (Senado)
+2009-09-24,CCJ,Análise do relator,NA,Comissões, - Origem (Senado)
+2009-11-13,CCJ,Discussão e votação,NA,Comissões, - Origem (Senado)
+2009-11-23,CCJ,Discussão e votação,NA,Comissões, - Origem (Senado)
+2009-11-25,CCJ,Encaminhamento,aprovacao_parecer,Comissões, - Origem (Senado)
+2009-12-03,CCJ,Encaminhamento,aprovacao_parecer,Comissões, - Origem (Senado)
+2009-12-03,CAE,Recebimento,NA,Comissões, - Origem (Senado)
+2009-12-03,CAE,Análise do relator,NA,Comissões, - Origem (Senado)
+2010-03-02,CAE,Análise do relator,aprovacao_audiencia_publica,Comissões, - Origem (Senado)
+2010-03-12,CAE,Análise do relator,NA,Comissões, - Origem (Senado)
+2010-03-15,CAE,Análise do relator,NA,Comissões, - Origem (Senado)
+2010-03-23,CAE,Análise do relator,NA,Comissões, - Origem (Senado)
+2010-03-23,CAE,Análise do relator,NA,Comissões, - Origem (Senado)
+2010-05-18,CAE,Análise do relator,NA,Comissões, - Origem (Senado)
+2010-05-18,CAE,Análise do relator,NA,Comissões, - Origem (Senado)
+2010-05-19,CAE,Análise do relator,NA,Comissões, - Origem (Senado)
+2010-05-19,CAE,Análise do relator,NA,Comissões, - Origem (Senado)
+2010-05-19,CAE,Análise do relator,NA,Comissões, - Origem (Senado)
+2010-05-20,CCJ,Recebimento,NA,Comissões, - Origem (Senado)
+2010-05-24,CCJ,Análise do relator,NA,Comissões, - Origem (Senado)
+2010-05-25,CCJ,Análise do relator,NA,Comissões, - Origem (Senado)
+2010-06-15,CCJ,Discussão e votação,NA,Comissões, - Origem (Senado)
+2010-06-21,CCJ,Discussão e votação,NA,Comissões, - Origem (Senado)
+2010-06-23,CCJ,Encaminhamento,aprovacao_parecer,Comissões, - Origem (Senado)
+2010-06-24,CCJ,Encaminhamento,NA,Comissões, - Origem (Senado)
+2010-06-24,CAE,Recebimento,NA,Comissões, - Origem (Senado)
+2010-07-08,CAE,Análise do relator,NA,Comissões, - Origem (Senado)
+2010-12-21,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2010-12-22,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2011-01-20,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2011-01-20,CAE,Recebimento,NA,Comissões, - Origem (Senado)
+2011-03-04,CAE,Análise do relator,NA,Comissões, - Origem (Senado)
+2012-06-18,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2012-07-10,CAE,Discussão e votação,aprovacao_audiencia_publica,Comissões, - Origem (Senado)
+2013-03-04,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2013-03-07,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2013-03-19,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2013-04-01,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2013-04-17,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2013-05-07,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2013-05-07,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2013-05-13,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2013-05-22,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2013-05-27,CDR,Recebimento,NA,Comissões, - Origem (Senado)
+2013-06-13,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2013-06-20,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2013-06-20,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2013-06-25,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2013-06-27,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2013-07-04,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2013-08-07,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2013-08-07,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2013-10-18,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2013-10-18,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2013-10-21,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2013-10-22,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2013-10-30,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2013-11-06,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-01-09,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-02-17,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-02-17,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-02-18,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-02-18,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-02-21,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-03-17,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-03-17,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-03-18,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-03-19,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-05-30,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-08-01,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-09-02,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-10-02,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-11-25,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-11-25,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2014-12-18,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2015-03-11,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2015-03-19,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2015-03-20,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2015-03-25,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2015-03-25,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2015-03-26,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2015-04-28,CDR,Análise do relator,NA,Comissões, - Origem (Senado)
+2015-04-28,CAE,Recebimento,NA,Comissões, - Origem (Senado)
+2015-05-04,CAE,Análise do relator,NA,Comissões, - Origem (Senado)
+2015-07-02,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2015-07-07,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2015-07-09,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2015-07-09,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2015-08-25,CAE,Discussão e votação,aprovacao_audiencia_publica,Comissões, - Origem (Senado)
+2015-09-24,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2015-12-02,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-03-03,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-03-08,CAE,Discussão e votação,pedido_vista,Comissões, - Origem (Senado)
+2016-03-10,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-03-15,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-04-01,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-04-05,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-04-08,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-04-12,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-04-20,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-04-26,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-04-29,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-05-12,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-05-16,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-05-17,CAE,Encaminhamento,aprovacao_parecer,Comissões, - Origem (Senado)
+2016-05-17,CAE,Encaminhamento,aprovacao_parecer,Comissões, - Origem (Senado)
+2016-05-18,CAE,Discussão e votação,NA,Comissões, - Origem (Senado)
+2016-05-18,Plenário,Discussão e votação,NA,Plenário, - Origem (Senado)
+2016-05-19,Plenário,Discussão e votação,NA,Plenário, - Origem (Senado)
+2016-05-19,Plenário,Discussão e votação,NA,Plenário, - Origem (Senado)
+2016-05-19,Plenário,Discussão e votação,NA,Plenário, - Origem (Senado)
+2016-05-30,Plenário,Discussão e votação,NA,Plenário, - Origem (Senado)
+2016-05-30,Plenário,Discussão e votação,NA,Plenário, - Origem (Senado)
+2016-05-30,Plenário,Discussão e votação,NA,Plenário, - Origem (Senado)
+2016-06-07,Plenário,Discussão e votação,NA,Plenário, - Origem (Senado)
+2016-06-07,Plenário,Discussão e votação,aprovacao_substitutivo,Plenário, - Origem (Senado)
+2016-06-16,Plenário,Discussão e votação,NA,Plenário, - Origem (Senado)
+2016-06-21,Mesa - Câmara,Discussão e votação,NA,Plenário, - Revisão (Câmara)

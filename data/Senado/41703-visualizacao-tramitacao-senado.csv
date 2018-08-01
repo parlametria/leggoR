@@ -1,34 +1,30 @@
-data_tramitacao,local,fase,evento,casa
-1999-11-18,CAS,Análise do relator,NA,Comissões
-2000-04-18,CAS,Discussão e votação,NA,Comissões
-2000-05-10,CAS,Análise do relator,NA,Comissões
-2000-08-02,CAS,Discussão e votação,NA,Comissões
-2000-08-10,CAS,Análise do relator,NA,Comissões
-2001-02-15,CAS,Análise do relator,NA,Comissões
-2001-02-15,CAS,Análise do relator,NA,Comissões
-2001-02-15,CAS,Análise do relator,NA,Comissões
-2001-04-17,CAS,Análise do relator,NA,Comissões
-2001-05-08,CAS,Discussão e votação,NA,Comissões
-2001-06-20,CAS,Encaminhamento,aprovacao_parecer,Comissões
-2001-08-15,CAS,Análise do relator,NA,Comissões
-2001-11-05,CAS,Discussão e votação,NA,Comissões
-2001-12-12,CAS,Encaminhamento,aprovacao_parecer,Comissões
-2001-12-18,CAS,Discussão e votação,NA,Comissões
-2002-02-25,CAS,Discussão e votação,NA,Comissões
-2002-02-26,CAS,Discussão e votação,NA,Comissões
-2002-03-05,CAS,Discussão e votação,NA,Comissões
-2002-03-06,CAS,Discussão e votação,NA,Comissões
-2002-03-07,CAS,Discussão e votação,NA,Comissões
-2002-03-07,CAS,Discussão e votação,NA,Comissões
-2002-03-07,CAS,Discussão e votação,NA,Comissões
-2002-03-07,CAS,Discussão e votação,NA,Comissões
-2002-03-07,CAS,Discussão e votação,NA,Comissões
-2002-03-08,CAS,Discussão e votação,NA,Comissões
-2002-03-08,CAS,Discussão e votação,NA,Comissões
-2002-03-08,CAS,Discussão e votação,NA,Comissões
-2002-03-12,CAS,Discussão e votação,NA,Comissões
-2002-03-12,Câmara,Discussão e votação,NA,Comissões
-2005-05-16,Câmara,Discussão e votação,NA,Comissões
-2005-12-05,Câmara,Discussão e votação,NA,Comissões
-2007-01-09,Câmara,Discussão e votação,NA,Comissões
-2007-02-28,Câmara,Discussão e votação,NA,Comissões
+data_tramitacao,local,fase,evento,casa,global
+1999-11-18,CAS,Análise do relator,NA,Comissões, - Origem (Senado)
+2000-04-18,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2000-05-10,CAS,Análise do relator,NA,Comissões, - Origem (Senado)
+2000-08-02,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2000-08-10,CAS,Análise do relator,NA,Comissões, - Origem (Senado)
+2001-02-15,CAS,Análise do relator,NA,Comissões, - Origem (Senado)
+2001-02-15,CAS,Análise do relator,NA,Comissões, - Origem (Senado)
+2001-02-15,CAS,Análise do relator,NA,Comissões, - Origem (Senado)
+2001-04-17,CAS,Análise do relator,NA,Comissões, - Origem (Senado)
+2001-05-08,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2001-06-20,CAS,Encaminhamento,aprovacao_parecer,Comissões, - Origem (Senado)
+2001-08-15,CAS,Análise do relator,NA,Comissões, - Origem (Senado)
+2001-11-05,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2001-12-12,CAS,Encaminhamento,aprovacao_parecer,Comissões, - Origem (Senado)
+2001-12-18,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2002-02-25,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2002-02-26,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2002-03-05,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2002-03-06,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2002-03-07,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2002-03-07,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2002-03-07,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2002-03-07,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2002-03-07,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2002-03-08,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2002-03-08,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2002-03-08,CAS,Discussão e votação,NA,Comissões, - Origem (Senado)
+2002-03-12,CAS,Discussão e votação,NA,Comissões, - Revisão (Câmara)
+2002-03-12,Mesa - Câmara,Discussão e votação,NA,Comissões, - Revisão (Câmara)
