@@ -123,6 +123,7 @@ process_proposicao_camara <- function(pl_id) {
     extract_events_in_camara() %>%
     extract_locais_in_camara() %>%
     extract_fase_casa_in_camara() %>%
+    extract_situacao_comissao() %>%
     refact_date() %>%
     sort_by_date() %>%
     readr::write_csv(csv_path)
