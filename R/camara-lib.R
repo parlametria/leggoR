@@ -422,7 +422,7 @@ extract_fase_casa_in_camara <- function(df) {
 #' @export
 extract_situacao_comissao <- function(df) {
   situacao_comissao <- camara_codes$situacao_comissao
-  situacao_comissao['sigla_orgao'] <- get_regex_comissoes_camara()
+  situacao_comissao['local'] <- get_regex_comissoes_camara()
 
   df %>%
     regex_left_match(situacao_comissao, "situacao_comissao") %>%
