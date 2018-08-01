@@ -1,12 +1,10 @@
 {
-  "situacao_comissao": {
-    "code": {
-      "recebimento": [500],
-      "analise_do_relator": [320],
-      "discussao_votacao": [322, 240],
-      "encaminhamento": [180]
-    }
-  },
+  "situacao_comissao": [
+    {"situacao_comissao": "recebimento", "id_tipo_tramitacao": "^500$"},
+    {"situacao_comissao": "analise_do_relator", "id_tipo_tramitacao": "^320$"},
+    {"situacao_comissao": "discussao_votacao", "id_tipo_tramitacao": "^322$|^240$"},
+    {"situacao_comissao": "encaminhamento", "id_tipo_tramitacao": "^180$"}
+  ],
   
   "eventos": [
     {"evento": "requerimento_audiencia_publica", "despacho": "^apresentação do requerimento.*requer a realização d.* audiências? públicas?"},

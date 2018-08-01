@@ -38,6 +38,14 @@ get_comissoes_camara <- function() {
                 comissoes_permanentes=list(c$comissoes_permanentes))
 }
 
+
+get_regex_comissoes_camara <- function() {
+  get_comissoes_camara() %>%
+    unlist() %>%
+    paste(collapse='|') %>%
+    regex(ignore_case=TRUE)
+}
+
 #' @title Recupera as comissões pelas quais a proposição irá passar
 #' @description Retorna um dataframe das comissões pelas quais a proposição irá passar, contendo a hora, o id da proposição e
 #' as próximas comissões
@@ -405,38 +413,20 @@ extract_fase_casa_in_camara <- function(df) {
     tidyr::fill(casa)
 }
 
-# Extrai a situação das comissões (ex. Recebimento, Análise do Relator, Discussão e votação...)
-# Necessita do dataframe da tramitação
+#' @title Recupera a situação em que a proposição se encontra na comissão na Câmara
+#' @description Retorna o dataframe da tramitação com a coluna situacao_comissao adicionada (ex. recebimento, encaminhamento)
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe da tramitação contendo a coluna situacao_comissao
+#' @examples
+#'  extract_situacao_comissao(process_proposicao_camara(345311))
+#' @export
 extract_situacao_comissao <- function(df) {
-  recebimento <- camara_codes$situacao_comissao$code$recebimento
-  analise_do_relator <- camara_codes$situacao_comissao$code$analise_do_relator
-  discussao_votacao <- camara_codes$situacao_comissao$code$discussao_votacao
-  encaminhamento <- camara_codes$situacao_comissao$code$encaminhamento
-
-  reg <-
-    unlist(get_comissoes_camara()) %>%
-    paste(collapse='|') %>%
-    regex(ignore_case=TRUE)
+  situacao_comissao <- camara_codes$situacao_comissao
+  situacao_comissao['sigla_orgao'] <- get_regex_comissoes_camara()
 
   df %>%
-    dplyr::mutate(
-      comissao =
-        dplyr::case_when(str_detect(local, reg) ~ str_extract(local, reg))
-    ) %>%
-    # dplyr::filter(!is.na(comissao)) %>%
-    dplyr::mutate(
-      situacao_comissao =
-        dplyr::case_when(id_tipo_tramitacao %in% recebimento & !is.na(comissao) ~ "Recebimento",
-                         id_tipo_tramitacao %in% analise_do_relator & !is.na(comissao) ~ "Análise do relator",
-                         id_tipo_tramitacao %in% discussao_votacao& !is.na(comissao)  ~ "Discussão e votação",
-                         id_tipo_tramitacao %in% encaminhamento & !is.na(comissao) ~ "Encaminhamento")
-    ) %>%
-    dplyr::select(-comissao) %>%
-    tidyr::fill(situacao_comissao) %>%
-    dplyr::mutate(situacao_comissao = dplyr::case_when(stringr::str_detect(local, reg) ~ situacao_comissao))
-                    # dplyr::case_when(!stringr::str_detect(local, reg)) ~ "NA",
-                    #                                    TRUE ~ situacao_comissao)
-
+    regex_left_match(situacao_comissao, "situacao_comissao") %>%
+    tidyr::fill(situacao_comissao)
 }
 
 get_environment_camara_json <- function(){
