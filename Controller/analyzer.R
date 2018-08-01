@@ -96,30 +96,9 @@ process_proposicao_camara <- function(pl_id) {
   csv_path <- paste(c(data_path,'tramitacao-camara-', pl_id, '.csv'),  collapse = '')
   proposicao_csv_path <- paste(c(data_path,'proposicao-camara-', pl_id, '.csv'),  collapse = '')
   
-  recebimento_phase <- c(500)
-  phase_one <- c(100)
-  phase_two <- c(320)
-  phase_three <- c(335, 336, 420, 431)
-  encaminhamento_phase <- c(180)
-  phase_four <- c(128)
-  phase_five <- c(502, 251)
-  
-  important_events <- frame_data(~ evento, ~ regex,
-                                 "requerimento_audiencia_publica", '^apresentação do requerimento.*requer a realização d.* audiências? públicas?',
-                                 "aprovacao_audiencia_publica", '^aprovado requerimento.*requer a realização d.* audiências? públicas?',
-                                 "aprovacao_parecer", 'aprovado.*parecer',
-                                 "requerimento_redistribuicao", '^apresentação do requerimento de redistribuição',
-                                 "requerimento_apensacao", '^apresentação do requerimento de apensação',
-                                 "requerimento_urgencia", '^apresentação do requerimento de urgência',
-                                 "requerimento_prorrogacao", '^apresentação do requerimento de prorrogação de prazo de comissão temporária')
-  
-  special_commission <- c('120')
-  
   # Extract phases, events and writh CSV
   tramitacao_pl %<>%
     rename_df_columns %>%
-    extract_phases_in_camara(recebimento_phase, phase_one, phase_two, phase_three, encaminhamento_phase, phase_four, phase_five) %>%
-    fill(fase) %>%
     extract_events_in_camara() %>%
     extract_locais_in_camara() %>%
     extract_fase_casa_in_camara() %>%
@@ -141,27 +120,4 @@ process_proposicao_camara <- function(pl_id) {
   relatorias <- extract_relatorias_in_camara(as.data.frame(read_csv(csv_path)))
   
   tramitacao_pl
-}
-
-#Fetch a bill with renamed columns
-fetch_proposicao_renamed <- function(id) {
-  df <-
-    fetch_proposicao_camara(id) %>%
-    rename_df_columns
-  
-  df[, !sapply(df, is.list)]
-}
-
-extract_evento_in_camara <- function(df) {
-  camara_codes <- get_environment_camara_json()
-  eventos <- camara_codes$eventos
-  novo_despacho_regex <- eventos$regex$novo_despacho
-  redistribuicao_regex <- eventos$regex$redistribuicao
-  redistribuicao_text <- eventos$text$distribuicao %>% tolower()
-  df %>%
-    mutate(
-      evento = 
-        case_when((str_detect(tolower(despacho), regex(redistribuicao_regex, ignore_case = TRUE)) |
-                     str_detect(tolower(despacho), regex(novo_despacho_regex, ignore_case = TRUE))) &
-                    tolower(descricao_tramitacao) == redistribuicao_text ~ "redistribuicao"))
 }

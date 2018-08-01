@@ -116,28 +116,6 @@ extract_last_relator_in_camara <- function(df) {
   relator$relator[1]
 }
 
-#' @title Cria coluna com as fases da tramitação na Câmara
-#' @description Cria uma nova coluna com as fases na Câmara.
-#' @param df Dataframe da tramitação na Câmara
-#' @return Dataframe com a coluna "fase" adicionada.
-#' @examples
-#' tramitacao %>% extract_phases_in_camara()
-#' @export
-
-extract_phases_in_camara <- function(dataframe, recebimento_phase, phase_one, phase_two, phase_three, encaminhamento_phase, phase_four, phase_five) {
-  dataframe %<>%
-    dplyr::mutate(fase = dplyr::case_when(
-                                          detect_fase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
-                                          detect_fase(id_tipo_tramitacao, recebimento_phase) ~ 'recebimento',
-                                          detect_fase(id_tipo_tramitacao, phase_two) ~ 'analise_relator',
-                                          detect_fase(id_tipo_tramitacao, phase_three) ~ 'discussao_deliberacao',
-                                          detect_fase(id_tipo_tramitacao, encaminhamento_phase) ~ 'encaminhamento',
-                                          detect_fase(id_tipo_tramitacao, phase_four) ~ 'virada_de_casa',
-                                          detect_fase(id_tipo_tramitacao, phase_five) ~ 'final',
-                                          detect_fase(id_situacao, 937) ~ 'final')
-                                          )
-}
-
 #' @title Busca os últimos n eventos da tramitação na Câmara
 #' @description Recupera os útimos n eventos da tramitação na Câmara, caso nenhuma quantidade seja informada, assume-se que é 1
 #' @param df Dataframe da tramitação na Câmara
@@ -439,6 +417,11 @@ extract_situacao_comissao <- function(df) {
 
 }
 
-get_environment_camara_json <- function(){
-  camara_codes
+#Fetch a bill with renamed columns
+fetch_proposicao_renamed <- function(id) {
+  df <-
+    fetch_proposicao_camara(id) %>%
+    rename_df_columns
+  
+  df[, !sapply(df, is.list)]
 }
