@@ -54,8 +54,8 @@ process_proposicao_senado <- function(bill_id){
                                  "pedido_vista", 90,
                                  "aprovacao_projeto", 25)
   
-  
-  bill_passage <- extract_evento_Senado(bill_passage, important_events, phase_one)
+  evento_devolucao <- c('devolvido pel.*redistribu.*')
+  bill_passage <- extract_evento_Senado(bill_passage, important_events, phase_one, evento_devolucao)
   index_of_camara <- ifelse(length(which(bill_passage$situacao_codigo_situacao == 52)) == 0, 
                             nrow(bill_passage),
                             which(bill_passage$situacao_codigo_situacao == 52)[1])
