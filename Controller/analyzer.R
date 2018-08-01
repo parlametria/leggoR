@@ -166,3 +166,6 @@ extract_evento_in_camara <- function(df) {
                      str_detect(tolower(despacho), regex(novo_despacho_regex, ignore_case = TRUE))) &
                     tolower(descricao_tramitacao) == redistribuicao_text ~ "redistribuicao"))
 }
+extract_approved_requerimentos_in_senado <- function(df) {
+  apr_requerimentos_regex <- c('aprova.*requeriment.*', 'deferid.*requeriment.*')
+}
