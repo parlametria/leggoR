@@ -1,5 +1,6 @@
 source(here::here("R/congresso-lib.R"))
-camara_codes <- jsonlite::fromJSON(here::here("data/environment_camara.json"))
+source(here::here("R/utils.R"))
+camara_codes <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
 #' @title Recupera o número, o tipo e ementa de uma proposição na Câmara
 #' @description Retorna um dataframe contendo o número, o tipo e a ementa de uma proposição na Câmara através do ID da proposição
@@ -28,13 +29,27 @@ last_n_despacho_in_camara <- function(df, qtd=1) {
     dplyr::select(data_hora, descricao_tramitacao, despacho)
 }
 
+#' @title Retorna o dataframe das comissões na Câmara
+#' @description Retorna o dataframe das comissões na Câmara, contendo as colunas: siglas_comissoes_antigas, siglas_comissoes, comissoes_temporarias, comissoes_permanentes
+#' @return Dataframe das comissões na Câmara
+#' @examples
+#' get_comissoes_camara()
+#' @export
 get_comissoes_camara <- function() {
-  c <- camara_codes$comissoes
+  comissoes <- camara_codes$comissoes
   
-  dplyr::tibble(siglas_comissoes_antigas=list(c$siglas_comissoes_antigas),
-                siglas_comissoes=list(c$siglas_comissoes),
-                comissoes_temporarias=list(c$comissoes_temporarias),
-                comissoes_permanentes=list(c$comissoes_permanentes))
+  dplyr::tibble(siglas_comissoes_antigas=list(comissoes$siglas_comissoes_antigas),
+                siglas_comissoes=list(comissoes$siglas_comissoes),
+                comissoes_temporarias=list(comissoes$comissoes_temporarias),
+                comissoes_permanentes=list(comissoes$comissoes_permanentes))
+}
+
+
+get_regex_comissoes_camara <- function() {
+  get_comissoes_camara() %>%
+    unlist() %>%
+    paste(collapse='|') %>%
+    regex(ignore_case=TRUE)
 }
 
 #' @title Recupera as comissões pelas quais a proposição irá passar
@@ -115,28 +130,6 @@ extract_last_relator_in_camara <- function(df) {
   relator$relator[1]
 }
 
-#' @title Cria coluna com as fases da tramitação na Câmara
-#' @description Cria uma nova coluna com as fases na Câmara.
-#' @param df Dataframe da tramitação na Câmara
-#' @return Dataframe com a coluna "fase" adicionada.
-#' @examples
-#' tramitacao %>% extract_phases_in_camara()
-#' @export
-
-extract_phases_in_camara <- function(dataframe, recebimento_phase, phase_one, phase_two, phase_three, encaminhamento_phase, phase_four, phase_five) {
-  dataframe %<>%
-    dplyr::mutate(fase = dplyr::case_when(
-                                          detect_fase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
-                                          detect_fase(id_tipo_tramitacao, recebimento_phase) ~ 'recebimento',
-                                          detect_fase(id_tipo_tramitacao, phase_two) ~ 'analise_relator',
-                                          detect_fase(id_tipo_tramitacao, phase_three) ~ 'discussao_deliberacao',
-                                          detect_fase(id_tipo_tramitacao, encaminhamento_phase) ~ 'encaminhamento',
-                                          detect_fase(id_tipo_tramitacao, phase_four) ~ 'virada_de_casa',
-                                          detect_fase(id_tipo_tramitacao, phase_five) ~ 'final',
-                                          detect_fase(id_situacao, 937) ~ 'final')
-                                          )
-}
-
 #' @title Busca os últimos n eventos da tramitação na Câmara
 #' @description Recupera os útimos n eventos da tramitação na Câmara, caso nenhuma quantidade seja informada, assume-se que é 1
 #' @param df Dataframe da tramitação na Câmara
@@ -201,52 +194,7 @@ rename_df_columns <- function(df) {
 #' df %>% extract_events_in_camara(importants_events)
 #' @export
 extract_events_in_camara <- function(tramitacao_df) {
-  c <- camara_codes$eventos$regex
-  
-  events_df <- tibble::frame_data(
-    ~ evento, ~ regex,
-    'requerimento_audiencia_publica', c$requerimento_audiencia_publica,
-    'aprovacao_audiencia_publica', c$aprovacao_audiencia_publica,
-    'aprovacao_parecer', c$aprovacao_parecer,
-    'redistribuicao', c$redistribuicao,
-    'projeto_reconstituido', c$projeto_reconstituido,
-    'desarquivada', c$desarquivada,
-    'alteracao_de_regime', c$alteracao_de_regime,
-    'distribuicao', c$distribuicao)
-  
-  #events with code
-  special_comissao <- camara_codes$eventos$code$comissao_especial
-  designado_relator <- camara_codes$eventos$code$designado_relator
-  parecer <- camara_codes$eventos$code$parecer
-  voto_em_separado <- camara_codes$eventos$code$voto_em_separado
-  apresentacao_da_pl <- camara_codes$eventos$code$apresentacao_da_pl
-  retirada_de_pauta <- camara_codes$eventos$code$retirada_de_pauta
-  pedido_de_vista <- camara_codes$eventos$code$pedido_de_vista
-  abertura_prazo_emendas <- camara_codes$eventos$code$abertura_prazo_emendas
-  encerramento_prazo_emendas <- camara_codes$eventos$code$encerramento_prazo_emendas
-  arquivada <- camara_codes$eventos$code$arquivada
-
-  tramitacao_df %>%
-    dplyr::mutate(despacho_lower = tolower(despacho)) %>%
-    fuzzyjoin::regex_left_join(events_df, by = c(despacho_lower = "regex")) %>%
-    dplyr::select(-c(despacho_lower, regex)) %>%
-    dplyr::mutate(evento = dplyr::case_when(
-      id_tipo_tramitacao == special_comissao ~ 'criacao_comissao_temporaria',
-      id_tipo_tramitacao == designado_relator ~ 'designado_relator',
-      id_tipo_tramitacao == voto_em_separado ~ 'voto_em_separado',
-      id_tipo_tramitacao == apresentacao_da_pl ~ 'apresentacao_da_pl',
-      id_tipo_tramitacao == retirada_de_pauta ~ 'retirada_de_pauta',
-      id_tipo_tramitacao == pedido_de_vista ~ 'pedido_de_vista',
-      id_tipo_tramitacao == abertura_prazo_emendas ~ 'abertura_prazo_emendas',
-      id_tipo_tramitacao == encerramento_prazo_emendas ~ 'encerramento_prazo_emendas',
-      id_tipo_tramitacao == arquivada ~ 'arquivada',
-      id_tipo_tramitacao == parecer ~ dplyr::case_when(
-                                                       str_detect(despacho, regex('substitutivo', ignore_case = TRUE)) ~ 'parecer_pela_aprovacao_com_substitutivo',
-                                                       str_detect(despacho, regex('rejei..o', ignore_case = TRUE)) ~ 'parecer_pela_rejeicao',
-                                                       str_detect(despacho, regex('aprovacao', ignore_case = TRUE)) ~ 'parecer_pela_aprovacao',
-                                                       TRUE ~ 'parecer'
-                                                      ),
-      TRUE ~ evento))
+  tramitacao_df %>% regex_left_match(camara_codes$eventos, "evento")
 }
 
 #' @title Altera as datas da tramitação para formato mais fácil de tratar
@@ -449,36 +397,34 @@ extract_fase_casa_in_camara <- function(df) {
     tidyr::fill(casa)
 }
 
-# Extrai a situação das comissões (ex. Recebimento, Análise do Relator, Discussão e votação...)
-# Necessita do dataframe da tramitação
+#' @title Recupera a situação em que a proposição se encontra na comissão na Câmara
+#' @description Retorna o dataframe da tramitação com a coluna situacao_comissao adicionada (ex. recebimento, encaminhamento)
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe da tramitação contendo a coluna situacao_comissao
+#' @examples
+#'  extract_situacao_comissao(process_proposicao_camara(345311))
+#' @export
 extract_situacao_comissao <- function(df) {
-  recebimento <- camara_codes$situacao_comissao$code$recebimento
-  analise_do_relator <- camara_codes$situacao_comissao$code$analise_do_relator
-  discussao_votacao <- camara_codes$situacao_comissao$code$discussao_votacao
-  encaminhamento <- camara_codes$situacao_comissao$code$encaminhamento
-
-  reg <-
-    unlist(get_comissoes_camara()) %>%
-    paste(collapse='|') %>%
-    regex(ignore_case=TRUE)
+  situacao_comissao <- camara_codes$situacao_comissao
+  situacao_comissao['local'] <- get_regex_comissoes_camara()
 
   df %>%
-    dplyr::mutate(
-      comissao =
-        dplyr::case_when(str_detect(local, reg) ~ str_extract(local, reg))
-    ) %>%
-    # dplyr::filter(!is.na(comissao)) %>%
-    dplyr::mutate(
-      situacao_comissao =
-        dplyr::case_when(id_tipo_tramitacao %in% recebimento & !is.na(comissao) ~ "Recebimento",
-                         id_tipo_tramitacao %in% analise_do_relator & !is.na(comissao) ~ "Análise do relator",
-                         id_tipo_tramitacao %in% discussao_votacao& !is.na(comissao)  ~ "Discussão e votação",
-                         id_tipo_tramitacao %in% encaminhamento & !is.na(comissao) ~ "Encaminhamento")
-    ) %>%
-    dplyr::select(-comissao) %>%
-    tidyr::fill(situacao_comissao) %>%
-    dplyr::mutate(situacao_comissao = dplyr::case_when(stringr::str_detect(local, reg) ~ situacao_comissao))
-                    # dplyr::case_when(!stringr::str_detect(local, reg)) ~ "NA",
-                    #                                    TRUE ~ situacao_comissao)
+    regex_left_match(situacao_comissao, "situacao_comissao") %>%
+    tidyr::fill(situacao_comissao)
+}
 
+#' @title Recupera a proposição com as colunas renomeadas
+#' @description Recupera o Dataframe contendo os detalhes da proposição com as colunas renomeadas
+#' @param id ID da proposição
+#' @return Dataframe da proposição
+#' @examples
+#'  fetch_proposicao_camara(345311)
+#' @export
+#Fetch a bill with renamed columns
+fetch_proposicao_renamed <- function(id) {
+  df <-
+    fetch_proposicao_camara(id) %>%
+    rename_df_columns
+  
+  df[, !sapply(df, is.list)]
 }
