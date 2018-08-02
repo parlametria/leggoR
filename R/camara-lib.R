@@ -36,12 +36,12 @@ last_n_despacho_in_camara <- function(df, qtd=1) {
 #' get_comissoes_camara()
 #' @export
 get_comissoes_camara <- function() {
-  c <- camara_codes$comissoes
+  comissoes <- camara_codes$comissoes
   
-  dplyr::tibble(siglas_comissoes_antigas=list(c$siglas_comissoes_antigas),
-                siglas_comissoes=list(c$siglas_comissoes),
-                comissoes_temporarias=list(c$comissoes_temporarias),
-                comissoes_permanentes=list(c$comissoes_permanentes))
+  dplyr::tibble(siglas_comissoes_antigas=list(comissoes$siglas_comissoes_antigas),
+                siglas_comissoes=list(comissoes$siglas_comissoes),
+                comissoes_temporarias=list(comissoes$comissoes_temporarias),
+                comissoes_permanentes=list(comissoes$comissoes_permanentes))
 }
 
 #' @title Recupera as comissões pelas quais a proposição irá passar
