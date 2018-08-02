@@ -1,9 +1,9 @@
 label,start,end,group,color
 Apresentação - Origem (Câmara),2015-11-25T13:36:00Z,2015-12-08T17:27:00Z,Global,#d6952a
-Comissões - Origem (Câmara),2015-12-08T17:27:00Z,2018-07-27T11:53:26Z,Global,#938ecc
+Comissões - Origem (Câmara),2015-12-08T17:27:00Z,2018-08-01T11:56:22Z,Global,#938ecc
 CD-MESA-PLEN,2015-11-25T13:36:00Z,2015-12-08T17:27:00Z,Comissão,NA
 CMADS,2015-12-08T17:27:00Z,2016-11-11T17:44:00Z,Comissão,NA
-CFT,2016-11-11T17:44:00Z,2018-07-27T11:53:26Z,Comissão,NA
+CFT,2016-11-11T17:44:00Z,2018-08-01T11:56:22Z,Comissão,NA
 Recebimento,2015-12-08T17:27:00Z,2015-12-16T00:00:00Z,Situação na comissão,#5496cf
 Análise do relator,2015-12-16T00:00:00Z,2016-05-25T10:23:00Z,Situação na comissão,#ff9c37
 Discussão e votação,2016-05-25T10:23:00Z,2016-11-11T17:37:00Z,Situação na comissão,#8bca42
@@ -11,12 +11,37 @@ Encaminhamento,2016-11-11T17:37:00Z,2016-11-11T17:44:00Z,Situação na comissão
 Recebimento,2016-11-11T17:44:00Z,2016-11-23T00:00:00Z,Situação na comissão,#5496cf
 Análise do relator,2016-11-23T00:00:00Z,2017-08-03T13:52:00Z,Situação na comissão,#ff9c37
 Discussão e votação,2017-08-03T13:52:00Z,2018-06-13T10:45:00Z,Situação na comissão,#8bca42
-Análise do relator,2018-06-13T10:45:00Z,2018-07-27T11:53:26Z,Situação na comissão,#ff9c37
+Análise do relator,2018-06-13T10:45:00Z,2018-08-01T11:56:23Z,Situação na comissão,#ff9c37
+apresentacao_da_pl,2015-11-25T13:36:00Z,2015-11-25T13:36:00Z,Evento,#a9a9a9
+distribuicao,2015-12-04T13:02:00Z,2015-12-04T13:02:00Z,Evento,#a9a9a9
 designado_relator,2015-12-16T00:00:00Z,2015-12-16T00:00:00Z,Evento,#a9a9a9
+abertura_prazo_emendas,2015-12-17T00:00:00Z,2015-12-17T00:00:00Z,Evento,#a9a9a9
+encerramento_prazo_emendas,2016-02-18T00:00:00Z,2016-02-18T00:00:00Z,Evento,#a9a9a9
 parecer,2016-05-25T10:23:00Z,2016-05-25T10:23:00Z,Evento,#a9a9a9
+pedido_de_vista,2016-06-08T10:00:00Z,2016-06-08T10:00:00Z,Evento,#a9a9a9
+encerramento_prazo_emendas,2016-06-14T00:00:00Z,2016-06-14T00:00:00Z,Evento,#a9a9a9
+retirada_de_pauta,2016-06-15T10:00:00Z,2016-06-15T10:00:00Z,Evento,#a9a9a9
+voto_em_separado,2016-06-15T10:20:00Z,2016-06-15T10:20:00Z,Evento,#a9a9a9
+retirada_de_pauta,2016-07-06T10:00:00Z,2016-07-06T10:00:00Z,Evento,#a9a9a9
 parecer_pela_aprovacao_com_substitutivo,2016-09-22T14:40:00Z,2016-09-22T14:40:00Z,Evento,#a9a9a9
+abertura_prazo_emendas,2016-09-23T00:00:00Z,2016-09-23T00:00:00Z,Evento,#a9a9a9
+encerramento_prazo_emendas,2016-10-10T00:00:00Z,2016-10-10T00:00:00Z,Evento,#a9a9a9
 aprovacao_parecer,2016-10-25T10:00:00Z,2016-10-25T10:00:00Z,Evento,#a9a9a9
 designado_relator,2016-11-23T00:00:00Z,2016-11-23T00:00:00Z,Evento,#a9a9a9
+abertura_prazo_emendas,2016-11-24T00:00:00Z,2016-11-24T00:00:00Z,Evento,#a9a9a9
+encerramento_prazo_emendas,2016-12-07T00:00:00Z,2016-12-07T00:00:00Z,Evento,#a9a9a9
 parecer_pela_aprovacao_com_substitutivo,2017-08-03T13:52:00Z,2017-08-03T13:52:00Z,Evento,#a9a9a9
+pedido_de_vista,2017-08-30T10:00:00Z,2017-08-30T10:00:00Z,Evento,#a9a9a9
+encerramento_prazo_emendas,2017-09-04T20:27:00Z,2017-09-04T20:27:00Z,Evento,#a9a9a9
+voto_em_separado,2017-09-05T09:27:00Z,2017-09-05T09:27:00Z,Evento,#a9a9a9
 parecer_pela_aprovacao_com_substitutivo,2017-09-28T09:40:00Z,2017-09-28T09:40:00Z,Evento,#a9a9a9
+retirada_de_pauta,2017-11-22T10:00:00Z,2017-11-22T10:00:00Z,Evento,#a9a9a9
+retirada_de_pauta,2017-12-06T10:00:00Z,2017-12-06T10:00:00Z,Evento,#a9a9a9
+retirada_de_pauta,2018-04-11T10:00:00Z,2018-04-11T10:00:00Z,Evento,#a9a9a9
+retirada_de_pauta,2018-04-18T10:00:00Z,2018-04-18T10:00:00Z,Evento,#a9a9a9
+retirada_de_pauta,2018-04-25T10:00:00Z,2018-04-25T10:00:00Z,Evento,#a9a9a9
+retirada_de_pauta,2018-05-09T10:00:00Z,2018-05-09T10:00:00Z,Evento,#a9a9a9
+retirada_de_pauta,2018-05-16T10:00:00Z,2018-05-16T10:00:00Z,Evento,#a9a9a9
+retirada_de_pauta,2018-05-23T10:00:00Z,2018-05-23T10:00:00Z,Evento,#a9a9a9
+retirada_de_pauta,2018-06-13T10:00:00Z,2018-06-13T10:00:00Z,Evento,#a9a9a9
 designado_relator,2018-06-13T10:45:00Z,2018-06-13T10:45:00Z,Evento,#a9a9a9
