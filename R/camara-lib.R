@@ -29,13 +29,19 @@ last_n_despacho_in_camara <- function(df, qtd=1) {
     dplyr::select(data_hora, descricao_tramitacao, despacho)
 }
 
+#' @title Retorna o dataframe das comissões na Câmara
+#' @description Retorna o dataframe das comissões na Câmara, contendo as colunas: siglas_comissoes_antigas, siglas_comissoes, comissoes_temporarias, comissoes_permanentes
+#' @return Dataframe das comissões na Câmara
+#' @examples
+#' get_comissoes_camara()
+#' @export
 get_comissoes_camara <- function() {
-  c <- camara_codes$comissoes
+  comissoes <- camara_codes$comissoes
   
-  dplyr::tibble(siglas_comissoes_antigas=list(c$siglas_comissoes_antigas),
-                siglas_comissoes=list(c$siglas_comissoes),
-                comissoes_temporarias=list(c$comissoes_temporarias),
-                comissoes_permanentes=list(c$comissoes_permanentes))
+  dplyr::tibble(siglas_comissoes_antigas=list(comissoes$siglas_comissoes_antigas),
+                siglas_comissoes=list(comissoes$siglas_comissoes),
+                comissoes_temporarias=list(comissoes$comissoes_temporarias),
+                comissoes_permanentes=list(comissoes$comissoes_permanentes))
 }
 
 
@@ -122,28 +128,6 @@ extract_last_relator_in_camara <- function(df) {
     dplyr::select(relator)
 
   relator$relator[1]
-}
-
-#' @title Cria coluna com as fases da tramitação na Câmara
-#' @description Cria uma nova coluna com as fases na Câmara.
-#' @param df Dataframe da tramitação na Câmara
-#' @return Dataframe com a coluna "fase" adicionada.
-#' @examples
-#' tramitacao %>% extract_phases_in_camara()
-#' @export
-
-extract_phases_in_camara <- function(dataframe, recebimento_phase, phase_one, phase_two, phase_three, encaminhamento_phase, phase_four, phase_five) {
-  dataframe %<>%
-    dplyr::mutate(fase = dplyr::case_when(
-                                          detect_fase(id_tipo_tramitacao, phase_one) ~ 'iniciativa',
-                                          detect_fase(id_tipo_tramitacao, recebimento_phase) ~ 'recebimento',
-                                          detect_fase(id_tipo_tramitacao, phase_two) ~ 'analise_relator',
-                                          detect_fase(id_tipo_tramitacao, phase_three) ~ 'discussao_deliberacao',
-                                          detect_fase(id_tipo_tramitacao, encaminhamento_phase) ~ 'encaminhamento',
-                                          detect_fase(id_tipo_tramitacao, phase_four) ~ 'virada_de_casa',
-                                          detect_fase(id_tipo_tramitacao, phase_five) ~ 'final',
-                                          detect_fase(id_situacao, 937) ~ 'final')
-                                          )
 }
 
 #' @title Busca os últimos n eventos da tramitação na Câmara
@@ -429,6 +413,18 @@ extract_situacao_comissao <- function(df) {
     tidyr::fill(situacao_comissao)
 }
 
-get_environment_camara_json <- function(){
-  camara_codes
+#' @title Recupera a proposição com as colunas renomeadas
+#' @description Recupera o Dataframe contendo os detalhes da proposição com as colunas renomeadas
+#' @param id ID da proposição
+#' @return Dataframe da proposição
+#' @examples
+#'  fetch_proposicao_camara(345311)
+#' @export
+#Fetch a bill with renamed columns
+fetch_proposicao_renamed <- function(id) {
+  df <-
+    fetch_proposicao_camara(id) %>%
+    rename_df_columns
+  
+  df[, !sapply(df, is.list)]
 }
