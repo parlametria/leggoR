@@ -175,8 +175,9 @@ extract_evento_Senado <- function(tramitacao_df, phases_df, evento_apresentacao,
   df$texto_tramitacao
   df <- df %>%
     dplyr::mutate(evento = 
-                    dplyr::case_when( 
+                    dplyr::case_when(
                       grepl(evento_apresentacao, texto_tramitacao) ~ 'apresentação',
+                      grepl("aprovado requerimento de realização de audiência pública", texto_tramitacao) ~ "aprovacao_audiencia_publica",
                       grepl(evento_devolucao, tolower(texto_tramitacao)) ~ 'devolvido',
                       TRUE ~ evento
                     ))
