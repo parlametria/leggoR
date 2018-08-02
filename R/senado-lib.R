@@ -172,7 +172,6 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
 #' @export
 extract_evento_Senado <- function(tramitacao_df, phases_df, evento_apresentacao, evento_devolucao) {
   df <- dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao")
-  df$texto_tramitacao
   df <- df %>%
     dplyr::mutate(evento = 
                     dplyr::case_when( 
