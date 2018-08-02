@@ -199,7 +199,7 @@ fetch_current_relatoria <- function(proposicao_id) {
     tibble::add_column()
   
   current_relatoria_df <- current_relatoria_df[, !sapply(current_relatoria_df, is.list)]
-  rename_relatoria(current_relatoria_df)
+  rename_table_to_underscore(current_relatoria_df)
 }
 
 #' @title Renomeia as colunas do dataframe do histórico de relatorias no Senado
