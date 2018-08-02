@@ -1,7 +1,6 @@
 library(here)
 library(tidyverse)
 library(rcongresso)
-source(here::here('R/senado-lib.R'))
 source(here::here('R/camara-lib.R'))
 source(here::here('R/congresso-lib.R'))
 
