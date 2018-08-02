@@ -112,6 +112,9 @@ build_vis_csv <- function(bill_id) {
     rbind(format_fase_global(data_tramitacao),
           format_local(data_tramitacao), 
           format_fase(data_tramitacao),
-          format_eventos(data_tramitacao))  %>%
+          format_eventos(data_tramitacao)) %>%
+    filter(time_interval != 0 | group == 'Evento')
+  
+  df %>%
     write_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))
 }
