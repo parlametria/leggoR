@@ -358,6 +358,65 @@ fetch_sessions <- function(bill_id){
   ordem_do_dia_df
 }
 
+#' @title Retorna as emendas de uma proposição no Senado
+#' @description Retorna dataframe com os dados das emendas de uma proposição no Senado.
+#' @param bill_id ID de uma proposição do Senado
+#' @return Dataframe com as informações sobre as emendas de uma proposição no Senado.
+#' @examples
+#' fetch_emendas(91341)
+#' @export
+fetch_emendas <- function(bill_id){
+  url_base_emendas <- "http://legis.senado.leg.br/dadosabertos/materia/emendas/"
+  url <- paste0(url_base_emendas, bill_id)
+  
+  json_emendas <- jsonlite::fromJSON(url, flatten = T)
+  
+  emendas_data <- json_emendas %>%
+    magrittr::extract2("EmendaMateria") %>%
+    magrittr::extract2("Materia")
+  
+  emendas_df <- emendas_data %>%
+    magrittr::extract2("Emendas") %>%
+    purrr::map_df(~ .) 
+  
+  if(nrow(emendas_df) == 0){
+    emendas_df <-  frame_data(~ codigo, ~numero, ~ local, ~ autor, ~partido)
+    
+  } else if(nrow(emendas_df) == 1) {
+    emendas_df <- emendas_df %>%
+      rename_table_to_underscore() 
+    
+    autoria <- as.data.frame(emendas_df$autoria_emenda) %>%
+      rename_table_to_underscore() %>% 
+      dplyr::mutate(partido = paste0(identificacao_parlamentar_sigla_partido_parlamentar,
+                                     "/",
+                                     identificacao_parlamentar_uf_parlamentar))
+    emendas_df <- emendas_df %>%
+      rename_table_to_underscore() %>%
+      plyr::rename(c("codigo_emenda" = "codigo", "numero_emenda" = "numero", "colegiado_apresentacao" = "local")) %>%
+      dplyr::mutate(autor = autoria$nome_autor,
+                    partido = autoria$partido) %>%
+      select(codigo, numero, local, autor, partido)
+    
+  }else{
+    emendas_df <- emendas_df %>%
+      tidyr::unnest() %>%
+      rename_table_to_underscore() %>%
+      dplyr::select(codigo_emenda, numero_emenda, colegiado_apresentacao, autoria_emenda_autor_nome_autor,
+                    autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar,
+                    autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar) %>%
+      dplyr::mutate(partido = paste0(autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar,
+                                     "/",
+                                     autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar)) %>%
+      select(-autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar, 
+             -autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar) %>%
+      plyr::rename(c("codigo_emenda" = "codigo", "numero_emenda" = "numero", "colegiado_apresentacao" = "local", 
+                     "autoria_emenda_autor_nome_autor" = "autor"))
+  }
+  
+  emendas_df
+  
+}
 #' @title Importa as informações de uma proposição da internet.
 #' @description Recebido um id a função roda os scripts para 
 #' importar os dados daquela proposição.
@@ -405,6 +464,11 @@ import_proposicao <- function(bill_id){
   sessions_data <- fetch_sessions(bill_id)
   sessions_data %>% 
     readr::write_csv(paste0(here::here("data/Senado/"), bill_id, "-sessions-senado.csv"))
+  
+  #Emendas data
+  emendas_data <- fetch_emendas(bill_id)
+  emendas_data %>%
+    readr::write_csv(paste0(here::here("data/Senado/"), bill_id, "-emendas-senado.csv"))
 }
 
 ###################################################################
