@@ -167,5 +167,10 @@ extract_evento_in_camara <- function(df) {
                     tolower(descricao_tramitacao) == redistribuicao_text ~ "redistribuicao"))
 }
 extract_approved_requerimentos_in_senado <- function(df) {
-  apr_requerimentos_regex <- c('aprova.*requeriment.*', 'deferid.*requeriment.*')
+  apr_requerimentos_regex <- c('(aprovad.* | deferid.*)requeriment.*')
+  apr_requerimentos_df <- df %>%
+    filter(str_detect(tolower(texto_tramitacao), regex(apr_requerimentos_regex, ignore_case = TRUE))) %>%
+    mutate(evento = stringr::str_extract_all(tolower(texto_tramitacao), regex(apr_requerimentos_regex, ignore_case = TRUE))) %>% 
+    unnest() %>%
+    unique()
 }
