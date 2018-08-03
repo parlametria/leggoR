@@ -4,7 +4,7 @@ library(lubridate)
 library(fuzzyjoin)
 library(tidyverse)
 source(here::here("R/camara-lib.R"))
-source(here::here("R/controller/fetcher.R"))
+source(here::here("R/fetcher.R"))
 source(here::here("R/congresso-lib.R"))
 
 process_proposicao <- function(id, casa){
@@ -213,16 +213,16 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
       casa =
         dplyr::case_when(
           grepl(fase_apresentacao, texto_tramitacao) ~ 'Apresentação',
-          situacao_descricao_situacao %in% constants$regex_plenario ~
-            constants$plenario,
-          (stringr::str_detect(tolower(texto_tramitacao), constants$regex_recebimento_comissoes) |
+          situacao_descricao_situacao %in% senado_constants$regex_plenario ~
+            senado_constants$plenario,
+          (stringr::str_detect(tolower(texto_tramitacao), senado_constants$regex_recebimento_comissoes) |
              situacao_descricao_situacao %in% descricoes_comissoes) ~
-            constants$comissoes)
+            senado_constants$comissoes)
     ) %>%
     tidyr::fill(casa)
 
   dataframe %>%
-    mutate(casa = if_else(is.na(casa), constants$mesa_senado, casa))
+    mutate(casa = if_else(is.na(casa), senado_constants$mesa_senado, casa))
 }
 
 #' @title Extrai os eventos importantes que aconteceram no Senado
@@ -416,17 +416,17 @@ extract_locais <- function(df) {
     dplyr::mutate(
       local =
         dplyr::case_when(
-          situacao_descricao_situacao %in% constants$regex_plenario ~
-            constants$plenario,
-          (stringr::str_detect(tolower(texto_tramitacao), constants$regex_recebimento_comissoes) |
-             situacao_descricao_situacao %in% constants$regex_comissoes_vector) ~
+          situacao_descricao_situacao %in% senado_constants$regex_plenario ~
+            senado_constants$plenario,
+          (stringr::str_detect(tolower(texto_tramitacao), senado_constants$regex_recebimento_comissoes) |
+             situacao_descricao_situacao %in% senado_constants$regex_comissoes_vector) ~
             origem_tramitacao_local_sigla_local,
-          situacao_descricao_situacao == constants$regex_camara ~
-            constants$mesa_camara)
+          situacao_descricao_situacao == senado_constants$regex_camara ~
+            senado_constants$mesa_camara)
     )
 
   if (is.na(df[1, ]$local)) {
-    df[1, ]$local = constants$mesa_senado
+    df[1, ]$local = senado_constants$mesa_senado
   }
 
   df %>%
