@@ -3,15 +3,15 @@ library(tidyverse)
 library(rcongresso)
 source(here::here('R/camara-lib.R'))
 source(here::here('R/congresso-lib.R'))
-source(here::here('Controller/analyzer.R'))
-source(here::here('Controller/fetcher.R'))
+source(here::here('R/analyzer.R'))
+source(here::here('R/fetcher.R'))
 
 extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   nome_ementa_camara <- get_ementas_in_camara(bill_id_camara)
   nome_ementa_senado <- get_nome_ementa_Senado(bill_id_senado)
 
   tramitacao_camara <- read_csv(
-    here::here(paste0('data/camara/', 'tramitacao-camara-',bill_id_camara,'.csv')))
+    here::here(paste0('data/camara/', 'tramitacao-camara-', bill_id_camara, '.csv')))
   tramitacao_senado <- read_csv(
     here::here(paste0('data/Senado/', bill_id_senado, '-fases-tramitacao-senado.csv')))
   despacho_camara <- last_n_despacho_in_camara(tramitacao_camara)

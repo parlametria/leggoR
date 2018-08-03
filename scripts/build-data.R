@@ -1,5 +1,4 @@
 source(here::here("Controller/analyzer.R"))
-
 args = commandArgs(trailingOnly=TRUE)
 
 #' @title Cria todos os csvs de um proposição.
@@ -13,10 +12,10 @@ args = commandArgs(trailingOnly=TRUE)
 #' @export
 build_csvs <- function(id, house) {
   if("SENADO" == toupper(house)){
-    source(here::here("Controller/fetcher.R"))
+    source(here::here("R/fetcher.R"))
     import_proposicao(id)
   } else if("CAMARA" != toupper(house)){
-    return(NULL)    
+    return(NULL)
   }
   process_proposicao(id, house)
   source(here::here(paste0("view/formatter/data-chart-", tolower(house), ".R")))
@@ -35,8 +34,7 @@ build_csvs <- function(id, house) {
 build_all_csvs <- function(df) {
   df %>%
     rowwise() %>%
-    do (build_csvs(.$id, .$casa))
-
+    do(build_csvs(.$id, .$casa))
 }
 
 if(length(args) == 2){
