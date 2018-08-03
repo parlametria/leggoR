@@ -153,6 +153,22 @@ fetch_relatorias <- function(proposicao_id) {
   rename_relatorias_df(relatorias_df)
 }
 
+#' @title Recupera a última relatoria de uma proposição no Senado
+#' @description Retorna dataframe com a última relatoria de uma proposição no Senado, incluindo a data
+#' de designação e destituição, o relator e seu partido e a comissão.
+#' @param proposicao_id ID de uma proposição do Senado
+#' @return Dataframe com as informações da última relatoria de uma proposição no Senado
+#' @examples
+#' fetch_relatorias(91341)
+#' @export
+fetch_last_relatoria <- function(proposicao_id) {
+  relatoria <- fetch_relatorias(proposicao_id)
+  relatoria <- relatoria[1,]
+  
+  relatoria
+  
+}
+
 #' @title Recupera a relatoria atual no Senado
 #' @description Retorna dataframe com a relatoria atual no senado, contendo a data de designação, o relator e seu partido e a comissão
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
