@@ -7,11 +7,11 @@ params:
 ---
 
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
-source(here::here('scripts/vis/tramitacao/extract-informations.R'))
-source(here::here('scripts/vis/tramitacao/build-chart.R'))
+source(here::here('view/formatter/extract-informations.R'))
+source(here::here('view/visualizer/build-chart.R'))
 library(rcongresso)
 
-print(params)
+#print(params)
 data <- extract_informations_from_single_house(params$id, params$casa)
 chart <- create_chart(params$id, params$casa)
 ```
