@@ -328,6 +328,8 @@ extract_apreciacao_Senado <- function(proposicao_id) {
     magrittr::extract2("Materia") %>%
     magrittr::extract2("Despachos") %>%
     magrittr::extract2("Despacho")
+  
+  apreciacao <- senado_env$apreciacao
 
   if(!is.null(tramitacao_data)){
     if(!is.list(tramitacao_data$ComissoesDespacho.ComissaoDespacho)){
@@ -342,13 +344,12 @@ extract_apreciacao_Senado <- function(proposicao_id) {
         tidyr::unnest(ComissoesDespacho.ComissaoDespacho)
     }
 
-    apreciacao <- senado_env$apreciacao
     tramitacao_data <-
       tramitacao_data %>%
       dplyr::filter(IndicadorDespachoTerminativo == "Sim")
     dplyr::if_else(nrow(tramitacao_data) != 0, apreciacao$conclusiva, apreciacao$plenario)
   } else {
-    apreciacao$plenario
+    return(apreciacao$plenario)
   }
 }
 
