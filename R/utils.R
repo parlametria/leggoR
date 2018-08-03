@@ -18,5 +18,5 @@ regex_left_match <- function(df, regex_df, new_column) {
     group_by(sort) %>%
     filter(rank(sort, ties.method = "first") == 1) %>%
     ungroup() %>%
-    select(-ends_with("X"),-sort)
+    select(-ends_with("X"), -sort)
 }

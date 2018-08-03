@@ -38,19 +38,20 @@ last_n_despacho_in_camara <- function(df, qtd = 1) {
 #' @export
 get_comissoes_camara <- function() {
   comissoes <- camara_codes$comissoes
-  
-  dplyr::tibble(siglas_comissoes_antigas=list(comissoes$siglas_comissoes_antigas),
-                siglas_comissoes=list(comissoes$siglas_comissoes),
-                comissoes_temporarias=list(comissoes$comissoes_temporarias),
-                comissoes_permanentes=list(comissoes$comissoes_permanentes))
+  dplyr::tibble(
+    siglas_comissoes_antigas = list(comissoes$siglas_comissoes_antigas),
+    siglas_comissoes = list(comissoes$siglas_comissoes),
+    comissoes_temporarias = list(comissoes$comissoes_temporarias),
+    comissoes_permanentes = list(comissoes$comissoes_permanentes)
+  )
 }
 
 
 get_regex_comissoes_camara <- function() {
   get_comissoes_camara() %>%
     unlist() %>%
-    paste(collapse='|') %>%
-    regex(ignore_case=TRUE)
+    paste(collapse = '|') %>%
+    regex(ignore_case = TRUE)
 }
 
 #' @title Recupera as comissões pelas quais a proposição irá passar
@@ -384,8 +385,8 @@ extract_locais_in_camara <- function(df) {
                       TRUE ~ local
                     ))
   
-  if (is.na(df[1,]$local)) {
-    df[1,]$local = 'CD-MESA-PLEN'
+  if (is.na(df[1, ]$local)) {
+    df[1, ]$local = 'CD-MESA-PLEN'
   }
   
   df %>%
@@ -424,10 +425,8 @@ extract_fase_casa_in_camara <- function(df) {
             !stringr::str_detect(tolower(sigla_orgao), '^s') ~ "Comissões"
         )
     )
-  
-  
-  if (is.na(df[1,]$casa)) {
-    df[1,]$casa = 'Apresentação'
+  if (is.na(df[1, ]$casa)) {
+    df[1, ]$casa <- "Apresentação"
   }
   
   df %>%
@@ -444,7 +443,7 @@ extract_fase_casa_in_camara <- function(df) {
 extract_situacao_comissao <- function(df) {
   situacao_comissao <- camara_codes$situacao_comissao
   situacao_comissao['local'] <- get_regex_comissoes_camara()
-
+  
   df %>%
     regex_left_match(situacao_comissao, "situacao_comissao") %>%
     tidyr::fill(situacao_comissao)
@@ -463,5 +462,5 @@ fetch_proposicao_renamed <- function(id) {
     fetch_proposicao_camara(id) %>%
     rename_df_columns
   
-  df[, !sapply(df, is.list)]
+  df[,!sapply(df, is.list)]
 }
