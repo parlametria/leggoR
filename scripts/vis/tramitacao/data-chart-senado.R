@@ -69,18 +69,14 @@ format_eventos <- function(df) {
     )
   
   df %>%
-    mutate(z = cumsum(evento != lag(evento, default='NULL')),
-           end_data = lead(data_tramitacao)) %>%
-    group_by(evento, sequence = data.table::rleid(z)) %>%
-    summarize(start = min(data_tramitacao),
-              end = start,
-              time_interval = end - start) %>%
-    ungroup() %>%
-    arrange(sequence) %>%
-    select(-sequence) %>%
     filter(!is.na(evento)) %>%
+    mutate(start = data_tramitacao,
+           end = start,
+           time_interval = end - start) %>%
     rename(label=evento) %>%
-    mutate(group = "Evento", color = "#a9a9a9")
+    unique() %>%
+    mutate(group = "Evento", color = "#a9a9a9") %>%
+    select(label, start, end, time_interval, group, color)
   
 }
 
@@ -116,6 +112,9 @@ build_vis_csv <- function(bill_id) {
     rbind(format_fase_global(data_tramitacao),
           format_local(data_tramitacao), 
           format_fase(data_tramitacao),
-          format_eventos(data_tramitacao))  %>%
+          format_eventos(data_tramitacao)) %>%
+    filter(time_interval != 0 | group == 'Evento')
+  
+  df %>%
     write_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))
 }
