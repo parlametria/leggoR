@@ -1,45 +1,37 @@
 label,start,end,group,color
 Apresentação - Revisão (Câmara),2016-03-16T14:03:00Z,2016-12-15T15:33:00Z,Global,#d6952a
-Comissões - Revisão (Câmara),2016-12-15T15:33:00Z,2018-07-20T15:15:37Z,Global,#938ecc
+Comissões - Revisão (Câmara),2016-12-15T15:33:00Z,2018-08-01T11:56:27Z,Global,#938ecc
 CD-MESA-PLEN,2016-03-16T14:03:00Z,2016-12-15T15:33:00Z,Comissão,NA
 CTASP,2016-12-15T15:33:00Z,2017-08-29T17:06:00Z,Comissão,#ea81b1
-Comissão Especial,2017-08-29T17:06:00Z,2018-07-20T15:15:37Z,Comissão,NA
+Comissão Especial,2017-08-29T17:06:00Z,2018-08-01T11:56:27Z,Comissão,NA
 Recebimento,2016-12-15T15:33:00Z,2017-08-15T19:01:00Z,Situação na comissão,#5496cf
 Encaminhamento,2017-08-15T19:01:00Z,2017-08-23T08:59:00Z,Situação na comissão,#ea81b1
 Recebimento,2017-08-23T08:59:00Z,2017-08-29T18:59:00Z,Situação na comissão,#5496cf
 Encaminhamento,2017-08-29T18:59:00Z,2017-09-12T00:00:00Z,Situação na comissão,#ea81b1
 Análise do relator,2017-09-12T00:00:00Z,2018-06-11T17:08:00Z,Situação na comissão,#ff9c37
-Discussão e votação,2018-06-11T17:08:00Z,2018-07-20T15:15:38Z,Situação na comissão,#8bca42
-requerimento_apensacao,2017-03-13T16:02:00Z,2017-03-13T16:02:00Z,Evento,#a9a9a9
-requerimento_redistribuicao,2017-04-18T15:07:00Z,2017-04-18T15:07:00Z,Evento,#a9a9a9
-requerimento_redistribuicao,2017-05-09T11:55:00Z,2017-05-09T11:55:00Z,Evento,#a9a9a9
+Discussão e votação,2018-06-11T17:08:00Z,2018-08-01T11:56:27Z,Situação na comissão,#8bca42
+apresentacao_da_pl,2016-03-16T14:03:00Z,2016-03-16T14:03:00Z,Evento,#a9a9a9
+apresentacao_da_pl,2016-12-14T22:16:00Z,2016-12-14T22:16:00Z,Evento,#a9a9a9
+distribuicao,2016-12-15T10:39:00Z,2016-12-15T10:39:00Z,Evento,#a9a9a9
+apresentacao_da_pl,2017-03-16T00:00:00Z,2017-03-16T00:00:00Z,Evento,#a9a9a9
+redistribuicao,2017-08-15T00:00:00Z,2017-08-15T00:00:00Z,Evento,#a9a9a9
 criacao_comissao_temporaria,2017-08-15T00:00:00Z,2017-08-15T00:00:00Z,Evento,#a9a9a9
-requerimento_urgencia,2017-08-15T16:49:00Z,2017-08-15T16:49:00Z,Evento,#a9a9a9
 designado_relator,2017-09-12T00:00:00Z,2017-09-12T00:00:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-12T18:00:00Z,2017-09-12T18:00:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-12T18:53:00Z,2017-09-12T18:53:00Z,Evento,#a9a9a9
 aprovacao_audiencia_publica,2017-09-13T14:30:00Z,2017-09-13T14:30:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-13T14:53:00Z,2017-09-13T14:53:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-13T15:54:00Z,2017-09-13T15:54:00Z,Evento,#a9a9a9
-requerimento_prorrogacao,2017-09-14T11:29:00Z,2017-09-14T11:29:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-20T10:22:00Z,2017-09-20T10:22:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-26T16:08:00Z,2017-09-26T16:08:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-26T16:09:00Z,2017-09-26T16:09:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-26T16:10:00Z,2017-09-26T16:10:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-27T18:38:00Z,2017-09-27T18:38:00Z,Evento,#a9a9a9
-requerimento_prorrogacao,2017-10-04T10:07:00Z,2017-10-04T10:07:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-10-23T15:53:00Z,2017-10-23T15:53:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-10-24T15:43:00Z,2017-10-24T15:43:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-10-25T16:38:00Z,2017-10-25T16:38:00Z,Evento,#a9a9a9
-requerimento_prorrogacao,2017-10-31T13:55:00Z,2017-10-31T13:55:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-11-06T16:17:00Z,2017-11-06T16:17:00Z,Evento,#a9a9a9
 aprovacao_audiencia_publica,2017-11-07T14:30:00Z,2017-11-07T14:30:00Z,Evento,#a9a9a9
-requerimento_prorrogacao,2017-11-29T14:08:00Z,2017-11-29T14:08:00Z,Evento,#a9a9a9
-requerimento_prorrogacao,2017-12-13T15:33:00Z,2017-12-13T15:33:00Z,Evento,#a9a9a9
-requerimento_prorrogacao,2018-02-27T11:38:00Z,2018-02-27T11:38:00Z,Evento,#a9a9a9
-requerimento_prorrogacao,2018-03-20T09:55:00Z,2018-03-20T09:55:00Z,Evento,#a9a9a9
-requerimento_prorrogacao,2018-04-11T09:04:00Z,2018-04-11T09:04:00Z,Evento,#a9a9a9
-requerimento_prorrogacao,2018-05-04T15:48:00Z,2018-05-04T15:48:00Z,Evento,#a9a9a9
-requerimento_prorrogacao,2018-05-29T09:14:00Z,2018-05-29T09:14:00Z,Evento,#a9a9a9
 parecer_pela_aprovacao_com_substitutivo,2018-06-11T17:08:00Z,2018-06-11T17:08:00Z,Evento,#a9a9a9
-requerimento_prorrogacao,2018-06-26T09:47:00Z,2018-06-26T09:47:00Z,Evento,#a9a9a9
+pedido_de_vista,2018-06-12T15:00:00Z,2018-06-12T15:00:00Z,Evento,#a9a9a9
+encerramento_prazo_emendas,2018-06-19T18:10:00Z,2018-06-19T18:10:00Z,Evento,#a9a9a9

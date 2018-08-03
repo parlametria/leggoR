@@ -1,0 +1,107 @@
+{
+  "situacao_comissao": [
+    {"situacao_comissao": "recebimento", "id_tipo_tramitacao": "^500$"},
+    {"situacao_comissao": "analise_do_relator", "id_tipo_tramitacao": "^320$"},
+    {"situacao_comissao": "discussao_votacao", "id_tipo_tramitacao": "^322$|^240$"},
+    {"situacao_comissao": "encaminhamento", "id_tipo_tramitacao": "^180$"}
+  ],
+  
+  "eventos": [
+    {"evento": "requerimento_audiencia_publica", "despacho": "^apresentação do requerimento.*requer a realização d.* audiências? públicas?"},
+    {"evento": "aprovacao_audiencia_publica", "despacho": "^aprovado requerimento.*requer a realização d.* audiências? públicas?"},
+    {"evento": "aprovacao_parecer", "despacho": "aprovado.*parecer"},
+    {"evento": "requerimento_redistribuicao", "despacho": "^apresentação do requerimento de redistribuição"},
+    {"evento": "requerimento_apensacao", "despacho": "^apresentação do requerimento de apensação"},
+    {"evento": "requerimento_urgencia", "despacho": "^apresentação do requerimento de urgência"},
+    {"evento": "requerimento_prorrogacao", "despacho": "^apresentação do requerimento de prorrogação de prazo de comissão temporária"},
+    {"evento": "projeto_reconstituido", "despacho": "reconstituído"},
+    {"evento": "desarquivada", "despacho": "^desarquivado nos termos do artigo"},
+    {"evento": "alteracao_de_regime", "despacho": "^alteração do regime de tramitação desta proposição"},
+    {"evento": "distribuicao", "despacho": "às* comiss..s*|despacho à"},
+    {"evento": "redistribuicao", "despacho": "novo despacho|atualização do despacho", "id_tipo_tramitacao": "^110$|^112$"},
+    {"evento": "comissao_especial", "id_tipo_tramitacao": "^120$"},
+    {"evento": "designado_relator", "id_tipo_tramitacao": "^320$"},
+    {"evento": "voto_em_separado", "id_tipo_tramitacao": "^431$"},
+    {"evento": "apresentacao_da_pl", "id_tipo_tramitacao": "^100$"},
+    {"evento": "retirada_de_pauta", "id_tipo_tramitacao": "^250$"},
+    {"evento": "pedido_de_vista", "id_tipo_tramitacao": "^420$"},
+    {"evento": "abertura_prazo_emendas", "id_tipo_tramitacao": "^350$"},
+    {"evento": "encerramento_prazo_emendas", "id_tipo_tramitacao": "^600$"},
+    {"evento": "arquivada", "id_tipo_tramitacao": "^502$"},
+    {"evento": "parecer_pela_adequacao_financeira_e_orcamentaria", "id_tipo_tramitacao": "^322$", "despacho": "pela adequa..o financeira e or.ament.ria"},
+    {"evento": "parecer_pela_aprovacao_com_substitutivo", "id_tipo_tramitacao": "^322$", "despacho": "substitutivo"},
+    {"evento": "parecer_pela_aprovacao", "id_tipo_tramitacao": "^322$", "despacho": "aprova..o"},
+    {"evento": "parecer_pela_rejeicao", "id_tipo_tramitacao": "^322$", "despacho": "rejei..o"},
+    {"evento": "parecer", "id_tipo_tramitacao": "^322$"}
+  ],
+  
+  "fase_casa": [
+    {"casa": "plenario", "despacho": "votação|pronta para pauta|apresentação de proposição|sessão deliberativa", "sigla_orgao": "PLEN"},
+    {"casa": "plenario", "descricao_tramitacao": "^vota..o"}
+  ],
+  
+  "comissoes": {
+    "siglas_comissoes_antigas": [
+      "CDCMAM",
+      "CAPR",
+      "CCJR"
+    ],
+    "siglas_comissoes": [
+    "CAPADR",
+    "CCTCI",
+    "CCJC",
+    "CCULT",
+    "CDC",
+    "CMULHER",
+    "CIDOSO",
+    "CPD",
+    "CDU",
+    "CDEICS",
+    "CDHM",
+    "CE",
+    "CESPO",
+    "CFT",
+    "CFFC",
+    "CINDRA",
+    "CLP",
+    "CMADS",
+    "CME",
+    "CREDN",
+    "CSPCCO",
+    "CSSF",
+    "CTASP",
+    "CTUR",
+    "CVT"
+    ],
+    "comissoes_permanentes": [
+    "Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural",
+    "Ciência e Tecnologia, Comunicação e Informática",
+    "Constituição e Justiça e de Cidadania",
+    "Cultura",
+    "Defesa do Consumidor",
+    "Defesa dos Direitos da Mulher",
+    "Defesa dos Direitos da Pessoa Idosa",
+    "Defesa dos Direitos das Pessoas com Deficiência",
+    "Desenvolvimento Urbano",
+    "Desenvolvimento Econômico, Indústria, Comércio e Serviços",
+    "Direitos Humanos e Minorias",
+    "Educação",
+    "Esporte",
+    "Finanças e Tributação",
+    "Fiscalização Financeira e Controle",
+    "Integração Nacional, Desenvolvimento Regional e da Amazônia",
+    "Legislação Participativa",
+    "Meio Ambiente e Desenvolvimento Sustentável",
+    "Minas e Energia",
+    "Relações Exteriores e de Defesa Nacional",
+    "Segurança Pública e Combate ao Crime Organizado",
+    "Seguridade Social e Família",
+    "Trabalho, de Administração e Serviço Público",
+    "Turismo",
+    "Viação e Transportes"
+    ],
+    "comissoes_temporarias": [
+      "Comissão Especial"
+    ]
+  }
+}

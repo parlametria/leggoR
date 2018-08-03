@@ -7,7 +7,7 @@ source(here::here('scripts/vis/tramitacao/build-data.R'))
 source(here::here('scripts/renderReport.R'))
 source(here::here('scripts/vis/tramitacao/extract-informations.R'))
 
-output_dir = here::here('docs/reports')
+output_dir <- here::here('docs/reports')
 
 # Create dirs when needed
 c('data/Senado', 'data/camara', 'data/vis/tramitacao', 'docs/reports') %>%
@@ -19,7 +19,6 @@ all_pls %>% build_all_csvs()
 
 # Build reports
 all_pls %>% render_house_df_reports()
-#render_all_reports()
 
 # Build tabela e gabaritos
 c(
@@ -29,5 +28,6 @@ c(
   'reports/gabarito/pl-3729-2004-timeline.Rmd',
   'reports/gabarito/pl-490-2007-timeline.Rmd',
   'reports/gabarito/pls-229-2009-timeline.Rmd'
-) %>%
-  {lapply(here::here(.), render, 'html_document', output_dir = output_dir)}
+) %>% {
+  lapply(here::here(.), render, 'html_document', output_dir = output_dir)
+}

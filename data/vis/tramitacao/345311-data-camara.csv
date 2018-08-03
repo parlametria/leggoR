@@ -1,11 +1,11 @@
 label,start,end,group,color
 Apresentação - Origem (Câmara),2007-03-20T16:13:00Z,2007-03-29T00:00:00Z,Global,#d6952a
-Comissões - Origem (Câmara),2007-03-29T00:00:00Z,2018-07-20T15:15:27Z,Global,#938ecc
+Comissões - Origem (Câmara),2007-03-29T00:00:00Z,2018-08-01T11:56:20Z,Global,#938ecc
 CD-MESA-PLEN,2007-03-20T16:13:00Z,2007-03-29T00:00:00Z,Comissão,NA
 CDHM,2007-03-29T00:00:00Z,2007-11-19T14:25:00Z,Comissão,NA
 CAPADR,2007-11-19T14:25:00Z,2008-07-03T10:10:00Z,Comissão,NA
 CDHM,2008-07-03T10:10:00Z,2009-08-07T16:16:00Z,Comissão,NA
-CCJC,2009-08-07T16:16:00Z,2018-07-20T15:15:27Z,Comissão,NA
+CCJC,2009-08-07T16:16:00Z,2018-08-01T11:56:20Z,Comissão,NA
 Recebimento,2007-03-29T00:00:00Z,2007-04-11T00:00:00Z,Situação na comissão,#5496cf
 Análise do relator,2007-04-11T00:00:00Z,2007-08-27T19:02:00Z,Situação na comissão,#ff9c37
 Discussão e votação,2007-08-27T19:02:00Z,2007-11-06T17:29:00Z,Situação na comissão,#8bca42
@@ -23,21 +23,38 @@ Encaminhamento,2009-08-07T16:03:00Z,2009-08-07T16:16:00Z,Situação na comissão
 Recebimento,2009-08-07T16:16:00Z,2009-08-27T11:35:00Z,Situação na comissão,#5496cf
 Encaminhamento,2009-08-27T11:35:00Z,2010-03-04T00:00:00Z,Situação na comissão,#ea81b1
 Análise do relator,2010-03-04T00:00:00Z,2018-04-10T18:15:00Z,Situação na comissão,#ff9c37
-Discussão e votação,2018-04-10T18:15:00Z,2018-07-20T15:15:27Z,Situação na comissão,#8bca42
+Discussão e votação,2018-04-10T18:15:00Z,2018-08-01T11:56:20Z,Situação na comissão,#8bca42
+apresentacao_da_pl,2007-03-20T16:13:00Z,2007-03-20T16:13:00Z,Evento,#a9a9a9
+distribuicao,2007-03-28T10:38:00Z,2007-03-28T10:38:00Z,Evento,#a9a9a9
 designado_relator,2007-04-11T00:00:00Z,2007-04-11T00:00:00Z,Evento,#a9a9a9
+abertura_prazo_emendas,2007-04-13T00:00:00Z,2007-04-13T00:00:00Z,Evento,#a9a9a9
+encerramento_prazo_emendas,2007-04-24T00:00:00Z,2007-04-24T00:00:00Z,Evento,#a9a9a9
 parecer_pela_rejeicao,2007-08-27T19:02:00Z,2007-08-27T19:02:00Z,Evento,#a9a9a9
 parecer_pela_rejeicao,2007-10-19T12:07:00Z,2007-10-19T12:07:00Z,Evento,#a9a9a9
-redistribuicao,2007-11-06T00:00:00Z,2007-11-06T00:00:00Z,Evento,#a9a9a9
+pedido_de_vista,2007-10-24T14:00:00Z,2007-10-24T14:00:00Z,Evento,#a9a9a9
+encerramento_prazo_emendas,2007-10-30T00:00:00Z,2007-10-30T00:00:00Z,Evento,#a9a9a9
 designado_relator,2007-11-28T00:00:00Z,2007-11-28T00:00:00Z,Evento,#a9a9a9
+abertura_prazo_emendas,2007-11-29T00:00:00Z,2007-11-29T00:00:00Z,Evento,#a9a9a9
+encerramento_prazo_emendas,2007-12-12T00:00:00Z,2007-12-12T00:00:00Z,Evento,#a9a9a9
 parecer_pela_aprovacao_com_substitutivo,2008-03-27T15:10:00Z,2008-03-27T15:10:00Z,Evento,#a9a9a9
+abertura_prazo_emendas,2008-03-31T00:00:00Z,2008-03-31T00:00:00Z,Evento,#a9a9a9
+encerramento_prazo_emendas,2008-04-09T00:00:00Z,2008-04-09T00:00:00Z,Evento,#a9a9a9
 parecer_pela_aprovacao_com_substitutivo,2008-05-13T17:52:00Z,2008-05-13T17:52:00Z,Evento,#a9a9a9
+pedido_de_vista,2008-05-28T10:00:00Z,2008-05-28T10:00:00Z,Evento,#a9a9a9
+voto_em_separado,2008-06-10T00:00:00Z,2008-06-10T00:00:00Z,Evento,#a9a9a9
 aprovacao_parecer,2008-07-02T10:00:00Z,2008-07-02T10:00:00Z,Evento,#a9a9a9
 designado_relator,2008-08-04T00:00:00Z,2008-08-04T00:00:00Z,Evento,#a9a9a9
 parecer_pela_rejeicao,2009-06-22T14:51:00Z,2009-06-22T14:51:00Z,Evento,#a9a9a9
+retirada_de_pauta,2009-06-24T14:00:00Z,2009-06-24T14:00:00Z,Evento,#a9a9a9
 aprovacao_parecer,2009-08-05T14:00:00Z,2009-08-05T14:00:00Z,Evento,#a9a9a9
 designado_relator,2010-03-04T00:00:00Z,2010-03-04T00:00:00Z,Evento,#a9a9a9
+arquivada,2011-01-31T00:00:00Z,2011-01-31T00:00:00Z,Evento,#a9a9a9
+desarquivada,2011-02-16T15:19:00Z,2011-02-16T15:19:00Z,Evento,#a9a9a9
 designado_relator,2013-05-14T00:00:00Z,2013-05-14T00:00:00Z,Evento,#a9a9a9
+arquivada,2015-01-31T00:00:00Z,2015-01-31T00:00:00Z,Evento,#a9a9a9
+desarquivada,2015-02-10T09:40:00Z,2015-02-10T09:40:00Z,Evento,#a9a9a9
 designado_relator,2018-02-01T00:00:00Z,2018-02-01T00:00:00Z,Evento,#a9a9a9
 parecer,2018-04-10T18:15:00Z,2018-04-10T18:15:00Z,Evento,#a9a9a9
 parecer,2018-05-08T19:19:00Z,2018-05-08T19:19:00Z,Evento,#a9a9a9
+voto_em_separado,2018-05-22T12:41:00Z,2018-05-22T12:41:00Z,Evento,#a9a9a9
 parecer_pela_aprovacao_com_substitutivo,2018-05-22T14:48:00Z,2018-05-22T14:48:00Z,Evento,#a9a9a9

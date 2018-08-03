@@ -1,13 +1,9 @@
 label,start,end,time_interval,group,color
-Comissões - Casa de Origem (Senado),2014-02-11,2014-06-02,111,Global,#938ecc
-Apresentação - Casa de Origem (Senado),2014-06-02,2014-06-02,0,Global,#d6952a
-Comissões - Casa de Origem (Senado),2014-06-02,2016-02-15,623,Global,#938ecc
-Apresentação - Casa de Origem (Senado),2016-02-15,2016-02-15,0,Global,#d6952a
-Comissões - Casa de Origem (Senado),2016-02-15,2016-12-08,297,Global,#938ecc
-Plenário - Casa de Origem (Senado),2016-12-08,2017-02-03,57,Global,#5496cf
-Plenário - Casa Revisora (Câmara),2017-02-03,2017-02-09,6,Global,#5496cf
-CI,2014-02-11,2014-05-07,85,Comissão,NA
-Plenário,2014-05-07,2014-05-20,13,Comissão,NA
+Comissões - Origem (Senado),2014-02-11,2014-06-02,111,Global,#938ecc
+Comissões - Origem (Senado),2014-06-02,2016-02-15,623,Global,#938ecc
+Comissões - Origem (Senado),2016-02-15,2016-12-08,297,Global,#938ecc
+Plenário - Origem (Senado),2016-12-08,2017-02-03,57,Global,#5496cf
+CI,2014-02-11,2014-05-20,98,Comissão,NA
 CCJ,2014-05-20,2014-06-02,13,Comissão,#ffffcc
 CCJ,2014-06-02,2014-07-15,43,Comissão,#ffffcc
 CAE,2014-07-15,2014-08-14,30,Comissão,#a1dab4
@@ -21,13 +17,9 @@ CCJ,2015-09-25,2015-10-28,33,Comissão,#ffffcc
 CI,2015-10-28,2016-02-15,110,Comissão,NA
 CAE,2016-02-15,2016-12-08,297,Comissão,#a1dab4
 Plenário,2016-12-08,2017-02-03,57,Comissão,NA
-Câmara,2017-02-03,2017-02-09,6,Comissão,NA
-Recebimento,2014-02-11,2014-02-11,0,Sub-fase Comissão,#d7191c
 Análise do relator,2014-02-11,2014-05-20,98,Sub-fase Comissão,#fdae61
 Recebimento,2014-05-20,2014-05-29,9,Sub-fase Comissão,#d7191c
 Análise do relator,2014-05-29,2014-06-02,4,Sub-fase Comissão,#fdae61
-Recebimento,2014-06-02,2014-06-02,0,Sub-fase Comissão,#d7191c
-Análise do relator,2014-06-02,2014-06-02,0,Sub-fase Comissão,#fdae61
 Recebimento,2014-06-02,2014-07-15,43,Sub-fase Comissão,#d7191c
 Análise do relator,2014-07-15,2015-10-28,470,Sub-fase Comissão,#fdae61
 Recebimento,2015-10-28,2015-11-11,14,Sub-fase Comissão,#d7191c
@@ -35,7 +27,11 @@ Discussão e votação,2015-11-11,2015-12-02,21,Sub-fase Comissão,#ffffbf
 Encaminhamento,2015-12-02,2016-02-23,83,Sub-fase Comissão,#abd9e9
 Análise do relator,2016-02-23,2016-07-13,141,Sub-fase Comissão,#fdae61
 Discussão e votação,2016-07-13,2017-02-03,205,Sub-fase Comissão,#ffffbf
-Virada de Casa,2017-02-03,2017-02-09,6,Sub-fase Comissão,NA
-aprovacao_parecer,2015-12-02,2015-12-02,0,Evento,#a9a9a9
-aprovacao_substitutivo,2016-12-13,2016-12-13,0,Evento,#a9a9a9
+apresentação,2014-06-02,2014-06-02,0,Evento,#a9a9a9
 pedido_vista,2015-11-11,2015-11-11,0,Evento,#a9a9a9
+aprovacao_parecer,2015-12-02,2015-12-02,0,Evento,#a9a9a9
+apresentação,2016-02-15,2016-02-15,0,Evento,#a9a9a9
+pedido_vista,2016-07-13,2016-07-13,0,Evento,#a9a9a9
+aprovacao_audiencia_publica,2016-08-17,2016-08-17,0,Evento,#a9a9a9
+aprovacao_substitutivo,2016-12-13,2016-12-13,0,Evento,#a9a9a9
+aprovacao_substitutivo,2017-02-02,2017-02-02,0,Evento,#a9a9a9

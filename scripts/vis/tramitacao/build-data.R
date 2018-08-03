@@ -1,18 +1,7 @@
 library(dplyr)
+source(here::here("Controller/analyzer.R"))
 
 args = commandArgs(trailingOnly=TRUE)
-
-#' @title Cria todos os csvs de um proposição na câmara.
-#' @description Recebido um id e uma casa a função roda os scripts para
-#' importar e processar os dados daquela proposição no câmara.
-#' @param id Identificador da proposição que pode ser recuperado no site da câmara.
-#' @examples
-#' build_camara(257161)
-#' @export
-build_camara <- function(id){
-  source(here::here("scripts/camara-process-data.R"))
-  process_proposicao(id)
-}
 
 #' @title Cria todos os csvs de um proposição no senado.
 #' @description Recebido um id e uma casa a função roda os scripts para
@@ -22,10 +11,8 @@ build_camara <- function(id){
 #' build_senado(91341)
 #' @export
 build_senado <- function(id){
-  source(here::here("scripts/importa-dados-Senado.R"))
-  import_proposicao(id)
-  source(here::here("scripts/processa-dados-Senado.R"))
-  process_proposicao(id)
+  
+  
 }
 
 #' @title Cria todos os csvs de um proposição.
@@ -38,11 +25,13 @@ build_senado <- function(id){
 #' build_csvs(257161, "camara")
 #' @export
 build_csvs <- function(id, house) {
-  if("CAMARA" == toupper(house)){
-    build_camara(id)
-  } else if("SENADO" == toupper(house)){
-    build_senado(id)
+  if("SENADO" == toupper(house)){
+    source(here::here("Controller/fetcher.R"))
+    import_proposicao(id)
+  } else if("CAMARA" != toupper(house)){
+    return(NULL)    
   }
+  process_proposicao(id, house)
   source(here::here(paste0("scripts/vis/tramitacao/data-chart-", tolower(house), ".R")))
   build_vis_csv(id)
 

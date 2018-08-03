@@ -1,0 +1,98 @@
+{
+  "constants": {
+      "plenario": "Plenário",
+        "mesa_camara": "Mesa - Câmara",
+        "mesa_senado": "Mesa - Senado",
+        "regex_camara": "remetida_à_câmara_dos_deputados",
+        "regex_recebimento_comissoes": "recebido na comissão|recebido nesta comissão",
+        "regex_plenario": "pronto_para_deliberação_do_plenário",
+        "regex_comissoes_vector": ["matéria_com_a_relatoria","aguardando_designação_do_relator"],
+        "comissoes": "Comissões"
+  }, 
+  
+  "apreciacao": {
+      "conclusiva": "Conclusiva",
+      "plenario": "Plenário"
+  }, 
+  
+  "fase_global": {
+      "origem_senado": " - Origem (Senado)",
+      "revisao_camara": " - Revisão (Câmara)"
+  }, 
+  
+  "fase_subfase_comissoes": {
+      "recebimento": "Recebimento",
+      "analise": "Análise do relator",
+      "discussao": "Discussão e votação",
+      "encaminhamento": "Encaminhamento",
+      "regex": "recebido na|nesta comissão"
+  }, 
+  
+  "fase_comissao": {
+      "vector": {
+
+      }
+  }, 
+  
+  "fase_casa": [
+    {"fase_casa": "plenario", "regex": "Apresentação"},
+    {"fase_casa": "comissoes", "regex": "recebido na comissão|recebido nesta comissão"}
+  ],
+  
+  "fase_comissao": [
+    {"fase": "analise_do_relator", "code": [91]},
+    {"fase": "discussao_votacao", "code": [42, 14, 78, 90]},
+    {"fase": "encaminhamento", "code": [89, 159]},
+    {"fase": "recebimento_comissao", "regex": "recebido na|nesta comissao"}
+  ],
+  
+  "eventos": [
+    {"evento": "apresentacao_pl", "regex": "^este processo contem"},
+    {"evento": "recebimento_comissao", "regex": "recebido na|nesta comissao"},
+    {"evento": "aprovacao_parecer", "code": 89},
+    {"evento": "designado_relator", "code": 91},
+    {"evento": "pedido_vista", "code": 90},
+    {"evento": "arquivada", "code": 28},
+    {"evento": "desarquivada", "code": 149},
+    {"evento": "aprovada", "code": 25},
+    {"evento": "aprovacao_audiencia_publica", "code": 110},
+    {"evento": "aprovacao_substitutivo", "code":113},
+    {"evento": "inicio_prazo_emendas", "code": 20},
+    {"evento": "fim_prazo_emendas", "code": 153},
+    {"evento": "virada_casa", "code": 52},
+    {"evento": "remetida_a_sancao", "code": 57},
+    {"evento": "vetada", "code": 57},
+    {"evento": "pronta_para_pauta", "code": 42}
+  ],
+  
+  "regimes": {
+    "urgencia": "Urgência", 
+    "regex": "em regime de urg(ê|e)ncia",
+    "ordinaria": "Ordinária"
+  },
+  
+  "comissoes": {
+    "prefixo": "(Comiss..s*)*",
+    "regex_1": "às c.+ e c.+, cabendo à última', 'às c.+ e c.+, cabendo à última",
+    "regex_2": "à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo",
+    "regex_3": "(à|a)s? comiss..s*', 'comiss..s*.+"
+  },
+  
+  "endpoints_api": {
+    "url_base": "http://legis.senado.leg.br/dadosabertos/materia/",
+    "votacao": "http://legis.senado.leg.br/dadosabertos/materia/votacoes",
+    "movimentacoes": "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes",
+    "relatorias": "http://legis.senado.leg.br/dadosabertos/materia/relatorias",
+    "proposicao_sessoes": "http://legis.senado.leg.br/dadosabertos/materia/ordia",
+    "glossario": "http://legis.senado.leg.br/dadosabertos/materia/glossario/lista?v=4",
+    "situacoes": "http://legis.senado.leg.br/dadosabertos/materia/situacoes",
+    "page_url_senado": "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
+  },
+  
+  "deferimento": {
+    "regex": {
+      "indeferido": "^Indefiro",
+      "deferido": "^(Defiro)|(Aprovado)"
+    }
+  }
+}
