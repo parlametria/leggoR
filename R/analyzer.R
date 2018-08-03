@@ -11,6 +11,8 @@ process_proposicao <- function(id, casa){
   if("CAMARA" == toupper(casa)){
     process_proposicao_camara(id)
   } else if("SENADO" == toupper(casa)){
+    senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
+    senado_constants <- senado_env$constants
     process_proposicao_senado(id)
   }
 }
@@ -162,7 +164,7 @@ extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_t
     dataframe %>%
         dplyr::mutate(
                    fase =
-                       dplyr::case_when(stringr::str_detect(tolower(texto_tramitacao), fase$regex) ~ fases$recebimento,
+                       dplyr::case_when(stringr::str_detect(tolower(texto_tramitacao), fases$regex) ~ fases$recebimento,
                                         detect_fase(situacao_codigo_situacao, phase_two) ~ fases$analise,
                                         detect_fase(situacao_codigo_situacao, phase_three) ~ fases$discussao,
                                         detect_fase(situacao_codigo_situacao, encaminhamento_phase) ~ fases$encaminhamento))
@@ -216,7 +218,7 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
           situacao_descricao_situacao %in% senado_constants$regex_plenario ~
             senado_constants$plenario,
           (stringr::str_detect(tolower(texto_tramitacao), senado_constants$regex_recebimento_comissoes) |
-             situacao_descricao_situacao %in% descricoes_comissoes) ~
+             situacao_descricao_situacao %in% senado_constants$regex_comissoes_vector) ~
             senado_constants$comissoes)
     ) %>%
     tidyr::fill(casa)
