@@ -40,7 +40,7 @@ process_proposicao_senado <- function(bill_id){
 
   bill_passage$situacao_descricao_situacao <-
     to_underscore(bill_passage$situacao_descricao_situacao) %>%
-    str_replace_all("\\s+","_")
+    str_replace_all("\\s+", "_")
 
   bill_passage <-
     extract_fase_casa_Senado(bill_passage, phase_one) %>%
@@ -155,16 +155,15 @@ extract_evento_in_camara <- function(df) {
 #' tramitacao %>% extract_fase_Senado()
 #' @export
 extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_two, phase_three, encaminhamento_phase, phase_four) {
-
-  dataframe %>%
-    dplyr::mutate(
-      fase =
-        dplyr::case_when(stringr::str_detect(tolower(texto_tramitacao), 'recebido na|nesta comissão') ~ 'Recebimento',
-                         detect_fase(situacao_codigo_situacao, phase_two) ~ 'Análise do relator',
-                         detect_fase(situacao_codigo_situacao, phase_three) ~ 'Discussão e votação',
-                         detect_fase(situacao_codigo_situacao, encaminhamento_phase) ~ 'Encaminhamento'))
+    fases <- senado_env$fase_subfase_comissoes
+    dataframe %>%
+        dplyr::mutate(
+                   fase =
+                       dplyr::case_when(stringr::str_detect(tolower(texto_tramitacao), fase$regex) ~ fases$recebimento,
+                                        detect_fase(situacao_codigo_situacao, phase_two) ~ fases$analise,
+                                        detect_fase(situacao_codigo_situacao, phase_three) ~ fases$discussao,
+                                        detect_fase(situacao_codigo_situacao, encaminhamento_phase) ~ fases$encaminhamento))
 }
-
 
 #' @title Cria coluna com a fase global da tramitação no Senado
 #' @description Cria uma nova coluna com a fase global no Senado
@@ -174,8 +173,11 @@ extract_fase_Senado <- function(dataframe, recebimento_phase, phase_one, phase_t
 #' tramitacao %>% extract_fase_global()
 #' @export
 extract_fase_global <- function(data_tramitacao, bill_id) {
-  data_prop <- read_csv(paste0(here::here("data/Senado/"), bill_id,"-proposicao-senado.csv"))
-  casa_origem <- if_else(data_prop$nome_casa_origem == "Senado Federal", " - Origem (Senado)", " - Revisão (Câmara)")
+  fase_global_constants <- senado_env$fase_global
+  data_prop <- read_csv(paste0(here::here("data/Senado/"), bill_id, "-proposicao-senado.csv"))
+  casa_origem <- if_else(data_prop$nome_casa_origem == "Senado Federal",
+                         fase_global_constants$origem_senado,
+                         fase_global_constants$revisao_camara)
 
   virada_de_casa <-
     data_tramitacao %>%
@@ -187,12 +189,11 @@ extract_fase_global <- function(data_tramitacao, bill_id) {
     data_tramitacao %>%
       mutate(global = paste0(casa_origem))
   }else {
-    casa_atual <- if_else(casa_origem == " - Origem (Senado)", " - Revisão (Câmara)", " - Origem (Senado)")
+    casa_atual <- if_else(casa_origem == " - Origem (Senado)", fase_global_constants$revisao_camara, fase_global_constants$origem_senado)
     data_tramitacao %>%
       mutate(global = if_else(data_tramitacao < virada_de_casa[1, ][[1]], casa_origem, casa_atual))
   }
 }
-
 
 #' @title Cria coluna com a fase casa da tramitação no Senado
 #' @description Cria uma nova coluna com a fase casa no Senado
@@ -202,11 +203,6 @@ extract_fase_global <- function(data_tramitacao, bill_id) {
 #' bill_passage %>% extract_fase_casa_Senado(phase_one)
 #' @export
 extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
-
-  descricoes_plenario <- c('pronto_para_deliberação_do_plenário')
-
-  descricoes_comissoes <- c('matéria_com_a_relatoria',
-                            'aguardando_designação_do_relator' )
   dataframe <-
     dataframe %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
@@ -214,16 +210,16 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
       casa =
         dplyr::case_when(
           grepl(fase_apresentacao, texto_tramitacao) ~ 'Apresentação',
-          situacao_descricao_situacao %in% descricoes_plenario ~
-            'Plenário',
-          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na comissão|recebido nesta comissão') |
+          situacao_descricao_situacao %in% constants$regex_plenario ~
+            constants$plenario,
+          (stringr::str_detect(tolower(texto_tramitacao), constants$regex_recebimento_comissoes) |
              situacao_descricao_situacao %in% descricoes_comissoes) ~
-            'Comissões')
+            constants$comissoes)
     ) %>%
     tidyr::fill(casa)
 
   dataframe %>%
-    mutate(casa = if_else(is.na(casa), 'Mesa - Senado', casa))
+    mutate(casa = if_else(is.na(casa), constants$mesa_senado, casa))
 }
 
 #' @title Extrai os eventos importantes que aconteceram no Senado
@@ -233,18 +229,18 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
 #' @return Dataframe com a coluna "evento" adicionada.
 #' @examples
 #' df <- fetch_tramitacao(91341)
-#' extract_evento_Senado(df, importants_events)
+#' extract_evento_Senado(df, importants_events, phase_one)
 #' @export
-extract_evento_Senado <- function(tramitacao_df, phases_df, evento_apresentacao) {
-  df <- dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao")
-  df %>%
+extract_evento_Senado <- function(tramitacao_df, phases_df, evento_apresentacao, evento_devolucao) {
+  dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao") %>%
     dplyr::mutate(evento =
                     dplyr::case_when(
-                      grepl(evento_apresentacao, texto_tramitacao) ~ 'Apresentação',
+                      grepl(evento_apresentacao, texto_tramitacao) ~ 'apresentação',
+                      grepl("aprovado requerimento de realização de audiência pública", texto_tramitacao) ~ "aprovacao_audiencia_publica",
+                      grepl(evento_devolucao, tolower(texto_tramitacao)) ~ 'devolvido',
                       TRUE ~ evento
                     ))
 }
-
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
 #' @description Retona dataframe contendo os n últimos eventos importantes que aconteceram no Senado
@@ -255,7 +251,6 @@ extract_evento_Senado <- function(tramitacao_df, phases_df, evento_apresentacao)
 #' df %>% extract_n_last_eventos_Senado(4)
 #' @export
 extract_n_last_eventos_Senado <- function(df, num) {
-
   df %>%
     dplyr::filter(!is.na(evento)) %>%
     dplyr::arrange(data_tramitacao) %>%
@@ -271,56 +266,55 @@ extract_n_last_eventos_Senado <- function(df, num) {
 #' extract_comissoes_Senado(fetch_tramitacao(129808))
 #' @export
 extract_comissoes_Senado <- function(df) {
-
-  prefix <- '(Comiss..s*)* '
+  codigos_comissoes <- senado_env$comissoes
 
   siglas_comissoes <- '
-  CAE
-  CAS
-  CCJ
-  CCT
-  CDH
-  CDIR
-  CDR
-  CE
-  CI
-  CMA
-  CRA
-  CRE
-  CSF
-  CTFC
-  CCAI
-  CMCF
-  CMCPLP
-  CMCVM
-  CMMC
-  CMO
-  FIPA
+    CAE
+    CAS
+    CCJ
+    CCT
+    CDH
+    CDIR
+    CDR
+    CE
+    CI
+    CMA
+    CRA
+    CRE
+    CSF
+    CTFC
+    CCAI
+    CMCF
+    CMCPLP
+    CMCVM
+    CMMC
+    CMO
+    FIPA
   '
   comissoes_permanentes_especiais <- '
-  Especial
-  de Assuntos Econômicos
-  de Assuntos Sociais
-  de Constituição, Justiça e Cidadania
-  de Ciência, Tecnologia, Inovação, Comunicação e Informática
-  de Direitos Humanos e Legislação Participativa
-  Diretora
-  de Desenvolvimento Regional e Turismo
-  de Educação, Cultura e Esporte
-  de Serviços de Infraestrutura
-  de Meio Ambiente
-  de Agricultura e Reforma Agrária
-  de Relações Exteriores e Defesa Nacional
-  Senado do Futuro
-  de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor
-  Mista de Controle das Atividades de Inteligência
-  Mista de Consolidação da Legislação Federal
-  Mista do Congresso Nacional de Assuntos Relacionados à Comunidade dos Países de Língua Portuguesa
-  Permanente Mista de Combate à Violência contra a Mulher
-  Mista Permanente sobre Mudanças Climáticas
-  Mista de Planos, Orçamentos Públicos e Fiscalização
-  Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas
-  ' %>%
+    Especial
+    de Assuntos Econômicos
+    de Assuntos Sociais
+    de Constituição, Justiça e Cidadania
+    de Ciência, Tecnologia, Inovação, Comunicação e Informática
+    de Direitos Humanos e Legislação Participativa
+    Diretora
+    de Desenvolvimento Regional e Turismo
+    de Educação, Cultura e Esporte
+    de Serviços de Infraestrutura
+    de Meio Ambiente
+    de Agricultura e Reforma Agrária
+    de Relações Exteriores e Defesa Nacional
+    Senado do Futuro
+    de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor
+    Mista de Controle das Atividades de Inteligência
+    Mista de Consolidação da Legislação Federal
+    Mista do Congresso Nacional de Assuntos Relacionados à Comunidade dos Países de Língua Portuguesa
+    Permanente Mista de Combate à Violência contra a Mulher
+    Mista Permanente sobre Mudanças Climáticas
+    Mista de Planos, Orçamentos Públicos e Fiscalização
+    Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas
+    ' %>%
     paste0(siglas_comissoes) %>%
     # Constrói expressão regular adicionando `prefix` ao começo de cada linha
     # e concatenando todas as linhas com `|`.
@@ -328,7 +322,7 @@ extract_comissoes_Senado <- function(df) {
     magrittr::extract2(1) %>%
     sapply(trimws) %>%
     magrittr::extract(. != '') %>%
-    paste0(prefix, .) %>%
+    paste0(codigos_comissoes$prefixo, .) %>%
     paste(collapse='|') %>%
     stringr::regex(ignore_case=FALSE)
 
@@ -355,11 +349,11 @@ extract_comissoes_Senado <- function(df) {
       comissoes =
         dplyr::case_when(
           detect(texto_tramitacao,
-                 'às c.+ e c.+, cabendo à última', 'às c.+ e c.+, cabendo à última'),
+                 codigos_comissoes$regex_1),
           detect(texto_tramitacao,
-                 'à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo'),
+                 codigos_comissoes$regex_2),
           detect(texto_tramitacao,
-                 '(à|a)s? comiss..s*', 'comiss..s*.+'))
+                 codigos_comissoes$regex_3))
     ) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_tramitacao) %>%
@@ -397,14 +391,11 @@ get_nome_ementa_Senado <- function(proposicao_id) {
 #' tramitacao %>% tail_descricao_despacho_Senado(4)
 #' @export
 tail_descricao_despacho_Senado <- function(df, qtd=1) {
-
   df %>%
     dplyr::arrange(data_tramitacao) %>%
     tail(qtd) %>%
     dplyr::select(data_tramitacao, situacao_descricao_situacao, texto_tramitacao)
 }
-
-
 
 #' @title Recupera os locais do Senado
 #' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada local
@@ -414,34 +405,29 @@ tail_descricao_despacho_Senado <- function(df, qtd=1) {
 #'  extract_locais(fetch_tramitacao(91341))
 #' @export
 extract_locais <- function(df) {
-
-  descricoes_plenario <- c('pronto_para_deliberação_do_plenário')
-  descricoes_comissoes <- c('matéria_com_a_relatoria',
-                            'aguardando_designação_do_relator')
-
+  comissao_json <- senado_env$fase_comissao
   df <-
     df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     dplyr::mutate(
       local =
         dplyr::case_when(
-          situacao_descricao_situacao %in% descricoes_plenario ~
-            'Plenário',
-          (stringr::str_detect(tolower(texto_tramitacao), 'recebido na comissão|recebido nesta comissão') |
-             situacao_descricao_situacao %in% descricoes_comissoes) ~
+          situacao_descricao_situacao %in% constants$regex_plenario ~
+            constants$plenario,
+          (stringr::str_detect(tolower(texto_tramitacao), constants$regex_recebimento_comissoes) |
+             situacao_descricao_situacao %in% constants$regex_comissoes_vector) ~
             origem_tramitacao_local_sigla_local,
-          situacao_descricao_situacao == 'remetida_à_câmara_dos_deputados' ~
-            'Mesa - Câmara')
+          situacao_descricao_situacao == constants$regex_camara ~
+            constants$mesa_camara)
     )
 
   if (is.na(df[1, ]$local)) {
-    df[1, ]$local = 'Mesa - Senado'
+    df[1, ]$local = constants$mesa_senado
   }
 
   df %>%
     tidyr::fill(local)
 }
-
 
 #' @title Extrai o regime de tramitação do Senado
 #' @description Verifica o regime de tramitação de um dataframe. Se apresentar as
@@ -453,42 +439,25 @@ extract_locais <- function(df) {
 #' extract_regime_Senado(93418)
 #' @export
 extract_regime_Senado <- function(proposicao_id) {
-  df <- fetch_tramitacao(proposicao_id)
-  df <-
-    df %>%
-    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
-    dplyr::mutate(
-      regime =
-        dplyr::case_when(
-          stringr::str_detect(tolower(texto_tramitacao), 'em regime de urg(ê|e)ncia') ~
-            'Urgência')
-    ) %>%
-    tidyr::fill(regime)
+    df <- fetch_tramitacao(proposicao_id)
+    regime <- senado_env$regimes
+    df <-
+        df %>%
+        dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+        dplyr::mutate(
+                   regime =
+                       dplyr::case_when(
+                                  stringr::str_detect(tolower(texto_tramitacao), regime$regex) ~
+                                      regime$urgencia)
+               ) %>%
+        tidyr::fill(regime)
 
-  if(is.na(df[nrow(df), ]$regime)){
-    'Ordinária'
-  } else{
-    df[nrow(df), ]$regime
-  }
+    if(is.na(df[nrow(df), ]$regime)){
+        regime$ordinaria
+    } else{
+        df[nrow(df), ]$regime
+    }
 }
-
-#' @title Recupera os n últimos eventos importantes que aconteceram no Senado
-#' @description Retona dataframe contendo os n últimos eventos importantes que aconteceram no Senado
-#' @param tramitacao_df Dataframe da tramitação no Senado
-#' @param num Quantidade de eventos a serem recuperados
-#' @return Dataframe contendo os n últimos eventos importantes que aconteceram no Senado
-#' @examples
-#' df %>% extract_n_last_eventos_Senado(4)
-#' @export
-extract_n_last_eventos_Senado <- function(df, num) {
-
-  df %>%
-    dplyr::filter(!is.na(evento)) %>%
-    dplyr::arrange(data_tramitacao) %>%
-    tail(n = num) %>%
-    dplyr::select(data_tramitacao, evento)
-}
-
 
 #' @title Recupera as comissões que a proposição originalmente vai passar
 #' @description Retorna dataframe contendo o código da proposição, as comissões e a data
@@ -499,5 +468,4 @@ extract_n_last_eventos_Senado <- function(df, num) {
 #' @export
 extract_first_comissoes_Senado <- function(df) {
   extract_comissoes_Senado(df)[1, ]
-
 }
