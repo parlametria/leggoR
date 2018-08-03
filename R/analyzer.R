@@ -4,7 +4,7 @@ library(lubridate)
 library(fuzzyjoin)
 library(tidyverse)
 source(here::here("R/camara-lib.R"))
-source(here::here("Controller/fetcher.R"))
+source(here::here("R/fetcher.R"))
 source(here::here("R/congresso-lib.R"))
 
 process_proposicao <- function(id, casa){
@@ -57,7 +57,8 @@ process_proposicao_senado <- function(bill_id){
                                  "aprovacao_projeto", 25)
 
   evento_devolucao <- c('devolvido pel.*redistribu.*')
-  bill_passage <- extract_evento_Senado(bill_passage, important_events, phase_one, evento_devolucao)
+  bill_passage <- extract_evento_Senado(
+      bill_passage, important_events, phase_one, evento_devolucao)
   index_of_camara <- ifelse(length(which(bill_passage$situacao_codigo_situacao == 52)) == 0,
                             nrow(bill_passage),
                             which(bill_passage$situacao_codigo_situacao == 52)[1])
@@ -81,7 +82,8 @@ process_proposicao_senado <- function(bill_id){
 
 
   bill_passage_visualization %>%
-    write_csv(paste0(here::here("data/Senado/"), bill_id, "-visualizacao-tramitacao-senado.csv"))
+    write_csv(paste0(here::here("data/Senado/"), bill_id,
+                      "-visualizacao-tramitacao-senado.csv"))
 }
 
 #' @title Processa dados de um proposição da câmara.
@@ -95,8 +97,10 @@ process_proposicao_camara <- function(pl_id) {
   data_path <- here::here('data/camara/')
   tramitacao_pl <- rcongresso::fetch_tramitacao(pl_id)
 
-  csv_path <- paste(c(data_path,'tramitacao-camara-', pl_id, '.csv'),  collapse = '')
-  proposicao_csv_path <- paste(c(data_path,'proposicao-camara-', pl_id, '.csv'),  collapse = '')
+  csv_path <- paste(
+      c(data_path, 'tramitacao-camara-', pl_id, '.csv'),  collapse = '')
+  proposicao_csv_path <- paste(
+      c(data_path, 'proposicao-camara-', pl_id, '.csv'),  collapse = '')
 
   # Extract phases, events and writh CSV
   tramitacao_pl %<>%
@@ -232,7 +236,8 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
 #' df <- fetch_tramitacao(91341)
 #' extract_evento_Senado(df, importants_events, phase_one)
 #' @export
-extract_evento_Senado <- function(tramitacao_df, phases_df, evento_apresentacao, evento_devolucao) {
+extract_evento_Senado <- function(tramitacao_df, phases_df,
+                                  evento_apresentacao, evento_devolucao) {
   dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao") %>%
     dplyr::mutate(evento =
                     dplyr::case_when(
