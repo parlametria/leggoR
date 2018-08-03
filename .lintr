@@ -1,4 +1,3 @@
-linters: with_defaults(line_length_linter(120))
+linters: with_defaults(line_length_linter(90))
 
-exclusions: list("R/constants.R", "R/column_constants.R", "tests/testthat.R")
 
