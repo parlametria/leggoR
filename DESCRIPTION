@@ -18,6 +18,7 @@ Imports: magrittr,
     dplyr,
     tibble,
     tidyr,
+    tidyverse,
     stringr,
     jsonlite,
     rvest,
@@ -29,6 +30,7 @@ Suggests: testthat,
     knitr,
     vistime,
     covr,
-    rcmdcheck
+    rcmdcheck,
+    lintr
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
