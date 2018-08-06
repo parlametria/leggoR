@@ -16,5 +16,7 @@ situacoes <- as.data.frame(situacoes_data)
 situacoes$Situacao.DataCriacao <- NULL
 names(situacoes) <- c("codigo", "sigla", "descricao")
 
+situacoes$codigo <- as.numeric(situacoes$codigo)
+
 #create file
 write_csv(situacoes, "data/Senado/situacoes-glossary-senado.csv")

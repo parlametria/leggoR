@@ -7,5 +7,3 @@
 detect_fase <- function(element, set) {
   element %in% set
 }
-
-

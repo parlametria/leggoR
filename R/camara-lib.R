@@ -1,6 +1,7 @@
 source(here::here("R/congresso-lib.R"))
 source(here::here("R/utils.R"))
-camara_codes <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+camara_codes <-
+  jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
 #' @title Recupera o número, o tipo e ementa de uma proposição na Câmara
 #' @description Retorna um dataframe contendo o número, o tipo e a ementa de uma proposição na Câmara através do ID da proposição
@@ -22,7 +23,7 @@ get_ementas_in_camara <- function(prop_id) {
 #' tramitacao %>% last_n_despacho_in_camara()
 #' tramitacao %>% last_n_despacho_in_camara(4)
 #' @export
-last_n_despacho_in_camara <- function(df, qtd=1) {
+last_n_despacho_in_camara <- function(df, qtd = 1) {
   df %>%
     dplyr::arrange(data_hora) %>%
     tail(qtd) %>%
@@ -37,19 +38,20 @@ last_n_despacho_in_camara <- function(df, qtd=1) {
 #' @export
 get_comissoes_camara <- function() {
   comissoes <- camara_codes$comissoes
-  
-  dplyr::tibble(siglas_comissoes_antigas=list(comissoes$siglas_comissoes_antigas),
-                siglas_comissoes=list(comissoes$siglas_comissoes),
-                comissoes_temporarias=list(comissoes$comissoes_temporarias),
-                comissoes_permanentes=list(comissoes$comissoes_permanentes))
+  dplyr::tibble(
+    siglas_comissoes_antigas = list(comissoes$siglas_comissoes_antigas),
+    siglas_comissoes = list(comissoes$siglas_comissoes),
+    comissoes_temporarias = list(comissoes$comissoes_temporarias),
+    comissoes_permanentes = list(comissoes$comissoes_permanentes)
+  )
 }
 
 
 get_regex_comissoes_camara <- function() {
   get_comissoes_camara() %>%
     unlist() %>%
-    paste(collapse='|') %>%
-    regex(ignore_case=TRUE)
+    paste(collapse = '|') %>%
+    regex(ignore_case = TRUE)
 }
 
 #' @title Recupera as comissões pelas quais a proposição irá passar
@@ -63,37 +65,39 @@ get_regex_comissoes_camara <- function() {
 get_comissoes_in_camara <- function(df) {
   reg <-
     unlist(get_comissoes_camara()) %>%
-    paste(collapse='|') %>%
-    stringr::regex(ignore_case=TRUE)
-
+    paste(collapse = '|') %>%
+    stringr::regex(ignore_case = TRUE)
+  
   fix_names <- function(name) {
-    if(!str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name))
+    if (!str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name))
       paste("Comissão de", name)
-    else name
+    else
+      name
   }
-
+  
   detect <- function(str, regex) {
-    stringr::str_detect(str, stringr::regex(regex, ignore_case=TRUE))
+    stringr::str_detect(str, stringr::regex(regex, ignore_case = TRUE))
   }
-
+  
   df %>%
-    dplyr::mutate(
-      comissoes = dplyr::case_when(
-        (detect(descricao_tramitacao, 'distribuição') &
-          (detect(descricao_tramitacao, 'cria..o de comiss.o tempor.ria') |
-           detect(despacho, 'especial'))
-        ) ~ 'Comissão Especial',
-        (detect(descricao_tramitacao, 'distribuição') &
-         (detect(despacho, 'às* comiss..s*|despacho à') |
-          detect(despacho, 'novo despacho'))
-        ) ~ despacho
-    )) %>%
+    dplyr::mutate(comissoes = dplyr::case_when((
+      detect(descricao_tramitacao, 'distribuição') &
+        (
+          detect(descricao_tramitacao, 'cria..o de comiss.o tempor.ria') |
+            detect(despacho, 'especial')
+        )
+    ) ~ 'Comissão Especial',
+    (
+      detect(descricao_tramitacao, 'distribuição') &
+        (
+          detect(despacho, 'às* comiss..s*|despacho à') |
+            detect(despacho, 'novo despacho')
+        )
+    ) ~ despacho)) %>%
     dplyr::filter(!is.na(comissoes)) %>%
-    dplyr::mutate(
-      proximas_comissoes = stringr::str_extract_all(comissoes, reg) %>% as.list()
-    ) %>%
+    dplyr::mutate(proximas_comissoes = stringr::str_extract_all(comissoes, reg) %>% as.list()) %>%
     dplyr::select(data_hora, id_prop, proximas_comissoes) %>%
-    dplyr::mutate(proximas_comissoes = map(proximas_comissoes, fix_names) ) %>%
+    dplyr::mutate(proximas_comissoes = map(proximas_comissoes, fix_names)) %>%
     dplyr::mutate(proximas_comissoes = unique(proximas_comissoes, incomparables = FALSE))
 }
 
@@ -123,7 +127,8 @@ sort_by_date <- function(df) {
 
 fetch_proposicao_with_apensamentos <- function(prop_id) {
   rcongresso::fetch_proposicao(prop_id) %>%
-    dplyr::mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse=' '))
+    dplyr::mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse =
+                                                  ' '))
 }
 
 #' @title Baixa dados de requerimentos relacionados
@@ -133,42 +138,48 @@ fetch_proposicao_with_apensamentos <- function(prop_id) {
 #' @examples
 #' fetch_releated_requerimentos(2056568)
 #' @export
-fetch_related_requerimentos <- function(id, mark_deferimento=T) {
+fetch_related_requerimentos <- function(id, mark_deferimento = T) {
   regexes <-
-    tibble::frame_data(~ deferimento, ~ regex,
-               'indeferido', '^Indefiro',
-               'deferido', '^(Defiro)|(Aprovado)')
-
+    tibble::frame_data(
+      ~ deferimento,
+      ~ regex,
+      'indeferido',
+      '^Indefiro',
+      'deferido',
+      '^(Defiro)|(Aprovado)'
+    )
+  
   related <-
     rcongresso::fetch_relacionadas(id)$uri %>%
     strsplit('/') %>%
     vapply(last, '') %>%
     unique %>%
     rcongresso::fetch_proposicao()
-
+  
   requerimentos <-
     related %>%
     dplyr::filter(stringr::str_detect(.$siglaTipo, '^REQ'))
-
-  if(!mark_deferimento) return(requerimentos)
-
+  
+  if (!mark_deferimento)
+    return(requerimentos)
+  
   tramitacoes <-
     requerimentos$id %>%
     rcongresso::fetch_tramitacao()
-
+  
   related <-
     tramitacoes %>%
     # mark tramitacoes rows based on regexes
-    fuzzyjoin::regex_left_join(regexes, by=c(despacho='regex')) %>%
+    fuzzyjoin::regex_left_join(regexes, by = c(despacho = 'regex')) %>%
     dplyr::group_by(id_prop) %>%
     # fill down marks
     tidyr::fill(deferimento) %>%
     # get last mark on each tramitacao
-    dplyr::do(tail(., n=1)) %>%
+    dplyr::do(tail(., n = 1)) %>%
     dplyr::ungroup() %>%
     dplyr::select(id_prop, deferimento) %>%
     # and mark proposicoes based on last tramitacao mark
-    dplyr::left_join(related, by=c('id_prop' = 'id'))
+    dplyr::left_join(related, by = c('id_prop' = 'id'))
 }
 
 #' @title Recupera os últimos eventos (sessões/reuniões) de uma proposição na Câmara
@@ -210,5 +221,5 @@ fetch_proposicao_renamed <- function(id) {
     fetch_proposicao_camara(id) %>%
     rename_df_columns
   
-  df[, !sapply(df, is.list)]
+  df[,!sapply(df, is.list)]
 }
