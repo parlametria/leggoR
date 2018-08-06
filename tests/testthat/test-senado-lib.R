@@ -113,6 +113,7 @@ test <- function(){
   test_that('tail_descricao_despacho_Senado()', {
     expect_true(
       all(names(tail_descricao_despacho_Senado(fetch_tramitacao(PROPOSICOES_ID)))
+          
           %in% .COLNAMES_DESPACHO_SEN))
   })
 

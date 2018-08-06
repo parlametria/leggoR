@@ -27,18 +27,19 @@ test_that('last_n_despacho_in_camara() is dataframe', {
 
 test_that('last_n_despacho_in_camara() returns correct columns names', {
   last_n_despachos <- last_n_despacho_in_camara(tramitacao_data)
-  expect_true(all(sapply(last_n_despachos, class) %in% .COLNAMES_LAST_DESPACHO_CAMARA))
+  expect_true(all(
+    sapply(last_n_despachos, class) %in% .COLNAMES_LAST_DESPACHO_CAMARA
+  ))
 })
 
 test_that('extract_last_relator_in_camara() returns string', {
   proposicoes_last_relatores <-
     as.data.frame(PROPOSICOES_ID) %>%
     dplyr::rowwise() %>%
-    dplyr::do(
-      extract_last_relator_in_camara(extract_tramitacao(.$PROPOSICOES_ID)) %>%
-        tibble::as.tibble()
-    )
-
+    dplyr::do(extract_last_relator_in_camara(
+              extract_tramitacao(.$PROPOSICOES_ID)) %>%
+              tibble::as.tibble())
+  
   expect_true(is.data.frame(proposicoes_last_relatores))
 })
 
@@ -46,7 +47,7 @@ test_that('fetch_events() returns dataframe', {
   proposicoes_fetch_events <- as.data.frame(PROPOSICOES_ID) %>%
     dplyr::rowwise() %>%
     dplyr::do(fetch_events(.$PROPOSICOES_ID))
-
+  
   expect_true(is.data.frame(proposicoes_fetch_events))
 })
 
@@ -54,7 +55,7 @@ test_that('get_latest_events() returns dataframe', {
   proposicoes_latest_events <- as.data.frame(PROPOSICOES_ID) %>%
     dplyr::rowwise() %>%
     dplyr::do(get_latest_events(.$PROPOSICOES_ID))
-
+  
   expect_true(is.data.frame(proposicoes_latest_events))
 })
 
@@ -64,14 +65,16 @@ test_that('extract_locais_in_camara() returns dataframe', {
 
 test_that('extract_locais_in_camara() returns correct columns names', {
   locais_in_camara <- extract_locais_in_camara(tramitacao_data)
-  expect_true(all(sapply(locais_in_camara, class) %in% .COLNAMES_EXTRACT_LOCAIS_IN_CAMARA))
+  expect_true(all(
+    sapply(locais_in_camara, class) %in% .COLNAMES_EXTRACT_LOCAIS_IN_CAMARA
+  ))
 })
 
 test_that('get_next_events() returns dataframe', {
   proposicoes_next_events <- as.data.frame(PROPOSICOES_ID) %>%
     dplyr::rowwise() %>%
     dplyr::do(get_next_events(.$PROPOSICOES_ID))
-
+  
   expect_true(is.data.frame(proposicoes_next_events))
 })
 
@@ -83,7 +86,6 @@ test_that('extract_autor_in_camara() returns dataframe', {
   proposicoes_autores <- as.data.frame(PROPOSICOES_ID) %>%
     dplyr::rowwise() %>%
     dplyr::do(extract_autor_in_camara(.$PROPOSICOES_ID))
-
   expect_true(is.data.frame(proposicoes_autores))
 })
 
@@ -91,14 +93,14 @@ test_that("extract_autor_in_camara() returns correct columns names", {
   proposicoes_autores <- as.data.frame(PROPOSICOES_ID) %>%
     dplyr::rowwise() %>%
     dplyr::do(extract_autor_in_camara(.$PROPOSICOES_ID))
-
-  expect_true(all(sapply(proposicoes_autores, class) %in% .COLNAMES_AUTHOR_CAMARA))
+  expect_true(all(
+    sapply(proposicoes_autores, class) %in% .COLNAMES_AUTHOR_CAMARA
+  ))
 })
 
 test_that('fetch_apensadas() returns dataframe', {
   proposicoes_apensados <- as.data.frame(PROPOSICOES_ID) %>%
     dplyr::rowwise() %>%
     dplyr::do(fetch_apensadas(.$PROPOSICOES_ID))
-
   expect_true(is.data.frame(proposicoes_apensados))
 })
