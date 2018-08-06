@@ -176,6 +176,14 @@ extract_evento_in_camara <- function(df) {
                tolower(descricao_tramitacao) == redistribuicao_text ~ "redistribuicao"
              ))
 }
+
+#' @title Cria dataframe dos requerimentos aprovados no Senado
+#' @description Cria um dataframe com os requerimentos que foram aprovados no Senado
+#' @param df Dataframe da tramitação no Senado
+#' @return Dataframe com os requerimentos aprovados no Senado.
+#' @examples
+#' tramitacao %>% extract_approved_requerimentos_in_senado()
+#' @export
 extract_approved_requerimentos_in_senado <- function(df) {
   apr_requerimentos_regex <- c('(aprova.* | deferid.*)requeriment.* nº.*')
   apr_requerimentos_df <- df %>%
