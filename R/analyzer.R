@@ -63,25 +63,8 @@ process_proposicao_senado <- function(bill_id) {
     fill(casa) %>%
     filter(!is.na(casa))
   
-  important_events <-
-    frame_data(
-      ~ evento,
-      ~ situacao_codigo_situacao,
-      "aprovacao_audiencia_publica",
-      110,
-      "aprovacao_parecer",
-      89,
-      "aprovacao_substitutivo",
-      113,
-      "pedido_vista",
-      90,
-      "aprovacao_projeto",
-      25
-    )
+  bill_passage <- extract_evento_Senado(bill_passage)
   
-  evento_devolucao <- c('devolvido pel.*redistribu.*')
-  bill_passage <-
-    extract_evento_Senado(bill_passage, important_events, phase_one, evento_devolucao)
   index_of_camara <-
     ifelse(
       length(which(
@@ -311,23 +294,21 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
 #' df <- fetch_tramitacao(91341)
 #' extract_evento_Senado(df, importants_events, phase_one)
 #' @export
-extract_evento_Senado <- function(tramitacao_df,
-                                  phases_df,
-                                  evento_apresentacao,
-                                  evento_devolucao) {
-  dplyr::left_join(tramitacao_df, phases_df, by = "situacao_codigo_situacao") %>%
-    dplyr::mutate(
-      evento =
-        dplyr::case_when(
-          grepl(evento_apresentacao, texto_tramitacao) ~ 'apresentação',
-          grepl(
-            "aprovado requerimento de realização de audiência pública",
-            texto_tramitacao
-          ) ~ "aprovacao_audiencia_publica",
-          grepl(evento_devolucao, tolower(texto_tramitacao)) ~ 'devolvido',
-          TRUE ~ evento
-        )
-    )
+extract_evento_Senado <- function(tramitacao_df) {
+  df <- regex_left_match(tramitacao_df, senado_env$eventos, "evento")
+
+  comissoes <- extract_comissoes_Senado(tramitacao_df)
+  date_comissao_especial <- comissoes[match("Comissão Especial", comissoes$comissoes), ]$data_tramitacao
+  if (!is.na(date_comissao_especial)) {
+    df %>%
+      dplyr::mutate(evento =
+                      dplyr::case_when(
+                        data_tramitacao == date_comissao_especial ~ 'comissão_especial',
+                        TRUE ~ evento
+                      ))
+  }
+
+  df
 }
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
