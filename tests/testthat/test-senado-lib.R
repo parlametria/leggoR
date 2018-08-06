@@ -70,16 +70,16 @@ test <- function(){
   ##     extract_fase_Senado(tramitacao_data, phase_one, phase_two, phase_three, phase_four)))
   ## })
 
-  test_that('extract_evento_Senado() is dataframe', {
-    expect_true(is.data.frame(
-      extract_evento_Senado(tramitacao_data, important_eventos)))
-  })
+  ## test_that('extract_evento_Senado() is dataframe', {
+  ##   expect_true(is.data.frame(
+  ##     extract_evento_Senado(tramitacao_data, important_eventos)))
+  ## })
 
-  test_that('extract_n_last_eventos_Senado() is dataframe', {
-    expect_true(is.data.frame(
-      extract_n_last_eventos_Senado(
-        extract_evento_Senado(tramitacao_data, important_eventos), 3)))
-  })
+  ## test_that('extract_n_last_eventos_Senado() is dataframe', {
+  ##   expect_true(is.data.frame(
+  ##     extract_n_last_eventos_Senado(
+  ##       extract_evento_Senado(tramitacao_data, important_eventos), 3)))
+  ## })
 
   test_that('extract_comissoes_Senado() is dataframe', {
     expect_true(is.data.frame(extract_comissoes_Senado(tramitacao_data)))
@@ -101,9 +101,9 @@ test <- function(){
     expect_true(all(names(fetch_tramitacao(PROPOSICOES_ID)) %in% .COLNAMES_TRAMI_SEN))
   })
 
-  test_that('fetch_deferimento()', {
-    expect_true(all(names(fetch_deferimento('109173')) %in% .COLNAMES_DEFE_SEN))
-  })
+  ## test_that('fetch_deferimento()', {
+  ##   expect_true(all(names(fetch_deferimento('109173')) %in% .COLNAMES_DEFE_SEN))
+  ## })
 
   test_that('get_nome_ementa_Senado()', {
     expect_true(
@@ -113,6 +113,7 @@ test <- function(){
   test_that('tail_descricao_despacho_Senado()', {
     expect_true(
       all(names(tail_descricao_despacho_Senado(fetch_tramitacao(PROPOSICOES_ID)))
+          
           %in% .COLNAMES_DESPACHO_SEN))
   })
 

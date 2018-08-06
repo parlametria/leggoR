@@ -1,6 +1,5 @@
 label,start,end,time_interval,group,color
 Comissões - Origem (Senado),1999-11-18,2002-03-12,845,Global,#938ecc
-Comissões - Revisão (Câmara),2002-03-12,2002-03-12,0,Global,#938ecc
 CAS,1999-11-18,2002-03-12,845,Comissão,NA
 Análise do relator,1999-11-18,2000-04-18,152,Sub-fase Comissão,#fdae61
 Discussão e votação,2000-04-18,2000-05-10,22,Sub-fase Comissão,#ffffbf
@@ -13,4 +12,6 @@ Análise do relator,2001-08-15,2001-11-05,82,Sub-fase Comissão,#fdae61
 Discussão e votação,2001-11-05,2001-12-12,37,Sub-fase Comissão,#ffffbf
 Encaminhamento,2001-12-12,2001-12-18,6,Sub-fase Comissão,#abd9e9
 Discussão e votação,2001-12-18,2002-03-12,84,Sub-fase Comissão,#ffffbf
+devolvido,2001-02-15,2001-02-15,0,Evento,#a9a9a9
 aprovacao_parecer,2001-06-20,2001-06-20,0,Evento,#a9a9a9
+aprovacao_parecer,2001-12-12,2001-12-12,0,Evento,#a9a9a9

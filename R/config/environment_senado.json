@@ -1,4 +1,39 @@
 {
+  "constants": {
+      "plenario": "Plenário",
+        "mesa_camara": "Mesa - Câmara",
+        "mesa_senado": "Mesa - Senado",
+        "regex_camara": "remetida_à_câmara_dos_deputados",
+        "regex_recebimento_comissoes": "recebido na comissão|recebido nesta comissão",
+        "regex_plenario": "pronto_para_deliberação_do_plenário",
+        "regex_comissoes_vector": ["matéria_com_a_relatoria","aguardando_designação_do_relator"],
+        "comissoes": "Comissões"
+  }, 
+  
+  "apreciacao": {
+      "conclusiva": "Conclusiva",
+      "plenario": "Plenário"
+  }, 
+  
+  "fase_global": {
+      "origem_senado": " - Origem (Senado)",
+      "revisao_camara": " - Revisão (Câmara)"
+  }, 
+  
+  "fase_subfase_comissoes": {
+      "recebimento": "Recebimento",
+      "analise": "Análise do relator",
+      "discussao": "Discussão e votação",
+      "encaminhamento": "Encaminhamento",
+      "regex": "recebido na|nesta comissão"
+  }, 
+  
+  "fase_comissao": {
+      "vector": {
+
+      }
+  }, 
+  
   "fase_casa": [
     {"fase_casa": "plenario", "regex": "Apresentação"},
     {"fase_casa": "comissoes", "regex": "recebido na comissão|recebido nesta comissão"}
@@ -12,81 +47,37 @@
   ],
   
   "eventos": [
-    {"evento": "apresentacao_pl", "regex": "^este processo contem"},
-    {"evento": "recebimento_comissao", "regex": "recebido na|nesta comissao"},
-    {"evento": "aprovacao_parecer", "code": 89},
-    {"evento": "designado_relator", "code": 91},
-    {"evento": "pedido_vista", "code": 90},
-    {"evento": "arquivada", "code": 28},
-    {"evento": "desarquivada", "code": 149},
-    {"evento": "aprovada", "code": 25},
-    {"evento": "aprovacao_audiencia_publica", "code": 110},
-    {"evento": "aprovacao_substitutivo", "code":113},
-    {"evento": "inicio_prazo_emendas", "code": 20},
-    {"evento": "fim_prazo_emendas", "code": 153},
-    {"evento": "virada_casa", "code": 52},
-    {"evento": "remetida_a_sancao", "code": 57},
-    {"evento": "vetada", "code": 57},
-    {"evento": "pronta_para_pauta", "code": 42}
+    {"evento": "apresentacao_pl", "texto_tramitacao": "^este processo contem"},
+    {"evento": "recebimento_comissao", "texto_tramitacao": "recebido na|nesta comissao"},
+    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "aprovado requerimento de realização de audiência pública"},
+    {"evento": "devolvido", "texto_tramitacao": "devolvido pel.*redistribu.*"},
+    {"evento": "aprovacao_parecer", "situacao_codigo_situacao": "^89$"},
+    {"evento": "designado_relator", "situacao_codigo_situacao": "^91$"},
+    {"evento": "pedido_vista", "situacao_codigo_situacao": "^90$"},
+    {"evento": "arquivada", "situacao_codigo_situacao": "^28$"},
+    {"evento": "desarquivada", "situacao_codigo_situacao": "^149$"},
+    {"evento": "aprovacao_projeto", "situacao_codigo_situacao": "^25$"},
+    {"evento": "aprovacao_substitutivo", "situacao_codigo_situacao": "^113$"},
+    {"evento": "inicio_prazo_emendas", "situacao_codigo_situacao": "^20$"},
+    {"evento": "fim_prazo_emendas", "situacao_codigo_situacao": "^153$"},
+    {"evento": "virada_casa", "situacao_codigo_situacao": "^52$"},
+    {"evento": "remetida_a_sancao", "situacao_codigo_situacao": "^57$"},
+    {"evento": "vetada", "situacao_codigo_situacao": "^57$"},
+    {"evento": "pronta_para_pauta", "situacao_codigo_situacao": "^42$"},
+    {"evento": "aprovacao_audiencia_publica", "situacao_codigo_situacao": "^110$"}
   ],
   
-  "regimes": [
-    {"regime": "urgencia", "regex": "em regime de urg(ê|e)ncia"},
-    {"regime": "ordinaria"}
-  ],
+  "regimes": {
+    "urgencia": "Urgência", 
+    "regex": "em regime de urg(ê|e)ncia",
+    "ordinaria": "Ordinária"
+  },
   
   "comissoes": {
-    "siglas_comissoes": [
-      "CAE",
-      "CAS",
-      "CCJ",
-      "CCT",
-      "CDH",
-      "CDIR",
-      "CDR",
-      "CE",
-      "CI",
-      "CMA",
-      "CRA",
-      "CRE",
-      "CSF",
-      "CTFC",
-      "CCAI",
-      "CMCF",
-      "CMCPLP",
-      "CMCVM",
-      "CMMC",
-      "CMO",
-      "FIPA"
-    ],
-    
-    "comissoes_permanentes_especiais": [
-      "Especial",
-      "de Assuntos Econômicos",
-      "de Assuntos Sociais",
-      "de Constituição, Justiça e Cidadania",
-      "de Ciência, Tecnologia, Inovação, Comunicação e Informática",
-      "de Direitos Humanos e Legislação Participativa",
-      "Diretora",
-      "de Desenvolvimento Regional e Turismo",
-      "de Educação, Cultura e Esporte",
-      "de Serviços de Infraestrutura",
-      "de Meio Ambiente",
-      "de Agricultura e Reforma Agrária",
-      "de Relações Exteriores e Defesa Nacional",
-      "Senado do Futuro",
-      "de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor",
-      "Mista de Controle das Atividades de Inteligência",
-      "Mista de Consolidação da Legislação Federal",
-      "Mista do Congresso Nacional de Assuntos Relacionados à Comunidade dos Países de Língua Portuguesa",
-      "Permanente Mista de Combate à Violência contra a Mulher",
-      "Mista Permanente sobre Mudanças Climáticas",
-      "Mista de Planos, Orçamentos Públicos e Fiscalização",
-      "Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas"
-    ],
-    "comissoes_temporarias": [
-      "Comissão Especial"
-    ]
+    "prefixo": "(Comiss..s*)*",
+    "regex_1": "às c.+ e c.+, cabendo à última', 'às c.+ e c.+, cabendo à última",
+    "regex_2": "à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo",
+    "regex_3": "(à|a)s? comiss..s*', 'comiss..s*.+"
   },
   
   "endpoints_api": {
@@ -98,5 +89,12 @@
     "glossario": "http://legis.senado.leg.br/dadosabertos/materia/glossario/lista?v=4",
     "situacoes": "http://legis.senado.leg.br/dadosabertos/materia/situacoes",
     "page_url_senado": "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
+  },
+  
+  "deferimento": {
+    "regex": {
+      "indeferido": "^Indefiro",
+      "deferido": "^(Defiro)|(Aprovado)"
+    }
   }
 }
