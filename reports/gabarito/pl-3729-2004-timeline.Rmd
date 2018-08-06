@@ -7,8 +7,8 @@ params:
 ---
 
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
-source(here::here('scripts/vis/tramitacao/extract-informations.R'))
-source(here::here('scripts/vis/tramitacao/build-chart.R'))
+source(here::here('view/formatter/data-formatter-ficha.R'))
+source(here::here('view/visualizer/build-chart.R'))
 library(rcongresso)
 library(vistime)
 library(dplyr)
