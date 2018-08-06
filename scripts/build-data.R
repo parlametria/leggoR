@@ -1,19 +1,5 @@
-library(dplyr)
 source(here::here("R/analyzer.R"))
-
 args = commandArgs(trailingOnly=TRUE)
-
-#' @title Cria todos os csvs de um proposição no senado.
-#' @description Recebido um id e uma casa a função roda os scripts para
-#' importar e processar os dados daquela proposição no senado.#'
-#' @param id Identificador da proposição que pode ser recuperado no site do senado.
-#' @examples
-#' build_senado(91341)
-#' @export
-build_senado <- function(id){
-
-
-}
 
 #' @title Cria todos os csvs de um proposição.
 #' @description Recebido um id e uma casa a função roda os scripts para
@@ -32,7 +18,7 @@ build_csvs <- function(id, house) {
     return(NULL)
   }
   process_proposicao(id, house)
-  source(here::here(paste0("scripts/vis/tramitacao/data-chart-", tolower(house), ".R")))
+  source(here::here(paste0("view/formatter/data-chart-", tolower(house), ".R")))
   build_vis_csv(id)
 
   as.tibble(NULL)
