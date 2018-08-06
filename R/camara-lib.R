@@ -441,12 +441,32 @@ extract_fase_casa_in_camara <- function(df) {
 #'  extract_situacao_comissao(process_proposicao_camara(345311))
 #' @export
 extract_situacao_comissao <- function(df) {
-  situacao_comissao <- camara_codes$situacao_comissao
-  situacao_comissao['local'] <- get_regex_comissoes_camara()
+  recebimento <- camara_codes$situacao_comissao$code$recebimento
+  analise_do_relator <- camara_codes$situacao_comissao$code$analise_do_relator
+  
+  discussao_votacao <- camara_codes$situacao_comissao$code$discussao_votacao	
+  encaminhamento <- camara_codes$situacao_comissao$code$encaminhamento	
+  reg <-	
+    unlist(get_comissoes_camara()) %>%	
+    paste(collapse='|') %>%	
+    regex(ignore_case=TRUE)
   
   df %>%
-    regex_left_match(situacao_comissao, "situacao_comissao") %>%
-    tidyr::fill(situacao_comissao)
+    dplyr::mutate(
+      comissao =
+        dplyr::case_when(str_detect(local, reg) ~ str_extract(local, reg))	
+    ) %>%	
+    # dplyr::filter(!is.na(comissao)) %>%	
+    dplyr::mutate(	
+      situacao_comissao =	
+        dplyr::case_when(id_tipo_tramitacao %in% recebimento & !is.na(comissao) ~ "Recebimento",	
+                         id_tipo_tramitacao %in% analise_do_relator & !is.na(comissao) ~ "Análise do relator",	
+                         id_tipo_tramitacao %in% discussao_votacao& !is.na(comissao)  ~ "Discussão e votação",	
+                         id_tipo_tramitacao %in% encaminhamento & !is.na(comissao) ~ "Encaminhamento")	
+    ) %>%	
+    dplyr::select(-comissao) %>%	
+    tidyr::fill(situacao_comissao) %>%	
+    dplyr::mutate(situacao_comissao = dplyr::case_when(stringr::str_detect(local, reg) ~ situacao_comissao))	
 }
 
 #' @title Recupera a proposição com as colunas renomeadas
