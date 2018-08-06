@@ -369,3 +369,27 @@ extract_regime_Senado <- function(proposicao_id) {
 extract_first_comissoes_Senado <- function(df) {
   extract_comissoes_Senado(df)[1,]
 }
+
+#' @title Cria dataframe dos requerimentos aprovados no Senado
+#' @description Cria um dataframe com os requerimentos que foram aprovados no Senado
+#' @param df Dataframe da tramitação no Senado
+#' @return Dataframe com os requerimentos aprovados no Senado.
+#' @examples
+#' tramitacao %>% extract_approved_requerimentos_in_senado()
+#' @export
+extract_approved_requerimentos_in_senado <- function(df) {
+  apr_requerimentos_regex <- c('(aprova.* | deferid.*)requeriment.* nº.*')
+  apr_requerimentos_df <- df %>%
+    filter(str_detect(tolower(texto_tramitacao), regex(apr_requerimentos_regex, ignore_case = TRUE))) %>%
+    mutate(
+      evento = str_extract_all(tolower(texto_tramitacao), regex(apr_requerimentos_regex, ignore_case = TRUE))) %>%
+    unnest() %>%
+    distinct()
+
+  if(nrow(apr_requerimentos_df) > 0) {
+    apr_requerimentos_df <- apr_requerimentos_df %>%
+      mutate(
+        numero_requerimento = gsub("^.*((aprova(do(s|)|)|deferido(s|).*) o(s|) requerimento(s|) nº(s|)\\s*)|\\s*(,).*$", "", evento))
+  }
+  apr_requerimentos_df
+}
