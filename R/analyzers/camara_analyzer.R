@@ -173,6 +173,26 @@ extract_locais_in_camara <- function(df) {
     tidyr::fill(local)
 }
 
+extract_evento_in_camara <- function(df) {
+  camara_codes <- get_environment_camara_json()
+  eventos <- camara_codes$eventos
+  novo_despacho_regex <- eventos$regex$novo_despacho
+  redistribuicao_regex <- eventos$regex$redistribuicao
+  redistribuicao_text <- eventos$text$distribuicao %>% tolower()
+  df %>%
+    mutate(evento =
+             case_when((str_detect(
+               tolower(despacho),
+               regex(redistribuicao_regex, ignore_case = TRUE)
+             ) |
+               str_detect(
+                 tolower(despacho),
+                 regex(novo_despacho_regex, ignore_case = TRUE)
+               )) &
+               tolower(descricao_tramitacao) == redistribuicao_text ~ "redistribuicao"
+             ))
+}
+
 #' @title Recupera as casas da Câmara
 #' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada casa
 #' @param df Dataframe da tramitação na Câmara
@@ -216,7 +236,9 @@ extract_situacao_comissao <- function(df) {
   situacao_comissao <- camara_codes$situacao_comissao
   situacao_comissao['local'] <- get_regex_comissoes_camara()
   
+  print(situacao_comissao)
+  
   df %>%
-    regex_left_match(situacado_comissao, "situacao_comissao") %>%
+    regex_left_match(situacao_comissao, "situacao_comissao") %>%
     tidyr::fill(situacao_comissao)
 }

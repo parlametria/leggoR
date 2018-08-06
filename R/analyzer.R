@@ -6,6 +6,7 @@ library(tidyverse)
 source(here::here("R/camara-lib.R"))
 source(here::here("R/fetcher.R"))
 source(here::here("R/congresso-lib.R"))
+source(here::here("R/analyzers/camara_analyzer.R"))
 
 process_proposicao <- function(id, casa) {
   if ("CAMARA" == toupper(casa)) {
@@ -155,26 +156,6 @@ fetch_proposicao_renamed <- function(id) {
     rename_df_columns
   
   df[,!sapply(df, is.list)]
-}
-
-extract_evento_in_camara <- function(df) {
-  camara_codes <- get_environment_camara_json()
-  eventos <- camara_codes$eventos
-  novo_despacho_regex <- eventos$regex$novo_despacho
-  redistribuicao_regex <- eventos$regex$redistribuicao
-  redistribuicao_text <- eventos$text$distribuicao %>% tolower()
-  df %>%
-    mutate(evento =
-             case_when((str_detect(
-               tolower(despacho),
-               regex(redistribuicao_regex, ignore_case = TRUE)
-             ) |
-               str_detect(
-                 tolower(despacho),
-                 regex(novo_despacho_regex, ignore_case = TRUE)
-               )) &
-               tolower(descricao_tramitacao) == redistribuicao_text ~ "redistribuicao"
-             ))
 }
 
 #' @title Cria coluna com as fases da tramitação no Senado

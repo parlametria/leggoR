@@ -7,7 +7,7 @@ output: html_document
 ```{r, echo = FALSE, message=FALSE}
 library(tidyverse)
 library(rcongresso)
-source(here::here("scripts/vis/tramitacao/extract-informations.R"))
+source(here::here("view/formatter/extract-informations.R"))
 ```
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
