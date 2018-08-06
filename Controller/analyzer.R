@@ -154,11 +154,13 @@ extract_approved_requerimentos_in_senado <- function(df) {
       evento = str_extract_all(tolower(texto_tramitacao), regex(apr_requerimentos_regex, ignore_case = TRUE))) %>%
     unnest() %>%
     distinct()
-  apr_requerimentos_df <- apr_requerimentos_df %>%
-    mutate(
-      if(evento %in% colnames()) { 
-        numero_requerimento = gsub("^.*((aprova(do(s|)|)|deferido(s|).*) o(s|) requerimento(s|) nº(s|)\\s*)|\\s*(,).*$", "", evento)}
-    )
+  
+  if(nrow(apr_requerimentos_df) > 0) { 
+    apr_requerimentos_df <- apr_requerimentos_df %>%
+      mutate(
+        numero_requerimento = gsub("^.*((aprova(do(s|)|)|deferido(s|).*) o(s|) requerimento(s|) nº(s|)\\s*)|\\s*(,).*$", "", evento))
+  }
+  apr_requerimentos_df
 }
 
 #' @title Cria coluna com as fases da tramitação no Senado
