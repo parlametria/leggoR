@@ -3,9 +3,9 @@
 library(tidyverse)
 library(rmarkdown)
 library(here)
-source(here::here('scripts/vis/tramitacao/build-data.R'))
+source(here::here('scripts/build-data.R'))
 source(here::here('scripts/renderReport.R'))
-source(here::here('scripts/vis/tramitacao/extract-informations.R'))
+source(here::here('view/formatter/extract-informations.R'))
 
 output_dir <- here::here('docs/reports')
 
