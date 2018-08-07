@@ -1,0 +1,54 @@
+label,start,end,time_interval,group,color
+CI - Origem (Senado),2014-02-11,2014-05-20,98,Global,NA
+CCJ - Origem (Senado),2014-05-20,2014-06-02,13,Global,#ffffcc
+CCJ - Origem (Senado),2014-06-02,2014-07-15,43,Global,#ffffcc
+CAE - Origem (Senado),2014-07-15,2014-08-14,30,Global,#a1dab4
+CCJ - Origem (Senado),2014-08-14,2014-08-18,4,Global,#ffffcc
+CAE - Origem (Senado),2014-08-18,2014-09-10,23,Global,#a1dab4
+CCJ - Origem (Senado),2014-09-10,2014-11-13,64,Global,#ffffcc
+CI - Origem (Senado),2014-11-13,2015-03-10,117,Global,NA
+CCJ - Origem (Senado),2015-03-10,2015-08-13,156,Global,#ffffcc
+CI - Origem (Senado),2015-08-13,2015-09-25,43,Global,NA
+CCJ - Origem (Senado),2015-09-25,2015-10-28,33,Global,#ffffcc
+CI - Origem (Senado),2015-10-28,2016-02-15,110,Global,NA
+CAE - Origem (Senado),2016-02-15,2016-12-08,297,Global,#a1dab4
+Plenário - Origem (Senado),2016-12-08,2017-02-03,57,Global,#5496cf
+Análise do relator,2014-02-11,2014-05-20,98,Sub-fase Comissão,#fdae61
+Recebimento,2014-05-20,2014-05-29,9,Sub-fase Comissão,#d7191c
+Análise do relator,2014-05-29,2014-06-02,4,Sub-fase Comissão,#fdae61
+Recebimento,2014-06-02,2014-07-15,43,Sub-fase Comissão,#d7191c
+Análise do relator,2014-07-15,2015-10-28,470,Sub-fase Comissão,#fdae61
+Recebimento,2015-10-28,2015-11-11,14,Sub-fase Comissão,#d7191c
+Discussão e votação,2015-11-11,2015-12-02,21,Sub-fase Comissão,#ffffbf
+Encaminhamento,2015-12-02,2016-02-23,83,Sub-fase Comissão,#abd9e9
+Análise do relator,2016-02-23,2016-07-13,141,Sub-fase Comissão,#fdae61
+Discussão e votação,2016-07-13,2017-02-03,205,Sub-fase Comissão,#ffffbf
+recebimento_comissao,2014-02-11,2014-02-11,0,Evento,#a9a9a9
+designado_relator,2014-02-11,2014-02-11,0,Evento,#a9a9a9
+designado_relator,2014-05-29,2014-05-29,0,Evento,#a9a9a9
+designado_relator,2014-05-30,2014-05-30,0,Evento,#a9a9a9
+designado_relator,2014-06-02,2014-06-02,0,Evento,#a9a9a9
+recebimento_comissao,2014-06-02,2014-06-02,0,Evento,#a9a9a9
+designado_relator,2014-06-02,2014-06-02,0,Evento,#a9a9a9
+designado_relator,2014-06-02,2014-06-02,0,Evento,#a9a9a9
+designado_relator,2014-07-15,2014-07-15,0,Evento,#a9a9a9
+designado_relator,2014-07-15,2014-07-15,0,Evento,#a9a9a9
+designado_relator,2014-08-14,2014-08-14,0,Evento,#a9a9a9
+designado_relator,2014-08-18,2014-08-18,0,Evento,#a9a9a9
+designado_relator,2014-09-10,2014-09-10,0,Evento,#a9a9a9
+designado_relator,2014-10-22,2014-10-22,0,Evento,#a9a9a9
+designado_relator,2014-11-13,2014-11-13,0,Evento,#a9a9a9
+designado_relator,2015-03-26,2015-03-26,0,Evento,#a9a9a9
+designado_relator,2015-08-13,2015-08-13,0,Evento,#a9a9a9
+designado_relator,2015-09-25,2015-09-25,0,Evento,#a9a9a9
+designado_relator,2015-10-13,2015-10-13,0,Evento,#a9a9a9
+recebimento_comissao,2015-10-28,2015-10-28,0,Evento,#a9a9a9
+pedido_vista,2015-11-11,2015-11-11,0,Evento,#a9a9a9
+pronta_para_pauta,2015-11-26,2015-11-26,0,Evento,#a9a9a9
+aprovacao_parecer,2015-12-02,2015-12-02,0,Evento,#a9a9a9
+designado_relator,2016-02-23,2016-02-23,0,Evento,#a9a9a9
+pedido_vista,2016-07-13,2016-07-13,0,Evento,#a9a9a9
+aprovacao_audiencia_publica,2016-08-17,2016-08-17,0,Evento,#a9a9a9
+aprovacao_substitutivo,2016-12-13,2016-12-13,0,Evento,#a9a9a9
+aprovacao_substitutivo,2017-02-02,2017-02-02,0,Evento,#a9a9a9
+virada_casa,2017-02-03,2017-02-03,0,Evento,#a9a9a9

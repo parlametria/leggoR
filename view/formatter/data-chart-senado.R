@@ -84,7 +84,7 @@ format_eventos <- function(df) {
 format_fase_global <- function(df) {
   
   df %>%
-    mutate(global = if_else(casa == "Mesa - Senado", paste0("Apresentação ", global), paste0(casa, " ", global))) %>%
+    mutate(global = if_else(casa == "Mesa - Senado", paste0("Apresentação ", global), paste0(local, " ", global))) %>%
     mutate(z = cumsum(global != lag(global, default='NULL')),
            end_data = lead(data_tramitacao)) %>%
     group_by(global, sequence = data.table::rleid(z)) %>%
@@ -98,22 +98,25 @@ format_fase_global <- function(df) {
     rename(label=global) %>%
     mutate(group = "Global",
            color = case_when(stringr::str_detect(label, "Plenário") ~ "#5496cf",
-                             stringr::str_detect(label, "Comissões") ~ "#938ecc",
+                             stringr::str_detect(label, "CCJ") ~ "#ffffcc",
+                             stringr::str_detect(label, "CAE") ~ "#a1dab4",
+                             stringr::str_detect(label, "CDR") ~ "#225ea8",
+                             stringr::str_detect(label, "CDR") ~ "#568245",
                              stringr::str_detect(label, "Apresentação") ~ "#d6952a"))
   
 }
-
 
 build_vis_csv <- function(bill_id) {
   data_tramitacao <- 
     read_csv(paste0(here::here("data/Senado/"), bill_id,"-visualizacao-tramitacao-senado.csv"))
   
   df <- 
-    rbind(format_fase_global(data_tramitacao),
-          format_local(data_tramitacao), 
+    rbind(format_local(data_tramitacao),
+          format_fase_global(data_tramitacao),
           format_fase(data_tramitacao),
           format_eventos(data_tramitacao)) %>%
-    filter(time_interval != 0 | group == 'Evento')
+    filter(time_interval != 0 | group == "Evento") %>%
+    filter(group != 'Comissão')
   
   df %>%
     write_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))
