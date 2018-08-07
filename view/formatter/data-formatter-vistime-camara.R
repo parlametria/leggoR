@@ -84,18 +84,18 @@ data_fase_global <- function(bill_id, tramitacao) {
 }
 
 data_situacao_comissao <- function(df) {
-  extract_situacao_comissao(df) %>% 
+  df %>% 
   dplyr::select(data_hora, situacao_comissao) %>%
-  dplyr::filter(!is.na(situacao_comissao)) %>% 
+  dplyr::filter(!is.na(situacao_comissao)) %>%
   mutate(end_data = lead(data_hora, default=Sys.time())) %>%
   group_by(situacao_comissao, sequence = data.table::rleid(situacao_comissao)) %>%
   summarise(start = min(data_hora),
             end = max(end_data)) %>%
   filter(end - start > 0) %>%
-  ungroup() %>% 
+  ungroup() %>%
   arrange(sequence) %>%
-  select(-sequence) %>% 
-  rename(label = situacao_comissao) %>% 
+  select(-sequence) %>%
+  rename(label = situacao_comissao) %>%
   mutate(group = "Situação na comissão",
          color = case_when(label == "Recebimento" ~ "#5496cf",
                            label == "Análise do relator" ~ "#ff9c37",
