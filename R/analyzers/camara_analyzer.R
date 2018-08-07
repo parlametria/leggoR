@@ -236,8 +236,6 @@ extract_situacao_comissao <- function(df) {
   situacao_comissao <- camara_codes$situacao_comissao
   situacao_comissao['local'] <- get_regex_comissoes_camara()
   
-  print(situacao_comissao)
-  
   df %>%
     regex_left_match(situacao_comissao, "situacao_comissao") %>%
     tidyr::fill(situacao_comissao)
