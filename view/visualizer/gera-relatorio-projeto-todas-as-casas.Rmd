@@ -5,8 +5,8 @@ params:
   camara_id: 2121442
 ---
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, timeout= 4000000}
-source(here::here('scripts/vis/tramitacao/extract-informations.R'))
-source(here::here('scripts/vis/tramitacao/build-chart.R'))
+source(here::here('view/formatter/data-formatter-ficha.R'))
+source(here::here('view/visualizer/build-chart.R'))
 
 data <- extract_informations_all_houses(params$senado_id, params$camara_id)
 chart_senado <- create_chart(params$senado_id, 'senado')

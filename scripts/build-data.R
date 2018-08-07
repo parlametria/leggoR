@@ -1,4 +1,4 @@
-source(here::here("R/analyzer.R"))
+source(here::here("R/analyzers/analyzer.R"))
 args = commandArgs(trailingOnly=TRUE)
 
 #' @title Cria todos os csvs de um proposição.
@@ -18,7 +18,7 @@ build_csvs <- function(id, house) {
     return(NULL)
   }
   process_proposicao(id, house)
-  source(here::here(paste0("view/formatter/data-chart-", tolower(house), ".R")))
+  source(here::here(paste0("view/formatter/data-formatter-vistime-", tolower(house), ".R")))
   build_vis_csv(id)
 
   as.tibble(NULL)
