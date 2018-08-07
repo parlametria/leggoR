@@ -102,6 +102,7 @@ format_fase_global <- function(df) {
                              stringr::str_detect(label, "CAE") ~ "#a1dab4",
                              stringr::str_detect(label, "CDR") ~ "#225ea8",
                              stringr::str_detect(label, "CDR") ~ "#568245",
+                             stringr::str_detect(label, "CI") ~ "#454682",
                              stringr::str_detect(label, "Apresentação") ~ "#d6952a"))
   
 }
