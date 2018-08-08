@@ -1,9 +1,9 @@
 {
    "situacao_comissao": [
-    {"situacao_comissao": "recebimento", "id_tipo_tramitacao": "^500$"},
-    {"situacao_comissao": "analise_do_relator", "id_tipo_tramitacao": "^320$"},
-    {"situacao_comissao": "discussao_votacao", "id_tipo_tramitacao": "^322$|^240$"},
-    {"situacao_comissao": "encaminhamento", "id_tipo_tramitacao": "^180$"}
+    {"situacao_comissao": "recebimento_comissao", "despacho": "^recebimento pela C"},
+    {"situacao_comissao": "analise_do_relator", "despacho": "^designad[a|o] relator"},
+    {"situacao_comissao": "discussao_votacao", "despacho": "^parecer d[o|a] relator|^pela [aprova..o|rejei..o]|^aprovado o parecer"},
+    {"situacao_comissao": "encaminhamento", "despacho": "^encaminhado à"}
   ],
   
   "eventos": [
