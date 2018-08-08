@@ -121,6 +121,13 @@ extract_evento_Senado <- function(tramitacao_df) {
   
   comissoes <- extract_comissoes_Senado(tramitacao_df)
   date_comissao_especial <- comissoes[match("Comissão Especial", comissoes$comissoes), ]$data_tramitacao
+  df <- 
+    df %>%
+      dplyr::mutate(evento =
+                    dplyr::case_when(
+                      stringr::str_detect(tolower(texto_tramitacao), "realizada(,)* (.)*audiência pública") ~ 'realizacao_audiencia_publica',
+                      TRUE ~ evento
+                    ))
   if (!is.na(date_comissao_especial)) {
     df %>%
       dplyr::mutate(evento =
