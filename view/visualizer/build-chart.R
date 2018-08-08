@@ -15,16 +15,9 @@ library(lubridate)
 create_chart <- function(bill_id, house){
   data <- read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-", tolower(house), ".csv"))
 
-  # Custom tooltip
-  data$tooltip <- ifelse(data$end == ymd(Sys.Date()),
-                         paste0("<b>", data$label,
-                                "</b> \n Início: ", data$start,
-                                "<b>\n Em andamento </b>"),
-                         paste0("<b>", data$label,
-                                "</b> \n Início: ", data$start,
-                                "\n Fim: ", data$end))
-
-  vistime(data, events="label", groups="group", title=paste0("Tramitação em ", house), tooltips = "tooltip", colors = "color", showLabels=FALSE)
+  data$tooltip <- format_tooltip(data)
+  
+  create_vistime(paste0("Tramitação em ", house), data)
 }
 
 #' @title Cria gráfico para demonstração da tramitação de uma proposição na camara e no senado.
@@ -44,14 +37,35 @@ create_chart_camara_senado <- function(bill_id_senado, bill_id_camara){
     read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id_camara, "-data-camara.csv"))
   data <- bind_rows(data_senado, data_camara)
   
+  data$tooltip <- format_tooltip(data)
+  
+  create_vistime("Tramitação", data)
+}
+
+#' @title Chama a função vistime com os parametros corretos
+#' @description Recebe o título do gráfico e o dataframe formatado e chama o vistime
+#' @param title Título do gráfico
+#' @param data Dataframe com dados formatados para visualização do vistime
+#' @examples
+#' create_vistime("Tramitação", data)
+#' @export
+create_vistime <- function(title, data) {
+  vistime(data, events="label", groups="group", title=title, tooltips = "tooltip", colors = "color", showLabels=FALSE)
+}
+
+#' @title Formata o tooltip do vistime
+#' @description Deixa o tooltip mais significativo
+#' @param data Dataframe com dados formatados para visualização do vistime
+#' @examples
+#' data$tooltip <- format_tooltip(data)
+#' @export
+format_tooltip <- function(data) {
   # Custom tooltip
-  data$tooltip <- ifelse(data$end == ymd(Sys.Date()),
+ ifelse(data$end == ymd(Sys.Date()),
                          paste0("<b>", data$label,
                                 "</b> \n Início: ", data$start,
                                 "<b>\n Em andamento </b>"),
                          paste0("<b>", data$label,
                                 "</b> \n Início: ", data$start,
                                 "\n Fim: ", data$end))
-  
-  vistime(data, events="label", groups="group", title="Tramitação", tooltips = "tooltip", colors = "color", showLabels=FALSE)
 }
