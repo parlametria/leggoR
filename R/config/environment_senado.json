@@ -51,7 +51,7 @@
     {"evento": "recebimento_comissao", "texto_tramitacao": "recebido na|nesta comissao"},
     {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "aprovado requerimento de realização de audiência pública"},
     {"evento": "devolvido", "texto_tramitacao": "devolvido pel.*redistribu.*"},
-    {"evento": "aprovacao_parecer", "situacao_codigo_situacao": "^89$"},
+    {"evento": "aprovacao_parecer", "texto_tramitacao": "a comissão aprova o relatório|aprovado o relatório"},
     {"evento": "designado_relator", "situacao_codigo_situacao": "^91$"},
     {"evento": "pedido_vista", "situacao_codigo_situacao": "^90$"},
     {"evento": "arquivada", "situacao_codigo_situacao": "^28$"},
