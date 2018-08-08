@@ -28,19 +28,13 @@
       "regex": "recebido na|nesta comissão"
   }, 
   
-  "fase_comissao": {
-      "vector": {
-
-      }
-  }, 
-  
   "fase_casa": [
     {"fase_casa": "plenario", "regex": "Apresentação"},
     {"fase_casa": "comissoes", "regex": "recebido na comissão|recebido nesta comissão"}
   ],
   
   "fase_comissao": [
-    {"fase": "analise_do_relator", "code": [91]},
+    {"fase": "analise_do_relator", "code": [91], "regex":"(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a presente matéria.*))"},
     {"fase": "discussao_votacao", "code": [42, 14, 78, 90]},
     {"fase": "encaminhamento", "code": [89, 159]},
     {"fase": "recebimento_comissao", "regex": "recebido na|nesta comissao"}
@@ -53,7 +47,9 @@
     {"evento": "devolvido", "texto_tramitacao": "devolvido pel.*redistribu.*"},
     {"evento": "aprovacao_parecer", "situacao_codigo_situacao": "^89$"},
     {"evento": "designado_relator", 
-      "texto_tramitacao": "(distribuído a.*senador.*para emitir relatório)|(designa.*relator(a|) da matéria)|(distribuído (à|ao) senador(a|).*para (emitir|emissão de) relatório)"},
+      "texto_tramitacao": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a presente matéria.*))"},
+    {"evento": "designado_relator_overfitting", 
+      "texto_tramitacao": "ao senador Antero Paes de Barros para relatar a presente matéria"},
     {"evento": "pedido_vista", "situacao_codigo_situacao": "^90$"},
     {"evento": "arquivada", "situacao_codigo_situacao": "^28$"},
     {"evento": "desarquivada", "situacao_codigo_situacao": "^149$"},
