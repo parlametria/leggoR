@@ -94,8 +94,8 @@ data_situacao_comissao <- function(df) {
   filter(end - start > 0) %>%
   ungroup() %>%
   arrange(sequence) %>%
-  select(-sequence) %>%
-  rename(label = situacao_comissao) %>%
+  select(-sequence) %>% 
+  rename(label = situacao_comissao) %>% 
   mutate(group = "Situação na comissão",
          color = case_when(label == "Recebimento" ~ "#5496cf",
                            label == "Análise do relator" ~ "#ff9c37",

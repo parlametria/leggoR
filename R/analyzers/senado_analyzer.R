@@ -134,6 +134,7 @@ extract_evento_Senado <- function(tramitacao_df) {
     dplyr::mutate(evento =
                     dplyr::case_when(
                       stringr::str_detect(tolower(texto_tramitacao), "primeiro-secretário da câmara dos deputados") ~ 'virada_casa',
+                      stringr::str_detect(tolower(texto_tramitacao), "processo arquivado(.)*") ~ 'arquivada',
                       TRUE ~ evento
                     ))
 }
