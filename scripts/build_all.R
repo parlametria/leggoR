@@ -28,9 +28,13 @@ c(
   'reports/tabela-proposicoes.Rmd',
   'reports/tabela-demo.Rmd',
   'reports/gabarito/pls-559-2013-timeline.Rmd',
+  'reports/gabarito/pls-559-2013-timeline-short.Rmd',
   'reports/gabarito/pl-3729-2004-timeline.Rmd',
+  'reports/gabarito/pl-3729-2004-timeline-short.Rmd',
   'reports/gabarito/pl-490-2007-timeline.Rmd',
-  'reports/gabarito/pls-229-2009-timeline.Rmd'
+  'reports/gabarito/pl-490-2007-timeline-short.Rmd',
+  'reports/gabarito/pls-229-2009-timeline.Rmd',
+  'reports/gabarito/pls-229-2009-timeline-short.Rmd'
 ) %>% {
   lapply(here::here(.), render, 'html_document', output_dir = output_dir)
 }
