@@ -39,8 +39,7 @@ build_all_csvs <- function(df) {
   }else {
     df %>%
       rowwise() %>%
-      do(build_csvs(.$id_camara, 'camara')) %>%
-      do(build_csvs(.$id_senado, 'senado'))
+      do(build_csvs(.$id_camara, 'camara')) 
     
     df %>%
       rowwise() %>%
