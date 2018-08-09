@@ -56,7 +56,7 @@
     {"evento": "pedido_vista", "situacao_codigo_situacao": "^90$"},
     {"evento": "arquivada", "situacao_codigo_situacao": "^28$"},
     {"evento": "desarquivada", "situacao_codigo_situacao": "^149$"},
-    {"evento": "aprovacao_projeto", "situacao_codigo_situacao": "^25$"},
+    {"evento": "aprovacao_projeto", "texto_tramitacao": "aprovado o projeto"},
     {"evento": "aprovacao_substitutivo", "situacao_codigo_situacao": "^113$"},
     {"evento": "inicio_prazo_emendas", "situacao_codigo_situacao": "^20$"},
     {"evento": "fim_prazo_emendas", "situacao_codigo_situacao": "^153$"},
