@@ -125,7 +125,8 @@ extract_evento_Senado <- function(tramitacao_df) {
     df %>%
       dplyr::mutate(evento =
                     dplyr::case_when(
-                      stringr::str_detect(tolower(texto_tramitacao), "realizada(,)* (.)*audiência pública") ~ 'realizacao_audiencia_publica',
+                      (stringr::str_detect(tolower(texto_tramitacao), "realizada(,)* (.)*audiência pública") &
+                         !stringr::str_detect(tolower(texto_tramitacao), "aprovado o requerimento")) ~ 'realizacao_audiencia_publica',
                       TRUE ~ evento
                     ))
   if (!is.na(date_comissao_especial)) {
