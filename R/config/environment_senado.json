@@ -54,7 +54,6 @@
     {"evento": "aprovacao_parecer", "situacao_codigo_situacao": "^89$"},
     {"evento": "designado_relator", "situacao_codigo_situacao": "^91$"},
     {"evento": "pedido_vista", "situacao_codigo_situacao": "^90$"},
-    {"evento": "arquivada", "situacao_codigo_situacao": "^28$"},
     {"evento": "desarquivada", "situacao_codigo_situacao": "^149$"},
     {"evento": "aprovacao_projeto", "situacao_codigo_situacao": "^25$"},
     {"evento": "aprovacao_substitutivo", "situacao_codigo_situacao": "^113$"},
