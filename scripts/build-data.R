@@ -1,19 +1,5 @@
-library(dplyr)
-source(here::here("R/analyzer.R"))
-
+source(here::here("R/analyzers/analyzer.R"))
 args = commandArgs(trailingOnly=TRUE)
-
-#' @title Cria todos os csvs de um proposição no senado.
-#' @description Recebido um id e uma casa a função roda os scripts para
-#' importar e processar os dados daquela proposição no senado.#'
-#' @param id Identificador da proposição que pode ser recuperado no site do senado.
-#' @examples
-#' build_senado(91341)
-#' @export
-build_senado <- function(id){
-
-
-}
 
 #' @title Cria todos os csvs de um proposição.
 #' @description Recebido um id e uma casa a função roda os scripts para
@@ -32,7 +18,7 @@ build_csvs <- function(id, house) {
     return(NULL)
   }
   process_proposicao(id, house)
-  source(here::here(paste0("scripts/vis/tramitacao/data-chart-", tolower(house), ".R")))
+  source(here::here(paste0("view/formatter/data-formatter-vistime-", tolower(house), ".R")))
   build_vis_csv(id)
 
   as.tibble(NULL)
@@ -46,9 +32,19 @@ build_csvs <- function(id, house) {
 #' readr::read_csv("data/tabela_geral_ids_casa.csv") %>% build_all_csvs()
 #' @export
 build_all_csvs <- function(df) {
-  df %>%
-    rowwise() %>%
-    do(build_csvs(.$id, .$casa))
+  if ('casa' %in% names(df)) {
+    df %>%
+      rowwise() %>%
+      do(build_csvs(.$id, .$casa)) 
+  }else {
+    df %>%
+      rowwise() %>%
+      do(build_csvs(.$id_camara, 'camara')) 
+    
+    df %>%
+      rowwise() %>%
+      do(build_csvs(.$id_senado, 'senado'))
+  }
 }
 
 if(length(args) == 2){

@@ -6,7 +6,7 @@ TAM_LISTA_PROPOSICOES <<- 2
 proposicao_data <<- fetch_proposicao_camara(PROPOSICOES_ID)
 tramitacao_data <<-
   rcongresso::fetch_tramitacao(PROPOSICOES_ID) %>%
-  rename_df_columns
+  rename_df_columns()
 
 test_that('get_ementas_in_camara() is dataframe', {
   expect_true(is.data.frame(get_ementas_in_camara(PROPOSICOES_ID)))

@@ -3,9 +3,9 @@
 library(tidyverse)
 library(rmarkdown)
 library(here)
-source(here::here('scripts/vis/tramitacao/build-data.R'))
+source(here::here('scripts/build-data.R'))
 source(here::here('scripts/renderReport.R'))
-source(here::here('scripts/vis/tramitacao/extract-informations.R'))
+source(here::here('view/formatter/data-formatter-ficha.R'))
 
 output_dir <- here::here('docs/reports')
 
@@ -16,9 +16,12 @@ c('data/Senado', 'data/camara', 'data/vis/tramitacao', 'docs/reports') %>%
 # Store data
 all_pls <- readr::read_csv('data/tabela_geral_ids_casa.csv')
 all_pls %>% build_all_csvs()
+pls_senado_camara <- readr::read_csv('data/tabela_ids_senado_camara.csv')
+pls_senado_camara %>% build_all_csvs()
 
 # Build reports
 all_pls %>% render_house_df_reports()
+pls_senado_camara %>% render_reports_camara_senado()
 
 # Build tabela e gabaritos
 c(

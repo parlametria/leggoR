@@ -61,35 +61,38 @@ data_evento <- function(df) {
 #' @export
 data_fase_global <- function(bill_id, tramitacao) {
   data_prop <- extract_autor_in_camara(bill_id) %>% tail(1)
-  house_kind_str <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Origem", "Revisão")
+  tipo_casa <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Origem", "Revisão")
   
   tramitacao %>%
     mutate(end_data = lead(data_hora, default=Sys.time())) %>%
-    group_by(casa, sequence = rleid(casa)) %>%
+    group_by(local, sequence = rleid(local)) %>%
     summarise(start = min(data_hora),
               end = max(end_data)) %>%
     filter(end - start > 0) %>%
     ungroup() %>%
     arrange(sequence) %>%
     select(-sequence) %>%
-    rename(label = casa) %>%
+    rename(label = local) %>%
     mutate(group = "Global",
-           color = case_when(label == "Plenário" ~ "#5496cf",
-                             label == "Comissões" ~ "#938ecc",
-                             label == "Apresentação" ~ "#d6952a"),
-           label = paste(label, '-', house_kind_str, '(Câmara)'))
+           label = case_when(label == "CD-MESA-PLEN" ~ "Apresentação",
+                             TRUE ~ label),
+           color = case_when(stringr::str_detect(label, "Plenário") ~ "#5496cf",
+                             stringr::str_detect(label, "Comissão Especial") ~ "#ff9c37",
+                             stringr::str_detect(label, "CCP") ~ "#8bca42",
+                             stringr::str_detect(label, "CTASP") ~ "#ea81b1"),
+           label = paste(label, '-', tipo_casa, '(Câmara)'))
 }
 
 data_situacao_comissao <- function(df) {
-  extract_situacao_comissao(df) %>% 
+  df %>% 
   dplyr::select(data_hora, situacao_comissao) %>%
-  dplyr::filter(!is.na(situacao_comissao)) %>% 
+  dplyr::filter(!is.na(situacao_comissao)) %>%
   mutate(end_data = lead(data_hora, default=Sys.time())) %>%
   group_by(situacao_comissao, sequence = data.table::rleid(situacao_comissao)) %>%
   summarise(start = min(data_hora),
             end = max(end_data)) %>%
   filter(end - start > 0) %>%
-  ungroup() %>% 
+  ungroup() %>%
   arrange(sequence) %>%
   select(-sequence) %>% 
   rename(label = situacao_comissao) %>% 
@@ -114,9 +117,12 @@ build_vis_csv <- function(bill_id) {
   data_path <- here::here('data/vis/tramitacao/')
   file_path <- paste0(data_path, bill_id, '-data-camara.csv')
 
-  data <- bind_rows(data_fase_global(bill_id, tramitacao), 
+  data <- 
+    bind_rows(data_fase_global(bill_id, tramitacao), 
                      data_local(tramitacao),
                     data_situacao_comissao(tramitacao), 
-                    data_evento(tramitacao))
+                    data_evento(tramitacao)) %>%
+    filter(group != "Comissão")
+  
   readr::write_csv(data, file_path)
 }

@@ -374,7 +374,7 @@ extract_apreciacao_Senado <- function(proposicao_id) {
                    apreciacao$conclusiva,
                    apreciacao$plenario)
   } else {
-    apreciacao$plenario
+    return(apreciacao$plenario)
   }
 }
 
