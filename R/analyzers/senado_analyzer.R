@@ -114,7 +114,7 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
 #' @return Dataframe com a coluna "evento" adicionada.
 #' @examples
 #' df <- fetch_tramitacao(91341)
-#' extract_evento_Senado(df, importants_events, phase_one)
+#' extract_evento_Senado(df)
 #' @export
 extract_evento_Senado <- function(tramitacao_df) {
   df <- regex_left_match(tramitacao_df, senado_env$eventos, "evento")
@@ -129,8 +129,14 @@ extract_evento_Senado <- function(tramitacao_df) {
                         TRUE ~ evento
                       ))
   }
+
+  df %>%
+    dplyr::mutate(evento =
+                    dplyr::case_when(
+                      stringr::str_detect(tolower(texto_tramitacao), "aprovado o substitutivo") ~ 'aprovacao_substitutivo',
+                      TRUE ~ evento
+                    ))
   
-  df
 }
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
