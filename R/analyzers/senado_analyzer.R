@@ -9,19 +9,20 @@ extract_fase_Senado <-
   function(dataframe,
            recebimento_phase,
            phase_one,
-           phase_two,
+           #phase_two,
            phase_three,
            encaminhamento_phase,
            phase_four,
            comissoes_phase) {
     fases <- senado_env$fase_subfase_comissoes
     dataframe %>%
+      arrange(data_tramitacao, numero_ordem_tramitacao) %>%
       dplyr::mutate(
         fase =
           dplyr::case_when(
             stringr::str_detect(tolower(texto_tramitacao), fases$regex) ~ fases$recebimento,
             stringr::str_detect(tolower(texto_tramitacao), comissoes_phase) ~ fases$analise,
-            detect_fase(situacao_codigo_situacao, phase_two) ~ fases$analise,
+            #detect_fase(situacao_codigo_situacao, phase_two) ~ fases$analise,
             detect_fase(situacao_codigo_situacao, phase_three) ~ fases$discussao,
             detect_fase(situacao_codigo_situacao, encaminhamento_phase) ~ fases$encaminhamento
           )
@@ -83,7 +84,7 @@ extract_fase_global <- function(data_tramitacao, bill_id) {
 #' @examples
 #' bill_passage %>% extract_fase_casa_Senado(phase_one)
 #' @export
-extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, fase_comissoes) {
+extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_phase, fase_comissoes) {
   dataframe <-
     dataframe %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
@@ -104,6 +105,10 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, fase_comissoe
                 tolower(texto_tramitacao),
                 regex(fase_comissoes, ignore_case = TRUE)
               ))
+            | (stringr::str_detect(
+              tolower(texto_tramitacao),
+              regex(recebimento_phase, ignore_case = TRUE)
+            ))
           ) ~
             senado_constants$comissoes
         )

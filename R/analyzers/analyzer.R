@@ -28,6 +28,7 @@ process_proposicao <- function(id, casa) {
 #' process_proposicao_senado(91341)
 #' @export
 process_proposicao_senado <- function(bill_id) {
+  bill_id <- 41703
   bill_passage <-
     read_csv(paste0(
       here::here("data/Senado/"),
@@ -49,7 +50,7 @@ process_proposicao_senado <- function(bill_id) {
       bill_passage,
       phase_one,
       recebimento_phase,
-      phase_two,
+      #phase_two,
       phase_three,
       encaminhamento_phase,
       phase_four,
@@ -63,7 +64,7 @@ process_proposicao_senado <- function(bill_id) {
     str_replace_all("\\s+", "_")
   
   bill_passage <-
-    extract_fase_casa_Senado(bill_passage, phase_one, comissoes_phase$regex) %>%
+    extract_fase_casa_Senado(bill_passage, phase_one, recebimento_phase, comissoes_phase$regex) %>%
     arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     fill(casa) %>%
     filter(!is.na(casa))
