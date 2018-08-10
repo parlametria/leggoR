@@ -1,8 +1,3 @@
-library(rcongresso)
-library(magrittr)
-library(lubridate)
-library(fuzzyjoin)
-library(tidyverse)
 source(here::here("R/camara-lib.R"))
 source(here::here("R/analyzers/senado_analyzer.R"))
 source(here::here("R/fetcher.R"))
