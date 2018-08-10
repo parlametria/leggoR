@@ -16,7 +16,6 @@ regex_left_match <- function(df, regex_df, new_column) {
     mutate(sort = row_number()) %>%
     fuzzyjoin::regex_left_join(regex_df, by = columns, ignore_case = TRUE) %>%
     group_by(sort) %>%
-    filter(rank(sort, ties.method = "first") == 1) %>%
     ungroup() %>%
     select(-ends_with("X"), -sort)
 }
