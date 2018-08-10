@@ -32,17 +32,6 @@ test_that('last_n_despacho_in_camara() returns correct columns names', {
   ))
 })
 
-test_that('extract_last_relator_in_camara() returns string', {
-  proposicoes_last_relatores <-
-    as.data.frame(PROPOSICOES_ID) %>%
-    dplyr::rowwise() %>%
-    dplyr::do(extract_last_relator_in_camara(
-              extract_tramitacao(.$PROPOSICOES_ID)) %>%
-              tibble::as.tibble())
-  
-  expect_true(is.data.frame(proposicoes_last_relatores))
-})
-
 test_that('fetch_events() returns dataframe', {
   proposicoes_fetch_events <- as.data.frame(PROPOSICOES_ID) %>%
     dplyr::rowwise() %>%
@@ -59,17 +48,6 @@ test_that('get_latest_events() returns dataframe', {
   expect_true(is.data.frame(proposicoes_latest_events))
 })
 
-test_that('extract_locais_in_camara() returns dataframe', {
-  expect_true(is.data.frame(extract_locais_in_camara(tramitacao_data)))
-})
-
-test_that('extract_locais_in_camara() returns correct columns names', {
-  locais_in_camara <- extract_locais_in_camara(tramitacao_data)
-  expect_true(all(
-    sapply(locais_in_camara, class) %in% .COLNAMES_EXTRACT_LOCAIS_IN_CAMARA
-  ))
-})
-
 test_that('get_next_events() returns dataframe', {
   proposicoes_next_events <- as.data.frame(PROPOSICOES_ID) %>%
     dplyr::rowwise() %>%
@@ -80,22 +58,6 @@ test_that('get_next_events() returns dataframe', {
 
 test_that('extract_relator_in_camara() returns dataframe', {
   expect_true(is.data.frame(proposicao_data))
-})
-
-test_that('extract_autor_in_camara() returns dataframe', {
-  proposicoes_autores <- as.data.frame(PROPOSICOES_ID) %>%
-    dplyr::rowwise() %>%
-    dplyr::do(extract_autor_in_camara(.$PROPOSICOES_ID))
-  expect_true(is.data.frame(proposicoes_autores))
-})
-
-test_that("extract_autor_in_camara() returns correct columns names", {
-  proposicoes_autores <- as.data.frame(PROPOSICOES_ID) %>%
-    dplyr::rowwise() %>%
-    dplyr::do(extract_autor_in_camara(.$PROPOSICOES_ID))
-  expect_true(all(
-    sapply(proposicoes_autores, class) %in% .COLNAMES_AUTHOR_CAMARA
-  ))
 })
 
 test_that('fetch_apensadas() returns dataframe', {
