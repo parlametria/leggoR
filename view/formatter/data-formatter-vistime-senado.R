@@ -49,7 +49,7 @@ format_fase <- function(df) {
     select(-sequence) %>%
     #filter(time_interval > 0) %>%
     rename(label=fase) %>%
-    mutate(group = "Sub-fase Comissão")
+    mutate(group = "Situação na comissão")
   
   df %>% 
     mutate(color = case_when(label == "Recebimento" ~ "#d7191c",
