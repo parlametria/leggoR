@@ -88,7 +88,7 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_p
   dataframe <-
     dataframe %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
-    dplyr::mutate(
+    dplyr::mutate( 
       casa =
         dplyr::case_when(
           grepl(fase_apresentacao, texto_tramitacao) ~ 'Apresentação',

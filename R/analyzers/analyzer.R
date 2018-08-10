@@ -28,7 +28,6 @@ process_proposicao <- function(id, casa) {
 #' process_proposicao_senado(91341)
 #' @export
 process_proposicao_senado <- function(bill_id) {
-  bill_id <- 41703
   bill_passage <-
     read_csv(paste0(
       here::here("data/Senado/"),
