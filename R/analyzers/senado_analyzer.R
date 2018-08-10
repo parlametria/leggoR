@@ -133,6 +133,8 @@ extract_evento_Senado <- function(tramitacao_df) {
   
   comissoes <- extract_comissoes_Senado(tramitacao_df)
   date_comissao_especial <- comissoes[match("Comissão Especial", comissoes$comissoes), ]$data_tramitacao
+  designacao_relator <- senado_env$eventos %>%
+    filter(evento == 'designado_relator') 
   if (!is.na(date_comissao_especial)) {
     df %>%
       dplyr::mutate(evento =
@@ -142,7 +144,10 @@ extract_evento_Senado <- function(tramitacao_df) {
                       ))
   }
   
-  df
+  df %>% dplyr::mutate(
+    evento = dplyr::case_when(
+      stringr::str_detect(tolower(texto_tramitacao), regex(designacao_relator$texto_tramitacao, 
+                                                           ignore_case = TRUE)) ~ designacao_relator$evento))
 }
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
