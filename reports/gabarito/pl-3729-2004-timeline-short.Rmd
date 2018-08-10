@@ -1,0 +1,176 @@
+---
+title: PL 3729/2004 - Lei Geral de Licenciamento
+output: html_document
+params:
+  id: 257161
+  casa: camara
+---
+
+```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+source(here::here('view/formatter/data-formatter-ficha.R'))
+source(here::here('view/visualizer/build-chart.R'))
+library(rcongresso)
+library(vistime)
+library(dplyr)
+
+data <- extract_informations_from_single_house(params$id, params$casa)
+```
+
+## Informações Gerais
+- **Autor:** `r toString(data$autor)`
+- **Casa de Origem:** `r toString(data$casa_origem)`
+- **Data de Apresentação:** `r toString(data$data_apresentacao)`
+- **Ementa:** `r toString(data$ementa)`
+- **Explicação da Ementa:** Dispõe que para a instalação de obra, empreendimento ou atividade potencialmente causadora de degradação do meio ambiente, será exigido Estudo Prévio de Impacto Ambiental (EIA), com ampla publicidade; regulamentando a Constituição Federal de 1988.
+- **Status Atual:** `r toString(data$status_atual)`
+- **Forma de Apreciação:** `r toString(data$apreciacao)`
+- **Regime de Tramitação:** `r toString(data$regime)`
+- **Último Relator:** `r toString(data$ultimo_relator)`
+- [Link no site oficial](http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao=`r params$id`)
+
+## Resumo da tramitação
+A proposta de lei nº 3.729 de 2004 foi criada há 14 anos pelos deputados Luciano Zica (PT-SP), Walter Pinheiro (PT-BA), Zezéu Ribeiro (PT-BA), entre outros, em regime de tramitação de Prioridade. Foi previsto o seu encaminhamento às comissões de Meio Ambiente e Desenvolvimento Sustentável (CMADS), Finanças e Tributação (CFT) e Constituição e Justiça e de Cidadania (CCJC), mas acabou passando também pela Comissão de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural (CAPADR). Na primeira comissão, onde passou 11 anos, foi aprovada após vários apensamentos, arquivamentos, desarquivamentos, trocas de relatores (sendo o último o deputado Ricardo Tripoli do partido PSDB-SP) e substitutivo. Na segunda comissão, em 3 meses foi aprovada juntamente com alguns apensados, tendo como relator o deputado Moreira Mendes (PSD-RO). Há 2 anos está na CFT, passando por mais de 13 pareceres, trocas de relatores, pedidos de urgência na tramitação, pedidos de audiências públicas, vários apensamentos e desapensamentos. Atualmente foi designado o relator Maurício Quintella Lessa (PR-AL) e se aguarda seu parecer.
+
+```{r, echo=FALSE, message=FALSE, fig.width=10, fig.height=10}
+
+pl_3729_2004_data_global <- frame_data(
+  ~ event, ~ group, ~ start, ~ end, ~ color,
+  'Apresentação - Origem (Câmara)', 'Global', '2004-06-08', '2004-06-18','#d6952a',
+  'CMADS - Origem (Câmara)', 'Global', '2004-06-22', '2014-01-06','#a6cee3',
+  'CAPADR - Origem (Câmara)', 'Global', '2014-02-10', '2014-05-14','#b1b03a',
+  'CMADS - Origem (Câmara)', 'Global', '2014-05-16', '2015-10-14','#a6cee3',
+  'CFT - Origem (Câmara)', 'Global', '2015-10-20', '2018-07-10','#b2df8a',
+  'CCJC - Origem (Câmara)', 'Global', '2016-05-09', '2018-07-10','#d6952a')
+
+pl_3729_2004_data_eventos <- frame_data(
+  ~ event, ~ group, ~ start, ~ end, ~ color,
+  'Apresentação do PL', 'Evento', '2004-06-08', '2004-06-08', '#938ecc',
+  'Distribuição a comissões', 'Evento', '2004-06-18', '2004-06-18', '#938ecc',
+  'Designado relator', 'Evento', '2004-07-07', '2004-07-07','#87c465',
+  'Arquivada',  'Evento', '2007-01-31', '2007-01-31', '#938ecc',
+  'Desarquivada',  'Evento','2007-04-25', '2007-04-25', '#938ecc',
+  'Designado relator', 'Evento', '2007-05-31', '2007-05-31','#87c465',
+  'Parecer', 'Evento', '2009-01-30', '2009-01-30','#a561a2',
+  'Designado relator', 'Evento', '2009-03-19', '2009-03-19','#87c465',
+  'Parecer', 'Evento', '2009-12-16', '2009-12-16','#a561a2',
+  'Arquivado',  'Evento', '2011-01-31', '2011-01-31', '#938ecc',
+  'Desarquivada', 'Evento', '2011-02-14', '2011-02-14', '#938ecc',
+  'Designado relator', 'Evento', '2011-03-28', '2011-03-28','#87c465',
+  'Reconstituição', 'Evento', '2012-04-09', '2012-04-09', '#938ecc',
+  'Parecer', 'Evento', '2013-10-23', '2013-10-23','#a561a2',
+  'Despacho de Redistribuição - CAPADR', 'Evento', '2013-11-27','2013-11-27', '#938ecc',
+  'Designado relator', 'Evento', '2013-12-04', '2013-12-04','#87c465',
+  'Parecer', 'Evento', '2013-12-06', '2013-12-06','#a561a2',
+  'Parecer', 'Evento', '2013-12-17', '2013-12-17','#a561a2',
+  'Redistribuição - CAPADR', 'Evento', '2013-12-20','2013-12-20', '#938ecc',
+  'Designado relator', 'Evento', '2014-03-12', '2014-03-12','#87c465',
+  'Parecer', 'Evento', '2014-04-29', '2014-04-29','#a561a2',
+  'Parecer Aprovado',  'Evento', '2014-05-14', '2014-05-14','#a561a2',
+  'Designado relator', 'Evento', '2014-05-22', '2014-05-22','#87c465',
+  'Arquivada', 'Evento', '2015-01-31','2015-01-31', '#938ecc',
+  'Desarquivada', 'Evento', '2015-02-04','2015-02-04', '#938ecc',
+  'Designado relator', 'Evento', '2015-04-09', '2015-04-09','#87c465',
+  'Parecer', 'Evento', '2015-09-23', '2015-09-23','#a561a2',
+  'Pedido de vista', 'Evento', '2015-10-07', '2015-10-07','#b1b03a',
+  'Parecer Aprovado',  'Evento', '2015-10-14', '2015-10-14','#a561a2',
+  'Designado relator', 'Evento', '2015-10-28', '2015-10-28','#87c465',
+  'Designado relator', 'Evento', '2015-12-17', '2015-12-17','#87c465',
+  'Alteração de regime', 'Evento','2016-03-22', '2016-03-22', '#938ecc',
+  'Designado relator CCJC', 'Evento', '2016-06-30', '2016-06-30','#87c465',
+  'Parecer CTF 1', 'Evento', '2016-07-05', '2016-07-05','#a561a2',
+  'Parecer CTF 2', 'Evento', '2016-07-27', '2016-07-27','#a561a2',
+  'Parecer CTF 3', 'Evento', '2016-09-01', '2016-09-01','#a561a2',
+  'Parecer CTF 4', 'Evento', '2016-09-15', '2016-09-15','#a561a2',
+  'Parecer CTF 5', 'Evento', '2016-12-12', '2016-12-12','#a561a2',
+  'Parecer CTF 6', 'Evento', '2017-04-19', '2017-04-19','#a561a2',
+  'Parecer CTF 7', 'Evento', '2017-04-27', '2017-04-27','#a561a2',
+  'Retirada de pauta', 'Evento', '2017-05-03', '2017-05-03','#a561a2',
+  'Parecer CTF 8', 'Evento', '2017-06-05', '2017-06-05','#a561a2',
+  'Retirada de pauta', 'Evento', '2017-06-07', '2017-06-07','#a561a2',
+  'Parecer CTF 10', 'Evento', '2017-08-04', '2017-08-04','#a561a2',
+  'Parecer CTF 11', 'Evento', '2017-08-08', '2017-08-08','#a561a2',
+  'Parecer CTF 12', 'Evento', '2017-08-08', '2017-08-08','#a561a2',
+  'Parecer CTF 13', 'Evento', '2017-08-29', '2017-08-29','#a561a2',
+  'Retirada de pauta CTF', 'Evento', '2017-09-13', '2017-09-13','#a561a2',
+  'Designado relator', 'Evento', '2018-04-11', '2018-04-11','#87c465')
+
+pl_3729_2004_data_general <- bind_rows(
+  pl_3729_2004_data_global,
+  pl_3729_2004_data_eventos)
+
+vistime(pl_3729_2004_data_general)
+```
+
+## Comissões
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+data_path <- here::here('data/')
+if(params$casa == "camara") {
+  comissoes <- get_comissoes_in_camara(
+      read_csv(paste0(data_path, "camara/tramitacao-camara-", params$id, ".csv"))
+    ) %>%
+    dplyr::select(-'id_prop') %>%
+    dplyr::mutate(proximas_comissoes=lapply(proximas_comissoes, paste, collapse=', ')) %>%
+    dplyr::mutate(data_hora=lapply(data_hora, substr, 0, 10)) %>%
+    dplyr::rename('Data'='data_hora', 'Comissões'='proximas_comissoes')
+} else {
+  comissoes <- extract_comissoes_Senado(
+    read_csv(paste0(data_path, "Senado/", params$id, "-tramitacao-senado.csv")))
+}
+knitr::kable(comissoes)
+```
+
+## Eventos
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+if(params$casa == "camara") {
+  table_proximo_evento_camara <- get_next_events(params$id) %>%
+    dplyr::mutate('timestamp'=lapply(.$timestamp, substr, 0, 10)) %>%
+    dplyr::rename(
+      'Data'='timestamp',
+      'Origem'='origem',
+      'Descrição'='descricao',
+    )
+  knitr::kable(table_proximo_evento_camara, caption = "Lista de Próximos eventos")
+
+  table_ultimos_eventos_camara <- get_latest_events(params$id) %>%
+    dplyr::mutate('timestamp'=lapply(.$timestamp, substr, 0, 10)) %>%
+    dplyr::rename(
+      'Data'='timestamp',
+      'Origem'='origem',
+      'Descrição'='descricao',
+    )
+  knitr::kable(table_ultimos_eventos_camara, caption = "Lista de Últimos eventos")
+}
+```
+
+## Requerimentos
+```{r, echo = FALSE, message = FALSE, warning=FALSE}
+reqs <- tryCatch({
+      return(gera_tabela_requerimentos(params$id, params$casa))
+  }, error = function(e) {
+      return(data.frame())
+  }) %>%
+  dplyr::select(-'statusProposicao.despacho') %>%
+  dplyr::mutate('dataApresentacao'=lapply(.$dataApresentacao, substr, 0, 10)) %>%
+  dplyr::rename(
+    'Data'='dataApresentacao',
+    'Tipo'='descricaoTipo',
+    'Ementa'='ementa',
+    'Situação'='deferimento',
+  )
+if (nrow(reqs) != 0) {
+  knitr::kable(reqs)
+}
+```
+
+## Apensamentos
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+if(params$casa == "camara") {
+  table_apensadas_camara <-
+    gera_tabela_apensadas_camara(params$id) %>%
+    dplyr::rename('Proposição' = 'apensadas', 'Casa' = 'casa')
+  knitr::kable(table_apensadas_camara)
+}else {
+  table_apensadas_senado <- gera_tabela_apensadas_senado(params$id)
+  knitr::kable(table_apensadas_senado, caption = "Lista de Leis Apensadas Senado")
+}
+```
