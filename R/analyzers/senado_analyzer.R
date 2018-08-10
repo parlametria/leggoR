@@ -118,6 +118,7 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao) {
 #' @export
 extract_evento_Senado <- function(tramitacao_df) {
   df <- regex_left_match(tramitacao_df, senado_env$eventos, "evento")
+  eventos <- senado_env$evento
   
   comissoes <- extract_comissoes_Senado(tramitacao_df)
   date_comissao_especial <- comissoes[match("Comissão Especial", comissoes$comissoes), ]$data_tramitacao
@@ -133,14 +134,8 @@ extract_evento_Senado <- function(tramitacao_df) {
   df %>%
     dplyr::mutate(evento =
                     dplyr::case_when(
-                      stringr::str_detect(tolower(texto_tramitacao), "aprovado o substitutivo") ~ 'aprovacao_substitutivo',
-                      TRUE ~ evento
-                    ))
-  
-  df %>%
-    dplyr::mutate(evento =
-                    dplyr::case_when(
-                      stringr::str_detect(tolower(texto_tramitacao), "processo arquivado(.)*") ~ 'arquivada',
+                      stringr::str_detect(tolower(texto_tramitacao), eventos$aprovacao_substitutivo$regex) ~ eventos$aprovacao_substitutivo$constant,
+                      stringr::str_detect(tolower(texto_tramitacao), eventos$arquivamento$regex) ~ eventos$arquivamento$regex,
                       TRUE ~ evento
                     ))
   

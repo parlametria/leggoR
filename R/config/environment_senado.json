@@ -46,6 +46,17 @@
     {"fase": "recebimento_comissao", "regex": "recebido na|nesta comissao"}
   ],
   
+  "evento": {
+    "arquivamento": {
+      "regex": "processo arquivado(.)*",
+      "constant": "arquivada"
+    },
+    "aprovacao_substitutivo": {
+      "regex": "aprovado o substitutivo",
+      "constant": "aprovacao_substitutivo"
+    }
+  },
+
   "eventos": [
     {"evento": "apresentacao_pl", "texto_tramitacao": "^este processo contem"},
     {"evento": "recebimento_comissao", "texto_tramitacao": "recebido na|nesta comissao"},
