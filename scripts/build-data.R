@@ -32,9 +32,19 @@ build_csvs <- function(id, house) {
 #' readr::read_csv("data/tabela_geral_ids_casa.csv") %>% build_all_csvs()
 #' @export
 build_all_csvs <- function(df) {
-  df %>%
-    rowwise() %>%
-    do(build_csvs(.$id, .$casa))
+  if ('casa' %in% names(df)) {
+    df %>%
+      rowwise() %>%
+      do(build_csvs(.$id, .$casa)) 
+  }else {
+    df %>%
+      rowwise() %>%
+      do(build_csvs(.$id_camara, 'camara')) 
+    
+    df %>%
+      rowwise() %>%
+      do(build_csvs(.$id_senado, 'senado'))
+  }
 }
 
 if(length(args) == 2){

@@ -147,7 +147,11 @@ extract_evento_Senado <- function(tramitacao_df) {
   df %>% dplyr::mutate(
     evento = dplyr::case_when(
       stringr::str_detect(tolower(texto_tramitacao), regex(designacao_relator$texto_tramitacao, 
-                                                           ignore_case = TRUE)) ~ designacao_relator$evento))
+                                                           ignore_case = TRUE)) ~ designacao_relator$evento,
+      stringr::str_detect(tolower(texto_tramitacao), "processo arquivado(.)*") ~ 'arquivada',
+      TRUE ~ evento
+  ))
+  
 }
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
