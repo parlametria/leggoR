@@ -1,43 +1,66 @@
 label,start,end,time_interval,group,color
-Comissões - Origem (Senado),2009-05-29,2016-05-18,2546,Global,#938ecc
+CCJ - Origem (Senado),2009-05-29,2009-12-03,188,Global,#ffffcc
+CAE - Origem (Senado),2009-12-03,2010-05-20,168,Global,#a1dab4
+CCJ - Origem (Senado),2010-05-20,2010-06-24,35,Global,#ffffcc
+CAE - Origem (Senado),2010-06-24,2013-05-27,1068,Global,#a1dab4
+CDR - Origem (Senado),2013-05-27,2015-04-28,701,Global,#225ea8
+CAE - Origem (Senado),2015-04-28,2016-05-18,386,Global,#a1dab4
 Plenário - Origem (Senado),2016-05-18,2016-06-21,34,Global,#5496cf
-CCJ,2009-05-29,2009-12-03,188,Comissão,#ffffcc
-CAE,2009-12-03,2010-05-20,168,Comissão,#a1dab4
-CCJ,2010-05-20,2010-06-24,35,Comissão,#ffffcc
-CAE,2010-06-24,2013-05-27,1068,Comissão,#a1dab4
-CDR,2013-05-27,2015-04-28,701,Comissão,#225ea8
-CAE,2015-04-28,2016-05-18,386,Comissão,#a1dab4
-Plenário,2016-05-18,2016-06-21,34,Comissão,NA
-Recebimento,2009-05-29,2009-07-15,47,Sub-fase Comissão,#d7191c
-Análise do relator,2009-07-15,2009-09-23,70,Sub-fase Comissão,#fdae61
-Recebimento,2009-09-23,2009-09-24,1,Sub-fase Comissão,#d7191c
-Análise do relator,2009-09-24,2009-11-13,50,Sub-fase Comissão,#fdae61
-Discussão e votação,2009-11-13,2009-11-25,12,Sub-fase Comissão,#ffffbf
-Encaminhamento,2009-11-25,2009-12-03,8,Sub-fase Comissão,#abd9e9
-Análise do relator,2009-12-03,2010-05-20,168,Sub-fase Comissão,#fdae61
-Recebimento,2010-05-20,2010-05-24,4,Sub-fase Comissão,#d7191c
-Análise do relator,2010-05-24,2010-06-15,22,Sub-fase Comissão,#fdae61
-Discussão e votação,2010-06-15,2010-06-23,8,Sub-fase Comissão,#ffffbf
-Encaminhamento,2010-06-23,2010-06-24,1,Sub-fase Comissão,#abd9e9
-Recebimento,2010-06-24,2010-07-08,14,Sub-fase Comissão,#d7191c
-Análise do relator,2010-07-08,2010-12-21,166,Sub-fase Comissão,#fdae61
-Discussão e votação,2010-12-21,2011-01-20,30,Sub-fase Comissão,#ffffbf
-Recebimento,2011-01-20,2011-03-04,43,Sub-fase Comissão,#d7191c
-Análise do relator,2011-03-04,2012-06-18,472,Sub-fase Comissão,#fdae61
-Discussão e votação,2012-06-18,2013-05-27,343,Sub-fase Comissão,#ffffbf
-Recebimento,2013-05-27,2013-06-13,17,Sub-fase Comissão,#d7191c
-Análise do relator,2013-06-13,2015-04-28,684,Sub-fase Comissão,#fdae61
-Recebimento,2015-04-28,2015-05-04,6,Sub-fase Comissão,#d7191c
-Análise do relator,2015-05-04,2015-07-02,59,Sub-fase Comissão,#fdae61
-Discussão e votação,2015-07-02,2016-05-17,320,Sub-fase Comissão,#ffffbf
-Encaminhamento,2016-05-17,2016-05-18,1,Sub-fase Comissão,#abd9e9
-Discussão e votação,2016-05-18,2016-06-21,34,Sub-fase Comissão,#ffffbf
+Recebimento,2009-05-29,2009-07-15,47,Situação na comissão,#d7191c
+Análise do relator,2009-07-15,2009-09-23,70,Situação na comissão,#fdae61
+Recebimento,2009-09-23,2009-09-24,1,Situação na comissão,#d7191c
+Análise do relator,2009-09-24,2009-11-13,50,Situação na comissão,#fdae61
+Discussão e votação,2009-11-13,2009-11-25,12,Situação na comissão,#ffffbf
+Encaminhamento,2009-11-25,2009-12-03,8,Situação na comissão,#abd9e9
+Análise do relator,2009-12-03,2010-05-20,168,Situação na comissão,#fdae61
+Recebimento,2010-05-20,2010-05-24,4,Situação na comissão,#d7191c
+Análise do relator,2010-05-24,2010-06-15,22,Situação na comissão,#fdae61
+Discussão e votação,2010-06-15,2010-06-23,8,Situação na comissão,#ffffbf
+Encaminhamento,2010-06-23,2010-06-24,1,Situação na comissão,#abd9e9
+Recebimento,2010-06-24,2010-07-08,14,Situação na comissão,#d7191c
+Análise do relator,2010-07-08,2010-12-21,166,Situação na comissão,#fdae61
+Discussão e votação,2010-12-21,2011-01-20,30,Situação na comissão,#ffffbf
+Recebimento,2011-01-20,2011-03-04,43,Situação na comissão,#d7191c
+Análise do relator,2011-03-04,2012-06-18,472,Situação na comissão,#fdae61
+Discussão e votação,2012-06-18,2013-05-27,343,Situação na comissão,#ffffbf
+Recebimento,2013-05-27,2013-06-13,17,Situação na comissão,#d7191c
+Análise do relator,2013-06-13,2015-04-28,684,Situação na comissão,#fdae61
+Recebimento,2015-04-28,2015-05-04,6,Situação na comissão,#d7191c
+Análise do relator,2015-05-04,2015-07-02,59,Situação na comissão,#fdae61
+Discussão e votação,2015-07-02,2016-05-17,320,Situação na comissão,#ffffbf
+Encaminhamento,2016-05-17,2016-05-18,1,Situação na comissão,#abd9e9
+Discussão e votação,2016-05-18,2016-06-21,34,Situação na comissão,#ffffbf
+designado_relator,2009-07-15,2009-07-15,0,Evento,#a9a9a9
+designado_relator,2009-09-24,2009-09-24,0,Evento,#a9a9a9
+pronta_para_pauta,2009-11-13,2009-11-13,0,Evento,#a9a9a9
 aprovacao_parecer,2009-11-25,2009-11-25,0,Evento,#a9a9a9
-aprovacao_parecer,2009-12-03,2009-12-03,0,Evento,#a9a9a9
+designado_relator,2009-12-03,2009-12-03,0,Evento,#a9a9a9
 aprovacao_audiencia_publica,2010-03-02,2010-03-02,0,Evento,#a9a9a9
+recebimento_comissao,2010-05-20,2010-05-20,0,Evento,#a9a9a9
+designado_relator,2010-05-24,2010-05-24,0,Evento,#a9a9a9
+designado_relator,2010-05-25,2010-05-25,0,Evento,#a9a9a9
+pronta_para_pauta,2010-06-15,2010-06-15,0,Evento,#a9a9a9
 aprovacao_parecer,2010-06-23,2010-06-23,0,Evento,#a9a9a9
+designado_relator,2010-07-08,2010-07-08,0,Evento,#a9a9a9
+pronta_para_pauta,2010-12-21,2010-12-21,0,Evento,#a9a9a9
+recebimento_comissao,2011-01-20,2011-01-20,0,Evento,#a9a9a9
+designado_relator,2011-03-04,2011-03-04,0,Evento,#a9a9a9
+pronta_para_pauta,2012-06-18,2012-06-18,0,Evento,#a9a9a9
 aprovacao_audiencia_publica,2012-07-10,2012-07-10,0,Evento,#a9a9a9
+recebimento_comissao,2013-05-27,2013-05-27,0,Evento,#a9a9a9
+designado_relator,2013-06-13,2013-06-13,0,Evento,#a9a9a9
+designado_relator,2013-08-07,2013-08-07,0,Evento,#a9a9a9
+designado_relator,2015-05-04,2015-05-04,0,Evento,#a9a9a9
+pronta_para_pauta,2015-07-02,2015-07-02,0,Evento,#a9a9a9
+pronta_para_pauta,2015-07-09,2015-07-09,0,Evento,#a9a9a9
 aprovacao_audiencia_publica,2015-08-25,2015-08-25,0,Evento,#a9a9a9
+pronta_para_pauta,2015-09-24,2015-09-24,0,Evento,#a9a9a9
+pronta_para_pauta,2015-12-02,2015-12-02,0,Evento,#a9a9a9
 pedido_vista,2016-03-08,2016-03-08,0,Evento,#a9a9a9
+pronta_para_pauta,2016-03-15,2016-03-15,0,Evento,#a9a9a9
+pronta_para_pauta,2016-04-05,2016-04-05,0,Evento,#a9a9a9
+pronta_para_pauta,2016-04-12,2016-04-12,0,Evento,#a9a9a9
+pronta_para_pauta,2016-04-26,2016-04-26,0,Evento,#a9a9a9
 aprovacao_parecer,2016-05-17,2016-05-17,0,Evento,#a9a9a9
 aprovacao_substitutivo,2016-06-07,2016-06-07,0,Evento,#a9a9a9
+virada_casa,2016-06-21,2016-06-21,0,Evento,#a9a9a9

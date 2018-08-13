@@ -1,7 +1,8 @@
 data_tramitacao,local,fase,evento,casa,global
-2018-04-18,Mesa - Senado,Recebimento,NA,Mesa - Senado, - Origem (Senado)
-2018-04-19,CCJ,Análise do relator,NA,Comissões, - Origem (Senado)
+2018-04-18,Mesa - Senado,Recebimento,inicio_prazo_emendas,Mesa - Senado, - Origem (Senado)
+2018-04-19,CCJ,Análise do relator,designado_relator,Comissões, - Origem (Senado)
 2018-04-24,CCJ,Análise do relator,devolvido,Comissões, - Origem (Senado)
 2018-04-24,CCJ,Análise do relator,NA,Comissões, - Origem (Senado)
-2018-05-02,CCJ,Análise do relator,NA,Comissões, - Origem (Senado)
+2018-05-02,CCJ,Análise do relator,designado_relator,Comissões, - Origem (Senado)
 2018-07-05,CCJ,Análise do relator,devolvido,Comissões, - Origem (Senado)
+2018-08-07,CCJ,Análise do relator,designado_relator,Comissões, - Origem (Senado)
