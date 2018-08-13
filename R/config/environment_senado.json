@@ -28,19 +28,13 @@
       "regex": "recebido na|nesta comissão"
   }, 
   
-  "fase_comissao": {
-      "vector": {
-
-      }
-  }, 
-  
   "fase_casa": [
     {"fase_casa": "plenario", "regex": "Apresentação"},
     {"fase_casa": "comissoes", "regex": "recebido na comissão|recebido nesta comissão"}
   ],
   
   "fase_comissao": [
-    {"fase": "analise_do_relator", "code": [91]},
+    {"fase": "analise_do_relator", "code": [91], "regex":"(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a presente matéria.*))"},
     {"fase": "discussao_votacao", "code": [42, 14, 78, 90]},
     {"fase": "encaminhamento", "code": [89, 159]},
     {"fase": "recebimento_comissao", "regex": "recebido na|nesta comissao"}
@@ -63,7 +57,8 @@
     {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "aprovado requerimento de realização de audiência pública"},
     {"evento": "devolvido", "texto_tramitacao": "devolvido pel.*redistribu.*"},
     {"evento": "aprovacao_parecer", "texto_tramitacao": "a comissão aprova o relatório|aprovado o relatório"},
-    {"evento": "designado_relator", "situacao_codigo_situacao": "^91$"},
+    {"evento": "designado_relator", 
+      "texto_tramitacao": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))"},
     {"evento": "pedido_vista", "situacao_codigo_situacao": "^90$"},
     {"evento": "desarquivada", "situacao_codigo_situacao": "^149$"},
     {"evento": "aprovacao_substitutivo", "texto_tramitacao": "aprovado o substitutivo"},
