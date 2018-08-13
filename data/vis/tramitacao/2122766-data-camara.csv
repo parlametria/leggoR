@@ -1,11 +1,9 @@
 label,start,end,group,color
-Apresentação - Revisão (Câmara),2017-02-03T00:00:00Z,2018-02-27T00:00:00Z,Global,#d6952a
-Comissões - Revisão (Câmara),2018-02-27T00:00:00Z,2018-08-07T14:43:36Z,Global,#938ecc
-CD-MESA-PLEN,2017-02-03T15:31:00Z,2018-02-27T00:00:00Z,Comissão,NA
-Comissão Especial,2018-02-27T00:00:00Z,2018-08-07T14:43:36Z,Comissão,NA
-Recebimento,2018-02-27T00:00:00Z,2018-03-06T00:00:00Z,Sub-fase Comissão,#5496cf
-Análise do relator,2018-03-06T00:00:00Z,2018-03-23T10:29:00Z,Sub-fase Comissão,#ff9c37
-Recebimento,2018-03-23T10:29:00Z,2018-08-07T14:43:36Z,Sub-fase Comissão,#5496cf
+Apresentação - Revisão (Câmara),2017-02-03T00:00:00Z,2018-02-27T00:00:00Z,Global,NA
+Comissão Especial - Revisão (Câmara),2018-02-27T00:00:00Z,2018-08-13T14:46:38Z,Global,#ff9c37
+recebimento,2018-02-27T00:00:00Z,2018-03-06T00:00:00Z,Situação na comissão,NA
+analise_do_relator,2018-03-06T00:00:00Z,2018-03-23T10:29:00Z,Situação na comissão,NA
+recebimento,2018-03-23T10:29:00Z,2018-08-13T14:46:38Z,Situação na comissão,NA
 apresentacao_da_pl,2017-02-03T15:31:00Z,2017-02-03T15:31:00Z,Evento,#a9a9a9
 distribuicao,2017-02-09T00:00:00Z,2017-02-09T00:00:00Z,Evento,#a9a9a9
 comissao_especial,2017-08-15T00:00:00Z,2017-08-15T00:00:00Z,Evento,#a9a9a9

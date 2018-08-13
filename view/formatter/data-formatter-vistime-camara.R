@@ -120,7 +120,7 @@ build_vis_csv <- function(bill_id) {
   data <- 
     bind_rows(data_fase_global(bill_id, tramitacao), 
                      data_local(tramitacao),
-                    data_situacao_comissao(tramitacao), 
+                    #data_situacao_comissao(tramitacao), 
                     data_evento(tramitacao)) %>%
     filter(group != "Comissão")
   
