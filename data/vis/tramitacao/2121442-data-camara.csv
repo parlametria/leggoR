@@ -1,13 +1,7 @@
 label,start,end,group,color
 Apresentação - Revisão (Câmara),2016-03-16T14:03:00Z,2016-12-15T15:33:00Z,Global,NA
 CTASP - Revisão (Câmara),2016-12-15T15:33:00Z,2017-08-29T17:06:00Z,Global,#ea81b1
-Comissão Especial - Revisão (Câmara),2017-08-29T17:06:00Z,2018-08-13T14:46:35Z,Global,#ff9c37
-recebimento,2016-12-15T15:33:00Z,2017-08-15T19:01:00Z,Situação na comissão,NA
-encaminhamento,2017-08-15T19:01:00Z,2017-08-23T08:59:00Z,Situação na comissão,NA
-recebimento,2017-08-23T08:59:00Z,2017-08-29T18:59:00Z,Situação na comissão,NA
-encaminhamento,2017-08-29T18:59:00Z,2017-09-12T00:00:00Z,Situação na comissão,NA
-analise_do_relator,2017-09-12T00:00:00Z,2018-06-11T17:08:00Z,Situação na comissão,NA
-discussao_votacao,2018-06-11T17:08:00Z,2018-08-13T14:46:35Z,Situação na comissão,NA
+Comissão Especial - Revisão (Câmara),2017-08-29T17:06:00Z,2018-08-13T18:12:17Z,Global,#ff9c37
 distribuicao,2016-03-16T14:03:00Z,2016-03-16T14:03:00Z,Evento,#a9a9a9
 apresentacao_da_pl,2016-12-14T22:16:00Z,2016-12-14T22:16:00Z,Evento,#a9a9a9
 distribuicao,2016-12-15T10:39:00Z,2016-12-15T10:39:00Z,Evento,#a9a9a9
