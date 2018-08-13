@@ -27,8 +27,7 @@ Imports: magrittr,
     fuzzyjoin,
     xml2,
     lubridate,
-    readr,
-    magrittr
+    readr
 Suggests: testthat,
     knitr,
     vistime,
