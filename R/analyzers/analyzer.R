@@ -41,16 +41,19 @@ process_proposicao_senado <- function(bill_id) {
   phase_three <- c(42, 14, 78, 90)
   encaminhamento_phase <- c(89, 158, 159, 160, 161, 162, 163)
   phase_four <- c(52)
+  comissoes_phase <- senado_env$fase_comissao %>%
+    filter(fase == "analise_do_relator")
   
   bill_passage <-
     extract_fase_Senado(
       bill_passage,
       phase_one,
       recebimento_phase,
-      phase_two,
+      #phase_two,
       phase_three,
       encaminhamento_phase,
-      phase_four
+      phase_four,
+      comissoes_phase$regex
     ) %>%
     arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     fill(fase)
@@ -60,7 +63,7 @@ process_proposicao_senado <- function(bill_id) {
     str_replace_all("\\s+", "_")
   
   bill_passage <-
-    extract_fase_casa_Senado(bill_passage, phase_one) %>%
+    extract_fase_casa_Senado(bill_passage, phase_one, recebimento_phase, comissoes_phase$regex) %>%
     arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     fill(casa) %>%
     filter(!is.na(casa))
