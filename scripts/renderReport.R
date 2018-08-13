@@ -21,13 +21,19 @@ render_plot_all <- function(senado_id, camara_id) {
     output_dir = output_dir,
     output_file = paste0('report_', senado_id, '_senado_', camara_id, '_camara', '.html'),
     params = list(senado_id = senado_id, camara_id = camara_id)
-  )
+  ) %>% as.tibble()
 }
 
 render_house_df_reports <- function(df) {
   df %>%
     rowwise() %>%
     do(render_plot_single_house(param_id = .$id, param_casa = .$casa))
+}
+
+render_reports_camara_senado <- function(df) {
+  df %>%
+    rowwise() %>%
+    do(render_plot_all(senado_id = .$id_senado, camara_id = .$id_camara))
 }
 
 render_all_reports <- function() {
