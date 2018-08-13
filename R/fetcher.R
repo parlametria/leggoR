@@ -84,9 +84,7 @@ fetch_tramitacao <- function(proposicao_id) {
 #' @description Verifica deferimento ou não para uma lista de IDs de requerimentos.
 #' @param proposicao_id ID de um ou vários requerimentos
 #' @return Dataframe com IDs dos requerimentos e informação sobre deferimento.
-#' @examples
-#' fetch_deferimento(c("102343", "109173", "115853"))
-#' fetch_proposicao("81668")$proposicoes_relacionadas %>% fetch_deferimento
+#' @importFrom utils tail
 #' @export
 fetch_deferimento <- function(proposicao_id) {
   deferimento_regexes <- senado_env$deferimento
@@ -237,8 +235,6 @@ fetch_current_relatoria <- function(proposicao_id) {
 #' de underscore e letras minúsculas
 #' @param df Dataframe do histórico de relatorias
 #' @return Dataframe com as colunas renomeadas
-#' @examples
-#' df %>% rename_relatorias_df()
 #' @export
 rename_relatorias_df <- function(df) {
   new_names = names(df) %>%
@@ -255,8 +251,6 @@ rename_relatorias_df <- function(df) {
 #' de underscore e letras minúsculas
 #' @param df Dataframe do Senado
 #' @return Dataframe com as colunas renomeadas
-#' @examples
-#' df %>% rename_table_to_underscore()
 #' @export
 rename_table_to_underscore <- function(df) {
   new_names = names(df) %>%
@@ -272,8 +266,6 @@ rename_table_to_underscore <- function(df) {
 #' de underscore e letras minúsculas
 #' @param df Dataframe da votação no Senado
 #' @return Dataframe com as colunas renomeadas
-#' @examples
-#' df %>% rename_votacoes_df()
 #' @export
 rename_votacoes_df <- function(df) {
   new_names = names(df) %>%
@@ -293,8 +285,6 @@ rename_votacoes_df <- function(df) {
 #' de underscore e letras minúsculas
 #' @param df Dataframe da votação no Senado
 #' @return Dataframe com as colunas renomeadas
-#' @examples
-#' df %>% rename_tramitacao_df()
 #' @export
 rename_tramitacao_df <- function(df) {
   new_names = names(df) %>%
@@ -317,8 +307,6 @@ rename_tramitacao_df <- function(df) {
 #' de underscore e letras minúsculas
 #' @param df Dataframe dos detalhes da proposição no Senado
 #' @return Dataframe com as colunas renomeadas
-#' @examples
-#' df %>% rename_proposicao_df()
 #' @export
 rename_proposicao_df <- function(df) {
   new_names = names(df) %>%
@@ -334,11 +322,12 @@ rename_proposicao_df <- function(df) {
 #' @description Verifica o regime de apreciação de um dataframe. Se apresentar as
 #' palavras '(em|a) decisão terminativa' é retornado 'conclusivo' como resposta, caso contrário
 #' é retornado 'plenário'.
-#' @param df Dataframe da tramitação no Senado.
+#' @param proposicao_id id da proposicao
 #' @return String com a situação da pl.
 #' @examples
 #' extract_apreciacao_Senado(93418)
 #' @export
+#' @importFrom stats filter
 extract_apreciacao_Senado <- function(proposicao_id) {
   url <-
     paste0(senado_env$endpoints_api$url_base,
@@ -455,7 +444,7 @@ fetch_emendas <- function(bill_id) {
       ) %>%
       dplyr::mutate(autor = autoria$nome_autor,
                     partido = autoria$partido) %>%
-      select(codigo, numero, local, autor, partido)
+      dplyr::select(codigo, numero, local, autor, partido)
     
   } else{
     emendas_df <- emendas_df %>%
@@ -496,8 +485,6 @@ fetch_emendas <- function(bill_id) {
 #' @description Recebido um id a função roda os scripts para
 #' importar os dados daquela proposição.
 #' @param bill_id Identificador da proposição que pode ser recuperado no site da casa legislativa.
-#' @examples
-#' import_proposicao(91341)
 #' @export
 import_proposicao <- function(bill_id) {
   #Voting data
@@ -584,8 +571,6 @@ import_proposicao <- function(bill_id) {
 #' @description Retorna o estado e partido
 #' @param uri uri que contém dados sobre o autor
 #' @return Estado e partido
-#' @examples
-#' partido_estado <- extract_partido_estado_autor(autores$autor.uri %>% tail(1))
 #' @export
 extract_partido_estado_autor <- function(uri) {
   if (!is.na(uri)) {
@@ -618,7 +603,7 @@ extract_partido_estado_autor <- function(uri) {
 #' fetch_apensadas(2121442)
 #' @export
 fetch_apensadas <- function(prop_id) {
-  api_v1_proposicao_url = 'http://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID?IdProp='
+  api_v1_proposicao_url <- 'http://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID?IdProp='
   xml2::read_xml(paste0(api_v1_proposicao_url, prop_id)) %>%
     xml2::xml_find_all('//apensadas/proposicao/codProposicao') %>%
     xml2::xml_text() %>%
@@ -632,6 +617,7 @@ fetch_apensadas <- function(prop_id) {
 #' @examples
 #' fetch_events(2121442)
 #' @export
+#' @importFrom utils timestamp
 fetch_events <- function(prop_id) {
   events_base_url <-
     'http://www.camara.gov.br/proposicoesWeb/sessoes_e_reunioes?idProposicao='

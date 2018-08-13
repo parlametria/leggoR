@@ -13,16 +13,16 @@ CCJ - Origem (Senado),2015-09-25,2015-10-28,33,Global,#ffffcc
 CI - Origem (Senado),2015-10-28,2016-02-15,110,Global,#454682
 CAE - Origem (Senado),2016-02-15,2016-12-08,297,Global,#a1dab4
 Plenário - Origem (Senado),2016-12-08,2017-02-03,57,Global,#5496cf
-Análise do relator,2014-02-11,2014-05-20,98,Sub-fase Comissão,#fdae61
-Recebimento,2014-05-20,2014-05-29,9,Sub-fase Comissão,#d7191c
-Análise do relator,2014-05-29,2014-06-02,4,Sub-fase Comissão,#fdae61
-Recebimento,2014-06-02,2014-07-15,43,Sub-fase Comissão,#d7191c
-Análise do relator,2014-07-15,2015-10-28,470,Sub-fase Comissão,#fdae61
-Recebimento,2015-10-28,2015-11-11,14,Sub-fase Comissão,#d7191c
-Discussão e votação,2015-11-11,2015-12-02,21,Sub-fase Comissão,#ffffbf
-Encaminhamento,2015-12-02,2016-02-23,83,Sub-fase Comissão,#abd9e9
-Análise do relator,2016-02-23,2016-07-13,141,Sub-fase Comissão,#fdae61
-Discussão e votação,2016-07-13,2017-02-03,205,Sub-fase Comissão,#ffffbf
+Análise do relator,2014-02-11,2014-05-20,98,Situação na comissão,#fdae61
+Recebimento,2014-05-20,2014-05-29,9,Situação na comissão,#d7191c
+Análise do relator,2014-05-29,2014-06-02,4,Situação na comissão,#fdae61
+Recebimento,2014-06-02,2014-07-15,43,Situação na comissão,#d7191c
+Análise do relator,2014-07-15,2015-10-28,470,Situação na comissão,#fdae61
+Recebimento,2015-10-28,2015-11-11,14,Situação na comissão,#d7191c
+Discussão e votação,2015-11-11,2015-12-02,21,Situação na comissão,#ffffbf
+Encaminhamento,2015-12-02,2016-02-23,83,Situação na comissão,#abd9e9
+Análise do relator,2016-02-23,2016-07-13,141,Situação na comissão,#fdae61
+Discussão e votação,2016-07-13,2017-02-03,205,Situação na comissão,#ffffbf
 recebimento_comissao,2014-02-11,2014-02-11,0,Evento,#a9a9a9
 designado_relator,2014-02-11,2014-02-11,0,Evento,#a9a9a9
 designado_relator,2014-05-29,2014-05-29,0,Evento,#a9a9a9

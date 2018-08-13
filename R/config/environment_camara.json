@@ -24,7 +24,7 @@
     {"evento": "voto_em_separado", "id_tipo_tramitacao": "^431$"},
     {"evento": "apresentacao_da_pl", "id_tipo_tramitacao": "^100$"},
     {"evento": "retirada_de_pauta", "id_tipo_tramitacao": "^250$"},
-    {"evento": "pedido_de_vista", "id_tipo_tramitacao": "^420$"},
+    {"evento": "pedido_de_vista", "despacho": "^(vista conjunta aos|vista ao)"},
     {"evento": "abertura_prazo_emendas", "id_tipo_tramitacao": "^350$"},
     {"evento": "encerramento_prazo_emendas", "id_tipo_tramitacao": "^600$"},
     {"evento": "arquivada", "despacho": "^arquivado nos termos"},

@@ -114,7 +114,7 @@ build_vis_csv <- function(bill_id) {
   df <- 
     rbind(format_local(data_tramitacao),
           format_fase_global(data_tramitacao),
-          format_fase(data_tramitacao),
+          #format_fase(data_tramitacao),
           format_eventos(data_tramitacao)) %>%
     filter(time_interval != 0 | group == "Evento") %>%
     filter(group != 'Comissão')
