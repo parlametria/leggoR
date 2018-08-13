@@ -1,3 +1,11 @@
+#' @title Regex left match
+#' @description Identifica eventos por regex e adiciona uma nova coluna
+#' @param df dataframe a ser adicionado nova coluna
+#' @param regex_df dataframe dos regex
+#' @param new_column nova coluna
+#' @return Dataframe com os eventos detectados pelo regex
+#' @importFrom magrittr %<>%
+#' @export
 regex_left_match <- function(df, regex_df, new_column) {
   columns <-
     names(regex_df)[names(regex_df) != new_column] %>% sapply(function(x) {
@@ -28,6 +36,7 @@ regex_left_match <- function(df, regex_df, new_column) {
 #' @description Renomeia as colunas do dataframe usando o padrão de letras minúsculas e underscore
 #' @param df Dataframe
 #' @return Dataframe com as colunas renomeadas.
+#' @importFrom magrittr %<>%
 #' @export
 rename_df_columns <- function(df) {
   names(df) %<>% to_underscore
