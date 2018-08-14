@@ -1,0 +1,9 @@
+---
+title: "Introdução ao Ágora Digital"
+---
+
+## Baixando dados
+
+```{r}
+agoradigital::get_ementas_in_camara(c(2121442, 345311))
+```

@@ -1,5 +1,6 @@
-pandoc: 1.17.2
+pandoc: 2.1.2
 pkgdown: 1.1.0
 pkgdown_sha: ~
-articles: []
+articles:
+  introducao: introducao.html
 

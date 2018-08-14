@@ -135,6 +135,7 @@ extract_evento_Senado <- function(tramitacao_df) {
   date_comissao_especial <- comissoes[match("Comissão Especial", comissoes$comissoes), ]$data_tramitacao
   designacao_relator <- senado_env$eventos %>%
     filter(evento == 'designado_relator') 
+
   if (!is.na(date_comissao_especial)) {
     df %>%
       dplyr::mutate(evento =
@@ -144,13 +145,19 @@ extract_evento_Senado <- function(tramitacao_df) {
                       ))
   }
   
-  df %>% dplyr::mutate(
+  df <- df %>% dplyr::mutate(
     evento = dplyr::case_when(
       stringr::str_detect(tolower(texto_tramitacao), regex(designacao_relator$texto_tramitacao, 
                                                            ignore_case = TRUE)) ~ designacao_relator$evento,
+      (stringr::str_detect(tolower(texto_tramitacao), "realizada(,)* (.)*audiência pública") &
+         !stringr::str_detect(tolower(texto_tramitacao), "aprovado o requerimento")) ~ 'realizacao_audiencia_publica',
       stringr::str_detect(tolower(texto_tramitacao), "processo arquivado(.)*") ~ 'arquivada',
       TRUE ~ evento
   ))
+  
+  df %>%
+    mutate(data_audiencia = str_extract(tolower(texto_tramitacao), "\\d+/\\d+/\\d+")) %>%
+    mutate(data_audiencia = ifelse(evento == 'realizacao_audiencia_publica', data_audiencia, NA))
   
 }
 

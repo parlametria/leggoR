@@ -63,7 +63,9 @@ process_proposicao_senado <- function(bill_id) {
     fill(casa) %>%
     filter(!is.na(casa))
   
-  bill_passage <- extract_evento_Senado(bill_passage)
+  bill_passage <-
+    extract_evento_Senado(bill_passage) %>%
+    mutate(data_audiencia = as.Date(data_audiencia, "%d/%m/%Y")) 
   
   index_of_camara <-
     ifelse(
@@ -88,7 +90,7 @@ process_proposicao_senado <- function(bill_id) {
   
   bill_passage_visualization <-
     bill_passage %>%
-    select(data_tramitacao, local, fase, evento, casa, global)
+    select(data_tramitacao, local, fase, evento, casa, global, data_audiencia)
   
   # Print evento freq table
   bill_passage_visualization %>% select(evento) %>% group_by(evento) %>%
