@@ -3,6 +3,7 @@ title: "Fetcher de uma proposição que já está na segunda casa"
 output: html_notebook
 ---
 
+O fetcher realiza a importação dos dados das apis da Câmara e do Senado.
 Para aquelas proposições que já tramitaram na casa de origem e estão agora na casa revisora, temos que realizar alguns passos para adquirir as informações de tramitação. O primeiro é identificar os ids das proposições na Câmara e no Senado. De posse desses ids temos que chamar a função fetch_tramitacao(id_senado) e a rcongresso::fetch_tramitacao(id_camara).
 
 ```{r}
