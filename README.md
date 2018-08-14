@@ -90,6 +90,16 @@ há várias formas de capturar esse id, serão mostradas as mais básicas:
 ### Exemplos
   Você pode encontrar mais exemplos de uso do *agoradigital* [aqui](https://github.com/analytics-ufcg/agora-digital/tree/master/docs).
 
+## Estrutura do projeto
+
+* O Código principal do pacote você pode encontrar em [R/](https://github.com/analytics-ufcg/agora-digital/tree/master/R)
+* Exemplos de csv gerados pode se ver em [data/](https://github.com/analytics-ufcg/agora-digital/tree/master/data)
+* Em [docs/](https://github.com/analytics-ufcg/agora-digital/tree/master/docs) pode se visualizar reports de Pls já
+ testadas.
+* Em [scripts/](https://github.com/analytics-ufcg/agora-digital/tree/master/scripts) pode se ver alguns scripts que facilitam o processo de importar e geração de dados.
+* [tests/](https://github.com/analytics-ufcg/agora-digital/tree/master/tests) contém testes de uso.
+* [view/](https://github.com/analytics-ufcg/agora-digital/tree/master/view) contém alguns exemplos de visualizações que utilizam o agoradigital
+* [vignettes/](https://github.com/analytics-ufcg/agora-digital/tree/master/vignettes) exemplos.
 
 ## Comandos
 
