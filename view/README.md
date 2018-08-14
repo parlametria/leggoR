@@ -5,7 +5,7 @@
 Contém a função *create_chart* que recebe um id e casa. Ao executar a função, o script
 busca pelo CSV daquela proposição com o respectivo id e casa e retorna um gráfico em timeline.
 
-## Example
+### Exemplo
 
 ```R
 create_chart(91341, "senado")
