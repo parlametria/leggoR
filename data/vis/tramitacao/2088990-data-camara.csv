@@ -1,12 +1,6 @@
 label,start,end,group,color
-Apresentação - Revisão (Câmara),2016-06-21T00:00:00Z,2016-06-28T09:52:00Z,Global,#d6952a
-Comissões - Revisão (Câmara),2016-06-28T09:52:00Z,2018-08-07T14:43:10Z,Global,#938ecc
-CD-MESA-PLEN,2016-06-21T16:37:00Z,2016-06-28T09:52:00Z,Comissão,NA
-CFT,2016-06-28T09:52:00Z,2018-08-07T14:43:10Z,Comissão,NA
-Recebimento,2016-06-28T09:52:00Z,2016-07-06T00:00:00Z,Sub-fase Comissão,#5496cf
-Análise do relator,2016-07-06T00:00:00Z,2016-11-17T18:03:00Z,Sub-fase Comissão,#ff9c37
-Encaminhamento,2016-11-17T18:03:00Z,2016-11-18T10:42:00Z,Sub-fase Comissão,#ea81b1
-Recebimento,2016-11-18T10:42:00Z,2018-08-07T14:43:10Z,Sub-fase Comissão,#5496cf
+Apresentação - Revisão (Câmara),2016-06-21T00:00:00Z,2016-06-28T09:52:00Z,Global,NA
+CFT - Revisão (Câmara),2016-06-28T09:52:00Z,2018-08-13T18:12:13Z,Global,NA
 apresentacao_da_pl,2016-06-21T16:37:00Z,2016-06-21T16:37:00Z,Evento,#a9a9a9
 distribuicao,2016-06-23T11:42:00Z,2016-06-23T11:42:00Z,Evento,#a9a9a9
 designado_relator,2016-07-06T00:00:00Z,2016-07-06T00:00:00Z,Evento,#a9a9a9

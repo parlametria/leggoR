@@ -48,6 +48,11 @@
     "aprovacao_substitutivo": {
       "regex": "aprovado o substitutivo",
       "constant": "aprovacao_substitutivo"
+    },
+    "realizacao_audiencia_publica": {
+      "regex": "realizada(,)* (.)*audiência pública",
+      "regex_complementar": "aprovado o requerimento",
+      "constant": "realizacao_audiencia_publica"
     }
   },
 

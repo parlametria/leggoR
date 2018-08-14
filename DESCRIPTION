@@ -1,12 +1,13 @@
 Package: agoradigital
 Type: Package
-Title: Wraps the API for the Brazilian Chamber of Deputies
+Title: Ágora Digital
 Version: 0.0.1
 Authors@R: c(
     person("Laboratório Analytics (UFCG)", , , "a@a.com", role = c("aut", "cre", "cph", "fnd")),
     person("Dado Capital", , , "a@a.com", role = c("aut", "cph", "fnd"))
     )
 URL: https://github.com/analytics-ufcg/agora-digital
+BugReports: https://github.com/analytics-ufcg/agora-digital/issues
 Description: Provides propositions, votings, deputies and parties data from 
     Brazilian lower house <https://dadosabertos.camara.leg.br> in data frames.
 License: AGPL
@@ -26,7 +27,8 @@ Imports: magrittr,
     rcongresso,
     fuzzyjoin,
     xml2,
-    lubridate
+    lubridate,
+    readr
 Suggests: testthat,
     knitr,
     vistime,
@@ -34,4 +36,4 @@ Suggests: testthat,
     rcmdcheck,
     lintr
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0

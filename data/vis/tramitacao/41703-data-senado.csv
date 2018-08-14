@@ -1,17 +1,12 @@
 label,start,end,time_interval,group,color
-Comissões - Origem (Senado),1999-11-18,2002-03-12,845,Global,#938ecc
-CAS,1999-11-18,2002-03-12,845,Comissão,NA
-Análise do relator,1999-11-18,2000-04-18,152,Sub-fase Comissão,#fdae61
-Discussão e votação,2000-04-18,2000-05-10,22,Sub-fase Comissão,#ffffbf
-Análise do relator,2000-05-10,2000-08-02,84,Sub-fase Comissão,#fdae61
-Discussão e votação,2000-08-02,2000-08-10,8,Sub-fase Comissão,#ffffbf
-Análise do relator,2000-08-10,2001-05-08,271,Sub-fase Comissão,#fdae61
-Discussão e votação,2001-05-08,2001-06-20,43,Sub-fase Comissão,#ffffbf
-Encaminhamento,2001-06-20,2001-08-15,56,Sub-fase Comissão,#abd9e9
-Análise do relator,2001-08-15,2001-11-05,82,Sub-fase Comissão,#fdae61
-Discussão e votação,2001-11-05,2001-12-12,37,Sub-fase Comissão,#ffffbf
-Encaminhamento,2001-12-12,2001-12-18,6,Sub-fase Comissão,#abd9e9
-Discussão e votação,2001-12-18,2002-03-12,84,Sub-fase Comissão,#ffffbf
+Mesa - Senado - Origem (Senado),1999-09-10,1999-11-18,69,Global,NA
+CAS - Origem (Senado),1999-11-18,2002-03-12,845,Global,NA
+designado_relator,1999-09-10,1999-09-10,0,Evento,#a9a9a9
+designado_relator,1999-11-18,1999-11-18,0,Evento,#a9a9a9
+pronta_para_pauta,2000-04-18,2000-04-18,0,Evento,#a9a9a9
+pronta_para_pauta,2000-08-02,2000-08-02,0,Evento,#a9a9a9
 devolvido,2001-02-15,2001-02-15,0,Evento,#a9a9a9
-aprovacao_parecer,2001-06-20,2001-06-20,0,Evento,#a9a9a9
-aprovacao_parecer,2001-12-12,2001-12-12,0,Evento,#a9a9a9
+designado_relator,2001-04-17,2001-04-17,0,Evento,#a9a9a9
+pronta_para_pauta,2001-05-08,2001-05-08,0,Evento,#a9a9a9
+pronta_para_pauta,2001-11-05,2001-11-05,0,Evento,#a9a9a9
+virada_casa,2002-03-12,2002-03-12,0,Evento,#a9a9a9
