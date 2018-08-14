@@ -18,3 +18,10 @@ id_qualidade_fiscal_camara <- 2088990
 head(fetch_tramitacao(id_qualidade_fiscal_senado))
 head(rcongresso::fetch_tramitacao(id_qualidade_fiscal_camara))
 ```
+
+Para adquirir informações gerais sobre uma proposição usamos o método fetch_proposição(id, casa).
+
+```{r}
+fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
+fetch_proposicao(id_qualidade_fiscal_camara, 'camara')
+```
