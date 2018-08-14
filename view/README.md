@@ -1,15 +1,10 @@
 # Tramitação
 
-* [build-data.R](./build-data.R)
-
-Dado um id e casa, o script gera todos os CSVs necessários para a criação do gráfico
-timeline. O script chama funções para importar e processar, dado o id da proposição 
-e a casa a qual está está relacionada a proposição.
-
-* [build-chart.R](./build-chart.R)
+* [build-chart.R](./visualizer/build-chart.R)
 
 Contém a função *create_chart* que recebe um id e casa. Ao executar a função, o script
 busca pelo CSV daquela proposição com o respectivo id e casa e retorna um gráfico em timeline.
+
 
 * data-formatter-vistime-<camara/senado>.R
 
