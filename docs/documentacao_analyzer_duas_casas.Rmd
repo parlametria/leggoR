@@ -16,6 +16,8 @@ library(tidyverse)
 id_qualidade_fiscal_senado <- 91341
 id_qualidade_fiscal_camara <- 2088990
 
-process_proposicao(id_qualidade_fiscal_senado, 'senado')
+tramitacao_senado <- process_proposicao(id_qualidade_fiscal_senado, 'senado')
+tramitacao_senado
+
 process_proposicao(id_qualidade_fiscal_camara, 'camara')
 ```
