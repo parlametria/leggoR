@@ -1,8 +1,6 @@
 label,start,end,group,color
-Apresentação - Revisão (Câmara),2017-11-08T00:00:00Z,2018-04-18T16:33:00Z,Global,#d6952a
-Plenário - Revisão (Câmara),2018-04-18T16:33:00Z,2018-08-07T14:43:31Z,Global,#5496cf
-CD-MESA-PLEN,2017-11-08T16:32:00Z,2018-04-18T16:33:00Z,Comissão,NA
-Plenário,2018-04-18T16:33:00Z,2018-08-07T14:43:31Z,Comissão,#5496cf
+Apresentação - Revisão (Câmara),2017-11-08T00:00:00Z,2018-04-18T16:33:00Z,Global,NA
+Plenário - Revisão (Câmara),2018-04-18T16:33:00Z,2018-08-13T18:12:19Z,Global,#5496cf
 distribuicao,2017-11-08T00:00:00Z,2017-11-08T00:00:00Z,Evento,#a9a9a9
 apresentacao_da_pl,2017-11-08T16:32:00Z,2017-11-08T16:32:00Z,Evento,#a9a9a9
 comissao_especial,2017-11-22T00:00:00Z,2017-11-22T00:00:00Z,Evento,#a9a9a9

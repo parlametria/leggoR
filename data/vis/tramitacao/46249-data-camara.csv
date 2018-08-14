@@ -1,46 +1,11 @@
 label,start,end,group,color
-Apresentação - Revisão (Câmara),2002-03-13T00:00:00Z,2002-04-15T14:18:00Z,Global,#d6952a
-Comissões - Revisão (Câmara),2002-04-15T14:18:00Z,2018-08-07T14:43:18Z,Global,#938ecc
-CD-MESA-PLEN,2002-03-13T00:00:00Z,2002-04-15T14:18:00Z,Comissão,NA
-CDC,2002-04-15T14:18:00Z,2004-05-19T09:54:00Z,Comissão,NA
-CMADS,2004-05-19T09:54:00Z,2006-05-05T10:51:00Z,Comissão,NA
-CSSF,2006-05-05T10:51:00Z,2006-12-21T10:23:00Z,Comissão,NA
-CAPADR,2006-12-21T10:23:00Z,2007-08-09T11:26:00Z,Comissão,NA
-CCJC,2007-08-09T11:26:00Z,2016-06-22T11:16:00Z,Comissão,NA
-Comissão Especial,2016-06-22T11:16:00Z,2018-08-07T14:43:18Z,Comissão,NA
-Recebimento,2002-04-15T14:18:00Z,2002-05-20T00:00:00Z,Sub-fase Comissão,#5496cf
-Análise do relator,2002-05-20T00:00:00Z,2004-04-26T00:00:00Z,Sub-fase Comissão,#ff9c37
-Encaminhamento,2004-04-26T00:00:00Z,2004-05-18T00:00:00Z,Sub-fase Comissão,#ea81b1
-Encaminhamento,2004-05-18T00:00:00Z,2004-05-19T09:54:00Z,Sub-fase Comissão,#ea81b1
-Recebimento,2004-05-19T09:54:00Z,2004-05-26T00:00:00Z,Sub-fase Comissão,#5496cf
-Análise do relator,2004-05-26T00:00:00Z,2004-11-10T20:13:00Z,Sub-fase Comissão,#ff9c37
-Discussão e votação,2004-11-10T20:13:00Z,2005-03-09T00:00:00Z,Sub-fase Comissão,#8bca42
-Análise do relator,2005-03-09T00:00:00Z,2006-03-28T16:05:00Z,Sub-fase Comissão,#ff9c37
-Discussão e votação,2006-03-28T16:05:00Z,2006-03-29T00:00:00Z,Sub-fase Comissão,#8bca42
-Análise do relator,2006-03-29T00:00:00Z,2006-05-04T15:52:00Z,Sub-fase Comissão,#ff9c37
-Encaminhamento,2006-05-04T15:52:00Z,2006-05-05T00:00:00Z,Sub-fase Comissão,#ea81b1
-Análise do relator,2006-05-05T00:00:00Z,2006-05-05T10:51:00Z,Sub-fase Comissão,#ff9c37
-Recebimento,2006-05-05T10:51:00Z,2006-10-20T11:27:00Z,Sub-fase Comissão,#5496cf
-Discussão e votação,2006-10-20T11:27:00Z,2006-12-20T18:07:00Z,Sub-fase Comissão,#8bca42
-Encaminhamento,2006-12-20T18:07:00Z,2006-12-21T10:23:00Z,Sub-fase Comissão,#ea81b1
-Recebimento,2006-12-21T10:23:00Z,2007-02-15T00:00:00Z,Sub-fase Comissão,#5496cf
-Análise do relator,2007-02-15T00:00:00Z,2007-03-14T17:07:00Z,Sub-fase Comissão,#ff9c37
-Discussão e votação,2007-03-14T17:07:00Z,2007-08-09T11:21:00Z,Sub-fase Comissão,#8bca42
-Encaminhamento,2007-08-09T11:21:00Z,2007-08-09T11:26:00Z,Sub-fase Comissão,#ea81b1
-Recebimento,2007-08-09T11:26:00Z,2007-10-03T00:00:00Z,Sub-fase Comissão,#5496cf
-Análise do relator,2007-10-03T00:00:00Z,2011-11-01T16:23:00Z,Sub-fase Comissão,#ff9c37
-Discussão e votação,2011-11-01T16:23:00Z,2015-04-23T00:00:00Z,Sub-fase Comissão,#8bca42
-Análise do relator,2015-04-23T00:00:00Z,2015-08-07T12:23:00Z,Sub-fase Comissão,#ff9c37
-Discussão e votação,2015-08-07T12:23:00Z,2016-06-20T23:00:00Z,Sub-fase Comissão,#8bca42
-Encaminhamento,2016-06-20T23:00:00Z,2016-06-22T00:00:00Z,Sub-fase Comissão,#ea81b1
-Análise do relator,2016-06-22T00:00:00Z,2016-06-22T09:40:00Z,Sub-fase Comissão,#ff9c37
-Encaminhamento,2016-06-22T09:40:00Z,2016-06-22T09:44:00Z,Sub-fase Comissão,#ea81b1
-Recebimento,2016-06-22T09:44:00Z,2016-06-22T11:09:00Z,Sub-fase Comissão,#5496cf
-Encaminhamento,2016-06-22T11:09:00Z,2016-06-22T11:16:00Z,Sub-fase Comissão,#ea81b1
-Recebimento,2016-06-22T11:16:00Z,2018-04-24T14:32:00Z,Sub-fase Comissão,#5496cf
-Discussão e votação,2018-04-24T14:32:00Z,2018-06-26T14:36:00Z,Sub-fase Comissão,#8bca42
-Encaminhamento,2018-06-26T14:36:00Z,2018-06-26T15:07:00Z,Sub-fase Comissão,#ea81b1
-Recebimento,2018-06-26T15:07:00Z,2018-08-07T14:43:18Z,Sub-fase Comissão,#5496cf
+Apresentação - Revisão (Câmara),2002-03-13T00:00:00Z,2002-04-15T14:18:00Z,Global,NA
+CDC - Revisão (Câmara),2002-04-15T14:18:00Z,2004-05-19T09:54:00Z,Global,NA
+CMADS - Revisão (Câmara),2004-05-19T09:54:00Z,2006-05-05T10:51:00Z,Global,NA
+CSSF - Revisão (Câmara),2006-05-05T10:51:00Z,2006-12-21T10:23:00Z,Global,NA
+CAPADR - Revisão (Câmara),2006-12-21T10:23:00Z,2007-08-09T11:26:00Z,Global,NA
+CCJC - Revisão (Câmara),2007-08-09T11:26:00Z,2016-06-22T11:16:00Z,Global,NA
+Comissão Especial - Revisão (Câmara),2016-06-22T11:16:00Z,2018-08-13T18:12:15Z,Global,#ff9c37
 apresentacao_da_pl,2002-03-13T00:00:00Z,2002-03-13T00:00:00Z,Evento,#a9a9a9
 distribuicao,2002-04-03T00:00:00Z,2002-04-03T00:00:00Z,Evento,#a9a9a9
 designado_relator,2002-05-20T00:00:00Z,2002-05-20T00:00:00Z,Evento,#a9a9a9

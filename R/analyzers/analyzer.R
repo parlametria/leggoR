@@ -1,8 +1,3 @@
-library(rcongresso)
-library(magrittr)
-library(lubridate)
-library(fuzzyjoin)
-library(tidyverse)
 source(here::here("R/camara-lib.R"))
 source(here::here("R/analyzers/senado_analyzer.R"))
 source(here::here("R/fetcher.R"))
@@ -68,7 +63,9 @@ process_proposicao_senado <- function(bill_id) {
     fill(casa) %>%
     filter(!is.na(casa))
   
-  bill_passage <- extract_evento_Senado(bill_passage)
+  bill_passage <-
+    extract_evento_Senado(bill_passage) %>%
+    mutate(data_audiencia = as.Date(data_audiencia, "%d/%m/%Y")) 
   
   index_of_camara <-
     ifelse(
@@ -93,7 +90,7 @@ process_proposicao_senado <- function(bill_id) {
   
   bill_passage_visualization <-
     bill_passage %>%
-    select(data_tramitacao, local, fase, evento, casa, global)
+    select(data_tramitacao, local, fase, evento, casa, global, data_audiencia)
   
   # Print evento freq table
   bill_passage_visualization %>% select(evento) %>% group_by(evento) %>%
@@ -115,6 +112,7 @@ process_proposicao_senado <- function(bill_id) {
 #' @param pl_id Identificador da proposição que pode ser recuperado no site da câmara.
 #' @examples
 #' process_proposicao_camara(257161)
+#' @importFrom magrittr %<>%
 #' @export
 process_proposicao_camara <- function(pl_id) {
   data_path <- here::here('data/camara/')
