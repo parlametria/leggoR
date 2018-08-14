@@ -15,7 +15,7 @@ id_pl_veneno_camara <- 46249
 process_proposicao(id_pl_veneno_camara, 'camara')
 ```
 
-Os dados retornados pela função **process_proposicao(<id>, "camara")**, além dos retornados pela [API Dados Abertos](https://dadosabertos.camara.leg.br/swagger/api.html), estão distribuídos nas seguintes colunas:
+Os dados retornados pela função **process_proposicao(id, "camara")**, além dos retornados pela [API Dados Abertos da Câmara](https://dadosabertos.camara.leg.br/swagger/api.html), estão distribuídos nas seguintes colunas:
 
 * `evento`: Eventos importantes que ocorreram na tramitação;
 * `local`: Local onde a proposição esteve/está;
@@ -28,4 +28,6 @@ Os dados retornados pela função **process_proposicao(<id>, "camara")**, além 
     * analise_do_relator: quando o Relator é designado;
     * discussao_votacao: quando o Relator apresenta seu Parecer e ele passa a ser votado na Comissão;
     * encaminhamento: quando a proposição é votada e é encaminhada para a próxima Comissão, Plenário ou Casa.
+
+
 

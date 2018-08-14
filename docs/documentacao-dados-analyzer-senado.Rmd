@@ -1,0 +1,37 @@
+---
+title: "Dados gerados pelo Analyzer no Senado"
+output: html_notebook
+---
+
+O `analyzer.R` realiza operações de reconhecimento e extração dos eventos e as fases nos dataframes das tramitação das proposições na Câmara dos Deputados e no Senado Federal. Como possuem APIs distintas, cada casa possui um analyzer próprio adequado para os dados disponíveis em suas respectivas APIs. 
+
+O `senado-analyzer.R` extrai os locais (Comissões e Plenário), as fases da proposição na casa e os eventos que ocorreram durante a tramitação de uma proposição no Senado.
+
+```{r message=FALSE}
+source(here::here("R/analyzers/analyzer.R"))
+library(magrittr)
+library(tidyverse)
+id_pl_veneno_senado <- 41703
+process_proposicao(id_pl_veneno_senado, 'senado')
+```
+
+Os dados retornados pela função **process_proposicao(id, "senado")**, além dos retornados pela [API Dados Abertos do Senado](https://www12.senado.leg.br/dados-abertos), estão distribuídos nas seguintes colunas:
+
+* `fase`: Situação da proposição na **Comisssão** onde ela se encontra. Pode ser:
+    * Recebimento: quando a proposição é recebida na Comissão;
+    * Análise do relator: quando o Relator é designado;
+    * Discussão e votação: quando o Relator apresenta seu Parecer e ele passa a ser votado na Comissão;
+    * Encaminhamento: quando a proposição é votada e é encaminhada para a próxima Comissão, Plenário ou Casa.
+* `casa`: A fase correspondente à situação da proposição na **Casa** onde ela se encontra. Pode ser: 
+    * Apresentação: quando é apresentada na Câmara de Deputados;
+    * Comissões: quando é designada às comissões para que um Relator seja designado, apresente seu Parecer e ele seja votado;
+    * Plenário: quando é encaminhada ao Plenário (isso ocorre quando há divergência entre os Pareceres aprovados dos Relatores nas Comissões).
+* `evento`: Eventos importantes que ocorreram na tramitação;
+* `data_audiencia`: A data da realização da audiência pública (Este dado muitas vezes é confundido com a data que o despacho foi feito, então extraiu-se do próprio texto);
+* `local`: Local onde a proposição esteve/está;
+* `global`: Fase **global** onde a proposição se encontra. Pode ser:
+    * Origem: Se a proposição está na Casa iniciadora, ou seja, a casa que criou a proposta;
+    * Revisão: Se a proposição está na Casa Revisora (Câmara);
+    * Réplica: Ocorre quando a proposição sofre alguma modificação na Casa Revisora e passa novamente na Casa iniciadora para Réplica;
+
+
