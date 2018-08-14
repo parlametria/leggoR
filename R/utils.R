@@ -1,4 +1,11 @@
 regex_left_match <- function(df, regex_df, new_column) {
+  # names(regex_df)[names(regex_df) != new_column] %>% sapply(function(x) {
+  #   df[x] %<>% 
+  #     sapply(function(row) {
+  #       str_replace_all(row, '\r|\n', '')
+  #     })
+  # })
+
   columns <-
     names(regex_df)[names(regex_df) != new_column] %>% sapply(function(x) {
       paste0(x, "X")
