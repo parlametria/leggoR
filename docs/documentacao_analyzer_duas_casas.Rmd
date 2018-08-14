@@ -6,13 +6,13 @@ output: html_notebook
 O Analyzer realiza operações de reconhecimento de eventos e fases em dataframes de tramitação da Câmara e do Senado.
 Para aquelas proposições que já tramitaram na casa de origem e estão agora na casa revisora, temos que identificar os ids das proposições na Câmara e no Senado, com posse dessas informações precisamos chamar apenas a função process_proposicao(id, casa) duas vezes. Depois disso todos os csvs necessários para o módulo view terão sido criados.
 
-```{r}
+```{r message=FALSE}
 source(here::here("R/analyzers/analyzer.R"))
 library(magrittr)
 library(tidyverse)
 ```
 
-```{r}
+```{r message=FALSE}
 id_qualidade_fiscal_senado <- 91341
 id_qualidade_fiscal_camara <- 2088990
 
