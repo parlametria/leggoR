@@ -4,7 +4,6 @@
 #' @return Dataframe com a coluna "fase" adicionada.
 #' @examples
 #' tramitacao %>% extract_fase_Senado()
-#' @export
 extract_fase_Senado <-
   function(dataframe,
            recebimento_phase,
@@ -35,7 +34,6 @@ extract_fase_Senado <-
 #' @return Dataframe com a coluna "global" adicionada.
 #' @examples
 #' tramitacao %>% extract_fase_global()
-#' @export
 extract_fase_global <- function(data_tramitacao, bill_id) {
   fase_global_constants <- senado_env$fase_global
   data_prop <-
@@ -83,7 +81,6 @@ extract_fase_global <- function(data_tramitacao, bill_id) {
 #' @return Dataframe com a coluna "casa" adicionada.
 #' @examples
 #' bill_passage %>% extract_fase_casa_Senado(phase_one)
-#' @export
 extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_phase, fase_comissoes) {
   dataframe <-
     dataframe %>%
@@ -127,7 +124,6 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_p
 #' @examples
 #' df <- fetch_tramitacao(91341)
 #' extract_evento_Senado(df)
-#' @export
 extract_evento_Senado <- function(tramitacao_df) {
   df <- regex_left_match(tramitacao_df, senado_env$eventos, "evento")
   eventos <- senado_env$evento
@@ -170,7 +166,6 @@ extract_evento_Senado <- function(tramitacao_df) {
 #' @return Dataframe contendo os n últimos eventos importantes que aconteceram no Senado
 #' @examples
 #' df %>% extract_n_last_eventos_Senado(4)
-#' @export
 extract_n_last_eventos_Senado <- function(df, num) {
   df %>%
     dplyr::filter(!is.na(evento)) %>%
@@ -185,7 +180,6 @@ extract_n_last_eventos_Senado <- function(df, num) {
 #' @return Dataframe contendo o código da proposição, as comissões e a data
 #' @examples
 #' extract_comissoes_Senado(fetch_tramitacao(129808))
-#' @export
 extract_comissoes_Senado <- function(df) {
   codigos_comissoes <- senado_env$comissoes
   
@@ -297,7 +291,6 @@ extract_comissoes_Senado <- function(df) {
 #' @return Dataframe com as colunas renomeadas
 #' @examples
 #' get_nome_ementa_Senado(91341)
-#' @export
 get_nome_ementa_Senado <- function(proposicao_id) {
   fetch_proposicao(proposicao_id, 'senado') %>%
     dplyr::select(ementa_materia, sigla_subtipo_materia, numero_materia) %>%
@@ -312,7 +305,6 @@ get_nome_ementa_Senado <- function(proposicao_id) {
 #' @examples
 #' tramitacao %>% tail_descricao_despacho_Senado()
 #' tramitacao %>% tail_descricao_despacho_Senado(4)
-#' @export
 tail_descricao_despacho_Senado <- function(df, qtd = 1) {
   df %>%
     dplyr::arrange(data_tramitacao) %>%
@@ -328,7 +320,6 @@ tail_descricao_despacho_Senado <- function(df, qtd = 1) {
 #' @return Dataframe da tramitacao contendo mais uma coluna chamada local
 #' @examples
 #'  extract_locais(fetch_tramitacao(91341))
-#' @export
 extract_locais <- function(df) {
   comissao_json <- senado_env$fase_comissao
   df <-
@@ -368,7 +359,6 @@ extract_locais <- function(df) {
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
 #' extract_regime_Senado(93418)
-#' @export
 extract_regime_Senado <- function(proposicao_id) {
   df <- fetch_tramitacao(proposicao_id)
   regime <- senado_env$regimes
@@ -395,7 +385,6 @@ extract_regime_Senado <- function(proposicao_id) {
 #' @return Dataframe contendo o código da proposição, as comissões e a data
 #' @examples
 #' extract_first_comissoes_Senado(fetch_tramitacao(129808))
-#' @export
 extract_first_comissoes_Senado <- function(df) {
   extract_comissoes_Senado(df)[1,]
 }
@@ -406,7 +395,6 @@ extract_first_comissoes_Senado <- function(df) {
 #' @return Dataframe com os requerimentos aprovados no Senado.
 #' @examples
 #' tramitacao %>% extract_approved_requerimentos_in_senado()
-#' @export
 extract_approved_requerimentos_in_senado <- function(df) {
   apr_requerimentos_regex <- c('(aprova.* | deferid.*)requeriment.* nº.*')
   apr_requerimentos_df <- df %>%
@@ -430,7 +418,6 @@ extract_approved_requerimentos_in_senado <- function(df) {
 #' @param bill_id Identificador da proposição que pode ser recuperado no site da câmara.
 #' @examples
 #' process_proposicao_senado(91341)
-#' @export
 process_proposicao_senado <- function(bill_id) {
   bill_passage <-
     read_csv(paste0(

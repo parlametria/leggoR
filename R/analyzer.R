@@ -1,9 +1,14 @@
-source(here::here("R/camara-lib.R"))
 source(here::here("R/analyzers/senado_analyzer.R"))
-source(here::here("R/fetcher.R"))
-source(here::here("R/congresso-lib.R"))
 source(here::here("R/analyzers/camara_analyzer.R"))
 
+#' @title Processa dados de um proposição do congresso.
+#' @description Recebido um id a função recupera informações sobre uma proposição
+#' e sua tramitação e as salva em data/<camara/Senado>.
+#' @param id Identificador da proposição que pode ser recuperado no site da câmara/senado.
+#' @param casa Casa onde o PL está tramitando ('camara'/'senado').
+#' @examples
+#' process_proposicao(257161,'camara')
+#' @export
 process_proposicao <- function(id, casa) {
   if ("CAMARA" == toupper(casa)) {
     process_proposicao_camara(id)
