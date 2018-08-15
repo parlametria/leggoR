@@ -8,7 +8,7 @@ O `analyzer.R` realiza operações de reconhecimento e extração dos eventos e 
 O `camara-analyzer.R` extrai os locais (Comissões e Plenário), as fases da proposição na casa e eventos que ocorreram durante a tramitação de uma proposição na Câmara.
 
 ```{r message=FALSE}
-source(here::here("R/analyzers/analyzer.R"))
+source(here::here("R/analyzer.R"))
 library(magrittr)
 library(tidyverse)
 id_pl_veneno_camara <- 46249
