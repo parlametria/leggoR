@@ -223,20 +223,3 @@ extract_fase_casa_in_camara <- function(df) {
   df %>%
     tidyr::fill(casa)
 }
-
-#' @title Recupera a situação em que a proposição se encontra na comissão na Câmara
-#' @description Retorna o dataframe da tramitação com a coluna situacao_comissao adicionada (ex. recebimento, encaminhamento)
-#' @param df Dataframe da tramitação na Câmara
-#' @return Dataframe da tramitação contendo a coluna situacao_comissao
-#' @examples
-#'  extract_situacao_comissao(process_proposicao_camara(345311))
-#' @export
-extract_situacao_comissao <- function(df) {
-  
-  situacao_comissao <- camara_codes$situacao_comissao
-  situacao_comissao['local'] <- get_regex_comissoes_camara()
-  
-  df %>%
-    regex_left_match(situacao_comissao, "situacao_comissao") %>%
-    tidyr::fill(situacao_comissao)
-}

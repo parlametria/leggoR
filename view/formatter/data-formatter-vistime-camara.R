@@ -83,26 +83,6 @@ data_fase_global <- function(bill_id, tramitacao) {
            label = paste(label, '-', tipo_casa, '(Câmara)'))
 }
 
-data_situacao_comissao <- function(df) {
-  df %>% 
-  dplyr::select(data_hora, situacao_comissao) %>%
-  dplyr::filter(!is.na(situacao_comissao)) %>%
-  mutate(end_data = lead(data_hora, default=Sys.time())) %>%
-  group_by(situacao_comissao, sequence = data.table::rleid(situacao_comissao)) %>%
-  summarise(start = min(data_hora),
-            end = max(end_data)) %>%
-  filter(end - start > 0) %>%
-  ungroup() %>%
-  arrange(sequence) %>%
-  select(-sequence) %>%
-  rename(label = situacao_comissao) %>%
-  mutate(group = "Situação na comissão",
-         color = case_when(label == "Recebimento" ~ "#5496cf",
-                           label == "Análise do relator" ~ "#ff9c37",
-                           label == "Discussão e votação" ~ "#8bca42",
-                           label == "Encaminhamento" ~ "#ea81b1"))
-}
-
 #' @title Formata tabela para o vistime
 #' @description Formata a tabela final que será usado para fazer a visualização
 #' usando o vistime
@@ -120,7 +100,6 @@ build_vis_csv <- function(bill_id) {
   data <- 
     bind_rows(data_fase_global(bill_id, tramitacao), 
                      data_local(tramitacao),
-                    data_situacao_comissao(tramitacao), 
                     data_evento(tramitacao)) %>%
     filter(group != "Comissão")
   

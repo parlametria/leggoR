@@ -1,11 +1,4 @@
 {
-   "situacao_comissao": [
-    {"situacao_comissao": "recebimento_comissao", "despacho": "^recebimento pela C"},
-    {"situacao_comissao": "analise_do_relator", "despacho": "^designad[a|o] relator"},
-    {"situacao_comissao": "discussao_votacao", "despacho": "^parecer d[o|a] relator|^pela [aprova..o|rejei..o]|^aprovado o parecer"},
-    {"situacao_comissao": "encaminhamento", "despacho": "^encaminhado à"}
-  ],
-  
   "eventos": [
     {"evento": "requerimento_audiencia_publica", "despacho": "^apresentação do requerimento.*requer a realização d.* audiências? públicas?"},
     {"evento": "aprovacao_audiencia_publica", "despacho": "^aprovado requerimento.*requer a realização d.* audiências? públicas?"},
