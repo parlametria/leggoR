@@ -12,7 +12,7 @@ Antes de instalar nosso pacote, é necessário que você tenha o [R](https://www
 
   - **Aviso:** Os comandos desta seção devem ser executados dentro do interpretador de R. Mas você também pode executar qualquer código R direto no terminal usando o comando `Rscript -e`. Exemplo: 
       ```
-      Rscript -e 'agoradigital::fetch_proposicao("senado", 82051)
+      Rscript -e 'agoradigital::fetch_proposicao("senado", 82051)'
       ```
 
 Recomendamos que você instale o pacote [devtools](https://github.com/r-lib/devtools) que é uma ferramenta que irá te ajudar no processo de instalação e desenvolvimento.
@@ -49,30 +49,22 @@ há várias formas de capturar esse id, serão mostradas as mais básicas:
     
   - Pelo site da câmara e do senado:
       
-      Tendo como exemplo a PL 3729/2004 da *câmara*, você pode visualizar o id pela URL da página da câmara
-        
+      Tendo como exemplo o PL 3729/2004 da *Câmara*, você pode visualizar o id pela URL da página da Câmara. Nesse caso o id é **257161**:
         
         https://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao=257161
-  
-  
-    O id é **257161**
       
-    No *senado* é da mesma forma, tendo como exemplo a PL 441/2007, o id é **82051**
+    No *Senado* é da mesma forma, tendo como exemplo o PLS 441/2007, o id é **82051**:
       
-      
-        https://www25.senado.leg.br/web/atividade/materias/-/materia/82051?o=d
+        https://www25.senado.leg.br/web/atividade/materias/-/materia/82051
 
-
-    Agora você pode utilizar esse id nos métodos que precisar:
-    
+    Agora você pode utilizar esses ids nos métodos que precisar. Exemplo:
     
     ```R
-      agoradigital::fetch_prop("senado", 7492)
+    agoradigital::fetch_proposicao("senado", 82051)
     ```
-   
     
 ### Exemplos
-  Você pode encontrar mais exemplos de uso do *agoradigital* [aqui](https://github.com/analytics-ufcg/agora-digital/tree/master/docs).
+Você pode encontrar mais exemplos de uso do *agoradigital* [aqui](https://github.com/analytics-ufcg/agora-digital/tree/master/docs).
 
 ## Estrutura do projeto
 
