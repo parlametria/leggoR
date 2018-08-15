@@ -32,4 +32,8 @@ Os dados retornados pela função **process_proposicao(prop_senado, tram_senado,
     * Revisão: Se a proposição está na Casa Revisora (Câmara);
     * Réplica: Ocorre quando a proposição sofre alguma modificação na Casa Revisora e passa novamente na Casa iniciadora para Réplica;
 
-
+Caso se deseje salvar o *dataframe* retornado pela função anterior em um arquivo **.csv**, pode-se usar o comando `write_csv` da biblioteca *readr*:
+```{r}
+library(readr)
+readr::write_csv(tram_senado, "../data/tramitacao_91341.csv")
+```
