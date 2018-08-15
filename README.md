@@ -12,7 +12,7 @@ Antes de instalar nosso pacote, é necessário que você tenha o [R](https://www
 
   - **Aviso:** Os comandos desta seção devem ser executados dentro do interpretador de R. Mas você também pode executar qualquer código R direto no terminal usando o comando `Rscript -e`. Exemplo: 
       ```
-      Rscript -e 'agoradigital::fetch_proposicao("senado", 82051)'
+      Rscript -e 'agoradigital::fetch_proposicao(82051, "senado")'
       ```
 
 Recomendamos que você instale o pacote [devtools](https://github.com/r-lib/devtools) que é uma ferramenta que irá te ajudar no processo de instalação e desenvolvimento.
@@ -36,7 +36,7 @@ library(agoradigital)
 Para verificar se toda a instalação foi feita de maneira correta, use o exemplo:
 
 ```R
-agoradigital::fetch_proposicao("senado", 82051)
+agoradigital::fetch_proposicao(82051, "senado")
 ```
 
 ## Uso
@@ -60,7 +60,7 @@ há várias formas de capturar esse id, serão mostradas as mais básicas:
     Agora você pode utilizar esses ids nos métodos que precisar. Exemplo:
     
     ```R
-    agoradigital::fetch_proposicao("senado", 82051)
+    agoradigital::fetch_proposicao(82051, "senado")
     ```
     
 ### Exemplos
