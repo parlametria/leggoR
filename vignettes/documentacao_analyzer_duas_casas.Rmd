@@ -10,8 +10,14 @@ Para aquelas proposições que já tramitaram na casa de origem e estão agora n
 id_qualidade_fiscal_senado <- 91341
 id_qualidade_fiscal_camara <- 2088990
 
-tramitacao_senado <- agoradigital::process_proposicao(id_qualidade_fiscal_senado, 'senado')
+prop_camara <- agoradigital::fetch_proposicao(id_qualidade_fiscal_camara, 'camara')
+tram_camara <- rcongresso::fetch_tramitacao(id_qualidade_fiscal_camara)
+prop_senado <- agoradigital::fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
+tram_senado <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado)
+
+tramitacao_senado <- agoradigital::process_proposicao(prop_senado, tram_senado, 'senado')
 tramitacao_senado
 
-agoradigital::process_proposicao(id_qualidade_fiscal_camara, 'camara')
+agoradigital::process_proposicao(prop_camara, tram_camara, "camara")
 ```
+
