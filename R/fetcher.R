@@ -481,6 +481,7 @@ fetch_emendas <- function(bill_id) {
   emendas_df
 
 }
+
 #' @title Importa as informações de uma proposição da internet.
 #' @description Recebido um id a função roda os scripts para
 #' importar os dados daquela proposição.

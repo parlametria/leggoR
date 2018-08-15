@@ -4,6 +4,14 @@ source(here::here("R/fetcher.R"))
 source(here::here("R/congresso-lib.R"))
 source(here::here("R/analyzers/camara_analyzer.R"))
 
+#' @title Processa dados de uma proposição
+#' @description Recebido um id a função recupera informações sobre uma proposição
+#' e sua tramitação e as salva na pasta correspondente
+#' @param id Identificador da proposição que pode ser recuperado.
+#' @param casa Nome da casa
+#' @examples
+#' process_proposicao(91341, 'senado')
+#' @export
 process_proposicao <- function(id, casa) {
   if ("CAMARA" == toupper(casa)) {
     process_proposicao_camara(id)
