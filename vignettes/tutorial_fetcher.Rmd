@@ -12,7 +12,7 @@ Para que um Projeto de Lei (PL) seja aprovado, é necessário que ele passe pela
 
 O primeiro passo para obter dados de qualquer PL é identificar os ids do mesmo na Câmara e/ou no Senado. [Link para instruções sobre como achar o id de um PL](https://github.com/analytics-ufcg/agora-digital#como-capturar-ids-de-proposi%C3%A7%C3%B5es). 
 
-Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009).
+Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009 - Senado | PLP 295/2016 - Câmara).
 
 
 ```{r message=FALSE}
