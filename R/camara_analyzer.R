@@ -268,6 +268,22 @@ process_proposicao_camara <- function(pl_id) {
   tramitacao_pl
 }
 
+#' @title Processa dados de um proposição da câmara.
+#' @description Recebido um dataframe com a tramitação, a função recupera informações sobre uma proposição
+#' e sua tramitação e as salva em data/camara.
+#' @param tramitacao_df Dataframe com tramitação da proposição
+#' @importFrom magrittr %>%
+process_proposicao_camara <- function(tramitacao_df) {
+  tramitacao_df %>%
+    rename_df_columns %>%
+    extract_events_in_camara() %>%
+    extract_locais_in_camara() %>%
+    extract_fase_casa_in_camara() %>%
+    extract_situacao_comissao() %>%
+    refact_date() %>%
+    sort_by_date()
+}
+
 #Fetch a bill with renamed columns
 fetch_proposicao_renamed <- function(id) {
   df <-
