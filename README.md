@@ -10,6 +10,8 @@ Acesso, tradução e modelos usando dados do congresso nacional.
 
 Antes de instalar nosso pacote, é necessário que você tenha o [R](https://www.r-project.org/) instalado.
 
+  - **Aviso:**
+
       Os comandos desta seção devem ser executados dentro do interpretador de R. Mas você também pode executar qualquer código R direto no terminal usando o comando `Rscript -e`. Exemplo: 
       ```
       Rscript -e 'agoradigital::fetch_proposicao("senado", 82051)
@@ -49,7 +51,7 @@ há várias formas de capturar esse id, serão mostradas as mais básicas:
     
   - Pelo site da câmara e do senado:
       
-      Tendo como exemplo a PL 3729/2004 da *câmara*, você pode visualizar o id pela URL da página da   câmara
+      Tendo como exemplo a PL 3729/2004 da *câmara*, você pode visualizar o id pela URL da página da câmara
         
         
         https://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao=257161
