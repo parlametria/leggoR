@@ -8,11 +8,12 @@ O `analyzer.R` realiza operações de reconhecimento e extração dos eventos e 
 O `senado-analyzer.R` extrai os locais (Comissões e Plenário), as fases da proposição na casa e os eventos que ocorreram durante a tramitação de uma proposição no Senado.
 
 ```{r message=FALSE}
-id_pl_veneno_senado <- 41703
-agoradigital::process_proposicao(id_pl_veneno_senado, 'senado')
+prop_senado <- agoradigital::fetch_proposicao(91341, 'senado')
+tram_senado <- agoradigital::fetch_tramitacao(91341)
+agoradigital::process_proposicao(prop_senado, tram_senado, 'senado')
 ```
 
-Os dados retornados pela função **process_proposicao(id, "senado")**, além dos retornados pela [API Dados Abertos do Senado](https://www12.senado.leg.br/dados-abertos), estão distribuídos nas seguintes colunas:
+Os dados retornados pela função **process_proposicao(prop_senado, tram_senado, "senado")**, além dos retornados pela [API Dados Abertos do Senado](https://www12.senado.leg.br/dados-abertos), estão distribuídos nas seguintes colunas:
 
 * `fase`: Situação da proposição na **Comisssão** onde ela se encontra. Pode ser:
     * Recebimento: quando a proposição é recebida na Comissão;

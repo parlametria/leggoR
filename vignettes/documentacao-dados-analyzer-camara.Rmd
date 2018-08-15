@@ -8,8 +8,9 @@ O `analyzer.R` realiza operações de reconhecimento e extração dos eventos e 
 O `camara-analyzer.R` extrai os locais (Comissões e Plenário), as fases da proposição na casa e eventos que ocorreram durante a tramitação de uma proposição na Câmara.
 
 ```{r message=FALSE}
-id_pl_veneno_camara <- 46249
-agoradigital::process_proposicao(id_pl_veneno_camara, 'camara')
+prop_camara <- prop_camara <- agoradigital::fetch_proposicao(345311, 'camara')
+tram_camara <- tramitacao_camara <- rcongresso::fetch_tramitacao(345311)
+agoradigital::process_proposicao(prop_camara, tram_camara, "camara")
 ```
 
 Os dados retornados pela função **process_proposicao(id, "camara")**, além dos retornados pela [API Dados Abertos da Câmara](https://dadosabertos.camara.leg.br/swagger/api.html), estão distribuídos nas seguintes colunas:
