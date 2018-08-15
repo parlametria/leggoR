@@ -8,16 +8,14 @@ Acesso, tradução e modelos usando dados do congresso nacional.
 
 ## Instalação
 
-Antes de instalar nosso pacote, é necessário que você tenha o [R](https://www.r-project.org/) instalado e também o [devtools](https://github.com/r-lib/devtools) que é uma ferramenta que irá te ajudar no processo de instalação e desenvolvimento:
+Antes de instalar nosso pacote, é necessário que você tenha o [R](https://www.r-project.org/) instalado.
+
+  Os comandos desta seção devem ser executados dentro do interpretador de R. Mas você também pode executar qualquer código R direto no terminal usando o comando `Rscript -e`. Exemplo: `Rscript -e 'agoradigital::fetch_proposicao("senado", 82051)`.
+
+Recomendamos que você instale o pacote [devtools](https://github.com/r-lib/devtools) que é uma ferramenta que irá te ajudar no processo de instalação e desenvolvimento.
 
 ```R
 install.packages("devtools")
-```
-
-ou no terminal:
-
-```
-Rscript -e 'install.packages("devtools")'
 ```
 
 Após isso, você pode instalar o pacote no seu ambiente R de preferência:
@@ -25,12 +23,6 @@ Após isso, você pode instalar o pacote no seu ambiente R de preferência:
 ```R 
 devtools::install_github("analytics-ufcg/agora-digital")
 ```
-  
-  ou:
-```
-Rscript -e 'devtools::install_github("analytics-ufcg/agora-digital")'
-```
-
 
 Para utilizá-lo:
 
@@ -41,13 +33,7 @@ library(agoradigital)
 Para verificar se toda a instalação foi feita de maneira correta, use o exemplo:
 
 ```R
-agoradigital::fetch_proposicao("senado", 7492)
-```
-
-ou 
- 
-```
-Rscript -e 'agoradigital::fetch_proposicao("senado", 7492)'
+agoradigital::fetch_proposicao("senado", 82051)
 ```
 
 ## Uso
