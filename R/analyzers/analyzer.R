@@ -63,7 +63,9 @@ process_proposicao_senado <- function(bill_id) {
     fill(casa) %>%
     filter(!is.na(casa))
   
-  bill_passage <- extract_evento_Senado(bill_passage)
+  bill_passage <-
+    extract_evento_Senado(bill_passage) %>%
+    mutate(data_audiencia = as.Date(data_audiencia, "%d/%m/%Y")) 
   
   index_of_camara <-
     ifelse(
@@ -88,7 +90,7 @@ process_proposicao_senado <- function(bill_id) {
   
   bill_passage_visualization <-
     bill_passage %>%
-    select(data_tramitacao, local, fase, evento, casa, global)
+    select(data_tramitacao, local, fase, evento, casa, global, data_audiencia)
   
   # Print evento freq table
   bill_passage_visualization %>% select(evento) %>% group_by(evento) %>%
@@ -102,6 +104,8 @@ process_proposicao_senado <- function(bill_id) {
       bill_id,
       "-visualizacao-tramitacao-senado.csv"
     ))
+  
+  bill_passage
 }
 
 #' @title Processa dados de um proposição da câmara.
@@ -128,6 +132,7 @@ process_proposicao_camara <- function(pl_id) {
     extract_locais_in_camara() %>%
     extract_fase_casa_in_camara() %>%
     extract_situacao_comissao() %>%
+   # extract_relatorias_in_camara() %>%
     refact_date() %>%
     sort_by_date() %>%
     readr::write_csv(csv_path)

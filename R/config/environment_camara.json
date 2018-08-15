@@ -19,7 +19,7 @@
     {"evento": "alteracao_de_regime", "despacho": "^alteração do regime de tramitação desta proposição"},
     {"evento": "redistribuicao", "despacho": "^novo despacho|atualização do despacho|despacho à.*novo despacho"},
     {"evento": "distribuicao", "despacho": "às* comiss..s*|despacho à"},
-    {"evento": "comissao_especial", "id_tipo_tramitacao": "^120$"},
+    {"evento": "comissao_especial", "despacho": "recebimento pela p"},
     {"evento": "designado_relator", "id_tipo_tramitacao": "^320$"},
     {"evento": "voto_em_separado", "id_tipo_tramitacao": "^431$"},
     {"evento": "apresentacao_da_pl", "id_tipo_tramitacao": "^100$"},

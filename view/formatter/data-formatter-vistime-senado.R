@@ -64,7 +64,7 @@ format_eventos <- function(df) {
     # Improve the phases names and convert data_tramitacao to Date
     df %>%
     mutate(
-      data_tramitacao = as.Date(data_tramitacao),
+      data_tramitacao = if_else(is.na(data_audiencia), as.Date(data_tramitacao), as.Date(data_audiencia)),
       evento = as.character(evento)
     )
   

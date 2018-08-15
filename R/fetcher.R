@@ -13,7 +13,7 @@ senado_constants <- senado_env$constants
 fetch_votacoes <- function(proposicao_id) {
   url_base_votacoes <-
     paste0(senado_env$endpoints_api$url_base, "votacoes/")
-  
+
   url <- paste0(url_base_votacoes, proposicao_id)
   json_votacoes <- jsonlite::fromJSON(url, flatten = T)
   votacoes_data <-
@@ -29,11 +29,11 @@ fetch_votacoes <- function(proposicao_id) {
     magrittr::extract2("Votacoes") %>%
     purrr::map_df( ~ .) %>%
     tidyr::unnest()
-  
+
   votacoes_df <-
     votacoes_df %>%
     tibble::add_column(!!!votacoes_ids)
-  
+
   votacoes_df <- votacoes_df[,!sapply(votacoes_df, is.list)]
   rename_votacoes_df(votacoes_df)
 }
@@ -73,10 +73,10 @@ fetch_tramitacao <- function(proposicao_id) {
     magrittr::extract2("Tramitacao") %>%
     tibble::as.tibble() %>%
     tibble::add_column(!!!tramitacao_ids)
-  
+
   proposicao_tramitacoes_df <-
     proposicao_tramitacoes_df[,!sapply(proposicao_tramitacoes_df, is.list)]
-  
+
   rename_tramitacao_df(proposicao_tramitacoes_df)
 }
 
@@ -97,20 +97,20 @@ fetch_deferimento <- function(proposicao_id) {
       "deferido",
       deferimento_regexes$deferido
     )
-  
+
   fetch_one_deferimento <- function(proposicao_id) {
     json <-
       paste0(senado_env$endpoints_api$url_base,
              "movimentacoes/",
              proposicao_id) %>%
       jsonlite::fromJSON()
-    
+
     resultados <-
       json$MovimentacaoMateria$Materia$OrdensDoDia$OrdemDoDia$DescricaoResultado
     # handle NULL
     if (is.null(resultados))
       resultados <- c('')
-    
+
     resultados %>%
       tibble::as.tibble() %>%
       dplyr::mutate(proposicao_id = proposicao_id) %>%
@@ -119,7 +119,7 @@ fetch_deferimento <- function(proposicao_id) {
       tail(., n = 1) %>%
       dplyr::select(proposicao_id, deferimento)
   }
-  
+
   proposicao_id %>%
     unlist %>%
     unique %>%
@@ -139,29 +139,29 @@ fetch_deferimento <- function(proposicao_id) {
 fetch_relatorias <- function(proposicao_id) {
   url_relatorias <-
     paste0(senado_env$endpoints_api$url_base, "relatorias/")
-  
+
   url <- paste0(url_relatorias, proposicao_id)
   json_relatorias <- jsonlite::fromJSON(url, flatten = T)
-  
+
   #extract relatores objects
   relatorias_data <-
     json_relatorias %>%
     magrittr::extract2("RelatoriaMateria") %>%
     magrittr::extract2("Materia") %>%
     magrittr::extract2("HistoricoRelatoria")
-  
+
   relatorias_df <-
     relatorias_data %>%
     magrittr::extract2("Relator") %>%
     as.data.frame() %>%
     purrr::map_df( ~ .) %>%
     tidyr::unnest()
-  
+
   #select columns
   relatorias_df <-
     relatorias_df %>%
     tibble::add_column()
-  
+
   relatorias_df <- relatorias_df[,!sapply(relatorias_df, is.list)]
   rename_relatorias_df(relatorias_df)
 }
@@ -177,9 +177,9 @@ fetch_relatorias <- function(proposicao_id) {
 fetch_last_relatoria <- function(proposicao_id) {
   relatoria <- fetch_relatorias(proposicao_id)
   relatoria <- relatoria[1, ]
-  
+
   relatoria
-  
+
 }
 
 #' @title Recupera a relatoria atual no Senado
@@ -193,16 +193,16 @@ fetch_last_relatoria <- function(proposicao_id) {
 fetch_current_relatoria <- function(proposicao_id) {
   url_relatorias <-
     paste0(senado_env$endpoints_api$url_base, "relatorias/")
-  
+
   url <- paste0(url_relatorias, proposicao_id)
   json_relatorias <- jsonlite::fromJSON(url, flatten = T)
-  
+
   #extract relatores objects
   relatorias_data <-
     json_relatorias %>%
     magrittr::extract2("RelatoriaMateria") %>%
     magrittr::extract2("Materia")
-  
+
   current_relatoria_df <-
     relatorias_data %>%
     magrittr::extract2("HistoricoRelatoria") %>%
@@ -210,21 +210,21 @@ fetch_current_relatoria <- function(proposicao_id) {
     as.data.frame() %>%
     purrr::map_df( ~ .) %>%
     tidyr::unnest()
-  
+
   #fixing bug when api repeats relatorias
   current_relatoria_df <- current_relatoria_df[1, ]
-  
+
   #verify if relator atual exists
   if (ncol(current_relatoria_df) == 0) {
     return(current_relatoria_df)
   }
-  
-  
+
+
   #select columns
   current_relatoria_df <-
     current_relatoria_df %>%
     tibble::add_column()
-  
+
   current_relatoria_df <-
     current_relatoria_df[,!sapply(current_relatoria_df, is.list)]
   rename_table_to_underscore(current_relatoria_df)
@@ -240,9 +240,9 @@ rename_relatorias_df <- function(df) {
   new_names = names(df) %>%
     to_underscore() %>%
     stringr::str_replace("identificacao_parlamentar_|identificacao_comissao_", "")
-  
+
   names(df) <- new_names
-  
+
   df
 }
 
@@ -255,9 +255,9 @@ rename_relatorias_df <- function(df) {
 rename_table_to_underscore <- function(df) {
   new_names = names(df) %>%
     to_underscore()
-  
+
   names(df) <- new_names
-  
+
   df
 }
 
@@ -274,9 +274,9 @@ rename_votacoes_df <- function(df) {
       "sessao_plenaria_|tramitacao_identificacao_tramitacao_|identificacao_parlamentar_",
       ""
     )
-  
+
   names(df) <- new_names
-  
+
   df
 }
 
@@ -296,9 +296,9 @@ rename_tramitacao_df <- function(df) {
       identificacao_tramitacao_situacao_",
       ""
     )
-  
+
   names(df) <- new_names
-  
+
   df
 }
 
@@ -312,9 +312,9 @@ rename_proposicao_df <- function(df) {
   new_names = names(df) %>%
     to_underscore() %>%
     stringr::str_replace("identificacao_parlamentar_", "")
-  
+
   names(df) <- new_names
-  
+
   df
 }
 
@@ -340,9 +340,9 @@ extract_apreciacao_Senado <- function(proposicao_id) {
     magrittr::extract2("Materia") %>%
     magrittr::extract2("Despachos") %>%
     magrittr::extract2("Despacho")
-  
+
   apreciacao <- senado_env$apreciacao
-  
+
   if (!is.null(tramitacao_data)) {
     if (!is.list(tramitacao_data$ComissoesDespacho.ComissaoDespacho)) {
       tramitacao_data <-
@@ -378,19 +378,19 @@ fetch_sessions <- function(bill_id) {
   url_base_sessions <-
     "http://legis.senado.leg.br/dadosabertos/materia/ordia/"
   url <- paste0(url_base_sessions, bill_id)
-  
+
   json_sessions <- jsonlite::fromJSON(url, flatten = T)
-  
+
   sessions_data <- json_sessions %>%
     magrittr::extract2("OrdiaMateria") %>%
     magrittr::extract2("Materia")
-  
+
   ordem_do_dia_df <- sessions_data %>%
     magrittr::extract2("OrdensDoDia") %>%
     purrr::map_df( ~ .) %>%
     tidyr::unnest() %>%
     rename_table_to_underscore()
-  
+
   ordem_do_dia_df
 }
 
@@ -405,25 +405,25 @@ fetch_emendas <- function(bill_id) {
   url_base_emendas <-
     "http://legis.senado.leg.br/dadosabertos/materia/emendas/"
   url <- paste0(url_base_emendas, bill_id)
-  
+
   json_emendas <- jsonlite::fromJSON(url, flatten = T)
-  
+
   emendas_data <- json_emendas %>%
     magrittr::extract2("EmendaMateria") %>%
     magrittr::extract2("Materia")
-  
+
   emendas_df <- emendas_data %>%
     magrittr::extract2("Emendas") %>%
     purrr::map_df( ~ .)
-  
+
   if (nrow(emendas_df) == 0) {
     emendas_df <-
       frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ partido)
-    
+
   } else if (nrow(emendas_df) == 1) {
     emendas_df <- emendas_df %>%
       rename_table_to_underscore()
-    
+
     autoria <- as.data.frame(emendas_df$autoria_emenda) %>%
       rename_table_to_underscore() %>%
       dplyr::mutate(
@@ -445,7 +445,7 @@ fetch_emendas <- function(bill_id) {
       dplyr::mutate(autor = autoria$nome_autor,
                     partido = autoria$partido) %>%
       dplyr::select(codigo, numero, local, autor, partido)
-    
+
   } else{
     emendas_df <- emendas_df %>%
       tidyr::unnest() %>%
@@ -477,9 +477,9 @@ fetch_emendas <- function(bill_id) {
         )
       )
   }
-  
+
   emendas_df
-  
+
 }
 #' @title Importa as informações de uma proposição da internet.
 #' @description Recebido um id a função roda os scripts para
@@ -495,7 +495,7 @@ import_proposicao <- function(bill_id) {
       bill_id,
       "-votacoes-senado.csv"
     ))
-  
+
   #Passage Data
   passage <- fetch_tramitacao(bill_id)
   passage %>%
@@ -504,7 +504,7 @@ import_proposicao <- function(bill_id) {
       bill_id,
       "-tramitacao-senado.csv"
     ))
-  
+
   #Votacao Data
   bill_data <- fetch_proposicao(bill_id, 'senado')
   bill_data %>%
@@ -513,7 +513,7 @@ import_proposicao <- function(bill_id) {
       bill_id,
       "-proposicao-senado.csv"
     ))
-  
+
   #Relatorias Data
   relatorias <- fetch_relatorias(bill_id)
   relatorias %>%
@@ -522,7 +522,7 @@ import_proposicao <- function(bill_id) {
       bill_id,
       "-relatorias-senado.csv"
     ))
-  
+
   #Relatorias data
   relatorias <- fetch_relatorias(bill_id)
   relatorias %>%
@@ -531,7 +531,7 @@ import_proposicao <- function(bill_id) {
       bill_id,
       "-relatorias-senado.csv"
     ))
-  
+
   #Current Relatoria data
   current_relatoria <- fetch_current_relatoria(bill_id)
   current_relatoria %>%
@@ -540,7 +540,7 @@ import_proposicao <- function(bill_id) {
       bill_id,
       "-current-relatoria-senado.csv"
     ))
-  
+
   #Last Relatoria
   last_relatoria <- fetch_last_relatoria(bill_id)
   last_relatoria %>%
@@ -549,7 +549,7 @@ import_proposicao <- function(bill_id) {
       bill_id,
       "-last-relatoria-senado.csv"
     ))
-  
+
   #Ordem do Dia data
   sessions_data <- fetch_sessions(bill_id)
   sessions_data %>%
@@ -558,7 +558,7 @@ import_proposicao <- function(bill_id) {
       bill_id,
       "-sessions-senado.csv"
     ))
-  
+
   #Emendas data
   emendas_data <- fetch_emendas(bill_id)
   emendas_data %>%
@@ -575,20 +575,20 @@ import_proposicao <- function(bill_id) {
 extract_partido_estado_autor <- function(uri) {
   if (!is.na(uri)) {
     json_autor <- jsonlite::fromJSON(uri, flatten = T)
-    
+
     autor <-
       json_autor %>%
       magrittr::extract2('dados')
-    
+
     autor_uf <-
       autor %>%
       magrittr::extract2('ufNascimento')
-    
+
     autor_partido <-
       autor %>%
       magrittr::extract2('ultimoStatus') %>%
       magrittr::extract2('siglaPartido')
-    
+
     paste0(autor_partido, '/', autor_uf)
   } else {
     ''
@@ -662,10 +662,13 @@ to_underscore <- function(x) {
 #' fetch_proposicao(91341, 'senado')
 #' @export
 fetch_proposicao <- function(id, casa) {
-  if (tolower(casa) == 'camara') {
+  casa %<>% tolower()
+  if (casa == 'camara') {
     fetch_proposicao_camara(id)
-  } else {
+  } else if (casa == 'senado') {
     fetch_proposicao_senado(id)
+  } else {
+      print('Parâmetro "casa" não identificado.')
   }
 }
 
@@ -681,10 +684,10 @@ fetch_proposicao_senado <- function(proposicao_id) {
   url_base_proposicao <-
     "http://legis.senado.leg.br/dadosabertos/materia/"
   da_url <- paste0(url_base_proposicao, proposicao_id)
-  
+
   page_url_senado <-
     "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
-  
+
   json_proposicao <- jsonlite::fromJSON(da_url, flatten = T)
   proposicao_data <- json_proposicao$DetalheMateria$Materia
   proposicao_ids <-
@@ -713,7 +716,7 @@ fetch_proposicao_senado <- function(proposicao_id) {
     proposicao_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria
   relacionadas <-
     proposicao_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria
-  
+
   proposicao_complete <-
     proposicao_basic_data %>%
     tibble::add_column(
@@ -725,10 +728,10 @@ fetch_proposicao_senado <- function(proposicao_id) {
       proposicoes_relacionadas = paste(relacionadas, collapse = ' '),
       proposicoes_apensadas = paste(anexadas, collapse = ' ')
     )
-  
+
   proposicao_complete <-
     proposicao_complete[,!sapply(proposicao_complete, is.list)]
-  
+
   rename_proposicao_df(proposicao_complete)
 }
 
@@ -743,7 +746,7 @@ fetch_proposicao_senado <- function(proposicao_id) {
 fetch_proposicao_camara <- function(prop_id) {
   base_url <-
     'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
-  
+
   regex_regime <-
     tibble::frame_data(
       ~ regime_tramitacao,
@@ -755,7 +758,7 @@ fetch_proposicao_camara <- function(prop_id) {
       'Urgência',
       'Urgência'
     )
-  
+
   regex_apreciacao <-
     tibble::frame_data(
       ~ forma_apreciacao,
@@ -765,19 +768,19 @@ fetch_proposicao_camara <- function(prop_id) {
       'Plenário',
       'Sujeita à Apreciação do Plenário'
     )
-  
+
   rcongresso::fetch_proposicao(prop_id) %>%
     # Adiciona url das páginas das proposições
     dplyr::mutate(page_url = paste0(base_url, prop_id)) %>%
     # Adiciona html das páginas das proposições
     dplyr::rowwise() %>%
     dplyr::mutate(page_html = list(xml2::read_html(page_url))) %>%
-    
+
     # Padroniza valor sobre regime de tramitação
     fuzzyjoin::regex_left_join(regex_regime, by = c(statusProposicao.regime =
                                                       "regex")) %>%
     dplyr::select(-'regex') %>%
-    
+
     # Adiciona coluna sobre forma de apreciação
     dplyr::rowwise() %>%
     dplyr::mutate(temp =
