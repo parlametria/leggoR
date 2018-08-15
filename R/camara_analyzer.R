@@ -273,7 +273,7 @@ process_proposicao_camara <- function(pl_id) {
 #' e sua tramitação e as salva em data/camara.
 #' @param tramitacao_df Dataframe com tramitação da proposição
 #' @importFrom magrittr %>%
-process_proposicao_camara <- function(tramitacao_df) {
+process_proposicao_camara <- function(proposicao_df, tramitacao_df) {
   tramitacao_df %>%
     rename_df_columns %>%
     extract_events_in_camara() %>%
