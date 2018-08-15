@@ -1,6 +1,8 @@
 [![pipeline status](https://gitlab.com/analytics-ufcg/agora-digital/badges/master/pipeline.svg)](https://gitlab.com/analytics-ufcg/agora-digital/commits/master)
 [![coverage report](https://gitlab.com/analytics-ufcg/agora-digital/badges/master/coverage.svg)](https://gitlab.com/analytics-ufcg/agora-digital/commits/master)
 
+**Este pacote está em versão ALFA!**
+
 # Ágora Digital
 Acesso, tradução e modelos usando dados do congresso nacional.
  
