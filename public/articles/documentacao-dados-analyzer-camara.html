@@ -61,13 +61,13 @@
       <a href="../articles/documentacao_analyzer_duas_casas.html">Analyzer de uma proposição que já está na segunda casa</a>
     </li>
     <li>
-      <a href="../articles/documentacao_fetch_duas_casas.html">Fetcher de uma proposição que já está na segunda casa</a>
-    </li>
-    <li>
       <a href="../articles/documentacao_view_duas_casas.html">View de uma proposição que já está na segunda casa</a>
     </li>
     <li>
       <a href="../articles/introducao.html">Introdução ao Ágora Digital</a>
+    </li>
+    <li>
+      <a href="../articles/tutorial_csvs.html">Como Trabalhar com CSVs</a>
     </li>
     <li>
       <a href="../articles/tutorial_fetcher.html">Baixando Dados</a>
@@ -106,25 +106,30 @@
     
 <p>O <code>analyzer.R</code> realiza operações de reconhecimento e extração dos eventos e as fases nos dataframes das tramitação das proposições na Câmara dos Deputados e no Senado Federal. Como possuem APIs distintas, cada casa possui um analyzer próprio adequado para os dados disponíveis em suas respectivas APIs.</p>
 <p>O <code>camara-analyzer.R</code> extrai os locais (Comissões e Plenário), as fases da proposição na casa e eventos que ocorreram durante a tramitação de uma proposição na Câmara.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(here::<span class="kw">here</span>(<span class="st">"R/analyzer.R"</span>))
-<span class="kw">library</span>(magrittr)
-<span class="kw">library</span>(tidyverse)
-id_pl_veneno_camara &lt;-<span class="st"> </span><span class="dv">46249</span>
-<span class="kw"><a href="../reference/process_proposicao.html">process_proposicao</a></span>(id_pl_veneno_camara, <span class="st">'camara'</span>)</code></pre></div>
-<pre><code>## # A tibble: 254 x 16
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_camara &lt;-<span class="st"> </span>prop_camara &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(<span class="dv">345311</span>, <span class="st">'camara'</span>)
+tram_camara &lt;-<span class="st"> </span>tramitacao_camara &lt;-<span class="st"> </span>rcongresso::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(<span class="dv">345311</span>)
+agoradigital::<span class="kw"><a href="../reference/process_proposicao.html">process_proposicao</a></span>(prop_camara, tram_camara, <span class="st">"camara"</span>)</code></pre></div>
+<pre><code>## Warning in mutate_impl(.data, dots): hybrid evaluation forced for
+## `row_number`. Please use dplyr::row_number() or library(dplyr) to remove
+## this warning.
+
+## Warning in mutate_impl(.data, dots): hybrid evaluation forced for
+## `row_number`. Please use dplyr::row_number() or library(dplyr) to remove
+## this warning.</code></pre>
+<pre><code>## # A tibble: 122 x 16
 ##    data_hora           descricao_situac… descricao_trami… despacho id_prop
 ##    &lt;dttm&gt;              &lt;chr&gt;             &lt;chr&gt;            &lt;chr&gt;      &lt;int&gt;
-##  1 2002-03-13 00:00:00 Pronta para Pauta Apresentação de… Apresen…   46249
-##  2 2002-04-03 00:00:00 &lt;NA&gt;              "Distribuição "  "Despac…   46249
-##  3 2002-04-03 00:00:00 &lt;NA&gt;              Notificação de … Apense-…   46249
-##  4 2002-04-03 00:00:00 &lt;NA&gt;              Publicação de P… Encamin…   46249
-##  5 2002-04-03 00:00:00 &lt;NA&gt;              Encaminhamento   Encamin…   46249
-##  6 2002-04-04 00:00:00 &lt;NA&gt;              Recebimento      Recebim…   46249
-##  7 2002-04-11 00:00:00 &lt;NA&gt;              Publicação de D… Publica…   46249
-##  8 2002-04-11 00:00:00 &lt;NA&gt;              Publicação de P… Encamin…   46249
-##  9 2002-04-15 00:00:00 &lt;NA&gt;              Encaminhamento   Encamin…   46249
-## 10 2002-04-15 14:18:00 &lt;NA&gt;              Recebimento      Recebim…   46249
-## # ... with 244 more rows, and 11 more variables: id_situacao &lt;int&gt;,
+##  1 2007-03-20 16:13:00 &lt;NA&gt;              Apresentação de… Apresen…  345311
+##  2 2007-03-20 17:18:00 &lt;NA&gt;              Recebimento      Recebim…  345311
+##  3 2007-03-20 17:18:00 &lt;NA&gt;              Notificação (Si… Encamin…  345311
+##  4 2007-03-20 17:18:00 &lt;NA&gt;              Notificação (Ce… Encamin…  345311
+##  5 2007-03-21 09:05:00 &lt;NA&gt;              Encaminhamento   Encamin…  345311
+##  6 2007-03-21 11:42:00 &lt;NA&gt;              Recebimento      Recebim…  345311
+##  7 2007-03-27 00:00:00 &lt;NA&gt;              "Distribuição "  Despach…  345311
+##  8 2007-03-28 09:46:00 &lt;NA&gt;              Encaminhamento   Despach…  345311
+##  9 2007-03-28 09:46:00 &lt;NA&gt;              Notificações     Notific…  345311
+## 10 2007-03-28 10:38:00 &lt;NA&gt;              "Distribuição "  "Às Com…  345311
+## # ... with 112 more rows, and 11 more variables: id_situacao &lt;int&gt;,
 ## #   id_tipo_tramitacao &lt;chr&gt;, regime &lt;chr&gt;, sequencia &lt;int&gt;,
 ## #   sigla_orgao &lt;chr&gt;, uri_orgao &lt;chr&gt;, url &lt;chr&gt;, evento &lt;chr&gt;,
 ## #   local &lt;chr&gt;, casa &lt;chr&gt;, situacao_comissao &lt;chr&gt;</code></pre>
@@ -152,7 +157,10 @@ id_pl_veneno_camara &lt;-<span class="st"> </span><span class="dv">46249</span>
 </ul>
 </li>
 </ul>
-</div>
+<p>Caso se deseje salvar o <em>dataframe</em> retornado pela função anterior em um arquivo <strong>.csv</strong>, pode-se usar o comando <code>write_csv</code> da biblioteca <em>readr</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
+readr::<span class="kw"><a href="http://www.rdocumentation.org/packages/readr/topics/write_delim">write_csv</a></span>(tram_camara, <span class="st">"../data/tramitacao_345311.csv"</span>)</code></pre></div>
+  </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
       </div>

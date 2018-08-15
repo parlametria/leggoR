@@ -61,13 +61,13 @@
       <a href="../articles/documentacao_analyzer_duas_casas.html">Analyzer de uma proposição que já está na segunda casa</a>
     </li>
     <li>
-      <a href="../articles/documentacao_fetch_duas_casas.html">Fetcher de uma proposição que já está na segunda casa</a>
-    </li>
-    <li>
       <a href="../articles/documentacao_view_duas_casas.html">View de uma proposição que já está na segunda casa</a>
     </li>
     <li>
       <a href="../articles/introducao.html">Introdução ao Ágora Digital</a>
+    </li>
+    <li>
+      <a href="../articles/tutorial_csvs.html">Como Trabalhar com CSVs</a>
     </li>
     <li>
       <a href="../articles/tutorial_fetcher.html">Baixando Dados</a>
@@ -106,54 +106,47 @@
     
 <p>O <code>analyzer.R</code> realiza operações de reconhecimento e extração dos eventos e as fases nos dataframes das tramitação das proposições na Câmara dos Deputados e no Senado Federal. Como possuem APIs distintas, cada casa possui um analyzer próprio adequado para os dados disponíveis em suas respectivas APIs.</p>
 <p>O <code>senado-analyzer.R</code> extrai os locais (Comissões e Plenário), as fases da proposição na casa e os eventos que ocorreram durante a tramitação de uma proposição no Senado.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(here::<span class="kw">here</span>(<span class="st">"R/analyzer.R"</span>))
-<span class="kw">library</span>(magrittr)
-<span class="kw">library</span>(tidyverse)
-id_pl_veneno_senado &lt;-<span class="st"> </span><span class="dv">41703</span>
-<span class="kw"><a href="../reference/process_proposicao.html">process_proposicao</a></span>(id_pl_veneno_senado, <span class="st">'senado'</span>)</code></pre></div>
-<pre><code>## # A tibble: 39 x 46
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_senado &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(<span class="dv">91341</span>, <span class="st">'senado'</span>)
+tram_senado &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(<span class="dv">91341</span>)
+agoradigital::<span class="kw"><a href="../reference/process_proposicao.html">process_proposicao</a></span>(prop_senado, tram_senado, <span class="st">'senado'</span>)</code></pre></div>
+<pre><code>## Warning in mutate_impl(.data, dots): hybrid evaluation forced for
+## `row_number`. Please use dplyr::row_number() or library(dplyr) to remove
+## this warning.</code></pre>
+<pre><code>## # A tibble: 125 x 36
 ##    codigo_tramitacao numero_autuacao data_tramitacao numero_ordem_tramita…
-##                &lt;int&gt;           &lt;int&gt; &lt;date&gt;                          &lt;int&gt;
-##  1            609390               1 1999-09-10                          2
-##  2            614496               1 1999-10-07                          1
-##  3            614505               1 1999-10-07                          2
-##  4            614532               1 1999-10-07                          3
-##  5            615847               1 1999-10-19                          1
-##  6            615899               1 1999-10-20                          1
-##  7            617047               1 1999-10-27                          1
-##  8            620072               1 1999-11-12                          1
-##  9            620074               1 1999-11-12                          2
-## 10            620431               1 1999-11-17                          1
-## # ... with 29 more rows, and 42 more variables: texto_tramitacao &lt;chr&gt;,
-## #   indicador_recebimento &lt;chr&gt;,
-## #   origem_tramitacao_local_codigo_local &lt;int&gt;,
+##    &lt;chr&gt;             &lt;chr&gt;           &lt;chr&gt;           &lt;chr&gt;                
+##  1 1519794           1               2009-05-29      1                    
+##  2 1548305           1               2009-07-15      1                    
+##  3 1572693           1               2009-09-11      1                    
+##  4 1572720           1               2009-09-11      2                    
+##  5 1574226           1               2009-09-15      1                    
+##  6 1577434           1               2009-09-22      1                    
+##  7 1577816           1               2009-09-22      2                    
+##  8 1577995           1               2009-09-23      1                    
+##  9 1578654           1               2009-09-24      1                    
+## 10 1603701           1               2009-11-13      1                    
+## # ... with 115 more rows, and 32 more variables: texto_tramitacao &lt;chr&gt;,
+## #   indicador_recebimento &lt;chr&gt;, data_recebimento &lt;chr&gt;,
+## #   origem_tramitacao_local_codigo_local &lt;chr&gt;,
 ## #   origem_tramitacao_local_tipo_local &lt;chr&gt;,
 ## #   origem_tramitacao_local_sigla_casa_local &lt;chr&gt;,
 ## #   origem_tramitacao_local_nome_casa_local &lt;chr&gt;,
 ## #   origem_tramitacao_local_sigla_local &lt;chr&gt;,
 ## #   origem_tramitacao_local_nome_local &lt;chr&gt;,
-## #   destino_tramitacao_local_codigo_local &lt;int&gt;,
+## #   destino_tramitacao_local_codigo_local &lt;chr&gt;,
 ## #   destino_tramitacao_local_tipo_local &lt;chr&gt;,
 ## #   destino_tramitacao_local_sigla_casa_local &lt;chr&gt;,
 ## #   destino_tramitacao_local_nome_casa_local &lt;chr&gt;,
 ## #   destino_tramitacao_local_sigla_local &lt;chr&gt;,
 ## #   destino_tramitacao_local_nome_local &lt;chr&gt;,
-## #   situacao_codigo_situacao &lt;int&gt;, situacao_sigla_situacao &lt;chr&gt;,
-## #   situacao_descricao_situacao &lt;chr&gt;, textos_texto_codigo_texto &lt;int&gt;,
-## #   textos_texto_descricao_tipo_texto &lt;chr&gt;,
-## #   textos_texto_tipo_documento &lt;chr&gt;, textos_texto_formato_texto &lt;chr&gt;,
-## #   textos_texto_data_texto &lt;date&gt;, textos_texto_url_texto &lt;chr&gt;,
-## #   textos_texto_identificacao_comissao_codigo_comissao &lt;int&gt;,
-## #   textos_texto_identificacao_comissao_sigla_comissao &lt;chr&gt;,
-## #   textos_texto_identificacao_comissao_nome_comissao &lt;chr&gt;,
-## #   textos_texto_identificacao_comissao_sigla_casa_comissao &lt;chr&gt;,
-## #   textos_texto_identificacao_comissao_nome_casa_comissao &lt;chr&gt;,
-## #   codigo_materia &lt;int&gt;, sigla_casa_identificacao_materia &lt;chr&gt;,
+## #   situacao_codigo_situacao &lt;chr&gt;, situacao_sigla_situacao &lt;chr&gt;,
+## #   situacao_descricao_situacao &lt;chr&gt;, codigo_materia &lt;chr&gt;,
+## #   sigla_casa_identificacao_materia &lt;chr&gt;,
 ## #   nome_casa_identificacao_materia &lt;chr&gt;, sigla_subtipo_materia &lt;chr&gt;,
 ## #   descricao_subtipo_materia &lt;chr&gt;, numero_materia &lt;chr&gt;,
-## #   ano_materia &lt;int&gt;, indicador_tramitando &lt;chr&gt;, fase &lt;chr&gt;, casa &lt;chr&gt;,
+## #   ano_materia &lt;chr&gt;, indicador_tramitando &lt;chr&gt;, fase &lt;chr&gt;, casa &lt;chr&gt;,
 ## #   evento &lt;chr&gt;, data_audiencia &lt;date&gt;, local &lt;chr&gt;, global &lt;chr&gt;</code></pre>
-<p>Os dados retornados pela função <strong>process_proposicao(id, “senado”)</strong>, além dos retornados pela <a href="https://www12.senado.leg.br/dados-abertos">API Dados Abertos do Senado</a>, estão distribuídos nas seguintes colunas:</p>
+<p>Os dados retornados pela função <strong>process_proposicao(prop_senado, tram_senado, “senado”)</strong>, além dos retornados pela <a href="https://www12.senado.leg.br/dados-abertos">API Dados Abertos do Senado</a>, estão distribuídos nas seguintes colunas:</p>
 <ul>
 <li>
 <code>fase</code>: Situação da proposição na <strong>Comisssão</strong> onde ela se encontra. Pode ser:
@@ -187,7 +180,10 @@ id_pl_veneno_senado &lt;-<span class="st"> </span><span class="dv">41703</span>
 </ul>
 </li>
 </ul>
-</div>
+<p>Caso se deseje salvar o <em>dataframe</em> retornado pela função anterior em um arquivo <strong>.csv</strong>, pode-se usar o comando <code>write_csv</code> da biblioteca <em>readr</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
+readr::<span class="kw"><a href="http://www.rdocumentation.org/packages/readr/topics/write_delim">write_csv</a></span>(tram_senado, <span class="st">"../data/tramitacao_91341.csv"</span>)</code></pre></div>
+  </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
       </div>

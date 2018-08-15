@@ -5,8 +5,8 @@ articles:
   documentacao-dados-analyzer-camara: documentacao-dados-analyzer-camara.html
   documentacao-dados-analyzer-senado: documentacao-dados-analyzer-senado.html
   documentacao_analyzer_duas_casas: documentacao_analyzer_duas_casas.html
-  documentacao_fetch_duas_casas: documentacao_fetch_duas_casas.html
   documentacao_view_duas_casas: documentacao_view_duas_casas.html
   introducao: introducao.html
+  tutorial_csvs: tutorial_csvs.html
   tutorial_fetcher: tutorial_fetcher.html
 

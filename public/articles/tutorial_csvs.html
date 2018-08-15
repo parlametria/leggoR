@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Introdução ao Ágora Digital • agoradigital</title>
+<title>Como Trabalhar com CSVs • agoradigital</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Introdução ao Ágora Digital">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Como Trabalhar com CSVs">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -94,37 +94,31 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Introdução ao Ágora Digital</h1>
+      <h1>Como Trabalhar com CSVs</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/analytics-ufcg/agora-digital/blob/master/vignettes/introducao.Rmd"><code>vignettes/introducao.Rmd</code></a></small>
-      <div class="hidden name"><code>introducao.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/analytics-ufcg/agora-digital/blob/master/vignettes/tutorial_csvs.Rmd"><code>vignettes/tutorial_csvs.Rmd</code></a></small>
+      <div class="hidden name"><code>tutorial_csvs.Rmd</code></div>
 
     </div>
 
     
     
-<div id="baixando-dados" class="section level2">
-<h2 class="hasAnchor">
-<a href="#baixando-dados" class="anchor"></a>Baixando dados</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">agoradigital::<span class="kw"><a href="../reference/get_ementas_in_camara.html">get_ementas_in_camara</a></span>(<span class="kw">c</span>(<span class="dv">2121442</span>, <span class="dv">345311</span>))</code></pre></div>
-<pre><code>##                                                                                                             ementa
-## 1 Regulamenta o limite remuneratório de que tratam o inciso XI e os §§ 9º e 11 do art. 37 da Constituição Federal.
-## 2                         Altera a Lei n° 6.001, de 19 de dezembro de 1973, que dispõe sobre o Estatuto do Índio. 
-##   siglaTipo numero
-## 1        PL   6726
-## 2        PL    490</code></pre>
+<div id="como-trabalhar-com-csvs" class="section level3">
+<h3 class="hasAnchor">
+<a href="#como-trabalhar-com-csvs" class="anchor"></a>Como trabalhar com CSVs</h3>
+<p>Para salvar os dados de um dataframe retornado por uma função em um arquivo csv, basta:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">'readr'</span>)
+caminhoProArquivoCsv &lt;-<span class="st"> 'meuCsv.csv'</span>
+prop_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_senado, <span class="st">'senado'</span>)
+prop_data %&gt;%<span class="st"> </span>readr::<span class="kw">write_csv</span>(caminhoProArquivoCsv)</code></pre></div>
+<p>Depois para ler:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">caminhoProArquivoCsv &lt;-<span class="st"> 'meuCsv.csv'</span>
+prop_data &lt;-<span class="st"> </span>readr::<span class="kw">read_csv</span>(caminhoProArquivoCsv)</code></pre></div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#baixando-dados">Baixando dados</a></li>
-      </ul>
-</div>
       </div>
 
 </div>

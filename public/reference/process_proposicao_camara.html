@@ -33,6 +33,8 @@
 <meta property="og:title" content="Processa dados de um proposição da câmara. — process_proposicao_camara" />
 
 <meta property="og:description" content="Recebido um pl_id a função recupera informações sobre uma proposição
+e sua tramitação e as salva em data/camara.
+Recebido um dataframe com a tramitação, a função recupera informações sobre uma proposição
 e sua tramitação e as salva em data/camara." />
 <meta name="twitter:card" content="summary" />
 
@@ -94,13 +96,13 @@ e sua tramitação e as salva em data/camara." />
       <a href="../articles/documentacao_analyzer_duas_casas.html">Analyzer de uma proposição que já está na segunda casa</a>
     </li>
     <li>
-      <a href="../articles/documentacao_fetch_duas_casas.html">Fetcher de uma proposição que já está na segunda casa</a>
-    </li>
-    <li>
       <a href="../articles/documentacao_view_duas_casas.html">View de uma proposição que já está na segunda casa</a>
     </li>
     <li>
       <a href="../articles/introducao.html">Introdução ao Ágora Digital</a>
+    </li>
+    <li>
+      <a href="../articles/tutorial_csvs.html">Como Trabalhar com CSVs</a>
     </li>
     <li>
       <a href="../articles/tutorial_fetcher.html">Baixando Dados</a>
@@ -137,14 +139,22 @@ e sua tramitação e as salva em data/camara." />
     
     <p>Recebido um pl_id a função recupera informações sobre uma proposição
 e sua tramitação e as salva em data/camara.</p>
+<p>Recebido um dataframe com a tramitação, a função recupera informações sobre uma proposição
+e sua tramitação e as salva em data/camara.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>process_proposicao_camara</span>(<span class='no'>pl_id</span>)</pre>
+    <pre class="usage"><span class='fu'>process_proposicao_camara</span>(<span class='no'>proposicao_df</span>, <span class='no'>tramitacao_df</span>)
+
+<span class='fu'>process_proposicao_camara</span>(<span class='no'>proposicao_df</span>, <span class='no'>tramitacao_df</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>tramitacao_df</th>
+      <td><p>Dataframe com tramitação da proposição</p></td>
+    </tr>
     <tr>
       <th>pl_id</th>
       <td><p>Identificador da proposição que pode ser recuperado no site da câmara.</p></td>
@@ -153,7 +163,7 @@ e sua tramitação e as salva em data/camara.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>process_proposicao_camara</span>(<span class='fl'>257161</span>)</div><div class='output co'>#&gt; <span class='error'>Error in tramitacao_pl %&lt;&gt;% rename_df_columns %&gt;% extract_events_in_camara() %&gt;%     extract_locais_in_camara() %&gt;% extract_fase_casa_in_camara() %&gt;%     extract_situacao_comissao() %&gt;% refact_date() %&gt;% sort_by_date() %&gt;%     readr::write_csv(csv_path): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>process_proposicao_camara</span>(<span class='fl'>257161</span>)</div><div class='output co'>#&gt; <span class='error'>Error in tramitacao_df %&gt;% rename_df_columns %&gt;% extract_events_in_camara() %&gt;%     extract_locais_in_camara() %&gt;% extract_fase_casa_in_camara() %&gt;%     extract_situacao_comissao() %&gt;% refact_date() %&gt;% sort_by_date(): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
