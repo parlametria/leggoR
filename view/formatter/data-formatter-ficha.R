@@ -3,7 +3,7 @@ library(tidyverse)
 library(rcongresso)
 source(here::here('R/camara-lib.R'))
 source(here::here('R/congresso-lib.R'))
-source(here::here('R/analyzers/analyzer.R'))
+source(here::here('R/analyzer.R'))
 source(here::here('R/fetcher.R'))
 
 extract_informations <- function(bill_id_camara, bill_id_senado, url) {
