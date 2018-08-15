@@ -104,13 +104,11 @@
 
     
     
-<p>O fetcher realiza a importação dos dados das apis da Câmara e do Senado. Para aquelas proposições que já tramitaram na casa de origem e estão agora na casa revisora, temos que realizar alguns passos para adquirir as informações de tramitação. O primeiro é identificar os ids das proposições na Câmara e no Senado. De posse desses ids temos que chamar a função fetch_tramitacao(id_senado) e a rcongresso::fetch_tramitacao(id_camara).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(here::<span class="kw">here</span>(<span class="st">"R/fetcher.R"</span>))
-<span class="kw">library</span>(tidyverse)</code></pre></div>
+<p>O <a href="https://github.com/analytics-ufcg/agora-digital/blob/master/R/fetcher.R">fetcher</a> realiza a importação dos dados das apis da Câmara e do Senado. Para aquelas proposições que já tramitaram na casa de origem e estão agora na casa revisora, temos que realizar alguns passos para adquirir as informações de tramitação. O primeiro é identificar os ids das proposições na Câmara e no Senado. De posse desses ids temos que chamar a função fetch_tramitacao(id_senado) e a rcongresso::fetch_tramitacao(id_camara).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">id_qualidade_fiscal_senado &lt;-<span class="st"> </span><span class="dv">91341</span>
 id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">2088990</span>
 
-<span class="kw">head</span>(<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_senado))</code></pre></div>
+<span class="kw">head</span>(agoradigital::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_senado))</code></pre></div>
 <pre><code>## # A tibble: 6 x 30
 ##   codigo_tramitacao numero_autuacao data_tramitacao numero_ordem_tramitac…
 ##   &lt;chr&gt;             &lt;chr&gt;           &lt;chr&gt;           &lt;chr&gt;                 
@@ -191,7 +189,7 @@ id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">208899
 ## 5                                                                        &lt;NA&gt;
 ## 6                                                                        &lt;NA&gt;</code></pre>
 <p>Para adquirir informações gerais sobre uma proposição usamos o método fetch_proposição(id, casa).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_senado, <span class="st">'senado'</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_senado, <span class="st">'senado'</span>)</code></pre></div>
 <pre><code>## # A tibble: 1 x 44
 ##   ementa_materia      explicacao_ementa_… observacao_mate… apelido_materia
 ##   &lt;chr&gt;               &lt;chr&gt;               &lt;chr&gt;            &lt;chr&gt;          
@@ -215,7 +213,7 @@ id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">208899
 ## #   nome_poder_origem &lt;chr&gt;, sigla_casa_origem &lt;chr&gt;,
 ## #   nome_casa_origem &lt;chr&gt;, page_url &lt;chr&gt;,
 ## #   proposicoes_relacionadas &lt;chr&gt;, proposicoes_apensadas &lt;chr&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>)</code></pre></div>
 <pre><code>## # A tibble: 1 x 38
 ##     ano dataApresentacao descricaoTipo  ementa      ementaDetalhada     id
 ##   &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;int&gt;
