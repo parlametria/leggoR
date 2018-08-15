@@ -5,7 +5,6 @@
 #' @return Dataframe com a coluna "relator" adicionada.
 #' @examples
 #' tramitacao %>% extract_relator_in_camara()
-#' @export
 extract_relator_in_camara <- function(df) {
   df %>%
     dplyr::mutate(relator = dplyr::case_when(
@@ -21,7 +20,6 @@ extract_relator_in_camara <- function(df) {
 #' @return String do nome do último relator na Câmara
 #' @examples
 #' tramitacao %>% extract_last_relator_in_camara()
-#' @export
 extract_last_relator_in_camara <- function(df) {
   relatores <- extract_relator_in_camara(df)
   relator <-
@@ -37,7 +35,6 @@ extract_last_relator_in_camara <- function(df) {
 #' @description Recupera os útimos n eventos da tramitação na Câmara, caso nenhuma quantidade seja informada, assume-se que é 1
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe dos últimos n eventos na Câmara contendo hora e evento.
-#' @export
 extract_last_n_events_in_camara <- function(df, num) {
   df %>%
     dplyr::filter(!is.na(evento)) %>%
@@ -50,7 +47,6 @@ extract_last_n_events_in_camara <- function(df, num) {
 #' @description Recupera todos os relatores de uma proposição, junto com suas informações de parlamentar e comissão
 #' @param tramitacao_df Dataframe da tramitação na Câmara
 #' @return Dataframe que contém todos os relatores
-#' @export
 extract_relatorias_in_camara <- function(tramitacao_df) {
   tramitacao_df %>%
     # extract line when a relator is designated by the code
@@ -61,7 +57,7 @@ extract_relatorias_in_camara <- function(tramitacao_df) {
       despacho,
       sigla_orgao
     ) %>%
-    add_column() %>%
+    tibble::add_column() %>%
     # extract relator's name and partido
     dplyr::mutate(
       nome_parlamentar = stringr::str_match(despacho,'Dep. (.*?) [(]')[,2],
@@ -75,7 +71,6 @@ extract_relatorias_in_camara <- function(tramitacao_df) {
 #' @description Renomeia as colunas do dataframe usando o padrão de letras minúsculas e underscore
 #' @param df Dataframe
 #' @return Dataframe com as colunas renomeadas.
-#' @export
 rename_df_columns <- function(df) {
   names(df) %<>% to_underscore
   df
@@ -86,7 +81,6 @@ rename_df_columns <- function(df) {
 #' @param tramitacao_df Dataframe da tramitação na Câmara
 #' @param events_df Dataframe com os eventos contendo as colunas "evento" e "regex"
 #' @return Dataframe com a coluna "evento" adicionada.
-#' @export
 extract_events_in_camara <- function(tramitacao_df) {
   tramitacao_df %>% regex_left_match(camara_codes$eventos, "evento")
 }
@@ -97,7 +91,6 @@ extract_events_in_camara <- function(tramitacao_df) {
 #' @return Dataframe contendo o link, o nome, o código do tipo, o tipo e a casa de origem do autor.
 #' @examples
 #' extract_autor_in_camara(2121442)
-#' @export
 extract_autor_in_camara <- function(prop_id) {
   camara_exp <- 'câmara dos deputados'
   senado_exp <- 'senado federal'
@@ -132,7 +125,6 @@ extract_autor_in_camara <- function(prop_id) {
 #' @return Dataframe da tramitacao contendo mais uma coluna chamada local
 #' @examples
 #'  extract_locais_in_camara(fetch_tramitacao(91341))
-#' @export
 extract_locais_in_camara <- function(df) {
   descricoes_plenario <- c('votação', 'pronta para pauta', 'apresentação de proposição', 'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
@@ -171,14 +163,14 @@ extract_evento_in_camara <- function(df) {
   redistribuicao_regex <- eventos$regex$redistribuicao
   redistribuicao_text <- eventos$text$distribuicao %>% tolower()
   df %>%
-    mutate(evento =
+    dplyr::mutate(evento =
              case_when((str_detect(
                tolower(despacho),
-               regex(redistribuicao_regex, ignore_case = TRUE)
+               stringr::regex(redistribuicao_regex, ignore_case = TRUE)
              ) |
                str_detect(
                  tolower(despacho),
-                 regex(novo_despacho_regex, ignore_case = TRUE)
+                 stringr::regex(novo_despacho_regex, ignore_case = TRUE)
                )) &
                tolower(descricao_tramitacao) == redistribuicao_text ~ "redistribuicao"
              ))
@@ -190,7 +182,6 @@ extract_evento_in_camara <- function(df) {
 #' @return Dataframe da tramitacao contendo mais uma coluna chamada casa
 #' @examples
 #'  extract_fase_casa_in_camara(fetch_tramitacao(91341))
-#' @export
 extract_fase_casa_in_camara <- function(df) {
   descricoes_plenario <- c('votação', 'pronta para pauta', 'apresentação de proposição', 'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
@@ -221,7 +212,6 @@ extract_fase_casa_in_camara <- function(df) {
 #' @return Dataframe da tramitação contendo a coluna situacao_comissao
 #' @examples
 #'  extract_situacao_comissao(process_proposicao_camara(345311))
-#' @export
 extract_situacao_comissao <- function(df) {
   
   situacao_comissao <- camara_codes$situacao_comissao
@@ -230,4 +220,59 @@ extract_situacao_comissao <- function(df) {
   df %>%
     regex_left_match(situacao_comissao, "situacao_comissao") %>%
     tidyr::fill(situacao_comissao)
+}
+
+
+#' @title Processa dados de um proposição da câmara.
+#' @description Recebido um pl_id a função recupera informações sobre uma proposição
+#' e sua tramitação e as salva em data/camara.
+#' @param pl_id Identificador da proposição que pode ser recuperado no site da câmara.
+#' @examples
+#' process_proposicao_camara(257161)
+#' @importFrom magrittr %<>%
+process_proposicao_camara <- function(pl_id) {
+  data_path <- here::here('data/camara/')
+  tramitacao_pl <- rcongresso::fetch_tramitacao(pl_id)
+  
+  csv_path <-
+    paste(c(data_path, 'tramitacao-camara-', pl_id, '.csv'),  collapse = '')
+  proposicao_csv_path <-
+    paste(c(data_path, 'proposicao-camara-', pl_id, '.csv'),  collapse = '')
+  
+  # Extract phases, events and writh CSV
+  tramitacao_pl %<>%
+    rename_df_columns %>%
+    extract_events_in_camara() %>%
+    extract_locais_in_camara() %>%
+    extract_fase_casa_in_camara() %>%
+    extract_situacao_comissao() %>%
+    # extract_relatorias_in_camara() %>%
+    refact_date() %>%
+    sort_by_date() %>%
+    readr::write_csv(csv_path)
+  
+  # Print evento freq table
+  tramitacao_pl %>% dplyr::select(evento) %>% dplyr::group_by(evento) %>%
+    dplyr::filter(!is.na(evento)) %>% dplyr::summarise(frequência = n()) %>%
+    dplyr::arrange(-frequência)
+  
+  proposicao_pl <-
+    fetch_proposicao_renamed(pl_id)
+  
+  data.frame(lapply(proposicao_pl, as.character), stringsAsFactors = FALSE) %>%
+    readr::write_csv(proposicao_csv_path)
+  
+  relatorias <-
+    extract_relatorias_in_camara(as.data.frame(readr::read_csv(csv_path)))
+  
+  tramitacao_pl
+}
+
+#Fetch a bill with renamed columns
+fetch_proposicao_renamed <- function(id) {
+  df <-
+    fetch_proposicao_camara(id) %>%
+    rename_df_columns
+  
+  df[,!sapply(df, is.list)]
 }
