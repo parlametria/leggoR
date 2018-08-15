@@ -663,7 +663,7 @@ to_underscore <- function(x) {
 #' fetch_proposicao(91341, 'senado')
 #' @export
 fetch_proposicao <- function(id, casa) {
-  casa %<>% tolower()
+  casa <- tolower(casa)
   if (casa == 'camara') {
     fetch_proposicao_camara(id)
   } else if (casa == 'senado') {
