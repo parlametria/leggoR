@@ -57,7 +57,7 @@ extract_relatorias_in_camara <- function(tramitacao_df) {
       despacho,
       sigla_orgao
     ) %>%
-    add_column() %>%
+    tibble::add_column() %>%
     # extract relator's name and partido
     dplyr::mutate(
       nome_parlamentar = stringr::str_match(despacho,'Dep. (.*?) [(]')[,2],
@@ -163,14 +163,14 @@ extract_evento_in_camara <- function(df) {
   redistribuicao_regex <- eventos$regex$redistribuicao
   redistribuicao_text <- eventos$text$distribuicao %>% tolower()
   df %>%
-    mutate(evento =
+    dplyr::mutate(evento =
              case_when((str_detect(
                tolower(despacho),
-               regex(redistribuicao_regex, ignore_case = TRUE)
+               stringr::regex(redistribuicao_regex, ignore_case = TRUE)
              ) |
                str_detect(
                  tolower(despacho),
-                 regex(novo_despacho_regex, ignore_case = TRUE)
+                 stringr::regex(novo_despacho_regex, ignore_case = TRUE)
                )) &
                tolower(descricao_tramitacao) == redistribuicao_text ~ "redistribuicao"
              ))
@@ -252,9 +252,9 @@ process_proposicao_camara <- function(pl_id) {
     readr::write_csv(csv_path)
   
   # Print evento freq table
-  tramitacao_pl %>% select(evento) %>% group_by(evento) %>%
-    filter(!is.na(evento)) %>% summarise(frequência = n()) %>%
-    arrange(-frequência)
+  tramitacao_pl %>% dplyr::select(evento) %>% dplyr::group_by(evento) %>%
+    dplyr::filter(!is.na(evento)) %>% dplyr::summarise(frequência = n()) %>%
+    dplyr::arrange(-frequência)
   
   proposicao_pl <-
     fetch_proposicao_renamed(pl_id)
@@ -263,7 +263,7 @@ process_proposicao_camara <- function(pl_id) {
     readr::write_csv(proposicao_csv_path)
   
   relatorias <-
-    extract_relatorias_in_camara(as.data.frame(read_csv(csv_path)))
+    extract_relatorias_in_camara(as.data.frame(readr::read_csv(csv_path)))
   
   tramitacao_pl
 }
