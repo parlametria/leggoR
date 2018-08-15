@@ -85,6 +85,21 @@ Ao fim, a função retira todos as colunas que tenham tipo lista para uniformiza
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/documentacao-dados-analyzer-camara.html">Dados gerados pelo Analyzer na Camara</a>
+    </li>
+    <li>
+      <a href="../articles/documentacao-dados-analyzer-senado.html">Dados gerados pelo Analyzer no Senado</a>
+    </li>
+    <li>
+      <a href="../articles/documentacao_analyzer_duas_casas.html">Analyzer de uma proposição que já está na segunda casa</a>
+    </li>
+    <li>
+      <a href="../articles/documentacao_fetch_duas_casas.html">Fetcher de uma proposição que já está na segunda casa</a>
+    </li>
+    <li>
+      <a href="../articles/documentacao_view_duas_casas.html">View de uma proposição que já está na segunda casa</a>
+    </li>
+    <li>
       <a href="../articles/introducao.html">Introdução ao Ágora Digital</a>
     </li>
     <li>
@@ -142,7 +157,38 @@ Ao fim, a função retira todos as colunas que tenham tipo lista para uniformiza
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fetch_tramitacao</span>(<span class='fl'>91341</span>)</div><div class='output co'>#&gt; <span class='error'>Error in json_tramitacao %&gt;% magrittr::extract2("MovimentacaoMateria") %&gt;%     magrittr::extract2("Materia"): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fetch_tramitacao</span>(<span class='fl'>91341</span>)</div><div class='output co'>#&gt; # A tibble: 127 x 30
+#&gt;    codigo_tramitacao numero_autuacao data_tramitacao numero_ordem_tramitacao
+#&gt;    &lt;chr&gt;             &lt;chr&gt;           &lt;chr&gt;           &lt;chr&gt;                  
+#&gt;  1 2346685           1               2016-06-21      1                      
+#&gt;  2 2346271           1               2016-06-16      1                      
+#&gt;  3 2344908           1               2016-06-07      2                      
+#&gt;  4 2344786           1               2016-06-07      1                      
+#&gt;  5 2343607           1               2016-05-30      3                      
+#&gt;  6 2343589           1               2016-05-30      2                      
+#&gt;  7 2343469           1               2016-05-30      1                      
+#&gt;  8 2342813           1               2016-05-19      3                      
+#&gt;  9 2342791           1               2016-05-19      2                      
+#&gt; 10 2342740           1               2016-05-19      1                      
+#&gt; # ... with 117 more rows, and 26 more variables: texto_tramitacao &lt;chr&gt;,
+#&gt; #   indicador_recebimento &lt;chr&gt;, data_recebimento &lt;chr&gt;,
+#&gt; #   origem_tramitacao_local_codigo_local &lt;chr&gt;,
+#&gt; #   origem_tramitacao_local_tipo_local &lt;chr&gt;,
+#&gt; #   origem_tramitacao_local_sigla_casa_local &lt;chr&gt;,
+#&gt; #   origem_tramitacao_local_nome_casa_local &lt;chr&gt;,
+#&gt; #   origem_tramitacao_local_sigla_local &lt;chr&gt;,
+#&gt; #   origem_tramitacao_local_nome_local &lt;chr&gt;,
+#&gt; #   destino_tramitacao_local_codigo_local &lt;chr&gt;,
+#&gt; #   destino_tramitacao_local_tipo_local &lt;chr&gt;,
+#&gt; #   destino_tramitacao_local_sigla_casa_local &lt;chr&gt;,
+#&gt; #   destino_tramitacao_local_nome_casa_local &lt;chr&gt;,
+#&gt; #   destino_tramitacao_local_sigla_local &lt;chr&gt;,
+#&gt; #   destino_tramitacao_local_nome_local &lt;chr&gt;, situacao_codigo_situacao &lt;chr&gt;,
+#&gt; #   situacao_sigla_situacao &lt;chr&gt;, situacao_descricao_situacao &lt;chr&gt;,
+#&gt; #   codigo_materia &lt;chr&gt;, sigla_casa_identificacao_materia &lt;chr&gt;,
+#&gt; #   nome_casa_identificacao_materia &lt;chr&gt;, sigla_subtipo_materia &lt;chr&gt;,
+#&gt; #   descricao_subtipo_materia &lt;chr&gt;, numero_materia &lt;chr&gt;, ano_materia &lt;chr&gt;,
+#&gt; #   indicador_tramitando &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -52,6 +52,21 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/documentacao-dados-analyzer-camara.html">Dados gerados pelo Analyzer na Camara</a>
+    </li>
+    <li>
+      <a href="../articles/documentacao-dados-analyzer-senado.html">Dados gerados pelo Analyzer no Senado</a>
+    </li>
+    <li>
+      <a href="../articles/documentacao_analyzer_duas_casas.html">Analyzer de uma proposição que já está na segunda casa</a>
+    </li>
+    <li>
+      <a href="../articles/documentacao_fetch_duas_casas.html">Fetcher de uma proposição que já está na segunda casa</a>
+    </li>
+    <li>
+      <a href="../articles/documentacao_view_duas_casas.html">View de uma proposição que já está na segunda casa</a>
+    </li>
+    <li>
       <a href="../articles/introducao.html">Introdução ao Ágora Digital</a>
     </li>
     <li>
@@ -93,12 +108,12 @@
 <p>Para que um Projeto de Lei (PL) seja aprovado, é necessário que ele passe pelas duas casas do Congresso (Câmara e Senado), podendo iniciar em qualquer uma delas e tendo que passar pela outra para revisão. A primeira casa na qual o PL passar será chamada Casa de Origem, e a segunda, Casa Revisora.</p>
 <p>O primeiro passo para obter dados de qualquer PL é identificar os ids do mesmo na Câmara e/ou no Senado. <a href="">Link para artigo sobre como achar o id de um PL</a>.</p>
 <p>Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(agoradigital)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(rcongresso)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">id_qualidade_fiscal_senado &lt;-<span class="st"> </span><span class="dv">91341</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">2088990</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(agoradigital)
+<span class="kw">library</span>(rcongresso)
+<span class="kw">library</span>(tidyverse)
+
+id_qualidade_fiscal_senado &lt;-<span class="st"> </span><span class="dv">91341</span>
+id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">2088990</span></code></pre></div>
 <div id="dados-gerais" class="section level3">
 <h3 class="hasAnchor">
 <a href="#dados-gerais" class="anchor"></a>Dados Gerais</h3>
@@ -106,8 +121,8 @@
 <div id="camara" class="section level4">
 <h4 class="hasAnchor">
 <a href="#camara" class="anchor"></a>Câmara</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">prop_camara &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">glimpse</span>(prop_camara)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_camara &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>)
+<span class="kw">glimpse</span>(prop_camara)</code></pre></div>
 <pre><code>## Observations: 1
 ## Variables: 34
 ## $ ano                                  &lt;dbl&gt; 2016
@@ -148,8 +163,8 @@
 <div id="senado" class="section level4">
 <h4 class="hasAnchor">
 <a href="#senado" class="anchor"></a>Senado</h4>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">prop_senado &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_senado, <span class="st">'senado'</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">glimpse</span>(prop_senado)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_senado &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_senado, <span class="st">'senado'</span>)
+<span class="kw">glimpse</span>(prop_senado)</code></pre></div>
 <pre><code>## Observations: 1
 ## Variables: 34
 ## $ ano                                  &lt;dbl&gt; 0
@@ -194,8 +209,8 @@
 <div id="camara-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#camara-1" class="anchor"></a>Câmara</h4>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">tram_camara &lt;-<span class="st"> </span>tramitacao_camara &lt;-<span class="st"> </span>rcongresso<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rcongresso/topics/fetch_tramitacao">fetch_tramitacao</a></span>(id_qualidade_fiscal_camara)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">glimpse</span>(tram_camara)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tram_camara &lt;-<span class="st"> </span>tramitacao_camara &lt;-<span class="st"> </span>rcongresso::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_camara)
+<span class="kw">glimpse</span>(tram_camara)</code></pre></div>
 <pre><code>## Observations: 28
 ## Variables: 12
 ## $ dataHora            &lt;chr&gt; "2016-06-21T00:00", "2016-06-21T16:37", "2...
@@ -214,8 +229,8 @@
 <div id="senado-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#senado-1" class="anchor"></a>Senado</h4>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">tram_senado &lt;-<span class="st"> </span>tramitacao_senado &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_senado)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">glimpse</span>(tram_senado)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tram_senado &lt;-<span class="st"> </span>tramitacao_senado &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_senado)
+<span class="kw">glimpse</span>(tram_senado)</code></pre></div>
 <pre><code>## Observations: 0
 ## Variables: 0</code></pre>
 </div>

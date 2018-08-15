@@ -32,7 +32,8 @@
 
 <meta property="og:title" content="Renomeia as colunas do dataframe — rename_df_columns" />
 
-<meta property="og:description" content="Renomeia as colunas do dataframe usando o padrão de letras minúsculas e underscore" />
+<meta property="og:description" content="Renomeia as colunas do dataframe usando o padrão de letras minúsculas e underscore
+Renomeia as colunas do dataframe usando o padrão de letras minúsculas e underscore" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -84,6 +85,21 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/documentacao-dados-analyzer-camara.html">Dados gerados pelo Analyzer na Camara</a>
+    </li>
+    <li>
+      <a href="../articles/documentacao-dados-analyzer-senado.html">Dados gerados pelo Analyzer no Senado</a>
+    </li>
+    <li>
+      <a href="../articles/documentacao_analyzer_duas_casas.html">Analyzer de uma proposição que já está na segunda casa</a>
+    </li>
+    <li>
+      <a href="../articles/documentacao_fetch_duas_casas.html">Fetcher de uma proposição que já está na segunda casa</a>
+    </li>
+    <li>
+      <a href="../articles/documentacao_view_duas_casas.html">View de uma proposição que já está na segunda casa</a>
+    </li>
+    <li>
       <a href="../articles/introducao.html">Introdução ao Ágora Digital</a>
     </li>
     <li>
@@ -113,21 +129,28 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Renomeia as colunas do dataframe</h1>
-    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/camara_analyzer.R'><code>R/camara_analyzer.R</code></a>, <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
     <div class="hidden name"><code>rename_df_columns.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
     <p>Renomeia as colunas do dataframe usando o padrão de letras minúsculas e underscore</p>
+<p>Renomeia as colunas do dataframe usando o padrão de letras minúsculas e underscore</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>rename_df_columns</span>(<span class='no'>df</span>)</pre>
+    <pre class="usage"><span class='fu'>rename_df_columns</span>(<span class='no'>df</span>)
+
+<span class='fu'>rename_df_columns</span>(<span class='no'>df</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>df</th>
+      <td><p>Dataframe</p></td>
+    </tr>
     <tr>
       <th>df</th>
       <td><p>Dataframe</p></td>
@@ -137,6 +160,7 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Dataframe com as colunas renomeadas.</p>
+<p>Dataframe com as colunas renomeadas.</p>
     
 
   </div>
