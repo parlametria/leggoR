@@ -126,10 +126,11 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_p
 #' @return Dataframe com a coluna "evento" adicionada.
 #' @examples
 #' df <- fetch_tramitacao(91341)
-#' extract_evento_Senado(df, importants_events, phase_one)
+#' extract_evento_Senado(df)
 #' @export
 extract_evento_Senado <- function(tramitacao_df) {
   df <- regex_left_match(tramitacao_df, senado_env$eventos, "evento")
+  eventos <- senado_env$evento
   
   comissoes <- extract_comissoes_Senado(tramitacao_df)
   date_comissao_especial <- comissoes[match("Comissão Especial", comissoes$comissoes), ]$data_tramitacao
@@ -149,9 +150,10 @@ extract_evento_Senado <- function(tramitacao_df) {
     evento = dplyr::case_when(
       stringr::str_detect(tolower(texto_tramitacao), regex(designacao_relator$texto_tramitacao, 
                                                            ignore_case = TRUE)) ~ designacao_relator$evento,
-      (stringr::str_detect(tolower(texto_tramitacao), "realizada(,)* (.)*audiência pública") &
-         !stringr::str_detect(tolower(texto_tramitacao), "aprovado o requerimento")) ~ 'realizacao_audiencia_publica',
-      stringr::str_detect(tolower(texto_tramitacao), "processo arquivado(.)*") ~ 'arquivada',
+      stringr::str_detect(tolower(texto_tramitacao), eventos$aprovacao_substitutivo$regex) ~ eventos$aprovacao_substitutivo$constant,
+      stringr::str_detect(tolower(texto_tramitacao), eventos$arquivamento$regex) ~ eventos$arquivamento$constant,
+      (stringr::str_detect(tolower(texto_tramitacao), eventos$realizacao_audiencia_publica$regex) &
+         !stringr::str_detect(tolower(texto_tramitacao), eventos$realizacao_audiencia_publica$regex_complementar)) ~ eventos$realizacao_audiencia_publica$constant,
       TRUE ~ evento
   ))
   
