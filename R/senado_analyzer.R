@@ -34,17 +34,12 @@ extract_fase_Senado <-
 #' @return Dataframe com a coluna "global" adicionada.
 #' @examples
 #' tramitacao %>% extract_fase_global()
-extract_fase_global <- function(data_tramitacao, bill_id) {
+extract_fase_global <- function(data_tramitacao, proposicao_df) {
   fase_global_constants <- senado_env$fase_global
-  data_prop <-
-  readr::read_csv(paste0(
-      here::here("data/Senado/"),
-      bill_id,
-      "-proposicao-senado.csv"
-    ))
+  
   casa_origem <-
     dplyr::if_else(
-      data_prop$nome_casa_origem == "Senado Federal",
+      proposicao_df$nome_casa_origem == "Senado Federal",
       fase_global_constants$origem_senado,
       fase_global_constants$revisao_camara
     )
@@ -502,4 +497,62 @@ process_proposicao_senado <- function(bill_id) {
     ))
   
   bill_passage
+}
+
+#' @title Processa dados de uma proposição do senado.
+#' @description Recebido um dataframe da tramitação de um PL, a função recupera informações sobre uma proposição
+#' e sua tramitação e as salva em data/Senado.
+#' @param tramitacao_df Dataframe da tramitação da proposição
+process_proposicao_senado <- function(proposicao_df, tramitacao_df) {
+  phase_one <- c('^Este processo contém')
+  recebimento_phase <- 'recebido na|nesta comissão'
+  phase_three <- c(42, 14, 78, 90)
+  encaminhamento_phase <- c(89, 158, 159, 160, 161, 162, 163)
+  phase_four <- c(52)
+  comissoes_phase <- senado_env$fase_comissao %>%
+    dplyr::filter(fase == "analise_do_relator")
+  
+  tramitacao_df <-
+    extract_fase_Senado(
+      tramitacao_df,
+      phase_one,
+      recebimento_phase,
+      phase_three,
+      encaminhamento_phase,
+      phase_four,
+      comissoes_phase$regex
+    ) %>%
+    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    tidyr::fill(fase)
+  
+  tramitacao_df$situacao_descricao_situacao <-
+    to_underscore(tramitacao_df$situacao_descricao_situacao) %>%
+    stringr::str_replace_all("\\s+", "_")
+  
+  tramitacao_df <-
+    extract_fase_casa_Senado(tramitacao_df, phase_one, recebimento_phase, comissoes_phase$regex) %>%
+    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    tidyr::fill(casa) %>%
+    dplyr::filter(!is.na(casa))
+  
+  tramitacao_df <-
+    extract_evento_Senado(tramitacao_df) %>%
+    dplyr::mutate(data_audiencia = as.Date(data_audiencia, "%d/%m/%Y")) 
+  
+  index_of_camara <-
+    ifelse(
+      length(which(
+        tramitacao_df$situacao_codigo_situacao == 52
+      )) == 0,
+      nrow(tramitacao_df),
+      which(tramitacao_df$situacao_codigo_situacao == 52)[1]
+    )
+  
+  tramitacao_df <-
+    tramitacao_df[1:index_of_camara,] %>%
+    extract_locais() %>%
+    extract_fase_global(proposicao_df) %>%
+    dplyr::filter(!is.na(fase))
+  
+  tramitacao_df
 }
