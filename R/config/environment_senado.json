@@ -59,7 +59,7 @@
       "constant": "realizacao_audiencia_publica"
     }
   },
-  
+
   "eventos": [
     {"evento": "apresentacao_pl", "texto_tramitacao": "^este processo contem"},
     {"evento": "recebimento_comissao", "texto_tramitacao": "recebido na|nesta comissao"},
@@ -70,8 +70,8 @@
       "texto_tramitacao": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))"},
     {"evento": "pedido_vista", "situacao_codigo_situacao": "^90$"},
     {"evento": "desarquivada", "situacao_codigo_situacao": "^149$"},
+    {"evento": "aprovacao_substitutivo", "texto_tramitacao": "aprovado o substitutivo"},
     {"evento": "aprovacao_projeto", "texto_tramitacao": "aprovado o projeto"},
-    {"evento": "aprovacao_substitutivo", "situacao_codigo_situacao": "^113$"},
     {"evento": "inicio_prazo_emendas", "situacao_codigo_situacao": "^20$"},
     {"evento": "fim_prazo_emendas", "situacao_codigo_situacao": "^153$"},
     {"evento": "remetida_a_sancao", "situacao_codigo_situacao": "^57$"},

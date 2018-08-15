@@ -126,7 +126,7 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_p
 #' @return Dataframe com a coluna "evento" adicionada.
 #' @examples
 #' df <- fetch_tramitacao(91341)
-#' extract_evento_Senado(df, importants_events, phase_one)
+#' extract_evento_Senado(df)
 #' @export
 extract_evento_Senado <- function(tramitacao_df) {
   df <- regex_left_match(tramitacao_df, senado_env$eventos, "evento")
@@ -153,7 +153,8 @@ extract_evento_Senado <- function(tramitacao_df) {
       stringr::str_detect(tolower(texto_tramitacao), regex(designacao_relator$texto_tramitacao, 
                                                            ignore_case = TRUE)) ~ designacao_relator$evento,
       stringr::str_detect(tolower(texto_tramitacao), eventos$virada$regex) ~ eventos$virada$constant,
-      stringr::str_detect(tolower(texto_tramitacao), eventos$arquivamento$regex) ~ eventos$arquivamento$regex,
+      stringr::str_detect(tolower(texto_tramitacao), eventos$aprovacao_substitutivo$regex) ~ eventos$aprovacao_substitutivo$constant,
+      stringr::str_detect(tolower(texto_tramitacao), eventos$arquivamento$regex) ~ eventos$arquivamento$constant,
       (stringr::str_detect(tolower(texto_tramitacao), eventos$realizacao_audiencia_publica$regex) &
          !stringr::str_detect(tolower(texto_tramitacao), eventos$realizacao_audiencia_publica$regex_complementar)) ~ eventos$realizacao_audiencia_publica$constant,
       TRUE ~ evento
