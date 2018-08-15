@@ -10,9 +10,7 @@ Acesso, tradução e modelos usando dados do congresso nacional.
 
 Antes de instalar nosso pacote, é necessário que você tenha o [R](https://www.r-project.org/) instalado.
 
-  - **Aviso:**
-
-      Os comandos desta seção devem ser executados dentro do interpretador de R. Mas você também pode executar qualquer código R direto no terminal usando o comando `Rscript -e`. Exemplo: 
+  - **Aviso:** Os comandos desta seção devem ser executados dentro do interpretador de R. Mas você também pode executar qualquer código R direto no terminal usando o comando `Rscript -e`. Exemplo: 
       ```
       Rscript -e 'agoradigital::fetch_proposicao("senado", 82051)
       ```
