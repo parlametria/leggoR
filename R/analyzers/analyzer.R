@@ -104,6 +104,8 @@ process_proposicao_senado <- function(bill_id) {
       bill_id,
       "-visualizacao-tramitacao-senado.csv"
     ))
+  
+  bill_passage
 }
 
 #' @title Processa dados de um proposição da câmara.
@@ -130,6 +132,7 @@ process_proposicao_camara <- function(pl_id) {
     extract_locais_in_camara() %>%
     extract_fase_casa_in_camara() %>%
     extract_situacao_comissao() %>%
+   # extract_relatorias_in_camara() %>%
     refact_date() %>%
     sort_by_date() %>%
     readr::write_csv(csv_path)
