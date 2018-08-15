@@ -75,20 +75,3 @@ glimpse(tram_camara)
 tram_senado <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado)
 glimpse(tram_senado)
 ```
-
-### Como trabalhar com csv
-
-Para escrever esses dados em um arquivo csv, basta:
-
-```{r eval=FALSE, message=FALSE}
-caminhoProArquivoCsv <- 'meuCsv.csv'
-fetch_proposicao(id_qualidade_fiscal_senado, 'senado') %>% readr::write_csv(caminhoProArquivoCsv)
-```
-
-Depois para ler:
-```{r eval=FALSE, message=FALSE}
-caminhoProArquivoCsv <- 'meuCsv.csv'
-data <- readr::read_csv(caminhoProArquivoCsv)
-```
-
-
