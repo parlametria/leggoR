@@ -3,21 +3,15 @@ title: "Analyzer de uma proposição que já está na segunda casa"
 output: html_notebook
 ---
 
-O [Analyzer](../R/analyzer.R) realiza operações de reconhecimento de eventos e fases em dataframes de tramitação da Câmara e do Senado.
+O [Analyzer](https://github.com/analytics-ufcg/agora-digital/blob/master/R/analyzer.R) realiza operações de reconhecimento de eventos e fases em dataframes de tramitação da Câmara e do Senado.
 Para aquelas proposições que já tramitaram na casa de origem e estão agora na casa revisora, temos que identificar os ids das proposições na Câmara e no Senado, com posse dessas informações precisamos chamar apenas a função process_proposicao(id, casa) duas vezes. Depois disso todos os csvs necessários para o módulo view terão sido criados.
-
-```{r message=FALSE}
-source(here::here("R/analyzer.R"))
-library(magrittr)
-library(tidyverse)
-```
 
 ```{r message=FALSE}
 id_qualidade_fiscal_senado <- 91341
 id_qualidade_fiscal_camara <- 2088990
 
-tramitacao_senado <- process_proposicao(id_qualidade_fiscal_senado, 'senado')
+tramitacao_senado <- agoradigital::process_proposicao(id_qualidade_fiscal_senado, 'senado')
 tramitacao_senado
 
-process_proposicao(id_qualidade_fiscal_camara, 'camara')
+agoradigital::process_proposicao(id_qualidade_fiscal_camara, 'camara')
 ```

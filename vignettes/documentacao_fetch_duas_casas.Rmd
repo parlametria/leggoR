@@ -3,25 +3,20 @@ title: "Fetcher de uma proposição que já está na segunda casa"
 output: html_notebook
 ---
 
-O fetcher realiza a importação dos dados das apis da Câmara e do Senado.
+O [fetcher](https://github.com/analytics-ufcg/agora-digital/blob/master/R/fetcher.R) realiza a importação dos dados das apis da Câmara e do Senado.
 Para aquelas proposições que já tramitaram na casa de origem e estão agora na casa revisora, temos que realizar alguns passos para adquirir as informações de tramitação. O primeiro é identificar os ids das proposições na Câmara e no Senado. De posse desses ids temos que chamar a função fetch_tramitacao(id_senado) e a rcongresso::fetch_tramitacao(id_camara).
-
-```{r message=FALSE}
-source(here::here("R/fetcher.R"))
-library(tidyverse)
-```
 
 ```{r message=FALSE}
 id_qualidade_fiscal_senado <- 91341
 id_qualidade_fiscal_camara <- 2088990
 
-head(fetch_tramitacao(id_qualidade_fiscal_senado))
+head(agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado))
 head(rcongresso::fetch_tramitacao(id_qualidade_fiscal_camara))
 ```
 
 Para adquirir informações gerais sobre uma proposição usamos o método fetch_proposição(id, casa).
 
 ```{r message=FALSE}
-fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
-fetch_proposicao(id_qualidade_fiscal_camara, 'camara')
+agoradigital::fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
+agoradigital::fetch_proposicao(id_qualidade_fiscal_camara, 'camara')
 ```
