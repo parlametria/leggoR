@@ -27,5 +27,10 @@ Os dados retornados pela função **process_proposicao(id, "camara")**, além do
     * discussao_votacao: quando o Relator apresenta seu Parecer e ele passa a ser votado na Comissão;
     * encaminhamento: quando a proposição é votada e é encaminhada para a próxima Comissão, Plenário ou Casa.
 
+Caso se deseje salvar o *dataframe* retornado pela função anterior em um arquivo **.csv**, pode-se usar o comando `write_csv` da biblioteca *readr*:
+```{r}
+library(readr)
+readr::write_csv(tram_camara, "../data/tramitacao_345311.csv")
+```
 
 
