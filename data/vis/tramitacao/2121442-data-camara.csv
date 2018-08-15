@@ -1,15 +1,7 @@
 label,start,end,group,color
-Apresentação - Revisão (Câmara),2016-03-16T14:03:00Z,2016-12-15T15:33:00Z,Global,#d6952a
-Comissões - Revisão (Câmara),2016-12-15T15:33:00Z,2018-08-06T12:23:02Z,Global,#938ecc
-CD-MESA-PLEN,2016-03-16T14:03:00Z,2016-12-15T15:33:00Z,Comissão,NA
-CTASP,2016-12-15T15:33:00Z,2017-08-29T17:06:00Z,Comissão,#ea81b1
-Comissão Especial,2017-08-29T17:06:00Z,2018-08-06T12:23:02Z,Comissão,NA
-Recebimento,2016-12-15T15:33:00Z,2017-08-15T19:01:00Z,Situação na comissão,#5496cf
-Encaminhamento,2017-08-15T19:01:00Z,2017-08-23T08:59:00Z,Situação na comissão,#ea81b1
-Recebimento,2017-08-23T08:59:00Z,2017-08-29T18:59:00Z,Situação na comissão,#5496cf
-Encaminhamento,2017-08-29T18:59:00Z,2017-09-12T00:00:00Z,Situação na comissão,#ea81b1
-Análise do relator,2017-09-12T00:00:00Z,2018-06-11T17:08:00Z,Situação na comissão,#ff9c37
-Discussão e votação,2018-06-11T17:08:00Z,2018-08-06T12:23:02Z,Situação na comissão,#8bca42
+Apresentação - Revisão (Câmara),2016-03-16T14:03:00Z,2016-12-15T15:33:00Z,Global,NA
+CTASP - Revisão (Câmara),2016-12-15T15:33:00Z,2017-08-29T17:06:00Z,Global,#ea81b1
+Comissão Especial - Revisão (Câmara),2017-08-29T17:06:00Z,2018-08-13T18:12:17Z,Global,#ff9c37
 distribuicao,2016-03-16T14:03:00Z,2016-03-16T14:03:00Z,Evento,#a9a9a9
 apresentacao_da_pl,2016-12-14T22:16:00Z,2016-12-14T22:16:00Z,Evento,#a9a9a9
 distribuicao,2016-12-15T10:39:00Z,2016-12-15T10:39:00Z,Evento,#a9a9a9
@@ -50,3 +42,7 @@ parecer_pela_aprovacao_com_substitutivo,2018-06-11T17:08:00Z,2018-06-11T17:08:00
 pedido_de_vista,2018-06-12T15:00:00Z,2018-06-12T15:00:00Z,Evento,#a9a9a9
 encerramento_prazo_emendas,2018-06-19T18:10:00Z,2018-06-19T18:10:00Z,Evento,#a9a9a9
 requerimento_prorrogacao,2018-06-26T09:47:00Z,2018-06-26T09:47:00Z,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2018-08-07T22:26:00Z,2018-08-07T22:26:00Z,Evento,#a9a9a9
+voto_em_separado,2018-08-08T11:47:00Z,2018-08-08T11:47:00Z,Evento,#a9a9a9
+parecer_pela_aprovacao_com_substitutivo,2018-08-08T13:18:00Z,2018-08-08T13:18:00Z,Evento,#a9a9a9
+requerimento_prorrogacao,2018-08-13T09:42:00Z,2018-08-13T09:42:00Z,Evento,#a9a9a9

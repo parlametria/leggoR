@@ -11,7 +11,7 @@ output: html_document
 library(vistime)
 library(dplyr)
 
-pl_229_2009_data_casa_origem <- frame_data(
+pl_229_2009_data_global <- frame_data(
   ~ event, ~ group, ~ start, ~ end, ~ color,
   'Apresentação - Origem (Senado)', 'Global', '2009-05-28', '2009-05-29', '#c8e6c9',
   'Comissões - Origem (Senado)', 'Global', '2009-05-29', '2016-05-17', '#fb8c00',
@@ -112,7 +112,7 @@ pl_229_2009_data_eventos <-  frame_data (
 )
 
 pl_229_2009_data_general <- bind_rows(
-  pl_229_2009_data_casa_origem,
+  pl_229_2009_data_global,
   pl_229_2009_data_comissoes,
   pl_229_2009_data_comissao,
   pl_229_2009_data_eventos)

@@ -1,0 +1,55 @@
+---
+title: "Baixando Dados"
+output: html_notebook
+---
+
+O Fetcher realiza a importação dos dados das apis da Câmara e do Senado.
+
+Para que um Projeto de Lei (PL) seja aprovado, é necessário que ele passe pelas duas casas do Congresso (Câmara e Senado), podendo iniciar em qualquer uma delas e tendo que passar pela outra para revisão. A primeira casa na qual o PL passar será chamada Casa de Origem, e a segunda, Casa Revisora.
+
+O primeiro passo para obter dados de qualquer PL é identificar os ids do mesmo na Câmara e/ou no Senado. [Link para artigo sobre como achar o id de um PL](). 
+
+Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009).
+
+
+```{r message=FALSE}
+library(agoradigital)
+library(rcongresso)
+library(tidyverse)
+
+id_qualidade_fiscal_senado <- 91341
+id_qualidade_fiscal_camara <- 2088990
+```
+### Dados Gerais
+
+Para adquirir informações gerais sobre uma proposição usamos o método fetch_proposição(id, casa).
+
+#### Câmara
+
+```{r message=FALSE}
+prop_camara <- fetch_proposicao(id_qualidade_fiscal_camara, 'camara')
+glimpse(prop_camara)
+```
+
+#### Senado
+
+```{r message=FALSE}
+prop_senado <- fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
+glimpse(prop_senado)
+```
+
+### Dados da Tramitação
+
+#### Câmara
+
+```{r message=FALSE}
+tram_camara <- tramitacao_camara <- rcongresso::fetch_tramitacao(id_qualidade_fiscal_camara)
+glimpse(tram_camara)
+```
+
+#### Senado
+
+```{r message=FALSE}
+tram_senado <- tramitacao_senado <- fetch_tramitacao(id_qualidade_fiscal_senado)
+glimpse(tram_senado)
+```

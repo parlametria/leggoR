@@ -1,9 +1,9 @@
 label,start,end,time_interval,group,color
-Apresentação - Origem (Senado),2018-04-18,2018-04-19,1,Global,#d6952a
-Comissões - Origem (Senado),2018-04-19,2018-07-05,77,Global,#938ecc
-Mesa - Senado,2018-04-18,2018-04-19,1,Comissão,NA
-CCJ,2018-04-19,2018-07-05,77,Comissão,#ffffcc
-Recebimento,2018-04-18,2018-04-19,1,Sub-fase Comissão,#d7191c
-Análise do relator,2018-04-19,2018-07-05,77,Sub-fase Comissão,#fdae61
+Mesa - Senado - Origem (Senado),2018-04-12,2018-04-19,7,Global,NA
+CCJ - Origem (Senado),2018-04-19,2018-08-07,110,Global,#ffffcc
+designado_relator,2018-04-12,2018-04-12,0,Evento,#a9a9a9
+inicio_prazo_emendas,2018-04-18,2018-04-18,0,Evento,#a9a9a9
 devolvido,2018-04-24,2018-04-24,0,Evento,#a9a9a9
+designado_relator,2018-05-02,2018-05-02,0,Evento,#a9a9a9
 devolvido,2018-07-05,2018-07-05,0,Evento,#a9a9a9
+designado_relator,2018-08-07,2018-08-07,0,Evento,#a9a9a9

@@ -19,9 +19,6 @@ get_ementas_in_camara <- function(prop_id) {
 #' @param df Dataframe da tramitação na Câmara
 #' @param qtd  (opcional) Quantidade de eventos a serem recuperados. (Default: qtd = 1)
 #' @return Dataframe com as última n tramitações da Câmara.
-#' @examples
-#' tramitacao %>% last_n_despacho_in_camara()
-#' tramitacao %>% last_n_despacho_in_camara(4)
 #' @export
 last_n_despacho_in_camara <- function(df, qtd = 1) {
   df %>%
@@ -59,8 +56,6 @@ get_regex_comissoes_camara <- function() {
 #' as próximas comissões
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe com as próximas comissões que a proposição irá passar.
-#' @examples
-#' tramitacao %>% get_comissoes_in_camara(df)
 #' @export
 get_comissoes_in_camara <- function(df) {
   reg <-
@@ -69,7 +64,7 @@ get_comissoes_in_camara <- function(df) {
     stringr::regex(ignore_case = TRUE)
   
   fix_names <- function(name) {
-    if (!str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name))
+    if (!stringr::str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name))
       paste("Comissão de", name)
     else
       name
@@ -107,8 +102,6 @@ get_comissoes_in_camara <- function(df) {
 #' @description Formata cada data da coluna para o formato POSIXct
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe com a coluna de datas refatorada para um formato tratável.
-#' @examples
-#' df %>% refact_date()
 #' @export
 refact_date <- function(df) {
   dplyr::mutate(df, data_hora = lubridate::ymd_hm(data_hora))
@@ -118,8 +111,6 @@ refact_date <- function(df) {
 #' @description Ordena o dataframe de acordo com a data
 #' @param df Dataframe contendo coluna de datas
 #' @return Dataframe ordenado pela data
-#' @examples
-#' df %>% sort_by_date()
 #' @export
 sort_by_date <- function(df) {
   dplyr::arrange(df, data_hora, sequencia)
@@ -133,12 +124,11 @@ fetch_proposicao_with_apensamentos <- function(prop_id) {
 
 #' @title Baixa dados de requerimentos relacionados
 #' @description Retorna um dataframe contendo dados sobre os requerimentos relacionados a uma proposição
-#' @param prop_id ID de uma proposição
+#' @param id ID de uma proposição
+#' @param mark_deferimento valor default true
 #' @return Dataframe
-#' @examples
-#' fetch_releated_requerimentos(2056568)
 #' @export
-fetch_related_requerimentos <- function(id, mark_deferimento = T) {
+fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
   regexes <-
     tibble::frame_data(
       ~ deferimento,

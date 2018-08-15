@@ -8,7 +8,7 @@
 #' @export
 extract_relator_in_camara <- function(df) {
   df %>%
-    dplyr::mutate(relator=dplyr::case_when(
+    dplyr::mutate(relator = dplyr::case_when(
       stringr::str_detect(tolower(despacho), '^designad. relat.r') ~
         stringr::str_extract(despacho, stringr::regex('dep.+', ignore_case=TRUE))))
 }
@@ -37,9 +37,6 @@ extract_last_relator_in_camara <- function(df) {
 #' @description Recupera os útimos n eventos da tramitação na Câmara, caso nenhuma quantidade seja informada, assume-se que é 1
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe dos últimos n eventos na Câmara contendo hora e evento.
-#' @examples
-#' tramitacao %>% extract_last_n_events_in_camara()
-#' tramitacao %>% extract_last_n_events_in_camara(3)
 #' @export
 extract_last_n_events_in_camara <- function(df, num) {
   df %>%
@@ -53,8 +50,6 @@ extract_last_n_events_in_camara <- function(df, num) {
 #' @description Recupera todos os relatores de uma proposição, junto com suas informações de parlamentar e comissão
 #' @param tramitacao_df Dataframe da tramitação na Câmara
 #' @return Dataframe que contém todos os relatores
-#' @examples
-#' tramitacao %>% extract_relatorias_in_camara()
 #' @export
 extract_relatorias_in_camara <- function(tramitacao_df) {
   tramitacao_df %>%
@@ -80,8 +75,6 @@ extract_relatorias_in_camara <- function(tramitacao_df) {
 #' @description Renomeia as colunas do dataframe usando o padrão de letras minúsculas e underscore
 #' @param df Dataframe
 #' @return Dataframe com as colunas renomeadas.
-#' @examples
-#' df %>% rename_df_columns()
 #' @export
 rename_df_columns <- function(df) {
   names(df) %<>% to_underscore
@@ -93,8 +86,6 @@ rename_df_columns <- function(df) {
 #' @param tramitacao_df Dataframe da tramitação na Câmara
 #' @param events_df Dataframe com os eventos contendo as colunas "evento" e "regex"
 #' @return Dataframe com a coluna "evento" adicionada.
-#' @examples
-#' df %>% extract_events_in_camara(importants_events)
 #' @export
 extract_events_in_camara <- function(tramitacao_df) {
   tramitacao_df %>% regex_left_match(camara_codes$eventos, "evento")
@@ -217,7 +208,7 @@ extract_fase_casa_in_camara <- function(df) {
   
   
   if (is.na(df[1, ]$casa)) {
-    df[1, ]$casa = 'Apresentação'
+    df[1, ]$casa <- 'Apresentação'
   }
   
   df %>%

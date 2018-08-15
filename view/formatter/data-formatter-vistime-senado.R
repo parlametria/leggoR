@@ -49,7 +49,7 @@ format_fase <- function(df) {
     select(-sequence) %>%
     #filter(time_interval > 0) %>%
     rename(label=fase) %>%
-    mutate(group = "Sub-fase Comissão")
+    mutate(group = "Situação na comissão")
   
   df %>% 
     mutate(color = case_when(label == "Recebimento" ~ "#d7191c",
@@ -64,7 +64,7 @@ format_eventos <- function(df) {
     # Improve the phases names and convert data_tramitacao to Date
     df %>%
     mutate(
-      data_tramitacao = as.Date(data_tramitacao),
+      data_tramitacao = if_else(is.na(data_audiencia), as.Date(data_tramitacao), as.Date(data_audiencia)),
       evento = as.character(evento)
     )
   
@@ -114,7 +114,7 @@ build_vis_csv <- function(bill_id) {
   df <- 
     rbind(format_local(data_tramitacao),
           format_fase_global(data_tramitacao),
-          format_fase(data_tramitacao),
+          #format_fase(data_tramitacao),
           format_eventos(data_tramitacao)) %>%
     filter(time_interval != 0 | group == "Evento") %>%
     filter(group != 'Comissão')
