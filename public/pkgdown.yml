@@ -1,0 +1,7 @@
+pandoc: 2.1.2
+pkgdown: 1.1.0
+pkgdown_sha: ~
+articles:
+  introducao: introducao.html
+  tutorial_fetcher: tutorial_fetcher.html
+

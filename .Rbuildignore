@@ -4,3 +4,8 @@
 ^docs$
 ^.github
 ^\.gitlab-ci\.yml$
+^data$
+^reports$
+^view$
+^scripts$
+^\.lintr$
