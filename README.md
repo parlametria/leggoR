@@ -2,18 +2,13 @@
 [![coverage report](https://gitlab.com/analytics-ufcg/agora-digital/badges/master/coverage.svg)](https://gitlab.com/analytics-ufcg/agora-digital/commits/master)
 
 # Ágora Digital
- Acesso, tradução e modelos usando dados do congresso nacional.
+Acesso, tradução e modelos usando dados do congresso nacional.
  
-- [Link para página](https://analytics-ufcg.github.io/agora-digital/)
-
-Raiz do projeto Ágora Digital
-
-- [Documentação](/docs)
-- [Scripts](/scripts)
+- [Site com documentação](https://analytics-ufcg.github.io/agora-digital/public)
 
 ## Instalação
 
-Antes de instalar nosso pacote, é necessário que você tenha o [R](https://www.r-project.org/) instalado e também o [devtools](https://github.com/r-lib/devtools) que é uma ferramenta que irá ajuda-lo no processo de instalação e desenvolvimento:
+Antes de instalar nosso pacote, é necessário que você tenha o [R](https://www.r-project.org/) instalado e também o [devtools](https://github.com/r-lib/devtools) que é uma ferramenta que irá te ajudar no processo de instalação e desenvolvimento:
 
 ```R
 install.packages("devtools")
@@ -46,13 +41,13 @@ library(agoradigital)
 Para verificar se toda a instalação foi feita de maneira correta, use o exemplo:
 
 ```R
-agoradigital::fetch_prop("senado", 7492)
+agoradigital::fetch_proposicao("senado", 7492)
 ```
 
 ou 
  
 ```
-Rscript -e 'agoradigital::fetch_prop("senado", 7492)'
+Rscript -e 'agoradigital::fetch_proposicao("senado", 7492)'
 ```
 
 ## Uso

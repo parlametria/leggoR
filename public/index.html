@@ -55,6 +55,9 @@
 <li>
       <a href="articles/introducao.html">Introdução ao Ágora Digital</a>
     </li>
+    <li>
+      <a href="articles/tutorial_fetcher.html">Baixando Dados</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -81,27 +84,106 @@
 <div id="agora-digital" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#agora-digital" class="anchor"></a>Ágora Digital</h1></div>
+<p>Acesso, tradução e modelos usando dados do congresso nacional.</p>
 <ul>
-<li><a href="https://analytics-ufcg.github.io/agora-digital/">Link para página</a></li>
+<li><a href="https://analytics-ufcg.github.io/agora-digital/public">Site com documentação</a></li>
 </ul>
-<p>Raiz do projeto Ágora Digital</p>
+<div id="instalacao" class="section level2">
+<h2 class="hasAnchor">
+<a href="#instalacao" class="anchor"></a>Instalação</h2>
+<p>Antes de instalar nosso pacote, é necessário que você tenha o <a href="https://www.r-project.org/">R</a> instalado e também o <a href="https://github.com/r-lib/devtools">devtools</a> que é uma ferramenta que irá te ajudar no processo de instalação e desenvolvimento:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)</a></code></pre></div>
+<p>ou no terminal:</p>
+<pre><code>Rscript -e 'install.packages("devtools")'</code></pre>
+<p>Após isso, você pode instalar o pacote no seu ambiente R de preferência:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"analytics-ufcg/agora-digital"</span>)</a></code></pre></div>
+<p>ou:</p>
+<pre><code>Rscript -e 'devtools::install_github("analytics-ufcg/agora-digital")'</code></pre>
+<p>Para utilizá-lo:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(agoradigital)</a></code></pre></div>
+<p>Para verificar se toda a instalação foi feita de maneira correta, use o exemplo:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">agoradigital<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/agoradigital/topics/fetch_proposicao">fetch_proposicao</a></span>(<span class="st">"senado"</span>, <span class="dv">7492</span>)</a></code></pre></div>
+<p>ou</p>
+<pre><code>Rscript -e 'agoradigital::fetch_proposicao("senado", 7492)'</code></pre>
+</div>
+<div id="uso" class="section level2">
+<h2 class="hasAnchor">
+<a href="#uso" class="anchor"></a>Uso</h2>
+<p>Exemplos básicos de uso.</p>
+<div id="como-capturar-ids-de-proposicoes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#como-capturar-ids-de-proposicoes" class="anchor"></a>Como capturar ids de proposições:</h3>
+<p>A maioria de nossos métodos necessita do id da proposição que você deseja extrair informações, há várias formas de capturar esse id, serão mostradas as mais básicas:</p>
 <ul>
-<li><a href="/docs">Documentação</a></li>
-<li><a href="/scripts">Scripts</a></li>
+<li>
+<p>Pelo site da câmara e do senado:</p>
+<p>Tendo como exemplo a PL 3729/2004 da <em>câmara</em>, você pode visualizar o id pela URL da página da câmara</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">https<span class="op">:</span><span class="er">//</span>www.camara.gov.br<span class="op">/</span>proposicoesWeb<span class="op">/</span>fichadetramitacao?idProposicao=<span class="dv">257161</span></a></code></pre></div>
+<p>O id é <strong>257161</strong></p>
+<p>No <em>senado</em> é da mesma forma, tendo como exemplo a PL 441/2007, o id é <strong>82051</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">https<span class="op">:</span><span class="er">//</span>www25.senado.leg.br<span class="op">/</span>web<span class="op">/</span>atividade<span class="op">/</span>materias<span class="op">/-</span><span class="er">/</span>materia<span class="op">/</span><span class="dv">82051</span>?o=d</a></code></pre></div>
+<p>Agora você pode utilizar esse id nos métodos que precisar:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">  agoradigital<span class="op">::</span><span class="kw">fetch_prop</span>(<span class="st">"senado"</span>, <span class="dv">7492</span>)</a></code></pre></div>
+</li>
 </ul>
+</div>
+<div id="exemplos" class="section level3">
+<h3 class="hasAnchor">
+<a href="#exemplos" class="anchor"></a>Exemplos</h3>
+<p>Você pode encontrar mais exemplos de uso do <em>agoradigital</em> <a href="https://github.com/analytics-ufcg/agora-digital/tree/master/docs">aqui</a>.</p>
+</div>
+</div>
+<div id="estrutura-do-projeto" class="section level2">
+<h2 class="hasAnchor">
+<a href="#estrutura-do-projeto" class="anchor"></a>Estrutura do projeto</h2>
+<ul>
+<li>O Código principal do pacote você pode encontrar em <a href="https://github.com/analytics-ufcg/agora-digital/tree/master/R">R/</a>
+</li>
+<li>Exemplos de csv gerados pode se ver em <a href="https://github.com/analytics-ufcg/agora-digital/tree/master/data">data/</a>
+</li>
+<li>Em <a href="https://github.com/analytics-ufcg/agora-digital/tree/master/docs">docs/</a> pode se visualizar reports de Pls já testadas.</li>
+<li>Em <a href="https://github.com/analytics-ufcg/agora-digital/tree/master/scripts">scripts/</a> pode se ver alguns scripts que facilitam o processo de importar e geração de dados.</li>
+<li>
+<a href="https://github.com/analytics-ufcg/agora-digital/tree/master/tests">tests/</a> contém testes de uso.</li>
+<li>
+<a href="https://github.com/analytics-ufcg/agora-digital/tree/master/view">view/</a> contém alguns exemplos de visualizações que utilizam o agoradigital</li>
+<li>
+<a href="https://github.com/analytics-ufcg/agora-digital/tree/master/vignettes">vignettes/</a> exemplos.</li>
+</ul>
+</div>
 <div id="comandos" class="section level2">
 <h2 class="hasAnchor">
 <a href="#comandos" class="anchor"></a>Comandos</h2>
 <p>Baixar dados e gerar relatórios:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="op">$</span><span class="st"> </span>.<span class="op">/</span>scripts<span class="op">/</span>build_all.R</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="op">$</span><span class="st"> </span>.<span class="op">/</span>scripts<span class="op">/</span>build_all.R</a></code></pre></div>
 <p>Gerar documentação:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/document">document</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/document">document</a></span>()</a></code></pre></div>
 <p>Rodar testes:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/test">test</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/test">test</a></span>()</a></code></pre></div>
 <p>Mostrar cobertura do código:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(covr);<span class="kw">package_coverage</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(covr);<span class="kw">package_coverage</span>()</a></code></pre></div>
 <p>Fazer verificações gerais um pouco mais bonitinhas:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>rcmdcheck<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rcmdcheck/topics/rcmdcheck">rcmdcheck</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>rcmdcheck<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rcmdcheck/topics/rcmdcheck">rcmdcheck</a></span>()</a></code></pre></div>
+<p>Rodar o linter:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/lint">lint</a></span>()</a></code></pre></div>
+</div>
+<div id="mais-informacoes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#mais-informacoes" class="anchor"></a>Mais informações</h2>
+<p>Atualmente o pacote já foi testado para as seguintes proposições:</p>
+<ul>
+<li><a href="http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao=257161">PL 3729/2004</a></li>
+<li><a href="http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao=2121442">PL 6726/16</a></li>
+<li><a href="https://www25.senado.leg.br/web/atividade/materias/-/materia/127753?o=d">PL 449/2016</a></li>
+<li><a href="https://www25.senado.leg.br/web/atividade/materias/-/materia/91341">PL 229/2009</a></li>
+</ul>
+<p>Podendo apresentar problemas para outras proposições.</p>
+</div>
+<div id="como-contribuir" class="section level2">
+<h2 class="hasAnchor">
+<a href="#como-contribuir" class="anchor"></a>Como contribuir</h2>
+<p>Se encontrou algum problema ou deseja fazer alguma melhoria. Por favor, abra uma <a href="https://github.com/analytics-ufcg/agora-digital/issues">issue</a> e descreva o problema com clareza, se possível com exemplos que possamos reproduzir.</p>
+<p>Toda ajuda é bem vinda e de grande importância :) sinta-se à vontade.</p>
 </div>
 </div>
 
