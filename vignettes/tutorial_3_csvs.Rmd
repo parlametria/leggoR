@@ -14,6 +14,7 @@ Para salvar os dados de um dataframe retornado por uma função em um arquivo cs
 ```{r eval=FALSE, message=FALSE}
 install.packages('readr')
 caminhoProArquivoCsv <- 'meuCsv.csv'
+id_qualidade_fiscal_senado <- 91341
 prop_data <- fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
 prop_data %>% readr::write_csv(caminhoProArquivoCsv)
 ```
