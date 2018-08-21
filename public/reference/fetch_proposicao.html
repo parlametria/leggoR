@@ -84,10 +84,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/introducao.html">Introdução ao Ágora Digital</a>
+      <a href="../articles/tutorial_1_fetcher.html">Baixando Dados</a>
     </li>
     <li>
-      <a href="../articles/tutorial_fetcher.html">Baixando Dados</a>
+      <a href="../articles/tutorial_2_analyzer.html">Fases e Eventos de uma Proposição</a>
+    </li>
+    <li>
+      <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
   </ul>
 </li>
@@ -144,7 +147,27 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fetch_proposicao</span>(<span class='fl'>91341</span>, <span class='st'>'senado'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in casa %&lt;&gt;% tolower(): could not find function "%&lt;&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fetch_proposicao</span>(<span class='fl'>91341</span>, <span class='st'>'senado'</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 44
+#&gt;   ementa_materia        explicacao_ementa_ma… observacao_mater… apelido_materia
+#&gt;   &lt;chr&gt;                 &lt;chr&gt;                 &lt;chr&gt;             &lt;chr&gt;          
+#&gt; 1 Estabelece normas ge… Estabelece normas so… AGENDA BRASIL 20… LEI DA QUALIDA…
+#&gt; # ... with 40 more variables: indexacao_materia &lt;chr&gt;,
+#&gt; #   indicador_complementar &lt;chr&gt;, data_apresentacao &lt;chr&gt;, data_leitura &lt;chr&gt;,
+#&gt; #   sigla_casa_leitura &lt;chr&gt;, nome_casa_leitura &lt;chr&gt;, codigo_materia &lt;chr&gt;,
+#&gt; #   sigla_casa_identificacao_materia &lt;chr&gt;,
+#&gt; #   nome_casa_identificacao_materia &lt;chr&gt;, sigla_subtipo_materia &lt;chr&gt;,
+#&gt; #   descricao_subtipo_materia &lt;chr&gt;, numero_materia &lt;chr&gt;, ano_materia &lt;chr&gt;,
+#&gt; #   indicador_tramitando &lt;chr&gt;, nome_autor &lt;chr&gt;, sigla_tipo_autor &lt;chr&gt;,
+#&gt; #   descricao_tipo_autor &lt;chr&gt;, uf_autor &lt;chr&gt;, num_ordem_autor &lt;chr&gt;,
+#&gt; #   indicador_outros_autores &lt;chr&gt;, codigo_parlamentar &lt;chr&gt;,
+#&gt; #   nome_parlamentar &lt;chr&gt;, nome_completo_parlamentar &lt;chr&gt;,
+#&gt; #   sexo_parlamentar &lt;chr&gt;, forma_tratamento &lt;chr&gt;, url_foto_parlamentar &lt;chr&gt;,
+#&gt; #   url_pagina_parlamentar &lt;chr&gt;, email_parlamentar &lt;chr&gt;,
+#&gt; #   sigla_partido_parlamentar &lt;chr&gt;, uf_parlamentar &lt;chr&gt;,
+#&gt; #   codigo_assunto_especifico &lt;chr&gt;, assunto_especifico &lt;chr&gt;,
+#&gt; #   codigo_assunto_geral &lt;chr&gt;, assunto_geral &lt;chr&gt;, nome_poder_origem &lt;chr&gt;,
+#&gt; #   sigla_casa_origem &lt;chr&gt;, nome_casa_origem &lt;chr&gt;, page_url &lt;chr&gt;,
+#&gt; #   proposicoes_relacionadas &lt;chr&gt;, proposicoes_apensadas &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

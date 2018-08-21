@@ -1,4 +1,4 @@
-source(here::here("R/analyzers/analyzer.R"))
+source(here::here("R/analyzer.R"))
 args = commandArgs(trailingOnly=TRUE)
 
 #' @title Cria todos os csvs de um proposição.
@@ -33,17 +33,10 @@ build_csvs <- function(id, house) {
 #' @export
 build_all_csvs <- function(df) {
   if ('casa' %in% names(df)) {
-    df %>%
-      rowwise() %>%
-      do(build_csvs(.$id, .$casa)) 
-  }else {
-    df %>%
-      rowwise() %>%
-      do(build_csvs(.$id_camara, 'camara')) 
-    
-    df %>%
-      rowwise() %>%
-      do(build_csvs(.$id_senado, 'senado'))
+    map2(df$id, df$casa, ~ build_csvs(.x, .y))
+  } else {
+    map(df$id_camara, ~ build_csvs(.x, 'camara'))
+    map(df$id_senado, ~ build_csvs(.x, 'senado'))
   }
 }
 
