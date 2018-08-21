@@ -32,12 +32,12 @@ regex_left_match <- function(df, regex_df, new_column) {
   regex_df[is.na(regex_df)] <- ".*"
   
   df %>%
-    mutate(sort = row_number()) %>%
+    dplyr::mutate(sort = row_number()) %>%
     fuzzyjoin::regex_left_join(regex_df, by = columns, ignore_case = TRUE) %>%
-     group_by(sort) %>%
-     filter(rank(sort, ties.method = "first") == 1) %>%
-     ungroup() %>%
-    select(-ends_with("X"), -sort)
+    dplyr::group_by(sort) %>%
+    dplyr::filter(rank(sort, ties.method = "first") == 1) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(-tidyselect::ends_with("X"), -sort)
 }
 
 #' @title Renomeia as colunas do dataframe
