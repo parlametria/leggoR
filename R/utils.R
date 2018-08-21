@@ -23,11 +23,12 @@ regex_left_match <- function(df, regex_df, new_column) {
   regex_df[is.na(regex_df)] <- ".*"
   
   df %>%
-    mutate(sort = row_number()) %>%
+    dplyr::mutate(sort = row_number()) %>%
     fuzzyjoin::regex_left_join(regex_df, by = columns, ignore_case = TRUE) %>%
      group_by(sort) %>%
      ungroup() %>%
-    select(-ends_with("X"), -sort)
+    dplyr::select(-tidyselect::ends_with("X"), -sort)
+
 }
 
 

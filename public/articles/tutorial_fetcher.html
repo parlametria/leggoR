@@ -55,6 +55,12 @@
       <a href="../articles/introducao.html">Introdução ao Ágora Digital</a>
     </li>
     <li>
+      <a href="../articles/tutorial_analyzer.html">Fases e Eventos de uma Proposição</a>
+    </li>
+    <li>
+      <a href="../articles/tutorial_csvs.html">Como Trabalhar com CSVs</a>
+    </li>
+    <li>
       <a href="../articles/tutorial_fetcher.html">Baixando Dados</a>
     </li>
   </ul>
@@ -91,23 +97,23 @@
     
 <p>O Fetcher realiza a importação dos dados das apis da Câmara e do Senado.</p>
 <p>Para que um Projeto de Lei (PL) seja aprovado, é necessário que ele passe pelas duas casas do Congresso (Câmara e Senado), podendo iniciar em qualquer uma delas e tendo que passar pela outra para revisão. A primeira casa na qual o PL passar será chamada Casa de Origem, e a segunda, Casa Revisora.</p>
-<p>O primeiro passo para obter dados de qualquer PL é identificar os ids do mesmo na Câmara e/ou no Senado. <a href="">Link para artigo sobre como achar o id de um PL</a>.</p>
-<p>Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(agoradigital)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(rcongresso)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">id_qualidade_fiscal_senado &lt;-<span class="st"> </span><span class="dv">91341</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">2088990</span></a></code></pre></div>
+<p>O primeiro passo para obter dados de qualquer PL é identificar os ids do mesmo na Câmara e/ou no Senado. <a href="https://github.com/analytics-ufcg/agora-digital#como-capturar-ids-de-proposi%C3%A7%C3%B5es">Link para instruções sobre como achar o id de um PL</a>.</p>
+<p>Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009 - Senado | PLP 295/2016 - Câmara).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(agoradigital)
+<span class="kw">library</span>(rcongresso)
+<span class="kw">library</span>(tidyverse)
+
+id_qualidade_fiscal_senado &lt;-<span class="st"> </span><span class="dv">91341</span>
+id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">2088990</span></code></pre></div>
 <div id="dados-gerais" class="section level3">
 <h3 class="hasAnchor">
 <a href="#dados-gerais" class="anchor"></a>Dados Gerais</h3>
-<p>Para adquirir informações gerais sobre uma proposição usamos o método fetch_proposição(id, casa).</p>
+<p>Para adquirir informações gerais sobre uma proposição usamos o método fetch_proposição(id, casa). A função <code><a href="../reference/fetch_proposicao.html">fetch_proposicao()</a></code> retornará um dataframe contendo colunas com informações gerais sobre a proposição, como autor, ano, situação, ementa, relator e etc</p>
 <div id="camara" class="section level4">
 <h4 class="hasAnchor">
 <a href="#camara" class="anchor"></a>Câmara</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">prop_camara &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">glimpse</span>(prop_camara)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_camara &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>)
+<span class="kw">glimpse</span>(prop_camara)</code></pre></div>
 <pre><code>## Observations: 1
 ## Variables: 34
 ## $ ano                                  &lt;dbl&gt; 2016
@@ -148,8 +154,8 @@
 <div id="senado" class="section level4">
 <h4 class="hasAnchor">
 <a href="#senado" class="anchor"></a>Senado</h4>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">prop_senado &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_senado, <span class="st">'senado'</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">glimpse</span>(prop_senado)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_senado &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_senado, <span class="st">'senado'</span>)
+<span class="kw">glimpse</span>(prop_senado)</code></pre></div>
 <pre><code>## Observations: 1
 ## Variables: 34
 ## $ ano                                  &lt;dbl&gt; 0
@@ -191,11 +197,72 @@
 <div id="dados-da-tramitacao" class="section level3">
 <h3 class="hasAnchor">
 <a href="#dados-da-tramitacao" class="anchor"></a>Dados da Tramitação</h3>
+<p>A função <code><a href="../reference/fetch_tramitacao.html">fetch_tramitacao()</a></code> tem todos os acontecimentos da proposição ordenados por suas datas, contendo a descrição dos mesmos.</p>
+<table style="width:39%;" class="table">
+<colgroup>
+<col width="19%">
+<col width="19%">
+</colgroup>
+<thead><tr class="header">
+<th>Coluna</th>
+<th>Descrição</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>dataHora</td>
+<td>Data</td>
+</tr>
+<tr class="even">
+<td>descricaoSituacao</td>
+<td>Descricao da situacao</td>
+</tr>
+<tr class="odd">
+<td>descricaoTramitacao</td>
+<td>Descrição do evento na tramitação</td>
+</tr>
+<tr class="even">
+<td>despacho</td>
+<td>Despacho do acontecimento</td>
+</tr>
+<tr class="odd">
+<td>id_prop</td>
+<td>id da proposição que está sendo mostrada a tramitaçao</td>
+</tr>
+<tr class="even">
+<td>idSituacao</td>
+<td>id da situação que está ocorrendo naquela linha</td>
+</tr>
+<tr class="odd">
+<td>idTipoTramitacao</td>
+<td>id do tipo de tramitação que está ocorrendo naquela linha</td>
+</tr>
+<tr class="even">
+<td>regime</td>
+<td>Informa em que regime a tramitação está naquele momento podendo ser urgente ou normal por exemplo</td>
+</tr>
+<tr class="odd">
+<td>sequencia</td>
+<td>Enumeração da sequência de eventos</td>
+</tr>
+<tr class="even">
+<td>siglaOrgao</td>
+<td>Orgão em que está ocorrendo o acontecimento</td>
+</tr>
+<tr class="odd">
+<td>uriOrgao</td>
+<td>url do orgão no site da casa</td>
+</tr>
+<tr class="even">
+<td>url</td>
+<td>url do acontecimento</td>
+</tr>
+</tbody>
+</table>
 <div id="camara-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#camara-1" class="anchor"></a>Câmara</h4>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">tram_camara &lt;-<span class="st"> </span>tramitacao_camara &lt;-<span class="st"> </span>rcongresso<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rcongresso/topics/fetch_tramitacao">fetch_tramitacao</a></span>(id_qualidade_fiscal_camara)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">glimpse</span>(tram_camara)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tram_camara &lt;-<span class="st"> </span>rcongresso::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_camara)
+<span class="kw">glimpse</span>(tram_camara)</code></pre></div>
 <pre><code>## Observations: 28
 ## Variables: 12
 ## $ dataHora            &lt;chr&gt; "2016-06-21T00:00", "2016-06-21T16:37", "2...
@@ -214,10 +281,40 @@
 <div id="senado-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#senado-1" class="anchor"></a>Senado</h4>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">tram_senado &lt;-<span class="st"> </span>tramitacao_senado &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_senado)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">glimpse</span>(tram_senado)</a></code></pre></div>
-<pre><code>## Observations: 0
-## Variables: 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tram_senado &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_senado)
+<span class="kw">glimpse</span>(tram_senado)</code></pre></div>
+<pre><code>## Observations: 127
+## Variables: 30
+## $ codigo_tramitacao                         &lt;chr&gt; "2346685", "2346271"...
+## $ numero_autuacao                           &lt;chr&gt; "1", "1", "1", "1", ...
+## $ data_tramitacao                           &lt;chr&gt; "2016-06-21", "2016-...
+## $ numero_ordem_tramitacao                   &lt;chr&gt; "1", "1", "2", "1", ...
+## $ texto_tramitacao                          &lt;chr&gt; "Remessa Ofício SF n...
+## $ indicador_recebimento                     &lt;chr&gt; "S", "S", "S", "S", ...
+## $ data_recebimento                          &lt;chr&gt; NA, NA, "2016-06-16"...
+## $ origem_tramitacao_local_codigo_local      &lt;chr&gt; "440", "440", "1998"...
+## $ origem_tramitacao_local_tipo_local        &lt;chr&gt; "A", "A", "C", "A", ...
+## $ origem_tramitacao_local_sigla_casa_local  &lt;chr&gt; "SF", "SF", "SF", "S...
+## $ origem_tramitacao_local_nome_casa_local   &lt;chr&gt; "Senado Federal", "S...
+## $ origem_tramitacao_local_sigla_local       &lt;chr&gt; "SEXPE", "SEXPE", "P...
+## $ origem_tramitacao_local_nome_local        &lt;chr&gt; "Secretaria de Exped...
+## $ destino_tramitacao_local_codigo_local     &lt;chr&gt; "440", "440", "440",...
+## $ destino_tramitacao_local_tipo_local       &lt;chr&gt; "A", "A", "A", "A", ...
+## $ destino_tramitacao_local_sigla_casa_local &lt;chr&gt; "SF", "SF", "SF", "S...
+## $ destino_tramitacao_local_nome_casa_local  &lt;chr&gt; "Senado Federal", "S...
+## $ destino_tramitacao_local_sigla_local      &lt;chr&gt; "SEXPE", "SEXPE", "S...
+## $ destino_tramitacao_local_nome_local       &lt;chr&gt; "Secretaria de Exped...
+## $ situacao_codigo_situacao                  &lt;chr&gt; "52", NA, "113", "78...
+## $ situacao_sigla_situacao                   &lt;chr&gt; "RMCD", NA, "APRVSUB...
+## $ situacao_descricao_situacao               &lt;chr&gt; "REMETIDA À CÂMARA D...
+## $ codigo_materia                            &lt;chr&gt; "91341", "91341", "9...
+## $ sigla_casa_identificacao_materia          &lt;chr&gt; "SF", "SF", "SF", "S...
+## $ nome_casa_identificacao_materia           &lt;chr&gt; "Senado Federal", "S...
+## $ sigla_subtipo_materia                     &lt;chr&gt; "PLS", "PLS", "PLS",...
+## $ descricao_subtipo_materia                 &lt;chr&gt; "PROJETO DE LEI DO S...
+## $ numero_materia                            &lt;chr&gt; "00229", "00229", "0...
+## $ ano_materia                               &lt;chr&gt; "2009", "2009", "200...
+## $ indicador_tramitando                      &lt;chr&gt; "Não", "Não", "Não",...</code></pre>
 </div>
 </div>
   </div>

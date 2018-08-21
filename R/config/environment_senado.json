@@ -45,6 +45,10 @@
       "regex": "processo arquivado(.)*",
       "constant": "arquivada"
     },
+    "virada": {
+      "regex": "primeiro-secretário da câmara dos deputados",
+      "constant": "virada_casa"
+    },
     "aprovacao_substitutivo": {
       "regex": "aprovado o substitutivo",
       "constant": "aprovacao_substitutivo"
@@ -70,7 +74,6 @@
     {"evento": "aprovacao_projeto", "texto_tramitacao": "aprovado o projeto"},
     {"evento": "inicio_prazo_emendas", "situacao_codigo_situacao": "^20$"},
     {"evento": "fim_prazo_emendas", "situacao_codigo_situacao": "^153$"},
-    {"evento": "virada_casa", "situacao_codigo_situacao": "^52$"},
     {"evento": "remetida_a_sancao", "situacao_codigo_situacao": "^57$"},
     {"evento": "vetada", "situacao_codigo_situacao": "^57$"},
     {"evento": "pronta_para_pauta", "situacao_codigo_situacao": "^42$"},
