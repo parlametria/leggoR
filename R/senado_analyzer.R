@@ -139,11 +139,14 @@ extract_evento_Senado <- function(tramitacao_df) {
                         TRUE ~ evento
                       ))
   }
-  
-  df <- df %>% dplyr::mutate(
+
+  df <- 
+    df %>% 
+    dplyr::mutate(
     evento = dplyr::case_when(
       stringr::str_detect(tolower(texto_tramitacao), stringr::regex(designacao_relator$texto_tramitacao, 
                                                            ignore_case = TRUE)) ~ designacao_relator$evento,
+      stringr::str_detect(tolower(texto_tramitacao), eventos$virada$regex) ~ eventos$virada$constant,
       stringr::str_detect(tolower(texto_tramitacao), eventos$aprovacao_substitutivo$regex) ~ eventos$aprovacao_substitutivo$constant,
       stringr::str_detect(tolower(texto_tramitacao), eventos$arquivamento$regex) ~ eventos$arquivamento$constant,
       (stringr::str_detect(tolower(texto_tramitacao), eventos$realizacao_audiencia_publica$regex) &
@@ -151,10 +154,10 @@ extract_evento_Senado <- function(tramitacao_df) {
       TRUE ~ evento
   ))
   
+  
   df %>%
     dplyr::mutate(data_audiencia = stringr::str_extract(tolower(texto_tramitacao), "\\d+/\\d+/\\d+")) %>%
     dplyr::mutate(data_audiencia = ifelse(evento == 'realizacao_audiencia_publica', data_audiencia, NA))
-  
 }
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
