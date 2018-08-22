@@ -48,7 +48,7 @@ get_regex_comissoes_camara <- function() {
   get_comissoes_camara() %>%
     unlist() %>%
     paste(collapse = '|') %>%
-    regex(ignore_case = TRUE)
+    stringr::regex(ignore_case = TRUE)
 }
 
 #' @title Recupera as comissões pelas quais a proposição irá passar

@@ -84,10 +84,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/introducao.html">Introdução ao Ágora Digital</a>
+      <a href="../articles/tutorial_1_fetcher.html">Baixando Dados</a>
     </li>
     <li>
-      <a href="../articles/tutorial_fetcher.html">Baixando Dados</a>
+      <a href="../articles/tutorial_2_analyzer.html">Fases e Eventos de uma Proposição</a>
+    </li>
+    <li>
+      <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
   </ul>
 </li>
@@ -140,7 +143,10 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fetch_apensadas</span>(<span class='fl'>2121442</span>)</div><div class='output co'>#&gt; <span class='error'>Error in xml2::read_xml(paste0(api_v1_proposicao_url, prop_id)) %&gt;% xml2::xml_find_all("//apensadas/proposicao/codProposicao") %&gt;%     xml2::xml_text() %&gt;% tibble::tibble(apensadas = .): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fetch_apensadas</span>(<span class='fl'>2121442</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 1
+#&gt;   apensadas
+#&gt;   &lt;chr&gt;    
+#&gt; 1 1783575  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

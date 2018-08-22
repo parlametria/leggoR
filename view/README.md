@@ -4,7 +4,7 @@
 
 A Ágora Digital possui um conjunto de scripts que facilitam a visualização de tramitação
 de projetos de lei nas duas casas legislativas. Para isso, é utilizados os dados gerados
-pelo script [analyzer](../R/analyzers/analyzer.R) para exibir uma timeline com os principais
+pelo script [analyzer](../R/analyzer.R) para exibir uma timeline com os principais
 eventos e por onde o projeto passou nesse tempo de tramitação.
 Para realizar a criação da timeline, é preciso instalar a biblioteca [Vistime](https://github.com/shosaco/vistime).
 O comando a seguir demonstra como pode ser feito essa instalação no R:

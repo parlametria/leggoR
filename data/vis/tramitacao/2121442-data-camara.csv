@@ -1,7 +1,7 @@
 label,start,end,group,color
 Apresentação - Revisão (Câmara),2016-03-16T14:03:00Z,2016-12-15T15:33:00Z,Global,NA
 CTASP - Revisão (Câmara),2016-12-15T15:33:00Z,2017-08-29T17:06:00Z,Global,#ea81b1
-Comissão Especial - Revisão (Câmara),2017-08-29T17:06:00Z,2018-08-13T18:12:17Z,Global,#ff9c37
+Comissão Especial - Revisão (Câmara),2017-08-29T17:06:00Z,2018-08-15T12:20:42Z,Global,#ff9c37
 distribuicao,2016-03-16T14:03:00Z,2016-03-16T14:03:00Z,Evento,#a9a9a9
 apresentacao_da_pl,2016-12-14T22:16:00Z,2016-12-14T22:16:00Z,Evento,#a9a9a9
 distribuicao,2016-12-15T10:39:00Z,2016-12-15T10:39:00Z,Evento,#a9a9a9
@@ -10,8 +10,8 @@ distribuicao,2017-03-16T00:00:00Z,2017-03-16T00:00:00Z,Evento,#a9a9a9
 requerimento_redistribuicao,2017-04-18T15:07:00Z,2017-04-18T15:07:00Z,Evento,#a9a9a9
 requerimento_redistribuicao,2017-05-09T11:55:00Z,2017-05-09T11:55:00Z,Evento,#a9a9a9
 redistribuicao,2017-08-15T00:00:00Z,2017-08-15T00:00:00Z,Evento,#a9a9a9
-comissao_especial,2017-08-15T00:00:00Z,2017-08-15T00:00:00Z,Evento,#a9a9a9
 requerimento_urgencia,2017-08-15T16:49:00Z,2017-08-15T16:49:00Z,Evento,#a9a9a9
+comissao_especial,2017-08-29T17:06:00Z,2017-08-29T17:06:00Z,Evento,#a9a9a9
 designado_relator,2017-09-12T00:00:00Z,2017-09-12T00:00:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-12T18:00:00Z,2017-09-12T18:00:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-12T18:53:00Z,2017-09-12T18:53:00Z,Evento,#a9a9a9
