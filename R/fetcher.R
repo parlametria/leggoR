@@ -790,3 +790,20 @@ fetch_proposicao_camara <- function(prop_id) {
     fuzzyjoin::regex_left_join(regex_apreciacao, by = c(temp = "regex")) %>%
     dplyr::select(-c('temp', 'regex'))
 }
+
+fetch_agenda_camara <- function(inital_date, end_date) {
+  url <- paste0("https://dadosabertos.camara.leg.br/api/v2/eventos?dataInicio=", inital_date, "&dataFim=", end_date, "&ordem=ASC&ordenarPor=dataHoraInicio")
+  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
+  x <- 
+    json_proposicao$dados %>% 
+    tibble::as.tibble() %>%
+    dplyr::filter(descricaoSituacao != 'Cancelada' & 
+                    (descricaoTipo != 'Diligência' & descricaoTipo != 'Sessão Não Deliberativa de Debates')) %>%
+    dplyr::mutate(url = paste0("https://dadosabertos.camara.leg.br/api/v2/eventos/", id, "/pauta"))
+  
+  url <- "https://dadosabertos.camara.leg.br/api/v2/eventos/53588/pauta"
+}
+
+fetch_agenda <- function(inital_date, end_date, house) {
+  congressbr::sen_agenda(initial_date = inital_date, end_date = end_date)
+}
