@@ -1,3 +1,6 @@
+source(here::here("R/congresso-lib.R"))
+
+
 #' @title Cria coluna com as fases da tramitação no Senado
 #' @description Cria uma nova coluna com as fases no Senado
 #' @param df Dataframe da tramitação no Senado
@@ -414,6 +417,12 @@ extract_approved_requerimentos_in_senado <- function(df) {
 #' @examples
 #' process_proposicao_senado(91341)
 process_proposicao_senado <- function(bill_id) {
+  proposicao_df <- 
+    readr::read_csv(paste0(
+      here::here("data/Senado/"),
+      bill_id, 
+      "-proposicao-senado.csv"))
+    
   bill_passage <-
     readr::read_csv(paste0(
       here::here("data/Senado/"),
@@ -469,7 +478,7 @@ process_proposicao_senado <- function(bill_id) {
   bill_passage <-
     bill_passage[1:index_of_camara,] %>%
     extract_locais() %>%
-    extract_fase_global(bill_id) %>%
+    extract_fase_global(proposicao_df) %>%
     dplyr::filter(!is.na(fase))
   
   bill_passage %>%
@@ -511,7 +520,6 @@ process_proposicao_senado <- function(proposicao_df, tramitacao_df) {
   phase_four <- c(52)
   comissoes_phase <- senado_env$fase_comissao %>%
     dplyr::filter(fase == "analise_do_relator")
-  
   tramitacao_df <-
     extract_fase_Senado(
       tramitacao_df,
