@@ -1,5 +1,5 @@
-data_tramitacao,local,fase,evento,casa,global
-2016-12-09,Plenário,Discussão e votação,NA,Apresentação, - Origem (Senado)
-2016-12-13,Plenário,Discussão e votação,aprovacao_projeto,Apresentação, - Origem (Senado)
-2016-12-14,Plenário,Discussão e votação,NA,Apresentação, - Revisão (Câmara)
-2016-12-14,Mesa - Câmara,Discussão e votação,virada_casa,Apresentação, - Revisão (Câmara)
+data_tramitacao,local,fase,evento,casa,global,data_audiencia
+2016-12-09,Plenário,Discussão e votação,NA,Apresentação, - Origem (Senado),NA
+2016-12-13,Plenário,Discussão e votação,aprovacao_projeto,Apresentação, - Origem (Senado),NA
+2016-12-14,Plenário,Discussão e votação,NA,Apresentação, - Revisão (Câmara),NA
+2016-12-14,Mesa - Câmara,Discussão e votação,virada_casa,Apresentação, - Revisão (Câmara),NA

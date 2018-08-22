@@ -66,7 +66,7 @@ há várias formas de capturar esse id, serão mostradas as mais básicas:
     ```
     
 ### Exemplos
-Você pode encontrar mais exemplos de uso do *agoradigital* [aqui](https://github.com/analytics-ufcg/agora-digital/tree/master/docs).
+Você pode encontrar mais exemplos de uso do *agoradigital* [aqui](https://github.com/analytics-ufcg/agora-digital/tree/master/vignettes).
 
 ## Estrutura do projeto
 

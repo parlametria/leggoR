@@ -481,6 +481,7 @@ fetch_emendas <- function(bill_id) {
   emendas_df
 
 }
+
 #' @title Importa as informações de uma proposição da internet.
 #' @description Recebido um id a função roda os scripts para
 #' importar os dados daquela proposição.
@@ -662,7 +663,7 @@ to_underscore <- function(x) {
 #' fetch_proposicao(91341, 'senado')
 #' @export
 fetch_proposicao <- function(id, casa) {
-  casa %<>% tolower()
+  casa <- tolower(casa)
   if (casa == 'camara') {
     fetch_proposicao_camara(id)
   } else if (casa == 'senado') {

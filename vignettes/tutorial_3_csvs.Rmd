@@ -1,0 +1,28 @@
+---
+title: "Como Trabalhar com CSVs"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Como Trabalhar com CSVs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+### Como trabalhar com CSVs
+
+Para salvar os dados de um dataframe retornado por uma função em um arquivo csv, basta:
+
+```{r eval=FALSE, message=FALSE}
+install.packages('readr')
+caminhoProArquivoCsv <- 'meuCsv.csv'
+id_qualidade_fiscal_senado <- 91341
+prop_data <- fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
+prop_data %>% readr::write_csv(caminhoProArquivoCsv)
+```
+
+Depois para ler:
+```{r eval=FALSE, message=FALSE}
+caminhoProArquivoCsv <- 'meuCsv.csv'
+prop_data <- readr::read_csv(caminhoProArquivoCsv)
+```
+
+
