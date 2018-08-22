@@ -12,12 +12,12 @@ source(here::here("R/camara_analyzer.R"))
 #' @export
 process_proposicao <- function(id, casa) {
   if ("CAMARA" == toupper(casa)) {
-    agoradigital:::process_proposicao_camara(id)
+    process_proposicao_camara(id)
   } else if ("SENADO" == toupper(casa)) {
     senado_env <-
       jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
     senado_constants <- senado_env$constants
-    agoradigital:::process_proposicao_senado(id)
+    process_proposicao_senado(id)
   }
 }
 
