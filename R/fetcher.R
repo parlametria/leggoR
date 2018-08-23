@@ -800,6 +800,8 @@ fetch_proposicao_camara <- function(prop_id) {
 #' @return Dataframe
 #' @examples
 #' fetch_pauta_camara('53277', '2018-07-03T10:00', '2018-07-03T12:37')
+#' @importFrom dplyr mutate
+#' @importFrom tibble as.tibble
 #' @export
 fetch_pauta_camara <- function(id, hora_inicio, hora_fim, sigla_orgao, nome_orgao) {
   url <- paste0("https://dadosabertos.camara.leg.br/api/v2/eventos/", id, "/pauta")
@@ -807,7 +809,7 @@ fetch_pauta_camara <- function(id, hora_inicio, hora_fim, sigla_orgao, nome_orga
   
   json_proposicao$dados %>%
     tibble::as.tibble() %>%
-    mutate(hora_inicio = hora_inicio, 
+    dplyr::mutate(hora_inicio = hora_inicio, 
            hora_fim = hora_fim,
            sigla_orgao = sigla_orgao,
            nome_orgao = nome_orgao) 
@@ -820,6 +822,11 @@ fetch_pauta_camara <- function(id, hora_inicio, hora_fim, sigla_orgao, nome_orga
 #' @return Dataframe
 #' @examples
 #' fetch_agenda_camara('2018-07-03', '2018-07-10')
+#' @importFrom dplyr filter
+#' @importFrom dplyr do
+#' @importFrom dplyr rowwise
+#' @importFrom tidyr unnest
+#' @importFrom tibble as.tibble
 #' @export
 fetch_agenda_camara <- function(initial_date, end_date) {
   url <- paste0("https://dadosabertos.camara.leg.br/api/v2/eventos?dataInicio=", initial_date, "&dataFim=", end_date, "&ordem=ASC&ordenarPor=dataHoraInicio")
@@ -831,7 +838,7 @@ fetch_agenda_camara <- function(initial_date, end_date) {
     tibble::as.tibble() %>%
     dplyr::filter(descricaoSituacao != 'Cancelada' & 
                     !(descricaoTipo %in% descricoes_inuteis)) %>%
-    unnest()
+    tidyr::unnest()
     
   agenda %>%
     dplyr::rowwise() %>%
@@ -849,6 +856,10 @@ fetch_agenda_camara <- function(initial_date, end_date) {
 #' @return list
 #' @examples
 #' fetch_agenda_senado('2018-07-03')
+#' @importFrom dplyr filter
+#' @importFrom dplyr select
+#' @importFrom tidyr unnest
+#' @importFrom tibble tibble
 #' @export
 fetch_agenda_senado <- function(initial_date) {
   url <- paste0("http://legis.senado.leg.br/dadosabertos/plenario/agenda/mes/", gsub('-','', initial_date))
@@ -861,9 +872,9 @@ fetch_agenda_senado <- function(initial_date) {
   if('materias_materia' %in% names(agenda)) {
     materia <- 
       agenda %>%
-      filter(materias_materia != "NULL") %>%
-      select(materias_materia, codigo_sessao) %>%
-      unnest() %>%
+      dplyr::filter(materias_materia != "NULL") %>%
+      dplyr::select(materias_materia, codigo_sessao) %>%
+      tidyr::unnest() %>%
       rename_table_to_underscore()
   }
   
@@ -871,9 +882,9 @@ fetch_agenda_senado <- function(initial_date) {
   if('oradores_tipo_orador_orador_sessao_orador' %in% names(agenda)) {
     oradores <-
       agenda %>%
-      filter(oradores_tipo_orador_orador_sessao_orador != "NULL") %>%
-      select(oradores_tipo_orador_orador_sessao_orador, codigo_sessao) %>%
-      unnest() %>%
+      dplyr::filter(oradores_tipo_orador_orador_sessao_orador != "NULL") %>%
+      dplyr::select(oradores_tipo_orador_orador_sessao_orador, codigo_sessao) %>%
+      tidyr::unnest() %>%
       rename_table_to_underscore()
   }
   
