@@ -799,27 +799,30 @@ fetch_proposicao_camara <- function(prop_id) {
 #' @param hora_fim hora que finalizou o evento
 #' @return Dataframe
 #' @examples
-#' fetch_pauta_camara(53277, 2018-07-03T10:00, 2018-07-03T12:37)
+#' fetch_pauta_camara('53277', '2018-07-03T10:00', '2018-07-03T12:37')
 #' @export
-fetch_pauta_camara <- function(id, hora_inicio, hora_fim) {
+fetch_pauta_camara <- function(id, hora_inicio, hora_fim, sigla_orgao, nome_orgao) {
   url <- paste0("https://dadosabertos.camara.leg.br/api/v2/eventos/", id, "/pauta")
   json_proposicao <- jsonlite::fromJSON(url, flatten = T)
   
   json_proposicao$dados %>%
     tibble::as.tibble() %>%
-    mutate(hora_inicio = hora_inicio, hora_fim = hora_fim)
+    mutate(hora_inicio = hora_inicio, 
+           hora_fim = hora_fim,
+           sigla_orgao = sigla_orgao,
+           nome_orgao = nome_orgao) 
 }
 
 #' @title Baixa a agenda da câmara
 #' @description Retorna um dataframe contendo toda a agenda das sessões/reuniões deliberativas da Câmara
-#' @param inital_date data inicial no formato yyyy-mm-dd
+#' @param initial_date data inicial no formato yyyy-mm-dd
 #' @param end_date data final no formato yyyy-mm-dd
 #' @return Dataframe
 #' @examples
-#' fetch_agenda_camara(2018-07-03, 2018-07-10)
+#' fetch_agenda_camara('2018-07-03', '2018-07-10')
 #' @export
-fetch_agenda_camara <- function(inital_date, end_date) {
-  url <- paste0("https://dadosabertos.camara.leg.br/api/v2/eventos?dataInicio=", inital_date, "&dataFim=", end_date, "&ordem=ASC&ordenarPor=dataHoraInicio")
+fetch_agenda_camara <- function(initial_date, end_date) {
+  url <- paste0("https://dadosabertos.camara.leg.br/api/v2/eventos?dataInicio=", initial_date, "&dataFim=", end_date, "&ordem=ASC&ordenarPor=dataHoraInicio")
   json_proposicao <- jsonlite::fromJSON(url, flatten = T)
   
   descricoes_inuteis <- c('Seminário', 'Diligência', 'Sessão Não Deliberativa de Debates', 'Reunião de Instalação e Eleição', 'Outro Evento', 'Mesa Redonda', 'Sessão Não Deliberativa Solene')
@@ -827,30 +830,70 @@ fetch_agenda_camara <- function(inital_date, end_date) {
     json_proposicao$dados %>% 
     tibble::as.tibble() %>%
     dplyr::filter(descricaoSituacao != 'Cancelada' & 
-                    !(descricaoTipo %in% descricoes_inuteis)) 
+                    !(descricaoTipo %in% descricoes_inuteis)) %>%
+    unnest()
     
   agenda %>%
     dplyr::rowwise() %>%
     dplyr::do(fetch_pauta_camara(
-      .$id, .$dataHoraInicio, .$dataHoraFim) %>%
-      tibble::as.tibble())
+      .$id, .$dataHoraInicio, .$dataHoraFim, .$sigla, .$nome) %>%
+      tibble::as.tibble()) %>% 
+    unique()
   
 }
 
+#' @title Baixa a agenda do senado
+#' @description Retorna uma lista contendo 3 dataframes: agenda, materias e oradores,
+#' todos os dfs possuem a coluna codigo_sessao
+#' @param initial_date data inicial no formato yyyy-mm-dd
+#' @return list
+#' @examples
+#' fetch_agenda_senado('2018-07-03')
+#' @export
+fetch_agenda_senado <- function(initial_date) {
+  url <- paste0("http://legis.senado.leg.br/dadosabertos/plenario/agenda/mes/", gsub('-','', initial_date))
+  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
+  agenda <- 
+    json_proposicao$AgendaPlenario$Sessoes$Sessao %>%
+    rename_table_to_underscore()
+  
+  materia <- tibble::tibble()
+  if('materias_materia' %in% names(agenda)) {
+    materia <- 
+      agenda %>%
+      filter(materias_materia != "NULL") %>%
+      select(materias_materia, codigo_sessao) %>%
+      unnest() %>%
+      rename_table_to_underscore()
+  }
+  
+  oradores <- tibble::tibble()
+  if('oradores_tipo_orador_orador_sessao_orador' %in% names(agenda)) {
+    oradores <-
+      agenda %>%
+      filter(oradores_tipo_orador_orador_sessao_orador != "NULL") %>%
+      select(oradores_tipo_orador_orador_sessao_orador, codigo_sessao) %>%
+      unnest() %>%
+      rename_table_to_underscore()
+  }
+  
+  list(agenda = agenda, materias = materia, oradores = oradores)
+ }
+
 #' @title Baixa a agenda da câmara ou do senado
 #' @description Retorna um dataframe contendo a agenda da camara ou do senado
-#' @param inital_date data inicial no formato yyyy-mm-dd
+#' @param initial_date data inicial no formato yyyy-mm-dd
 #' @param end_date data final no formato yyyy-mm-dd
 #' @param house camara ou senado
 #' @return Dataframe
 #' @examples
-#' fetch_agenda(2018-07-03, 2018-07-10, camara)
+#' fetch_agenda('2018-07-03', '2018-07-10', 'camara')
 #' @export
-fetch_agenda <- function(inital_date, end_date, house) {
+fetch_agenda <- function(initial_date, end_date, house) {
   if(house == 'camara') {
-    fetch_agenda_camara(inital_date = inital_date, end_date = end_date)
+    fetch_agenda_camara(initial_date = initial_date, end_date = end_date)
   }else {
-    congressbr::sen_agenda(initial_date = gsub('-','', inital_date), end_date = gsub('-','', end_date))
+    fetch_agenda_senado(initial_date)
   }
 }
 
