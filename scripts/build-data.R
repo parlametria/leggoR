@@ -10,17 +10,11 @@ args = commandArgs(trailingOnly=TRUE)
 #' build_csvs(91341, "senado")
 #' build_csvs(257161, "camara")
 #' @export
-build_csvs <- function(id, house) {
-  if("SENADO" == toupper(house)){
-    source(here::here("R/fetcher.R"))
-    import_proposicao(id)
-  } else if("CAMARA" != toupper(house)){
-    return(NULL)
-  }
-  process_proposicao(id, house)
+build_csvs <- function(id, house, output_folder=NULL) {
+  prop_data <- import_proposicao(id, house, output_folder)
+  process_proposicao(prop_data$proposicao, prop_data$tramitacao, house)
   source(here::here(paste0("view/formatter/data-formatter-vistime-", tolower(house), ".R")))
   build_vis_csv(id)
-
   as.tibble(NULL)
 }
 

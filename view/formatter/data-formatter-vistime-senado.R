@@ -109,7 +109,7 @@ format_fase_global <- function(df) {
 
 build_vis_csv <- function(bill_id) {
   data_tramitacao <- 
-    read_csv(paste0(here::here("data/Senado/"), bill_id,"-visualizacao-tramitacao-senado.csv"))
+    read_csv(paste0(here::here("data/senado/"), bill_id,"-visualizacao-tramitacao-senado.csv"))
   
   df <- 
     rbind(format_local(data_tramitacao),

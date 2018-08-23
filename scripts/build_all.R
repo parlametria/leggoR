@@ -11,7 +11,7 @@ source(here::here('view/formatter/data-formatter-ficha.R'))
 output_dir <- here::here('docs/reports')
 
 # Create dirs when needed
-c('data/Senado', 'data/camara', 'data/vis/tramitacao', 'docs/reports') %>%
+c('data/senado', 'data/camara', 'data/vis/tramitacao', 'docs/reports') %>%
   lapply(dir.create, recursive=TRUE, showWarnings = FALSE)
 
 # Store data

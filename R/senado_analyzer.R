@@ -360,11 +360,10 @@ extract_locais <- function(df) {
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
 #' extract_regime_Senado(93418)
-extract_regime_Senado <- function(proposicao_id) {
-  df <- fetch_tramitacao(proposicao_id)
+extract_regime_Senado <- function(tramitacao_df) {
   regime <- senado_env$regimes
   df <-
-    df %>%
+    tramitacao_df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     dplyr::mutate(regime =
                     dplyr::case_when(
