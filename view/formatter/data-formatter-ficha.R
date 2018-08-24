@@ -11,7 +11,7 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   nome_ementa_senado <- get_nome_ementa_Senado(bill_id_senado)
 
   tramitacao_camara <- read_csv(
-    here::here(paste0('data/camara/', 'tramitacao-camara-', bill_id_camara, '.csv')))
+    here::here(paste0('data/camara/',bill_id_camara, '-fases-tramitacao-camara.csv')))
   tramitacao_senado <- read_csv(
     here::here(paste0('data/senado/', bill_id_senado, '-fases-tramitacao-senado.csv')))
   despacho_camara <- last_n_despacho_in_camara(tramitacao_camara)
@@ -62,8 +62,8 @@ gera_tabela_proposicoes_uma_casa <- function(dataframe) {
 extract_informations_from_single_house <- function(id, casa, url=NULL) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    prop_camara <- readr::read_csv(here::here(paste0('data/camara/', id, '-proposicao-camara')))
-    tram_camara <- readr::read_csv(here::here(paste0('data/camara/', id, '-fases-tramitacao-camara')))
+    prop_camara <- readr::read_csv(here::here(paste0('data/camara/', id, '-proposicao-camara.csv')))
+    tram_camara <- readr::read_csv(here::here(paste0('data/camara/', id, '-fases-tramitacao-camara.csv')))
     nome_camara <- prop_camara %>% dplyr::select(ementa, sigla_tipo, numero) %>% tail(1)
     ano <- tram_camara$ano
     page_url <- prop_camara$page_url
@@ -77,7 +77,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     despacho <- despacho_camara$descricao_tramitacao
     nome_autor <- autor$autor.nome
     casa_origem <- autor$casa_origem
-    data_apresentacao <- format(as.Date(fetch_proposicao(id, 'camara')$dataApresentacao), '%d/%m/%Y')
+    data_apresentacao <- format(as.Date(prop_camara$data_apresentacao), '%d/%m/%Y')
     eventos <- as.list(extract_last_n_events_in_camara(tram_camara, 3)$evento)
   } else if (casa == 'senado') {
     prop_senado <- readr::read_csv(here::here(paste0('data/senado/', id, '-proposicao-senado.csv')))

@@ -14,8 +14,9 @@ args = commandArgs(trailingOnly=TRUE)
 build_csvs <- function(id, house, output_folder=NULL) {
   print(paste("Processando id",id,"da casa",house))
   prop_data <- import_proposicao(id, house, output_folder)
-  proc_tram_data <- process_proposicao(prop_data$proposicao, prop_data$tramitacao, house)
+  proc_tram_data <- process_proposicao(prop_data$proposicao, prop_data$tramitacao, house, output_folder)
   build_vis_csv(proc_tram_data, house, output_folder)
+  as.tibble(NULL)
 }
 
 #' @title Cria todos os csvs de todas as proposições da tabela.
@@ -32,6 +33,7 @@ build_all_csvs <- function(df, output_folder=NULL) {
     map(df$id_camara, ~ build_csvs(.x, 'camara', output_folder))
     map(df$id_senado, ~ build_csvs(.x, 'senado', output_folder))
   }
+  as.tibble(NULL)
 }
 
 if(length(args) == 2){

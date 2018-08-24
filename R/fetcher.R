@@ -812,7 +812,7 @@ fetch_proposicao_camara <- function(prop_id) {
     dplyr::mutate(page_url = paste0(base_url, prop_id)) %>%
     # Adiciona html das páginas das proposições
     dplyr::rowwise() %>%
-    dplyr::mutate(page_html = as.character(xml2::read_html(page_url)[[1]])) %>%
+    dplyr::mutate(page_html = list(xml2::read_html(page_url))) %>%
     
     # Padroniza valor sobre regime de tramitação
     fuzzyjoin::regex_left_join(regex_regime, by = c(statusProposicao.regime =
@@ -825,5 +825,6 @@ fetch_proposicao_camara <- function(prop_id) {
                     rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
                     rvest::html_text()) %>%
     fuzzyjoin::regex_left_join(regex_apreciacao, by = c(temp = "regex")) %>%
-    dplyr::select(-c('temp', 'regex'))
+    dplyr::select(-c('temp', 'regex', 'page_html')) %>%
+    rename_df_columns
 }

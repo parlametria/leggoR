@@ -110,7 +110,8 @@ data_situacao_comissao <- function(df) {
 #' @examples
 #' build_vis_csv_camara(fetch_tramitacao_camara(2121442))
 build_vis_csv_camara <- function(tram_camara_df, output_folder=NULL) {
-  file_path <- paste0(output_folder,'/camara/', bill_id, '-data-camara.csv')
+  bill_id <- tram_camara_df[1, "id_prop"]
+  file_path <- paste0(output_folder,'/vis/tramitacao/', bill_id, '-data-camara.csv')
 
   data <- 
     bind_rows(data_fase_global(bill_id, tram_camara_df), 

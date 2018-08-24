@@ -8,10 +8,18 @@ source(here::here("R/camara_analyzer.R"))
 #' @param casa Casa onde o PL está tramitando ('camara'/'senado').
 #' @importFrom magrittr '%>%'
 #' @export
-process_proposicao <- function(proposicao_df, tramitacao_df, casa) {
+process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpath=NULL) {
+  proc_tram_data <- NULL
+  prop_id <- NULL
   if ("CAMARA" == toupper(casa)) {
-    process_proposicao_camara(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
+    proc_tram_data <- process_proposicao_camara(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
+    prop_id <- proc_tram_data[1,"id_prop"]
   } else if ("SENADO" == toupper(casa)) {
-    process_proposicao_senado(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
+    proc_tram_data <- process_proposicao_senado(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
+    prop_id <- proc_tram_data[1,"codigo_materia"]
   }
+  
+  if((!is.null(proc_tram_data)) & (!is.null(out_folderpath))) {
+      readr::write_csv(proc_tram_data, paste0(out_folderpath,'/',casa,'/',prop_id,'-fases-tramitacao-',casa,'.csv'))
+    }
 }
