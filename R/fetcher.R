@@ -43,7 +43,7 @@ fetch_votacoes <- function(proposicao_id) {
 #' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações sobre a movimentação de uma proposição no Senado
 #' @examples
-#' fetch_tramitacao(91341)
+#' fetch_tramitacao_senado(91341)
 fetch_tramitacao_senado <- function(proposicao_id) {
   url <-
     paste0(senado_env$endpoints_api$url_base,
@@ -480,6 +480,14 @@ fetch_emendas <- function(bill_id) {
 
 }
 
+#' @title Baixa os dados da tramitação de um Projeto de Lei
+#' @description Retorna dataframe com os dados da tramitação de uma proposição no Congresso
+#' @param id ID de uma proposição na sua respectiva casa
+#' @param casa Casa onde a proposição está tramitando
+#' @return Dataframe com os dados da tramitação de uma proposição no Congresso
+#' @examples
+#' fetch_tramitacao(91341,'senado')
+#' @export
 fetch_tramitacao <- function(id, casa) {
   casa <- tolower(casa)
   if (casa == 'camara') {
@@ -524,84 +532,6 @@ import_proposicao <- function(prop_id, casa, out_folderpath=NULL) {
   
   return(list(proposicao = prop_df, tramitacao = tram_df))
 }
-
-#' @title Importa as informações de uma proposição da internet.
-#' @description Recebido um id a função roda os scripts para
-#' importar os dados daquela proposição.
-#' @param bill_id Identificador da proposição que pode ser recuperado no site da casa legislativa.
-#' @export
-# import_proposicao <- function(bill_id) {
-#   #Voting data
-#   voting <- fetch_votacoes(bill_id)
-#   voting %>%
-#     readr::write_csv(paste0(
-#       here::here("data/Senado/"),
-#       bill_id,
-#       "-votacoes-senado.csv"
-#     ))
-# 
-#   #Passage Data
-#   passage <- fetch_tramitacao(bill_id)
-#   passage %>%
-#     readr::write_csv(paste0(
-#       here::here("data/Senado/"),
-#       bill_id,
-#       "-tramitacao-senado.csv"
-#     ))
-# 
-#   #Votacao Data
-#   
-# 
-#   #Relatorias Data
-#   relatorias <- fetch_relatorias(bill_id)
-#   relatorias %>%
-#     readr::write_csv(paste0(
-#       here::here("data/Senado/"),
-#       bill_id,
-#       "-relatorias-senado.csv"
-#     ))
-# 
-#   #Relatorias data
-#   relatorias <- fetch_relatorias(bill_id)
-#   relatorias %>%
-#     readr::write_csv(paste0(
-#       here::here("data/Senado/"),
-#       bill_id,
-#       "-relatorias-senado.csv"
-#     ))
-# 
-#   #Current Relatoria data
-#   current_relatoria <- fetch_current_relatoria(bill_id)
-#   current_relatoria %>%
-#     readr::write_csv(paste0(
-#       here::here("data/Senado/"),
-#       bill_id,
-#       "-current-relatoria-senado.csv"
-#     ))
-# 
-#   #Last Relatoria
-#   last_relatoria <- fetch_last_relatoria(bill_id)
-#   last_relatoria %>%
-#     readr::write_csv(paste0(
-#       here::here("data/Senado/"),
-#       bill_id,
-#       "-last-relatoria-senado.csv"
-#     ))
-# 
-#   #Ordem do Dia data
-#   sessions_data <- fetch_sessions(bill_id)
-#   sessions_data %>%
-#     readr::write_csv(paste0(
-#       here::here("data/Senado/"),
-#       bill_id,
-#       "-sessions-senado.csv"
-#     ))
-# 
-#   #Emendas data
-#   emendas_data <- fetch_emendas(bill_id)
-#   emendas_data %>%
-#     readr::write_csv(paste0(here::here("data/Senado/"), bill_id, "-emendas-senado.csv"))
-# }
 
 ###################################################################
 
@@ -717,7 +647,6 @@ fetch_proposicao <- function(id, casa) {
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
 #' fetch_proposicao_senado(91341)
-#' @export
 fetch_proposicao_senado <- function(proposicao_id) {
   url_base_proposicao <-
     "http://legis.senado.leg.br/dadosabertos/materia/"
@@ -780,7 +709,6 @@ fetch_proposicao_senado <- function(proposicao_id) {
 #' @return Dataframe
 #' @examples
 #' fetch_proposicao_camara(2056568)
-#' @export
 fetch_proposicao_camara <- function(prop_id) {
   base_url <-
     'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
