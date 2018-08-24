@@ -432,7 +432,7 @@ fetch_emendas <- function(bill_id) {
 
   if (nrow(emendas_df) == 0) {
     emendas_df <-
-      frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ partido, ~ casa)
+      frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ partido, ~ casa, ~ tipo_documento, ~ inteiro_teor)
 
   } else if (nrow(emendas_df) == 1) {
     texto <- generate_dataframe(emendas_df$textos_emenda) %>%
@@ -458,47 +458,39 @@ fetch_emendas <- function(bill_id) {
       dplyr::mutate(autor = autoria$nome_autor,
                     partido = autoria$partido,
                     tipo_documento = texto$tipo_documento,
-                    inteiro_teor = texto$url_texto) %>%
-      dplyr::mutate(casa = 'Senado Federal') %>%
+                    inteiro_teor = texto$url_texto,
+                    casa = 'Senado Federal') %>%
       dplyr::select(codigo, numero, local, autor, partido, casa, tipo_documento, inteiro_teor)
       
 
   } else{
-    names(emendas_df) <- colnames(emendas_df) %>%
-      to_underscore
     emendas_df <- emendas_df %>%
       tidyr::unnest() %>% 
-      dplyr::select(
-        codigo_emenda,
-        numero_emenda,
-        colegiado_apresentacao,
-        autoria_emenda_autor_nome_autor,
-        autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar,
-        autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar
-      ) %>%
-      dplyr::mutate(
-        partido = paste0(
-          autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar,
-          "/",
-          autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar
-        )
-      ) %>%
-      select(
-        -autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar,-autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar
-      ) %>%
       plyr::rename(
         c(
           "codigo_emenda" = "codigo",
           "numero_emenda" = "numero",
           "colegiado_apresentacao" = "local",
-          "autoria_emenda_autor_nome_autor" = "autor"
+          "autoria_emenda_autor_nome_autor" = "autor",
+          "textos_emenda_texto_emenda_url_texto" = "inteiro_teor",
+          "textos_emenda_texto_emenda_tipo_documento" = "tipo_documento",
+          "autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar" = "partido",
+          "autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar" = "uf"
         )
-      )
+      ) %>%
+      dplyr::mutate(
+        partido = paste0(partido, "/", uf),
+        casa = "Senado Federal"
+      ) %>% 
+      dplyr::select(
+        codigo, numero, local, autor, partido, casa, tipo_documento, inteiro_teor)
+      
   }
 
   emendas_df
 
 }
+
 
 #' @title Importa as informações de uma proposição da internet.
 #' @description Recebido um id a função roda os scripts para
