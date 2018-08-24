@@ -106,7 +106,7 @@ vistime(pl_3729_2004_data_general)
 data_path <- here::here('data/')
 if(params$casa == "camara") {
   comissoes <- get_comissoes_in_camara(
-      read_csv(paste0(data_path, "camara/tramitacao-camara-", params$id, ".csv"))
+      read_csv(paste0(data_path, "camara/", params$id, "-fases-tramitacao-camara.csv"))
     ) %>%
     dplyr::select(-'id_prop') %>%
     dplyr::mutate(proximas_comissoes=lapply(proximas_comissoes, paste, collapse=', ')) %>%
