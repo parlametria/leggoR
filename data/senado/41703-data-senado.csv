@@ -1,0 +1,12 @@
+label,start,end,time_interval,group,color
+Mesa - Senado  - Origem (Senado),1999-09-10,1999-11-18,69,Global,NA
+CAS  - Origem (Senado),1999-11-18,2002-03-12,845,Global,NA
+designado_relator,1999-09-10,1999-09-10,0,Evento,#a9a9a9
+designado_relator,1999-11-18,1999-11-18,0,Evento,#a9a9a9
+pronta_para_pauta,2000-04-18,2000-04-18,0,Evento,#a9a9a9
+pronta_para_pauta,2000-08-02,2000-08-02,0,Evento,#a9a9a9
+devolvido,2001-02-15,2001-02-15,0,Evento,#a9a9a9
+designado_relator,2001-04-17,2001-04-17,0,Evento,#a9a9a9
+pronta_para_pauta,2001-05-08,2001-05-08,0,Evento,#a9a9a9
+pronta_para_pauta,2001-11-05,2001-11-05,0,Evento,#a9a9a9
+virada_casa,2002-03-12,2002-03-12,0,Evento,#a9a9a9

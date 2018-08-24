@@ -1,4 +1,5 @@
 source(here::here("R/analyzer.R"))
+source(here::here("view/formatter/data-formatter-vistime.R"))
 args = commandArgs(trailingOnly=TRUE)
 
 #' @title Cria todos os csvs de um proposição.
@@ -11,11 +12,10 @@ args = commandArgs(trailingOnly=TRUE)
 #' build_csvs(257161, "camara")
 #' @export
 build_csvs <- function(id, house, output_folder=NULL) {
+  print(paste("Processando id",id,"da casa",house))
   prop_data <- import_proposicao(id, house, output_folder)
-  process_proposicao(prop_data$proposicao, prop_data$tramitacao, house)
-  source(here::here(paste0("view/formatter/data-formatter-vistime-", tolower(house), ".R")))
-  build_vis_csv(id)
-  as.tibble(NULL)
+  proc_tram_data <- process_proposicao(prop_data$proposicao, prop_data$tramitacao, house)
+  build_vis_csv(proc_tram_data, house, output_folder)
 }
 
 #' @title Cria todos os csvs de todas as proposições da tabela.
@@ -25,12 +25,12 @@ build_csvs <- function(id, house, output_folder=NULL) {
 #' @examples
 #' readr::read_csv("data/tabela_geral_ids_casa.csv") %>% build_all_csvs()
 #' @export
-build_all_csvs <- function(df) {
+build_all_csvs <- function(df, output_folder=NULL) {
   if ('casa' %in% names(df)) {
-    map2(df$id, df$casa, ~ build_csvs(.x, .y))
+    map2(df$id, df$casa, ~ build_csvs(.x, .y, output_folder))
   } else {
-    map(df$id_camara, ~ build_csvs(.x, 'camara'))
-    map(df$id_senado, ~ build_csvs(.x, 'senado'))
+    map(df$id_camara, ~ build_csvs(.x, 'camara', output_folder))
+    map(df$id_senado, ~ build_csvs(.x, 'senado', output_folder))
   }
 }
 

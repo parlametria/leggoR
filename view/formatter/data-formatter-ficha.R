@@ -62,8 +62,8 @@ gera_tabela_proposicoes_uma_casa <- function(dataframe) {
 extract_informations_from_single_house <- function(id, casa, url=NULL) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    prop_camara <- readr::read_csv(here::here(paste0('data/camara/proposicao-camara-', id, '.csv')))
-    tram_camara <- readr::read_csv(here::here(paste0('data/camara/tramitacao-camara-', id, '.csv')))
+    prop_camara <- readr::read_csv(here::here(paste0('data/camara/', id, '-proposicao-camara')))
+    tram_camara <- readr::read_csv(here::here(paste0('data/camara/', id, '-fases-tramitacao-camara')))
     nome_camara <- prop_camara %>% dplyr::select(ementa, sigla_tipo, numero) %>% tail(1)
     ano <- tram_camara$ano
     page_url <- prop_camara$page_url

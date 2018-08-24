@@ -497,10 +497,8 @@ fetch_tramitacao_camara <- function(bill_id) {
 }
 
 build_data_filepath <- function(folder_path,data_prefix,house,bill_id) {
-  filename <- paste0(paste(data_prefix,house, bill_id, sep='-'),'.csv')
-  filepath <- paste(folder_path, filename, sep='/')
-  
-  return(filepath)
+  filename <- paste0(paste(bill_id,data_prefix,house, sep='-'),'.csv')
+  filepath <- paste(folder_path, house, filename, sep='/')
 }
 
 #' @title Importa as informações de uma proposição da internet.
@@ -814,8 +812,8 @@ fetch_proposicao_camara <- function(prop_id) {
     dplyr::mutate(page_url = paste0(base_url, prop_id)) %>%
     # Adiciona html das páginas das proposições
     dplyr::rowwise() %>%
-    dplyr::mutate(page_html = list(xml2::read_html(page_url))) %>%
-
+    dplyr::mutate(page_html = as.character(xml2::read_html(page_url)[[1]])) %>%
+    
     # Padroniza valor sobre regime de tramitação
     fuzzyjoin::regex_left_join(regex_regime, by = c(statusProposicao.regime =
                                                       "regex")) %>%
