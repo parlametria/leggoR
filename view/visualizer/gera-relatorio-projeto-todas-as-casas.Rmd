@@ -1,7 +1,7 @@
 ---
 output: html_document
 params:
-  senado_id: 91341
+  senado_id: 132865
   camara_id: 2088990
 ---
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, timeout= 4000000}
@@ -41,7 +41,7 @@ chart
 
 #### Tabelas de emendas
 
-```{r}
-emendas
+```{r echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+knitr::kable(emendas)
 ```
 
