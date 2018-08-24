@@ -110,19 +110,24 @@ data_situacao_comissao <- function(df) {
 #' @examples
 #' build_vis_csv(2121442)
 #' @export
-build_vis_csv <- function(bill_id) {
+build_vis_csv <- function(bill_id, events = TRUE) {
   tramitacao <- read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv'))
   proposicao <- read_csv(paste0(here::here('data/camara/proposicao-camara-'), bill_id, '.csv'))
   
   data_path <- here::here('data/vis/tramitacao/')
   file_path <- paste0(data_path, bill_id, '-data-camara.csv')
 
-  data <- 
-    bind_rows(data_fase_global(bill_id, tramitacao), 
-                     data_local(tramitacao),
-                    #data_situacao_comissao(tramitacao), 
-                    data_evento(tramitacao)) %>%
-    filter(group != "Comissão")
+  if (events) {
+    data <- 
+      bind_rows(data_fase_global(bill_id, tramitacao), 
+                data_local(tramitacao),
+                #data_situacao_comissao(tramitacao), 
+                data_evento(tramitacao)) %>%
+      filter(group != "Comissão") 
+  }else {
+    data <-
+      data_fase_global(bill_id, tramitacao)
+  }
   
   readr::write_csv(data, file_path)
 }

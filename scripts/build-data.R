@@ -19,7 +19,7 @@ build_csvs <- function(id, house) {
   }
   process_proposicao(id, house)
   source(here::here(paste0("view/formatter/data-formatter-vistime-", tolower(house), ".R")))
-  build_vis_csv(id)
+  build_vis_csv(id, FALSE)
 
   as.tibble(NULL)
 }
