@@ -874,6 +874,8 @@ fetch_agenda_senado <- function(initial_date) {
       agenda %>%
       dplyr::filter(materias_materia != "NULL") %>%
       dplyr::select(materias_materia, codigo_sessao) %>%
+      dplyr::rowwise() %>%
+      dplyr::filter(length(materias_materia[[1]]) != 1)%>%
       tidyr::unnest() %>%
       rename_table_to_underscore()
   }
@@ -884,6 +886,8 @@ fetch_agenda_senado <- function(initial_date) {
       agenda %>%
       dplyr::filter(oradores_tipo_orador_orador_sessao_orador != "NULL") %>%
       dplyr::select(oradores_tipo_orador_orador_sessao_orador, codigo_sessao) %>%
+      dplyr::rowwise() %>%
+      dplyr::filter(length(oradores_tipo_orador_orador_sessao_orador[[1]]) != 1)%>%
       tidyr::unnest() %>%
       rename_table_to_underscore()
   }
