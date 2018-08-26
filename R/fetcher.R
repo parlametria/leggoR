@@ -436,7 +436,7 @@ fetch_emendas <- function(bill_id) {
 
   } else if (nrow(emendas_df) == 1) {
     texto <- generate_dataframe(emendas_df$textos_emenda) %>%
-      select(tipo_documento, url_texto)
+      dplyr::select(tipo_documento, url_texto)
     
     autoria <- generate_dataframe(emendas_df$autoria_emenda) %>%
       dplyr::mutate(
@@ -448,7 +448,7 @@ fetch_emendas <- function(bill_id) {
       )
     
     emendas_df <- emendas_df %>%
-      plyr::rename(
+      dplyr::rename(
         c(
           "codigo_emenda" = "codigo",
           "numero_emenda" = "numero",
@@ -466,7 +466,7 @@ fetch_emendas <- function(bill_id) {
   } else{
     emendas_df <- emendas_df %>%
       tidyr::unnest() %>% 
-      plyr::rename(
+      dplyr::rename(
         c(
           "codigo_emenda" = "codigo",
           "numero_emenda" = "numero",
