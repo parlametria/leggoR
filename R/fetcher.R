@@ -448,7 +448,7 @@ fetch_emendas <- function(bill_id) {
       )
     
     emendas_df <- emendas_df %>%
-      dplyr::rename(
+      plyr::rename(
         c(
           "codigo_emenda" = "codigo",
           "numero_emenda" = "numero",
@@ -466,7 +466,7 @@ fetch_emendas <- function(bill_id) {
   } else{
     emendas_df <- emendas_df %>%
       tidyr::unnest() %>% 
-      dplyr::rename(
+      plyr::rename(
         c(
           "codigo_emenda" = "codigo",
           "numero_emenda" = "numero",
