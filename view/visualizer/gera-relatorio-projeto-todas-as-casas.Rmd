@@ -1,7 +1,7 @@
 ---
 output: html_document
 params:
-  senado_id: 91341
+  senado_id: 132865
   camara_id: 2088990
 ---
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, timeout= 4000000}
@@ -10,6 +10,7 @@ source(here::here('view/visualizer/build-chart.R'))
 
 data <- extract_informations_all_houses(params$senado_id, params$camara_id)
 chart <- create_chart_camara_senado(params$senado_id, params$camara_id)
+emendas <- gera_tabela_emendas_senado(params$senado_id)
 ```
 # Projeto de Lei `r toString(paste0(data$nome))`
 
@@ -37,3 +38,10 @@ chart <- create_chart_camara_senado(params$senado_id, params$camara_id)
 ```{r echo=FALSE, message=FALSE}
 chart
 ```
+
+#### Tabelas de emendas
+
+```{r echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+knitr::kable(emendas)
+```
+
