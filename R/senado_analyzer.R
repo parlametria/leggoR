@@ -434,7 +434,7 @@ process_proposicao_senado <- function(proposicao_df, tramitacao_df) {
       phase_four,
       comissoes_phase$regex
     ) %>%
-    dplyr::mutate(data_tramitacao = ymd(data_tramitacao)) %>%
+    dplyr::mutate(data_tramitacao = lubridate::ymd(data_tramitacao)) %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     tidyr::fill(fase)
   
@@ -450,7 +450,7 @@ process_proposicao_senado <- function(proposicao_df, tramitacao_df) {
   
   proc_tram_df <-
     extract_evento_Senado(proc_tram_df) %>%
-    dplyr::mutate(data_audiencia = dmy(data_audiencia)) 
+    dplyr::mutate(data_audiencia = lubridate::dmy(data_audiencia)) 
   
   index_of_camara <-
     ifelse(
