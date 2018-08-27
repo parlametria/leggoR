@@ -19,6 +19,7 @@ Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009 - Senado |
 install.packages('DT')
 library(agoradigital)
 library(tidyverse)
+library(magrittr)
 library(DT)
 
 id_qualidade_fiscal_senado <- 91341
@@ -52,7 +53,7 @@ Os dados retornados pela função **process_proposicao(id, "camara")**, além do
 
 ```{r message=FALSE}
 prop_senado <- agoradigital::fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
-tram_senado <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado)
+tram_senado <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado, 'senado')
 
 eventos_senado <- agoradigital::process_proposicao(prop_senado, tram_senado, 'senado')
 eventos_senado %>% 
