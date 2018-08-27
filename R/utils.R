@@ -9,11 +9,11 @@
 regex_left_match <- function(df, regex_df, new_column) {
   if('despacho' %in% names(regex_df)) {
     df %<>%
-      dplyr::mutate(UQ(rlang::sym('despacho')) := str_replace_all(UQ(rlang::sym('despacho')), '\n|\r', ''))
+      dplyr::mutate(UQ(rlang::sym('despacho')) := stringr::str_replace_all(UQ(rlang::sym('despacho')), '\n|\r', ''))
   }
   if('texto_tramitacao' %in% names(regex_df)) {
     df %<>%
-      dplyr::mutate(UQ(rlang::sym('texto_tramitacao')) := str_replace_all(UQ(rlang::sym('texto_tramitacao')), '\n|\r', ''))
+      dplyr::mutate(UQ(rlang::sym('texto_tramitacao')) := stringr::str_replace_all(UQ(rlang::sym('texto_tramitacao')), '\n|\r', ''))
   }
 
   columns <-
