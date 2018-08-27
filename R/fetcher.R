@@ -1,3 +1,4 @@
+source(here::here("R/utils.R"))
 senado_env <-
   jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 senado_constants <- senado_env$constants
@@ -394,6 +395,19 @@ fetch_sessions <- function(bill_id) {
   ordem_do_dia_df
 }
 
+#' @title Retorna um dataframe a partir de uma coluna com listas encadeadas
+#' @description Retorna um dataframe a partir de uma coluna com listas encadeadas.
+#' @param column Coluna
+#' @return Dataframe com as informações provenientes de uma coluna com listas encadeadas.
+#' @examples
+#' generate_dataframe(column)
+#' @export
+generate_dataframe <- function (column) {
+  as.data.frame(column) %>% 
+    unnest() %>% 
+    rename_df_columns()
+}
+
 #' @title Retorna as emendas de uma proposição no Senado
 #' @description Retorna dataframe com os dados das emendas de uma proposição no Senado.
 #' @param bill_id ID de uma proposição do Senado
@@ -414,18 +428,17 @@ fetch_emendas <- function(bill_id) {
 
   emendas_df <- emendas_data %>%
     magrittr::extract2("Emendas") %>%
-    purrr::map_df( ~ .)
+    purrr::map_df( ~ .) %>% rename_df_columns()
 
   if (nrow(emendas_df) == 0) {
     emendas_df <-
-      frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ partido)
+      frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ partido, ~ casa, ~ tipo_documento, ~ inteiro_teor)
 
   } else if (nrow(emendas_df) == 1) {
-    emendas_df <- emendas_df %>%
-      rename_table_to_underscore()
-
-    autoria <- as.data.frame(emendas_df$autoria_emenda) %>%
-      rename_table_to_underscore() %>%
+    texto <- generate_dataframe(emendas_df$textos_emenda) %>%
+      dplyr::select(tipo_documento, url_texto)
+    
+    autoria <- generate_dataframe(emendas_df$autoria_emenda) %>%
       dplyr::mutate(
         partido = paste0(
           identificacao_parlamentar_sigla_partido_parlamentar,
@@ -433,8 +446,8 @@ fetch_emendas <- function(bill_id) {
           identificacao_parlamentar_uf_parlamentar
         )
       )
+    
     emendas_df <- emendas_df %>%
-      rename_table_to_underscore() %>%
       plyr::rename(
         c(
           "codigo_emenda" = "codigo",
@@ -443,44 +456,41 @@ fetch_emendas <- function(bill_id) {
         )
       ) %>%
       dplyr::mutate(autor = autoria$nome_autor,
-                    partido = autoria$partido) %>%
-      dplyr::select(codigo, numero, local, autor, partido)
+                    partido = autoria$partido,
+                    tipo_documento = texto$tipo_documento,
+                    inteiro_teor = texto$url_texto,
+                    casa = 'Senado Federal') %>%
+      dplyr::select(codigo, numero, local, autor, partido, casa, tipo_documento, inteiro_teor)
+      
 
   } else{
     emendas_df <- emendas_df %>%
-      tidyr::unnest() %>%
-      rename_table_to_underscore() %>%
-      dplyr::select(
-        codigo_emenda,
-        numero_emenda,
-        colegiado_apresentacao,
-        autoria_emenda_autor_nome_autor,
-        autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar,
-        autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar
-      ) %>%
-      dplyr::mutate(
-        partido = paste0(
-          autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar,
-          "/",
-          autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar
-        )
-      ) %>%
-      select(
-        -autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar,-autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar
-      ) %>%
+      tidyr::unnest() %>% 
       plyr::rename(
         c(
           "codigo_emenda" = "codigo",
           "numero_emenda" = "numero",
           "colegiado_apresentacao" = "local",
-          "autoria_emenda_autor_nome_autor" = "autor"
+          "autoria_emenda_autor_nome_autor" = "autor",
+          "textos_emenda_texto_emenda_url_texto" = "inteiro_teor",
+          "textos_emenda_texto_emenda_tipo_documento" = "tipo_documento",
+          "autoria_emenda_autor_identificacao_parlamentar_sigla_partido_parlamentar" = "partido",
+          "autoria_emenda_autor_identificacao_parlamentar_uf_parlamentar" = "uf"
         )
-      )
+      ) %>%
+      dplyr::mutate(
+        partido = paste0(partido, "/", uf),
+        casa = "Senado Federal"
+      ) %>% 
+      dplyr::select(
+        codigo, numero, local, autor, partido, casa, tipo_documento, inteiro_teor)
+      
   }
 
   emendas_df
 
 }
+
 
 #' @title Importa as informações de uma proposição da internet.
 #' @description Recebido um id a função roda os scripts para
@@ -639,20 +649,6 @@ extract_tramitacao <- function(prop_id) {
 }
 
 ###################################################################
-
-#' @title Renomeia um vetor com o padrão de underscores e minúsculas
-#' @description Renomeia cada item do vetor com o padrão: separado por underscore e letras minúsculas
-#' @param x Vetor de strings
-#' @return Vetor contendo as strings renomeadas.
-#' @examples
-#' to_underscore(c("testName", "TESTNAME"))
-#' @export
-to_underscore <- function(x) {
-  gsub('([A-Za-z])([A-Z])([a-z])', '\\1_\\2\\3', x) %>%
-    gsub('.', '_', ., fixed = TRUE) %>%
-    gsub('([a-z])([A-Z])', '\\1_\\2', .) %>%
-    tolower()
-}
 
 #' @title Recupera os detalhes de uma proposição no Senado ou na Câmara
 #' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
