@@ -21,5 +21,6 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
   
   if((!is.null(proc_tram_data)) & (!is.null(out_folderpath))) {
       readr::write_csv(proc_tram_data, paste0(out_folderpath,'/',casa,'/',prop_id,'-fases-tramitacao-',casa,'.csv'))
-    }
+  }
+  return(proc_tram_data)
 }
