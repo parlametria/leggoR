@@ -88,9 +88,12 @@
   
   "comissoes": {
     "prefixo": "(Comiss..s*)*",
-    "regex_1": "às c.+ e c.+, cabendo à última', 'às c.+ e c.+, cabendo à última",
+    "regex_1": "às c.+ e c.+, cabendo à última",
+    "regex_1_extract": "às c.+ e c.+, cabendo à última",
     "regex_2": "à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo",
-    "regex_3": "(à|a)s? comiss..s*', 'comiss..s*.+"
+    "regex_2_extract": "à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo",
+    "regex_3": "(à|a)s? comiss..s*",
+    "regex_3_extract": "comiss..s*.+"
   },
   
   "endpoints_api": {

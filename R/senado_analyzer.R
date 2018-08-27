@@ -53,16 +53,47 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
     dplyr::arrange(data_tramitacao) %>%
     dplyr::select(data_tramitacao)
   
+  comissoes <- 
+    extract_comissoes_Senado(bill_passage) %>% 
+    utils::head() %>% 
+    dplyr::select(comissoes) %>%
+    tidyr::unnest() %>%
+    dplyr::rename("local" = "comissoes")
+  
+  comissoes_faltantes <-
+    dplyr::anti_join(comissoes, data_tramitacao)
+    
+  casa_atual <-
+    dplyr::if_else(
+      casa_origem == " - Origem (Senado)",
+      fase_global_constants$revisao_camara,
+      fase_global_constants$origem_senado
+    )
+  
   if (nrow(virada_de_casa) == 0) {
-    data_tramitacao %>%
+    data_tramitacao <- 
+      data_tramitacao %>%
       dplyr::mutate(global = paste0(casa_origem))
+    
+    futuro_1 <-
+      data_tramitacao %>%
+      utils::tail(1) %>%
+      dplyr::mutate(local = "Comissões",
+             data_tramitacao = Sys.Date(),
+             global = casa_atual)
+    
+    futuro_2 <-
+      data_tramitacao %>%
+      utils::tail(nrow(comissoes_faltantes)) %>%
+      dplyr::mutate(data_tramitacao = Sys.Date())
+    
+    futuro_2$local <- 
+      comissoes_faltantes$local 
+    
+    rbind(data_tramitacao, futuro_1, futuro_2)
+      
   } else {
-    casa_atual <-
-      dplyr::if_else(
-        casa_origem == " - Origem (Senado)",
-        fase_global_constants$revisao_camara,
-        fase_global_constants$origem_senado
-      )
+
     data_tramitacao %>%
       dplyr::mutate(global = dplyr::if_else(
         data_tramitacao < virada_de_casa[1, ][[1]],
@@ -268,11 +299,14 @@ extract_comissoes_Senado <- function(df) {
     dplyr::mutate(comissoes =
                     dplyr::case_when(
                       detect(texto_tramitacao,
-                             codigos_comissoes$regex_1),
+                             codigos_comissoes$regex_1,
+                             codigos_comissoes$regex_1_extract),
                       detect(texto_tramitacao,
-                             codigos_comissoes$regex_2),
+                             codigos_comissoes$regex_2,
+                             codigos_comissoes$regex_2_extract),
                       detect(texto_tramitacao,
-                             codigos_comissoes$regex_3)
+                             codigos_comissoes$regex_3,
+                             codigos_comissoes$regex_3_extract)
                     )) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_tramitacao) %>%
@@ -535,21 +569,21 @@ process_proposicao_senado <- function(proposicao_df, tramitacao_df) {
     ) %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     tidyr::fill(fase)
-  
+
   tramitacao_df$situacao_descricao_situacao <-
     to_underscore(tramitacao_df$situacao_descricao_situacao) %>%
     stringr::str_replace_all("\\s+", "_")
-  
+
   tramitacao_df <-
     extract_fase_casa_Senado(tramitacao_df, phase_one, recebimento_phase, comissoes_phase$regex) %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     tidyr::fill(casa) %>%
     dplyr::filter(!is.na(casa))
-  
+
   tramitacao_df <-
     extract_evento_Senado(tramitacao_df) %>%
-    dplyr::mutate(data_audiencia = as.Date(data_audiencia, "%d/%m/%Y")) 
-  
+    dplyr::mutate(data_audiencia = as.Date(data_audiencia, "%d/%m/%Y"))
+
   index_of_camara <-
     ifelse(
       length(which(
@@ -558,12 +592,12 @@ process_proposicao_senado <- function(proposicao_df, tramitacao_df) {
       nrow(tramitacao_df),
       which(tramitacao_df$situacao_codigo_situacao == 52)[1]
     )
-  
+
   tramitacao_df <-
     tramitacao_df[1:index_of_camara,] %>%
     extract_locais() %>%
     extract_fase_global(proposicao_df) %>%
     dplyr::filter(!is.na(fase))
-  
+
   tramitacao_df
 }
