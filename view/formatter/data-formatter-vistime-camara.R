@@ -10,7 +10,7 @@ source(here::here("R/camara-lib.R"))
 #' suportado pelo vistime
 #' @param df Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_local()
+#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_local()
 #' @export
 data_local <- function(df) {
   df <-
@@ -39,7 +39,7 @@ data_local <- function(df) {
 #' suportado pelo vistime
 #' @param df Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_evento()
+#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_evento()
 #' @export
 data_evento <- function(df) {
   df %>%
@@ -58,10 +58,10 @@ data_evento <- function(df) {
 #' @param bill_id id da proposição
 #' @param tramitacao Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_fase_global(bill_id, .)
+#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_fase_global(bill_id, .)
 #' @export
 data_fase_global <- function(bill_id, tramitacao) {
-  data_prop <- agoradigital::extract_autor_in_camara(bill_id) %>% tail(1)
+  data_prop <- extract_autor_in_camara(bill_id) %>% tail(1)
   tipo_casa <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Origem", "Revisão")
   
   tramitacao %>%
