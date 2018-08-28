@@ -6,6 +6,7 @@ args = commandArgs(trailingOnly=TRUE)
 #' importar, processar e adaptar para visualização; os dados daquela proposição.
 #' @param id Identificador da proposição que pode ser recuperado no site da casa legislativa.
 #' @param house Casa a que pertence essa proposição.
+#' @importFrom %<>% magrittr
 #' @examples
 #' build_csvs(91341, "senado")
 #' build_csvs(257161, "camara")
@@ -19,7 +20,7 @@ build_csvs <- function(id, house) {
   }
   process_proposicao(id, house)
   source(here::here(paste0("view/formatter/data-formatter-vistime-", tolower(house), ".R")))
-  build_vis_csv(id)
+  build_vis_csv(id, FALSE)
 
   as.tibble(NULL)
 }

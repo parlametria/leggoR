@@ -91,6 +91,7 @@ extract_events_in_camara <- function(tramitacao_df) {
 #' @return Dataframe contendo o link, o nome, o código do tipo, o tipo e a casa de origem do autor.
 #' @examples
 #' extract_autor_in_camara(2121442)
+#' @export
 extract_autor_in_camara <- function(prop_id) {
   camara_exp <- 'câmara dos deputados'
   senado_exp <- 'senado federal'
@@ -230,6 +231,7 @@ extract_situacao_comissao <- function(df) {
 #' @examples
 #' process_proposicao_camara(257161)
 #' @importFrom magrittr %<>%
+#' @export
 process_proposicao_camara <- function(pl_id) {
   data_path <- here::here('data/camara/')
   tramitacao_pl <- rcongresso::fetch_tramitacao(pl_id)
@@ -273,7 +275,7 @@ process_proposicao_camara <- function(pl_id) {
 #' e sua tramitação e as salva em data/camara.
 #' @param tramitacao_df Dataframe com tramitação da proposição
 #' @importFrom magrittr %>%
-process_proposicao_camara <- function(proposicao_df, tramitacao_df) {
+process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   tramitacao_df %>%
     rename_df_columns %>%
     extract_events_in_camara() %>%

@@ -28,7 +28,7 @@ process_proposicao <- function(id, casa) {
 #' @param casa Casa onde o PL está tramitando ('camara'/'senado').
 #' @importFrom magrittr '%>%'
 #' @export
-process_proposicao <- function(proposicao_df, tramitacao_df, casa) {
+process_proposicao_df <- function(proposicao_df, tramitacao_df, casa) {
   if ("CAMARA" == toupper(casa)) {
     process_proposicao_camara(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
   } else if ("SENADO" == toupper(casa)) {
