@@ -65,13 +65,13 @@ A função `fetch_tramitacao()` tem todos os acontecimentos da proposição orde
 #### Câmara
 
 ```{r message=FALSE}
-tram_camara <- rcongresso::fetch_tramitacao(id_qualidade_fiscal_camara)
+tram_camara <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_camara,'camara')
 glimpse(tram_camara)
 ```
 
 #### Senado
 
 ```{r message=FALSE}
-tram_senado <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado)
+tram_senado <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado,'senado')
 glimpse(tram_senado)
 ```
