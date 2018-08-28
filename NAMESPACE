@@ -2,6 +2,7 @@
 
 export(detect_fase)
 export(extract_apreciacao_Senado)
+export(extract_autor_in_camara)
 export(extract_partido_estado_autor)
 export(fetch_apensadas)
 export(fetch_current_relatoria)
