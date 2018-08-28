@@ -2,6 +2,7 @@ library(data.table)
 library(tidyverse)
 library(lubridate)
 library(here)
+library(agoradigital)
 source(here::here("R/camara-lib.R"))
 
 #' @title Adiciona o local para o vistime
@@ -60,7 +61,7 @@ data_evento <- function(df) {
 #' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_fase_global(bill_id, .)
 #' @export
 data_fase_global <- function(bill_id, tramitacao) {
-  data_prop <- extract_autor_in_camara(bill_id) %>% tail(1)
+  data_prop <- agoradigital::extract_autor_in_camara(bill_id) %>% tail(1)
   tipo_casa <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Origem", "Revisão")
   
   tramitacao %>%
