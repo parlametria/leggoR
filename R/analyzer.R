@@ -12,10 +12,10 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
   proc_tram_data <- NULL
   prop_id <- NULL
   if ("CAMARA" == toupper(casa)) {
-    proc_tram_data <- process_proposicao_camara(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
+    proc_tram_data <- process_proposicao_camara_df(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
     prop_id <- proc_tram_data[1,"id_prop"]
   } else if ("SENADO" == toupper(casa)) {
-    proc_tram_data <- process_proposicao_senado(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
+    proc_tram_data <- process_proposicao_senado_df(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
     prop_id <- proc_tram_data[1,"codigo_materia"]
   }
   

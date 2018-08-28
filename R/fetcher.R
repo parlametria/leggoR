@@ -1,6 +1,5 @@
 source(here::here("R/utils.R"))
-senado_env <-
-  jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
+senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 senado_constants <- senado_env$constants
 
 #' @title Busca votações de uma proposição no Senado
@@ -407,14 +406,34 @@ generate_dataframe <- function (column) {
     rename_df_columns()
 }
 
+
+#' @title Retorna as emendas de uma proposição no Congresso
+#' @description Retorna dataframe com os dados das emendas de uma proposição no Congresso.
+#' @param bill_id ID de uma proposição do Congresso
+#' @return Dataframe com as informações sobre as emendas de uma proposição no Congresso.
+#' @examples
+#' fetch_emendas(91341,'senado')
+#' @export
+fetch_emendas <- function(id, casa) {
+  casa <- tolower(casa)
+  if (casa == 'camara') {
+    print("Function fetch_emendas_camara not implemented yet.")
+    return(NULL)
+  } else if (casa == 'senado') {
+    fetch_emendas_senado(id)
+  } else {
+    print('Parâmetro "casa" não identificado.')
+  }
+}
+
 #' @title Retorna as emendas de uma proposição no Senado
 #' @description Retorna dataframe com os dados das emendas de uma proposição no Senado.
 #' @param bill_id ID de uma proposição do Senado
 #' @return Dataframe com as informações sobre as emendas de uma proposição no Senado.
 #' @examples
-#' fetch_emendas(91341)
+#' fetch_emendas_senado(91341)
 #' @export
-fetch_emendas <- function(bill_id) {
+fetch_emendas_senado <- function(bill_id) {
   url_base_emendas <-
     "http://legis.senado.leg.br/dadosabertos/materia/emendas/"
   url <- paste0(url_base_emendas, bill_id)
@@ -511,7 +530,8 @@ fetch_tramitacao <- function(id, casa) {
 
 
 fetch_tramitacao_camara <- function(bill_id) {
-  tram_camara <- rcongresso::fetch_tramitacao(bill_id)
+  tram_camara <- rcongresso::fetch_tramitacao(bill_id) %>%
+    rename_df_columns
 }
 
 build_data_filepath <- function(folder_path,data_prefix,house,bill_id) {
@@ -534,10 +554,12 @@ import_proposicao <- function(prop_id, casa, out_folderpath=NULL) {
   
   prop_df <- fetch_proposicao(prop_id,casa)
   tram_df <- fetch_tramitacao(prop_id,casa)
+  emendas_df <- fetch_emendas(prop_id,casa)
   
   if (!is.null(out_folderpath)) {
-    readr::write_csv(prop_df, build_data_filepath(out_folderpath,'proposicao',casa,prop_id))
-    readr::write_csv(tram_df, build_data_filepath(out_folderpath,'tramitacao',casa,prop_id))
+    if (!is.null(prop_df)) readr::write_csv(prop_df, build_data_filepath(out_folderpath,'proposicao',casa,prop_id))
+    if (!is.null(tram_df)) readr::write_csv(tram_df, build_data_filepath(out_folderpath,'tramitacao',casa,prop_id))
+    if (!is.null(emendas_df)) readr::write_csv(emendas_df, build_data_filepath(out_folderpath,'emendas',casa,prop_id))
   }
   
   return(list(proposicao = prop_df, tramitacao = tram_df))
