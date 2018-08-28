@@ -107,18 +107,25 @@ format_fase_global <- function(df) {
   
 }
 
-build_vis_csv <- function(bill_id) {
+build_vis_csv <- function(bill_id, events = TRUE) {
   data_tramitacao <- 
     read_csv(paste0(here::here("data/Senado/"), bill_id,"-visualizacao-tramitacao-senado.csv"))
   
-  df <- 
-    rbind(format_local(data_tramitacao),
-          format_fase_global(data_tramitacao),
-          #format_fase(data_tramitacao),
-          format_eventos(data_tramitacao)) %>%
-    filter(time_interval != 0 | group == "Evento") %>%
-    filter(group != 'Comissão')
-  
+  if (events) {
+    df <- 
+      rbind(format_local(data_tramitacao),
+            format_fase_global(data_tramitacao),
+            #format_fase(data_tramitacao),
+            format_eventos(data_tramitacao)) %>%
+      filter(time_interval != 0 | group == "Evento") %>%
+      filter(group != 'Comissão')
+  }else {
+    df <- 
+      rbind(format_local(data_tramitacao),
+            format_fase_global(data_tramitacao)) %>%
+      filter(group != 'Comissão')
+  }
+
   df %>%
     write_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))
 }
