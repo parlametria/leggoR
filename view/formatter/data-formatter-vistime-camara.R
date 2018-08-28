@@ -63,7 +63,40 @@ data_fase_global <- function(bill_id, tramitacao) {
   data_prop <- extract_autor_in_camara(bill_id) %>% tail(1)
   tipo_casa <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Origem", "Revisão")
   
-  tramitacao %>%
+  siglas_comissoes <-
+    get_comissoes_camara() %>% 
+    select(siglas_comissoes, comissoes_permanentes) %>% 
+    unnest()
+  
+  comissoes_previstas <- 
+    get_comissoes_in_camara(tramitacao) %>% 
+    head(1) %>% 
+    select(proximas_comissoes) %>%
+    unnest() %>%
+    rename("comissoes_permanentes" = "proximas_comissoes")
+  
+  comissoes_previstas_siglas <- 
+    fuzzyjoin::regex_left_join(comissoes_previstas, siglas_comissoes) %>%
+    select(siglas_comissoes) %>%
+    rename("local" = "siglas_comissoes")
+  
+  comissoes_faltantes <-
+    anti_join(comissoes_previstas_siglas, tramitacao)
+  
+  if (nrow(comissoes_faltantes) != 0) {
+    futuro_comissoes <-
+      tramitacao %>%
+      utils::tail(nrow(comissoes_faltantes)) %>%
+      dplyr::mutate(data_hora = as.POSIXct(Sys.Date()))
+    
+    futuro_comissoes$local <-
+      comissoes_faltantes$local
+    
+    tramitacao <- rbind(tramitacao, futuro_comissoes)
+  }
+  
+  tramitacao <- 
+    tramitacao %>%
     mutate(end_data = lead(data_hora, default=Sys.time())) %>%
     group_by(local, sequence = rleid(local)) %>%
     summarise(start = min(data_hora),
@@ -81,6 +114,19 @@ data_fase_global <- function(bill_id, tramitacao) {
                              stringr::str_detect(label, "CCP") ~ "#8bca42",
                              stringr::str_detect(label, "CTASP") ~ "#ea81b1"),
            label = paste(label, '-', tipo_casa, '(Câmara)'))
+  
+  if (tipo_casa == "Origem") {
+    futuro_revisao <-
+      tramitacao %>%
+      tail(1) %>%
+      mutate(label = "Comissões - Revisão (Senado)",
+             start = as.POSIXct(Sys.Date()),
+             end = as.POSIXct(Sys.Date()) + 1)
+    
+    tramitacao <- rbind(tramitacao, futuro_revisao)
+  }
+    
+  tramitacao
 }
 
 data_situacao_comissao <- function(df) {
