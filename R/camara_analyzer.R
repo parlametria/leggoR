@@ -231,6 +231,7 @@ extract_situacao_comissao <- function(df) {
 #' @examples
 #' process_proposicao_camara(257161)
 #' @importFrom magrittr %<>%
+#' @export
 process_proposicao_camara <- function(pl_id) {
   data_path <- here::here('data/camara/')
   tramitacao_pl <- rcongresso::fetch_tramitacao(pl_id)
