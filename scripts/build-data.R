@@ -7,6 +7,7 @@ args = commandArgs(trailingOnly=TRUE)
 #' importar, processar e adaptar para visualização; os dados daquela proposição.
 #' @param id Identificador da proposição que pode ser recuperado no site da casa legislativa.
 #' @param house Casa a que pertence essa proposição.
+#' @importFrom %<>% magrittr
 #' @examples
 #' build_csvs(91341, "senado")
 #' build_csvs(257161, "camara")

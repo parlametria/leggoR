@@ -416,7 +416,7 @@ extract_approved_requerimentos_in_senado <- function(df) {
 #' @description Recebido um dataframe da tramitação de um PL, a função recupera informações sobre uma proposição
 #' e sua tramitação e as salva em data/Senado.
 #' @param tramitacao_df Dataframe da tramitação da proposição
-process_proposicao_senado <- function(proposicao_df, tramitacao_df) {
+process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
   phase_one <- c('^Este processo contém')
   recebimento_phase <- 'recebido na|nesta comissão'
   phase_three <- c(42, 14, 78, 90)

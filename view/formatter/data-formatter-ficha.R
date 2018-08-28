@@ -208,3 +208,8 @@ gera_tabela_apensadas_camara <- function(bill_id_camara) {
       mutate(casa = "Câmara")
   }
 }
+
+gera_tabela_emendas_senado <- function(senado_id) {
+  emendas_df <- readr::read_csv(paste0(here::here("data/Senado/"), senado_id, '-emendas-senado.csv'))
+  emendas_df %>% select(-codigo)
+}

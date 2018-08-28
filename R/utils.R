@@ -34,10 +34,10 @@ regex_left_match <- function(df, regex_df, new_column) {
   df %>%
     dplyr::mutate(sort = row_number()) %>%
     fuzzyjoin::regex_left_join(regex_df, by = columns, ignore_case = TRUE) %>%
-    dplyr::group_by(sort) %>%
-    dplyr::filter(rank(sort, ties.method = "first") == 1) %>%
-    dplyr::ungroup() %>%
+     group_by(sort) %>%
+     ungroup() %>%
     dplyr::select(-tidyselect::ends_with("X"), -sort)
+
 }
 
 #' @title Renomeia as colunas do dataframe
@@ -49,4 +49,18 @@ regex_left_match <- function(df, regex_df, new_column) {
 rename_df_columns <- function(df) {
   names(df) %<>% to_underscore
   df
+}
+
+#' @title Renomeia um vetor com o padrão de underscores e minúsculas
+#' @description Renomeia cada item do vetor com o padrão: separado por underscore e letras minúsculas
+#' @param x Vetor de strings
+#' @return Vetor contendo as strings renomeadas.
+#' @examples
+#' to_underscore(c("testName", "TESTNAME"))
+#' @export
+to_underscore <- function(x) {
+  gsub('([A-Za-z])([A-Z])([a-z])', '\\1_\\2\\3', x) %>%
+    gsub('.', '_', ., fixed = TRUE) %>%
+    gsub('([a-z])([A-Z])', '\\1_\\2', .) %>%
+    tolower()
 }

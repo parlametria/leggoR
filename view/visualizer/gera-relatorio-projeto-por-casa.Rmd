@@ -87,3 +87,12 @@ if(params$casa == "camara") {
 }
 knitr::kable(comissoes, caption = "Lista de Comissões")
 ```
+
+#### Tabela de emendas
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+if(params$casa == "senado") {
+  emendas <- gera_tabela_emendas_senado(params$id)
+  knitr::kable(emendas, caption = "Emendas no Senado")
+}
+```
+
