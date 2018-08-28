@@ -1,3 +1,4 @@
+source(here::here("R/camara-lib.R"))
 #' @title Cria coluna com os relatores na tramitação na Câmara
 #' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no
 #' envento pontual em que ele é designado
