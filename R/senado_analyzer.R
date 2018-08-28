@@ -31,6 +31,19 @@ extract_fase_Senado <-
       )
   }
 
+get_comissoes_faltantes <- function(data_tramitacao) {
+  comissoes <- 
+    extract_comissoes_Senado(data_tramitacao) %>% 
+    utils::head(1) %>% 
+    dplyr::select(comissoes) %>%
+    tidyr::unnest() %>%
+    dplyr::rename("local" = "comissoes")
+  
+  comissoes_faltantes <-
+    dplyr::anti_join(comissoes, data_tramitacao)
+  
+}
+
 #' @title Cria coluna com a fase global da tramitação no Senado
 #' @description Cria uma nova coluna com a fase global no Senado
 #' @param df Dataframe da tramitação no Senado
@@ -52,16 +65,6 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
     dplyr::filter(local == 'Mesa - Câmara') %>%
     dplyr::arrange(data_tramitacao) %>%
     dplyr::select(data_tramitacao)
-  
-  comissoes <- 
-    extract_comissoes_Senado(bill_passage) %>% 
-    utils::head() %>% 
-    dplyr::select(comissoes) %>%
-    tidyr::unnest() %>%
-    dplyr::rename("local" = "comissoes")
-  
-  comissoes_faltantes <-
-    dplyr::anti_join(comissoes, data_tramitacao)
     
   casa_atual <-
     dplyr::if_else(
@@ -69,6 +72,20 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
       fase_global_constants$revisao_camara,
       fase_global_constants$origem_senado
     )
+  
+  comissoes_faltantes <- get_comissoes_faltantes(data_tramitacao)
+  
+  if (nrow(comissoes_faltantes) != 0) {
+    futuro_comissoes <-
+      data_tramitacao %>%
+      utils::tail(nrow(comissoes_faltantes)) %>%
+      dplyr::mutate(data_tramitacao = Sys.Date())
+    
+    futuro_comissoes$local <- 
+      comissoes_faltantes$local 
+    
+    data_tramitacao <- rbind(data_tramitacao, futuro_comissoes)
+  }
   
   if (nrow(virada_de_casa) == 0) {
     data_tramitacao <- 
@@ -82,18 +99,9 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
              data_tramitacao = Sys.Date() + 1,
              global = casa_atual)
     
-    futuro_comissoes <-
-      data_tramitacao %>%
-      utils::tail(nrow(comissoes_faltantes)) %>%
-      dplyr::mutate(data_tramitacao = Sys.Date())
-    
-    futuro_comissoes$local <- 
-      comissoes_faltantes$local 
-    
-    rbind(data_tramitacao, futuro_casa_revisora, futuro_comissoes)
+    rbind(data_tramitacao, futuro_casa_revisora)
       
   } else {
-
     data_tramitacao %>%
       dplyr::mutate(global = dplyr::if_else(
         data_tramitacao < virada_de_casa[1, ][[1]],
@@ -102,7 +110,6 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
       ))
   }
 }
-
 
 #' @title Cria coluna com a fase casa da tramitação no Senado
 #' @description Cria uma nova coluna com a fase casa no Senado
@@ -206,6 +213,15 @@ extract_n_last_eventos_Senado <- function(df, num) {
     dplyr::select(data_tramitacao, evento)
 }
 
+get_comissoes_senado <- function() {
+  comissoes <- senado_env$comissoes_nomes
+  dplyr::tibble(
+    siglas_comissoes = list(comissoes$siglas_comissoes),
+    comissoes_temporarias = list(comissoes$comissoes_temporarias),
+    comissoes_permanentes = list(comissoes$comissoes_permanentes)
+  )
+}
+
 #' @title Recupera todas as comissões do Senado
 #' @description Retorna dataframe contendo o código da proposição, as comissões e a data
 #' @param df Dataframe da tramitação no Senado
@@ -215,63 +231,69 @@ extract_n_last_eventos_Senado <- function(df, num) {
 extract_comissoes_Senado <- function(df) {
   codigos_comissoes <- senado_env$comissoes
   
-  siglas_comissoes <- '
-  CAE
-  CAS
-  CCJ
-  CCT
-  CDH
-  CDIR
-  CDR
-  CE
-  CI
-  CMA
-  CRA
-  CRE
-  CSF
-  CTFC
-  CCAI
-  CMCF
-  CMCPLP
-  CMCVM
-  CMMC
-  CMO
-  FIPA
-  '
-  comissoes_permanentes_especiais <- '
-  Especial
-  de Assuntos Econômicos
-  de Assuntos Sociais
-  de Constituição, Justiça e Cidadania
-  de Ciência, Tecnologia, Inovação, Comunicação e Informática
-  de Direitos Humanos e Legislação Participativa
-  Diretora
-  de Desenvolvimento Regional e Turismo
-  de Educação, Cultura e Esporte
-  de Serviços de Infraestrutura
-  de Meio Ambiente
-  de Agricultura e Reforma Agrária
-  de Relações Exteriores e Defesa Nacional
-  Senado do Futuro
-  de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor
-  Mista de Controle das Atividades de Inteligência
-  Mista de Consolidação da Legislação Federal
-  Mista do Congresso Nacional de Assuntos Relacionados à Comunidade dos Países de Língua Portuguesa
-  Permanente Mista de Combate à Violência contra a Mulher
-  Mista Permanente sobre Mudanças Climáticas
-  Mista de Planos, Orçamentos Públicos e Fiscalização
-  Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas
-  ' %>%
-    paste0(siglas_comissoes) %>%
-    # Constrói expressão regular adicionando `prefix` ao começo de cada linha
-    # e concatenando todas as linhas com `|`.
-    strsplit('\n') %>%
-    magrittr::extract2(1) %>%
-    sapply(trimws) %>%
-    magrittr::extract(. != '') %>%
+  comissoes_permanentes_especiais <- unlist(get_comissoes_senado()) %>%
     paste0(codigos_comissoes$prefixo, .) %>%
     paste(collapse = '|') %>%
-    stringr::regex(ignore_case = FALSE)
+    stringr::regex(ignore_case = TRUE)
+
+  
+  # siglas_comissoes <- '
+  # CAE
+  # CAS
+  # CCJ
+  # CCT
+  # CDH
+  # CDIR
+  # CDR
+  # CE
+  # CI
+  # CMA
+  # CRA
+  # CRE
+  # CSF
+  # CTFC
+  # CCAI
+  # CMCF
+  # CMCPLP
+  # CMCVM
+  # CMMC
+  # CMO
+  # FIPA
+  # '
+  # comissoes_permanentes_especiais <- '
+  # Especial
+  # de Assuntos Econômicos
+  # de Assuntos Sociais
+  # de Constituição, Justiça e Cidadania
+  # de Ciência, Tecnologia, Inovação, Comunicação e Informática
+  # de Direitos Humanos e Legislação Participativa
+  # Diretora
+  # de Desenvolvimento Regional e Turismo
+  # de Educação, Cultura e Esporte
+  # de Serviços de Infraestrutura
+  # de Meio Ambiente
+  # de Agricultura e Reforma Agrária
+  # de Relações Exteriores e Defesa Nacional
+  # Senado do Futuro
+  # de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor
+  # Mista de Controle das Atividades de Inteligência
+  # Mista de Consolidação da Legislação Federal
+  # Mista do Congresso Nacional de Assuntos Relacionados à Comunidade dos Países de Língua Portuguesa
+  # Permanente Mista de Combate à Violência contra a Mulher
+  # Mista Permanente sobre Mudanças Climáticas
+  # Mista de Planos, Orçamentos Públicos e Fiscalização
+  # Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas
+  # ' %>%
+  #   paste0(siglas_comissoes) %>%
+  #   # Constrói expressão regular adicionando `prefix` ao começo de cada linha
+  #   # e concatenando todas as linhas com `|`.
+  #   strsplit('\n') %>%
+  #   magrittr::extract2(1) %>%
+  #   sapply(trimws) %>%
+  #   magrittr::extract(. != '') %>%
+  #   paste0(codigos_comissoes$prefixo, .) %>%
+  #   paste(collapse = '|') %>%
+  #   stringr::regex(ignore_case = FALSE)
   
   # Faz com que os nomes comecem com 'Comissão'.
   fix_names <- function(name) {
@@ -280,7 +302,7 @@ extract_comissoes_Senado <- function(df) {
       sapply(function(name) {
         if (!stringr::str_detect(name, 'Comissão') &
             !stringr::str_detect(siglas_comissoes, name))
-          paste0('Comissão', name)
+          paste0('Comissão ', name)
         else
           name
       },

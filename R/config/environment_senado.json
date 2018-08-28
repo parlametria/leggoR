@@ -96,6 +96,58 @@
     "regex_3_extract": "comiss..s*.+"
   },
   
+  "comissoes_nomes": {
+    "siglas_comissoes": [
+      "CAE",
+      "CAS",
+      "CCJ",
+      "CCT",
+      "CDH",
+      "CDIR",
+      "CDR",
+      "CE",
+      "CI",
+      "CMA",
+      "CRA",
+      "CRE",
+      "CSF",
+      "CTFC",
+      "CCAI",
+      "CMCF",
+      "CMCPLP",
+      "CMCVM",
+      "CMMC",
+      "CMO",
+      "FIPA"
+    ],
+    "comissoes_permanentes": [
+      "de Assuntos Econômicos",
+      "de Assuntos Sociais",
+      "de Constituição, Justiça e Cidadania",
+      "de Ciência, Tecnologia, Inovação, Comunicação e Informática",
+      "de Direitos Humanos e Legislação Participativa",
+      "Diretora",
+      "de Desenvolvimento Regional e Turismo",
+      "de Educação, Cultura e Esporte",
+      "de Serviços de Infraestrutura",
+      "de Meio Ambiente",
+      "de Agricultura e Reforma Agrária",
+      "de Relações Exteriores e Defesa Nacional",
+      "Senado do Futuro",
+      "de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor",
+      "Mista de Controle das Atividades de Inteligência",
+      "Mista de Consolidação da Legislação Federal",
+      "Mista do Congresso Nacional de Assuntos Relacionados à Comunidade dos Países de Língua Portuguesa",
+      "Permanente Mista de Combate à Violência contra a Mulher",
+      "Mista Permanente sobre Mudanças Climáticas",
+      "Mista de Planos, Orçamentos Públicos e Fiscalização",
+      "Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas"
+    ],
+    "comissoes_temporarias": [
+      "Especial"
+    ]
+  },
+  
   "endpoints_api": {
     "url_base": "http://legis.senado.leg.br/dadosabertos/materia/",
     "votacao": "http://legis.senado.leg.br/dadosabertos/materia/votacoes",
