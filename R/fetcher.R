@@ -80,17 +80,20 @@ fetch_tramitacao_senado <- function(proposicao_id, normalize=FALSE) {
   
   if (normalize) {
     proposicao_tramitacoes_df <- proposicao_tramitacoes_df %>%
-      dplyr::select(id_prop = codigo_materia,
-                    data_hora = data_tramitacao,
-                    sequencia = numero_ordem_tramitacao,
+      dplyr::mutate(data_hora = lubridate::ymd_hm(paste(data_tramitacao, "00:00")),
+                    id_prop = as.integer(codigo_materia),
+                    sequencia = as.integer(numero_ordem_tramitacao),
+                    id_situacao = as.integer(situacao_codigo_situacao),
+                    casa = 'senado') %>%
+      dplyr::select(id_prop,
+                    casa,
+                    data_hora,
+                    sequencia,
                     texto_tramitacao,
                     sigla_local = origem_tramitacao_local_sigla_local,
-                    id_situacao = situacao_codigo_situacao,
-                    descricao_situacao = situacao_descricao_situacao) %>%
-      dplyr::mutate(data_hora = lubridate::ymd_hm(paste(data_hora, "00:00")),
-                    id_prop = as.integer(id_prop),
-                    sequencia = as.integer(sequencia),
-                    id_situacao = as.integer(id_situacao))
+                    id_situacao,
+                    descricao_situacao = situacao_descricao_situacao)
+      
   }
   
   proposicao_tramitacoes_df
@@ -565,14 +568,16 @@ fetch_tramitacao_camara <- function(bill_id, normalize=FALSE) {
   
   if (normalize) {
     tram_camara <- tram_camara %>%
+      dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,'T',' ')),
+                    casa = 'camara') %>%
       dplyr::select(id_prop, 
-             data_hora, 
-             sequencia, 
-             texto_tramitacao = despacho, 
-             sigla_local = sigla_orgao, 
-             id_situacao,
-             descricao_situacao) %>%
-      dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,'T',' ')))
+               casa,
+               data_hora, 
+               sequencia, 
+               texto_tramitacao = despacho, 
+               sigla_local = sigla_orgao, 
+               id_situacao,
+               descricao_situacao)
   }
   
   tram_camara
