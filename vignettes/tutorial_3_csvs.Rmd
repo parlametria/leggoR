@@ -12,7 +12,7 @@ vignette: >
 Para salvar os dados de um dataframe retornado por uma função em um arquivo csv, basta:
 
 ```{r eval=FALSE, message=FALSE}
-devtools::install_github('analytics-ufcg/agora-digital@refatora-build-scripts')
+devtools::install_github('analytics-ufcg/agora-digital')
 library(agoradigital)
 library(magrittr)
 library(readr)
