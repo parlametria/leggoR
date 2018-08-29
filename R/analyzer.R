@@ -26,24 +26,14 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
 }
 
 #' @title Retorna energia de uma proposição
-#' @description Recebido um id de uma proposição e a casa retorna um inteiro para indicar a energia
-#' este inteiro é a soma dos eventos
-#' @param bill_id Identificador deuma proposição.
-#' @param house senado ou camara.
+#' @description Recebido um dataframe com as colunas: label,start,end,time_interval,group,color
+#'  retorna um inteiro para indicar a energia este inteiro é a soma dos eventos
+#' @param data Data frame formatado para a criação do vistime 
 #' @return Energia de uma proposição.
 #' @examples
-#' get_energia(91341, 'senado')
+#' get_energia(dataFrameVistime)
 #' @export
-get_energia <- function(bill_id, house) {
-  
-  if (tolower(house) == 'senado') {
-    data <- 
-      readr::read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))
-  }else {
-    data <-
-      readr::read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-camara.csv"))
-  }
-  
+get_energia <- function(data) {
   data %>%
     dplyr::filter(group == "Evento") %>%
     nrow()
