@@ -52,6 +52,59 @@ data_evento <- function(df) {
     unique()
 }
 
+#' @title Retorna as comissões onde a proposição ainda vai passar na Camara 
+#' @description Analisa as comissões previstas e as quais as comissões já passou e 
+#' retorna as que ela ainda vai passar
+#' @param tramitacao Dataframe com a tramitacao
+#' @examples
+#' get_comissoes_futuras(tramitacao)
+#' @export
+get_comissoes_futuras <- function(tramitacao) {
+  
+  siglas_comissoes <-
+    get_comissoes_camara() %>% 
+    dplyr::select(siglas_comissoes, comissoes_permanentes) %>% 
+    tidyr::unnest()
+  
+  comissao_especial <- 
+    get_comissoes_in_camara(tramitacao) %>%
+    dplyr::filter(proximas_comissoes == "Comissão Especial")
+  
+  if (nrow(comissao_especial) == 0) { 
+    comissoes_previstas <-
+      get_comissoes_in_camara(tramitacao) %>%
+      utils::head(1) %>% 
+      dplyr::select(proximas_comissoes) %>%
+      tidyr::unnest() %>%
+      dplyr::rename("comissoes_permanentes" = "proximas_comissoes")
+    
+    comissoes_previstas_siglas <- 
+      fuzzyjoin::regex_left_join(comissoes_previstas, siglas_comissoes) %>%
+      dplyr::select(siglas_comissoes) %>%
+      dplyr::rename("local" = "siglas_comissoes") %>%
+      dplyr::filter(!is.na(local))
+    
+    comissoes_faltantes <-
+      dplyr::anti_join(comissoes_previstas_siglas, tramitacao)
+    
+    if (nrow(comissoes_faltantes) != 0) {
+      futuro_comissoes <-
+        tramitacao %>%
+        utils::tail(nrow(comissoes_faltantes)) %>%
+        dplyr::mutate(data_hora = as.POSIXct(Sys.Date()))
+      
+      futuro_comissoes$local <-
+        comissoes_faltantes$local
+      
+      return(rbind(tramitacao, futuro_comissoes))
+    }
+    
+    return(tramitacao)
+  }
+  
+  return(tramitacao)
+}
+
 #' @title Adiciona a fase global para o vistime
 #' @description Adiciona a fase global com suas respectivas cores no formato
 #' suportado pelo vistime
@@ -63,38 +116,8 @@ data_evento <- function(df) {
 data_fase_global <- function(bill_id, tramitacao) {
   data_prop <- agoradigital::extract_autor_in_camara(bill_id) %>% tail(1)
   tipo_casa <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Origem", "Revisão")
-  
-  siglas_comissoes <-
-    get_comissoes_camara() %>% 
-    select(siglas_comissoes, comissoes_permanentes) %>% 
-    unnest()
-  
-  comissoes_previstas <- 
-    get_comissoes_in_camara(tramitacao) %>% 
-    head(1) %>% 
-    select(proximas_comissoes) %>%
-    unnest() %>%
-    rename("comissoes_permanentes" = "proximas_comissoes")
-  
-  comissoes_previstas_siglas <- 
-    fuzzyjoin::regex_left_join(comissoes_previstas, siglas_comissoes) %>%
-    select(siglas_comissoes) %>%
-    rename("local" = "siglas_comissoes")
-  
-  comissoes_faltantes <-
-    anti_join(comissoes_previstas_siglas, tramitacao)
-  
-  if (nrow(comissoes_faltantes) != 0) {
-    futuro_comissoes <-
-      tramitacao %>%
-      utils::tail(nrow(comissoes_faltantes)) %>%
-      dplyr::mutate(data_hora = as.POSIXct(Sys.Date()))
-    
-    futuro_comissoes$local <-
-      comissoes_faltantes$local
-    
-    tramitacao <- rbind(tramitacao, futuro_comissoes)
-  }
+
+  tramitacao <- get_comissoes_futuras(tramitacao)
   
   tramitacao <- 
     tramitacao %>%
