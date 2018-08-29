@@ -24,3 +24,27 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
   }
   return(proc_tram_data)
 }
+
+#' @title Retorna energia de uma proposição
+#' @description Recebido um id de uma proposição e a casa retorna um inteiro para indicar a energia
+#' este inteiro é a soma dos eventos
+#' @param bill_id Identificador deuma proposição.
+#' @param house senado ou camara.
+#' @return Energia de uma proposição.
+#' @examples
+#' get_energia(91341, 'senado')
+#' @export
+get_energia <- function(bill_id, house) {
+  
+  if (tolower(house) == 'senado') {
+    data <- 
+      readr::read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))
+  }else {
+    data <-
+      readr::read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-camara.csv"))
+  }
+  
+  data %>%
+    dplyr::filter(group == "Evento") %>%
+    nrow()
+}
