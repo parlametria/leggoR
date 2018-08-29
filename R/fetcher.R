@@ -45,7 +45,7 @@ fetch_votacoes <- function(proposicao_id) {
 #' @return Dataframe com as informações sobre a movimentação de uma proposição no Senado
 #' @examples
 #' fetch_tramitacao_senado(91341)
-fetch_tramitacao_senado <- function(proposicao_id) {
+fetch_tramitacao_senado <- function(proposicao_id, normalize=FALSE) {
   url <-
     paste0(senado_env$endpoints_api$url_base,
            "movimentacoes/",
@@ -76,7 +76,24 @@ fetch_tramitacao_senado <- function(proposicao_id) {
   proposicao_tramitacoes_df <-
     proposicao_tramitacoes_df[,!sapply(proposicao_tramitacoes_df, is.list)]
 
-  rename_tramitacao_df(proposicao_tramitacoes_df)
+  proposicao_tramitacoes_df <- rename_tramitacao_df(proposicao_tramitacoes_df)
+  
+  if (normalize) {
+    proposicao_tramitacoes_df <- proposicao_tramitacoes_df %>%
+      dplyr::select(id_prop = codigo_materia,
+                    data_hora = data_tramitacao,
+                    sequencia = numero_ordem_tramitacao,
+                    texto_tramitacao,
+                    sigla_local = origem_tramitacao_local_sigla_local,
+                    id_situacao = situacao_codigo_situacao,
+                    descricao_situacao = situacao_descricao_situacao) %>%
+      dplyr::mutate(data_hora = lubridate::ymd_hm(paste(data_hora, "00:00")),
+                    id_prop = as.integer(id_prop),
+                    sequencia = as.integer(sequencia),
+                    id_situacao = as.integer(id_situacao))
+  }
+  
+  proposicao_tramitacoes_df
 }
 
 #' @title Deferimento de requerimentos.
@@ -517,21 +534,48 @@ fetch_emendas_senado <- function(bill_id) {
 #' @examples
 #' fetch_tramitacao(91341,'senado')
 #' @export
-fetch_tramitacao <- function(id, casa) {
+fetch_tramitacao <- function(id, casa, normalize=FALSE) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    fetch_tramitacao_camara(id)
+    fetch_tramitacao_camara(id, normalize)
   } else if (casa == 'senado') {
-    fetch_tramitacao_senado(id)
+    fetch_tramitacao_senado(id, normalize)
   } else {
     print('Parâmetro "casa" não identificado.')
   }
 }
 
+#' @title Baixa os dados da tramitação de vários Projetos de Lei
+#' @description Retorna dataframe com os dados da tramitação de proposições no Congresso
+#' @param id ID de uma proposição na sua respectiva casa
+#' @param casa Casa onde a proposição está tramitando
+#' @return Dataframe com os dados da tramitação de proposições no Congresso
+#' @examples
+#' all_pls <- readr::read_csv('data/tabela_geral_ids_casa.csv')
+#' fetch_tramitacoes(all_pls)
+#' @export
+fetch_tramitacoes <- function(pls_ids) {
+  purrr::map2_df(pls_ids$id, pls_ids$casa, ~ fetch_tramitacao(.x, .y, TRUE))
+}
 
-fetch_tramitacao_camara <- function(bill_id) {
+
+fetch_tramitacao_camara <- function(bill_id, normalize=FALSE) {
   tram_camara <- rcongresso::fetch_tramitacao(bill_id) %>%
     rename_df_columns
+  
+  if (normalize) {
+    tram_camara <- tram_camara %>%
+      dplyr::select(id_prop, 
+             data_hora, 
+             sequencia, 
+             texto_tramitacao = despacho, 
+             sigla_local = sigla_orgao, 
+             id_situacao,
+             descricao_situacao) %>%
+      dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,'T',' ')))
+  }
+  
+  tram_camara
 }
 
 build_data_filepath <- function(folder_path,data_prefix,house,bill_id) {
