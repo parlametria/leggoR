@@ -34,8 +34,8 @@ regex_left_match <- function(df, regex_df, new_column) {
   df %>%
     dplyr::mutate(sort = row_number()) %>%
     fuzzyjoin::regex_left_join(regex_df, by = columns, ignore_case = TRUE) %>%
-     group_by(sort) %>%
-     ungroup() %>%
+    dplyr::group_by(sort) %>%
+    dplyr::ungroup() %>%
     dplyr::select(-tidyselect::ends_with("X"), -sort)
 
 }
