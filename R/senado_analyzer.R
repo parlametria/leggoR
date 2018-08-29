@@ -412,6 +412,55 @@ extract_approved_requerimentos_in_senado <- function(df) {
   apr_requerimentos_df
 }
 
+#' @title Extrai o regime de apreciação do Senado
+#' @description Verifica o regime de apreciação de um dataframe. Se apresentar as
+#' palavras '(em|a) decisão terminativa' é retornado 'conclusivo' como resposta, caso contrário
+#' é retornado 'plenário'.
+#' @param proposicao_id id da proposicao
+#' @return String com a situação da pl.
+#' @examples
+#' extract_apreciacao_Senado(93418)
+#' @export
+#' @importFrom stats filter
+extract_apreciacao_Senado <- function(proposicao_id) {
+  url <-
+    paste0(senado_env$endpoints_api$url_base,
+           "movimentacoes/",
+           proposicao_id)
+  json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
+  tramitacao_data <-
+    json_tramitacao %>%
+    magrittr::extract2("MovimentacaoMateria") %>%
+    magrittr::extract2("Materia") %>%
+    magrittr::extract2("Despachos") %>%
+    magrittr::extract2("Despacho")
+  
+  apreciacao <- senado_env$apreciacao
+  
+  if (!is.null(tramitacao_data)) {
+    if (!is.list(tramitacao_data$ComissoesDespacho.ComissaoDespacho)) {
+      tramitacao_data <-
+        tramitacao_data %>%
+        magrittr::extract2("ComissoesDespacho") %>%
+        magrittr::extract2("ComissaoDespacho") %>%
+        tibble::as.tibble()
+    } else {
+      tramitacao_data <-
+        tramitacao_data %>%
+        tidyr::unnest(ComissoesDespacho.ComissaoDespacho)
+    }
+    
+    tramitacao_data <-
+      tramitacao_data %>%
+      dplyr::filter(IndicadorDespachoTerminativo == "Sim")
+    dplyr::if_else(nrow(tramitacao_data) != 0,
+                   apreciacao$conclusiva,
+                   apreciacao$plenario)
+  } else {
+    return(apreciacao$plenario)
+  }
+}
+
 #' @title Processa dados de uma proposição do senado.
 #' @description Recebido um dataframe da tramitação de um PL, a função recupera informações sobre uma proposição
 #' e sua tramitação e as salva em data/Senado.
