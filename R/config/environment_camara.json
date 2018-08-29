@@ -8,8 +8,7 @@
   
   "eventos": [
     {"evento": "requerimento_audiencia_publica", "despacho": "^apresentação do requerimento.*requer a realização d.* audiências? públicas?"},
-    {"evento": "aprovacao_audiencia_publica", "despacho": "^aprovado requerimento.*requer a realização d.* audiências? públicas?"},
-    {"evento": "aprovacao_parecer", "despacho": "aprovado.*parecer"},
+    {"evento": "aprovacao_parecer", "despacho": "^aprovado (?!.*requerimento).*parecer.*$"},
     {"evento": "requerimento_redistribuicao", "despacho": "^apresentação do requerimento de redistribuição"},
     {"evento": "requerimento_apensacao", "despacho": "^apresentação do requerimento de apensação"},
     {"evento": "requerimento_urgencia", "despacho": "^apresentação do requerimento de urgência"},
@@ -29,10 +28,10 @@
     {"evento": "encerramento_prazo_emendas", "id_tipo_tramitacao": "^600$"},
     {"evento": "arquivada", "despacho": "^arquivado nos termos"},
     {"evento": "parecer_pela_adequacao_financeira_e_orcamentaria", "id_tipo_tramitacao": "^322$", "despacho": "pela adequa..o financeira e or.ament.ria"},
-    {"evento": "parecer_pela_aprovacao_com_substitutivo", "id_tipo_tramitacao": "^322$", "despacho": "substitutivo"},
-    {"evento": "parecer_pela_aprovacao", "id_tipo_tramitacao": "^322$", "despacho": "^(?!.*substitutivo).*aprova.*$"},
-    {"evento": "parecer_pela_rejeicao", "id_tipo_tramitacao": "^322$", "despacho": "rejei..o"},
-    {"evento": "parecer", "id_tipo_tramitacao": "^322$", "despacho": "^(?!.*aprova).*parecer.*$"}
+    {"evento": "parecer_pela_aprovacao_com_substitutivo", "id_tipo_tramitacao": "^322$", "despacho": "^(?!.*pela adequa..o financeira e or.ament.ria).*substitutivo.*$"},
+    {"evento": "parecer_pela_aprovacao", "id_tipo_tramitacao": "^322$", "despacho": "^(?!.*substitutivo)(?!.*pela adequa..o financeira e or.ament.ria).*aprova.*$"},
+    {"evento": "parecer_pela_rejeicao", "id_tipo_tramitacao": "^322$", "despacho": "^(?!.*aprova)(?!.*substitutivo)(?!.*emenda).*rejei..o.*$"},
+    {"evento": "parecer", "id_tipo_tramitacao": "^322$", "despacho": "^(?!.*aprova)(?!.*rejei)(?!.*substitutivo).*parecer.*$"}
   ],
   
   "fase_casa": [
