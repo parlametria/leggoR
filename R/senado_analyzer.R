@@ -465,7 +465,8 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
     proc_tram_df[1:index_of_camara,] %>%
     extract_locais() %>%
     extract_fase_global(proposicao_df) %>%
-    dplyr::filter(!is.na(fase))
+    dplyr::filter(!is.na(fase)) %>%
+    unique()
   
   proc_tram_df
 }
