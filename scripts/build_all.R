@@ -11,14 +11,14 @@ source(here::here('view/formatter/data-formatter-ficha.R'))
 output_dir <- here::here('docs/reports')
 
 # Create dirs when needed
-c('data/Senado', 'data/camara', 'data/vis/tramitacao', 'docs/reports') %>%
+c('data/senado', 'data/camara', 'data/vis/tramitacao', 'docs/reports') %>%
   lapply(dir.create, recursive=TRUE, showWarnings = FALSE)
 
 # Store data
 all_pls <- readr::read_csv('data/tabela_geral_ids_casa.csv')
-all_pls %>% build_all_csvs()
+all_pls %>% build_all_csvs(output_folder='data/')
 pls_senado_camara <- readr::read_csv('data/tabela_ids_senado_camara.csv')
-pls_senado_camara %>% build_all_csvs()
+pls_senado_camara %>% build_all_csvs(output_folder='data/')
 
 # Build reports
 all_pls %>% render_house_df_reports()

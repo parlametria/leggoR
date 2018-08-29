@@ -16,10 +16,10 @@ O primeiro passo para analisar dados de qualquer PL é identificar os ids do mes
 Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009 - Senado | PLP 295/2016 - Câmara).
 
 ```{r message=FALSE}
-install.packages('DT')
+devtools::install_github('analytics-ufcg/agora-digital')
 library(agoradigital)
 library(tidyverse)
-library(DT)
+library(magrittr)
 
 id_qualidade_fiscal_senado <- 91341
 id_qualidade_fiscal_camara <- 2088990
@@ -29,12 +29,11 @@ id_qualidade_fiscal_camara <- 2088990
 
 ```{r message=FALSE}
 prop_camara <- agoradigital::fetch_proposicao(id_qualidade_fiscal_camara, 'camara')
-tram_camara <- rcongresso::fetch_tramitacao(id_qualidade_fiscal_camara)
+tram_camara <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_camara, 'camara')
 
 eventos_camara <- agoradigital::process_proposicao(prop_camara, tram_camara, "camara")
 eventos_camara %>% 
-  select(data_hora, evento, local, casa) %>%
-  datatable()
+  select(data_hora, evento, local, casa)
 ```
 
 <br />
@@ -52,12 +51,11 @@ Os dados retornados pela função **process_proposicao(id, "camara")**, além do
 
 ```{r message=FALSE}
 prop_senado <- agoradigital::fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
-tram_senado <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado)
+tram_senado <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado, 'senado')
 
 eventos_senado <- agoradigital::process_proposicao(prop_senado, tram_senado, 'senado')
 eventos_senado %>% 
-  select(data_tramitacao, evento, local, casa, global) %>%
-  datatable()
+  select(data_tramitacao, evento, local, casa, global)
 ```
 
 <br />

@@ -1,6 +1,5 @@
 source(here::here("R/utils.R"))
-senado_env <-
-  jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
+senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 senado_constants <- senado_env$constants
 
 #' @title Busca votações de uma proposição no Senado
@@ -45,9 +44,8 @@ fetch_votacoes <- function(proposicao_id) {
 #' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações sobre a movimentação de uma proposição no Senado
 #' @examples
-#' fetch_tramitacao(91341)
-#' @export
-fetch_tramitacao <- function(proposicao_id) {
+#' fetch_tramitacao_senado(91341)
+fetch_tramitacao_senado <- function(proposicao_id) {
   url <-
     paste0(senado_env$endpoints_api$url_base,
            "movimentacoes/",
@@ -404,8 +402,28 @@ fetch_sessions <- function(bill_id) {
 #' @export
 generate_dataframe <- function (column) {
   as.data.frame(column) %>% 
-    unnest() %>% 
+    tidyr::unnest() %>% 
     rename_df_columns()
+}
+
+
+#' @title Retorna as emendas de uma proposição no Congresso
+#' @description Retorna dataframe com os dados das emendas de uma proposição no Congresso.
+#' @param bill_id ID de uma proposição do Congresso
+#' @return Dataframe com as informações sobre as emendas de uma proposição no Congresso.
+#' @examples
+#' fetch_emendas(91341,'senado')
+#' @export
+fetch_emendas <- function(id, casa) {
+  casa <- tolower(casa)
+  if (casa == 'camara') {
+    print("Function fetch_emendas_camara not implemented yet.")
+    return(NULL)
+  } else if (casa == 'senado') {
+    fetch_emendas_senado(id)
+  } else {
+    print('Parâmetro "casa" não identificado.')
+  }
 }
 
 #' @title Retorna as emendas de uma proposição no Senado
@@ -413,9 +431,9 @@ generate_dataframe <- function (column) {
 #' @param bill_id ID de uma proposição do Senado
 #' @return Dataframe com as informações sobre as emendas de uma proposição no Senado.
 #' @examples
-#' fetch_emendas(91341)
+#' fetch_emendas_senado(91341)
 #' @export
-fetch_emendas <- function(bill_id) {
+fetch_emendas_senado <- function(bill_id) {
   url_base_emendas <-
     "http://legis.senado.leg.br/dadosabertos/materia/emendas/"
   url <- paste0(url_base_emendas, bill_id)
@@ -491,89 +509,60 @@ fetch_emendas <- function(bill_id) {
 
 }
 
+#' @title Baixa os dados da tramitação de um Projeto de Lei
+#' @description Retorna dataframe com os dados da tramitação de uma proposição no Congresso
+#' @param id ID de uma proposição na sua respectiva casa
+#' @param casa Casa onde a proposição está tramitando
+#' @return Dataframe com os dados da tramitação de uma proposição no Congresso
+#' @examples
+#' fetch_tramitacao(91341,'senado')
+#' @export
+fetch_tramitacao <- function(id, casa) {
+  casa <- tolower(casa)
+  if (casa == 'camara') {
+    fetch_tramitacao_camara(id)
+  } else if (casa == 'senado') {
+    fetch_tramitacao_senado(id)
+  } else {
+    print('Parâmetro "casa" não identificado.')
+  }
+}
+
+
+fetch_tramitacao_camara <- function(bill_id) {
+  tram_camara <- rcongresso::fetch_tramitacao(bill_id) %>%
+    rename_df_columns
+}
+
+build_data_filepath <- function(folder_path,data_prefix,house,bill_id) {
+  filename <- paste0(paste(bill_id,data_prefix,house, sep='-'),'.csv')
+  filepath <- paste(folder_path, house, filename, sep='/')
+}
 
 #' @title Importa as informações de uma proposição da internet.
-#' @description Recebido um id a função roda os scripts para
+#' @description Recebido um id e a casa, a função roda os scripts para
 #' importar os dados daquela proposição.
-#' @param bill_id Identificador da proposição que pode ser recuperado no site da casa legislativa.
+#' @param prop_id Identificador da proposição que pode ser recuperado no site da casa legislativa.
+#' @param casa Casa onde o projeto está tramitando
+#' @param casa Caminho da pasta onde os dados devem ser salvos
 #' @export
-import_proposicao <- function(bill_id) {
-  #Voting data
-  voting <- fetch_votacoes(bill_id)
-  voting %>%
-    readr::write_csv(paste0(
-      here::here("data/Senado/"),
-      bill_id,
-      "-votacoes-senado.csv"
-    ))
-
-  #Passage Data
-  passage <- fetch_tramitacao(bill_id)
-  passage %>%
-    readr::write_csv(paste0(
-      here::here("data/Senado/"),
-      bill_id,
-      "-tramitacao-senado.csv"
-    ))
-
-  #Votacao Data
-  bill_data <- fetch_proposicao(bill_id, 'senado')
-  bill_data %>%
-    readr::write_csv(paste0(
-      here::here("data/Senado/"),
-      bill_id,
-      "-proposicao-senado.csv"
-    ))
-
-  #Relatorias Data
-  relatorias <- fetch_relatorias(bill_id)
-  relatorias %>%
-    readr::write_csv(paste0(
-      here::here("data/Senado/"),
-      bill_id,
-      "-relatorias-senado.csv"
-    ))
-
-  #Relatorias data
-  relatorias <- fetch_relatorias(bill_id)
-  relatorias %>%
-    readr::write_csv(paste0(
-      here::here("data/Senado/"),
-      bill_id,
-      "-relatorias-senado.csv"
-    ))
-
-  #Current Relatoria data
-  current_relatoria <- fetch_current_relatoria(bill_id)
-  current_relatoria %>%
-    readr::write_csv(paste0(
-      here::here("data/Senado/"),
-      bill_id,
-      "-current-relatoria-senado.csv"
-    ))
-
-  #Last Relatoria
-  last_relatoria <- fetch_last_relatoria(bill_id)
-  last_relatoria %>%
-    readr::write_csv(paste0(
-      here::here("data/Senado/"),
-      bill_id,
-      "-last-relatoria-senado.csv"
-    ))
-
-  #Ordem do Dia data
-  sessions_data <- fetch_sessions(bill_id)
-  sessions_data %>%
-    readr::write_csv(paste0(
-      here::here("data/Senado/"),
-      bill_id,
-      "-sessions-senado.csv"
-    ))
-
-  #Emendas data
-  emendas_data <- fetch_emendas(bill_id)
-  emendas_data %>%
-    readr::write_csv(paste0(here::here("data/Senado/"), bill_id, "-emendas-senado.csv"))
+import_proposicao <- function(prop_id, casa, out_folderpath=NULL) {
+  casa <- tolower(casa)
+  if (!(casa %in% c('camara','senado'))) {
+    print('Parâmetro "casa" não identificado.')
+  }
+  
+  prop_df <- fetch_proposicao(prop_id,casa)
+  tram_df <- fetch_tramitacao(prop_id,casa)
+  emendas_df <- fetch_emendas(prop_id,casa)
+  
+  if (!is.null(out_folderpath)) {
+    if (!is.null(prop_df)) readr::write_csv(prop_df, build_data_filepath(out_folderpath,'proposicao',casa,prop_id))
+    if (!is.null(tram_df)) readr::write_csv(tram_df, build_data_filepath(out_folderpath,'tramitacao',casa,prop_id))
+    if (!is.null(emendas_df)) readr::write_csv(emendas_df, build_data_filepath(out_folderpath,'emendas',casa,prop_id))
+  }
+  
+  return(list(proposicao = prop_df, tramitacao = tram_df))
 }
 
 ###################################################################
@@ -676,7 +665,6 @@ fetch_proposicao <- function(id, casa) {
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
 #' fetch_proposicao_senado(91341)
-#' @export
 fetch_proposicao_senado <- function(proposicao_id) {
   url_base_proposicao <-
     "http://legis.senado.leg.br/dadosabertos/materia/"
@@ -739,7 +727,6 @@ fetch_proposicao_senado <- function(proposicao_id) {
 #' @return Dataframe
 #' @examples
 #' fetch_proposicao_camara(2056568)
-#' @export
 fetch_proposicao_camara <- function(prop_id) {
   base_url <-
     'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
@@ -772,7 +759,7 @@ fetch_proposicao_camara <- function(prop_id) {
     # Adiciona html das páginas das proposições
     dplyr::rowwise() %>%
     dplyr::mutate(page_html = list(xml2::read_html(page_url))) %>%
-
+    
     # Padroniza valor sobre regime de tramitação
     fuzzyjoin::regex_left_join(regex_regime, by = c(statusProposicao.regime =
                                                       "regex")) %>%
@@ -784,5 +771,6 @@ fetch_proposicao_camara <- function(prop_id) {
                     rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
                     rvest::html_text()) %>%
     fuzzyjoin::regex_left_join(regex_apreciacao, by = c(temp = "regex")) %>%
-    dplyr::select(-c('temp', 'regex'))
+    dplyr::select(-c('temp', 'regex', 'page_html')) %>%
+    rename_df_columns
 }
