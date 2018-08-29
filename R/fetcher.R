@@ -402,7 +402,7 @@ fetch_sessions <- function(bill_id) {
 #' @export
 generate_dataframe <- function (column) {
   as.data.frame(column) %>% 
-    unnest() %>% 
+    tidyr::unnest() %>% 
     rename_df_columns()
 }
 
