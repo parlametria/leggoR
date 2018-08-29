@@ -16,6 +16,7 @@ Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009 - Senado |
 
 
 ```{r message=FALSE}
+devtools::install_github('analytics-ufcg/agora-digital@refatora-build-scripts')
 library(agoradigital)
 library(rcongresso)
 library(tidyverse)
@@ -32,14 +33,14 @@ A função `fetch_proposicao()` retornará um dataframe contendo colunas com inf
 #### Câmara
 
 ```{r message=FALSE}
-prop_camara <- fetch_proposicao(id_qualidade_fiscal_camara, 'camara')
+prop_camara <- agoradigital::fetch_proposicao(id_qualidade_fiscal_camara, 'camara')
 glimpse(prop_camara)
 ```
 
 #### Senado
 
 ```{r message=FALSE}
-prop_senado <- fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
+prop_senado <- agoradigital::fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
 glimpse(prop_senado)
 ```
 

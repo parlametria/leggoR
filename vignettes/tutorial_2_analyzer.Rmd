@@ -16,11 +16,10 @@ O primeiro passo para analisar dados de qualquer PL é identificar os ids do mes
 Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009 - Senado | PLP 295/2016 - Câmara).
 
 ```{r message=FALSE}
-install.packages('DT')
+devtools::install_github('analytics-ufcg/agora-digital@refatora-build-scripts')
 library(agoradigital)
 library(tidyverse)
 library(magrittr)
-library(DT)
 
 id_qualidade_fiscal_senado <- 91341
 id_qualidade_fiscal_camara <- 2088990
@@ -34,8 +33,7 @@ tram_camara <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_camara, 'camar
 
 eventos_camara <- agoradigital::process_proposicao(prop_camara, tram_camara, "camara")
 eventos_camara %>% 
-  select(data_hora, evento, local, casa) %>%
-  datatable()
+  select(data_hora, evento, local, casa)
 ```
 
 <br />
@@ -57,8 +55,7 @@ tram_senado <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado, 'senad
 
 eventos_senado <- agoradigital::process_proposicao(prop_senado, tram_senado, 'senado')
 eventos_senado %>% 
-  select(data_tramitacao, evento, local, casa, global) %>%
-  datatable()
+  select(data_tramitacao, evento, local, casa, global)
 ```
 
 <br />

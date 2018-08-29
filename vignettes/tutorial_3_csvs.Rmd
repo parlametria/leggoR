@@ -12,9 +12,10 @@ vignette: >
 Para salvar os dados de um dataframe retornado por uma função em um arquivo csv, basta:
 
 ```{r eval=FALSE, message=FALSE}
-install.packages('readr')
+devtools::install_github('analytics-ufcg/agora-digital@refatora-build-scripts')
 library(agoradigital)
 library(magrittr)
+library(readr)
 caminhoProArquivoCsv <- 'meuCsv.csv'
 id_qualidade_fiscal_senado <- 91341
 prop_data <- agoradigital::fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
