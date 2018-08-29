@@ -10,7 +10,7 @@ source(here::here("R/camara-lib.R"))
 #' suportado pelo vistime
 #' @param df Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_local()
+#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_local()
 #' @export
 data_local <- function(df) {
   df <-
@@ -39,7 +39,7 @@ data_local <- function(df) {
 #' suportado pelo vistime
 #' @param df Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_evento()
+#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_evento()
 #' @export
 data_evento <- function(df) {
   df %>%
@@ -58,10 +58,10 @@ data_evento <- function(df) {
 #' @param bill_id id da proposição
 #' @param tramitacao Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_fase_global(bill_id, .)
+#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_fase_global(bill_id, .)
 #' @export
 data_fase_global <- function(bill_id, tramitacao) {
-  data_prop <- agoradigital::extract_autor_in_camara(bill_id) %>% tail(1)
+  data_prop <- extract_autor_in_camara(bill_id) %>% tail(1)
   tipo_casa <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Origem", "Revisão")
   
   tramitacao %>%
@@ -107,28 +107,19 @@ data_situacao_comissao <- function(df) {
 #' @title Formata tabela para o vistime
 #' @description Formata a tabela final que será usado para fazer a visualização
 #' usando o vistime
-#' @param bill_id id da proposição
+#' @param tram_camara_df dataframe da tramitação do PL na Câmara
 #' @examples
-#' build_vis_csv(2121442)
-#' @export
-build_vis_csv <- function(bill_id, events = TRUE) {
-  tramitacao <- read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv'))
-  proposicao <- read_csv(paste0(here::here('data/camara/proposicao-camara-'), bill_id, '.csv'))
-  
-  data_path <- here::here('data/vis/tramitacao/')
-  file_path <- paste0(data_path, bill_id, '-data-camara.csv')
+#' build_vis_csv_camara(fetch_tramitacao_camara(2121442))
+build_vis_csv_camara <- function(tram_camara_df, output_folder=NULL) {
+  bill_id <- tram_camara_df[1, "id_prop"]
+  file_path <- paste0(output_folder,'/vis/tramitacao/', bill_id, '-data-camara.csv')
 
-  if (events) {
-    data <- 
-      bind_rows(data_fase_global(bill_id, tramitacao), 
-                data_local(tramitacao),
-                #data_situacao_comissao(tramitacao), 
-                data_evento(tramitacao)) %>%
-      filter(group != "Comissão") 
-  }else {
-    data <-
-      data_fase_global(bill_id, tramitacao)
-  }
+  data <- 
+    bind_rows(data_fase_global(bill_id, tram_camara_df), 
+                     data_local(tram_camara_df),
+                    #data_situacao_comissao(tram_camara_df), 
+                    data_evento(tram_camara_df)) %>%
+    filter(group != "Comissão")
   
   readr::write_csv(data, file_path)
 }
