@@ -34,7 +34,10 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
 #' get_energia(dataFrameVistime)
 #' @export
 get_energia <- function(data) {
-  data %>%
+  eventos <-
+    data %>%
     dplyr::filter(group == "Evento") %>%
     nrow()
+  
+  eventos / nrow(data)
 }
