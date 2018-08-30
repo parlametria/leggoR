@@ -1,3 +1,4 @@
+source(here::here("R/camara-lib.R"))
 #' @title Cria coluna com os relatores na tramitação na Câmara
 #' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no
 #' envento pontual em que ele é designado
@@ -223,52 +224,6 @@ extract_situacao_comissao <- function(df) {
     tidyr::fill(situacao_comissao)
 }
 
-
-#' @title Processa dados de um proposição da câmara.
-#' @description Recebido um pl_id a função recupera informações sobre uma proposição
-#' e sua tramitação e as salva em data/camara.
-#' @param pl_id Identificador da proposição que pode ser recuperado no site da câmara.
-#' @examples
-#' process_proposicao_camara(257161)
-#' @importFrom magrittr %<>%
-#' @export
-process_proposicao_camara <- function(pl_id) {
-  data_path <- here::here('data/camara/')
-  tramitacao_pl <- rcongresso::fetch_tramitacao(pl_id)
-  
-  csv_path <-
-    paste(c(data_path, 'tramitacao-camara-', pl_id, '.csv'),  collapse = '')
-  proposicao_csv_path <-
-    paste(c(data_path, 'proposicao-camara-', pl_id, '.csv'),  collapse = '')
-  
-  # Extract phases, events and writh CSV
-  tramitacao_pl %<>%
-    rename_df_columns %>%
-    extract_events_in_camara() %>%
-    extract_locais_in_camara() %>%
-    extract_fase_casa_in_camara() %>%
-    extract_situacao_comissao() %>%
-    # extract_relatorias_in_camara() %>%
-    refact_date() %>%
-    sort_by_date() %>%
-    readr::write_csv(csv_path)
-  
-  # Print evento freq table
-  tramitacao_pl %>% dplyr::select(evento) %>% dplyr::group_by(evento) %>%
-    dplyr::filter(!is.na(evento)) %>% dplyr::summarise(frequência = n()) %>%
-    dplyr::arrange(-frequência)
-  
-  proposicao_pl <-
-    fetch_proposicao_renamed(pl_id)
-  
-  data.frame(lapply(proposicao_pl, as.character), stringsAsFactors = FALSE) %>%
-    readr::write_csv(proposicao_csv_path)
-  
-  relatorias <-
-    extract_relatorias_in_camara(as.data.frame(readr::read_csv(csv_path)))
-  
-  tramitacao_pl
-}
 
 #' @title Processa dados de um proposição da câmara.
 #' @description Recebido um dataframe com a tramitação, a função recupera informações sobre uma proposição
