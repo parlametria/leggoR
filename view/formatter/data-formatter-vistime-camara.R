@@ -91,7 +91,7 @@ get_comissoes_futuras <- function(tramitacao) {
       futuro_comissoes <-
         tramitacao %>%
         utils::tail(nrow(comissoes_faltantes)) %>%
-        dplyr::mutate(data_hora = as.POSIXct(Sys.Date()))
+        dplyr::mutate(data_hora = as.POSIXct(Sys.Date() + 200))
       
       futuro_comissoes$local <-
         comissoes_faltantes$local
@@ -144,8 +144,8 @@ data_fase_global <- function(bill_id, tramitacao) {
       tramitacao %>%
       tail(1) %>%
       mutate(label = "Comissões - Revisão (Senado)",
-             start = as.POSIXct(Sys.Date()),
-             end = as.POSIXct(Sys.Date()) + 1)
+             start = as.POSIXct(Sys.Date() + 200),
+             end = as.POSIXct(Sys.Date() + 201))
     
     tramitacao <- rbind(tramitacao, futuro_revisao)
   }
