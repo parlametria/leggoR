@@ -77,7 +77,7 @@
     {"evento": "remetida_a_sancao", "situacao_codigo_situacao": "^57$"},
     {"evento": "vetada", "situacao_codigo_situacao": "^57$"},
     {"evento": "pronta_para_pauta", "situacao_codigo_situacao": "^42$"},
-    {"evento": "aprovacao_audiencia_publica", "situacao_codigo_situacao": "^110$"}
+    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*"}
   ],
   
   "regimes": {

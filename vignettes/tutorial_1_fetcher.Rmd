@@ -16,7 +16,7 @@ Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009 - Senado |
 
 
 ```{r message=FALSE}
-devtools::install_github('analytics-ufcg/agora-digital@refatora-build-scripts')
+devtools::install_github('analytics-ufcg/agora-digital')
 library(agoradigital)
 library(rcongresso)
 library(tidyverse)
