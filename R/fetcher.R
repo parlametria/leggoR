@@ -837,7 +837,6 @@ fetch_proposicao_camara <- function(prop_id,normalized=FALSE) {
 #' fetch_pauta_camara('53277', '2018-07-03T10:00', '2018-07-03T12:37')
 #' @importFrom dplyr mutate
 #' @importFrom tibble as.tibble
-#' @export
 fetch_pauta_camara <- function(id, hora_inicio, hora_fim, sigla_orgao, nome_orgao) {
   url <- paste0("https://dadosabertos.camara.leg.br/api/v2/eventos/", id, "/pauta")
   json_proposicao <- jsonlite::fromJSON(url, flatten = T)
@@ -862,7 +861,6 @@ fetch_pauta_camara <- function(id, hora_inicio, hora_fim, sigla_orgao, nome_orga
 #' @importFrom dplyr rowwise
 #' @importFrom tidyr unnest
 #' @importFrom tibble as.tibble
-#' @export
 fetch_agenda_camara <- function(initial_date, end_date) {
   url <- paste0("https://dadosabertos.camara.leg.br/api/v2/eventos?dataInicio=", initial_date, "&dataFim=", end_date, "&ordem=ASC&ordenarPor=dataHoraInicio")
   json_proposicao <- jsonlite::fromJSON(url, flatten = T)
@@ -895,7 +893,6 @@ fetch_agenda_camara <- function(initial_date, end_date) {
 #' @importFrom dplyr select
 #' @importFrom tidyr unnest
 #' @importFrom tibble tibble
-#' @export
 fetch_agenda_senado <- function(initial_date) {
   url <- paste0("http://legis.senado.leg.br/dadosabertos/plenario/agenda/mes/", gsub('-','', initial_date))
   json_proposicao <- jsonlite::fromJSON(url, flatten = T)
@@ -905,7 +902,7 @@ fetch_agenda_senado <- function(initial_date) {
   
   materia <- tibble::tibble()
   if('materias_materia' %in% names(agenda)) {
-    materia <- purrr::map_df(agenda$materias_materia, bind_rows, .id = "codigo_sessao") 
+    materia <- purrr::map_df(agenda$materias_materia, dplyr::bind_rows, .id = "codigo_sessao") 
     
     materia_not_null <- 
       agenda %>%
@@ -927,7 +924,7 @@ fetch_agenda_senado <- function(initial_date) {
   
   oradores <- tibble::tibble()
   if('oradores_tipo_orador_orador_sessao_orador' %in% names(agenda)) {
-    oradores <- purrr::map_df(agenda$oradores_tipo_orador_orador_sessao_orador, bind_rows, .id = "codigo_sessao") 
+    oradores <- purrr::map_df(agenda$oradores_tipo_orador_orador_sessao_orador, dplyr::bind_rows, .id = "codigo_sessao") 
     
     oradores_not_null <- 
       agenda %>%
@@ -960,6 +957,8 @@ fetch_agenda_senado <- function(initial_date) {
 #' fetch_agenda('2018-07-03', '2018-07-10', 'camara')
 #' @export
 fetch_agenda <- function(initial_date, end_date, house) {
+  try(if(as.Date(end_date) < as.Date(initial_date)) stop("A data inicial é depois da final!"))
+  
   if(house == 'camara') {
     fetch_agenda_camara(initial_date = initial_date, end_date = end_date)
   }else {
