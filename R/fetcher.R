@@ -77,8 +77,7 @@ fetch_tramitacao_senado <- function(proposicao_id, normalized=FALSE) {
   proposicao_tramitacoes_df <-
     proposicao_tramitacoes_df[,!sapply(proposicao_tramitacoes_df, is.list)]
 
-  proposicao_tramitacoes_df <- rename_tramitacao_df(proposicao_tramitacoes_df) %>%
-    rename(data_hora = data_tramitacao)
+  proposicao_tramitacoes_df <- rename_tramitacao_df(proposicao_tramitacoes_df)
   
   if (normalized) {
     proposicao_tramitacoes_df <- proposicao_tramitacoes_df %>%
@@ -765,7 +764,8 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=FALSE) {
 #' @examples
 #' fetch_proposicao_camara(2056568)
 fetch_proposicao_camara <- function(prop_id,normalized=FALSE) {
-  prop_camara <- rcongresso::fetch_proposicao(prop_id)
+  prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%
+    rename_df_columns()
   
   if (normalized) {
     prop_camara <- prop_camara %>%
