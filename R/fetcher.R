@@ -77,7 +77,8 @@ fetch_tramitacao_senado <- function(proposicao_id, normalized=FALSE) {
   proposicao_tramitacoes_df <-
     proposicao_tramitacoes_df[,!sapply(proposicao_tramitacoes_df, is.list)]
 
-  proposicao_tramitacoes_df <- rename_tramitacao_df(proposicao_tramitacoes_df)
+  proposicao_tramitacoes_df <- rename_tramitacao_df(proposicao_tramitacoes_df) %>%
+    rename(data_hora = data_tramitacao)
   
   if (normalized) {
     proposicao_tramitacoes_df <- proposicao_tramitacoes_df %>%
@@ -646,7 +647,6 @@ extract_tramitacao <- function(prop_id) {
 #' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
 #' @param id ID de uma proposição
 #' @param casa casa de onde a proposição esta
-#' @param normalized whether or not the output dataframe should be normalized (have the same format and column names for every house)
 #' @return Dataframe com as informações detalhadas de uma proposição
 #' @examples
 #' fetch_proposicao(91341, 'senado')
@@ -678,6 +678,7 @@ fetch_proposicoes <- function(pls_ids) {
 #' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param proposicao_id ID de uma proposição do Senado
+#' @param normalized whether or not the output dataframe should be normalized (have the same format and column names for every house)
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
 #' fetch_proposicao_senado(91341)
@@ -759,45 +760,12 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=FALSE) {
 #' @title Baixa dados sobre uma proposição
 #' @description Retorna um dataframe contendo dados sobre uma proposição
 #' @param prop_id Um ou mais IDs de proposições
+#' @param normalized whether or not the output dataframe should be normalized (have the same format and column names for every house)
 #' @return Dataframe
 #' @examples
 #' fetch_proposicao_camara(2056568)
 fetch_proposicao_camara <- function(prop_id,normalized=FALSE) {
-  base_url <-
-    'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
-
-  regex_regime <-
-    tibble::frame_data(
-      ~ regime_tramitacao,
-      ~ regex,
-      'Ordinária',
-      'Ordinária',
-      'Prioridade',
-      'Prioridade',
-      'Urgência',
-      'Urgência'
-    )
-
-  prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%
-    # Adiciona url das páginas das proposições
-    dplyr::mutate(page_url = paste0(base_url, prop_id)) %>%
-    # Adiciona html das páginas das proposições
-    dplyr::rowwise() %>%
-    dplyr::mutate(page_html = list(xml2::read_html(page_url))) %>%
-    
-    # Padroniza valor sobre regime de tramitação
-    fuzzyjoin::regex_left_join(regex_regime, by = c(statusProposicao.regime =
-                                                      "regex")) %>%
-    dplyr::select(-'regex') %>%
-
-    # Adiciona coluna sobre forma de apreciação
-    dplyr::rowwise() %>%
-    dplyr::mutate(temp =
-                    rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
-                    rvest::html_text()) %>%
-    fuzzyjoin::regex_left_join(regex_apreciacao, by = c(temp = "regex")) %>%
-    dplyr::select(-c('temp', 'regex', 'page_html')) %>%
-    rename_df_columns
+  prop_camara <- rcongresso::fetch_proposicao(prop_id)
   
   if (normalized) {
     prop_camara <- prop_camara %>%
