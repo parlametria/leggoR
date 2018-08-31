@@ -81,11 +81,11 @@ fetch_tramitacao_senado <- function(proposicao_id, normalize=FALSE) {
   if (normalize) {
     proposicao_tramitacoes_df <- proposicao_tramitacoes_df %>%
       dplyr::mutate(data_hora = lubridate::ymd_hm(paste(data_tramitacao, "00:00")),
-                    id_prop = as.integer(codigo_materia),
+                    prop_id = as.integer(codigo_materia),
                     sequencia = as.integer(numero_ordem_tramitacao),
                     id_situacao = as.integer(situacao_codigo_situacao),
                     casa = 'senado') %>%
-      dplyr::select(id_prop,
+      dplyr::select(prop_id,
                     casa,
                     data_hora,
                     sequencia,
@@ -522,7 +522,7 @@ fetch_tramitacao_camara <- function(bill_id, normalize=FALSE) {
     tram_camara <- tram_camara %>%
       dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,'T',' ')),
                     casa = 'camara') %>%
-      dplyr::select(id_prop, 
+      dplyr::select(prop_id = id_prop, 
                casa,
                data_hora, 
                sequencia, 
@@ -773,16 +773,6 @@ fetch_proposicao_camara <- function(prop_id,normalized=FALSE) {
       'Prioridade',
       'Urgência',
       'Urgência'
-    )
-
-  regex_apreciacao <-
-    tibble::frame_data(
-      ~ forma_apreciacao,
-      ~ regex,
-      'Conclusiva',
-      'Sujeita à Apreciação Conclusiva pelas Comissões',
-      'Plenário',
-      'Sujeita à Apreciação do Plenário'
     )
 
   prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%

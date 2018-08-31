@@ -359,12 +359,12 @@ extract_locais <- function(df) {
 #' @param df Dataframe da tramitação no Senado.
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
-#' extract_regime_Senado(93418)
-extract_regime_Senado <- function(tramitacao_df) {
+#' extract_regime_senado(fetch_tramitacao(91341,'senado'))
+extract_regime_tramitacao_senado <- function(tramitacao_df) {
   regime <- senado_env$regimes
   df <-
     tramitacao_df %>%
-    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(regime =
                     dplyr::case_when(
                       stringr::str_detect(tolower(texto_tramitacao), regime$regex) ~
@@ -422,7 +422,7 @@ extract_approved_requerimentos_in_senado <- function(df) {
 #' extract_apreciacao_Senado(93418)
 #' @export
 #' @importFrom stats filter
-extract_apreciacao_Senado <- function(proposicao_id) {
+extract_forma_apreciacao_senado <- function(proposicao_id) {
   url <-
     paste0(senado_env$endpoints_api$url_base,
            "movimentacoes/",

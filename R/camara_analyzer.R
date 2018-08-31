@@ -249,3 +249,49 @@ fetch_proposicao_renamed <- function(id) {
   
   df[,!sapply(df, is.list)]
 }
+
+extract_forma_apreciacao_camara <- function(prop_id) {
+  base_url <-
+    'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
+  regex_apreciacao <-
+    tibble::frame_data(
+      ~ forma_apreciacao,
+      ~ regex,
+      'Conclusiva',
+      'Sujeita à Apreciação Conclusiva pelas Comissões',
+      'Plenário',
+      'Sujeita à Apreciação do Plenário'
+    )
+  
+  page_df <- data.frame(page_url = paste0(base_url, prop_id), stringsAsFactors = F)
+  
+  apreciacao_df <- page_df %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(page_html = list(xml2::read_html(page_url))) %>%
+    dplyr::mutate(temp =
+                    rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
+                    rvest::html_text()) %>%
+    fuzzyjoin::regex_left_join(regex_apreciacao, by = c(temp = "regex"))
+  
+  return(apreciacao_df[1,]$forma_apreciacao)
+}
+
+
+extract_regime_tramitacao_camara <- function(tram_df) {
+  regex_regime <-
+    tibble::frame_data(
+      ~ regime_tramitacao,
+      ~ regex,
+      'Ordinária',
+      'Ordinária',
+      'Prioridade',
+      'Prioridade',
+      'Urgência',
+      'Urgência'
+    )
+  
+  regime_df <- rcongresso::fetch_proposicao(prop_id) %>%
+    fuzzyjoin::regex_left_join(regex_regime, 
+                               by = c(statusProposicao.regime = "regex"))
+    return(regime_df[1,]$regime_tramitacao)
+}

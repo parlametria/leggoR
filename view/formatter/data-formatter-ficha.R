@@ -83,8 +83,8 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     prop_senado <- readr::read_csv(here::here(paste0('data/senado/', id, '-proposicao-senado.csv')))
     tram_senado <- readr::read_csv(here::here(paste0('data/senado/', id, '-fases-tramitacao-senado.csv')))
     ano <- prop_senado$ano_materia
-    apreciacao <- extract_apreciacao_Senado(id)
-    regime <- extract_regime_Senado(tram_senado)
+    apreciacao <- extract_forma_apreciacao_senado(id)
+    regime <- extract_regime_senado(tram_senado)
     despacho_senado <- tail_descricao_despacho_Senado(tram_senado)
     nome_senado <- prop_senado %>% select(ementa_materia, sigla_subtipo_materia, numero_materia) %>% unique
     page_url <- prop_senado$page_url

@@ -1,6 +1,8 @@
 source(here::here("R/senado_analyzer.R"))
 source(here::here("R/camara_analyzer.R"))
 
+congress_constants <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))$constants
+
 #' @title Processa dados de um proposição do congresso.
 #' @description Recebido um dataframe a função recupera informações sobre uma proposição
 #' e sua tramitação e as salva em data/<camara/Senado>.
@@ -11,10 +13,10 @@ source(here::here("R/camara_analyzer.R"))
 process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpath=NULL) {
   proc_tram_data <- NULL
   prop_id <- NULL
-  if ("CAMARA" == toupper(casa)) {
+  if (tolower(casa) == congress_constants$camara_label) {
     proc_tram_data <- process_proposicao_camara_df(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
     prop_id <- proc_tram_data[1,"id_prop"]
-  } else if ("SENADO" == toupper(casa)) {
+  } else if (tolower(casa) == congress_constants$senado_label) {
     proc_tram_data <- process_proposicao_senado_df(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
     prop_id <- proc_tram_data[1,"codigo_materia"]
   }
@@ -40,4 +42,43 @@ get_energia <- function(data) {
     nrow()
   
   eventos / nrow(data)
+}
+
+#' @title Extrai o regime de tramitação de um PL
+#' @description Obtém o regime de tramitação de um PL
+#' @param df Dataframe da tramitação do PL.
+#' @return String com a situação do regime de tramitação da pl.
+#' @examples
+#' extract_regime_senado(fetch_tramitacao(91341,'senado'))
+extract_regime_tramitacao <- function(tram_df) {
+  casa <- tram_df[1, "casa"]
+  regime <- NULL
+  
+  if (casa == congress_constants$camara_label) {
+    regime <- extract_regime_tramitacao_camara(tram_df)
+  } else if (casa == congress_constants$senado_label) {
+    regime <- extract_regime_tramitacao_senado(tram_df)
+  }
+  
+  regime
+}
+
+extract_forma_apreciacao <- function(tram_df) {
+  casa <- tram_df[1, "casa"]
+  prop_id <- tram_df[1, "prop_id"]
+  apreciacao <- NULL
+  
+  if (casa == congress_constants$camara_label) {
+    apreciacao <- extract_forma_apreciacao_camara(prop_id)
+  } else if (casa == congress_constants$senado_label) {
+    apreciacao <- extract_forma_apreciacao_senado(prop_id)
+  }
+  
+  apreciacao
+}
+
+extract_status_tramitacao <- function(tram_df) {
+  regime <- extract_regime_tramitacao(tram_df)
+  apreciacao <- extract_forma_apreciacao(tram_df)
+  status_tram <- data.frame(prop_id=tram_df[1,]$prop_id,regime_tramitacao=regime,forma_apreciacao=apreciacao)
 }
