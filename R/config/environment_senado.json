@@ -66,9 +66,9 @@
     {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "aprovado requerimento de realização de audiência pública"},
     {"evento": "devolvido", "texto_tramitacao": "devolvido pel.*redistribu.*"},
     {"evento": "aprovacao_parecer", "texto_tramitacao": "a comissão aprova o relatório|aprovado o relatório"},
+    {"evento": "pedido_vista", "texto_tramitacao": "concedida vista"},
     {"evento": "designado_relator", 
       "texto_tramitacao": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))"},
-    {"evento": "pedido_vista", "situacao_codigo_situacao": "^90$"},
     {"evento": "desarquivada", "situacao_codigo_situacao": "^149$"},
     {"evento": "aprovacao_substitutivo", "texto_tramitacao": "aprovado o substitutivo"},
     {"evento": "aprovacao_projeto", "texto_tramitacao": "aprovado o projeto"},
@@ -77,7 +77,7 @@
     {"evento": "remetida_a_sancao", "situacao_codigo_situacao": "^57$"},
     {"evento": "vetada", "situacao_codigo_situacao": "^57$"},
     {"evento": "pronta_para_pauta", "situacao_codigo_situacao": "^42$"},
-    {"evento": "aprovacao_audiencia_publica", "situacao_codigo_situacao": "^110$"}
+    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*"}
   ],
   
   "regimes": {

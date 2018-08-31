@@ -2,7 +2,7 @@
 title: Relatório
 output: html_document
 params:
-  id: 46249
+  id: 257161
   casa: 'camara'
 ---
 
@@ -81,9 +81,18 @@ if(params$casa == "camara") {
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 data_path <- here::here('data/')
 if(params$casa == "camara") {
-  comissoes <- get_comissoes_in_camara(read_csv(paste0(data_path, "camara/tramitacao-camara-", params$id, ".csv")))
+  comissoes <- get_comissoes_in_camara(read_csv(paste0(data_path, "camara/", params$id, "-tramitacao-camara.csv")))
 } else {
-  comissoes <- extract_comissoes_Senado(read_csv(paste0(data_path, "Senado/", params$id, "-tramitacao-senado.csv")))
+  comissoes <- extract_comissoes_Senado(read_csv(paste0(data_path, "senado/", params$id, "-tramitacao-senado.csv")))
 }
 knitr::kable(comissoes, caption = "Lista de Comissões")
 ```
+
+#### Tabela de emendas
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+if(params$casa == "senado") {
+  emendas <- gera_tabela_emendas_senado(params$id)
+  knitr::kable(emendas, caption = "Emendas no Senado")
+}
+```
+

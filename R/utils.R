@@ -9,11 +9,11 @@
 regex_left_match <- function(df, regex_df, new_column) {
   if('despacho' %in% names(regex_df)) {
     df %<>%
-      dplyr::mutate(UQ(rlang::sym('despacho')) := str_replace_all(UQ(rlang::sym('despacho')), '\n|\r', ''))
+      dplyr::mutate(UQ(rlang::sym('despacho')) := stringr::str_replace_all(UQ(rlang::sym('despacho')), '\n|\r', ''))
   }
   if('texto_tramitacao' %in% names(regex_df)) {
     df %<>%
-      dplyr::mutate(UQ(rlang::sym('texto_tramitacao')) := str_replace_all(UQ(rlang::sym('texto_tramitacao')), '\n|\r', ''))
+      dplyr::mutate(UQ(rlang::sym('texto_tramitacao')) := stringr::str_replace_all(UQ(rlang::sym('texto_tramitacao')), '\n|\r', ''))
   }
 
   columns <-
@@ -35,9 +35,9 @@ regex_left_match <- function(df, regex_df, new_column) {
     dplyr::mutate(sort = row_number()) %>%
     fuzzyjoin::regex_left_join(regex_df, by = columns, ignore_case = TRUE) %>%
     dplyr::group_by(sort) %>%
-    dplyr::filter(rank(sort, ties.method = "first") == 1) %>%
     dplyr::ungroup() %>%
     dplyr::select(-tidyselect::ends_with("X"), -sort)
+
 }
 
 #' @title Renomeia as colunas do dataframe
@@ -49,4 +49,18 @@ regex_left_match <- function(df, regex_df, new_column) {
 rename_df_columns <- function(df) {
   names(df) %<>% to_underscore
   df
+}
+
+#' @title Renomeia um vetor com o padrão de underscores e minúsculas
+#' @description Renomeia cada item do vetor com o padrão: separado por underscore e letras minúsculas
+#' @param x Vetor de strings
+#' @return Vetor contendo as strings renomeadas.
+#' @examples
+#' to_underscore(c("testName", "TESTNAME"))
+#' @export
+to_underscore <- function(x) {
+  gsub('([A-Za-z])([A-Z])([a-z])', '\\1_\\2\\3', x) %>%
+    gsub('.', '_', ., fixed = TRUE) %>%
+    gsub('([a-z])([A-Z])', '\\1_\\2', .) %>%
+    tolower()
 }

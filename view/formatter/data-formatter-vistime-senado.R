@@ -3,7 +3,7 @@ library(here)
 
 # Create data frame to display local inline
 format_local <- function(df) {
-  df <-
+  local_df <-
     df %>%
     mutate(z = cumsum(local != lag(local, default='NULL')), 
            end_data = lead(data_tramitacao)) %>%
@@ -18,7 +18,7 @@ format_local <- function(df) {
     rename(label=local) %>%
     mutate(group = "Comissão")
 
-  df %>%
+  local_df %>%
     mutate(color = case_when((grepl('^S', label) | 
                                label == 'ATA-PLEN') ~ "#e2e3d9",
                                label == 'PLEN' ~ "#5496cf",
@@ -107,18 +107,26 @@ format_fase_global <- function(df) {
   
 }
 
-build_vis_csv <- function(bill_id) {
-  data_tramitacao <- 
-    read_csv(paste0(here::here("data/Senado/"), bill_id,"-visualizacao-tramitacao-senado.csv"))
+#' @title Formata tabela para o vistime
+#' @description Formata a tabela final que será usado para fazer a visualização
+#' usando o vistime
+#' @param tram_senado_df dataframe da tramitação do PL no Senado
+#' @examples
+#' build_vis_csv_senado(fetch_tramitacao_senado(91341))
+build_vis_csv_senado <- function(tram_senado_df, output_folder=NULL) {
+  bill_id <- tram_senado_df[1, "codigo_materia"]
+  tram_senado_filtered <- tram_senado_df %>%
+    dplyr::select(data_tramitacao, local, evento, casa, global, data_audiencia)
   
-  df <- 
-    rbind(format_local(data_tramitacao),
-          format_fase_global(data_tramitacao),
-          #format_fase(data_tramitacao),
-          format_eventos(data_tramitacao)) %>%
+  vis_df <- 
+    rbind(format_local(tram_senado_filtered),
+          format_fase_global(tram_senado_filtered),
+          #format_fase(tram_senado_filtered),
+          format_eventos(tram_senado_filtered)) %>%
     filter(time_interval != 0 | group == "Evento") %>%
     filter(group != 'Comissão')
   
-  df %>%
-    write_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-senado.csv"))
+  vis_df %>%
+    write_csv(paste0(output_folder,'/vis/tramitacao/',bill_id,"-data-senado.csv"))
 }
+

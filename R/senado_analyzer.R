@@ -360,11 +360,10 @@ extract_locais <- function(df) {
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
 #' extract_regime_Senado(93418)
-extract_regime_Senado <- function(proposicao_id) {
-  df <- fetch_tramitacao(proposicao_id)
+extract_regime_Senado <- function(tramitacao_df) {
   regime <- senado_env$regimes
   df <-
-    df %>%
+    tramitacao_df %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     dplyr::mutate(regime =
                     dplyr::case_when(
@@ -413,109 +412,60 @@ extract_approved_requerimentos_in_senado <- function(df) {
   apr_requerimentos_df
 }
 
-#' @title Processa dados de uma proposição do senado.
-#' @description Recebido um bill_id a função recupera informações sobre uma proposição
-#' e sua tramitação e as salva em data/Senado.
-#' @param bill_id Identificador da proposição que pode ser recuperado no site da câmara.
+#' @title Extrai o regime de apreciação do Senado
+#' @description Verifica o regime de apreciação de um dataframe. Se apresentar as
+#' palavras '(em|a) decisão terminativa' é retornado 'conclusivo' como resposta, caso contrário
+#' é retornado 'plenário'.
+#' @param proposicao_id id da proposicao
+#' @return String com a situação da pl.
 #' @examples
-#' process_proposicao_senado(91341)
-process_proposicao_senado <- function(bill_id) {
-  proposicao_df <- 
-    readr::read_csv(paste0(
-      here::here("data/Senado/"),
-      bill_id, 
-      "-proposicao-senado.csv"))
+#' extract_apreciacao_Senado(93418)
+#' @export
+#' @importFrom stats filter
+extract_apreciacao_Senado <- function(proposicao_id) {
+  url <-
+    paste0(senado_env$endpoints_api$url_base,
+           "movimentacoes/",
+           proposicao_id)
+  json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
+  tramitacao_data <-
+    json_tramitacao %>%
+    magrittr::extract2("MovimentacaoMateria") %>%
+    magrittr::extract2("Materia") %>%
+    magrittr::extract2("Despachos") %>%
+    magrittr::extract2("Despacho")
+  
+  apreciacao <- senado_env$apreciacao
+  
+  if (!is.null(tramitacao_data)) {
+    if (!is.list(tramitacao_data$ComissoesDespacho.ComissaoDespacho)) {
+      tramitacao_data <-
+        tramitacao_data %>%
+        magrittr::extract2("ComissoesDespacho") %>%
+        magrittr::extract2("ComissaoDespacho") %>%
+        tibble::as.tibble()
+    } else {
+      tramitacao_data <-
+        tramitacao_data %>%
+        tidyr::unnest(ComissoesDespacho.ComissaoDespacho)
+    }
     
-  bill_passage <-
-    readr::read_csv(paste0(
-      here::here("data/Senado/"),
-      bill_id,
-      "-tramitacao-senado.csv"
-    )) %>% dplyr::arrange(data_tramitacao)
-  
-  phase_one <- c('^Este processo contém')
-  recebimento_phase <- 'recebido na|nesta comissão'
-  phase_two <- c(91)
-  phase_three <- c(42, 14, 78, 90)
-  encaminhamento_phase <- c(89, 158, 159, 160, 161, 162, 163)
-  phase_four <- c(52)
-  comissoes_phase <- senado_env$fase_comissao %>%
-    dplyr::filter(fase == "analise_do_relator")
-  
-  bill_passage <-
-    extract_fase_Senado(
-      bill_passage,
-      phase_one,
-      recebimento_phase,
-      #phase_two,
-      phase_three,
-      encaminhamento_phase,
-      phase_four,
-      comissoes_phase$regex
-    ) %>%
-    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
-    tidyr::fill(fase)
-  
-  bill_passage$situacao_descricao_situacao <-
-    to_underscore(bill_passage$situacao_descricao_situacao) %>%
-    stringr::str_replace_all("\\s+", "_")
-  
-  bill_passage <-
-    extract_fase_casa_Senado(bill_passage, phase_one, recebimento_phase, comissoes_phase$regex) %>%
-    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
-    tidyr::fill(casa) %>%
-    dplyr::filter(!is.na(casa))
-  
-  bill_passage <-
-    extract_evento_Senado(bill_passage) %>%
-    dplyr::mutate(data_audiencia = as.Date(data_audiencia, "%d/%m/%Y")) 
-  
-  index_of_camara <-
-    ifelse(
-      length(which(
-        bill_passage$situacao_codigo_situacao == 52
-      )) == 0,
-      nrow(bill_passage),
-      which(bill_passage$situacao_codigo_situacao == 52)[1]
-    )
-  bill_passage <-
-    bill_passage[1:index_of_camara,] %>%
-    extract_locais() %>%
-    extract_fase_global(proposicao_df) %>%
-    dplyr::filter(!is.na(fase))
-  
-  bill_passage %>%
-    readr::write_csv(paste0(
-      here::here("data/Senado/"),
-      bill_id,
-      "-fases-tramitacao-senado.csv"
-    ))
-  
-  bill_passage_visualization <-
-    bill_passage %>%
-    dplyr::select(data_tramitacao, local, fase, evento, casa, global, data_audiencia)
-  
-  # Print evento freq table
-  bill_passage_visualization %>% dplyr::select(evento) %>% dplyr::group_by(evento) %>%
-    dplyr::filter(!is.na(evento)) %>% dplyr::summarise(frequência = n()) %>%
-    dplyr::arrange(-frequência)
-  
-  
-  bill_passage_visualization %>%
-    readr::write_csv(paste0(
-      here::here("data/Senado/"),
-      bill_id,
-      "-visualizacao-tramitacao-senado.csv"
-    ))
-  
-  bill_passage
+    tramitacao_data <-
+      tramitacao_data %>%
+      dplyr::filter(IndicadorDespachoTerminativo == "Sim")
+    dplyr::if_else(nrow(tramitacao_data) != 0,
+                   apreciacao$conclusiva,
+                   apreciacao$plenario)
+  } else {
+    return(apreciacao$plenario)
+  }
 }
 
 #' @title Processa dados de uma proposição do senado.
 #' @description Recebido um dataframe da tramitação de um PL, a função recupera informações sobre uma proposição
 #' e sua tramitação e as salva em data/Senado.
 #' @param tramitacao_df Dataframe da tramitação da proposição
-process_proposicao_senado <- function(proposicao_df, tramitacao_df) {
+process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
   phase_one <- c('^Este processo contém')
   recebimento_phase <- 'recebido na|nesta comissão'
   phase_three <- c(42, 14, 78, 90)
@@ -523,7 +473,7 @@ process_proposicao_senado <- function(proposicao_df, tramitacao_df) {
   phase_four <- c(52)
   comissoes_phase <- senado_env$fase_comissao %>%
     dplyr::filter(fase == "analise_do_relator")
-  tramitacao_df <-
+  proc_tram_df <-
     extract_fase_Senado(
       tramitacao_df,
       phase_one,
@@ -533,37 +483,39 @@ process_proposicao_senado <- function(proposicao_df, tramitacao_df) {
       phase_four,
       comissoes_phase$regex
     ) %>%
+    dplyr::mutate(data_tramitacao = lubridate::ymd(data_tramitacao)) %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     tidyr::fill(fase)
   
-  tramitacao_df$situacao_descricao_situacao <-
-    to_underscore(tramitacao_df$situacao_descricao_situacao) %>%
+  proc_tram_df$situacao_descricao_situacao <-
+    to_underscore(proc_tram_df$situacao_descricao_situacao) %>%
     stringr::str_replace_all("\\s+", "_")
   
-  tramitacao_df <-
-    extract_fase_casa_Senado(tramitacao_df, phase_one, recebimento_phase, comissoes_phase$regex) %>%
+  proc_tram_df <-
+    extract_fase_casa_Senado(proc_tram_df, phase_one, recebimento_phase, comissoes_phase$regex) %>%
     dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
     tidyr::fill(casa) %>%
     dplyr::filter(!is.na(casa))
   
-  tramitacao_df <-
-    extract_evento_Senado(tramitacao_df) %>%
-    dplyr::mutate(data_audiencia = as.Date(data_audiencia, "%d/%m/%Y")) 
+  proc_tram_df <-
+    extract_evento_Senado(proc_tram_df) %>%
+    dplyr::mutate(data_audiencia = lubridate::dmy(data_audiencia)) 
   
   index_of_camara <-
     ifelse(
       length(which(
-        tramitacao_df$situacao_codigo_situacao == 52
+        proc_tram_df$situacao_codigo_situacao == 52
       )) == 0,
-      nrow(tramitacao_df),
-      which(tramitacao_df$situacao_codigo_situacao == 52)[1]
+      nrow(proc_tram_df),
+      which(proc_tram_df$situacao_codigo_situacao == 52)[1]
     )
   
-  tramitacao_df <-
-    tramitacao_df[1:index_of_camara,] %>%
+  proc_tram_df <-
+    proc_tram_df[1:index_of_camara,] %>%
     extract_locais() %>%
     extract_fase_global(proposicao_df) %>%
-    dplyr::filter(!is.na(fase))
+    dplyr::filter(!is.na(fase)) %>%
+    unique()
   
-  tramitacao_df
+  proc_tram_df
 }

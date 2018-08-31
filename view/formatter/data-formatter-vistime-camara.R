@@ -2,6 +2,7 @@ library(data.table)
 library(tidyverse)
 library(lubridate)
 library(here)
+library(agoradigital)
 source(here::here("R/camara-lib.R"))
 
 #' @title Adiciona o local para o vistime
@@ -9,7 +10,7 @@ source(here::here("R/camara-lib.R"))
 #' suportado pelo vistime
 #' @param df Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_local()
+#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_local()
 #' @export
 data_local <- function(df) {
   df <-
@@ -38,7 +39,7 @@ data_local <- function(df) {
 #' suportado pelo vistime
 #' @param df Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_evento()
+#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_evento()
 #' @export
 data_evento <- function(df) {
   df %>%
@@ -51,19 +52,75 @@ data_evento <- function(df) {
     unique()
 }
 
+#' @title Retorna as comissões onde a proposição ainda vai passar na Camara 
+#' @description Analisa as comissões previstas e as quais as comissões já passou e 
+#' retorna as que ela ainda vai passar
+#' @param tramitacao Dataframe com a tramitacao
+#' @examples
+#' get_comissoes_futuras(tramitacao)
+#' @export
+get_comissoes_futuras <- function(tramitacao) {
+  
+  siglas_comissoes <-
+    get_comissoes_camara() %>% 
+    dplyr::select(siglas_comissoes, comissoes_permanentes) %>% 
+    tidyr::unnest()
+  
+  comissao_especial <- 
+    get_comissoes_in_camara(tramitacao) %>%
+    dplyr::filter(proximas_comissoes == "Comissão Especial")
+  
+  if (nrow(comissao_especial) == 0) { 
+    comissoes_previstas <-
+      get_comissoes_in_camara(tramitacao) %>%
+      utils::head(1) %>% 
+      dplyr::select(proximas_comissoes) %>%
+      tidyr::unnest() %>%
+      dplyr::rename("comissoes_permanentes" = "proximas_comissoes")
+    
+    comissoes_previstas_siglas <- 
+      fuzzyjoin::regex_left_join(comissoes_previstas, siglas_comissoes) %>%
+      dplyr::select(siglas_comissoes) %>%
+      dplyr::rename("local" = "siglas_comissoes") %>%
+      dplyr::filter(!is.na(local))
+    
+    comissoes_faltantes <-
+      dplyr::anti_join(comissoes_previstas_siglas, tramitacao)
+    
+    if (nrow(comissoes_faltantes) != 0) {
+      futuro_comissoes <-
+        tramitacao %>%
+        utils::tail(nrow(comissoes_faltantes)) %>%
+        dplyr::mutate(data_hora = as.POSIXct(Sys.Date() + 200))
+      
+      futuro_comissoes$local <-
+        comissoes_faltantes$local
+      
+      return(rbind(tramitacao, futuro_comissoes))
+    }
+    
+    return(tramitacao)
+  }
+  
+  return(tramitacao)
+}
+
 #' @title Adiciona a fase global para o vistime
 #' @description Adiciona a fase global com suas respectivas cores no formato
 #' suportado pelo vistime
 #' @param bill_id id da proposição
 #' @param tramitacao Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv')) %>% data_fase_global(bill_id, .)
+#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_fase_global(bill_id, .)
 #' @export
 data_fase_global <- function(bill_id, tramitacao) {
   data_prop <- extract_autor_in_camara(bill_id) %>% tail(1)
   tipo_casa <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Origem", "Revisão")
+
+  tramitacao <- get_comissoes_futuras(tramitacao)
   
-  tramitacao %>%
+  tramitacao <- 
+    tramitacao %>%
     mutate(end_data = lead(data_hora, default=Sys.time())) %>%
     group_by(local, sequence = rleid(local)) %>%
     summarise(start = min(data_hora),
@@ -81,6 +138,19 @@ data_fase_global <- function(bill_id, tramitacao) {
                              stringr::str_detect(label, "CCP") ~ "#8bca42",
                              stringr::str_detect(label, "CTASP") ~ "#ea81b1"),
            label = paste(label, '-', tipo_casa, '(Câmara)'))
+  
+  if (tipo_casa == "Origem") {
+    futuro_revisao <-
+      tramitacao %>%
+      tail(1) %>%
+      mutate(label = "Comissões - Revisão (Senado)",
+             start = as.POSIXct(Sys.Date() + 200),
+             end = as.POSIXct(Sys.Date() + 201))
+    
+    tramitacao <- rbind(tramitacao, futuro_revisao)
+  }
+    
+  tramitacao
 }
 
 data_situacao_comissao <- function(df) {
@@ -106,22 +176,18 @@ data_situacao_comissao <- function(df) {
 #' @title Formata tabela para o vistime
 #' @description Formata a tabela final que será usado para fazer a visualização
 #' usando o vistime
-#' @param bill_id id da proposição
+#' @param tram_camara_df dataframe da tramitação do PL na Câmara
 #' @examples
-#' build_vis_csv(2121442)
-#' @export
-build_vis_csv <- function(bill_id) {
-  tramitacao <- read_csv(paste0(here::here('data/camara/tramitacao-camara-'), bill_id, '.csv'))
-  proposicao <- read_csv(paste0(here::here('data/camara/proposicao-camara-'), bill_id, '.csv'))
-  
-  data_path <- here::here('data/vis/tramitacao/')
-  file_path <- paste0(data_path, bill_id, '-data-camara.csv')
+#' build_vis_csv_camara(fetch_tramitacao_camara(2121442))
+build_vis_csv_camara <- function(tram_camara_df, output_folder=NULL) {
+  bill_id <- tram_camara_df[1, "id_prop"]
+  file_path <- paste0(output_folder,'/vis/tramitacao/', bill_id, '-data-camara.csv')
 
   data <- 
-    bind_rows(data_fase_global(bill_id, tramitacao), 
-                     data_local(tramitacao),
-                    #data_situacao_comissao(tramitacao), 
-                    data_evento(tramitacao)) %>%
+    bind_rows(data_fase_global(bill_id, tram_camara_df), 
+                     data_local(tram_camara_df),
+                    #data_situacao_comissao(tram_camara_df), 
+                    data_evento(tram_camara_df)) %>%
     filter(group != "Comissão")
   
   readr::write_csv(data, file_path)

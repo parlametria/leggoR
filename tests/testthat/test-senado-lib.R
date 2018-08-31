@@ -22,7 +22,7 @@ important_eventos <- tibble::frame_data(~ evento, ~ situacao_codigo_situacao,
 setup <- function(){
   ## tramitacao_data <<- readr::read_csv(paste0(here::here("data/Senado/"), 91341, "-tramitacao-senado.csv"))
   PROPOSICOES_ID <<- c(91341)
-  tramitacao_data <<- fetch_tramitacao(PROPOSICOES_ID)
+  tramitacao_data <<- fetch_tramitacao(PROPOSICOES_ID, 'senado')
   return(TRUE)
 }
 
@@ -53,7 +53,7 @@ test <- function(){
   })
 
   test_that('fetch_votacoes()', {
-    expect_true(all(names(fetch_tramitacao(PROPOSICOES_ID)) %in% .COLNAMES_TRAMI_SEN))
+    expect_true(all(names(fetch_tramitacao(PROPOSICOES_ID, 'senado')) %in% .COLNAMES_TRAMI_SEN))
   })
 
   test_that('Regime de apreciacao', {

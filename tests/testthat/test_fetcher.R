@@ -34,7 +34,7 @@ test <- function(){
   test_that('fetch_tramitacao() returns dataframe', {
     proposicoes_fetch_tramitacao <- as.data.frame(SENADO_ID) %>%
       dplyr::rowwise() %>%
-      dplyr::do(fetch_tramitacao(.$SENADO_ID)) 
+      dplyr::do(fetch_tramitacao(.$SENADO_ID, 'senado')) 
     
     expect_true(is.data.frame(proposicoes_fetch_tramitacao))
   })
@@ -72,7 +72,7 @@ test <- function(){
   })
   
   test_that('fetch_emendas() returns dataframe', {
-    expect_true(is.data.frame(fetch_emendas(91341)))
+    expect_true(is.data.frame(fetch_emendas(91341, 'senado')))
   })
   
   test_that('fetch_apensadas() returns dataframe', {
