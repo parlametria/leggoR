@@ -910,15 +910,15 @@ fetch_agenda_senado <- function(initial_date) {
     
     num_de_materias <-
       materia %>%
-      group_by(codigo_sessao) %>%
+      dplyr::group_by(codigo_sessao) %>%
       dplyr::summarise(id = mean(codigo_sessao))
     
     num_de_materias$id <- materia_not_null$codigo_sessao
     
     materia <- 
       merge(materia, num_de_materias) %>%
-      select(-codigo_sessao) %>%
-      rename("codigo_sessao" = id) %>%
+      dplyr::select(-codigo_sessao) %>%
+      dplyr::rename("codigo_sessao" = id) %>%
       rename_table_to_underscore()
   }
   
@@ -932,15 +932,15 @@ fetch_agenda_senado <- function(initial_date) {
     
     num_de_oradores <-
       oradores %>%
-      group_by(codigo_sessao) %>%
+      dplyr::group_by(codigo_sessao) %>%
       dplyr::summarise(id = mean(codigo_sessao))
     
     num_de_oradores$id <- oradores_not_null$codigo_sessao
     
     oradores <- 
       merge(oradores, num_de_oradores) %>%
-      select(-codigo_sessao) %>%
-      rename("codigo_sessao" = id) %>%
+      dplyr::select(-codigo_sessao) %>%
+      dplyr::rename("codigo_sessao" = id) %>%
       rename_table_to_underscore()
   }
   
