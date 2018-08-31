@@ -870,25 +870,45 @@ fetch_agenda_senado <- function(initial_date) {
   
   materia <- tibble::tibble()
   if('materias_materia' %in% names(agenda)) {
-    materia <- 
+    materia <- purrr::map_df(agenda$materias_materia, bind_rows, .id = "codigo_sessao") 
+    
+    materia_not_null <- 
       agenda %>%
-      dplyr::filter(materias_materia != "NULL") %>%
-      dplyr::select(materias_materia, codigo_sessao) %>%
-      dplyr::rowwise() %>%
-      dplyr::filter(length(materias_materia[[1]]) != 1)%>%
-      tidyr::unnest() %>%
+      dplyr::filter(materias_materia != "NULL")
+    
+    num_de_materias <-
+      materia %>%
+      group_by(codigo_sessao) %>%
+      dplyr::summarise(id = mean(codigo_sessao))
+    
+    num_de_materias$id <- materia_not_null$codigo_sessao
+    
+    materia <- 
+      merge(materia, num_de_materias) %>%
+      select(-codigo_sessao) %>%
+      rename("codigo_sessao" = id) %>%
       rename_table_to_underscore()
   }
   
   oradores <- tibble::tibble()
   if('oradores_tipo_orador_orador_sessao_orador' %in% names(agenda)) {
-    oradores <-
+    oradores <- purrr::map_df(agenda$oradores_tipo_orador_orador_sessao_orador, bind_rows, .id = "codigo_sessao") 
+    
+    oradores_not_null <- 
       agenda %>%
-      dplyr::filter(oradores_tipo_orador_orador_sessao_orador != "NULL") %>%
-      dplyr::select(oradores_tipo_orador_orador_sessao_orador, codigo_sessao) %>%
-      dplyr::rowwise() %>%
-      dplyr::filter(length(oradores_tipo_orador_orador_sessao_orador[[1]]) != 1)%>%
-      tidyr::unnest() %>%
+      dplyr::filter(oradores_tipo_orador_orador_sessao_orador != "NULL")
+    
+    num_de_oradores <-
+      oradores %>%
+      group_by(codigo_sessao) %>%
+      dplyr::summarise(id = mean(codigo_sessao))
+    
+    num_de_oradores$id <- oradores_not_null$codigo_sessao
+    
+    oradores <- 
+      merge(oradores, num_de_oradores) %>%
+      select(-codigo_sessao) %>%
+      rename("codigo_sessao" = id) %>%
       rename_table_to_underscore()
   }
   
