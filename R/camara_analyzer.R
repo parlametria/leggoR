@@ -289,7 +289,7 @@ extract_forma_apreciacao_camara <- function(prop_id) {
 #' @param df Dataframe da tramitação na Câmara.
 #' @return String com a situação do regime de tramitação da PL.
 #' @examples
-#' extract_regime_tramitacao_camara(fetch_tramitacao(257161,'camara'))
+#' extract_regime_tramitacao_camara(fetch_tramitacao(257161,'camara', TRUE))
 extract_regime_tramitacao_camara <- function(tram_df) {
   regex_regime <-
     tibble::frame_data(
@@ -303,7 +303,9 @@ extract_regime_tramitacao_camara <- function(tram_df) {
       'Urgência'
     )
   
-  prop_id <- tram_df[1,]$id_prop
+  prop_id <- ifelse(is.null(tram_df[1,]$id_prop),
+                    tram_df[1,]$prop_id,
+                    tram_df[1,]$id_prop)
   
   regime_df <- rcongresso::fetch_proposicao(prop_id) %>%
     fuzzyjoin::regex_left_join(regex_regime, 
