@@ -85,7 +85,7 @@ fetch_tramitacao_senado <- function(proposicao_id, normalized=FALSE) {
     proposicao_tramitacoes_df <- proposicao_tramitacoes_df %>%
       dplyr::mutate(data_hora = lubridate::ymd_hm(paste(data_hora, "00:00")),
                     prop_id = as.integer(codigo_materia),
-                    sequencia = as.integer(sequencia),
+                    sequencia = as.integer(numero_ordem_tramitacao),
                     id_situacao = as.integer(situacao_codigo_situacao),
                     casa = 'senado') %>%
       dplyr::select(prop_id,
