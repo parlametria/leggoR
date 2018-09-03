@@ -144,8 +144,8 @@ COMISSOES_CAMARA <-
   c(
     "codigo_tramitacao",
     "numero_autuacao",
-    "data_tramitacao",
-    "numero_ordem_tramitacao",
+    "data_hora",
+    "sequencia",
     "texto_tramitacao",
     "indicador_recebimento",
     "data_recebimento",
@@ -204,9 +204,9 @@ COMISSOES_CAMARA <-
   c("ementa_materia", "sigla_subtipo_materia", "numero_materia")
 
 .COLNAMES_DESPACHO_SEN <-
-  c("data_tramitacao",
+  c("data_hora",
     "situacao_descricao_situacao",
     "texto_tramitacao")
 
 .COLNAMES_COMISSAO_SEN <-
-  c("codigo_materia", "comissoes", "data_tramitacao")
+  c("codigo_materia", "comissoes", "data_hora")
