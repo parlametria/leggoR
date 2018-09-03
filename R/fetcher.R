@@ -103,6 +103,7 @@ fetch_tramitacao_senado <- function(proposicao_id, normalize=FALSE) {
 #' @description Verifica deferimento ou não para uma lista de IDs de requerimentos.
 #' @param proposicao_id ID de um ou vários requerimentos
 #' @return Dataframe com IDs dos requerimentos e informação sobre deferimento.
+#' @example fetch_deferimento(c("102343", "109173", "115853"))
 #' @importFrom utils tail
 #' @export
 fetch_deferimento <- function(proposicao_id) {
@@ -112,9 +113,9 @@ fetch_deferimento <- function(proposicao_id) {
       ~ deferimento,
       ~ regex,
       "indeferido",
-      deferimento_regexes$indeferido,
+      deferimento_regexes$regex$indeferido,
       "deferido",
-      deferimento_regexes$deferido
+      deferimento_regexes$regex$deferido
     )
 
   fetch_one_deferimento <- function(proposicao_id) {
@@ -127,9 +128,9 @@ fetch_deferimento <- function(proposicao_id) {
     resultados <-
       json$MovimentacaoMateria$Materia$OrdensDoDia$OrdemDoDia$DescricaoResultado
     # handle NULL
-    if (is.null(resultados))
+    if (is.null(resultados)) 
       resultados <- c('')
-
+    
     resultados %>%
       tibble::as.tibble() %>%
       dplyr::mutate(proposicao_id = proposicao_id) %>%
