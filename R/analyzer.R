@@ -49,7 +49,7 @@ get_energia <- function(data) {
 #' @param tram_df Dataframe da tramitação do PL.
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
-#' extract_regime_senado(fetch_tramitacao(91341,'senado'))
+#' extract_regime_tramitacao(fetch_tramitacao(91341,'senado', TRUE))
 #' @export
 extract_regime_tramitacao <- function(tram_df) {
   casa <- tram_df[1, "casa"]
@@ -69,7 +69,7 @@ extract_regime_tramitacao <- function(tram_df) {
 #' @param proposicao_id id do PL
 #' @return String que define a forma de apreciação do PL
 #' @examples
-#' extract_forma_apreciacao(fetch_tramitacao(91341, 'senado'))
+#' extract_forma_apreciacao(fetch_tramitacao(91341, 'senado', TRUE))
 #' @export
 #' @importFrom stats filter
 extract_forma_apreciacao <- function(tram_df) {
@@ -91,7 +91,7 @@ extract_forma_apreciacao <- function(tram_df) {
 #' @param tram_df Dataframe da tramitação do PL.
 #' @return Dataframe contendo id, regime de tramitação e forma de apreciação do PL
 #' @examples
-#' extract_status_tramitacao(fetch_tramitacao(91341, 'senado'))
+#' extract_status_tramitacao(fetch_tramitacao(91341, 'senado', TRUE))
 #' @export
 #' @importFrom stats filter
 extract_status_tramitacao <- function(tram_df) {

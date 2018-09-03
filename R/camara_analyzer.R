@@ -250,6 +250,14 @@ fetch_proposicao_renamed <- function(id) {
   df[,!sapply(df, is.list)]
 }
 
+#' @title Extrai o regime de apreciação na Câmara
+#' @description Obtém o regime de apreciação de um PL
+#' @param proposicao_id id da proposicao
+#' @return String com a situação do PL.
+#' @examples
+#' extract_forma_apreciacao_camara(217161)
+#' @export
+#' @importFrom stats filter
 extract_forma_apreciacao_camara <- function(prop_id) {
   base_url <-
     'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
@@ -276,7 +284,12 @@ extract_forma_apreciacao_camara <- function(prop_id) {
   return(apreciacao_df[1,]$forma_apreciacao)
 }
 
-
+#' @title Extrai o regime de tramitação de um PL na Câmara
+#' @description Obtém o regime de tramitação de um PL.
+#' @param df Dataframe da tramitação na Câmara.
+#' @return String com a situação do regime de tramitação da PL.
+#' @examples
+#' extract_regime_tramitacao_camara(fetch_tramitacao(257161,'camara'))
 extract_regime_tramitacao_camara <- function(tram_df) {
   regex_regime <-
     tibble::frame_data(

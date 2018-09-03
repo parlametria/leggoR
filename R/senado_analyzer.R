@@ -359,7 +359,7 @@ extract_locais <- function(df) {
 #' @param df Dataframe da tramitação no Senado.
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
-#' extract_regime_senado(fetch_tramitacao(91341,'senado'))
+#' extract_regime_tramitacao_senado(fetch_tramitacao(91341,'senado'))
 extract_regime_tramitacao_senado <- function(tramitacao_df) {
   regime <- senado_env$regimes
   df <-
@@ -419,7 +419,7 @@ extract_approved_requerimentos_in_senado <- function(df) {
 #' @param proposicao_id id da proposicao
 #' @return String com a situação da pl.
 #' @examples
-#' extract_apreciacao_Senado(93418)
+#' extract_forma_apreciacao_senado(93418)
 #' @export
 #' @importFrom stats filter
 extract_forma_apreciacao_senado <- function(proposicao_id) {
