@@ -249,3 +249,25 @@ fetch_proposicao_renamed <- function(id) {
   
   df[,!sapply(df, is.list)]
 }
+
+#' @title Retorna energia de uma proposição
+#' @description Recebido o dataframe da tramitação contendo as colunas: data_hora e evento,
+#' retorna um valor que indicar a energia da proposição
+#' @param df Dataframe da tramitação contendo as colunas: data_hora e evento
+#' @param days_ago Quantidade de dias a serem analizados. O padrão é 30
+#' @param pivot_day Dia de partida de onde começará a análise. O padrão é o dia atual
+#' @return Energia de uma proposição.
+#' @examples
+#' get_energia(dataFrameTramitacao)
+#' @export
+get_energia <- function(df, days_ago = 30, pivot_day = Sys.Date()) {
+  working_days <- (days_ago / 7 * 5)
+
+  qtd_eventos <-
+    df %>%
+    dplyr::filter(!is.na(evento)) %>%
+    dplyr::filter(as.numeric(difftime(pivot_day, data_hora, units="days")) <= days_ago) %>%
+    nrow()
+
+  qtd_eventos / working_days
+}
