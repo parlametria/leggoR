@@ -105,6 +105,7 @@
   },
   
   "endpoints_api": {
-    "url_base_proposicao" : "https://dadosabertos.camara.leg.br/api/v2/proposicoes/"
+    "url_base_proposicao" : "https://dadosabertos.camara.leg.br/api/v2/proposicoes/",
+    "url_base_tramitacao" : "http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao="
   }
 }

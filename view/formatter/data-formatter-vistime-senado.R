@@ -6,10 +6,10 @@ format_local <- function(df) {
   local_df <-
     df %>%
     mutate(z = cumsum(local != lag(local, default='NULL')), 
-           end_data = lead(data_tramitacao)) %>%
+           end_data = lead(data_hora)) %>%
     group_by(local, sequence = data.table::rleid(z)) %>%
-    summarize(start = min(data_tramitacao),
-              end = if_else(is.na(max(end_data)),max(data_tramitacao),max(end_data)),
+    summarize(start = min(data_hora),
+              end = if_else(is.na(max(end_data)),max(data_hora),max(end_data)),
               time_interval = end - start) %>%
     ungroup() %>%
     arrange(sequence) %>%
@@ -33,16 +33,16 @@ format_fase <- function(df) {
     # Improve the phases names and convert data_tramitacao to Date
     df %>%
     mutate(
-      data_tramitacao = as.Date(data_tramitacao),
+      data_hora = as.Date(data_hora),
       fase = as.character(fase)
     )
   
   df <- df %>%
     mutate(z = cumsum(fase != lag(fase, default='NULL')), 
-           end_data = lead(data_tramitacao)) %>%
+           end_data = lead(data_hora)) %>%
     group_by(fase, sequence = data.table::rleid(z)) %>%
-    summarize(start = min(data_tramitacao),
-              end = if_else(is.na(max(end_data)),max(data_tramitacao),max(end_data)),
+    summarize(start = min(data_hora),
+              end = if_else(is.na(max(end_data)),max(data_hora),max(end_data)),
               time_interval = end - start) %>%
     ungroup() %>% 
     arrange(sequence) %>% 
@@ -61,16 +61,16 @@ format_fase <- function(df) {
 #Create data to display events inlines
 format_eventos <- function(df) {
   df <-
-    # Improve the phases names and convert data_tramitacao to Date
+    # Improve the phases names and convert data_hora to Date
     df %>%
     mutate(
-      data_tramitacao = if_else(is.na(data_audiencia), as.Date(data_tramitacao), as.Date(data_audiencia)),
+      data_hora = if_else(is.na(data_audiencia), as.Date(data_hora), as.Date(data_audiencia)),
       evento = as.character(evento)
     )
   
   df %>%
     filter(!is.na(evento)) %>%
-    mutate(start = data_tramitacao,
+    mutate(start = data_hora,
            end = start,
            time_interval = end - start) %>%
     rename(label=evento) %>%
@@ -86,10 +86,10 @@ format_fase_global <- function(df) {
   df %>%
     mutate(global = if_else(casa == "Mesa - Senado", paste0("Apresentação ", global), paste0(local, " ", global))) %>%
     mutate(z = cumsum(global != lag(global, default='NULL')),
-           end_data = lead(data_tramitacao)) %>%
+           end_data = lead(data_hora)) %>%
     group_by(global, sequence = data.table::rleid(z)) %>%
-    summarize(start = min(data_tramitacao),
-              end = if_else(is.na(max(end_data)),max(data_tramitacao),max(end_data)),
+    summarize(start = min(data_hora),
+              end = if_else(is.na(max(end_data)),max(data_hora),max(end_data)),
               time_interval = end - start) %>%
     ungroup() %>%
     arrange(sequence) %>%
@@ -116,7 +116,7 @@ format_fase_global <- function(df) {
 build_vis_csv_senado <- function(tram_senado_df, output_folder=NULL) {
   bill_id <- tram_senado_df[1, "codigo_materia"]
   tram_senado_filtered <- tram_senado_df %>%
-    dplyr::select(data_tramitacao, local, evento, casa, global, data_audiencia)
+    dplyr::select(data_hora, local, evento, casa, global, data_audiencia)
   
   vis_df <- 
     rbind(format_local(tram_senado_filtered),

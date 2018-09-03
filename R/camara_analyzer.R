@@ -290,6 +290,8 @@ extract_regime_tramitacao_camara <- function(tram_df) {
       'Urgência'
     )
   
+  prop_id <- tram_df[1,]$id_prop
+  
   regime_df <- rcongresso::fetch_proposicao(prop_id) %>%
     fuzzyjoin::regex_left_join(regex_regime, 
                                by = c(statusProposicao.regime = "regex"))

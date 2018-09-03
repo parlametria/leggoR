@@ -77,13 +77,15 @@ fetch_tramitacao_senado <- function(proposicao_id, normalized=FALSE) {
   proposicao_tramitacoes_df <-
     proposicao_tramitacoes_df[,!sapply(proposicao_tramitacoes_df, is.list)]
 
-  proposicao_tramitacoes_df <- rename_tramitacao_df(proposicao_tramitacoes_df)
+  proposicao_tramitacoes_df <- rename_tramitacao_df(proposicao_tramitacoes_df) %>%
+    dplyr::rename(data_hora = data_tramitacao,
+                  sequencia = numero_ordem_tramitacao)
   
   if (normalized) {
     proposicao_tramitacoes_df <- proposicao_tramitacoes_df %>%
-      dplyr::mutate(data_hora = lubridate::ymd_hm(paste(data_tramitacao, "00:00")),
+      dplyr::mutate(data_hora = lubridate::ymd_hm(paste(data_hora, "00:00")),
                     prop_id = as.integer(codigo_materia),
-                    sequencia = as.integer(numero_ordem_tramitacao),
+                    sequencia = as.integer(sequencia),
                     id_situacao = as.integer(situacao_codigo_situacao),
                     casa = 'senado') %>%
       dplyr::select(prop_id,
