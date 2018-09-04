@@ -158,6 +158,12 @@ extract_locais_in_camara <- function(df) {
     tidyr::fill(local)
 }
 
+#' @title Recupera os eventos da Câmara
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada evento
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada evento
+#' @examples
+#'  extract_evento_in_camara(fetch_tramitacao(91341))
 extract_evento_in_camara <- function(df) {
   camara_codes <- get_environment_camara_json()
   eventos <- camara_codes$eventos

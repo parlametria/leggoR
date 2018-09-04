@@ -517,7 +517,13 @@ fetch_tramitacoes <- function(pls_ids) {
   purrr::map2_df(pls_ids$id, pls_ids$casa, ~ fetch_tramitacao(.x, .y, TRUE))
 }
 
-
+#' @title Baixa os dados da tramitação da Câmara
+#' @description Retorna dataframe com os dados da tramitação de uma proposição da Camara
+#' @param bill_id ID de uma proposição na Camara
+#' @param normalized Parametro para normalizar os dados
+#' @return Dataframe com os dados da tramitação de uma proposição da Camara
+#' @examples
+#' fetch_tramitacao_camara(2121442, TRUE)
 fetch_tramitacao_camara <- function(bill_id, normalized=FALSE) {
   tram_camara <- rcongresso::fetch_tramitacao(bill_id) %>%
     rename_df_columns
@@ -636,10 +642,6 @@ fetch_events <- function(prop_id) {
   events_df %>%
     dplyr::select(-links) %>%
     dplyr::mutate(timestamp = lubridate::dmy_hm(timestamp))
-}
-
-extract_tramitacao <- function(prop_id) {
-  rcongresso::fetch_tramitacao(prop_id) %>% rename_df_columns
 }
 
 ###################################################################
