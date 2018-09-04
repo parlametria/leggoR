@@ -24,7 +24,7 @@ last_n_despacho_in_camara <- function(df, qtd = 1) {
   df %>%
     dplyr::arrange(data_hora) %>%
     tail(qtd) %>%
-    dplyr::select(data_hora, descricao_tramitacao, despacho)
+    dplyr::select(data_hora, texto_tramitacao)
 }
 
 #' @title Retorna o dataframe das comissões na Câmara
@@ -83,24 +83,22 @@ get_comissoes_in_camara <- function(df) {
       detect(descricao_tramitacao, 'distribuição') &
         (
           detect(descricao_tramitacao, 'cria..o de comiss.o tempor.ria') |
-            detect(despacho, 'especial')
+            detect(texto_tramitacao, 'especial')
         )
     ) ~ 'Comissão Especial',
     (
       detect(descricao_tramitacao, 'distribuição') &
         (
-          detect(despacho, 'às* comiss..s*|despacho à') |
-            detect(despacho, 'novo despacho')
+          detect(texto_tramitacao, 'às* comiss..s*|despacho à') |
+            detect(texto_tramitacao, 'novo despacho')
         )
-    ) ~ despacho)) %>%
+    ) ~ texto_tramitacao)) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::mutate(proximas_comissoes = stringr::str_extract_all(comissoes, reg) %>% as.list()) %>%
     dplyr::select(data_hora, id_prop, proximas_comissoes) %>%
     dplyr::mutate(proximas_comissoes = map(proximas_comissoes, fix_names)) %>%
     unique()
 }
-
-
 
 #' @title Altera as datas da tramitação para formato mais fácil de tratar
 #' @description Formata cada data da coluna para o formato POSIXct

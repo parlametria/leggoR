@@ -9,8 +9,8 @@ source(here::here("R/camara-lib.R"))
 extract_relator_in_camara <- function(df) {
   df %>%
     dplyr::mutate(relator = dplyr::case_when(
-      stringr::str_detect(tolower(despacho), '^designad. relat.r') ~
-        stringr::str_extract(despacho, stringr::regex('dep.+', ignore_case=TRUE))))
+      stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r') ~
+        stringr::str_extract(texto_tramitacao, stringr::regex('dep.+', ignore_case=TRUE))))
 }
 
 
@@ -55,17 +55,17 @@ extract_relatorias_in_camara <- function(tramitacao_df) {
     # select columns
     dplyr::select(
       data_hora,
-      despacho,
-      sigla_orgao
+      texto_tramitacao,
+      sigla_local
     ) %>%
     tibble::add_column() %>%
     # extract relator's name and partido
     dplyr::mutate(
-      nome_parlamentar = stringr::str_match(despacho,'Dep. (.*?) [(]')[,2],
-      partido = stringr::str_match(despacho,'[(](.*?)[)]')[,2]
+      nome_parlamentar = stringr::str_match(texto_tramitacao,'Dep. (.*?) [(]')[,2],
+      partido = stringr::str_match(texto_tramitacao,'[(](.*?)[)]')[,2]
     ) %>%
-    # remove despacho column and return
-    dplyr::select(-c(despacho))
+    # remove texto_tramitacao column and return
+    dplyr::select(-c(texto_tramitacao))
 }
 
 #' @title Renomeia as colunas do dataframe
@@ -126,7 +126,7 @@ extract_autor_in_camara <- function(prop_id) {
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe da tramitacao contendo mais uma coluna chamada local
 #' @examples
-#'  extract_locais_in_camara(fetch_tramitacao(91341))
+#'  extract_locais_in_camara(fetch_tramitacao(2121442))
 extract_locais_in_camara <- function(df) {
   descricoes_plenario <- c('votação', 'pronta para pauta', 'apresentação de proposição', 'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
@@ -136,13 +136,13 @@ extract_locais_in_camara <- function(df) {
     dplyr::mutate(
       local =
         dplyr::case_when(
-          (tolower(despacho) %in% descricoes_plenario & sigla_orgao == 'PLEN' |
-             stringr::str_detect(tolower(descricao_tramitacao), '^votação')) ~ 'Plenário',
-          (stringr::str_detect(tolower(despacho), '^recebimento pela') |
-             tolower(despacho) %in% descricoes_comissoes) & 
-            sigla_orgao != 'CCP' &
-            !stringr::str_detect(tolower(sigla_orgao), '^s') ~ sigla_orgao,
-          tolower(descricao_tramitacao) == 'remessa ao senado federal' ~ 'Câmara')
+          (tolower(texto_tramitacao) %in% descricoes_plenario & sigla_local == 'PLEN' |
+             stringr::str_detect(tolower(texto_tramitacao), '^votação')) ~ 'Plenário',
+          (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') |
+             tolower(texto_tramitacao) %in% descricoes_comissoes) & 
+            sigla_local != 'CCP' &
+            !stringr::str_detect(tolower(sigla_local), '^s') ~ sigla_local,
+          tolower(texto_tramitacao) == 'remessa ao senado federal' ~ 'Câmara')
     ) %>%
     dplyr::mutate(
       local =
@@ -163,7 +163,7 @@ extract_locais_in_camara <- function(df) {
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe da tramitacao contendo mais uma coluna chamada evento
 #' @examples
-#'  extract_evento_in_camara(fetch_tramitacao(91341))
+#'  extract_evento_in_camara(fetch_tramitacao(2121442))
 extract_evento_in_camara <- function(df) {
   camara_codes <- get_environment_camara_json()
   eventos <- camara_codes$eventos
@@ -173,14 +173,14 @@ extract_evento_in_camara <- function(df) {
   df %>%
     dplyr::mutate(evento =
              case_when((str_detect(
-               tolower(despacho),
+               tolower(texto_tramitacao),
                stringr::regex(redistribuicao_regex, ignore_case = TRUE)
              ) |
                str_detect(
-                 tolower(despacho),
+                 tolower(texto_tramitacao),
                  stringr::regex(novo_despacho_regex, ignore_case = TRUE)
                )) &
-               tolower(descricao_tramitacao) == redistribuicao_text ~ "redistribuicao"
+               tolower(texto_tramitacao) == redistribuicao_text ~ "redistribuicao"
              ))
 }
 
@@ -189,7 +189,7 @@ extract_evento_in_camara <- function(df) {
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe da tramitacao contendo mais uma coluna chamada casa
 #' @examples
-#'  extract_fase_casa_in_camara(fetch_tramitacao(91341))
+#'  extract_fase_casa_in_camara(fetch_tramitacao(2121442))
 extract_fase_casa_in_camara <- function(df) {
   descricoes_plenario <- c('votação', 'pronta para pauta', 'apresentação de proposição', 'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
@@ -199,10 +199,10 @@ extract_fase_casa_in_camara <- function(df) {
     dplyr::mutate(
       casa =
         dplyr::case_when(
-          (tolower(despacho) %in% descricoes_plenario & sigla_orgao == 'PLEN' |
-             stringr::str_detect(tolower(descricao_tramitacao), '^votação')) ~ 'Plenário',
-          (stringr::str_detect(tolower(despacho), '^recebimento pela') | 
-             tolower(despacho) %in% descricoes_comissoes) & sigla_orgao != 'CCP' & !stringr::str_detect(tolower(sigla_orgao), '^s') ~ "Comissões")
+          (tolower(texto_tramitacao) %in% descricoes_plenario & sigla_local == 'PLEN' |
+             stringr::str_detect(tolower(texto_tramitacao), '^votação')) ~ 'Plenário',
+          (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') | 
+             tolower(texto_tramitacao) %in% descricoes_comissoes) & sigla_local != 'CCP' & !stringr::str_detect(tolower(sigla_local), '^s') ~ "Comissões")
     )
   
   
@@ -238,11 +238,10 @@ extract_situacao_comissao <- function(df) {
 #' @importFrom magrittr %>%
 process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   tramitacao_df %>%
-    rename_df_columns %>%
     extract_events_in_camara() %>%
     extract_locais_in_camara() %>%
     extract_fase_casa_in_camara() %>%
-    extract_situacao_comissao() %>%
+    #extract_situacao_comissao() %>%
     refact_date() %>%
     sort_by_date()
 }
