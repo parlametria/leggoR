@@ -57,7 +57,7 @@ test <- function(){
   })
 
   test_that('Regime de apreciacao', {
-    expect_equal(extract_apreciacao_Senado(PROPOSICOES_ID), APRECIACAO_91341)
+    expect_equal(extract_forma_apreciacao_senado(PROPOSICOES_ID), APRECIACAO_91341)
   })
 }
 

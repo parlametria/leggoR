@@ -6,6 +6,8 @@ source(here::here('R/congresso-lib.R'))
 source(here::here('R/analyzer.R'))
 source(here::here('R/fetcher.R'))
 
+camara_codes <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+
 extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   nome_ementa_camara <- get_ementas_in_camara(bill_id_camara)
   nome_ementa_senado <- get_nome_ementa_Senado(bill_id_senado)
@@ -25,7 +27,7 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
     ' / ', nome_ementa_camara$siglaTipo, nome_ementa_camara$numero
   )
 
-  casa <- if_else(despacho_camara$data_hora > despacho_senado$data_tramitacao, 'Câmara', 'Senado')
+  casa <- if_else(despacho_camara$data_hora > despacho_senado$data_hora, 'Câmara', 'Senado')
   if(casa == 'Câmara') {
     eventos <- as.list(last_events_camara$evento)
     despacho <- despacho_camara$descricao_tramitacao
@@ -65,11 +67,11 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     prop_camara <- readr::read_csv(here::here(paste0('data/camara/', id, '-proposicao-camara.csv')))
     tram_camara <- readr::read_csv(here::here(paste0('data/camara/', id, '-fases-tramitacao-camara.csv')))
     nome_camara <- prop_camara %>% dplyr::select(ementa, sigla_tipo, numero) %>% tail(1)
-    ano <- tram_camara$ano
-    page_url <- prop_camara$page_url
-    regime <- prop_camara$regime_tramitacao
-    apreciacao <- prop_camara$forma_apreciacao
-    nome <- paste0(nome_camara$siglaTipo, nome_camara$numero, "/", ano)
+    ano <- prop_camara$ano
+    page_url <- paste0(camara_codes$endpoints_api$url_base_tramitacao, id)
+    regime <- extract_regime_tramitacao_camara(tram_camara)
+    apreciacao <- extract_forma_apreciacao_camara(id)
+    nome <- paste0(nome_camara$sigla_tipo, nome_camara$numero, "/", ano)
     despacho_camara <- last_n_despacho_in_camara(tram_camara)
     autor <- extract_autor_in_camara(id) %>% tail(1)
     ementa <- nome_camara$ementa
@@ -83,8 +85,8 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     prop_senado <- readr::read_csv(here::here(paste0('data/senado/', id, '-proposicao-senado.csv')))
     tram_senado <- readr::read_csv(here::here(paste0('data/senado/', id, '-fases-tramitacao-senado.csv')))
     ano <- prop_senado$ano_materia
-    apreciacao <- extract_apreciacao_Senado(id)
-    regime <- extract_regime_Senado(tram_senado)
+    apreciacao <- extract_forma_apreciacao_senado(id)
+    regime <- extract_regime_tramitacao_senado(tram_senado)
     despacho_senado <- tail_descricao_despacho_Senado(tram_senado)
     nome_senado <- prop_senado %>% select(ementa_materia, sigla_subtipo_materia, numero_materia) %>% unique
     page_url <- prop_senado$page_url

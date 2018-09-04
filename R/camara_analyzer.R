@@ -250,6 +250,69 @@ fetch_proposicao_renamed <- function(id) {
   df[,!sapply(df, is.list)]
 }
 
+#' @title Extrai o regime de apreciação na Câmara
+#' @description Obtém o regime de apreciação de um PL
+#' @param proposicao_id id da proposicao
+#' @return String com a situação do PL.
+#' @examples
+#' extract_forma_apreciacao_camara(217161)
+#' @export
+#' @importFrom stats filter
+extract_forma_apreciacao_camara <- function(prop_id) {
+  base_url <-
+    'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
+  regex_apreciacao <-
+    tibble::frame_data(
+      ~ forma_apreciacao,
+      ~ regex,
+      'Conclusiva',
+      'Sujeita à Apreciação Conclusiva pelas Comissões',
+      'Plenário',
+      'Sujeita à Apreciação do Plenário'
+    )
+  
+  page_df <- data.frame(page_url = paste0(base_url, prop_id), stringsAsFactors = F)
+  
+  apreciacao_df <- page_df %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(page_html = list(xml2::read_html(page_url))) %>%
+    dplyr::mutate(temp =
+                    rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
+                    rvest::html_text()) %>%
+    fuzzyjoin::regex_left_join(regex_apreciacao, by = c(temp = "regex"))
+  
+  return(apreciacao_df[1,]$forma_apreciacao)
+}
+
+#' @title Extrai o regime de tramitação de um PL na Câmara
+#' @description Obtém o regime de tramitação de um PL.
+#' @param df Dataframe da tramitação na Câmara.
+#' @return String com a situação do regime de tramitação da PL.
+#' @examples
+#' extract_regime_tramitacao_camara(fetch_tramitacao(257161,'camara', TRUE))
+extract_regime_tramitacao_camara <- function(tram_df) {
+  regex_regime <-
+    tibble::frame_data(
+      ~ regime_tramitacao,
+      ~ regex,
+      'Ordinária',
+      'Ordinária',
+      'Prioridade',
+      'Prioridade',
+      'Urgência',
+      'Urgência'
+    )
+  
+  prop_id <- ifelse(is.null(tram_df[1,]$id_prop),
+                    tram_df[1,]$prop_id,
+                    tram_df[1,]$id_prop)
+  
+  regime_df <- rcongresso::fetch_proposicao(prop_id) %>%
+    fuzzyjoin::regex_left_join(regex_regime, 
+                               by = c(statusProposicao.regime = "regex"))
+    return(regime_df[1,]$regime_tramitacao)
+}
+
 #' @title Retorna energia de uma proposição na câmara.
 #' @description Recebido o dataframe da tramitação contendo as colunas: data_hora e evento,
 #' retorna um valor que indica a energia da proposição na câmara.

@@ -78,7 +78,7 @@ Você pode encontrar mais exemplos de uso do *agoradigital* [aqui](https://githu
 * [tests/](https://github.com/analytics-ufcg/agora-digital/tree/master/tests) contém testes de uso.
 * [view/](https://github.com/analytics-ufcg/agora-digital/tree/master/view) contém alguns exemplos de visualizações que utilizam o agoradigital
 * [vignettes/](https://github.com/analytics-ufcg/agora-digital/tree/master/vignettes) exemplos.
-
+ 
 ## Comandos
 
 Baixar dados e gerar relatórios:
@@ -104,6 +104,24 @@ Fazer verificações gerais um pouco mais bonitinhas:
 Rodar o linter:
     
     > devtools::lint()
+    
+## Como verificar o package localmente
+
+1. É necessário garantir que todas as suas funções estão documentadas e disponíveis para isso, para isso, você precisa adicionar `@export` a documentação da função para garantir que essa função será exportada, apois isso, gere a documentação do package.
+  
+  > devtools::document()
+  
+Para rodar os testes: 
+
+2. Teste o pacote
+ 
+ > devtools::test()
+  
+3. Instale o pacote a partir da branch que deseja:
+
+ > devtools::install_github('analytics-ufcg/agora-digital@nome_da_branch')
+ 
+Depois faça os testes necessários para garantir que o pacote está funcionando conforme esperado.
     
 ## Mais informações
 
