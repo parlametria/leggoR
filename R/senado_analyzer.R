@@ -18,7 +18,7 @@ extract_fase_Senado <-
            comissoes_phase) {
     fases <- senado_env$fase_subfase_comissoes
     dataframe %>%
-      dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+      dplyr::arrange(data_hora, sequencia) %>%
       dplyr::mutate(
         fase =
           dplyr::case_when(
@@ -75,7 +75,7 @@ get_comissoes_faltantes <- function(data_tramitacao) {
 #' @param df Dataframe da tramitação no Senado
 #' @return Dataframe com a coluna "global" adicionada.
 #' @examples
-#' tramitacao %>% extract_fase_global()
+#' extract_fase_global(tramitacao, proposicao)
 extract_fase_global <- function(data_tramitacao, proposicao_df) {
   fase_global_constants <- senado_env$fase_global
   
@@ -89,9 +89,9 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
   virada_de_casa <-
     data_tramitacao %>%
     dplyr::filter(local == 'Mesa - Câmara') %>%
-    dplyr::arrange(data_tramitacao) %>%
-    dplyr::select(data_tramitacao)
-    
+    dplyr::arrange(data_hora) %>%
+    dplyr::select(data_hora)
+  
   casa_atual <-
     dplyr::if_else(
       casa_origem == " - Origem (Senado)",
@@ -105,7 +105,7 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
     futuro_comissoes <-
       data_tramitacao %>%
       utils::tail(nrow(comissoes_faltantes)) %>%
-      dplyr::mutate(data_tramitacao = Sys.Date() + 200)
+      dplyr::mutate(data_hora = Sys.Date() + 200)
     
     futuro_comissoes$local <- 
       comissoes_faltantes$local 
@@ -122,15 +122,16 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
       data_tramitacao %>%
       utils::tail(1) %>%
       dplyr::mutate(local = "Comissões",
-             data_tramitacao = Sys.Date() + 201,
-             global = casa_atual)
+                    data_hora = Sys.Date() + 201,
+                    global = casa_atual)
     
     rbind(data_tramitacao, futuro_casa_revisora)
       
   } else {
+    
     data_tramitacao %>%
       dplyr::mutate(global = dplyr::if_else(
-        data_tramitacao < virada_de_casa[1, ][[1]],
+        data_hora < virada_de_casa[1, ][[1]],
         casa_origem,
         casa_atual
       ))
@@ -146,7 +147,7 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
 extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_phase, fase_comissoes) {
   dataframe <-
     dataframe %>%
-    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate( 
       casa =
         dplyr::case_when(
@@ -191,7 +192,7 @@ extract_evento_Senado <- function(tramitacao_df) {
   eventos <- senado_env$evento
   
   comissoes <- extract_comissoes_Senado(tramitacao_df)
-  date_comissao_especial <- comissoes[match("Comissão Especial", comissoes$comissoes), ]$data_tramitacao
+  date_comissao_especial <- comissoes[match("Comissão Especial", comissoes$comissoes), ]$data_hora
   designacao_relator <- senado_env$eventos %>%
     dplyr::filter(evento == 'designado_relator') 
 
@@ -199,7 +200,7 @@ extract_evento_Senado <- function(tramitacao_df) {
     df %>%
       dplyr::mutate(evento =
                       dplyr::case_when(
-                        data_tramitacao == date_comissao_especial ~ 'comissão_especial',
+                        data_hora == date_comissao_especial ~ 'comissão_especial',
                         TRUE ~ evento
                       ))
   }
@@ -234,9 +235,9 @@ extract_evento_Senado <- function(tramitacao_df) {
 extract_n_last_eventos_Senado <- function(df, num) {
   df %>%
     dplyr::filter(!is.na(evento)) %>%
-    dplyr::arrange(data_tramitacao) %>%
+    dplyr::arrange(data_hora) %>%
     tail(n = num) %>%
-    dplyr::select(data_tramitacao, evento)
+    dplyr::select(data_hora, evento)
 }
 
 get_comissoes_senado <- function() {
@@ -351,8 +352,8 @@ extract_comissoes_Senado <- function(df) {
                              codigos_comissoes$regex_3_extract)
                     )) %>%
     dplyr::filter(!is.na(comissoes)) %>%
-    dplyr::arrange(data_tramitacao) %>%
-    dplyr::select(codigo_materia, comissoes, data_tramitacao) %>%
+    dplyr::arrange(data_hora) %>%
+    dplyr::select(codigo_materia, comissoes, data_hora) %>%
     dplyr::rowwise() %>%
     dplyr::mutate(comissoes = stringr::str_extract_all
                   (comissoes, comissoes_permanentes_especiais)) %>%
@@ -384,9 +385,9 @@ get_nome_ementa_Senado <- function(proposicao_id) {
 #' tramitacao %>% tail_descricao_despacho_Senado(4)
 tail_descricao_despacho_Senado <- function(df, qtd = 1) {
   df %>%
-    dplyr::arrange(data_tramitacao) %>%
+    dplyr::arrange(data_hora) %>%
     tail(qtd) %>%
-    dplyr::select(data_tramitacao,
+    dplyr::select(data_hora,
                   situacao_descricao_situacao,
                   texto_tramitacao)
 }
@@ -401,7 +402,7 @@ extract_locais <- function(df) {
   comissao_json <- senado_env$fase_comissao
   df <-
     df %>%
-    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(
       local =
         dplyr::case_when(
@@ -435,12 +436,12 @@ extract_locais <- function(df) {
 #' @param df Dataframe da tramitação no Senado.
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
-#' extract_regime_Senado(93418)
-extract_regime_Senado <- function(tramitacao_df) {
+#' extract_regime_tramitacao_senado(fetch_tramitacao(91341,'senado'))
+extract_regime_tramitacao_senado <- function(tramitacao_df) {
   regime <- senado_env$regimes
   df <-
     tramitacao_df %>%
-    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(regime =
                     dplyr::case_when(
                       stringr::str_detect(tolower(texto_tramitacao), regime$regex) ~
@@ -495,10 +496,10 @@ extract_approved_requerimentos_in_senado <- function(df) {
 #' @param proposicao_id id da proposicao
 #' @return String com a situação da pl.
 #' @examples
-#' extract_apreciacao_Senado(93418)
+#' extract_forma_apreciacao_senado(93418)
 #' @export
 #' @importFrom stats filter
-extract_apreciacao_Senado <- function(proposicao_id) {
+extract_forma_apreciacao_senado <- function(proposicao_id) {
   url <-
     paste0(senado_env$endpoints_api$url_base,
            "movimentacoes/",
@@ -559,8 +560,8 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
       phase_four,
       comissoes_phase$regex
     ) %>%
-    dplyr::mutate(data_tramitacao = lubridate::ymd(data_tramitacao)) %>%
-    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::mutate(data_hora = lubridate::ymd(data_hora)) %>%
+    dplyr::arrange(data_hora, sequencia) %>%
     tidyr::fill(fase)
   
   proc_tram_df$situacao_descricao_situacao <-
@@ -569,7 +570,7 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
   
   proc_tram_df <-
     extract_fase_casa_Senado(proc_tram_df, phase_one, recebimento_phase, comissoes_phase$regex) %>%
-    dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %>%
+    dplyr::arrange(data_hora, sequencia) %>%
     tidyr::fill(casa) %>%
     dplyr::filter(!is.na(casa))
   

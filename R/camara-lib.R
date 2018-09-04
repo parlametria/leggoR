@@ -93,7 +93,7 @@ get_comissoes_in_camara <- function(df) {
     dplyr::mutate(proximas_comissoes = stringr::str_extract_all(comissoes, reg) %>% as.list()) %>%
     dplyr::select(data_hora, id_prop, proximas_comissoes) %>%
     dplyr::mutate(proximas_comissoes = map(proximas_comissoes, fix_names)) %>%
-    dplyr::mutate(proximas_comissoes = unique(proximas_comissoes, incomparables = FALSE))
+    unique()
 }
 
 
