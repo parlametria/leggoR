@@ -529,7 +529,6 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
 #' @return Energia de uma proposição.
 #' @examples
 #' get_energia(dataFrameTramitacao)
-#' @export
 get_energia_senado <- function(tramitacao_df, days_ago = 30, pivot_day = Sys.Date()) {
   working_days <- (days_ago / 7 * 5)
 
