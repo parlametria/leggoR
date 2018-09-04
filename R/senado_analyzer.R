@@ -36,7 +36,7 @@ extract_fase_Senado <-
 #' @param data_tramitacao Dataframe da tramitação no Senado
 #' @return Dataframe com as comissões faltantes
 #' @examples
-#' data_tramitacao %>% extract_fase_global()
+#' data_tramitacao %>% get_comissoes_faltantes()
 get_comissoes_faltantes <- function(data_tramitacao) {
   comissoes <- 
     extract_comissoes_Senado(data_tramitacao) %>% 
