@@ -240,7 +240,7 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   tramitacao_df %>%
     extract_events_in_camara() %>%
     extract_locais_in_camara() %>%
-    extract_fase_casa_in_camara() %>%
+    #extract_fase_casa_in_camara() %>%
     #extract_situacao_comissao() %>%
     refact_date() %>%
     sort_by_date()

@@ -15,7 +15,7 @@ source(here::here("R/camara-lib.R"))
 data_local <- function(df) {
   df <-
     df %>%
-    filter((!(grepl('^S', sigla_orgao) | sigla_orgao == 'MESA')))
+    filter((!(grepl('^S', sigla_local) | sigla_local == 'MESA')))
 
   df %>%
     mutate(end_data = lead(data_hora, default=Sys.time())) %>%
@@ -191,4 +191,6 @@ build_vis_csv_camara <- function(tram_camara_df, output_folder=NULL) {
     filter(group != "Comissão")
   
   readr::write_csv(data, file_path)
+  
+  data
 }

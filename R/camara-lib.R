@@ -78,24 +78,19 @@ get_comissoes_in_camara <- function(df) {
     stringr::str_detect(str, stringr::regex(regex, ignore_case = TRUE))
   }
   
-  df %>%
-    dplyr::mutate(comissoes = dplyr::case_when((
-      detect(descricao_tramitacao, 'distribuição') &
-        (
-          detect(descricao_tramitacao, 'cria..o de comiss.o tempor.ria') |
-            detect(texto_tramitacao, 'especial')
-        )
-    ) ~ 'Comissão Especial',
-    (
-      detect(descricao_tramitacao, 'distribuição') &
-        (
-          detect(texto_tramitacao, 'às* comiss..s*|despacho à') |
-            detect(texto_tramitacao, 'novo despacho')
-        )
-    ) ~ texto_tramitacao)) %>%
+  test <- df %>%
+    dplyr::mutate(
+      comissoes = dplyr::case_when(
+        (detect(texto_tramitacao, 'cria..o de comiss.o tempor.ria') | 
+         detect(texto_tramitacao, 'especial')) ~ 
+        'Comissão Especial',
+        (detect(texto_tramitacao, 'às* comiss..s*|despacho à') | 
+         detect(texto_tramitacao, 'novo despacho')) ~
+        texto_tramitacao)
+    ) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::mutate(proximas_comissoes = stringr::str_extract_all(comissoes, reg) %>% as.list()) %>%
-    dplyr::select(data_hora, id_prop, proximas_comissoes) %>%
+    dplyr::select(data_hora, prop_id, proximas_comissoes) %>%
     dplyr::mutate(proximas_comissoes = map(proximas_comissoes, fix_names)) %>%
     unique()
 }
@@ -106,7 +101,7 @@ get_comissoes_in_camara <- function(df) {
 #' @return Dataframe com a coluna de datas refatorada para um formato tratável.
 #' @export
 refact_date <- function(df) {
-  dplyr::mutate(df, data_hora = lubridate::ymd_hm(data_hora))
+  dplyr::mutate(df, data_hora = lubridate::ymd_hms(data_hora))
 }
 
 #' @title Ordena o dataframe de acordo com a data
