@@ -322,7 +322,6 @@ extract_regime_tramitacao_camara <- function(tram_df) {
 #' @return Energia de uma proposição.
 #' @examples
 #' get_energia(dataFrameTramitacao)
-#' @export
 get_energia_camara <- function(tramitacao_df, days_ago = 30, pivot_day = Sys.Date()) {
   working_days <- (days_ago / 7 * 5)
 
