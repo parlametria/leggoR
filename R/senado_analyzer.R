@@ -24,9 +24,9 @@ extract_fase_Senado <-
           dplyr::case_when(
             stringr::str_detect(tolower(texto_tramitacao), fases$regex) ~ fases$recebimento,
             stringr::str_detect(tolower(texto_tramitacao), comissoes_phase) ~ fases$analise,
-            #detect_fase(situacao_codigo_situacao, phase_two) ~ fases$analise,
-            detect_fase(situacao_codigo_situacao, phase_three) ~ fases$discussao,
-            detect_fase(situacao_codigo_situacao, encaminhamento_phase) ~ fases$encaminhamento
+            #detect_fase(id_situacao, phase_two) ~ fases$analise,
+            detect_fase(id_situacao, phase_three) ~ fases$discussao,
+            detect_fase(id_situacao, encaminhamento_phase) ~ fases$encaminhamento
           )
       )
   }
@@ -42,7 +42,7 @@ extract_fase_global <- function(tramitacao_df, proposicao_df) {
   
   casa_origem <-
     dplyr::if_else(
-      proposicao_df$nome_casa_origem == "Senado Federal",
+      proposicao_df$casa_origem == "Senado Federal",
       fase_global_constants$origem_senado,
       fase_global_constants$revisao_camara
     )
@@ -276,7 +276,7 @@ extract_comissoes_Senado <- function(df) {
                     )) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_hora) %>%
-    dplyr::select(codigo_materia, comissoes, data_hora) %>%
+    dplyr::select(comissoes, data_hora) %>%
     dplyr::rowwise() %>%
     dplyr::mutate(comissoes = stringr::str_extract_all
                   (comissoes, comissoes_permanentes_especiais)) %>%
@@ -338,7 +338,7 @@ extract_locais <- function(df) {
             ) |
               situacao_descricao_situacao %in% senado_constants$regex_comissoes_vector
           ) ~
-            origem_tramitacao_local_sigla_local,
+            sigla_local,
           situacao_descricao_situacao == senado_constants$regex_camara ~
             senado_constants$mesa_camara
         )
@@ -488,7 +488,7 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
     tidyr::fill(fase)
   
   proc_tram_df$situacao_descricao_situacao <-
-    to_underscore(proc_tram_df$situacao_descricao_situacao) %>%
+    to_underscore(proc_tram_df$descricao_situacao) %>%
     stringr::str_replace_all("\\s+", "_")
   
   proc_tram_df <-
@@ -504,10 +504,10 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
   index_of_camara <-
     ifelse(
       length(which(
-        proc_tram_df$situacao_codigo_situacao == 52
+        proc_tram_df$id_situacao == 52
       )) == 0,
       nrow(proc_tram_df),
-      which(proc_tram_df$situacao_codigo_situacao == 52)[1]
+      which(proc_tram_df$id_situacao == 52)[1]
     )
   
   proc_tram_df <-

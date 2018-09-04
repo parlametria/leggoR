@@ -563,8 +563,8 @@ import_proposicao <- function(prop_id, casa, out_folderpath=NULL) {
     print('Parâmetro "casa" não identificado.')
   }
   
-  prop_df <- fetch_proposicao(prop_id,casa)
-  tram_df <- fetch_tramitacao(prop_id,casa)
+  prop_df <- fetch_proposicao(prop_id,casa, TRUE)
+  tram_df <- fetch_tramitacao(prop_id,casa, TRUE)
   emendas_df <- fetch_emendas(prop_id,casa)
   
   if (!is.null(out_folderpath)) {
@@ -753,7 +753,8 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=FALSE) {
                     ano,
                     data_apresentacao,
                     ementa = ementa_materia,
-                    palavras_chave = indexacao_materia)
+                    palavras_chave = indexacao_materia,
+                    casa_origem = nome_casa_origem)
   }
   
   proposicao_complete
@@ -778,7 +779,8 @@ fetch_proposicao_camara <- function(prop_id,normalized=FALSE) {
                     ano = as.integer(ano),
                     ementa = paste(ementa,ementa_detalhada),
                     data_apresentacao = lubridate::ymd_hm(stringr::str_replace(data_apresentacao,'T',' ')),
-                    casa = 'camara') %>%
+                    casa = 'camara',
+                    casa_origem = NA) %>%
       dplyr::select(prop_id,
                     casa,
                     tipo_materia = sigla_tipo,
