@@ -66,7 +66,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
   if (casa == 'camara') {
     prop_camara <- readr::read_csv(here::here(paste0('data/camara/', id, '-proposicao-camara.csv')))
     tram_camara <- readr::read_csv(here::here(paste0('data/camara/', id, '-fases-tramitacao-camara.csv')))
-    nome_camara <- prop_camara %>% dplyr::select(ementa, sigla_tipo, numero) %>% tail(1)
+    nome_camara <- prop_camara %>% dplyr::select(ementa, tipo_materia, numero) %>% tail(1)
     ano <- prop_camara$ano
     page_url <- paste0(camara_codes$endpoints_api$url_base_tramitacao, id)
     regime <- extract_regime_tramitacao_camara(tram_camara)
@@ -77,7 +77,8 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     ementa <- nome_camara$ementa
     relator <- extract_last_relator_in_camara(tram_camara)
     despacho <- despacho_camara$descricao_tramitacao
-    nome_autor <- autor$autor.nome
+    nome_autor <- "TODO"
+    #nome_autor <- autor$autor.nome
     casa_origem <- autor$casa_origem
     data_apresentacao <- format(as.Date(prop_camara$data_apresentacao), '%d/%m/%Y')
     eventos <- as.list(extract_last_n_events_in_camara(tram_camara, 3)$evento)
@@ -88,14 +89,15 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     apreciacao <- extract_forma_apreciacao_senado(id)
     regime <- extract_regime_tramitacao_senado(tram_senado)
     despacho_senado <- tail_descricao_despacho_Senado(tram_senado)
-    nome_senado <- prop_senado %>% select(ementa_materia, sigla_subtipo_materia, numero_materia) %>% unique
+    nome_senado <- prop_senado %>% select(tipo_materia, numero) %>% unique
     page_url <- prop_senado$page_url
-    nome <- paste0(nome_senado$sigla_subtipo_materia, nome_senado$numero_materia, '/', ano)
+    nome <- paste0(nome_senado$tipo_materia, nome_senado$numero, '/', ano)
     casa_origem <- prop_senado$nome_casa_origem
     nome_autor <- prop_senado$nome_autor
     partido_autor <- prop_senado$sigla_partido_parlamentar
     uf_autor <- prop_senado$uf_parlamentar
-    nome_autor <- ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, ' ', partido_autor, '/', uf_autor))
+    nome_autor <- "TODO"
+    #nome_autor <- ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, ' ', partido_autor, '/', uf_autor))
     despacho <- despacho_senado$texto_tramitacao
     relatoria <- fetch_last_relatoria(id) %>% tail(1)
     ementa <- if_else(is.null(prop_senado$explicacao_ementa_materia), prop_senado$ementa_materia, prop_senado$explicacao_ementa_materia)
