@@ -82,11 +82,12 @@ get_comissoes_in_camara <- function(df) {
     dplyr::mutate(
       comissoes = dplyr::case_when(
         (detect(texto_tramitacao, 'cria..o de comiss.o tempor.ria') | 
-         detect(texto_tramitacao, 'à comiss.o * especial')) ~ 
+         detect(texto_tramitacao, 'à comiss.o .*especial')) ~ 
         'Comissão Especial',
         ((detect(texto_tramitacao, '^às* comiss..s*') |
-         detect(texto_tramitacao, '^despacho à')) |
-         detect(texto_tramitacao, 'novo despacho')) ~
+         detect(texto_tramitacao, '^despacho à')) 
+         #|detect(texto_tramitacao, 'novo despacho')
+         ) ~
         texto_tramitacao)
     ) %>%
     dplyr::filter(!is.na(comissoes)) %>%
