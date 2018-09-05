@@ -740,12 +740,17 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=FALSE) {
   proposicao_complete <- rename_proposicao_df(proposicao_complete)
   
   if (normalized) {
+    nome_autor <- proposicao_complete$nome_autor
+    partido_autor <- proposicao_complete$sigla_partido_parlamentar
+    uf_autor <- proposicao_complete$uf_parlamentar
+
     proposicao_complete <- proposicao_complete %>%
       dplyr::mutate(prop_id = as.integer(codigo_materia),
                     numero = as.integer(numero_materia),
                     ano = as.integer(ano_materia),
                     data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao, "00:00")),
-                    casa = 'senado') %>%
+                    casa = 'senado',
+                    autor_nome = ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, ' ', partido_autor, '/', uf_autor))) %>%
       dplyr::select(prop_id,
                     casa,
                     tipo_materia = sigla_subtipo_materia,
@@ -753,7 +758,8 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=FALSE) {
                     ano,
                     data_apresentacao,
                     ementa = ementa_materia,
-                    palavras_chave = indexacao_materia)
+                    palavras_chave = indexacao_materia,
+                    autor_nome)
   }
   
   proposicao_complete
@@ -772,13 +778,20 @@ fetch_proposicao_camara <- function(prop_id,normalized=FALSE) {
     rename_df_columns()
   
   if (normalized) {
+    autor <- 
+      extract_autor_in_camara(prop_id) %>%
+      utils::tail(1) %>% 
+      dplyr::rename("autor_nome" = "autor.nome") %>%
+      select(autor_nome)
+    
     prop_camara <- prop_camara %>%
       dplyr::mutate(prop_id = as.integer(id),
                     numero = as.integer(numero),
                     ano = as.integer(ano),
                     ementa = paste(ementa,ementa_detalhada),
                     data_apresentacao = lubridate::ymd_hm(stringr::str_replace(data_apresentacao,'T',' ')),
-                    casa = 'camara') %>%
+                    casa = 'camara',
+                    autor_nome = autor[[1]]) %>%
       dplyr::select(prop_id,
                     casa,
                     tipo_materia = sigla_tipo,
@@ -786,7 +799,8 @@ fetch_proposicao_camara <- function(prop_id,normalized=FALSE) {
                     ano,
                     data_apresentacao,
                     ementa,
-                    palavras_chave = keywords)
+                    palavras_chave = keywords,
+                    autor_nome)
   }
   
   prop_camara
