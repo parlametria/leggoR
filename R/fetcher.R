@@ -195,7 +195,7 @@ fetch_relatorias <- function(proposicao_id) {
 #' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações da última relatoria de uma proposição no Senado
 #' @examples
-#' fetch_relatorias(91341)
+#' fetch_last_relatoria(91341)
 #' @export
 fetch_last_relatoria <- function(proposicao_id) {
   relatoria <- fetch_relatorias(proposicao_id)

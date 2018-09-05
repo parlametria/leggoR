@@ -209,7 +209,7 @@ get_next_events <- function(prop_id) {
 #' @param id ID da proposição
 #' @return Dataframe da proposição
 #' @examples
-#'  fetch_proposicao_camara(345311)
+#'  fetch_proposicao_renamed(345311)
 #' @export
 #Fetch a bill with renamed columns
 fetch_proposicao_renamed <- function(id) {

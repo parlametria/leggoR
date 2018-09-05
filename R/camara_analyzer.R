@@ -5,7 +5,7 @@ source(here::here("R/camara-lib.R"))
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe com a coluna "relator" adicionada.
 #' @examples
-#' tramitacao %>% extract_relator_in_camara()
+#' fetch_tramitacao(2121442, 'camara', T) %>% extract_relator_in_camara()
 extract_relator_in_camara <- function(df) {
   df %>%
     dplyr::mutate(relator = dplyr::case_when(
@@ -20,7 +20,7 @@ extract_relator_in_camara <- function(df) {
 #' @param df Dataframe da tramitação na Câmara
 #' @return String do nome do último relator na Câmara
 #' @examples
-#' tramitacao %>% extract_last_relator_in_camara()
+#' fetch_tramitacao(2121442, 'camara', T) %>% extract_last_relator_in_camara()
 extract_last_relator_in_camara <- function(df) {
   relatores <- extract_relator_in_camara(df)
   relator <-
@@ -126,7 +126,7 @@ extract_autor_in_camara <- function(prop_id) {
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe da tramitacao contendo mais uma coluna chamada local
 #' @examples
-#'  extract_locais_in_camara(fetch_tramitacao(2121442))
+#'  extract_locais_in_camara(fetch_tramitacao(2121442, 'camara', T))
 extract_locais_in_camara <- function(df) {
   descricoes_plenario <- c('votação', 'pronta para pauta', 'apresentação de proposição', 'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
@@ -163,7 +163,7 @@ extract_locais_in_camara <- function(df) {
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe da tramitacao contendo mais uma coluna chamada evento
 #' @examples
-#'  extract_evento_in_camara(fetch_tramitacao(2121442))
+#'  extract_evento_in_camara(fetch_tramitacao(2121442, 'camara', T))
 extract_evento_in_camara <- function(df) {
   camara_codes <- get_environment_camara_json()
   eventos <- camara_codes$eventos
@@ -189,7 +189,7 @@ extract_evento_in_camara <- function(df) {
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe da tramitacao contendo mais uma coluna chamada casa
 #' @examples
-#'  extract_fase_casa_in_camara(fetch_tramitacao(2121442))
+#'  extract_fase_casa_in_camara(fetch_tramitacao(2121442, 'camara', T))
 extract_fase_casa_in_camara <- function(df) {
   descricoes_plenario <- c('votação', 'pronta para pauta', 'apresentação de proposição', 'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
