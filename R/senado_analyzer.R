@@ -304,7 +304,6 @@ tail_descricao_despacho_Senado <- function(df, qtd = 1) {
     dplyr::arrange(data_hora) %>%
     tail(qtd) %>%
     dplyr::select(data_hora,
-                  descricao_situacao,
                   texto_tramitacao)
 }
 

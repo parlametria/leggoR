@@ -27,7 +27,7 @@ ids_df <-
 
 ids_df_single_house <-
   frame_data(~ id, ~ casa, ~ url,
-             2121442, 'camara', 'https://analytics-ufcg.github.io/agora-digital/reports/report_127753_senado_2121442_camara.html',
+             2121442, 'camara', 'https://analytics-ufcg.github.io/agora-digital/reports/report_2121442_camara.html',
              132865, 'senado', 'https://analytics-ufcg.github.io/agora-digital/reports/report_132865_senado.html',
              257161, 'camara', 'https://analytics-ufcg.github.io/agora-digital/reports/report_257161_camara.html',
              345311, 'camara', 'https://analytics-ufcg.github.io/agora-digital/reports/report_345311_camara.html',

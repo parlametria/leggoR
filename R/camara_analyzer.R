@@ -115,6 +115,9 @@ extract_autor_in_camara <- function(prop_id) {
                       autor.cod_tipo == 40000 ~ 'Senado Federal',
                       autor.cod_tipo == 2 ~ 'Câmara dos Deputados'))
   
+  # authors <- authors %>%
+  #   mutate(autor.nome = dplyr::if_else(casa_origem == 'Senado Federal', stringr::str_split(autor.nome,'-')[[2]], autor.nome))
+  
   partido_estado <- extract_partido_estado_autor(authors$autor.uri %>% tail(1))
   
   authors %>%
@@ -308,9 +311,7 @@ extract_regime_tramitacao_camara <- function(tram_df) {
       'Urgência'
     )
   
-  prop_id <- ifelse(is.null(tram_df[1,]$id_prop),
-                    tram_df[1,]$prop_id,
-                    tram_df[1,]$id_prop)
+  prop_id <- tram_df[1,]$prop_id
   
   regime_df <- rcongresso::fetch_proposicao(prop_id) %>%
     fuzzyjoin::regex_left_join(regex_regime, 

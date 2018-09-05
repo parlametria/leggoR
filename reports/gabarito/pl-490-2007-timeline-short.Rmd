@@ -90,7 +90,7 @@ if(params$casa == "camara") {
   comissoes <- get_comissoes_in_camara(
       read_csv(paste0(data_path, "camara/", params$id, "-fases-tramitacao-camara.csv"))
     ) %>%
-    dplyr::select(-'id_prop') %>%
+    dplyr::select(-'prop_id') %>%
     dplyr::mutate(proximas_comissoes=lapply(proximas_comissoes, paste, collapse=', ')) %>%
     dplyr::mutate(data_hora=lapply(data_hora, substr, 0, 10)) %>%
     dplyr::rename('Data'='data_hora', 'Comissões'='proximas_comissoes')
