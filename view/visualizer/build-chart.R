@@ -58,7 +58,7 @@ create_vistime <- function(title, data) {
 #' @export
 format_tooltip <- function(data) {
   # Custom tooltip
- ifelse(data$end == ymd(Sys.Date()),
+ ifelse(data$end == lubridate::ymd(Sys.Date()),
                          paste0("<b>", data$label,
                                 "</b> \n Início: ", data$start,
                                 "<b>\n Em andamento </b>"),
