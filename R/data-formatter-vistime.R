@@ -6,6 +6,7 @@ source(here::here("view/formatter/data-formatter-vistime-senado.R"))
 #' usando o vistime
 #' @param tram_df dataframe da tramitação do PL na respectiva casa
 #' @param house casa onde a proposição está tramitando
+#' @param output_folder onde será escrito o resultado
 #' @examples
 #' build_vis_csv(2121442,'camara')
 #' @export
