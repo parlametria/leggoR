@@ -31,13 +31,52 @@ extract_fase_Senado <-
       )
   }
 
+#' @title Pega as comissões faltantes
+#' @description Verifica por quais comissões uma proposição ainda irá passar
+#' @param data_tramitacao Dataframe da tramitação no Senado
+#' @return Dataframe com as comissões faltantes
+#' @examples
+#' data_tramitacao %>% get_comissoes_faltantes()
+get_comissoes_faltantes <- function(data_tramitacao) {
+  comissoes <- 
+    extract_comissoes_Senado(data_tramitacao) %>% 
+    utils::head(1) %>% 
+    dplyr::select(comissoes) %>%
+    tidyr::unnest() 
+  
+  if(nrow(comissoes) != 0) {
+    comissoes <- 
+      comissoes %>%
+      dplyr::rename("local" = "comissoes")
+    
+    siglas_comissoes <- 
+      get_comissoes_senado() %>%
+      select(-comissoes_temporarias) %>% 
+      unnest() %>%
+      mutate(comissoes_permanentes = paste0("Comissão ", comissoes_permanentes)) %>%
+      rename("local" = "comissoes_permanentes")
+    
+    if (nchar(comissoes[1,]$local) > 6) {
+      comissoes <-
+        merge(comissoes, siglas_comissoes) %>%
+        select(siglas_comissoes) %>%
+        rename("local" = "siglas_comissoes")
+    }
+    
+    dplyr::anti_join(comissoes, data_tramitacao)
+  }else {
+    comissoes
+  }
+  
+}
+
 #' @title Cria coluna com a fase global da tramitação no Senado
 #' @description Cria uma nova coluna com a fase global no Senado
 #' @param df Dataframe da tramitação no Senado
 #' @return Dataframe com a coluna "global" adicionada.
 #' @examples
-#' tramitacao %>% extract_fase_global()
-extract_fase_global <- function(tramitacao_df, proposicao_df) {
+#' extract_fase_global(tramitacao, proposicao)
+extract_fase_global <- function(data_tramitacao, proposicao_df) {
   fase_global_constants <- senado_env$fase_global
   
   casa_origem <-
@@ -48,22 +87,49 @@ extract_fase_global <- function(tramitacao_df, proposicao_df) {
     )
   
   virada_de_casa <-
-    tramitacao_df %>%
+    data_tramitacao %>%
     dplyr::filter(local == 'Mesa - Câmara') %>%
     dplyr::arrange(data_hora) %>%
     dplyr::select(data_hora)
   
+  casa_atual <-
+    dplyr::if_else(
+      casa_origem == " - Origem (Senado)",
+      fase_global_constants$revisao_camara,
+      fase_global_constants$origem_senado
+    )
+  
+  comissoes_faltantes <- get_comissoes_faltantes(data_tramitacao)
+  
+  if (nrow(comissoes_faltantes) != 0) {
+    futuro_comissoes <-
+      data_tramitacao %>%
+      utils::tail(nrow(comissoes_faltantes)) %>%
+      dplyr::mutate(data_hora = Sys.Date() + 200)
+    
+    futuro_comissoes$local <- 
+      comissoes_faltantes$local 
+    
+    data_tramitacao <- rbind(data_tramitacao, futuro_comissoes)
+  }
+  
   if (nrow(virada_de_casa) == 0) {
-    tramitacao_df %>%
+    data_tramitacao <- 
+      data_tramitacao %>%
       dplyr::mutate(global = paste0(casa_origem))
+    
+    futuro_casa_revisora <-
+      data_tramitacao %>%
+      utils::tail(1) %>%
+      dplyr::mutate(local = "Comissões",
+                    data_hora = Sys.Date() + 201,
+                    global = casa_atual)
+    
+    rbind(data_tramitacao, futuro_casa_revisora)
+      
   } else {
-    casa_atual <-
-      dplyr::if_else(
-        casa_origem == " - Origem (Senado)",
-        fase_global_constants$revisao_camara,
-        fase_global_constants$origem_senado
-      )
-    tramitacao_df %>%
+    
+    data_tramitacao %>%
       dplyr::mutate(global = dplyr::if_else(
         data_hora < virada_de_casa[1, ][[1]],
         casa_origem,
@@ -71,7 +137,6 @@ extract_fase_global <- function(tramitacao_df, proposicao_df) {
       ))
   }
 }
-
 
 #' @title Cria coluna com a fase casa da tramitação no Senado
 #' @description Cria uma nova coluna com a fase casa no Senado
@@ -175,6 +240,15 @@ extract_n_last_eventos_Senado <- function(df, num) {
     dplyr::select(data_hora, evento)
 }
 
+get_comissoes_senado <- function() {
+  comissoes <- senado_env$comissoes_nomes
+  dplyr::tibble(
+    siglas_comissoes = list(comissoes$siglas_comissoes),
+    comissoes_temporarias = list(comissoes$comissoes_temporarias),
+    comissoes_permanentes = list(comissoes$comissoes_permanentes)
+  )
+}
+
 #' @title Recupera todas as comissões do Senado
 #' @description Retorna dataframe contendo o código da proposição, as comissões e a data
 #' @param df Dataframe da tramitação no Senado
@@ -249,7 +323,7 @@ extract_comissoes_Senado <- function(df) {
       sapply(function(name) {
         if (!stringr::str_detect(name, 'Comissão') &
             !stringr::str_detect(siglas_comissoes, name))
-          paste0('Comissão', name)
+          paste0('Comissão ', name)
         else
           name
       },
@@ -268,11 +342,14 @@ extract_comissoes_Senado <- function(df) {
     dplyr::mutate(comissoes =
                     dplyr::case_when(
                       detect(texto_tramitacao,
-                             codigos_comissoes$regex_1),
+                             codigos_comissoes$regex_1,
+                             codigos_comissoes$regex_1_extract),
                       detect(texto_tramitacao,
-                             codigos_comissoes$regex_2),
+                             codigos_comissoes$regex_2,
+                             codigos_comissoes$regex_2_extract),
                       detect(texto_tramitacao,
-                             codigos_comissoes$regex_3)
+                             codigos_comissoes$regex_3,
+                             codigos_comissoes$regex_3_extract)
                     )) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_hora) %>%
