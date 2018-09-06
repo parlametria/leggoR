@@ -1,13 +1,12 @@
 # CAMARA
 
 .COLNAMES_EMENTAS_CAMARA <- c("ementa" = "character",
-                              "siglaTipo" = "character",
+                              "sigla_tipo" = "character",
                               "numero" = "numeric")
 
-.COLNAMES_LAST_DESPACHO_CAMARA <- c(
-  "data_hora" = "character",
-  "descricao_tramitacao" = "character",
-  "despacho" = "character"
+.COLNAMES_LAST_DESPACHO_CAMARA <- list(
+  "data_hora" = c("POSIXct","POSIXt"),
+  "texto_tramitacao" = "character"
 )
 
 .COLNAMES_EXTRACT_LOCAIS_IN_CAMARA <- c(

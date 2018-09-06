@@ -654,7 +654,7 @@ fetch_events <- function(prop_id) {
 #' @examples
 #' fetch_proposicao(91341, 'senado')
 #' @export
-fetch_proposicao <- function(id, casa, normalized=FALSE) {
+fetch_proposicao <- function(id, casa, normalized=TRUE) {
   casa <- tolower(casa)
   if (casa == 'camara') {
     fetch_proposicao_camara(id,normalized)
@@ -685,7 +685,7 @@ fetch_proposicoes <- function(pls_ids) {
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
 #' fetch_proposicao_senado(91341)
-fetch_proposicao_senado <- function(proposicao_id,normalized=FALSE) {
+fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE) {
   url_base_proposicao <-
     "http://legis.senado.leg.br/dadosabertos/materia/"
   da_url <- paste0(url_base_proposicao, proposicao_id)
@@ -705,33 +705,17 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=FALSE) {
   proposicao_author <-
     proposicao_data$Autoria$Autor %>%
     tibble::as.tibble()
-  proposicao_specific_assunto <-
-    proposicao_data$Assunto$AssuntoEspecifico %>%
-    tibble::as.tibble() %>%
-    dplyr::rename(assunto_especifico = Descricao,
-                  codigo_assunto_especifico = Codigo)
-  proposicao_general_assunto <-
-    proposicao_data$Assunto$AssuntoGeral %>%
-    tibble::as.tibble() %>%
-    dplyr::rename(assunto_geral = Descricao, codigo_assunto_geral = Codigo)
   proposicao_source <-
     proposicao_data$OrigemMateria %>%
     tibble::as.tibble()
-  anexadas <-
-    proposicao_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria
-  relacionadas <-
-    proposicao_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria
 
   proposicao_complete <-
     proposicao_basic_data %>%
     tibble::add_column(
       !!!proposicao_ids,
       !!!proposicao_author,
-      !!!proposicao_specific_assunto,!!!proposicao_general_assunto,
       !!!proposicao_source,
-      page_url = paste0(page_url_senado, proposicao_id),
-      proposicoes_relacionadas = paste(relacionadas, collapse = ' '),
-      proposicoes_apensadas = paste(anexadas, collapse = ' ')
+      page_url = paste0(page_url_senado, proposicao_id)
     )
 
   proposicao_complete <-
@@ -774,7 +758,7 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=FALSE) {
 #' @return Dataframe
 #' @examples
 #' fetch_proposicao_camara(2056568)
-fetch_proposicao_camara <- function(prop_id,normalized=FALSE) {
+fetch_proposicao_camara <- function(prop_id,normalized=TRUE) {
   prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%
     rename_df_columns()
   
