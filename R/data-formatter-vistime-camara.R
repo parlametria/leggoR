@@ -5,7 +5,7 @@ source(here::here("R/camara-lib.R"))
 #' suportado pelo vistime
 #' @param df Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_local()
+#' fetch_tramitacao(2121442, 'camara', T) %>% data_local()
 #' @export
 data_local <- function(df) {
   df <-
@@ -34,7 +34,7 @@ data_local <- function(df) {
 #' suportado pelo vistime
 #' @param df Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_evento()
+#' fetch_tramitacao(2121442, 'camara', T) %>% data_evento()
 #' @export
 data_evento <- function(df) {
   df %>%
@@ -52,7 +52,7 @@ data_evento <- function(df) {
 #' retorna as que ela ainda vai passar
 #' @param tramitacao Dataframe com a tramitacao
 #' @examples
-#' get_comissoes_futuras(tramitacao)
+#' get_comissoes_futuras(fetch_tramitacao(2121442, 'camara', T))
 #' @export
 get_comissoes_futuras <- function(tramitacao) {
   
@@ -106,7 +106,7 @@ get_comissoes_futuras <- function(tramitacao) {
 #' @param bill_id id da proposição
 #' @param tramitacao Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_fase_global(bill_id, .)
+#' fetch_tramitacao(2121442, 'camara', T) %>% data_fase_global(2121442, .)
 #' @export
 data_fase_global <- function(bill_id, tramitacao) {
   data_prop <- extract_autor_in_camara(bill_id) %>% tail(1)
@@ -173,7 +173,7 @@ data_situacao_comissao <- function(df) {
 #' usando o vistime
 #' @param tram_camara_df dataframe da tramitação do PL na Câmara
 #' @examples
-#' build_vis_csv_camara(fetch_tramitacao_camara(2121442))
+#' build_vis_csv_camara(fetch_tramitacao(2121442, 'camara', T))
 build_vis_csv_camara <- function(tram_camara_df, output_folder=NULL) {
   bill_id <- tram_camara_df[1, "id_prop"]
   file_path <- paste0(output_folder,'/vis/tramitacao/', bill_id, '-data-camara.csv')

@@ -1,6 +1,3 @@
-library(here)
-library(tidyverse)
-library(rcongresso)
 source(here::here('R/camara-lib.R'))
 source(here::here('R/congresso-lib.R'))
 source(here::here('R/analyzer.R'))
@@ -12,9 +9,9 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   nome_ementa_camara <- get_ementas_in_camara(bill_id_camara)
   nome_ementa_senado <- get_nome_ementa_Senado(bill_id_senado)
 
-  tramitacao_camara <- read_csv(
+  tramitacao_camara <- readr::read_csv(
     here::here(paste0('data/camara/',bill_id_camara, '-fases-tramitacao-camara.csv')))
-  tramitacao_senado <- read_csv(
+  tramitacao_senado <- readr::read_csv(
     here::here(paste0('data/senado/', bill_id_senado, '-fases-tramitacao-senado.csv')))
   despacho_camara <- last_n_despacho_in_camara(tramitacao_camara)
   despacho_senado <- tail_descricao_despacho_Senado(tramitacao_senado)
@@ -27,7 +24,7 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
     ' / ', nome_ementa_camara$siglaTipo, nome_ementa_camara$numero
   )
 
-  casa <- if_else(despacho_camara$data_hora > despacho_senado$data_hora, 'Câmara', 'Senado')
+  casa <- dplyr::if_else(despacho_camara$data_hora > despacho_senado$data_hora, 'Câmara', 'Senado')
   if(casa == 'Câmara') {
     eventos <- as.list(last_events_camara$evento)
     despacho <- despacho_camara$descricao_tramitacao
@@ -39,7 +36,7 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   }
 
   proposicoes_df <-
-    frame_data(~ nome, ~ casa_atual, ~ ementa, ~ despacho_atual, ~ ultimos_eventos, ~ ultimo_relator,
+    tibble::frame_data(~ nome, ~ casa_atual, ~ ementa, ~ despacho_atual, ~ ultimos_eventos, ~ ultimo_relator,
                nome, casa, nome_ementa_camara$ementa, despacho, eventos, relator)
   proposicoes_df$nome <-paste0('[', proposicoes_df$nome, '](', url, ')')
 
@@ -48,16 +45,16 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
 
 gera_tabela_proposicoes_congresso <- function(dataframe) {
   dataframe %>%
-    rowwise() %>%
-    do(extract_informations(.$id_camara, .$id_senado, .$url)) %>%
+    dplyr::rowwise() %>%
+    dplyr::do(extract_informations(.$id_camara, .$id_senado, .$url)) %>%
     rbind(tibble::as.tibble(),.) %>%
-    mutate(ultimos_eventos = toString(ultimos_eventos))
+    dplyr:: mutate(ultimos_eventos = toString(ultimos_eventos))
 }
 
 gera_tabela_proposicoes_uma_casa <- function(dataframe) {
   dataframe %>%
-    rowwise() %>%
-    do(extract_informations_from_single_house(.$id, .$casa, .$url)) %>%
+    dplyr::rowwise() %>%
+    dplyr::do(extract_informations_from_single_house(.$id, .$casa, .$url)) %>%
     tibble::as.tibble()
 }
 
@@ -97,14 +94,14 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
     uf_autor <- prop_senado$uf_parlamentar
     nome_autor <- ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, ' ', partido_autor, '/', uf_autor))
     despacho <- despacho_senado$texto_tramitacao
-    relatoria <- fetch_last_relatoria(id) %>% tail(1)
-    ementa <- if_else(is.null(prop_senado$explicacao_ementa_materia), prop_senado$ementa_materia, prop_senado$explicacao_ementa_materia)
+    relatoria <- fetch_last_relatoria(id) %>% utils::tail(1)
+    ementa <- dplyr::if_else(is.null(prop_senado$explicacao_ementa_materia), prop_senado$ementa_materia, prop_senado$explicacao_ementa_materia)
     relator <- extract_ultimo_relator(id)
-    data_apresentacao <- format(as.Date(prop_senado$data_apresentacao), '%d/%m/%Y') %>% tail(1)
+    data_apresentacao <- format(as.Date(prop_senado$data_apresentacao), '%d/%m/%Y') %>% utils::tail(1)
     eventos <-  as.list(extract_n_last_eventos_Senado(tram_senado, 3)$evento)
   }
   proposicoes_df <-
-    frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator, ~ ultimos_eventos, ~ regime, ~ apreciacao, ~ page_url,
+    tibble::frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator, ~ ultimos_eventos, ~ regime, ~ apreciacao, ~ page_url,
                nome, nome_autor, casa_origem, data_apresentacao, ementa, despacho, relator, eventos, regime, apreciacao, page_url)
 
   proposicoes_df$nome <-paste0("[", proposicoes_df$nome, "](", url, ")")
@@ -138,15 +135,15 @@ gera_tabela_apensadas_senado <- function(bill_id_senado) {
   if (!("" %in% senado$proposicoes_apensadas)) {
     senado <-
       senado %>%
-      mutate(proposicoes_apensadas = strsplit(.$proposicoes_apensadas, " ")) %>%
-      unnest() %>%
-      select(apensadas = proposicoes_apensadas)
+      dplyr::mutate(proposicoes_apensadas = strsplit(.$proposicoes_apensadas, " ")) %>%
+      dplyr::unnest() %>%
+      dplyr::select(apensadas = proposicoes_apensadas)
 
     senado  %>%
-      rowwise() %>%
-      mutate(casa = "Senado",
+      dplyr::rowwise() %>%
+      dplyr::mutate(casa = "Senado",
              apensadas = paste0("[", paste0(get_nome_ementa_Senado(apensadas)$sigla_subtipo_materia, get_nome_ementa_Senado(apensadas)$numero_materia), "](", paste0(url_senado, apensadas), ")")) %>%
-      select(apensadas, casa)
+      dplyr::select(apensadas, casa)
   }else {
     NA
   }
@@ -180,7 +177,7 @@ extract_informations_all_houses <- function(senado_id, camara_id) {
   }
 
   proposicoes_df <-
-    frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator, ~casa_atual,
+    tibble::frame_data(~ nome, ~autor, ~ casa_origem, ~ data_apresentacao, ~ ementa, ~ status_atual, ~ ultimo_relator, ~casa_atual,
                nome, autor, casa_origem, data_apresentacao, ementa, status_atual, ultimo_relator, casa_atual)
   proposicoes_df
 }
@@ -188,9 +185,13 @@ extract_informations_all_houses <- function(senado_id, camara_id) {
 gera_tabela_requerimentos <- function(bill_id, house) {
   requerimentos <- data.frame()
   if (house == 'camara') {
-    requerimentos <- fetch_related_requerimentos(bill_id) %>% select(dataApresentacao,descricaoTipo,ementa,deferimento,statusProposicao.despacho)
+    requerimentos <- 
+      fetch_related_requerimentos(bill_id) %>% 
+      dplyr::select(dataApresentacao,descricaoTipo,ementa,deferimento,statusProposicao.despacho)
   } else if (house == 'senado') {
-    requerimentos <- as.array(strsplit(fetch_proposicao(bill_id, 'senado')$proposicoes_relacionadas, " ")[[1]]) %>% fetch_deferimento()
+    requerimentos <- 
+      as.array(strsplit(fetch_proposicao(bill_id, 'senado')$proposicoes_relacionadas, " ")[[1]]) %>% 
+      fetch_deferimento()
   }
   requerimentos
 }
@@ -203,15 +204,15 @@ gera_tabela_apensadas_camara <- function(bill_id_camara) {
 
   if (nrow(apensadas) != 0) {
     apensadas %>%
-      mutate(casa = "Câmara",
+      dplyr::mutate(casa = "Câmara",
              apensadas = paste0("[", paste0(get_ementas_in_camara(apensadas)$siglaTipo, get_ementas_in_camara(apensadas)$numero), "](", paste0(url_camara, apensadas), ")"))
   } else {
     apensadas %>%
-      mutate(casa = "Câmara")
+      dplyr::mutate(casa = "Câmara")
   }
 }
 
 gera_tabela_emendas_senado <- function(senado_id) {
   emendas_df <- readr::read_csv(paste0(here::here("data/senado/"), senado_id, '-emendas-senado.csv'))
-  emendas_df %>% select(-codigo)
+  emendas_df %>% dplyr::select(-codigo)
 }

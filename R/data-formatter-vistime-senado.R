@@ -1,4 +1,10 @@
-# Create data frame to display local inline
+#' @title Adiciona o local para o vistime
+#' @description Adiciona o label local com suas respectivas cores no formato
+#' suportado pelo vistime
+#' @param df Dataframe com a tramitacao
+#' @examples
+#' fetch_tramitacao(91341, 'senado', T) %>% format_local()
+#' @export
 format_local <- function(df) {
   local_df <-
     df %>%
@@ -24,7 +30,13 @@ format_local <- function(df) {
                                label == 'CDR' ~ "#225ea8"))
 }
 
-# Create data frame to display phases inline
+#' @title Adiciona a fase para o vistime
+#' @description Adiciona o label fase com suas respectivas cores no formato
+#' suportado pelo vistime
+#' @param df Dataframe com a tramitacao
+#' @examples
+#' fetch_tramitacao(91341, 'senado', T) %>% format_fase()
+#' @export
 format_fase <- function(df) {
   df <- 
     # Improve the phases names and convert data_tramitacao to Date
@@ -55,7 +67,13 @@ format_fase <- function(df) {
                            label == "Encaminhamento" ~ "#abd9e9"))
 }
 
-#Create data to display events inlines
+#' @title Adiciona os eventos para o vistime
+#' @description Adiciona o label evento com suas respectivas cores no formato
+#' suportado pelo vistime
+#' @param df Dataframe com a tramitacao
+#' @examples
+#' fetch_tramitacao(91341, 'senado', T) %>% format_eventos()
+#' @export
 format_eventos <- function(df) {
   df <-
     # Improve the phases names and convert data_hora to Date
@@ -77,7 +95,13 @@ format_eventos <- function(df) {
   
 }
 
-#Create data to display casa inlines
+#' @title Adiciona a fase global para o vistime
+#' @description Adiciona o label global com suas respectivas cores no formato
+#' suportado pelo vistime
+#' @param df Dataframe com a tramitacao
+#' @examples
+#' fetch_tramitacao(91341, 'senado', T) %>% format_fase_global()
+#' @export
 format_fase_global <- function(df) {
   
   df %>%
@@ -109,7 +133,7 @@ format_fase_global <- function(df) {
 #' usando o vistime
 #' @param tram_senado_df dataframe da tramitação do PL no Senado
 #' @examples
-#' build_vis_csv_senado(fetch_tramitacao_senado(91341))
+#' build_vis_csv_senado(fetch_tramitacao(91341, 'senado', T))
 build_vis_csv_senado <- function(tram_senado_df, output_folder=NULL) {
   bill_id <- tram_senado_df[1, "codigo_materia"]
   tram_senado_filtered <- 

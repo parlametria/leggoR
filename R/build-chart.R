@@ -1,8 +1,5 @@
 # SETUP
 # install.packages("vistime")
-library(vistime)
-library(tidyverse)
-library(lubridate)
 
 #' @title Cria gráfico para demonstração da tramitação de uma proposição.
 #' @description Recebido um id e uma casa a função pesquisa o csv de visualização correspondente
@@ -13,7 +10,7 @@ library(lubridate)
 #' create_chart(91341, "senado")
 #' @export
 create_chart <- function(bill_id, house){
-  data <- read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-", tolower(house), ".csv"))
+  data <- readr::read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id, "-data-", tolower(house), ".csv"))
 
   data$tooltip <- format_tooltip(data)
   
@@ -30,11 +27,11 @@ create_chart <- function(bill_id, house){
 #' @export
 create_chart_camara_senado <- function(bill_id_senado, bill_id_camara){
   data_senado <- 
-    read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id_senado, "-data-senado.csv")) %>%
-    mutate(start = as.POSIXct(start),
+    readr::read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id_senado, "-data-senado.csv")) %>%
+    dplyr::mutate(start = as.POSIXct(start),
            end = as.POSIXct(end))
   data_camara <-
-    read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id_camara, "-data-camara.csv"))
+    readr:: read_csv(paste0(here::here("data/vis/tramitacao/"), bill_id_camara, "-data-camara.csv"))
   data <- bind_rows(data_senado, data_camara)
   
   data$tooltip <- format_tooltip(data)
@@ -50,7 +47,7 @@ create_chart_camara_senado <- function(bill_id_senado, bill_id_camara){
 #' create_vistime("Tramitação", data)
 #' @export
 create_vistime <- function(title, data) {
-  vistime(data, events="label", groups="group", title=title, tooltips = "tooltip", colors = "color", showLabels=FALSE)
+  vistime::vistime(data, events="label", groups="group", title=title, tooltips = "tooltip", colors = "color", showLabels=FALSE)
 }
 
 #' @title Formata o tooltip do vistime
