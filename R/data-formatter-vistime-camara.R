@@ -73,8 +73,8 @@ get_comissoes_futuras <- function(tramitacao) {
     comissoes_previstas_siglas <- 
       fuzzyjoin::regex_left_join(comissoes_previstas, siglas_comissoes) %>%
       dplyr::select(siglas_comissoes) %>%
-      dplyr::rename("local" = "siglas_comissoes") %>%
-      dplyr::filter(!is.na(local))
+      dplyr::rename("sigla_local" = "siglas_comissoes") %>%
+      dplyr::filter(!is.na(sigla_local))
     
     comissoes_faltantes <-
       dplyr::anti_join(comissoes_previstas_siglas, tramitacao)
@@ -85,8 +85,8 @@ get_comissoes_futuras <- function(tramitacao) {
         utils::tail(nrow(comissoes_faltantes)) %>%
         dplyr::mutate(data_hora = as.POSIXct(Sys.Date() + 200))
       
-      futuro_comissoes$local <-
-        comissoes_faltantes$local
+      futuro_comissoes$sigla_local <-
+        comissoes_faltantes$sigla_local
       
       return(rbind(tramitacao, futuro_comissoes))
     }
