@@ -43,7 +43,11 @@ get_comissoes_camara <- function() {
   )
 }
 
-
+#' @title Retorna o regex das comissões na Câmara
+#' @description Retorna o regex das comissões na Câmara
+#' @return Regex das comissões na Câmara
+#' @examples
+#' get_regex_comissoes_camara()
 get_regex_comissoes_camara <- function() {
   get_comissoes_camara() %>%
     unlist() %>%
@@ -116,6 +120,13 @@ sort_by_date <- function(df) {
   dplyr::arrange(df, data_hora, sequencia)
 }
 
+#' @title Retorna proposição com apensamentos
+#' @description Retorna o dataframe de proposição da Câmara adicionando a coluna de apensadas
+#' @param prop_id Id da proposição
+#' @return Dataframe da proposição + a coluna proposicoes_apensadas
+#' @examples
+#' fetch_proposicao_with_apensamentos(2121442)
+#' @export
 fetch_proposicao_with_apensamentos <- function(prop_id) {
   rcongresso::fetch_proposicao(prop_id) %>%
     dplyr::mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse =
