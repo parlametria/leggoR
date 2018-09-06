@@ -9,11 +9,11 @@ source(here::here("R/camara-lib.R"))
 data_local <- function(df) {
   df <-
     df %>%
-    dplyr::filter((!(grepl('^S', sigla_orgao) | sigla_orgao == 'MESA')))
+    dplyr::filter((!(grepl('^S', sigla_local) | sigla_local == 'MESA')))
 
   df %>%
     dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
-    dplyr::group_by(local, sequence = rleid(local)) %>%
+    dplyr::group_by(local, sequence = data.table::rleid(local)) %>%
     dplyr::summarise(start = min(data_hora),
               end = max(end_data)) %>%
     dplyr::filter(end - start > 0) %>%
@@ -113,7 +113,7 @@ data_fase_global <- function(bill_id, tramitacao) {
   tramitacao <- 
     tramitacao %>%
     dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
-    dplyr::group_by(local, sequence = rleid(local)) %>%
+    dplyr::group_by(local, sequence = data.table::rleid(local)) %>%
     dplyr::summarise(start = min(data_hora),
               end = max(end_data)) %>%
     dplyr::filter(end - start > 0) %>%
