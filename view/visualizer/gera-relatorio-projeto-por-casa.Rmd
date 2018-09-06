@@ -2,8 +2,8 @@
 title: Relatório
 output: html_document
 params:
-  id: 91341
-  casa: 'senado'
+  id: 257161
+  casa: 'camara'
 ---
 
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
@@ -11,12 +11,12 @@ source(here::here('view/formatter/data-formatter-ficha.R'))
 source(here::here('view/visualizer/build-chart.R'))
 library(rcongresso)
 
-print(params)
+#print(params)
 data <- extract_informations_from_single_house(params$id, params$casa)
 chart <- create_chart(params$id, params$casa)
 ```
 
-# `r  toString(data$nome)`
+# `r data$nome`
 
 ## Informações Gerais
 - **Autor:** `r toString(data$autor)`
@@ -28,7 +28,7 @@ chart <- create_chart(params$id, params$casa)
 - **Forma de Apreciação:** `r toString(data$apreciacao)`
 - **Regime de Tramitação:** `r toString(data$regime)`
 - **Último Relator:** `r toString(data$ultimo_relator)`
-- [Link no site oficial](`r toString(data$page_url)`)
+- [Link no site oficial](`r data$page_url`)
 
 #### Tramitação na casa `r toString(params$casa)`
 ```{r echo=FALSE, message=FALSE}

@@ -4,7 +4,6 @@
 #' @param df Dataframe com a tramitacao
 #' @examples
 #' fetch_tramitacao(91341, 'senado', T) %>% format_local()
-#' @export
 format_local <- function(df) {
   local_df <-
     df %>%
@@ -36,7 +35,6 @@ format_local <- function(df) {
 #' @param df Dataframe com a tramitacao
 #' @examples
 #' fetch_tramitacao(91341, 'senado', T) %>% format_fase()
-#' @export
 format_fase <- function(df) {
   df <- 
     # Improve the phases names and convert data_tramitacao to Date
@@ -73,7 +71,6 @@ format_fase <- function(df) {
 #' @param df Dataframe com a tramitacao
 #' @examples
 #' fetch_tramitacao(91341, 'senado', T) %>% format_eventos()
-#' @export
 format_eventos <- function(df) {
   df <-
     # Improve the phases names and convert data_hora to Date
@@ -101,7 +98,6 @@ format_eventos <- function(df) {
 #' @param df Dataframe com a tramitacao
 #' @examples
 #' fetch_tramitacao(91341, 'senado', T) %>% format_fase_global()
-#' @export
 format_fase_global <- function(df) {
   
   df %>%

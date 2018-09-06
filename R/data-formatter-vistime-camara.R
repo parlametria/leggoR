@@ -6,7 +6,6 @@ source(here::here("R/camara-lib.R"))
 #' @param df Dataframe com a tramitacao
 #' @examples
 #' fetch_tramitacao(2121442, 'camara', T) %>% data_local()
-#' @export
 data_local <- function(df) {
   df <-
     df %>%
@@ -35,7 +34,6 @@ data_local <- function(df) {
 #' @param df Dataframe com a tramitacao
 #' @examples
 #' fetch_tramitacao(2121442, 'camara', T) %>% data_evento()
-#' @export
 data_evento <- function(df) {
   df %>%
     dplyr::filter(!is.na(evento)) %>%
@@ -53,7 +51,6 @@ data_evento <- function(df) {
 #' @param tramitacao Dataframe com a tramitacao
 #' @examples
 #' get_comissoes_futuras(fetch_tramitacao(2121442, 'camara', T))
-#' @export
 get_comissoes_futuras <- function(tramitacao) {
   
   siglas_comissoes <-
@@ -107,7 +104,6 @@ get_comissoes_futuras <- function(tramitacao) {
 #' @param tramitacao Dataframe com a tramitacao
 #' @examples
 #' fetch_tramitacao(2121442, 'camara', T) %>% data_fase_global(2121442, .)
-#' @export
 data_fase_global <- function(bill_id, tramitacao) {
   data_prop <- extract_autor_in_camara(bill_id) %>% tail(1)
   tipo_casa <- dplyr::if_else(data_prop$casa_origem == "Câmara dos Deputados", "Origem", "Revisão")
@@ -148,6 +144,12 @@ data_fase_global <- function(bill_id, tramitacao) {
   tramitacao
 }
 
+#' @title Adiciona a fase situação na comissão para o vistime
+#' @description Adiciona a fase situação na comissão com suas respectivas cores no formato
+#' suportado pelo vistime
+#' @param tramitacao Dataframe com a tramitacao
+#' @examples
+#' fetch_tramitacao(2121442, 'camara', T) %>% data_situacao_comissao()
 data_situacao_comissao <- function(df) {
   df %>% 
     dplyr::select(data_hora, situacao_comissao) %>%
