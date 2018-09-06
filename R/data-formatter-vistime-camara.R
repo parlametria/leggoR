@@ -13,14 +13,14 @@ data_local <- function(df) {
 
   df %>%
     dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
-    dplyr::group_by(local, sequence = data.table::rleid(local)) %>%
+    dplyr::group_by(sigla_local, sequence = data.table::rleid(sigla_local)) %>%
     dplyr::summarise(start = min(data_hora),
               end = max(end_data)) %>%
     dplyr::filter(end - start > 0) %>%
     dplyr::ungroup() %>%
     dplyr::arrange(sequence) %>%
     dplyr::select(-sequence) %>%
-    dplyr::rename(label = local) %>%
+    dplyr::rename(label = sigla_local) %>%
     dplyr::mutate(group = "Comissão",
            color = dplyr::case_when(label == "Plenário" ~ "#5496cf",
                              label == "PL672616" ~ "#ff9c37",
@@ -113,14 +113,14 @@ data_fase_global <- function(bill_id, tramitacao) {
   tramitacao <- 
     tramitacao %>%
     dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
-    dplyr::group_by(local, sequence = data.table::rleid(local)) %>%
+    dplyr::group_by(sigla_local, sequence = data.table::rleid(sigla_local)) %>%
     dplyr::summarise(start = min(data_hora),
               end = max(end_data)) %>%
     dplyr::filter(end - start > 0) %>%
     dplyr::ungroup() %>%
     dplyr::arrange(sequence) %>%
     dplyr::select(-sequence) %>%
-    dplyr::rename(label = local) %>%
+    dplyr::rename(label = sigla_local) %>%
     dplyr::mutate(group = "Global",
            label = dplyr::case_when(label == "CD-MESA-PLEN" ~ "Apresentação",
                              TRUE ~ label),

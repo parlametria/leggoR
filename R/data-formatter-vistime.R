@@ -8,7 +8,7 @@ source(here::here("R/data-formatter-vistime-senado.R"))
 #' @param house casa onde a proposição está tramitando
 #' @param output_folder onde será escrito o resultado
 #' @examples
-#' build_vis_csv(fetch_tramitacao(2121442, 'camara', T), 'camara')
+#' build_vis_csv(process_proposicao(fetch_proposicao(2121442, 'camara', T), fetch_tramitacao(2121442, 'camara', T), 'camara', 'data/'), 'camara', 'data/')
 #' @export
 build_vis_csv <- function(tram_df, house, output_folder=NULL) {
   if ("CAMARA" == toupper(house)) {
