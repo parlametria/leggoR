@@ -6,6 +6,16 @@ source(here::here('R/fetcher.R'))
 camara_codes <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 
+#' @title Extrai informações relevantes sobre uma proposição
+#' @description Retorna dataframe com nome, casa, nome_ementa_camara$ementa, despacho, eventos e relator
+#' de uma proposição
+#' @param bill_id_camara Id da camara
+#' @param bill_id_senado Id do senado
+#' @param url url para o site da camara ou do senado
+#' @return Dataframe com as informações importantes
+#' @examples
+#' extract_informations(91341, 2088990, 'https://www25.senado.leg.br/web/atividade/materias/-/materia/91341')
+#' @export
 extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   nome_ementa_camara <- get_ementas_in_camara(bill_id_camara)
   nome_ementa_senado <- get_nome_ementa_Senado(bill_id_senado)
@@ -44,6 +54,13 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   proposicoes_df
 }
 
+#' @title Extrai informações relevantes para vária proposições das duas casas
+#' @description Retorna dataframe com nome, casa, nome_ementa_camara$ementa, despacho, eventos e relator
+#' de várias proposições
+#' @param dataframe dataframe com as colunas id_camara, id_senado, url
+#' @return Dataframe com as informações importantes
+#' @examples
+#' gera_tabela_proposicoes_congresso(ids)
 gera_tabela_proposicoes_congresso <- function(dataframe) {
   dataframe %>%
     dplyr::rowwise() %>%
@@ -52,6 +69,13 @@ gera_tabela_proposicoes_congresso <- function(dataframe) {
     dplyr:: mutate(ultimos_eventos = toString(ultimos_eventos))
 }
 
+#' @title Extrai informações relevantes para vária proposições de uma casa
+#' @description Retorna dataframe com nome, casa, nome_ementa_camara$ementa, despacho, eventos e relator
+#' de várias proposições
+#' @param dataframe dataframe com as colunas id, casa, url
+#' @return Dataframe com as informações importantes
+#' @examples
+#' gera_tabela_proposicoes_uma_casa(ids)
 gera_tabela_proposicoes_uma_casa <- function(dataframe) {
   dataframe %>%
     dplyr::rowwise() %>%
@@ -59,6 +83,15 @@ gera_tabela_proposicoes_uma_casa <- function(dataframe) {
     tibble::as.tibble()
 }
 
+#' @title Extrai informações relevantes para a ficha de proposicao
+#' @description Retorna dataframe com todas informações necessárias para construir a ficha
+#' @param id id da proposicao
+#' @param casa camara ou senado
+#' @param url url para o site da camara ou senado
+#' @return Dataframe com as informações importantes
+#' @examples
+#' extract_informations_from_single_house(91341, 'senado', 'https://www25.senado.leg.br/web/atividade/materias/-/materia/91341')
+#' @export
 extract_informations_from_single_house <- function(id, casa, url=NULL) {
   casa <- tolower(casa)
   if (casa == 'camara') {
@@ -104,6 +137,13 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
   proposicoes_df
 }
 
+#' @title Retorna último relator do Senado
+#' @description Retorna o último relator do Senado
+#' @param id id da proposição do Senado
+#' @return último relator do Senado
+#' @examples
+#' extract_ultimo_relator(91341)
+#' @export
 extract_ultimo_relator <- function(id){
   data <- fetch_current_relatoria(id)
   if(ncol(data)){
@@ -120,6 +160,13 @@ extract_ultimo_relator <- function(id){
   }
 }
 
+#' @title Gera tabela com proposições apensadas
+#' @description Retorna as proposições apensadas do Senado
+#' @param bill_id_senado id da proposição do Senado
+#' @return tabela com as proposições apensadas
+#' @examples
+#' gera_tabela_apensadas_senado(91341)
+#' @export
 gera_tabela_apensadas_senado <- function(bill_id_senado) {
   url_senado <- "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
 
@@ -144,6 +191,14 @@ gera_tabela_apensadas_senado <- function(bill_id_senado) {
   }
  }
 
+#' @title Extrai informações relevantes para a ficha de proposicao
+#' @description Retorna dataframe com todas informações necessárias para construir a ficha
+#' @param senado_id id da proposicao no senado
+#' @param camara_id id da proposicao na camara
+#' @return Dataframe com as informações importantes
+#' @examples
+#' extract_informations_all_houses(91341, 2088990)
+#' @export
 extract_informations_all_houses <- function(senado_id, camara_id) {
   df_camara <- extract_informations_from_single_house(camara_id, 'camara')
   df_senado <- extract_informations_from_single_house(senado_id, 'senado')
@@ -177,6 +232,14 @@ extract_informations_all_houses <- function(senado_id, camara_id) {
   proposicoes_df
 }
 
+#' @title Gera tabela os requerimentos
+#' @description Retorna os requerimentos de uma proposição
+#' @param bill_id id da proposição
+#' @param house camara ou senado
+#' @return tabela com os requerimentos
+#' @examples
+#' gera_tabela_requerimentos(91341, 'senado')
+#' @export
 gera_tabela_requerimentos <- function(bill_id, house) {
   requerimentos <- data.frame()
   if (house == 'camara') {
@@ -191,6 +254,13 @@ gera_tabela_requerimentos <- function(bill_id, house) {
   requerimentos
 }
 
+#' @title Gera tabela com proposições apensadas
+#' @description Retorna as proposições apensadas da Camara
+#' @param bill_id_senado id da proposição do Camara
+#' @return tabela com as proposições apensadas
+#' @examples
+#' gera_tabela_apensadas_camara(2121442)
+#' @export
 gera_tabela_apensadas_camara <- function(bill_id_camara) {
   url_camara <- "http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao="
 
@@ -207,6 +277,13 @@ gera_tabela_apensadas_camara <- function(bill_id_camara) {
   }
 }
 
+#' @title Gera tabela com as emendas de uma proposição no Senado
+#' @description Retorna os requerimentos de uma proposição
+#' @param senado_id id da proposição do Senado
+#' @return tabela com as emendas
+#' @examples
+#' gera_tabela_emendas_senado(91341)
+#' @export
 gera_tabela_emendas_senado <- function(senado_id) {
   emendas_df <- readr::read_csv(paste0(here::here("data/senado/"), senado_id, '-emendas-senado.csv'))
   emendas_df %>% dplyr::select(-codigo)
