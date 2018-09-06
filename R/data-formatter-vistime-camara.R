@@ -181,7 +181,7 @@ build_vis_csv_camara <- function(tram_camara_df, output_folder=NULL) {
   file_path <- paste0(output_folder,'/vis/tramitacao/', bill_id, '-data-camara.csv')
 
   data <- 
-    bind_rows(data_fase_global(bill_id, tram_camara_df), 
+    dplyr::bind_rows(data_fase_global(bill_id, tram_camara_df), 
                      data_local(tram_camara_df),
                     #data_situacao_comissao(tram_camara_df), 
                     data_evento(tram_camara_df)) %>%
