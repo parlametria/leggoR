@@ -15,7 +15,7 @@ source(here::here("R/camara-lib.R"))
 data_local <- function(df) {
   df <-
     df %>%
-    filter((!(grepl('^S', sigla_local) | sigla_local == 'MESA')))
+    filter((!(grepl('^S', local) | local == 'MESA')))
 
   df %>%
     mutate(end_data = lead(data_hora, default=Sys.time())) %>%
@@ -125,7 +125,7 @@ data_fase_global <- function(bill_id, tramitacao) {
     group_by(local, sequence = rleid(local)) %>%
     summarise(start = min(data_hora),
               end = max(end_data)) %>%
-    filter(end - start > 0) %>%
+    #filter(end - start > 0) %>%
     ungroup() %>%
     arrange(sequence) %>%
     select(-sequence) %>%
