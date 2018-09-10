@@ -27,11 +27,11 @@
     {"evento": "abertura_prazo_emendas", "texto_tramitacao": "^prazo para emendas|^abertura de prazo para emendas"},
     {"evento": "encerramento_prazo_emendas", "texto_tramitacao": "^encerrado o prazo para emendas"},
     {"evento": "arquivada", "texto_tramitacao": "^arquivado nos termos"},
-    {"evento": "parecer_pela_adequacao_financeira_e_orcamentaria", "texto_tramitacao": "pela adequa..o financeira e or.ament.ria"},
-    {"evento": "parecer_pela_aprovacao_com_substitutivo", "texto_tramitacao": "^(?!.*pela adequa..o financeira e or.ament.ria).*substitutivo.*$"},
-    {"evento": "parecer_pela_aprovacao", "texto_tramitacao": "^(?!.*substitutivo)(?!.*pela adequa..o financeira e or.ament.ria).*aprova.*$"},
-    {"evento": "parecer_pela_rejeicao", "texto_tramitacao": "^(?!.*aprova)(?!.*substitutivo)(?!.*emenda).*rejei..o.*$"},
-    {"evento": "parecer", "texto_tramitacao": "^(?!.*aprova)(?!.*rejei)(?!.*substitutivo).*parecer.*$"}
+    {"evento": "parecer_pela_adequacao_financeira_e_orcamentaria",  "id_situacao": "^322$", "texto_tramitacao": "pela adequa..o financeira e or.ament.ria"},
+    {"evento": "parecer_pela_aprovacao_com_substitutivo", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*pela adequa..o financeira e or.ament.ria).*substitutivo.*$"},
+    {"evento": "parecer_pela_aprovacao", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*substitutivo)(?!.*pela adequa..o financeira e or.ament.ria).*aprova.*$"},
+    {"evento": "parecer_pela_rejeicao", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*aprova)(?!.*substitutivo)(?!.*emenda).*rejei..o.*$"},
+    {"evento": "parecer", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*aprova)(?!.*rejei)(?!.*substitutivo).*parecer.*$"}
   ],
   
   "fase_casa": [

@@ -531,7 +531,8 @@ fetch_tramitacao_camara <- function(bill_id, normalized=FALSE) {
   if (normalized) {
     tram_camara <- tram_camara %>%
       dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,'T',' ')),
-                    casa = 'camara') %>%
+                    casa = 'camara',
+                    id_situacao = as.integer(id_tipo_tramitacao)) %>%
       dplyr::select(prop_id = id_prop, 
                casa,
                data_hora, 
