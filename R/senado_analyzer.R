@@ -103,7 +103,8 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
     futuro_comissoes <-
       data_tramitacao %>%
       utils::tail(nrow(comissoes_faltantes)) %>%
-      dplyr::mutate(data_hora = Sys.Date() + 200)
+      dplyr::mutate(data_hora = Sys.Date() + 200,
+                    evento = NA)
     
     futuro_comissoes$local <- 
       comissoes_faltantes$local 
@@ -121,7 +122,8 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
       utils::tail(1) %>%
       dplyr::mutate(local = "Comissões",
                     data_hora = Sys.Date() + 201,
-                    global = casa_atual)
+                    global = casa_atual,
+                    evento = NA)
     
     rbind(data_tramitacao, futuro_casa_revisora)
       
