@@ -39,7 +39,7 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
 get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::today()) {
   working_days <- ((days_ago / 7) * 5)
   
-  start_date = pivot_day - days(days_ago)
+  start_date = pivot_day - lubridate::days(days_ago)
   
   qtd_eventos <-
     tramitacao_df %>%
