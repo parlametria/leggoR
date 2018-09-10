@@ -123,7 +123,7 @@ build_vis_csv_senado <- function(tram_senado_df, output_folder=NULL) {
           format_fase_global(tram_senado_filtered),
           #format_fase(tram_senado_filtered),
           format_eventos(tram_senado_filtered)) %>%
-    filter(time_interval != 0 | group == "Evento") %>%
+   # filter(time_interval != 0 | group == "Evento") %>%
     filter(group != 'Comissão')
   
   vis_df %>%
