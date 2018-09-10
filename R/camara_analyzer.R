@@ -318,24 +318,3 @@ extract_regime_tramitacao_camara <- function(tram_df) {
                                by = c(statusProposicao.regime = "regex"))
     return(regime_df[1,]$regime_tramitacao)
 }
-
-#' @title Retorna energia de uma proposição na câmara.
-#' @description Recebido o dataframe da tramitação contendo as colunas: data_hora e evento,
-#' retorna um valor que indica a energia da proposição na câmara.
-#' @param tramitacao_df Dataframe da tramitação contendo as colunas: data_hora e evento
-#' @param days_ago Quantidade de dias a serem analizados. O padrão é 30
-#' @param pivot_day Dia de partida de onde começará a análise. O padrão é o dia atual
-#' @return Energia de uma proposição.
-#' @examples
-#' get_energia(dataFrameTramitacao)
-get_energia_camara <- function(tramitacao_df, days_ago = 30, pivot_day = Sys.Date()) {
-  working_days <- (days_ago / 7 * 5)
-
-  qtd_eventos <-
-    tramitacao_df %>%
-    dplyr::filter(!is.na(evento)) %>%
-    dplyr::filter(as.numeric(difftime(pivot_day, data_hora, units="days")) <= days_ago) %>%
-    nrow()
-
-  qtd_eventos / working_days
-}

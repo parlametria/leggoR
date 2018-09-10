@@ -31,18 +31,23 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
 #' @description Recebido o dataframe da tramitação contendo as colunas: data_hora e evento,
 #' retorna um valor que indica a energia da proposição
 #' @param tramitacao_df Dataframe da tramitação contendo as colunas: data_hora e evento
-#' @param casa Casa onde o PL está tramitando ('camara'/'senado').
 #' @param days_ago Quantidade de dias a serem analizados. O padrão é 30
 #' @param pivot_day Dia de partida de onde começará a análise. O padrão é o dia atual
 #' @return Energia de uma proposição.
 #' @importFrom magrittr '%>%'
 #' @export
-get_energia <- function(tramitacao_df, casa, days_ago = 30, pivot_day = Sys.Date()) {
-  if ("CAMARA" == toupper(casa)) {
-    get_energia_camara(tramitacao_df, days_ago, pivot_day)
-  } else if ("SENADO" == toupper(casa)) {
-    get_energia_senado(tramitacao_df, days_ago, pivot_day)
-  }
+get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::today()) {
+  working_days <- ((days_ago / 7) * 5)
+  
+  start_date = pivot_day - lubridate::days(days_ago)
+  
+  qtd_eventos <-
+    tramitacao_df %>%
+    dplyr::filter(data_hora >= start_date) %>%
+    dplyr::filter(!is.na(evento)) %>%
+    nrow()
+  
+  qtd_eventos / working_days
 }
 
 #' @title Extrai o regime de tramitação de um PL

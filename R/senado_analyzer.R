@@ -591,24 +591,3 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
   
   proc_tram_df
 }
-
-#' @title Retorna energia de uma proposição de senado.
-#' @description Recebido o dataframe da tramitação contendo as colunas: data_tramitacao e evento,
-#' retorna um valor que indica a energia da proposição no senado.
-#' @param tramitacao_df Dataframe da tramitação contendo as colunas: data_tramitacao e evento
-#' @param days_ago Quantidade de dias a serem analizados. O padrão é 30
-#' @param pivot_day Dia de partida de onde começará a análise. O padrão é o dia atual
-#' @return Energia de uma proposição.
-#' @examples
-#' get_energia(dataFrameTramitacao)
-get_energia_senado <- function(tramitacao_df, days_ago = 30, pivot_day = Sys.Date()) {
-  working_days <- (days_ago / 7 * 5)
-
-  qtd_eventos <-
-    tramitacao_df %>%
-    dplyr::filter(!is.na(evento)) %>%
-    dplyr::filter(as.numeric(difftime(pivot_day, data_tramitacao, units="days")) <= days_ago) %>%
-    nrow()
-
-  qtd_eventos / working_days
-}
