@@ -31,12 +31,12 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   casa <- if_else(despacho_camara$data_hora > despacho_senado$data_hora, 'Câmara', 'Senado')
   if(casa == 'Câmara') {
     eventos <- as.list(last_events_camara$evento)
-    despacho <- despacho_camara$descricao_tramitacao
+    despacho <- despacho_camara$texto_tramitacao
     relator <- extract_last_relator_in_camara(tramitacao_camara)
   } else {
     eventos <- as.list(last_events_senado$evento)
-    despacho <- despacho_senado$situacao_descricao_situacao
-    relator <- fetch_last_relatoria(id)$nome_parlamentar
+    despacho <- despacho_senado$texto_tramitacao
+    relator <- fetch_last_relatoria(bill_id_senado)$nome_parlamentar
   }
 
   proposicoes_df <-
@@ -127,7 +127,7 @@ gera_tabela_apensadas_senado <- function(bill_id_senado) {
   url_senado <- "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
 
   senado <-
-    fetch_proposicao(bill_id_senado, 'senado')
+    fetch_proposicao(bill_id_senado, 'senado', FALSE)
 
   #se não tiver proposição
   if (!("" %in% senado$proposicoes_apensadas)) {

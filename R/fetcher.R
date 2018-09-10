@@ -705,17 +705,33 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE) {
   proposicao_author <-
     proposicao_data$Autoria$Autor %>%
     tibble::as.tibble()
+  proposicao_specific_assunto <-
+    proposicao_data$Assunto$AssuntoEspecifico %>%
+    tibble::as.tibble() %>%
+    dplyr::rename(assunto_especifico = Descricao,
+                  codigo_assunto_especifico = Codigo)
+  proposicao_general_assunto <-
+    proposicao_data$Assunto$AssuntoGeral %>%
+    tibble::as.tibble() %>%
+    dplyr::rename(assunto_geral = Descricao, codigo_assunto_geral = Codigo)
   proposicao_source <-
     proposicao_data$OrigemMateria %>%
     tibble::as.tibble()
+  anexadas <-
+    proposicao_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria
+  relacionadas <-
+    proposicao_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria
 
   proposicao_complete <-
     proposicao_basic_data %>%
     tibble::add_column(
       !!!proposicao_ids,
       !!!proposicao_author,
+      !!!proposicao_specific_assunto,!!!proposicao_general_assunto,
       !!!proposicao_source,
-      page_url = paste0(page_url_senado, proposicao_id)
+      page_url = paste0(page_url_senado, proposicao_id),
+      proposicoes_relacionadas = paste(relacionadas, collapse = ' '),
+      proposicoes_apensadas = paste(anexadas, collapse = ' ')
     )
 
   proposicao_complete <-

@@ -365,7 +365,7 @@ extract_comissoes_Senado <- function(df) {
 #' @examples
 #' get_nome_ementa_Senado(91341)
 get_nome_ementa_Senado <- function(proposicao_id) {
-  fetch_proposicao(proposicao_id, 'senado') %>%
+  fetch_proposicao(proposicao_id, 'senado',FALSE) %>%
     dplyr::select(ementa_materia, sigla_subtipo_materia, numero_materia) %>%
     unique
 }
