@@ -1,6 +1,7 @@
 label,start,end,group,color
 Apresentação - Origem (Câmara),2016-12-13T00:00:00Z,2018-05-16T00:00:00Z,Global,NA
-Comissão Especial - Origem (Câmara),2018-05-16T00:00:00Z,2018-08-24T18:08:42Z,Global,#ff9c37
+Comissão Especial - Origem (Câmara),2018-05-16T00:00:00Z,2018-09-11T18:22:20Z,Global,#ff9c37
+Comissões - Revisão (Senado),2019-03-30T00:00:00Z,2019-03-31T00:00:00Z,Global,#ff9c37
 apresentacao_da_pl,2016-12-13T14:59:00Z,2016-12-13T14:59:00Z,Evento,#a9a9a9
 requerimento_apensacao,2016-12-21T16:30:00Z,2016-12-21T16:30:00Z,Evento,#a9a9a9
 distribuicao,2017-02-07T00:00:00Z,2017-02-07T00:00:00Z,Evento,#a9a9a9
@@ -17,10 +18,8 @@ requerimento_audiencia_publica,2018-06-04T17:26:00Z,2018-06-04T17:26:00Z,Evento,
 requerimento_audiencia_publica,2018-06-04T17:54:00Z,2018-06-04T17:54:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2018-06-04T17:55:00Z,2018-06-04T17:55:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2018-06-04T17:56:00Z,2018-06-04T17:56:00Z,Evento,#a9a9a9
-aprovacao_audiencia_publica,2018-06-05T14:30:00Z,2018-06-05T14:30:00Z,Evento,#a9a9a9
 requerimento_prorrogacao,2018-06-05T16:26:00Z,2018-06-05T16:26:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2018-06-07T10:44:00Z,2018-06-07T10:44:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2018-06-12T09:09:00Z,2018-06-12T09:09:00Z,Evento,#a9a9a9
 requerimento_prorrogacao,2018-06-28T16:21:00Z,2018-06-28T16:21:00Z,Evento,#a9a9a9
-aprovacao_audiencia_publica,2018-07-11T14:30:00Z,2018-07-11T14:30:00Z,Evento,#a9a9a9
 requerimento_prorrogacao,2018-08-14T15:48:00Z,2018-08-14T15:48:00Z,Evento,#a9a9a9
