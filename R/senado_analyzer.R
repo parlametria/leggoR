@@ -103,7 +103,8 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
     futuro_comissoes <-
       data_tramitacao %>%
       utils::tail(nrow(comissoes_faltantes)) %>%
-      dplyr::mutate(data_hora = Sys.Date() + 200)
+      dplyr::mutate(data_hora = Sys.Date() + 200,
+                    evento = NA)
     
     futuro_comissoes$local <- 
       comissoes_faltantes$local 
@@ -121,7 +122,8 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
       utils::tail(1) %>%
       dplyr::mutate(local = "Comissões",
                     data_hora = Sys.Date() + 201,
-                    global = casa_atual)
+                    global = casa_atual,
+                    evento = NA)
     
     rbind(data_tramitacao, futuro_casa_revisora)
       
@@ -365,7 +367,7 @@ extract_comissoes_Senado <- function(df) {
 #' @examples
 #' get_nome_ementa_Senado(91341)
 get_nome_ementa_Senado <- function(proposicao_id) {
-  fetch_proposicao(proposicao_id, 'senado') %>%
+  fetch_proposicao(proposicao_id, 'senado',FALSE) %>%
     dplyr::select(ementa_materia, sigla_subtipo_materia, numero_materia) %>%
     unique
 }
@@ -393,24 +395,23 @@ tail_descricao_despacho_Senado <- function(df, qtd = 1) {
 #' @examples
 #'  extract_locais(fetch_tramitacao(91341, 'senado', T))
 extract_locais <- function(df) {
-  comissao_json <- senado_env$fase_comissao
   df <-
     df %>%
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(
       local =
         dplyr::case_when(
-          descricao_situacao %in% senado_constants$regex_plenario ~
+          situacao_descricao_situacao %in% senado_constants$regex_plenario ~
             senado_constants$plenario,
           (
             stringr::str_detect(
               tolower(texto_tramitacao),
               senado_constants$regex_recebimento_comissoes
             ) |
-              descricao_situacao %in% senado_constants$regex_comissoes_vector
+              situacao_descricao_situacao %in% senado_constants$regex_comissoes_vector
           ) ~
             sigla_local,
-          descricao_situacao == senado_constants$regex_camara ~
+          situacao_descricao_situacao == senado_constants$regex_camara ~
             senado_constants$mesa_camara
         )
     )

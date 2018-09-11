@@ -9,7 +9,7 @@ source(here::here("R/camara-lib.R"))
 data_local <- function(df) {
   df <-
     df %>%
-    dplyr::filter((!(grepl('^S', sigla_local) | sigla_local == 'MESA')))
+    filter((!(grepl('^S', local) | local == 'MESA')))
 
   df %>%
     dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
@@ -116,13 +116,13 @@ data_fase_global <- function(bill_id, tramitacao) {
     dplyr::group_by(sigla_local, sequence = data.table::rleid(sigla_local)) %>%
     dplyr::summarise(start = min(data_hora),
               end = max(end_data)) %>%
-    dplyr::filter(end - start > 0) %>%
-    dplyr::ungroup() %>%
-    dplyr::arrange(sequence) %>%
-    dplyr::select(-sequence) %>%
-    dplyr::rename(label = sigla_local) %>%
-    dplyr::mutate(group = "Global",
-           label = dplyr::case_when(label == "CD-MESA-PLEN" ~ "Apresentação",
+    #filter(end - start > 0) %>%
+    ungroup() %>%
+    arrange(sequence) %>%
+    select(-sequence) %>%
+    rename(label = local) %>%
+    mutate(group = "Global",
+           label = case_when(label == "CD-MESA-PLEN" ~ "Apresentação",
                              TRUE ~ label),
            color = dplyr::case_when(stringr::str_detect(label, "Plenário") ~ "#5496cf",
                              stringr::str_detect(label, "Comissão Especial") ~ "#ff9c37",

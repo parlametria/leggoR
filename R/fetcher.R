@@ -532,7 +532,8 @@ fetch_tramitacao_camara <- function(bill_id, normalized=FALSE) {
   if (normalized) {
     tram_camara <- tram_camara %>%
       dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,'T',' ')),
-                    casa = 'camara') %>%
+                    casa = 'camara',
+                    id_situacao = as.integer(id_tipo_tramitacao)) %>%
       dplyr::select(prop_id = id_prop, 
                casa,
                data_hora, 
@@ -655,7 +656,7 @@ fetch_events <- function(prop_id) {
 #' @examples
 #' fetch_proposicao(91341, 'senado')
 #' @export
-fetch_proposicao <- function(id, casa, normalized=FALSE) {
+fetch_proposicao <- function(id, casa, normalized=TRUE) {
   casa <- tolower(casa)
   if (casa == 'camara') {
     fetch_proposicao_camara(id,normalized)
@@ -686,7 +687,7 @@ fetch_proposicoes <- function(pls_ids) {
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
 #' fetch_proposicao_senado(91341)
-fetch_proposicao_senado <- function(proposicao_id,normalized=FALSE) {
+fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE) {
   url_base_proposicao <-
     "http://legis.senado.leg.br/dadosabertos/materia/"
   da_url <- paste0(url_base_proposicao, proposicao_id)
@@ -775,7 +776,7 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=FALSE) {
 #' @return Dataframe
 #' @examples
 #' fetch_proposicao_camara(2056568)
-fetch_proposicao_camara <- function(prop_id,normalized=FALSE) {
+fetch_proposicao_camara <- function(prop_id,normalized=TRUE) {
   prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%
     rename_df_columns()
   

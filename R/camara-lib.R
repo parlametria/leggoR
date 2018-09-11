@@ -78,7 +78,7 @@ get_comissoes_in_camara <- function(df) {
     stringr::str_detect(str, stringr::regex(regex, ignore_case = TRUE))
   }
   
-  test <- df %>%
+  df %>%
     dplyr::mutate(
       comissoes = dplyr::case_when(
         (detect(texto_tramitacao, 'cria..o de comiss.o tempor.ria') | 

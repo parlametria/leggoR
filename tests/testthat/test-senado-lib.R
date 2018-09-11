@@ -22,7 +22,7 @@ important_eventos <- tibble::frame_data(~ evento, ~ situacao_codigo_situacao,
 setup <- function(){
   ## tramitacao_data <<- readr::read_csv(paste0(here::here("data/Senado/"), 91341, "-tramitacao-senado.csv"))
   PROPOSICOES_ID <<- c(91341)
-  tramitacao_data <<- fetch_tramitacao(PROPOSICOES_ID, 'senado')
+  tramitacao_data <<- agoradigital::fetch_tramitacao(PROPOSICOES_ID, 'senado', TRUE)
   return(TRUE)
 }
 

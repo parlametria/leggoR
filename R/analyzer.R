@@ -27,21 +27,27 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
   return(proc_tram_data)
 }
 
-#' @title Retorna energia de uma proposição
-#' @description Recebido um dataframe com as colunas: label,start,end,time_interval,group,color
-#'  retorna um inteiro para indicar a energia este inteiro é a soma dos eventos
-#' @param data Data frame formatado para a criação do vistime 
+#' @title Retorna energia de uma proposição no congresso.
+#' @description Recebido o dataframe da tramitação contendo as colunas: data_hora e evento,
+#' retorna um valor que indica a energia da proposição
+#' @param tramitacao_df Dataframe da tramitação contendo as colunas: data_hora e evento
+#' @param days_ago Quantidade de dias a serem analizados. O padrão é 30
+#' @param pivot_day Dia de partida de onde começará a análise. O padrão é o dia atual
 #' @return Energia de uma proposição.
-#' @examples
-#' get_energia(dataFrameVistime)
+#' @importFrom magrittr '%>%'
 #' @export
-get_energia <- function(data) {
-  eventos <-
-    data %>%
-    dplyr::filter(group == "Evento") %>%
+get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::today()) {
+  working_days <- ((days_ago / 7) * 5)
+  
+  start_date = pivot_day - lubridate::days(days_ago)
+  
+  qtd_eventos <-
+    tramitacao_df %>%
+    dplyr::filter(data_hora >= start_date) %>%
+    dplyr::filter(!is.na(evento)) %>%
     nrow()
   
-  eventos / nrow(data)
+  qtd_eventos / working_days
 }
 
 #' @title Extrai o regime de tramitação de um PL
