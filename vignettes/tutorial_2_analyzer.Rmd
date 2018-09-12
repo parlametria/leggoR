@@ -55,7 +55,7 @@ tram_senado <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado, 'senad
 
 eventos_senado <- agoradigital::process_proposicao(prop_senado, tram_senado, 'senado')
 eventos_senado %>% 
-  select(data_tramitacao, evento, local, casa, global)
+  select(data_hora, evento, local, casa, global)
 ```
 
 <br />

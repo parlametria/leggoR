@@ -24,7 +24,7 @@ last_n_despacho_in_camara <- function(df, qtd = 1) {
   df %>%
     dplyr::arrange(data_hora) %>%
     tail(qtd) %>%
-    dplyr::select(data_hora, descricao_tramitacao, despacho)
+    dplyr::select(data_hora, texto_tramitacao)
 }
 
 #' @title Retorna o dataframe das comissões na Câmara
@@ -79,28 +79,23 @@ get_comissoes_in_camara <- function(df) {
   }
   
   df %>%
-    dplyr::mutate(comissoes = dplyr::case_when((
-      detect(descricao_tramitacao, 'distribuição') &
-        (
-          detect(descricao_tramitacao, 'cria..o de comiss.o tempor.ria') |
-            detect(despacho, 'especial')
-        )
-    ) ~ 'Comissão Especial',
-    (
-      detect(descricao_tramitacao, 'distribuição') &
-        (
-          detect(despacho, 'às* comiss..s*|despacho à') |
-            detect(despacho, 'novo despacho')
-        )
-    ) ~ despacho)) %>%
+    dplyr::mutate(
+      comissoes = dplyr::case_when(
+        (detect(texto_tramitacao, 'cria..o de comiss.o tempor.ria') | 
+         detect(texto_tramitacao, 'à comiss.o .*especial')) ~ 
+        'Comissão Especial',
+        ((detect(texto_tramitacao, '^às* comiss..s*') |
+         detect(texto_tramitacao, '^despacho à')) 
+         #|detect(texto_tramitacao, 'novo despacho')
+         ) ~
+        texto_tramitacao)
+    ) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::mutate(proximas_comissoes = stringr::str_extract_all(comissoes, reg) %>% as.list()) %>%
-    dplyr::select(data_hora, id_prop, proximas_comissoes) %>%
+    dplyr::select(data_hora, prop_id, proximas_comissoes) %>%
     dplyr::mutate(proximas_comissoes = map(proximas_comissoes, fix_names)) %>%
     unique()
 }
-
-
 
 #' @title Altera as datas da tramitação para formato mais fácil de tratar
 #' @description Formata cada data da coluna para o formato POSIXct
@@ -108,7 +103,7 @@ get_comissoes_in_camara <- function(df) {
 #' @return Dataframe com a coluna de datas refatorada para um formato tratável.
 #' @export
 refact_date <- function(df) {
-  dplyr::mutate(df, data_hora = lubridate::ymd_hm(data_hora))
+  dplyr::mutate(df, data_hora = lubridate::ymd_hms(data_hora))
 }
 
 #' @title Ordena o dataframe de acordo com a data
@@ -131,56 +126,6 @@ fetch_proposicao_with_apensamentos <- function(prop_id) {
   rcongresso::fetch_proposicao(prop_id) %>%
     dplyr::mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse =
                                                   ' '))
-}
-
-#' @title Baixa dados de requerimentos relacionados
-#' @description Retorna um dataframe contendo dados sobre os requerimentos relacionados a uma proposição
-#' @param id ID de uma proposição
-#' @param mark_deferimento valor default true
-#' @return Dataframe
-#' @export
-fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
-  regexes <-
-    tibble::frame_data(
-      ~ deferimento,
-      ~ regex,
-      'indeferido',
-      '^Indefiro',
-      'deferido',
-      '^(Defiro)|(Aprovado)'
-    )
-  
-  related <-
-    rcongresso::fetch_relacionadas(id)$uri %>%
-    strsplit('/') %>%
-    vapply(last, '') %>%
-    unique %>%
-    rcongresso::fetch_proposicao()
-  
-  requerimentos <-
-    related %>%
-    dplyr::filter(stringr::str_detect(.$siglaTipo, '^REQ'))
-  
-  if (!mark_deferimento)
-    return(requerimentos)
-  
-  tramitacoes <-
-    requerimentos$id %>%
-    rcongresso::fetch_tramitacao()
-  
-  related <-
-    tramitacoes %>%
-    # mark tramitacoes rows based on regexes
-    fuzzyjoin::regex_left_join(regexes, by = c(despacho = 'regex')) %>%
-    dplyr::group_by(id_prop) %>%
-    # fill down marks
-    tidyr::fill(deferimento) %>%
-    # get last mark on each tramitacao
-    dplyr::do(tail(., n = 1)) %>%
-    dplyr::ungroup() %>%
-    dplyr::select(id_prop, deferimento) %>%
-    # and mark proposicoes based on last tramitacao mark
-    dplyr::left_join(related, by = c('id_prop' = 'id'))
 }
 
 #' @title Recupera os últimos eventos (sessões/reuniões) de uma proposição na Câmara
@@ -214,7 +159,7 @@ get_next_events <- function(prop_id) {
 #' @param id ID da proposição
 #' @return Dataframe da proposição
 #' @examples
-#'  fetch_proposicao_camara(345311)
+#'  fetch_proposicao_renamed(345311)
 #' @export
 #Fetch a bill with renamed columns
 fetch_proposicao_renamed <- function(id) {

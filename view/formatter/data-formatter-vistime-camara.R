@@ -15,7 +15,7 @@ source(here::here("R/camara-lib.R"))
 data_local <- function(df) {
   df <-
     df %>%
-    filter((!(grepl('^S', sigla_orgao) | sigla_orgao == 'MESA')))
+    filter((!(grepl('^S', local) | local == 'MESA')))
 
   df %>%
     mutate(end_data = lead(data_hora, default=Sys.time())) %>%
@@ -125,7 +125,7 @@ data_fase_global <- function(bill_id, tramitacao) {
     group_by(local, sequence = rleid(local)) %>%
     summarise(start = min(data_hora),
               end = max(end_data)) %>%
-    filter(end - start > 0) %>%
+    #filter(end - start > 0) %>%
     ungroup() %>%
     arrange(sequence) %>%
     select(-sequence) %>%
@@ -180,7 +180,7 @@ data_situacao_comissao <- function(df) {
 #' @examples
 #' build_vis_csv_camara(fetch_tramitacao_camara(2121442))
 build_vis_csv_camara <- function(tram_camara_df, output_folder=NULL) {
-  bill_id <- tram_camara_df[1, "id_prop"]
+  bill_id <- tram_camara_df[1, "prop_id"]
   file_path <- paste0(output_folder,'/vis/tramitacao/', bill_id, '-data-camara.csv')
 
   data <- 
@@ -191,4 +191,6 @@ build_vis_csv_camara <- function(tram_camara_df, output_folder=NULL) {
     filter(group != "Comissão")
   
   readr::write_csv(data, file_path)
+  
+  data
 }

@@ -195,7 +195,7 @@ fetch_relatorias <- function(proposicao_id) {
 #' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações da última relatoria de uma proposição no Senado
 #' @examples
-#' fetch_relatorias(91341)
+#' fetch_last_relatoria(91341)
 #' @export
 fetch_last_relatoria <- function(proposicao_id) {
   relatoria <- fetch_relatorias(proposicao_id)
@@ -531,7 +531,8 @@ fetch_tramitacao_camara <- function(bill_id, normalized=FALSE) {
   if (normalized) {
     tram_camara <- tram_camara %>%
       dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,'T',' ')),
-                    casa = 'camara') %>%
+                    casa = 'camara',
+                    id_situacao = as.integer(id_tipo_tramitacao)) %>%
       dplyr::select(prop_id = id_prop, 
                casa,
                data_hora, 
@@ -563,8 +564,8 @@ import_proposicao <- function(prop_id, casa, out_folderpath=NULL) {
     print('Parâmetro "casa" não identificado.')
   }
   
-  prop_df <- fetch_proposicao(prop_id,casa)
-  tram_df <- fetch_tramitacao(prop_id,casa)
+  prop_df <- fetch_proposicao(prop_id,casa, TRUE)
+  tram_df <- fetch_tramitacao(prop_id,casa, TRUE)
   emendas_df <- fetch_emendas(prop_id,casa)
   
   if (!is.null(out_folderpath)) {
@@ -654,7 +655,7 @@ fetch_events <- function(prop_id) {
 #' @examples
 #' fetch_proposicao(91341, 'senado')
 #' @export
-fetch_proposicao <- function(id, casa, normalized=FALSE) {
+fetch_proposicao <- function(id, casa, normalized=TRUE) {
   casa <- tolower(casa)
   if (casa == 'camara') {
     fetch_proposicao_camara(id,normalized)
@@ -685,7 +686,7 @@ fetch_proposicoes <- function(pls_ids) {
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
 #' fetch_proposicao_senado(91341)
-fetch_proposicao_senado <- function(proposicao_id,normalized=FALSE) {
+fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE) {
   url_base_proposicao <-
     "http://legis.senado.leg.br/dadosabertos/materia/"
   da_url <- paste0(url_base_proposicao, proposicao_id)
@@ -759,6 +760,7 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=FALSE) {
                     data_apresentacao,
                     ementa = ementa_materia,
                     palavras_chave = indexacao_materia,
+                    casa_origem = nome_casa_origem,
                     autor_nome)
   }
   
@@ -773,16 +775,12 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=FALSE) {
 #' @return Dataframe
 #' @examples
 #' fetch_proposicao_camara(2056568)
-fetch_proposicao_camara <- function(prop_id,normalized=FALSE) {
+fetch_proposicao_camara <- function(prop_id,normalized=TRUE) {
   prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%
     rename_df_columns()
   
   if (normalized) {
-    autor <- 
-      extract_autor_in_camara(prop_id) %>%
-      utils::tail(1) %>% 
-      dplyr::rename("autor_nome" = "autor.nome") %>%
-      select(autor_nome)
+    autor_df <- extract_autor_in_camara(prop_id)
     
     prop_camara <- prop_camara %>%
       dplyr::mutate(prop_id = as.integer(id),
@@ -791,7 +789,8 @@ fetch_proposicao_camara <- function(prop_id,normalized=FALSE) {
                     ementa = paste(ementa,ementa_detalhada),
                     data_apresentacao = lubridate::ymd_hm(stringr::str_replace(data_apresentacao,'T',' ')),
                     casa = 'camara',
-                    autor_nome = autor[[1]]) %>%
+                    casa_origem = autor_df[1,]$casa_origem,
+                    autor_nome = autor_df[1,]$autor.nome) %>%
       dplyr::select(prop_id,
                     casa,
                     tipo_materia = sigla_tipo,
@@ -800,7 +799,8 @@ fetch_proposicao_camara <- function(prop_id,normalized=FALSE) {
                     data_apresentacao,
                     ementa,
                     palavras_chave = keywords,
-                    autor_nome)
+                    autor_nome,
+                    casa_origem)
   }
   
   prop_camara
@@ -985,3 +985,50 @@ fetch_agenda <- function(initial_date, end_date, house) {
   }
 }
 
+#' @title Baixa dados de requerimentos relacionados
+#' @description Retorna um dataframe contendo dados sobre os requerimentos relacionados a uma proposição
+#' @param id ID de uma proposição
+#' @param mark_deferimento valor default true
+#' @return Dataframe
+#' @export
+fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
+  regexes <-
+    tibble::frame_data(
+      ~ deferimento,
+      ~ regex,
+      'indeferido',
+      '^Indefiro',
+      'deferido',
+      '^(Defiro)|(Aprovado)'
+    )
+  
+  related <-
+    rcongresso::fetch_relacionadas(id)$uri %>%
+    strsplit('/') %>%
+    vapply(last, '') %>%
+    unique %>%
+    rcongresso::fetch_proposicao()
+  
+  requerimentos <-
+    related %>%
+    dplyr::filter(stringr::str_detect(.$siglaTipo, '^REQ'))
+  
+  if (!mark_deferimento)
+    return(requerimentos)
+  
+  tramitacoes <- fetch_tramitacao(requerimentos$id, 'camara', TRUE)
+  
+  related <-
+    tramitacoes %>%
+    # mark tramitacoes rows based on regexes
+    fuzzyjoin::regex_left_join(regexes, by = c(texto_tramitacao = 'regex')) %>%
+    dplyr::group_by(prop_id) %>%
+    # fill down marks
+    tidyr::fill(deferimento) %>%
+    # get last mark on each tramitacao
+    dplyr::do(tail(., n = 1)) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(prop_id, deferimento) %>%
+    # and mark proposicoes based on last tramitacao mark
+    dplyr::left_join(related, by = c('prop_id' = 'id'))
+}

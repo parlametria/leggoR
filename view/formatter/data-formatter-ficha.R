@@ -7,6 +7,7 @@ source(here::here('R/analyzer.R'))
 source(here::here('R/fetcher.R'))
 
 camara_codes <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 
 extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   nome_ementa_camara <- get_ementas_in_camara(bill_id_camara)
@@ -30,12 +31,12 @@ extract_informations <- function(bill_id_camara, bill_id_senado, url) {
   casa <- if_else(despacho_camara$data_hora > despacho_senado$data_hora, 'Câmara', 'Senado')
   if(casa == 'Câmara') {
     eventos <- as.list(last_events_camara$evento)
-    despacho <- despacho_camara$descricao_tramitacao
+    despacho <- despacho_camara$texto_tramitacao
     relator <- extract_last_relator_in_camara(tramitacao_camara)
   } else {
     eventos <- as.list(last_events_senado$evento)
-    despacho <- despacho_senado$situacao_descricao_situacao
-    relator <- fetch_last_relatoria(id)$nome_parlamentar
+    despacho <- despacho_senado$texto_tramitacao
+    relator <- fetch_last_relatoria(bill_id_senado)$nome_parlamentar
   }
 
   proposicoes_df <-
@@ -66,39 +67,33 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
   if (casa == 'camara') {
     prop_camara <- readr::read_csv(here::here(paste0('data/camara/', id, '-proposicao-camara.csv')))
     tram_camara <- readr::read_csv(here::here(paste0('data/camara/', id, '-fases-tramitacao-camara.csv')))
-    nome_camara <- prop_camara %>% dplyr::select(ementa, sigla_tipo, numero) %>% tail(1)
-    ano <- prop_camara$ano
+    nome_camara <- prop_camara %>% dplyr::select(ementa, tipo_materia, numero) %>% tail(1)
     page_url <- paste0(camara_codes$endpoints_api$url_base_tramitacao, id)
     regime <- extract_regime_tramitacao_camara(tram_camara)
     apreciacao <- extract_forma_apreciacao_camara(id)
-    nome <- paste0(nome_camara$sigla_tipo, nome_camara$numero, "/", ano)
+    nome <- paste0(nome_camara$sigla_tipo, nome_camara$numero, "/", prop_camara$ano)
     despacho_camara <- last_n_despacho_in_camara(tram_camara)
-    autor <- extract_autor_in_camara(id) %>% tail(1)
+    nome_autor <- prop_camara$autor_nome
     ementa <- nome_camara$ementa
     relator <- extract_last_relator_in_camara(tram_camara)
-    despacho <- despacho_camara$descricao_tramitacao
-    nome_autor <- autor$autor.nome
-    casa_origem <- autor$casa_origem
+    despacho <- despacho_camara$texto_tramitacao
+    casa_origem <- prop_camara$casa_origem
     data_apresentacao <- format(as.Date(prop_camara$data_apresentacao), '%d/%m/%Y')
     eventos <- as.list(extract_last_n_events_in_camara(tram_camara, 3)$evento)
   } else if (casa == 'senado') {
     prop_senado <- readr::read_csv(here::here(paste0('data/senado/', id, '-proposicao-senado.csv')))
     tram_senado <- readr::read_csv(here::here(paste0('data/senado/', id, '-fases-tramitacao-senado.csv')))
-    ano <- prop_senado$ano_materia
     apreciacao <- extract_forma_apreciacao_senado(id)
     regime <- extract_regime_tramitacao_senado(tram_senado)
     despacho_senado <- tail_descricao_despacho_Senado(tram_senado)
-    nome_senado <- prop_senado %>% select(ementa_materia, sigla_subtipo_materia, numero_materia) %>% unique
-    page_url <- prop_senado$page_url
-    nome <- paste0(nome_senado$sigla_subtipo_materia, nome_senado$numero_materia, '/', ano)
-    casa_origem <- prop_senado$nome_casa_origem
-    nome_autor <- prop_senado$nome_autor
-    partido_autor <- prop_senado$sigla_partido_parlamentar
-    uf_autor <- prop_senado$uf_parlamentar
-    nome_autor <- ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, ' ', partido_autor, '/', uf_autor))
+    nome_senado <- prop_senado %>% select(tipo_materia, numero) %>% unique
+    page_url <- paste0(senado_env$endpoints_api$page_url_senado, '/', id)
+    nome <- paste0(nome_senado$tipo_materia, nome_senado$numero, '/', prop_senado$ano)
+    casa_origem <- prop_senado$casa_origem
+    nome_autor <- prop_senado$autor_nome
     despacho <- despacho_senado$texto_tramitacao
     relatoria <- fetch_last_relatoria(id) %>% tail(1)
-    ementa <- if_else(is.null(prop_senado$explicacao_ementa_materia), prop_senado$ementa_materia, prop_senado$explicacao_ementa_materia)
+    ementa <- prop_senado$ementa
     relator <- extract_ultimo_relator(id)
     data_apresentacao <- format(as.Date(prop_senado$data_apresentacao), '%d/%m/%Y') %>% tail(1)
     eventos <-  as.list(extract_n_last_eventos_Senado(tram_senado, 3)$evento)
@@ -132,7 +127,7 @@ gera_tabela_apensadas_senado <- function(bill_id_senado) {
   url_senado <- "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
 
   senado <-
-    fetch_proposicao(bill_id_senado, 'senado')
+    fetch_proposicao(bill_id_senado, 'senado', FALSE)
 
   #se não tiver proposição
   if (!("" %in% senado$proposicoes_apensadas)) {

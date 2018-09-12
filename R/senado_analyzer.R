@@ -5,8 +5,6 @@ source(here::here("R/congresso-lib.R"))
 #' @description Cria uma nova coluna com as fases no Senado
 #' @param df Dataframe da tramitação no Senado
 #' @return Dataframe com a coluna "fase" adicionada.
-#' @examples
-#' tramitacao %>% extract_fase_Senado()
 extract_fase_Senado <-
   function(dataframe,
            recebimento_phase,
@@ -24,9 +22,9 @@ extract_fase_Senado <-
           dplyr::case_when(
             stringr::str_detect(tolower(texto_tramitacao), fases$regex) ~ fases$recebimento,
             stringr::str_detect(tolower(texto_tramitacao), comissoes_phase) ~ fases$analise,
-            #detect_fase(situacao_codigo_situacao, phase_two) ~ fases$analise,
-            detect_fase(situacao_codigo_situacao, phase_three) ~ fases$discussao,
-            detect_fase(situacao_codigo_situacao, encaminhamento_phase) ~ fases$encaminhamento
+            #detect_fase(id_situacao, phase_two) ~ fases$analise,
+            detect_fase(id_situacao, phase_three) ~ fases$discussao,
+            detect_fase(id_situacao, encaminhamento_phase) ~ fases$encaminhamento
           )
       )
   }
@@ -81,7 +79,7 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
   
   casa_origem <-
     dplyr::if_else(
-      proposicao_df$nome_casa_origem == "Senado Federal",
+      proposicao_df$casa_origem == "Senado Federal",
       fase_global_constants$origem_senado,
       fase_global_constants$revisao_camara
     )
@@ -105,7 +103,8 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
     futuro_comissoes <-
       data_tramitacao %>%
       utils::tail(nrow(comissoes_faltantes)) %>%
-      dplyr::mutate(data_hora = Sys.Date() + 200)
+      dplyr::mutate(data_hora = Sys.Date() + 200,
+                    evento = NA)
     
     futuro_comissoes$local <- 
       comissoes_faltantes$local 
@@ -123,7 +122,8 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
       utils::tail(1) %>%
       dplyr::mutate(local = "Comissões",
                     data_hora = Sys.Date() + 201,
-                    global = casa_atual)
+                    global = casa_atual,
+                    evento = NA)
     
     rbind(data_tramitacao, futuro_casa_revisora)
       
@@ -142,8 +142,6 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
 #' @description Cria uma nova coluna com a fase casa no Senado
 #' @param df Dataframe da tramitação no Senado com as descrições formatadas
 #' @return Dataframe com a coluna "casa" adicionada.
-#' @examples
-#' bill_passage %>% extract_fase_casa_Senado(phase_one)
 extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_phase, fase_comissoes) {
   dataframe <-
     dataframe %>%
@@ -185,8 +183,7 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_p
 #' @param events_df Dataframe com os eventos contendo as colunas "evento" e "regex"
 #' @return Dataframe com a coluna "evento" adicionada.
 #' @examples
-#' df <- fetch_tramitacao(91341)
-#' extract_evento_Senado(df)
+#' extract_evento_Senado(fetch_tramitacao(91341, 'senado', T))
 extract_evento_Senado <- function(tramitacao_df) {
   df <- regex_left_match(tramitacao_df, senado_env$eventos, "evento")
   eventos <- senado_env$evento
@@ -231,7 +228,7 @@ extract_evento_Senado <- function(tramitacao_df) {
 #' @param num Quantidade de eventos a serem recuperados
 #' @return Dataframe contendo os n últimos eventos importantes que aconteceram no Senado
 #' @examples
-#' df %>% extract_n_last_eventos_Senado(4)
+#' extract_evento_Senado(fetch_tramitacao(91341, 'senado', T)) %>% extract_n_last_eventos_Senado(4)
 extract_n_last_eventos_Senado <- function(df, num) {
   df %>%
     dplyr::filter(!is.na(evento)) %>%
@@ -254,7 +251,7 @@ get_comissoes_senado <- function() {
 #' @param df Dataframe da tramitação no Senado
 #' @return Dataframe contendo o código da proposição, as comissões e a data
 #' @examples
-#' extract_comissoes_Senado(fetch_tramitacao(129808))
+#' extract_comissoes_Senado(fetch_tramitacao(91341, 'senado', T))
 extract_comissoes_Senado <- function(df) {
   codigos_comissoes <- senado_env$comissoes
   
@@ -353,7 +350,7 @@ extract_comissoes_Senado <- function(df) {
                     )) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::arrange(data_hora) %>%
-    dplyr::select(codigo_materia, comissoes, data_hora) %>%
+    dplyr::select(comissoes, data_hora) %>%
     dplyr::rowwise() %>%
     dplyr::mutate(comissoes = stringr::str_extract_all
                   (comissoes, comissoes_permanentes_especiais)) %>%
@@ -370,7 +367,7 @@ extract_comissoes_Senado <- function(df) {
 #' @examples
 #' get_nome_ementa_Senado(91341)
 get_nome_ementa_Senado <- function(proposicao_id) {
-  fetch_proposicao(proposicao_id, 'senado') %>%
+  fetch_proposicao(proposicao_id, 'senado',FALSE) %>%
     dplyr::select(ementa_materia, sigla_subtipo_materia, numero_materia) %>%
     unique
 }
@@ -381,14 +378,13 @@ get_nome_ementa_Senado <- function(proposicao_id) {
 #' @param qtd  (opcional) Quantidade de eventos a serem recuperados
 #' @return Dataframe com as últimas n tramitações no Senado.
 #' @examples
-#' tramitacao %>% tail_descricao_despacho_Senado()
-#' tramitacao %>% tail_descricao_despacho_Senado(4)
+#' fetch_tramitacao(91341, 'senado', T) %>% tail_descricao_despacho_Senado()
+#' fetch_tramitacao(91341, 'senado', T) %>% tail_descricao_despacho_Senado(4)
 tail_descricao_despacho_Senado <- function(df, qtd = 1) {
   df %>%
     dplyr::arrange(data_hora) %>%
     tail(qtd) %>%
     dplyr::select(data_hora,
-                  situacao_descricao_situacao,
                   texto_tramitacao)
 }
 
@@ -397,9 +393,8 @@ tail_descricao_despacho_Senado <- function(df, qtd = 1) {
 #' @param df Dataframe da tramitação no Senado
 #' @return Dataframe da tramitacao contendo mais uma coluna chamada local
 #' @examples
-#'  extract_locais(fetch_tramitacao(91341))
+#'  extract_locais(fetch_tramitacao(91341, 'senado', T))
 extract_locais <- function(df) {
-  comissao_json <- senado_env$fase_comissao
   df <-
     df %>%
     dplyr::arrange(data_hora, sequencia) %>%
@@ -415,7 +410,7 @@ extract_locais <- function(df) {
             ) |
               situacao_descricao_situacao %in% senado_constants$regex_comissoes_vector
           ) ~
-            origem_tramitacao_local_sigla_local,
+            sigla_local,
           situacao_descricao_situacao == senado_constants$regex_camara ~
             senado_constants$mesa_camara
         )
@@ -436,7 +431,7 @@ extract_locais <- function(df) {
 #' @param df Dataframe da tramitação no Senado.
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
-#' extract_regime_tramitacao_senado(fetch_tramitacao(91341,'senado'))
+#' extract_regime_tramitacao_senado(fetch_tramitacao(91341,'senado', T))
 extract_regime_tramitacao_senado <- function(tramitacao_df) {
   regime <- senado_env$regimes
   df <-
@@ -461,7 +456,7 @@ extract_regime_tramitacao_senado <- function(tramitacao_df) {
 #' @param df Dataframe da tramitação no Senado
 #' @return Dataframe contendo o código da proposição, as comissões e a data
 #' @examples
-#' extract_first_comissoes_Senado(fetch_tramitacao(129808))
+#' extract_first_comissoes_Senado(fetch_tramitacao(129808, 'senado', T))
 extract_first_comissoes_Senado <- function(df) {
   extract_comissoes_Senado(df)[1,]
 }
@@ -471,7 +466,7 @@ extract_first_comissoes_Senado <- function(df) {
 #' @param df Dataframe da tramitação no Senado
 #' @return Dataframe com os requerimentos aprovados no Senado.
 #' @examples
-#' tramitacao %>% extract_approved_requerimentos_in_senado()
+#' fetch_tramitacao(91341, 'senado', T) %>% extract_approved_requerimentos_in_senado()
 extract_approved_requerimentos_in_senado <- function(df) {
   apr_requerimentos_regex <- c('(aprova.* | deferid.*)requeriment.* nº.*')
   apr_requerimentos_df <- df %>%
@@ -565,7 +560,7 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
     tidyr::fill(fase)
   
   proc_tram_df$situacao_descricao_situacao <-
-    to_underscore(proc_tram_df$situacao_descricao_situacao) %>%
+    to_underscore(proc_tram_df$descricao_situacao) %>%
     stringr::str_replace_all("\\s+", "_")
   
   proc_tram_df <-
@@ -581,10 +576,10 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
   index_of_camara <-
     ifelse(
       length(which(
-        proc_tram_df$situacao_codigo_situacao == 52
+        proc_tram_df$id_situacao == 52
       )) == 0,
       nrow(proc_tram_df),
-      which(proc_tram_df$situacao_codigo_situacao == 52)[1]
+      which(proc_tram_df$id_situacao == 52)[1]
     )
   
   proc_tram_df <-
@@ -595,25 +590,4 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
     unique()
   
   proc_tram_df
-}
-
-#' @title Retorna energia de uma proposição de senado.
-#' @description Recebido o dataframe da tramitação contendo as colunas: data_tramitacao e evento,
-#' retorna um valor que indica a energia da proposição no senado.
-#' @param tramitacao_df Dataframe da tramitação contendo as colunas: data_tramitacao e evento
-#' @param days_ago Quantidade de dias a serem analizados. O padrão é 30
-#' @param pivot_day Dia de partida de onde começará a análise. O padrão é o dia atual
-#' @return Energia de uma proposição.
-#' @examples
-#' get_energia(dataFrameTramitacao)
-get_energia_senado <- function(tramitacao_df, days_ago = 30, pivot_day = Sys.Date()) {
-  working_days <- (days_ago / 7 * 5)
-
-  qtd_eventos <-
-    tramitacao_df %>%
-    dplyr::filter(!is.na(evento)) %>%
-    dplyr::filter(as.numeric(difftime(pivot_day, data_tramitacao, units="days")) <= days_ago) %>%
-    nrow()
-
-  qtd_eventos / working_days
 }
