@@ -32,7 +32,7 @@ regex_left_match <- function(df, regex_df, new_column) {
   regex_df[is.na(regex_df)] <- ".*"
   
   df %>%
-    dplyr::mutate(sort = row_number()) %>%
+    dplyr::mutate(sort = dplyr::row_number()) %>%
     fuzzyjoin::regex_left_join(regex_df, by = columns, ignore_case = TRUE) %>%
     dplyr::group_by(sort) %>%
     dplyr::ungroup() %>%

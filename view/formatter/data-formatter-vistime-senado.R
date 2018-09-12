@@ -114,7 +114,7 @@ format_fase_global <- function(df) {
 #' @examples
 #' build_vis_csv_senado(fetch_tramitacao_senado(91341))
 build_vis_csv_senado <- function(tram_senado_df, output_folder=NULL) {
-  bill_id <- tram_senado_df[1, "codigo_materia"]
+  bill_id <- tram_senado_df[1, "prop_id"]
   tram_senado_filtered <- tram_senado_df %>%
     dplyr::select(data_hora, local, evento, casa, global, data_audiencia)
   
@@ -123,7 +123,7 @@ build_vis_csv_senado <- function(tram_senado_df, output_folder=NULL) {
           format_fase_global(tram_senado_filtered),
           #format_fase(tram_senado_filtered),
           format_eventos(tram_senado_filtered)) %>%
-    filter(time_interval != 0 | group == "Evento") %>%
+   # filter(time_interval != 0 | group == "Evento") %>%
     filter(group != 'Comissão')
   
   vis_df %>%
