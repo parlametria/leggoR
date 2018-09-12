@@ -64,3 +64,11 @@ to_underscore <- function(x) {
     gsub('([a-z])([A-Z])', '\\1_\\2', .) %>%
     tolower()
 }
+
+sigmoid1 <- function(x) {
+  return(x/(1+abs(x)))
+}
+
+sigmoid2 <- function(x) {
+  return(x/(sqrt(1+x^2)))
+}
