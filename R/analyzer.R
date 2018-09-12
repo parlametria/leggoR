@@ -87,6 +87,17 @@ extract_forma_apreciacao <- function(tram_df) {
   apreciacao
 }
 
+#' @title Extrai se uma proposição está em pauta
+#' @description Extrai se uma proposição está em pauta
+#' @param proposicao_id id do PL
+#' @return TRUE se estiver em pauta FALSE caso contrário
+#' @examples
+#' extract_pauta(fetch_agenda('2018-07-03', '2018-07-10', 'senado'), 117839)
+#' @export
+extract_pauta <- function(agenda, proposicao_id) {
+  proposicao_id %in% agenda$codigo_materia
+}
+
 #' @title Extrai o status da tramitação de um PL
 #' @description Obtém o status da tramitação de um PL
 #' @param tram_df Dataframe da tramitação do PL.
@@ -98,5 +109,6 @@ extract_forma_apreciacao <- function(tram_df) {
 extract_status_tramitacao <- function(tram_df) {
   regime <- extract_regime_tramitacao(tram_df)
   apreciacao <- extract_forma_apreciacao(tram_df)
-  status_tram <- data.frame(prop_id=tram_df[1,]$prop_id,regime_tramitacao=regime,forma_apreciacao=apreciacao)
+  pauta <- extract_pauta(fetch_agenda(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4, tram_df[1,]$casa), tram_df[1,]$prop_id)
+  status_tram <- data.frame(prop_id=tram_df[1,]$prop_id,regime_tramitacao=regime,forma_apreciacao=apreciacao, em_pauta = pauta)
 }
