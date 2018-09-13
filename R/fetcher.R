@@ -556,8 +556,12 @@ build_data_filepath <- function(folder_path,data_prefix,house,bill_id) {
 #' importar os dados daquela proposição.
 #' @param prop_id Identificador da proposição que pode ser recuperado no site da casa legislativa.
 #' @param casa Casa onde o projeto está tramitando
-#' @param casa Caminho da pasta onde os dados devem ser salvos
+#' @param out_folderpath Caminho da pasta onde os dados devem ser salvos
+#' @param apelido Apelido da proposição 
+#' @param tema Tema da proposição
 #' @export
+#' @example 
+#' import_proposicao(129808, 'senado', 'Cadastro Positivo', 'Agenda Nacional', 'data/')
 import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL) {
   casa <- tolower(casa)
   if (!(casa %in% c('camara','senado'))) {
@@ -651,9 +655,12 @@ fetch_events <- function(prop_id) {
 #' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
 #' @param id ID de uma proposição
 #' @param casa casa de onde a proposição esta
+#' @param apelido Apelido da proposição
+#' @param tema Tema da proposição
+#' @param normalized Se os dados vão ser normalizados
 #' @return Dataframe com as informações detalhadas de uma proposição
 #' @examples
-#' fetch_proposicao(91341, 'senado')
+#' fetch_proposicao(129808, 'senado', 'Cadastro Positivo', 'Agenda Nacional', T)
 #' @export
 fetch_proposicao <- function(id, casa, apelido='', tema='', normalized=TRUE) {
   casa <- tolower(casa)
@@ -683,9 +690,11 @@ fetch_proposicoes <- function(pls_ids) {
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param proposicao_id ID de uma proposição do Senado
 #' @param normalized whether or not the output dataframe should be normalized (have the same format and column names for every house)
+#' @param apelido apelido da proposição
+#' @param tema tema da proposição
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
-#' fetch_proposicao_senado(91341)
+#' fetch_proposicao_senado(129808, T, 'Cadastro Positivo', 'Agenda Nacional')
 fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema) {
   url_base_proposicao <-
     "http://legis.senado.leg.br/dadosabertos/materia/"
@@ -777,9 +786,11 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema
 #' @description Retorna um dataframe contendo dados sobre uma proposição
 #' @param prop_id Um ou mais IDs de proposições
 #' @param normalized whether or not the output dataframe should be normalized (have the same format and column names for every house)
+#' @param apelido Apelido da proposição 
+#' @param tema Tema da proposição
 #' @return Dataframe
 #' @examples
-#' fetch_proposicao_camara(2056568)
+#' fetch_proposicao_camara(2056568, T, "Lei para acabar zona de amortecimento", "Meio Ambiente")
 fetch_proposicao_camara <- function(prop_id,normalized=TRUE,apelido, tema) {
   prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%
     rename_df_columns()
