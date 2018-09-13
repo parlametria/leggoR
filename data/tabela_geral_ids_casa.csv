@@ -1,13 +1,13 @@
-id,casa,apelido
-132865,senado,Lei do Licenciamento ambiental
-91341,senado,
-41703,senado,PL do veneno
-127753,senado,Lei do teto remuneratório
-129808,senado,Lei do Cadastro Positivo
-257161,camara,Lei Geral do licenciamento ambiental
-345311,camara,Estatuto do Índio
-2056568,camara,Lei para acabar zona de amortecimento
-46249,camara,PL do Veneno
-2121442,camara,Lei do teto remuneratório
-2160860,camara,Lei do cadastro positivo
-2120775,camara,Política Nacional de redução de agrotóxico
+id,casa,apelido,tema
+132865,senado,Lei do Licenciamento ambiental,Meio Ambiente
+91341,senado,,Agenda Nacional
+41703,senado,PL do veneno,Meio Ambiente
+127753,senado,Lei do teto remuneratório,Agenda Nacional
+129808,senado,Lei do Cadastro Positivo,Agenda Nacional
+257161,camara,Lei Geral do licenciamento ambiental,Meio Ambiente
+345311,camara,Estatuto do Índio,Meio Ambiente
+2056568,camara,Lei para acabar zona de amortecimento,Meio Ambiente
+46249,camara,PL do Veneno,Meio Ambiente
+2121442,camara,Lei do teto remuneratório,Agenda Nacional
+2160860,camara,Lei do cadastro positivo,Agenda Nacional
+2120775,camara,Política Nacional de redução de agrotóxico,Meio Ambiente
