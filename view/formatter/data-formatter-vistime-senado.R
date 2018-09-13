@@ -128,5 +128,7 @@ build_vis_csv_senado <- function(tram_senado_df, output_folder=NULL) {
   
   vis_df %>%
     write_csv(paste0(output_folder,'/vis/tramitacao/',bill_id,"-data-senado.csv"))
+  
+  vis_df
 }
 
