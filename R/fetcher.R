@@ -885,6 +885,10 @@ fetch_agenda_camara <- function(initial_date, end_date) {
 fetch_agenda_senado <- function(initial_date) {
   url <- paste0("http://legis.senado.leg.br/dadosabertos/plenario/agenda/mes/", gsub('-','', initial_date))
   json_proposicao <- jsonlite::fromJSON(url, flatten = T)
+  if (is.null(json_proposicao$AgendaPlenario)) {
+    return(list(agenda = tibble::as.tibble(), materias = tibble::as.tibble(), oradores = tibble::as.tibble()))
+    }
+  
   agenda <- 
     json_proposicao$AgendaPlenario$Sessoes$Sessao %>%
     rename_table_to_underscore()
@@ -940,7 +944,7 @@ fetch_agenda_senado <- function(initial_date) {
       rename_table_to_underscore()
   }
   
-  list(agenda = agenda, materias = materia, oradores = oradores)
+  agenda <- list(agenda = agenda, materias = materia, oradores = oradores)
 }
 
 #' @title Normaliza as agendas da câmara ou do senado
@@ -952,12 +956,14 @@ fetch_agenda_senado <- function(initial_date) {
 #' normalize_agendas(fetch_agenda_camara('2018-09-03', '2018-09-07'), 'camara')
 normalize_agendas <- function(agenda, house) {
  if (tolower(house) == 'senado') {
+   if (nrow(agenda$materias) == 0) {return(agenda$materias)}
    materias <- agenda$materias
    agenda <- agenda$agenda
    agenda <- 
      merge(agenda, materias) %>%
      dplyr::select(c(data, codigo_materia, sigla_materia, numero_materia, ano_materia))
  }else {
+   if (nrow(agenda) == 0) {return(agenda)}
    agenda <-
      agenda %>%
      dplyr::select(c(hora_inicio, proposicao_.id, proposicao_.siglaTipo, proposicao_.numero, proposicao_.ano))
