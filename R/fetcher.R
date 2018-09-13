@@ -558,13 +558,13 @@ build_data_filepath <- function(folder_path,data_prefix,house,bill_id) {
 #' @param casa Casa onde o projeto está tramitando
 #' @param casa Caminho da pasta onde os dados devem ser salvos
 #' @export
-import_proposicao <- function(prop_id, casa, out_folderpath=NULL) {
+import_proposicao <- function(prop_id, casa, apelido, out_folderpath=NULL) {
   casa <- tolower(casa)
   if (!(casa %in% c('camara','senado'))) {
     print('Parâmetro "casa" não identificado.')
   }
   
-  prop_df <- fetch_proposicao(prop_id,casa, TRUE)
+  prop_df <- fetch_proposicao(prop_id,casa,apelido, TRUE)
   tram_df <- fetch_tramitacao(prop_id,casa, TRUE)
   emendas_df <- fetch_emendas(prop_id,casa)
   
@@ -655,12 +655,12 @@ fetch_events <- function(prop_id) {
 #' @examples
 #' fetch_proposicao(91341, 'senado')
 #' @export
-fetch_proposicao <- function(id, casa, normalized=TRUE) {
+fetch_proposicao <- function(id, casa, apelido='', normalized=TRUE) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    fetch_proposicao_camara(id,normalized)
+    fetch_proposicao_camara(id,normalized,apelido)
   } else if (casa == 'senado') {
-    fetch_proposicao_senado(id,normalized)
+    fetch_proposicao_senado(id,normalized,apelido)
   } else {
       print('Parâmetro "casa" não identificado.')
   }
@@ -686,7 +686,7 @@ fetch_proposicoes <- function(pls_ids) {
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
 #' fetch_proposicao_senado(91341)
-fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE) {
+fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido) {
   url_base_proposicao <-
     "http://legis.senado.leg.br/dadosabertos/materia/"
   da_url <- paste0(url_base_proposicao, proposicao_id)
@@ -745,13 +745,15 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE) {
     partido_autor <- proposicao_complete$sigla_partido_parlamentar
     uf_autor <- proposicao_complete$uf_parlamentar
 
-    proposicao_complete <- proposicao_complete %>%
+    proposicao_complete <- 
+      proposicao_complete %>%
       dplyr::mutate(prop_id = as.integer(codigo_materia),
                     numero = as.integer(numero_materia),
                     ano = as.integer(ano_materia),
                     data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao, "00:00")),
                     casa = 'senado',
-                    autor_nome = ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, ' ', partido_autor, '/', uf_autor))) %>%
+                    autor_nome = ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, ' ', partido_autor, '/', uf_autor)),
+                    apelido_materia = ifelse('apelido_materia' %in% names(.), apelido_materia, apelido)) %>%
       dplyr::select(prop_id,
                     casa,
                     tipo_materia = sigla_subtipo_materia,
@@ -761,7 +763,8 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE) {
                     ementa = ementa_materia,
                     palavras_chave = indexacao_materia,
                     casa_origem = nome_casa_origem,
-                    autor_nome)
+                    autor_nome,
+                    apelido_materia)
   }
   
   proposicao_complete
@@ -775,7 +778,7 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE) {
 #' @return Dataframe
 #' @examples
 #' fetch_proposicao_camara(2056568)
-fetch_proposicao_camara <- function(prop_id,normalized=TRUE) {
+fetch_proposicao_camara <- function(prop_id,normalized=TRUE,apelido) {
   prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%
     rename_df_columns()
   
@@ -790,7 +793,8 @@ fetch_proposicao_camara <- function(prop_id,normalized=TRUE) {
                     data_apresentacao = lubridate::ymd_hm(stringr::str_replace(data_apresentacao,'T',' ')),
                     casa = 'camara',
                     casa_origem = autor_df[1,]$casa_origem,
-                    autor_nome = autor_df[1,]$autor.nome) %>%
+                    autor_nome = autor_df[1,]$autor.nome,
+                    apelido_materia = apelido) %>%
       dplyr::select(prop_id,
                     casa,
                     tipo_materia = sigla_tipo,
@@ -800,7 +804,8 @@ fetch_proposicao_camara <- function(prop_id,normalized=TRUE) {
                     ementa,
                     palavras_chave = keywords,
                     autor_nome,
-                    casa_origem)
+                    casa_origem,
+                    apelido_materia)
   }
   
   prop_camara
@@ -876,6 +881,10 @@ fetch_agenda_camara <- function(initial_date, end_date) {
 fetch_agenda_senado <- function(initial_date) {
   url <- paste0("http://legis.senado.leg.br/dadosabertos/plenario/agenda/mes/", gsub('-','', initial_date))
   json_proposicao <- jsonlite::fromJSON(url, flatten = T)
+  if (is.null(json_proposicao$AgendaPlenario)) {
+    return(list(agenda = tibble::as.tibble(), materias = tibble::as.tibble(), oradores = tibble::as.tibble()))
+    }
+  
   agenda <- 
     json_proposicao$AgendaPlenario$Sessoes$Sessao %>%
     rename_table_to_underscore()
@@ -931,7 +940,7 @@ fetch_agenda_senado <- function(initial_date) {
       rename_table_to_underscore()
   }
   
-  list(agenda = agenda, materias = materia, oradores = oradores)
+  agenda <- list(agenda = agenda, materias = materia, oradores = oradores)
 }
 
 #' @title Normaliza as agendas da câmara ou do senado
@@ -943,12 +952,14 @@ fetch_agenda_senado <- function(initial_date) {
 #' normalize_agendas(fetch_agenda_camara('2018-09-03', '2018-09-07'), 'camara')
 normalize_agendas <- function(agenda, house) {
  if (tolower(house) == 'senado') {
+   if (nrow(agenda$materias) == 0) {return(agenda$materias)}
    materias <- agenda$materias
    agenda <- agenda$agenda
    agenda <- 
      merge(agenda, materias) %>%
      dplyr::select(c(data, codigo_materia, sigla_materia, numero_materia, ano_materia))
  }else {
+   if (nrow(agenda) == 0) {return(agenda)}
    agenda <-
      agenda %>%
      dplyr::select(c(hora_inicio, proposicao_.id, proposicao_.siglaTipo, proposicao_.numero, proposicao_.ano))
