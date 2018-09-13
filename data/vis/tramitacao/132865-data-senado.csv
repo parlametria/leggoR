@@ -1,6 +1,8 @@
 label,start,end,time_interval,group,color
 Mesa - Senado  - Origem (Senado),2018-04-12,2018-04-19,7,Global,NA
-CCJ  - Origem (Senado),2018-04-19,2018-08-07,110,Global,#ffffcc
+CCJ  - Origem (Senado),2018-04-19,2019-03-30,345,Global,#ffffcc
+CMA  - Origem (Senado),2019-03-30,2019-03-31,1,Global,NA
+Comissões  - Revisão (Câmara),2019-03-31,2019-03-31,0,Global,NA
 designado_relator,2018-04-12,2018-04-12,0,Evento,#a9a9a9
 inicio_prazo_emendas,2018-04-18,2018-04-18,0,Evento,#a9a9a9
 devolvido,2018-04-24,2018-04-24,0,Evento,#a9a9a9

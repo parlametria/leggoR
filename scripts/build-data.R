@@ -12,9 +12,9 @@ args = commandArgs(trailingOnly=TRUE)
 #' build_csvs(91341, "senado")
 #' build_csvs(257161, "camara")
 #' @export
-build_csvs <- function(id, house, output_folder=NULL) {
+build_csvs <- function(id, house, apelido='', output_folder=NULL) {
   print(paste("Processando id",id,"da casa",house))
-  prop_data <- import_proposicao(id, house, output_folder)
+  prop_data <- import_proposicao(id, house, apelido, output_folder)
   proc_tram_data <- process_proposicao(prop_data$proposicao, prop_data$tramitacao, house, output_folder)
   build_vis_csv(proc_tram_data, house, output_folder)
   as.tibble(NULL)
@@ -29,7 +29,7 @@ build_csvs <- function(id, house, output_folder=NULL) {
 #' @export
 build_all_csvs <- function(df, output_folder=NULL) {
   if ('casa' %in% names(df)) {
-    map2(df$id, df$casa, ~ build_csvs(.x, .y, output_folder))
+    pmap(list(df$id, df$casa, df$apelido), function(a, b, c) build_csvs(a, b, c, output_folder))
   } else {
     map(df$id_camara, ~ build_csvs(.x, 'camara', output_folder))
     map(df$id_senado, ~ build_csvs(.x, 'senado', output_folder))
