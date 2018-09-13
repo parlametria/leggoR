@@ -558,13 +558,13 @@ build_data_filepath <- function(folder_path,data_prefix,house,bill_id) {
 #' @param casa Casa onde o projeto está tramitando
 #' @param casa Caminho da pasta onde os dados devem ser salvos
 #' @export
-import_proposicao <- function(prop_id, casa, apelido, out_folderpath=NULL) {
+import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL) {
   casa <- tolower(casa)
   if (!(casa %in% c('camara','senado'))) {
     print('Parâmetro "casa" não identificado.')
   }
   
-  prop_df <- fetch_proposicao(prop_id,casa,apelido, TRUE)
+  prop_df <- fetch_proposicao(prop_id,casa,apelido, tema, TRUE)
   tram_df <- fetch_tramitacao(prop_id,casa, TRUE)
   emendas_df <- fetch_emendas(prop_id,casa)
   
@@ -655,12 +655,12 @@ fetch_events <- function(prop_id) {
 #' @examples
 #' fetch_proposicao(91341, 'senado')
 #' @export
-fetch_proposicao <- function(id, casa, apelido='', normalized=TRUE) {
+fetch_proposicao <- function(id, casa, apelido='', tema='', normalized=TRUE) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    fetch_proposicao_camara(id,normalized,apelido)
+    fetch_proposicao_camara(id,normalized,apelido, tema)
   } else if (casa == 'senado') {
-    fetch_proposicao_senado(id,normalized,apelido)
+    fetch_proposicao_senado(id,normalized,apelido, tema)
   } else {
       print('Parâmetro "casa" não identificado.')
   }
@@ -686,7 +686,7 @@ fetch_proposicoes <- function(pls_ids) {
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
 #' fetch_proposicao_senado(91341)
-fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido) {
+fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema) {
   url_base_proposicao <-
     "http://legis.senado.leg.br/dadosabertos/materia/"
   da_url <- paste0(url_base_proposicao, proposicao_id)
@@ -753,7 +753,8 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido) {
                     data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao, "00:00")),
                     casa = 'senado',
                     autor_nome = ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, ' ', partido_autor, '/', uf_autor)),
-                    apelido_materia = ifelse('apelido_materia' %in% names(.), apelido_materia, apelido)) %>%
+                    apelido_materia = ifelse('apelido_materia' %in% names(.), apelido_materia, apelido),
+                    tema = tema) %>%
       dplyr::select(prop_id,
                     casa,
                     tipo_materia = sigla_subtipo_materia,
@@ -764,7 +765,8 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido) {
                     palavras_chave = indexacao_materia,
                     casa_origem = nome_casa_origem,
                     autor_nome,
-                    apelido_materia)
+                    apelido_materia,
+                    tema)
   }
   
   proposicao_complete
@@ -778,7 +780,7 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido) {
 #' @return Dataframe
 #' @examples
 #' fetch_proposicao_camara(2056568)
-fetch_proposicao_camara <- function(prop_id,normalized=TRUE,apelido) {
+fetch_proposicao_camara <- function(prop_id,normalized=TRUE,apelido, tema) {
   prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%
     rename_df_columns()
   
@@ -794,7 +796,8 @@ fetch_proposicao_camara <- function(prop_id,normalized=TRUE,apelido) {
                     casa = 'camara',
                     casa_origem = autor_df[1,]$casa_origem,
                     autor_nome = autor_df[1,]$autor.nome,
-                    apelido_materia = apelido) %>%
+                    apelido_materia = apelido,
+                    tema = tema) %>%
       dplyr::select(prop_id,
                     casa,
                     tipo_materia = sigla_tipo,
@@ -805,7 +808,8 @@ fetch_proposicao_camara <- function(prop_id,normalized=TRUE,apelido) {
                     palavras_chave = keywords,
                     autor_nome,
                     casa_origem,
-                    apelido_materia)
+                    apelido_materia,
+                    tema)
   }
   
   prop_camara
