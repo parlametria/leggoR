@@ -92,10 +92,12 @@ gera_tabela_proposicoes_uma_casa <- function(dataframe) {
 #' extract_informations_from_single_house(91341, 'senado', 'https://www25.senado.leg.br/web/atividade/materias/-/materia/91341')
 #' @export
 extract_informations_from_single_house <- function(id, casa, url=NULL) {
+  print(id)
+  print(casa)
   casa <- tolower(casa)
-  prop <- agoradigital::fetch_proposicao(id, casa, T)
+  prop <- agoradigital::fetch_proposicao(id, casa, "", T)
   tram <- agoradigital::fetch_tramitacao(id, casa, T)
-  tram <- agoradigital::process_proposicao(prop, tram, casa, 'data/')
+  tram <- agoradigital::process_proposicao(prop, tram, casa)
   if (casa == 'camara') {
     nome_camara <- prop %>% dplyr::select(ementa, tipo_materia, numero) %>% tail(1)
     page_url <- paste0(camara_codes$endpoints_api$url_base_tramitacao, id)

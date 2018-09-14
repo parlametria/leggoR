@@ -33,8 +33,8 @@ build_all_csvs <- function(df, output_folder=NULL) {
   if ('casa' %in% names(df)) {
     pmap(list(df$id, df$casa, df$apelido, df$tema), function(a, b, c, d) build_csvs(a, b, c, d, output_folder))
   } else {
-    map(df$id_camara, ~ build_csvs(.x, 'camara', output_folder))
-    map(df$id_senado, ~ build_csvs(.x, 'senado', output_folder))
+    map(df$id_camara, ~ build_csvs(.x, 'camara', '', '', output_folder))
+    map(df$id_senado, ~ build_csvs(.x, 'senado', '', '', output_folder))
   }
   as.tibble(NULL)
 }
