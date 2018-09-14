@@ -9,18 +9,18 @@ source(here::here("R/camara-lib.R"))
 data_local <- function(df) {
   df <-
     df %>%
-    filter((!(grepl('^S', local) | local == 'MESA')))
+    filter((!(grepl('^S', local) | local == 'CD-MESA-PLEN')))
 
   df %>%
     dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
-    dplyr::group_by(sigla_local, sequence = data.table::rleid(sigla_local)) %>%
+    dplyr::group_by(local, sequence = data.table::rleid(local)) %>%
     dplyr::summarise(start = min(data_hora),
               end = max(end_data)) %>%
     dplyr::filter(end - start > 0) %>%
     dplyr::ungroup() %>%
     dplyr::arrange(sequence) %>%
     dplyr::select(-sequence) %>%
-    dplyr::rename(label = sigla_local) %>%
+    dplyr::rename(label = local) %>%
     dplyr::mutate(group = "Comissão",
            color = dplyr::case_when(label == "Plenário" ~ "#5496cf",
                              label == "PL672616" ~ "#ff9c37",
@@ -73,8 +73,8 @@ get_comissoes_futuras <- function(tramitacao) {
     comissoes_previstas_siglas <- 
       fuzzyjoin::regex_left_join(comissoes_previstas, siglas_comissoes) %>%
       dplyr::select(siglas_comissoes) %>%
-      dplyr::rename("sigla_local" = "siglas_comissoes") %>%
-      dplyr::filter(!is.na(sigla_local))
+      dplyr::rename("local" = "siglas_comissoes") %>%
+      dplyr::filter(!is.na(local))
     
     comissoes_faltantes <-
       dplyr::anti_join(comissoes_previstas_siglas, tramitacao)
@@ -85,8 +85,8 @@ get_comissoes_futuras <- function(tramitacao) {
         utils::tail(nrow(comissoes_faltantes)) %>%
         dplyr::mutate(data_hora = as.POSIXct(Sys.Date() + 200))
       
-      futuro_comissoes$sigla_local <-
-        comissoes_faltantes$sigla_local
+      futuro_comissoes$local <-
+        comissoes_faltantes$local
       
       return(rbind(tramitacao, futuro_comissoes))
     }
@@ -113,7 +113,7 @@ data_fase_global <- function(bill_id, tramitacao) {
   tramitacao <- 
     tramitacao %>%
     dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
-    dplyr::group_by(sigla_local, sequence = data.table::rleid(sigla_local)) %>%
+    dplyr::group_by(local, sequence = data.table::rleid(local)) %>%
     dplyr::summarise(start = min(data_hora),
               end = max(end_data)) %>%
     #filter(end - start > 0) %>%
