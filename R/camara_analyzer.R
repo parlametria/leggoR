@@ -1,4 +1,7 @@
 source(here::here("R/camara-lib.R"))
+
+camara_constants <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+
 #' @title Cria coluna com os relatores na tramitação na Câmara
 #' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no
 #' envento pontual em que ele é designado
@@ -124,6 +127,70 @@ extract_autor_in_camara <- function(prop_id) {
     dplyr::mutate(autor.nome = paste0(autor.nome, " ", partido_estado))
 }
 
+#' @title Extrai as fases globais da Câmara
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada global
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada global
+#' @examples
+#'  extract_fase_global_in_camara(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', T))
+extract_fase_global_in_camara <- function(tramitacao_df, proposicao_df) { 
+  casa_name = if_else(tolower(proposicao_df$casa_origem) == "senado federal", "(Revisão)", "(Origem)")
+  
+  tramitacao_df %<>%
+    dplyr::arrange(data_hora, sequencia) %>%
+    dplyr::mutate(
+      global =
+        dplyr::case_when(
+          (stringr::str_detect(tolower(texto_tramitacao), camara_constants$plen_global$plenario) & 
+             sigla_local == 'PLEN') ~ paste0("Plenário ", casa_name),
+          sigla_local != 'PLEN' &
+            (sigla_local %in% camara_constants$comissoes$siglas_comissoes_antigas |
+               sigla_local %in% camara_constants$comissoes$siglas_comissoes |
+               stringr::str_detect(tolower(sigla_local), '^pl'))  ~ paste0("Comissões ", casa_name)))
+  
+  tramitacao_df %>%
+    tidyr::fill(global)
+}
+
+#' @title Recupera o progresso de um PL na Câmara
+#' @description Retorna um dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @param df Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @return Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @examples
+#'  get_progresso_camara(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', T))
+get_progresso_camara <- function(tramitacao_df, proposicao_df) { 
+  tramitacao_df <- 
+    tramitacao_df %>%
+    extract_fase_global_in_camara(proposicao_df)
+  
+  df <- 
+    tramitacao_df %>%
+    filter(global != 'NA') %>%
+    mutate(end_data = lead(data_hora, default=Sys.time())) %>%
+    group_by(global, sequence = rleid(global)) %>%
+    summarise(data_hora_inicio = min(data_hora),
+              data_hora_fim = max(end_data)) %>%
+    filter(data_hora_fim - data_hora_inicio > 0) %>%
+    select(-sequence) 
+  
+  if(nrow(df %>% group_by(global) %>% filter(n()>1)) > 0) {
+    df <- 
+      df %>%
+      group_by(global) %>%
+      summarise(data_hora_inicio = min(data_hora_inicio),
+                data_hora_fim = max(data_hora_fim)) %>%
+      dplyr::right_join(camara_constants$fases_global, by = "global")
+  } else {
+    df <- 
+      df %>%
+      dplyr::right_join(camara_constants$fases_global, by = "global")
+  }
+  
+  df %>%
+    mutate(prop_id = proposicao_df$prop_id) %>%
+    select(prop_id, global, data_hora_inicio, data_hora_fim)
+}
+
 #' @title Recupera os locais da Câmara
 #' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada local
 #' @param df Dataframe da tramitação na Câmara
@@ -243,7 +310,7 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   tramitacao_df %>%
     extract_events_in_camara() %>%
     extract_locais_in_camara() %>%
-    #extract_fase_casa_in_camara() %>%
+    #extract_fase_global_in_camara(proposicao_df) %>% 
     #extract_situacao_comissao() %>%
     refact_date() %>%
     sort_by_date()

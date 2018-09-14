@@ -15,10 +15,16 @@
       "plenario": "Plenário"
   }, 
   
-  "fase_global": {
-      "origem_senado": " - Origem (Senado)",
-      "revisao_camara": " - Revisão (Câmara)"
-  }, 
+  "fase_global_plenario":{
+    "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)"
+  },
+  
+  "fases_global":[
+    {"global": "Comissões (Origem)"},
+    {"global": "Plenário (Origem)"},
+    {"global": "Comissões (Revisão)"},
+    {"global": "Plenário (Revisão)"}
+  ],
   
   "fase_subfase_comissoes": {
       "recebimento": "Recebimento",

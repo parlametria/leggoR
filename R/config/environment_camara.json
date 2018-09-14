@@ -40,12 +40,24 @@
     {"casa": "plenario", "descricao_tramitacao": "^vota..o"}
   ],
   
+  "plen_global":{
+    "plenario": "(sessão deliberativa extraordinária.*)|(matéria não apreciada em face do encerramento.*)|(discussão em turno único.*)"
+  },
+  
+  "fases_global":[
+    {"global": "Comissões (Origem)"},
+    {"global": "Plenário (Origem)"},
+    {"global": "Comissões (Revisão)"},
+    {"global": "Plenário (Revisão)"}
+  ],
+  
   "comissoes": {
     "siglas_comissoes_antigas": [
       "CDCMAM",
       "CAPR",
       "CCJR"
     ],
+    
     "siglas_comissoes": [
     "CAPADR",
     "CCTCI",

@@ -105,3 +105,33 @@ extract_status_tramitacao <- function(tram_df) {
   apreciacao <- extract_forma_apreciacao(tram_df)
   status_tram <- data.frame(prop_id=tram_df[1,]$prop_id,regime_tramitacao=regime,forma_apreciacao=apreciacao)
 }
+
+#' @title Extrai o progresso de um PL
+#' @description Extrai o progresso de um PL
+#' @param proposicao_df Dataframe da tramitação do PL.
+#' @param tramitacao_df Dataframe da proposição do PL. 
+#' @param casa Casa (Senado ou Câmara)
+#' @param out_folderpath Caminho destino do csv resultante 
+#' @return Dataframe contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
+#' @examples
+#' get_progresso(fetch_tramitacao(257161, 'camara', T), fetch_proposicao(257161, 'camara', T), 'camara')
+#' @export
+#' @importFrom stats filter
+get_progresso <- function(tramitacao_df, proposicao_df, casa, out_folderpath=NULL) {
+  progresso_data <- NULL
+  prop_id <- NULL
+  
+  if (tolower(casa) == congress_constants$camara_label) {
+    progresso_data <- get_progresso_camara(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
+    prop_id <- progresso_data[1,"prop_id"]
+  } else if (tolower(casa) == congress_constants$senado_label) {
+    progresso_data <- get_progresso_senado(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
+    prop_id <- progresso_data[1,"prop_id"]
+  }
+  
+  if((!is.null(progresso_data)) & (!is.null(out_folderpath))) {
+    readr::write_csv(progresso_data, paste0(out_folderpath,'/',casa,'/',prop_id,'-progresso-',casa,'.csv'))
+  }
+  
+  return(progresso_data)
+}
