@@ -55,36 +55,70 @@ get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::tod
 #' retorna um dataframe com o valor da energia recente calculado para cada dia útil da tramitação de uma proposição,
 #' computado levando em consideração os eventos que aconteceram nos 30 dias anteriores à data pivô, e aplicando um decaimento exponencial.
 #' @param events_df Dataframe da tramitação contendo as colunas: data_hora e evento
+#' @param granularidade Granularidade do dado histórico da energia desejada ('d' = dia, 's' = semana, 'm' = mês)
 #' @param tamanho_janela Quantidade de dias a serem analizados. O padrão é 30
-#' @param decaimento A porcentagem de redução do valor da energia por dia. O padrão é 10% (0.1)
+#' @param decaimento A porcentagem de redução do valor da energia por dia. Valor deve estar entre 0 e 1. O padrão é 10% (0.1)
 #' @param pivot_day Dia de partida de onde começará a análise. O padrão é o dia atual
 #' @return Dataframe com o valor da energia recente para cada dia útil da tramitação de uma proposição.
 #' @importFrom magrittr '%>%'
 #' @export
-get_historico_energia_recente <- function(eventos_df, tamanho_janela = 30, decaimento = 0.1, pivot_day = lubridate::today()) {
+get_historico_energia_recente <- function(eventos_df, granularidade = 'd', tamanho_janela = 22, decaimento = 0.1) {
   #Remove tempo do timestamp da tramitação
   extended_events <- eventos_df %>%
-    dplyr::mutate(data_hora = lubridate::floor_date(data_hora, unit="day"))
+    dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
   
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
-  full_dates <- data.frame(data_hora = seq(min(extended_events$data_hora), max(extended_events$data_hora), by = "1 day"))
-  extended_events <- merge(full_dates,extended_events, by="data_hora", all.x = TRUE) %>%
-    dplyr::filter(!(lubridate::wday(data_hora) %in% c(1,7))) %>%
-    dplyr::filter(lubridate::month(data_hora) != 1) %>%
-    dplyr::filter(!((lubridate::month(data_hora) == 2) & (lubridate::day(data_hora) < 2))) %>%
-    dplyr::filter(!((lubridate::month(data_hora) == 7) & (lubridate::day(data_hora) > 17))) %>%
-    dplyr::filter(!((lubridate::month(data_hora) == 12) & (lubridate::day(data_hora) > 22)))
+  full_dates <- data.frame(data = seq(min(extended_events$data), max(extended_events$data), by = "1 day"))
+  extended_events <- merge(full_dates,extended_events, by="data", all.x = TRUE) %>%
+    dplyr::filter(!(lubridate::wday(data) %in% c(1,7))) %>%
+    dplyr::filter(lubridate::month(data) != 1) %>%
+    dplyr::filter(!((lubridate::month(data) == 2) & (lubridate::day(data) < 2))) %>%
+    dplyr::filter(!((lubridate::month(data) == 7) & (lubridate::day(data) > 17))) %>%
+    dplyr::filter(!((lubridate::month(data) == 12) & (lubridate::day(data) > 22)))
   
-  #Agrupa eventos por dia
-  energia_diaria <- extended_events %>%
-    dplyr::group_by(data_hora) %>%
-    dplyr::summarize(energia_dia = sum(!is.na(evento)))
+  energia_periodo <- data.frame()
+  
+  #Agrupa eventos por período
+  if (granularidade == 'd') {
+    energia_periodo <- extended_events %>%
+      dplyr::group_by(data) %>%
+      dplyr::summarize(periodo = dplyr::first(data),
+                       energia_periodo = sum(!is.na(evento))) %>%
+      dplyr::ungroup() %>%
+      dplyr::select(-data)
+  } else if (granularidade == 's') {
+    energia_periodo <- extended_events %>%
+      dplyr::mutate(semana = lubridate::week(data),
+                    ano = lubridate::year(data)) %>%
+      dplyr::group_by(ano,semana) %>%
+      dplyr::summarize(periodo = dplyr::first(data),
+                      energia_periodo = sum(!is.na(evento))) %>%
+      dplyr::ungroup() %>%
+      dplyr::select(-semana,-ano)
+  } else if (granularidade == 'm') {
+    energia_periodo <- extended_events %>%
+      dplyr::mutate(mes = lubridate::month(data),
+                    ano = lubridate::year(data)) %>%
+      dplyr::group_by(ano,mes) %>%
+      dplyr::summarize(periodo = dplyr::first(data),
+                       energia_periodo = sum(!is.na(evento))) %>%
+      dplyr::ungroup() %>%
+      dplyr::select(-c(mes,ano))
+  }
+  
+  energia_periodo <- energia_periodo %>%
+    dplyr::arrange(periodo)
   
   #Computa soma deslizante com decaimento exponencial
-  weights <- (1-decaimento) ^ (tamanho_janela:1)
-  energia_total <- data.frame(energia_total = sigmoid1(round(roll::roll_sum(data.matrix(energia_diaria$energia_dia), tamanho_janela, weights, min_obs = 1), digits=3)))
-  historico_energia <- dplyr::bind_cols(energia_diaria,energia_total)
+  weights <- (1-decaimento) ^ ((tamanho_janela-1):0)
+  energia_recente <- data.frame(energia_recente = round(roll::roll_sum(data.matrix(energia_periodo$energia_periodo), tamanho_janela, weights, min_obs = 1), digits=3))
+  historico_energia <- dplyr::bind_cols(energia_periodo,energia_recente) %>%
+    dplyr::select(periodo,
+                  energia_periodo,
+                  energia_recente)
+  
+  return(historico_energia)
 }
 
 #' @title Extrai o regime de tramitação de um PL
