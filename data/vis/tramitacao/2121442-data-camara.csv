@@ -1,7 +1,7 @@
 label,start,end,group,color
 Apresentação - Revisão (Câmara),2016-03-16T14:03:00Z,2016-12-15T15:33:00Z,Global,NA
 CTASP - Revisão (Câmara),2016-12-15T15:33:00Z,2017-08-29T17:06:00Z,Global,#ea81b1
-Comissão Especial - Revisão (Câmara),2017-08-29T17:06:00Z,2018-09-11T18:22:17Z,Global,#ff9c37
+Comissão Especial - Revisão (Câmara),2017-08-29T17:06:00Z,2018-09-13T13:08:03Z,Global,#ff9c37
 distribuicao,2016-03-16T14:03:00Z,2016-03-16T14:03:00Z,Evento,#a9a9a9
 apresentacao_da_pl,2016-12-14T22:16:00Z,2016-12-14T22:16:00Z,Evento,#a9a9a9
 distribuicao,2016-12-15T10:39:00Z,2016-12-15T10:39:00Z,Evento,#a9a9a9
@@ -15,6 +15,7 @@ comissao_especial,2017-08-29T17:06:00Z,2017-08-29T17:06:00Z,Evento,#a9a9a9
 designado_relator,2017-09-12T00:00:00Z,2017-09-12T00:00:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-12T18:00:00Z,2017-09-12T18:00:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-12T18:53:00Z,2017-09-12T18:53:00Z,Evento,#a9a9a9
+aprovacao_audiencia_publica,2017-09-13T14:30:00Z,2017-09-13T14:30:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-13T14:53:00Z,2017-09-13T14:53:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-09-13T15:54:00Z,2017-09-13T15:54:00Z,Evento,#a9a9a9
 requerimento_prorrogacao,2017-09-14T11:29:00Z,2017-09-14T11:29:00Z,Evento,#a9a9a9
@@ -29,6 +30,7 @@ requerimento_audiencia_publica,2017-10-24T15:43:00Z,2017-10-24T15:43:00Z,Evento,
 requerimento_audiencia_publica,2017-10-25T16:38:00Z,2017-10-25T16:38:00Z,Evento,#a9a9a9
 requerimento_prorrogacao,2017-10-31T13:55:00Z,2017-10-31T13:55:00Z,Evento,#a9a9a9
 requerimento_audiencia_publica,2017-11-06T16:17:00Z,2017-11-06T16:17:00Z,Evento,#a9a9a9
+aprovacao_audiencia_publica,2017-11-07T14:30:00Z,2017-11-07T14:30:00Z,Evento,#a9a9a9
 requerimento_prorrogacao,2017-11-29T14:08:00Z,2017-11-29T14:08:00Z,Evento,#a9a9a9
 requerimento_prorrogacao,2017-12-13T15:33:00Z,2017-12-13T15:33:00Z,Evento,#a9a9a9
 requerimento_prorrogacao,2018-02-27T11:38:00Z,2018-02-27T11:38:00Z,Evento,#a9a9a9
