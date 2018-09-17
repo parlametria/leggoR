@@ -139,7 +139,7 @@ extract_fase_global_in_camara <- function(tramitacao_df, proposicao_df) {
   tramitacao_df %<>%
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(
-      global =
+      fase_global =
         dplyr::case_when(
           (stringr::str_detect(tolower(texto_tramitacao), camara_constants$plen_global$plenario) & 
              sigla_local == 'PLEN') ~ paste0("Plenário ", casa_name),
@@ -149,7 +149,7 @@ extract_fase_global_in_camara <- function(tramitacao_df, proposicao_df) {
                stringr::str_detect(tolower(sigla_local), '^pl'))  ~ paste0("Comissões ", casa_name)))
   
   tramitacao_df %>%
-    tidyr::fill(global)
+    tidyr::fill(fase_global)
 }
 
 #' @title Recupera o progresso de um PL na Câmara
@@ -165,30 +165,30 @@ get_progresso_camara <- function(tramitacao_df, proposicao_df) {
   
   df <- 
     tramitacao_df %>%
-    filter(global != 'NA') %>%
-    mutate(end_data = lead(data_hora, default=Sys.time())) %>%
-    group_by(global, sequence = rleid(global)) %>%
-    summarise(data_hora_inicio = min(data_hora),
+    dplyr::filter(fase_global != 'NA') %>%
+    dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
+    dplyr::group_by(fase_global, sequence = data.table::rleid(fase_global)) %>%
+    dplyr::summarise(data_hora_inicio = min(data_hora),
               data_hora_fim = max(end_data)) %>%
-    filter(data_hora_fim - data_hora_inicio > 0) %>%
-    select(-sequence) 
+    dplyr::filter(data_hora_fim - data_hora_inicio > 0) %>%
+    dplyr::select(-sequence) 
   
-  if(nrow(df %>% group_by(global) %>% filter(n()>1)) > 0) {
+  if(nrow(df %>% dplyr::group_by(fase_global) %>% dplyr::filter(n()>1)) > 0) {
     df <- 
       df %>%
-      group_by(global) %>%
-      summarise(data_hora_inicio = min(data_hora_inicio),
+      dplyr::group_by(fase_global) %>%
+      dplyr::summarise(data_hora_inicio = min(data_hora_inicio),
                 data_hora_fim = max(data_hora_fim)) %>%
-      dplyr::right_join(camara_constants$fases_global, by = "global")
+      dplyr::right_join(camara_constants$fases_global, by = "fase_global")
   } else {
     df <- 
       df %>%
-      dplyr::right_join(camara_constants$fases_global, by = "global")
+      dplyr::right_join(camara_constants$fases_global, by = "fase_global")
   }
   
   df %>%
-    mutate(prop_id = proposicao_df$prop_id) %>%
-    select(prop_id, global, data_hora_inicio, data_hora_fim)
+    dplyr::mutate(prop_id = proposicao_df$prop_id) %>%
+    dplyr::select(prop_id, fase_global, casa, data_hora_inicio, data_hora_fim)
 }
 
 #' @title Recupera os locais da Câmara
