@@ -134,7 +134,7 @@ extract_autor_in_camara <- function(prop_id) {
 #' @examples
 #'  extract_fase_global_in_camara(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', T))
 extract_fase_global_in_camara <- function(tramitacao_df, proposicao_df) { 
-  casa_name = if_else(tolower(proposicao_df$casa_origem) == "senado federal", "(Revisão)", "(Origem)")
+  casa_name = dplyr::if_else(tolower(proposicao_df$casa_origem) == "senado federal", "(Revisão)", "(Origem)")
   
   tramitacao_df %<>%
     dplyr::arrange(data_hora, sequencia) %>%
