@@ -116,7 +116,6 @@ extract_status_tramitacao <- function(tram_df) {
 #' @examples
 #' get_progresso(fetch_tramitacao(257161, 'camara', T), fetch_proposicao(257161, 'camara', T), 'camara')
 #' @export
-#' @importFrom stats filter
 get_progresso <- function(tramitacao_df, proposicao_df, casa, out_folderpath=NULL) {
   progresso_data <- NULL
   prop_id <- NULL
