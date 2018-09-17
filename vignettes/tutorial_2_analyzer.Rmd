@@ -29,7 +29,7 @@ id_qualidade_fiscal_camara <- 2088990
 
 ```{r message=FALSE}
 prop_camara <- agoradigital::fetch_proposicao(id_qualidade_fiscal_camara, 'camara')
-tram_camara <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_camara, 'camara', T)
+tram_camara <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_camara, 'camara')
 
 eventos_camara <- agoradigital::process_proposicao(prop_camara, tram_camara, "camara")
 eventos_camara %>% 
@@ -51,7 +51,7 @@ Os dados retornados pela função **process_proposicao(id, "camara")**, além do
 
 ```{r message=FALSE}
 prop_senado <- agoradigital::fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
-tram_senado <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado, 'senado', T)
+tram_senado <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado, 'senado')
 
 eventos_senado <- agoradigital::process_proposicao(prop_senado, tram_senado, 'senado')
 eventos_senado %>% 

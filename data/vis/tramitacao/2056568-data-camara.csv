@@ -1,9 +1,7 @@
 label,start,end,group,color
 Apresentação - Origem (Câmara),2015-11-25T13:36:00Z,2015-12-08T17:27:00Z,Global,NA
 CMADS - Origem (Câmara),2015-12-08T17:27:00Z,2016-11-11T17:44:00Z,Global,NA
-CFT - Origem (Câmara),2016-11-11T17:44:00Z,2019-04-01T00:00:00Z,Global,NA
-CCJC - Origem (Câmara),2019-04-01T00:00:00Z,2018-09-13T13:08:00Z,Global,NA
-Comissões - Revisão (Senado),2019-04-01T00:00:00Z,2019-04-02T00:00:00Z,Global,NA
+CFT - Origem (Câmara),2016-11-11T17:44:00Z,2018-08-24T18:08:34Z,Global,NA
 apresentacao_da_pl,2015-11-25T13:36:00Z,2015-11-25T13:36:00Z,Evento,#a9a9a9
 distribuicao,2015-12-04T13:02:00Z,2015-12-04T13:02:00Z,Evento,#a9a9a9
 designado_relator,2015-12-16T00:00:00Z,2015-12-16T00:00:00Z,Evento,#a9a9a9
@@ -11,6 +9,8 @@ abertura_prazo_emendas,2015-12-17T00:00:00Z,2015-12-17T00:00:00Z,Evento,#a9a9a9
 encerramento_prazo_emendas,2016-02-18T00:00:00Z,2016-02-18T00:00:00Z,Evento,#a9a9a9
 parecer_pela_aprovacao,2016-05-25T10:23:00Z,2016-05-25T10:23:00Z,Evento,#a9a9a9
 pedido_de_vista,2016-06-08T10:00:00Z,2016-06-08T10:00:00Z,Evento,#a9a9a9
+encerramento_prazo_emendas,2016-06-14T00:00:00Z,2016-06-14T00:00:00Z,Evento,#a9a9a9
+retirada_de_pauta,2016-06-15T10:00:00Z,2016-06-15T10:00:00Z,Evento,#a9a9a9
 voto_em_separado,2016-06-15T10:20:00Z,2016-06-15T10:20:00Z,Evento,#a9a9a9
 retirada_de_pauta,2016-07-06T10:00:00Z,2016-07-06T10:00:00Z,Evento,#a9a9a9
 parecer_pela_aprovacao_com_substitutivo,2016-09-22T14:40:00Z,2016-09-22T14:40:00Z,Evento,#a9a9a9
@@ -22,6 +22,7 @@ abertura_prazo_emendas,2016-11-24T00:00:00Z,2016-11-24T00:00:00Z,Evento,#a9a9a9
 encerramento_prazo_emendas,2016-12-07T00:00:00Z,2016-12-07T00:00:00Z,Evento,#a9a9a9
 parecer_pela_aprovacao_com_substitutivo,2017-08-03T13:52:00Z,2017-08-03T13:52:00Z,Evento,#a9a9a9
 pedido_de_vista,2017-08-30T10:00:00Z,2017-08-30T10:00:00Z,Evento,#a9a9a9
+encerramento_prazo_emendas,2017-09-04T20:27:00Z,2017-09-04T20:27:00Z,Evento,#a9a9a9
 voto_em_separado,2017-09-05T09:27:00Z,2017-09-05T09:27:00Z,Evento,#a9a9a9
 parecer_pela_aprovacao_com_substitutivo,2017-09-28T09:40:00Z,2017-09-28T09:40:00Z,Evento,#a9a9a9
 retirada_de_pauta,2017-11-22T10:00:00Z,2017-11-22T10:00:00Z,Evento,#a9a9a9
