@@ -14,7 +14,7 @@ install.packages("vistime")
  ```
 
 ## Scripts
-### [data-formatter-vistime-camara.R](./formatter/data-formatter-vistime-camara.R)
+### [data-formatter-vistime-camara.R](../R/data-formatter-vistime.R)
 
 Contém a função *build_vis_csv* que importa os CSVs contendo a tramitação de uma proposição
 e o converte para uma versão adaptada que poderá ser lido por *build-chart.R* na construção 
@@ -22,7 +22,9 @@ do gráfico. Ao fim, a função salva o CSV adaptado em [data/vis/tramitacao](/d
 
 #### Exemplo
 ```R
- build_vis_csv(2121442)
+ prop_data <- agoradigital::import_proposicao(2121442, 'camara', 'data/')
+ proc_tram_data <- agoradigital::process_proposicao(prop_data$proposicao, prop_data$tramitacao, 'camara', 'data/')
+ build_vis_csv(proc_tram_data, 'camara', 'data/')
  ```
  
 ### [build-chart.R](./visualizer/build-chart.R)
