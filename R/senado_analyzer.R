@@ -1,5 +1,6 @@
 source(here::here("R/congresso-lib.R"))
 
+senado_constants <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 
 #' @title Cria coluna com as fases da tramitação no Senado
 #' @description Cria uma nova coluna com as fases no Senado
@@ -75,67 +76,65 @@ get_comissoes_faltantes <- function(data_tramitacao) {
 #' @examples
 #' extract_fase_global(tramitacao, proposicao)
 extract_fase_global <- function(data_tramitacao, proposicao_df) {
-  fase_global_constants <- senado_env$fase_global
-  
-  casa_origem <-
+  fase_global_constants <- senado_constants$fase_global_plenario
+  not_comissoes <- c('PLEN', 'PLEG')
+  casa_name <-
     dplyr::if_else(
       proposicao_df$casa_origem == "Senado Federal",
-      fase_global_constants$origem_senado,
-      fase_global_constants$revisao_camara
+      "(Origem)",
+      "(Revisão)"
     )
   
-  virada_de_casa <-
-    data_tramitacao %>%
-    dplyr::filter(local == 'Mesa - Câmara') %>%
-    dplyr::arrange(data_hora) %>%
-    dplyr::select(data_hora)
+  data_tramitacao %<>%
+    dplyr::arrange(data_hora, sequencia) %>%
+    dplyr::mutate(
+      fase_global =
+        dplyr::case_when(
+          (stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) & 
+             sigla_local == 'PLEN') ~ paste0("Plenário ", casa_name),
+          sigla_local %in% senado_constants$comissoes_nomes$siglas_comissoes ~ paste0("Comissões ", casa_name)))
   
-  casa_atual <-
-    dplyr::if_else(
-      casa_origem == " - Origem (Senado)",
-      fase_global_constants$revisao_camara,
-      fase_global_constants$origem_senado
-    )
+  data_tramitacao %>%
+    tidyr::fill(fase_global)
+}
+
+#' @title Recupera o progresso de um PL do Senado
+#' @description Retorna um dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @param df Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @return Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @examples
+#'  get_progresso_senado(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', T))
+get_progresso_senado <- function(tramitacao_df, proposicao_df) { 
+  tramitacao_df <- 
+    tramitacao_df %>%
+    extract_fase_global(proposicao_df)
   
-  comissoes_faltantes <- get_comissoes_faltantes(data_tramitacao)
+  df <- 
+    tramitacao_df %>%
+    dplyr::filter(fase_global != 'NA') %>%
+    dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
+    dplyr::group_by(fase_global, sequence = data.table::rleid(fase_global)) %>%
+    dplyr::summarise(data_hora_inicio = min(data_hora),
+              data_hora_fim = max(end_data)) %>%
+    dplyr::filter(data_hora_fim - data_hora_inicio > 0) %>%
+    dplyr::select(-sequence) 
   
-  if (nrow(comissoes_faltantes) != 0) {
-    futuro_comissoes <-
-      data_tramitacao %>%
-      utils::tail(nrow(comissoes_faltantes)) %>%
-      dplyr::mutate(data_hora = Sys.Date() + 200,
-                    evento = NA)
-    
-    futuro_comissoes$local <- 
-      comissoes_faltantes$local 
-    
-    data_tramitacao <- rbind(data_tramitacao, futuro_comissoes)
-  }
-  
-  if (nrow(virada_de_casa) == 0) {
-    data_tramitacao <- 
-      data_tramitacao %>%
-      dplyr::mutate(global = paste0(casa_origem))
-    
-    futuro_casa_revisora <-
-      data_tramitacao %>%
-      utils::tail(1) %>%
-      dplyr::mutate(local = "Comissões",
-                    data_hora = Sys.Date() + 201,
-                    global = casa_atual,
-                    evento = NA)
-    
-    rbind(data_tramitacao, futuro_casa_revisora)
-      
+  if(nrow(df %>% dplyr::group_by(fase_global) %>% dplyr::filter(n()>1)) > 0) {
+    df <- 
+      df %>%
+      dplyr::group_by(fase_global) %>%
+      dplyr::summarise(data_hora_inicio = min(data_hora_inicio),
+                data_hora_fim = max(data_hora_fim)) %>%
+      dplyr::right_join(senado_constants$fases_global, by = "fase_global")
   } else {
-    
-    data_tramitacao %>%
-      dplyr::mutate(global = dplyr::if_else(
-        data_hora < virada_de_casa[1, ][[1]],
-        casa_origem,
-        casa_atual
-      ))
+    df <- 
+      df %>%
+      dplyr::right_join(senado_constants$fases_global, by = "fase_global")
   }
+  
+  df %>%
+    dplyr::mutate(prop_id = proposicao_df$prop_id) %>%
+    dplyr::select(prop_id, fase_global, casa, data_hora_inicio, data_hora_fim)
 }
 
 #' @title Cria coluna com a fase casa da tramitação no Senado
@@ -585,7 +584,7 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
   proc_tram_df <-
     proc_tram_df[1:index_of_camara,] %>%
     extract_locais() %>%
-    extract_fase_global(proposicao_df) %>%
+    #extract_fase_global(proposicao_df) %>%
     dplyr::filter(!is.na(fase)) %>%
     unique()
   

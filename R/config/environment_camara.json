@@ -40,12 +40,24 @@
     {"casa": "plenario", "descricao_tramitacao": "^vota..o"}
   ],
   
+  "plen_global":{
+    "plenario": "(sessão deliberativa extraordinária.*)|(matéria não apreciada em face do encerramento.*)|(discussão em turno único.*)"
+  },
+  
+  "fases_global":[
+    {"fase_global": "Comissões (Origem)", "casa": "Câmara"},
+    {"fase_global": "Plenário (Origem)", "casa": "Câmara"},
+    {"fase_global": "Comissões (Revisão)", "casa": "Senado"},
+    {"fase_global": "Plenário (Revisão)", "casa": "Senado"}
+  ],
+  
   "comissoes": {
     "siglas_comissoes_antigas": [
       "CDCMAM",
       "CAPR",
       "CCJR"
     ],
+    
     "siglas_comissoes": [
     "CAPADR",
     "CCTCI",
