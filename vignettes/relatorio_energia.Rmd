@@ -12,13 +12,12 @@ vignette: >
 A energia de um dia/semana/mês de uma proposição é calculada usando o somatório da função de decaimento exponencial aplicada a cada dia/semana/mês dos últimos x dias/semanas/meses.  
 
 Função de decaimento exponencial:  
-y = Ar^x  
- * A a quantidade de eventos (requerimentos, votações, etc) do dia/semana/mês;  
- * r a taxa de decaimento (declive da função);  
- * x o peso do dia/semana/mês em relação ao referencial.  
-
-Assim o cálculo da energia do dia é definido por:
-  Σ(n=0 até j) energia_periodo(n) * decaimento^n
-
-Onde j é a quantidade de dias/semanas/meses a serem contabilizados.
-energia_periodo() é quantidade de eventos ocorridos no dia/semana/mês.
+**y = Ar^x**  
+- A a quantidade de eventos (requerimentos, votações, etc) do período;  
+- r a taxa de decaimento (declive da função);  
+- x o peso do dia/semana/mês em relação ao referencial.  
+  
+Assim o cálculo da energia do dia é definido por:  
+**Σ(n=0 até j) energia_periodo(n) * decaimento^n**  
+- j a quantidade de dias/semanas/meses a serem contabilizados;  
+- energia_periodo() é quantidade de eventos ocorridos no dia/semana/mês.  
