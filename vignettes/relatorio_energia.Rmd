@@ -1,5 +1,5 @@
 ---
-title: "Sobre o cálculo da energia"
+title: "A Energia Recente de um Projeto de Lei"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Sobre o cálculo da energia}
@@ -7,17 +7,96 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+## Conceito de Energia
+
+A energia de uma proposição é um conceito criado com o objetivo de medir quão movimentada está a tramitação de um Projeto de Lei num determinado período, indicando quanto esforço tem sido empregado por atores do processo legislativo em avançar/barrar o projeto.
+
 ## Cálculo da energia
 
-A energia de um dia/semana/mês de uma proposição é calculada usando o somatório da função de decaimento exponencial aplicada a cada dia/semana/mês dos últimos x dias/semanas/meses.  
+A energia de um PL pode ser calculada com diferentes granularidades/períodos (dia, semana, mês). Além disso, é possível escolher o tamanho da janela do histórico recente a ser considerado no cálculo (ex: os últimos 22 dias, ou as últimas 4 semanas). A energia de um período é definida como a quantidade de eventos ocorridos nesse período. A função de energia é dada pela fórmula:
 
-Função de decaimento exponencial:  
-**y = Ar^x**  
-- A a quantidade de eventos (requerimentos, votações, etc) do período;  
-- r a taxa de decaimento (declive da função);  
-- x o peso do dia/semana/mês em relação ao referencial.  
+$$e_{r_i} = \sum_{j=0}^{n} (e_{i-j})r^j$$
+
+onde:  
+
+  - i é o índice do período atual a ser considerado no cálculo
+  - j é o índice do período anterior a ser considerado no cálculo
+  - n é o tamanho da janela de histórico recente a ser utilizada
+  - r é a taxa de decaimento (deve estar entre 0 e 1);  
+  - $e_{i-j}$ é a quantidade de eventos (requerimentos, votações, etc) do período $i-j$;  
+  - $e_{r_i}$ é a energia recente do período i;  
   
-Assim o cálculo da energia do dia é definido por:  
-**Σ(n=0 até j) energia_periodo(n) * decaimento^n**  
-- j a quantidade de dias/semanas/meses a serem contabilizados;  
-- energia_periodo() é quantidade de eventos ocorridos no dia/semana/mês.  
+
+Vamos calcular a energia para um Projeto de Lei de exemplo.
+
+Escolhemos o [PL 490/2007](http://camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao=345311), que trata da demarcação de terras indígenas.
+Vamos baixar os dados da proposição e da tramitação e em seguida reconhecer os eventos e fases, mostrando os últimos eventos ocorridos na tramitação do PL.
+
+```{r, warning=FALSE, message=FALSE}
+library(magrittr)
+id <- 345311
+casa <- 'camara'
+prop <- agoradigital::fetch_proposicao(id,casa,TRUE)
+tram <- agoradigital::fetch_tramitacao(id,casa,TRUE)
+proc_tram <- agoradigital::process_proposicao(prop,tram,casa)#%>%
+
+proc_tram %>%
+  dplyr::select(data_hora, sequencia, texto_tramitacao, sigla_local, evento) %>%
+  dplyr::arrange(desc(data_hora)) %>%
+  DT::datatable()
+
+```
+
+
+Em seguida, vamos calcular a energia recente para o histórico da tramitação do PL, agregando os eventos por dia, com uma janela de tamanho 22 (número médio de dias úteis de um mês) e decaimento de 10%. Os resultados podem ser vistos no gráfico abaixo.
+
+- Os pontos pretos representam os valores da energia recente calculada para cada período
+- Os pontos vermelhos representam os valores da energia do período (número de eventos ocorridos)
+- A linha azul representa uma suavização dos valores da energia recente ao longo do tempo
+
+```{r, warning=FALSE, message=FALSE}
+start_date <- dplyr::last(proc_tram$data_hora) - lubridate::days(90)
+hist_energia <- agoradigital::get_historico_energia_recente(proc_tram, granularidade = 'd', tamanho_janela = 22, decaimento = 0.1) %>%
+  dplyr::filter(periodo >= start_date)
+
+library(ggplot2)
+ggplot(hist_energia, aes(x=periodo, y=energia_recente)) +
+  geom_point() +
+  geom_smooth() +
+  geom_point(aes(x=periodo, y=energia_periodo), colour='red', alpha=0.5, subset(hist_energia, energia_periodo > 0)) +
+  theme_minimal()
+```
+
+Como podemos ver no gráfico acima, quando é utilizada a granularidade ao nível do dia, dá pra perceber como novos eventos afetam a energia recente de um PL. Contudo, com esse nível de granularidade, o gráfico fica bastante poluído, com muitos pontos.
+
+Vamos calcular novamente a energia recente, dessa vez utilizando a granularidade ao nível da semana.
+
+```{r, warning=FALSE, message=FALSE}
+hist_energia <- agoradigital::get_historico_energia_recente(proc_tram, granularidade = 's', tamanho_janela = 4, decaimento = 0.1) %>%
+  dplyr::filter(periodo >= start_date)
+
+library(ggplot2)
+ggplot(hist_energia, aes(x=periodo, y=energia_recente)) +
+  geom_point() +
+  geom_smooth()  +
+  geom_point(aes(x=periodo, y=energia_periodo), colour='red', alpha=0.5, subset(hist_energia, energia_periodo > 0)) +
+  theme_minimal()
+```
+
+No gráfico acima, é possível ter uma ideia mais objetiva da energia do PL ao longo do tempo, com menos pontos.
+
+Vamos calcular novamente a energia recente, dessa vez utilizando a granularidade ao nível do mês.
+
+```{r, warning=FALSE, message=FALSE}
+hist_energia <- agoradigital::get_historico_energia_recente(proc_tram, granularidade = 'm', tamanho_janela = 2, decaimento = 0.1) %>%
+  dplyr::filter(periodo >= start_date)
+
+library(ggplot2)
+ggplot(hist_energia, aes(x=periodo, y=energia_recente)) +
+  geom_point() +
+  geom_smooth()  +
+  geom_point(aes(x=periodo, y=energia_periodo), colour='red', alpha=0.5, subset(hist_energia, energia_periodo > 0)) +
+  theme_minimal()
+```
+
+Nessa versão do gráfico, a informação fica bem resumida, provendo uma visão clara, porém pouco detalhada dos dados.

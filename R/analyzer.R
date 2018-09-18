@@ -56,11 +56,16 @@ get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::tod
 #' computado levando em consideração os eventos que aconteceram nos 30 dias anteriores à data pivô, e aplicando um decaimento exponencial.
 #' @param events_df Dataframe da tramitação contendo as colunas: data_hora e evento
 #' @param granularidade Granularidade do dado histórico da energia desejada ('d' = dia, 's' = semana, 'm' = mês)
-#' @param tamanho_janela Quantidade de dias a serem analizados. O padrão é 30
-#' @param decaimento A porcentagem de redução do valor da energia por dia. Valor deve estar entre 0 e 1. O padrão é 10% (0.1)
+#' @param tamanho_janela Quantidade de dias a serem analizados.
+#' @param decaimento A porcentagem de redução do valor da energia por dia. Valor deve estar entre 0 e 1.
 #' @param pivot_day Dia de partida de onde começará a análise. O padrão é o dia atual
 #' @return Dataframe com o valor da energia recente para cada dia útil da tramitação de uma proposição.
 #' @importFrom magrittr '%>%'
+#' @examples 
+#' proc_tram_camara <- readr::read_csv(paste0("./data/camara/",46249,"-fases-tramitacao-camara.csv"))
+#' get_historico_energia_recente(proc_tram_camara, granularidade = 'd', tamanho_janela = 22, decaimento = 0.1)
+#' get_historico_energia_recente(proc_tram_camara, granularidade = 's', tamanho_janela = 4, decaimento = 0.1)
+#' get_historico_energia_recente(proc_tram_camara, granularidade = 'm', tamanho_janela = 2, decaimento = 0.1)
 #' @export
 get_historico_energia_recente <- function(eventos_df, granularidade = 'd', tamanho_janela = 22, decaimento = 0.1) {
   #Remove tempo do timestamp da tramitação
