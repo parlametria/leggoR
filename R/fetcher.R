@@ -106,7 +106,8 @@ fetch_tramitacao_senado <- function(proposicao_id, normalized=FALSE) {
 #' @description Verifica deferimento ou não para uma lista de IDs de requerimentos.
 #' @param proposicao_id ID de um ou vários requerimentos
 #' @return Dataframe com IDs dos requerimentos e informação sobre deferimento.
-#' @example fetch_deferimento(c("102343", "109173", "115853"))
+#' @examples 
+#' fetch_deferimento(c("102343", "109173", "115853"))
 #' @importFrom utils tail
 #' @export
 fetch_deferimento <- function(proposicao_id) {

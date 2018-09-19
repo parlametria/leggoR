@@ -7,7 +7,7 @@ params:
 ---
 
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
-source(here::here('view/formatter/data-formatter-ficha.R'))
+source(here::here('R/data-formatter-ficha.R'))
 source(here::here('view/visualizer/build-chart.R'))
 library(rcongresso)
 library(vistime)
