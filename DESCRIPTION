@@ -29,7 +29,8 @@ Imports: magrittr,
     xml2,
     lubridate,
     readr,
-    roll
+    roll,
+    DT
 Suggests: testthat,
     knitr,
     vistime,
