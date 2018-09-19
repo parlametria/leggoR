@@ -14,7 +14,7 @@ install.packages("vistime")
  ```
 
 ## Scripts
-### [data-formatter-vistime-camara.R](../R/data-formatter-vistime.R)
+### [data-formatter-vistime.R](../R/data-formatter-vistime.R)
 
 Contém a função *build_vis_csv* que importa os CSVs contendo a tramitação de uma proposição
 e o converte para uma versão adaptada que poderá ser lido por *build-chart.R* na construção 
