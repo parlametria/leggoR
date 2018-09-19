@@ -1,4 +1,7 @@
 source(here::here("R/camara-lib.R"))
+
+camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+
 #' @title Cria coluna com os relatores na tramitação na Câmara
 #' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no
 #' envento pontual em que ele é designado
@@ -317,4 +320,67 @@ extract_regime_tramitacao_camara <- function(tram_df) {
     fuzzyjoin::regex_left_join(regex_regime, 
                                by = c(statusProposicao.regime = "regex"))
     return(regime_df[1,]$regime_tramitacao)
+}
+
+#' @title Extrai as casas globais (Origem Câmara, Plenário Câmara, etc.) da Câmara
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada fase_global
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada fase_global
+#' @examples
+#'  extract_casas_in_camara(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', T))
+extract_casas_in_camara <- function(tramitacao_df, proposicao_df) { 
+  casa_name = dplyr::if_else(tolower(proposicao_df$casa_origem) == "senado federal", "(Revisão)", "(Origem)")
+  
+  tramitacao_df %<>%
+    dplyr::arrange(data_hora, sequencia) %>%
+    dplyr::mutate(
+      fase_global =
+        dplyr::case_when(
+          (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario) & 
+             sigla_local == 'PLEN') ~ paste0("Plenário ", casa_name),
+          sigla_local != 'PLEN' &
+            (sigla_local %in% camara_env$comissoes$siglas_comissoes_antigas |
+               sigla_local %in% camara_env$comissoes$siglas_comissoes |
+               stringr::str_detect(tolower(sigla_local), '^pl'))  ~ paste0("Comissões ", casa_name)))
+  
+  tramitacao_df %>%
+    tidyr::fill(fase_global)
+}
+#' @title Recupera o progresso de um PL na Câmara
+#' @description Retorna um dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @param df Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @return Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @examples
+#'  get_progresso_camara(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', T))
+get_progresso_camara <- function(tramitacao_df, proposicao_df) { 
+  tramitacao_df <- 
+    tramitacao_df %>%
+    extract_casas_in_camara(proposicao_df)
+  
+  df <- 
+    tramitacao_df %>%
+    dplyr::filter(fase_global != 'NA') %>%
+    dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
+    dplyr::group_by(fase_global, sequence = data.table::rleid(fase_global)) %>%
+    dplyr::summarise(data_hora_inicio = min(data_hora),
+                     data_hora_fim = max(end_data)) %>%
+    dplyr::filter(data_hora_fim - data_hora_inicio > 0) %>%
+    dplyr::select(-sequence) 
+  
+  if(nrow(df %>% dplyr::group_by(fase_global) %>% dplyr::filter(n()>1)) > 0) {
+    df <- 
+      df %>%
+      dplyr::group_by(fase_global) %>%
+      dplyr::summarise(data_hora_inicio = min(data_hora_inicio),
+                       data_hora_fim = max(data_hora_fim)) %>%
+      dplyr::right_join(camara_env$fases_global, by = "fase_global")
+  } else {
+    df <- 
+      df %>%
+      dplyr::right_join(camara_env$fases_global, by = "fase_global")
+  }
+  
+  df %>%
+    dplyr::mutate(prop_id = proposicao_df$prop_id) %>%
+    dplyr::select(prop_id, fase_global, casa, data_hora_inicio, data_hora_fim)
 }

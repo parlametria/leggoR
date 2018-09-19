@@ -18,6 +18,7 @@ build_csvs <- function(id, house, apelido='', tema='', output_folder=NULL) {
   print(paste("Processando id",id,"da casa",house))
   prop_data <- import_proposicao(id, house, apelido, tema, output_folder)
   proc_tram_data <- process_proposicao(prop_data$proposicao, prop_data$tramitacao, house, output_folder)
+  proc_progresso_data <- get_progresso(prop_data$tramitacao, prop_data$proposicao, house, output_folder)
   build_vis_csv(proc_tram_data, house, output_folder)
   as.tibble(NULL)
 }

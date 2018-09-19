@@ -164,5 +164,16 @@
       "indeferido": "^Indefiro",
       "deferido": "^(Defiro)|(Aprovado)"
     }
-  }
+  },
+
+  "fase_global_plenario":{
+    "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)"
+  },
+  
+  "fases_global":[
+    {"fase_global": "Comissões (Origem)", "casa": "Senado"},
+    {"fase_global": "Plenário (Origem)", "casa": "Senado"},
+    {"fase_global": "Comissões (Revisão)", "casa": "Câmara"},
+    {"fase_global": "Plenário (Revisão)", "casa": "Câmara"}
+  ]
 }
