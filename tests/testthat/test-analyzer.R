@@ -31,7 +31,7 @@ test_that('get_historico_energia_recente() has correct function passing the para
   
   energy_df <- get_historico_energia_recente(data, decaimento = decaimento)
   
-  expect_true(all(energy_df$energia_total == result))
+  expect_true(all(energy_df$energia_recente == result))
 })
 
 test_that('get_historico_energia_recente() has correct function passing the parameter week', {
@@ -43,20 +43,20 @@ test_that('get_historico_energia_recente() has correct function passing the para
   r <- 1 - decaimento
   result <- c(
     # semana 1
-    sum(3 * r^0),
+    sum(1 * r^0),
     # semana 2
-    sum(7 * r^0, 3 * r^0),
+    sum(5 * r^0, 1 * r^1),
     # 2018-09-11
-    sum(7 * r^0, 7 * r^1, 3 * r^2),
+    sum(5 * r^0, 5 * r^1, 1 * r^2),
     # 2018-09-12
-    sum(5 * r^0, 7 * r^1, 7 * r^2, 3 * r^3)
+    sum(5 * r^0, 5 * r^1, 5 * r^2, 1 * r^3)
   )
   
   result <- round(result, digits = 3)
   
   energy_df <- get_historico_energia_recente(data, decaimento = decaimento, granularidade = 's')
   
-  expect_true(all(energy_df$energia_total == result))
+  expect_true(all(energy_df$energia_recente == result))
 })
 
 # test_that('get_historico_energia_recente() has correct function passing the parameter week', {
