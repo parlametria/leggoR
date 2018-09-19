@@ -1,5 +1,5 @@
-source(here::here("view/formatter/data-formatter-vistime-camara.R"))
-source(here::here("view/formatter/data-formatter-vistime-senado.R"))
+source(here::here("R/data-formatter-vistime-camara.R"))
+source(here::here("R/data-formatter-vistime-senado.R"))
 
 #' @title Formata tabela para o vistime
 #' @description Formata a tabela final que será usado para fazer a visualização
