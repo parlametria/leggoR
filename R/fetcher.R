@@ -106,7 +106,8 @@ fetch_tramitacao_senado <- function(proposicao_id, normalized=FALSE) {
 #' @description Verifica deferimento ou não para uma lista de IDs de requerimentos.
 #' @param proposicao_id ID de um ou vários requerimentos
 #' @return Dataframe com IDs dos requerimentos e informação sobre deferimento.
-#' @example fetch_deferimento(c("102343", "109173", "115853"))
+#' @examples 
+#' fetch_deferimento(c("102343", "109173", "115853"))
 #' @importFrom utils tail
 #' @export
 fetch_deferimento <- function(proposicao_id) {
@@ -556,15 +557,19 @@ build_data_filepath <- function(folder_path,data_prefix,house,bill_id) {
 #' importar os dados daquela proposição.
 #' @param prop_id Identificador da proposição que pode ser recuperado no site da casa legislativa.
 #' @param casa Casa onde o projeto está tramitando
-#' @param casa Caminho da pasta onde os dados devem ser salvos
+#' @param out_folderpath Caminho da pasta onde os dados devem ser salvos
+#' @param apelido Apelido da proposição 
+#' @param tema Tema da proposição
 #' @export
-import_proposicao <- function(prop_id, casa, apelido, out_folderpath=NULL) {
+#' @example 
+#' import_proposicao(129808, 'senado', 'Cadastro Positivo', 'Agenda Nacional', 'data/')
+import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL) {
   casa <- tolower(casa)
   if (!(casa %in% c('camara','senado'))) {
     print('Parâmetro "casa" não identificado.')
   }
   
-  prop_df <- fetch_proposicao(prop_id,casa,apelido, TRUE)
+  prop_df <- fetch_proposicao(prop_id,casa,apelido, tema, TRUE)
   tram_df <- fetch_tramitacao(prop_id,casa, TRUE)
   emendas_df <- fetch_emendas(prop_id,casa)
   
@@ -651,16 +656,19 @@ fetch_events <- function(prop_id) {
 #' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
 #' @param id ID de uma proposição
 #' @param casa casa de onde a proposição esta
+#' @param apelido Apelido da proposição
+#' @param tema Tema da proposição
+#' @param normalized Se os dados vão ser normalizados
 #' @return Dataframe com as informações detalhadas de uma proposição
 #' @examples
-#' fetch_proposicao(91341, 'senado')
+#' fetch_proposicao(129808, 'senado', 'Cadastro Positivo', 'Agenda Nacional', T)
 #' @export
-fetch_proposicao <- function(id, casa, apelido='', normalized=TRUE) {
+fetch_proposicao <- function(id, casa, apelido='', tema='', normalized=TRUE) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    fetch_proposicao_camara(id,normalized,apelido)
+    fetch_proposicao_camara(id,normalized,apelido, tema)
   } else if (casa == 'senado') {
-    fetch_proposicao_senado(id,normalized,apelido)
+    fetch_proposicao_senado(id,normalized,apelido, tema)
   } else {
       print('Parâmetro "casa" não identificado.')
   }
@@ -683,10 +691,12 @@ fetch_proposicoes <- function(pls_ids) {
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param proposicao_id ID de uma proposição do Senado
 #' @param normalized whether or not the output dataframe should be normalized (have the same format and column names for every house)
+#' @param apelido apelido da proposição
+#' @param tema tema da proposição
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
-#' fetch_proposicao_senado(91341)
-fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido) {
+#' fetch_proposicao_senado(129808, T, 'Cadastro Positivo', 'Agenda Nacional')
+fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema) {
   url_base_proposicao <-
     "http://legis.senado.leg.br/dadosabertos/materia/"
   da_url <- paste0(url_base_proposicao, proposicao_id)
@@ -753,7 +763,8 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido) {
                     data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao, "00:00")),
                     casa = 'senado',
                     autor_nome = ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, ' ', partido_autor, '/', uf_autor)),
-                    apelido_materia = ifelse('apelido_materia' %in% names(.), apelido_materia, apelido)) %>%
+                    apelido_materia = ifelse('apelido_materia' %in% names(.), apelido_materia, apelido),
+                    tema = tema) %>%
       dplyr::select(prop_id,
                     casa,
                     tipo_materia = sigla_subtipo_materia,
@@ -764,7 +775,8 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido) {
                     palavras_chave = indexacao_materia,
                     casa_origem = nome_casa_origem,
                     autor_nome,
-                    apelido_materia)
+                    apelido_materia,
+                    tema)
   }
   
   proposicao_complete
@@ -775,10 +787,12 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido) {
 #' @description Retorna um dataframe contendo dados sobre uma proposição
 #' @param prop_id Um ou mais IDs de proposições
 #' @param normalized whether or not the output dataframe should be normalized (have the same format and column names for every house)
+#' @param apelido Apelido da proposição 
+#' @param tema Tema da proposição
 #' @return Dataframe
 #' @examples
-#' fetch_proposicao_camara(2056568)
-fetch_proposicao_camara <- function(prop_id,normalized=TRUE,apelido) {
+#' fetch_proposicao_camara(2056568, T, "Lei para acabar zona de amortecimento", "Meio Ambiente")
+fetch_proposicao_camara <- function(prop_id,normalized=TRUE,apelido, tema) {
   prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%
     rename_df_columns()
   
@@ -794,7 +808,8 @@ fetch_proposicao_camara <- function(prop_id,normalized=TRUE,apelido) {
                     casa = 'camara',
                     casa_origem = autor_df[1,]$casa_origem,
                     autor_nome = autor_df[1,]$autor.nome,
-                    apelido_materia = apelido) %>%
+                    apelido_materia = apelido,
+                    tema = tema) %>%
       dplyr::select(prop_id,
                     casa,
                     tipo_materia = sigla_tipo,
@@ -805,7 +820,8 @@ fetch_proposicao_camara <- function(prop_id,normalized=TRUE,apelido) {
                     palavras_chave = keywords,
                     autor_nome,
                     casa_origem,
-                    apelido_materia)
+                    apelido_materia,
+                    tema)
   }
   
   prop_camara

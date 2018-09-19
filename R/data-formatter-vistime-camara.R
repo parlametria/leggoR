@@ -1,8 +1,3 @@
-library(data.table)
-library(tidyverse)
-library(lubridate)
-library(here)
-library(agoradigital)
 source(here::here("R/camara-lib.R"))
 
 #' @title Adiciona o local para o vistime
@@ -10,25 +5,24 @@ source(here::here("R/camara-lib.R"))
 #' suportado pelo vistime
 #' @param df Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_local()
-#' @export
+#' fetch_tramitacao(2121442, 'camara', T) %>% data_local()
 data_local <- function(df) {
   df <-
     df %>%
-    filter((!(grepl('^S', local) | local == 'MESA')))
+    filter((!(grepl('^S', local) | local == 'CD-MESA-PLEN')))
 
   df %>%
-    mutate(end_data = lead(data_hora, default=Sys.time())) %>%
-    group_by(local, sequence = rleid(local)) %>%
-    summarise(start = min(data_hora),
+    dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
+    dplyr::group_by(local, sequence = data.table::rleid(local)) %>%
+    dplyr::summarise(start = min(data_hora),
               end = max(end_data)) %>%
-    filter(end - start > 0) %>%
-    ungroup() %>%
-    arrange(sequence) %>%
-    select(-sequence) %>%
-    rename(label = local) %>%
-    mutate(group = "Comissão",
-           color = case_when(label == "Plenário" ~ "#5496cf",
+    dplyr::filter(end - start > 0) %>%
+    dplyr::ungroup() %>%
+    dplyr::arrange(sequence) %>%
+    dplyr::select(-sequence) %>%
+    dplyr::rename(label = local) %>%
+    dplyr::mutate(group = "Comissão",
+           color = dplyr::case_when(label == "Plenário" ~ "#5496cf",
                              label == "PL672616" ~ "#ff9c37",
                              label == "CCP" ~ "#8bca42",
                              label == "CTASP" ~ "#ea81b1"))
@@ -39,16 +33,15 @@ data_local <- function(df) {
 #' suportado pelo vistime
 #' @param df Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_evento()
-#' @export
+#' fetch_tramitacao(2121442, 'camara', T) %>% data_evento()
 data_evento <- function(df) {
   df %>%
-    filter(!is.na(evento)) %>%
-    mutate(start = data_hora, end = data_hora, group = 'Evento') %>%
-    group_by(evento) %>%
-    rename(label = evento) %>%
-    select(label, start, end, group) %>%
-    mutate(color = '#a9a9a9') %>%
+    dplyr::filter(!is.na(evento)) %>%
+    dplyr::mutate(start = data_hora, end = data_hora, group = 'Evento') %>%
+    dplyr::group_by(evento) %>%
+    dplyr::rename(label = evento) %>%
+    dplyr::select(label, start, end, group) %>%
+    dplyr::mutate(color = '#a9a9a9') %>%
     unique()
 }
 
@@ -57,8 +50,7 @@ data_evento <- function(df) {
 #' retorna as que ela ainda vai passar
 #' @param tramitacao Dataframe com a tramitacao
 #' @examples
-#' get_comissoes_futuras(tramitacao)
-#' @export
+#' get_comissoes_futuras(fetch_tramitacao(2121442, 'camara', T))
 get_comissoes_futuras <- function(tramitacao) {
   
   siglas_comissoes <-
@@ -111,19 +103,18 @@ get_comissoes_futuras <- function(tramitacao) {
 #' @param bill_id id da proposição
 #' @param tramitacao Dataframe com a tramitacao
 #' @examples
-#' read_csv(paste0(here::here('data/camara/'), bill_id, '-tramitacao-camara.csv')) %>% data_fase_global(bill_id, .)
-#' @export
+#' fetch_tramitacao(2121442, 'camara', T) %>% data_fase_global(2121442, .)
 data_fase_global <- function(bill_id, tramitacao) {
   data_prop <- extract_autor_in_camara(bill_id) %>% tail(1)
-  tipo_casa <- if_else(data_prop$casa_origem == "Câmara dos Deputados", "Origem", "Revisão")
+  tipo_casa <- dplyr::if_else(data_prop$casa_origem == "Câmara dos Deputados", "Origem", "Revisão")
 
   tramitacao <- get_comissoes_futuras(tramitacao)
   
   tramitacao <- 
     tramitacao %>%
-    mutate(end_data = lead(data_hora, default=Sys.time())) %>%
-    group_by(local, sequence = rleid(local)) %>%
-    summarise(start = min(data_hora),
+    dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
+    dplyr::group_by(local, sequence = data.table::rleid(local)) %>%
+    dplyr::summarise(start = min(data_hora),
               end = max(end_data)) %>%
     #filter(end - start > 0) %>%
     ungroup() %>%
@@ -133,7 +124,7 @@ data_fase_global <- function(bill_id, tramitacao) {
     mutate(group = "Global",
            label = case_when(label == "CD-MESA-PLEN" ~ "Apresentação",
                              TRUE ~ label),
-           color = case_when(stringr::str_detect(label, "Plenário") ~ "#5496cf",
+           color = dplyr::case_when(stringr::str_detect(label, "Plenário") ~ "#5496cf",
                              stringr::str_detect(label, "Comissão Especial") ~ "#ff9c37",
                              stringr::str_detect(label, "CCP") ~ "#8bca42",
                              stringr::str_detect(label, "CTASP") ~ "#ea81b1"),
@@ -142,8 +133,8 @@ data_fase_global <- function(bill_id, tramitacao) {
   if (tipo_casa == "Origem") {
     futuro_revisao <-
       tramitacao %>%
-      tail(1) %>%
-      mutate(label = "Comissões - Revisão (Senado)",
+      utils::tail(1) %>%
+      dplyr::mutate(label = "Comissões - Revisão (Senado)",
              start = as.POSIXct(Sys.Date() + 200),
              end = as.POSIXct(Sys.Date() + 201))
     
@@ -153,24 +144,30 @@ data_fase_global <- function(bill_id, tramitacao) {
   tramitacao
 }
 
+#' @title Adiciona a fase situação na comissão para o vistime
+#' @description Adiciona a fase situação na comissão com suas respectivas cores no formato
+#' suportado pelo vistime
+#' @param tramitacao Dataframe com a tramitacao
+#' @examples
+#' fetch_tramitacao(2121442, 'camara', T) %>% data_situacao_comissao()
 data_situacao_comissao <- function(df) {
   df %>% 
-  dplyr::select(data_hora, situacao_comissao) %>%
-  dplyr::filter(!is.na(situacao_comissao)) %>%
-  mutate(end_data = lead(data_hora, default=Sys.time())) %>%
-  group_by(situacao_comissao, sequence = data.table::rleid(situacao_comissao)) %>%
-  summarise(start = min(data_hora),
-            end = max(end_data)) %>%
-  filter(end - start > 0) %>%
-  ungroup() %>%
-  arrange(sequence) %>%
-  select(-sequence) %>% 
-  rename(label = situacao_comissao) %>% 
-  mutate(group = "Situação na comissão",
-         color = case_when(label == "Recebimento" ~ "#5496cf",
-                           label == "Análise do relator" ~ "#ff9c37",
-                           label == "Discussão e votação" ~ "#8bca42",
-                           label == "Encaminhamento" ~ "#ea81b1"))
+    dplyr::select(data_hora, situacao_comissao) %>%
+    dplyr::filter(!is.na(situacao_comissao)) %>%
+    dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
+    dplyr::group_by(situacao_comissao, sequence = data.table::rleid(situacao_comissao)) %>%
+    dplyr::summarise(start = min(data_hora),
+              end = max(end_data)) %>%
+    dplyr::filter(end - start > 0) %>%
+    dplyr::ungroup() %>%
+    dplyr::arrange(sequence) %>%
+    dplyr::select(-sequence) %>% 
+    dplyr::rename(label = situacao_comissao) %>% 
+    dplyr::mutate(group = "Situação na comissão",
+           color = dplyr::case_when(label == "Recebimento" ~ "#5496cf",
+                             label == "Análise do relator" ~ "#ff9c37",
+                             label == "Discussão e votação" ~ "#8bca42",
+                             label == "Encaminhamento" ~ "#ea81b1"))
 }
 
 #' @title Formata tabela para o vistime
@@ -178,19 +175,17 @@ data_situacao_comissao <- function(df) {
 #' usando o vistime
 #' @param tram_camara_df dataframe da tramitação do PL na Câmara
 #' @examples
-#' build_vis_csv_camara(fetch_tramitacao_camara(2121442))
+#' build_vis_csv_camara(fetch_tramitacao(2121442, 'camara', T))
 build_vis_csv_camara <- function(tram_camara_df, output_folder=NULL) {
   bill_id <- tram_camara_df[1, "prop_id"]
   file_path <- paste0(output_folder,'/vis/tramitacao/', bill_id, '-data-camara.csv')
 
   data <- 
-    bind_rows(data_fase_global(bill_id, tram_camara_df), 
+    dplyr::bind_rows(data_fase_global(bill_id, tram_camara_df), 
                      data_local(tram_camara_df),
                     #data_situacao_comissao(tram_camara_df), 
                     data_evento(tram_camara_df)) %>%
-    filter(group != "Comissão")
+    dplyr::filter(group != "Comissão")
   
   readr::write_csv(data, file_path)
-  
-  data
 }

@@ -5,7 +5,7 @@ params:
   camara_id: 2088990
 ---
 ```{r imports, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, timeout= 4000000}
-source(here::here('view/formatter/data-formatter-ficha.R'))
+source(here::here('R/data-formatter-ficha.R'))
 source(here::here('view/visualizer/build-chart.R'))
 
 data <- extract_informations_all_houses(params$senado_id, params$camara_id)
