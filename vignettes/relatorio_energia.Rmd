@@ -38,12 +38,12 @@ id <- 345311
 casa <- 'camara'
 prop <- agoradigital::fetch_proposicao(id,casa,TRUE)
 tram <- agoradigital::fetch_tramitacao(id,casa,TRUE)
-proc_tram <- agoradigital::process_proposicao(prop,tram,casa)#%>%
+proc_tram <- agoradigital::process_proposicao(prop,tram,casa)
 
 proc_tram %>%
-  dplyr::select(data_hora, sequencia, texto_tramitacao, sigla_local, evento) %>%
+  dplyr::select(data_hora, texto_tramitacao, sigla_local, evento) %>%
   dplyr::arrange(desc(data_hora)) %>%
-  DT::datatable()
+  DT::datatable(rownames = F)
 
 ```
 
@@ -54,7 +54,7 @@ Em seguida, vamos calcular a energia recente para o histórico da tramitação d
 - Os pontos vermelhos representam os valores da energia do período (número de eventos ocorridos)
 - A linha azul representa uma suavização dos valores da energia recente ao longo do tempo
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, fig.width=5, fig.align='center'}
 start_date <- dplyr::last(proc_tram$data_hora) - lubridate::days(90)
 hist_energia <- agoradigital::get_historico_energia_recente(proc_tram, granularidade = 'd', tamanho_janela = 22, decaimento = 0.1) %>%
   dplyr::filter(periodo >= start_date)
@@ -72,7 +72,7 @@ Como podemos ver no gráfico acima, quando é utilizada a granularidade ao níve
 
 Vamos calcular novamente a energia recente, dessa vez utilizando a granularidade ao nível da semana.
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, fig.width=5, fig.align='center'}
 hist_energia <- agoradigital::get_historico_energia_recente(proc_tram, granularidade = 's', tamanho_janela = 4, decaimento = 0.1) %>%
   dplyr::filter(periodo >= start_date)
 
@@ -89,7 +89,7 @@ No gráfico acima, é possível ter uma ideia mais objetiva da energia do PL ao 
 
 Vamos calcular novamente a energia recente, dessa vez utilizando a granularidade ao nível do mês.
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, fig.width=5, fig.align='center'}
 hist_energia <- agoradigital::get_historico_energia_recente(proc_tram, granularidade = 'm', tamanho_janela = 2, decaimento = 0.1) %>%
   dplyr::filter(periodo >= start_date)
 
