@@ -381,6 +381,7 @@ get_progresso_camara <- function(tramitacao_df, proposicao_df) {
   }
   
   df %>%
-    dplyr::mutate(prop_id = proposicao_df$prop_id) %>%
-    dplyr::select(prop_id, fase_global, casa, data_hora_inicio, data_hora_fim)
+    dplyr::mutate(prop_id = proposicao_df$prop_id,
+                  casa = proposicao_df$casa) %>%
+    dplyr::select(prop_id, casa, fase_global, local, data_hora_inicio, data_hora_fim)
 }

@@ -115,9 +115,9 @@
   },
   
   "fases_global":[
-    {"fase_global": "Comissões (Origem)", "casa": "Câmara"},
-    {"fase_global": "Plenário (Origem)", "casa": "Câmara"},
-    {"fase_global": "Comissões (Revisão)", "casa": "Senado"},
-    {"fase_global": "Plenário (Revisão)", "casa": "Senado"}
+    {"fase_global": "Comissões (Origem)", "local": "Câmara"},
+    {"fase_global": "Plenário (Origem)", "local": "Câmara"},
+    {"fase_global": "Comissões (Revisão)", "local": "Senado"},
+    {"fase_global": "Plenário (Revisão)", "local": "Senado"}
   ]
 }
