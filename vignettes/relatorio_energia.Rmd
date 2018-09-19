@@ -61,6 +61,7 @@ hist_energia <- agoradigital::get_historico_energia_recente(proc_tram, granulari
 
 library(ggplot2)
 ggplot(hist_energia, aes(x=periodo, y=energia_recente)) +
+  xlab("Tempo") + ylab("Energia") +
   geom_point() +
   geom_smooth() +
   geom_point(aes(x=periodo, y=energia_periodo), colour='red', alpha=0.5, subset(hist_energia, energia_periodo > 0)) +
@@ -77,6 +78,7 @@ hist_energia <- agoradigital::get_historico_energia_recente(proc_tram, granulari
 
 library(ggplot2)
 ggplot(hist_energia, aes(x=periodo, y=energia_recente)) +
+  xlab("Tempo") + ylab("Energia") +
   geom_point() +
   geom_smooth()  +
   geom_point(aes(x=periodo, y=energia_periodo), colour='red', alpha=0.5, subset(hist_energia, energia_periodo > 0)) +
@@ -93,6 +95,7 @@ hist_energia <- agoradigital::get_historico_energia_recente(proc_tram, granulari
 
 library(ggplot2)
 ggplot(hist_energia, aes(x=periodo, y=energia_recente)) +
+  xlab("Tempo") + ylab("Energia") +
   geom_point() +
   geom_smooth()  +
   geom_point(aes(x=periodo, y=energia_periodo), colour='red', alpha=0.5, subset(hist_energia, energia_periodo > 0)) +
