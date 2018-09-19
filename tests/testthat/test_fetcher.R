@@ -86,7 +86,7 @@ test <- function(){
   test_that('fetch_proposicao() returns dataframe', {
     proposicoes_fetch_proposicao_senado <- senado_df %>%
       dplyr::rowwise() %>%
-      dplyr::do(fetch_proposicao(.$SENADO_ID, 'senado',TRUE)) 
+      dplyr::do(fetch_proposicao(.$SENADO_ID, 'senado', '', '', TRUE)) 
     
     proposicoes_fetch_proposicao_camara <- camara_df %>%
       dplyr::rowwise() %>%
@@ -99,7 +99,7 @@ test <- function(){
   test_that('fetch_proposicao_senado() returns dataframe', {
     proposicoes_fetch_proposicao_senado <- senado_df %>%
       dplyr::rowwise() %>%
-      dplyr::do(fetch_proposicao_senado(.$SENADO_ID,TRUE)) 
+      dplyr::do(fetch_proposicao_senado(.$SENADO_ID,TRUE, '', '')) 
     
     expect_true(is.data.frame(proposicoes_fetch_proposicao_senado))
   })
@@ -107,7 +107,7 @@ test <- function(){
   test_that('fetch_proposicao_camara() returns dataframe', {
     proposicoes_fetch_proposicao_camara <- camara_df %>%
       dplyr::rowwise() %>%
-      dplyr::do(fetch_proposicao_camara(.$CAMARA_ID,TRUE)) 
+      dplyr::do(fetch_proposicao_camara(.$CAMARA_ID,TRUE, '', '')) 
     
     expect_true(is.data.frame(proposicoes_fetch_proposicao_camara))
   })
