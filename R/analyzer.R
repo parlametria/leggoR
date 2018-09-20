@@ -56,18 +56,21 @@ get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::tod
 #' computado levando em consideração os eventos que aconteceram nos 30 dias anteriores à data pivô, e aplicando um decaimento exponencial.
 #' @param events_df Dataframe da tramitação contendo as colunas: data_hora e evento
 #' @param granularidade Granularidade do dado histórico da energia desejada ('d' = dia, 's' = semana, 'm' = mês)
-#' @param tamanho_janela Quantidade de dias a serem analizados.
 #' @param decaimento A porcentagem de redução do valor da energia por dia. Valor deve estar entre 0 e 1.
 #' @param pivot_day Dia de partida de onde começará a análise. O padrão é o dia atual
 #' @return Dataframe com o valor da energia recente para cada dia útil da tramitação de uma proposição.
 #' @importFrom magrittr '%>%'
 #' @examples 
-#' proc_tram_camara <- readr::read_csv(paste0("./data/camara/",46249,"-fases-tramitacao-camara.csv"))
-#' get_historico_energia_recente(proc_tram_camara, granularidade = 'd', tamanho_janela = 22, decaimento = 0.1)
-#' get_historico_energia_recente(proc_tram_camara, granularidade = 's', tamanho_janela = 4, decaimento = 0.1)
-#' get_historico_energia_recente(proc_tram_camara, granularidade = 'm', tamanho_janela = 2, decaimento = 0.1)
+#' \dontrun{
+#' id <- 345311
+#' casa <- 'camara'
+#' prop <- agoradigital::fetch_proposicao(id,casa,TRUE)
+#' tram <- agoradigital::fetch_tramitacao(id,casa,TRUE)
+#' proc_tram <- agoradigital::process_proposicao(prop,tram,casa)
+#' get_historico_energia_recente(proc_tram, granularidade = 's', decaimento = 0.05)
+#' }
 #' @export
-get_historico_energia_recente <- function(eventos_df, granularidade = 'd', tamanho_janela = 22, decaimento = 0.1) {
+get_historico_energia_recente <- function(eventos_df, granularidade = 's', decaimento = 0.05) {
   #Remove tempo do timestamp da tramitação
   extended_events <- eventos_df %>%
     dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
@@ -116,6 +119,7 @@ get_historico_energia_recente <- function(eventos_df, granularidade = 'd', taman
     dplyr::arrange(periodo)
   
   #Computa soma deslizante com decaimento exponencial
+  tamanho_janela <- nrow(energia_periodo)
   weights <- (1-decaimento) ^ ((tamanho_janela-1):0)
   energia_recente <- data.frame(energia_recente = round(roll::roll_sum(data.matrix(energia_periodo$energia_periodo), tamanho_janela, weights, min_obs = 1), digits=3))
   historico_energia <- dplyr::bind_cols(energia_periodo,energia_recente) %>%
