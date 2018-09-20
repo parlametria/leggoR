@@ -7,3 +7,70 @@
 detect_fase <- function(element, set) {
   element %in% set
 }
+
+#' @title Extrai as casas globais de um PL
+#' @description Extrai as casas globais de um PL
+#' @param proposicao_df Dataframe da tramitação do PL.
+#' @param tramitacao_df Dataframe da proposição do PL. 
+#' @param casa Casa (Senado ou Câmara)
+#' @return Dataframe com uma nova coluna chamada fase_global
+extract_casas <- function(tramitacao_df, proposicao_df, casa){
+  if (tolower(casa) == congress_constants$camara_label) {
+    df <- extract_casas_in_camara(tramitacao_df, proposicao_df)
+  } else if (tolower(casa) == congress_constants$senado_label) {
+    df <- extract_casas_in_senado(tramitacao_df, proposicao_df)
+  }
+  df
+}
+
+
+#' @title Recupera o progresso de um PL
+#' @description Retorna um dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @param df Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @return Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @examples
+#' get_progresso(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', T), 'camara')
+extract_progresso <- function(tramitacao_df, proposicao_df, casa) { 
+    df <- tramitacao_df %>%
+    extract_casas(proposicao_df, casa) 
+    
+    df %>%
+      generate_progresso_df()
+}
+
+#' @title Recupera o progresso de um PL
+#' @description Retorna um dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @param df Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @return Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @examples
+#'  generate_progresso_df(fetch_tramitacao(2121442, 'camara', T))
+generate_progresso_df <- function(tramitacao_df){
+  df <- 
+    tramitacao_df %>%
+    dplyr::filter(fase_global != 'NA') %>%
+    dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
+    dplyr::group_by(casa, prop_id, fase_global, sequence = data.table::rleid(fase_global)) %>%
+    dplyr::summarise(data_inicio = min(data_hora),
+                     data_fim = max(end_data)) %>%
+    dplyr::filter(data_fim - data_inicio > 0) %>%
+    dplyr::select(-sequence) 
+  
+  if(nrow(df %>% dplyr::group_by(fase_global) %>% dplyr::filter(n()>1)) > 0) {
+    df <- 
+      df %>%
+      dplyr::group_by(prop_id, casa, fase_global) %>%
+      dplyr::summarise(data_inicio = min(data_inicio),
+                       data_fim = max(data_fim)) %>%
+      dplyr::right_join(camara_env$fases_global, by = "fase_global")
+  } else {
+    df <- 
+      df %>%
+      dplyr::right_join(camara_env$fases_global, by = "fase_global")
+  }
+  
+  df <-
+    df %>%
+    arrange(data_inicio)
+  
+  return(df)
+}

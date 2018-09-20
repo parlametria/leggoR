@@ -2,5 +2,12 @@
   "constants": {
       "camara_label": "camara",
       "senado_label": "senado"
-  }
+  },
+  
+   "fases_global":[
+    {"fase_global": "Comissões (Origem)"},
+    {"fase_global": "Plenário (Origem)"},
+    {"fase_global": "Comissões (Revisão)"},
+    {"fase_global": "Plenário (Revisão)"}
+  ]
 }
