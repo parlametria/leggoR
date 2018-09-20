@@ -149,6 +149,7 @@ get_progresso <- function(tramitacao_df, proposicao_df, casa, out_folderpath=NUL
       dplyr::select(id)
     
   } else if (tolower(casa) == congress_constants$senado_label) {
+    prop_id = prop_id$prop_id
     another_prop_id <- 
       ids_pls_senado_camara %>%
       dplyr::filter(prop_id == id_senado) %>% 
