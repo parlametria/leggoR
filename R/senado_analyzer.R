@@ -143,38 +143,38 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
 #' @param df Dataframe da tramitação no Senado com as descrições formatadas
 #' @return Dataframe com a coluna "casa" adicionada.
 extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_phase, fase_comissoes) {
-  dataframe <-
-    dataframe %>%
-    dplyr::arrange(data_hora, sequencia) %>%
-    dplyr::mutate( 
-      casa =
-        dplyr::case_when(
-          grepl(fase_apresentacao, texto_tramitacao) ~ 'Apresentação',
-          situacao_descricao_situacao %in% senado_constants$regex_plenario ~
-            senado_constants$plenario,
-          (
-            stringr::str_detect(
-              tolower(texto_tramitacao),
-              senado_constants$regex_recebimento_comissoes
-            ) |
-              situacao_descricao_situacao %in% senado_constants$regex_comissoes_vector
-              |
-              (stringr::str_detect(
-                tolower(texto_tramitacao),
-                stringr::regex(fase_comissoes, ignore_case = TRUE)
-              ))
-            | (stringr::str_detect(
-              tolower(texto_tramitacao),
-              stringr::regex(recebimento_phase, ignore_case = TRUE)
-            ))
-          ) ~
-            senado_constants$comissoes
-        )
-    ) %>%
-    tidyr::fill(casa)
+  # dataframe <-
+  #   dataframe %>%
+  #   dplyr::arrange(data_hora, sequencia) %>%
+  #   dplyr::mutate( 
+  #     casa =
+  #       dplyr::case_when(
+  #         grepl(fase_apresentacao, texto_tramitacao) ~ 'Apresentação',
+  #         situacao_descricao_situacao %in% senado_constants$regex_plenario ~
+  #           senado_constants$plenario,
+  #         (
+  #           stringr::str_detect(
+  #             tolower(texto_tramitacao),
+  #             senado_constants$regex_recebimento_comissoes
+  #           ) |
+  #             situacao_descricao_situacao %in% senado_constants$regex_comissoes_vector
+  #             |
+  #             (stringr::str_detect(
+  #               tolower(texto_tramitacao),
+  #               stringr::regex(fase_comissoes, ignore_case = TRUE)
+  #             ))
+  #           | (stringr::str_detect(
+  #             tolower(texto_tramitacao),
+  #             stringr::regex(recebimento_phase, ignore_case = TRUE)
+  #           ))
+  #         ) ~
+  #           senado_constants$comissoes
+  #       )
+  #   ) %>%
+  #   tidyr::fill(casa)
   
   dataframe %>%
-    dplyr::mutate(casa = dplyr::if_else(is.na(casa), senado_constants$mesa_senado, casa))
+    dplyr::mutate(casa = 'senado')
 }
 
 #' @title Extrai os eventos importantes que aconteceram no Senado
