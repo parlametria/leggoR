@@ -70,7 +70,7 @@ generate_progresso_df <- function(tramitacao_df){
   
   df <-
     df %>%
-    arrange(data_inicio)
+    dplyr::arrange(data_inicio)
   
   return(df)
 }
