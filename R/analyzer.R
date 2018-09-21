@@ -60,6 +60,7 @@ get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::tod
 #' @param pivot_day Dia de partida de onde começará a análise. O padrão é o dia atual
 #' @return Dataframe com o valor da energia recente para cada dia útil da tramitação de uma proposição.
 #' @importFrom magrittr '%>%'
+#' @export
 #' @examples 
 #' \dontrun{
 #' id <- 345311
@@ -69,53 +70,40 @@ get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::tod
 #' proc_tram <- agoradigital::process_proposicao(prop,tram,casa)
 #' get_historico_energia_recente(proc_tram, granularidade = 's', decaimento = 0.05)
 #' }
-#' @export
 get_historico_energia_recente <- function(eventos_df, granularidade = 's', decaimento = 0.05) {
   #Remove tempo do timestamp da tramitação
-  extended_events <- eventos_df %>%
+  eventos_extendidos <- eventos_df %>%
     dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
   
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
-  full_dates <- data.frame(data = seq(min(extended_events$data), max(extended_events$data), by = "1 day"))
-  extended_events <- merge(full_dates,extended_events, by="data", all.x = TRUE) %>%
-    dplyr::filter(!(lubridate::wday(data) %in% c(1,7))) %>%
-    dplyr::filter(lubridate::month(data) != 1) %>%
-    dplyr::filter(!((lubridate::month(data) == 2) & (lubridate::day(data) < 2))) %>%
-    dplyr::filter(!((lubridate::month(data) == 7) & (lubridate::day(data) > 17))) %>%
-    dplyr::filter(!((lubridate::month(data) == 12) & (lubridate::day(data) > 22)))
-  
+  full_dates <- data.frame(data = seq(min(eventos_extendidos$data), max(eventos_extendidos$data), by = "1 day"))
+  eventos_extendidos <- merge(full_dates, eventos_extendidos, by="data", all.x = TRUE) %>%
+    filtra_dias_nao_uteis_congresso()
+    
   energia_periodo <- data.frame()
   
   #Agrupa eventos por período
   if (granularidade == 'd') {
-    energia_periodo <- extended_events %>%
-      dplyr::group_by(data) %>%
-      dplyr::summarize(periodo = dplyr::first(data),
-                       energia_periodo = sum(!is.na(evento))) %>%
-      dplyr::ungroup() %>%
-      dplyr::select(-data)
+    energia_periodo <- eventos_extendidos %>%
+      dplyr::group_by(data)
   } else if (granularidade == 's') {
-    energia_periodo <- extended_events %>%
+    energia_periodo <- eventos_extendidos %>%
       dplyr::mutate(semana = lubridate::week(data),
                     ano = lubridate::year(data)) %>%
-      dplyr::group_by(ano,semana) %>%
-      dplyr::summarize(periodo = dplyr::first(data),
-                      energia_periodo = sum(!is.na(evento))) %>%
-      dplyr::ungroup() %>%
-      dplyr::select(-semana,-ano)
+      dplyr::group_by(ano,semana)
   } else if (granularidade == 'm') {
-    energia_periodo <- extended_events %>%
+    energia_periodo <- eventos_extendidos %>%
       dplyr::mutate(mes = lubridate::month(data),
                     ano = lubridate::year(data)) %>%
-      dplyr::group_by(ano,mes) %>%
-      dplyr::summarize(periodo = dplyr::first(data),
-                       energia_periodo = sum(!is.na(evento))) %>%
-      dplyr::ungroup() %>%
-      dplyr::select(-c(mes,ano))
+      dplyr::group_by(ano,mes)
   }
   
-  energia_periodo <- energia_periodo %>%
+  energia_periodo <- energia_periodo %>% 
+    dplyr::summarize(periodo = dplyr::first(data),
+                     energia_periodo = sum(!is.na(evento))) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(periodo,energia_periodo) %>%
     dplyr::arrange(periodo)
   
   #Computa soma deslizante com decaimento exponencial
