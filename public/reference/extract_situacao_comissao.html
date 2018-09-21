@@ -92,6 +92,9 @@
     <li>
       <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
+    <li>
+      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -143,7 +146,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='fu'>extract_situacao_comissao</span>(<span class='fu'><a href='process_proposicao_camara.html'>process_proposicao_camara</a></span>(<span class='fl'>345311</span>))</div><div class='output co'>#&gt; <span class='error'>Error in df %&gt;% regex_left_match(situacao_comissao, "situacao_comissao") %&gt;%     tidyr::fill(situacao_comissao): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'> <span class='fu'>extract_situacao_comissao</span>(<span class='fu'>process_proposicao_camara</span>(<span class='fl'>345311</span>))</div><div class='output co'>#&gt; <span class='error'>Error in get_comissoes_camara() %&gt;% unlist() %&gt;% paste(collapse = "|") %&gt;%     stringr::regex(ignore_case = TRUE): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

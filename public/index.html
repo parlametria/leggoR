@@ -61,6 +61,9 @@
     <li>
       <a href="articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
+    <li>
+      <a href="articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -169,6 +172,30 @@
 <div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">&gt;<span class="st"> </span>rcmdcheck::<span class="kw">rcmdcheck</span>()</code></pre></div>
 <p>Rodar o linter:</p>
 <div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">&gt;<span class="st"> </span>devtools::<span class="kw">lint</span>()</code></pre></div>
+</div>
+<div id="como-verificar-o-package-localmente" class="section level2">
+<h2 class="hasAnchor">
+<a href="#como-verificar-o-package-localmente" class="anchor"></a>Como verificar o package localmente</h2>
+<ol>
+<li>É necessário garantir que todas as suas funções estão documentadas e disponíveis para isso, para isso, você precisa adicionar <code>@export</code> a documentação da função para garantir que essa função será exportada, apois isso, gere a documentação do package.</li>
+</ol>
+<blockquote>
+<p>devtools::document()</p>
+</blockquote>
+<p>Para rodar os testes:</p>
+<ol>
+<li>Teste o pacote</li>
+</ol>
+<blockquote>
+<p>devtools::test()</p>
+</blockquote>
+<ol>
+<li>Instale o pacote a partir da branch que deseja:</li>
+</ol>
+<blockquote>
+<p>devtools::install_github(<a href="mailto:'analytics-ufcg/agora-digital@nome_da_branch'">'analytics-ufcg/agora-digital@nome_da_branch'</a>)</p>
+</blockquote>
+<p>Depois faça os testes necessários para garantir que o pacote está funcionando conforme esperado.</p>
 </div>
 <div id="mais-informacoes" class="section level2">
 <h2 class="hasAnchor">
