@@ -97,7 +97,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
   casa <- tolower(casa)
   prop <- agoradigital::fetch_proposicao(id, casa, "", T)
   tram <- agoradigital::fetch_tramitacao(id, casa, T)
-  tram <- agoradigital::process_proposicao(prop, tram, casa)
+  tram <- process_proposicao(prop, tram, casa)
   if (casa == 'camara') {
     nome_camara <- prop %>% dplyr::select(ementa, tipo_materia, numero) %>% tail(1)
     page_url <- paste0(camara_codes$endpoints_api$url_base_tramitacao, id)
