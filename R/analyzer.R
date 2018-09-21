@@ -195,7 +195,7 @@ get_progresso_both <- function(origem_id, revisao_id, casa_origem){
     dplyr::mutate(pl_id = revisao_id)
   
   df <- 
-    bind_rows(tram_origem, tram_destino) %>%
+    dplyr::bind_rows(tram_origem, tram_destino) %>%
     generate_progresso_df()
   
   return(df)
