@@ -33,6 +33,7 @@ Escolhemos o [PL 490/2007](http://camara.gov.br/proposicoesWeb/fichadetramitacao
 Vamos baixar os dados da proposição e da tramitação e em seguida reconhecer os eventos e fases, mostrando os últimos eventos ocorridos na tramitação do PL.
 
 ```{r, warning=FALSE, message=FALSE}
+#devtools::install_github('analytics-ufcg/agora-digital') #Descomentar para instalar o pacote
 library(magrittr)
 id <- 345311
 casa <- 'camara'

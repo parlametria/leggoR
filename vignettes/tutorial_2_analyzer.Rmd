@@ -16,10 +16,9 @@ O primeiro passo para analisar dados de qualquer PL é identificar os ids do mes
 Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009 - Senado | PLP 295/2016 - Câmara).
 
 ```{r message=FALSE}
-devtools::install_github('analytics-ufcg/agora-digital')
-library(agoradigital)
-library(tidyverse)
+#devtools::install_github('analytics-ufcg/agora-digital') #Descomentar para instalar o pacote
 library(magrittr)
+library(tidyverse)
 
 id_qualidade_fiscal_senado <- 91341
 id_qualidade_fiscal_camara <- 2088990
