@@ -29,7 +29,7 @@ test_that('get_historico_energia_recente() has correct function passing the para
   
   result <- round(result, digits = 3)
   
-  energy_df <- get_historico_energia_recente(data, decaimento = decaimento)
+  energy_df <- get_historico_energia_recente(data, granularidade = 'd', decaimento = decaimento)
   
   expect_true(all(energy_df$energia_recente == result))
 })
@@ -54,39 +54,7 @@ test_that('get_historico_energia_recente() has correct function passing the para
   
   result <- round(result, digits = 3)
   
-  energy_df <- get_historico_energia_recente(data, decaimento = decaimento, granularidade = 's')
+  energy_df <- get_historico_energia_recente(data, granularidade = 's', decaimento = decaimento)
   
   expect_true(all(energy_df$energia_recente == result))
 })
-
-# test_that('get_historico_energia_recente() has correct function passing the parameter week', {
-#   data <- data.frame(data_hora = seq(lubridate::ymd("2018-08-07"), lubridate::ymd("2018-09-28"), by = "1 day"))
-#   
-#   data <- data %>% dplyr::mutate(evento = "x") 
-#   
-#   test <- 
-#     data %>%
-#     dplyr::mutate(month = lubridate::month(data_hora)) %>% 
-#     dplyr::group_by(month) %>% 
-#     dplyr::summarise(result = sum(evento))
-#   
-#   decaimento = 0.1
-#   r <- 1 - decaimento
-#   result <- c(
-#     # semana 1
-#     sum(3 * r^0),
-#     # semana 2
-#     sum(7 * r^0, 3 * r^0),
-#     # 2018-09-11
-#     sum(7 * r^0, 7 * r^1, 3 * r^2),
-#     # 2018-09-12
-#     sum(5 * r^0, 7 * r^1, 7 * r^2, 3 * r^3)
-#   )
-#   
-#   result <- round(result, digits = 3)
-#   
-#   energy_df <- get_historico_energia_recente(data, decaimento = decaimento, granularidade = 's')
-#   
-#   expect_true(all(energy_df$energia_total == result))
-# })
-# 
