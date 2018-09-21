@@ -128,11 +128,11 @@ extract_status_tramitacao <- function(tram_df) {
 #' @param out_folderpath Caminho destino do csv resultante 
 #' @return Dataframe contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
 #' @examples
-#' get_progresso(fetch_tramitacao(257161, 'camara', T), fetch_proposicao(257161, 'camara', '', '', normalized = T), 'camara')
-#' get_progresso(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', '', '', normalized = T), 'senado')
+#' pls_senado_camara <- readr::read_csv(here::here("data/tabela_ids_senado_camara.csv"))
+#' pls_senado_camara %>% get_progresso(fetch_tramitacao(257161, 'camara', T), fetch_proposicao(257161, 'camara', '', '', normalized = T), 'camara')
+#' pls_senado_camara %>% get_progresso(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', '', '', normalized = T), 'senado')
 #' @export
-get_progresso <- function(tramitacao_df, proposicao_df, casa, out_folderpath=NULL) {
-  ids_pls_senado_camara <- readr::read_csv(here::here("data/tabela_ids_senado_camara.csv"))
+get_progresso <- function(pls_senado_camara, tramitacao_df, proposicao_df, casa, out_folderpath=NULL) {
   prop_id <- proposicao_df[1, "prop_id"]
   
   casa_origem <- 
@@ -143,7 +143,7 @@ get_progresso <- function(tramitacao_df, proposicao_df, casa, out_folderpath=NUL
   
   if (tolower(casa) == congress_constants$camara_label) {
     another_prop_id <- 
-      ids_pls_senado_camara %>% 
+      pls_senado_camara %>% 
       dplyr::filter(prop_id == id_camara) %>%
       plyr::rename(c("id_senado" = "id")) %>%
       dplyr::select(id)
@@ -151,7 +151,7 @@ get_progresso <- function(tramitacao_df, proposicao_df, casa, out_folderpath=NUL
   } else if (tolower(casa) == congress_constants$senado_label) {
     prop_id = prop_id$prop_id
     another_prop_id <- 
-      ids_pls_senado_camara %>%
+      pls_senado_camara %>%
       dplyr::filter(prop_id == id_senado) %>% 
       plyr::rename(c("id_camara" = "id")) %>%
       dplyr::select(id)

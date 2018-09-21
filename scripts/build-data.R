@@ -11,14 +11,14 @@ args = commandArgs(trailingOnly=TRUE)
 #' @param tema Tema da proposição
 #' @importFrom %<>% magrittr
 #' @examples
-#' build_csvs(129808, "senado", "Cadastro Positivo", "Agenda Nacional", "data/")
-#' build_csvs(257161, "camara", "Lei Geral do Licensiamento Ambiental", "data/")
+#' build_csvs(129808, df, "senado", "Cadastro Positivo", "Agenda Nacional", "data/")
+#' build_csvs(257161, df, "camara", "Lei Geral do Licensiamento Ambiental", "data/")
 #' @export
-build_csvs <- function(id, house, apelido='', tema='', output_folder=NULL) {
+build_csvs <- function(id, df,  house, apelido='', tema='', output_folder=NULL) {
   print(paste("Processando id",id,"da casa",house))
   prop_data <- import_proposicao(id, house, apelido, tema, output_folder)
   proc_tram_data <- process_proposicao(prop_data$proposicao, prop_data$tramitacao, house, output_folder)
-  proc_progresso_data <- get_progresso(prop_data$tramitacao, prop_data$proposicao, house, output_folder)
+  proc_progresso_data <- get_progresso(df, prop_data$tramitacao, prop_data$proposicao, house, output_folder)
   build_vis_csv(proc_tram_data, house, output_folder)
   as.tibble(NULL)
 }
@@ -34,8 +34,8 @@ build_all_csvs <- function(df, output_folder=NULL) {
   if ('casa' %in% names(df)) {
     pmap(list(df$id, df$casa, df$apelido, df$tema), function(a, b, c, d) build_csvs(a, b, c, d, output_folder))
   } else {
-    map(df$id_camara, ~ build_csvs(.x, 'camara', '', '', output_folder))
-    map(df$id_senado, ~ build_csvs(.x, 'senado', '', '', output_folder))
+    map(df$id_camara, ~ build_csvs(.x, df, 'camara', '', '', output_folder))
+    map(df$id_senado, ~ build_csvs(.x, df, 'senado', '', '', output_folder))
   }
   as.tibble(NULL)
 }
