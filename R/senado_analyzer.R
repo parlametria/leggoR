@@ -605,18 +605,20 @@ extract_casas_in_senado <- function(data_tramitacao, proposicao_df) {
   casa_name <-
     dplyr::if_else(
       proposicao_df$casa_origem == "Senado Federal",
-      "(Origem)",
-      "(Revisão)"
+      "Construção",
+      "Revisão I"
     )
   
   data_tramitacao %<>%
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(
-      fase_global =
+      fase_global = casa_name,
+      local = 
         dplyr::case_when(
           (stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) & 
-             sigla_local == 'PLEN') ~ paste0("Plenário ", casa_name),
-          sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes & (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~ paste0("Comissões ", casa_name)))
+             sigla_local == 'PLEN') ~ "Plenário",
+          sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes & 
+            (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~ "Comissões"))
   
   data_tramitacao %>%
     tidyr::fill(fase_global)

@@ -1,3 +1,5 @@
+congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
+
 #' @title Verfica se um elemento está contido em um vetor
 #' @description Verfica se um elemento está contido em um vetor
 #' @param element Elemento que pode estar contido
@@ -47,30 +49,31 @@ extract_progresso <- function(tramitacao_df, proposicao_df, casa) {
 generate_progresso_df <- function(tramitacao_df){
   df <- 
     tramitacao_df %>%
-    dplyr::filter(fase_global != 'NA') %>%
+    dplyr::arrange(data_hora) %>% 
+    dplyr::filter(fase_global != 'NA' & local != 'NA') %>%
     dplyr::mutate(end_data = dplyr::lead(data_hora, default=Sys.time())) %>%
-    dplyr::group_by(casa, prop_id, fase_global, sequence = data.table::rleid(fase_global)) %>%
+    dplyr::group_by(casa, prop_id, fase_global, local, sequence = data.table::rleid(fase_global)) %>%
     dplyr::summarise(data_inicio = min(data_hora),
                      data_fim = max(end_data)) %>%
     dplyr::filter(data_fim - data_inicio > 0) %>%
     dplyr::select(-sequence) 
   
-  if(nrow(df %>% dplyr::group_by(fase_global) %>% dplyr::filter(n()>1)) > 0) {
+  if(nrow(df %>% dplyr::group_by(fase_global, local) %>% dplyr::filter(n()>1)) > 0) {
     df <- 
       df %>%
-      dplyr::group_by(prop_id, casa, fase_global) %>%
+      dplyr::group_by(prop_id, casa, fase_global, local) %>%
       dplyr::summarise(data_inicio = min(data_inicio),
                        data_fim = max(data_fim)) %>%
-      dplyr::right_join(camara_env$fases_global, by = "fase_global")
+      dplyr::right_join(congress_env$fases_global, by = c("local", "fase_global"))
   } else {
     df <- 
       df %>%
-      dplyr::right_join(camara_env$fases_global, by = "fase_global")
+      dplyr::right_join(congress_env$fases_global, by = c("local", "fase_global"))
   }
   
   df <-
     df %>%
-    arrange(data_inicio)
+    dplyr::arrange(data_inicio)
   
   return(df)
 }

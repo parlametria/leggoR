@@ -187,14 +187,12 @@ get_progresso_both <- function(origem_id, revisao_id, casa_origem){
   tram_origem <- 
     fetch_tramitacao(origem_id, casa_origem, T) %>% 
     extract_casas(fetch_proposicao(origem_id, casa_origem, '', '', normalized = T), casa_origem) %>%
-    dplyr::mutate(local = casa_origem,
-                  pl_id = origem_id)
+    dplyr::mutate(pl_id = origem_id)
   
   tram_destino <- 
     fetch_tramitacao(revisao_id, casa_revisora, T) %>% 
     extract_casas(fetch_proposicao(revisao_id, casa_revisora, '', '', normalized = T), casa_revisora) %>%
-    dplyr::mutate(local = casa_revisora,
-                  pl_id = revisao_id)
+    dplyr::mutate(pl_id = revisao_id)
   
   df <- 
     bind_rows(tram_origem, tram_destino) %>%
