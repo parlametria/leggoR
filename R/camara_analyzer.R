@@ -1,4 +1,7 @@
 source(here::here("R/camara-lib.R"))
+
+camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+
 #' @title Cria coluna com os relatores na tramitação na Câmara
 #' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no
 #' envento pontual em que ele é designado
@@ -317,4 +320,30 @@ extract_regime_tramitacao_camara <- function(tram_df) {
     fuzzyjoin::regex_left_join(regex_regime, 
                                by = c(statusProposicao.regime = "regex"))
     return(regime_df[1,]$regime_tramitacao)
+}
+
+#' @title Extrai as casas globais (Origem Câmara, Plenário Câmara, etc.) da Câmara
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada fase_global
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada fase_global
+#' @examples
+#'  extract_casas_in_camara(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', '', '', normalized=T))
+extract_casas_in_camara <- function(tramitacao_df, proposicao_df) { 
+  casa_name = dplyr::if_else(tolower(proposicao_df$casa_origem) == "câmara dos deputados", "Construção", "Revisão I")
+  
+  tramitacao_df %<>%
+    dplyr::arrange(data_hora, sequencia) %>%
+    dplyr::mutate(
+      fase_global = casa_name,
+      local = 
+        dplyr::case_when(
+          (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario) & 
+             sigla_local == 'PLEN') ~ "Plenário",
+          sigla_local != 'PLEN' &
+            (sigla_local %in% camara_env$comissoes$siglas_comissoes_antigas |
+               sigla_local %in% camara_env$comissoes$siglas_comissoes |
+               stringr::str_detect(tolower(sigla_local), '^pl'))  ~ "Comissões"))
+  
+  tramitacao_df %>%
+    tidyr::fill(fase_global)
 }

@@ -1,7 +1,9 @@
 source(here::here("R/senado_analyzer.R"))
 source(here::here("R/camara_analyzer.R"))
+source(here::here("R/congresso-lib.R"))
 
-congress_constants <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))$constants
+congress_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
+congress_constants <- congress_env$constants
 
 #' @title Processa dados de um proposição do congresso.
 #' @description Recebido um dataframe a função recupera informações sobre uma proposição
@@ -184,4 +186,85 @@ extract_status_tramitacao <- function(tram_df) {
   apreciacao <- extract_forma_apreciacao(tram_df)
   pauta <- extract_pauta(fetch_agenda(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4, tram_df[1,]$casa), tram_df[1,]$prop_id)
   status_tram <- data.frame(prop_id=tram_df[1,]$prop_id,regime_tramitacao=regime,forma_apreciacao=apreciacao, em_pauta = pauta)
+}
+
+#' @title Extrai o progresso de um PL
+#' @description Extrai o progresso de um PL
+#' @param proposicao_df Dataframe da tramitação do PL.
+#' @param tramitacao_df Dataframe da proposição do PL. 
+#' @param casa Casa (Senado ou Câmara)
+#' @param out_folderpath Caminho destino do csv resultante 
+#' @return Dataframe contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
+#' @examples
+#' pls_senado_camara <- readr::read_csv(here::here("data/tabela_ids_senado_camara.csv"))
+#' pls_senado_camara %>% get_progresso(fetch_tramitacao(257161, 'camara', T), fetch_proposicao(257161, 'camara', '', '', normalized = T), 'camara')
+#' pls_senado_camara %>% get_progresso(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', '', '', normalized = T), 'senado')
+#' @export
+get_progresso <- function(pls_senado_camara, tramitacao_df, proposicao_df, casa, out_folderpath=NULL) {
+  prop_id <- proposicao_df[1, "prop_id"]
+  
+  casa_origem <- 
+    dplyr::if_else(
+      stringr::str_detect(tolower(proposicao_df$casa_origem), 'senado federal'),
+                          congress_constants$senado_label,
+                          congress_constants$camara_label)
+  
+  if (tolower(casa) == congress_constants$camara_label) {
+    another_prop_id <- 
+      pls_senado_camara %>% 
+      dplyr::filter(prop_id == id_camara) %>%
+      plyr::rename(c("id_senado" = "id")) %>%
+      dplyr::select(id)
+    
+  } else if (tolower(casa) == congress_constants$senado_label) {
+    prop_id = prop_id$prop_id
+    another_prop_id <- 
+      pls_senado_camara %>%
+      dplyr::filter(prop_id == id_senado) %>% 
+      plyr::rename(c("id_camara" = "id")) %>%
+      dplyr::select(id)
+    
+  }
+  if(nrow(another_prop_id) > 0){
+    if(casa_origem == tolower(casa)){
+      progresso_data <- get_progresso_both(prop_id, another_prop_id$id, casa)
+    } else{
+      progresso_data <- get_progresso_both(another_prop_id$id, prop_id, casa_origem)
+    }
+  } else {
+    progresso_data <- extract_progresso(tramitacao_df, proposicao_df, casa)
+  }
+    
+  if((!is.null(progresso_data)) & (!is.null(out_folderpath))) {
+    readr::write_csv(progresso_data, paste0(out_folderpath,'/',casa,'/',prop_id,'-progresso-',casa,'.csv'))
+    }
+  
+  return(progresso_data)
+  
+}	
+
+#' @title Extrai o progresso de um PL
+#' @description Extrai o progresso de um PL
+#' @param proposicao_df Dataframe da tramitação do PL.
+#' @param tramitacao_df Dataframe da proposição do PL. 
+#' @param casa Casa (Senado ou Câmara)
+#' @return Dataframe contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
+get_progresso_both <- function(origem_id, revisao_id, casa_origem){
+  casa_revisora <- dplyr::if_else(stringr::str_detect(tolower('senado federal'), tolower(casa_origem)), 'camara', 'senado')
+  
+  tram_origem <- 
+    fetch_tramitacao(origem_id, casa_origem, T) %>% 
+    extract_casas(fetch_proposicao(origem_id, casa_origem, '', '', normalized = T), casa_origem) %>%
+    dplyr::mutate(pl_id = origem_id)
+  
+  tram_destino <- 
+    fetch_tramitacao(revisao_id, casa_revisora, T) %>% 
+    extract_casas(fetch_proposicao(revisao_id, casa_revisora, '', '', normalized = T), casa_revisora) %>%
+    dplyr::mutate(pl_id = revisao_id)
+  
+  df <- 
+    dplyr::bind_rows(tram_origem, tram_destino) %>%
+    generate_progresso_df()
+  
+  return(df)
 }

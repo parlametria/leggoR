@@ -3,6 +3,7 @@
 library(tidyverse)
 library(rmarkdown)
 library(here)
+library(purrr)
 library(magrittr)
 source(here::here('scripts/build-data.R'))
 source(here::here('scripts/renderReport.R'))
@@ -16,9 +17,9 @@ c('data/senado', 'data/camara', 'data/vis/tramitacao', 'docs/reports') %>%
 
 # Store data
 all_pls <- readr::read_csv('data/tabela_ids_camara.csv')
-all_pls %>% build_all_csvs(output_folder='data/')
 pls_senado_camara <- readr::read_csv('data/tabela_ids_senado_camara.csv')
-pls_senado_camara %>% build_all_csvs(output_folder='data/')
+all_pls %>% build_all_csvs(output_folder='data/', pls_senado_camara)
+pls_senado_camara %>% build_all_csvs(output_folder='data/', pls_senado_camara)
 
 # Build reports
 all_pls %>% render_house_df_reports()

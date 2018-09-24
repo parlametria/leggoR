@@ -1,5 +1,6 @@
 source(here::here("R/congresso-lib.R"))
 
+senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 
 #' @title Cria coluna com as fases da tramitação no Senado
 #' @description Cria uma nova coluna com as fases no Senado
@@ -590,4 +591,35 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
     unique()
   
   proc_tram_df
+}
+
+#' @title Cria coluna com a fase global da tramitação no Senado
+#' @description Cria uma nova coluna com a fase global no Senado
+#' @param df Dataframe da tramitação no Senado
+#' @return Dataframe com a coluna "global" adicionada.
+#' @examples
+#' extract_casas_in_senado(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', T))
+extract_casas_in_senado <- function(data_tramitacao, proposicao_df) {
+  fase_global_constants <- senado_env$fase_global_plenario
+  not_comissoes <- c('PLEN', 'PLEG')
+  casa_name <-
+    dplyr::if_else(
+      proposicao_df$casa_origem == "Senado Federal",
+      "Construção",
+      "Revisão I"
+    )
+  
+  data_tramitacao %<>%
+    dplyr::arrange(data_hora, sequencia) %>%
+    dplyr::mutate(
+      fase_global = casa_name,
+      local = 
+        dplyr::case_when(
+          (stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) & 
+             sigla_local == 'PLEN') ~ "Plenário",
+          sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes & 
+            (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~ "Comissões"))
+  
+  data_tramitacao %>%
+    tidyr::fill(fase_global)
 }

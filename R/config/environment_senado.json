@@ -164,5 +164,20 @@
       "indeferido": "^Indefiro",
       "deferido": "^(Defiro)|(Aprovado)"
     }
-  }
+  },
+
+  "fase_global_plenario":{
+    "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)|(à slsf, a pedido.)"
+  },
+  
+  "fases_global":[
+    {"local": "Comissões", "fase_global": "Construção"},
+    {"local": "Plenário", "fase_global": "Construção"},
+    {"local": "Comissões", "fase_global": "Revisão I"},
+    {"local": "Plenário", "fase_global": "Revisão I"},
+    {"local": "Comissões", "fase_global": "Revisão II"},
+    {"local": "Plenário", "fase_global": "Revisão II"},
+    {"local": "Presidência da República", "fase_global": "Sansão/Veto"},
+    {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
+  ]
 }
