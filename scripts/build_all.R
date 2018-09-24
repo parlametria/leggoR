@@ -3,6 +3,7 @@
 library(tidyverse)
 library(rmarkdown)
 library(here)
+library(purrr)
 library(magrittr)
 source(here::here('scripts/build-data.R'))
 source(here::here('scripts/renderReport.R'))
