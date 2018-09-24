@@ -134,7 +134,7 @@ computado levando em consideração os eventos que aconteceram nos 30 dias anter
     </div>
 
     <pre class="usage"><span class='fu'>get_historico_energia_recente</span>(<span class='no'>eventos_df</span>, <span class='kw'>granularidade</span> <span class='kw'>=</span> <span class='st'>"s"</span>,
-  <span class='kw'>decaimento</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)</pre>
+  <span class='kw'>decaimento</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>max_date</span> <span class='kw'>=</span> <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/now.html'>now</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,12 +148,12 @@ computado levando em consideração os eventos que aconteceram nos 30 dias anter
       <td><p>A porcentagem de redução do valor da energia por dia. Valor deve estar entre 0 e 1.</p></td>
     </tr>
     <tr>
-      <th>events_df</th>
-      <td><p>Dataframe da tramitação contendo as colunas: data_hora e evento</p></td>
+      <th>max_date</th>
+      <td><p>Último dia a ser considerado no cálculo da energia. Padrão: dia atual.</p></td>
     </tr>
     <tr>
-      <th>pivot_day</th>
-      <td><p>Dia de partida de onde começará a análise. O padrão é o dia atual</p></td>
+      <th>events_df</th>
+      <td><p>Dataframe da tramitação contendo as colunas: data_hora e evento</p></td>
     </tr>
     </table>
     

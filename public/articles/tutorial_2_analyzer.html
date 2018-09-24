@@ -99,20 +99,19 @@
 <p>O <code>camara-analyzer.R</code> e o <code>senado-analyzer.R</code> extraem os locais (Comissões e Plenário), as fases da proposição na casa e eventos que ocorreram durante a tramitação de uma proposição na sua respectiva casa.</p>
 <p>O primeiro passo para analisar dados de qualquer PL é identificar os ids do mesmo na Câmara e/ou no Senado. <a href="https://github.com/analytics-ufcg/agora-digital#como-capturar-ids-de-proposi%C3%A7%C3%B5es">Link para instruções sobre como achar o id de um PL</a>.</p>
 <p>Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009 - Senado | PLP 295/2016 - Câmara).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">'analytics-ufcg/agora-digital'</span>)
-<span class="kw">library</span>(agoradigital)</code></pre></div>
-<pre><code>## Warning: replacing previous import 'dplyr::filter' by 'stats::filter' when
-## loading 'agoradigital'</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#devtools::install_github('analytics-ufcg/agora-digital') #Descomentar para instalar o pacote</span>
 <span class="kw">library</span>(magrittr)
+<span class="kw">library</span>(tidyverse)
 
 id_qualidade_fiscal_senado &lt;-<span class="st"> </span><span class="dv">91341</span>
 id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">2088990</span></code></pre></div>
 <div id="camara" class="section level3">
 <h3 class="hasAnchor">
 <a href="#camara" class="anchor"></a>Câmara</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_camara &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>)
-tram_camara &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>, T)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_camara &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>)</code></pre></div>
+<pre><code>## Warning: replacing previous import 'dplyr::filter' by 'stats::filter' when
+## loading 'agoradigital'</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tram_camara &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>, T)
 
 eventos_camara &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/process_proposicao.html">process_proposicao</a></span>(prop_camara, tram_camara, <span class="st">"camara"</span>)
 eventos_camara %&gt;%<span class="st"> </span>

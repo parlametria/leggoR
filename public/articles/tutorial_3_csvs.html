@@ -99,17 +99,15 @@
 <h3 class="hasAnchor">
 <a href="#como-trabalhar-com-csvs" class="anchor"></a>Como trabalhar com CSVs</h3>
 <p>Para salvar os dados de um dataframe retornado por uma função em um arquivo csv, basta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">'analytics-ufcg/agora-digital'</span>)
-<span class="kw">library</span>(agoradigital)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#devtools::install_github('analytics-ufcg/agora-digital') #Descomentar para instalar o pacote</span>
 <span class="kw">library</span>(magrittr)
-<span class="kw">library</span>(readr)
 caminhoProArquivoCsv &lt;-<span class="st"> 'meuCsv.csv'</span>
 id_qualidade_fiscal_senado &lt;-<span class="st"> </span><span class="dv">91341</span>
 prop_data &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_senado, <span class="st">'senado'</span>)
-prop_data %&gt;%<span class="st"> </span>readr::<span class="kw"><a href="http://www.rdocumentation.org/packages/readr/topics/write_delim">write_csv</a></span>(caminhoProArquivoCsv)</code></pre></div>
+readr::<span class="kw">write_csv</span>(prop_data, caminhoProArquivoCsv)</code></pre></div>
 <p>Depois para ler:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">caminhoProArquivoCsv &lt;-<span class="st"> 'meuCsv.csv'</span>
-prop_data &lt;-<span class="st"> </span>readr::<span class="kw"><a href="http://www.rdocumentation.org/packages/readr/topics/read_delim">read_csv</a></span>(caminhoProArquivoCsv)</code></pre></div>
+prop_data &lt;-<span class="st"> </span>readr::<span class="kw">read_csv</span>(caminhoProArquivoCsv)</code></pre></div>
 </div>
   </div>
 

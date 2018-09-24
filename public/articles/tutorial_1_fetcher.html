@@ -99,13 +99,7 @@
 <p>Para que um Projeto de Lei (PL) seja aprovado, é necessário que ele passe pelas duas casas do Congresso (Câmara e Senado), podendo iniciar em qualquer uma delas e tendo que passar pela outra para revisão. A primeira casa na qual o PL passar será chamada Casa de Origem, e a segunda, Casa Revisora.</p>
 <p>O primeiro passo para obter dados de qualquer PL é identificar os ids do mesmo na Câmara e/ou no Senado. <a href="https://github.com/analytics-ufcg/agora-digital#como-capturar-ids-de-proposi%C3%A7%C3%B5es">Link para instruções sobre como achar o id de um PL</a>.</p>
 <p>Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009 - Senado | PLP 295/2016 - Câmara).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">'analytics-ufcg/agora-digital'</span>)
-<span class="kw">library</span>(agoradigital)</code></pre></div>
-<pre><code>## Warning: replacing previous import 'dplyr::filter' by 'stats::filter' when
-## loading 'agoradigital'</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rcongresso)
-<span class="kw">library</span>(tidyverse)
-
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#devtools::install_github('analytics-ufcg/agora-digital') #Descomentar para instalar o pacote</span>
 id_qualidade_fiscal_senado &lt;-<span class="st"> </span><span class="dv">91341</span>
 id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">2088990</span></code></pre></div>
 <div id="dados-gerais" class="section level3">
@@ -115,8 +109,10 @@ id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">208899
 <div id="camara" class="section level4">
 <h4 class="hasAnchor">
 <a href="#camara" class="anchor"></a>Câmara</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_camara &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>)
-<span class="kw">glimpse</span>(prop_camara)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_camara &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>)</code></pre></div>
+<pre><code>## Warning: replacing previous import 'dplyr::filter' by 'stats::filter' when
+## loading 'agoradigital'</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tibble::<span class="kw">glimpse</span>(prop_camara)</code></pre></div>
 <pre><code>## Observations: 1
 ## Variables: 12
 ## $ prop_id           &lt;int&gt; 2088990
@@ -136,7 +132,7 @@ id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">208899
 <h4 class="hasAnchor">
 <a href="#senado" class="anchor"></a>Senado</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_senado &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_senado, <span class="st">'senado'</span>)
-<span class="kw">glimpse</span>(prop_senado)</code></pre></div>
+tibble::<span class="kw">glimpse</span>(prop_senado)</code></pre></div>
 <pre><code>## Observations: 1
 ## Variables: 12
 ## $ prop_id           &lt;int&gt; 91341
@@ -221,7 +217,7 @@ id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">208899
 <h4 class="hasAnchor">
 <a href="#camara-1" class="anchor"></a>Câmara</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tram_camara &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_camara,<span class="st">'camara'</span>)
-<span class="kw">glimpse</span>(tram_camara)</code></pre></div>
+tibble::<span class="kw">glimpse</span>(tram_camara)</code></pre></div>
 <pre><code>## Observations: 28
 ## Variables: 12
 ## $ data_hora            &lt;chr&gt; "2016-06-21T00:00", "2016-06-21T16:37", "...
@@ -241,7 +237,7 @@ id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">208899
 <h4 class="hasAnchor">
 <a href="#senado-1" class="anchor"></a>Senado</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tram_senado &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_senado,<span class="st">'senado'</span>)
-<span class="kw">glimpse</span>(tram_senado)</code></pre></div>
+tibble::<span class="kw">glimpse</span>(tram_senado)</code></pre></div>
 <pre><code>## Observations: 127
 ## Variables: 30
 ## $ codigo_tramitacao                         &lt;chr&gt; "2346685", "2346271"...
