@@ -57,7 +57,7 @@ get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::tod
 #' @param events_df Dataframe da tramitação contendo as colunas: data_hora e evento
 #' @param granularidade Granularidade do dado histórico da energia desejada ('d' = dia, 's' = semana, 'm' = mês)
 #' @param decaimento A porcentagem de redução do valor da energia por dia. Valor deve estar entre 0 e 1.
-#' @param pivot_day Dia de partida de onde começará a análise. O padrão é o dia atual
+#' @param max_date Último dia a ser considerado no cálculo da energia. Padrão: dia atual.
 #' @return Dataframe com o valor da energia recente para cada dia útil da tramitação de uma proposição.
 #' @importFrom magrittr '%>%'
 #' @export
@@ -70,14 +70,14 @@ get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::tod
 #' proc_tram <- agoradigital::process_proposicao(prop,tram,casa)
 #' get_historico_energia_recente(proc_tram, granularidade = 's', decaimento = 0.05)
 #' }
-get_historico_energia_recente <- function(eventos_df, granularidade = 's', decaimento = 0.05) {
+get_historico_energia_recente <- function(eventos_df, granularidade = 's', decaimento = 0.05, max_date = lubridate::now()) {
   #Remove tempo do timestamp da tramitação
   eventos_extendidos <- eventos_df %>%
     dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
   
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
-  full_dates <- data.frame(data = seq(min(eventos_extendidos$data), max(eventos_extendidos$data), by = "1 day"))
+  full_dates <- data.frame(data = seq(min(eventos_extendidos$data), max_date, by = "1 day"))
   eventos_extendidos <- merge(full_dates, eventos_extendidos, by="data", all.x = TRUE) %>%
     filtra_dias_nao_uteis_congresso()
     
