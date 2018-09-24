@@ -34,8 +34,8 @@ build_all_csvs <- function(df, df_mapeamento, output_folder=NULL) {
   if ('casa' %in% names(df)) {
     purrr::pmap(list(df$id, df$casa, df$apelido, df$tema), function(a, b, c, d, df) build_csvs(a, b, c, d, output_folder, df_mapeamento))
   } else {
-    purrr::map(df$id_camara, ~ build_csvs(.x, 'camara', '', '', output_folder, df_mapamento))
-    purrr::map(df$id_senado, ~ build_csvs(.x, 'senado', '', '', output_folder, df_mapamento))
+    purrr::map(df$id_camara, ~ build_csvs(.x, 'camara', '', '', output_folder, df_mapeamento))
+    purrr::map(df$id_senado, ~ build_csvs(.x, 'senado', '', '', output_folder, df_mapeamento))
   }
   as.tibble(NULL)
 }
