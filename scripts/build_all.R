@@ -16,8 +16,8 @@ c('data/senado', 'data/camara', 'data/vis/tramitacao', 'docs/reports') %>%
 
 # Store data
 all_pls <- readr::read_csv('data/tabela_ids_camara.csv')
-all_pls %>% build_all_csvs(output_folder='data/')
 pls_senado_camara <- readr::read_csv('data/tabela_ids_senado_camara.csv')
+all_pls %>% build_all_csvs(output_folder='data/', pls_senado_camara)
 pls_senado_camara %>% build_all_csvs(output_folder='data/')
 
 # Build reports
