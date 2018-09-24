@@ -79,13 +79,5 @@ generate_progresso_df <- function(tramitacao_df){
       dplyr::right_join(congress_env$fases_global, by = c("local", "fase_global"))
   }
   
-  df %>% 
-    group_by(fase_global) %>% 
-    #dplyr::arrange(data_fim) %>% 
-    mutate(data_fim_comissoes = dplyr::lag(data_fim)) %>% 
-    filter(local == 'Plenário') %>% 
-    mutate(data_inicio = if_else(data_fim_comissoes > data_fim, NA, TRUE))
-    
-  
   return(df)
 }
