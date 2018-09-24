@@ -92,6 +92,9 @@
     <li>
       <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
+    <li>
+      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -143,23 +146,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='fu'><a href='fetch_proposicao_camara.html'>fetch_proposicao_camara</a></span>(<span class='fl'>345311</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 38
-#&gt;     ano dataApresentacao descricaoTipo  ementa    ementaDetalhada     id idTipo
-#&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;            &lt;int&gt;  &lt;int&gt;
-#&gt; 1  2007 2007-03-20T16:13 Projeto de Lei "Altera … &lt;NA&gt;            345311    139
-#&gt; # ... with 31 more variables: idTipoAutor &lt;dbl&gt;, justificativa &lt;chr&gt;,
-#&gt; #   keywords &lt;chr&gt;, numero &lt;dbl&gt;, siglaTipo &lt;chr&gt;,
-#&gt; #   statusProposicao.dataHora &lt;chr&gt;, statusProposicao.descricaoSituacao &lt;chr&gt;,
-#&gt; #   statusProposicao.descricaoTramitacao &lt;chr&gt;,
-#&gt; #   statusProposicao.despacho &lt;chr&gt;, statusProposicao.idSituacao &lt;int&gt;,
-#&gt; #   statusProposicao.idTipoTramitacao &lt;int&gt;, statusProposicao.regime &lt;chr&gt;,
-#&gt; #   statusProposicao.sequencia &lt;dbl&gt;, statusProposicao.siglaOrgao &lt;chr&gt;,
-#&gt; #   statusProposicao.uriOrgao &lt;chr&gt;, statusProposicao.url &lt;chr&gt;, texto &lt;chr&gt;,
-#&gt; #   tipoAutor &lt;chr&gt;, uri &lt;chr&gt;, uriAutores &lt;chr&gt;, uriOrgaoNumerador &lt;chr&gt;,
-#&gt; #   uriPropAnterior &lt;chr&gt;, uriPropPosterior &lt;chr&gt;, uriPropPrincipal &lt;chr&gt;,
-#&gt; #   uriUltimoRelator &lt;chr&gt;, urlInteiroTeor &lt;chr&gt;, urnFinal &lt;chr&gt;,
-#&gt; #   page_url &lt;chr&gt;, page_html &lt;list&gt;, regime_tramitacao &lt;chr&gt;,
-#&gt; #   forma_apreciacao &lt;chr&gt;</div></pre>
+    <pre class="examples"><div class='input'> <span class='fu'>fetch_proposicao_renamed</span>(<span class='fl'>345311</span>)</div><div class='output co'>#&gt; <span class='error'>Error in fetch_proposicao_camara(id) %&gt;% rename_df_columns: could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

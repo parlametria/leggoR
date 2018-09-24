@@ -64,3 +64,24 @@ to_underscore <- function(x) {
     gsub('([a-z])([A-Z])', '\\1_\\2', .) %>%
     tolower()
 }
+
+#' @title Filtra datas não-úteis da tramitação de um congresso.
+#' @description Remove do dataframe completo da tramitação as linhas cuja data representam dias não-úteis do Congresso, 
+#' incluindo fins de semana e dias de recesso parlamentar.
+#' @param tramitacao_df Dataframe com a tramitação completa
+#' @return Dataframe com a tramitação completa apenas com os dias úteis
+#' @examples
+#' eventos_extendidos <- eventos_df %>%
+#' dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
+#' full_dates <- tibble::tibble(data = seq(min(eventos_extendidos$data), max(eventos_extendidos$data), by = "1 day"))
+#' eventos_extendidos <- eventos_extendidos %>%
+#'   merge(full_dates,by="data", all.x = TRUE) %>%
+#'   filtra_dias_nao_uteis_congresso(.)
+filtra_dias_nao_uteis_congresso <- function(tramitacao_df) {
+  tramitacao_filtrada_df <- tramitacao_df %>%
+    dplyr::filter(!(lubridate::wday(data) %in% c(1,7))) %>%
+    dplyr::filter(lubridate::month(data) != 1) %>%
+    dplyr::filter(!((lubridate::month(data) == 2) & (lubridate::day(data) < 2))) %>%
+    dplyr::filter(!((lubridate::month(data) == 7) & (lubridate::day(data) > 17))) %>%
+    dplyr::filter(!((lubridate::month(data) == 12) & (lubridate::day(data) > 22)))
+}

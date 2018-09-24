@@ -16,11 +16,7 @@ Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009 - Senado |
 
 
 ```{r message=FALSE}
-devtools::install_github('analytics-ufcg/agora-digital')
-library(agoradigital)
-library(rcongresso)
-library(tidyverse)
-
+#devtools::install_github('analytics-ufcg/agora-digital') #Descomentar para instalar o pacote
 id_qualidade_fiscal_senado <- 91341
 id_qualidade_fiscal_camara <- 2088990
 ```
@@ -34,14 +30,14 @@ A função `fetch_proposicao()` retornará um dataframe contendo colunas com inf
 
 ```{r message=FALSE}
 prop_camara <- agoradigital::fetch_proposicao(id_qualidade_fiscal_camara, 'camara')
-glimpse(prop_camara)
+tibble::glimpse(prop_camara)
 ```
 
 #### Senado
 
 ```{r message=FALSE}
 prop_senado <- agoradigital::fetch_proposicao(id_qualidade_fiscal_senado, 'senado')
-glimpse(prop_senado)
+tibble::glimpse(prop_senado)
 ```
 
 ### Dados da Tramitação
@@ -67,12 +63,12 @@ A função `fetch_tramitacao()` tem todos os acontecimentos da proposição orde
 
 ```{r message=FALSE}
 tram_camara <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_camara,'camara')
-glimpse(tram_camara)
+tibble::glimpse(tram_camara)
 ```
 
 #### Senado
 
 ```{r message=FALSE}
 tram_senado <- agoradigital::fetch_tramitacao(id_qualidade_fiscal_senado,'senado')
-glimpse(tram_senado)
+tibble::glimpse(tram_senado)
 ```

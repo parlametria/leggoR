@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Importa as informações de uma proposição da internet. — import_proposicao" />
 
-<meta property="og:description" content="Recebido um id a função roda os scripts para
+<meta property="og:description" content="Recebido um id e a casa, a função roda os scripts para
 importar os dados daquela proposição." />
 <meta name="twitter:card" content="summary" />
 
@@ -93,6 +93,9 @@ importar os dados daquela proposição." />
     <li>
       <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
+    <li>
+      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -123,19 +126,35 @@ importar os dados daquela proposição." />
 
     <div class="ref-description">
     
-    <p>Recebido um id a função roda os scripts para
+    <p>Recebido um id e a casa, a função roda os scripts para
 importar os dados daquela proposição.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>import_proposicao</span>(<span class='no'>bill_id</span>)</pre>
+    <pre class="usage"><span class='fu'>import_proposicao</span>(<span class='no'>prop_id</span>, <span class='no'>casa</span>, <span class='no'>apelido</span>, <span class='no'>tema</span>, <span class='kw'>out_folderpath</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>bill_id</th>
+      <th>prop_id</th>
       <td><p>Identificador da proposição que pode ser recuperado no site da casa legislativa.</p></td>
+    </tr>
+    <tr>
+      <th>casa</th>
+      <td><p>Casa onde o projeto está tramitando</p></td>
+    </tr>
+    <tr>
+      <th>apelido</th>
+      <td><p>Apelido da proposição</p></td>
+    </tr>
+    <tr>
+      <th>tema</th>
+      <td><p>Tema da proposição</p></td>
+    </tr>
+    <tr>
+      <th>out_folderpath</th>
+      <td><p>Caminho da pasta onde os dados devem ser salvos</p></td>
     </tr>
     </table>
     

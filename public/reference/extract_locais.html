@@ -92,6 +92,9 @@
     <li>
       <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
+    <li>
+      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -143,7 +146,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='fu'>extract_locais</span>(<span class='fu'><a href='fetch_tramitacao.html'>fetch_tramitacao</a></span>(<span class='fl'>91341</span>))</div><div class='output co'>#&gt; <span class='error'>Error in df %&gt;% dplyr::arrange(data_tramitacao, numero_ordem_tramitacao) %&gt;%     dplyr::mutate(local = dplyr::case_when(situacao_descricao_situacao %in%         senado_constants$regex_plenario ~ senado_constants$plenario,         (stringr::str_detect(tolower(texto_tramitacao), senado_constants$regex_recebimento_comissoes) |             situacao_descricao_situacao %in% senado_constants$regex_comissoes_vector) ~             origem_tramitacao_local_sigla_local, situacao_descricao_situacao ==             senado_constants$regex_camara ~ senado_constants$mesa_camara)): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'> <span class='fu'>extract_locais</span>(<span class='fu'><a href='fetch_tramitacao.html'>fetch_tramitacao</a></span>(<span class='fl'>91341</span>, <span class='st'>'senado'</span>, <span class='no'>T</span>))</div><div class='output co'>#&gt; <span class='error'>Error in df %&gt;% dplyr::arrange(data_hora, sequencia) %&gt;% dplyr::mutate(local = dplyr::case_when(situacao_descricao_situacao %in%     senado_constants$regex_plenario ~ senado_constants$plenario,     (stringr::str_detect(tolower(texto_tramitacao), senado_constants$regex_recebimento_comissoes) |         situacao_descricao_situacao %in% senado_constants$regex_comissoes_vector) ~         sigla_local, situacao_descricao_situacao == senado_constants$regex_camara ~         senado_constants$mesa_camara)): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

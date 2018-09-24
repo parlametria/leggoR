@@ -92,6 +92,9 @@
     <li>
       <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
+    <li>
+      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -143,7 +146,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>extract_comissoes_Senado</span>(<span class='fu'><a href='fetch_tramitacao.html'>fetch_tramitacao</a></span>(<span class='fl'>129808</span>))</div><div class='output co'>#&gt; <span class='error'>Error in "\n  Especial\n  de Assuntos Econômicos\n  de Assuntos Sociais\n  de Constituição, Justiça e Cidadania\n  de Ciência, Tecnologia, Inovação, Comunicação e Informática\n  de Direitos Humanos e Legislação Participativa\n  Diretora\n  de Desenvolvimento Regional e Turismo\n  de Educação, Cultura e Esporte\n  de Serviços de Infraestrutura\n  de Meio Ambiente\n  de Agricultura e Reforma Agrária\n  de Relações Exteriores e Defesa Nacional\n  Senado do Futuro\n  de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor\n  Mista de Controle das Atividades de Inteligência\n  Mista de Consolidação da Legislação Federal\n  Mista do Congresso Nacional de Assuntos Relacionados à Comunidade dos Países de Língua Portuguesa\n  Permanente Mista de Combate à Violência contra a Mulher\n  Mista Permanente sobre Mudanças Climáticas\n  Mista de Planos, Orçamentos Públicos e Fiscalização\n  Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas\n  " %&gt;%     paste0(siglas_comissoes) %&gt;% strsplit("\n") %&gt;% magrittr::extract2(1) %&gt;%     sapply(trimws) %&gt;% magrittr::extract(. != "") %&gt;% paste0(codigos_comissoes$prefixo,     .) %&gt;% paste(collapse = "|") %&gt;% stringr::regex(ignore_case = FALSE): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>extract_comissoes_Senado</span>(<span class='fu'><a href='fetch_tramitacao.html'>fetch_tramitacao</a></span>(<span class='fl'>91341</span>, <span class='st'>'senado'</span>, <span class='no'>T</span>))</div><div class='output co'>#&gt; <span class='error'>Error in "\n  Especial\n  de Assuntos Econômicos\n  de Assuntos Sociais\n  de Constituição, Justiça e Cidadania\n  de Ciência, Tecnologia, Inovação, Comunicação e Informática\n  de Direitos Humanos e Legislação Participativa\n  Diretora\n  de Desenvolvimento Regional e Turismo\n  de Educação, Cultura e Esporte\n  de Serviços de Infraestrutura\n  de Meio Ambiente\n  de Agricultura e Reforma Agrária\n  de Relações Exteriores e Defesa Nacional\n  Senado do Futuro\n  de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor\n  Mista de Controle das Atividades de Inteligência\n  Mista de Consolidação da Legislação Federal\n  Mista do Congresso Nacional de Assuntos Relacionados à Comunidade dos Países de Língua Portuguesa\n  Permanente Mista de Combate à Violência contra a Mulher\n  Mista Permanente sobre Mudanças Climáticas\n  Mista de Planos, Orçamentos Públicos e Fiscalização\n  Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas\n  " %&gt;%     paste0(siglas_comissoes) %&gt;% strsplit("\n") %&gt;% magrittr::extract2(1) %&gt;%     sapply(trimws) %&gt;% magrittr::extract(. != "") %&gt;% paste0(codigos_comissoes$prefixo,     .) %&gt;% paste(collapse = "|") %&gt;% stringr::regex(ignore_case = FALSE): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

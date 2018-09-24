@@ -89,6 +89,9 @@
     <li>
       <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
+    <li>
+      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -133,6 +136,48 @@
       <tr>
         
         <td>
+          <p><code><a href="build_vis_csv.html">build_vis_csv()</a></code> </p>
+        </td>
+        <td><p>Formata tabela para o vistime</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="build_vis_csv_camara.html">build_vis_csv_camara()</a></code> </p>
+        </td>
+        <td><p>Formata tabela para o vistime</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="build_vis_csv_senado.html">build_vis_csv_senado()</a></code> </p>
+        </td>
+        <td><p>Formata tabela para o vistime</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="data_evento.html">data_evento()</a></code> </p>
+        </td>
+        <td><p>Adiciona o evento para o vistime</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="data_fase_global.html">data_fase_global()</a></code> </p>
+        </td>
+        <td><p>Adiciona a fase global para o vistime</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="data_local.html">data_local()</a></code> </p>
+        </td>
+        <td><p>Adiciona o local para o vistime</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="data_situacao_comissao.html">data_situacao_comissao()</a></code> </p>
+        </td>
+        <td><p>Adiciona a fase situação na comissão para o vistime</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="detect_fase.html">detect_fase()</a></code> </p>
         </td>
         <td><p>Verfica se um elemento está contido em um vetor</p></td>
@@ -142,12 +187,6 @@
           <p><code><a href="extract_approved_requerimentos_in_senado.html">extract_approved_requerimentos_in_senado()</a></code> </p>
         </td>
         <td><p>Cria dataframe dos requerimentos aprovados no Senado</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="extract_apreciacao_Senado.html">extract_apreciacao_Senado()</a></code> </p>
-        </td>
-        <td><p>Extrai o regime de apreciação do Senado</p></td>
       </tr><tr>
         
         <td>
@@ -166,6 +205,12 @@
           <p><code><a href="extract_evento_Senado.html">extract_evento_Senado()</a></code> </p>
         </td>
         <td><p>Extrai os eventos importantes que aconteceram no Senado</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="extract_evento_in_camara.html">extract_evento_in_camara()</a></code> </p>
+        </td>
+        <td><p>Recupera os eventos da Câmara</p></td>
       </tr><tr>
         
         <td>
@@ -205,6 +250,42 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="extract_forma_apreciacao.html">extract_forma_apreciacao()</a></code> </p>
+        </td>
+        <td><p>Extrai a forma de apreciação de um PL</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="extract_forma_apreciacao_camara.html">extract_forma_apreciacao_camara()</a></code> </p>
+        </td>
+        <td><p>Extrai o regime de apreciação na Câmara</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="extract_forma_apreciacao_senado.html">extract_forma_apreciacao_senado()</a></code> </p>
+        </td>
+        <td><p>Extrai o regime de apreciação do Senado</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="extract_informations.html">extract_informations()</a></code> </p>
+        </td>
+        <td><p>Extrai informações relevantes sobre uma proposição</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="extract_informations_all_houses.html">extract_informations_all_houses()</a></code> </p>
+        </td>
+        <td><p>Extrai informações relevantes para a ficha de proposicao</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="extract_informations_from_single_house.html">extract_informations_from_single_house()</a></code> </p>
+        </td>
+        <td><p>Extrai informações relevantes para a ficha de proposicao</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="extract_last_n_events_in_camara.html">extract_last_n_events_in_camara()</a></code> </p>
         </td>
         <td><p>Busca os últimos n eventos da tramitação na Câmara</p></td>
@@ -241,7 +322,25 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="extract_regime_Senado.html">extract_regime_Senado()</a></code> </p>
+          <p><code><a href="extract_pauta.html">extract_pauta()</a></code> </p>
+        </td>
+        <td><p>Extrai se uma proposição está em pauta</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="extract_regime_tramitacao.html">extract_regime_tramitacao()</a></code> </p>
+        </td>
+        <td><p>Extrai o regime de tramitação de um PL</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="extract_regime_tramitacao_camara.html">extract_regime_tramitacao_camara()</a></code> </p>
+        </td>
+        <td><p>Extrai o regime de tramitação de um PL na Câmara</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="extract_regime_tramitacao_senado.html">extract_regime_tramitacao_senado()</a></code> </p>
         </td>
         <td><p>Extrai o regime de tramitação do Senado</p></td>
       </tr><tr>
@@ -265,6 +364,36 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="extract_status_tramitacao.html">extract_status_tramitacao()</a></code> </p>
+        </td>
+        <td><p>Extrai o status da tramitação de um PL</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="extract_ultimo_relator.html">extract_ultimo_relator()</a></code> </p>
+        </td>
+        <td><p>Retorna último relator do Senado</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fetch_agenda.html">fetch_agenda()</a></code> </p>
+        </td>
+        <td><p>Baixa a agenda da câmara ou do senado</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fetch_agenda_camara.html">fetch_agenda_camara()</a></code> </p>
+        </td>
+        <td><p>Baixa a agenda da câmara</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fetch_agenda_senado.html">fetch_agenda_senado()</a></code> </p>
+        </td>
+        <td><p>Baixa a agenda do senado</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="fetch_apensadas.html">fetch_apensadas()</a></code> </p>
         </td>
         <td><p>Recupera as proposições apensadas</p></td>
@@ -285,6 +414,12 @@
         <td>
           <p><code><a href="fetch_emendas.html">fetch_emendas()</a></code> </p>
         </td>
+        <td><p>Retorna as emendas de uma proposição no Congresso</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fetch_emendas_senado.html">fetch_emendas_senado()</a></code> </p>
+        </td>
         <td><p>Retorna as emendas de uma proposição no Senado</p></td>
       </tr><tr>
         
@@ -298,6 +433,12 @@
           <p><code><a href="fetch_last_relatoria.html">fetch_last_relatoria()</a></code> </p>
         </td>
         <td><p>Recupera a última relatoria de uma proposição no Senado</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fetch_pauta_camara.html">fetch_pauta_camara()</a></code> </p>
+        </td>
+        <td><p>Baixa a pauta de uma reunião</p></td>
       </tr><tr>
         
         <td>
@@ -325,6 +466,18 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="fetch_proposicao_with_apensamentos.html">fetch_proposicao_with_apensamentos()</a></code> </p>
+        </td>
+        <td><p>Retorna proposição com apensamentos</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fetch_proposicoes.html">fetch_proposicoes()</a></code> </p>
+        </td>
+        <td><p>Recupera os detalhes de proposições no Senado ou na Câmara</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="fetch_related_requerimentos.html">fetch_related_requerimentos()</a></code> </p>
         </td>
         <td><p>Baixa dados de requerimentos relacionados</p></td>
@@ -345,7 +498,25 @@
         <td>
           <p><code><a href="fetch_tramitacao.html">fetch_tramitacao()</a></code> </p>
         </td>
+        <td><p>Baixa os dados da tramitação de um Projeto de Lei</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fetch_tramitacao_camara.html">fetch_tramitacao_camara()</a></code> </p>
+        </td>
+        <td><p>Baixa os dados da tramitação da Câmara</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fetch_tramitacao_senado.html">fetch_tramitacao_senado()</a></code> </p>
+        </td>
         <td><p>Busca a movimentação da proposição</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fetch_tramitacoes.html">fetch_tramitacoes()</a></code> </p>
+        </td>
+        <td><p>Baixa os dados da tramitação de vários Projetos de Lei</p></td>
       </tr><tr>
         
         <td>
@@ -355,9 +526,93 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="filtra_dias_nao_uteis_congresso.html">filtra_dias_nao_uteis_congresso()</a></code> </p>
+        </td>
+        <td><p>Filtra datas não-úteis da tramitação de um congresso.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="format_eventos.html">format_eventos()</a></code> </p>
+        </td>
+        <td><p>Adiciona os eventos para o vistime</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="format_fase.html">format_fase()</a></code> </p>
+        </td>
+        <td><p>Adiciona a fase para o vistime</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="format_fase_global.html">format_fase_global()</a></code> </p>
+        </td>
+        <td><p>Adiciona a fase global para o vistime</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="format_local.html">format_local()</a></code> </p>
+        </td>
+        <td><p>Adiciona o local para o vistime</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="generate_dataframe.html">generate_dataframe()</a></code> </p>
+        </td>
+        <td><p>Retorna um dataframe a partir de uma coluna com listas encadeadas</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gera_tabela_apensadas_camara.html">gera_tabela_apensadas_camara()</a></code> </p>
+        </td>
+        <td><p>Gera tabela com proposições apensadas</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gera_tabela_apensadas_senado.html">gera_tabela_apensadas_senado()</a></code> </p>
+        </td>
+        <td><p>Gera tabela com proposições apensadas</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gera_tabela_emendas_senado.html">gera_tabela_emendas_senado()</a></code> </p>
+        </td>
+        <td><p>Gera tabela com as emendas de uma proposição no Senado</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gera_tabela_proposicoes_congresso.html">gera_tabela_proposicoes_congresso()</a></code> </p>
+        </td>
+        <td><p>Extrai informações relevantes para vária proposições das duas casas</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gera_tabela_proposicoes_uma_casa.html">gera_tabela_proposicoes_uma_casa()</a></code> </p>
+        </td>
+        <td><p>Extrai informações relevantes para vária proposições de uma casa</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gera_tabela_requerimentos.html">gera_tabela_requerimentos()</a></code> </p>
+        </td>
+        <td><p>Gera tabela os requerimentos</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="get_comissoes_camara.html">get_comissoes_camara()</a></code> </p>
         </td>
         <td><p>Retorna o dataframe das comissões na Câmara</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_comissoes_faltantes.html">get_comissoes_faltantes()</a></code> </p>
+        </td>
+        <td><p>Pega as comissões faltantes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_comissoes_futuras.html">get_comissoes_futuras()</a></code> </p>
+        </td>
+        <td><p>Retorna as comissões onde a proposição ainda vai passar na Camara</p></td>
       </tr><tr>
         
         <td>
@@ -373,9 +628,27 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="get_energia.html">get_energia()</a></code> </p>
+        </td>
+        <td><p>Retorna energia de uma proposição no congresso.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_historico_energia_recente.html">get_historico_energia_recente()</a></code> </p>
+        </td>
+        <td><p>Retorna o histórico da energia de uma proposição no congresso.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="get_latest_events.html">get_latest_events()</a></code> </p>
         </td>
         <td><p>Recupera os últimos eventos (sessões/reuniões) de uma proposição na Câmara</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_locais.html">get_locais()</a></code> </p>
+        </td>
+        <td><p>Formata tabela para mostrar só os locais</p></td>
       </tr><tr>
         
         <td>
@@ -391,6 +664,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="get_regex_comissoes_camara.html">get_regex_comissoes_camara()</a></code> </p>
+        </td>
+        <td><p>Retorna o regex das comissões na Câmara</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="import_proposicao.html">import_proposicao()</a></code> </p>
         </td>
         <td><p>Importa as informações de uma proposição da internet.</p></td>
@@ -403,19 +682,25 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="process_proposicao.html">process_proposicao()</a></code> <code><a href="process_proposicao.html">process_proposicao()</a></code> </p>
+          <p><code><a href="normalize_agendas.html">normalize_agendas()</a></code> </p>
+        </td>
+        <td><p>Normaliza as agendas da câmara ou do senado</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="process_proposicao.html">process_proposicao()</a></code> </p>
         </td>
         <td><p>Processa dados de um proposição do congresso.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="process_proposicao_camara.html">process_proposicao_camara()</a></code> <code><a href="process_proposicao_camara.html">process_proposicao_camara()</a></code> </p>
+          <p><code><a href="process_proposicao_camara_df.html">process_proposicao_camara_df()</a></code> </p>
         </td>
         <td><p>Processa dados de um proposição da câmara.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="process_proposicao_senado.html">process_proposicao_senado()</a></code> <code><a href="process_proposicao_senado.html">process_proposicao_senado()</a></code> </p>
+          <p><code><a href="process_proposicao_senado_df.html">process_proposicao_senado_df()</a></code> </p>
         </td>
         <td><p>Processa dados de uma proposição do senado.</p></td>
       </tr><tr>
