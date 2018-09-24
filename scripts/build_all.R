@@ -19,7 +19,7 @@ c('data/senado', 'data/camara', 'data/vis/tramitacao', 'docs/reports') %>%
 all_pls <- readr::read_csv('data/tabela_ids_camara.csv')
 pls_senado_camara <- readr::read_csv('data/tabela_ids_senado_camara.csv')
 all_pls %>% build_all_csvs(output_folder='data/', pls_senado_camara)
-pls_senado_camara %>% build_all_csvs(output_folder='data/')
+pls_senado_camara %>% build_all_csvs(output_folder='data/', pls_senado_camara)
 
 # Build reports
 all_pls %>% render_house_df_reports()
