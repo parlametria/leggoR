@@ -237,7 +237,7 @@ get_progresso <- function(pls_senado_camara, tramitacao_df, proposicao_df, casa,
   
   progresso_data <- 
     progresso_data %>% 
-    mutate(local_casa = casa)
+    dplyr::mutate(local_casa = casa)
   progresso_data$casa <- casa
   progresso_data$prop_id <- prop_id
   
