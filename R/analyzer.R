@@ -166,7 +166,13 @@ get_progresso <- function(pls_senado_camara, tramitacao_df, proposicao_df, casa,
   } else {
     progresso_data <- extract_progresso(tramitacao_df, proposicao_df, casa)
   }
-    
+  
+  progresso_data <- 
+    progresso_data %>% 
+    mutate(local_casa = casa)
+  progresso_data$casa <- casa
+  progresso_data$prop_id <- prop_id
+  
   if((!is.null(progresso_data)) & (!is.null(out_folderpath))) {
     readr::write_csv(progresso_data, paste0(out_folderpath,'/',casa,'/',prop_id,'-progresso-',casa,'.csv'))
     }
