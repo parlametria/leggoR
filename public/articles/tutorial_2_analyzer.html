@@ -60,6 +60,9 @@
     <li>
       <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
+    <li>
+      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -79,11 +82,7 @@
 <!--/.navbar -->
 
       
-      </header><script src="tutorial_2_analyzer_files/htmlwidgets-1.2/htmlwidgets.js"></script><script src="tutorial_2_analyzer_files/jquery-1.12.4/jquery.min.js"></script><link href="tutorial_2_analyzer_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="tutorial_2_analyzer_files/datatables-binding-0.4/datatables.js"></script><link href="tutorial_2_analyzer_files/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="tutorial_2_analyzer_files/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="tutorial_2_analyzer_files/dt-core-1.10.16/js/jquery.dataTables.min.js"></script><link href="tutorial_2_analyzer_files/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
-<script src="tutorial_2_analyzer_files/crosstalk-1.0.0/js/crosstalk.min.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Fases e Eventos de uma Proposição</h1>
@@ -100,24 +99,38 @@
 <p>O <code>camara-analyzer.R</code> e o <code>senado-analyzer.R</code> extraem os locais (Comissões e Plenário), as fases da proposição na casa e eventos que ocorreram durante a tramitação de uma proposição na sua respectiva casa.</p>
 <p>O primeiro passo para analisar dados de qualquer PL é identificar os ids do mesmo na Câmara e/ou no Senado. <a href="https://github.com/analytics-ufcg/agora-digital#como-capturar-ids-de-proposi%C3%A7%C3%B5es">Link para instruções sobre como achar o id de um PL</a>.</p>
 <p>Nesse exemplo, vamos utilizar a Lei da Qualidade Fiscal (PLS 229/2009 - Senado | PLP 295/2016 - Câmara).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(agoradigital)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#devtools::install_github('analytics-ufcg/agora-digital') #Descomentar para instalar o pacote</span>
+<span class="kw">library</span>(magrittr)
 <span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(DT)
 
 id_qualidade_fiscal_senado &lt;-<span class="st"> </span><span class="dv">91341</span>
 id_qualidade_fiscal_camara &lt;-<span class="st"> </span><span class="dv">2088990</span></code></pre></div>
 <div id="camara" class="section level3">
 <h3 class="hasAnchor">
 <a href="#camara" class="anchor"></a>Câmara</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_camara &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>)
-tram_camara &lt;-<span class="st"> </span>rcongresso::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_camara)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_camara &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>)</code></pre></div>
+<pre><code>## Warning: replacing previous import 'dplyr::filter' by 'stats::filter' when
+## loading 'agoradigital'</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tram_camara &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_camara, <span class="st">'camara'</span>, T)
 
 eventos_camara &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/process_proposicao.html">process_proposicao</a></span>(prop_camara, tram_camara, <span class="st">"camara"</span>)
 eventos_camara %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(data_hora, evento, local, casa) %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/DT/topics/datatable">datatable</a></span>()</code></pre></div>
-<div id="htmlwidget-d51555096efef83fbe05" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d51555096efef83fbe05">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"],["2016-06-21T00:00:00Z","2016-06-21T16:37:00Z","2016-06-21T16:37:00Z","2016-06-21T16:38:00Z","2016-06-21T18:03:00Z","2016-06-21T18:11:00Z","2016-06-22T00:00:00Z","2016-06-23T11:41:00Z","2016-06-23T11:41:00Z","2016-06-23T11:42:00Z","2016-06-23T11:42:00Z","2016-06-23T11:44:00Z","2016-06-23T14:41:00Z","2016-06-23T15:43:00Z","2016-06-24T00:00:00Z","2016-06-28T09:52:00Z","2016-07-06T00:00:00Z","2016-08-19T00:00:00Z","2016-11-17T00:00:00Z","2016-11-17T00:00:00Z","2016-11-17T00:00:00Z","2016-11-17T00:00:00Z","2016-11-17T18:03:00Z","2016-11-17T18:04:00Z","2016-11-18T00:00:00Z","2016-11-18T10:40:00Z","2016-11-18T10:42:00Z","2017-06-07T00:00:00Z"],[null,"apresentacao_da_pl",null,null,null,null,null,null,null,"distribuicao",null,null,null,null,null,null,"designado_relator",null,null,"redistribuicao",null,null,null,null,null,null,null,"distribuicao"],["CD-MESA-PLEN","CD-MESA-PLEN","CD-MESA-PLEN","CD-MESA-PLEN","CD-MESA-PLEN","CD-MESA-PLEN","CD-MESA-PLEN","CD-MESA-PLEN","CD-MESA-PLEN","CD-MESA-PLEN","CD-MESA-PLEN","CD-MESA-PLEN","CD-MESA-PLEN","CD-MESA-PLEN","CD-MESA-PLEN","CFT","CFT","CFT","CFT","CFT","CFT","CFT","CFT","CFT","CFT","CFT","CFT","CFT"],["Apresentação","Apresentação","Apresentação","Apresentação","Apresentação","Apresentação","Apresentação","Apresentação","Apresentação","Apresentação","Apresentação","Apresentação","Apresentação","Apresentação","Apresentação","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>data_hora<\/th>\n      <th>evento<\/th>\n      <th>local<\/th>\n      <th>casa<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script><p><br></p>
+<span class="st">  </span><span class="kw">select</span>(data_hora, evento, local, casa)</code></pre></div>
+<pre><code>## # A tibble: 28 x 4
+##    data_hora           evento             local        casa  
+##    &lt;dttm&gt;              &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt; 
+##  1 2016-06-21 00:00:00 &lt;NA&gt;               CD-MESA-PLEN camara
+##  2 2016-06-21 16:37:00 apresentacao_da_pl CD-MESA-PLEN camara
+##  3 2016-06-21 16:37:00 &lt;NA&gt;               CD-MESA-PLEN camara
+##  4 2016-06-21 16:38:00 &lt;NA&gt;               CD-MESA-PLEN camara
+##  5 2016-06-21 18:03:00 &lt;NA&gt;               CD-MESA-PLEN camara
+##  6 2016-06-21 18:11:00 &lt;NA&gt;               CD-MESA-PLEN camara
+##  7 2016-06-22 00:00:00 &lt;NA&gt;               CD-MESA-PLEN camara
+##  8 2016-06-23 11:41:00 &lt;NA&gt;               CD-MESA-PLEN camara
+##  9 2016-06-23 11:41:00 &lt;NA&gt;               CD-MESA-PLEN camara
+## 10 2016-06-23 11:42:00 distribuicao       CD-MESA-PLEN camara
+## # ... with 18 more rows</code></pre>
+<p><br></p>
 <p>Os dados retornados pela função <strong>process_proposicao(id, “camara”)</strong>, além dos retornados pela <a href="https://dadosabertos.camara.leg.br/swagger/api.html">API Dados Abertos da Câmara</a>, estão distribuídos nas seguintes colunas:</p>
 <ul>
 <li>
@@ -138,14 +151,26 @@ eventos_camara %&gt;%<span class="st"> </span>
 <h3 class="hasAnchor">
 <a href="#senado" class="anchor"></a>Senado</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop_senado &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_senado, <span class="st">'senado'</span>)
-tram_senado &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_senado)
+tram_senado &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_tramitacao.html">fetch_tramitacao</a></span>(id_qualidade_fiscal_senado, <span class="st">'senado'</span>, T)
 
 eventos_senado &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/process_proposicao.html">process_proposicao</a></span>(prop_senado, tram_senado, <span class="st">'senado'</span>)
 eventos_senado %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(data_tramitacao, evento, local, casa, global) %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/DT/topics/datatable">datatable</a></span>()</code></pre></div>
-<div id="htmlwidget-6a94c0217a70bd5e43b9" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6a94c0217a70bd5e43b9">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125"],["2009-05-29","2009-07-15","2009-09-11","2009-09-11","2009-09-15","2009-09-22","2009-09-22","2009-09-23","2009-09-24","2009-11-13","2009-11-23","2009-11-25","2009-12-03","2009-12-03","2009-12-03","2010-03-02","2010-03-12","2010-03-15","2010-03-23","2010-03-23","2010-05-18","2010-05-18","2010-05-19","2010-05-19","2010-05-19","2010-05-20","2010-05-24","2010-05-25","2010-06-15","2010-06-21","2010-06-23","2010-06-24","2010-06-24","2010-07-08","2010-12-21","2010-12-22","2011-01-20","2011-01-20","2011-03-04","2012-06-18","2012-07-10","2013-03-04","2013-03-07","2013-03-19","2013-04-01","2013-04-17","2013-05-07","2013-05-07","2013-05-13","2013-05-22","2013-05-27","2013-06-13","2013-06-20","2013-06-20","2013-06-25","2013-06-27","2013-07-04","2013-08-07","2013-08-07","2013-10-18","2013-10-18","2013-10-21","2013-10-22","2013-10-30","2013-11-06","2014-01-09","2014-02-17","2014-02-17","2014-02-18","2014-02-18","2014-02-21","2014-03-17","2014-03-17","2014-03-18","2014-03-19","2014-05-30","2014-08-01","2014-09-02","2014-10-02","2014-11-25","2014-11-25","2014-12-18","2015-03-11","2015-03-19","2015-03-20","2015-03-25","2015-03-25","2015-03-26","2015-04-28","2015-04-28","2015-05-04","2015-07-02","2015-07-07","2015-07-09","2015-07-09","2015-08-25","2015-09-24","2015-12-02","2016-03-03","2016-03-08","2016-03-10","2016-03-15","2016-04-01","2016-04-05","2016-04-08","2016-04-12","2016-04-20","2016-04-26","2016-04-29","2016-05-12","2016-05-16","2016-05-17","2016-05-17","2016-05-18","2016-05-18","2016-05-19","2016-05-19","2016-05-19","2016-05-30","2016-05-30","2016-05-30","2016-06-07","2016-06-07","2016-06-16","2016-06-21"],[null,"designado_relator",null,null,null,null,null,null,"designado_relator","pronta_para_pauta",null,"aprovacao_parecer",null,null,"designado_relator","aprovacao_audiencia_publica",null,null,null,null,null,null,null,null,null,"recebimento_comissao","designado_relator","designado_relator","pronta_para_pauta",null,"aprovacao_parecer",null,"realizacao_audiencia_publica","designado_relator","pronta_para_pauta",null,null,"recebimento_comissao","designado_relator","pronta_para_pauta","aprovacao_audiencia_publica",null,null,null,null,null,null,null,null,null,"recebimento_comissao","designado_relator",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"designado_relator","pronta_para_pauta",null,null,"pronta_para_pauta","aprovacao_audiencia_publica","realizacao_audiencia_publica","pronta_para_pauta",null,"pedido_vista",null,"pronta_para_pauta",null,"pronta_para_pauta",null,"pronta_para_pauta",null,"pronta_para_pauta",null,null,null,"aprovacao_parecer",null,null,null,null,null,null,null,null,null,null,"aprovacao_substitutivo",null,"virada_casa"],["CCJ","CCJ","CCJ","CCJ","CCJ","CCJ","CCJ","CCJ","CCJ","CCJ","CCJ","CCJ","CCJ","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CCJ","CCJ","CCJ","CCJ","CCJ","CCJ","CCJ","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CDR","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","CAE","Plenário","Plenário","Plenário","Plenário","Plenário","Plenário","Plenário","Plenário","Plenário","Plenário","Mesa - Câmara"],["Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Comissões","Plenário","Plenário","Plenário","Plenário","Plenário","Plenário","Plenário","Plenário","Plenário","Plenário","Plenário"],[" - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Origem (Senado)"," - Revisão (Câmara)"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>data_tramitacao<\/th>\n      <th>evento<\/th>\n      <th>local<\/th>\n      <th>casa<\/th>\n      <th>global<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script><p><br></p>
+<span class="st">  </span><span class="kw">select</span>(data_hora, evento, local, casa, global)</code></pre></div>
+<pre><code>## # A tibble: 125 x 5
+##    data_hora  evento            local casa   global              
+##    &lt;date&gt;     &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;               
+##  1 2009-05-29 &lt;NA&gt;              CCJ   senado " - Origem (Senado)"
+##  2 2009-07-15 designado_relator CCJ   senado " - Origem (Senado)"
+##  3 2009-09-11 &lt;NA&gt;              CCJ   senado " - Origem (Senado)"
+##  4 2009-09-11 &lt;NA&gt;              CCJ   senado " - Origem (Senado)"
+##  5 2009-09-15 &lt;NA&gt;              CCJ   senado " - Origem (Senado)"
+##  6 2009-09-22 &lt;NA&gt;              CCJ   senado " - Origem (Senado)"
+##  7 2009-09-22 &lt;NA&gt;              CCJ   senado " - Origem (Senado)"
+##  8 2009-09-23 &lt;NA&gt;              CCJ   senado " - Origem (Senado)"
+##  9 2009-09-24 designado_relator CCJ   senado " - Origem (Senado)"
+## 10 2009-11-13 pronta_para_pauta CCJ   senado " - Origem (Senado)"
+## # ... with 115 more rows</code></pre>
+<p><br></p>
 <p>Os dados retornados pela função <strong>process_proposicao(prop_senado, tram_senado, “senado”)</strong>, além dos retornados pela <a href="https://www12.senado.leg.br/dados-abertos">API Dados Abertos do Senado</a>, estão distribuídos nas seguintes colunas:</p>
 <ul>
 <li>

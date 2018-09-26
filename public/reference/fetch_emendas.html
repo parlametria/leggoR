@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Retorna as emendas de uma proposição no Senado — fetch_emendas • agoradigital</title>
+<title>Retorna as emendas de uma proposição no Congresso — fetch_emendas • agoradigital</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Retorna as emendas de uma proposição no Senado — fetch_emendas" />
+<meta property="og:title" content="Retorna as emendas de uma proposição no Congresso — fetch_emendas" />
 
-<meta property="og:description" content="Retorna dataframe com os dados das emendas de uma proposição no Senado." />
+<meta property="og:description" content="Retorna dataframe com os dados das emendas de uma proposição no Congresso." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -92,6 +92,9 @@
     <li>
       <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
+    <li>
+      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -115,38 +118,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Retorna as emendas de uma proposição no Senado</h1>
+    <h1>Retorna as emendas de uma proposição no Congresso</h1>
     <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/fetcher.R'><code>R/fetcher.R</code></a></small>
     <div class="hidden name"><code>fetch_emendas.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Retorna dataframe com os dados das emendas de uma proposição no Senado.</p>
+    <p>Retorna dataframe com os dados das emendas de uma proposição no Congresso.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>fetch_emendas</span>(<span class='no'>bill_id</span>)</pre>
+    <pre class="usage"><span class='fu'>fetch_emendas</span>(<span class='no'>id</span>, <span class='no'>casa</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>bill_id</th>
-      <td><p>ID de uma proposição do Senado</p></td>
+      <td><p>ID de uma proposição do Congresso</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Dataframe com as informações sobre as emendas de uma proposição no Senado.</p>
+    <p>Dataframe com as informações sobre as emendas de uma proposição no Congresso.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fetch_emendas</span>(<span class='fl'>91341</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 5
-#&gt;   codigo  numero local autor           partido
-#&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;fct&gt;           &lt;chr&gt;  
-#&gt; 1 3931858 00001  CAE   Ricardo Ferraço PSDB/ES</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fetch_emendas</span>(<span class='fl'>91341</span>,<span class='st'>'senado'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in json_emendas %&gt;% magrittr::extract2("EmendaMateria") %&gt;% magrittr::extract2("Materia"): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

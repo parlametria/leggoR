@@ -60,6 +60,9 @@
     <li>
       <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
+    <li>
+      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -96,10 +99,12 @@
 <h3 class="hasAnchor">
 <a href="#como-trabalhar-com-csvs" class="anchor"></a>Como trabalhar com CSVs</h3>
 <p>Para salvar os dados de um dataframe retornado por uma função em um arquivo csv, basta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">'readr'</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#devtools::install_github('analytics-ufcg/agora-digital') #Descomentar para instalar o pacote</span>
+<span class="kw">library</span>(magrittr)
 caminhoProArquivoCsv &lt;-<span class="st"> 'meuCsv.csv'</span>
-prop_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_senado, <span class="st">'senado'</span>)
-prop_data %&gt;%<span class="st"> </span>readr::<span class="kw">write_csv</span>(caminhoProArquivoCsv)</code></pre></div>
+id_qualidade_fiscal_senado &lt;-<span class="st"> </span><span class="dv">91341</span>
+prop_data &lt;-<span class="st"> </span>agoradigital::<span class="kw"><a href="../reference/fetch_proposicao.html">fetch_proposicao</a></span>(id_qualidade_fiscal_senado, <span class="st">'senado'</span>)
+readr::<span class="kw">write_csv</span>(prop_data, caminhoProArquivoCsv)</code></pre></div>
 <p>Depois para ler:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">caminhoProArquivoCsv &lt;-<span class="st"> 'meuCsv.csv'</span>
 prop_data &lt;-<span class="st"> </span>readr::<span class="kw">read_csv</span>(caminhoProArquivoCsv)</code></pre></div>

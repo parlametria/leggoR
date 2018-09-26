@@ -92,6 +92,9 @@
     <li>
       <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
+    <li>
+      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -143,46 +146,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fetch_sessions</span>(<span class='fl'>91341</span>)</div><div class='output co'>#&gt;   data_ordem_do_dia descricao_tipo_apreciacao
-#&gt; 1        2016-06-07 Discussão, em turno único
-#&gt; 2        2010-05-18   Votação, em turno único
-#&gt; 3        2010-05-19   Votação, em turno único
-#&gt;                                                                                                                                                                                                                                                                                                                                                  descricao_resultado
-#&gt; 1 Aprovada, em primeiro turno, a Emenda nº 3-CAE (Substitutivo).\n      Sim: 64;\n      Não: 0;\n      Abst.: 2;\n      Total: 66.\n      \n      Aprovados, em turno suplementar, o Substitutivo e as emendas de parecer favorável. \n      Sim: 52;\n      Não: 0;\n      Abst.: 2;\n      Total: 54.\n      \n      A matéria vai à Câmara dos Deputados.\n      
-#&gt; 2                                                                                                                                                                                                                                                                                                                                                          Aprovado.
-#&gt; 3                                                                                                                                                                                                                                                                                                                                                          Aprovado.
-#&gt;   sessao_plenaria_codigo_sessao sessao_plenaria_sigla_casa_sessao
-#&gt; 1                         22566                                SF
-#&gt; 2                         20729                                SF
-#&gt; 3                         20731                                SF
-#&gt;   sessao_plenaria_nome_casa_sessao sessao_plenaria_codigo_sessao_legislativa
-#&gt; 1                   Senado Federal                                       853
-#&gt; 2                   Senado Federal                                       843
-#&gt; 3                   Senado Federal                                       843
-#&gt;   sessao_plenaria_sigla_tipo_sessao sessao_plenaria_numero_sessao
-#&gt; 1                               DOR                          89  
-#&gt; 2                               DOR                          75  
-#&gt; 3                               DEX                          77  
-#&gt;   sessao_plenaria_data_sessao sessao_plenaria_hora_inicio_sessao
-#&gt; 1                  2016-06-07                           14:00:00
-#&gt; 2                  2010-05-18                           14:00:00
-#&gt; 3                  2010-05-19                           14:30:00
-#&gt;   materia_apreciada_identificacao_materia_codigo_materia
-#&gt; 1                                                   &lt;NA&gt;
-#&gt; 2                                                  96061
-#&gt; 3                                                  96901
-#&gt;   materia_apreciada_identificacao_materia_sigla_subtipo_materia
-#&gt; 1                                                          &lt;NA&gt;
-#&gt; 2                                                           REQ
-#&gt; 3                                                           REQ
-#&gt;   materia_apreciada_identificacao_materia_numero_materia
-#&gt; 1                                                   &lt;NA&gt;
-#&gt; 2                                                  00249
-#&gt; 3                                                  00525
-#&gt;   materia_apreciada_identificacao_materia_ano_materia
-#&gt; 1                                                &lt;NA&gt;
-#&gt; 2                                                2010
-#&gt; 3                                                2010</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fetch_sessions</span>(<span class='fl'>91341</span>)</div><div class='output co'>#&gt; <span class='error'>Error in json_sessions %&gt;% magrittr::extract2("OrdiaMateria") %&gt;% magrittr::extract2("Materia"): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

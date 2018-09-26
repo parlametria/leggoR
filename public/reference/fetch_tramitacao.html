@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Busca a movimentação da proposição — fetch_tramitacao • agoradigital</title>
+<title>Baixa os dados da tramitação de um Projeto de Lei — fetch_tramitacao • agoradigital</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Busca a movimentação da proposição — fetch_tramitacao" />
+<meta property="og:title" content="Baixa os dados da tramitação de um Projeto de Lei — fetch_tramitacao" />
 
-<meta property="og:description" content="Retorna dataframe com os dados da movimentação da proposição, incluindo tramitação, prazos, despachos e situação
-Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe." />
+<meta property="og:description" content="Retorna dataframe com os dados da tramitação de uma proposição no Congresso" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -93,6 +92,9 @@ Ao fim, a função retira todos as colunas que tenham tipo lista para uniformiza
     <li>
       <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
+    <li>
+      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -116,67 +118,43 @@ Ao fim, a função retira todos as colunas que tenham tipo lista para uniformiza
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Busca a movimentação da proposição</h1>
+    <h1>Baixa os dados da tramitação de um Projeto de Lei</h1>
     <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/fetcher.R'><code>R/fetcher.R</code></a></small>
     <div class="hidden name"><code>fetch_tramitacao.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Retorna dataframe com os dados da movimentação da proposição, incluindo tramitação, prazos, despachos e situação
-Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.</p>
+    <p>Retorna dataframe com os dados da tramitação de uma proposição no Congresso</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>fetch_tramitacao</span>(<span class='no'>proposicao_id</span>)</pre>
+    <pre class="usage"><span class='fu'>fetch_tramitacao</span>(<span class='no'>id</span>, <span class='no'>casa</span>, <span class='kw'>normalized</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>proposicao_id</th>
-      <td><p>ID de uma proposição do Senado</p></td>
+      <th>id</th>
+      <td><p>ID de uma proposição na sua respectiva casa</p></td>
+    </tr>
+    <tr>
+      <th>casa</th>
+      <td><p>Casa onde a proposição está tramitando</p></td>
+    </tr>
+    <tr>
+      <th>normalized</th>
+      <td><p>whether or not the output dataframe should be normalized (have the same format and column names for every house)</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Dataframe com as informações sobre a movimentação de uma proposição no Senado</p>
+    <p>Dataframe com os dados da tramitação de uma proposição no Congresso</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fetch_tramitacao</span>(<span class='fl'>91341</span>)</div><div class='output co'>#&gt; # A tibble: 127 x 30
-#&gt;    codigo_tramitacao numero_autuacao data_tramitacao numero_ordem_tramitacao
-#&gt;    &lt;chr&gt;             &lt;chr&gt;           &lt;chr&gt;           &lt;chr&gt;                  
-#&gt;  1 2346685           1               2016-06-21      1                      
-#&gt;  2 2346271           1               2016-06-16      1                      
-#&gt;  3 2344908           1               2016-06-07      2                      
-#&gt;  4 2344786           1               2016-06-07      1                      
-#&gt;  5 2343607           1               2016-05-30      3                      
-#&gt;  6 2343589           1               2016-05-30      2                      
-#&gt;  7 2343469           1               2016-05-30      1                      
-#&gt;  8 2342813           1               2016-05-19      3                      
-#&gt;  9 2342791           1               2016-05-19      2                      
-#&gt; 10 2342740           1               2016-05-19      1                      
-#&gt; # ... with 117 more rows, and 26 more variables: texto_tramitacao &lt;chr&gt;,
-#&gt; #   indicador_recebimento &lt;chr&gt;, data_recebimento &lt;chr&gt;,
-#&gt; #   origem_tramitacao_local_codigo_local &lt;chr&gt;,
-#&gt; #   origem_tramitacao_local_tipo_local &lt;chr&gt;,
-#&gt; #   origem_tramitacao_local_sigla_casa_local &lt;chr&gt;,
-#&gt; #   origem_tramitacao_local_nome_casa_local &lt;chr&gt;,
-#&gt; #   origem_tramitacao_local_sigla_local &lt;chr&gt;,
-#&gt; #   origem_tramitacao_local_nome_local &lt;chr&gt;,
-#&gt; #   destino_tramitacao_local_codigo_local &lt;chr&gt;,
-#&gt; #   destino_tramitacao_local_tipo_local &lt;chr&gt;,
-#&gt; #   destino_tramitacao_local_sigla_casa_local &lt;chr&gt;,
-#&gt; #   destino_tramitacao_local_nome_casa_local &lt;chr&gt;,
-#&gt; #   destino_tramitacao_local_sigla_local &lt;chr&gt;,
-#&gt; #   destino_tramitacao_local_nome_local &lt;chr&gt;, situacao_codigo_situacao &lt;chr&gt;,
-#&gt; #   situacao_sigla_situacao &lt;chr&gt;, situacao_descricao_situacao &lt;chr&gt;,
-#&gt; #   codigo_materia &lt;chr&gt;, sigla_casa_identificacao_materia &lt;chr&gt;,
-#&gt; #   nome_casa_identificacao_materia &lt;chr&gt;, sigla_subtipo_materia &lt;chr&gt;,
-#&gt; #   descricao_subtipo_materia &lt;chr&gt;, numero_materia &lt;chr&gt;, ano_materia &lt;chr&gt;,
-#&gt; #   indicador_tramitando &lt;chr&gt;</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fetch_tramitacao</span>(<span class='fl'>91341</span>,<span class='st'>'senado'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in json_tramitacao %&gt;% magrittr::extract2("MovimentacaoMateria") %&gt;%     magrittr::extract2("Materia"): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

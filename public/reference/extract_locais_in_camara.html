@@ -92,6 +92,9 @@
     <li>
       <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
     </li>
+    <li>
+      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -143,7 +146,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='fu'>extract_locais_in_camara</span>(<span class='fu'><a href='fetch_tramitacao.html'>fetch_tramitacao</a></span>(<span class='fl'>91341</span>))</div><div class='output co'>#&gt; <span class='error'>Error in df %&lt;&gt;% dplyr::arrange(data_hora, sequencia) %&gt;% dplyr::mutate(local = dplyr::case_when((tolower(despacho) %in%     descricoes_plenario &amp; sigla_orgao == "PLEN" | stringr::str_detect(tolower(descricao_tramitacao),     "^votação")) ~ "Plenário", (stringr::str_detect(tolower(despacho),     "^recebimento pela") | tolower(despacho) %in% descricoes_comissoes) &amp;     sigla_orgao != "CCP" &amp; !stringr::str_detect(tolower(sigla_orgao),     "^s") ~ sigla_orgao, tolower(descricao_tramitacao) == "remessa ao senado federal" ~     "Câmara")) %&gt;% dplyr::mutate(local = dplyr::case_when(stringr::str_detect(local,     "^PL") ~ "Comissão Especial", TRUE ~ local)): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'> <span class='fu'>extract_locais_in_camara</span>(<span class='fu'><a href='fetch_tramitacao.html'>fetch_tramitacao</a></span>(<span class='fl'>2121442</span>, <span class='st'>'camara'</span>, <span class='no'>T</span>))</div><div class='output co'>#&gt; <span class='error'>Error in df %&lt;&gt;% dplyr::arrange(data_hora, sequencia) %&gt;% dplyr::mutate(local = dplyr::case_when((tolower(texto_tramitacao) %in%     descricoes_plenario &amp; sigla_local == "PLEN" | stringr::str_detect(tolower(texto_tramitacao),     "^votação")) ~ "Plenário", (stringr::str_detect(tolower(texto_tramitacao),     "^recebimento pela") | tolower(texto_tramitacao) %in% descricoes_comissoes) &amp;     sigla_local != "CCP" &amp; !stringr::str_detect(tolower(sigla_local),     "^s") ~ sigla_local, tolower(texto_tramitacao) == "remessa ao senado federal" ~     "Câmara")) %&gt;% dplyr::mutate(local = dplyr::case_when(stringr::str_detect(local,     "^PL") ~ "Comissão Especial", TRUE ~ local)): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
