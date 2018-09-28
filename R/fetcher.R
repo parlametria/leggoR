@@ -764,7 +764,8 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema
                     casa = 'senado',
                     autor_nome = ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, ' ', partido_autor, '/', uf_autor)),
                     apelido_materia = ifelse('apelido_materia' %in% names(.), apelido_materia, apelido),
-                    tema = tema) %>%
+                    tema = tema,
+                    indexacao_materia = {if("indexacao_materia" %in% names(.)) indexacao_materia else NA}) %>%
       dplyr::select(prop_id,
                     casa,
                     tipo_materia = sigla_subtipo_materia,
