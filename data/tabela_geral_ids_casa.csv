@@ -1,13 +1,18 @@
 id,casa,apelido,tema
-132865,senado,Lei do Licenciamento ambiental,Meio Ambiente
-91341,senado,,Agenda Nacional
-41703,senado,PL do veneno,Meio Ambiente
-127753,senado,Lei do teto remuneratório,Agenda Nacional
+id,casa,apelido,tema
+132865,senado,Lei do Licenciamento Ambiental,Meio Ambiente
+91341,senado,Lei da Qualidade Fiscal,Agenda Nacional
+41703,senado,PL do Veneno,Meio Ambiente
+127753,senado,Lei do Teto Remuneratório,Agenda Nacional
 129808,senado,Lei do Cadastro Positivo,Agenda Nacional
-257161,camara,Lei Geral do licenciamento ambiental,Meio Ambiente
+257161,camara,Lei Geral do Licenciamento Ambiental,Meio Ambiente
 345311,camara,Estatuto do Índio,Meio Ambiente
-2056568,camara,Lei para acabar zona de amortecimento,Meio Ambiente
+2056568,camara,Lei para Acabar Zona de Amortecimento,Meio Ambiente
 46249,camara,PL do Veneno,Meio Ambiente
-2121442,camara,Lei do teto remuneratório,Agenda Nacional
-2160860,camara,Lei do cadastro positivo,Agenda Nacional
-2120775,camara,Política Nacional de redução de agrotóxico,Meio Ambiente
+2121442,camara,Lei do Teto Remuneratório,Agenda Nacional
+2160860,camara,Lei do Cadastro Positivo,Agenda Nacional
+2120775,camara,Política Nacional de Redução de Agrotóxico,Meio Ambiente
+2088990,camara,Lei da Qualidade Fiscal,Agenda Nacional
+115926,senado,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+2122766,camara,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+
