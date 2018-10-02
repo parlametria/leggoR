@@ -556,7 +556,7 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
       phase_four,
       comissoes_phase$regex
     ) %>%
-    dplyr::mutate(data_hora = lubridate::ymd(data_hora)) %>%
+    dplyr::mutate(data_hora = lubridate::ymd_hms(paste(data_hora, '12:00:00'))) %>%
     dplyr::arrange(data_hora, sequencia) %>%
     tidyr::fill(fase)
   
