@@ -960,6 +960,26 @@ fetch_agenda_senado <- function(initial_date) {
   agenda <- list(agenda = agenda, materias = materia, oradores = oradores)
 }
 
+fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
+  url <- paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe")
+  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
+  tipos_inuteis <- c('Outros eventos', 'Reunião')
+  agenda <- 
+    json_proposicao$Reunioes$Reuniao %>%
+    rename_table_to_underscore() %>%
+    dplyr::filter(realizada == 'Sim') %>%
+    dplyr::filter(!(tipo %in% tipos_inuteis))
+  
+  materia <- purrr::map_df(agenda$partes_parte, dplyr::bind_rows, .id = "codigo")
+  
+  parte <- agenda$partes_parte
+  tab1 <-parte %>%
+    transpose() %>%
+    as_tibble()  %>%
+    unnest()
+  x <- tab1$Itens
+}
+
 #' @title Normaliza as agendas da câmara ou do senado
 #' @description Retorna um dataframe contendo a agenda da camara ou do senado normalizada
 #' @param agenda dataframe com agenda 
