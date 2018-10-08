@@ -960,6 +960,24 @@ fetch_agenda_senado <- function(initial_date) {
   agenda <- list(agenda = agenda, materias = materia, oradores = oradores)
 }
 
+auxiliar_agenda_senado_comissoes <- function(url) {
+  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
+  agenda2 <- 
+    json_proposicao$Reunioes$Reuniao %>%
+    tibble::as.tibble() %>%
+    rename_table_to_underscore() %>%
+    dplyr::filter(situacao != 'Cancelada') %>%
+    dplyr::filter(!(tipo %in% tipos_inuteis))
+  if ("partes_parte_itens_item" %in% names(agenda2)) {
+    agenda2 <-
+      agenda2 %>%
+      dplyr::filter(partes_parte_itens_item != "NULL")
+    purrr::map_df(agenda2$partes_parte_itens_item, dplyr::bind_rows) 
+  }else {
+    tibble::tibble()
+  }
+}
+
 fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
   url <- 
     paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe")
@@ -969,18 +987,20 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
     json_proposicao$Reunioes$Reuniao %>%
     tibble::as.tibble() %>%
     rename_table_to_underscore() %>%
-    dplyr::filter(realizada == 'Sim') %>%
-    dplyr::filter(!(tipo %in% tipos_inuteis)) 
+    dplyr::filter(situacao != 'Cancelada') %>%
+    dplyr::filter(!(tipo %in% tipos_inuteis)) %>%
+    unique() %>%
+    dplyr::mutate(url = 
+                    paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe?colegiado=", comissoes_comissao_sigla))
   
-  if ("partes_parte_itens_item" %in% names(agenda)) {
-    agenda <-
-      agenda %>%
-      dplyr::filter(partes_parte_itens_item != "NULL")
-    purrr::map_df(agenda$partes_parte_itens_item, dplyr::bind_rows, .id = "codigo") 
-  }else {
-    tibble()
-  }
   
+  agendas <- 
+    map_df(agenda$url, auxiliar_agenda_senado_comissoes) %>%
+    rename_table_to_underscore() %>%
+    dplyr::select(c(codigo, materia_codigo, materia_subtipo, materia_numero, materia_ano)) %>%
+    dplyr::filter(!is.na(materia_codigo))
+  
+  agendas
 }
 
 #' @title Normaliza as agendas da câmara ou do senado
@@ -1020,13 +1040,17 @@ normalize_agendas <- function(agenda, house) {
 #' @examples
 #' fetch_agenda('2018-07-03', '2018-07-10', 'camara')
 #' @export
-fetch_agenda <- function(initial_date, end_date, house) {
+fetch_agenda <- function(initial_date, end_date, house, orgao) {
   try(if(as.Date(end_date) < as.Date(initial_date)) stop("A data inicial é depois da final!"))
   
-  if(house == 'camara') {
-    normalize_agendas(fetch_agenda_camara(initial_date = initial_date, end_date = end_date), house)
+  if (tolower(orgao) == 'plenario') {
+    if(house == 'camara') {
+      normalize_agendas(fetch_agenda_camara(initial_date = initial_date, end_date = end_date), house)
+    }else {
+      normalize_agendas(fetch_agenda_senado(initial_date), house)
+    }
   }else {
-    normalize_agendas(fetch_agenda_senado(initial_date), house)
+    
   }
 }
 
