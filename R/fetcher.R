@@ -1054,3 +1054,17 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
     # and mark proposicoes based on last tramitacao mark
     dplyr::left_join(related, by = c('prop_id' = 'id'))
 }
+
+#' @title Baixa a agenda de audiências públicas na câmara 
+#' @description Retorna um dataframe contendo as audiências públicas da camara ou do senado
+#' @param initial_date data inicial no formato yyyy-mm-dd
+#' @param end_date data final no formato yyyy-mm-dd
+#' @return Dataframe
+#' @examples
+#' fetch_audiencias_publicas_by_orgao_camara('2018-07-03', '2018-07-10', 'CCJ')
+fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, sigla_orgao){
+  url <- RCurl::getURL('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterOrgaos')
+  xmlfile <- xmlParse(url)
+  orgaos_list <- xmlToList(xmlfile)
+  
+}
