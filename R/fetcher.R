@@ -1012,6 +1012,7 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
                     paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe?colegiado=", comissoes_comissao_sigla))
   
   
+  
   agendas <- 
     map_df(agenda$url, auxiliar_agenda_senado_comissoes) %>%
     rename_table_to_underscore() %>%
