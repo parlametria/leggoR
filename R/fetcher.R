@@ -960,6 +960,13 @@ fetch_agenda_senado <- function(initial_date) {
   agenda <- list(agenda = agenda, materias = materia, oradores = oradores)
 }
 
+#' @title Retorna a agenda de uma comissão no Senado
+#' @description Função auxiliar que retorna um dataframe contendo a agenda de 
+#' uma comissão do Senado
+#' @param url Url dos dados abertos do senado para uma comissão
+#' @return Dataframe
+#' @examples
+#' auxiliar_agenda_senado_comissoes('http://legis.senado.leg.br/dadosabertos/agenda/20160515/20160525/detalhe?colegiado=CDH')
 auxiliar_agenda_senado_comissoes <- function(url) {
   json_proposicao <- jsonlite::fromJSON(url, flatten = T)
   agenda2 <- 
@@ -971,13 +978,24 @@ auxiliar_agenda_senado_comissoes <- function(url) {
   if ("partes_parte_itens_item" %in% names(agenda2)) {
     agenda2 <-
       agenda2 %>%
-      dplyr::filter(partes_parte_itens_item != "NULL")
-    purrr::map_df(agenda2$partes_parte_itens_item, dplyr::bind_rows) 
+      dplyr::filter(partes_parte_itens_item != "NULL") %>%
+      dplyr::mutate(index = as.character(row_number())) %>%
+      dplyr::select(-codigo)
+    
+   partes_parte <- purrr::map_df(agenda2$partes_parte_itens_item, dplyr::bind_rows, .id = "index") 
+   left_join(partes_parte, agenda2, by = "index") 
   }else {
     tibble::tibble()
   }
 }
 
+#' @title Retorna a agenda das comissões no Senado
+#' @description Retorna um dataframe contendo a agenda do senado normalizada
+#' @param initial_date data inicial no formato yyyy-mm-dd
+#' @param end_date data final no formato yyyy-mm-dd
+#' @return Dataframe
+#' @examples
+#' fetch_agenda_senado_comissoes('2016-05-15', '2016-05-25')
 fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
   url <- 
     paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe")
@@ -997,8 +1015,11 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
   agendas <- 
     map_df(agenda$url, auxiliar_agenda_senado_comissoes) %>%
     rename_table_to_underscore() %>%
-    dplyr::select(c(codigo, materia_codigo, materia_subtipo, materia_numero, materia_ano)) %>%
+    dplyr::select(c(data, materia_codigo, materia_subtipo, materia_numero, materia_ano)) %>%
     dplyr::filter(!is.na(materia_codigo))
+  
+  new_names <- c("data", "codigo_materia", "sigla_materia", "numero_materia", "ano_materia")
+  names(agendas) <- new_names
   
   agendas
 }
