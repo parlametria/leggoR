@@ -982,6 +982,7 @@ normalize_agendas <- function(agenda, house) {
      dplyr::select(c(hora_inicio, proposicao_.id, proposicao_.siglaTipo, proposicao_.numero, proposicao_.ano))
  }
   
+  
   new_names <- c("data", "codigo_materia", "sigla_materia", "numero_materia", "ano_materia")
   names(agenda) <- new_names
   
