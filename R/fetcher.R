@@ -1061,10 +1061,61 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
 #' @param end_date data final no formato yyyy-mm-dd
 #' @return Dataframe
 #' @examples
-#' fetch_audiencias_publicas_by_orgao_camara('2018-07-03', '2018-07-10', 'CCJ')
-fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, sigla_orgao){
-  url <- RCurl::getURL('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterOrgaos')
-  xmlfile <- xmlParse(url)
-  orgaos_list <- xmlToList(xmlfile)
+#' fetch_audiencias_publicas_by_orgao_camara('01/10/2018', '30/10/2018', process_proposicao(fetch_proposicao(2056568, 'camara', 'Lei para acabar zona de amortecimento', 'Meio Ambiente'), fetch_tramitacao(2056568, 'camara', T), 'camara'))
+fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fases_tramitacao_df){
+  orgao_atual <- 
+    fases_tramitacao_df %>% 
+    extract_locais_in_camara() %>% 
+    tail(1) %>% 
+    select(local)
   
+  orgao_id <- 
+    fetch_orgaos_camara() %>% 
+    filter(str_detect(sigla, orgao_atual$local)) %>% 
+    select(orgao_id)
+  
+  url <- RCurl::getURL(paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=', orgao_id$orgao_id, '&datIni=', initial_date, '&datFim=', end_date))
+  eventos_list <- 
+    XML::xmlParse(url) %>% 
+    XML::xmlToList()
+  
+  df <-
+    eventos_list %>% 
+    jsonlite::toJSON() %>% 
+    jsonlite::fromJSON() %>% 
+    purrr::list_modify(".attrs" = NULL) %>% 
+    tibble::as.tibble() %>% 
+    t() %>% 
+    as.data.frame()
+  
+  names(df) <- c("comissao","cod_reuniao", "num_reuniao", "data", "hora", "local", "estado", "tipo", "titulo_reuniao", "objeto", "proposicoes")
+  
+  df <- df %>% 
+    filter (tipo == 'Audiência Pública') %>% 
+    select(-c(num_reuniao, proposicoes)) %>% 
+    lapply(unlist) %>% 
+    as.data.frame()
+  
+}
+#' @title Baixa os órgãos na câmara 
+#' @description Retorna um dataframe contendo os órgãos da câmara
+#' @return Dataframe
+fetch_orgaos_camara <- function(){
+  url <- RCurl::getURL('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterOrgaos')
+  
+  orgaos_list <- 
+    XML::xmlParse(url) %>% 
+    XML::xmlToList()
+  
+  df <-
+    orgaos_list %>% 
+    jsonlite::toJSON() %>% 
+    jsonlite::fromJSON() %>% 
+    tibble::as.tibble() %>% 
+    t() %>% 
+    as.data.frame()
+  
+  names(df) <- c("orgao_id", "tipo_orgao_id", "sigla", "descricao")
+  
+  return(df)
 }
