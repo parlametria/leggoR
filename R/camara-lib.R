@@ -93,7 +93,7 @@ get_comissoes_in_camara <- function(df) {
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::mutate(proximas_comissoes = stringr::str_extract_all(comissoes, reg) %>% as.list()) %>%
     dplyr::select(data_hora, prop_id, proximas_comissoes) %>%
-    dplyr::mutate(proximas_comissoes = map(proximas_comissoes, fix_names)) %>%
+    dplyr::mutate(proximas_comissoes = purrr::map(proximas_comissoes, fix_names)) %>%
     unique()
 }
 

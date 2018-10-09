@@ -393,7 +393,7 @@ generate_dataframe <- function (column) {
 fetch_emendas <- function(id, casa) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    print("Function fetch_emendas_camara not implemented yet.")
+    warning("Function fetch_emendas_camara not implemented yet.")
     return(NULL)
   } else if (casa == 'senado') {
     fetch_emendas_senado(id)
