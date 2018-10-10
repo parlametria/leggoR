@@ -43,41 +43,48 @@
   "evento": {
     "arquivamento": {
       "regex": "processo arquivado(.)*",
-      "constant": "arquivada"
+      "regex_complementar": "",
+      "constant": "arquivamento", 
+      "peso":1
     },
     "virada": {
       "regex": "primeiro-secretário da câmara dos deputados",
-      "constant": "virada_casa"
+      "regex_complementar": "",
+      "constant": "virada_de_casa", 
+      "peso":1
     },
     "aprovacao_substitutivo": {
       "regex": "aprovado o substitutivo",
-      "constant": "aprovacao_substitutivo"
+      "regex_complementar": "",
+      "constant": "aprovacao_substitutivo", 
+      "peso":1
     },
     "realizacao_audiencia_publica": {
       "regex": "realizada(,)* (.)*audiência pública",
       "regex_complementar": "aprovado o requerimento",
-      "constant": "realizacao_audiencia_publica"
+      "constant": "realizacao_audiencia_publica", 
+      "peso":1
     }
   },
 
   "eventos": [
-    {"evento": "apresentacao_pl", "texto_tramitacao": "^este processo contem"},
-    {"evento": "recebimento_comissao", "texto_tramitacao": "recebido na|nesta comissao"},
-    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "aprovado requerimento de realização de audiência pública"},
-    {"evento": "devolvido", "texto_tramitacao": "devolvido pel.*redistribu.*"},
-    {"evento": "aprovacao_parecer", "texto_tramitacao": "a comissão aprova o relatório|aprovado o relatório"},
-    {"evento": "pedido_vista", "texto_tramitacao": "concedida vista"},
+    {"evento": "apresentacao_pl", "texto_tramitacao": "^este processo contem", "peso":1},
+    {"evento": "recebimento_comissao", "texto_tramitacao": "recebido na|nesta comissao", "peso":1},
+    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "aprovado requerimento de realização de audiência pública", "peso":1},
+    {"evento": "devolvido", "texto_tramitacao": "devolvido pel.*redistribu.*", "peso":1},
+    {"evento": "aprovacao_parecer", "texto_tramitacao": "a comissão aprova o relatório|aprovado o relatório", "peso":1},
+    {"evento": "pedido_de_vista", "texto_tramitacao": "concedida vista", "peso":1},
     {"evento": "designado_relator", 
-      "texto_tramitacao": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))"},
-    {"evento": "desarquivada", "id_situacao": "^149$"},
-    {"evento": "aprovacao_substitutivo", "texto_tramitacao": "aprovado o substitutivo"},
-    {"evento": "aprovacao_projeto", "texto_tramitacao": "aprovado o projeto"},
-    {"evento": "inicio_prazo_emendas", "id_situacao": "^20$"},
-    {"evento": "fim_prazo_emendas", "id_situacao": "^153$"},
-    {"evento": "remetida_a_sancao", "id_situacao": "^57$"},
-    {"evento": "vetada", "id_situacao": "^57$"},
-    {"evento": "pronta_para_pauta", "id_situacao": "^42$"},
-    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*"}
+      "texto_tramitacao": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))", "peso":1},
+    {"evento": "desarquivamento", "id_situacao": "^149$", "peso":1},
+    {"evento": "aprovacao_substitutivo", "texto_tramitacao": "aprovado o substitutivo", "peso":1},
+    {"evento": "aprovacao_projeto", "texto_tramitacao": "aprovado o projeto", "peso":1},
+    {"evento": "inicio_prazo_emendas", "id_situacao": "^20$", "peso":1},
+    {"evento": "fim_prazo_emendas", "id_situacao": "^153$", "peso":1},
+    {"evento": "remetida_a_sancao", "id_situacao": "^57$", "peso":1},
+    {"evento": "vetada", "id_situacao": "^57$", "peso":1},
+    {"evento": "pronta_para_pauta", "id_situacao": "^42$", "peso":1},
+    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "peso":1}
   ],
   
   "regimes": {
