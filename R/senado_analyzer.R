@@ -57,12 +57,12 @@ get_comissoes_faltantes <- function(data_tramitacao) {
     
     if (nchar(comissoes[1,]$local) > 6) {
       comissoes <-
-        merge(comissoes, siglas_comissoes) %>%
+        merge(comissoes, siglas_comissoes, by="local") %>%
         select(siglas_comissoes) %>%
         rename("local" = "siglas_comissoes")
     }
     
-    dplyr::anti_join(comissoes, data_tramitacao)
+    dplyr::anti_join(comissoes, data_tramitacao, by="local")
   }else {
     comissoes
   }
