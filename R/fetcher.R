@@ -23,7 +23,8 @@ fetch_votacoes <- function(proposicao_id) {
   votacoes_ids <-
     votacoes_data %>%
     magrittr::extract2("IdentificacaoMateria") %>%
-    tibble::as.tibble()
+    tibble::as.tibble() %>%
+    unique()
   votacoes_df <-
     votacoes_data %>%
     magrittr::extract2("Votacoes") %>%
