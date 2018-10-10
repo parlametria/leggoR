@@ -71,13 +71,13 @@ get_comissoes_futuras <- function(tramitacao) {
       dplyr::rename("comissoes_permanentes" = "proximas_comissoes")
     
     comissoes_previstas_siglas <- 
-      fuzzyjoin::regex_left_join(comissoes_previstas, siglas_comissoes) %>%
+      fuzzyjoin::regex_left_join(comissoes_previstas, siglas_comissoes, by='comissoes_permanentes') %>%
       dplyr::select(siglas_comissoes) %>%
       dplyr::rename("local" = "siglas_comissoes") %>%
       dplyr::filter(!is.na(local))
     
     comissoes_faltantes <-
-      dplyr::anti_join(comissoes_previstas_siglas, tramitacao)
+      dplyr::anti_join(comissoes_previstas_siglas, tramitacao, by='local')
     
     if (nrow(comissoes_faltantes) != 0) {
       futuro_comissoes <-
