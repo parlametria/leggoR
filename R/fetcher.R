@@ -426,7 +426,7 @@ fetch_emendas_senado <- function(bill_id) {
 
   if (nrow(emendas_df) == 0) {
     emendas_df <-
-      frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ partido, ~ casa, ~ tipo_documento, ~ inteiro_teor)
+      tibble::frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ partido, ~ casa, ~ tipo_documento, ~ inteiro_teor)
 
   } else if (nrow(emendas_df) == 1) {
     texto <- generate_dataframe(emendas_df$textos_emenda) %>%
@@ -1105,7 +1105,7 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
     
   }else{
     
-    df <- frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
+    df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
                      ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes)
   }
   
