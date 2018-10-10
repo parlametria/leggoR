@@ -1055,26 +1055,29 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
     dplyr::left_join(related, by = c('prop_id' = 'id'))
 }
 
-#' @title Baixa a agenda de audiências públicas na câmara 
+#' @title Baixa a agenda de audiências públicas na câmara por órgão
 #' @description Retorna um dataframe contendo as audiências públicas da camara ou do senado
 #' @param initial_date data inicial no formato yyyy-mm-dd
 #' @param end_date data final no formato yyyy-mm-dd
-#' @return Dataframe
+#' @param fases_tramitacao_df dataframe da PL preprocessada
+#' @return Dataframe com as audiências públicas de um órgão
 #' @examples
-#' fetch_audiencias_publicas_by_orgao_camara('01/10/2018', '30/10/2018', process_proposicao(fetch_proposicao(2056568, 'camara', 'Lei para acabar zona de amortecimento', 'Meio Ambiente'), fetch_tramitacao(2056568, 'camara', T), 'camara'))
+#' fetch_audiencias_publicas_by_orgao_camara('01/10/2018', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Agenda Nacional'), fetch_tramitacao(2121442, 'camara', T), 'camara'))
 fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fases_tramitacao_df){
   orgao_atual <- 
     fases_tramitacao_df %>% 
-    extract_locais_in_camara() %>% 
-    tail(1) %>% 
-    select(local)
+    utils::tail(1) %>% 
+    dplyr::select(local)
   
   orgao_id <- 
     fetch_orgaos_camara() %>% 
-    filter(str_detect(sigla, orgao_atual$local)) %>% 
-    select(orgao_id)
+    dplyr::filter(stringr::str_detect(sigla, orgao_atual$local)) %>% 
+    dplyr::select(orgao_id)
   
-  url <- RCurl::getURL(paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=', orgao_id$orgao_id, '&datIni=', initial_date, '&datFim=', end_date))
+  url <- RCurl::getURL(paste0(
+    'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=', 
+    orgao_id$orgao_id, '&datIni=', initial_date, '&datFim=', end_date))
+  
   eventos_list <- 
     XML::xmlParse(url) %>% 
     XML::xmlToList()
@@ -1082,24 +1085,36 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
   df <-
     eventos_list %>% 
     jsonlite::toJSON() %>% 
-    jsonlite::fromJSON() %>% 
-    purrr::list_modify(".attrs" = NULL) %>% 
-    tibble::as.tibble() %>% 
-    t() %>% 
-    as.data.frame()
+    jsonlite::fromJSON()
   
-  names(df) <- c("comissao","cod_reuniao", "num_reuniao", "data", "hora", "local", "estado", "tipo", "titulo_reuniao", "objeto", "proposicoes")
+  if(is_list(df)){
+    df <- df %>% 
+      purrr::list_modify(".attrs" = NULL) %>% 
+      tibble::as.tibble() %>% 
+      t() %>% 
+      as.data.frame()
+    
+    names(df) <- c("comissao","cod_reuniao", "num_reuniao", "data", "hora", "local", 
+                   "estado", "tipo", "titulo_reuniao", "objeto", "proposicoes")
+    
+    df <- df %>% 
+      dplyr::filter (tipo == 'Audiência Pública') %>% 
+      dplyr::select(-c(num_reuniao, proposicoes)) %>% 
+      lapply(unlist) %>% 
+      as.data.frame()
+    
+  }else{
+    
+    df <- frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
+                     ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes)
+  }
   
-  df <- df %>% 
-    filter (tipo == 'Audiência Pública') %>% 
-    select(-c(num_reuniao, proposicoes)) %>% 
-    lapply(unlist) %>% 
-    as.data.frame()
+  return(df)
   
 }
 #' @title Baixa os órgãos na câmara 
 #' @description Retorna um dataframe contendo os órgãos da câmara
-#' @return Dataframe
+#' @return Dataframe contendo os órgãos da Câmara
 fetch_orgaos_camara <- function(){
   url <- RCurl::getURL('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterOrgaos')
   

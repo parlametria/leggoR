@@ -347,3 +347,26 @@ extract_casas_in_camara <- function(tramitacao_df, proposicao_df) {
   tramitacao_df %>%
     tidyr::fill(fase_global)
 }
+
+#' @title Extrai os números dos requerimentos da Câmara
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada num_requerimento
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada num_requerimento
+#' @examples
+#'  extract_num_requerimento_audiencia_publica_in_camara(fetch_tramitacao(2121442, 'camara', T))
+extract_num_requerimento_audiencia_publica_in_camara <- function(tramitacao_df) {
+  tramitacao_df <- 
+    tramitacao_df %>%
+    dplyr::filter(evento == 'requerimento_audiencia_publica') %>% 
+    dplyr::mutate (
+      num_requerimento = dplyr::if_else(
+        stringr::str_extract(
+          texto_tramitacao, camara_env$num_requerimento$regex) != 'character(0)', 
+        stringr::str_extract(texto_tramitacao, camara_env$num_requerimento$regex), 
+      '0'),
+      num_requerimento = dplyr::if_else(str_detect(num_requerimento, regex('/[0-9]{4}')), 
+                                 sub('/[0-9]{2}', '/', num_requerimento), 
+                                 num_requerimento)
+      )
+  tramitacao_df
+}

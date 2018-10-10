@@ -123,5 +123,9 @@
     {"local": "Plenário", "fase_global": "Revisão II"},
     {"local": "Presidência da República", "fase_global": "Sansão/Veto"},
     {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
-  ]
+  ],
+  
+  "num_requerimento":{
+    "regex": "\\d+/\\d+"
+  }
 }
