@@ -316,11 +316,11 @@ get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases
       next_audiencias_publicas %>% 
       dplyr::select(-num_requerimento) %>% 
       dplyr::group_by(data) %>% 
-      distinct()
+      dplyr::distinct()
     
   } else {
     next_audiencias_publicas <- 
-      frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
+      tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
                  ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes,
                  ~prop_id, ~casa)
   }
