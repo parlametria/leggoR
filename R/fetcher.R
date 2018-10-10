@@ -1056,3 +1056,75 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
     # and mark proposicoes based on last tramitacao mark
     dplyr::left_join(related, by = c('prop_id' = 'id'))
 }
+
+fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fases_tramitacao_df){
+  
+  orgao_id <- 
+    '2003'
+  
+  url <- RCurl::getURL(paste0(
+    'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=', 
+    orgao_id, '&datIni=', initial_date, '&datFim=', end_date))
+  
+  eventos_list <- 
+    XML::xmlParse(url) %>% 
+    XML::xmlToList()
+  
+  df <-
+    eventos_list %>% 
+    jsonlite::toJSON() %>% 
+    jsonlite::fromJSON()
+  
+  if(purrr::is_list(df)){
+    df <- df %>% 
+      purrr::list_modify(".attrs" = NULL) %>% 
+      tibble::as.tibble() %>% 
+      t() %>% 
+      as.data.frame()
+    
+    names(df) <- c("comissao","cod_reuniao", "num_reuniao", "data", "hora", "local", 
+                   "estado", "tipo", "titulo_reuniao", "objeto", "proposicoes")
+    
+    .cols <- setdiff(colnames(df), "proposicoes")
+    df[,(.cols)] <- lapply(df[,(.cols)], unlist)
+    
+    df <-
+      df %>% 
+      as.data.frame() %>%
+      dplyr::filter(trimws(estado) != 'Cancelada') %>%
+      tidyr::unnest() %>%
+      dplyr::mutate(sigla = purrr::map(proposicoes, ~ .x[['sigla']]),
+             id_proposicao = purrr::map(proposicoes, ~ .x[['idProposicao']]))
+  
+  }else{
+    
+    df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
+                             ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes)
+  }
+  
+  return(df)
+  
+}
+
+#' @title Baixa os órgãos na câmara 
+#' @description Retorna um dataframe contendo os órgãos da câmara
+#' @return Dataframe contendo os órgãos da Câmara
+fetch_orgaos_camara <- function(){
+  url <- RCurl::getURL('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterOrgaos')
+  
+  orgaos_list <- 
+    XML::xmlParse(url) %>% 
+    XML::xmlToList()
+  
+  df <-
+    orgaos_list %>% 
+    jsonlite::toJSON() %>% 
+    jsonlite::fromJSON() %>% 
+    tibble::as.tibble() %>% 
+    t() %>% 
+    as.data.frame()
+  
+  names(df) <- c("orgao_id", "tipo_orgao_id", "sigla", "descricao")
+  
+  return(df)
+}
