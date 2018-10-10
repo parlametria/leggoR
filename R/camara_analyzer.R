@@ -364,7 +364,7 @@ extract_num_requerimento_audiencia_publica_in_camara <- function(tramitacao_df) 
           texto_tramitacao, camara_env$num_requerimento$regex) != 'character(0)', 
         stringr::str_extract(texto_tramitacao, camara_env$num_requerimento$regex), 
       '0'),
-      num_requerimento = dplyr::if_else(stringr::str_detect(num_requerimento, regex('/[0-9]{4}')), 
+      num_requerimento = dplyr::if_else(stringr::str_detect(num_requerimento, stringr::regex('/[0-9]{4}')), 
                                  sub('/[0-9]{2}', '/', num_requerimento), 
                                  num_requerimento)
       )
