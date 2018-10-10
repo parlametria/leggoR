@@ -68,7 +68,7 @@ get_comissoes_in_camara <- function(df) {
     stringr::regex(ignore_case = TRUE)
   
   fix_names <- function(name) {
-    dplyr::ifelse(!stringr::str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name), paste("Comissão de", name), name)
+    ifelse(!stringr::str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name), paste("Comissão de", name), name)
   }
   
   detect <- function(str, regex) {
