@@ -1087,7 +1087,7 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
     jsonlite::toJSON() %>% 
     jsonlite::fromJSON()
   
-  if(is_list(df)){
+  if(purrr::is_list(df)){
     df <- df %>% 
       purrr::list_modify(".attrs" = NULL) %>% 
       tibble::as.tibble() %>% 
