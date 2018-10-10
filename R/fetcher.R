@@ -1057,12 +1057,12 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
 
 #' @title Baixa a agenda de audiências públicas na câmara por órgão
 #' @description Retorna um dataframe contendo as audiências públicas da camara ou do senado
-#' @param initial_date data inicial no formato yyyy-mm-dd
-#' @param end_date data final no formato yyyy-mm-dd
+#' @param initial_date data inicial no formato dd/mm/yyyy
+#' @param end_date data final no formato dd/mm/yyyy
 #' @param fases_tramitacao_df dataframe da PL preprocessada
 #' @return Dataframe com as audiências públicas de um órgão
 #' @examples
-#' fetch_audiencias_publicas_by_orgao_camara('01/10/2018', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Agenda Nacional'), fetch_tramitacao(2121442, 'camara', T), 'camara'))
+#' fetch_audiencias_publicas_by_orgao_camara('01/01/2017', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Agenda Nacional'), fetch_tramitacao(2121442, 'camara', T), 'camara'))
 fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fases_tramitacao_df){
   orgao_atual <- 
     fases_tramitacao_df %>% 

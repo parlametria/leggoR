@@ -277,12 +277,12 @@ get_progresso_both <- function(origem_id, revisao_id, casa_origem){
 
 #' @title Extrai as próximas audiências públicas de uma PL na Câmara
 #' @description Extrai as próximas audiências públicas de uma PL na Câmara
-#' @param initial_date data inicial no formato yyyy-mm-dd
-#' @param end_date data final no formato yyyy-mm-dd
+#' @param initial_date data inicial no formato dd/mm/yyyy
+#' @param end_date data final no formato dd/mm/yyyy
 #' @param fases_tramitacao_df dataframe da PL preprocessada
 #' @return Dataframe com as próximas audiências públicas de uma PL na Câmara
 #' @examples
-#' get_next_audiencias_publicas_in_camara('01/10/2018', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Agenda Nacional'), fetch_tramitacao(2121442, 'camara', T), 'camara'))
+#' get_next_audiencias_publicas_in_camara('01/01/2017', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Agenda Nacional'), fetch_tramitacao(2121442, 'camara', T), 'camara'))
 #' @export
 get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases_tramitacao_df){
   num_requerimentos_audiencias_publicas <- 

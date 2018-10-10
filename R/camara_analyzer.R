@@ -178,11 +178,11 @@ extract_evento_in_camara <- function(df) {
   redistribuicao_text <- eventos$text$distribuicao %>% tolower()
   df %>%
     dplyr::mutate(evento =
-             case_when((str_detect(
+             case_when((stringr::str_detect(
                tolower(texto_tramitacao),
                stringr::regex(redistribuicao_regex, ignore_case = TRUE)
              ) |
-               str_detect(
+               stringr::str_detect(
                  tolower(texto_tramitacao),
                  stringr::regex(novo_despacho_regex, ignore_case = TRUE)
                )) &
@@ -364,7 +364,7 @@ extract_num_requerimento_audiencia_publica_in_camara <- function(tramitacao_df) 
           texto_tramitacao, camara_env$num_requerimento$regex) != 'character(0)', 
         stringr::str_extract(texto_tramitacao, camara_env$num_requerimento$regex), 
       '0'),
-      num_requerimento = dplyr::if_else(str_detect(num_requerimento, regex('/[0-9]{4}')), 
+      num_requerimento = dplyr::if_else(stringr::str_detect(num_requerimento, regex('/[0-9]{4}')), 
                                  sub('/[0-9]{2}', '/', num_requerimento), 
                                  num_requerimento)
       )
