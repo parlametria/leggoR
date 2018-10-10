@@ -16,8 +16,14 @@ c('data/senado', 'data/camara', 'data/vis/tramitacao', 'docs/reports') %>%
   lapply(dir.create, recursive=TRUE, showWarnings = FALSE)
 
 # Store data
-all_pls <- readr::read_csv('data/tabela_ids_camara.csv')
-pls_senado_camara <- readr::read_csv('data/tabela_ids_senado_camara.csv')
+all_pls <- readr::read_csv('data/tabela_geral_ids_casa.csv', 
+                           col_types = cols(id = readr::col_integer(), 
+                                            casa = readr::col_character(),
+                                            apelido = readr::col_character(),
+                                            tema = readr::col_character()))
+pls_senado_camara <- readr::read_csv('data/tabela_ids_senado_camara.csv', 
+                                     col_types = cols(id_camara = readr::col_integer(), 
+                                                      id_senado = readr::col_integer()))
 all_pls %>% build_all_csvs(output_folder='data/', pls_senado_camara)
 pls_senado_camara %>% build_all_csvs(output_folder='data/', pls_senado_camara)
 

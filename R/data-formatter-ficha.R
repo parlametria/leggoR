@@ -174,7 +174,7 @@ gera_tabela_apensadas_senado <- function(bill_id_senado) {
     fetch_proposicao(bill_id_senado, 'senado')
 
   #se não tiver proposição
-  if (!("" %in% senado$proposicoes_apensadas)) {
+  if ("proposicoes_apensadas" %in% names(senado) & !("" %in% senado$proposicoes_apensadas)) {
     senado <-
       senado %>%
       dplyr::mutate(proposicoes_apensadas = strsplit(.$proposicoes_apensadas, " ")) %>%
