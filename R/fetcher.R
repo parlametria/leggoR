@@ -1057,12 +1057,16 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
     dplyr::left_join(related, by = c('prop_id' = 'id'))
 }
 
-fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fases_tramitacao_df){
+#' @title Baixa dados da agenda de um orgão da Camara
+#' @description Retorna um dataframe contendo dados sobre a agenda de um orgão da camara
+#' @param orgao_id ID do orgão
+#' @param initial_date data inicial no formato dd/mm/yyyy
+#' @param end_date data final no formato dd/mm/yyyy
+#' @return Dataframe
+fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_date){
   
-  orgao_id <- 
-    '2003'
-  
-  url <- RCurl::getURL(paste0(
+  url <- 
+    RCurl::getURL(paste0(
     'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=', 
     orgao_id, '&datIni=', initial_date, '&datFim=', end_date))
   
@@ -1076,7 +1080,8 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
     jsonlite::fromJSON()
   
   if(purrr::is_list(df)){
-    df <- df %>% 
+    df <- 
+      df %>% 
       purrr::list_modify(".attrs" = NULL) %>% 
       tibble::as.tibble() %>% 
       t() %>% 
@@ -1085,8 +1090,13 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
     names(df) <- c("comissao","cod_reuniao", "num_reuniao", "data", "hora", "local", 
                    "estado", "tipo", "titulo_reuniao", "objeto", "proposicoes")
     
-    .cols <- setdiff(colnames(df), "proposicoes")
-    df[,(.cols)] <- lapply(df[,(.cols)], unlist)
+    proposicoes <- df$proposicoes
+    df <- 
+      df %>% 
+      select(-c(num_reuniao, objeto, proposicoes)) %>% 
+      lapply(unlist) %>% 
+      as.data.frame() %>% 
+      add_column(proposicoes)
     
     df <-
       df %>% 
@@ -1103,7 +1113,19 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
   }
   
   return(df)
+}
+
+#' @title Baixa dados da agenda de todos os orgãos da Camara
+#' @description Retorna um dataframe contendo dados sobre a agenda da camara
+#' @param initial_date data inicial no formato dd/mm/yyyy
+#' @param end_date data final no formato dd/mm/yyyy
+#' @return Dataframe
+fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
+  orgaos <- 
+    fetch_orgaos_camara() 
   
+  purrr::map_df(orgaos$orgao_id, fetch_agendas_comissoes_camara_auxiliar, initial_date, end_date) %>%
+    dplyr::select(data, sigla, id_proposicao)
 }
 
 #' @title Baixa os órgãos na câmara 
@@ -1128,3 +1150,5 @@ fetch_orgaos_camara <- function(){
   
   return(df)
 }
+
+
