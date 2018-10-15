@@ -990,6 +990,12 @@ auxiliar_agenda_senado_comissoes <- function(url) {
   }
 }
 
+get_audiencias_publicas <- function(df) {
+  audiencia <-
+    df %>%
+    dplyr::filter(partes_parte_tipo == "Audiência Pública Interativa")
+}
+
 #' @title Retorna a agenda das comissões no Senado
 #' @description Retorna um dataframe contendo a agenda do senado normalizada
 #' @param initial_date data inicial no formato yyyy-mm-dd
