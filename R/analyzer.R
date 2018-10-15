@@ -276,6 +276,12 @@ get_progresso_both <- function(origem_id, revisao_id, casa_origem){
   return(df)
 }
 
+#' @title Recupera os eventos e seus respectivos pesos
+#' @description Retorna um dataframe com o superconjunto dos eventos das duas casas (Câmara e Senado) e seus respectivos pesos
+#' @return Dataframe contendo evento e peso
+#' @examples
+#' get_pesos_eventos()
+#' @export
 get_pesos_eventos <- function() {
   eventos_camara <- camara_env$eventos
   eventos_senado <- senado_env$eventos
