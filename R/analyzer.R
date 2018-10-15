@@ -327,7 +327,7 @@ get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases
     }
     
   } else {
-    next_audiencias_publicas <- 
+    next_audiencias_publicas_pl <- 
       tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
                  ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes,
                  ~prop_id, ~casa)
