@@ -288,42 +288,49 @@ get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases
   num_requerimentos_audiencias_publicas <- 
     extract_num_requerimento_audiencia_publica_in_camara(fases_tramitacao_df)
   
-  next_audiencias_publicas <- 
+  next_audiencias_publicas_by_orgao <- 
     fetch_audiencias_publicas_by_orgao_camara(initial_date, end_date, fases_tramitacao_df)
   
-  next_audiencias_publicas <-
-    next_audiencias_publicas %>% 
-    dplyr::mutate(
-      num_requerimento = dplyr::if_else(
-        stringr::str_extract_all(
-          objeto, camara_env$num_requerimento$regex) != 'character(0)', 
-        stringr::str_extract_all(objeto, camara_env$num_requerimento$regex), 
-        list(0))) %>%  
-    tidyr::unnest() %>% 
-    dplyr::filter(
-      num_requerimento %in% 
-        num_requerimentos_audiencias_publicas$num_requerimento)
-  
-  if(nrow(next_audiencias_publicas) > 0){
+  if(nrow(next_audiencias_publicas_by_orgao) > 0){
+    next_audiencias_publicas_pl <-
+      next_audiencias_publicas_by_orgao %>% 
+      dplyr::mutate(
+        num_requerimento = dplyr::if_else(
+          stringr::str_extract_all(
+            objeto, camara_env$num_requerimento$regex) != 'character(0)', 
+          stringr::str_extract_all(objeto, camara_env$num_requerimento$regex), 
+          list(0))) %>%  
+      tidyr::unnest() %>% 
+      dplyr::filter(
+        num_requerimento %in% 
+          num_requerimentos_audiencias_publicas$num_requerimento)
     
-    next_audiencias_publicas <-
-      merge(next_audiencias_publicas, 
-            num_requerimentos_audiencias_publicas %>% 
-              dplyr::select(prop_id, casa, num_requerimento), 
-            by = 'num_requerimento')
-    
-    next_audiencias_publicas <-
-      next_audiencias_publicas %>% 
-      dplyr::select(-num_requerimento) %>% 
-      dplyr::group_by(data) %>% 
-      distinct()
+    if(nrow(next_audiencias_publicas_pl) > 0){
+      
+      next_audiencias_publicas_pl <-
+        merge(next_audiencias_publicas_pl, 
+              num_requerimentos_audiencias_publicas %>% 
+                dplyr::select(prop_id, casa, num_requerimento), 
+              by = 'num_requerimento')
+      
+      next_audiencias_publicas_pl <-
+        next_audiencias_publicas_pl %>% 
+        dplyr::select(-num_requerimento) %>% 
+        dplyr::group_by(data) %>% 
+        distinct()
+      
+    } else {
+      next_audiencias_publicas_pl <- 
+        frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
+                   ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes,
+                   ~prop_id, ~casa)
+    }
     
   } else {
-    next_audiencias_publicas <- 
+    next_audiencias_publicas_pl <- 
       frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
                  ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes,
                  ~prop_id, ~casa)
   }
-  
-  next_audiencias_publicas
+  return(next_audiencias_publicas_pl)
 }

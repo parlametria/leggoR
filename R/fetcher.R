@@ -1067,7 +1067,8 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
   orgao_atual <- 
     fases_tramitacao_df %>% 
     utils::tail(1) %>% 
-    dplyr::select(local)
+    dplyr::select(local) %>% 
+    dplyr::mutate(local = dplyr::if_else(toupper(local) == "PLENÁRIO", "PLEN", local))
   
   orgao_id <- 
     fetch_orgaos_camara() %>% 
