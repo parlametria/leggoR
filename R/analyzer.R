@@ -286,14 +286,12 @@ get_pesos_eventos <- function() {
   eventos_camara <- camara_env$eventos
   eventos_senado <- senado_env$eventos
   
-  pesos_eventos_geral <- dplyr::bind_rows(eventos_camara, eventos_senado) %>% 
-    dplyr::group_by(evento) %>%
-    dplyr::summarise(peso = dplyr::first(peso))
-  
   eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
     dplyr::select(evento = constant, peso)
   
-  pesos_eventos <- dplyr::bind_rows(pesos_eventos_geral,eventos_extra_senado) %>%
+  pesos_eventos <- dplyr::bind_rows(eventos_camara, eventos_senado, eventos_extra_senado) %>% 
+    dplyr::group_by(evento) %>%
+    dplyr::summarise(peso = dplyr::first(peso)) %>%
     dplyr::arrange()
   
   return(pesos_eventos)
