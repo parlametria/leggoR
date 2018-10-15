@@ -284,7 +284,11 @@ get_pesos_eventos <- function() {
     dplyr::group_by(evento) %>%
     dplyr::summarise(peso = dplyr::first(peso))
   
-  #eventos_extra_senado <- do.call(dplyr::bind_rows, senado_env$evento)
+  eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
+    dplyr::select(evento = constant, peso)
   
-  return(pesos_eventos_geral)
+  pesos_eventos <- dplyr::bind_rows(pesos_eventos_geral,eventos_extra_senado) %>%
+    dplyr::arrange()
+  
+  return(pesos_eventos)
 }
