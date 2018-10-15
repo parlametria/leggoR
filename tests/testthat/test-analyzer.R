@@ -6,10 +6,15 @@ test_that('get_historico_energia_recente() has correct function passing the para
                                    rep(lubridate::ymd_hms('2018-09-11 12:00:00'), 1),
                                    rep(lubridate::ymd_hms('2018-09-12 12:00:00'), 5),
                                    rep(lubridate::ymd_hms('2018-09-13 12:00:00'), 3),
-                                   rep(lubridate::ymd_hms('2018-09-14 12:00:00'), 3)))
+                                   rep(lubridate::ymd_hms('2018-09-14 12:00:00'), 3)),
+                     evento = c("apresentacao_pl","distribuicao","designado_relator","parecer",
+                                "fim_prazo_emendas","voto_em_separado",
+                                "redistribuicao",
+                                "designado_relator","inicio_prazo_emendas","parecer","parecer_pela_aprovacao","aprovacao_parecer",
+                                "designado_relator","parecer_pela_rejeicao","aprovacao_parecer",
+                                "designado_relator","parecer_pela_aprovacao","aprovacao_parecer"),
+                     stringsAsFactors = F)
 
-  data <- data %>% dplyr::mutate(evento = "x") 
-  
   decaimento = 0.1
   r <- 1 - decaimento
   result <- c(
@@ -39,9 +44,12 @@ test_that('get_historico_energia_recente() has correct function passing the para
 })
 
 test_that('get_historico_energia_recente() has correct function passing the parameter week', {
-  data <- data.frame(data_hora = seq(lubridate::ymd_hms("2018-09-07 12:00:00"), lubridate::ymd_hms("2018-09-28 12:00:00"), by = "1 day"))
-  
-  data <- data %>% dplyr::mutate(evento = "x") 
+  data <- data.frame(data_hora = seq(lubridate::ymd_hms("2018-09-07 12:00:00"), lubridate::ymd_hms("2018-09-28 12:00:00"), by = "1 day"),
+                     evento = c("apresentacao_pl",
+                                "distribuicao","designado_relator","inicio_prazo_emendas","fim_prazo_emendas","parecer","parecer_pela_aprovacao","aprovacao_parecer",
+                                "designado_relator","inicio_prazo_emendas","fim_prazo_emendas","parecer","parecer_pela_rejeicao","voto_em_separado","aprovacao_parecer",
+                                "designado_relator","inicio_prazo_emendas","fim_prazo_emendas","parecer","parecer_pela_aprovacao","voto_em_separado","aprovacao_parecer"),
+                     stringsAsFactors = F)
   
   decaimento = 0.1
   r <- 1 - decaimento
