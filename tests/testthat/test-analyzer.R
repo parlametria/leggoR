@@ -85,3 +85,23 @@ test_that('get_pesos_eventos() returns all events from both houses', {
   expect_true(sum(eventos_senado$evento %in% pesos_eventos$evento) == nrow(eventos_senado))
   expect_true(sum(eventos_extra_senado$evento %in% pesos_eventos$evento) == nrow(eventos_extra_senado))
 })
+
+test_that('get_pesos_eventos() returns all events with their correct weights for all events', {
+  camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+  senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
+  eventos_camara <- camara_env$eventos
+  eventos_senado <- senado_env$eventos
+  eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
+    dplyr::select(evento = constant, peso)
+  
+  pesos_eventos <- get_pesos_eventos()
+  
+  pesos_eventos_camara <- merge(pesos_eventos,eventos_camara,by=c('evento','peso'))
+  expect_true(nrow(pesos_eventos_camara) == nrow(eventos_camara))
+  
+  pesos_eventos_senado <- merge(pesos_eventos,eventos_senado,by=c('evento','peso'))
+  expect_true(nrow(pesos_eventos_senado) == nrow(eventos_senado))
+  
+  pesos_eventos_extra_senado <- merge(pesos_eventos,eventos_extra_senado,by=c('evento','peso'))
+  expect_true(nrow(pesos_eventos_extra_senado) == nrow(eventos_extra_senado))
+})
