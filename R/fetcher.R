@@ -990,11 +990,40 @@ auxiliar_agenda_senado_comissoes <- function(url) {
   }
 }
 
-get_audiencias_publicas <- function(df) {
-  audiencia <-
-    df %>%
-    dplyr::filter(partes_parte_tipo == "Audiência Pública Interativa")
+get_audiencias_publicas <- function(initial_date, end_date) {
+  
+  pega_audiencias_publicas_do_data_frame <- function(l){
+    if(length(l$Tipo) == 1 ) {
+      if (l$Tipo == "Audiência Pública Interativa") {
+        paste(l$Eventos$Evento$MateriasRelacionadas$Materia$Codigo, collapse = " ,")
+      }else {
+        ""
+      }
+    }else {
+      if ("Audiência Pública Interativa" %in% l$Tipo) {
+        paste(l$Eventos$Evento$MateriasRelacionadas, collapse = " ,")
+      }else {
+        ""
+      }
+    }
+  }
+  
+  get_data_frame_agenda_senado(initial_date, end_date) %>% 
+    mutate(id_proposicao = purrr::map_chr(partes_parte, ~ pega_audiencias_publicas_do_data_frame(.)))
+  
 }
+
+get_data_frame_agenda_senado <- function(initial_date, end_date) {
+  url <- 
+    paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe")
+  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
+  
+  json_proposicao$Reunioes$Reuniao %>%
+    tibble::as.tibble() %>%
+    rename_table_to_underscore() %>%
+    dplyr::filter(situacao != 'Cancelada')
+}
+
 
 #' @title Retorna a agenda das comissões no Senado
 #' @description Retorna um dataframe contendo a agenda do senado normalizada
@@ -1004,15 +1033,11 @@ get_audiencias_publicas <- function(df) {
 #' @examples
 #' fetch_agenda_senado_comissoes('2016-05-15', '2016-05-25')
 fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
-  url <- 
-    paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe")
-  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
   tipos_inuteis <- c('Outros eventos', 'Reunião')
+  
+
   agenda <- 
-    json_proposicao$Reunioes$Reuniao %>%
-    tibble::as.tibble() %>%
-    rename_table_to_underscore() %>%
-    dplyr::filter(situacao != 'Cancelada') %>%
+    get_data_frame_agenda_senado(initial_date, end_date) %>%
     dplyr::filter(!(tipo %in% tipos_inuteis)) %>%
     unique() %>%
     dplyr::mutate(url = 
