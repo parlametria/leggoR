@@ -990,6 +990,13 @@ auxiliar_agenda_senado_comissoes <- function(url) {
   }
 }
 
+#' @title Retorna o dataFrame com as audiências públicas do Senado
+#' @description Retorna um dataframe contendo as audiências públicas do Senado
+#' @param initial_date data inicial no formato yyyy-mm-dd
+#' @param end_date data final no formato yyyy-mm-dd
+#' @return Dataframe
+#' @examples
+#' get_audiencias_publicas('2016-05-15', '2016-05-25')
 get_audiencias_publicas <- function(initial_date, end_date) {
   
   pega_audiencias_publicas_do_data_frame <- function(l){
@@ -1009,10 +1016,17 @@ get_audiencias_publicas <- function(initial_date, end_date) {
   }
   
   get_data_frame_agenda_senado(initial_date, end_date) %>% 
-    mutate(id_proposicao = purrr::map_chr(partes_parte, ~ pega_audiencias_publicas_do_data_frame(.)))
-  
+    dplyr::mutate(id_proposicao = purrr::map_chr(partes_parte, ~ pega_audiencias_publicas_do_data_frame(.))) %>%
+    dplyr::select(data, hora, realizada, comissoes_comissao_sigla, id_proposicao)
 }
 
+#' @title Retorna o dataFrame da agenda do Senado
+#' @description Retorna um dataframe contendo a agenda do senado 
+#' @param initial_date data inicial no formato yyyy-mm-dd
+#' @param end_date data final no formato yyyy-mm-dd
+#' @return Dataframe
+#' @examples
+#' get_data_frame_agenda_senado('2016-05-15', '2016-05-25')
 get_data_frame_agenda_senado <- function(initial_date, end_date) {
   url <- 
     paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe")
@@ -1035,15 +1049,12 @@ get_data_frame_agenda_senado <- function(initial_date, end_date) {
 fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
   tipos_inuteis <- c('Outros eventos', 'Reunião')
   
-
   agenda <- 
     get_data_frame_agenda_senado(initial_date, end_date) %>%
     dplyr::filter(!(tipo %in% tipos_inuteis)) %>%
     unique() %>%
     dplyr::mutate(url = 
                     paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe?colegiado=", comissoes_comissao_sigla))
-  
-  
   
   agendas <- 
     map_df(agenda$url, auxiliar_agenda_senado_comissoes) %>%
