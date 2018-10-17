@@ -1136,48 +1136,53 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
 fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fases_tramitacao_df){
   orgao_atual <- 
     fases_tramitacao_df %>% 
+    dplyr::filter(data_hora >= lubridate::as_date(lubridate::dmy(initial_date)) & data_hora <= lubridate::as_date((lubridate::dmy(end_date)))) %>% 
     utils::tail(1) %>% 
     dplyr::select(local) %>% 
     dplyr::mutate(local = dplyr::if_else(toupper(local) == "PLENÁRIO", "PLEN", local))
   
-  orgao_id <- 
-    fetch_orgaos_camara() %>% 
-    dplyr::filter(stringr::str_detect(sigla, orgao_atual$local)) %>% 
-    dplyr::select(orgao_id)
-  
-  url <- RCurl::getURL(paste0(
-    'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=', 
-    orgao_id$orgao_id, '&datIni=', initial_date, '&datFim=', end_date))
-  
-  eventos_list <- 
-    XML::xmlParse(url) %>% 
-    XML::xmlToList()
-  
-  df <-
-    eventos_list %>% 
-    jsonlite::toJSON() %>% 
-    jsonlite::fromJSON()
-  
-  if(purrr::is_list(df)){
-    df <- df %>% 
-      purrr::list_modify(".attrs" = NULL) %>% 
-      tibble::as.tibble() %>% 
-      t() %>% 
-      as.data.frame()
+  if(nrow(orgao_atual) > 0){
+    orgao_id <- 
+      fetch_orgaos_camara() %>% 
+      dplyr::filter(stringr::str_detect(sigla, orgao_atual$local)) %>% 
+      dplyr::select(orgao_id)
     
-    names(df) <- c("comissao","cod_reuniao", "num_reuniao", "data", "hora", "local", 
-                   "estado", "tipo", "titulo_reuniao", "objeto", "proposicoes")
     
-    df <- df %>% 
-      dplyr::filter (tipo == 'Audiência Pública') %>% 
-      dplyr::select(-c(num_reuniao, proposicoes)) %>% 
-      lapply(unlist) %>% 
-      as.data.frame()
+    url <- RCurl::getURL(paste0(
+      'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=', 
+      orgao_id$orgao_id, '&datIni=', initial_date, '&datFim=', end_date))
     
-  }else{
+    eventos_list <- readXML(url)
     
+    df <-
+      eventos_list %>% 
+      jsonlite::toJSON() %>% 
+      jsonlite::fromJSON()
+    
+    if(purrr::is_list(df)){
+      df <- df %>% 
+        purrr::list_modify(".attrs" = NULL) %>% 
+        tibble::as.tibble() %>% 
+        t() %>% 
+        as.data.frame()
+      
+      names(df) <- c("comissao","cod_reuniao", "num_reuniao", "data", "hora", "local", 
+                     "estado", "tipo", "titulo_reuniao", "objeto", "proposicoes")
+      
+      df <- df %>% 
+        dplyr::filter (tipo == 'Audiência Pública') %>% 
+        dplyr::select(-c(num_reuniao, proposicoes)) %>% 
+        lapply(unlist) %>% 
+        as.data.frame()
+      
+    }else{
+      
+      df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
+                               ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes)
+    }
+  } else{
     df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
-                     ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes)
+                             ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes)
   }
   
   return(df)
@@ -1204,4 +1209,22 @@ fetch_orgaos_camara <- function(){
   names(df) <- c("orgao_id", "tipo_orgao_id", "sigla", "descricao")
   
   return(df)
+}
+
+readXML <- function(url) {
+  out <- tryCatch({
+    XML::xmlParse(url) %>% 
+      XML::xmlToList()
+  },
+  error=function(cond) {
+    message(paste("Request returned Error 503 Service Unavailable. Please try again later."))
+    return(NA)
+  },
+  warning=function(cond) {
+    message(paste("Request caused a warning:", url))
+    message(cond)
+    return(NULL)
+  }
+  )    
+  return(out)
 }

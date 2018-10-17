@@ -86,7 +86,7 @@ rename_df_columns <- function(df) {
 #' @param events_df Dataframe com os eventos contendo as colunas "evento" e "regex"
 #' @return Dataframe com a coluna "evento" adicionada.
 extract_events_in_camara <- function(tramitacao_df) {
-  tramitacao_df %>% regex_left_match(camara_codes$eventos, "evento")
+  tramitacao_df %>% regex_left_match(camara_env$eventos, "evento")
 }
 
 #' @title Recupera o autor de uma proposição na Câmara
@@ -171,8 +171,7 @@ extract_locais_in_camara <- function(df) {
 #' @examples
 #'  extract_evento_in_camara(fetch_tramitacao(2121442, 'camara', T))
 extract_evento_in_camara <- function(df) {
-  camara_codes <- get_environment_camara_json()
-  eventos <- camara_codes$eventos
+  eventos <- camara_env$eventos
   novo_despacho_regex <- eventos$regex$novo_despacho
   redistribuicao_regex <- eventos$regex$redistribuicao
   redistribuicao_text <- eventos$text$distribuicao %>% tolower()
@@ -228,7 +227,7 @@ extract_fase_casa_in_camara <- function(df) {
 #'  extract_situacao_comissao(process_proposicao_camara(345311))
 extract_situacao_comissao <- function(df) {
   
-  situacao_comissao <- camara_codes$situacao_comissao
+  situacao_comissao <- camara_env$situacao_comissao
   situacao_comissao['local'] <- get_regex_comissoes_camara()
   
   df %>%

@@ -334,3 +334,9 @@ get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases
   }
   return(next_audiencias_publicas_pl)
 }
+
+
+extract_proposicao_identifier <- function(df) {
+  
+  
+}
