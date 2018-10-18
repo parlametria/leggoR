@@ -125,7 +125,11 @@
     {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
   ],
   
-  "num_requerimento":{
-    "regex": "\\d+/\\d+"
+  "frase_requerimento":{
+    "requerimento":"(requerimento(s|))( n(s|)º|) ((\\d*.|)(\\d*/\\d*)+(,( |)| |))*(e ((\\d*.|)(\\d*/\\d*))|)"
+  },
+  
+  "extract_requerimento_num":{
+    "regex":"(((\\d)*).|)(\\d*/\\d*)+"
   }
 }

@@ -290,20 +290,24 @@ get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases
   
   next_audiencias_publicas_by_orgao <- 
     fetch_audiencias_publicas_by_orgao_camara(initial_date, end_date, fases_tramitacao_df)
+
   
   if(nrow(next_audiencias_publicas_by_orgao) > 0){
     next_audiencias_publicas_pl <-
       next_audiencias_publicas_by_orgao %>% 
-      dplyr::mutate(
-        num_requerimento = dplyr::if_else(
-          stringr::str_extract_all(
-            objeto, camara_env$num_requerimento$regex) != 'character(0)', 
-          stringr::str_extract_all(objeto, camara_env$num_requerimento$regex), 
-          list(0))) %>%  
-      tidyr::unnest() %>% 
+      dplyr::mutate(requerimento = 
+                      stringr::str_extract_all(tolower(objeto),
+                                               camara_env$frase_requerimento$requerimento),
+                    num_requerimento = 
+                      dplyr::if_else(
+                        stringr::str_extract_all(
+                          requerimento, camara_env$extract_requerimento_num$regex) != 'character(0)', 
+                        stringr::str_extract_all(
+                          requerimento, camara_env$extract_requerimento_num$regex) %>% lapply(function(list)(gsub(" ","",list))), 
+                        list(0))) %>% 
       dplyr::filter(
-        num_requerimento %in% 
-          num_requerimentos_audiencias_publicas$num_requerimento)
+        stringr::str_detect(
+          num_requerimentos_audiencias_publicas$num_requerimento, "307/16"))
     
     if(nrow(next_audiencias_publicas_pl) > 0){
       

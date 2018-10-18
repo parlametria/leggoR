@@ -1175,6 +1175,17 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
         lapply(unlist) %>% 
         as.data.frame()
       
+      df <- df %>% 
+        dplyr::mutate(requerimento = 
+                        stringr::str_extract_all(tolower(objeto),
+                                                 camara_env$frase_requerimento$requerimento),
+                      num_requerimento = 
+                        dplyr::if_else(
+                          stringr::str_extract_all(
+                            requerimento, camara_env$extract_requerimento_num$regex) != 'character(0)',
+                          stringr::str_extract_all(
+                            requerimento, camara_env$extract_requerimento_num$regex),
+                          list(0)))
     }else{
       
       df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
