@@ -236,15 +236,18 @@ get_progresso <- function(pls_senado_camara, tramitacao_df, proposicao_df, casa,
     progresso_data <- extract_progresso(tramitacao_df, proposicao_df, casa)
   }
   
+  progresso_data$prox_local_casa = dplyr::lead(progresso_data$casa)
   progresso_data <- 
-    progresso_data %>% 
-    dplyr::mutate(local_casa = casa)
+    progresso_data %>%
+    dplyr::mutate(pulou = dplyr::if_else((is.na(casa) & !is.na(prox_local_casa)), T, F)) %>%
+    dplyr::select(-prox_local_casa)
+  
   progresso_data$casa <- casa
   progresso_data$prop_id <- prop_id
   
   if((!is.null(progresso_data)) & (!is.null(out_folderpath))) {
     readr::write_csv(progresso_data, paste0(out_folderpath,'/',casa,'/',prop_id,'-progresso-',casa,'.csv'))
-    }
+  }
   
   return(progresso_data)
   
