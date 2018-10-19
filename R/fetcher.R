@@ -1195,7 +1195,7 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
                           stringr::str_extract_all(
                             requerimento, camara_env$extract_requerimento_num$regex) != 'character(0)',
                           stringr::str_extract_all(
-                            requerimento, camara_env$extract_requerimento_num$regex),
+                            requerimento, camara_env$extract_requerimento_num$regex) %>% lapply(function(list)(gsub(" ","",list))),
                           list(0))) %>% 
         dplyr::select(-requerimento)
     }else{

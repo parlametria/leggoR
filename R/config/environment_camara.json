@@ -126,7 +126,7 @@
   ],
   
   "frase_requerimento":{
-    "requerimento":"(requerimento(s|))( n(s|)º|) ((\\d*.|)(\\d*/\\d*)+(,( |)| |))*(e ((\\d*.|)(\\d*/\\d*))|)"
+    "requerimento":"(requerimento(s|)|req(s|).)( n(s|)º|) ((\\d*.|)(\\d*/\\d*)+(,( |)| |))*(e ((\\d*.|)(\\d*/\\d*))|)"
   },
   
   "extract_requerimento_num":{

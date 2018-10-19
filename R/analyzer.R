@@ -285,25 +285,37 @@
   #' get_next_audiencias_publicas_in_camara('01/01/2017', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Agenda Nacional'), fetch_tramitacao(2121442, 'camara', T), 'camara'))
   #' @export
   get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases_tramitacao_df){
+    prop_id <- fases_tramitacao_df %>% dplyr::select(prop_id) %>% utils::tail(1)
+    casa <- fases_tramitacao_df %>% dplyr::select(casa) %>% utils::tail(1)
+    
     num_requerimentos_audiencias_publicas <- 
-      extract_num_requerimento_audiencia_publica_in_camara(fases_tramitacao_df) %>% tidyr::unnest()
+      extract_num_requerimento_audiencia_publica_in_camara(fases_tramitacao_df)
     
     next_audiencias_publicas_by_orgao <- 
-      fetch_audiencias_publicas_by_orgao_camara(initial_date, end_date, fases_tramitacao_df) %>% tidyr::unnest()
-  
+      fetch_audiencias_publicas_by_orgao_camara(initial_date, end_date, fases_tramitacao_df)
+
     
     if(nrow(next_audiencias_publicas_by_orgao) > 0 & nrow(num_requerimentos_audiencias_publicas) > 0){
         next_audiencias_publicas_pl <-
-          merge(num_requerimentos_audiencias_publicas %>% dplyr::select(prop_id, casa, num_requerimento), 
-                next_audiencias_publicas_by_orgao, by="num_requerimento")
+          next_audiencias_publicas_by_orgao %>% 
+          dplyr::mutate(num_req = stringr::str_detect(num_requerimento, num_requerimentos_audiencias_publicas$num_requerimento))
         
-        next_audiencias_publicas_pl <-
-          next_audiencias_publicas_pl %>% 
-          dplyr::select(-num_requerimento, comissao, cod_reuniao, data, hora, local, 
-                        estado, tipo, titulo_reuniao, objeto, prop_id, casa) %>% 
-          dplyr::group_by(data) %>% 
-          dplyr::distinct()
-        
+          if(nrow(next_audiencias_publicas_pl) > 0){
+            next_audiencias_publicas_pl$prop_id <- prop_id$prop_id
+            next_audiencias_publicas_pl$casa <- casa$casa
+            
+            next_audiencias_publicas_pl <-
+              next_audiencias_publicas_pl %>% 
+              dplyr::select(-num_requerimento, comissao, cod_reuniao, data, hora, local, 
+                            estado, tipo, titulo_reuniao, objeto, prop_id, casa) %>% 
+              dplyr::group_by(data) %>% 
+              dplyr::distinct()
+          } else {
+            next_audiencias_publicas_pl <- 
+              tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
+                                 ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto,
+                                 ~prop_id, ~casa)
+          }
       } else {
         next_audiencias_publicas_pl <- 
           tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
