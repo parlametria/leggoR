@@ -1133,13 +1133,25 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
 #' @return Dataframe com as audiências públicas de um órgão
 #' @examples
 #' fetch_audiencias_publicas_by_orgao_camara('01/01/2017', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Agenda Nacional'), fetch_tramitacao(2121442, 'camara', T), 'camara'))
+#' @importFrom dplyr filter
+#' @importFrom dplyr select
+#' @importFrom dplyr if_else
+#' @importFrom dplyr mutate
+#' @importFrom stringr str_detect
+#' @importFrom stringr str_extract_all
+#' @importFrom tidyr unnest
+#' @importFrom tibble tibble
+#' @importFrom utils tail
+#' @importFrom lubridate as_date
+#' @importFrom 
 fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fases_tramitacao_df){
   orgao_atual <- 
     fases_tramitacao_df %>% 
     dplyr::filter(data_hora >= lubridate::as_date(lubridate::dmy(initial_date)) & data_hora <= lubridate::as_date((lubridate::dmy(end_date)))) %>% 
     utils::tail(1) %>% 
     dplyr::select(local) %>% 
-    dplyr::mutate(local = dplyr::if_else(toupper(local) == "PLENÁRIO", "PLEN", local))
+    dplyr::mutate(local = 
+                    dplyr::if_else(toupper(local) == "PLENÁRIO", "PLEN", local))
   
   if(nrow(orgao_atual) > 0){
     orgao_id <- 
@@ -1171,8 +1183,7 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
       
       df <- df %>% 
         dplyr::filter (tipo == 'Audiência Pública') %>% 
-        dplyr::select(-c(num_reuniao, proposicoes)) %>% 
-        lapply(unlist) %>% 
+        dplyr::select(-c(num_reuniao, proposicoes)) %>%
         as.data.frame()
       
       df <- df %>% 
@@ -1185,15 +1196,16 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
                             requerimento, camara_env$extract_requerimento_num$regex) != 'character(0)',
                           stringr::str_extract_all(
                             requerimento, camara_env$extract_requerimento_num$regex),
-                          list(0)))
+                          list(0))) %>% 
+        dplyr::select(-requerimento)
     }else{
       
       df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
-                               ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes)
+                               ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes, ~ num_requerimento)
     }
   } else{
     df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
-                             ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes)
+                             ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes, ~ num_requerimento)
   }
   
   return(df)
