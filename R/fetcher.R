@@ -985,7 +985,7 @@ auxiliar_agenda_senado_comissoes <- function(url) {
       dplyr::select(-codigo)
     
    partes_parte <- purrr::map_df(agenda2$partes_parte_itens_item, dplyr::bind_rows, .id = "index") 
-   left_join(partes_parte, agenda2, by = "index") 
+   dplyr::left_join(partes_parte, agenda2, by = "index") 
   }else {
     tibble::tibble()
   }
