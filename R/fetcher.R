@@ -981,7 +981,7 @@ auxiliar_agenda_senado_comissoes <- function(url) {
     agenda2 <-
       agenda2 %>%
       dplyr::filter(partes_parte_itens_item != "NULL") %>%
-      dplyr::mutate(index = as.character(row_number())) %>%
+      dplyr::mutate(index = as.character(dplyr::row_number())) %>%
       dplyr::select(-codigo)
     
    partes_parte <- purrr::map_df(agenda2$partes_parte_itens_item, dplyr::bind_rows, .id = "index") 
