@@ -292,13 +292,21 @@
       extract_num_requerimento_audiencia_publica_in_camara(fases_tramitacao_df)
     
     next_audiencias_publicas_by_orgao <- 
-      fetch_audiencias_publicas_by_orgao_camara(initial_date, end_date, fases_tramitacao_df)
-
+      fetch_audiencias_publicas_by_orgao_camara(initial_date, end_date, fases_tramitacao_df) %>% 
+        dplyr::filter(num_requerimento != '0')
     
     if(nrow(next_audiencias_publicas_by_orgao) > 0 & nrow(num_requerimentos_audiencias_publicas) > 0){
+      
+      next_audiencias_publicas_by_orgao <-
+        do.call("rbind", 
+                apply(next_audiencias_publicas_by_orgao, 
+                      1, 
+                      remove_unnested_list))
+      
         next_audiencias_publicas_pl <-
           next_audiencias_publicas_by_orgao %>% 
-          dplyr::mutate(num_req = stringr::str_detect(num_requerimento, num_requerimentos_audiencias_publicas$num_requerimento))
+          merge(num_requerimentos_audiencias_publicas %>% 
+                  dplyr::select(prop_id, casa, num_requerimento), by = "num_requerimento")
         
           if(nrow(next_audiencias_publicas_pl) > 0){
             next_audiencias_publicas_pl$prop_id <- prop_id$prop_id
@@ -325,4 +333,27 @@
     
     return(next_audiencias_publicas_pl)
 
+  }
+  
+  #' @title Desencadeia as listas de requerimentos de audiências públicas
+  #' @description Desencadeia as listas de requerimentos de audiências públicas
+  #' @param df dataframe da agenda das audiências públicas
+  #' @return Dataframe com as próximas audiências públicas com os requerimentos desencadeados
+  remove_unnested_list <- function(df){
+    # REMOVER
+    removed_list = df %>% 
+      unlist() %>% 
+      tibble::as_tibble() %>% 
+      t() %>% 
+      as.data.frame()
+    
+    df <-
+      tidyr::gather(removed_list, key="num_requerimento", 
+                    "num_requerimento_unnested", 
+                    10:ncol(removed_list)) %>% 
+      dplyr::select(-num_requerimento) %>% 
+      dplyr::rename(num_requerimento = num_requerimento_unnested) %>% 
+      dplyr::distinct()
+    
+    return(df)
   }
