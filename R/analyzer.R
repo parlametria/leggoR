@@ -81,8 +81,9 @@ get_historico_energia_recente <- function(eventos_df, granularidade = 's', decai
   #Remove linhas referentes a dias de recesso parlamentar
   full_dates <- data.frame(data = seq(min(eventos_extendidos$data), max_date, by = "1 day"))
   eventos_extendidos <- merge(full_dates, eventos_extendidos, by="data", all.x = TRUE) %>%
-    filtra_dias_nao_uteis_congresso()
-    
+    filtra_dias_nao_uteis_congresso() %>%
+    dplyr::left_join(get_pesos_eventos(), by='evento')
+  
   energia_periodo <- data.frame()
   
   #Agrupa eventos por período
@@ -103,7 +104,7 @@ get_historico_energia_recente <- function(eventos_df, granularidade = 's', decai
   
   energia_periodo <- energia_periodo %>% 
     dplyr::summarize(periodo = dplyr::first(data),
-                     energia_periodo = sum(!is.na(evento))) %>%
+                     energia_periodo = sum(peso, na.rm = T)) %>%
     dplyr::ungroup() %>%
     dplyr::select(periodo,energia_periodo) %>%
     dplyr::arrange(periodo)
@@ -235,15 +236,18 @@ get_progresso <- function(pls_senado_camara, tramitacao_df, proposicao_df, casa,
     progresso_data <- extract_progresso(tramitacao_df, proposicao_df, casa)
   }
   
+  progresso_data$prox_local_casa = dplyr::lead(progresso_data$casa)
   progresso_data <- 
-    progresso_data %>% 
-    dplyr::mutate(local_casa = casa)
+    progresso_data %>%
+    dplyr::mutate(pulou = dplyr::if_else((is.na(casa) & !is.na(prox_local_casa)), T, F)) %>%
+    dplyr::select(-prox_local_casa)
+  
   progresso_data$casa <- casa
   progresso_data$prop_id <- prop_id
   
   if((!is.null(progresso_data)) & (!is.null(out_folderpath))) {
     readr::write_csv(progresso_data, paste0(out_folderpath,'/',casa,'/',prop_id,'-progresso-',casa,'.csv'))
-    }
+  }
   
   return(progresso_data)
   
@@ -273,4 +277,25 @@ get_progresso_both <- function(origem_id, revisao_id, casa_origem){
     generate_progresso_df()
   
   return(df)
+}
+
+#' @title Recupera os eventos e seus respectivos pesos
+#' @description Retorna um dataframe com o superconjunto dos eventos das duas casas (Câmara e Senado) e seus respectivos pesos
+#' @return Dataframe contendo evento e peso
+#' @examples
+#' get_pesos_eventos()
+#' @export
+get_pesos_eventos <- function() {
+  eventos_camara <- camara_env$eventos
+  eventos_senado <- senado_env$eventos
+  
+  eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
+    dplyr::select(evento = constant, peso)
+  
+  pesos_eventos <- dplyr::bind_rows(eventos_camara, eventos_senado, eventos_extra_senado) %>% 
+    dplyr::group_by(evento) %>%
+    dplyr::summarise(peso = dplyr::first(peso)) %>%
+    dplyr::arrange()
+  
+  return(pesos_eventos)
 }

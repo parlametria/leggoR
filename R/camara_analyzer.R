@@ -86,7 +86,9 @@ rename_df_columns <- function(df) {
 #' @param events_df Dataframe com os eventos contendo as colunas "evento" e "regex"
 #' @return Dataframe com a coluna "evento" adicionada.
 extract_events_in_camara <- function(tramitacao_df) {
-  tramitacao_df %>% regex_left_match(camara_codes$eventos, "evento")
+  eventos_regex_df <- camara_codes$eventos %>%
+    dplyr::select(-peso)
+  tramitacao_df %>% regex_left_match(eventos_regex_df, "evento")
 }
 
 #' @title Recupera o autor de uma proposição na Câmara

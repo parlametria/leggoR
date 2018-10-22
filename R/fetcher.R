@@ -961,6 +961,113 @@ fetch_agenda_senado <- function(initial_date) {
   agenda <- list(agenda = agenda, materias = materia, oradores = oradores)
 }
 
+#' @title Retorna a agenda de uma comissão no Senado
+#' @description Função auxiliar que retorna um dataframe contendo a agenda de 
+#' uma comissão do Senado
+#' @param url Url dos dados abertos do senado para uma comissão
+#' @return Dataframe
+#' @examples
+#' auxiliar_agenda_senado_comissoes('http://legis.senado.leg.br/dadosabertos/agenda/20160515/20160525/detalhe?colegiado=CDH')
+auxiliar_agenda_senado_comissoes <- function(url) {
+  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
+  agenda2 <- 
+    json_proposicao$Reunioes$Reuniao %>%
+    tibble::as.tibble() %>%
+    rename_table_to_underscore() %>%
+    dplyr::filter(situacao != 'Cancelada') %>%
+    dplyr::filter(!(tipo %in% tipos_inuteis))
+  if ("partes_parte_itens_item" %in% names(agenda2)) {
+    agenda2 <-
+      agenda2 %>%
+      dplyr::filter(partes_parte_itens_item != "NULL") %>%
+      dplyr::mutate(index = as.character(row_number())) %>%
+      dplyr::select(-codigo)
+    
+   partes_parte <- purrr::map_df(agenda2$partes_parte_itens_item, dplyr::bind_rows, .id = "index") 
+   left_join(partes_parte, agenda2, by = "index") 
+  }else {
+    tibble::tibble()
+  }
+}
+
+#' @title Retorna o dataFrame com as audiências públicas do Senado
+#' @description Retorna um dataframe contendo as audiências públicas do Senado
+#' @param initial_date data inicial no formato yyyy-mm-dd
+#' @param end_date data final no formato yyyy-mm-dd
+#' @return Dataframe
+#' @examples
+#' get_audiencias_publicas('2016-05-15', '2016-05-25')
+get_audiencias_publicas <- function(initial_date, end_date) {
+  
+  pega_audiencias_publicas_do_data_frame <- function(l){
+    if(length(l$Tipo) == 1 ) {
+      if (l$Tipo == "Audiência Pública Interativa") {
+        paste(l$Eventos$Evento$MateriasRelacionadas$Materia$Codigo, collapse = " ,")
+      }else {
+        ""
+      }
+    }else {
+      if ("Audiência Pública Interativa" %in% l$Tipo) {
+        paste(l$Eventos$Evento$MateriasRelacionadas, collapse = " ,")
+      }else {
+        ""
+      }
+    }
+  }
+  
+  get_data_frame_agenda_senado(initial_date, end_date) %>% 
+    dplyr::mutate(id_proposicao = purrr::map_chr(partes_parte, ~ pega_audiencias_publicas_do_data_frame(.))) %>%
+    dplyr::select(data, hora, realizada, comissoes_comissao_sigla, id_proposicao)
+}
+
+#' @title Retorna o dataFrame da agenda do Senado
+#' @description Retorna um dataframe contendo a agenda do senado 
+#' @param initial_date data inicial no formato yyyy-mm-dd
+#' @param end_date data final no formato yyyy-mm-dd
+#' @return Dataframe
+#' @examples
+#' get_data_frame_agenda_senado('2016-05-15', '2016-05-25')
+get_data_frame_agenda_senado <- function(initial_date, end_date) {
+  url <- 
+    paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe")
+  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
+  
+  json_proposicao$Reunioes$Reuniao %>%
+    tibble::as.tibble() %>%
+    rename_table_to_underscore() %>%
+    dplyr::filter(situacao != 'Cancelada')
+}
+
+
+#' @title Retorna a agenda das comissões no Senado
+#' @description Retorna um dataframe contendo a agenda do senado normalizada
+#' @param initial_date data inicial no formato yyyy-mm-dd
+#' @param end_date data final no formato yyyy-mm-dd
+#' @return Dataframe
+#' @examples
+#' fetch_agenda_senado_comissoes('2016-05-15', '2016-05-25')
+fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
+  tipos_inuteis <- c('Outros eventos', 'Reunião')
+  
+  agenda <- 
+    get_data_frame_agenda_senado(initial_date, end_date) %>%
+    dplyr::filter(!(tipo %in% tipos_inuteis)) %>%
+    unique() %>%
+    dplyr::mutate(url = 
+                    paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe?colegiado=", comissoes_comissao_sigla))
+  
+  agendas <- 
+    map_df(agenda$url, auxiliar_agenda_senado_comissoes) %>%
+    rename_table_to_underscore() %>%
+    dplyr::select(c(data, materia_codigo, materia_subtipo, materia_numero, materia_ano)) %>%
+    dplyr::filter(!is.na(materia_codigo))
+  
+  new_names <- c("data", "codigo_materia", "sigla_materia", "numero_materia", "ano_materia")
+  names(agendas) <- new_names
+  
+  agendas
+}
+
 #' @title Normaliza as agendas da câmara ou do senado
 #' @description Retorna um dataframe contendo a agenda da camara ou do senado normalizada
 #' @param agenda dataframe com agenda 
@@ -999,13 +1106,17 @@ normalize_agendas <- function(agenda, house) {
 #' @examples
 #' fetch_agenda('2018-07-03', '2018-07-10', 'camara')
 #' @export
-fetch_agenda <- function(initial_date, end_date, house) {
+fetch_agenda <- function(initial_date, end_date, house, orgao) {
   try(if(as.Date(end_date) < as.Date(initial_date)) stop("A data inicial é depois da final!"))
   
-  if(house == 'camara') {
-    normalize_agendas(fetch_agenda_camara(initial_date = initial_date, end_date = end_date), house)
+  if (tolower(orgao) == 'plenario') {
+    if(house == 'camara') {
+      normalize_agendas(fetch_agenda_camara(initial_date = initial_date, end_date = end_date), house)
+    }else {
+      normalize_agendas(fetch_agenda_senado(initial_date), house)
+    }
   }else {
-    normalize_agendas(fetch_agenda_senado(initial_date), house)
+    
   }
 }
 
