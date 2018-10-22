@@ -1048,28 +1048,76 @@ get_data_frame_agenda_senado <- function(initial_date, end_date) {
 #' @examples
 #' fetch_agenda_senado_comissoes('2016-05-15', '2016-05-25')
 fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
-  tipos_inuteis <- c('Outros eventos', 'Reunião')
+  tipos_inuteis <- c('Outros eventos', 'Reunião', 'Reunião de Subcomissão')
+  
   
   agenda <- 
     get_data_frame_agenda_senado(initial_date, end_date) %>%
     dplyr::filter(!(tipo %in% tipos_inuteis)) %>%
-    unique() %>%
-    dplyr::mutate(url = 
-                    paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe?colegiado=", comissoes_comissao_sigla))
+    unique() 
   
-  agendas <- 
-    purrr::map_df(agenda$url, auxiliar_agenda_senado_comissoes) %>%
-    rename_table_to_underscore() %>%
-    dplyr::select(c(data, materia_codigo, materia_subtipo, materia_numero, materia_ano)) %>%
-    dplyr::filter(!is.na(materia_codigo)) %>%
-    dplyr::mutate(sigla = paste0(materia_subtipo, " ", materia_numero, "/", materia_ano)) %>%
-    dplyr::select(c(data, sigla, materia_codigo))
-    
+  if ("partes_parte" %in% names(agenda)) {
+    agenda <-
+      agenda %>%
+      dplyr::mutate(id_proposicao = purrr::map(partes_parte, ~ pega_id_proposicao(.))) %>%
+      dplyr::mutate(nome = purrr::map(partes_parte, ~ pega_nome(.))) %>% 
+      dplyr::filter(id_proposicao != "") %>%
+      dplyr::select(c(data, nome, id_proposicao)) %>%
+      dplyr::mutate(id_proposicao = strsplit(as.character(id_proposicao), ",")) %>%
+      dplyr::mutate(nome = strsplit(as.character(nome), ",")) %>%
+      unnest() 
+  }else {
+    agenda <-
+      agenda %>%
+      dplyr::mutate(id_proposicao = purrr::map(partes_parte_itens_item, ~ .$Codigo)) %>%
+      dplyr::mutate(nome = purrr::map(partes_parte_itens_item, ~ .$Nome)) %>% 
+      unnest()
+  }
   
   new_names <- c("data", "sigla", "id_proposicao")
-  names(agendas) <- new_names
+  names(agenda) <- new_names
   
-  agendas
+  agenda
+}
+
+pega_nome <- function(l){
+  if(length(l$Tipo) == 1 ) {
+    if (l$Tipo == "Deliberativa") {
+      paste(l$Itens$Item$Nome, collapse = ",")
+    }else {
+      ""
+    }
+  }else {
+    if ("Deliberativa" %in% l$Tipo) {
+      if(!is.null(l$Itens.Item)) {
+        paste(l$Itens.Item$Nome, collapse = ",")
+      }else {
+        ""
+      }
+    }else {
+      ""
+    }
+  }
+}
+
+pega_id_proposicao <- function(l){
+  if(length(l$Tipo) == 1 ) {
+    if (l$Tipo == "Deliberativa") {
+      paste(l$Itens$Item$Codigo, collapse = ",")
+    }else {
+      ""
+    }
+  }else {
+    if ("Deliberativa" %in% l$Tipo) {
+      if(!is.null(l$Itens.Item)) {
+        paste(l$Itens.Item$Codigo, collapse = ",")
+      }else {
+        ""
+      }
+    }else {
+      ""
+    }
+  }
 }
 
 #' @title Normaliza as agendas da câmara ou do senado
