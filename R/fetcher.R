@@ -1058,7 +1058,7 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
                     paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe?colegiado=", comissoes_comissao_sigla))
   
   agendas <- 
-    map_df(agenda$url, auxiliar_agenda_senado_comissoes) %>%
+    purrr::map_df(agenda$url, auxiliar_agenda_senado_comissoes) %>%
     rename_table_to_underscore() %>%
     dplyr::select(c(data, materia_codigo, materia_subtipo, materia_numero, materia_ano)) %>%
     dplyr::filter(!is.na(materia_codigo)) %>%
@@ -1217,10 +1217,10 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
     proposicoes <- df$proposicoes
     df <- 
       df %>% 
-      select(-c(num_reuniao, objeto, proposicoes)) %>% 
+      dplyr::select(-c(num_reuniao, objeto, proposicoes)) %>% 
       lapply(unlist) %>% 
       as.data.frame() %>% 
-      add_column(proposicoes)
+      tibble::add_column(proposicoes)
     
     df <-
       df %>% 
