@@ -969,6 +969,7 @@ fetch_agenda_senado <- function(initial_date) {
 #' @examples
 #' auxiliar_agenda_senado_comissoes('http://legis.senado.leg.br/dadosabertos/agenda/20160515/20160525/detalhe?colegiado=CDH')
 auxiliar_agenda_senado_comissoes <- function(url) {
+  tipos_inuteis <- c('Outros eventos', 'Reunião')
   json_proposicao <- jsonlite::fromJSON(url, flatten = T)
   agenda2 <- 
     json_proposicao$Reunioes$Reuniao %>%
@@ -1060,9 +1061,12 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
     map_df(agenda$url, auxiliar_agenda_senado_comissoes) %>%
     rename_table_to_underscore() %>%
     dplyr::select(c(data, materia_codigo, materia_subtipo, materia_numero, materia_ano)) %>%
-    dplyr::filter(!is.na(materia_codigo))
+    dplyr::filter(!is.na(materia_codigo)) %>%
+    dplyr::mutate(sigla = paste0(materia_subtipo, " ", materia_numero, "/", materia_ano)) %>%
+    dplyr::select(c(data, sigla, materia_codigo))
+    
   
-  new_names <- c("data", "codigo_materia", "sigla_materia", "numero_materia", "ano_materia")
+  new_names <- c("data", "sigla", "id_proposicao")
   names(agendas) <- new_names
   
   agendas
@@ -1102,9 +1106,10 @@ normalize_agendas <- function(agenda, house) {
 #' @param initial_date data inicial no formato yyyy-mm-dd
 #' @param end_date data final no formato yyyy-mm-dd
 #' @param house camara ou senado
+#' @param orgao plenario ou comissoes
 #' @return Dataframe
 #' @examples
-#' fetch_agenda('2018-07-03', '2018-07-10', 'camara')
+#' fetch_agenda('2018-07-03', '2018-07-10', 'camara', 'comissoes')
 #' @export
 fetch_agenda <- function(initial_date, end_date, house, orgao) {
   try(if(as.Date(end_date) < as.Date(initial_date)) stop("A data inicial é depois da final!"))
@@ -1116,7 +1121,15 @@ fetch_agenda <- function(initial_date, end_date, house, orgao) {
       normalize_agendas(fetch_agenda_senado(initial_date), house)
     }
   }else {
-    
+    if(house == 'camara') {
+      initial_date <- strsplit(initial_date, '-')
+      end_date <- strsplit(end_date, '-')
+      fetch_agenda_comissoes_camara(
+        paste0(initial_date[[1]][[3]],'/', initial_date[[1]][[2]], '/', initial_date[[1]][[1]]), 
+        paste0(end_date[[1]][[3]],'/', end_date[[1]][[2]], '/', end_date[[1]][[1]]))
+    }else {
+      fetch_agenda_senado_comissoes(initial_date, end_date)
+    }
   }
 }
 
@@ -1231,6 +1244,8 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
 #' @param initial_date data inicial no formato dd/mm/yyyy
 #' @param end_date data final no formato dd/mm/yyyy
 #' @return Dataframe
+#' @examples 
+#' fetch_agenda_comissoes_camara('12/05/2018', '26/05/2018')
 fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
   orgaos <- 
     fetch_orgaos_camara() 
