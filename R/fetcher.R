@@ -1080,6 +1080,11 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
   agenda
 }
 
+#' @title Extrai o nome da proposição
+#' @description Recebe uma lista derivada da agenda do Senado e retorna o nome das proposições
+#' que estarão em pauta
+#' @param l lista que contém o id
+#' @return char
 pega_nome <- function(l){
   if(length(l$Tipo) == 1 ) {
     if (l$Tipo == "Deliberativa") {
@@ -1100,6 +1105,11 @@ pega_nome <- function(l){
   }
 }
 
+#' @title Extrai o id da proposição
+#' @description Recebe uma lista derivada da agenda do Senado e retorna o id das proposições
+#' que estarão em pauta
+#' @param l lista que contém o id
+#' @return char
 pega_id_proposicao <- function(l){
   if(length(l$Tipo) == 1 ) {
     if (l$Tipo == "Deliberativa") {
