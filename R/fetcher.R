@@ -910,9 +910,7 @@ fetch_agenda_senado <- function(initial_date) {
   descricoes_inuteis <- c('SESSÃO SOLENE', 'SESSÃO NÃO DELIBERATIVA', 'NÃO HAVERÁ SESSÃO', 'SESSÃO ESPECIAL')
   agenda <-
     agenda %>%
-    dplyr::filter(!(tipo_sessao %in% descricoes_inuteis)) %>%
-    dplyr::select(-c(dia_util, dia_semana, mes, horario, sessao_legislativa, legislatura, codigo_situacao_sessao, evento_data, evento_indicador_publica_orador))
-  
+    dplyr::filter(!(tipo_sessao %in% descricoes_inuteis)) 
   
   materia <- tibble::tibble()
   if('materias_materia' %in% names(agenda)) {
@@ -1056,29 +1054,38 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
     dplyr::filter(!(tipo %in% tipos_inuteis)) %>%
     unique() 
   
-  if ("partes_parte" %in% names(agenda)) {
-    agenda <-
-      agenda %>%
-      dplyr::mutate(id_proposicao = purrr::map(partes_parte, ~ pega_id_proposicao(.))) %>%
-      dplyr::mutate(nome = purrr::map(partes_parte, ~ pega_nome(.))) %>% 
-      dplyr::filter(id_proposicao != "") %>%
-      dplyr::select(c(data, nome, id_proposicao, comissoes_comissao_sigla)) %>%
-      dplyr::mutate(id_proposicao = strsplit(as.character(id_proposicao), ",")) %>%
-      dplyr::mutate(nome = strsplit(as.character(nome), ",")) %>%
-      tidyr::unnest() 
+  if (nrow(agenda) != 0) {
+    if ("partes_parte" %in% names(agenda)) {
+      agenda <-
+        agenda %>%
+        dplyr::mutate(id_proposicao = purrr::map(partes_parte, ~ pega_id_proposicao(.))) %>%
+        dplyr::mutate(nome = purrr::map(partes_parte, ~ pega_nome(.))) %>% 
+        dplyr::filter(id_proposicao != "") %>%
+        dplyr::rowwise() %>%
+        dplyr::mutate(local = strsplit(titulo_da_reuniao, ",")[[1]][[1]]) %>%
+        dplyr::select(c(data, nome, id_proposicao, local)) %>%
+        dplyr::mutate(id_proposicao = strsplit(as.character(id_proposicao), ",")) %>%
+        dplyr::mutate(nome = strsplit(as.character(nome), ",")) %>%
+        tidyr::unnest() 
+    }else {
+      agenda <-
+        agenda %>%
+        dplyr::mutate(id_proposicao = purrr::map(partes_parte_itens_item, ~ .$Codigo)) %>%
+        dplyr::mutate(nome = purrr::map(partes_parte_itens_item, ~ .$Nome)) %>% 
+        tidyr::unnest() %>%
+        dplyr::rowwise() %>%
+        dplyr::mutate(local = strsplit(titulo_da_reuniao, ",")[[1]][[1]]) %>%
+        dplyr::select(c(data, nome, id_proposicao, local))
+    }
+    
+    new_names <- c("data", "sigla", "id_proposicao", "local")
+    names(agenda) <- new_names
+    
+    agenda %>% dplyr::arrange(data)
   }else {
-    agenda <-
-      agenda %>%
-      dplyr::mutate(id_proposicao = purrr::map(partes_parte_itens_item, ~ .$Codigo)) %>%
-      dplyr::mutate(nome = purrr::map(partes_parte_itens_item, ~ .$Nome)) %>% 
-      tidyr::unnest() %>%
-      dplyr::select(c(data, nome, id_proposicao, comissoes_comissao_sigla))
+    tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local)
   }
   
-  new_names <- c("data", "sigla", "id_proposicao", "local")
-  names(agenda) <- new_names
-  
-  agenda %>% dplyr::arrange(data)
 }
 
 #' @title Extrai o nome da proposição
@@ -1145,8 +1152,18 @@ normalize_agendas <- function(agenda, house) {
    agenda <- agenda$agenda
    agenda <- 
      merge(agenda, materias) %>%
-     dplyr::mutate(sigla = paste0(sigla_materia, " ", numero_materia, "/", ano_materia)) %>%
+     dplyr::mutate(sigla = paste0(sigla_materia, " ", numero_materia, "/", ano_materia)) 
+    
+    if (!("local_sessao" %in% names(agenda))) {
+      agenda <-
+        agenda %>%
+        dplyr::mutate(local_sessao = NA) 
+    }
+   
+   agenda <-
+     agenda %>%
      dplyr::select(c(data, sigla, codigo_materia, local_sessao)) 
+
  }else {
    if (nrow(agenda) == 0) {return(agenda)}
    agenda <-
@@ -1287,9 +1304,14 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
       df %>% 
       as.data.frame() %>%
       dplyr::filter(trimws(estado) != 'Cancelada') %>%
-      tidyr::unnest() %>%
-      dplyr::mutate(sigla = purrr::map(proposicoes, ~ .x[['sigla']]),
-             id_proposicao = purrr::map(proposicoes, ~ .x[['idProposicao']]))
+      tidyr::unnest() 
+    
+    if(nrow(df) != 0) {
+      df <- 
+        df %>%
+        dplyr::mutate(sigla = purrr::map(proposicoes, ~ .x[['sigla']]),
+                      id_proposicao = purrr::map(proposicoes, ~ .x[['idProposicao']])) 
+    }
   
   }else{
     
@@ -1311,10 +1333,15 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
   orgaos <- 
     fetch_orgaos_camara() 
   
-  as <- purrr::map_df(orgaos$orgao_id, fetch_agendas_comissoes_camara_auxiliar, initial_date, end_date) %>% 
-    dplyr::select(data, sigla, id_proposicao, local = comissao) %>%
-    dplyr::mutate(data = as.Date(data, "%d/%m/%Y")) %>%
-    dplyr::arrange(data)
+  agenda <- purrr::map_df(orgaos$orgao_id, fetch_agendas_comissoes_camara_auxiliar, initial_date, end_date)
+  if (nrow(agenda) == 0) {
+    tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local)
+  }else {
+    agenda %>% 
+      dplyr::select(data, sigla, id_proposicao, local = comissao) %>%
+      dplyr::mutate(data = as.Date(data, "%d/%m/%Y")) %>%
+      dplyr::arrange(data)
+  }
 }
 
 #' @title Baixa os órgãos na câmara 
