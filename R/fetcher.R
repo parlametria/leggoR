@@ -1062,22 +1062,23 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
       dplyr::mutate(id_proposicao = purrr::map(partes_parte, ~ pega_id_proposicao(.))) %>%
       dplyr::mutate(nome = purrr::map(partes_parte, ~ pega_nome(.))) %>% 
       dplyr::filter(id_proposicao != "") %>%
-      dplyr::select(c(data, nome, id_proposicao)) %>%
+      dplyr::select(c(data, nome, id_proposicao, comissoes_comissao_sigla)) %>%
       dplyr::mutate(id_proposicao = strsplit(as.character(id_proposicao), ",")) %>%
       dplyr::mutate(nome = strsplit(as.character(nome), ",")) %>%
-      unnest() 
+      tidyr::unnest() 
   }else {
     agenda <-
       agenda %>%
       dplyr::mutate(id_proposicao = purrr::map(partes_parte_itens_item, ~ .$Codigo)) %>%
       dplyr::mutate(nome = purrr::map(partes_parte_itens_item, ~ .$Nome)) %>% 
-      unnest()
+      tidyr::unnest() %>%
+      dplyr::select(c(data, nome, id_proposicao, comissoes_comissao_sigla))
   }
   
-  new_names <- c("data", "sigla", "id_proposicao")
+  new_names <- c("data", "sigla", "id_proposicao", "local")
   names(agenda) <- new_names
   
-  agenda
+  agenda %>% dplyr::arrange(data)
 }
 
 #' @title Extrai o nome da proposição
@@ -1144,19 +1145,21 @@ normalize_agendas <- function(agenda, house) {
    agenda <- agenda$agenda
    agenda <- 
      merge(agenda, materias) %>%
-     dplyr::select(c(data, codigo_materia, sigla_materia, numero_materia, ano_materia))
+     dplyr::mutate(sigla = paste0(sigla_materia, " ", numero_materia, "/", ano_materia)) %>%
+     dplyr::select(c(data, sigla, codigo_materia, local_sessao)) 
  }else {
    if (nrow(agenda) == 0) {return(agenda)}
    agenda <-
      agenda %>%
-     dplyr::select(c(hora_inicio, proposicao_.id, proposicao_.siglaTipo, proposicao_.numero, proposicao_.ano))
+     dplyr::mutate(sigla = paste0(proposicao_.siglaTipo, " ", proposicao_.numero, "/", proposicao_.ano)) %>%
+     dplyr::select(c(hora_inicio, sigla, proposicao_.id, nome_orgao))
  }
   
   
-  new_names <- c("data", "codigo_materia", "sigla_materia", "numero_materia", "ano_materia")
+  new_names <- c("data", "sigla", "id_proposicao", "local")
   names(agenda) <- new_names
   
-  agenda
+  agenda %>% dplyr::arrange(data)
 }
 
 #' @title Baixa a agenda da câmara ou do senado
@@ -1308,8 +1311,10 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
   orgaos <- 
     fetch_orgaos_camara() 
   
-  purrr::map_df(orgaos$orgao_id, fetch_agendas_comissoes_camara_auxiliar, initial_date, end_date) %>%
-    dplyr::select(data, sigla, id_proposicao)
+  as <- purrr::map_df(orgaos$orgao_id, fetch_agendas_comissoes_camara_auxiliar, initial_date, end_date) %>% 
+    dplyr::select(data, sigla, id_proposicao, local = comissao) %>%
+    dplyr::mutate(data = as.Date(data, "%d/%m/%Y")) %>%
+    dplyr::arrange(data)
 }
 
 #' @title Baixa os órgãos na câmara 
