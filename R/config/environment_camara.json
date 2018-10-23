@@ -7,9 +7,9 @@
   ],
   
   "eventos": [
-    {"evento": "requerimento_audiencia_publica", "texto_tramitacao": "^apresentação do requerimento.*requer a realização d.* audiências? públicas?"},
+    {"evento": "requerimento_audiencia_publica", "texto_tramitacao": "^apresentação do (requerimento|req).*(requer|solicit(a|o|am))( a|) realização d.* audiências? públicas?"},
     {"evento": "aprovacao_parecer", "texto_tramitacao": "^aprovado (?!.*requerimento).*parecer.*$"},
-    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "^aprovado requerimento.*requer a realização d.* audiências? públicas?"},
+    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "^aprovado requerimento.*(requer|solicit(a|o|am))( a|) realização d.* audiências? públicas?"},
     {"evento": "requerimento_redistribuicao", "texto_tramitacao": "^apresentação do requerimento de redistribuição"},
     {"evento": "requerimento_apensacao", "texto_tramitacao": "^apresentação do requerimento de apensação"},
     {"evento": "requerimento_urgencia", "texto_tramitacao": "^apresentação do requerimento de urgência"},
@@ -125,7 +125,11 @@
     {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
   ],
   
-  "num_requerimento":{
-    "regex": "\\d+/\\d+"
+  "frase_requerimento":{
+    "requerimento":"(requerimento(s|)|req(s|).)( n(s|)º|) ((\\d*.|)(\\d*/\\d*)+(,( |)| |))*(e ((\\d*.|)(\\d*/\\d*))|)"
+  },
+  
+  "extract_requerimento_num":{
+    "regex":"(((\\d)*).|)(\\d*/\\d*)+"
   }
 }

@@ -86,7 +86,7 @@ rename_df_columns <- function(df) {
 #' @param events_df Dataframe com os eventos contendo as colunas "evento" e "regex"
 #' @return Dataframe com a coluna "evento" adicionada.
 extract_events_in_camara <- function(tramitacao_df) {
-  tramitacao_df %>% regex_left_match(camara_codes$eventos, "evento")
+  tramitacao_df %>% regex_left_match(camara_env$eventos, "evento")
 }
 
 #' @title Recupera o autor de uma proposição na Câmara
@@ -171,8 +171,7 @@ extract_locais_in_camara <- function(df) {
 #' @examples
 #'  extract_evento_in_camara(fetch_tramitacao(2121442, 'camara', T))
 extract_evento_in_camara <- function(df) {
-  camara_codes <- get_environment_camara_json()
-  eventos <- camara_codes$eventos
+  eventos <- camara_env$eventos
   novo_despacho_regex <- eventos$regex$novo_despacho
   redistribuicao_regex <- eventos$regex$redistribuicao
   redistribuicao_text <- eventos$text$distribuicao %>% tolower()
@@ -228,7 +227,7 @@ extract_fase_casa_in_camara <- function(df) {
 #'  extract_situacao_comissao(process_proposicao_camara(345311))
 extract_situacao_comissao <- function(df) {
   
-  situacao_comissao <- camara_codes$situacao_comissao
+  situacao_comissao <- camara_env$situacao_comissao
   situacao_comissao['local'] <- get_regex_comissoes_camara()
   
   df %>%
@@ -359,14 +358,18 @@ extract_num_requerimento_audiencia_publica_in_camara <- function(tramitacao_df) 
     tramitacao_df %>%
     dplyr::filter(evento == 'requerimento_audiencia_publica') %>% 
     dplyr::mutate (
-      num_requerimento = dplyr::if_else(
+      extract_requerimento_num = dplyr::if_else(
         stringr::str_extract(
-          texto_tramitacao, camara_env$num_requerimento$regex) != 'character(0)', 
-        stringr::str_extract(texto_tramitacao, camara_env$num_requerimento$regex), 
+          texto_tramitacao, camara_env$extract_requerimento_num$regex) != 'character(0)', 
+        stringr::str_extract(texto_tramitacao, camara_env$extract_requerimento_num$regex), 
       '0'),
-      num_requerimento = dplyr::if_else(stringr::str_detect(num_requerimento, stringr::regex('/[0-9]{4}')), 
-                                 sub('/[0-9]{2}', '/', num_requerimento), 
-                                 num_requerimento)
-      )
+      num_requerimento = dplyr::if_else(stringr::str_detect(extract_requerimento_num, stringr::regex('/[0-9]{4}')), 
+                                 sub('/[0-9]{2}', '/', extract_requerimento_num) %>% 
+                                   lapply(function(list)(gsub(" ","",list))), 
+                                 extract_requerimento_num %>% 
+                                   lapply(function(list)(gsub(" ","",list))))
+      
+      ) %>% 
+    dplyr::select(-extract_requerimento_num)
   tramitacao_df
 }
