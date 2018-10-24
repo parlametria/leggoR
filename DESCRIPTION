@@ -30,6 +30,7 @@ Imports: magrittr,
     lubridate,
     readr,
     roll,
+    RCurl,
     DT
 Suggests: testthat,
     knitr,
