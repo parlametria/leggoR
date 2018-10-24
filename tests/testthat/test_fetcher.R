@@ -5,6 +5,8 @@ setup <- function(){
   PROPOSICOES_ID <<- c(91341, 257161, 2121442, 127753)
   CAMARA_ID <<- c(257161, 2121442)
   SENADO_ID <<- c(91341, 127753)
+  DATA_INICIO <<- '2018-07-03' 
+  DATA_FIM <<- '2018-07-10'
   senado_df <<- as.data.frame(SENADO_ID)
   camara_df <<- as.data.frame(CAMARA_ID)
   return(TRUE)
@@ -110,6 +112,26 @@ test <- function(){
       dplyr::do(fetch_proposicao_camara(.$CAMARA_ID,TRUE, '', '')) 
     
     expect_true(is.data.frame(proposicoes_fetch_proposicao_camara))
+  })
+  
+  test_that('fetch_agenda() colnames senado plenario', {
+    proposicoes_fetch_agenda <- fetch_agenda(DATA_INICIO, DATA_FIM, 'senado', 'plenario') 
+    expect_true(all(names(proposicoes_fetch_agenda) %in% .COLNAMES_AGENDA))
+  })
+  
+  test_that('fetch_agenda() colnames senado comissoes', {
+    proposicoes_fetch_agenda <- fetch_agenda(DATA_INICIO, DATA_FIM, 'senado', 'comissoes') 
+    expect_true(all(names(proposicoes_fetch_agenda) %in% .COLNAMES_AGENDA))
+  })
+  
+  test_that('fetch_agenda() colnames camara plenario', {
+    proposicoes_fetch_agenda <- fetch_agenda(DATA_INICIO, DATA_FIM, 'camara', 'plenario') 
+    expect_true(all(names(proposicoes_fetch_agenda) %in% .COLNAMES_AGENDA))
+  })
+  
+  test_that('fetch_agenda() colnames camara comissoes', {
+    proposicoes_fetch_agenda <- fetch_agenda(DATA_INICIO, DATA_FIM, 'camara', 'comissoes') 
+    expect_true(all(names(proposicoes_fetch_agenda) %in% .COLNAMES_AGENDA))
   })
 }
 

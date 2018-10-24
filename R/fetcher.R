@@ -1048,7 +1048,6 @@ get_data_frame_agenda_senado <- function(initial_date, end_date) {
 fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
   tipos_inuteis <- c('Outros eventos', 'Reunião', 'Reunião de Subcomissão')
   
-  
   agenda <- 
     get_data_frame_agenda_senado(initial_date, end_date) %>%
     dplyr::filter(!(tipo %in% tipos_inuteis)) %>%
@@ -1165,13 +1164,12 @@ normalize_agendas <- function(agenda, house) {
      dplyr::select(c(data, sigla, codigo_materia, local_sessao)) 
 
  }else {
-   if (nrow(agenda) == 0) {return(agenda)}
+   if (nrow(agenda) == 0) {return(tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local))}
    agenda <-
      agenda %>%
      dplyr::mutate(sigla = paste0(proposicao_.siglaTipo, " ", proposicao_.numero, "/", proposicao_.ano)) %>%
      dplyr::select(c(hora_inicio, sigla, proposicao_.id, nome_orgao))
  }
-  
   
   new_names <- c("data", "sigla", "id_proposicao", "local")
   names(agenda) <- new_names
