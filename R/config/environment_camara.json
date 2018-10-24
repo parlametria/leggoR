@@ -5,7 +5,7 @@
     {"situacao_comissao": "discussao_votacao", "id_tipo_tramitacao": "^322$|^240$"},
     {"situacao_comissao": "encaminhamento", "id_tipo_tramitacao": "^180$"}
   ],
-  
+
   "eventos": [
     {"evento": "requerimento_audiencia_publica", "texto_tramitacao": "^apresentação do requerimento.*requer a realização d.* audiências? públicas?", "peso":1},
     {"evento": "aprovacao_parecer", "texto_tramitacao": "^aprovado (?!.*requerimento).*parecer.*$", "peso":1},
@@ -34,12 +34,12 @@
     {"evento": "parecer_pela_rejeicao", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*aprova)(?!.*substitutivo)(?!.*emenda).*rejei..o.*$", "peso":1},
     {"evento": "parecer", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*aprova)(?!.*rejei)(?!.*substitutivo).*parecer.*$", "peso":1}
   ],
-  
+
   "fase_casa": [
     {"casa": "plenario", "texto_tramitacao": "votação|pronta para pauta|apresentação de proposição|sessão deliberativa", "sigla_orgao": "PLEN"},
     {"casa": "plenario", "descricao_tramitacao": "^vota..o"}
   ],
-  
+
   "comissoes": {
     "siglas_comissoes_antigas": [
       "CDCMAM",
@@ -104,16 +104,16 @@
       "Comissão Especial"
     ]
   },
-  
+
   "endpoints_api": {
     "url_base_proposicao" : "https://dadosabertos.camara.leg.br/api/v2/proposicoes/",
     "url_base_tramitacao" : "http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao="
   },
-  
+
    "plen_global":{
     "plenario": "(sessão deliberativa extraordinária.*)|(matéria não apreciada em face do encerramento.*)|(discussão em turno único.*)"
   },
-  
+
 "fases_global":[
     {"local": "Comissões", "fase_global": "Construção"},
     {"local": "Plenário", "fase_global": "Construção"},
