@@ -186,8 +186,10 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_p
 #' @examples
 #' extract_evento_Senado(fetch_tramitacao(91341, 'senado', T))
 extract_evento_Senado <- function(tramitacao_df) {
-  df <- regex_left_match(tramitacao_df, senado_env$eventos, "evento")
-  eventos <- senado_env$evento
+  eventos_senado <- dplyr::select(senado_env$eventos, -peso)
+  eventos_extra_senado <- senado_env$evento
+  df <- regex_left_match(tramitacao_df, eventos_senado, "evento")
+  
   
   comissoes <- extract_comissoes_Senado(tramitacao_df)
   date_comissao_especial <- comissoes[match("Comissão Especial", comissoes$comissoes), ]$data_hora
@@ -209,11 +211,11 @@ extract_evento_Senado <- function(tramitacao_df) {
     evento = dplyr::case_when(
       stringr::str_detect(tolower(texto_tramitacao), stringr::regex(designacao_relator$texto_tramitacao, 
                                                            ignore_case = TRUE)) ~ designacao_relator$evento,
-      stringr::str_detect(tolower(texto_tramitacao), eventos$virada$regex) ~ eventos$virada$constant,
-      stringr::str_detect(tolower(texto_tramitacao), eventos$aprovacao_substitutivo$regex) ~ eventos$aprovacao_substitutivo$constant,
-      stringr::str_detect(tolower(texto_tramitacao), eventos$arquivamento$regex) ~ eventos$arquivamento$constant,
-      (stringr::str_detect(tolower(texto_tramitacao), eventos$realizacao_audiencia_publica$regex) &
-         !stringr::str_detect(tolower(texto_tramitacao), eventos$realizacao_audiencia_publica$regex_complementar)) ~ eventos$realizacao_audiencia_publica$constant,
+      stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$virada$regex) ~ eventos_extra_senado$virada$constant,
+      stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$aprovacao_substitutivo$regex) ~ eventos_extra_senado$aprovacao_substitutivo$constant,
+      stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$arquivamento$regex) ~ eventos_extra_senado$arquivamento$constant,
+      (stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$realizacao_audiencia_publica$regex) &
+         !stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$realizacao_audiencia_publica$regex_complementar)) ~ eventos_extra_senado$realizacao_audiencia_publica$constant,
       TRUE ~ evento
   ))
   

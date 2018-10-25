@@ -990,6 +990,55 @@ auxiliar_agenda_senado_comissoes <- function(url) {
   }
 }
 
+#' @title Retorna o dataFrame com as audiências públicas do Senado
+#' @description Retorna um dataframe contendo as audiências públicas do Senado
+#' @param initial_date data inicial no formato yyyy-mm-dd
+#' @param end_date data final no formato yyyy-mm-dd
+#' @return Dataframe
+#' @examples
+#' get_audiencias_publicas('2016-05-15', '2016-05-25')
+get_audiencias_publicas <- function(initial_date, end_date) {
+  
+  pega_audiencias_publicas_do_data_frame <- function(l){
+    if(length(l$Tipo) == 1 ) {
+      if (l$Tipo == "Audiência Pública Interativa") {
+        paste(l$Eventos$Evento$MateriasRelacionadas$Materia$Codigo, collapse = " ,")
+      }else {
+        ""
+      }
+    }else {
+      if ("Audiência Pública Interativa" %in% l$Tipo) {
+        paste(l$Eventos$Evento$MateriasRelacionadas, collapse = " ,")
+      }else {
+        ""
+      }
+    }
+  }
+  
+  get_data_frame_agenda_senado(initial_date, end_date) %>% 
+    dplyr::mutate(id_proposicao = purrr::map_chr(partes_parte, ~ pega_audiencias_publicas_do_data_frame(.))) %>%
+    dplyr::select(data, hora, realizada, comissoes_comissao_sigla, id_proposicao)
+}
+
+#' @title Retorna o dataFrame da agenda do Senado
+#' @description Retorna um dataframe contendo a agenda do senado 
+#' @param initial_date data inicial no formato yyyy-mm-dd
+#' @param end_date data final no formato yyyy-mm-dd
+#' @return Dataframe
+#' @examples
+#' get_data_frame_agenda_senado('2016-05-15', '2016-05-25')
+get_data_frame_agenda_senado <- function(initial_date, end_date) {
+  url <- 
+    paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe")
+  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
+  
+  json_proposicao$Reunioes$Reuniao %>%
+    tibble::as.tibble() %>%
+    rename_table_to_underscore() %>%
+    dplyr::filter(situacao != 'Cancelada')
+}
+
+
 #' @title Retorna a agenda das comissões no Senado
 #' @description Retorna um dataframe contendo a agenda do senado normalizada
 #' @param initial_date data inicial no formato yyyy-mm-dd
@@ -998,21 +1047,14 @@ auxiliar_agenda_senado_comissoes <- function(url) {
 #' @examples
 #' fetch_agenda_senado_comissoes('2016-05-15', '2016-05-25')
 fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
-  url <- 
-    paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe")
-  json_proposicao <- jsonlite::fromJSON(url, flatten = T)
   tipos_inuteis <- c('Outros eventos', 'Reunião')
+  
   agenda <- 
-    json_proposicao$Reunioes$Reuniao %>%
-    tibble::as.tibble() %>%
-    rename_table_to_underscore() %>%
-    dplyr::filter(situacao != 'Cancelada') %>%
+    get_data_frame_agenda_senado(initial_date, end_date) %>%
     dplyr::filter(!(tipo %in% tipos_inuteis)) %>%
     unique() %>%
     dplyr::mutate(url = 
                     paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe?colegiado=", comissoes_comissao_sigla))
-  
-  
   
   agendas <- 
     map_df(agenda$url, auxiliar_agenda_senado_comissoes) %>%
