@@ -81,7 +81,8 @@ get_historico_energia_recente <- function(eventos_df, granularidade = 's', decai
   #Remove linhas referentes a dias de recesso parlamentar
   full_dates <- data.frame(data = seq(min(eventos_extendidos$data), max_date, by = "1 day"))
   eventos_extendidos <- merge(full_dates, eventos_extendidos, by="data", all.x = TRUE) %>%
-    filtra_dias_nao_uteis_congresso()
+    filtra_dias_nao_uteis_congresso() %>%	
+    dplyr::left_join(get_pesos_eventos(), by='evento')
   
   energia_periodo <- data.frame()
   
