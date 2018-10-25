@@ -186,5 +186,14 @@
     {"local": "Plenário", "fase_global": "Revisão II"},
     {"local": "Presidência da República", "fase_global": "Sansão/Veto"},
     {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
-  ]
+  ],
+  
+  "requerimento": {
+    "regex_detect": {
+      "autoria": "autoria do | iniciativa do"
+    },
+    "regex_extract": {
+      "senado": "senador[^,]+ | sen[^,]+"
+    }
+  }
 }
