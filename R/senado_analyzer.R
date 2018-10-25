@@ -487,6 +487,22 @@ extract_approved_requerimentos_in_senado <- function(df) {
   apr_requerimentos_df
 }
 
+#' @title Extrai o(s) requerente(s) de uma audiência pública do Senado
+#' @description Retorna quem pediu o requerimento que ocasionou em uma audiência
+#' pública no Senado
+#' @param df dataframe contendo a coluna evento
+#' @return Dataframe com a coluna requerente
+#' @examples
+#' extract_requerentes_audiencia_publica(extract_evento_Senado(fetch_tramitacao(132865, 'senado', T)))
+#' @export
+extract_requerentes_audiencia_publica <- function(df) {
+  df %>%
+    dplyr::filter(evento == "aprovacao_audiencia_publica") %>%
+    dplyr::mutate(requerente = dplyr::case_when(
+      stringr::str_detect(tolower(texto_tramitacao), senado_env$requerimento$regex_detect[[1]]) ~
+        stringr::str_extract(texto_tramitacao, stringr::regex(senado_env$requerimento$regex_extract[[1]], ignore_case=TRUE))))
+}
+
 #' @title Extrai o regime de apreciação do Senado
 #' @description Verifica o regime de apreciação de um dataframe. Se apresentar as
 #' palavras '(em|a) decisão terminativa' é retornado 'conclusivo' como resposta, caso contrário
