@@ -104,7 +104,7 @@ get_historico_energia_recente <- function(eventos_df, granularidade = 's', decai
   
   energia_periodo <- energia_periodo %>% 
     dplyr::summarize(periodo = dplyr::first(data),
-                     energia_periodo = sum(!is.na(evento))) %>%
+                     energia_periodo = sum(peso, na.rm = T)) %>%
     dplyr::ungroup() %>%
     dplyr::select(periodo,energia_periodo) %>%
     dplyr::arrange(periodo)
