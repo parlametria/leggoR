@@ -499,10 +499,9 @@ extract_requerentes_audiencia_publica <- function(df) {
   df %>%
     dplyr::filter(evento == "aprovacao_audiencia_publica") %>%
     dplyr::mutate(requerente = dplyr::case_when(
-      stringr::str_detect(tolower(texto_tramitacao), 'autoria do | iniciativa do') ~
-        stringr::str_extract(texto_tramitacao, stringr::regex('senador[^,]+ | sen[^,]+', ignore_case=TRUE))))
+      stringr::str_detect(tolower(texto_tramitacao), senado_env$requerimento$regex_detect[[1]]) ~
+        stringr::str_extract(texto_tramitacao, stringr::regex(senado_env$requerimento$regex_extract[[1]], ignore_case=TRUE))))
 }
-
 
 #' @title Extrai o regime de apreciação do Senado
 #' @description Verifica o regime de apreciação de um dataframe. Se apresentar as
