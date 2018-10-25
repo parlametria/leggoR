@@ -1143,7 +1143,6 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
 #' @importFrom tibble tibble
 #' @importFrom utils tail
 #' @importFrom lubridate as_date
-#' @importFrom 
 fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fases_tramitacao_df){
   orgao_atual <- 
     fases_tramitacao_df %>% 
