@@ -138,4 +138,4 @@ test <- function(){
 
 if(check_api()){
   test()
-} else skip()
+} else testthat::skip('Erro no setup!')
