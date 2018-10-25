@@ -275,85 +275,38 @@
     return(df)
   }
   
-  #' @title Extrai as próximas audiências públicas de uma PL na Câmara
-  #' @description Extrai as próximas audiências públicas de uma PL na Câmara
+  #' @title Extrai as próximas audiências públicas de uma PL
+  #' @description Extrai as próximas audiências públicas de uma PL a
   #' @param initial_date data inicial no formato dd/mm/yyyy
   #' @param end_date data final no formato dd/mm/yyyy
   #' @param fases_tramitacao_df dataframe da PL preprocessada
-  #' @return Dataframe com as próximas audiências públicas de uma PL na Câmara
+  #' @return Dataframe com as próximas audiências públicas de uma PL 
   #' @examples
-  #' get_next_audiencias_publicas_in_camara('01/01/2017', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Agenda Nacional'), fetch_tramitacao(2121442, 'camara', T), 'camara'))
+  #' get_next_audiencias_publicas('01/01/2017', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Agenda Nacional'), fetch_tramitacao(2121442, 'camara', T), 'camara'), casa='camara')
   #' @export
-  get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases_tramitacao_df){
-    prop_id <- fases_tramitacao_df %>% dplyr::select(prop_id) %>% utils::tail(1)
-    casa <- fases_tramitacao_df %>% dplyr::select(casa) %>% utils::tail(1)
-    
-    num_requerimentos_audiencias_publicas <- 
-      extract_num_requerimento_audiencia_publica_in_camara(fases_tramitacao_df)
-    
-    next_audiencias_publicas_by_orgao <- 
-      fetch_audiencias_publicas_by_orgao_camara(initial_date, end_date, fases_tramitacao_df) %>% 
-        dplyr::filter(num_requerimento != '0')
-    
-    if(nrow(next_audiencias_publicas_by_orgao) > 0 & nrow(num_requerimentos_audiencias_publicas) > 0){
+ get_next_audiencias_publicas <- function(initial_date, end_date, fases_tramitacao_df, next_audiencias_publicas_by_orgao, casa) {
+   next_audiencias_data <- NULL
+    if (tolower(casa) == congress_constants$camara_label) {
       
-      next_audiencias_publicas_by_orgao <-
-        do.call("rbind", 
-                apply(next_audiencias_publicas_by_orgao, 
-                      1, 
-                      remove_unnested_list))
-      
-        next_audiencias_publicas_pl <-
-          next_audiencias_publicas_by_orgao %>% 
-          merge(num_requerimentos_audiencias_publicas %>% 
-                  dplyr::select(prop_id, casa, num_requerimento), by = "num_requerimento")
-        
-          if(nrow(next_audiencias_publicas_pl) > 0){
-            next_audiencias_publicas_pl$prop_id <- prop_id$prop_id
-            next_audiencias_publicas_pl$casa <- casa$casa
-            
-            next_audiencias_publicas_pl <-
-              next_audiencias_publicas_pl %>% 
-              dplyr::select(-num_requerimento, comissao, cod_reuniao, data, hora, local, 
-                            estado, tipo, titulo_reuniao, objeto, prop_id, casa) %>% 
-              dplyr::group_by(data) %>% 
-              dplyr::distinct()
-          } else {
-            next_audiencias_publicas_pl <- 
-              tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
-                                 ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto,
-                                 ~prop_id, ~casa)
-          }
-      } else {
-        next_audiencias_publicas_pl <- 
-          tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
-                     ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto,
-                     ~prop_id, ~casa)
-      }
-    
-    return(next_audiencias_publicas_pl)
-
-  }
+      next_audiencias_publicas_by_orgao <- 
+        fetch_audiencias_publicas_by_orgao_camara(
+        initial_date, 
+        end_date, 
+        fases_tramitacao_df)
   
-  #' @title Desencadeia as listas de requerimentos de audiências públicas
-  #' @description Desencadeia as listas de requerimentos de audiências públicas
-  #' @param df dataframe da agenda das audiências públicas
-  #' @return Dataframe com as próximas audiências públicas com os requerimentos desencadeados
-  remove_unnested_list <- function(df){
-    # REMOVER
-    removed_list = df %>% 
-      unlist() %>% 
-      tibble::as_tibble() %>% 
-      t() %>% 
-      as.data.frame()
+      next_audiencias_data <- 
+        get_next_audiencias_publicas_in_camara(
+          initial_date, end_date, 
+          fases_tramitacao_df, 
+          next_audiencias_publicas_by_orgao)
     
-    df <-
-      tidyr::gather(removed_list, key="num_requerimento", 
-                    "num_requerimento_unnested", 
-                    10:ncol(removed_list)) %>% 
-      dplyr::select(-num_requerimento) %>% 
-      dplyr::rename(num_requerimento = num_requerimento_unnested) %>% 
-      dplyr::distinct()
+    } else if (tolower(casa) == congress_constants$senado_label) {
+      
+      # TODO: Adicionar get_next_audiencias_publicas_in_senado()
+    }
     
-    return(df)
+    return(next_audiencias_data)
   }
+
+  
+  
