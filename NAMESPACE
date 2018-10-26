@@ -3,7 +3,6 @@
 export(build_vis_csv)
 export(detect_fase)
 export(extract_autor_in_camara)
-export(extract_evento_Senado)
 export(extract_forma_apreciacao)
 export(extract_forma_apreciacao_camara)
 export(extract_forma_apreciacao_senado)
