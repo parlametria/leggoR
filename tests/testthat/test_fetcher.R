@@ -9,7 +9,6 @@ setup <- function(){
   DATA_FIM <<- '2018-07-10'
   senado_df <<- as.data.frame(SENADO_ID)
   camara_df <<- as.data.frame(CAMARA_ID)
-  install.packages("RCurl")
   return(TRUE)
 }
 
