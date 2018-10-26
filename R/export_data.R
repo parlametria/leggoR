@@ -23,29 +23,23 @@ process_etapa <- function(id, casa) {
         hist_energia = historico_energia)
 }
 
-process_pl <- function(id_camara, id_senado, apelido, tema) {
-    print(id_camara)
-    print(apelido)
+process_pl <- function(id_camara, id_senado, apelido, tema_pl) {
     cat(paste(
         "\n--- Processando:", apelido, "\ncamara:", id_camara,
         "\nsenado", id_senado, "\n"))
-
     etapas <- list()
-    if (id_camara) {
-        etapas %<>%
-            append(process_etapa(id_camara, "camara"))
+    if (!is.na(id_camara)) {
+        etapas %<>% append(list(process_etapa(id_camara, "camara")))
     }
-    if (id_senado) {
-        etapas %<>%
-            append(process_etapa(id_senado, "senado"))
+    if (!is.na(id_senado)) {
+        etapas %<>% append(list(process_etapa(id_senado, "senado")))
     }
-
-    print(etapas)
-    ## progresso = progresso_pl,
-    ## progresso_pl <- agoradigital::get_progresso(id_camara, id_senado)
-    etapas %>%
-        purrr::map_df( ~ data_frame(x = .x))
-        ## dplyr::mutate(apelido = apelido, tema = tema)
+    etapas %<>% purrr::pmap(dplyr::bind_rows)
+    etapas[["progresso"]] <-
+        agoradigital::get_progresso(etapas$proposicao, etapas$fases_eventos)
+    etapas$proposicao %<>%
+        dplyr::mutate(apelido_materia = apelido, tema = tema_pl)
+    etapas
 }
 
 #' @title Exporta dados de proposições
@@ -62,28 +56,19 @@ export_data <- function(pls, export_path) {
   res <- pls %>% purrr::pmap(process_pl)
     ## %>% dplyr::bind_rows()
 
+
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
-    dplyr::select(-ano)
-  tramitacoes <- purrr::map_df(res, ~ .$fases_eventos)
+    dplyr::select(-ano) %>%
+    dplyr::rename(id_ext = prop_id, sigla_tipo = tipo_materia, apelido = apelido_materia)
+  tramitacoes <-
+    purrr::map_df(res, ~ .$fases_eventos) %>%
+    dplyr::rename(id_ext = prop_id, data = data_hora)
   hists_energia <- purrr::map_df(res, ~ .$hist_energia)
   progressos <-
     purrr::map_df(res, ~ .$progresso) %>%
-    dplyr::select(
-      prop_id, casa, local_casa, fase_global, local, data_inicio, data_fim)
-
-  ## rename columns
-  names(proposicoes) <- c(
-    "id_ext", "casa", "sigla_tipo", "numero", "data_apresentacao", "ementa",
-    "palavras_chave", "casa_origem", "autor_nome", "tema", "apelido",
-    "regime_tramitacao", "forma_apreciacao", "em_pauta", "energia")
-  names(tramitacoes) <- c(
-    "id_ext", "casa", "data", "sequencia", "texto_tramitacao", "sigla_local",
-    "id_situacao", "descricao_situacao", "fase", "situacao_descricao_situacao",
-    "evento", "data_audiencia", "local", "global")
-  names(progressos) <- c(
-      "id_ext", "casa", "local_casa", "fase_global", "local", "data_inicio",
-      "data_fim")
+    dplyr::select(prop_id, casa, fase_global, local, data_inicio, data_fim) %>%
+    dplyr::rename(id_ext = prop_id)
 
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))

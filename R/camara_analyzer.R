@@ -329,22 +329,12 @@ extract_regime_tramitacao_camara <- function(tram_df) {
 #' @return Dataframe da tramitacao contendo mais uma coluna chamada fase_global
 #' @examples
 #'  extract_casas_in_camara(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', '', '', normalized=T))
-extract_casas_in_camara <- function(tramitacao_df, proposicao_df) {
-  casa_name = dplyr::if_else(tolower(proposicao_df$casa_origem) == "câmara dos deputados", "Construção", "Revisão I")
-
-  tramitacao_df %<>%
-    dplyr::arrange(data_hora, sequencia) %>%
+extract_casas_in_camara <- function(tramitacao_df, casa_name) {
+  tramitacao_df %>%
     dplyr::mutate(
       fase_global = casa_name,
       local =
         dplyr::case_when(
-          (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario) &
-             sigla_local == 'PLEN') ~ "Plenário",
-          sigla_local != 'PLEN' &
-            (sigla_local %in% camara_env$comissoes$siglas_comissoes_antigas |
-               sigla_local %in% camara_env$comissoes$siglas_comissoes |
-               stringr::str_detect(tolower(sigla_local), '^pl'))  ~ "Comissões"))
-
-  tramitacao_df %>%
-    tidyr::fill(fase_global)
+          (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario) & sigla_local == "PLEN") ~ "Plenário",
+          sigla_local != "PLEN" & (sigla_local %in% camara_env$comissoes$siglas_comissoes_antigas | sigla_local %in% camara_env$comissoes$siglas_comissoes | stringr::str_detect(tolower(sigla_local), "^pl"))  ~ "Comissões"))
 }

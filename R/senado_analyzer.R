@@ -601,27 +601,13 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
 #' @return Dataframe com a coluna "global" adicionada.
 #' @examples
 #' extract_casas_in_senado(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', T))
-extract_casas_in_senado <- function(data_tramitacao, proposicao_df) {
+extract_casas_in_senado <- function(data_tramitacao, casa_name) {
   fase_global_constants <- senado_env$fase_global_plenario
-  not_comissoes <- c('PLEN', 'PLEG')
-  casa_name <-
-    dplyr::if_else(
-      proposicao_df$casa_origem == "Senado Federal",
-      "Construção",
-      "Revisão I"
-    )
-
-  data_tramitacao %<>%
-    dplyr::arrange(data_hora, sequencia) %>%
+  data_tramitacao %>%
     dplyr::mutate(
       fase_global = casa_name,
       local =
         dplyr::case_when(
-          (stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) &
-             sigla_local == 'PLEN') ~ "Plenário",
-          sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes &
-            (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~ "Comissões"))
-
-  data_tramitacao %>%
-    tidyr::fill(fase_global)
+          (stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) & sigla_local == "PLEN") ~ "Plenário",
+          sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes & (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~ "Comissões"))
 }

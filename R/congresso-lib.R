@@ -16,26 +16,34 @@ detect_fase <- function(element, set) {
 #' @param tramitacao_df Dataframe da proposição do PL.
 #' @param casa Casa (Senado ou Câmara)
 #' @return Dataframe com uma nova coluna chamada fase_global
-extract_casas <- function(tramitacao_df, proposicao_df, casa){
-  if (tolower(casa) == congress_constants$camara_label) {
-    df <- extract_casas_in_camara(tramitacao_df, proposicao_df)
-  } else if (tolower(casa) == congress_constants$senado_label) {
-    df <- extract_casas_in_senado(tramitacao_df, proposicao_df)
+extract_casas <- function(tramitacao_df, proposicao_df){
+  ## Prepara tabela que mapeia casa -> label
+  labels <- list("Construção", "Revisão I")
+  casa_label <-
+    proposicao_df %>%
+    dplyr::arrange(data_apresentacao) %>%
+    dplyr::select(casa) %>%
+    dplyr::mutate(label = head(labels, nrow(proposicao_df)))
+  rownames(casa_label) <- casa_label$casa
+
+  ## Roda função específica para cada casa
+  extract_casas_subgroups <- function(tram) {
+      casa <- tolower(tram[1, ]$casa)
+      label <- casa_label[casa, "label"][[1]]
+      if (casa == congress_constants$camara_label) {
+        df <- agoradigital:::extract_casas_in_camara(tram, label)
+      } else if (casa == congress_constants$senado_label) {
+        df <- agoradigital:::extract_casas_in_senado(tram, label)
+      }
+      df
   }
-  df
-}
 
-
-#' @title Recupera o progresso de um PL
-#' @description Retorna um dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
-#' @param df Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
-#' @return Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
-#' @examples
-#' get_progresso(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', T), 'camara')
-extract_progresso <- function(tramitacao_df, proposicao_df, casa) {
   tramitacao_df %>%
-    extract_casas(proposicao_df, casa) %>%
-    generate_progresso_df()
+    dplyr::arrange(data_hora, sequencia) %>%
+    dplyr::group_by(casa) %>%
+    dplyr::do(extract_casas_subgroups(.)) %>%
+    dplyr::ungroup() %>%
+    tidyr::fill(fase_global)
 }
 
 #' @title Recupera o progresso de um PL
@@ -75,5 +83,5 @@ generate_progresso_df <- function(tramitacao_df){
       dplyr::right_join(congress_env$fases_global, by = c("local", "fase_global"))
   }
 
-  return(df)
+  df %>% dplyr::ungroup()
 }
