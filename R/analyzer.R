@@ -163,15 +163,17 @@ extract_forma_apreciacao <- function(tram_df) {
   apreciacao
 }
 
-#' @title Extrai se uma proposição está em pauta
-#' @description Extrai se uma proposição está em pauta
-#' @param proposicao_id id do PL
-#' @return TRUE se estiver em pauta FALSE caso contrário
+#' @title Cria uma coluna com o nome pauta
+#' @description Extrai se um vectors de proposições estarão em pauta
+#' @param agenda Dataframe com a agenda
+#' @param proposicao_id vector de ids
+#' @return Dataframe com a coluna em_pauta
 #' @examples
-#' extract_pauta(fetch_agenda('2018-07-03', '2018-07-10', 'senado'), 117839)
+#' extract_pauta(fetch_agenda_geral('2018-10-01', '2018-10-26'), c("91341", "2121442", "115926", "132136"))
 #' @export
 extract_pauta <- function(agenda, proposicao_id) {
-  proposicao_id %in% agenda$codigo_materia
+  agenda %>%
+    dplyr::mutate(em_pauta = id_proposicao %in% proposicao_id)
 }
 
 #' @title Extrai o status da tramitação de um PL
