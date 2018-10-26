@@ -7,9 +7,9 @@
   ],
   
   "eventos": [
-    {"evento": "requerimento_audiencia_publica", "texto_tramitacao": "^apresentação do requerimento.*requer a realização d.* audiências? públicas?", "peso":1},
+    {"evento": "requerimento_audiencia_publica", "texto_tramitacao": "^apresentação do (requerimento|req).*(requer|solicit(a|o|am))( a|) realização d.* audiências? públicas?", "peso":1},
     {"evento": "aprovacao_parecer", "texto_tramitacao": "^aprovado (?!.*requerimento).*parecer.*$", "peso":1},
-    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "^aprovado requerimento.*requer a realização d.* audiências? públicas?", "peso":1},
+    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "^aprovado requerimento.*(requer|solicit(a|o|am))( a|) realização d.* audiências? públicas?", "peso":1},
     {"evento": "requerimento_redistribuicao", "texto_tramitacao": "^apresentação do requerimento de redistribuição", "peso":1},
     {"evento": "requerimento_apensacao", "texto_tramitacao": "^apresentação do requerimento de apensação", "peso":1},
     {"evento": "requerimento_urgencia", "texto_tramitacao": "^apresentação do requerimento de urgência", "peso":1},

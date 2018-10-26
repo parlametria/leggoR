@@ -1189,15 +1189,19 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
   orgao_atual <- 
     fases_tramitacao_df %>% 
     dplyr::filter(data_hora >= lubridate::as_date(lubridate::dmy(initial_date)) & data_hora <= lubridate::as_date((lubridate::dmy(end_date)))) %>% 
-    utils::tail(1) %>% 
+   # utils::tail(1) %>% 
     dplyr::select(local) %>% 
     dplyr::mutate(local = 
-                    dplyr::if_else(toupper(local) == "PLENÁRIO", "PLEN", local))
+                    dplyr::if_else(toupper(local) == "PLENÁRIO", "PLEN", local)) %>% 
+    dplyr::distinct() %>% 
+    dplyr::rename(sigla = local)
   
   if(nrow(orgao_atual) > 0){
     orgao_id <- 
-      fetch_orgaos_camara() %>% 
-      dplyr::filter(stringr::str_detect(sigla, orgao_atual$local)) %>% 
+      merge(fetch_orgaos_camara(), orgao_atual, by ='sigla')
+      fetch_orgaos_camara() %>%
+      dplyr::filter(stringr::str_extract(sigla, orgao_atual$local))
+      dplyr::mutate(orgao_id = stringr::str_extract(sigla, orgao_atual$local)) %>% 
       dplyr::select(orgao_id)
     
     
@@ -1236,7 +1240,7 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
                           stringr::str_extract_all(
                             requerimento, camara_env$extract_requerimento_num$regex) != 'character(0)',
                           stringr::str_extract_all(
-                            requerimento, camara_env$extract_requerimento_num$regex) %>% lapply(function(list)(gsub(" ","",list))),
+                            requerimento, camara_env$extract_requerimento_num$regex) %>% lapply(function(x)(preprocess_requerimentos(x))),
                           list(0))) %>% 
         dplyr::select(-requerimento)
     }else{
@@ -1252,6 +1256,18 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
   return(df)
   
 }
+
+preprocess_requerimentos <- function(element){
+  element <- dplyr::if_else(
+    stringr::str_detect(element, stringr::regex('/[0-9]{4}')), 
+    sub('/[0-9]{2}', '/', element),
+    element)
+  
+  element <- gsub(" ","", element)
+  
+  return (element)
+}
+
 #' @title Baixa os órgãos na câmara 
 #' @description Retorna um dataframe contendo os órgãos da câmara
 #' @return Dataframe contendo os órgãos da Câmara
@@ -1291,4 +1307,11 @@ readXML <- function(url) {
   }
   )    
   return(out)
+}
+
+#' @title Baixa os órgãos na câmara 
+#' @description Retorna um dataframe contendo os órgãos da câmara
+#' @return Dataframe contendo os órgãos da Câmara
+get_audiencias <- function(){
+  url = 
 }
