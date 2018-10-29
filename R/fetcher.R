@@ -1081,7 +1081,9 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
     new_names <- c("data", "sigla", "id_proposicao", "local")
     names(agenda) <- new_names
     
-    agenda %>% dplyr::arrange(data)
+    agenda %>%
+      dplyr::mutate(data = lubridate::dmy(data)) %>%
+      dplyr::arrange(data)
   }else {
     tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local)
   }
@@ -1208,6 +1210,48 @@ fetch_agenda <- function(initial_date, end_date, house, orgao) {
       fetch_agenda_senado_comissoes(initial_date, end_date)
     }
   }
+}
+
+#' @title Baixa a agenda da camara e do senado
+#' @description Retorna um dataframe contendo a agenda geral da camara e do
+#' senado
+#' @param initial_date data inicial no formato yyyy-mm-dd
+#' @param end_date data final no formato yyyy-mm-dd
+#' @return Dataframe
+#' @examples
+#' fetch_agenda_geral('2018-07-03', '2018-07-10')
+#' @export
+fetch_agenda_geral <- function(initial_date, end_date) {
+  try(if(as.Date(end_date) < as.Date(initial_date)) stop("A data inicial é depois da final!"))
+  
+  agenda_plenario_camara <- normalize_agendas(fetch_agenda_camara(initial_date = initial_date, end_date = end_date), "camara") 
+  
+  if (nrow(agenda_plenario_camara) != 0) {
+    agenda_plenario_camara <- 
+      agenda_plenario_camara %>%
+      dplyr::rowwise() %>%
+      dplyr::mutate(data = stringr::str_split(data,'T')[[1]][1]) %>%
+      dplyr::ungroup()
+  }
+  agenda_plenario_senado <- normalize_agendas(fetch_agenda_senado(initial_date), "senado")
+  agenda_comissoes_senado <- fetch_agenda_senado_comissoes(initial_date, end_date) %>%
+    dplyr::mutate(data = as.character(data))
+  
+  initial_date <- strsplit(initial_date, '-')
+  end_date <- strsplit(end_date, '-')
+  agenda_comissoes_camara <- 
+    fetch_agenda_comissoes_camara(
+    paste0(initial_date[[1]][[3]],'/', initial_date[[1]][[2]], '/', initial_date[[1]][[1]]), 
+    paste0(end_date[[1]][[3]],'/', end_date[[1]][[2]], '/', end_date[[1]][[1]])) %>%
+    dplyr::mutate(data = as.character(data))
+
+  rbind(
+    agenda_plenario_camara,
+    agenda_plenario_senado,
+    agenda_comissoes_senado,
+    agenda_comissoes_camara
+    ) %>%
+    dplyr::arrange(data)
 }
 
 #' @title Baixa dados de requerimentos relacionados
