@@ -46,7 +46,7 @@ pages:
     - Rscript -e 'devtools::install()'
     - Rscript -e 'devtools::document()'
     - Rscript -e 'pkgdown::build_site(override = list(destination = "public"))'
-    - ./scripts/build_all.R
+    # - ./scripts/build_all.R
     - mv docs public/
   artifacts:
     paths:

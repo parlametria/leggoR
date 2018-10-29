@@ -1,6 +1,6 @@
 source(here::here("R/analyzer.R"))
 source(here::here("R/data-formatter-vistime.R"))
-args = commandArgs(trailingOnly=TRUE)
+args <- commandArgs(trailingOnly=TRUE)
 
 #' @title Cria todos os csvs de um proposição.
 #' @description Recebido um id e uma casa a função roda os scripts para
@@ -14,11 +14,13 @@ args = commandArgs(trailingOnly=TRUE)
 #' build_csvs(129808, df, "senado", "Cadastro Positivo", "Agenda Nacional", "data/")
 #' build_csvs(257161, df, "camara", "Lei Geral do Licensiamento Ambiental", "data/")
 #' @export
-build_csvs <- function(id, house, apelido='', tema='', output_folder=NULL, df) {
-  print(paste("Processando id",id,"da casa",house))
+build_csvs <- function(id, house, apelido="", tema="", output_folder=NULL, df) {
+  print(paste("Processando id", id, "da casa", house))
   prop_data <- import_proposicao(id, house, apelido, tema, output_folder)
-  proc_tram_data <- process_proposicao(prop_data$proposicao, prop_data$tramitacao, house, output_folder)
-  proc_progresso_data <- get_progresso(df, prop_data$tramitacao, prop_data$proposicao, house, output_folder)
+  proc_tram_data <- process_proposicao(
+      prop_data$proposicao, prop_data$tramitacao, house, output_folder)
+  proc_progresso_data <- get_progresso(
+      prop_data$proposicao, prop_data$tramitacao)
   build_vis_csv(proc_tram_data, house, output_folder)
   as.tibble(NULL)
 }
@@ -31,11 +33,11 @@ build_csvs <- function(id, house, apelido='', tema='', output_folder=NULL, df) {
 #' readr::read_csv("data/tabela_geral_ids_casa.csv") %>% build_all_csvs()
 #' @export
 build_all_csvs <- function(df, df_mapeamento, output_folder=NULL) {
-  if ('casa' %in% names(df)) {
+  if ("casa" %in% names(df)) {
     purrr::pmap(list(df$id, df$casa, df$apelido, df$tema), function(a, b, c, d, df) build_csvs(a, b, c, d, output_folder, df_mapeamento))
   } else {
-    purrr::map(df$id_camara, ~ build_csvs(.x, 'camara', '', '', output_folder, df_mapeamento))
-    purrr::map(df$id_senado, ~ build_csvs(.x, 'senado', '', '', output_folder, df_mapeamento))
+    purrr::map(df$id_camara, ~ build_csvs(.x, "camara", "", "", output_folder, df_mapeamento))
+    purrr::map(df$id_senado, ~ build_csvs(.x, "senado", "", "", output_folder, df_mapeamento))
   }
   as.tibble(NULL)
 }
