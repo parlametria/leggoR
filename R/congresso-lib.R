@@ -35,7 +35,7 @@ extract_casas <- function(tramitacao_df, proposicao_df){
       } else if (casa == congress_constants$senado_label) {
         df <- agoradigital:::extract_casas_in_senado(tram, label)
       }
-      df
+      df %>% dplyr::mutate(local_casa = casa)
   }
 
   tramitacao_df %>%

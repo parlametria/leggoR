@@ -15,7 +15,8 @@ process_etapa <- function(id, casa) {
         .$energia_recente
     extended_prop <-
         merge(prop, status, by = "prop_id") %>%
-        dplyr::mutate(energia = energia_value)
+        dplyr::mutate(energia = energia_value) %>%
+        dplyr::select(-casa_origem)
 
     list(
         proposicao = extended_prop,
@@ -67,7 +68,8 @@ export_data <- function(pls, export_path) {
   hists_energia <- purrr::map_df(res, ~ .$hist_energia)
   progressos <-
     purrr::map_df(res, ~ .$progresso) %>%
-    dplyr::select(prop_id, casa, fase_global, local, data_inicio, data_fim) %>%
+    dplyr::select(
+      prop_id, casa, local_casa, fase_global, local, data_inicio, data_fim) %>%
     dplyr::rename(id_ext = prop_id)
 
   ## export data to CSVs

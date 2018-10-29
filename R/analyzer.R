@@ -215,69 +215,16 @@ extract_status_tramitacao <- function(tram_df) {
 #' pls_senado_camara %>% get_progresso(fetch_tramitacao(257161, 'camara', T), fetch_proposicao(257161, 'camara', '', '', normalized = T), 'camara')
 #' pls_senado_camara %>% get_progresso(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', '', '', normalized = T), 'senado')
 #' @export
-get_progresso <- function(proposicao_df, tramitacao_df, out_folderpath=NULL) {
+get_progresso <- function(proposicao_df, tramitacao_df) {
   progresso_data <-
     tramitacao_df %>%
     extract_casas(proposicao_df) %>%
     generate_progresso_df() %>%
-    tidyr::fill(prop_id, casa)
-
-  ## progresso_data$prop_id <- prop_id
-
-  ## Salva progresso em arquivo
-  if ((!is.null(progresso_data)) & (!is.null(out_folderpath))) {
-    readr::write_csv(
-      progresso_data,
-      paste0(out_folderpath, "/", casa, "/", prop_id, "-progresso-", casa, ".csv"))
-  }
-
-  return(progresso_data)
+    dplyr::mutate(local_casa = casa) %>%
+    ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
+    tidyr::fill(prop_id, casa) %>%
+    tidyr::fill(prop_id, casa, .direction = "up")
 }
-
-#' @title Recupera o progresso de um PL
-#' @description Retorna um dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
-#' @param df Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
-#' @return Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
-#' @examples
-#' get_progresso(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', T), 'camara')
-## extract_progresso <- function(tramitacao_df, proposicao_df, casa) {
-##     tramitacao_df %>%
-##         extract_casas(proposicao_df, casa) %>%
-##         generate_progresso_df()
-## }
-
-#' @title Extrai o progresso de um PL
-#' @description Extrai o progresso de um PL
-#' @param proposicao_df Dataframe da tramitação do PL.
-#' @param tramitacao_df Dataframe da proposição do PL.
-#' @param casa Casa (Senado ou Câmara)
-#' @return Dataframe contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
-## get_progresso_both <- function(origem_id, revisao_id, casa_origem) {
-##   casa_revisora <-
-##     dplyr::if_else(
-##       stringr::str_detect(tolower("senado federal"), tolower(casa_origem)),
-##       "camara",
-##       "senado")
-
-##   tram_origem <-
-##     fetch_tramitacao(origem_id, casa_origem, T) %>%
-##     extract_casas(
-##       fetch_proposicao(origem_id, casa_origem, "", "", normalized = T),
-##       casa_origem
-##     ) %>%
-##     dplyr::mutate(pl_id = origem_id)
-
-##   tram_destino <-
-##     fetch_tramitacao(revisao_id, casa_revisora, T) %>%
-##     extract_casas(
-##         fetch_proposicao(revisao_id, casa_revisora, "", "", normalized = T),
-##         casa_revisora
-##     ) %>%
-##     dplyr::mutate(pl_id = revisao_id)
-
-##   dplyr::bind_rows(tram_origem, tram_destino) %>%
-##     generate_progresso_df()
-## }
 
 #' @title Recupera os eventos e seus respectivos pesos
 #' @description Retorna um dataframe com o superconjunto dos eventos das duas casas (Câmara e Senado) e seus respectivos pesos
