@@ -1026,6 +1026,7 @@ get_audiencias_publicas <- function(initial_date, end_date) {
       mutate(sigla = purrr::map_chr(comissoes_comissao, ~ paste(.$Sigla, collapse = " ,"))) %>%
       dplyr::select(data, hora, realizada, sigla, id_proposicao)
   }
+  
 }
 
 #' @title Retorna o dataFrame da agenda do Senado
