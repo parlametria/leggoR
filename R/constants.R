@@ -136,6 +136,7 @@ COMISSOES_CAMARA <-
     "nome_casa_identificacao_materia",
     "sigla_subtipo_materia",
     "descricao_subtipo_materia",
+    "descricao_identificacao_materia",
     "numero_materia",
     "ano_materia",
     "indicador_tramitando"
@@ -151,6 +152,7 @@ COMISSOES_CAMARA <-
     "texto_tramitacao",
     "indicador_recebimento",
     "data_recebimento",
+    "descricao_identificacao_materia",
     "origem_tramitacao_local_codigo_local",
     "origem_tramitacao_local_tipo_local",
     "origem_tramitacao_local_sigla_casa_local",

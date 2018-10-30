@@ -57,7 +57,7 @@ generate_progresso_df <- function(tramitacao_df){
     tramitacao_df %>%
     dplyr::arrange(data_hora) %>%
     dplyr::filter(fase_global != "NA" & local != "NA") %>%
-    dplyr::mutate(end_data = dplyr::lead(data_hora, default = Sys.time())) %>%
+    dplyr::mutate(end_data = dplyr::lead(data_hora)) %>%
     dplyr::group_by(
       casa, prop_id, fase_global, local, sequence = data.table::rleid(fase_global)) %>%
     dplyr::summarise(data_inicio = min(data_hora), data_fim = max(end_data)) %>%

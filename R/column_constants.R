@@ -36,3 +36,12 @@
 
 
 # SENADO
+
+#SENADO E CAMARA
+
+.COLNAMES_AGENDA <- c(
+  "data",          
+  "sigla",       
+  "id_proposicao",
+  "local" 
+)
