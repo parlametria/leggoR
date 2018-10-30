@@ -159,7 +159,8 @@ fetch_deferimento <- function(proposicao_id) {
 #' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
 #' @examples
-#' fetch_relatorias(91341)
+#' 
+#' 
 #' @export
 fetch_relatorias <- function(proposicao_id) {
   url_relatorias <-
@@ -1014,9 +1015,17 @@ get_audiencias_publicas <- function(initial_date, end_date) {
     }
   }
   
-  get_data_frame_agenda_senado(initial_date, end_date) %>% 
-    dplyr::mutate(id_proposicao = purrr::map_chr(partes_parte, ~ pega_audiencias_publicas_do_data_frame(.))) %>%
-    dplyr::select(data, hora, realizada, comissoes_comissao_sigla, id_proposicao)
+  agenda_senado <- get_data_frame_agenda_senado(initial_date, end_date) %>% 
+    dplyr::mutate(id_proposicao = purrr::map_chr(partes_parte, ~ pega_audiencias_publicas_do_data_frame(.)))
+  
+  if ("comissoes_comissao_sigla" %in% names(agenda_senado)) {
+    agenda_senado %>%
+      dplyr::select(data, hora, realizada, sigla = comissoes_comissao_sigla, id_proposicao)
+  }else {
+      agenda_senado %>% 
+      mutate(sigla = purrr::map_chr(comissoes_comissao, ~ paste(.$Sigla, collapse = " ,"))) %>%
+      dplyr::select(data, hora, realizada, sigla, id_proposicao)
+  }
 }
 
 #' @title Retorna o dataFrame da agenda do Senado
