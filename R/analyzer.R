@@ -220,18 +220,16 @@ extract_status_tramitacao <- function(tram_df) {
 get_progresso <- function(proposicao_df, tramitacao_df) {
   progresso_data <-
     tramitacao_df %>%
-    extract_casas(proposicao_df) %>%
-    generate_progresso_df() %>%
+    agoradigital:::extract_casas(proposicao_df) %>%
+    agoradigital:::generate_progresso_df() %>%
     dplyr::mutate(local_casa = casa) %>%
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
     tidyr::fill(prop_id, casa) %>%
-    tidyr::fill(prop_id, casa, .direction = "up")
-    
-    progresso_data$prox_local_casa = dplyr::lead(progresso_data$casa)
-    
-    progresso_data %<>%
-      dplyr::mutate(pulou = dplyr::if_else((is.na(casa) & !is.na(prox_local_casa)), T, F)) %>%
-      dplyr::select(-prox_local_casa)
+    tidyr::fill(prop_id, casa, .direction = "up") %>%
+    dplyr::mutate(prox_local_casa = dplyr::lead(casa)) %>%
+    dplyr::mutate(
+      pulou = dplyr::if_else((is.na(casa) & !is.na(prox_local_casa)), T, F)) %>%
+    dplyr::select(-prox_local_casa)
 }
 
 #' @title Recupera os eventos e seus respectivos pesos

@@ -49,14 +49,7 @@ process_pl <- function(id_camara, id_senado, apelido, tema_pl) {
 #' @param export_path pasta para onde exportar dados.
 #' @export
 export_data <- function(pls, export_path) {
-  ## res <-
-  ##   purrr::pmap(
-  ##     list(pls$id_camara, pls$id_senado, pls$apelido, pls$tema),
-  ##     function(x, y, z, w, df) process_pl(x, y, z, w))
-
   res <- pls %>% purrr::pmap(process_pl)
-    ## %>% dplyr::bind_rows()
-
 
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
@@ -68,8 +61,6 @@ export_data <- function(pls, export_path) {
   hists_energia <- purrr::map_df(res, ~ .$hist_energia)
   progressos <-
     purrr::map_df(res, ~ .$progresso) %>%
-    dplyr::select(
-      prop_id, casa, local_casa, fase_global, local, data_inicio, data_fim) %>%
     dplyr::rename(id_ext = prop_id)
 
   ## export data to CSVs

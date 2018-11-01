@@ -29,6 +29,7 @@ extract_casas <- function(tramitacao_df, proposicao_df){
   ## Roda função específica para cada casa
   extract_casas_subgroups <- function(tram) {
       casa <- tolower(tram[1, ]$casa)
+      prop_id <- tram[1, ]$prop_id
       label <- casa_label[casa, "label"][[1]]
       if (casa == congress_constants$camara_label) {
         df <- agoradigital:::extract_casas_in_camara(tram, label)
@@ -60,7 +61,9 @@ generate_progresso_df <- function(tramitacao_df){
     dplyr::mutate(end_data = dplyr::lead(data_hora)) %>%
     dplyr::group_by(
       casa, prop_id, fase_global, local, sequence = data.table::rleid(fase_global)) %>%
-    dplyr::summarise(data_inicio = min(data_hora), data_fim = max(end_data)) %>%
+    dplyr::summarise(
+      data_inicio = min(data_hora, na.rm = T),
+      data_fim = max(end_data, na.rm = T)) %>%
     dplyr::filter(data_fim - data_inicio > 0) %>%
     dplyr::select(-sequence) %>%
     dplyr::group_by(fase_global) %>%
@@ -68,11 +71,7 @@ generate_progresso_df <- function(tramitacao_df){
     dplyr::filter(is.na(data_fim_anterior) | data_fim > data_fim_anterior) %>%
     dplyr::select(-data_fim_anterior)
 
-  if (nrow(
-      df %>%
-        dplyr::group_by(fase_global, local) %>%
-        dplyr::filter(n() > 1))
-      > 0) {
+  if (nrow(df %>% dplyr::group_by(fase_global, local) %>% dplyr::filter(n() > 1)) > 0) {
     df %<>%
       dplyr::group_by(prop_id, casa, fase_global, local) %>%
       dplyr::summarise(data_inicio = min(data_inicio),
@@ -82,6 +81,7 @@ generate_progresso_df <- function(tramitacao_df){
     df %<>%
       dplyr::right_join(congress_env$fases_global, by = c("local", "fase_global"))
   }
+
 
   df %>% dplyr::ungroup()
 }
