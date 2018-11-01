@@ -2,6 +2,23 @@ source(here::here("R/utils.R"))
 senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 senado_constants <- senado_env$constants
 
+fetch_json_try <- function(url) {
+    repeat {
+        json_data <- NULL
+        tryCatch({
+            json_data <- jsonlite::fromJSON(url, flatten = T)
+        })
+        if (!is.null(json_data) & is.null(json_data$ERROR)) {
+            break
+        } else {
+            Sys.sleep(1)
+            print("Erro ao baixar dados, tentando outra vez...")
+            print(url)
+        }
+    }
+    return(json_data)
+}
+
 #' @title Busca votações de uma proposição no Senado
 #' @description Retorna dataframe com os dados das votações de uma proposição no Senado.
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
@@ -53,15 +70,7 @@ fetch_tramitacao_senado <- function(proposicao_id, normalized=FALSE) {
            "movimentacoes/",
            proposicao_id)
 
-  repeat {
-    json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
-    if (is.null(json_tramitacao$ERROR)) {
-      break
-    } else {
-      Sys.sleep(1)
-      print("Erro ao baixar proposicao, tentando outra vez...")
-    }
-  }
+  json_tramitacao <- fetch_json_try(url)
 
   tramitacao_data <-
     json_tramitacao %>%
@@ -714,7 +723,7 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema
   page_url_senado <-
     "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
 
-  json_proposicao <- jsonlite::fromJSON(da_url, flatten = T)
+  json_proposicao <- fetch_json_try(da_url)
   proposicao_data <- json_proposicao$DetalheMateria$Materia
   proposicao_ids <-
     proposicao_data$IdentificacaoMateria %>%
