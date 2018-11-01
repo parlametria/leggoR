@@ -52,7 +52,17 @@ fetch_tramitacao_senado <- function(proposicao_id, normalized=FALSE) {
     paste0(senado_env$endpoints_api$url_base,
            "movimentacoes/",
            proposicao_id)
-  json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
+
+  repeat {
+    json_tramitacao <- jsonlite::fromJSON(url, flatten = T)
+    if (is.null(json_tramitacao$ERROR)) {
+      break
+    } else {
+      Sys.sleep(1)
+      print("Erro ao baixar proposicao, tentando outra vez...")
+    }
+  }
+
   tramitacao_data <-
     json_tramitacao %>%
     magrittr::extract2("MovimentacaoMateria") %>%
@@ -76,11 +86,11 @@ fetch_tramitacao_senado <- function(proposicao_id, normalized=FALSE) {
     tibble::add_column(!!!tramitacao_ids)
 
   proposicao_tramitacoes_df <-
-    proposicao_tramitacoes_df[,!sapply(proposicao_tramitacoes_df, is.list)]
+    proposicao_tramitacoes_df[, !sapply(proposicao_tramitacoes_df, is.list)]
 
-  proposicao_tramitacoes_df <- rename_tramitacao_df(proposicao_tramitacoes_df) %>%
-    dplyr::rename(data_hora = data_tramitacao,
-                  sequencia = numero_ordem_tramitacao)
+  proposicao_tramitacoes_df <-
+    rename_tramitacao_df(proposicao_tramitacoes_df) %>%
+    dplyr::rename(data_hora = data_tramitacao, sequencia = numero_ordem_tramitacao)
 
   if (normalized) {
     proposicao_tramitacoes_df <- proposicao_tramitacoes_df %>%
@@ -88,7 +98,7 @@ fetch_tramitacao_senado <- function(proposicao_id, normalized=FALSE) {
                     prop_id = as.integer(codigo_materia),
                     sequencia = as.integer(sequencia),
                     id_situacao = as.integer(situacao_codigo_situacao),
-                    casa = 'senado') %>%
+                    casa = "senado") %>%
       dplyr::select(prop_id,
                     casa,
                     data_hora,
