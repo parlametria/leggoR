@@ -2,7 +2,7 @@
 title: "A Pressão Recente de um Projeto de Lei"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Sobre o cálculo da energia}
+  %\VignetteIndexEntry{Sobre o cálculo da pressao}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -61,7 +61,7 @@ hist_pressao_semanal <- agoradigital::get_historico_energia_recente(proc_tram, g
 
 ggplot2::ggplot(hist_pressao_semanal, ggplot2::aes(x=periodo, y=energia_recente)) +
   ggplot2::xlab("Tempo") + 
-  ggplot2::ylab("Energia") +
+  ggplot2::ylab("Pressão") +
   ggplot2::geom_point() +
   ggplot2::theme_minimal()
 ```
@@ -75,20 +75,20 @@ hist_pressao_semanal %>%
   ggplot2::ggplot(ggplot2::aes(x=periodo, y=energia_recente)) +
   ggplot2::geom_line() +
   ggplot2::xlab("Tempo") + 
-  ggplot2::ylab("Energia") +
+  ggplot2::ylab("Pressão") +
   ggplot2::theme_minimal()
 ```
 
 #### Pressão Semanal (curva suavizada)
 
-Agora vamos aplicar uma suavização à curva de energia.
+Agora vamos aplicar uma suavização à curva de pressão.
 
 ```{r, warning=FALSE, message=FALSE, fig.width=7, fig.align='center'}
 hist_pressao_semanal %>% 
   ggplot2::ggplot(ggplot2::aes(x=periodo, y=energia_recente)) +
   ggplot2::geom_smooth(span = .05, se = F) +
   ggplot2::xlab("Tempo") + 
-  ggplot2::ylab("Energia") +
+  ggplot2::ylab("Pressão") +
   ggplot2::theme_minimal()
 ```
 
@@ -100,14 +100,14 @@ Os pontos vermelhos representam o número de eventos ocorridos em cada semana na
 
 ```{r, warning=FALSE, message=FALSE, fig.width=7, fig.align='center'}
 start_date <- dplyr::last(proc_tram$data_hora) - lubridate::days(90)
-hist_pressao_semanal_3_meses <- hist_energia_semanal %>% 
+hist_pressao_semanal_3_meses <- hist_pressao_semanal %>% 
   dplyr::filter(periodo >= start_date)
 
 hist_pressao_semanal_3_meses %>% 
   ggplot2::ggplot(ggplot2::aes(x=periodo, y=energia_recente)) +
   ggplot2::geom_smooth(span = .3, se = F) +
-  ggplot2::geom_point(ggplot2::aes(x=periodo, y=energia_periodo), colour='red', alpha=0.5, subset(hist_energia_semanal_3_meses, energia_periodo > 0)) +
+  ggplot2::geom_point(ggplot2::aes(x=periodo, y=energia_periodo), colour='red', alpha=0.5, subset(hist_pressao_semanal_3_meses, energia_periodo > 0)) +
   ggplot2::xlab("Tempo") + 
-  ggplot2::ylab("Energia") +
+  ggplot2::ylab("Pressão") +
   ggplot2::theme_minimal()
 ```
