@@ -7,6 +7,8 @@ fetch_json_try <- function(url) {
         json_data <- NULL
         tryCatch({
             json_data <- jsonlite::fromJSON(url, flatten = T)
+        },
+        error = function(msg) {
         })
         if (!is.null(json_data) & is.null(json_data$ERROR)) {
             break
