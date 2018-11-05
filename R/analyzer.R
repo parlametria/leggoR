@@ -213,9 +213,8 @@ extract_status_tramitacao <- function(tram_df) {
 #' @param out_folderpath Caminho destino do csv resultante
 #' @return Dataframe contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
 #' @examples
-#' pls_senado_camara <- readr::read_csv(here::here("data/tabela_ids_senado_camara.csv"))
-#' pls_senado_camara %>% get_progresso(fetch_tramitacao(257161, 'camara', T), fetch_proposicao(257161, 'camara', '', '', normalized = T), 'camara')
-#' pls_senado_camara %>% get_progresso(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', '', '', normalized = T), 'senado')
+#' get_progresso(fetch_proposicao(257161, 'camara', '', '', normalized = T), fetch_tramitacao(257161, 'camara', T))
+#' get_progresso(fetch_proposicao(115926, 'senado', '', '', normalized = T), fetch_tramitacao(115926, 'senado', T))
 #' @export
 get_progresso <- function(proposicao_df, tramitacao_df) {
   progresso_data <-
