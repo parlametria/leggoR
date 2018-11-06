@@ -364,6 +364,8 @@ fetch_sessions <- function(bill_id) {
 
   ordem_do_dia_df <- sessions_data %>%
     magrittr::extract2("OrdensDoDia") %>%
+    magrittr::extract2("OrdemDoDia") %>%
+    magrittr::extract2("SessaoPlenaria") %>%
     purrr::map_df( ~ .) %>%
     tidyr::unnest() %>%
     rename_table_to_underscore()
