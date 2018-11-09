@@ -65,14 +65,6 @@ test <- function(){
     expect_true(is.data.frame(proposicoes_fetch_current_relatoria))
   })
 
-  test_that('fetch_sessions() returns dataframe', {
-    proposicoes_fetch_sessions <- senado_df %>%
-      dplyr::rowwise() %>%
-      dplyr::do(fetch_sessions(.$SENADO_ID))
-
-    expect_true(is.data.frame(proposicoes_fetch_sessions))
-  })
-
   test_that('fetch_emendas() returns dataframe', {
     expect_true(is.data.frame(fetch_emendas(91341, 'senado')))
   })

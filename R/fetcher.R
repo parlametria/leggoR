@@ -365,33 +365,6 @@ rename_proposicao_df <- function(df) {
   df
 }
 
-#' @title Retorna as sessões deliberativas de uma proposição no Senado
-#' @description Retorna dataframe com os dados das sessões deliberativas de uma proposição no Senado.
-#' @param bill_id ID de uma proposição do Senado
-#' @return Dataframe com as informações sobre as sessões deliberativas de uma proposição no Senado
-#' @examples
-#' fetch_sessions(91341)
-#' @export
-fetch_sessions <- function(bill_id) {
-  url_base_sessions <-
-    "http://legis.senado.leg.br/dadosabertos/materia/ordia/"
-  url <- paste0(url_base_sessions, bill_id)
-
-  json_sessions <- fetch_json_try(url)
-
-  sessions_data <- json_sessions %>%
-    magrittr::extract2("OrdiaMateria") %>%
-    magrittr::extract2("Materia")
-
-  ordem_do_dia_df <- sessions_data %>%
-    magrittr::extract2("OrdensDoDia") %>%
-    purrr::map_df( ~ .) %>%
-    tidyr::unnest() %>%
-    rename_table_to_underscore()
-
-  ordem_do_dia_df
-}
-
 #' @title Retorna um dataframe a partir de uma coluna com listas encadeadas
 #' @description Retorna um dataframe a partir de uma coluna com listas encadeadas.
 #' @param column Coluna
@@ -446,12 +419,14 @@ fetch_emendas_senado <- function(bill_id) {
   emendas_df <- emendas_data %>%
     magrittr::extract2("Emendas") %>%
     purrr::map_df( ~ .) %>% rename_df_columns()
+  
+  num_emendas = nrow(emendas_df)
 
-  if (nrow(emendas_df) == 0) {
+  if (num_emendas == 0) {
     emendas_df <-
-      frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ partido, ~ casa, ~ tipo_documento, ~ inteiro_teor)
+      tibble::frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ partido, ~ casa, ~ tipo_documento, ~ inteiro_teor)
 
-  } else if (nrow(emendas_df) == 1) {
+  } else if (num_emendas == 1) {
     texto <- generate_dataframe(emendas_df$textos_emenda) %>%
       dplyr::select(tipo_documento, url_texto)
 
