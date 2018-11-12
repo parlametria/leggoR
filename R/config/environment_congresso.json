@@ -3,7 +3,7 @@
       "camara_label": "camara",
       "senado_label": "senado"
   },
-  
+
    "fases_global":[
     {"local": "Comissões", "fase_global": "Construção"},
     {"local": "Plenário", "fase_global": "Construção"},
@@ -12,6 +12,6 @@
     {"local": "Comissões", "fase_global": "Revisão II"},
     {"local": "Plenário", "fase_global": "Revisão II"},
     {"local": "Presidência da República", "fase_global": "Sansão/Veto"},
-    {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
+    {"local": "Congresso", "fase_global": "Avaliação dos Vetos"}
   ]
 }

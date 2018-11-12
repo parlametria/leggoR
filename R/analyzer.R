@@ -5,7 +5,7 @@ source(here::here("R/congresso-lib.R"))
 congress_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
 congress_constants <- congress_env$constants
 
-#' @title Processa dados de um proposição do congresso.
+#' @title Processa dados de uma proposição do congresso.
 #' @description Recebido um dataframe a função recupera informações sobre uma proposição
 #' e sua tramitação e as salva em data/<camara/Senado>.
 #' @param tramitacao_df Dataframe com tramitação da proposição
@@ -16,15 +16,22 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
   proc_tram_data <- NULL
   prop_id <- NULL
   if (tolower(casa) == congress_constants$camara_label) {
-    proc_tram_data <- process_proposicao_camara_df(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
-    prop_id <- proc_tram_data[1,"prop_id"]
+    proc_tram_data <-
+      process_proposicao_camara_df(
+        proposicao_df = proposicao_df, tramitacao_df = tramitacao_df)
+    prop_id <- proc_tram_data[1, "prop_id"]
   } else if (tolower(casa) == congress_constants$senado_label) {
-    proc_tram_data <- process_proposicao_senado_df(proposicao_df = proposicao_df, tramitacao_df=tramitacao_df)
-    prop_id <- proc_tram_data[1,"prop_id"]
+    proc_tram_data <-
+      process_proposicao_senado_df(
+        proposicao_df = proposicao_df, tramitacao_df = tramitacao_df)
+    prop_id <- proc_tram_data[1, "prop_id"]
   }
-  
-  if((!is.null(proc_tram_data)) & (!is.null(out_folderpath))) {
-      readr::write_csv(proc_tram_data, paste0(out_folderpath,'/',casa,'/',prop_id,'-fases-tramitacao-',casa,'.csv'))
+
+  if (!is.null(proc_tram_data) & !is.null(out_folderpath)) {
+    readr::write_csv(
+      proc_tram_data,
+      paste0(
+        out_folderpath, "/", casa, "/", prop_id, "-fases-tramitacao-", casa, ".csv"))
   }
   return(proc_tram_data)
 }
@@ -40,15 +47,15 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
 #' @export
 get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::today()) {
   working_days <- ((days_ago / 7) * 5)
-  
-  start_date = pivot_day - lubridate::days(days_ago)
-  
+
+  start_date <- pivot_day - lubridate::days(days_ago)
+
   qtd_eventos <-
     tramitacao_df %>%
     dplyr::filter(data_hora >= start_date) %>%
     dplyr::filter(!is.na(evento)) %>%
     nrow()
-  
+
   qtd_eventos / working_days
 }
 
@@ -63,7 +70,7 @@ get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::tod
 #' @return Dataframe com o valor da energia recente para cada dia útil da tramitação de uma proposição.
 #' @importFrom magrittr '%>%'
 #' @export
-#' @examples 
+#' @examples
 #' \dontrun{
 #' id <- 345311
 #' casa <- 'camara'
@@ -76,48 +83,48 @@ get_historico_energia_recente <- function(eventos_df, granularidade = 's', decai
   #Remove tempo do timestamp da tramitação
   eventos_extendidos <- eventos_df %>%
     dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
-  
+
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
   full_dates <- data.frame(data = seq(min(eventos_extendidos$data), max_date, by = "1 day"))
   eventos_extendidos <- merge(full_dates, eventos_extendidos, by="data", all.x = TRUE) %>%
     filtra_dias_nao_uteis_congresso() %>%
-    dplyr::left_join(get_pesos_eventos(), by='evento')
-  
+    dplyr::left_join(get_pesos_eventos(), by="evento")
+
   energia_periodo <- data.frame()
-  
+
   #Agrupa eventos por período
-  if (granularidade == 'd') {
+  if (granularidade == "d") {
     energia_periodo <- eventos_extendidos %>%
       dplyr::group_by(data)
-  } else if (granularidade == 's') {
+  } else if (granularidade == "s") {
     energia_periodo <- eventos_extendidos %>%
       dplyr::mutate(semana = lubridate::week(data),
                     ano = lubridate::year(data)) %>%
-      dplyr::group_by(ano,semana)
-  } else if (granularidade == 'm') {
+      dplyr::group_by(ano, semana)
+  } else if (granularidade == "m") {
     energia_periodo <- eventos_extendidos %>%
       dplyr::mutate(mes = lubridate::month(data),
                     ano = lubridate::year(data)) %>%
-      dplyr::group_by(ano,mes)
+      dplyr::group_by(ano, mes)
   }
-  
-  energia_periodo <- energia_periodo %>% 
+
+  energia_periodo <- energia_periodo %>%
     dplyr::summarize(periodo = dplyr::first(data),
                      energia_periodo = sum(peso, na.rm = T)) %>%
     dplyr::ungroup() %>%
-    dplyr::select(periodo,energia_periodo) %>%
+    dplyr::select(periodo, energia_periodo) %>%
     dplyr::arrange(periodo)
-  
+
   #Computa soma deslizante com decaimento exponencial
   tamanho_janela <- nrow(energia_periodo)
-  weights <- (1-decaimento) ^ ((tamanho_janela-1):0)
+  weights <- (1 - decaimento) ^ ((tamanho_janela - 1):0)
   energia_recente <- data.frame(energia_recente = round(roll::roll_sum(data.matrix(energia_periodo$energia_periodo), tamanho_janela, weights, min_obs = 1), digits=3))
-  historico_energia <- dplyr::bind_cols(energia_periodo,energia_recente) %>%
+  historico_energia <- dplyr::bind_cols(energia_periodo, energia_recente) %>%
     dplyr::select(periodo,
                   energia_periodo,
                   energia_recente)
-  
+
   return(historico_energia)
 }
 
@@ -131,13 +138,13 @@ get_historico_energia_recente <- function(eventos_df, granularidade = 's', decai
 extract_regime_tramitacao <- function(tram_df) {
   casa <- tram_df[1, "casa"]
   regime <- NULL
-  
+
   if (casa == congress_constants$camara_label) {
     regime <- extract_regime_tramitacao_camara(tram_df)
   } else if (casa == congress_constants$senado_label) {
     regime <- extract_regime_tramitacao_senado(tram_df)
   }
-  
+
   regime
 }
 
@@ -153,25 +160,27 @@ extract_forma_apreciacao <- function(tram_df) {
   casa <- tram_df[1, "casa"]
   prop_id <- tram_df[1, "prop_id"]
   apreciacao <- NULL
-  
+
   if (casa == congress_constants$camara_label) {
     apreciacao <- extract_forma_apreciacao_camara(prop_id)
   } else if (casa == congress_constants$senado_label) {
     apreciacao <- extract_forma_apreciacao_senado(prop_id)
   }
-  
+
   apreciacao
 }
 
-#' @title Extrai se uma proposição está em pauta
-#' @description Extrai se uma proposição está em pauta
-#' @param proposicao_id id do PL
-#' @return TRUE se estiver em pauta FALSE caso contrário
+#' @title Cria uma coluna com o nome pauta
+#' @description Extrai se um vectors de proposições estarão em pauta
+#' @param agenda Dataframe com a agenda
+#' @param proposicao_id vector de ids
+#' @return Dataframe com a coluna em_pauta
 #' @examples
-#' extract_pauta(fetch_agenda('2018-07-03', '2018-07-10', 'senado'), 117839)
+#' extract_pauta(fetch_agenda_geral('2018-10-01', '2018-10-26'), c("91341", "2121442", "115926", "132136"))
 #' @export
 extract_pauta <- function(agenda, proposicao_id) {
-  proposicao_id %in% agenda$codigo_materia
+  agenda %>%
+    dplyr::mutate(em_pauta = id_proposicao %in% proposicao_id)
 }
 
 #' @title Extrai o status da tramitação de um PL
@@ -185,98 +194,41 @@ extract_pauta <- function(agenda, proposicao_id) {
 extract_status_tramitacao <- function(tram_df) {
   regime <- extract_regime_tramitacao(tram_df)
   apreciacao <- extract_forma_apreciacao(tram_df)
-  pauta <- extract_pauta(fetch_agenda(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4, tram_df[1,]$casa), tram_df[1,]$prop_id)
-  status_tram <- data.frame(prop_id=tram_df[1,]$prop_id,regime_tramitacao=regime,forma_apreciacao=apreciacao, em_pauta = pauta)
+  # TODO: descomentar e arrumar
+  ## pauta <- extract_pauta(fetch_agenda(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4, tram_df[1,]$casa), tram_df[1,]$prop_id)
+  status_tram <-
+      data.frame(
+          prop_id = tram_df[1, ]$prop_id,
+          regime_tramitacao = regime,
+          forma_apreciacao = apreciacao
+          ## em_pauta = pauta
+      )
 }
 
 #' @title Extrai o progresso de um PL
 #' @description Extrai o progresso de um PL
 #' @param proposicao_df Dataframe da tramitação do PL.
-#' @param tramitacao_df Dataframe da proposição do PL. 
+#' @param tramitacao_df Dataframe da proposição do PL.
 #' @param casa Casa (Senado ou Câmara)
-#' @param out_folderpath Caminho destino do csv resultante 
+#' @param out_folderpath Caminho destino do csv resultante
 #' @return Dataframe contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
 #' @examples
-#' pls_senado_camara <- readr::read_csv(here::here("data/tabela_ids_senado_camara.csv"))
-#' pls_senado_camara %>% get_progresso(fetch_tramitacao(257161, 'camara', T), fetch_proposicao(257161, 'camara', '', '', normalized = T), 'camara')
-#' pls_senado_camara %>% get_progresso(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', '', '', normalized = T), 'senado')
+#' get_progresso(fetch_proposicao(257161, 'camara', '', '', normalized = T), fetch_tramitacao(257161, 'camara', T))
+#' get_progresso(fetch_proposicao(115926, 'senado', '', '', normalized = T), fetch_tramitacao(115926, 'senado', T))
 #' @export
-get_progresso <- function(pls_senado_camara, tramitacao_df, proposicao_df, casa, out_folderpath=NULL) {
-  prop_id <- proposicao_df[1, "prop_id"]
-  
-  casa_origem <- 
-    dplyr::if_else(
-      stringr::str_detect(tolower(proposicao_df$casa_origem), 'senado federal'),
-                          congress_constants$senado_label,
-                          congress_constants$camara_label)
-  
-  if (tolower(casa) == congress_constants$camara_label) {
-    another_prop_id <- 
-      pls_senado_camara %>% 
-      dplyr::filter(prop_id == id_camara) %>%
-      plyr::rename(c("id_senado" = "id")) %>%
-      dplyr::select(id)
-    
-  } else if (tolower(casa) == congress_constants$senado_label) {
-    prop_id = prop_id$prop_id
-    another_prop_id <- 
-      pls_senado_camara %>%
-      dplyr::filter(prop_id == id_senado) %>% 
-      plyr::rename(c("id_camara" = "id")) %>%
-      dplyr::select(id)
-    
-  }
-  if(nrow(another_prop_id) > 0){
-    if(casa_origem == tolower(casa)){
-      progresso_data <- get_progresso_both(prop_id, another_prop_id$id, casa)
-    } else{
-      progresso_data <- get_progresso_both(another_prop_id$id, prop_id, casa_origem)
-    }
-  } else {
-    progresso_data <- extract_progresso(tramitacao_df, proposicao_df, casa)
-  }
-  
-  progresso_data$prox_local_casa = dplyr::lead(progresso_data$casa)
-  progresso_data <- 
-    progresso_data %>%
-    dplyr::mutate(pulou = dplyr::if_else((is.na(casa) & !is.na(prox_local_casa)), T, F)) %>%
+get_progresso <- function(proposicao_df, tramitacao_df) {
+  progresso_data <-
+    tramitacao_df %>%
+    agoradigital:::extract_casas(proposicao_df) %>%
+    agoradigital:::generate_progresso_df() %>%
+    dplyr::mutate(local_casa = casa) %>%
+    ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
+    tidyr::fill(prop_id, casa) %>%
+    tidyr::fill(prop_id, casa, .direction = "up") %>%
+    dplyr::mutate(prox_local_casa = dplyr::lead(casa)) %>%
+    dplyr::mutate(
+      pulou = dplyr::if_else((is.na(casa) & !is.na(prox_local_casa)), T, F)) %>%
     dplyr::select(-prox_local_casa)
-  
-  progresso_data$casa <- casa
-  progresso_data$prop_id <- prop_id
-  
-  if((!is.null(progresso_data)) & (!is.null(out_folderpath))) {
-    readr::write_csv(progresso_data, paste0(out_folderpath,'/',casa,'/',prop_id,'-progresso-',casa,'.csv'))
-  }
-  
-  return(progresso_data)
-  
-}	
-
-#' @title Extrai o progresso de um PL
-#' @description Extrai o progresso de um PL
-#' @param proposicao_df Dataframe da tramitação do PL.
-#' @param tramitacao_df Dataframe da proposição do PL. 
-#' @param casa Casa (Senado ou Câmara)
-#' @return Dataframe contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
-get_progresso_both <- function(origem_id, revisao_id, casa_origem){
-  casa_revisora <- dplyr::if_else(stringr::str_detect(tolower('senado federal'), tolower(casa_origem)), 'camara', 'senado')
-  
-  tram_origem <- 
-    fetch_tramitacao(origem_id, casa_origem, T) %>% 
-    extract_casas(fetch_proposicao(origem_id, casa_origem, '', '', normalized = T), casa_origem) %>%
-    dplyr::mutate(pl_id = origem_id)
-  
-  tram_destino <- 
-    fetch_tramitacao(revisao_id, casa_revisora, T) %>% 
-    extract_casas(fetch_proposicao(revisao_id, casa_revisora, '', '', normalized = T), casa_revisora) %>%
-    dplyr::mutate(pl_id = revisao_id)
-  
-  df <- 
-    dplyr::bind_rows(tram_origem, tram_destino) %>%
-    generate_progresso_df()
-  
-  return(df)
 }
 
 #' @title Recupera os eventos e seus respectivos pesos
@@ -288,14 +240,14 @@ get_progresso_both <- function(origem_id, revisao_id, casa_origem){
 get_pesos_eventos <- function() {
   eventos_camara <- camara_env$eventos
   eventos_senado <- senado_env$eventos
-  
+
   eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
     dplyr::select(evento = constant, peso)
-  
-  pesos_eventos <- dplyr::bind_rows(eventos_camara, eventos_senado, eventos_extra_senado) %>% 
+
+  pesos_eventos <- dplyr::bind_rows(eventos_camara, eventos_senado, eventos_extra_senado) %>%
     dplyr::group_by(evento) %>%
     dplyr::summarise(peso = dplyr::first(peso)) %>%
     dplyr::arrange()
-  
+
   return(pesos_eventos)
 }
