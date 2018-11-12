@@ -81,15 +81,18 @@ get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::tod
 #' }
 get_historico_energia_recente <- function(eventos_df, granularidade = 's', decaimento = 0.05, max_date = lubridate::now()) {
   #Remove tempo do timestamp da tramitação
-  eventos_extendidos <- eventos_df %>%
+  eventos_sem_horario <- eventos_df %>%
     dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
 
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
-  full_dates <- data.frame(data = seq(min(eventos_extendidos$data), max_date, by = "1 day"))
-  eventos_extendidos <- merge(full_dates, eventos_extendidos, by="data", all.x = TRUE) %>%
+  full_dates <- data.frame(data = seq(min(eventos_sem_horario$data), max_date, by = "1 day"))
+  eventos_extendidos <- merge(full_dates, eventos_sem_horario, by="data", all.x = TRUE) %>%
     filtra_dias_nao_uteis_congresso() %>%
-    dplyr::left_join(get_pesos_eventos(), by="evento")
+    dplyr::mutate(peso_base = dplyr::if_else(is.na(prop_id),0,1)) %>%
+    dplyr::left_join(get_pesos_eventos(), by="evento") %>%
+    dplyr::mutate(peso = dplyr::if_else(is.na(peso),0,as.numeric(peso))) %>%
+    dplyr::mutate(peso_final = peso_base + 2*peso)
 
   energia_periodo <- data.frame()
 
@@ -111,7 +114,7 @@ get_historico_energia_recente <- function(eventos_df, granularidade = 's', decai
 
   energia_periodo <- energia_periodo %>%
     dplyr::summarize(periodo = dplyr::first(data),
-                     energia_periodo = sum(peso, na.rm = T)) %>%
+                     energia_periodo = sum(peso_final, na.rm = T)) %>%
     dplyr::ungroup() %>%
     dplyr::select(periodo, energia_periodo) %>%
     dplyr::arrange(periodo)
