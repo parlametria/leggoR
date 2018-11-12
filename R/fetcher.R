@@ -1189,7 +1189,7 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
   orgao_atual <- 
     fases_tramitacao_df %>% 
     dplyr::filter(data_hora >= lubridate::as_date(lubridate::dmy(initial_date)) & data_hora <= lubridate::as_date((lubridate::dmy(end_date)))) %>% 
-   # utils::tail(1) %>% 
+    utils::tail(1) %>% 
     dplyr::select(local) %>% 
     dplyr::mutate(local = 
                     dplyr::if_else(toupper(local) == "PLENÁRIO", "PLEN", local)) %>% 
@@ -1198,10 +1198,8 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
   
   if(nrow(orgao_atual) > 0){
     orgao_id <- 
-      merge(fetch_orgaos_camara(), orgao_atual, by ='sigla')
       fetch_orgaos_camara() %>%
-      dplyr::filter(stringr::str_extract(sigla, orgao_atual$local))
-      dplyr::mutate(orgao_id = stringr::str_extract(sigla, orgao_atual$local)) %>% 
+      dplyr::filter(stringr::str_detect(sigla, orgao_atual$sigla)) %>% 
       dplyr::select(orgao_id)
     
     
@@ -1229,28 +1227,30 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
       df <- df %>% 
         dplyr::filter (tipo == 'Audiência Pública') %>% 
         dplyr::select(-c(num_reuniao, proposicoes)) %>%
+        as.data.frame() %>% 
+        sapply( function(x) unlist(x)) %>% 
         as.data.frame()
-      
+       
       df <- df %>% 
-        dplyr::mutate(requerimento = 
-                        stringr::str_extract_all(tolower(objeto),
-                                                 camara_env$frase_requerimento$requerimento),
-                      num_requerimento = 
-                        dplyr::if_else(
-                          stringr::str_extract_all(
-                            requerimento, camara_env$extract_requerimento_num$regex) != 'character(0)',
-                          stringr::str_extract_all(
-                            requerimento, camara_env$extract_requerimento_num$regex) %>% lapply(function(x)(preprocess_requerimentos(x))),
-                          list(0))) %>% 
-        dplyr::select(-requerimento)
+        dplyr::mutate(proposicao = stringr::str_extract(tolower(objeto), '"discussão d(o|a) (pl|projeto de lei) .*"'),
+                      tipo_materia = dplyr::case_when(
+                        stringr::str_detect(tolower(proposicao), 'pl| projeto de lei') ~ 'PL',
+                        TRUE ~ 'NA'),
+                      numero_aux = stringr::str_extract(tolower(proposicao), "(\\d*.|)\\d* de"),
+                      numero = stringr::str_extract(tolower(numero_aux), "(\\d*.|)\\d*"),
+                      numero = gsub('\\.', '', numero),
+                      ano_aux = stringr::str_extract(tolower(proposicao), "( de |/)\\d*"),
+                      ano = stringr::str_extract(tolower(ano_aux), "\\d{4}|\\d{2}")) %>% 
+        dplyr::select(-ano_aux, -numero_aux, -proposicao,  -tipo)
+      
     }else{
       
-      df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
-                               ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes, ~ num_requerimento)
+      df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
+                               ~ estado, ~ tipo_materia, ~ titulo_reuniao, ~ objeto, ~ numero, ~ ano)
     }
   } else{
-    df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local, 
-                             ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes, ~ num_requerimento)
+    df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
+                             ~ estado, ~ tipo_materia, ~ titulo_reuniao, ~ objeto, ~ numero, ~ ano)
   }
   
   return(df)
@@ -1307,11 +1307,4 @@ readXML <- function(url) {
   }
   )    
   return(out)
-}
-
-#' @title Baixa os órgãos na câmara 
-#' @description Retorna um dataframe contendo os órgãos da câmara
-#' @return Dataframe contendo os órgãos da Câmara
-get_audiencias <- function(){
-  url = 
 }

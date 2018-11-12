@@ -383,53 +383,38 @@ extract_num_requerimento_audiencia_publica_in_camara <- function(tramitacao_df) 
 #' @param fases_tramitacao_df dataframe da PL preprocessada
 #' @return Dataframe com as próximas audiências públicas de uma PL na Câmara
 #' @examples
-#' get_next_audiencias_publicas_in_camara(initial_date = '01/01/2016', end_date = '30/10/2018', fases_tramitacao_df = process_proposicao(fetch_proposicao(2121442, 'Lei do Teto Remuneratório', 'Meio Ambiente'), fetch_tramitacao(2121442, 'camara', T), 'camara'), next_audiencias_publicas_by_orgao = fetch_audiencias_publicas_by_orgao_camara('01/01/2016', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Meio Ambiente'), fetch_tramitacao(2121442, 'camara', T), 'camara')))
-get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases_tramitacao_df, next_audiencias_publicas_by_orgao){
-  id_proposicao <- fases_tramitacao_df %>% dplyr::select(prop_id) %>% utils::tail(1)
-  casa <- fases_tramitacao_df %>% dplyr::select(casa) %>% utils::tail(1)
+#' get_next_audiencias_publicas_in_camara(initial_date = '01/01/2016', end_date = '30/10/2018', fetch_proposicao(2121442, casa ='camara', 'Lei do Teto Remuneratório', 'Meio Ambiente'), next_audiencias_publicas_by_orgao = fetch_audiencias_publicas_by_orgao_camara('01/01/2016', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Meio Ambiente'), fetch_tramitacao(2121442, 'camara', T), 'camara')))
+get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, proposicao_df, next_audiencias_publicas_by_orgao){
   
-  num_requerimentos_audiencias_publicas <- 
-    extract_num_requerimento_audiencia_publica_in_camara(fases_tramitacao_df)
-  
-  next_audiencias_publicas_by_orgao <- 
-    next_audiencias_publicas_by_orgao %>% 
-    dplyr::filter(num_requerimento != '0')
-  
-  if(nrow(next_audiencias_publicas_by_orgao) > 0 & nrow(num_requerimentos_audiencias_publicas) > 0){
-    
-    next_audiencias_publicas_by_orgao <-
-      do.call("rbind", 
-              apply(next_audiencias_publicas_by_orgao, 
-                    1, 
-                    remove_unnested_list))
-    
+  if(nrow(next_audiencias_publicas_by_orgao) > 0){
     next_audiencias_publicas_pl <-
       next_audiencias_publicas_by_orgao %>% 
-      merge(num_requerimentos_audiencias_publicas %>% 
-              dplyr::select(casa, num_requerimento), by = "num_requerimento")
+      merge(proposicao_df %>% 
+              dplyr::select(prop_id, casa, tipo_materia, ano, numero), by = c("tipo_materia", "ano", "numero"))
     
     if(nrow(next_audiencias_publicas_pl) > 0){
-      next_audiencias_publicas_pl$id_proposicao <- id_proposicao$prop_id
-      next_audiencias_publicas_pl$casa <- casa$casa
-      
+    
       next_audiencias_publicas_pl <-
         next_audiencias_publicas_pl %>% 
-        dplyr::select(-num_requerimento, comissao, cod_reuniao, data, hora, local, 
-                      estado, tipo, titulo_reuniao, objeto, id_proposicao, casa) %>% 
-        dplyr::group_by(data) %>% 
+        dplyr::select(comissao, data, hora, local, titulo_reuniao, objeto, prop_id, casa, estado) %>% 
+        dplyr::mutate(data = lubridate::as_date(data),
+                      estado = dplyr::if_else(estado %in% c("Cancelada"), "Não", "Sim")) %>% 
+        dplyr::group_by(data, hora) %>% 
         dplyr::distinct() %>% 
         dplyr::ungroup() %>% 
-        dplyr::mutate(data = lubridate::dmy_hm(paste0(data, ' ', hora))) %>% 
-        dplyr::select(data, comissao, id_proposicao, local) %>% 
+        dplyr::rename(id_proposicao = prop_id,
+                      comissoes_comissao_sigla = sigla,
+                      realizada = estado) %>% 
+        dplyr::select(id_proposicao, casa, data, hora, comissao, local) %>% 
         dplyr::rename(sigla = comissao)
       
     } else {
       next_audiencias_publicas_pl <- 
-        tibble::frame_data(~ data, ~sigla, ~id_proposicao, ~local)
+        tibble::frame_data(~ data, ~hora, ~realizada, ~comissoes_comissao_sigla, ~id_proposicao, ~casa)
     }
   } else {
     next_audiencias_publicas_pl <- 
-      tibble::frame_data(~ data, ~sigla, ~id_proposicao, ~local)
+      tibble::frame_data(~ data, ~hora, ~realizada, ~comissoes_comissao_sigla, ~id_proposicao, ~casa)
   }
   
   return(next_audiencias_publicas_pl)
