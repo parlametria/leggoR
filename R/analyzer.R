@@ -194,13 +194,15 @@ extract_pauta <- function(agenda, proposicao_id) {
 extract_status_tramitacao <- function(tram_df) {
   regime <- extract_regime_tramitacao(tram_df)
   apreciacao <- extract_forma_apreciacao(tram_df)
+  relator_nome <- extract_relator_nome(tram_df)
   # TODO: descomentar e arrumar
   ## pauta <- extract_pauta(fetch_agenda(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4, tram_df[1,]$casa), tram_df[1,]$prop_id)
   status_tram <-
       data.frame(
           prop_id = tram_df[1, ]$prop_id,
           regime_tramitacao = regime,
-          forma_apreciacao = apreciacao
+          forma_apreciacao = apreciacao,
+          relator_nome = relator_nome
           ## em_pauta = pauta
       )
 }
@@ -250,4 +252,18 @@ get_pesos_eventos <- function() {
     dplyr::arrange()
 
   return(pesos_eventos)
+}
+
+extract_relator_nome <- function(tram_df) {
+  casa <- tram_df[1, "casa"]
+  prop_id <- tram_df[1, "prop_id"]
+  relator_nome <- NULL
+  
+  if (casa == congress_constants$camara_label) {
+    relator_nome <- extract_last_relator_in_camara(tram_df)
+  } else if (casa == congress_constants$senado_label) {
+    relator_nome <- agoradigital::extract_ultimo_relator(prop_id)
+  }
+  
+  relator_nome
 }
