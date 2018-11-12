@@ -254,6 +254,7 @@ get_pesos_eventos <- function() {
   return(pesos_eventos)
 }
 
+#' @export
 extract_relator_nome <- function(tram_df) {
   casa <- tram_df[1, "casa"]
   prop_id <- tram_df[1, "prop_id"]
