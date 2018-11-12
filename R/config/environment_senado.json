@@ -8,61 +8,61 @@
         "regex_plenario": "pronto_para_deliberação_do_plenário",
         "regex_comissoes_vector": ["matéria_com_a_relatoria","aguardando_designação_do_relator"],
         "comissoes": "Comissões"
-  }, 
-  
+  },
+
   "apreciacao": {
       "conclusiva": "Conclusiva",
       "plenario": "Plenário"
-  }, 
-  
+  },
+
   "fase_global": {
       "origem_senado": " - Origem (Senado)",
       "revisao_camara": " - Revisão (Câmara)"
-  }, 
-  
+  },
+
   "fase_subfase_comissoes": {
       "recebimento": "Recebimento",
       "analise": "Análise do relator",
       "discussao": "Discussão e votação",
       "encaminhamento": "Encaminhamento",
       "regex": "recebido na|nesta comissão"
-  }, 
-  
+  },
+
   "fase_casa": [
     {"fase_casa": "plenario", "regex": "Apresentação"},
     {"fase_casa": "comissoes", "regex": "recebido na comissão|recebido nesta comissão"}
   ],
-  
+
   "fase_comissao": [
     {"fase": "analise_do_relator", "code": [91], "regex":"(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a presente matéria.*))"},
     {"fase": "discussao_votacao", "code": [42, 14, 78, 90]},
     {"fase": "encaminhamento", "code": [89, 159]},
     {"fase": "recebimento_comissao", "regex": "recebido na|nesta comissao"}
   ],
-  
+
   "evento": {
     "arquivamento": {
       "regex": "processo arquivado(.)*",
       "regex_complementar": "",
-      "constant": "arquivamento", 
+      "constant": "arquivamento",
       "peso":1
     },
     "virada": {
       "regex": "primeiro-secretário da câmara dos deputados",
       "regex_complementar": "",
-      "constant": "virada_de_casa", 
+      "constant": "virada_de_casa",
       "peso":1
     },
     "aprovacao_substitutivo": {
       "regex": "aprovado o substitutivo",
       "regex_complementar": "",
-      "constant": "aprovacao_substitutivo", 
+      "constant": "aprovacao_substitutivo",
       "peso":1
     },
     "realizacao_audiencia_publica": {
       "regex": "realizada(,)* (.)*audiência pública",
       "regex_complementar": "aprovado o requerimento",
-      "constant": "realizacao_audiencia_publica", 
+      "constant": "realizacao_audiencia_publica",
       "peso":1
     }
   },
@@ -74,7 +74,7 @@
     {"evento": "devolvido", "texto_tramitacao": "devolvido pel.*redistribu.*", "peso":1},
     {"evento": "aprovacao_parecer", "texto_tramitacao": "a comissão aprova o relatório|aprovado o relatório", "peso":1},
     {"evento": "pedido_de_vista", "texto_tramitacao": "concedida vista", "peso":1},
-    {"evento": "designado_relator", 
+    {"evento": "designado_relator",
       "texto_tramitacao": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))", "peso":1},
     {"evento": "desarquivamento", "id_situacao": "^149$", "peso":1},
     {"evento": "aprovacao_substitutivo", "texto_tramitacao": "aprovado o substitutivo", "peso":1},
@@ -86,13 +86,13 @@
     {"evento": "pronta_para_pauta", "id_situacao": "^42$", "peso":1},
     {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "peso":1}
   ],
-  
+
   "regimes": {
-    "urgencia": "Urgência", 
+    "urgencia": "Urgência",
     "regex": "em regime de urg(ê|e)ncia",
     "ordinaria": "Ordinária"
   },
-  
+
   "comissoes": {
     "prefixo": "(Comiss..s*)*",
     "regex_1": "às c.+ e c.+, cabendo à última",
@@ -102,7 +102,7 @@
     "regex_3": "(à|a)s? comiss..s*",
     "regex_3_extract": "comiss..s*.+"
   },
-  
+
   "comissoes_nomes": {
     "siglas_comissoes": [
       "CAE",
@@ -154,7 +154,7 @@
       "Especial"
     ]
   },
-  
+
   "endpoints_api": {
     "url_base": "http://legis.senado.leg.br/dadosabertos/materia/",
     "votacao": "http://legis.senado.leg.br/dadosabertos/materia/votacoes",
@@ -165,7 +165,7 @@
     "situacoes": "http://legis.senado.leg.br/dadosabertos/materia/situacoes",
     "page_url_senado": "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
   },
-  
+
   "deferimento": {
     "regex": {
       "indeferido": "^Indefiro",
@@ -176,7 +176,7 @@
   "fase_global_plenario":{
     "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)|(à slsf, a pedido.)"
   },
-  
+
   "fases_global":[
     {"local": "Comissões", "fase_global": "Construção"},
     {"local": "Plenário", "fase_global": "Construção"},
