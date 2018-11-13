@@ -1109,6 +1109,8 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
         agenda %>%
         dplyr::mutate(id_proposicao = purrr::map(partes_parte_itens_item, ~ .$Codigo)) %>%
         dplyr::mutate(nome = purrr::map(partes_parte_itens_item, ~ .$Nome)) %>%
+        dplyr::filter(partes_parte_tipo == "Deliberativa") %>%
+        dplyr::select(data, id_proposicao, nome, titulo_da_reuniao) %>%
         tidyr::unnest() %>%
         dplyr::rowwise() %>%
         dplyr::mutate(local = strsplit(titulo_da_reuniao, ",")[[1]][[1]]) %>%
@@ -1278,8 +1280,8 @@ fetch_agenda_geral <- function(initial_date, end_date) {
   agenda_comissoes_senado <- fetch_agenda_senado_comissoes(initial_date, end_date) %>%
     dplyr::mutate(data = as.character(data))
   
-  initial_date <- strsplit(initial_date, '-')
-  end_date <- strsplit(end_date, '-')
+  initial_date <- strsplit(as.character(initial_date), '-')
+  end_date <- strsplit(as.character(end_date), '-')
   agenda_comissoes_camara <- 
     fetch_agenda_comissoes_camara(
     paste0(initial_date[[1]][[3]],'/', initial_date[[1]][[2]], '/', initial_date[[1]][[1]]), 
