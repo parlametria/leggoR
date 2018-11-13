@@ -122,7 +122,7 @@ get_historico_energia_recente <- function(eventos_df, granularidade = 's', decai
   #Computa soma deslizante com decaimento exponencial
   tamanho_janela <- nrow(energia_periodo)
   weights <- (1 - decaimento) ^ ((tamanho_janela - 1):0)
-  energia_recente <- data.frame(energia_recente = round(roll::roll_sum(data.matrix(energia_periodo$energia_periodo), tamanho_janela, weights, min_obs = 1), digits=3))
+  energia_recente <- data.frame(energia_recente = round(roll::roll_sum(data.matrix(energia_periodo$energia_periodo), tamanho_janela, weights, min_obs = 1), digits=2))
   historico_energia <- dplyr::bind_cols(energia_periodo, energia_recente) %>%
     dplyr::select(periodo,
                   energia_periodo,
