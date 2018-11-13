@@ -180,7 +180,11 @@ extract_forma_apreciacao <- function(tram_df) {
 #' @export
 extract_pauta <- function(agenda, proposicao_id) {
   agenda %>%
-    dplyr::mutate(em_pauta = id_proposicao %in% proposicao_id)
+    dplyr::mutate(em_pauta = id_proposicao %in% proposicao_id) %>%
+    dplyr::filter(em_pauta) %>%
+    dplyr::mutate(semana = lubridate::week(data),
+                  ano = lubridate::year(data)) %>%
+    dplyr::arrange(unlist(sigla), semana, desc(em_pauta))
 }
 
 #' @title Extrai o status da tramitação de um PL

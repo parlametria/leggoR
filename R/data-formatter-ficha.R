@@ -248,7 +248,7 @@ gera_tabela_requerimentos <- function(bill_id, house) {
       dplyr::select(dataApresentacao,descricaoTipo,ementa,deferimento,statusProposicao.despacho)
   } else if (house == 'senado') {
     requerimentos <- 
-      as.array(strsplit(fetch_proposicao(bill_id, 'senado')$proposicoes_relacionadas, " ")[[1]]) %>% 
+      as.array(strsplit(fetch_proposicao(bill_id, 'senado',normalized = F)$proposicoes_relacionadas, " ")[[1]]) %>% 
       fetch_deferimento()
   }
   requerimentos
