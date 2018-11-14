@@ -1,42 +1,57 @@
 testthat::context('test-analyzer.R')
 
 test_that('get_historico_energia_recente() has correct function passing the parameter day', {
-  data <- data.frame(data_hora = c(rep(lubridate::ymd_hms('2018-09-07 12:00:00'), 4),
-                                   rep(lubridate::ymd_hms('2018-09-10 12:00:00'), 2),
-                                   rep(lubridate::ymd_hms('2018-09-11 12:00:00'), 1),
-                                   rep(lubridate::ymd_hms('2018-09-12 12:00:00'), 5),
-                                   rep(lubridate::ymd_hms('2018-09-13 12:00:00'), 3),
-                                   rep(lubridate::ymd_hms('2018-09-14 12:00:00'), 3)),
-                     evento = c("apresentacao_pl","distribuicao","designado_relator","parecer",
+  data <- data.frame(prop_id = rep(1111,18),
+                    data_hora = c(rep(lubridate::ymd_hms('2018-09-10 12:00:00'), 4),
+                                   rep(lubridate::ymd_hms('2018-09-11 12:00:00'), 2),
+                                   rep(lubridate::ymd_hms('2018-09-12 12:00:00'), 1),
+                                   rep(lubridate::ymd_hms('2018-09-13 12:00:00'), 5),
+                                   rep(lubridate::ymd_hms('2018-09-14 12:00:00'), 3),
+                                   rep(lubridate::ymd_hms('2018-09-17 12:00:00'), 3)),
+                    evento = c("apresentacao_pl","distribuicao","designado_relator","evento_x",
                                 "fim_prazo_emendas","voto_em_separado",
-                                "redistribuicao",
-                                "designado_relator","inicio_prazo_emendas","parecer","parecer_pela_aprovacao","aprovacao_parecer",
+                                "evento_y",
+                                "designado_relator","evento_z","parecer","parecer_pela_aprovacao","aprovacao_parecer",
                                 "designado_relator","parecer_pela_rejeicao","aprovacao_parecer",
-                                "designado_relator","parecer_pela_aprovacao","aprovacao_parecer"),
-                     stringsAsFactors = F)
+                                "designado_relator","parecer_pela_aprovacao","evento_w"),
+                    stringsAsFactors = F)
 
   decaimento = 0.1
   r <- 1 - decaimento
+  
+  # 2018-09-10
+  p_dia1 <- 3 * 3 + 1
+  # 2018-09-11
+  p_dia2 <- 3 * 2
+  # 2018-09-12
+  p_dia3 <- 1
+  # 2018-09-13
+  p_dia4 <- 3 * 4 + 1
+  # 2018-09-14
+  p_dia5 <- 3 * 3
+  # 2018-09-17
+  p_dia6 <- 3 * 2 + 1
+  # 2018-09-18
+  p_dia7 <- 0
+  
   result <- c(
-    # 2018-09-7
-    sum(4 * r^0),
     # 2018-09-10
-    sum(2 * r^0, 4 * r^1),
+    sum(p_dia1 * r^0),
     # 2018-09-11
-    sum(1 * r^0, 2 * r^1, 4 * r^2),
+    sum(p_dia2 * r^0, p_dia1 * r^1),
     # 2018-09-12
-    sum(5 * r^0, 1 * r^1, 2 * r^2, 4 * r^3),
+    sum(p_dia3 * r^0, p_dia2 * r^1, p_dia1 * r^2),
     # 2018-09-13
-    sum(3 * r^0, 5 * r^1, 1 * r^2, 2 * r^3, 4 * r^4),
+    sum(p_dia4 * r^0, p_dia3 * r^1, p_dia2 * r^2, p_dia1 * r^3),
     # 2018-09-14
-    sum(3 * r^0, 3 * r^1, 5 * r^2, 1 * r^3, 2 * r^4, 4 * r^5),
+    sum(p_dia5 * r^0, p_dia4 * r^1, p_dia3 * r^2, p_dia2 * r^3, p_dia1 * r^4),
     # 2018-09-17
-    sum(0 * r^0, 3 * r^1, 3 * r^2, 5 * r^3, 1 * r^4, 2 * r^5, 4 * r^6),
+    sum(p_dia6 * r^0, p_dia5 * r^1, p_dia4 * r^2, p_dia3 * r^3, p_dia2 * r^4, p_dia1 * r^5),
     # 2018-09-18
-    sum(0 * r^0, 0 * r^1, 3 * r^2, 3 * r^3, 5 * r^4, 1 * r^5, 2 * r^6, 4 * r^7)
+    sum(p_dia7 * r^0, p_dia6 * r^1, p_dia5 * r^2, p_dia4 * r^3, p_dia3 * r^4, p_dia2 * r^5, p_dia1 * r^6)
   )
   
-  result <- round(result, digits = 3)
+  result <- round(result, digits = 2)
   
   energy_df <- get_historico_energia_recente(data, granularidade = 'd', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-18 12:00:00"))
   
@@ -44,27 +59,36 @@ test_that('get_historico_energia_recente() has correct function passing the para
 })
 
 test_that('get_historico_energia_recente() has correct function passing the parameter week', {
-  data <- data.frame(data_hora = seq(lubridate::ymd_hms("2018-09-07 12:00:00"), lubridate::ymd_hms("2018-09-28 12:00:00"), by = "1 day"),
-                     evento = c("apresentacao_pl",
-                                "distribuicao","designado_relator","inicio_prazo_emendas","fim_prazo_emendas","parecer","parecer_pela_aprovacao","aprovacao_parecer",
-                                "designado_relator","inicio_prazo_emendas","fim_prazo_emendas","parecer","parecer_pela_rejeicao","voto_em_separado","aprovacao_parecer",
-                                "designado_relator","inicio_prazo_emendas","fim_prazo_emendas","parecer","parecer_pela_aprovacao","voto_em_separado","aprovacao_parecer"),
-                     stringsAsFactors = F)
+  data <- data.frame(prop_id = rep(1111,17),
+                    data_hora = c(lubridate::ymd_hms("2018-09-03 12:00:00"), 
+                                  lubridate::ymd_hms("2018-09-06 12:00:00"),
+                                  seq(lubridate::ymd_hms("2018-09-10 12:00:00"), lubridate::ymd_hms("2018-09-14 12:00:00"), by = "1 day"),
+                                  seq(lubridate::ymd_hms("2018-09-17 12:00:00"), lubridate::ymd_hms("2018-09-21 12:00:00"), by = "1 day"),
+                                  seq(lubridate::ymd_hms("2018-09-24 12:00:00"), lubridate::ymd_hms("2018-09-28 12:00:00"), by = "1 day")),
+                    evento = c("apresentacao_pl", "evento_1",
+                               "distribuicao","designado_relator","evento_a","aprovacao_parecer","evento_b",
+                               "designado_relator","inicio_prazo_emendas","fim_prazo_emendas","evento_b","evento_c",
+                               "designado_relator","evento_d","evento_e","evento_f","aprovacao_parecer"),
+                    stringsAsFactors = F)
   
   decaimento = 0.1
   r <- 1 - decaimento
+  p_week1 <- 3 * 1 + 1
+  p_week2 <- 3 * 3 + 2
+  p_week3 <- 3 * 3 + 2
+  p_week4 <- 3 * 2 + 3
   result <- c(
     # semana 1
-    sum(1 * r^0),
+    sum(p_week1 * r^0),
     # semana 2
-    sum(5 * r^0, 1 * r^1),
+    sum(p_week2 * r^0, p_week1 * r^1),
     # semana 3
-    sum(5 * r^0, 5 * r^1, 1 * r^2),
+    sum(p_week3 * r^0, p_week2 * r^1, p_week1 * r^2),
     # semana 4
-    sum(5 * r^0, 5 * r^1, 5 * r^2, 1 * r^3)
+    sum(p_week4 * r^0, p_week3 * r^1, p_week2 * r^2, p_week1 * r^3)
   )
   
-  result <- round(result, digits = 3)
+  result <- round(result, digits = 2)
   
   energy_df <- get_historico_energia_recente(data, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"))
   
