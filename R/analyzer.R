@@ -180,7 +180,11 @@ extract_forma_apreciacao <- function(tram_df) {
 #' @export
 extract_pauta <- function(agenda, proposicao_id) {
   agenda %>%
-    dplyr::mutate(em_pauta = id_proposicao %in% proposicao_id)
+    dplyr::mutate(em_pauta = id_proposicao %in% proposicao_id) %>%
+    dplyr::filter(em_pauta) %>%
+    dplyr::mutate(semana = lubridate::week(data),
+                  ano = lubridate::year(data)) %>%
+    dplyr::arrange(unlist(sigla), semana, desc(em_pauta))
 }
 
 #' @title Extrai o status da tramitação de um PL
@@ -188,22 +192,22 @@ extract_pauta <- function(agenda, proposicao_id) {
 #' @param tram_df Dataframe da tramitação do PL.
 #' @return Dataframe contendo id, regime de tramitação e forma de apreciação do PL
 #' @examples
-#' extract_status_tramitacao(fetch_tramitacao(91341, 'senado', TRUE))
+#' extract_status_tramitacao(fetch_tramitacao(91341, 'senado', TRUE), fetch_agenda_geral('2018-07-03', '2018-07-10'))
 #' @export
 #' @importFrom stats filter
-extract_status_tramitacao <- function(tram_df) {
+extract_status_tramitacao <- function(tram_df, agenda) {
   regime <- extract_regime_tramitacao(tram_df)
   apreciacao <- extract_forma_apreciacao(tram_df)
   relator_nome <- extract_relator_nome(tram_df)
-  # TODO: descomentar e arrumar
-  ## pauta <- extract_pauta(fetch_agenda(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4, tram_df[1,]$casa), tram_df[1,]$prop_id)
+  pauta <- extract_pauta(agenda, tram_df[1,]$prop_id)
+
   status_tram <-
       data.frame(
           prop_id = tram_df[1, ]$prop_id,
           regime_tramitacao = regime,
           forma_apreciacao = apreciacao,
-          relator_nome = relator_nome
-          ## em_pauta = pauta
+          relator_nome = relator_nome,
+          em_pauta = nrow(pauta) != 0
       )
 }
 
@@ -254,6 +258,11 @@ get_pesos_eventos <- function() {
   return(pesos_eventos)
 }
 
+#' @title Recupera nome do último relator
+#' @description Recupera nome do último relator, recebendo o dataframe da tramitação
+#' @return Nome do último relator
+#' @examples
+#' extract_relator_nome(fetch_tramitacao(91341, 'senado', TRUE))
 #' @export
 extract_relator_nome <- function(tram_df) {
   casa <- tram_df[1, "casa"]
