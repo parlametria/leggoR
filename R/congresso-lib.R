@@ -64,7 +64,6 @@ generate_progresso_df <- function(tramitacao_df){
     dplyr::summarise(
       data_inicio = min(data_hora, na.rm = T),
       data_fim = max(end_data, na.rm = T)) %>%
-    dplyr::filter(data_fim - data_inicio > 0) %>%
     dplyr::select(-sequence) %>%
     dplyr::group_by(fase_global) %>%
     dplyr::mutate(data_fim_anterior = dplyr::lag(data_fim)) %>%
