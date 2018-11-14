@@ -1,10 +1,10 @@
-process_etapa <- function(id, casa) {
+process_etapa <- function(id, casa, agenda) {
     prop <- agoradigital::fetch_proposicao(id, casa)
     tram <- agoradigital::fetch_tramitacao(id, casa, TRUE)
     proc_tram <-
         agoradigital::process_proposicao(prop, tram, casa) %>%
         dplyr::mutate(data_hora = as.POSIXct(data_hora))
-    status <- agoradigital::extract_status_tramitacao(tram)
+    status <- agoradigital::extract_status_tramitacao(tram, agenda)
     historico_energia <-
         agoradigital::get_historico_energia_recente(proc_tram) %>%
         dplyr::mutate(id_ext = prop$prop_id, casa = prop$casa) %>%
@@ -24,16 +24,16 @@ process_etapa <- function(id, casa) {
         hist_energia = historico_energia)
 }
 
-process_pl <- function(id_camara, id_senado, apelido, tema_pl) {
+process_pl <- function(id_camara, id_senado, apelido, tema_pl, agenda) {
     cat(paste(
         "\n--- Processando:", apelido, "\ncamara:", id_camara,
         "\nsenado", id_senado, "\n"))
     etapas <- list()
     if (!is.na(id_camara)) {
-        etapas %<>% append(list(process_etapa(id_camara, "camara")))
+        etapas %<>% append(list(process_etapa(id_camara, "camara", agenda)))
     }
     if (!is.na(id_senado)) {
-        etapas %<>% append(list(process_etapa(id_senado, "senado")))
+        etapas %<>% append(list(process_etapa(id_senado, "senado", agenda)))
     }
     etapas %<>% purrr::pmap(dplyr::bind_rows)
     etapas[["progresso"]] <-
@@ -49,7 +49,8 @@ process_pl <- function(id_camara, id_senado, apelido, tema_pl) {
 #' @param export_path pasta para onde exportar dados.
 #' @export
 export_data <- function(pls, export_path) {
-  res <- pls %>% purrr::pmap(process_pl)
+  agenda <- fetch_agenda_geral(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4)
+  res <- pls %>% purrr::pmap(process_pl, agenda)
 
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
