@@ -213,8 +213,11 @@ extract_status_tramitacao <- function(tram_df) {
 #' @param out_folderpath Caminho destino do csv resultante
 #' @return Dataframe contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
 #' @examples
-#' get_progresso(fetch_proposicao(257161, 'camara', '', '', normalized = T), fetch_tramitacao(257161, 'camara', T))
-#' get_progresso(fetch_proposicao(115926, 'senado', '', '', normalized = T), fetch_tramitacao(115926, 'senado', T))
+#' etapas <- list()
+#' etapas %<>% append(list(process_etapa(2121442, "camara")))
+#' etapas %<>% append(list(process_etapa(91341, "senado")))
+#' etapas %<>% purrr::pmap(dplyr::bind_rows)
+#' get_progresso(etapas$proposicao, etapas$fases_eventos)
 #' @export
 get_progresso <- function(proposicao_df, tramitacao_df) {
   progresso_data <-
