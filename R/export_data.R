@@ -33,6 +33,17 @@ adiciona_coluna_pulou <- function(progresso_df) {
     dplyr::select(-prox_local_casa)
 }
 
+adiciona_locais_faltantes_progresso <- function(progresso_df) {
+  progresso_df %>%
+    dplyr::mutate(local_casa = dplyr::case_when(
+      local %in% c('Presidência da República', 'Congresso') ~
+        tolower(local),
+      (fase_global == "Revisão I" & is.na(local_casa)) ~ ifelse(.$casa[[1]] == 'senado', 'camara', 'senado'),
+      fase_global == "Revisão II" ~ .$casa[[1]],
+      is.na(local_casa) ~ casa,
+      TRUE ~ local_casa))
+}
+
 process_pl <- function(id_camara, id_senado, apelido, tema_pl, agenda) {
     cat(paste(
         "\n--- Processando:", apelido, "\ncamara:", id_camara,
@@ -47,7 +58,8 @@ process_pl <- function(id_camara, id_senado, apelido, tema_pl, agenda) {
     etapas %<>% purrr::pmap(dplyr::bind_rows)
     etapas[["progresso"]] <-
         agoradigital::get_progresso(etapas$proposicao, etapas$fases_eventos) %>%
-      adiciona_coluna_pulou()
+      adiciona_coluna_pulou() %>%
+      adiciona_locais_faltantes_progresso()
     etapas$proposicao %<>%
         dplyr::mutate(apelido_materia = apelido, tema = tema_pl)
     etapas
