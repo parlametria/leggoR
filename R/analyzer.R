@@ -92,7 +92,9 @@ get_historico_energia_recente <- function(eventos_df, granularidade = 's', decai
     dplyr::mutate(peso_base = dplyr::if_else(is.na(prop_id),0,1)) %>%
     dplyr::left_join(get_pesos_eventos(), by="evento") %>%
     dplyr::mutate(peso = dplyr::if_else(is.na(peso),0,as.numeric(peso))) %>%
-    dplyr::mutate(peso_final = peso_base + 2*peso)
+    dplyr::mutate(peso_final = peso_base + 2*peso) %>%
+    dplyr::select(-tipo, -label)
+    
 
   energia_periodo <- data.frame()
 
@@ -252,13 +254,15 @@ get_progresso <- function(proposicao_df, tramitacao_df) {
 get_pesos_eventos <- function() {
   eventos_camara <- camara_env$eventos
   eventos_senado <- senado_env$eventos
+  tipos_eventos <- congress_env$tipos_eventos
 
   eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
-    dplyr::select(evento = constant, peso)
+    dplyr::select(evento = constant, tipo)
 
   pesos_eventos <- dplyr::bind_rows(eventos_camara, eventos_senado, eventos_extra_senado) %>%
     dplyr::group_by(evento) %>%
-    dplyr::summarise(peso = dplyr::first(peso)) %>%
+    dplyr::summarise(tipo = dplyr::first(tipo)) %>% 
+    dplyr::left_join(tipos_eventos, by="tipo") %>%
     dplyr::arrange()
 
   return(pesos_eventos)
