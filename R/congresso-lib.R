@@ -75,10 +75,10 @@ generate_progresso_df <- function(tramitacao_df){
       dplyr::group_by(prop_id, casa, fase_global, local) %>%
       dplyr::summarise(data_inicio = min(data_inicio),
                        data_fim = max(data_fim)) %>%
-      dplyr::right_join(congress_env$fases_global, by = c("local", "fase_global"))
+      dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global"))
   } else {
     df %<>%
-      dplyr::right_join(congress_env$fases_global, by = c("local", "fase_global"))
+      dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global"))
   }
 
 
