@@ -186,7 +186,7 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_p
 #' @examples
 #' extract_evento_Senado(fetch_tramitacao(91341, 'senado', T))
 extract_evento_Senado <- function(tramitacao_df) {
-  eventos_senado <- dplyr::select(senado_env$eventos, -peso)
+  eventos_senado <- dplyr::select(senado_env$eventos, -tipo)
   eventos_extra_senado <- senado_env$evento
   df <- regex_left_match(tramitacao_df, eventos_senado, "evento")
 
