@@ -2,8 +2,8 @@ source(here::here("R/senado_analyzer.R"))
 source(here::here("R/camara_analyzer.R"))
 source(here::here("R/congresso-lib.R"))
 
-congress_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
-congress_constants <- congress_env$constants
+congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
+congress_constants <- congresso_env$constants
 
 #' @title Processa dados de uma proposição do congresso.
 #' @description Recebido um dataframe a função recupera informações sobre uma proposição
@@ -92,7 +92,7 @@ get_historico_energia_recente <- function(eventos_df, granularidade = 's', decai
     dplyr::mutate(peso_base = dplyr::if_else(is.na(prop_id),0,1)) %>%
     dplyr::left_join(get_pesos_eventos(), by="evento") %>%
     dplyr::mutate(peso = dplyr::if_else(is.na(peso),0,as.numeric(peso))) %>%
-    dplyr::mutate(peso_final = peso_base + 2*peso) %>%
+    dplyr::mutate(peso_final = peso_base + peso) %>%
     dplyr::select(-tipo, -label)
     
 
@@ -254,7 +254,7 @@ get_progresso <- function(proposicao_df, tramitacao_df) {
 get_pesos_eventos <- function() {
   eventos_camara <- camara_env$eventos
   eventos_senado <- senado_env$eventos
-  tipos_eventos <- congress_env$tipos_eventos
+  tipos_eventos <- congresso_env$tipos_eventos
 
   eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
     dplyr::select(evento = constant, tipo)

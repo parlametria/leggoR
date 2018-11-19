@@ -24,17 +24,17 @@ test_that('get_historico_energia_recente() has correct function passing the para
   peso_votacao <- congresso_env$tipos_eventos$peso[3]
   
   # 2018-09-10
-  p_dia1 <- 3 * (1 + 2*peso_despacho) + 1
+  p_dia1 <- 4 + (3 * peso_despacho)
   # 2018-09-11
-  p_dia2 <- (1 + 2*peso_discussao) + (1 + 2*peso_votacao)
+  p_dia2 <- 2 + peso_discussao + peso_votacao
   # 2018-09-12
   p_dia3 <- 1
   # 2018-09-13
-  p_dia4 <- (1 + 2*peso_despacho) + 3 * (1 + 2*peso_votacao) + 1
+  p_dia4 <- 5 + peso_despacho + (3 * peso_votacao)
   # 2018-09-14
-  p_dia5 <- (1 + 2*peso_despacho) + 2 * (1 + 2*peso_votacao)
+  p_dia5 <- 3 + peso_despacho +  (2 * peso_votacao)
   # 2018-09-17
-  p_dia6 <- (1 + 2*peso_despacho) + (1 + 2*peso_votacao) + 1
+  p_dia6 <- 3 + peso_despacho + peso_votacao
   # 2018-09-18
   p_dia7 <- 0
   
@@ -82,10 +82,10 @@ test_that('get_historico_energia_recente() has correct function passing the para
   peso_discussao <- congresso_env$tipos_eventos$peso[2]
   peso_votacao <- congresso_env$tipos_eventos$peso[3]
   
-  p_week1 <- (1 + 2*peso_despacho) + 1
-  p_week2 <- 2 * (1 + 2*peso_despacho) + 1 * (1 + 2*peso_votacao) + 2 * 1
-  p_week3 <- 1 * (1 + 2*peso_despacho) + 2 * (1 + 2*peso_discussao) + 2 * 1
-  p_week4 <- 1 * (1 + 2*peso_despacho) + 1 * (1 + 2*peso_votacao) + 3 * 1
+  p_week1 <- 2 + peso_despacho
+  p_week2 <- 5 + (2 * peso_despacho) + peso_votacao
+  p_week3 <- 5 + peso_despacho + (2 * peso_discussao)
+  p_week4 <- 5 + peso_despacho + peso_votacao
   result <- c(
     # semana 1
     sum(p_week1 * r^0),
