@@ -178,18 +178,23 @@ extract_forma_apreciacao <- function(tram_df) {
 #' @title Cria uma coluna com o nome pauta
 #' @description Extrai se um vectors de proposições estarão em pauta
 #' @param agenda Dataframe com a agenda
-#' @param proposicao_id vector de ids
+#' @param tabela_geral_ids_casa Dataframe com as colunas id_senado, id_camara
 #' @return Dataframe com a coluna em_pauta
 #' @examples
 #' extract_pauta(fetch_agenda_geral('2018-10-01', '2018-10-26'), c("91341", "2121442", "115926", "132136"))
 #' @export
-extract_pauta <- function(agenda, proposicao_id) {
-  agenda %>%
+extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
+  proposicao_id <- as.vector(as.matrix(tabela_geral_ids_casa[,c("id_camara", "id_senado")]))
+  proposicao_id <- proposicao_id[!is.na(proposicao_id)]
+  pautas <-
+    agenda %>%
     dplyr::mutate(em_pauta = id_proposicao %in% proposicao_id) %>%
     dplyr::filter(em_pauta) %>%
     dplyr::mutate(semana = lubridate::week(data),
                   ano = lubridate::year(data)) %>%
     dplyr::arrange(unlist(sigla), semana, desc(em_pauta))
+  
+  readr::write_csv(pautas, paste0(export_path, "/pautas"))
 }
 
 #' @title Extrai o status da tramitação de um PL
@@ -204,7 +209,6 @@ extract_status_tramitacao <- function(tram_df, agenda) {
   regime <- extract_regime_tramitacao(tram_df)
   apreciacao <- extract_forma_apreciacao(tram_df)
   relator_nome <- extract_relator_nome(tram_df)
-  pauta <- extract_pauta(agenda, tram_df[1,]$prop_id)
 
   status_tram <-
       data.frame(
@@ -212,7 +216,6 @@ extract_status_tramitacao <- function(tram_df, agenda) {
           regime_tramitacao = regime,
           forma_apreciacao = apreciacao,
           relator_nome = relator_nome,
-          em_pauta = nrow(pauta) != 0
       )
 }
 
