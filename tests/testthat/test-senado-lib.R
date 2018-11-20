@@ -52,7 +52,7 @@ test <- function(){
     expect_true(all(names(fetch_votacoes(PROPOSICOES_ID)) %in% .COLNAMES_VOT_SEN))
   })
 
-  test_that('fetch_votacoes()', {
+  test_that('fetch_tramitacao()', {
     expect_true(all(names(fetch_tramitacao(PROPOSICOES_ID, 'senado')) %in% .COLNAMES_TRAMI_SEN))
   })
 

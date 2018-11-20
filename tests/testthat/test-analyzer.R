@@ -19,18 +19,22 @@ test_that('get_historico_energia_recente() has correct function passing the para
   decaimento = 0.1
   r <- 1 - decaimento
   
+  peso_despacho <- congresso_env$tipos_eventos$peso[1]
+  peso_discussao <- congresso_env$tipos_eventos$peso[2]
+  peso_votacao <- congresso_env$tipos_eventos$peso[3]
+  
   # 2018-09-10
-  p_dia1 <- 3 * 3 + 1
+  p_dia1 <- 4 + (3 * peso_despacho)
   # 2018-09-11
-  p_dia2 <- 3 * 2
+  p_dia2 <- 2 + peso_discussao + peso_votacao
   # 2018-09-12
   p_dia3 <- 1
   # 2018-09-13
-  p_dia4 <- 3 * 4 + 1
+  p_dia4 <- 5 + peso_despacho + (3 * peso_votacao)
   # 2018-09-14
-  p_dia5 <- 3 * 3
+  p_dia5 <- 3 + peso_despacho +  (2 * peso_votacao)
   # 2018-09-17
-  p_dia6 <- 3 * 2 + 1
+  p_dia6 <- 3 + peso_despacho + peso_votacao
   # 2018-09-18
   p_dia7 <- 0
   
@@ -73,10 +77,15 @@ test_that('get_historico_energia_recente() has correct function passing the para
   
   decaimento = 0.1
   r <- 1 - decaimento
-  p_week1 <- 3 * 1 + 1
-  p_week2 <- 3 * 3 + 2
-  p_week3 <- 3 * 3 + 2
-  p_week4 <- 3 * 2 + 3
+  
+  peso_despacho <- congresso_env$tipos_eventos$peso[1]
+  peso_discussao <- congresso_env$tipos_eventos$peso[2]
+  peso_votacao <- congresso_env$tipos_eventos$peso[3]
+  
+  p_week1 <- 2 + peso_despacho
+  p_week2 <- 5 + (2 * peso_despacho) + peso_votacao
+  p_week3 <- 5 + peso_despacho + (2 * peso_discussao)
+  p_week4 <- 5 + peso_despacho + peso_votacao
   result <- c(
     # semana 1
     sum(p_week1 * r^0),
@@ -99,7 +108,7 @@ test_that('get_pesos_eventos() returns all events from both houses', {
   eventos_camara <- camara_env$eventos
   eventos_senado <- senado_env$eventos
   eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
-    dplyr::select(evento = constant, peso)
+    dplyr::select(evento = constant, tipo)
   
   pesos_eventos <- get_pesos_eventos()
   
@@ -109,10 +118,12 @@ test_that('get_pesos_eventos() returns all events from both houses', {
 })
 
 test_that('get_pesos_eventos() returns all events with their correct weights for all events', {
-  eventos_camara <- camara_env$eventos
-  eventos_senado <- senado_env$eventos
+  tipos_eventos <- congresso_env$tipos_eventos
+  eventos_camara <- camara_env$eventos %>% dplyr::left_join(tipos_eventos, by="tipo")
+  eventos_senado <- senado_env$eventos %>% dplyr::left_join(tipos_eventos, by="tipo")
   eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
-    dplyr::select(evento = constant, peso)
+    dplyr::select(evento = constant, tipo) %>% dplyr::left_join(tipos_eventos, by="tipo")
+  
   
   pesos_eventos <- get_pesos_eventos()
   
