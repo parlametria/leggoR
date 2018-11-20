@@ -32,9 +32,9 @@ extract_casas <- function(tramitacao_df, proposicao_df){
       prop_id <- tram[1, ]$prop_id
       label <- casa_label[casa, "label"][[1]]
       if (casa == congress_constants$camara_label) {
-        df <- agoradigital:::extract_casas_in_camara(tram, label)
+        df <- extract_casas_in_camara(tram, label)
       } else if (casa == congress_constants$senado_label) {
-        df <- agoradigital:::extract_casas_in_senado(tram, label)
+        df <- extract_casas_in_senado(tram, label)
       }
       df %>% dplyr::mutate(local_casa = casa)
   }
@@ -56,8 +56,8 @@ extract_casas <- function(tramitacao_df, proposicao_df){
 generate_progresso_df <- function(tramitacao_df){
   df <-
     tramitacao_df %>%
-    dplyr::arrange(data_hora) %>%
-    dplyr::filter(fase_global != "NA" & local != "NA") %>%
+    dplyr::arrange(data_hora, fase_global) %>%
+    dplyr::filter(!is.na(fase_global) & !is.na(local)) %>%
     dplyr::mutate(end_data = dplyr::lead(data_hora)) %>%
     dplyr::group_by(
       casa, prop_id, fase_global, local, sequence = data.table::rleid(fase_global)) %>%
@@ -68,17 +68,26 @@ generate_progresso_df <- function(tramitacao_df){
     dplyr::group_by(fase_global) %>%
     dplyr::mutate(data_fim_anterior = dplyr::lag(data_fim)) %>%
     dplyr::filter(is.na(data_fim_anterior) | data_fim > data_fim_anterior) %>%
-    dplyr::select(-data_fim_anterior)
+    dplyr::select(-data_fim_anterior) %>%
+    dplyr::arrange(data_inicio)
+  
+  df$data_fim[nrow(df)] <- NA
+  
 
   if (nrow(df %>% dplyr::group_by(fase_global, local) %>% dplyr::filter(n() > 1)) > 0) {
     df %<>%
       dplyr::group_by(prop_id, casa, fase_global, local) %>%
       dplyr::summarise(data_inicio = min(data_inicio),
-                       data_fim = max(data_fim)) %>%
-      dplyr::right_join(congress_env$fases_global, by = c("local", "fase_global"))
+                       data_fim = max(data_fim)) %>% 
+      dplyr::arrange(data_inicio)
+    
+    df$data_fim[nrow(df)] <- NA
+    df %<>%
+      dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global"))
+    
   } else {
     df %<>%
-      dplyr::right_join(congress_env$fases_global, by = c("local", "fase_global"))
+      dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global"))
   }
 
 
