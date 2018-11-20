@@ -32,9 +32,9 @@ extract_casas <- function(tramitacao_df, proposicao_df){
       prop_id <- tram[1, ]$prop_id
       label <- casa_label[casa, "label"][[1]]
       if (casa == congress_constants$camara_label) {
-        df <- extract_casas_in_camara(tram, label)
+        df <- agoradigital:::extract_casas_in_camara(tram, label)
       } else if (casa == congress_constants$senado_label) {
-        df <- extract_casas_in_senado(tram, label)
+        df <- agoradigital:::extract_casas_in_senado(tram, label)
       }
       df %>% dplyr::mutate(local_casa = casa)
   }
