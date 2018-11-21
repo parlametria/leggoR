@@ -13,9 +13,8 @@ extract_relator_in_camara <- function(df) {
   df %>%
     dplyr::mutate(relator = dplyr::case_when(
       stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r') ~
-        stringr::str_extract(texto_tramitacao, stringr::regex('dep.+', ignore_case=TRUE))))
+        stringr::str_extract(texto_tramitacao, stringr::regex('dep.?([^,]*)', ignore_case=TRUE))))
 }
-
 
 
 #' @title Recupera o último relator na Câmara
