@@ -1496,15 +1496,5 @@ junta_agendas <- function(initial_date, end_date) {
     tibble::as.tibble() %>%
     dplyr::mutate(fim_semana = as.Date(cut(value, "week")) + 4)
   
-  materia <- purrr::map_df(semanas$value, auxiliar_junta_agendas) 
-}
-
-#' @title Função auxiliar para a função junta_agendas
-#' @description Chama a função fetch_agenda_geral por semana 
-#' @param data Data inicial da semana no formato (yyyy-mm-dd)
-#' @return Dataframe
-#' @examples
-#' auxiliar_junta_agendas('2018-11-05')
-auxiliar_junta_agendas <- function(data) {
-  fetch_agenda_geral(data, as.Date(data) + 4)
+  materia <- purrr::map2_df(semanas$value, semanas$fim_semana, ~ fetch_agenda_geral(.x, .y)) 
 }
