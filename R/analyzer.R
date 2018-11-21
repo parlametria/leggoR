@@ -194,7 +194,7 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
                   ano = lubridate::year(data)) %>%
     dplyr::arrange(unlist(sigla), semana, desc(em_pauta))
   
-  readr::write_csv(pautas, paste0(export_path, "/pautas"))
+  readr::write_csv(pautas, paste0(export_path, "/pautas.csv"))
 }
 
 #' @title Extrai o status da tramitação de um PL

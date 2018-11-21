@@ -1319,7 +1319,8 @@ fetch_agenda_geral <- function(initial_date, end_date) {
     agenda_comissoes_camara
     ) %>%
     dplyr::arrange(data) %>% 
-    dplyr::mutate_all(as.character)
+    dplyr::mutate_all(as.character) %>%
+    dplyr::rename(id_ext = id_proposicao)
 }
 
 #' @title Baixa dados de requerimentos relacionados
