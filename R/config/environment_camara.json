@@ -123,5 +123,12 @@
     {"local": "Plenário", "fase_global": "Revisão II"},
     {"local": "Presidência da República", "fase_global": "Sansão/Veto"},
     {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
+  ],
+  
+  "regimes": [
+    {"regime_tramitacao": "Ordinária", "regex": "Ordinária"},
+    {"regime_tramitacao": "Urgência", "regex": "Urgência"},
+    {"regime_tramitacao": "Prioridade", "regex": "Prioridade"},
+    {"regime_tramitacao": "Especial", "regex": "Especial"}
   ]
 }
