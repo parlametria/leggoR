@@ -1319,7 +1319,6 @@ fetch_agenda_geral <- function(initial_date, end_date) {
     agenda_comissoes_camara
     ) %>%
     dplyr::arrange(data) %>% 
-    tidyr::unnest() %>%
     dplyr::mutate_all(as.character)
 }
 
