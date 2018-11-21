@@ -302,22 +302,13 @@ extract_forma_apreciacao_camara <- function(prop_id) {
 #' @examples
 #' extract_regime_tramitacao_camara(fetch_tramitacao(257161,'camara', TRUE))
 extract_regime_tramitacao_camara <- function(tram_df) {
-  regex_regime <-
-    tibble::frame_data(
-      ~ regime_tramitacao,
-      ~ regex,
-      'Ordinária',
-      'Ordinária',
-      'Prioridade',
-      'Prioridade',
-      'Urgência',
-      'Urgência'
-    )
-
+  regimes <- camara_env$regime %>%
+    tibble::as.tibble()
+  
   prop_id <- tram_df[1,]$prop_id
 
   regime_df <- rcongresso::fetch_proposicao(prop_id) %>%
-    fuzzyjoin::regex_left_join(regex_regime,
+    fuzzyjoin::regex_left_join(regimes,
                                by = c(statusProposicao.regime = "regex"))
     return(regime_df[1,]$regime_tramitacao)
 }
