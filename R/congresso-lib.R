@@ -70,9 +70,6 @@ generate_progresso_df <- function(tramitacao_df){
     dplyr::filter(is.na(data_fim_anterior) | data_fim > data_fim_anterior) %>%
     dplyr::select(-data_fim_anterior) %>%
     dplyr::arrange(data_inicio)
-  
-  df$data_fim[nrow(df)] <- NA
-  
 
   if (nrow(df %>% dplyr::group_by(fase_global, local) %>% dplyr::filter(n() > 1)) > 0) {
     df %<>%
@@ -80,16 +77,11 @@ generate_progresso_df <- function(tramitacao_df){
       dplyr::summarise(data_inicio = min(data_inicio),
                        data_fim = max(data_fim)) %>% 
       dplyr::arrange(data_inicio)
-    
-    df$data_fim[nrow(df)] <- NA
-    df %<>%
-      dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global"))
-    
-  } else {
-    df %<>%
-      dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global"))
-  }
-
-
-  df %>% dplyr::ungroup()
+  } 
+  
+  df$data_fim[nrow(df)] <- NA
+  
+  df %<>%
+    dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global")) %>% 
+    dplyr::ungroup()
 }
