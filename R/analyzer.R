@@ -233,7 +233,6 @@ extract_status_tramitacao <- function(tram_df, agenda) {
 get_progresso <- function(proposicao_df, tramitacao_df) {
   progresso_data <-
     tramitacao_df %>%
-    #dplyr::mutate(data_hora = format(as.POSIXct(lubridate::ymd_hms(data_hora)), format='%Y-%m-%d')) %>% 
     agoradigital:::extract_casas(proposicao_df) %>%
     agoradigital:::generate_progresso_df() %>%
     dplyr::mutate(local_casa = casa) %>%
