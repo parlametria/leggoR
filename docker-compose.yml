@@ -1,0 +1,20 @@
+# Compose used for production
+
+version: '3.5'
+
+services:
+  rmod:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      cache_from:
+        - agoradigital/r
+    image: agoradigital/r
+    container_name: rmod
+    volumes:
+      - proposicoes_data:/agora-digital/data
+
+volumes:
+  proposicoes_data:
+    external:
+      name: compose_proposicoes_data
