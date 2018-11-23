@@ -1,6 +1,6 @@
 FROM rocker/tidyverse
 
-RUN mkdir /agora-digital
+RUN mkdir /agora-digital /agora-digital/data
 WORKDIR /agora-digital
 COPY DESCRIPTION .
 RUN Rscript -e 'devtools::install_deps()'

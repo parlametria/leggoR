@@ -5,11 +5,11 @@ version: '3.5'
 services:
   rmod:
     build:
-      context: .
+      context: ${SCRAPPER_PATH:-.}
       dockerfile: ./Dockerfile
       cache_from:
-        - agoradigital/r
-    image: agoradigital/r
+        - agoradigital/r-scrapper
+    image: agoradigital/r-scrapper
     container_name: rmod
     volumes:
       - proposicoes_data:/agora-digital/data

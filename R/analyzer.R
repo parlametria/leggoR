@@ -215,7 +215,7 @@ extract_status_tramitacao <- function(tram_df, agenda) {
           prop_id = tram_df[1, ]$prop_id,
           regime_tramitacao = regime,
           forma_apreciacao = apreciacao,
-          relator_nome = relator_nome,
+          relator_nome = relator_nome
       )
 }
 
