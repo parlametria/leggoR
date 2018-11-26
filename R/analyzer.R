@@ -188,7 +188,7 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
   proposicao_id <- proposicao_id[!is.na(proposicao_id)]
   pautas <-
     agenda %>%
-    dplyr::mutate(em_pauta = id_proposicao %in% proposicao_id) %>%
+    dplyr::mutate(em_pauta = id_ext %in% proposicao_id) %>%
     dplyr::filter(em_pauta) %>%
     dplyr::mutate(semana = lubridate::week(data),
                   ano = lubridate::year(data)) %>%
