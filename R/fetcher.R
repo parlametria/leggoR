@@ -790,7 +790,7 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema
                     ano = as.integer(ano_materia),
                     data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao, "00:00")),
                     casa = 'senado',
-                    autor_nome = ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, ' ', partido_autor, '/', uf_autor)),
+                    autor_nome = ifelse(is.null(partido_autor), nome_autor, dplyr::if_else(is.null(uf_autor), paste0(nome_autor, ' ', partido_autor), paste0(nome_autor, ' ', partido_autor, '/', uf_autor))),
                     apelido_materia = ifelse('apelido_materia' %in% names(.), apelido_materia, apelido),
                     tema = tema,
                     indexacao_materia = {if("indexacao_materia" %in% names(.)) indexacao_materia else NA}) %>%
@@ -1381,7 +1381,7 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
 fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_date){
 
   url <-
-    getURL(paste0(
+    RCurl::getURL(paste0(
     'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=',
     orgao_id, '&datIni=', initial_date, '&datFim=', end_date))
 
@@ -1462,7 +1462,7 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
 #' @return Dataframe contendo os órgãos da Câmara
 #' @importFrom RCurl getURL
 fetch_orgaos_camara <- function(){
-  url <- getURL('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterOrgaos')
+  url <- RCurl::getURL('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterOrgaos')
 
   orgaos_list <-
     XML::xmlParse(url) %>%

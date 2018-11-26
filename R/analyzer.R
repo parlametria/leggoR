@@ -228,7 +228,7 @@ extract_status_tramitacao <- function(tram_df, agenda) {
 #' @return Dataframe contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
 #' @examples
 #' etapas <- list()
-#' etapas %<>% append(list(process_etapa(2121442, "camara", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
+#' etapas %<>% append(list(process_etapa(2088990, "camara", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
 #' etapas %<>% append(list(process_etapa(91341, "senado", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
 #' etapas %<>% purrr::pmap(dplyr::bind_rows)
 #' get_progresso(etapas$proposicao, etapas$fases_eventos)
@@ -242,6 +242,7 @@ get_progresso <- function(proposicao_df, tramitacao_df) {
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
     tidyr::fill(prop_id, casa) %>%
     tidyr::fill(prop_id, casa, .direction = "up") 
+  return(progresso_data)
 }
 
 #' @title Recupera os eventos e seus respectivos pesos
