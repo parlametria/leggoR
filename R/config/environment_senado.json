@@ -6,7 +6,7 @@
         "regex_camara": "remetida_à_câmara_dos_deputados",
         "regex_recebimento_comissoes": "recebido na comissão|recebido nesta comissão",
         "regex_plenario": "pronto_para_deliberação_do_plenário",
-        "incluido_ordem_dia": "incluido_em_ordem_do_dia",
+        "incluido_ordem_dia": "incluída_em_ordem_do_dia",
         "regex_comissoes_vector": ["matéria_com_a_relatoria","aguardando_designação_do_relator"],
         "comissoes": "Comissões"
   },

@@ -2,8 +2,9 @@ process_etapa <- function(id, casa, agenda) {
     prop <- agoradigital::fetch_proposicao(id, casa)
     tram <- agoradigital::fetch_tramitacao(id, casa, TRUE)
     proc_tram <-
-        agoradigital::process_proposicao(prop, tram, casa) %>%
-        dplyr::mutate(data_hora = as.POSIXct(data_hora))
+        process_proposicao(prop, tram, casa) %>%
+        dplyr::mutate(data_hora = as.POSIXct(data_hora)) %>%
+        dplyr::filter(data_hora < Sys.Date())
     status <- agoradigital::extract_status_tramitacao(tram, agenda)
     historico_energia <-
         agoradigital::get_historico_energia_recente(proc_tram) %>%
