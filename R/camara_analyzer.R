@@ -144,8 +144,8 @@ extract_locais_in_camara <- function(df) {
     dplyr::mutate(
       local =
         dplyr::case_when(
-          (tolower(texto_tramitacao) %in% descricoes_plenario & sigla_local == 'PLEN' |
-             stringr::str_detect(tolower(texto_tramitacao), '^votação')) ~ 'Plenário',
+          (tolower(texto_tramitacao) %in% descricoes_plenario |
+             stringr::str_detect(tolower(texto_tramitacao), '^votação')) & sigla_local == 'PLEN' ~ 'Plenário',
           (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') |
              tolower(texto_tramitacao) %in% descricoes_comissoes) &
             sigla_local != 'CCP' &
