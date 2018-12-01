@@ -724,13 +724,21 @@ fetch_proposicoes <- function(pls_ids) {
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
 #' fetch_proposicao_senado(129808, T, 'Cadastro Positivo', 'Agenda Nacional')
-fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema) {
+fetch_proposicao_senado <- function(proposicao_id, normalized=TRUE, apelido, tema) {
   url_base_proposicao <-
     "http://legis.senado.leg.br/dadosabertos/materia/"
   da_url <- paste0(url_base_proposicao, proposicao_id)
 
   page_url_senado <-
     "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
+
+  parse_autor = function(row) {
+      return(paste(
+          paste(
+              row[["NomeAutor"]],
+              row[["IdentificacaoParlamentar.SiglaPartidoParlamentar"]]),
+          row[["UfAutor"]], sep = "/"))
+  }
 
   json_proposicao <- fetch_json_try(da_url)
   proposicao_data <- json_proposicao$DetalheMateria$Materia
@@ -742,13 +750,15 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema
     purrr::flatten() %>%
     tibble::as.tibble()
   proposicao_author <-
-    proposicao_data$Autoria$Autor %>%
-    tibble::as.tibble()
+    proposicao_data$Autoria[[1]] %>%
+    tibble::as.tibble() %>%
+    purrrlyr::by_row(parse_autor) %>%
+    .[[".out"]] %>%
+    paste(collapse = ", ")
   proposicao_specific_assunto <-
     proposicao_data$Assunto$AssuntoEspecifico %>%
     tibble::as.tibble() %>%
-    dplyr::rename(assunto_especifico = Descricao,
-                  codigo_assunto_especifico = Codigo)
+    dplyr::rename(assunto_especifico = Descricao, codigo_assunto_especifico = Codigo)
   proposicao_general_assunto <-
     proposicao_data$Assunto$AssuntoGeral %>%
     tibble::as.tibble() %>%
@@ -765,12 +775,13 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema
     proposicao_basic_data %>%
     tibble::add_column(
       !!!proposicao_ids,
-      !!!proposicao_author,
-      !!!proposicao_specific_assunto,!!!proposicao_general_assunto,
+      !!!proposicao_specific_assunto,
+      !!!proposicao_general_assunto,
       !!!proposicao_source,
+      autor_nome = proposicao_author,
       page_url = paste0(page_url_senado, proposicao_id),
-      proposicoes_relacionadas = paste(relacionadas, collapse = ' '),
-      proposicoes_apensadas = paste(anexadas, collapse = ' ')
+      proposicoes_relacionadas = paste(relacionadas, collapse = " "),
+      proposicoes_apensadas = paste(anexadas, collapse = " ")
     )
 
   proposicao_complete <-
@@ -779,21 +790,24 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema
   proposicao_complete <- rename_proposicao_df(proposicao_complete)
 
   if (normalized) {
-    nome_autor <- proposicao_complete$nome_autor
-    partido_autor <- proposicao_complete$sigla_partido_parlamentar
-    uf_autor <- proposicao_complete$uf_parlamentar
-
     proposicao_complete <-
       proposicao_complete %>%
-      dplyr::mutate(prop_id = as.integer(codigo_materia),
-                    numero = as.integer(numero_materia),
-                    ano = as.integer(ano_materia),
-                    data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao, "00:00")),
-                    casa = 'senado',
-                    autor_nome = ifelse(is.null(partido_autor), nome_autor, dplyr::if_else(is.null(uf_autor), paste0(nome_autor, ' ', partido_autor), paste0(nome_autor, ' ', partido_autor, '/', uf_autor))),
-                    apelido_materia = ifelse('apelido_materia' %in% names(.), apelido_materia, apelido),
-                    tema = tema,
-                    indexacao_materia = {if("indexacao_materia" %in% names(.)) indexacao_materia else NA}) %>%
+      dplyr::mutate(
+        prop_id = as.integer(codigo_materia),
+        numero = as.integer(numero_materia),
+        ano = as.integer(ano_materia),
+        data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao, "00:00")),
+        casa = "senado",
+        apelido_materia = ifelse(
+          "apelido_materia" %in% names(.),
+          apelido_materia,
+          apelido),
+        tema = tema,
+        indexacao_materia = ifelse(
+          "indexacao_materia" %in% names(.),
+          indexacao_materia,
+          NA)
+      ) %>%
       dplyr::select(prop_id,
                     casa,
                     tipo_materia = sigla_subtipo_materia,
