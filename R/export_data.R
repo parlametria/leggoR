@@ -4,7 +4,7 @@ process_etapa <- function(id, casa, agenda) {
     proc_tram <-
         agoradigital::process_proposicao(prop, tram, casa) %>%
         dplyr::mutate(data_hora = as.POSIXct(data_hora))
-    status <- agoradigital::extract_status_tramitacao(tram, agenda)
+    status <- agoradigital::extract_status_tramitacao(id, casa)
     historico_energia <-
         agoradigital::get_historico_energia_recente(proc_tram) %>%
         dplyr::mutate(id_ext = prop$prop_id, casa = prop$casa) %>%

@@ -1,6 +1,7 @@
 source(here::here("R/senado_analyzer.R"))
 source(here::here("R/camara_analyzer.R"))
 source(here::here("R/congresso-lib.R"))
+source(here::here("R/relatores.R"))
 
 congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
 congress_constants <- congresso_env$constants
@@ -202,13 +203,14 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
 #' @param tram_df Dataframe da tramitação do PL.
 #' @return Dataframe contendo id, regime de tramitação e forma de apreciação do PL
 #' @examples
-#' extract_status_tramitacao(fetch_tramitacao(91341, 'senado', TRUE), fetch_agenda_geral('2018-07-03', '2018-07-10'))
+#' extract_status_tramitacao(91341, 'senado')
 #' @export
 #' @importFrom stats filter
-extract_status_tramitacao <- function(tram_df, agenda) {
+extract_status_tramitacao <- function(proposicao_id, casa) {
+  tram_df <- fetch_tramitacao(proposicao_id, casa, TRUE)
   regime <- extract_regime_tramitacao(tram_df)
   apreciacao <- extract_forma_apreciacao(tram_df)
-  relator_nome <- extract_relator_nome(tram_df)
+  relator_nome <- extract_relator_name(proposicao_id, casa)
 
   status_tram <-
       data.frame(
@@ -266,24 +268,4 @@ get_pesos_eventos <- function() {
     dplyr::arrange()
 
   return(pesos_eventos)
-}
-
-#' @title Recupera nome do último relator
-#' @description Recupera nome do último relator, recebendo o dataframe da tramitação
-#' @return Nome do último relator
-#' @examples
-#' extract_relator_nome(fetch_tramitacao(91341, 'senado', TRUE))
-#' @export
-extract_relator_nome <- function(tram_df) {
-  casa <- tram_df[1, "casa"]
-  prop_id <- tram_df[1, "prop_id"]
-  relator_nome <- NULL
-  
-  if (casa == congress_constants$camara_label) {
-    relator_nome <- extract_last_relator_in_camara(tram_df)
-  } else if (casa == congress_constants$senado_label) {
-    relator_nome <- agoradigital::extract_ultimo_relator(prop_id)
-  }
-  
-  relator_nome
 }
