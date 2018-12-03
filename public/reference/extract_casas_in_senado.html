@@ -84,16 +84,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/tutorial_1_fetcher.html">Baixando Dados</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_2_analyzer.html">Fases e Eventos de uma Proposição</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
     </li>
   </ul>
 </li>
@@ -129,7 +120,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>extract_casas_in_senado</span>(<span class='no'>data_tramitacao</span>, <span class='no'>proposicao_df</span>)</pre>
+    <pre class="usage"><span class='fu'>extract_casas_in_senado</span>(<span class='no'>data_tramitacao</span>, <span class='no'>casa_name</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -146,7 +137,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>extract_casas_in_senado</span>(<span class='fu'><a href='fetch_tramitacao.html'>fetch_tramitacao</a></span>(<span class='fl'>115926</span>, <span class='st'>'senado'</span>, <span class='no'>T</span>), <span class='fu'><a href='fetch_proposicao.html'>fetch_proposicao</a></span>(<span class='fl'>115926</span>, <span class='st'>'senado'</span>, <span class='no'>T</span>))</div><div class='output co'>#&gt; <span class='error'>Error in proposicao_data$IdentificacaoMateria %&gt;% tibble::as.tibble(): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>extract_casas_in_senado</span>(<span class='fu'><a href='fetch_tramitacao.html'>fetch_tramitacao</a></span>(<span class='fl'>115926</span>, <span class='st'>'senado'</span>, <span class='no'>T</span>), <span class='fu'><a href='fetch_proposicao.html'>fetch_proposicao</a></span>(<span class='fl'>115926</span>, <span class='st'>'senado'</span>, <span class='no'>T</span>))</div><div class='output co'>#&gt; <span class='error'>Error in data_tramitacao %&gt;% dplyr::mutate(fase_global = casa_name, local = dplyr::case_when((stringr::str_detect(tolower(texto_tramitacao),     fase_global_constants$plenario) &amp; sigla_local == "PLEN") ~     "Plenário", sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes &amp;     (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~     "Comissões")): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

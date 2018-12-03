@@ -84,16 +84,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/tutorial_1_fetcher.html">Baixando Dados</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_2_analyzer.html">Fases e Eventos de uma Proposição</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
     </li>
   </ul>
 </li>
@@ -150,7 +141,20 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>gera_tabela_requerimentos</span>(<span class='fl'>91341</span>, <span class='st'>'senado'</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown or uninitialised column: 'proposicoes_relacionadas'.</span></div><div class='output co'>#&gt; <span class='error'>Error in strsplit(fetch_proposicao(bill_id, "senado")$proposicoes_relacionadas,     " "): non-character argument</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>gera_tabela_requerimentos</span>(<span class='fl'>91341</span>, <span class='st'>'senado'</span>)</div><div class='output co'>#&gt;    proposicao_id deferimento
+#&gt; 1          96123        &lt;NA&gt;
+#&gt; 2          96979        &lt;NA&gt;
+#&gt; 3         111753    deferido
+#&gt; 4         112563    deferido
+#&gt; 5         112568    deferido
+#&gt; 6         112573        &lt;NA&gt;
+#&gt; 7         113330    deferido
+#&gt; 8         114920        &lt;NA&gt;
+#&gt; 9         116166    deferido
+#&gt; 10        116195    deferido
+#&gt; 11        119106    deferido
+#&gt; 12        122726        &lt;NA&gt;
+#&gt; 13        120384    deferido</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

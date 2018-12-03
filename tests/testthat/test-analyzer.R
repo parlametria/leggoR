@@ -1,6 +1,6 @@
 testthat::context('test-analyzer.R')
 
-test_that('get_historico_energia_recente() has correct function passing the parameter day', {
+test_that('get_historico_temperatura_recente() has correct function passing the parameter day', {
   data <- data.frame(prop_id = rep(1111,18),
                     data_hora = c(rep(lubridate::ymd_hms('2018-09-10 12:00:00'), 4),
                                    rep(lubridate::ymd_hms('2018-09-11 12:00:00'), 2),
@@ -57,12 +57,12 @@ test_that('get_historico_energia_recente() has correct function passing the para
   
   result <- round(result, digits = 2)
   
-  energy_df <- get_historico_energia_recente(data, granularidade = 'd', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-18 12:00:00"))
+  energy_df <- get_historico_temperatura_recente(data, granularidade = 'd', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-18 12:00:00"))
   
-  expect_true(all(energy_df$energia_recente == result))
+  expect_true(all(energy_df$temperatura_recente == result))
 })
 
-test_that('get_historico_energia_recente() has correct function passing the parameter week', {
+test_that('get_historico_temperatura_recente() has correct function passing the parameter week', {
   data <- data.frame(prop_id = rep(1111,17),
                     data_hora = c(lubridate::ymd_hms("2018-09-03 12:00:00"), 
                                   lubridate::ymd_hms("2018-09-06 12:00:00"),
@@ -99,9 +99,9 @@ test_that('get_historico_energia_recente() has correct function passing the para
   
   result <- round(result, digits = 2)
   
-  energy_df <- get_historico_energia_recente(data, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"))
+  energy_df <- get_historico_temperatura_recente(data, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"))
   
-  expect_true(all(energy_df$energia_recente == result))
+  expect_true(all(energy_df$temperatura_recente == result))
 })
 
 test_that('get_pesos_eventos() returns all events from both houses', {

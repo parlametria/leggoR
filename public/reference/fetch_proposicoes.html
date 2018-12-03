@@ -84,16 +84,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/tutorial_1_fetcher.html">Baixando Dados</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_2_analyzer.html">Fases e Eventos de uma Proposição</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
     </li>
   </ul>
 </li>
@@ -146,7 +137,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>all_pls</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>readr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/readr/topics/read_delim'>read_csv</a></span>(<span class='st'>'data/tabela_geral_ids_casa.csv'</span>)</div><div class='output co'>#&gt; <span class='error'>Error: 'data/tabela_geral_ids_casa.csv' does not exist in current working directory ('/local/tarciso/workspace/agora-digital/public/reference').</span></div><div class='input'><span class='fu'>fetch_proposicoes</span>(<span class='no'>all_pls</span>)</div><div class='output co'>#&gt; <span class='error'>Error in map2(.x, .y, .f, ...): object 'all_pls' not found</span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>all_pls</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>readr</span><span class='kw ns'>::</span><span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span>(<span class='st'>'data/tabela_geral_ids_casa.csv'</span>)</div><div class='output co'>#&gt; <span class='error'>Error: 'data/tabela_geral_ids_casa.csv' does not exist in current working directory ('/local/tarciso/workspace/agora-digital/public/reference').</span></div><div class='input'><span class='fu'>fetch_proposicoes</span>(<span class='no'>all_pls</span>)</div><div class='output co'>#&gt; <span class='error'>Error in map2(.x, .y, .f, ...): object 'all_pls' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

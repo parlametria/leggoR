@@ -84,16 +84,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/tutorial_1_fetcher.html">Baixando Dados</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_2_analyzer.html">Fases e Eventos de uma Proposição</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
     </li>
   </ul>
 </li>
@@ -146,7 +137,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='fu'>generate_progresso_df</span>(<span class='fu'><a href='fetch_tramitacao.html'>fetch_tramitacao</a></span>(<span class='fl'>2121442</span>, <span class='st'>'camara'</span>, <span class='no'>T</span>))</div><div class='output co'>#&gt; <span class='error'>Error in tramitacao_df %&gt;% dplyr::arrange(data_hora) %&gt;% dplyr::filter(fase_global !=     "NA" &amp; local != "NA") %&gt;% dplyr::mutate(end_data = dplyr::lead(data_hora,     default = Sys.time())) %&gt;% dplyr::group_by(casa, prop_id,     fase_global, local, sequence = data.table::rleid(fase_global)) %&gt;%     dplyr::summarise(data_inicio = min(data_hora), data_fim = max(end_data)) %&gt;%     dplyr::filter(data_fim - data_inicio &gt; 0) %&gt;% dplyr::select(-sequence): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'> <span class='fu'>generate_progresso_df</span>(<span class='fu'><a href='fetch_tramitacao.html'>fetch_tramitacao</a></span>(<span class='fl'>2121442</span>, <span class='st'>'camara'</span>, <span class='no'>T</span>))</div><div class='output co'>#&gt; <span class='error'>Error in tramitacao_df %&gt;% dplyr::arrange(data_hora, fase_global) %&gt;%     dplyr::filter(!is.na(fase_global) &amp; !is.na(local)) %&gt;% dplyr::mutate(end_data = dplyr::lead(data_hora)) %&gt;%     dplyr::group_by(casa, prop_id, fase_global, local, sequence = data.table::rleid(fase_global)) %&gt;%     dplyr::summarise(data_inicio = min(data_hora, na.rm = T),         data_fim = max(end_data, na.rm = T)) %&gt;% dplyr::select(-sequence) %&gt;%     dplyr::group_by(fase_global) %&gt;% dplyr::mutate(data_fim_anterior = dplyr::lag(data_fim)) %&gt;%     dplyr::filter(is.na(data_fim_anterior) | data_fim &gt; data_fim_anterior) %&gt;%     dplyr::select(-data_fim_anterior) %&gt;% dplyr::arrange(data_inicio): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

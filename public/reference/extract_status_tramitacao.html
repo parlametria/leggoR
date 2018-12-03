@@ -84,16 +84,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/tutorial_1_fetcher.html">Baixando Dados</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_2_analyzer.html">Fases e Eventos de uma Proposição</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
     </li>
   </ul>
 </li>
@@ -129,7 +120,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>extract_status_tramitacao</span>(<span class='no'>tram_df</span>)</pre>
+    <pre class="usage"><span class='fu'>extract_status_tramitacao</span>(<span class='no'>tram_df</span>, <span class='no'>agenda</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -146,7 +137,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>extract_status_tramitacao</span>(<span class='fu'><a href='fetch_tramitacao.html'>fetch_tramitacao</a></span>(<span class='fl'>91341</span>, <span class='st'>'senado'</span>, <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; <span class='error'>Error in json_tramitacao %&gt;% magrittr::extract2("MovimentacaoMateria") %&gt;%     magrittr::extract2("Materia"): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>extract_status_tramitacao</span>(<span class='fu'><a href='fetch_tramitacao.html'>fetch_tramitacao</a></span>(<span class='fl'>91341</span>, <span class='st'>'senado'</span>, <span class='fl'>TRUE</span>), <span class='fu'><a href='fetch_agenda_geral.html'>fetch_agenda_geral</a></span>(<span class='st'>'2018-07-03'</span>, <span class='st'>'2018-07-10'</span>))</div><div class='output co'>#&gt; <span class='error'>Error in json_tramitacao %&gt;% magrittr::extract2("MovimentacaoMateria") %&gt;%     magrittr::extract2("Materia"): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
