@@ -5,23 +5,23 @@ process_etapa <- function(id, casa, agenda) {
         agoradigital::process_proposicao(prop, tram, casa) %>%
         dplyr::mutate(data_hora = as.POSIXct(data_hora))
     status <- agoradigital::extract_status_tramitacao(id, casa)
-    historico_energia <-
-        agoradigital::get_historico_energia_recente(proc_tram) %>%
+    historico_temperatura <-
+        agoradigital::get_historico_temperatura_recente(proc_tram) %>%
         dplyr::mutate(id_ext = prop$prop_id, casa = prop$casa) %>%
-        dplyr::select(id_ext, casa, periodo, energia_periodo, energia_recente)
-    energia_value <-
-        historico_energia %>%
+        dplyr::select(id_ext, casa, periodo, temperatura_periodo, temperatura_recente)
+    temperatura_value <-
+        historico_temperatura %>%
         dplyr::slice(n()) %>%
-        .$energia_recente
+        .$temperatura_recente
     extended_prop <-
         merge(prop, status, by = "prop_id") %>%
-        dplyr::mutate(energia = energia_value) %>%
+        dplyr::mutate(temperatura = temperatura_value) %>%
         dplyr::select(-casa_origem)
 
     list(
         proposicao = extended_prop,
         fases_eventos = proc_tram,
-        hist_energia = historico_energia)
+        hist_temperatura = historico_temperatura)
 }
 
 adiciona_coluna_pulou <- function(progresso_df) {
@@ -81,7 +81,7 @@ export_data <- function(pls, export_path) {
   tramitacoes <-
     purrr::map_df(res, ~ .$fases_eventos) %>%
     dplyr::rename(id_ext = prop_id, data = data_hora)
-  hists_energia <- purrr::map_df(res, ~ .$hist_energia)
+  hists_temperatura <- purrr::map_df(res, ~ .$hist_temperatura)
   progressos <-
     purrr::map_df(res, ~ .$progresso) %>%
     dplyr::rename(id_ext = prop_id)
@@ -90,6 +90,6 @@ export_data <- function(pls, export_path) {
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
   readr::write_csv(tramitacoes, paste0(export_path, "/trams.csv"))
   readr::write_csv(
-      hists_energia, paste0(export_path, "/hists_energia.csv"))
+      hists_temperatura, paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
 }

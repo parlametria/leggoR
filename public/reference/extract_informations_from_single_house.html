@@ -84,16 +84,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/tutorial_1_fetcher.html">Baixando Dados</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_2_analyzer.html">Fases e Eventos de uma Proposição</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
     </li>
   </ul>
 </li>
@@ -155,7 +146,12 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>extract_informations_from_single_house</span>(<span class='fl'>91341</span>, <span class='st'>'senado'</span>, <span class='st'>'https://www25.senado.leg.br/web/atividade/materias/-/materia/91341'</span>)</div><div class='output co'>#&gt; [1] 91341
-#&gt; [1] "senado"</div><div class='output co'>#&gt; <span class='error'>Error in rename(., local = "comissoes_permanentes"): could not find function "rename"</span></div></pre>
+#&gt; [1] "senado"</div><div class='output co'>#&gt; # A tibble: 1 x 11
+#&gt;   nome   autor  casa_origem data_apresentac… ementa status_atual ultimo_relator
+#&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;         
+#&gt; 1 [PLS2… Tasso… Senado Fed… 28/05/2009       Estab… "Remessa Of… Ricardo Ferra…
+#&gt; # ... with 4 more variables: ultimos_eventos &lt;list&gt;, regime &lt;chr&gt;,
+#&gt; #   apreciacao &lt;chr&gt;, page_url &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
