@@ -138,10 +138,9 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
       ))
   }
   
-  a <-
-    data_tramitacao %>%
-    dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao", "- Sanção/Veto", global)) %>% 
-    tidyr::fill(global, .direction = "down")
+   data_tramitacao %>%
+   dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao", "- Sanção/Veto", global)) %>% 
+   tidyr::fill(global, .direction = "down")
 }
 
 #' @title Cria coluna com a fase casa da tramitação no Senado
