@@ -181,7 +181,8 @@ fetch_deferimento <- function(proposicao_id) {
 #' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
 #' @examples
-#' fetch_relatorias(91341)
+#' 
+#' 
 #' @export
 fetch_relatorias <- function(proposicao_id) {
   url_relatorias <-
@@ -363,6 +364,35 @@ rename_proposicao_df <- function(df) {
   names(df) <- new_names
 
   df
+}
+
+#' @title Retorna as sessões deliberativas de uma proposição no Senado
+#' @description Retorna dataframe com os dados das sessões deliberativas de uma proposição no Senado.
+#' @param bill_id ID de uma proposição do Senado
+#' @return Dataframe com as informações sobre as sessões deliberativas de uma proposição no Senado
+#' @examples
+#' fetch_sessions(91341)
+#' @export
+fetch_sessions <- function(bill_id) {
+  url_base_sessions <-
+    "http://legis.senado.leg.br/dadosabertos/materia/ordia/"
+  url <- paste0(url_base_sessions, bill_id)
+
+  json_sessions <- jsonlite::fromJSON(url, flatten = T)
+
+  sessions_data <- json_sessions %>%
+    magrittr::extract2("OrdiaMateria") %>%
+    magrittr::extract2("Materia")
+
+  ordem_do_dia_df <- sessions_data %>%
+    magrittr::extract2("OrdensDoDia") %>%
+    magrittr::extract2("OrdemDoDia") %>%
+    magrittr::extract2("SessaoPlenaria") %>%
+    purrr::map_df( ~ .) %>%
+    tidyr::unnest() %>%
+    rename_table_to_underscore()
+
+  ordem_do_dia_df
 }
 
 #' @title Retorna um dataframe a partir de uma coluna com listas encadeadas
@@ -694,13 +724,21 @@ fetch_proposicoes <- function(pls_ids) {
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
 #' fetch_proposicao_senado(129808, T, 'Cadastro Positivo', 'Agenda Nacional')
-fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema) {
+fetch_proposicao_senado <- function(proposicao_id, normalized=TRUE, apelido, tema) {
   url_base_proposicao <-
     "http://legis.senado.leg.br/dadosabertos/materia/"
   da_url <- paste0(url_base_proposicao, proposicao_id)
 
   page_url_senado <-
     "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
+
+  parse_autor = function(row) {
+      return(paste(
+          paste(
+              row[["NomeAutor"]],
+              row[["IdentificacaoParlamentar.SiglaPartidoParlamentar"]]),
+          row[["UfAutor"]], sep = "/"))
+  }
 
   json_proposicao <- fetch_json_try(da_url)
   proposicao_data <- json_proposicao$DetalheMateria$Materia
@@ -712,13 +750,15 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema
     purrr::flatten() %>%
     tibble::as.tibble()
   proposicao_author <-
-    proposicao_data$Autoria$Autor %>%
-    tibble::as.tibble()
+    proposicao_data$Autoria[[1]] %>%
+    tibble::as.tibble() %>%
+    purrrlyr::by_row(parse_autor) %>%
+    .[[".out"]] %>%
+    paste(collapse = ", ")
   proposicao_specific_assunto <-
     proposicao_data$Assunto$AssuntoEspecifico %>%
     tibble::as.tibble() %>%
-    dplyr::rename(assunto_especifico = Descricao,
-                  codigo_assunto_especifico = Codigo)
+    dplyr::rename(assunto_especifico = Descricao, codigo_assunto_especifico = Codigo)
   proposicao_general_assunto <-
     proposicao_data$Assunto$AssuntoGeral %>%
     tibble::as.tibble() %>%
@@ -735,12 +775,13 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema
     proposicao_basic_data %>%
     tibble::add_column(
       !!!proposicao_ids,
-      !!!proposicao_author,
-      !!!proposicao_specific_assunto,!!!proposicao_general_assunto,
+      !!!proposicao_specific_assunto,
+      !!!proposicao_general_assunto,
       !!!proposicao_source,
+      autor_nome = proposicao_author,
       page_url = paste0(page_url_senado, proposicao_id),
-      proposicoes_relacionadas = paste(relacionadas, collapse = ' '),
-      proposicoes_apensadas = paste(anexadas, collapse = ' ')
+      proposicoes_relacionadas = paste(relacionadas, collapse = " "),
+      proposicoes_apensadas = paste(anexadas, collapse = " ")
     )
 
   proposicao_complete <-
@@ -749,21 +790,24 @@ fetch_proposicao_senado <- function(proposicao_id,normalized=TRUE, apelido, tema
   proposicao_complete <- rename_proposicao_df(proposicao_complete)
 
   if (normalized) {
-    nome_autor <- proposicao_complete$nome_autor
-    partido_autor <- proposicao_complete$sigla_partido_parlamentar
-    uf_autor <- proposicao_complete$uf_parlamentar
-
     proposicao_complete <-
       proposicao_complete %>%
-      dplyr::mutate(prop_id = as.integer(codigo_materia),
-                    numero = as.integer(numero_materia),
-                    ano = as.integer(ano_materia),
-                    data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao, "00:00")),
-                    casa = 'senado',
-                    autor_nome = ifelse(is.null(partido_autor) & is.null(uf_autor), nome_autor, paste0(nome_autor, ' ', partido_autor, '/', uf_autor)),
-                    apelido_materia = ifelse('apelido_materia' %in% names(.), apelido_materia, apelido),
-                    tema = tema,
-                    indexacao_materia = {if("indexacao_materia" %in% names(.)) indexacao_materia else NA}) %>%
+      dplyr::mutate(
+        prop_id = as.integer(codigo_materia),
+        numero = as.integer(numero_materia),
+        ano = as.integer(ano_materia),
+        data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao, "00:00")),
+        casa = "senado",
+        apelido_materia = ifelse(
+          "apelido_materia" %in% names(.),
+          apelido_materia,
+          apelido),
+        tema = tema,
+        indexacao_materia = ifelse(
+          "indexacao_materia" %in% names(.),
+          indexacao_materia,
+          NA)
+      ) %>%
       dplyr::select(prop_id,
                     casa,
                     tipo_materia = sigla_subtipo_materia,
@@ -902,9 +946,11 @@ fetch_agenda_senado <- function(initial_date) {
 
   agenda <-
     json_proposicao$AgendaPlenario$Sessoes$Sessao %>%
-    rename_table_to_underscore()
+    rename_table_to_underscore() %>%
+    tibble::as.tibble()
 
   descricoes_inuteis <- c('SESSÃO SOLENE', 'SESSÃO NÃO DELIBERATIVA', 'NÃO HAVERÁ SESSÃO', 'SESSÃO ESPECIAL')
+  
   agenda <-
     agenda %>%
     dplyr::filter(!(tipo_sessao %in% descricoes_inuteis))
@@ -1010,10 +1056,18 @@ get_audiencias_publicas <- function(initial_date, end_date) {
       }
     }
   }
-
-  get_data_frame_agenda_senado(initial_date, end_date) %>%
-    dplyr::mutate(id_proposicao = purrr::map_chr(partes_parte, ~ pega_audiencias_publicas_do_data_frame(.))) %>%
-    dplyr::select(data, hora, realizada, comissoes_comissao_sigla, id_proposicao)
+  
+  agenda_senado <- get_data_frame_agenda_senado(initial_date, end_date) %>% 
+    dplyr::mutate(id_proposicao = purrr::map_chr(partes_parte, ~ pega_audiencias_publicas_do_data_frame(.)))
+  
+  if ("comissoes_comissao_sigla" %in% names(agenda_senado)) {
+    agenda_senado %>%
+      dplyr::select(data, hora, realizada, sigla = comissoes_comissao_sigla, id_proposicao)
+  }else {
+      agenda_senado %>% 
+      mutate(sigla = purrr::map_chr(comissoes_comissao, ~ paste(.$Sigla, collapse = " ,"))) %>%
+      dplyr::select(data, hora, realizada, sigla, id_proposicao)
+  }
 }
 
 #' @title Retorna o dataFrame da agenda do Senado
@@ -1050,37 +1104,55 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
     dplyr::filter(!(tipo %in% tipos_inuteis)) %>%
     unique()
 
-
-
   if (nrow(agenda) != 0) {
     if ("partes_parte" %in% names(agenda)) {
       agenda <-
         agenda %>%
         dplyr::mutate(id_proposicao = purrr::map(partes_parte, ~ pega_id_proposicao(.))) %>%
         dplyr::mutate(nome = purrr::map(partes_parte, ~ pega_nome(.))) %>%
-        dplyr::filter(id_proposicao != "") %>%
-        dplyr::rowwise() %>%
-        dplyr::mutate(local = strsplit(titulo_da_reuniao, ",")[[1]][[1]]) %>%
-        dplyr::select(c(data, nome, id_proposicao, local)) %>%
-        dplyr::mutate(id_proposicao = strsplit(as.character(id_proposicao), ",")) %>%
-        dplyr::mutate(nome = strsplit(as.character(nome), ",")) %>%
-        tidyr::unnest() %>%
-        dplyr::select(c(data, nome, id_proposicao, local))
+        dplyr::filter(id_proposicao != "") 
+      
+      if (nrow(agenda) != 0) {
+        agenda <-
+          agenda %>% 
+          dplyr::rowwise() %>%
+          dplyr::mutate(local = strsplit(titulo_da_reuniao, ",")[[1]][[1]]) %>%
+          dplyr::select(c(data, nome, id_proposicao, local)) %>%
+          dplyr::mutate(id_proposicao = strsplit(as.character(id_proposicao), ",")) %>%
+          dplyr::mutate(nome = strsplit(as.character(nome), ",")) %>%
+          tidyr::unnest() %>%
+          dplyr::select(c(data, nome, id_proposicao, local))
+      }else {
+        return(tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local))
+      }
+
     }else {
       agenda <-
         agenda %>%
         dplyr::mutate(id_proposicao = purrr::map(partes_parte_itens_item, ~ .$Codigo)) %>%
         dplyr::mutate(nome = purrr::map(partes_parte_itens_item, ~ .$Nome)) %>%
-        tidyr::unnest() %>%
-        dplyr::rowwise() %>%
-        dplyr::mutate(local = strsplit(titulo_da_reuniao, ",")[[1]][[1]]) %>%
-        dplyr::select(c(data, nome, id_proposicao, local))
+        dplyr::filter(partes_parte_tipo == "Deliberativa") 
+      
+      if (nrow(agenda) != 0) {
+        agenda <-
+          agenda %>%
+          dplyr::select(data, id_proposicao, nome, titulo_da_reuniao) %>%
+          tidyr::unnest() %>%
+          dplyr::rowwise() %>%
+          dplyr::mutate(local = strsplit(titulo_da_reuniao, ",")[[1]][[1]]) %>%
+          dplyr::select(c(data, nome, id_proposicao, local)) 
+      }else {
+        return(tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local))
+      }
     }
 
     new_names <- c("data", "sigla", "id_proposicao", "local")
     names(agenda) <- new_names
 
-    agenda %>% dplyr::arrange(data)
+    agenda %>%
+      dplyr::mutate(data = lubridate::dmy(data)) %>%
+      dplyr::arrange(data)
+    
   }else {
     tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local)
   }
@@ -1093,7 +1165,7 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
 #' @param l lista que contém o id
 #' @return char
 pega_nome <- function(l){
-  if(length(l$Tipo) == 1 ) {
+  if(length(l$Tipo) == 1) {
     if (l$Tipo == "Deliberativa") {
       paste(l$Itens$Item$Nome, collapse = ",")
     }else {
@@ -1101,8 +1173,10 @@ pega_nome <- function(l){
     }
   }else {
     if ("Deliberativa" %in% l$Tipo) {
+      # df <- l %>% tibble::as.tibble() %>% dplyr::filter(Tipo == "Deliberativa")
+      # l <- df$Itens.Item[[1]]
       if(!is.null(l$Itens.Item)) {
-        paste(l$Itens.Item$Nome, collapse = ",")
+        paste(l$Nome, collapse = ",")
       }else {
         ""
       }
@@ -1212,6 +1286,57 @@ fetch_agenda <- function(initial_date, end_date, house, orgao) {
   }
 }
 
+#' @title Baixa a agenda da camara e do senado
+#' @description Retorna um dataframe contendo a agenda geral da camara e do
+#' senado
+#' @param initial_date data inicial no formato yyyy-mm-dd
+#' @param end_date data final no formato yyyy-mm-dd
+#' @return Dataframe
+#' @examples
+#' fetch_agenda_geral('2018-07-03', '2018-07-10')
+#' @export
+fetch_agenda_geral <- function(initial_date, end_date) {
+  try(if(as.Date(end_date) < as.Date(initial_date)) stop("A data inicial é depois da final!"))
+  print(initial_date)
+  print(end_date)
+  
+  agenda_plenario_camara <- normalize_agendas(fetch_agenda_camara(initial_date = initial_date, end_date = end_date), "camara") %>%
+    dplyr::mutate(casa = "camara")
+  
+  if (nrow(agenda_plenario_camara) != 0) {
+    agenda_plenario_camara <- 
+      agenda_plenario_camara %>%
+      dplyr::rowwise() %>%
+      dplyr::mutate(data = stringr::str_split(data,'T')[[1]][1]) %>%
+      dplyr::ungroup()
+  }
+  agenda_plenario_senado <- 
+    normalize_agendas(fetch_agenda_senado(initial_date), "senado") %>%
+    dplyr::mutate(casa = "senado")
+  agenda_comissoes_senado <- fetch_agenda_senado_comissoes(initial_date, end_date) %>%
+    dplyr::mutate(data = as.character(data)) %>%
+    dplyr::mutate(casa = "senado")
+  
+  initial_date <- strsplit(as.character(initial_date), '-')
+  end_date <- strsplit(as.character(end_date), '-')
+  agenda_comissoes_camara <- 
+    fetch_agenda_comissoes_camara(
+    paste0(initial_date[[1]][[3]],'/', initial_date[[1]][[2]], '/', initial_date[[1]][[1]]), 
+    paste0(end_date[[1]][[3]],'/', end_date[[1]][[2]], '/', end_date[[1]][[1]])) %>%
+    dplyr::mutate(data = as.character(data)) %>%
+    dplyr::mutate(casa = "camara")
+
+  rbind(
+    agenda_plenario_camara,
+    agenda_plenario_senado,
+    agenda_comissoes_senado,
+    agenda_comissoes_camara
+    ) %>%
+    dplyr::arrange(data) %>% 
+    dplyr::mutate_all(as.character) %>%
+    dplyr::rename(id_ext = id_proposicao)
+}
+
 #' @title Baixa dados de requerimentos relacionados
 #' @description Retorna um dataframe contendo dados sobre os requerimentos relacionados a uma proposição
 #' @param id ID de uma proposição
@@ -1270,7 +1395,7 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
 fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_date){
 
   url <-
-    getURL(paste0(
+    RCurl::getURL(paste0(
     'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=',
     orgao_id, '&datIni=', initial_date, '&datFim=', end_date))
 
@@ -1351,7 +1476,7 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
 #' @return Dataframe contendo os órgãos da Câmara
 #' @importFrom RCurl getURL
 fetch_orgaos_camara <- function(){
-  url <- getURL('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterOrgaos')
+  url <- RCurl::getURL('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterOrgaos')
 
   orgaos_list <-
     XML::xmlParse(url) %>%
@@ -1368,4 +1493,22 @@ fetch_orgaos_camara <- function(){
   names(df) <- c("orgao_id", "tipo_orgao_id", "sigla", "descricao")
 
   return(df)
+}
+
+
+#' @title Baixa dados da agenda por semana
+#' @description Retorna um dataframe contendo dados sobre a agenda 
+#' @param initial_date data inicial no formato dd/mm/yyyy
+#' @param end_date data final no formato dd/mm/yyyy
+#' @return Dataframe
+#' @examples
+#' junta_agendas('2018-11-05', '2018-11-12')
+#' @export
+junta_agendas <- function(initial_date, end_date) {
+  semanas <- 
+    seq(lubridate::floor_date(as.Date(initial_date), unit="week") + 1, as.Date(end_date), by = "week") %>%
+    tibble::as.tibble() %>%
+    dplyr::mutate(fim_semana = as.Date(cut(value, "week")) + 4)
+  
+  materia <- purrr::map2_df(semanas$value, semanas$fim_semana, ~ fetch_agenda_geral(.x, .y)) 
 }

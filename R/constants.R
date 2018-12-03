@@ -139,7 +139,8 @@ COMISSOES_CAMARA <-
     "descricao_identificacao_materia",
     "numero_materia",
     "ano_materia",
-    "indicador_tramitando"
+    "indicador_tramitando",
+    "descricao_objetivo_processo"
   )
 
 .COLNAMES_TRAMI_SEN <-
@@ -175,7 +176,8 @@ COMISSOES_CAMARA <-
     "descricao_subtipo_materia",
     "numero_materia",
     "ano_materia",
-    "indicador_tramitando"
+    "indicador_tramitando",
+    "descricao_objetivo_processo"
   )
 
 .COLNAMES_DEFE_SEN <- c("proposicao_id", "deferimento")
