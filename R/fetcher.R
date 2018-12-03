@@ -513,6 +513,26 @@ fetch_emendas_senado <- function(bill_id) {
 
 }
 
+fetch_emendas_camara <- function(tipo, num, ano) {
+  url <- 'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterEmendasSubstitutivoRedacaoFinal?tipo=PL&numero=3962&ano=2008'
+  eventos_list <-
+    XML::xmlParse(url) %>%
+    XML::xmlToList()
+  
+  df <-
+    eventos_list %>%
+    jsonlite::toJSON() %>%
+    jsonlite::fromJSON() %>%
+    magrittr::extract2('Emendas') %>%
+    tibble::as.tibble() %>%
+    t() %>%
+    as.data.frame()
+  
+  new_names <- c("cod_proposicao", "descricao")
+  names(df) <- new_names
+  
+}
+
 #' @title Baixa os dados da tramitação de um Projeto de Lei
 #' @description Retorna dataframe com os dados da tramitação de uma proposição no Congresso
 #' @param id ID de uma proposição na sua respectiva casa
