@@ -5,6 +5,12 @@
     {"situacao_comissao": "discussao_votacao", "id_tipo_tramitacao": "^322$|^240$"},
     {"situacao_comissao": "encaminhamento", "id_tipo_tramitacao": "^180$"}
   ],
+  
+    "fase_global": {
+      "origem_camara": " - Origem (Câmara)",
+      "revisao_camara": " - Revisão (Câmara)",
+      "revisao_senado": " - Revisão (Senado)"
+  },
 
   "eventos": [
     {"evento": "requerimento_audiencia_publica", "texto_tramitacao": "^apresentação do requerimento.*requer a realização d.* audiências? públicas?", "tipo":"discussao"},
@@ -32,7 +38,9 @@
     {"evento": "parecer_pela_aprovacao_com_substitutivo", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*pela adequa..o financeira e or.ament.ria).*substitutivo.*$", "tipo":"votacao"},
     {"evento": "parecer_pela_aprovacao", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*substitutivo)(?!.*pela adequa..o financeira e or.ament.ria).*aprova.*$", "tipo":"votacao"},
     {"evento": "parecer_pela_rejeicao", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*aprova)(?!.*substitutivo)(?!.*emenda).*rejei..o.*$", "tipo":"votacao"},
-    {"evento": "parecer", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*aprova)(?!.*rejei)(?!.*substitutivo).*parecer.*$", "tipo":"votacao"}
+    {"evento": "parecer", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*aprova)(?!.*rejei)(?!.*substitutivo).*parecer.*$", "tipo":"votacao"},
+    {"evento": "virada_de_casa", "texto_tramitacao": "^(remessa|remetido) ao senado federal.*", "tipo": "votacao"},
+    {"evento": "remetida_a_sancao", "texto_tramitacao": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"}
   ],
 
   "fase_casa": [

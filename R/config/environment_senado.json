@@ -17,7 +17,8 @@
 
   "fase_global": {
       "origem_senado": " - Origem (Senado)",
-      "revisao_camara": " - Revisão (Câmara)"
+      "revisao_camara": " - Revisão (Câmara)",
+      "revisao_senado": " - Revisão (Senado)"
   },
 
   "fase_subfase_comissoes": {
@@ -48,7 +49,7 @@
       "tipo":"despacho"
     },
     "virada": {
-      "regex": "primeiro-secretário da câmara dos deputados",
+      "regex": "primeiro-secretário da câmara dos deputados.* encaminhando",
       "regex_complementar": "",
       "constant": "virada_de_casa",
       "tipo":"votacao"
@@ -81,9 +82,7 @@
     {"evento": "aprovacao_projeto", "texto_tramitacao": "aprovado o projeto", "tipo":"votacao"},
     {"evento": "inicio_prazo_emendas", "id_situacao": "^20$", "tipo":"discussao"},
     {"evento": "fim_prazo_emendas", "id_situacao": "^153$", "tipo":"discussao"},
-    {"evento": "remetida_a_sancao", "id_situacao": "^57$", "tipo":"votacao"},
-    {"evento": "vetada", "id_situacao": "^57$", "tipo":"votacao"},
-    {"evento": "pronta_para_pauta", "id_situacao": "^42$", "tipo":"votacao"},
+    {"evento": "remetida_a_sancao", "texto_tramitacao": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
     {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "tipo":"discussao"}
   ],
 
@@ -184,7 +183,7 @@
     {"local": "Plenário", "fase_global": "Revisão I"},
     {"local": "Comissões", "fase_global": "Revisão II"},
     {"local": "Plenário", "fase_global": "Revisão II"},
-    {"local": "Presidência da República", "fase_global": "Sansão/Veto"},
+    {"local": "Presidência da República", "fase_global": "Sanção/Veto"},
     {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
   ]
 }
