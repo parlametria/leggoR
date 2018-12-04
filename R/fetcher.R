@@ -419,8 +419,7 @@ generate_dataframe <- function (column) {
 fetch_emendas <- function(id, casa) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    warning("Function fetch_emendas_camara not implemented yet.")
-    return(NULL)
+    fetch_emendas_camara(id)
   } else if (casa == 'senado') {
     fetch_emendas_senado(id)
   } else {
@@ -434,7 +433,6 @@ fetch_emendas <- function(id, casa) {
 #' @return Dataframe com as informações sobre as emendas de uma proposição no Senado.
 #' @examples
 #' fetch_emendas_senado(91341)
-#' @export
 fetch_emendas_senado <- function(bill_id) {
   url_base_emendas <-
     "http://legis.senado.leg.br/dadosabertos/materia/emendas/"
@@ -505,17 +503,28 @@ fetch_emendas_senado <- function(bill_id) {
         casa = "Senado Federal"
       ) %>%
       dplyr::select(
-        codigo, numero, local, autor, partido, casa, tipo_documento, inteiro_teor)
+        codigo, numero, local, autor, partido, casa, tipo_documento, inteiro_teor) 
 
   }
 
-  emendas_df
+  emendas_df %>%
+    dplyr::mutate(autor = paste0(autor, " ", partido)) %>%
+    dplyr::select(-partido)
 
 }
 
-fetch_emendas_camara <- function(tipo, num, ano) {
-  url <- 'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterEmendasSubstitutivoRedacaoFinal?tipo=PL&numero=3962&ano=2008'
-  eventos_list <-
+#' @title Retorna as emendas de uma proposição na Camara
+#' @description Retorna dataframe com os dados das emendas de uma proposição na Camara
+#' @param id ID de uma proposição da Camara
+#' @return Dataframe com as informações sobre as emendas de uma proposição na Camara
+#' @examples
+#' fetch_emendas_camara(408406)
+fetch_emendas_camara <- function(id) {
+  prop <- fetch_proposicao(id, 'camara')
+  url <- 
+    paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterEmendasSubstitutivoRedacaoFinal?tipo=', prop$tipo_materia, '&numero=', prop$numero, '&ano=', prop$ano)
+ 
+   eventos_list <-
     XML::xmlParse(url) %>%
     XML::xmlToList()
   
@@ -531,6 +540,18 @@ fetch_emendas_camara <- function(tipo, num, ano) {
   new_names <- c("cod_proposicao", "descricao")
   names(df) <- new_names
   
+  emendas <- purrr::map_df(df$cod_proposicao, fetch_emendas_camara_auxiliar)
+  normalizes_names <- c("codigo", "numero", "local", "autor", "casa", "tipo_documento", "inteiro_teor")
+  names(emendas) <- normalizes_names
+  
+  emendas
+}
+
+#' @title Função auxiliar para o fetch_emendas_camara
+#' @description Retorna dataframe com os dados das emendas de uma proposição na Camara
+fetch_emendas_camara_auxiliar <- function(id) {
+  fetch_proposicao(id, "camara") %>%
+    dplyr::select(c(prop_id, numero, casa_origem, autor_nome, casa, tipo_materia, ementa))
 }
 
 #' @title Baixa os dados da tramitação de um Projeto de Lei
