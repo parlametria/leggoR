@@ -546,7 +546,7 @@ fetch_emendas_senado <- function(bill_id) {
                     partido = autoria$partido,
                     tipo_documento = texto$tipo_documento,
                     inteiro_teor = texto$url_texto,
-                    casa = 'Senado Federal') %>%
+                    casa = 'senado') %>%
       dplyr::select(codigo, numero, local, autor, partido, casa, tipo_documento, inteiro_teor)
 
 
@@ -567,7 +567,7 @@ fetch_emendas_senado <- function(bill_id) {
       ) %>%
       dplyr::mutate(
         partido = paste0(partido, "/", uf),
-        casa = "Senado Federal"
+        casa = "senado"
       ) %>%
       dplyr::select(
         codigo, numero, local, autor, partido, casa, tipo_documento, inteiro_teor) 
