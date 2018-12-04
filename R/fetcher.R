@@ -534,7 +534,7 @@ build_data_filepath <- function(folder_path,data_prefix,house,bill_id) {
 #' @param apelido Apelido da proposição
 #' @param tema Tema da proposição
 #' @export
-#' @example
+#' @examples
 #' import_proposicao(129808, 'senado', 'Cadastro Positivo', 'Agenda Nacional', 'data/')
 import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL) {
   casa <- tolower(casa)

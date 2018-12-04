@@ -1,5 +1,3 @@
-source(here::here("R/relatorias.R"))
-
 senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 senado_constants <- senado_env$constants
 
@@ -114,7 +112,7 @@ extract_relatorias_camara <- function(proposicao_id) {
 #' @param proposicao_id ID de uma proposição da Camara
 #' @param casa casa da proposicao
 #' @return String nome do relator
-#' @example get_last_relator_name(91341, 'senado')
+#' @examples get_last_relator_name(91341, 'senado')
 #' @export
 get_last_relator_name <- function(proposicao_id, casa) {
   get_relatorias(proposicao_id, casa, 1)$nome_parlamentar
