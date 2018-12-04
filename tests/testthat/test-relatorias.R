@@ -9,7 +9,6 @@ check_setup <- function(){
   tryCatch(setup(), error = function(e){return(FALSE)})
 }
 
-
 test <- function(){
   test_that('get_relatorias() is dataframe', {
     expect_true(is.data.frame(get_relatorias(PROPOSICOES_ID, 'senado')))
