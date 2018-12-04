@@ -2,6 +2,38 @@ source(here::here("R/camara-lib.R"))
 
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
+#' @title Cria coluna com os relatores na tramitação na Câmara
+#' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no
+#' envento pontual em que ele é designado
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe com a coluna "relator" adicionada.
+#' @examples
+#' fetch_tramitacao(2121442, 'camara', T) %>% extract_relator_in_camara()
+extract_relator_in_camara <- function(df) {
+  df %>%
+    dplyr::mutate(relator = dplyr::case_when(
+      stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r') ~
+        stringr::str_extract(texto_tramitacao, stringr::regex('dep.?([^,]*)', ignore_case=TRUE))))
+}
+
+
+#' @title Recupera o último relator na Câmara
+#' @description Recupera o nome do último relator na Câmara
+#' @param df Dataframe da tramitação na Câmara
+#' @return String do nome do último relator na Câmara
+#' @examples
+#' fetch_tramitacao(2121442, 'camara', T) %>% extract_last_relator_in_camara()
+extract_last_relator_in_camara <- function(df) {
+  relatores <- extract_relator_in_camara(df)
+  relator <-
+    relatores %>%
+    dplyr::filter(!is.na(relator)) %>%
+    dplyr::arrange(desc(data_hora)) %>%
+    dplyr::select(relator)
+
+  relator$relator[1]
+}
+
 #' @title Busca os últimos n eventos da tramitação na Câmara
 #' @description Recupera os útimos n eventos da tramitação na Câmara, caso nenhuma quantidade seja informada, assume-se que é 1
 #' @param df Dataframe da tramitação na Câmara
@@ -12,6 +44,30 @@ extract_last_n_events_in_camara <- function(df, num) {
     dplyr::arrange(data_hora) %>%
     tail(n = num) %>%
     dplyr::select(data_hora, evento)
+}
+
+#' @title Recupera relatores de uma proposição
+#' @description Recupera todos os relatores de uma proposição, junto com suas informações de parlamentar e comissão
+#' @param tramitacao_df Dataframe da tramitação na Câmara
+#' @return Dataframe que contém todos os relatores
+extract_relatorias_in_camara <- function(tramitacao_df) {
+  tramitacao_df %>%
+    # extract line when a relator is designated by the code
+    dplyr::filter(id_tipo_tramitacao == '320') %>%
+    # select columns
+    dplyr::select(
+      data_hora,
+      texto_tramitacao,
+      sigla_local
+    ) %>%
+    tibble::add_column() %>%
+    # extract relator's name and partido
+    dplyr::mutate(
+      nome_parlamentar = stringr::str_match(texto_tramitacao,'Dep. (.*?) [(]')[,2],
+      partido = stringr::str_match(texto_tramitacao,'[(](.*?)[)]')[,2]
+    ) %>%
+    # remove texto_tramitacao column and return
+    dplyr::select(-c(texto_tramitacao))
 }
 
 #' @title Renomeia as colunas do dataframe
