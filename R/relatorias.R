@@ -77,6 +77,7 @@ extract_relatorias_senado <- function(proposicao_id) {
 #' de underscore e letras minúsculas
 #' @param df Dataframe do histórico de relatorias
 #' @return Dataframe com as colunas renomeadas
+#' @export
 rename_relatorias_senado_columns <- function(df) {
   new_names = names(df) %>%
     to_underscore() %>%
