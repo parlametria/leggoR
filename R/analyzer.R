@@ -1,7 +1,7 @@
 source(here::here("R/senado_analyzer.R"))
 source(here::here("R/camara_analyzer.R"))
 source(here::here("R/congresso-lib.R"))
-source(here::here("R/relatores.R"))
+source(here::here("R/relatorias.R"))
 
 congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
 congress_constants <- congresso_env$constants
@@ -210,7 +210,7 @@ extract_status_tramitacao <- function(proposicao_id, casa) {
   tram_df <- fetch_tramitacao(proposicao_id, casa, TRUE)
   regime <- extract_regime_tramitacao(tram_df)
   apreciacao <- extract_forma_apreciacao(tram_df)
-  relator_nome <- extract_relator_name(proposicao_id, casa)
+  relator_nome <- get_last_relator_name(proposicao_id, casa)
 
   status_tram <-
       data.frame(

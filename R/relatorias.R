@@ -10,7 +10,7 @@ senado_constants <- senado_env$constants
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
 #' @examples
 #' @export
-extract_relatorias <- function(proposicao_id, casa, last_n=NULL) {
+get_relatorias <- function(proposicao_id, casa, last_n=NULL) {
   relatorias <- data.frame()
   if(tolower(casa) == 'senado'){
     relatorias <- extract_relatorias_senado(proposicao_id)
@@ -115,6 +115,6 @@ extract_relatorias_camara <- function(proposicao_id) {
 #' @param casa casa da proposicao
 #' @return String nome do relator
 #' @export
-extract_relator_name <- function(proposicao_id, casa) {
-  extract_relatorias(proposicao_id, casa, 1)$nome_parlamentar
+get_last_relator_name <- function(proposicao_id, casa) {
+  get_relatorias(proposicao_id, casa, 1)$nome_parlamentar
 }
