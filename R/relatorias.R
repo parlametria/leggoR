@@ -8,7 +8,7 @@ senado_constants <- senado_env$constants
 #' @param proposicao_id ID de uma proposição do Senado
 #' @param last_n Pegar os ultimos N relatores
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
-#' @examples
+#' @examples get_relatorias(91341, 'senado', 3)
 #' @export
 get_relatorias <- function(proposicao_id, casa, last_n=NULL) {
   relatorias <- data.frame()
@@ -34,7 +34,7 @@ get_relatorias <- function(proposicao_id, casa, last_n=NULL) {
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
-#' @examples
+#' @examples fetch_relatorias_senado(91341)
 #' @export
 fetch_relatorias_senado <- function(proposicao_id) {
   url_relatorias <-
@@ -76,6 +76,7 @@ extract_relatorias_senado <- function(proposicao_id) {
 #' @description Renomeia as colunas do dataframe do histórico de relatorias no Senado usando o padrão
 #' de underscore e letras minúsculas
 #' @param df Dataframe do histórico de relatorias
+#' @example extract_relatorias_senado(91341) %>% rename_relatorias_senado_columns
 #' @return Dataframe com as colunas renomeadas
 #' @export
 rename_relatorias_senado_columns <- function(df) {
@@ -92,6 +93,7 @@ rename_relatorias_senado_columns <- function(df) {
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param proposicao_id ID de uma proposição da Camara
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição na Camara
+#' @example extract_relatorias_camara(2160860)
 #' @export
 extract_relatorias_camara <- function(proposicao_id) {
   fetch_tramitacao(proposicao_id, 'camara', T) %>%
@@ -115,6 +117,7 @@ extract_relatorias_camara <- function(proposicao_id) {
 #' @param proposicao_id ID de uma proposição da Camara
 #' @param casa casa da proposicao
 #' @return String nome do relator
+#' @example get_last_relator_name(91341, 'senado')
 #' @export
 get_last_relator_name <- function(proposicao_id, casa) {
   get_relatorias(proposicao_id, casa, 1)$nome_parlamentar
