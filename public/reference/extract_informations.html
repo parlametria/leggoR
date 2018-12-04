@@ -85,16 +85,7 @@ de uma proposição" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/tutorial_1_fetcher.html">Baixando Dados</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_2_analyzer.html">Fases e Eventos de uma Proposição</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
     </li>
   </ul>
 </li>
@@ -158,25 +149,25 @@ de uma proposição</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>extract_informations</span>(<span class='fl'>2088990</span>, <span class='fl'>91341</span>, <span class='st'>'https://www25.senado.leg.br/web/atividade/materias/-/materia/91341'</span>)</div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
 #&gt; <span class='message'>cols(</span>
-#&gt; <span class='message'>  prop_id = col_integer(),</span>
+#&gt; <span class='message'>  prop_id = col_double(),</span>
 #&gt; <span class='message'>  casa = col_character(),</span>
 #&gt; <span class='message'>  data_hora = col_datetime(format = ""),</span>
-#&gt; <span class='message'>  sequencia = col_integer(),</span>
+#&gt; <span class='message'>  sequencia = col_double(),</span>
 #&gt; <span class='message'>  texto_tramitacao = col_character(),</span>
 #&gt; <span class='message'>  sigla_local = col_character(),</span>
-#&gt; <span class='message'>  id_situacao = col_character(),</span>
-#&gt; <span class='message'>  descricao_situacao = col_character(),</span>
+#&gt; <span class='message'>  id_situacao = col_logical(),</span>
+#&gt; <span class='message'>  descricao_situacao = col_logical(),</span>
 #&gt; <span class='message'>  evento = col_character(),</span>
 #&gt; <span class='message'>  local = col_character()</span>
 #&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
 #&gt; <span class='message'>cols(</span>
-#&gt; <span class='message'>  prop_id = col_integer(),</span>
+#&gt; <span class='message'>  prop_id = col_double(),</span>
 #&gt; <span class='message'>  casa = col_character(),</span>
 #&gt; <span class='message'>  data_hora = col_date(format = ""),</span>
-#&gt; <span class='message'>  sequencia = col_integer(),</span>
+#&gt; <span class='message'>  sequencia = col_double(),</span>
 #&gt; <span class='message'>  texto_tramitacao = col_character(),</span>
 #&gt; <span class='message'>  sigla_local = col_character(),</span>
-#&gt; <span class='message'>  id_situacao = col_integer(),</span>
+#&gt; <span class='message'>  id_situacao = col_double(),</span>
 #&gt; <span class='message'>  descricao_situacao = col_character(),</span>
 #&gt; <span class='message'>  fase = col_character(),</span>
 #&gt; <span class='message'>  situacao_descricao_situacao = col_character(),</span>

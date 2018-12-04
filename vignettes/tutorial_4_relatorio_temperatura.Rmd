@@ -1,21 +1,21 @@
 ---
-title: "A Pressão Recente de um Projeto de Lei"
+title: "A Temperatura Recente de um Projeto de Lei"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Sobre o cálculo da pressao}
+  %\VignetteIndexEntry{Sobre o cálculo da temperatura}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-## Conceito de Pressão
+## Conceito de Temperatura
 
-A pressão de uma proposição é um conceito criado com o objetivo de medir quão movimentada está a tramitação de um Projeto de Lei num determinado período, indicando quanto esforço tem sido empregado por atores do processo legislativo em avançar/barrar o projeto.
+A temperatura de uma proposição é um conceito criado com o objetivo de medir quão movimentada está a tramitação de um Projeto de Lei num determinado período, indicando quanto esforço tem sido empregado por atores do processo legislativo em avançar/barrar o projeto.
 
-## Cálculo da pressão
+## Cálculo da temperatura
 
-A pressão de um PL pode ser calculada com diferentes granularidades/períodos (dia, semana, mês). Além disso, é possível escolher o tamanho da janela do histórico recente a ser considerado no cálculo (ex: os últimos 22 dias, ou as últimas 4 semanas). A pressão de um período é definida como a quantidade de eventos ocorridos nesse período. A função de pressão é dada pela fórmula:
+A temperatura de um PL pode ser calculada com diferentes granularidades/períodos (dia, semana, mês). Além disso, é possível escolher o tamanho da janela do histórico recente a ser considerado no cálculo (ex: os últimos 22 dias, ou as últimas 4 semanas). A temperatura de um período é definida como a quantidade de eventos ocorridos nesse período. A função de temperatura é dada pela fórmula:
 
-$$p = \sum_{j=0}^{n} (v_j)\alpha^j$$
+$$t = \sum_{j=0}^{n} (v_j)\alpha^j$$
 
 onde:  
 
@@ -23,11 +23,11 @@ onde:
   - j é o índice da janela móvel a ser utilizada
   - $\alpha$ é a taxa de decaimento (deve estar entre 0 e 1);  
   - $v_j$ é a quantidade de eventos (requerimentos, votações, etc) do período de índice $j$ na janela;  
-  - $p$ é a pressão recente do período;  
+  - $t$ é a temperatura recente do período;  
   
 ## Exemplo
 
-Vamos calcular a pressão para um Projeto de Lei de exemplo.
+Vamos calcular a temperatura para um Projeto de Lei de exemplo.
 
 Escolhemos o [PL 490/2007](http://camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao=345311), que trata da demarcação de terras indígenas.
 Vamos baixar os dados da proposição e da tramitação e em seguida reconhecer os eventos e fases, mostrando os últimos eventos ocorridos na tramitação do PL.
@@ -48,51 +48,51 @@ proc_tram %>%
 
 ```
 
-### Pressão Semanal
+### Temperatura Semanal
 
-Vamos calcular a pressão recente para todo o histórico da tramitação do PL, agregando os eventos por semana e utilizando um decaimento de 10%. Os resultados podem ser vistos no gráfico abaixo.
+Vamos calcular a temperatura recente para todo o histórico da tramitação do PL, agregando os eventos por semana e utilizando um decaimento de 10%. Os resultados podem ser vistos no gráfico abaixo.
 
-#### Pressão Semanal (pontos)
+#### Temperatura Semanal (pontos)
 
-Os pontos pretos representam os valores da pressão recente calculada para cada semana.
+Os pontos pretos representam os valores da temperatura recente calculada para cada semana.
 
 ```{r, warning=FALSE, message=FALSE, fig.width=7, fig.align='center'}
-hist_pressao_semanal <- agoradigital::get_historico_energia_recente(proc_tram, granularidade = 's', decaimento = 0.1)
+hist_temperatura_semanal <- agoradigital::get_historico_temperatura_recente(proc_tram, granularidade = 's', decaimento = 0.1)
 
-ggplot2::ggplot(hist_pressao_semanal, ggplot2::aes(x=periodo, y=energia_recente)) +
+ggplot2::ggplot(hist_temperatura_semanal, ggplot2::aes(x=periodo, y=temperatura_recente)) +
   ggplot2::xlab("Tempo") + 
-  ggplot2::ylab("Pressão") +
+  ggplot2::ylab("Temperatura") +
   ggplot2::geom_point() +
   ggplot2::theme_minimal()
 ```
 
-#### Pressão Semanal (linha)
+#### Temperatura Semanal (linha)
 
 Para ter uma visualização menos poluída, vamos mostrar uma linha, ao invés dos pontos.
 
 ```{r, warning=FALSE, message=FALSE, fig.width=7, fig.align='center'}
-hist_pressao_semanal %>% 
-  ggplot2::ggplot(ggplot2::aes(x=periodo, y=energia_recente)) +
+hist_temperatura_semanal %>% 
+  ggplot2::ggplot(ggplot2::aes(x=periodo, y=temperatura_recente)) +
   ggplot2::geom_line() +
   ggplot2::xlab("Tempo") + 
-  ggplot2::ylab("Pressão") +
+  ggplot2::ylab("Temperatura") +
   ggplot2::theme_minimal()
 ```
 
-#### Pressão Semanal (curva suavizada)
+#### Temperatura Semanal (curva suavizada)
 
-Agora vamos aplicar uma suavização à curva de pressão.
+Agora vamos aplicar uma suavização à curva de temperatura.
 
 ```{r, warning=FALSE, message=FALSE, fig.width=7, fig.align='center'}
-hist_pressao_semanal %>% 
-  ggplot2::ggplot(ggplot2::aes(x=periodo, y=energia_recente)) +
+hist_temperatura_semanal %>% 
+  ggplot2::ggplot(ggplot2::aes(x=periodo, y=temperatura_recente)) +
   ggplot2::geom_smooth(span = .05, se = F) +
   ggplot2::xlab("Tempo") + 
-  ggplot2::ylab("Pressão") +
+  ggplot2::ylab("Temperatura") +
   ggplot2::theme_minimal()
 ```
 
-#### Pressão Semanal (curva suavizada - últimos 3 meses)
+#### Temperatura Semanal (curva suavizada - últimos 3 meses)
 
 Podemos também ter uma visualização mais detalhada, olhando apenas os últimos 3 meses (~ 12 semanas) da tramitação do PL, e mostrando a quantidade de eventos ocorridos a cada semana.
 
@@ -100,14 +100,14 @@ Os pontos vermelhos representam o número de eventos ocorridos em cada semana na
 
 ```{r, warning=FALSE, message=FALSE, fig.width=7, fig.align='center'}
 start_date <- dplyr::last(proc_tram$data_hora) - lubridate::days(90)
-hist_pressao_semanal_3_meses <- hist_pressao_semanal %>% 
+hist_temperatura_semanal_3_meses <- hist_temperatura_semanal %>% 
   dplyr::filter(periodo >= start_date)
 
-hist_pressao_semanal_3_meses %>% 
-  ggplot2::ggplot(ggplot2::aes(x=periodo, y=energia_recente)) +
+hist_temperatura_semanal_3_meses %>% 
+  ggplot2::ggplot(ggplot2::aes(x=periodo, y=temperatura_recente)) +
   ggplot2::geom_smooth(span = .3, se = F) +
-  ggplot2::geom_point(ggplot2::aes(x=periodo, y=energia_periodo), colour='red', alpha=0.5, subset(hist_pressao_semanal_3_meses, energia_periodo > 0)) +
+  ggplot2::geom_point(ggplot2::aes(x=periodo, y=temperatura_periodo), colour='red', alpha=0.5, subset(hist_temperatura_semanal_3_meses, temperatura_periodo > 0)) +
   ggplot2::xlab("Tempo") + 
-  ggplot2::ylab("Pressão") +
+  ggplot2::ylab("Temperatura") +
   ggplot2::theme_minimal()
 ```

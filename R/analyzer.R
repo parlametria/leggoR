@@ -36,16 +36,16 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
   return(proc_tram_data)
 }
 
-#' @title Retorna energia de uma proposição no congresso.
+#' @title Retorna temperatura de uma proposição no congresso.
 #' @description Recebido o dataframe da tramitação contendo as colunas: data_hora e evento,
-#' retorna um valor que indica a energia da proposição
+#' retorna um valor que indica a temperatura da proposição
 #' @param tramitacao_df Dataframe da tramitação contendo as colunas: data_hora e evento
 #' @param days_ago Quantidade de dias a serem analizados. O padrão é 30
 #' @param pivot_day Dia de partida de onde começará a análise. O padrão é o dia atual
-#' @return Energia de uma proposição.
+#' @return Temperatura de uma proposição.
 #' @importFrom magrittr '%>%'
 #' @export
-get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::today()) {
+get_temperatura <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::today()) {
   working_days <- ((days_ago / 7) * 5)
 
   start_date <- pivot_day - lubridate::days(days_ago)
@@ -59,15 +59,15 @@ get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::tod
   qtd_eventos / working_days
 }
 
-#' @title Retorna o histórico da energia de uma proposição no congresso.
+#' @title Retorna o histórico da temperatura de uma proposição no congresso.
 #' @description Recebido o dataframe da tramitação contendo as colunas: data_hora e evento,
-#' retorna um dataframe com o valor da energia recente calculado para cada dia útil da tramitação de uma proposição,
+#' retorna um dataframe com o valor da temperatura recente calculado para cada dia útil da tramitação de uma proposição,
 #' computado levando em consideração os eventos que aconteceram nos 30 dias anteriores à data pivô, e aplicando um decaimento exponencial.
 #' @param events_df Dataframe da tramitação contendo as colunas: data_hora e evento
-#' @param granularidade Granularidade do dado histórico da energia desejada ('d' = dia, 's' = semana, 'm' = mês)
-#' @param decaimento A porcentagem de redução do valor da energia por dia. Valor deve estar entre 0 e 1.
-#' @param max_date Último dia a ser considerado no cálculo da energia. Padrão: dia atual.
-#' @return Dataframe com o valor da energia recente para cada dia útil da tramitação de uma proposição.
+#' @param granularidade Granularidade do dado histórico da temperatura desejada ('d' = dia, 's' = semana, 'm' = mês)
+#' @param decaimento A porcentagem de redução do valor da temperatura por dia. Valor deve estar entre 0 e 1.
+#' @param max_date Último dia a ser considerado no cálculo da temperatura. Padrão: dia atual.
+#' @return Dataframe com o valor da temperatura recente para cada dia útil da tramitação de uma proposição.
 #' @importFrom magrittr '%>%'
 #' @export
 #' @examples
@@ -77,9 +77,9 @@ get_energia <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::tod
 #' prop <- agoradigital::fetch_proposicao(id,casa,TRUE)
 #' tram <- agoradigital::fetch_tramitacao(id,casa,TRUE)
 #' proc_tram <- agoradigital::process_proposicao(prop,tram,casa)
-#' get_historico_energia_recente(proc_tram, granularidade = 's', decaimento = 0.05)
+#' get_historico_temperatura_recente(proc_tram, granularidade = 's', decaimento = 0.05)
 #' }
-get_historico_energia_recente <- function(eventos_df, granularidade = 's', decaimento = 0.05, max_date = lubridate::now()) {
+get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.05, max_date = lubridate::now()) {
   #Remove tempo do timestamp da tramitação
   eventos_sem_horario <- eventos_df %>%
     dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
@@ -96,41 +96,41 @@ get_historico_energia_recente <- function(eventos_df, granularidade = 's', decai
     dplyr::select(-tipo, -label)
     
 
-  energia_periodo <- data.frame()
+  temperatura_periodo <- data.frame()
 
   #Agrupa eventos por período
   if (granularidade == "d") {
-    energia_periodo <- eventos_extendidos %>%
+    temperatura_periodo <- eventos_extendidos %>%
       dplyr::group_by(data)
   } else if (granularidade == "s") {
-    energia_periodo <- eventos_extendidos %>%
+    temperatura_periodo <- eventos_extendidos %>%
       dplyr::mutate(semana = lubridate::week(data),
                     ano = lubridate::year(data)) %>%
       dplyr::group_by(ano, semana)
   } else if (granularidade == "m") {
-    energia_periodo <- eventos_extendidos %>%
+    temperatura_periodo <- eventos_extendidos %>%
       dplyr::mutate(mes = lubridate::month(data),
                     ano = lubridate::year(data)) %>%
       dplyr::group_by(ano, mes)
   }
 
-  energia_periodo <- energia_periodo %>%
+  temperatura_periodo <- temperatura_periodo %>%
     dplyr::summarize(periodo = dplyr::first(data),
-                     energia_periodo = sum(peso_final, na.rm = T)) %>%
+                     temperatura_periodo = sum(peso_final, na.rm = T)) %>%
     dplyr::ungroup() %>%
-    dplyr::select(periodo, energia_periodo) %>%
+    dplyr::select(periodo, temperatura_periodo) %>%
     dplyr::arrange(periodo)
 
   #Computa soma deslizante com decaimento exponencial
-  tamanho_janela <- nrow(energia_periodo)
+  tamanho_janela <- nrow(temperatura_periodo)
   weights <- (1 - decaimento) ^ ((tamanho_janela - 1):0)
-  energia_recente <- data.frame(energia_recente = round(roll::roll_sum(data.matrix(energia_periodo$energia_periodo), tamanho_janela, weights, min_obs = 1), digits=2))
-  historico_energia <- dplyr::bind_cols(energia_periodo, energia_recente) %>%
+  temperatura_recente <- data.frame(temperatura_recente = round(roll::roll_sum(data.matrix(temperatura_periodo$temperatura_periodo), tamanho_janela, weights, min_obs = 1), digits=2))
+  historico_temperatura <- dplyr::bind_cols(temperatura_periodo, temperatura_recente) %>%
     dplyr::select(periodo,
-                  energia_periodo,
-                  energia_recente)
+                  temperatura_periodo,
+                  temperatura_recente)
 
-  return(historico_energia)
+  return(historico_temperatura)
 }
 
 #' @title Extrai o regime de tramitação de um PL
