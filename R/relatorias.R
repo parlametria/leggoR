@@ -1,3 +1,5 @@
+source(here::here("R/relatorias.R"))
+
 senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 senado_constants <- senado_env$constants
 
@@ -63,22 +65,19 @@ fetch_relatorias_senado <- function(proposicao_id) {
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
-#' @export
 extract_relatorias_senado <- function(proposicao_id) {
   relatorias <- fetch_relatorias_senado(proposicao_id)
 
   relatorias <- 
     relatorias[,!sapply(relatorias, is.list)] %>%
-    rename_relatorias_columns
+    rename_relatorias_senado_columns
 }
 
 #' @title Renomeia as colunas do dataframe do histórico de relatorias no Senado
 #' @description Renomeia as colunas do dataframe do histórico de relatorias no Senado usando o padrão
 #' de underscore e letras minúsculas
 #' @param df Dataframe do histórico de relatorias
-#' @example extract_relatorias_senado(91341) %>% rename_relatorias_senado_columns
 #' @return Dataframe com as colunas renomeadas
-#' @export
 rename_relatorias_senado_columns <- function(df) {
   new_names = names(df) %>%
     to_underscore() %>%
@@ -93,8 +92,6 @@ rename_relatorias_senado_columns <- function(df) {
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param proposicao_id ID de uma proposição da Camara
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição na Camara
-#' @example extract_relatorias_camara(2160860)
-#' @export
 extract_relatorias_camara <- function(proposicao_id) {
   fetch_tramitacao(proposicao_id, 'camara', T) %>%
     dplyr::filter(stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r')) %>%
