@@ -403,7 +403,9 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao) {
   new_names <- c('cargo', 'id', 'nome', 'partido', 'uf', 'situacao')
   
   names(df) <- new_names
-  df
+  df %>%
+    tidyr::unnest(nome) %>%
+    dplyr::arrange(nome)
 }
 
 #' @title Retorna as sessões deliberativas de uma proposição no Senado
