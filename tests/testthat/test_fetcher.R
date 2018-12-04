@@ -41,30 +41,6 @@ test <- function(){
     expect_true(is.data.frame(proposicoes_fetch_tramitacao))
   })
 
-  test_that('fetch_relatorias() returns dataframe', {
-    proposicoes_fetch_relatorias <- senado_df %>%
-      dplyr::rowwise() %>%
-      dplyr::do(fetch_relatorias(.$SENADO_ID))
-
-    expect_true(is.data.frame(proposicoes_fetch_relatorias))
-  })
-
-  test_that('fetch_last_relatoria() returns dataframe', {
-    proposicoes_fetch_last_relatorias <- senado_df %>%
-      dplyr::rowwise() %>%
-      dplyr::do(fetch_last_relatoria(.$SENADO_ID))
-
-    expect_true(is.data.frame(proposicoes_fetch_last_relatorias))
-  })
-
-  test_that('fetch_current_relatoria() returns dataframe', {
-    proposicoes_fetch_current_relatoria <- senado_df %>%
-      dplyr::rowwise() %>%
-      dplyr::do(fetch_current_relatoria(.$SENADO_ID))
-
-    expect_true(is.data.frame(proposicoes_fetch_current_relatoria))
-  })
-
   test_that('fetch_emendas() returns dataframe', {
     expect_true(is.data.frame(fetch_emendas(91341, 'senado')))
   })
