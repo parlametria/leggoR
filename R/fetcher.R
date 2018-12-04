@@ -484,9 +484,11 @@ generate_dataframe <- function (column) {
 fetch_emendas <- function(id, casa) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    fetch_emendas_camara(id)
+    fetch_emendas_camara(id) %>%
+      dplyr::mutate(prop_id = id)
   } else if (casa == 'senado') {
-    fetch_emendas_senado(id)
+    fetch_emendas_senado(id) %>%
+      dplyr::mutate(prop_id = id)
   } else {
     print('Parâmetro "casa" não identificado.')
   }
