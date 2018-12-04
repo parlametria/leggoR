@@ -246,6 +246,71 @@ rename_proposicao_df <- function(df) {
   df
 }
 
+#' @title Retorna a composição da comissão 
+#' @description Retorna lista com os dados dos membros de uma comissão
+#' @param sigla sigla da comissão
+#' @return Lista com os dados dos membros de uma comissão
+#' @examples
+#' fetch_composicao_comissao("CCJ",'senado')
+#' @export
+fetch_composicao_comissao <- function(sigla, casa) {
+  casa <- tolower(casa)
+  if (casa == 'camara') {
+    warning("Function fetch_composicao_comissao_camara not implemented yet.")
+    return(NULL)
+  } else if (casa == 'senado') {
+    fetch_composicao_comissoes_senado(sigla)
+  } else {
+    print('Parâmetro "casa" não identificado.')
+  }
+}
+
+#' @title Retorna a composição da comissão do senado
+#' @description Retorna uma lista com dois dataframes, um contendo os membros das comissões
+#' e o outro contendo quem são os presidentes
+#' @param sigla Sigla da comissão do Senado
+#' @return List com dois dataframes
+fetch_composicao_comissoes_senado <- function(sigla) {
+  url <- paste0('http://legis.senado.leg.br/dadosabertos/comissao/', sigla)
+  json_sessions <- jsonlite::fromJSON(url, flatten = T)
+  
+  colegiado <-
+    json_sessions %>%
+    magrittr::extract2('DetalheComissao') %>%
+    magrittr::extract2('COLEGIADO') %>%
+    magrittr::extract2('COLEGIADO_ROW') 
+  
+  colegiado[sapply(colegiado, is.null)] <- NULL
+  comissao <-
+    colegiado %>% 
+    tibble::as.tibble() 
+  
+  cargos <- 
+    comissao %>%
+    magrittr::extract2('CARGOS') %>%
+    magrittr::extract2('CARGOS_ROW') %>%
+    tibble::as.tibble()
+  
+  membros <- 
+    comissao %>%
+    magrittr::extract2('MEMBROS_BLOCO') %>%
+    magrittr::extract2('MEMBROS_BLOCO_ROW')
+    tibble::as.tibble() 
+  if('PARTIDOS_BLOCO.PARTIDOS_BLOCO_ROW' %in% names(membros)) {
+    membros <- 
+      membros %>%
+      dplyr::select(-PARTIDOS_BLOCO.PARTIDOS_BLOCO_ROW) %>% 
+      tidyr::unnest()
+  }
+    membros <-
+      membros %>%
+      tidyr::unnest()
+    
+    membros %>%
+      dplyr::left_join(cargos, by = 'HTTP') %>%
+      dplyr::select(-c("@num.y", "PARLAMENTAR.y"))
+}
+
 #' @title Retorna as sessões deliberativas de uma proposição no Senado
 #' @description Retorna dataframe com os dados das sessões deliberativas de uma proposição no Senado.
 #' @param bill_id ID de uma proposição do Senado
