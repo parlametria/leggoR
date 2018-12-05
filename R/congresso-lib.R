@@ -28,7 +28,9 @@ extract_casas <- function(tramitacao_df, proposicao_df){
       data_fim = max(data_hora, na.rm = T)) %>%
     dplyr::arrange(sequence) %>%
     dplyr::select(casa) %>%
-    dplyr::ungroup() %>%
+    dplyr::ungroup() 
+  casa_label <-
+    casa_label %>%
     dplyr::mutate(label = head(labels, nrow(casa_label)))
   rownames(casa_label) <- c("camara", "senado", "camara1")
 
