@@ -19,18 +19,24 @@ detect_fase <- function(element, set) {
 extract_casas <- function(tramitacao_df, proposicao_df){
   ## Prepara tabela que mapeia casa -> label
   labels <- list("Construção", "Revisão I", "Revisão II")
-  casa_label <-
-    proposicao_df %>%
-    dplyr::arrange(data_apresentacao) %>%
+  casa_label <- tramitacao_df %>%
+    dplyr::arrange(data_hora) %>%
+    dplyr::group_by(
+      casa, sequence = data.table::rleid(casa)) %>%
+    dplyr::summarise(
+      data_inicio = min(data_hora, na.rm = T),
+      data_fim = max(data_hora, na.rm = T)) %>%
+    dplyr::arrange(sequence) %>%
     dplyr::select(casa) %>%
-    dplyr::mutate(label = head(labels, nrow(proposicao_df)))
-  rownames(casa_label) <- casa_label$casa
+    dplyr::ungroup() %>%
+    dplyr::mutate(label = head(labels, nrow(casa_label)))
+  rownames(casa_label) <- c("camara", "senado", "camara1")
 
   ## Roda função específica para cada casa
-  extract_casas_subgroups <- function(tram) {
+  extract_casas_subgroups <- function(tram, row_num) {
       casa <- tolower(tram[1, ]$casa)
       prop_id <- tram[1, ]$prop_id
-      label <- casa_label[casa, "label"][[1]]
+      label <- casa_label[["label"]][[row_num[[1]]]]
       if (casa == congress_constants$camara_label) {
         df <- agoradigital:::extract_casas_in_camara(tram, label)
       } else if (casa == congress_constants$senado_label) {
@@ -40,11 +46,13 @@ extract_casas <- function(tramitacao_df, proposicao_df){
   }
 
   tramitacao_df %>%
-    dplyr::arrange(data_hora, sequencia) %>%
-    dplyr::group_by(casa) %>%
-    dplyr::do(extract_casas_subgroups(.)) %>%
+    arrange(data_hora) %>%
+    dplyr::group_by(
+      casa, sequence_2 = data.table::rleid(casa)) %>%
+    dplyr::do(extract_casas_subgroups(., .$sequence_2)) %>%
     dplyr::ungroup() %>%
-    tidyr::fill(fase_global)
+    tidyr::fill(fase_global) %>%
+    dplyr::select(-sequence_2)
 }
 
 #' @title Recupera o progresso de um PL
