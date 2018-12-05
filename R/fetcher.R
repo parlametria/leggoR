@@ -519,7 +519,7 @@ fetch_emendas_senado <- function(bill_id) {
 
   if (num_emendas == 0) {
     emendas_df <-
-      tibble::frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ partido, ~ casa, ~ tipo_documento, ~ inteiro_teor)
+      tibble::frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ casa, ~ tipo_documento, ~ inteiro_teor)
 
   } else if (num_emendas == 1) {
     texto <- generate_dataframe(emendas_df$textos_emenda) %>%
@@ -603,6 +603,10 @@ fetch_emendas_camara <- function(id) {
     tibble::as.tibble() %>%
     t() %>%
     as.data.frame()
+  
+  if(nrow(df) == 0) {
+    return(tibble::frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ casa, ~ tipo_documento, ~ inteiro_teor))
+  }
   
   new_names <- c("cod_proposicao", "descricao")
   names(df) <- new_names
