@@ -18,7 +18,7 @@ detect_fase <- function(element, set) {
 #' @return Dataframe com uma nova coluna chamada fase_global
 extract_casas <- function(tramitacao_df, proposicao_df){
   ## Prepara tabela que mapeia casa -> label
-  labels <- list("Construção", "Revisão I")
+  labels <- list("Construção", "Revisão I", "Revisão II")
   casa_label <-
     proposicao_df %>%
     dplyr::arrange(data_apresentacao) %>%
