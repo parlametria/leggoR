@@ -115,5 +115,8 @@ extract_relatorias_camara <- function(proposicao_id) {
 #' @examples get_last_relator_name(91341, 'senado')
 #' @export
 get_last_relator_name <- function(proposicao_id, casa) {
-  get_relatorias(proposicao_id, casa, 1)$nome_parlamentar
+  relatorias <- get_relatorias(proposicao_id, casa, 1)
+  if(nrow(relatorias) == 0)
+    return("Relator não encontrado")
+  return(get_relatorias(proposicao_id, casa, 1)$nome_parlamentar)
 }
