@@ -67,7 +67,7 @@ COMISSOES_CAMARA <-
         "comiss.o de meio ambiente e desenvolvimento sustent.vel",
         "cmads"
       ),
-      c("comiss.o de minas e energia", "cme"),
+      c("comiss.o de minas e temperatura", "cme"),
       c("comiss.o de rela..es exteriores e de defesa nacional", "credn"),
       c(
         "comiss.o de seguran.a p.blica e combate ao crime organizado",
