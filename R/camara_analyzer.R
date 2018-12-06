@@ -85,7 +85,7 @@ rename_df_columns <- function(df) {
 #' @param events_df Dataframe com os eventos contendo as colunas "evento" e "regex"
 #' @return Dataframe com a coluna "evento" adicionada.
 extract_events_in_camara <- function(tramitacao_df) {
-  eventos_regex_df <- camara_codes$eventos %>% dplyr::select(-tipo)
+  eventos_regex_df <- camara_env$eventos %>% dplyr::select(-tipo)
   tramitacao_df %>% regex_left_match(eventos_regex_df, "evento")
 }
 
@@ -144,6 +144,7 @@ extract_locais_in_camara <- function(df) {
     dplyr::mutate(
       local =
         dplyr::case_when(
+          evento == camara_env$fase_global_sancao$situacao_sancao ~ 'Presidência da República',
           (tolower(texto_tramitacao) %in% descricoes_plenario & sigla_local == 'PLEN' |
              stringr::str_detect(tolower(texto_tramitacao), '^votação')) ~ 'Plenário',
           (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') |
@@ -173,8 +174,7 @@ extract_locais_in_camara <- function(df) {
 #' @examples
 #'  extract_evento_in_camara(fetch_tramitacao(2121442, 'camara', T))
 extract_evento_in_camara <- function(df) {
-  camara_codes <- get_environment_camara_json()
-  eventos <- camara_codes$eventos
+  eventos <- camara_env$eventos
   novo_despacho_regex <- eventos$regex$novo_despacho
   redistribuicao_regex <- eventos$regex$redistribuicao
   redistribuicao_text <- eventos$text$distribuicao %>% tolower()
@@ -230,7 +230,7 @@ extract_fase_casa_in_camara <- function(df) {
 #'  extract_situacao_comissao(process_proposicao_camara(345311))
 extract_situacao_comissao <- function(df) {
 
-  situacao_comissao <- camara_codes$situacao_comissao
+  situacao_comissao <- camara_env$situacao_comissao
   situacao_comissao['local'] <- get_regex_comissoes_camara()
 
   df %>%
@@ -320,11 +320,14 @@ extract_regime_tramitacao_camara <- function(tram_df) {
 #' @examples
 #'  extract_casas_in_camara(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', '', '', normalized=T))
 extract_casas_in_camara <- function(tramitacao_df, casa_name) {
+  
+  
   tramitacao_df %>%
     dplyr::mutate(
       fase_global = casa_name,
       local =
         dplyr::case_when(
+          evento == camara_env$fase_global_sancao$situacao_sancao ~ 'Presidência da República',,
           (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario) & sigla_local == "PLEN") ~ "Plenário",
           sigla_local != "PLEN" & (sigla_local %in% camara_env$comissoes$siglas_comissoes_antigas | sigla_local %in% camara_env$comissoes$siglas_comissoes | stringr::str_detect(tolower(sigla_local), "^pl"))  ~ "Comissões"))
 }

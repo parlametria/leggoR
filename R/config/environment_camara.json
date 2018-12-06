@@ -40,7 +40,7 @@
     {"evento": "parecer_pela_rejeicao", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*aprova)(?!.*substitutivo)(?!.*emenda).*rejei..o.*$", "tipo":"votacao"},
     {"evento": "parecer", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*aprova)(?!.*rejei)(?!.*substitutivo).*parecer.*$", "tipo":"votacao"},
     {"evento": "virada_de_casa", "texto_tramitacao": "^(remessa|remetido) ao senado federal.*", "tipo": "votacao"},
-    {"evento": "remetida_a_sancao", "texto_tramitacao": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"}
+    {"evento": "remetida_a_sancao", "texto_tramitacao": "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)", "tipo":"votacao"}
   ],
 
   "fase_casa": [
@@ -132,6 +132,10 @@
     {"local": "Presidência da República", "fase_global": "Sansão/Veto"},
     {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
   ],
+  
+    "fase_global_sancao":{
+    "situacao_sancao": "remetida_a_sancao"
+  },
   
   "regimes": [
     {"regime_tramitacao": "Ordinária", "regex": "Ordinária"},
