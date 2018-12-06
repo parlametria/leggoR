@@ -49,7 +49,7 @@
       "tipo":"despacho"
     },
     "virada": {
-      "regex": "primeiro-secretário da câmara dos deputados.* encaminhando",
+      "regex": "primeiro-secretário da câmara dos deputados.* encaminhando.* revisão",
       "regex_complementar": "",
       "constant": "virada_de_casa",
       "tipo":"votacao"

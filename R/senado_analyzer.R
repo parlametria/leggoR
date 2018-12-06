@@ -132,7 +132,8 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
 
   } else {
 
-    data_tramitacao %>%
+    data_tramitacao <- 
+      data_tramitacao %>%
       dplyr::mutate(global = dplyr::if_else(
         data_hora < virada_de_casa[1, ][[1]],
         casa_origem,
