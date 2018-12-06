@@ -18,7 +18,7 @@ detect_fase <- function(element, set) {
 #' @return Dataframe com uma nova coluna chamada fase_global
 extract_casas <- function(tramitacao_df, proposicao_df){
   ## Prepara tabela que mapeia casa -> label
-  labels <- list("Construção", "Revisão I", "Revisão II")
+  labels <- list("Construção", "Revisão I", "Revisão II", "Sanção/Veto")
   casa_label <- tramitacao_df %>%
     dplyr::arrange(data_hora) %>%
     dplyr::group_by(
@@ -26,13 +26,15 @@ extract_casas <- function(tramitacao_df, proposicao_df){
     dplyr::summarise(
       data_inicio = min(data_hora, na.rm = T),
       data_fim = max(data_hora, na.rm = T)) %>%
-    dplyr::arrange(sequence) %>%
-    dplyr::select(casa) %>%
-    dplyr::ungroup() 
+    dplyr::filter(data_inicio < data_fim) %>%
+    dplyr::arrange(sequence) 
+  
+  sequencias <- casa_label$sequence
   casa_label <-
     casa_label %>%
+    dplyr::select(casa) %>%
+    dplyr::ungroup() %>%
     dplyr::mutate(label = head(labels, nrow(casa_label)))
-  rownames(casa_label) <- c("camara", "senado", "camara1")
 
   ## Roda função específica para cada casa
   extract_casas_subgroups <- function(tram, row_num) {
@@ -48,13 +50,15 @@ extract_casas <- function(tramitacao_df, proposicao_df){
   }
 
   tramitacao_df %>%
-    arrange(data_hora) %>%
+    dplyr::arrange(data_hora) %>%
+    dplyr::mutate(sequence = data.table::rleid(casa)) %>%
+    dplyr::filter((sequence %in% sequencias)) %>%
     dplyr::group_by(
       casa, sequence_2 = data.table::rleid(casa)) %>%
     dplyr::do(extract_casas_subgroups(., .$sequence_2)) %>%
     dplyr::ungroup() %>%
     tidyr::fill(fase_global) %>%
-    dplyr::select(-sequence_2)
+    dplyr::select(-c(sequence_2, sequence))
 }
 
 #' @title Recupera o progresso de um PL
