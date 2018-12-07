@@ -26,8 +26,13 @@ extract_casas <- function(tramitacao_df, proposicao_df){
     dplyr::summarise(
       data_inicio = min(data_hora, na.rm = T),
       data_fim = max(data_hora, na.rm = T)) %>%
-    dplyr::filter(data_inicio < data_fim) %>%
     dplyr::arrange(sequence) 
+  
+  if(nrow(casa_label) > 1) {  
+    casa_label <-
+      casa_label %>%
+      dplyr::filter(data_inicio < data_fim) %>%
+  }
   
   sequencias <- casa_label$sequence
   casa_label <-
