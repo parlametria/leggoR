@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extrai se uma proposição está em pauta — extract_pauta • agoradigital</title>
+<title>Cria uma coluna com o nome pauta — extract_pauta • agoradigital</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Extrai se uma proposição está em pauta — extract_pauta" />
+<meta property="og:title" content="Cria uma coluna com o nome pauta — extract_pauta" />
 
-<meta property="og:description" content="Extrai se uma proposição está em pauta" />
+<meta property="og:description" content="Extrai se um vectors de proposições estarão em pauta" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -84,16 +84,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/tutorial_1_fetcher.html">Baixando Dados</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_2_analyzer.html">Fases e Eventos de uma Proposição</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_4_relatorio_energia.html">A Energia Recente de um Projeto de Lei</a>
+      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
     </li>
   </ul>
 </li>
@@ -118,35 +109,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extrai se uma proposição está em pauta</h1>
+    <h1>Cria uma coluna com o nome pauta</h1>
     <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/analyzer.R'><code>R/analyzer.R</code></a></small>
     <div class="hidden name"><code>extract_pauta.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Extrai se uma proposição está em pauta</p>
+    <p>Extrai se um vectors de proposições estarão em pauta</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>extract_pauta</span>(<span class='no'>agenda</span>, <span class='no'>proposicao_id</span>)</pre>
+    <pre class="usage"><span class='fu'>extract_pauta</span>(<span class='no'>agenda</span>, <span class='no'>tabela_geral_ids_casa</span>, <span class='no'>export_path</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>proposicao_id</th>
-      <td><p>id do PL</p></td>
+      <th>agenda</th>
+      <td><p>Dataframe com a agenda</p></td>
+    </tr>
+    <tr>
+      <th>tabela_geral_ids_casa</th>
+      <td><p>Dataframe com as colunas id_senado, id_camara</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>TRUE se estiver em pauta FALSE caso contrário</p>
+    <p>Dataframe com a coluna em_pauta</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>extract_pauta</span>(<span class='fu'><a href='fetch_agenda.html'>fetch_agenda</a></span>(<span class='st'>'2018-07-03'</span>, <span class='st'>'2018-07-10'</span>, <span class='st'>'senado'</span>), <span class='fl'>117839</span>)</div><div class='output co'>#&gt; <span class='error'>Error in json_proposicao$AgendaPlenario$Sessoes$Sessao %&gt;% rename_table_to_underscore(): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>extract_pauta</span>(<span class='fu'><a href='fetch_agenda_geral.html'>fetch_agenda_geral</a></span>(<span class='st'>'2018-10-01'</span>, <span class='st'>'2018-10-26'</span>), <span class='fu'>c</span>(<span class='st'>"91341"</span>, <span class='st'>"2121442"</span>, <span class='st'>"115926"</span>, <span class='st'>"132136"</span>))</div><div class='output co'>#&gt; <span class='error'>Error in tabela_geral_ids_casa[, c("id_camara", "id_senado")]: incorrect number of dimensions</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
