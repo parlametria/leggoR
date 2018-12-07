@@ -56,10 +56,10 @@ extract_casas <- function(tramitacao_df, proposicao_df){
     dplyr::group_by(
       casa, sequence_2 = data.table::rleid(casa)) %>%
     dplyr::do(extract_casas_subgroups(., .$sequence_2)) %>%
-    dplyr::mutate(fase_global = dplyr::if_else(evento == 'remetida_a_sancao', labels[[4]], fase_global)) %>% 
+    dplyr::mutate(fase_global = dplyr::if_else(evento == senado_env$fase_global_sancao$situacao_sancao, paste0('- ', labels[[4]]), fase_global)) %>% 
     dplyr::ungroup() %>%
     tidyr::fill(fase_global) %>%
-    dplyr::mutate(local_casa = dplyr::if_else(!is.na(fase_global) & fase_global == labels[[4]], 'presidencia', local_casa)) %>% 
+    dplyr::mutate(local_casa = dplyr::if_else(!is.na(fase_global) & fase_global == paste0('- ', labels[[4]]), 'presidencia', local_casa)) %>% 
     dplyr::select(-c(sequence_2, sequence))
 }
 

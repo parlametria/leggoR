@@ -144,7 +144,7 @@ extract_locais_in_camara <- function(df) {
     dplyr::mutate(
       local =
         dplyr::case_when(
-          evento == camara_env$fase_global_sancao$situacao_sancao ~ 'Presidência da República',
+          (stringr::str_detect(tolower(texto_tramitacao), '(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)')) ~ 'Presidência da República',
           (tolower(texto_tramitacao) %in% descricoes_plenario & sigla_local == 'PLEN' |
              stringr::str_detect(tolower(texto_tramitacao), '^votação')) ~ 'Plenário',
           (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') |
@@ -248,6 +248,7 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   tramitacao_df %>%
     extract_events_in_camara() %>%
     extract_locais_in_camara() %>%
+    extract_fase_global(proposicao_df) %>% 
     refact_date() %>%
     sort_by_date()
 }
@@ -320,14 +321,65 @@ extract_regime_tramitacao_camara <- function(tram_df) {
 #' @examples
 #'  extract_casas_in_camara(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', '', '', normalized=T))
 extract_casas_in_camara <- function(tramitacao_df, casa_name) {
-  
-  
   tramitacao_df %>%
     dplyr::mutate(
       fase_global = casa_name,
       local =
         dplyr::case_when(
-          evento == camara_env$fase_global_sancao$situacao_sancao ~ 'Presidência da República',,
+          (stringr::str_detect(tolower(texto_tramitacao), "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)")) ~ 'Presidência da República',
           (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario) & sigla_local == "PLEN") ~ "Plenário",
           sigla_local != "PLEN" & (sigla_local %in% camara_env$comissoes$siglas_comissoes_antigas | sigla_local %in% camara_env$comissoes$siglas_comissoes | stringr::str_detect(tolower(sigla_local), "^pl"))  ~ "Comissões"))
+}
+
+#' @title Extrai as casas globais (Origem Câmara, Plenário Câmara, etc.) da Câmara
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada fase_global
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada fase_global
+#' @examples
+#'  extract_casas_in_camara(process_proposicao_camara_df(id, fetch_tramitacao(2121442, 'camara', T)), fetch_proposicao(2121442, 'camara', '', '', normalized=T))
+extract_fase_global <- function(data_tramitacao, proposicao_df) {
+  fase_global_constants <- camara_env$fase_global
+  
+  casa_origem <-
+    dplyr::if_else(
+      !is.na(proposicao_df$casa_origem) & proposicao_df$casa_origem == "Senado Federal",
+      fase_global_constants$revisao_camara,
+      fase_global_constants$origem_camara
+    )
+  
+  virada_de_casa <-
+    data_tramitacao %>%
+    dplyr::filter(evento == 'virada_de_casa') %>%
+    dplyr::arrange(data_hora) %>%
+    dplyr::select(data_hora)
+  
+  casa_atual <-
+    dplyr::if_else(
+      casa_origem == " - Origem (Câmara)",
+      fase_global_constants$revisao_senado,
+      fase_global_constants$origem_camara
+    )
+  
+  if (nrow(virada_de_casa) == 0) {
+    data_tramitacao <-
+      data_tramitacao %>%
+      dplyr::mutate(global = paste0(casa_origem))
+    
+  } else {
+    
+    data_tramitacao <- 
+      data_tramitacao %>%
+      dplyr::mutate(global = dplyr::if_else(
+        data_hora < virada_de_casa[1, ][[1]],
+        casa_origem,
+        casa_atual
+      ))
+  }
+  
+  data_tramitacao <-
+    data_tramitacao %>%
+    dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao", "- Sanção/Veto", global)) %>% 
+    tidyr::fill(global, .direction = "down")
+  
+  return(data_tramitacao)
 }
