@@ -31,7 +31,7 @@ extract_casas <- function(tramitacao_df, proposicao_df){
   if(nrow(casa_label) > 1) {  
     casa_label <-
       casa_label %>%
-      dplyr::filter(data_inicio < data_fim) %>%
+      dplyr::filter(data_inicio < data_fim)
   }
   
   sequencias <- casa_label$sequence
