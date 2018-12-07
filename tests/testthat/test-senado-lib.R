@@ -31,31 +31,19 @@ check_api <- function(){
 }
 
 test <- function(){
-
+  
   test_that('fetch_votacoes() is dataframe', {
     expect_true(is.data.frame(fetch_votacoes(PROPOSICOES_ID)))
   })
-
-  test_that('fetch_relatorias() is dataframe', {
-    expect_true(is.data.frame(fetch_relatorias(PROPOSICOES_ID)))
-  })
-
-  test_that('fetch_current_relatoria() is dataframe', {
-    expect_true(is.data.frame(fetch_current_relatoria(PROPOSICOES_ID)))
-  })
-
-  test_that('fetch_last_relatoria() is dataframe', {
-    expect_true(is.data.frame(fetch_last_relatoria(PROPOSICOES_ID)))
-  })
-
+  
   test_that('fetch_votacoes()', {
     expect_true(all(names(fetch_votacoes(PROPOSICOES_ID)) %in% .COLNAMES_VOT_SEN))
   })
-
+  
   test_that('fetch_tramitacao()', {
     expect_true(all(names(fetch_tramitacao(PROPOSICOES_ID, 'senado')) %in% .COLNAMES_TRAMI_SEN))
   })
-
+  
   test_that('Regime de apreciacao', {
     expect_equal(extract_forma_apreciacao_senado(PROPOSICOES_ID), APRECIACAO_91341)
   })
