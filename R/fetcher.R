@@ -399,7 +399,7 @@ fetch_emendas_senado <- function(bill_id) {
   
   if (num_emendas == 0) {
     emendas_df <-
-      tibble::frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ casa, ~ tipo_documento, ~ inteiro_teor)
+      tibble::frame_data( ~ codigo, ~ data_apresentacao, ~ numero, ~ local, ~ autor, ~ partido, ~ casa, ~ tipo_documento, ~ inteiro_teor)
 
   } else if (num_emendas == 1) {
     texto <- generate_dataframe(emendas_df$textos_emenda) %>%
@@ -427,7 +427,7 @@ fetch_emendas_senado <- function(bill_id) {
                     tipo_documento = texto$tipo_documento,
                     inteiro_teor = texto$url_texto,
                     casa = 'senado') %>%
-      dplyr::select(codigo, numero, local, autor, partido, casa, tipo_documento, inteiro_teor)
+      dplyr::select(codigo, data_apresentacao, numero, local, autor, partido, casa, tipo_documento, inteiro_teor)
     
     
   } else{
@@ -450,7 +450,7 @@ fetch_emendas_senado <- function(bill_id) {
         casa = "senado"
       ) %>%
       dplyr::select(
-        codigo, numero, local, autor, partido, casa, tipo_documento, inteiro_teor) 
+        codigo, data_apresentacao, numero, local, autor, partido, casa, tipo_documento, inteiro_teor) 
 
   }
 
@@ -485,14 +485,14 @@ fetch_emendas_camara <- function(id) {
     as.data.frame()
   
   if(nrow(df) == 0) {
-    return(tibble::frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ casa, ~ tipo_documento, ~ inteiro_teor))
+    return(tibble::frame_data( ~ codigo, ~ data_apresentacao, ~ numero, ~ local, ~ autor, ~ casa, ~ tipo_documento, ~ inteiro_teor))
   }
   
   new_names <- c("cod_proposicao", "descricao")
   names(df) <- new_names
   
   emendas <- purrr::map_df(df$cod_proposicao, fetch_emendas_camara_auxiliar)
-  normalizes_names <- c("codigo", "numero", "local", "autor", "casa", "tipo_documento", "inteiro_teor")
+  normalizes_names <- c("codigo", "data_apresentacao", "numero", "local", "autor", "casa", "tipo_documento", "inteiro_teor")
   names(emendas) <- normalizes_names
   
   emendas
@@ -501,8 +501,8 @@ fetch_emendas_camara <- function(id) {
 #' @title Função auxiliar para o fetch_emendas_camara
 #' @description Retorna dataframe com os dados das emendas de uma proposição na Camara
 fetch_emendas_camara_auxiliar <- function(id) {
-  fetch_proposicao(id, "camara") %>%
-    dplyr::select(c(prop_id, numero, casa_origem, autor_nome, casa, tipo_materia, ementa))
+  fetch_proposicao(id, "camara", normalized = T, emendas = T) %>%
+    dplyr::select(c(prop_id, data_apresentacao, numero, status_proposicao_sigla_orgao, autor_nome, casa, tipo_materia, ementa))
 }
 
 #' @title Baixa os dados da tramitação de um Projeto de Lei
@@ -679,14 +679,15 @@ fetch_events <- function(prop_id) {
 #' @param apelido Apelido da proposição
 #' @param tema Tema da proposição
 #' @param normalized Se os dados vão ser normalizados
+#' @param emendas Se vai ser usando na função fetch_emendas
 #' @return Dataframe com as informações detalhadas de uma proposição
 #' @examples
-#' fetch_proposicao(129808, 'senado', 'Cadastro Positivo', 'Agenda Nacional', T)
+#' fetch_proposicao(129808, 'senado', 'Cadastro Positivo', 'Agenda Nacional', T, F)
 #' @export
-fetch_proposicao <- function(id, casa, apelido="", tema="", normalized=TRUE) {
+fetch_proposicao <- function(id, casa, apelido="", tema="", normalized=TRUE, emendas=FALSE) {
   casa <- tolower(casa)
   if (casa == "camara") {
-    fetch_proposicao_camara(id, normalized, apelido, tema)
+    fetch_proposicao_camara(id, normalized, apelido, tema, emendas)
   } else if (casa == "senado") {
     fetch_proposicao_senado(id, normalized, apelido, tema)
   } else {
@@ -824,10 +825,11 @@ fetch_proposicao_senado <- function(proposicao_id, normalized=TRUE, apelido, tem
 #' @param normalized whether or not the output dataframe should be normalized (have the same format and column names for every house)
 #' @param apelido Apelido da proposição
 #' @param tema Tema da proposição
+#' @param emendas se vai ser usado na função fetch_emendas
 #' @return Dataframe
 #' @examples
-#' fetch_proposicao_camara(2056568, T, "Lei para acabar zona de amortecimento", "Meio Ambiente")
-fetch_proposicao_camara <- function(prop_id, normalized=TRUE, apelido, tema) {
+#' fetch_proposicao_camara(2056568, T, "Lei para acabar zona de amortecimento", "Meio Ambiente", F)
+fetch_proposicao_camara <- function(prop_id, normalized=TRUE, apelido, tema, emendas=FALSE) {
   prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%
     rename_df_columns()
   
@@ -844,19 +846,40 @@ fetch_proposicao_camara <- function(prop_id, normalized=TRUE, apelido, tema) {
                     casa_origem = autor_df[1,]$casa_origem,
                     autor_nome = autor_df[1,]$autor.nome,
                     apelido_materia = apelido,
-                    tema = tema) %>%
-      dplyr::select(prop_id,
-                    casa,
-                    tipo_materia = sigla_tipo,
-                    numero,
-                    ano,
-                    data_apresentacao,
-                    ementa,
-                    palavras_chave = keywords,
-                    autor_nome,
-                    casa_origem,
-                    apelido_materia,
-                    tema)
+                    tema = tema) 
+    if (emendas) {
+      prop_camara <-
+        prop_camara %>%
+        dplyr::select(prop_id,
+                      casa,
+                      tipo_materia = sigla_tipo,
+                      numero,
+                      ano,
+                      data_apresentacao,
+                      ementa,
+                      palavras_chave = keywords,
+                      autor_nome,
+                      casa_origem,
+                      apelido_materia,
+                      tema,
+                      status_proposicao_sigla_orgao)
+    }else {
+      prop_camara <-
+        prop_camara %>%
+        dplyr::select(prop_id,
+                      casa,
+                      tipo_materia = sigla_tipo,
+                      numero,
+                      ano,
+                      data_apresentacao,
+                      ementa,
+                      palavras_chave = keywords,
+                      autor_nome,
+                      casa_origem,
+                      apelido_materia,
+                      tema)
+    }
+
   }
   
   prop_camara
