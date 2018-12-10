@@ -463,13 +463,21 @@ fetch_emendas_senado <- function(bill_id) {
 #' @title Retorna as emendas de uma proposição na Camara
 #' @description Retorna dataframe com os dados das emendas de uma proposição na Camara
 #' @param id ID de uma proposição da Camara
+#' @param sigla Sigla da proposição
+#' @param numero Numero da proposição
+#' @param ano Ano da proposição
 #' @return Dataframe com as informações sobre as emendas de uma proposição na Camara
 #' @examples
 #' fetch_emendas_camara(408406)
-fetch_emendas_camara <- function(id) {
-  prop <- fetch_proposicao(id, 'camara')
-  url <- 
-    paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterEmendasSubstitutivoRedacaoFinal?tipo=', prop$tipo_materia, '&numero=', prop$numero, '&ano=', prop$ano)
+fetch_emendas_camara <- function(id=NA, sigla="", numero="", ano="") {
+  if(is.na(id)) {
+    url <- 
+      paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterEmendasSubstitutivoRedacaoFinal?tipo=', sigla, '&numero=', numero, '&ano=', ano)
+  }else {
+    prop <- fetch_proposicao(id, 'camara')
+    url <- 
+      paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterEmendasSubstitutivoRedacaoFinal?tipo=', prop$tipo_materia, '&numero=', prop$numero, '&ano=', prop$ano)
+  }
  
    eventos_list <-
     XML::xmlParse(url) %>%
