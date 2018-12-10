@@ -167,8 +167,7 @@
 
   "deferimento": {
     "regex": {
-      "indeferido": "^Indefiro",
-      "deferido": "^(Defiro)|(Aprovado)"
+      "indeferido": "^Indefiro"
     }
   },
 
@@ -177,7 +176,8 @@
   },
   
   "fase_global_sancao":{
-    "situacao_sancao": "remetida_a_sancao"
+    "situacao_sancao": "remetida_a_sancao",
+    "situacao_norma_juridica": "transformada_em_norma_jurídica"
   },
 
   "fases_global":[

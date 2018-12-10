@@ -243,14 +243,21 @@ extract_situacao_comissao <- function(df) {
 #' @description Recebido um dataframe com a tramitação, a função recupera informações sobre uma proposição
 #' e sua tramitação e as salva em data/camara.
 #' @param tramitacao_df Dataframe com tramitação da proposição
-#' @importFrom magrittr %>%
+#' @importFrom magrittr %>%o
 process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
-  tramitacao_df %>%
+  proc_tram_df <- tramitacao_df %>%
     extract_events_in_camara() %>%
     extract_locais_in_camara() %>%
     extract_fase_global(proposicao_df) %>% 
     refact_date() %>%
     sort_by_date()
+  
+  virada_de_casa_row <- get_linha_virada_de_casa(proc_tram_df)
+  
+  proc_tram_df <-
+    proc_tram_df[1:virada_de_casa_row,]
+  
+  return(proc_tram_df)
 }
 
 #Fetch a bill with renamed columns
@@ -378,7 +385,8 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
   
   data_tramitacao <-
     data_tramitacao %>%
-    dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao", "- Sanção/Veto", global)) %>% 
+    dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao", "- Sanção/Veto", global),
+                  local = dplyr::if_else(evento == camara_env$fase_global_sancao$situacao_sancao, "Presidência da República", local)) %>% 
     tidyr::fill(global, .direction = "down")
   
   return(data_tramitacao)

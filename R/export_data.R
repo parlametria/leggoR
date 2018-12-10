@@ -4,6 +4,7 @@ process_etapa <- function(id, casa, agenda) {
     proc_tram <-
         process_proposicao(prop, tram, casa) %>%
         dplyr::mutate(data_hora = as.POSIXct(data_hora))
+    
     status <- agoradigital::extract_status_tramitacao(tram, agenda)
     historico_temperatura <-
         agoradigital::get_historico_temperatura_recente(proc_tram) %>%
@@ -15,8 +16,7 @@ process_etapa <- function(id, casa, agenda) {
         .$temperatura_recente
     extended_prop <-
         merge(prop, status, by = "prop_id") %>%
-        dplyr::mutate(temperatura = temperatura_value) %>%
-        dplyr::select(-casa_origem)
+        dplyr::mutate(temperatura = temperatura_value)
 
     list(
         proposicao = extended_prop,
