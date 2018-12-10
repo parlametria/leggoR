@@ -364,14 +364,19 @@ generate_dataframe <- function (column) {
 fetch_emendas <- function(id, casa) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    fetch_emendas_camara(id) %>%
-      dplyr::mutate(prop_id = id)
+    emendas <- fetch_emendas_camara(id)
   } else if (casa == 'senado') {
-    fetch_emendas_senado(id) %>%
-      dplyr::mutate(prop_id = id)
+    emendas <- fetch_emendas_senado(id)
   } else {
     print('Parâmetro "casa" não identificado.')
+    return()
   }
+  
+  emendas  <-
+    emendas %>%
+    dplyr::mutate(prop_id = id, codigo_emenda = as.integer(codigo_emenda)) %>%
+    dplyr::select(
+      prop_id, codigo_emenda, data_apresentacao, numero, local, autor, casa, tipo_documento, inteiro_teor) 
 }
 
 #' @title Retorna as emendas de uma proposição no Senado
@@ -399,7 +404,7 @@ fetch_emendas_senado <- function(bill_id) {
   
   if (num_emendas == 0) {
     emendas_df <-
-      tibble::frame_data( ~ codigo, ~ data_apresentacao, ~ numero, ~ local, ~ autor, ~ partido, ~ casa, ~ tipo_documento, ~ inteiro_teor)
+      tibble::frame_data( ~ codigo_emenda, ~ data_apresentacao, ~ numero, ~ local, ~ autor, ~ partido, ~ casa, ~ tipo_documento, ~ inteiro_teor)
 
   } else if (num_emendas == 1) {
     texto <- generate_dataframe(emendas_df$textos_emenda) %>%
@@ -417,7 +422,6 @@ fetch_emendas_senado <- function(bill_id) {
     emendas_df <- emendas_df %>%
       plyr::rename(
         c(
-          "codigo_emenda" = "codigo",
           "numero_emenda" = "numero",
           "colegiado_apresentacao" = "local"
         )
@@ -426,8 +430,7 @@ fetch_emendas_senado <- function(bill_id) {
                     partido = autoria$partido,
                     tipo_documento = texto$tipo_documento,
                     inteiro_teor = texto$url_texto,
-                    casa = 'senado') %>%
-      dplyr::select(codigo, data_apresentacao, numero, local, autor, partido, casa, tipo_documento, inteiro_teor)
+                    casa = 'senado') 
     
     
   } else{
@@ -435,7 +438,6 @@ fetch_emendas_senado <- function(bill_id) {
       tidyr::unnest() %>%
       plyr::rename(
         c(
-          "codigo_emenda" = "codigo",
           "numero_emenda" = "numero",
           "colegiado_apresentacao" = "local",
           "autoria_emenda_autor_nome_autor" = "autor",
@@ -448,9 +450,7 @@ fetch_emendas_senado <- function(bill_id) {
       dplyr::mutate(
         partido = paste0(partido, "/", uf),
         casa = "senado"
-      ) %>%
-      dplyr::select(
-        codigo, data_apresentacao, numero, local, autor, partido, casa, tipo_documento, inteiro_teor) 
+      ) 
 
   }
 
@@ -493,14 +493,14 @@ fetch_emendas_camara <- function(id=NA, sigla="", numero="", ano="") {
     as.data.frame()
   
   if(nrow(df) == 0) {
-    return(tibble::frame_data( ~ codigo, ~ data_apresentacao, ~ numero, ~ local, ~ autor, ~ casa, ~ tipo_documento, ~ inteiro_teor))
+    return(tibble::frame_data( ~ codigo_emenda, ~ data_apresentacao, ~ numero, ~ local, ~ autor, ~ casa, ~ tipo_documento, ~ inteiro_teor))
   }
   
   new_names <- c("cod_proposicao", "descricao")
   names(df) <- new_names
   
   emendas <- purrr::map_df(df$cod_proposicao, fetch_emendas_camara_auxiliar)
-  normalizes_names <- c("codigo", "data_apresentacao", "numero", "local", "autor", "casa", "tipo_documento", "inteiro_teor")
+  normalizes_names <- c("codigo_emenda", "data_apresentacao", "numero", "local", "autor", "casa", "tipo_documento", "inteiro_teor")
   names(emendas) <- normalizes_names
   
   emendas
