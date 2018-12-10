@@ -100,33 +100,35 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
 
   comissoes_faltantes <- get_comissoes_faltantes(data_tramitacao)
 
-  if (nrow(comissoes_faltantes) != 0) {
-    futuro_comissoes <-
-      data_tramitacao %>%
-      utils::tail(nrow(comissoes_faltantes)) %>%
-      dplyr::mutate(data_hora = Sys.Date() + 200,
-                    evento = NA)
-
-    futuro_comissoes$local <-
-      comissoes_faltantes$local
-
-    data_tramitacao <- rbind(data_tramitacao, futuro_comissoes)
-  }
+  # if (nrow(comissoes_faltantes) != 0) {
+  #   futuro_comissoes <-
+  #     data_tramitacao %>%
+  #     utils::tail(nrow(comissoes_faltantes)) %>%
+  #     dplyr::mutate(data_hora = Sys.Date() + 200,
+  #                   evento = NA)
+  # 
+  #   futuro_comissoes$local <-
+  #     comissoes_faltantes$local
+  # 
+  #   data_tramitacao <- rbind(data_tramitacao, futuro_comissoes)
+  # }
 
   if (nrow(virada_de_casa) == 0) {
     data_tramitacao <-
       data_tramitacao %>%
       dplyr::mutate(global = paste0(casa_origem))
 
-    futuro_casa_revisora <-
-      data_tramitacao %>%
-      utils::tail(1) %>%
-      dplyr::mutate(local = "Comissões",
-                    data_hora = Sys.Date() + 201,
-                    global = casa_atual,
-                    evento = NA)
-
-    rbind(data_tramitacao, futuro_casa_revisora)
+    # futuro_casa_revisora <-
+    #   data_tramitacao %>%
+    #   utils::tail(1) %>%
+    #   dplyr::mutate(local = "Comissões",
+    #                 data_hora = Sys.Date() + 201,
+    #                 global = casa_atual,
+    #                 evento = NA)
+    # 
+    # rbind(data_tramitacao, futuro_casa_revisora)
+    
+    data_tramitacao
 
   } else {
 

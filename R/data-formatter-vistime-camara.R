@@ -80,15 +80,15 @@ get_comissoes_futuras <- function(tramitacao) {
       dplyr::anti_join(comissoes_previstas_siglas, tramitacao, by='local')
     
     if (nrow(comissoes_faltantes) != 0) {
-      futuro_comissoes <-
-        tramitacao %>%
-        utils::tail(nrow(comissoes_faltantes)) %>%
-        dplyr::mutate(data_hora = as.POSIXct(Sys.Date() + 200))
-      
-      futuro_comissoes$local <-
-        comissoes_faltantes$local
-      
-      return(rbind(tramitacao, futuro_comissoes))
+      # futuro_comissoes <-
+      #   tramitacao %>%
+      #   utils::tail(nrow(comissoes_faltantes)) %>%
+      #   dplyr::mutate(data_hora = as.POSIXct(Sys.Date() + 200))
+      # 
+      # futuro_comissoes$local <-
+      #   comissoes_faltantes$local
+      # 
+      # return(rbind(tramitacao, futuro_comissoes))
     }
     
     return(tramitacao)
@@ -131,14 +131,14 @@ data_fase_global <- function(bill_id, tramitacao) {
            label = paste(label, '-', tipo_casa, '(Câmara)'))
   
   if (tipo_casa == "Origem") {
-    futuro_revisao <-
-      tramitacao %>%
-      utils::tail(1) %>%
-      dplyr::mutate(label = "Comissões - Revisão (Senado)",
-             start = as.POSIXct(Sys.Date() + 200),
-             end = as.POSIXct(Sys.Date() + 201))
-    
-    tramitacao <- rbind(tramitacao, futuro_revisao)
+    # futuro_revisao <-
+    #   tramitacao %>%
+    #   utils::tail(1) %>%
+    #   dplyr::mutate(label = "Comissões - Revisão (Senado)",
+    #          start = as.POSIXct(Sys.Date() + 200),
+    #          end = as.POSIXct(Sys.Date() + 201))
+    # 
+    # tramitacao <- rbind(tramitacao, futuro_revisao)
   }
     
   tramitacao
