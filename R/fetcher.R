@@ -455,7 +455,10 @@ fetch_emendas_senado <- function(bill_id) {
   }
 
   emendas_df %>%
-    dplyr::mutate(autor = paste0(autor, " ", partido)) %>%
+    dplyr::mutate(autor = paste0(autor, " ", partido), 
+                  numero = as.integer(numero),
+                  tipo_documento = as.character(tipo_documento),
+                  inteiro_teor = as.character(inteiro_teor)) %>%
     dplyr::select(-partido)
 
 }
@@ -503,7 +506,8 @@ fetch_emendas_camara <- function(id=NA, sigla="", numero="", ano="") {
   normalizes_names <- c("codigo_emenda", "data_apresentacao", "numero", "local", "autor", "casa", "tipo_documento", "inteiro_teor")
   names(emendas) <- normalizes_names
   
-  emendas
+  emendas %>%
+    dplyr::mutate(data_apresentacao = as.character(as.Date(data_apresentacao)))
 }
 
 #' @title Função auxiliar para o fetch_emendas_camara
