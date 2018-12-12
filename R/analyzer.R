@@ -80,7 +80,7 @@ get_temperatura <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate:
 #' proc_tram <- agoradigital::process_proposicao(prop,tram,casa)
 #' get_historico_temperatura_recente(proc_tram, granularidade = 's', decaimento = 0.05)
 #' }
-get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.05, max_date = lubridate::now()) {
+get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.25, max_date = lubridate::now()) {
   #Remove tempo do timestamp da tramitação
   eventos_sem_horario <- eventos_df %>%
     dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
