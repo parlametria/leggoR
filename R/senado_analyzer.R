@@ -416,7 +416,7 @@ extract_locais <- function(df) {
     dplyr::mutate(
       local =
         dplyr::case_when(
-          evento == senado_env$fase_global_sancao$situacao_sancao ~ senado_constants$presidencia,
+          situacao_descricao_situacao == senado_env$fase_global_sancao$situacao_sancao ~ senado_constants$presidencia,
           situacao_descricao_situacao %in% senado_constants$regex_plenario ~
             senado_constants$plenario,
           (
@@ -629,7 +629,7 @@ extract_casas_in_senado <- function(data_tramitacao, casa_name) {
       fase_global = casa_name,
       local =
         dplyr::case_when(
-          evento == fase_global_presidencia$situacao_sancao ~ senado_constants$presidencia,
+          situacao_descricao_situacao == fase_global_presidencia$situacao_sancao ~ senado_constants$presidencia,
           (stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) & sigla_local == "PLEN") ~ senado_constants$plenario,
           sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes & (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~ senado_constants$comissoes))
 }

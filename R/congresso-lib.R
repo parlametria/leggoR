@@ -100,7 +100,7 @@ generate_progresso_df <- function(tramitacao_df){
   
   df$data_fim[nrow(df)] <- NA
   
-  df %>%
+  df %<>%
     dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global")) %>% 
     dplyr::ungroup()
   
