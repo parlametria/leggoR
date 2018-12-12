@@ -31,6 +31,7 @@ extract_casas <- function(tramitacao_df, proposicao_df){
     dplyr::filter(data_inicio < data_fim) %>%
     dplyr::arrange(sequence) 
   
+  #CONTINUAR DAQUI
   sequencias <- casa_label$sequence
   casa_label <-
     casa_label %>%
@@ -115,4 +116,15 @@ generate_progresso_df <- function(tramitacao_df){
 get_linha_virada_de_casa <- function(proc_tram_df) {
   linha_virada_de_casa = which(proc_tram_df$evento == 'virada_de_casa')
   return(ifelse(length(linha_virada_de_casa) == 0, nrow(proc_tram_df), linha_virada_de_casa))
+}
+
+#' @title Recupera o número de linha em que houve evento remetida_a_sancao
+#' @description Recupera o número da linha em que houve evento remetida_a_sancao
+#' @param df Dataframe da tramitação processada da proposiçao
+#' @return número da ultima linha cujo evento é remetida_a_sancao
+#' @examples
+#'  get_linha_remetida_a_sancao(fetch_tramitacao(2121442, 'camara', T) %>% extract_events_in_camara())
+get_linha_remetida_a_sancao <- function(proc_tram_df) {
+  linha_remetida_a_sancao = which(proc_tram_df$evento == 'remetida_a_sancao')
+  return(ifelse(length(linha_remetida_a_sancao) == 0, nrow(proc_tram_df), linha_remetida_a_sancao))
 }

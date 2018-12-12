@@ -246,16 +246,21 @@ extract_situacao_comissao <- function(df) {
 #' @importFrom magrittr %>%o
 process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   proc_tram_df <- tramitacao_df %>%
-    extract_events_in_camara() %>%
-    extract_locais_in_camara() %>%
-    extract_fase_global(proposicao_df) %>% 
-    refact_date() %>%
-    sort_by_date()
+    extract_events_in_camara()
   
   virada_de_casa_row <- get_linha_virada_de_casa(proc_tram_df)
   
   proc_tram_df <-
     proc_tram_df[1:virada_de_casa_row,]
+  
+  proc_tram_df <-
+    proc_tram_df %>%
+    extract_locais_in_camara() %>%
+    extract_fase_global_in_camara(proposicao_df) %>% 
+    refact_date() %>%
+    sort_by_date()
+  
+  
   
   return(proc_tram_df)
 }
@@ -343,8 +348,8 @@ extract_casas_in_camara <- function(tramitacao_df, casa_name) {
 #' @param df Dataframe da tramitação na Câmara
 #' @return Dataframe da tramitacao contendo mais uma coluna chamada fase_global
 #' @examples
-#'  extract_casas_in_camara(process_proposicao_camara_df(id, fetch_tramitacao(2121442, 'camara', T)), fetch_proposicao(2121442, 'camara', '', '', normalized=T))
-extract_fase_global <- function(data_tramitacao, proposicao_df) {
+#'  extract_fase_global_in_camara(fetch_tramitacao(2121442, 'camara', T) %>% extract_events_in_camara() %>% extract_locais_in_camara(), fetch_proposicao(2121442, 'camara', '', '', normalized=T))
+extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
   fase_global_constants <- camara_env$fase_global
   
   casa_origem <-
@@ -385,8 +390,7 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
   
   data_tramitacao <-
     data_tramitacao %>%
-    dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao", "- Sanção/Veto", global),
-                  local = dplyr::if_else(evento == camara_env$fase_global_sancao$situacao_sancao, "Presidência da República", local)) %>% 
+    dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao", "- Sanção/Veto", global)) %>% 
     tidyr::fill(global, .direction = "down")
   
   return(data_tramitacao)

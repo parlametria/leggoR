@@ -7,7 +7,8 @@
         "regex_recebimento_comissoes": "recebido na comissão|recebido nesta comissão",
         "regex_plenario": "pronto_para_deliberação_do_plenário",
         "regex_comissoes_vector": ["matéria_com_a_relatoria","aguardando_designação_do_relator"],
-        "comissoes": "Comissões"
+        "comissoes": "Comissões",
+        "presidencia": "Presidência da República"
   },
 
   "apreciacao": {
@@ -17,6 +18,8 @@
 
   "fase_global": {
       "origem_senado": " - Origem (Senado)",
+      "origem_camara": " - Origem (Câmara)",
+      
       "revisao_camara": " - Revisão (Câmara)",
       "revisao_senado": " - Revisão (Senado)"
   },
@@ -176,7 +179,7 @@
   },
   
   "fase_global_sancao":{
-    "situacao_sancao": "remetida_a_sancao",
+    "situacao_sancao": "remetida_à_sanção",
     "situacao_norma_juridica": "transformada_em_norma_jurídica"
   },
 
