@@ -98,8 +98,8 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
   eventos_extendidos <- merge(full_dates, eventos_sem_horario, by="data", all.x = TRUE) %>%
     filtra_dias_nao_uteis_congresso() %>%
     dplyr::mutate(peso_base = dplyr::if_else(is.na(prop_id),0,1)) %>%
-    dplyr::left_join(get_pesos_eventos(), by="evento") %>%
-    dplyr::left_join(get_pesos_locais(), by="local") %>%
+    dplyr::left_join(pesos_eventos, by="evento") %>%
+    dplyr::left_join(pesos_locais, by="local") %>%
     dplyr::mutate(peso_evento = dplyr::if_else(is.na(peso),0,as.numeric(peso))) %>%
     dplyr::mutate(peso_local = dplyr::if_else(is.na(peso_local),0,as.numeric(peso_local))) %>%
     dplyr::mutate(peso_final = peso_base + peso_evento + peso_local)
