@@ -14,6 +14,7 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
                                 "designado_relator","evento_z","parecer","parecer_pela_aprovacao","aprovacao_parecer",
                                 "designado_relator","parecer_pela_rejeicao","aprovacao_parecer",
                                 "designado_relator","parecer_pela_aprovacao","evento_w"),
+                    local = "",
                     stringsAsFactors = F)
 
   decaimento = 0.1
@@ -73,6 +74,7 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
                                "distribuicao","designado_relator","evento_a","aprovacao_parecer","evento_b",
                                "designado_relator","inicio_prazo_emendas","fim_prazo_emendas","evento_b","evento_c",
                                "designado_relator","evento_d","evento_e","evento_f","aprovacao_parecer"),
+                    local = "",
                     stringsAsFactors = F)
   
   decaimento = 0.1
