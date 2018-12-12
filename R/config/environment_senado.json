@@ -86,6 +86,12 @@
     {"evento": "pronta_para_pauta", "id_situacao": "^42$", "tipo":"votacao"},
     {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "tipo":"discussao"}
   ],
+  
+ "locais": [
+    {"local": "CCJ", "tipo":"decisivo"},
+    {"local": "Plenário", "tipo":"decisivo"},
+    {"local": "CAE", "tipo":"decisivo"}
+  ],
 
   "regimes": {
     "urgencia": "Urgência",

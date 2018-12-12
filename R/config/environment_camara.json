@@ -35,6 +35,13 @@
     {"evento": "parecer", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*aprova)(?!.*rejei)(?!.*substitutivo).*parecer.*$", "tipo":"votacao"}
   ],
 
+  "locais": [
+    {"local": "CCJC", "tipo":"decisivo"},
+    {"local": "Plenário", "tipo":"decisivo"},
+    {"local": "CFT", "tipo":"decisivo"},
+    {"local": "Comissão Especial", "tipo":"decisivo"}
+  ],
+
   "fase_casa": [
     {"casa": "plenario", "texto_tramitacao": "votação|pronta para pauta|apresentação de proposição|sessão deliberativa", "sigla_orgao": "PLEN"},
     {"casa": "plenario", "descricao_tramitacao": "^vota..o"}

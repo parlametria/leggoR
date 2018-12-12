@@ -88,13 +88,21 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
   full_dates <- data.frame(data = seq(min(eventos_sem_horario$data), max_date, by = "1 day"))
+  pesos_eventos <- 
+    get_pesos_eventos() %>%
+    dplyr::select(-tipo, -label)
+  pesos_locais <-
+    get_pesos_locais() %>%
+    dplyr::select(-tipo, -label) %>%
+    dplyr::rename(peso_local = peso)
   eventos_extendidos <- merge(full_dates, eventos_sem_horario, by="data", all.x = TRUE) %>%
     filtra_dias_nao_uteis_congresso() %>%
     dplyr::mutate(peso_base = dplyr::if_else(is.na(prop_id),0,1)) %>%
     dplyr::left_join(get_pesos_eventos(), by="evento") %>%
-    dplyr::mutate(peso = dplyr::if_else(is.na(peso),0,as.numeric(peso))) %>%
-    dplyr::mutate(peso_final = peso_base + peso) %>%
-    dplyr::select(-tipo, -label)
+    dplyr::left_join(get_pesos_locais(), by="local") %>%
+    dplyr::mutate(peso_evento = dplyr::if_else(is.na(peso),0,as.numeric(peso))) %>%
+    dplyr::mutate(peso_local = dplyr::if_else(is.na(peso_local),0,as.numeric(peso_local))) %>%
+    dplyr::mutate(peso_final = peso_base + peso_evento + peso_local)
   
   
   temperatura_periodo <- data.frame()
@@ -271,4 +279,24 @@ get_pesos_eventos <- function() {
     dplyr::arrange()
   
   return(pesos_eventos)
+}
+
+#' @title Recupera os locais e seus respectivos pesos
+#' @description Retorna um dataframe com o superconjunto dos locais das duas casas (Câmara e Senado) e seus respectivos pesos
+#' @return Dataframe contendo local e peso
+#' @examples
+#' get_pesos_locais()
+#' @export
+get_pesos_locais <- function() {
+  locais_camara <- camara_env$locais
+  locais_senado <- senado_env$locais
+  tipos_locais <- congresso_env$tipos_locais
+  
+  pesos_locais <- dplyr::bind_rows(locais_camara, locais_senado) %>%
+    dplyr::group_by(local) %>%
+    dplyr::summarise(tipo = dplyr::first(tipo)) %>% 
+    dplyr::left_join(tipos_locais, by="tipo") %>%
+    dplyr::arrange()
+  
+  return(pesos_locais)
 }
