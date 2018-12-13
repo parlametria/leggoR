@@ -2,7 +2,7 @@ process_etapa <- function(id, casa, agenda) {
     prop <- agoradigital::fetch_proposicao(id, casa)
     tram <- agoradigital::fetch_tramitacao(id, casa, TRUE)
     proc_tram <-
-        process_proposicao(prop, tram, casa) %>%
+      agoradigital::process_proposicao(prop, tram, casa) %>%
         dplyr::mutate(data_hora = as.POSIXct(data_hora))
     
     status <- agoradigital::extract_status_tramitacao(tram, agenda)
