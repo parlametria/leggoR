@@ -187,7 +187,7 @@ extract_situacao_comissao <- function(df) {
 #' @description Recebido um dataframe com a tramitação, a função recupera informações sobre uma proposição
 #' e sua tramitação e as salva em data/camara.
 #' @param tramitacao_df Dataframe com tramitação da proposição
-#' @importFrom magrittr %>%o
+#' @importFrom magrittr %>%
 process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   proc_tram_df <- tramitacao_df %>%
     extract_events_in_camara()
