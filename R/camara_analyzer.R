@@ -2,38 +2,6 @@ source(here::here("R/camara-lib.R"))
 
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
-#' @title Cria coluna com os relatores na tramitação na Câmara
-#' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no
-#' envento pontual em que ele é designado
-#' @param df Dataframe da tramitação na Câmara
-#' @return Dataframe com a coluna "relator" adicionada.
-#' @examples
-#' fetch_tramitacao(2121442, 'camara', T) %>% extract_relator_in_camara()
-extract_relator_in_camara <- function(df) {
-  df %>%
-    dplyr::mutate(relator = dplyr::case_when(
-      stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r') ~
-        stringr::str_extract(texto_tramitacao, stringr::regex('dep.?([^,]*)', ignore_case=TRUE))))
-}
-
-
-#' @title Recupera o último relator na Câmara
-#' @description Recupera o nome do último relator na Câmara
-#' @param df Dataframe da tramitação na Câmara
-#' @return String do nome do último relator na Câmara
-#' @examples
-#' fetch_tramitacao(2121442, 'camara', T) %>% extract_last_relator_in_camara()
-extract_last_relator_in_camara <- function(df) {
-  relatores <- extract_relator_in_camara(df)
-  relator <-
-    relatores %>%
-    dplyr::filter(!is.na(relator)) %>%
-    dplyr::arrange(desc(data_hora)) %>%
-    dplyr::select(relator)
-
-  relator$relator[1]
-}
-
 #' @title Busca os últimos n eventos da tramitação na Câmara
 #' @description Recupera os útimos n eventos da tramitação na Câmara, caso nenhuma quantidade seja informada, assume-se que é 1
 #' @param df Dataframe da tramitação na Câmara
@@ -44,30 +12,6 @@ extract_last_n_events_in_camara <- function(df, num) {
     dplyr::arrange(data_hora) %>%
     tail(n = num) %>%
     dplyr::select(data_hora, evento)
-}
-
-#' @title Recupera relatores de uma proposição
-#' @description Recupera todos os relatores de uma proposição, junto com suas informações de parlamentar e comissão
-#' @param tramitacao_df Dataframe da tramitação na Câmara
-#' @return Dataframe que contém todos os relatores
-extract_relatorias_in_camara <- function(tramitacao_df) {
-  tramitacao_df %>%
-    # extract line when a relator is designated by the code
-    dplyr::filter(id_tipo_tramitacao == '320') %>%
-    # select columns
-    dplyr::select(
-      data_hora,
-      texto_tramitacao,
-      sigla_local
-    ) %>%
-    tibble::add_column() %>%
-    # extract relator's name and partido
-    dplyr::mutate(
-      nome_parlamentar = stringr::str_match(texto_tramitacao,'Dep. (.*?) [(]')[,2],
-      partido = stringr::str_match(texto_tramitacao,'[(](.*?)[)]')[,2]
-    ) %>%
-    # remove texto_tramitacao column and return
-    dplyr::select(-c(texto_tramitacao))
 }
 
 #' @title Renomeia as colunas do dataframe
@@ -99,11 +43,11 @@ extract_events_in_camara <- function(tramitacao_df) {
 extract_autor_in_camara <- function(prop_id) {
   camara_exp <- "câmara dos deputados"
   senado_exp <- "senado federal"
-
+  
   url_base_autores <- "https://dadosabertos.camara.leg.br/api/v2/proposicoes/"
   url <- paste0(url_base_autores, prop_id, "/autores")
   json_voting <- jsonlite::fromJSON(url, flatten = T)
-
+  
   authors <- json_voting %>%
     magrittr::extract2("dados") %>%
     dplyr::rename(
@@ -117,12 +61,12 @@ extract_autor_in_camara <- function(prop_id) {
                       stringr::str_detect(tolower(autor.nome), senado_exp) | autor.tipo == "Senador" ~ "Senado Federal",
                       autor.cod_tipo == 40000 ~ "Senado Federal",
                       autor.cod_tipo == 2 ~ "Câmara dos Deputados"))
-
+  
   # authors <- authors %>%
   #   mutate(autor.nome = dplyr::if_else(casa_origem == 'Senado Federal', stringr::str_split(autor.nome,'-')[[2]], autor.nome))
-
+  
   partido_estado <- extract_partido_estado_autor(authors$autor.uri %>% tail(1))
-
+  
   authors %>%
     dplyr::mutate(autor.nome = paste0(autor.nome, " ", partido_estado))
 }
@@ -138,7 +82,7 @@ extract_locais_in_camara <- function(df) {
     c('votação', 'pronta para pauta', 'apresentação de proposição',
       'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
-
+  
   df %<>%
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(
@@ -158,11 +102,11 @@ extract_locais_in_camara <- function(df) {
         dplyr::case_when(stringr::str_detect(local, "^PL") ~ "Comissão Especial",
                          TRUE ~ local)
     )
-
+  
   if (is.na(df[1, ]$local)) {
     df[1, ]$local = 'CD-MESA-PLEN'
   }
-
+  
   df %>%
     tidyr::fill(local)
 }
@@ -180,16 +124,16 @@ extract_evento_in_camara <- function(df) {
   redistribuicao_text <- eventos$text$distribuicao %>% tolower()
   df %>%
     dplyr::mutate(evento =
-             case_when((str_detect(
-               tolower(texto_tramitacao),
-               stringr::regex(redistribuicao_regex, ignore_case = TRUE)
-             ) |
-               str_detect(
-                 tolower(texto_tramitacao),
-                 stringr::regex(novo_despacho_regex, ignore_case = TRUE)
-               )) &
-               tolower(texto_tramitacao) == redistribuicao_text ~ "redistribuicao"
-             ))
+                    case_when((str_detect(
+                      tolower(texto_tramitacao),
+                      stringr::regex(redistribuicao_regex, ignore_case = TRUE)
+                    ) |
+                      str_detect(
+                        tolower(texto_tramitacao),
+                        stringr::regex(novo_despacho_regex, ignore_case = TRUE)
+                      )) &
+                      tolower(texto_tramitacao) == redistribuicao_text ~ "redistribuicao"
+                    ))
 }
 
 #' @title Recupera as casas da Câmara
@@ -201,7 +145,7 @@ extract_evento_in_camara <- function(df) {
 extract_fase_casa_in_camara <- function(df) {
   descricoes_plenario <- c('votação', 'pronta para pauta', 'apresentação de proposição', 'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
-
+  
   df <- df %>%
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(
@@ -212,12 +156,12 @@ extract_fase_casa_in_camara <- function(df) {
           (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') |
              tolower(texto_tramitacao) %in% descricoes_comissoes) & sigla_local != 'CCP' & !stringr::str_detect(tolower(sigla_local), '^s') ~ "Comissões")
     )
-
-
+  
+  
   if (is.na(df[1, ]$casa)) {
     df[1, ]$casa <- 'Apresentação'
   }
-
+  
   df %>%
     tidyr::fill(casa)
 }
@@ -232,7 +176,7 @@ extract_situacao_comissao <- function(df) {
 
   situacao_comissao <- camara_env$situacao_comissao
   situacao_comissao['local'] <- get_regex_comissoes_camara()
-
+  
   df %>%
     regex_left_match(situacao_comissao, "situacao_comissao") %>%
     tidyr::fill(situacao_comissao)
@@ -270,7 +214,7 @@ fetch_proposicao_renamed <- function(id) {
   df <-
     fetch_proposicao_camara(id) %>%
     rename_df_columns
-
+  
   df[,!sapply(df, is.list)]
 }
 
@@ -294,9 +238,9 @@ extract_forma_apreciacao_camara <- function(prop_id) {
       'Plenário',
       'Sujeita à Apreciação do Plenário'
     )
-
+  
   page_df <- data.frame(page_url = paste0(base_url, prop_id), stringsAsFactors = F)
-
+  
   apreciacao_df <- page_df %>%
     dplyr::rowwise() %>%
     dplyr::mutate(page_html = list(xml2::read_html(page_url))) %>%
@@ -304,7 +248,7 @@ extract_forma_apreciacao_camara <- function(prop_id) {
                     rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
                     rvest::html_text()) %>%
     fuzzyjoin::regex_left_join(regex_apreciacao, by = c(temp = "regex"))
-
+  
   return(apreciacao_df[1,]$forma_apreciacao)
 }
 
@@ -319,11 +263,11 @@ extract_regime_tramitacao_camara <- function(tram_df) {
     tibble::as.tibble()
   
   prop_id <- tram_df[1,]$prop_id
-
+  
   regime_df <- rcongresso::fetch_proposicao(prop_id) %>%
     fuzzyjoin::regex_left_join(regimes,
                                by = c(statusProposicao.regime = "regex"))
-    return(regime_df[1,]$regime_tramitacao)
+  return(regime_df[1,]$regime_tramitacao)
 }
 
 #' @title Extrai as casas globais (Origem Câmara, Plenário Câmara, etc.) da Câmara

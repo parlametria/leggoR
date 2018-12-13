@@ -1,6 +1,7 @@
 source(here::here("R/senado_analyzer.R"))
 source(here::here("R/camara_analyzer.R"))
 source(here::here("R/congresso-lib.R"))
+source(here::here("R/relatorias.R"))
 
 congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
 congress_constants <- congresso_env$constants
@@ -26,7 +27,7 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
         proposicao_df = proposicao_df, tramitacao_df = tramitacao_df)
     prop_id <- proc_tram_data[1, "prop_id"]
   }
-
+  
   if (!is.null(proc_tram_data) & !is.null(out_folderpath)) {
     readr::write_csv(
       proc_tram_data,
@@ -47,15 +48,15 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
 #' @export
 get_temperatura <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::today()) {
   working_days <- ((days_ago / 7) * 5)
-
+  
   start_date <- pivot_day - lubridate::days(days_ago)
-
+  
   qtd_eventos <-
     tramitacao_df %>%
     dplyr::filter(data_hora >= start_date) %>%
     dplyr::filter(!is.na(evento)) %>%
     nrow()
-
+  
   qtd_eventos / working_days
 }
 
@@ -79,11 +80,11 @@ get_temperatura <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate:
 #' proc_tram <- agoradigital::process_proposicao(prop,tram,casa)
 #' get_historico_temperatura_recente(proc_tram, granularidade = 's', decaimento = 0.05)
 #' }
-get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.05, max_date = lubridate::now()) {
+get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.25, max_date = lubridate::now()) {
   #Remove tempo do timestamp da tramitação
   eventos_sem_horario <- eventos_df %>%
     dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
-
+  
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
   full_dates <- data.frame(data = seq(min(eventos_sem_horario$data), max_date, by = "1 day"))
@@ -94,10 +95,10 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     dplyr::mutate(peso = dplyr::if_else(is.na(peso),0,as.numeric(peso))) %>%
     dplyr::mutate(peso_final = peso_base + peso) %>%
     dplyr::select(-tipo, -label)
-    
-
+  
+  
   temperatura_periodo <- data.frame()
-
+  
   #Agrupa eventos por período
   if (granularidade == "d") {
     temperatura_periodo <- eventos_extendidos %>%
@@ -113,14 +114,14 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
                     ano = lubridate::year(data)) %>%
       dplyr::group_by(ano, mes)
   }
-
+  
   temperatura_periodo <- temperatura_periodo %>%
     dplyr::summarize(periodo = dplyr::first(data),
                      temperatura_periodo = sum(peso_final, na.rm = T)) %>%
     dplyr::ungroup() %>%
     dplyr::select(periodo, temperatura_periodo) %>%
     dplyr::arrange(periodo)
-
+  
   #Computa soma deslizante com decaimento exponencial
   tamanho_janela <- nrow(temperatura_periodo)
   weights <- (1 - decaimento) ^ ((tamanho_janela - 1):0)
@@ -129,7 +130,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     dplyr::select(periodo,
                   temperatura_periodo,
                   temperatura_recente)
-
+  
   return(historico_temperatura)
 }
 
@@ -143,13 +144,13 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 extract_regime_tramitacao <- function(tram_df) {
   casa <- tram_df[1, "casa"]
   regime <- NULL
-
+  
   if (casa == congress_constants$camara_label) {
     regime <- extract_regime_tramitacao_camara(tram_df)
   } else if (casa == congress_constants$senado_label) {
     regime <- extract_regime_tramitacao_senado(tram_df)
   }
-
+  
   regime
 }
 
@@ -165,13 +166,13 @@ extract_forma_apreciacao <- function(tram_df) {
   casa <- tram_df[1, "casa"]
   prop_id <- tram_df[1, "prop_id"]
   apreciacao <- NULL
-
+  
   if (casa == congress_constants$camara_label) {
     apreciacao <- extract_forma_apreciacao_camara(prop_id)
   } else if (casa == congress_constants$senado_label) {
     apreciacao <- extract_forma_apreciacao_senado(prop_id)
   }
-
+  
   apreciacao
 }
 
@@ -205,21 +206,22 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
 #' @param tram_df Dataframe da tramitação do PL.
 #' @return Dataframe contendo id, regime de tramitação e forma de apreciação do PL
 #' @examples
-#' extract_status_tramitacao(fetch_tramitacao(91341, 'senado', TRUE), fetch_agenda_geral('2018-07-03', '2018-07-10'))
+#' extract_status_tramitacao(91341, 'senado')
 #' @export
 #' @importFrom stats filter
-extract_status_tramitacao <- function(tram_df, agenda) {
+extract_status_tramitacao <- function(proposicao_id, casa) {
+  tram_df <- fetch_tramitacao(proposicao_id, casa, TRUE)
   regime <- extract_regime_tramitacao(tram_df)
   apreciacao <- extract_forma_apreciacao(tram_df)
-  relator_nome <- extract_relator_nome(tram_df)
-
+  relator_nome <- get_last_relator_name(proposicao_id, casa)
+  
   status_tram <-
-      data.frame(
-          prop_id = tram_df[1, ]$prop_id,
-          regime_tramitacao = regime,
-          forma_apreciacao = apreciacao,
-          relator_nome = relator_nome
-      )
+    data.frame(
+      prop_id = tram_df[1, ]$prop_id,
+      regime_tramitacao = regime,
+      forma_apreciacao = apreciacao,
+      relator_nome = relator_nome
+    )
 }
 
 #' @title Extrai o progresso de um PL
@@ -259,35 +261,15 @@ get_pesos_eventos <- function() {
   eventos_camara <- camara_env$eventos
   eventos_senado <- senado_env$eventos
   tipos_eventos <- congresso_env$tipos_eventos
-
+  
   eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
     dplyr::select(evento = constant, tipo)
-
+  
   pesos_eventos <- dplyr::bind_rows(eventos_camara, eventos_senado, eventos_extra_senado) %>%
     dplyr::group_by(evento) %>%
     dplyr::summarise(tipo = dplyr::first(tipo)) %>% 
     dplyr::left_join(tipos_eventos, by="tipo") %>%
     dplyr::arrange()
-
+  
   return(pesos_eventos)
-}
-
-#' @title Recupera nome do último relator
-#' @description Recupera nome do último relator, recebendo o dataframe da tramitação
-#' @return Nome do último relator
-#' @examples
-#' extract_relator_nome(fetch_tramitacao(91341, 'senado', TRUE))
-#' @export
-extract_relator_nome <- function(tram_df) {
-  casa <- tram_df[1, "casa"]
-  prop_id <- tram_df[1, "prop_id"]
-  relator_nome <- NULL
-  
-  if (casa == congress_constants$camara_label) {
-    relator_nome <- extract_last_relator_in_camara(tram_df)
-  } else if (casa == congress_constants$senado_label) {
-    relator_nome <- agoradigital::extract_ultimo_relator(prop_id)
-  }
-  
-  relator_nome
 }
