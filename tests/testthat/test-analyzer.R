@@ -14,7 +14,7 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
                                 "designado_relator","evento_z","parecer","parecer_pela_aprovacao","aprovacao_parecer",
                                 "designado_relator","parecer_pela_rejeicao","aprovacao_parecer",
                                 "designado_relator","parecer_pela_aprovacao","evento_w"),
-                    local = "",
+                    local = "Plenário",
                     stringsAsFactors = F)
 
   decaimento = 0.1
@@ -23,19 +23,20 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   peso_despacho <- congresso_env$tipos_eventos$peso[1]
   peso_discussao <- congresso_env$tipos_eventos$peso[2]
   peso_votacao <- congresso_env$tipos_eventos$peso[3]
+  peso_locais <- congresso_env$tipos_locais$peso[1]
   
   # 2018-09-10
-  p_dia1 <- 4 + (3 * peso_despacho)
+  p_dia1 <- 4 + (3 * peso_despacho) + (4 * peso_locais)
   # 2018-09-11
-  p_dia2 <- 2 + peso_discussao + peso_votacao
+  p_dia2 <- 2 + peso_discussao + peso_votacao + (2 * peso_locais)
   # 2018-09-12
-  p_dia3 <- 1
+  p_dia3 <- 1 + (peso_locais)
   # 2018-09-13
-  p_dia4 <- 5 + peso_despacho + (3 * peso_votacao)
+  p_dia4 <- 5 + peso_despacho + (3 * peso_votacao) + (5 * peso_locais)
   # 2018-09-14
-  p_dia5 <- 3 + peso_despacho +  (2 * peso_votacao)
+  p_dia5 <- 3 + peso_despacho +  (2 * peso_votacao) + (3 * peso_locais)
   # 2018-09-17
-  p_dia6 <- 3 + peso_despacho + peso_votacao
+  p_dia6 <- 3 + peso_despacho + peso_votacao + (3 * peso_locais)
   # 2018-09-18
   p_dia7 <- 0
   
@@ -74,7 +75,10 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
                                "distribuicao","designado_relator","evento_a","aprovacao_parecer","evento_b",
                                "designado_relator","inicio_prazo_emendas","fim_prazo_emendas","evento_b","evento_c",
                                "designado_relator","evento_d","evento_e","evento_f","aprovacao_parecer"),
-                    local = "",
+                    local = c("Plenário", "evento_1",
+                              "CCJ","CFT","evento_a","Plenário","evento_b",
+                              "Plenário","CFT","CCJ","evento_b","evento_c",
+                              "CCJ","evento_d","evento_e","evento_f","CCJ"),
                     stringsAsFactors = F)
   
   decaimento = 0.1
@@ -83,11 +87,12 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   peso_despacho <- congresso_env$tipos_eventos$peso[1]
   peso_discussao <- congresso_env$tipos_eventos$peso[2]
   peso_votacao <- congresso_env$tipos_eventos$peso[3]
+  peso_locais <- congresso_env$tipos_locais$peso[1]
   
-  p_week1 <- 2 + peso_despacho
-  p_week2 <- 5 + (2 * peso_despacho) + peso_votacao
-  p_week3 <- 5 + peso_despacho + (2 * peso_discussao)
-  p_week4 <- 5 + peso_despacho + peso_votacao
+  p_week1 <- 2 + peso_despacho + peso_locais
+  p_week2 <- 5 + (2 * peso_despacho) + peso_votacao + (3 * peso_locais)
+  p_week3 <- 5 + peso_despacho + (2 * peso_discussao) + (3 * peso_locais)
+  p_week4 <- 5 + peso_despacho + peso_votacao + (2 * peso_locais)
   result <- c(
     # semana 1
     sum(p_week1 * r^0),
