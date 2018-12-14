@@ -195,8 +195,10 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
                   ano = lubridate::year(data),
                   local = ifelse(is.na(local), "Local não informado", local)) %>%
     dplyr::arrange(unlist(sigla), semana, desc(em_pauta)) %>% 
-    unique()
-    
+    unique() %>%
+    dplyr::group_by(data, sigla) %>%
+    dplyr::arrange(data) %>%
+    dplyr::filter(row_number()==n())
   
   readr::write_csv(pautas, paste0(export_path, "/pautas.csv"))
 }
