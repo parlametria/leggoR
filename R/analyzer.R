@@ -199,7 +199,9 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
     dplyr::group_by(data, sigla) %>%
     dplyr::arrange(data) %>%
     dplyr::filter(row_number()==n()) %>%
-    fix_nomes_locais()
+    dplyr::ungroup() %>%
+    fix_nomes_locais() %>%
+    dplyr::select(-em_pauta)
   
   readr::write_csv(pautas, paste0(export_path, "/pautas.csv"))
 }
@@ -216,7 +218,8 @@ fix_nomes_locais <- function(pautas_df) {
     dplyr::mutate(local_clean = stringr::str_split(local, ' - ')[[1]][1]) %>%
     dplyr::mutate(local_clean = dplyr::if_else(local_clean == 'Plenário da Câmara dos Deputados' || local_clean == 'PLEN', 'Plenário', local_clean)) %>%
     dplyr::mutate(local_clean = dplyr::if_else(grepl("\\d",local_clean),'Comissão Especial', local_clean)) %>%
-    dplyr::select(local, local_clean)
+    dplyr::mutate(local = local_clean) %>%
+    dplyr::select(-local_clean)
   
   return(pautas_locais_clean)
 }
