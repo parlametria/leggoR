@@ -65,7 +65,7 @@ extract_casas <- function(tramitacao_df, proposicao_df){
     dplyr::do(extract_casas_subgroups(., .$sequence_2)) %>%
     dplyr::mutate(fase_global = dplyr::if_else(global == paste0('- ', labels[[4]]), labels[[4]], fase_global)) %>% 
     dplyr::ungroup() %>%
-    tidyr::fill(fase_global, local) %>%
+    tidyr::fill(fase_global) %>%
     dplyr::mutate(local_casa = dplyr::if_else(!is.na(global) & global == paste0('- ', labels[[4]]), 'presidencia', local_casa)) %>% 
     dplyr::select(-c(sequence_2, sequence))
 }
