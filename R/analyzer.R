@@ -275,7 +275,7 @@ get_progresso <- function(proposicao_df, tramitacao_df) {
     tramitacao_df %>%
     agoradigital:::extract_casas(proposicao_df) %>%
     agoradigital:::generate_progresso_df() %>%
-    dplyr::mutate(local_casa = dplyr::if_else(fase_global == congresso_env$fases_global$fase_global[[7]], 'presidencia', casa)) %>%
+    #dplyr::mutate(local_casa = dplyr::if_else(fase_global == congresso_env$fases_global$fase_global[[7]], 'presidencia', casa)) %>%
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
     tidyr::fill(prop_id, casa) %>%
     tidyr::fill(prop_id, casa, .direction = "up") 
