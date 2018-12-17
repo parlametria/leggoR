@@ -43,6 +43,13 @@
     {"evento": "remetida_a_sancao", "texto_tramitacao": "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)", "tipo":"votacao"}
   ],
 
+  "locais": [
+    {"local": "CCJC", "tipo":"decisivo"},
+    {"local": "Plenário", "tipo":"decisivo"},
+    {"local": "CFT", "tipo":"decisivo"},
+    {"local": "Comissão Especial", "tipo":"decisivo"}
+  ],
+
   "fase_casa": [
     {"casa": "plenario", "texto_tramitacao": "votação|pronta para pauta|apresentação de proposição|sessão deliberativa", "sigla_orgao": "PLEN"},
     {"casa": "plenario", "descricao_tramitacao": "^vota..o"}

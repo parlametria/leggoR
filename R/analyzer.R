@@ -88,13 +88,21 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
   full_dates <- data.frame(data = seq(min(eventos_sem_horario$data), max_date, by = "1 day"))
+  pesos_eventos <- 
+    get_pesos_eventos() %>%
+    dplyr::select(-tipo, -label)
+  pesos_locais <-
+    get_pesos_locais() %>%
+    dplyr::select(-tipo, -label) %>%
+    dplyr::rename(peso_local = peso)
   eventos_extendidos <- merge(full_dates, eventos_sem_horario, by="data", all.x = TRUE) %>%
     filtra_dias_nao_uteis_congresso() %>%
     dplyr::mutate(peso_base = dplyr::if_else(is.na(prop_id),0,1)) %>%
-    dplyr::left_join(get_pesos_eventos(), by="evento") %>%
-    dplyr::mutate(peso = dplyr::if_else(is.na(peso),0,as.numeric(peso))) %>%
-    dplyr::mutate(peso_final = peso_base + peso) %>%
-    dplyr::select(-tipo, -label)
+    dplyr::left_join(pesos_eventos, by="evento") %>%
+    dplyr::left_join(pesos_locais, by="local") %>%
+    dplyr::mutate(peso_evento = dplyr::if_else(is.na(peso),0,as.numeric(peso))) %>%
+    dplyr::mutate(peso_local = dplyr::if_else(is.na(peso_local),0,as.numeric(peso_local))) %>%
+    dplyr::mutate(peso_final = peso_base + peso_evento + peso_local)
   
   
   temperatura_periodo <- data.frame()
@@ -195,10 +203,33 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
                   ano = lubridate::year(data),
                   local = ifelse(is.na(local), "Local não informado", local)) %>%
     dplyr::arrange(unlist(sigla), semana, desc(em_pauta)) %>% 
-    unique()
-    
+    unique() %>%
+    dplyr::group_by(data, sigla) %>%
+    dplyr::arrange(data) %>%
+    dplyr::filter(row_number()==n()) %>%
+    dplyr::ungroup() %>%
+    fix_nomes_locais() %>%
+    dplyr::select(-em_pauta)
   
   readr::write_csv(pautas, paste0(export_path, "/pautas.csv"))
+}
+
+
+#' @title Simplifica nomes dos locais das reuniões no dataframe de Pautas
+#' @description Simplifica nomes dos locais das reuniões no dataframe de Pautas
+#' @param pautas_df Dataframe das pautas de um determinado período de tempo
+#' @return Dataframe das pautas com os nomes dos locais simplificados
+#' @examples
+#' fix_nomes_locais(pauta_df)
+fix_nomes_locais <- function(pautas_df) {
+  pautas_locais_clean <- pautas_df %>%
+    dplyr::mutate(local_clean = stringr::str_split(local, ' - ')[[1]][1]) %>%
+    dplyr::mutate(local_clean = dplyr::if_else(local_clean == 'Plenário da Câmara dos Deputados' || local_clean == 'PLEN', 'Plenário', local_clean)) %>%
+    dplyr::mutate(local_clean = dplyr::if_else(grepl("\\d",local_clean),'Comissão Especial', local_clean)) %>%
+    dplyr::mutate(local = local_clean) %>%
+    dplyr::select(-local_clean)
+  
+  return(pautas_locais_clean)
 }
 
 #' @title Extrai o status da tramitação de um PL
@@ -272,4 +303,24 @@ get_pesos_eventos <- function() {
     dplyr::arrange()
   
   return(pesos_eventos)
+}
+
+#' @title Recupera os locais e seus respectivos pesos
+#' @description Retorna um dataframe com o superconjunto dos locais das duas casas (Câmara e Senado) e seus respectivos pesos
+#' @return Dataframe contendo local e peso
+#' @examples
+#' get_pesos_locais()
+#' @export
+get_pesos_locais <- function() {
+  locais_camara <- camara_env$locais
+  locais_senado <- senado_env$locais
+  tipos_locais <- congresso_env$tipos_locais
+  
+  pesos_locais <- dplyr::bind_rows(locais_camara, locais_senado) %>%
+    dplyr::group_by(local) %>%
+    dplyr::summarise(tipo = dplyr::first(tipo)) %>% 
+    dplyr::left_join(tipos_locais, by="tipo") %>%
+    dplyr::arrange()
+  
+  return(pesos_locais)
 }

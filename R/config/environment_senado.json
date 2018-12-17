@@ -88,6 +88,12 @@
     {"evento": "remetida_a_sancao", "texto_tramitacao": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
     {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "tipo":"discussao"}
   ],
+  
+ "locais": [
+    {"local": "CCJ", "tipo":"decisivo"},
+    {"local": "Plenário", "tipo":"decisivo"},
+    {"local": "CAE", "tipo":"decisivo"}
+  ],
 
   "regimes": {
     "urgencia": "Urgência",
