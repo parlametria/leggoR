@@ -406,7 +406,8 @@ extract_locais <- function(df) {
     dplyr::mutate(
       local =
         dplyr::case_when(
-          situacao_descricao_situacao %in% senado_constants$regex_plenario ~
+          (situacao_descricao_situacao %in% senado_constants$regex_plenario) |
+            (situacao_descricao_situacao %in% senado_constants$incluido_ordem_dia & sigla_local == "PLEN") ~
             senado_constants$plenario,
           (
             stringr::str_detect(
