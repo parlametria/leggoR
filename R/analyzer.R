@@ -265,8 +265,8 @@ extract_status_tramitacao <- function(proposicao_id, casa) {
 #' e contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
 #' @examples
 #' etapas <- list()
-#' etapas %<>% append(list(process_etapa(2122766, "camara", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
-#' etapas %<>% append(list(process_etapa(115926, "senado", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
+#' etapas %<>% append(list(process_etapa(1635730, "camara", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
+#' etapas %<>% append(list(process_etapa(126084, "senado", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
 #' etapas %<>% purrr::pmap(dplyr::bind_rows)
 #' get_progresso(etapas$proposicao, etapas$fases_eventos)
 #' @export

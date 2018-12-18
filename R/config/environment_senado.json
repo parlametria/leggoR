@@ -19,9 +19,10 @@
   "fase_global": {
       "origem_senado": " - Origem (Senado)",
       "origem_camara": " - Origem (Câmara)",
-      
       "revisao_camara": " - Revisão (Câmara)",
-      "revisao_senado": " - Revisão (Senado)"
+      "revisao_senado": " - Revisão (Senado)",
+      "revisao2_senado": " - Revisão II (Senado)",
+      "revisao2_camara": " - Revisão II (Câmara)"
   },
 
   "fase_subfase_comissoes": {

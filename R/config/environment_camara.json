@@ -9,8 +9,10 @@
     "fase_global": {
       "origem_camara": " - Origem (Câmara)",
       "revisao_camara": " - Revisão (Câmara)",
-      "revisao_senado": " - Revisão (Senado)"
-  },
+      "revisao_senado": " - Revisão (Senado)",
+      "revisao2_camara": " - Revisão II (Câmara)",
+      "revisao2_senado": " - Revisão II (Senado)"
+    },
 
   "eventos": [
     {"evento": "requerimento_audiencia_publica", "texto_tramitacao": "^apresentação do requerimento.*requer a realização d.* audiências? públicas?", "tipo":"discussao"},
@@ -39,7 +41,7 @@
     {"evento": "parecer_pela_aprovacao", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*substitutivo)(?!.*pela adequa..o financeira e or.ament.ria).*aprova.*$", "tipo":"votacao"},
     {"evento": "parecer_pela_rejeicao", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*aprova)(?!.*substitutivo)(?!.*emenda).*rejei..o.*$", "tipo":"votacao"},
     {"evento": "parecer", "id_situacao": "^322$", "texto_tramitacao": "^(?!.*aprova)(?!.*rejei)(?!.*substitutivo).*parecer.*$", "tipo":"votacao"},
-    {"evento": "virada_de_casa", "texto_tramitacao": "^(remessa|remetido) ao senado federal.*", "tipo": "votacao"},
+    {"evento": "virada_de_casa", "texto_tramitacao": "(^(remessa|remetido) ao senado federal.*)|(recebido o ofício.* do sf, que comunico que o senado federal aprovou, em revisão.*)", "tipo": "votacao"},
     {"evento": "remetida_a_sancao", "texto_tramitacao": "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)", "tipo":"votacao"}
   ],
 

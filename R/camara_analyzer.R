@@ -192,10 +192,14 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   proc_tram_df <- tramitacao_df %>%
     extract_events_in_camara()
   
-  virada_de_casa_row <- get_linha_virada_de_casa(proc_tram_df)
+  virada_de_casa <- 
+    proc_tram_df %>%
+    dplyr::filter(evento == 'virada_de_casa')
   
-  proc_tram_df <-
-    proc_tram_df[1:virada_de_casa_row,]
+  if(nrow(virada_de_casa) == 1){
+    proc_tram_df <-
+    proc_tram_df[1:get_linha_virada_de_casa(proc_tram_df),]
+  }
   
   proc_tram_df <-
     proc_tram_df %>%
@@ -203,8 +207,6 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
     extract_fase_global_in_camara(proposicao_df) %>% 
     refact_date() %>%
     sort_by_date()
-  
-  
   
   return(proc_tram_df)
 }
@@ -316,6 +318,13 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
       fase_global_constants$origem_camara
     )
   
+  casa_revisao2 <-
+    dplyr::if_else(
+      casa_origem == " - Origem (Câmara)",
+      fase_global_constants$revisao2_camara,
+      fase_global_constants$revisao2_senado
+    )
+  
   if (nrow(virada_de_casa) == 0) {
     data_tramitacao <-
       data_tramitacao %>%
@@ -329,6 +338,17 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
         data_hora < virada_de_casa[1, ][[1]],
         casa_origem,
         casa_atual
+      ))
+    
+  }
+  
+  if(nrow(virada_de_casa) > 1) {
+    data_tramitacao <- 
+      data_tramitacao %>%
+      dplyr::mutate(global = dplyr::if_else(
+        data_hora >= virada_de_casa[nrow(virada_de_casa), ][[1]],
+        casa_revisao2,
+        global
       ))
   }
   
