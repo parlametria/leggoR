@@ -352,7 +352,7 @@ fetch_composicao_comissoes_senado <- function(sigla) {
   
   membros %>%
     dplyr::left_join(cargos, by = 'HTTP') %>%
-    dplyr::select(-c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x"))
+    dplyr::select(c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x"))
 }
 
 #' @title Retorna as sessões deliberativas de uma proposição no Senado
