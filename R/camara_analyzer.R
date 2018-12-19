@@ -89,8 +89,8 @@ extract_locais_in_camara <- function(df) {
       local =
         dplyr::case_when(
           (stringr::str_detect(tolower(texto_tramitacao), '(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)')) ~ 'Presidência da República',
-          (tolower(texto_tramitacao) %in% descricoes_plenario & sigla_local == 'PLEN' |
-             stringr::str_detect(tolower(texto_tramitacao), '^votação')) ~ 'Plenário',
+          (tolower(texto_tramitacao) %in% descricoes_plenario |
+             stringr::str_detect(tolower(texto_tramitacao), '^votação')) & sigla_local == 'PLEN' ~ 'Plenário',
           (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') |
              tolower(texto_tramitacao) %in% descricoes_comissoes) &
             sigla_local != 'CCP' &
