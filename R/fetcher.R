@@ -255,7 +255,7 @@ rename_proposicao_df <- function(df) {
 fetch_composicao_comissoes_camara <- function(sigla_comissao) {
   orgaos_camara <- 
     fetch_orgaos_camara() %>%
-    mutate_all(as.character) %>%
+    dplyr::mutate_all(as.character) %>%
     dplyr::filter(trimws(sigla) == toupper(sigla_comissao)) %>%
     dplyr::select(orgao_id)
   
@@ -352,7 +352,7 @@ fetch_composicao_comissoes_senado <- function(sigla) {
   
   membros %>%
     dplyr::left_join(cargos, by = 'HTTP') %>%
-    dplyr::select(-c("@num.y", "PARLAMENTAR.y"))
+    dplyr::select(-c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x"))
 }
 
 #' @title Retorna as sessões deliberativas de uma proposição no Senado
