@@ -15,8 +15,7 @@ process_etapa <- function(id, casa, agenda) {
     .$temperatura_recente
   extended_prop <-
     merge(prop, status, by = "prop_id") %>%
-    dplyr::mutate(temperatura = temperatura_value) %>%
-    dplyr::select(-casa_origem)
+    dplyr::mutate(temperatura = temperatura_value) 
   emendas <- agoradigital::fetch_emendas(id, casa)
   
   list(

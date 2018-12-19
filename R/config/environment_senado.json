@@ -8,7 +8,8 @@
         "regex_plenario": "pronto_para_deliberação_do_plenário",
         "incluido_ordem_dia": "incluída_em_ordem_do_dia",
         "regex_comissoes_vector": ["matéria_com_a_relatoria","aguardando_designação_do_relator"],
-        "comissoes": "Comissões"
+        "comissoes": "Comissões",
+        "presidencia": "Presidência da República"
   },
 
   "apreciacao": {
@@ -18,7 +19,11 @@
 
   "fase_global": {
       "origem_senado": " - Origem (Senado)",
-      "revisao_camara": " - Revisão (Câmara)"
+      "origem_camara": " - Origem (Câmara)",
+      "revisao_camara": " - Revisão (Câmara)",
+      "revisao_senado": " - Revisão (Senado)",
+      "revisao2_senado": " - Revisão II (Senado)",
+      "revisao2_camara": " - Revisão II (Câmara)"
   },
 
   "fase_subfase_comissoes": {
@@ -49,7 +54,7 @@
       "tipo":"despacho"
     },
     "virada": {
-      "regex": "primeiro-secretário da câmara dos deputados",
+      "regex": "primeiro-secretário da câmara dos deputados.* encaminhando.* revisão",
       "regex_complementar": "",
       "constant": "virada_de_casa",
       "tipo":"votacao"
@@ -82,9 +87,7 @@
     {"evento": "aprovacao_projeto", "texto_tramitacao": "aprovado o projeto", "tipo":"votacao"},
     {"evento": "inicio_prazo_emendas", "id_situacao": "^20$", "tipo":"discussao"},
     {"evento": "fim_prazo_emendas", "id_situacao": "^153$", "tipo":"discussao"},
-    {"evento": "remetida_a_sancao", "id_situacao": "^57$", "tipo":"votacao"},
-    {"evento": "vetada", "id_situacao": "^57$", "tipo":"votacao"},
-    {"evento": "pronta_para_pauta", "id_situacao": "^42$", "tipo":"votacao"},
+    {"evento": "remetida_a_sancao", "texto_tramitacao": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
     {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "tipo":"discussao"}
   ],
   
@@ -175,13 +178,17 @@
 
   "deferimento": {
     "regex": {
-      "indeferido": "^Indefiro",
-      "deferido": "^(Defiro)|(Aprovado)"
+      "indeferido": "^Indefiro"
     }
   },
 
   "fase_global_plenario":{
     "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)|(à slsf, a pedido.)"
+  },
+  
+  "fase_global_sancao":{
+    "situacao_sancao": "remetida_à_sanção",
+    "situacao_norma_juridica": "transformada_em_norma_jurídica"
   },
 
   "fases_global":[
@@ -191,7 +198,7 @@
     {"local": "Plenário", "fase_global": "Revisão I"},
     {"local": "Comissões", "fase_global": "Revisão II"},
     {"local": "Plenário", "fase_global": "Revisão II"},
-    {"local": "Presidência da República", "fase_global": "Sansão/Veto"},
+    {"local": "Presidência da República", "fase_global": "Sanção/Veto"},
     {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
   ]
 }

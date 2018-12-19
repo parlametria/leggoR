@@ -261,11 +261,12 @@ extract_status_tramitacao <- function(proposicao_id, casa) {
 #' @param tramitacao_df Dataframe da proposição do PL.
 #' @param casa Casa (Senado ou Câmara)
 #' @param out_folderpath Caminho destino do csv resultante
-#' @return Dataframe contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
+#' @return Datafram
+#' e contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
 #' @examples
 #' etapas <- list()
-#' etapas %<>% append(list(process_etapa(2088990, "camara", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
-#' etapas %<>% append(list(process_etapa(91341, "senado", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
+#' etapas %<>% append(list(process_etapa(1635730, "camara", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
+#' etapas %<>% append(list(process_etapa(126084, "senado", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
 #' etapas %<>% purrr::pmap(dplyr::bind_rows)
 #' get_progresso(etapas$proposicao, etapas$fases_eventos)
 #' @export
@@ -274,7 +275,7 @@ get_progresso <- function(proposicao_df, tramitacao_df) {
     tramitacao_df %>%
     agoradigital:::extract_casas(proposicao_df) %>%
     agoradigital:::generate_progresso_df() %>%
-    dplyr::mutate(local_casa = casa) %>%
+    dplyr::mutate(local_casa = dplyr::if_else(!is.na(data_inicio) & fase_global == congresso_env$fases_global$fase_global[[7]], 'presidencia', casa)) %>%
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
     tidyr::fill(prop_id, casa) %>%
     tidyr::fill(prop_id, casa, .direction = "up") 
