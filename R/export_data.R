@@ -45,9 +45,9 @@ adiciona_locais_faltantes_progresso <- function(progresso_df) {
       TRUE ~ local_casa))
 }
 
-process_pl <- function(id_camara, id_senado, apelido, tema_pl, agenda) {
+process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows) {
   cat(paste(
-    "\n--- Processando:", apelido, "\ncamara:", id_camara,
+    "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
     "\nsenado", id_senado, "\n"))
   etapas <- list()
   if (!is.na(id_camara)) {
@@ -75,7 +75,7 @@ process_pl <- function(id_camara, id_senado, apelido, tema_pl, agenda) {
 export_data <- function(pls, export_path) {
   # agenda <- fetch_agenda_geral(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4)
   agenda <- tibble::as.tibble()
-  res <- pls %>% purrr::pmap(process_pl, agenda)
+  res <- pls %>% purrr::pmap(process_pl, agenda, nrow(pls))
   
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
