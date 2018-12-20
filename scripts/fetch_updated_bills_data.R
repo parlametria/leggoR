@@ -15,5 +15,11 @@ if (length(args) < min_num_args) {
 pls_ids_filepath <- args[1]
 export_path <- args[2]
 
+## Install local repository R package version
+devtools::install()
+
 ## Read PLs list and export their data
-readr::read_csv(pls_ids_filepath) %>% agoradigital::export_data(export_path)
+readr::read_csv(pls_ids_filepath) %>% 
+	dplyr::mutate(row_num = 1:n()) %>% 
+	dplyr::select(row_num,id_camara,id_senado,apelido,tema) %>%
+	agoradigital::export_data(export_path)

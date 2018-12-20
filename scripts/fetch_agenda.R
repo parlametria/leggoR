@@ -18,5 +18,8 @@ initial_date <- args[2]
 end_date <- args[3]
 export_path <- args[4]
 
+## Install local repository R package version
+devtools::install()
+
 ## Read PLs list and export their data
 agoradigital::extract_pauta(agoradigital::junta_agendas(initial_date, end_date), readr::read_csv(ids), export_path)
