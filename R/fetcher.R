@@ -1583,3 +1583,43 @@ junta_agendas <- function(initial_date, end_date) {
   
   materia <- purrr::map2_df(semanas$value, semanas$fim_semana, ~ fetch_agenda_geral(.x, .y)) 
 }
+
+#' @title Baixa todas as comissões atuais do Senado
+#' @description Retorna um dataframe contendo dados sobre as comissões atuais do Senado
+#' @return Dataframe
+#' @examples
+#' fetch_orgaos_senado()
+#' @importFrom RCurl getURL
+fetch_orgaos_senado <- function() {
+  url <- 'https://www.congressonacional.leg.br/dados/comissao/lista/'
+  
+  url_comissoes_permanentes <- RCurl::getURL(paste0(url, 'permanente'))
+  
+  comissoes_permanentes_xml <-
+    XML::xmlParse(url_comissoes_permanentes)
+  
+  comissoes_permanentes_df <- 
+    XML::xmlToDataFrame(nodes = XML::getNodeSet(comissoes_permanentes_xml, 
+                                                "//Colegiado")) %>% 
+    dplyr::distinct() %>% 
+    dplyr::select(codigo = CodigoColegiado,
+                  sigla = SiglaColegiado,
+                  nome = NomeColegiado)
+  
+  
+  url_comissoes_mistas <- RCurl::getURL(paste0(url, 'mistas'))
+  
+  comissoes_mistas_xml <-
+    XML::xmlParse(url_comissoes_mistas)
+  
+  comissoes_mistas_df <- 
+    XML::xmlToDataFrame(nodes = XML::getNodeSet(comissoes_mistas_xml, 
+                                                "//IdentificacaoComissao")) %>% 
+    dplyr::distinct() %>% 
+    dplyr::select(codigo = CodigoComissao,
+                  sigla = SiglaComissao,
+                  nome = NomeComissao)
+  
+  df <-
+    rbind(comissoes_permanentes_df, comissoes_mistas_df)
+}
