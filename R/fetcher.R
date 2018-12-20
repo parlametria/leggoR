@@ -246,30 +246,74 @@ rename_proposicao_df <- function(df) {
   df
 }
 
+#' @title Retorna a composição da comissão da camara
+#' @description Retorna um dataframe contendo os membros da comissão
+#' @param sigla_comissao Sigla da comissão da Camara
+#' @return dataframe
+#' @examples 
+#' fetch_composicao_comissoes_camara('cmads')
+fetch_composicao_comissoes_camara <- function(sigla_comissao) {
+  orgaos_camara <- 
+    fetch_orgaos_camara() %>%
+    dplyr::mutate_all(as.character) %>%
+    dplyr::filter(trimws(sigla) == toupper(sigla_comissao)) %>%
+    dplyr::select(orgao_id)
+  
+  if (nrow(orgaos_camara) == 0) {
+    warning("Comissão não encontrada")
+    return(NULL)
+  }
+  
+  url <- paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterMembrosOrgao?IDOrgao=', orgaos_camara[[1]])
+  
+  eventos_list <-
+    XML::xmlParse(url) %>%
+    XML::xmlToList()
+  
+  df <-
+    eventos_list %>%
+    jsonlite::toJSON() %>%
+    jsonlite::fromJSON() %>%
+    magrittr::extract2('membros') %>%
+    tibble::as.tibble() %>%
+    t() %>%
+    as.data.frame() %>%
+    tibble::rownames_to_column("VALUE")
+  
+  new_names <- c('cargo', 'id', 'nome', 'partido', 'uf', 'situacao')
+  
+  names(df) <- new_names
+  df %>%
+    tidyr::unnest(nome) %>%
+    dplyr::arrange(nome)
+}
+
 #' @title Retorna a composição da comissão 
-#' @description Retorna lista com os dados dos membros de uma comissão
+#' @description Retorna dataframe com os dados dos membros de uma comissão
 #' @param sigla sigla da comissão
-#' @return Lista com os dados dos membros de uma comissão
+#' @return Dataframe com os dados dos membros de uma comissão
 #' @examples
 #' fetch_composicao_comissao("CCJ",'senado')
 #' @export
 fetch_composicao_comissao <- function(sigla, casa) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    warning("Function fetch_composicao_comissao_camara not implemented yet.")
-    return(NULL)
+    fetch_composicao_comissoes_camara(sigla)
   } else if (casa == 'senado') {
-    fetch_composicao_comissoes_senado(sigla)
+    new_name <- c("cargo", "id", "partido", "uf", "situacao", "nome")
+    comissao <- 
+      fetch_composicao_comissoes_senado(sigla)
+    names(comissao) <- new_name
+    comissao
   } else {
     print('Parâmetro "casa" não identificado.')
   }
 }
 
 #' @title Retorna a composição da comissão do senado
-#' @description Retorna uma lista com dois dataframes, um contendo os membros das comissões
-#' e o outro contendo quem são os presidentes
+#' @description Retorna dataframe com os dados dos membros de uma comissão do Senado
 #' @param sigla Sigla da comissão do Senado
-#' @return List com dois dataframes
+#' @return Dataframes
 fetch_composicao_comissoes_senado <- function(sigla) {
   url <- paste0('http://legis.senado.leg.br/dadosabertos/comissao/', sigla)
   json_sessions <- jsonlite::fromJSON(url, flatten = T)
@@ -308,7 +352,7 @@ fetch_composicao_comissoes_senado <- function(sigla) {
   
   membros %>%
     dplyr::left_join(cargos, by = 'HTTP') %>%
-    dplyr::select(-c("@num.y", "PARLAMENTAR.y"))
+    dplyr::select(c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x"))
 }
 
 #' @title Retorna as sessões deliberativas de uma proposição no Senado
