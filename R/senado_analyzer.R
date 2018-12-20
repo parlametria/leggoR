@@ -508,11 +508,11 @@ extract_approved_requerimentos_in_senado <- function(df) {
 #' @param df dataframe contendo a coluna evento
 #' @return Dataframe com a coluna requerente
 #' @examples
-#' extract_requerentes_audiencia_publica(extract_evento_Senado(fetch_tramitacao(132865, 'senado', T)))
+#' extract_requerentes_audiencia_publica(extract_evento_Senado(fetch_tramitacao(103831, 'senado', T)))
 #' @export
 extract_requerentes_audiencia_publica <- function(df) {
   df %>%
-    dplyr::filter(evento == "aprovacao_audiencia_publica") %>%
+    dplyr::filter(evento == "aprovacao_audiencia_publica" | evento == "aprovado_seminario") %>%
     dplyr::mutate(requerente = dplyr::case_when(
       stringr::str_detect(tolower(texto_tramitacao), senado_env$requerimento$regex_detect[[1]]) ~
         stringr::str_extract(texto_tramitacao, stringr::regex(senado_env$requerimento$regex_extract[[1]], ignore_case=TRUE))))
