@@ -13,7 +13,7 @@ A temperatura de uma proposição é um conceito criado com o objetivo de medir 
 
 ## Cálculo da temperatura
 
-A temperatura de um PL pode ser calculada com diferentes granularidades/períodos (dia, semana, mês). Além disso, é possível escolher o tamanho da janela do histórico recente a ser considerado no cálculo (ex: os últimos 22 dias, ou as últimas 4 semanas). A temperatura de um período é definida como a quantidade de eventos ocorridos nesse período. A função de temperatura é dada pela fórmula:
+A temperatura de um PL pode ser calculada com diferentes granularidades/períodos (dia, semana, mês). Além disso, é possível escolher o tamanho da janela do histórico recente a ser considerado no cálculo (ex: os últimos 22 dias, ou as últimas 4 semanas). A temperatura de um período é definida como a quantidade de eventos ocorridos nesse período ponderados, estes pesos são dados de acordo com o tipo de evento (despacho, discussão e votação) além do local do evento também influenciar o peso (plenário, ccj, cft, comissões especiais e cae têm um peso maior). A função de temperatura é dada pela fórmula:
 
 $$t = \sum_{j=0}^{n} (v_j)\alpha^j$$
 
@@ -22,7 +22,7 @@ onde:
   - n é o tamanho da janela móvel a ser utilizada
   - j é o índice da janela móvel a ser utilizada
   - $\alpha$ é a taxa de decaimento (deve estar entre 0 e 1);  
-  - $v_j$ é a quantidade de eventos (requerimentos, votações, etc) do período de índice $j$ na janela;  
+  - $v_j$ é a quantidade de eventos ponderados (requerimentos, votações, etc) do período de índice $j$ na janela;  
   - $t$ é a temperatura recente do período;  
   
 ## Exemplo
@@ -43,6 +43,7 @@ proc_tram <- agoradigital::process_proposicao(prop,tram,casa)
 
 proc_tram %>%
   dplyr::select(data_hora, texto_tramitacao, sigla_local, evento) %>%
+  dplyr::filter(!is.na(evento)) %>%
   utils::tail(6) %>%
   DT::datatable(rownames = F, data = )
 

@@ -78,16 +78,20 @@ get_comissoes_faltantes <- function(data_tramitacao) {
 extract_fase_global <- function(data_tramitacao, proposicao_df) {
   fase_global_constants <- senado_env$fase_global
 
-  casa_origem <-
-    dplyr::if_else(
-      proposicao_df$casa_origem == "Senado Federal",
-      fase_global_constants$origem_senado,
-      fase_global_constants$revisao_camara
-    )
+  if(!is.null(proposicao_df$casa_origem)){
+    casa_origem <- dplyr::if_else(proposicao_df$casa_origem == "Senado Federal",
+                                  fase_global_constants$origem_senado,
+                                  fase_global_constants$revisao_senado)
+  } else{
+    casa_origem <-
+      dplyr::if_else(tramitacao_df %>% dplyr::arrange(data_hora) %>% head(1) %>% dplyr::select(casa) %>% as.character() == 'senado',
+                     fase_global_constants$origem_senado,
+                     fase_global_constants$origem_camara)
+  }
 
   virada_de_casa <-
     data_tramitacao %>%
-    dplyr::filter(local == 'Mesa - Câmara') %>%
+    dplyr::filter(evento == 'virada_de_casa') %>%
     dplyr::arrange(data_hora) %>%
     dplyr::select(data_hora)
 
@@ -95,7 +99,7 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
     dplyr::if_else(
       casa_origem == " - Origem (Senado)",
       fase_global_constants$revisao_camara,
-      fase_global_constants$origem_senado
+      fase_global_constants$revisao_senado
     )
 
   comissoes_faltantes <- get_comissoes_faltantes(data_tramitacao)
@@ -116,7 +120,7 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
   if (nrow(virada_de_casa) == 0) {
     data_tramitacao <-
       data_tramitacao %>%
-      dplyr::mutate(global = paste0(casa_origem))
+      dplyr::mutate(global = casa_origem)
 
     # futuro_casa_revisora <-
     #   data_tramitacao %>%
@@ -131,14 +135,18 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
     data_tramitacao
 
   } else {
-
-    data_tramitacao %>%
+    data_tramitacao <- 
+      data_tramitacao %>%
       dplyr::mutate(global = dplyr::if_else(
         data_hora < virada_de_casa[1, ][[1]],
         casa_origem,
         casa_atual
       ))
   }
+  
+   data_tramitacao %>%
+   dplyr::mutate(global = dplyr::if_else(situacao_descricao_situacao == senado_env$fase_global_sancao$situacao_sancao, "- Sanção/Veto", global)) %>% 
+   tidyr::fill(global, .direction = "down")
 }
 
 #' @title Cria coluna com a fase casa da tramitação no Senado
@@ -401,13 +409,17 @@ tail_descricao_despacho_Senado <- function(df, qtd = 1) {
 #' @examples
 #'  extract_locais(fetch_tramitacao(91341, 'senado', T))
 extract_locais <- function(df) {
+  senado_constants <- senado_env$constants
+  
   df <-
     df %>%
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(
       local =
         dplyr::case_when(
-          situacao_descricao_situacao %in% senado_constants$regex_plenario ~
+          situacao_descricao_situacao == senado_env$fase_global_sancao$situacao_sancao ~ senado_constants$presidencia,
+          (situacao_descricao_situacao %in% senado_constants$regex_plenario) |
+            (situacao_descricao_situacao %in% senado_constants$incluido_ordem_dia & sigla_local == "PLEN") ~
             senado_constants$plenario,
           (
             stringr::str_detect(
@@ -594,21 +606,37 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
   proc_tram_df <-
     extract_evento_Senado(proc_tram_df) %>%
     dplyr::mutate(data_audiencia = lubridate::dmy(data_audiencia))
-
-  index_of_camara <-
-    ifelse(
-      length(which(
-        proc_tram_df$id_situacao == 52
-      )) == 0,
-      nrow(proc_tram_df),
-      which(proc_tram_df$id_situacao == 52)[1]
-    )
-
+  
+  virada_de_casa <- 
+    proc_tram_df %>% 
+    dplyr::filter(evento == 'virada_de_casa')
+  
+  index_of_sancao <- 
+    get_linha_remetida_a_sancao(proc_tram_df)
+  
+  if (nrow(virada_de_casa) == 1) {
+    
+    index_of_camara <-
+      get_linha_virada_de_casa(proc_tram_df)
+    
+    if(index_of_camara > index_of_sancao) {
+      proc_tram_df <- 
+        proc_tram_df[1:index_of_sancao,]
+      
+    } else {
+      proc_tram_df <-
+        proc_tram_df[1:index_of_camara,]
+    }
+    
+  } else{
+    proc_tram_df <- 
+      proc_tram_df[1:index_of_sancao,]
+  }
+    
   proc_tram_df <-
-    proc_tram_df[1:index_of_camara,] %>%
+    proc_tram_df %>%
     extract_locais() %>%
     extract_fase_global(proposicao_df) %>%
-    dplyr::filter(!is.na(fase)) %>%
     unique()
 
   proc_tram_df
@@ -621,12 +649,16 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
 #' @examples
 #' extract_casas_in_senado(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', T))
 extract_casas_in_senado <- function(data_tramitacao, casa_name) {
+  senado_constants <- senado_env$constants
   fase_global_constants <- senado_env$fase_global_plenario
+  fase_global_presidencia <- senado_env$fase_global_sancao
+  
   data_tramitacao %>%
     dplyr::mutate(
       fase_global = casa_name,
       local =
         dplyr::case_when(
-          (stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) & sigla_local == "PLEN") ~ "Plenário",
-          sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes & (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~ "Comissões"))
+          situacao_descricao_situacao == fase_global_presidencia$situacao_sancao ~ senado_constants$presidencia,
+          (stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) & sigla_local == "PLEN") ~ senado_constants$plenario,
+          sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes & (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~ senado_constants$comissoes))
 }

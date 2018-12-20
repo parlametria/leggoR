@@ -20,7 +20,9 @@ extract_casas <- function(tramitacao_df, proposicao_df){
   ## Prepara tabela que mapeia casa -> label
   labels <- list("Construção", "Revisão I", "Revisão II", "Sanção/Veto")
   casa_label <- tramitacao_df %>%
-    dplyr::arrange(data_hora) %>%
+    dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) %>%
+    dplyr::arrange(data) %>%
+    
     dplyr::group_by(
       casa, sequence = data.table::rleid(casa)) %>%
     dplyr::summarise(
@@ -47,9 +49,9 @@ extract_casas <- function(tramitacao_df, proposicao_df){
       prop_id <- tram[1, ]$prop_id
       label <- casa_label[["label"]][[row_num[[1]]]]
       if (casa == congress_constants$camara_label) {
-        df <- agoradigital:::extract_casas_in_camara(tram, label)
+        df <- extract_casas_in_camara(tram, label)
       } else if (casa == congress_constants$senado_label) {
-        df <- agoradigital:::extract_casas_in_senado(tram, label)
+        df <- extract_casas_in_senado(tram, label)
       }
       df %>% dplyr::mutate(local_casa = casa)
   }
@@ -61,8 +63,10 @@ extract_casas <- function(tramitacao_df, proposicao_df){
     dplyr::group_by(
       casa, sequence_2 = data.table::rleid(casa)) %>%
     dplyr::do(extract_casas_subgroups(., .$sequence_2)) %>%
+    dplyr::mutate(fase_global = dplyr::if_else(global == paste0('- ', labels[[4]]), labels[[4]], fase_global)) %>% 
     dplyr::ungroup() %>%
     tidyr::fill(fase_global) %>%
+    dplyr::mutate(local_casa = dplyr::if_else(!is.na(global) & global == paste0('- ', labels[[4]]), 'presidencia', local_casa)) %>% 
     dplyr::select(-c(sequence_2, sequence))
 }
 
@@ -105,4 +109,26 @@ generate_progresso_df <- function(tramitacao_df){
     dplyr::ungroup()
   
   return(df)
+}
+
+#' @title Recupera o número de linha em que houve virada_de_casa
+#' @description Recupera o número da linha em que houve evento virada_de_casa
+#' @param df Dataframe da tramitação processada da proposiçao
+#' @return número da ultima linha cujo evento é virada_de_casa
+#' @examples
+#'  get_linha_virada_de_casa(fetch_tramitacao(2121442, 'camara', T) %>% extract_events_in_camara())
+get_linha_virada_de_casa <- function(proc_tram_df) {
+  linha_virada_de_casa = which(proc_tram_df$evento == 'virada_de_casa')
+  return(ifelse(length(linha_virada_de_casa) == 0, nrow(proc_tram_df), linha_virada_de_casa))
+}
+
+#' @title Recupera o número de linha em que houve evento remetida_a_sancao
+#' @description Recupera o número da linha em que houve evento remetida_a_sancao
+#' @param df Dataframe da tramitação processada da proposiçao
+#' @return número da ultima linha cujo evento é remetida_a_sancao
+#' @examples
+#'  get_linha_remetida_a_sancao(fetch_tramitacao(2121442, 'camara', T) %>% extract_events_in_camara())
+get_linha_remetida_a_sancao <- function(proc_tram_df) {
+  linha_remetida_a_sancao = which(proc_tram_df$evento == 'remetida_a_sancao')
+  return(ifelse(length(linha_remetida_a_sancao) == 0, nrow(proc_tram_df), linha_remetida_a_sancao))
 }

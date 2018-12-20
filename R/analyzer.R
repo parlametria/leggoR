@@ -80,7 +80,7 @@ get_temperatura <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate:
 #' proc_tram <- agoradigital::process_proposicao(prop,tram,casa)
 #' get_historico_temperatura_recente(proc_tram, granularidade = 's', decaimento = 0.05)
 #' }
-get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.05, max_date = lubridate::now()) {
+get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.25, max_date = lubridate::now()) {
   #Remove tempo do timestamp da tramitação
   eventos_sem_horario <- eventos_df %>%
     dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
@@ -88,13 +88,21 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
   full_dates <- data.frame(data = seq(min(eventos_sem_horario$data), max_date, by = "1 day"))
+  pesos_eventos <- 
+    get_pesos_eventos() %>%
+    dplyr::select(-tipo, -label)
+  pesos_locais <-
+    get_pesos_locais() %>%
+    dplyr::select(-tipo, -label) %>%
+    dplyr::rename(peso_local = peso)
   eventos_extendidos <- merge(full_dates, eventos_sem_horario, by="data", all.x = TRUE) %>%
     filtra_dias_nao_uteis_congresso() %>%
     dplyr::mutate(peso_base = dplyr::if_else(is.na(prop_id),0,1)) %>%
-    dplyr::left_join(get_pesos_eventos(), by="evento") %>%
-    dplyr::mutate(peso = dplyr::if_else(is.na(peso),0,as.numeric(peso))) %>%
-    dplyr::mutate(peso_final = peso_base + peso) %>%
-    dplyr::select(-tipo, -label)
+    dplyr::left_join(pesos_eventos, by="evento") %>%
+    dplyr::left_join(pesos_locais, by="local") %>%
+    dplyr::mutate(peso_evento = dplyr::if_else(is.na(peso),0,as.numeric(peso))) %>%
+    dplyr::mutate(peso_local = dplyr::if_else(is.na(peso_local),0,as.numeric(peso_local))) %>%
+    dplyr::mutate(peso_final = peso_base + peso_evento + peso_local)
   
   
   temperatura_periodo <- data.frame()
@@ -195,10 +203,35 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
                   ano = lubridate::year(data),
                   local = ifelse(is.na(local), "Local não informado", local)) %>%
     dplyr::arrange(unlist(sigla), semana, desc(em_pauta)) %>% 
-    unique()
-    
+    unique() %>%
+    dplyr::group_by(data, sigla) %>%
+    dplyr::arrange(data) %>%
+    dplyr::filter(row_number()==n()) %>%
+    dplyr::ungroup() %>%
+    fix_nomes_locais() %>%
+    dplyr::select(-em_pauta)
   
   readr::write_csv(pautas, paste0(export_path, "/pautas.csv"))
+}
+
+
+#' @title Simplifica nomes dos locais das reuniões no dataframe de Pautas
+#' @description Simplifica nomes dos locais das reuniões no dataframe de Pautas
+#' @param pautas_df Dataframe das pautas de um determinado período de tempo
+#' @return Dataframe das pautas com os nomes dos locais simplificados
+#' @examples
+#' fix_nomes_locais(pauta_df)
+fix_nomes_locais <- function(pautas_df) {
+  pautas_locais_clean <- pautas_df %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(local_clean = stringr::str_split(local, ' - ')[[1]][1]) %>%
+    dplyr::mutate(local_clean = dplyr::if_else(local_clean == 'Plenário da Câmara dos Deputados' || local_clean == 'PLEN', 'Plenário', local_clean)) %>%
+    dplyr::mutate(local_clean = dplyr::if_else(grepl("\\d",local_clean),'Comissão Especial', local_clean)) %>%
+    dplyr::mutate(local = local_clean) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(-local_clean)
+  
+  return(pautas_locais_clean)
 }
 
 #' @title Extrai o status da tramitação de um PL
@@ -230,11 +263,12 @@ extract_status_tramitacao <- function(proposicao_id, casa) {
 #' @param tramitacao_df Dataframe da proposição do PL.
 #' @param casa Casa (Senado ou Câmara)
 #' @param out_folderpath Caminho destino do csv resultante
-#' @return Dataframe contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
+#' @return Datafram
+#' e contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
 #' @examples
 #' etapas <- list()
-#' etapas %<>% append(list(process_etapa(2088990, "camara", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
-#' etapas %<>% append(list(process_etapa(91341, "senado", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
+#' etapas %<>% append(list(process_etapa(1635730, "camara", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
+#' etapas %<>% append(list(process_etapa(126084, "senado", fetch_agenda_geral('2018-07-03', '2018-07-10'))))
 #' etapas %<>% purrr::pmap(dplyr::bind_rows)
 #' get_progresso(etapas$proposicao, etapas$fases_eventos)
 #' @export
@@ -243,7 +277,7 @@ get_progresso <- function(proposicao_df, tramitacao_df) {
     tramitacao_df %>%
     agoradigital:::extract_casas(proposicao_df) %>%
     agoradigital:::generate_progresso_df() %>%
-    dplyr::mutate(local_casa = casa) %>%
+    dplyr::mutate(local_casa = dplyr::if_else(!is.na(data_inicio) & fase_global == congresso_env$fases_global$fase_global[[7]], 'presidencia', casa)) %>%
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
     tidyr::fill(prop_id, casa) %>%
     tidyr::fill(prop_id, casa, .direction = "up") 
@@ -271,4 +305,24 @@ get_pesos_eventos <- function() {
     dplyr::arrange()
   
   return(pesos_eventos)
+}
+
+#' @title Recupera os locais e seus respectivos pesos
+#' @description Retorna um dataframe com o superconjunto dos locais das duas casas (Câmara e Senado) e seus respectivos pesos
+#' @return Dataframe contendo local e peso
+#' @examples
+#' get_pesos_locais()
+#' @export
+get_pesos_locais <- function() {
+  locais_camara <- camara_env$locais
+  locais_senado <- senado_env$locais
+  tipos_locais <- congresso_env$tipos_locais
+  
+  pesos_locais <- dplyr::bind_rows(locais_camara, locais_senado) %>%
+    dplyr::group_by(local) %>%
+    dplyr::summarise(tipo = dplyr::first(tipo)) %>% 
+    dplyr::left_join(tipos_locais, by="tipo") %>%
+    dplyr::arrange()
+  
+  return(pesos_locais)
 }

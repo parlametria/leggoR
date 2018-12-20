@@ -246,30 +246,74 @@ rename_proposicao_df <- function(df) {
   df
 }
 
+#' @title Retorna a composição da comissão da camara
+#' @description Retorna um dataframe contendo os membros da comissão
+#' @param sigla_comissao Sigla da comissão da Camara
+#' @return dataframe
+#' @examples 
+#' fetch_composicao_comissoes_camara('cmads')
+fetch_composicao_comissoes_camara <- function(sigla_comissao) {
+  orgaos_camara <- 
+    fetch_orgaos_camara() %>%
+    dplyr::mutate_all(as.character) %>%
+    dplyr::filter(trimws(sigla) == toupper(sigla_comissao)) %>%
+    dplyr::select(orgao_id)
+  
+  if (nrow(orgaos_camara) == 0) {
+    warning("Comissão não encontrada")
+    return(NULL)
+  }
+  
+  url <- paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterMembrosOrgao?IDOrgao=', orgaos_camara[[1]])
+  
+  eventos_list <-
+    XML::xmlParse(url) %>%
+    XML::xmlToList()
+  
+  df <-
+    eventos_list %>%
+    jsonlite::toJSON() %>%
+    jsonlite::fromJSON() %>%
+    magrittr::extract2('membros') %>%
+    tibble::as.tibble() %>%
+    t() %>%
+    as.data.frame() %>%
+    tibble::rownames_to_column("VALUE")
+  
+  new_names <- c('cargo', 'id', 'nome', 'partido', 'uf', 'situacao')
+  
+  names(df) <- new_names
+  df %>%
+    tidyr::unnest(nome) %>%
+    dplyr::arrange(nome)
+}
+
 #' @title Retorna a composição da comissão 
-#' @description Retorna lista com os dados dos membros de uma comissão
+#' @description Retorna dataframe com os dados dos membros de uma comissão
 #' @param sigla sigla da comissão
-#' @return Lista com os dados dos membros de uma comissão
+#' @return Dataframe com os dados dos membros de uma comissão
 #' @examples
 #' fetch_composicao_comissao("CCJ",'senado')
 #' @export
 fetch_composicao_comissao <- function(sigla, casa) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    warning("Function fetch_composicao_comissao_camara not implemented yet.")
-    return(NULL)
+    fetch_composicao_comissoes_camara(sigla)
   } else if (casa == 'senado') {
-    fetch_composicao_comissoes_senado(sigla)
+    new_name <- c("cargo", "id", "partido", "uf", "situacao", "nome")
+    comissao <- 
+      fetch_composicao_comissoes_senado(sigla)
+    names(comissao) <- new_name
+    comissao
   } else {
     print('Parâmetro "casa" não identificado.')
   }
 }
 
 #' @title Retorna a composição da comissão do senado
-#' @description Retorna uma lista com dois dataframes, um contendo os membros das comissões
-#' e o outro contendo quem são os presidentes
+#' @description Retorna dataframe com os dados dos membros de uma comissão do Senado
 #' @param sigla Sigla da comissão do Senado
-#' @return List com dois dataframes
+#' @return Dataframes
 fetch_composicao_comissoes_senado <- function(sigla) {
   url <- paste0('http://legis.senado.leg.br/dadosabertos/comissao/', sigla)
   json_sessions <- jsonlite::fromJSON(url, flatten = T)
@@ -308,7 +352,7 @@ fetch_composicao_comissoes_senado <- function(sigla) {
   
   membros %>%
     dplyr::left_join(cargos, by = 'HTTP') %>%
-    dplyr::select(-c("@num.y", "PARLAMENTAR.y"))
+    dplyr::select(c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x"))
 }
 
 #' @title Retorna as sessões deliberativas de uma proposição no Senado
@@ -364,13 +408,19 @@ generate_dataframe <- function (column) {
 fetch_emendas <- function(id, casa) {
   casa <- tolower(casa)
   if (casa == 'camara') {
-    warning("Function fetch_emendas_camara not implemented yet.")
-    return(NULL)
+    emendas <- fetch_emendas_camara(id)
   } else if (casa == 'senado') {
-    fetch_emendas_senado(id)
+    emendas <- fetch_emendas_senado(id)
   } else {
     print('Parâmetro "casa" não identificado.')
+    return()
   }
+  
+  emendas  <-
+    emendas %>%
+    dplyr::mutate(prop_id = id, codigo_emenda = as.integer(codigo_emenda)) %>%
+    dplyr::select(
+      prop_id, codigo_emenda, data_apresentacao, numero, local, autor, casa, tipo_documento, inteiro_teor) 
 }
 
 #' @title Retorna as emendas de uma proposição no Senado
@@ -379,7 +429,6 @@ fetch_emendas <- function(id, casa) {
 #' @return Dataframe com as informações sobre as emendas de uma proposição no Senado.
 #' @examples
 #' fetch_emendas_senado(91341)
-#' @export
 fetch_emendas_senado <- function(bill_id) {
   url_base_emendas <-
     "http://legis.senado.leg.br/dadosabertos/materia/emendas/"
@@ -399,8 +448,8 @@ fetch_emendas_senado <- function(bill_id) {
   
   if (num_emendas == 0) {
     emendas_df <-
-      tibble::frame_data( ~ codigo, ~ numero, ~ local, ~ autor, ~ partido, ~ casa, ~ tipo_documento, ~ inteiro_teor)
-    
+      tibble::frame_data( ~ codigo_emenda, ~ data_apresentacao, ~ numero, ~ local, ~ autor, ~ partido, ~ casa, ~ tipo_documento, ~ inteiro_teor)
+
   } else if (num_emendas == 1) {
     texto <- generate_dataframe(emendas_df$textos_emenda) %>%
       dplyr::select(tipo_documento, url_texto)
@@ -417,7 +466,6 @@ fetch_emendas_senado <- function(bill_id) {
     emendas_df <- emendas_df %>%
       plyr::rename(
         c(
-          "codigo_emenda" = "codigo",
           "numero_emenda" = "numero",
           "colegiado_apresentacao" = "local"
         )
@@ -426,8 +474,7 @@ fetch_emendas_senado <- function(bill_id) {
                     partido = autoria$partido,
                     tipo_documento = texto$tipo_documento,
                     inteiro_teor = texto$url_texto,
-                    casa = 'Senado Federal') %>%
-      dplyr::select(codigo, numero, local, autor, partido, casa, tipo_documento, inteiro_teor)
+                    casa = 'senado') 
     
     
   } else{
@@ -435,7 +482,6 @@ fetch_emendas_senado <- function(bill_id) {
       tidyr::unnest() %>%
       plyr::rename(
         c(
-          "codigo_emenda" = "codigo",
           "numero_emenda" = "numero",
           "colegiado_apresentacao" = "local",
           "autoria_emenda_autor_nome_autor" = "autor",
@@ -447,15 +493,72 @@ fetch_emendas_senado <- function(bill_id) {
       ) %>%
       dplyr::mutate(
         partido = paste0(partido, "/", uf),
-        casa = "Senado Federal"
-      ) %>%
-      dplyr::select(
-        codigo, numero, local, autor, partido, casa, tipo_documento, inteiro_teor)
-    
+        casa = "senado"
+      ) 
+
+  }
+
+  emendas_df %>%
+    dplyr::mutate(autor = paste0(autor, " ", partido), 
+                  numero = as.integer(numero),
+                  tipo_documento = as.character(tipo_documento),
+                  inteiro_teor = as.character(inteiro_teor)) %>%
+    dplyr::select(-partido)
+
+}
+
+#' @title Retorna as emendas de uma proposição na Camara
+#' @description Retorna dataframe com os dados das emendas de uma proposição na Camara
+#' @param id ID de uma proposição da Camara
+#' @param sigla Sigla da proposição
+#' @param numero Numero da proposição
+#' @param ano Ano da proposição
+#' @return Dataframe com as informações sobre as emendas de uma proposição na Camara
+#' @examples
+#' fetch_emendas_camara(408406)
+fetch_emendas_camara <- function(id=NA, sigla="", numero="", ano="") {
+  if(is.na(id)) {
+    url <- 
+      paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterEmendasSubstitutivoRedacaoFinal?tipo=', sigla, '&numero=', numero, '&ano=', ano)
+  }else {
+    prop <- fetch_proposicao(id, 'camara')
+    url <- 
+      paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterEmendasSubstitutivoRedacaoFinal?tipo=', prop$tipo_materia, '&numero=', prop$numero, '&ano=', prop$ano)
+  }
+ 
+   eventos_list <-
+    XML::xmlParse(url) %>%
+    XML::xmlToList()
+  
+  df <-
+    eventos_list %>%
+    jsonlite::toJSON() %>%
+    jsonlite::fromJSON() %>%
+    magrittr::extract2('Emendas') %>%
+    tibble::as.tibble() %>%
+    t() %>%
+    as.data.frame()
+  
+  if(nrow(df) == 0) {
+    return(tibble::frame_data( ~ codigo_emenda, ~ data_apresentacao, ~ numero, ~ local, ~ autor, ~ casa, ~ tipo_documento, ~ inteiro_teor))
   }
   
-  emendas_df
+  new_names <- c("cod_proposicao", "descricao")
+  names(df) <- new_names
   
+  emendas <- purrr::map_df(df$cod_proposicao, fetch_emendas_camara_auxiliar)
+  normalizes_names <- c("codigo_emenda", "data_apresentacao", "numero", "local", "autor", "casa", "tipo_documento", "inteiro_teor")
+  names(emendas) <- normalizes_names
+  
+  emendas %>%
+    dplyr::mutate(data_apresentacao = as.character(as.Date(data_apresentacao)))
+}
+
+#' @title Função auxiliar para o fetch_emendas_camara
+#' @description Retorna dataframe com os dados das emendas de uma proposição na Camara
+fetch_emendas_camara_auxiliar <- function(id) {
+  fetch_proposicao(id, "camara", normalized = T, emendas = T) %>%
+    dplyr::select(c(prop_id, data_apresentacao, numero, status_proposicao_sigla_orgao, autor_nome, casa, tipo_materia, ementa))
 }
 
 #' @title Baixa os dados da tramitação de um Projeto de Lei
@@ -632,14 +735,15 @@ fetch_events <- function(prop_id) {
 #' @param apelido Apelido da proposição
 #' @param tema Tema da proposição
 #' @param normalized Se os dados vão ser normalizados
+#' @param emendas Se vai ser usando na função fetch_emendas
 #' @return Dataframe com as informações detalhadas de uma proposição
 #' @examples
-#' fetch_proposicao(129808, 'senado', 'Cadastro Positivo', 'Agenda Nacional', T)
+#' fetch_proposicao(129808, 'senado', 'Cadastro Positivo', 'Agenda Nacional', T, F)
 #' @export
-fetch_proposicao <- function(id, casa, apelido="", tema="", normalized=TRUE) {
+fetch_proposicao <- function(id, casa, apelido="", tema="", normalized=TRUE, emendas=FALSE) {
   casa <- tolower(casa)
   if (casa == "camara") {
-    fetch_proposicao_camara(id, normalized, apelido, tema)
+    fetch_proposicao_camara(id, normalized, apelido, tema, emendas)
   } else if (casa == "senado") {
     fetch_proposicao_senado(id, normalized, apelido, tema)
   } else {
@@ -777,10 +881,11 @@ fetch_proposicao_senado <- function(proposicao_id, normalized=TRUE, apelido, tem
 #' @param normalized whether or not the output dataframe should be normalized (have the same format and column names for every house)
 #' @param apelido Apelido da proposição
 #' @param tema Tema da proposição
+#' @param emendas se vai ser usado na função fetch_emendas
 #' @return Dataframe
 #' @examples
-#' fetch_proposicao_camara(2056568, T, "Lei para acabar zona de amortecimento", "Meio Ambiente")
-fetch_proposicao_camara <- function(prop_id, normalized=TRUE, apelido, tema) {
+#' fetch_proposicao_camara(2056568, T, "Lei para acabar zona de amortecimento", "Meio Ambiente", F)
+fetch_proposicao_camara <- function(prop_id, normalized=TRUE, apelido, tema, emendas=FALSE) {
   prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%
     rename_df_columns()
   
@@ -797,19 +902,40 @@ fetch_proposicao_camara <- function(prop_id, normalized=TRUE, apelido, tema) {
                     casa_origem = autor_df[1,]$casa_origem,
                     autor_nome = autor_df[1,]$autor.nome,
                     apelido_materia = apelido,
-                    tema = tema) %>%
-      dplyr::select(prop_id,
-                    casa,
-                    tipo_materia = sigla_tipo,
-                    numero,
-                    ano,
-                    data_apresentacao,
-                    ementa,
-                    palavras_chave = keywords,
-                    autor_nome,
-                    casa_origem,
-                    apelido_materia,
-                    tema)
+                    tema = tema) 
+    if (emendas) {
+      prop_camara <-
+        prop_camara %>%
+        dplyr::select(prop_id,
+                      casa,
+                      tipo_materia = sigla_tipo,
+                      numero,
+                      ano,
+                      data_apresentacao,
+                      ementa,
+                      palavras_chave = keywords,
+                      autor_nome,
+                      casa_origem,
+                      apelido_materia,
+                      tema,
+                      status_proposicao_sigla_orgao)
+    }else {
+      prop_camara <-
+        prop_camara %>%
+        dplyr::select(prop_id,
+                      casa,
+                      tipo_materia = sigla_tipo,
+                      numero,
+                      ano,
+                      data_apresentacao,
+                      ementa,
+                      palavras_chave = keywords,
+                      autor_nome,
+                      casa_origem,
+                      apelido_materia,
+                      tema)
+    }
+
   }
   
   prop_camara
