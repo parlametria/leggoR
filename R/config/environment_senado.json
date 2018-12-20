@@ -74,6 +74,7 @@
   },
 
   "eventos": [
+    {"evento": "realizacao_seminario", "texto_tramitacao": "realizado o seminário", "tipo":"discussao"},
     {"evento": "apresentacao_pl", "texto_tramitacao": "^este processo contem", "tipo":"despacho"},
     {"evento": "recebimento_comissao", "texto_tramitacao": "recebido na|nesta comissao", "tipo":"despacho"},
     {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "aprovado requerimento de realização de audiência pública", "tipo":"discussao"},
