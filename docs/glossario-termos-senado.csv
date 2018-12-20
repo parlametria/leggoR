@@ -222,7 +222,7 @@ codigo,termo,significado
 120,NomePoderOrigem,"Nome do poder (Legislativo, Executivo, Judiciário) de origem da matéria"
 322,NomeServico,Nome do serviço
 794,NomeServicoAfetado,Nome do serviço que tem o resultado afetado pela atualização em questão
-50,NormaGerada,Norma jurídica gerada com a sansão da matéria
+50,NormaGerada,Norma jurídica gerada com a sanção da matéria
 1407,NumOrdemAutor,Número de ordem do autor dentre a lista de autores
 228,NumeroAtualComissoes,Número atual de comissões
 153,NumeroAutuacao,Número da autuação (só tem mais de uma quando a matéria é distribuída em mais de uma comissão simultaneamente)
