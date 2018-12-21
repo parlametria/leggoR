@@ -339,7 +339,7 @@ fetch_composicao_comissoes_senado <- function(sigla) {
     comissao %>%
     magrittr::extract2('MEMBROS_BLOCO') %>%
     magrittr::extract2('MEMBROS_BLOCO_ROW')
-  tibble::as.tibble() 
+
   if('PARTIDOS_BLOCO.PARTIDOS_BLOCO_ROW' %in% names(membros)) {
     membros <- 
       membros %>%
@@ -350,9 +350,17 @@ fetch_composicao_comissoes_senado <- function(sigla) {
     membros %>%
     tidyr::unnest()
   
-  membros %>%
-    dplyr::left_join(cargos, by = 'HTTP') %>%
-    dplyr::select(c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x"))
+  if ("MEMBROS.MEMBROS_ROW.HTTP" %in% names(membros)) {
+    membros <- 
+      membros %>%
+      dplyr::left_join(cargos, by = c ("MEMBROS.MEMBROS_ROW.HTTP" = "HTTP")) %>%
+      dplyr::select(c("CARGO", "@num.x", "MEMBROS.MEMBROS_ROW.PARTIDO", "MEMBROS.MEMBROS_ROW.UF", "MEMBROS.MEMBROS_ROW.TIPO_VAGA", "MEMBROS.MEMBROS_ROW.PARLAMENTAR"))
+  }else {
+    membros %>%
+      dplyr::left_join(cargos, by = 'HTTP') %>%
+      dplyr::select(c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x"))
+  }
+
 }
 
 #' @title Retorna as sessões deliberativas de uma proposição no Senado
