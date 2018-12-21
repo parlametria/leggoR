@@ -285,7 +285,9 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao) {
   names(df) <- new_names
   df %>%
     tidyr::unnest(nome) %>%
-    dplyr::arrange(nome)
+    dplyr::arrange(nome) %>% 
+    dplyr::mutate(sigla = sigla_comissao,
+                  casa = 'camara')
 }
 
 #' @title Retorna a composição da comissão 
@@ -296,15 +298,13 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao) {
 #' fetch_composicao_comissao("CCJ",'senado')
 #' @export
 fetch_composicao_comissao <- function(sigla, casa) {
+  print(paste0('Baixando composição da comissão ', sigla, ' em ', casa))
   casa <- tolower(casa)
+  
   if (casa == 'camara') {
-    fetch_composicao_comissoes_camara(sigla)
+    fetch_composicao_comissoes_camara(sigla) 
   } else if (casa == 'senado') {
-    new_name <- c("cargo", "id", "partido", "uf", "situacao", "nome")
-    comissao <- 
       fetch_composicao_comissoes_senado(sigla)
-    names(comissao) <- new_name
-    comissao
   } else {
     print('Parâmetro "casa" não identificado.')
   }
@@ -350,9 +350,16 @@ fetch_composicao_comissoes_senado <- function(sigla) {
     membros %>%
     tidyr::unnest()
   
-  membros %>%
+  membros <- 
+    membros %>%
     dplyr::left_join(cargos, by = 'HTTP') %>%
     dplyr::select(c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x"))
+                  
+   names(membros) <- c("cargo", "id", "partido", "uf", "situacao", "nome")
+    
+  membros %>% 
+    dplyr::mutate(sigla = sigla,
+                  casa = 'senado')
 }
 
 #' @title Retorna as sessões deliberativas de uma proposição no Senado
@@ -1590,6 +1597,7 @@ junta_agendas <- function(initial_date, end_date) {
 #' @examples
 #' fetch_orgaos_senado()
 #' @importFrom RCurl getURL
+#' @importFrom dplyr %>%
 fetch_orgaos_senado <- function() {
   url <- 'http://legis.senado.leg.br/dadosabertos/dados/'
   
@@ -1627,4 +1635,33 @@ fetch_orgaos_senado <- function() {
     df %>% dplyr::filter(!stringr::str_detect(sigla, '^CMMPV'))
   
   return(df)
+}
+
+#' @title Baixa todas as composições das comissões atuais do Senado e da Câmara
+#' @description Retorna um dataframe contendo dados sobre as composições das comissões atuais do Senado e da Câmara
+#' @return Dataframe
+#' @examples
+#' fetch_all_composicao_comissao()
+#' @importFrom RCurl getURL
+#' @importFrom dplyr %>%
+#' @export
+fetch_all_composicao_comissao <- function(){
+  siglas_comissoes <- fetch_orgaos_camara() %>% 
+    dplyr::mutate_all(as.character) %>% 
+    dplyr::select(sigla) %>% 
+    dplyr::mutate(casa = 'camara',
+                  sigla = trimws(sigla)) %>% 
+    dplyr::filter(sigla != 'PLEN') %>% 
+    slice(1:10)
+  
+  siglas_comissoes <- rbind(siglas_comissoes,
+                            fetch_orgaos_senado() %>%
+                              dplyr::mutate(casa = 'senado') %>% 
+                              slice(1:10)) %>% 
+    dplyr::distinct()
+  
+  composicao_comissoes <-
+    purrr::map2_df(siglas_comissoes$sigla, siglas_comissoes$casa, ~ fetch_composicao_comissao(.x, .y))
+  
+  return(composicao_comissoes)
 }
