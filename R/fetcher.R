@@ -362,7 +362,9 @@ fetch_composicao_comissoes_senado <- function(sigla) {
                     casa = 'senado')
     
     if (nrow(cargos) == 0 | !('HTTP' %in% names(cargos))) {
-      membros
+      membros %>%
+        dplyr::mutate(CARGO = NA) %>%
+        dplyr::select(c("CARGO", "@num", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR"))
     } else {
       if ("MEMBROS.MEMBROS_ROW.HTTP" %in% names(membros)) {
         membros <- 
