@@ -50,15 +50,15 @@ get_comissoes_faltantes <- function(data_tramitacao) {
 
     siglas_comissoes <-
       get_comissoes_senado() %>%
-      select(-comissoes_temporarias) %>%
-      unnest() %>%
-      mutate(comissoes_permanentes = paste0("Comissão ", comissoes_permanentes)) %>%
+      dplyr::select(-comissoes_temporarias) %>%
+      tidyr::unnest() %>%
+      dplyr::mutate(comissoes_permanentes = paste0("Comissão ", comissoes_permanentes)) %>%
       dplyr::rename("local" = "comissoes_permanentes")
 
     if (nchar(comissoes[1,]$local) > 6) {
       comissoes <-
         merge(comissoes, siglas_comissoes, by="local") %>%
-        select(siglas_comissoes) %>%
+        dplyr::select(siglas_comissoes) %>%
         dplyr::rename("local" = "siglas_comissoes")
     }
 
@@ -348,7 +348,8 @@ extract_comissoes_Senado <- function(df) {
                            stringr::regex(regex2, ignore_case = TRUE))
   }
 
-  df %>%
+  df <-
+    df %>%
     dplyr::mutate(comissoes =
                     dplyr::case_when(
                       detect(texto_tramitacao,
@@ -361,16 +362,24 @@ extract_comissoes_Senado <- function(df) {
                              codigos_comissoes$regex_3,
                              codigos_comissoes$regex_3_extract)
                     )) %>%
-    dplyr::filter(!is.na(comissoes)) %>%
-    dplyr::arrange(data_hora) %>%
-    dplyr::select(comissoes, data_hora) %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(comissoes = stringr::str_extract_all
-                  (comissoes, comissoes_permanentes_especiais)) %>%
-    unique() %>%
-    dplyr::mutate(comissoes = sapply(comissoes, fix_names)) %>%
-    dplyr::rowwise() %>%
-    dplyr::filter(length(comissoes) != 0)
+    dplyr::filter(!is.na(comissoes))
+  
+  
+  if(nrow(df) > 0) {
+    df %>%
+      dplyr::arrange(data_hora) %>%
+      dplyr::select(comissoes, data_hora) %>%
+      dplyr::rowwise() %>%
+      dplyr::mutate(comissoes = stringr::str_extract_all(comissoes, comissoes_permanentes_especiais)) %>%
+      tidyr::unnest() %>% 
+      unique() %>%
+      dplyr::mutate(comissoes = sapply(comissoes, fix_names)) %>%
+      dplyr::rowwise() %>%
+      dplyr::filter(length(comissoes) != 0)
+  } 
+  
+  return(df)
+  
 }
 
 #' @title Recupera o numero e a ementa de uma proposição no Senado

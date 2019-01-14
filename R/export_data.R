@@ -74,7 +74,7 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
 #' @export
 export_data <- function(pls, export_path) {
   # agenda <- fetch_agenda_geral(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4)
-  agenda <- tibble::as.tibble()
+  agenda <- tibble::as_tibble()
   res <- pls %>% purrr::pmap(process_pl, agenda, nrow(pls))
   
   proposicoes <-
