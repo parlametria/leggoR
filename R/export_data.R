@@ -91,9 +91,8 @@ export_data <- function(pls, export_path) {
   emendas <-
     purrr::map_df(res, ~ .$emendas) %>%
     dplyr::rename(id_ext = prop_id)
-  composicao_comissoes <-
+  comissoes <-
     agoradigital::fetch_all_composicao_comissao()
-    
   
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
@@ -102,5 +101,5 @@ export_data <- function(pls, export_path) {
     hists_temperatura, paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
   readr::write_csv(emendas, paste0(export_path, "/emendas.csv"))
-  readr::write_csv(composicao_comissoes, paste0(export_path, "/composicao_comissoes.csv"))
+  readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
 }
