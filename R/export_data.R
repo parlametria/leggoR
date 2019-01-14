@@ -17,12 +17,14 @@ process_etapa <- function(id, casa, agenda) {
     merge(prop, status, by = "prop_id") %>%
     dplyr::mutate(temperatura = temperatura_value) 
   emendas <- agoradigital::fetch_emendas(id, casa)
+  composicao_comissoes <- agoradigital::fetch_all_composicao_comissao()
   
   list(
     proposicao = extended_prop,
     fases_eventos = proc_tram,
     hist_temperatura = historico_temperatura,
-    emendas = emendas)
+    emendas = emendas,
+    comissoes = composicao_comissoes)
 }
 
 adiciona_coluna_pulou <- function(progresso_df) {
@@ -91,6 +93,9 @@ export_data <- function(pls, export_path) {
   emendas <-
     purrr::map_df(res, ~ .$emendas) %>%
     dplyr::rename(id_ext = prop_id)
+  comissoes <-
+    purrr::map_df(res, ~ .$comissoes) %>%
+    dplyr::rename(id_ext = prop_id)
   
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
@@ -99,4 +104,5 @@ export_data <- function(pls, export_path) {
     hists_temperatura, paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
   readr::write_csv(emendas, paste0(export_path, "/emendas.csv"))
+  readr::write_csv(emendas, paste0(export_path, "/comissoes.csv"))
 }
