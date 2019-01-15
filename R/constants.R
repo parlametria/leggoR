@@ -67,7 +67,7 @@ COMISSOES_CAMARA <-
         "comiss.o de meio ambiente e desenvolvimento sustent.vel",
         "cmads"
       ),
-      c("comiss.o de minas e energia", "cme"),
+      c("comiss.o de minas e temperatura", "cme"),
       c("comiss.o de rela..es exteriores e de defesa nacional", "credn"),
       c(
         "comiss.o de seguran.a p.blica e combate ao crime organizado",
@@ -86,6 +86,7 @@ COMISSOES_CAMARA <-
 #Senado
 .COLNAMES_VOT_SEN <-
   c(
+    "descricao_identificacao_materia",
     "indicador_votacao_secreta",
     "descricao_votacao",
     "descricao_resultado",
@@ -100,7 +101,7 @@ COMISSOES_CAMARA <-
     "codigo_tramitacao",
     "numero_autuacao",
     "data_tramitacao",
-    "numero_ordem_tramitacao" ,
+    "numero_ordem_tramitacao",
     "texto_tramitacao",
     "indicador_recebimento",
     "data_recebimento",
@@ -127,8 +128,8 @@ COMISSOES_CAMARA <-
     "forma_tratamento",
     "url_foto_parlamentar",
     "url_pagina_parlamentar",
-    "email_parlamentar" ,
-    "sigla_partido_parlamentar" ,
+    "email_parlamentar",
+    "sigla_partido_parlamentar",
     "uf_parlamentar",
     "codigo_materia",
     "sigla_casa_identificacao_materia",
@@ -138,11 +139,13 @@ COMISSOES_CAMARA <-
     "descricao_identificacao_materia",
     "numero_materia",
     "ano_materia",
-    "indicador_tramitando"
+    "indicador_tramitando",
+    "descricao_objetivo_processo"
   )
 
 .COLNAMES_TRAMI_SEN <-
   c(
+    "descricao_identificacao_materia",
     "codigo_tramitacao",
     "numero_autuacao",
     "data_hora",
@@ -173,7 +176,8 @@ COMISSOES_CAMARA <-
     "descricao_subtipo_materia",
     "numero_materia",
     "ano_materia",
-    "indicador_tramitando"
+    "indicador_tramitando",
+    "descricao_objetivo_processo"
   )
 
 .COLNAMES_DEFE_SEN <- c("proposicao_id", "deferimento")

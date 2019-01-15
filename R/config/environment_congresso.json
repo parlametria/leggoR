@@ -4,6 +4,7 @@
       "senado_label": "senado"
   },
   
+
    "fases_global":[
     {"local": "Comissões", "fase_global": "Construção"},
     {"local": "Plenário", "fase_global": "Construção"},
@@ -11,7 +12,22 @@
     {"local": "Plenário", "fase_global": "Revisão I"},
     {"local": "Comissões", "fase_global": "Revisão II"},
     {"local": "Plenário", "fase_global": "Revisão II"},
-    {"local": "Presidência da República", "fase_global": "Sansão/Veto"},
-    {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
+    {"local": "Presidência da República", "fase_global": "Sanção/Veto"},
+    {"local": "Congresso", "fase_global": "Avaliação dos Vetos"}
+  ], 
+  
+   "fase_global_sancao":{
+    "situacao_sancao": "remetida_a_sancao",
+    "situacao_norma_juridica": "transformada_em_norma_jurídica"
+  },
+  
+  "tipos_eventos":[
+    {"tipo":"despacho", "label":"Despacho", "peso":0.25},
+    {"tipo":"discussao", "label":"Discussão", "peso":0.07},
+    {"tipo":"votacao", "label":"Votação", "peso":0.68}
+  ], 
+  
+  "tipos_locais":[
+    {"tipo":"decisivo", "label":"Decisivo", "peso":0.68}
   ]
 }

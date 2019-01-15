@@ -17,6 +17,7 @@ Imports: magrittr,
     here,
     plyr,
     purrr,
+    purrrlyr,
     dplyr,
     tibble,
     tidyr,
@@ -30,6 +31,8 @@ Imports: magrittr,
     lubridate,
     readr,
     roll,
+    RCurl,
+    XML,
     DT
 Suggests: testthat,
     knitr,
@@ -38,4 +41,4 @@ Suggests: testthat,
     rcmdcheck,
     lintr
 VignetteBuilder: knitr
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1

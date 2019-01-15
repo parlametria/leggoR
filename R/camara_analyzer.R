@@ -2,39 +2,6 @@ source(here::here("R/camara-lib.R"))
 
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
-#' @title Cria coluna com os relatores na tramitação na Câmara
-#' @description Cria uma nova coluna com os relatores na Câmara. O relator é adicionado à coluna no
-#' envento pontual em que ele é designado
-#' @param df Dataframe da tramitação na Câmara
-#' @return Dataframe com a coluna "relator" adicionada.
-#' @examples
-#' fetch_tramitacao(2121442, 'camara', T) %>% extract_relator_in_camara()
-extract_relator_in_camara <- function(df) {
-  df %>%
-    dplyr::mutate(relator = dplyr::case_when(
-      stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r') ~
-        stringr::str_extract(texto_tramitacao, stringr::regex('dep.+', ignore_case=TRUE))))
-}
-
-
-
-#' @title Recupera o último relator na Câmara
-#' @description Recupera o nome do último relator na Câmara
-#' @param df Dataframe da tramitação na Câmara
-#' @return String do nome do último relator na Câmara
-#' @examples
-#' fetch_tramitacao(2121442, 'camara', T) %>% extract_last_relator_in_camara()
-extract_last_relator_in_camara <- function(df) {
-  relatores <- extract_relator_in_camara(df)
-  relator <-
-    relatores %>%
-    dplyr::filter(!is.na(relator)) %>%
-    dplyr::arrange(desc(data_hora)) %>%
-    dplyr::select(relator)
-  
-  relator$relator[1]
-}
-
 #' @title Busca os últimos n eventos da tramitação na Câmara
 #' @description Recupera os útimos n eventos da tramitação na Câmara, caso nenhuma quantidade seja informada, assume-se que é 1
 #' @param df Dataframe da tramitação na Câmara
@@ -45,30 +12,6 @@ extract_last_n_events_in_camara <- function(df, num) {
     dplyr::arrange(data_hora) %>%
     tail(n = num) %>%
     dplyr::select(data_hora, evento)
-}
-
-#' @title Recupera relatores de uma proposição
-#' @description Recupera todos os relatores de uma proposição, junto com suas informações de parlamentar e comissão
-#' @param tramitacao_df Dataframe da tramitação na Câmara
-#' @return Dataframe que contém todos os relatores
-extract_relatorias_in_camara <- function(tramitacao_df) {
-  tramitacao_df %>%
-    # extract line when a relator is designated by the code
-    dplyr::filter(id_tipo_tramitacao == '320') %>%
-    # select columns
-    dplyr::select(
-      data_hora,
-      texto_tramitacao,
-      sigla_local
-    ) %>%
-    tibble::add_column() %>%
-    # extract relator's name and partido
-    dplyr::mutate(
-      nome_parlamentar = stringr::str_match(texto_tramitacao,'Dep. (.*?) [(]')[,2],
-      partido = stringr::str_match(texto_tramitacao,'[(](.*?)[)]')[,2]
-    ) %>%
-    # remove texto_tramitacao column and return
-    dplyr::select(-c(texto_tramitacao))
 }
 
 #' @title Renomeia as colunas do dataframe
@@ -86,8 +29,7 @@ rename_df_columns <- function(df) {
 #' @param events_df Dataframe com os eventos contendo as colunas "evento" e "regex"
 #' @return Dataframe com a coluna "evento" adicionada.
 extract_events_in_camara <- function(tramitacao_df) {
-  eventos_regex_df <- camara_codes$eventos %>%
-    dplyr::select(-peso)
+  eventos_regex_df <- camara_env$eventos %>% dplyr::select(-tipo)
   tramitacao_df %>% regex_left_match(eventos_regex_df, "evento")
 }
 
@@ -99,11 +41,11 @@ extract_events_in_camara <- function(tramitacao_df) {
 #' extract_autor_in_camara(2121442)
 #' @export
 extract_autor_in_camara <- function(prop_id) {
-  camara_exp <- 'câmara dos deputados'
-  senado_exp <- 'senado federal'
+  camara_exp <- "câmara dos deputados"
+  senado_exp <- "senado federal"
   
-  url_base_autores <- 'https://dadosabertos.camara.leg.br/api/v2/proposicoes/'
-  url <- paste0(url_base_autores, prop_id, '/autores')
+  url_base_autores <- "https://dadosabertos.camara.leg.br/api/v2/proposicoes/"
+  url <- paste0(url_base_autores, prop_id, "/autores")
   json_voting <- jsonlite::fromJSON(url, flatten = T)
   
   authors <- json_voting %>%
@@ -113,12 +55,12 @@ extract_autor_in_camara <- function(prop_id) {
       autor.nome = nome,
       autor.tipo = tipo,
       autor.cod_tipo = codTipo) %>%
-    dplyr::mutate(casa_origem = 
+    dplyr::mutate(casa_origem =
                     dplyr::case_when(
-                      stringr::str_detect(tolower(autor.nome), camara_exp) | autor.tipo == 'Deputado' ~ 'Câmara dos Deputados',
-                      stringr::str_detect(tolower(autor.nome), senado_exp) | autor.tipo == 'Senador' ~ 'Senado Federal',
-                      autor.cod_tipo == 40000 ~ 'Senado Federal',
-                      autor.cod_tipo == 2 ~ 'Câmara dos Deputados'))
+                      stringr::str_detect(tolower(autor.nome), camara_exp) | autor.tipo == "Deputado" ~ "Câmara dos Deputados",
+                      stringr::str_detect(tolower(autor.nome), senado_exp) | autor.tipo == "Senador" ~ "Senado Federal",
+                      autor.cod_tipo == 40000 ~ "Senado Federal",
+                      autor.cod_tipo == 2 ~ "Câmara dos Deputados"))
   
   # authors <- authors %>%
   #   mutate(autor.nome = dplyr::if_else(casa_origem == 'Senado Federal', stringr::str_split(autor.nome,'-')[[2]], autor.nome))
@@ -136,7 +78,9 @@ extract_autor_in_camara <- function(prop_id) {
 #' @examples
 #'  extract_locais_in_camara(fetch_tramitacao(2121442, 'camara', T))
 extract_locais_in_camara <- function(df) {
-  descricoes_plenario <- c('votação', 'pronta para pauta', 'apresentação de proposição', 'sessão deliberativa')
+  descricoes_plenario <-
+    c('votação', 'pronta para pauta', 'apresentação de proposição',
+      'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
   
   df %<>%
@@ -144,10 +88,11 @@ extract_locais_in_camara <- function(df) {
     dplyr::mutate(
       local =
         dplyr::case_when(
-          (tolower(texto_tramitacao) %in% descricoes_plenario & sigla_local == 'PLEN' |
-             stringr::str_detect(tolower(texto_tramitacao), '^votação')) ~ 'Plenário',
+          (stringr::str_detect(tolower(texto_tramitacao), '(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)')) ~ 'Presidência da República',
+          (tolower(texto_tramitacao) %in% descricoes_plenario |
+             stringr::str_detect(tolower(texto_tramitacao), '^votação')) & sigla_local == 'PLEN' ~ 'Plenário',
           (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') |
-             tolower(texto_tramitacao) %in% descricoes_comissoes) & 
+             tolower(texto_tramitacao) %in% descricoes_comissoes) &
             sigla_local != 'CCP' &
             !stringr::str_detect(tolower(sigla_local), '^s') ~ sigla_local,
           tolower(texto_tramitacao) == 'remessa ao senado federal' ~ 'Câmara')
@@ -208,7 +153,7 @@ extract_fase_casa_in_camara <- function(df) {
         dplyr::case_when(
           (tolower(texto_tramitacao) %in% descricoes_plenario & sigla_local == 'PLEN' |
              stringr::str_detect(tolower(texto_tramitacao), '^votação')) ~ 'Plenário',
-          (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') | 
+          (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') |
              tolower(texto_tramitacao) %in% descricoes_comissoes) & sigla_local != 'CCP' & !stringr::str_detect(tolower(sigla_local), '^s') ~ "Comissões")
     )
   
@@ -228,7 +173,7 @@ extract_fase_casa_in_camara <- function(df) {
 #' @examples
 #'  extract_situacao_comissao(process_proposicao_camara(345311))
 extract_situacao_comissao <- function(df) {
-  
+
   situacao_comissao <- camara_env$situacao_comissao
   situacao_comissao['local'] <- get_regex_comissoes_camara()
   
@@ -244,13 +189,26 @@ extract_situacao_comissao <- function(df) {
 #' @param tramitacao_df Dataframe com tramitação da proposição
 #' @importFrom magrittr %>%
 process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
-  tramitacao_df %>%
-    extract_events_in_camara() %>%
+  proc_tram_df <- tramitacao_df %>%
+    extract_events_in_camara()
+  
+  virada_de_casa <- 
+    proc_tram_df %>%
+    dplyr::filter(evento == 'virada_de_casa')
+  
+  if(nrow(virada_de_casa) == 1){
+    proc_tram_df <-
+    proc_tram_df[1:get_linha_virada_de_casa(proc_tram_df),]
+  }
+  
+  proc_tram_df <-
+    proc_tram_df %>%
     extract_locais_in_camara() %>%
-    #extract_fase_casa_in_camara() %>%
-    #extract_situacao_comissao() %>%
+    extract_fase_global_in_camara(proposicao_df) %>% 
     refact_date() %>%
     sort_by_date()
+  
+  return(proc_tram_df)
 }
 
 #Fetch a bill with renamed columns
@@ -303,24 +261,15 @@ extract_forma_apreciacao_camara <- function(prop_id) {
 #' @examples
 #' extract_regime_tramitacao_camara(fetch_tramitacao(257161,'camara', TRUE))
 extract_regime_tramitacao_camara <- function(tram_df) {
-  regex_regime <-
-    tibble::frame_data(
-      ~ regime_tramitacao,
-      ~ regex,
-      'Ordinária',
-      'Ordinária',
-      'Prioridade',
-      'Prioridade',
-      'Urgência',
-      'Urgência'
-    )
+  regimes <- camara_env$regime %>%
+    tibble::as.tibble()
   
   prop_id <- tram_df[1,]$prop_id
   
   regime_df <- rcongresso::fetch_proposicao(prop_id) %>%
-    fuzzyjoin::regex_left_join(regex_regime, 
+    fuzzyjoin::regex_left_join(regimes,
                                by = c(statusProposicao.regime = "regex"))
-    return(regime_df[1,]$regime_tramitacao)
+  return(regime_df[1,]$regime_tramitacao)
 }
 
 #' @title Extrai as casas globais (Origem Câmara, Plenário Câmara, etc.) da Câmara
@@ -329,24 +278,86 @@ extract_regime_tramitacao_camara <- function(tram_df) {
 #' @return Dataframe da tramitacao contendo mais uma coluna chamada fase_global
 #' @examples
 #'  extract_casas_in_camara(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', '', '', normalized=T))
-extract_casas_in_camara <- function(tramitacao_df, proposicao_df) { 
-  casa_name = dplyr::if_else(tolower(proposicao_df$casa_origem) == "câmara dos deputados", "Construção", "Revisão I")
-  
-  tramitacao_df %<>%
-    dplyr::arrange(data_hora, sequencia) %>%
+extract_casas_in_camara <- function(tramitacao_df, casa_name) {
+  tramitacao_df %>%
     dplyr::mutate(
       fase_global = casa_name,
-      local = 
+      local =
         dplyr::case_when(
-          (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario) & 
-             sigla_local == 'PLEN') ~ "Plenário",
-          sigla_local != 'PLEN' &
-            (sigla_local %in% camara_env$comissoes$siglas_comissoes_antigas |
-               sigla_local %in% camara_env$comissoes$siglas_comissoes |
-               stringr::str_detect(tolower(sigla_local), '^pl'))  ~ "Comissões"))
+          (stringr::str_detect(tolower(texto_tramitacao), "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)")) ~ 'Presidência da República',
+          (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario) & sigla_local == "PLEN") ~ "Plenário",
+          sigla_local != "PLEN" & (sigla_local %in% camara_env$comissoes$siglas_comissoes_antigas | sigla_local %in% camara_env$comissoes$siglas_comissoes | stringr::str_detect(tolower(sigla_local), "^pl"))  ~ "Comissões"))
+}
+
+#' @title Extrai as casas globais (Origem Câmara, Plenário Câmara, etc.) da Câmara
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada fase_global
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada fase_global
+#' @examples
+#'  extract_fase_global_in_camara(fetch_tramitacao(2121442, 'camara', T) %>% extract_events_in_camara() %>% extract_locais_in_camara(), fetch_proposicao(2121442, 'camara', '', '', normalized=T))
+extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
+  fase_global_constants <- camara_env$fase_global
   
-  tramitacao_df %>%
-    tidyr::fill(fase_global)
+  casa_origem <-
+    dplyr::if_else(
+      !is.na(proposicao_df$casa_origem) & proposicao_df$casa_origem == "Senado Federal",
+      fase_global_constants$revisao_camara,
+      fase_global_constants$origem_camara
+    )
+  
+  virada_de_casa <-
+    data_tramitacao %>%
+    dplyr::filter(evento == 'virada_de_casa') %>%
+    dplyr::arrange(data_hora) %>%
+    dplyr::select(data_hora)
+  
+  casa_atual <-
+    dplyr::if_else(
+      casa_origem == " - Origem (Câmara)",
+      fase_global_constants$revisao_senado,
+      fase_global_constants$origem_camara
+    )
+  
+  casa_revisao2 <-
+    dplyr::if_else(
+      casa_origem == " - Origem (Câmara)",
+      fase_global_constants$revisao2_camara,
+      fase_global_constants$revisao2_senado
+    )
+  
+  if (nrow(virada_de_casa) == 0) {
+    data_tramitacao <-
+      data_tramitacao %>%
+      dplyr::mutate(global = paste0(casa_origem))
+    
+  } else {
+    
+    data_tramitacao <- 
+      data_tramitacao %>%
+      dplyr::mutate(global = dplyr::if_else(
+        data_hora < virada_de_casa[1, ][[1]],
+        casa_origem,
+        casa_atual
+      ))
+    
+  }
+  
+  if(nrow(virada_de_casa) > 1) {
+    data_tramitacao <- 
+      data_tramitacao %>%
+      dplyr::mutate(global = dplyr::if_else(
+        data_hora >= virada_de_casa[nrow(virada_de_casa), ][[1]],
+        casa_revisao2,
+        global
+      ))
+  }
+  
+  data_tramitacao <-
+    data_tramitacao %>%
+    dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao", "- Sanção/Veto", global)) %>% 
+    tidyr::fill(global, .direction = "down")
+  
+  return(data_tramitacao)
 }
 
 #' @title Extrai os números dos requerimentos da Câmara
