@@ -45,9 +45,9 @@ adiciona_locais_faltantes_progresso <- function(progresso_df) {
       TRUE ~ local_casa))
 }
 
-process_pl <- function(id_camara, id_senado, apelido, tema_pl, agenda) {
+process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows) {
   cat(paste(
-    "\n--- Processando:", apelido, "\ncamara:", id_camara,
+    "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
     "\nsenado", id_senado, "\n"))
   etapas <- list()
   if (!is.na(id_camara)) {
@@ -62,7 +62,8 @@ process_pl <- function(id_camara, id_senado, apelido, tema_pl, agenda) {
     adiciona_coluna_pulou() %>%
     adiciona_locais_faltantes_progresso()
   etapas$proposicao %<>%
-    dplyr::mutate(apelido_materia = apelido, tema = tema_pl)
+    dplyr::mutate(apelido_materia = apelido, tema = tema_pl) %>% 
+    dplyr::select(-casa_origem)
   etapas
 }
 
@@ -73,8 +74,8 @@ process_pl <- function(id_camara, id_senado, apelido, tema_pl, agenda) {
 #' @export
 export_data <- function(pls, export_path) {
   # agenda <- fetch_agenda_geral(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4)
-  agenda <- tibble::as.tibble()
-  res <- pls %>% purrr::pmap(process_pl, agenda)
+  agenda <- tibble::as_tibble()
+  res <- pls %>% purrr::pmap(process_pl, agenda, nrow(pls))
   
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
@@ -90,6 +91,8 @@ export_data <- function(pls, export_path) {
   emendas <-
     purrr::map_df(res, ~ .$emendas) %>%
     dplyr::rename(id_ext = prop_id)
+  comissoes <-
+    agoradigital::fetch_all_composicao_comissao()
   
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
@@ -98,4 +101,5 @@ export_data <- function(pls, export_path) {
     hists_temperatura, paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
   readr::write_csv(emendas, paste0(export_path, "/emendas.csv"))
+  readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
 }

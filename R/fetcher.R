@@ -257,11 +257,12 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao) {
     fetch_orgaos_camara() %>%
     dplyr::mutate_all(as.character) %>%
     dplyr::filter(trimws(sigla) == toupper(sigla_comissao)) %>%
-    dplyr::select(orgao_id)
-  
+    dplyr::select(orgao_id) %>% head(1)
+
   if (nrow(orgaos_camara) == 0) {
     warning("Comissão não encontrada")
-    return(NULL)
+    n <- tibble::frame_data(~ cargo, ~ id, ~ partido, ~ uf, ~ situacao, ~ nome, ~ sigla, ~ casa)
+    return(n)
   }
   
   url <- paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterMembrosOrgao?IDOrgao=', orgaos_camara[[1]])
@@ -280,11 +281,19 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao) {
     as.data.frame() %>%
     tibble::rownames_to_column("VALUE")
   
+  if (nrow(df) == 0) {
+    return(tibble::frame_data(~ cargo, ~ id, ~ nome, ~ partido, ~ uf, ~ situacao))
+  }
+  
   new_names <- c('cargo', 'id', 'nome', 'partido', 'uf', 'situacao')
   
   names(df) <- new_names
-  df %>%
-    tidyr::unnest(nome) %>%
+  df %>% 
+    rowwise() %>% 
+    dplyr::mutate(partido = ifelse(length(partido) == 0, "", partido)) %>% 
+    dplyr::mutate(uf = ifelse(length(uf) == 0, "", uf)) %>% 
+    dplyr::mutate(id = ifelse(length(id) == 0, "", id)) %>% 
+    tidyr::unnest() %>%
     dplyr::arrange(nome)
 }
 
@@ -296,15 +305,21 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao) {
 #' fetch_composicao_comissao("CCJ",'senado')
 #' @export
 fetch_composicao_comissao <- function(sigla, casa) {
+  print(paste0('Baixando composição da comissão ', sigla, ' em ', casa))
   casa <- tolower(casa)
+  
   if (casa == 'camara') {
-    fetch_composicao_comissoes_camara(sigla)
+    fetch_composicao_comissoes_camara(sigla) %>%
+      dplyr::mutate(sigla = sigla) %>%
+      dplyr::mutate(casa = casa)
   } else if (casa == 'senado') {
-    new_name <- c("cargo", "id", "partido", "uf", "situacao", "nome")
+    new_name <- c("cargo", "id", "partido", "uf", "situacao", "nome", "sigla", "casa")
     comissao <- 
-      fetch_composicao_comissoes_senado(sigla)
+      fetch_composicao_comissoes_senado(sigla) %>% 
+      dplyr::mutate(sigla = sigla,
+                    casa = casa)
     names(comissao) <- new_name
-    comissao
+    return(comissao)
   } else {
     print('Parâmetro "casa" não identificado.')
   }
@@ -316,43 +331,70 @@ fetch_composicao_comissao <- function(sigla, casa) {
 #' @return Dataframes
 fetch_composicao_comissoes_senado <- function(sigla) {
   url <- paste0('http://legis.senado.leg.br/dadosabertos/comissao/', sigla)
-  json_sessions <- jsonlite::fromJSON(url, flatten = T)
-  
-  colegiado <-
-    json_sessions %>%
-    magrittr::extract2('DetalheComissao') %>%
-    magrittr::extract2('COLEGIADO') %>%
-    magrittr::extract2('COLEGIADO_ROW') 
-  
-  colegiado[sapply(colegiado, is.null)] <- NULL
-  comissao <-
-    colegiado %>% 
-    tibble::as.tibble() 
-  
-  cargos <- 
-    comissao %>%
-    magrittr::extract2('CARGOS') %>%
-    magrittr::extract2('CARGOS_ROW') %>%
-    tibble::as.tibble()
-  
-  membros <- 
-    comissao %>%
-    magrittr::extract2('MEMBROS_BLOCO') %>%
-    magrittr::extract2('MEMBROS_BLOCO_ROW')
-  tibble::as.tibble() 
-  if('PARTIDOS_BLOCO.PARTIDOS_BLOCO_ROW' %in% names(membros)) {
-    membros <- 
-      membros %>%
-      dplyr::select(-PARTIDOS_BLOCO.PARTIDOS_BLOCO_ROW) %>% 
-      tidyr::unnest()
-  }
-  membros <-
-    membros %>%
-    tidyr::unnest()
-  
-  membros %>%
-    dplyr::left_join(cargos, by = 'HTTP') %>%
-    dplyr::select(c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x"))
+  tryCatch(
+    {
+      json_sessions <- jsonlite::fromJSON(url, flatten = T)
+      
+      colegiado <-
+        json_sessions %>%
+        magrittr::extract2('DetalheComissao') %>%
+        magrittr::extract2('COLEGIADO') %>%
+        magrittr::extract2('COLEGIADO_ROW') 
+      
+      colegiado[sapply(colegiado, is.null)] <- NULL
+      comissao <-
+        colegiado %>% 
+        tibble::as.tibble() 
+      
+      cargos <- 
+        comissao %>%
+        magrittr::extract2('CARGOS') %>%
+        magrittr::extract2('CARGOS_ROW') %>%
+        tibble::as.tibble()
+      
+      membros <- 
+        comissao %>%
+        magrittr::extract2('MEMBROS_BLOCO') %>%
+        magrittr::extract2('MEMBROS_BLOCO_ROW')
+      
+      if(!is.null(membros)) {
+        
+        if('PARTIDOS_BLOCO.PARTIDOS_BLOCO_ROW' %in% names(membros) |
+           "MEMBROS.MEMBROS_ROW" %in% names(membros) &
+           typeof(membros$MEMBROS.MEMBROS_ROW) == "list") {
+          membros <- 
+            membros %>%
+            dplyr::select(-PARTIDOS_BLOCO.PARTIDOS_BLOCO_ROW) %>% 
+            tidyr::unnest()
+        }
+        membros <-
+          membros %>%
+          tidyr::unnest()
+        
+        if (nrow(cargos) == 0 | !('HTTP' %in% names(cargos))) {
+          membros %>%
+            dplyr::mutate(CARGO = NA) %>%
+            dplyr::select(c("CARGO", "@num", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR"))
+        } else {
+          if ("MEMBROS.MEMBROS_ROW.HTTP" %in% names(membros)) {
+            membros <- 
+              membros %>%
+              dplyr::left_join(cargos, by = c ("MEMBROS.MEMBROS_ROW.HTTP" = "HTTP")) %>%
+              dplyr::select(c("CARGO", "@num.x", "MEMBROS.MEMBROS_ROW.PARTIDO", "MEMBROS.MEMBROS_ROW.UF", "MEMBROS.MEMBROS_ROW.TIPO_VAGA", "MEMBROS.MEMBROS_ROW.PARLAMENTAR"))
+          }else {
+            membros %>%
+              dplyr::left_join(cargos, by = 'HTTP') %>%
+              dplyr::select(c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x"))
+          } 
+        }
+      }else {
+        tibble::frame_data(~ CARGO, ~ num.x, ~ PARTIDO, ~ UF, ~ TIPO_VAGA, ~ PARLAMENTAR.x)
+      }
+    },
+    error=function(cond) {
+      return(tibble::frame_data(~ CARGO, ~ num.x, ~ PARTIDO, ~ UF, ~ TIPO_VAGA, ~ PARLAMENTAR.x))
+    }
+  )  
 }
 
 #' @title Retorna as sessões deliberativas de uma proposição no Senado
@@ -1582,4 +1624,79 @@ junta_agendas <- function(initial_date, end_date) {
     dplyr::mutate(fim_semana = as.Date(cut(value, "week")) + 4)
   
   materia <- purrr::map2_df(semanas$value, semanas$fim_semana, ~ fetch_agenda_geral(.x, .y)) 
+}
+
+#' @title Baixa todas as siglas das comissões atuais do Senado
+#' @description Retorna um dataframe contendo as siglas das comissões atuais do Senado
+#' @return Dataframe
+#' @examples
+#' fetch_orgaos_senado()
+#' @importFrom RCurl getURL
+#' @importFrom dplyr %>%
+fetch_orgaos_senado <- function() {
+  url <- 'http://legis.senado.leg.br/dadosabertos/dados/'
+  
+  url_comissoes_permanentes <- RCurl::getURL(paste0(url, 'ComissoesPermanentes.xml'))
+  
+  url_comissoes_temporarias <- RCurl::getURL(paste0(url, 'ComissoesTemporarias.xml'))
+  
+  comissoes_permanentes_df <- 
+    XML::xmlToDataFrame(nodes = XML::getNodeSet(
+      XML::xmlParse(url_comissoes_permanentes), 
+      "//Colegiado")) %>% 
+    dplyr::select(sigla = SiglaColegiado)
+  
+  comissoes_temporarias_df <- 
+    XML::xmlToDataFrame(nodes = XML::getNodeSet(
+      XML::xmlParse(url_comissoes_temporarias), 
+      "//Colegiado")) %>% 
+    dplyr::select(sigla = SiglaColegiado)
+  
+  url <- 'https://www.congressonacional.leg.br/dados/comissao/lista/'
+  
+  url_comissoes_mistas <- RCurl::getURL(paste0(url, 'mistas'))
+  
+  comissoes_mistas_df <- 
+    XML::xmlToDataFrame(nodes = XML::getNodeSet(XML::xmlParse(url_comissoes_mistas), 
+                                                "//IdentificacaoComissao")) %>% 
+    dplyr::select(sigla = SiglaComissao)
+  
+  df <-
+    rbind(comissoes_permanentes_df, comissoes_mistas_df) %>% 
+    rbind(comissoes_mistas_df) %>% 
+    dplyr::distinct()
+  
+  df <-
+    df %>% dplyr::filter(!stringr::str_detect(sigla, '^CMMPV'))
+  
+  return(df)
+}
+
+#' @title Baixa todas as composições das comissões atuais do Senado e da Câmara
+#' @description Retorna um dataframe contendo dados sobre as composições das comissões atuais do Senado e da Câmara
+#' @return Dataframe
+#' @examples
+#' fetch_all_composicao_comissao()
+#' @importFrom RCurl getURL
+#' @importFrom dplyr %>%
+#' @export
+fetch_all_composicao_comissao <- function() {
+  siglas_comissoes <- fetch_orgaos_camara() %>% 
+    dplyr::mutate_all(as.character) %>% 
+    dplyr::select(sigla) %>% 
+    dplyr::mutate(casa = 'camara',
+                  sigla = trimws(sigla)) %>% 
+    dplyr::filter(sigla != 'PLEN')
+  
+  siglas_comissoes <- 
+    rbind(siglas_comissoes,
+          fetch_orgaos_senado() %>%
+            dplyr::mutate(casa = 'senado')) %>% 
+    dplyr::distinct()
+  
+  composicao_comissoes <-
+    purrr::map2_df(siglas_comissoes$sigla, siglas_comissoes$casa, ~ fetch_composicao_comissao(.x, .y)) %>%
+    dplyr::mutate(partido = trimws(partido))
+  
+  return(composicao_comissoes)
 }
