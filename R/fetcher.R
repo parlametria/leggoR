@@ -319,6 +319,7 @@ fetch_composicao_comissao <- function(sigla, casa) {
       dplyr::mutate(sigla = sigla,
                     casa = casa)
     names(comissao) <- new_name
+    return(comissao)
   } else {
     print('Parâmetro "casa" não identificado.')
   }
