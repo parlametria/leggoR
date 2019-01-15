@@ -317,11 +317,8 @@ fetch_composicao_comissao <- function(sigla, casa) {
     comissao <- 
       fetch_composicao_comissoes_senado(sigla) %>% 
       dplyr::mutate(sigla = sigla,
-                    casa = 'senado')
+                    casa = casa)
     names(comissao) <- new_name
-    comissao %>%
-      dplyr::mutate(sigla = sigla) %>%
-      dplyr::mutate(casa = casa)
   } else {
     print('Parâmetro "casa" não identificado.')
   }
