@@ -1722,7 +1722,10 @@ fetch_all_composicao_comissao <- function() {
 fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fases_tramitacao_df){
   orgao_atual <- 
     fases_tramitacao_df %>% 
-    dplyr::filter(data_hora >= lubridate::as_date(lubridate::dmy(initial_date)) & data_hora <= lubridate::as_date((lubridate::dmy(end_date)))) %>% 
+    dplyr::filter(data_hora >= lubridate::as_date(lubridate::dmy(initial_date)) & 
+                    data_hora <= lubridate::as_date((lubridate::dmy(end_date))) &
+                    sigla_local != 'MESA' &
+                    sigla_local != 'PLEN') %>% 
     utils::tail(1) %>% 
     dplyr::mutate(local = 
                     dplyr::if_else(toupper(local) == "PLENÁRIO", "PLEN", dplyr::if_else(local == 'Comissão Especial',
@@ -1792,17 +1795,12 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
                           list(0))) %>% 
         dplyr::select(-requerimento)
       
-    }else{
+      return(df)
       
-      df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
-                               ~ estado, ~ tipo_materia, ~ titulo_reuniao, ~ objeto, ~ numero, ~ ano)
     }
-  } else{
-    df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
-                             ~ estado, ~ tipo_materia, ~ titulo_reuniao, ~ objeto, ~ numero, ~ ano)
   }
-  
-  return(df)
+  return (tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
+                             ~ estado, ~ tipo_materia, ~ titulo_reuniao, ~ objeto, ~ numero, ~ ano))
   
 }
 

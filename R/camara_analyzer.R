@@ -428,21 +428,13 @@ get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases
                       estado, tipo, titulo_reuniao, objeto, prop_id, casa) %>% 
         dplyr::group_by(data) %>% 
         dplyr::distinct()
-    } else {
-      next_audiencias_publicas_pl <- 
-        tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
-                           ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto,
-                           ~prop_id, ~casa)
+      
+      return(next_audiencias_publicas_pl)
     }
-  } else {
-    next_audiencias_publicas_pl <- 
-      tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
-                         ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto,
-                         ~prop_id, ~casa)
   }
-  
-  return(next_audiencias_publicas_pl)
-  
+  return(tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
+                            ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto,
+                            ~ prop_id, ~ casa))
 }
 
 #' @title Desencadeia as listas de requerimentos de audiências públicas
