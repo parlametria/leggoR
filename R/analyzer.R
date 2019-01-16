@@ -346,16 +346,3 @@ get_pesos_locais <- function() {
   
   return(pesos_locais)
 }
-
-# get_sancao_veto <- function(id, casa) {
-#   if (casa == 'camara') {
-#     proposicao <- fetch_proposicao(id, casa, normalized = F)
-#     "Transformado na Lei Ordinária"
-#     "Proposição vetada totalmente"
-#     
-#     dplyr::case_when(
-#       proposicao$status_proposicao_descricao_situacao == "Transformado em Norma Jurídica" ~ "Norma Jurídica",
-#       proposicao$status_proposicao_descricao_situacao == "Vetado totalmente" ~ "Vetada",
-#       T ~ "Tramitação em andamento")
-#   }
-# }
