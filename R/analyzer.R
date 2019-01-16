@@ -139,11 +139,13 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
       get_arquivamento(c("mes", "ano"))
   }
   
-  temperatura_periodo <- temperatura_periodo %>%
+  temperatura_periodo <- 
+    temperatura_periodo %>%
     dplyr::summarize(periodo = dplyr::first(data),
                      temperatura_periodo = sum(peso_final, na.rm = T)) %>%
-    dplyr::ungroup() %>%
-    dplyr::left_join(data_arquivamento) %>%
+    dplyr::ungroup()
+  temperatura_periodo <-
+    suppressMessages(dplyr::left_join(temperatura_periodo, data_arquivamento)) %>%
     dplyr::mutate(temperatura_periodo = dplyr::if_else(!is.na(dummy), 0, temperatura_periodo)) %>%
     dplyr::select(periodo, temperatura_periodo) %>%
     dplyr::arrange(periodo)
