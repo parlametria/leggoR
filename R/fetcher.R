@@ -1724,10 +1724,12 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
     fases_tramitacao_df %>% 
     dplyr::filter(data_hora >= lubridate::as_date(lubridate::dmy(initial_date)) & data_hora <= lubridate::as_date((lubridate::dmy(end_date)))) %>% 
     utils::tail(1) %>% 
-    dplyr::select(local) %>% 
     dplyr::mutate(local = 
-                    dplyr::if_else(toupper(local) == "PLENÁRIO", "PLEN", local)) %>% 
+                    dplyr::if_else(toupper(local) == "PLENÁRIO", "PLEN", dplyr::if_else(local == 'Comissão Especial',
+                                                                                        sigla_local,
+                                                                                        local))) %>% 
     dplyr::distinct() %>% 
+    dplyr::select(local) %>% 
     dplyr::rename(sigla = local)
   
   if(nrow(orgao_atual) > 0){
@@ -1765,17 +1767,30 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
         sapply( function(x) unlist(x)) %>% 
         as.data.frame()
        
+      #df <- df %>% 
+      #  dplyr::mutate(proposicao = stringr::str_extract(tolower(objeto), '"discussão d(o|a) (pl|projeto de lei) .*"'),
+      #                tipo_materia = dplyr::case_when(
+      #                  stringr::str_detect(tolower(proposicao), 'pl| projeto de lei') ~ 'PL',
+      #                  TRUE ~ 'NA'),
+      #                numero_aux = stringr::str_extract(tolower(proposicao), "(\\d*.|)\\d* de"),
+      #                numero = stringr::str_extract(tolower(numero_aux), "(\\d*.|)\\d*"),
+      #                numero = gsub('\\.', '', numero),
+      #                ano_aux = stringr::str_extract(tolower(proposicao), "( de |/)\\d*"),
+      #                ano = stringr::str_extract(tolower(ano_aux), "\\d{4}|\\d{2}")) %>% 
+      #  dplyr::select(-ano_aux, -numero_aux, -proposicao,  -tipo)
+      
       df <- df %>% 
-        dplyr::mutate(proposicao = stringr::str_extract(tolower(objeto), '"discussão d(o|a) (pl|projeto de lei) .*"'),
-                      tipo_materia = dplyr::case_when(
-                        stringr::str_detect(tolower(proposicao), 'pl| projeto de lei') ~ 'PL',
-                        TRUE ~ 'NA'),
-                      numero_aux = stringr::str_extract(tolower(proposicao), "(\\d*.|)\\d* de"),
-                      numero = stringr::str_extract(tolower(numero_aux), "(\\d*.|)\\d*"),
-                      numero = gsub('\\.', '', numero),
-                      ano_aux = stringr::str_extract(tolower(proposicao), "( de |/)\\d*"),
-                      ano = stringr::str_extract(tolower(ano_aux), "\\d{4}|\\d{2}")) %>% 
-        dplyr::select(-ano_aux, -numero_aux, -proposicao,  -tipo)
+        dplyr::mutate(requerimento = 
+                        stringr::str_extract_all(tolower(objeto),
+                                                 camara_env$frase_requerimento$requerimento),
+                      num_requerimento = 
+                        dplyr::if_else(
+                          stringr::str_extract_all(
+                            requerimento, camara_env$extract_requerimento_num$regex) != 'character(0)',
+                          stringr::str_extract_all(
+                            requerimento, camara_env$extract_requerimento_num$regex) %>% lapply(function(x)(preprocess_requerimentos(x))),
+                          list(0))) %>% 
+        dplyr::select(-requerimento)
       
     }else{
       

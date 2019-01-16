@@ -99,7 +99,7 @@ extract_locais_in_camara <- function(df) {
     ) %>%
     dplyr::mutate(
       local =
-        dplyr::case_when(stringr::str_detect(local, "^PL") ~ local,
+        dplyr::case_when(stringr::str_detect(local, "^PL") ~ "Comissão Especial",
                          TRUE ~ local)
     )
   
@@ -124,16 +124,16 @@ extract_evento_in_camara <- function(df) {
   redistribuicao_text <- eventos$text$distribuicao %>% tolower()
   df %>%
     dplyr::mutate(evento =
-             case_when((stringr::str_detect(
-               tolower(texto_tramitacao),
-               stringr::regex(redistribuicao_regex, ignore_case = TRUE)
-             ) |
-               stringr::str_detect(
-                 tolower(texto_tramitacao),
-                 stringr::regex(novo_despacho_regex, ignore_case = TRUE)
-               )) &
-               tolower(texto_tramitacao) == redistribuicao_text ~ "redistribuicao"
-             ))
+                    case_when((str_detect(
+                      tolower(texto_tramitacao),
+                      stringr::regex(redistribuicao_regex, ignore_case = TRUE)
+                    ) |
+                      str_detect(
+                        tolower(texto_tramitacao),
+                        stringr::regex(novo_despacho_regex, ignore_case = TRUE)
+                      )) &
+                      tolower(texto_tramitacao) == redistribuicao_text ~ "redistribuicao"
+                    ))
 }
 
 #' @title Recupera as casas da Câmara
@@ -369,20 +369,20 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
 extract_num_requerimento_audiencia_publica_in_camara <- function(tramitacao_df) {
   tramitacao_df <- 
     tramitacao_df %>%
-    dplyr::filter(evento == 'requerimento_audiencia_publica') %>% 
+    dplyr::filter(evento == 'aprovacao_audiencia_publica') %>% 
     dplyr::mutate (
       extract_requerimento_num = dplyr::if_else(
         stringr::str_extract(
           texto_tramitacao, camara_env$extract_requerimento_num$regex) != 'character(0)', 
         stringr::str_extract(texto_tramitacao, camara_env$extract_requerimento_num$regex), 
-      '0'),
+        '0'),
       num_requerimento = dplyr::if_else(stringr::str_detect(extract_requerimento_num, stringr::regex('/[0-9]{4}')), 
-                                 sub('/[0-9]{2}', '/', extract_requerimento_num) %>% 
-                                   lapply(function(list)(gsub(" ","",list))), 
-                                 extract_requerimento_num %>% 
-                                   lapply(function(list)(gsub(" ","",list))))
+                                        sub('/[0-9]{2}', '/', extract_requerimento_num) %>% 
+                                          lapply(function(list)(gsub(" ","",list))), 
+                                        extract_requerimento_num %>% 
+                                          lapply(function(list)(gsub(" ","",list))))
       
-      ) %>% 
+    ) %>% 
     dplyr::select(-extract_requerimento_num)
   tramitacao_df
 }
@@ -394,38 +394,51 @@ extract_num_requerimento_audiencia_publica_in_camara <- function(tramitacao_df) 
 #' @param fases_tramitacao_df dataframe da PL preprocessada
 #' @return Dataframe com as próximas audiências públicas de uma PL na Câmara
 #' @examples
-#' get_next_audiencias_publicas_in_camara(initial_date = '01/01/2016', end_date = '30/10/2018', fetch_proposicao(2121442, casa ='camara', 'Lei do Teto Remuneratório', 'Meio Ambiente'), next_audiencias_publicas_by_orgao = fetch_audiencias_publicas_by_orgao_camara('01/01/2016', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Meio Ambiente'), fetch_tramitacao(2121442, 'camara', T), 'camara')))
-get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, proposicao_df, next_audiencias_publicas_by_orgao){
+#' get_next_audiencias_publicas_in_camara(initial_date = '01/01/2016', end_date = '30/10/2018', fases_tramitacao_df = process_proposicao(fetch_proposicao(2121442, 'Lei do Teto Remuneratório', 'Meio Ambiente'), fetch_tramitacao(2121442, 'camara', T), 'camara'), next_audiencias_publicas_by_orgao = fetch_audiencias_publicas_by_orgao_camara('01/01/2016', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Meio Ambiente'), fetch_tramitacao(2121442, 'camara', T), 'camara')))
+get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases_tramitacao_df, next_audiencias_publicas_by_orgao){
+  prop_id <- fases_tramitacao_df %>% dplyr::select(prop_id) %>% utils::tail(1)
+  casa <- fases_tramitacao_df %>% dplyr::select(casa) %>% utils::tail(1)
   
-  if(nrow(next_audiencias_publicas_by_orgao) > 0){
+  num_requerimentos_audiencias_publicas <- 
+    extract_num_requerimento_audiencia_publica_in_camara(fases_tramitacao_df)
+  
+  next_audiencias_publicas_by_orgao <- 
+    next_audiencias_publicas_by_orgao %>% 
+    dplyr::filter(num_requerimento != '0')
+  
+  if(nrow(next_audiencias_publicas_by_orgao) > 0 & nrow(num_requerimentos_audiencias_publicas) > 0){
+    
+    next_audiencias_publicas_by_orgao <-
+      next_audiencias_publicas_by_orgao %>% 
+      tidyr::unnest() %>% 
+      dplyr::distinct()
+    
     next_audiencias_publicas_pl <-
       next_audiencias_publicas_by_orgao %>% 
-      merge(proposicao_df %>% 
-              dplyr::select(prop_id, casa, tipo_materia, ano, numero), by = c("tipo_materia", "ano", "numero"))
+      merge(num_requerimentos_audiencias_publicas %>% 
+              dplyr::select(prop_id, casa, num_requerimento), by = "num_requerimento")
     
     if(nrow(next_audiencias_publicas_pl) > 0){
-    
+      next_audiencias_publicas_pl$prop_id <- prop_id$prop_id
+      next_audiencias_publicas_pl$casa <- casa$casa
+      
       next_audiencias_publicas_pl <-
         next_audiencias_publicas_pl %>% 
-        dplyr::select(comissao, data, hora, local, titulo_reuniao, objeto, prop_id, casa, estado) %>% 
-        dplyr::mutate(data = lubridate::as_date(data),
-                      estado = dplyr::if_else(estado %in% c("Cancelada"), "Não", "Sim")) %>% 
-        dplyr::group_by(data, hora) %>% 
-        dplyr::distinct() %>% 
-        dplyr::ungroup() %>% 
-        dplyr::rename(id_proposicao = prop_id,
-                      comissoes_comissao_sigla = sigla,
-                      realizada = estado) %>% 
-        dplyr::select(id_proposicao, casa, data, hora, comissao, local) %>% 
-        dplyr::rename(sigla = comissao)
-      
+        dplyr::select(-num_requerimento, comissao, cod_reuniao, data, hora, local, 
+                      estado, tipo, titulo_reuniao, objeto, prop_id, casa) %>% 
+        dplyr::group_by(data) %>% 
+        dplyr::distinct()
     } else {
       next_audiencias_publicas_pl <- 
-        tibble::frame_data(~ data, ~hora, ~realizada, ~comissoes_comissao_sigla, ~id_proposicao, ~casa)
+        tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
+                           ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto,
+                           ~prop_id, ~casa)
     }
   } else {
     next_audiencias_publicas_pl <- 
-      tibble::frame_data(~ data, ~hora, ~realizada, ~comissoes_comissao_sigla, ~id_proposicao, ~casa)
+      tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
+                         ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto,
+                         ~prop_id, ~casa)
   }
   
   return(next_audiencias_publicas_pl)
@@ -437,20 +450,7 @@ get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, propo
 #' @param df dataframe da agenda das audiências públicas
 #' @return Dataframe com as próximas audiências públicas com os requerimentos desencadeados
 remove_unnested_list <- function(df){
-  # REMOVER
-  removed_list = df %>% 
-    unlist() %>% 
-    tibble::as_tibble() %>% 
-    t() %>% 
-    as.data.frame()
-  
-  df <-
-    tidyr::gather(removed_list, key="num_requerimento", 
-                  "num_requerimento_unnested", 
-                  10:ncol(removed_list)) %>% 
-    dplyr::select(-num_requerimento) %>% 
-    dplyr::rename(num_requerimento = num_requerimento_unnested) %>% 
+  df %>% 
+    tidyr::unnest() %>% 
     dplyr::distinct()
-  
-  return(df)
 }
