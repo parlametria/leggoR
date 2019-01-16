@@ -88,7 +88,9 @@
     {"evento": "inicio_prazo_emendas", "id_situacao": "^20$", "tipo":"discussao"},
     {"evento": "fim_prazo_emendas", "id_situacao": "^153$", "tipo":"discussao"},
     {"evento": "remetida_a_sancao", "texto_tramitacao": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
-    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "tipo":"discussao"}
+    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "tipo":"discussao"},
+    {"evento": "transformada_lei", "texto_tramitacao": "sancionada", "tipo":"votacao"},
+    {"evento": "vetada_totalmente", "texto_tramitacao": "vetada integralmente|vetado(,)* totalmente", "tipo":"votacao"}
   ],
   
  "locais": [
