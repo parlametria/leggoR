@@ -44,6 +44,10 @@
     {"evento": "virada_de_casa", "texto_tramitacao": "(^(remessa|remetido) ao senado federal.*)|(recebido o ofício.* do sf, que comunico que o senado federal aprovou, em revisão.*)", "tipo": "votacao"},
     {"evento": "remetida_a_sancao", "texto_tramitacao": "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)", "tipo":"votacao"}
   ],
+  
+  "autor_voto_separado": {
+    "regex" : "deputado[^,]+ | dep[^,]+"
+  },
 
   "locais": [
     {"local": "CCJC", "tipo":"decisivo"},

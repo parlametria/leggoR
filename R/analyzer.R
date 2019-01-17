@@ -346,3 +346,18 @@ get_pesos_locais <- function() {
   
   return(pesos_locais)
 }
+
+#' @title Extrai autores do voto em separado
+#' @description Retorna um dataframe com a coluna autor_voto_separado
+#' @param df Dataframe da tramitação já com os eventos reconhecidos
+#' @return Dataframe 
+#' @examples
+#  get_autores_voto_separado(
+#  agoradigital::process_proposicao(agoradigital::fetch_proposicao(46249, 'camara'), agoradigital::fetch_tramitacao(46249, 'camara', TRUE), 'camara'))
+#' @export
+get_autores_voto_separado <- function(df) {
+  df %>%
+    dplyr::mutate(autor_voto_separado = dplyr::case_when(
+      evento == "voto_em_separado" ~
+        stringr::str_extract(texto_tramitacao, stringr::regex(camara_env$autor_voto_separado$regex, ignore_case=TRUE))))
+}
