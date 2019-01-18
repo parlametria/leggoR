@@ -2,6 +2,7 @@ source(here::here("R/senado_analyzer.R"))
 source(here::here("R/camara_analyzer.R"))
 source(here::here("R/congresso-lib.R"))
 source(here::here("R/relatorias.R"))
+source(here::here("R/tramitacoes.R"))
 
 congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
 congress_constants <- congresso_env$constants
