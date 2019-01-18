@@ -74,11 +74,9 @@
   },
 
   "eventos": [
-    {"evento": "aprovado_seminario", "texto_tramitacao": "aprovado (.*) realização de seminário", "tipo":"discussao"},
-    {"evento": "realizacao_seminario", "texto_tramitacao": "realizado o seminário", "tipo":"discussao"},
     {"evento": "apresentacao_pl", "texto_tramitacao": "^este processo contem", "tipo":"despacho"},
     {"evento": "recebimento_comissao", "texto_tramitacao": "recebido na|nesta comissao", "tipo":"despacho"},
-    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "aprovado requerimento de realização de audiência pública|aprov(a|ado) (.)* realização de audiência pública", "tipo":"discussao"},
+    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "aprovado requerimento de realização de audiência pública", "tipo":"discussao"},
     {"evento": "devolvido", "texto_tramitacao": "devolvido pel.*redistribu.*", "tipo":"despacho"},
     {"evento": "aprovacao_parecer", "texto_tramitacao": "a comissão aprova o relatório|aprovado o relatório", "tipo":"votacao"},
     {"evento": "pedido_de_vista", "texto_tramitacao": "concedida vista", "tipo":"votacao"},
@@ -202,14 +200,5 @@
     {"local": "Plenário", "fase_global": "Revisão II"},
     {"local": "Presidência da República", "fase_global": "Sanção/Veto"},
     {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
-  ],
-  
-  "requerimento": {
-    "regex_detect": {
-      "autoria": "autoria do | iniciativa do"
-    },
-    "regex_extract": {
-      "senado": "senador[^,]+ | sen[^,]+"
-    }
-  }
+  ]
 }
