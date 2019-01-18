@@ -1,4 +1,4 @@
-source(here::here("R/fetcher.R"))
+source(here::here("R/utils.R"))
 
 #' @title Busca a movimentação da proposição
 #' @description Retorna dataframe com os dados da movimentação da proposição, incluindo tramitação, prazos, despachos e situação

@@ -1,4 +1,4 @@
-source(here::here("R/fetcher.R"))
+source(here::here("R/utils.R"))
 
 #' @title Renomeia as colunas do dataframe dos detalhes da proposição no Senado
 #' @description Renomeia as colunas do dataframe dos detalhes da proposição no Senado usando o padrão

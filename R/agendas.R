@@ -1,4 +1,4 @@
-source(here::here("R/fetcher.R"))
+source(here::here("R/utils.R"))
 
 #' @title Baixa a pauta de uma reunião
 #' @description Retorna um dataframe contendo dados sobre a pauta, função auxiliar usanda na

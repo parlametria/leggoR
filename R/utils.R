@@ -85,3 +85,128 @@ filtra_dias_nao_uteis_congresso <- function(tramitacao_df) {
     dplyr::filter(!((lubridate::month(data) == 7) & (lubridate::day(data) > 17))) %>%
     dplyr::filter(!((lubridate::month(data) == 12) & (lubridate::day(data) > 22)))
 }
+
+fetch_json_try <- function(url) {
+  count <- 0
+  repeat {
+    json_data <- NULL
+    tryCatch({
+      json_data <- jsonlite::fromJSON(url, flatten = T)
+    },
+    error = function(msg) {
+    })
+    if (!is.null(json_data) & is.null(json_data$ERROR)) {
+      break
+    } else {
+      print("Erro ao baixar dados, tentando outra vez...")
+      count <- count + 1
+      print(paste("Tentativas: ", count))
+      Sys.sleep(2)
+    }
+  }
+  return(json_data)
+}
+
+#' @title Renomeia as colunas do dataframe passado para o formato underscore
+#' @description Renomeia as colunas do dataframe usando o padrão
+#' de underscore e letras minúsculas
+#' @param df Dataframe do Senado
+#' @return Dataframe com as colunas renomeadas
+#' @export
+rename_table_to_underscore <- function(df) {
+  new_names = names(df) %>%
+    to_underscore()
+  
+  names(df) <- new_names
+  
+  df
+}
+
+#' @title Retorna um dataframe a partir de uma coluna com listas encadeadas
+#' @description Retorna um dataframe a partir de uma coluna com listas encadeadas.
+#' @param column Coluna
+#' @return Dataframe com as informações provenientes de uma coluna com listas encadeadas.
+#' @examples
+#' generate_dataframe(column)
+#' @export
+generate_dataframe <- function (column) {
+  as.data.frame(column) %>%
+    tidyr::unnest() %>%
+    rename_df_columns()
+}
+
+build_data_filepath <- function(folder_path,data_prefix,house,bill_id) {
+  filename <- paste0(paste(bill_id,data_prefix,house, sep='-'),'.csv')
+  filepath <- paste(folder_path, house, filename, sep='/')
+}
+
+#' @title Baixa os órgãos na câmara
+#' @description Retorna um dataframe contendo os órgãos da câmara
+#' @return Dataframe contendo os órgãos da Câmara
+#' @importFrom RCurl getURL
+fetch_orgaos_camara <- function(){
+  url <- RCurl::getURL('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterOrgaos')
+  
+  orgaos_list <-
+    XML::xmlParse(url) %>%
+    XML::xmlToList()
+  
+  df <-
+    orgaos_list %>%
+    jsonlite::toJSON() %>%
+    jsonlite::fromJSON() %>%
+    tibble::as.tibble() %>%
+    t() %>%
+    as.data.frame()
+  
+  names(df) <- c("orgao_id", "tipo_orgao_id", "sigla", "descricao")
+  
+  return(df)
+}
+
+
+#' @title Baixa todas as siglas das comissões atuais do Senado
+#' @description Retorna um dataframe contendo as siglas das comissões atuais do Senado
+#' @return Dataframe
+#' @examples
+#' fetch_orgaos_senado()
+#' @importFrom RCurl getURL
+#' @importFrom dplyr %>%
+fetch_orgaos_senado <- function() {
+  url <- 'http://legis.senado.leg.br/dadosabertos/dados/'
+  
+  url_comissoes_permanentes <- RCurl::getURL(paste0(url, 'ComissoesPermanentes.xml'))
+  
+  url_comissoes_temporarias <- RCurl::getURL(paste0(url, 'ComissoesTemporarias.xml'))
+  
+  comissoes_permanentes_df <- 
+    XML::xmlToDataFrame(nodes = XML::getNodeSet(
+      XML::xmlParse(url_comissoes_permanentes), 
+      "//Colegiado")) %>% 
+    dplyr::select(sigla = SiglaColegiado)
+  
+  comissoes_temporarias_df <- 
+    XML::xmlToDataFrame(nodes = XML::getNodeSet(
+      XML::xmlParse(url_comissoes_temporarias), 
+      "//Colegiado")) %>% 
+    dplyr::select(sigla = SiglaColegiado)
+  
+  url <- 'https://www.congressonacional.leg.br/dados/comissao/lista/'
+  
+  url_comissoes_mistas <- RCurl::getURL(paste0(url, 'mistas'))
+  
+  comissoes_mistas_df <- 
+    XML::xmlToDataFrame(nodes = XML::getNodeSet(XML::xmlParse(url_comissoes_mistas), 
+                                                "//IdentificacaoComissao")) %>% 
+    dplyr::select(sigla = SiglaComissao)
+  
+  df <-
+    rbind(comissoes_permanentes_df, comissoes_mistas_df) %>% 
+    rbind(comissoes_mistas_df) %>% 
+    dplyr::distinct()
+  
+  df <-
+    df %>% dplyr::filter(!stringr::str_detect(sigla, '^CMMPV'))
+  
+  return(df)
+}
