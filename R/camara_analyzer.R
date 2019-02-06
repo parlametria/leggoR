@@ -388,8 +388,7 @@ extract_links_camara <- function(proposicao_df, tramitacao_df) {
   
   if(nrow(df) > 0) {
     df <- df %>% 
-    dplyr::mutate(data_versao = format(as.Date(data_hora, format = "%Y-%m-%d"), "%d/%m/%Y")) %>% 
-      dplyr::select(data_versao,
+      dplyr::select(data_versao = data_hora,
                     descricao_versao = evento,
                     link_inteiro_teor = url)
   } else {
