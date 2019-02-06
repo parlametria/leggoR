@@ -152,5 +152,10 @@
     {"regime_tramitacao": "Urgência", "regex": "Urgência"},
     {"regime_tramitacao": "Prioridade", "regex": "Prioridade"},
     {"regime_tramitacao": "Especial", "regex": "Especial"}
-  ]
+  ],
+  
+  "versoes_texto_proposicao": {
+    "eventos_regex":  "apresentacao_pl|parecer_comissao",
+    "remove_publicacao_regex": "Encaminhada à publicação. "
+  }
 }

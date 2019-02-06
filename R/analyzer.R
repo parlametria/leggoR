@@ -353,14 +353,14 @@ get_pesos_locais <- function() {
 #' @param casa casa
 #' @return Dataframe contendo a data da versão e o link para o arquivo pdf
 #' @examples 
-#' extract_links(46249, 'camara')
+#' extract_links_proposicao(46249, 'camara')
 #' @export
-extract_links <- function(id, casa) {
+extract_links_proposicao <- function(id, casa) {
   proposicao_df = fetch_proposicao(id, casa, '', '', T, F)
   
   if(tolower(casa) == congress_constants$camara_label) {
     tramitacao_df = rcongresso::fetch_tramitacao(id)
-    return(extract_links_camara(proposicao_df, tramitacao_df))
+    return(extract_links_proposicao_camara(proposicao_df, tramitacao_df))
   } else if(tolower(casa) == congress_constants$senado_label) {
     #TODO: Implementar extração de links para o senado
   }
