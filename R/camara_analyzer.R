@@ -359,3 +359,42 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
   
   return(data_tramitacao)
 }
+
+#' @title Extrai os links quando as proposições podem ter sido modificadas
+#' @description Obtém a data e o link para o arquivo em pdf do texto da proposição
+#' @param df Dataframe da tramitação na Câmara.
+#' @return Dataframe contendo a data da versão e o link para o arquivo pdf
+#' @examples
+#' extract_links_camara(fetch_proposicao(46249, 'camara', 'PL do Veneno', 'Meio Ambiente', T, F), rcongresso::fetch_tramitacao(46249))
+extract_links_camara <- function(proposicao_df, tramitacao_df) {
+  tramitacao_df <- 
+    tramitacao_df %>% 
+    dplyr::filter(!is.na(url)) %>% 
+    dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(dataHora,'T',' ')),
+                  casa = 'camara',
+                  id_situacao = as.integer(codTipoTramitacao)) %>%
+    dplyr::select(prop_id = id_prop,
+                  casa,
+                  data_hora,
+                  sequencia,
+                  texto_tramitacao = despacho,
+                  sigla_local = siglaOrgao,
+                  id_situacao,
+                  descricao_situacao = descricaoSituacao,
+                  url)
+  df <- 
+    process_proposicao_camara_df(proposicao_df, tramitacao_df) %>% 
+    dplyr::filter(stringr::str_detect(evento, 'apresentacao_pl|parecer.*'))
+  
+  if(nrow(df) > 0) {
+    df <- df %>% 
+    dplyr::mutate(data_versao = format(as.Date(data_hora, format = "%Y-%m-%d"), "%d/%m/%Y")) %>% 
+      dplyr::select(data_versao,
+                    descricao_versao = evento,
+                    link_inteiro_teor = url)
+  } else {
+    df <- dplyr::tribble(
+      ~ data_versao, ~descricao_versao, ~ link_inteiro_teor)
+  }
+    return(df)
+}

@@ -346,3 +346,24 @@ get_pesos_locais <- function() {
   
   return(pesos_locais)
 }
+
+#' @title Extrai os links quando as proposições podem ter sido modificadas
+#' @description Obtém a data e o link para o arquivo em pdf do texto da proposição
+#' @param id ID da proposição.
+#' @param casa casa
+#' @return Dataframe contendo a data da versão e o link para o arquivo pdf
+#' @examples 
+#' extract_links(46249, 'camara')
+#' @export
+extract_links <- function(id, casa) {
+  proposicao_df = fetch_proposicao(id, casa, '', '', T, F)
+  
+  if(tolower(casa) == congress_constants$camara_label) {
+    tramitacao_df = rcongresso::fetch_tramitacao(id)
+    return(extract_links_camara(proposicao_df, tramitacao_df))
+  } else if(tolower(casa) == congress_constants$senado_label) {
+    #TODO: Implementar extração de links para o senado
+  }
+  
+  
+}
