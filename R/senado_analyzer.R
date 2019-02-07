@@ -195,6 +195,7 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_p
 #' @return Dataframe com a coluna "evento" adicionada.
 #' @examples
 #' extract_evento_Senado(fetch_tramitacao(91341, 'senado', T))
+#' @export
 extract_evento_Senado <- function(tramitacao_df) {
   eventos_senado <- dplyr::select(senado_env$eventos, -tipo)
   eventos_extra_senado <- senado_env$evento
