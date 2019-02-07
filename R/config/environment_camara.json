@@ -30,7 +30,7 @@
     {"evento": "comissao_especial", "texto_tramitacao": "recebimento pela p", "tipo":"despacho"},
     {"evento": "designado_relator", "texto_tramitacao": "^designad(o|a) relator(a)*", "tipo":"despacho"},
     {"evento": "voto_em_separado", "texto_tramitacao": "^apresentação do voto em separado", "tipo":"votacao"},
-    {"evento": "apresentacao_pl", "texto_tramitacao": "^apresentação do projeto de lei", "tipo":"despacho"},
+    {"evento": "apresentacao_pl", "texto_tramitacao": "^apresentação do projeto de lei|^apresentação da proposta de emenda à constituição", "tipo":"despacho"},
     {"evento": "retirada_de_pauta", "texto_tramitacao": "^retirado de pauta", "tipo":"votacao"},
     {"evento": "pedido_de_vista", "texto_tramitacao": "^(vista conjunta aos|vista ao)", "tipo":"votacao"},
     {"evento": "inicio_prazo_emendas", "texto_tramitacao": "^prazo para emendas|^abertura de prazo para emendas", "tipo":"discussao"},

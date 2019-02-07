@@ -461,20 +461,20 @@ remove_unnested_list <- function(df){
 #' extract_links_proposicao_camara(fetch_proposicao(46249, 'camara', 'PL do Veneno', 'Meio Ambiente', T, F), rcongresso::fetch_tramitacao(46249))
 extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
   tramitacao_df <- 
-    tramitacao_df %>% 
-    dplyr::filter(!is.na(url)) %>% 
-    dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(dataHora,'T',' ')),
-                  casa = 'camara',
-                  id_situacao = as.integer(codTipoTramitacao)) %>%
-    dplyr::select(prop_id = id_prop,
-                  casa,
-                  data_hora,
-                  sequencia,
-                  texto_tramitacao = despacho,
-                  sigla_local = siglaOrgao,
-                  id_situacao,
-                  descricao_situacao = descricaoSituacao,
-                  link_inteiro_teor = url)
+        tramitacao_df %>% 
+        dplyr::filter(!is.na(url)) %>% 
+        dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(dataHora,'T',' ')),
+                      casa = 'camara',
+                      id_situacao = as.integer(codTipoTramitacao)) %>%
+        dplyr::select(prop_id = id_prop,
+                      casa,
+                      data_hora,
+                      sequencia,
+                      texto_tramitacao = despacho,
+                      sigla_local = siglaOrgao,
+                      id_situacao,
+                      descricao_situacao = descricaoSituacao,
+                      link_inteiro_teor = url)
   df <- 
     process_proposicao_camara_df(proposicao_df, tramitacao_df) %>% 
     dplyr::filter(stringr::str_detect(evento, camara_env$versoes_texto_proposicao$eventos_regex))

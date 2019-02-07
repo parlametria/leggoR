@@ -293,12 +293,6 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
     dplyr::left_join(related, by = c('prop_id' = 'id'))
 }
 
-
-
-
-
-
-
 #' @title Baixa a agenda de audiências públicas na câmara por órgão
 #' @description Retorna um dataframe contendo as audiências públicas da camara ou do senado
 #' @param initial_date data inicial no formato dd/mm/yyyy

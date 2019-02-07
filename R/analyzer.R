@@ -408,9 +408,8 @@ get_autores_voto_separado <- function(df) {
 #' extract_links_proposicao(46249, 'camara')
 #' @export
 extract_links_proposicao <- function(id, casa) {
-  proposicao_df = fetch_proposicao(id, casa, '', '', T, F)
-  
   if(tolower(casa) == congress_constants$camara_label) {
+    proposicao_df = agoradigital::fetch_proposicao(id, casa, '', '', T, F)
     tramitacao_df = rcongresso::fetch_tramitacao(id)
     return(extract_links_proposicao_camara(proposicao_df, tramitacao_df))
   } else if(tolower(casa) == congress_constants$senado_label) {
