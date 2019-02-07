@@ -364,3 +364,90 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
   
   return(data_tramitacao)
 }
+
+#' @title Extrai os números dos requerimentos da Câmara
+#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada num_requerimento
+#' @param df Dataframe da tramitação na Câmara
+#' @return Dataframe da tramitacao contendo mais uma coluna chamada num_requerimento
+#' @examples
+#'  extract_num_requerimento_audiencia_publica_in_camara(fetch_tramitacao(2121442, 'camara', T))
+extract_num_requerimento_audiencia_publica_in_camara <- function(tramitacao_df) {
+  tramitacao_df <- 
+    tramitacao_df %>%
+    dplyr::filter(evento == 'aprovacao_audiencia_publica') %>% 
+    dplyr::mutate (
+      extract_requerimento_num = dplyr::if_else(
+        stringr::str_extract(
+          texto_tramitacao, camara_env$extract_requerimento_num$regex) != 'character(0)', 
+        stringr::str_extract(texto_tramitacao, camara_env$extract_requerimento_num$regex), 
+        '0'),
+      num_requerimento = dplyr::if_else(stringr::str_detect(extract_requerimento_num, stringr::regex('/[0-9]{4}')), 
+                                        sub('/[0-9]{2}', '/', extract_requerimento_num) %>% 
+                                          lapply(function(list)(gsub(" ","",list))), 
+                                        extract_requerimento_num %>% 
+                                          lapply(function(list)(gsub(" ","",list))))
+      
+    ) %>% 
+    dplyr::select(-extract_requerimento_num)
+  tramitacao_df
+}
+
+#' @title Extrai as próximas audiências públicas de uma PL na Câmara
+#' @description Extrai as próximas audiências públicas de uma PL na Câmara
+#' @param initial_date data inicial no formato dd/mm/yyyy
+#' @param end_date data final no formato dd/mm/yyyy
+#' @param fases_tramitacao_df dataframe da PL preprocessada
+#' @return Dataframe com as próximas audiências públicas de uma PL na Câmara
+#' @examples
+#' get_next_audiencias_publicas_in_camara(initial_date = '01/01/2016', end_date = '30/10/2018', fases_tramitacao_df = process_proposicao(fetch_proposicao(2121442, 'Lei do Teto Remuneratório', 'Meio Ambiente'), fetch_tramitacao(2121442, 'camara', T), 'camara'), next_audiencias_publicas_by_orgao = fetch_audiencias_publicas_by_orgao_camara('01/01/2016', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Meio Ambiente'), fetch_tramitacao(2121442, 'camara', T), 'camara')))
+get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases_tramitacao_df, next_audiencias_publicas_by_orgao){
+  prop_id <- fases_tramitacao_df %>% dplyr::select(prop_id) %>% utils::tail(1)
+  casa <- fases_tramitacao_df %>% dplyr::select(casa) %>% utils::tail(1)
+  
+  num_requerimentos_audiencias_publicas <- 
+    extract_num_requerimento_audiencia_publica_in_camara(fases_tramitacao_df)
+  
+  next_audiencias_publicas_by_orgao <- 
+    next_audiencias_publicas_by_orgao %>% 
+    dplyr::filter(num_requerimento != '0')
+  
+  if(nrow(next_audiencias_publicas_by_orgao) > 0 & nrow(num_requerimentos_audiencias_publicas) > 0){
+    
+    next_audiencias_publicas_by_orgao <-
+      next_audiencias_publicas_by_orgao %>% 
+      tidyr::unnest() %>% 
+      dplyr::distinct()
+    
+    next_audiencias_publicas_pl <-
+      next_audiencias_publicas_by_orgao %>% 
+      merge(num_requerimentos_audiencias_publicas %>% 
+              dplyr::select(prop_id, casa, num_requerimento), by = "num_requerimento")
+    
+    if(nrow(next_audiencias_publicas_pl) > 0){
+      next_audiencias_publicas_pl$prop_id <- prop_id$prop_id
+      next_audiencias_publicas_pl$casa <- casa$casa
+      
+      next_audiencias_publicas_pl <-
+        next_audiencias_publicas_pl %>% 
+        dplyr::select(-num_requerimento, comissao, cod_reuniao, data, hora, local, 
+                      estado, tipo, titulo_reuniao, objeto, prop_id, casa) %>% 
+        dplyr::group_by(data) %>% 
+        dplyr::distinct()
+      
+      return(next_audiencias_publicas_pl)
+    }
+  }
+  return(tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
+                            ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto,
+                            ~ prop_id, ~ casa))
+}
+
+#' @title Desencadeia as listas de requerimentos de audiências públicas
+#' @description Desencadeia as listas de requerimentos de audiências públicas
+#' @param df dataframe da agenda das audiências públicas
+#' @return Dataframe com as próximas audiências públicas com os requerimentos desencadeados
+remove_unnested_list <- function(df){
+  df %>% 
+    tidyr::unnest() %>% 
+    dplyr::distinct()
+}

@@ -163,7 +163,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
   
   return(historico_temperatura)
 }
-
+  
 #' @title Extrai o regime de tramitação de um PL
 #' @description Obtém o regime de tramitação de um PL
 #' @param tram_df Dataframe da tramitação do PL.
@@ -183,6 +183,7 @@ extract_regime_tramitacao <- function(tram_df) {
   
   regime
 }
+  
 
 #' @title Extrai a forma de apreciação de um PL
 #' @description Obtém a forma de apreciação de um PL
@@ -348,6 +349,38 @@ get_pesos_locais <- function() {
   
   return(pesos_locais)
 }
+
+#' @title Extrai as próximas audiências públicas de uma PL
+#' @description Extrai as próximas audiências públicas de uma PL a
+#' @param initial_date data inicial no formato dd/mm/yyyy
+#' @param end_date data final no formato dd/mm/yyyy
+#' @param fases_tramitacao_df dataframe da PL preprocessada
+#' @return Dataframe com as próximas audiências públicas de uma PL 
+#' @examples
+#' get_next_audiencias_publicas('01/01/2017', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Agenda Nacional'), fetch_tramitacao(2121442, 'camara', T), 'camara'), casa='camara')
+#' @export
+get_next_audiencias_publicas <- function(initial_date, end_date, fases_tramitacao_df, casa) {
+ next_audiencias_data <- NULL
+  if (tolower(casa) == congress_constants$camara_label) {
+    
+    next_audiencias_publicas_by_orgao <- 
+      fetch_audiencias_publicas_by_orgao_camara(
+      initial_date, 
+      end_date, 
+      fases_tramitacao_df)
+      
+    next_audiencias_data <- 
+      get_next_audiencias_publicas_in_camara(
+        initial_date, end_date, 
+        fases_tramitacao_df, 
+        next_audiencias_publicas_by_orgao)
+  
+  } else if (tolower(casa) == congress_constants$senado_label) {
+    
+    # TODO: Adicionar get_next_audiencias_publicas_in_senado()
+  }
+  
+  return(next_audiencias_data)
 
 #' @title Extrai autores do voto em separado
 #' @description Retorna um dataframe com a coluna autor_voto_separado
