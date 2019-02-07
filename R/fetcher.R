@@ -1587,27 +1587,15 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
 #' @title Baixa os órgãos na câmara
 #' @description Retorna um dataframe contendo os órgãos da câmara
 #' @return Dataframe contendo os órgãos da Câmara
-#' @importFrom RCurl getURL
 fetch_orgaos_camara <- function(){
-  url <- RCurl::getURL('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterOrgaos')
-  
-  orgaos_list <-
-    XML::xmlParse(url) %>%
-    XML::xmlToList()
-  
-  df <-
-    orgaos_list %>%
-    jsonlite::toJSON() %>%
-    jsonlite::fromJSON() %>%
-    tibble::as.tibble() %>%
-    t() %>%
-    as.data.frame()
-  
-  names(df) <- c("orgao_id", "tipo_orgao_id", "sigla", "descricao")
-  
-  return(df)
+  rcongresso::fetch_orgaos_camara() %>%
+    dplyr::rename("tipo_orgao_id"="codTipoOrgao", "descricao"="nome") %>%
+    dplyr::mutate(
+      orgao_id=uri %>%
+        strsplit("/") %>%
+        sapply(tail, 1L, simplify = TRUE) %>%
+        as.numeric())
 }
-
 
 #' @title Baixa dados da agenda por semana
 #' @description Retorna um dataframe contendo dados sobre a agenda 
