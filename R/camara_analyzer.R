@@ -381,21 +381,23 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                   sigla_local = siglaOrgao,
                   id_situacao,
                   descricao_situacao = descricaoSituacao,
-                  url)
+                  link_inteiro_teor = url)
   df <- 
     process_proposicao_camara_df(proposicao_df, tramitacao_df) %>% 
     dplyr::filter(stringr::str_detect(evento, camara_env$versoes_texto_proposicao$eventos_regex))
   
   if(nrow(df) > 0) {
-    df <- df %>%  
+    df <- df %>%
       dplyr::select(id_proposicao = prop_id,
                     casa,
                     data = data_hora,
                     descricao = texto_tramitacao,
-                    link_inteiro_teor = url) %>% 
+                    link_inteiro_teor) %>%
       dplyr::mutate(descricao = 
                       stringr::str_remove(descricao, 
-                                          camara_env$versoes_texto_proposicao$remove_publicacao_regex))
+                                          camara_env$versoes_texto_proposicao$remove_publicacao_regex)) %>% 
+      dplyr::rowwise() %>% 
+      dplyr::mutate(link_inteiro_teor = get_redirected_url(link_inteiro_teor))
   } else {
     df <- dplyr::tribble(
       ~ id_proposicao, ~ casa, ~ data, ~ descricao, ~ link_inteiro_teor)
