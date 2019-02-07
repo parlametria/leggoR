@@ -2,6 +2,8 @@ source(here::here("R/senado_analyzer.R"))
 source(here::here("R/camara_analyzer.R"))
 source(here::here("R/congresso-lib.R"))
 source(here::here("R/relatorias.R"))
+source(here::here("R/tramitacoes.R"))
+source(here::here("R/proposicoes.R"))
 
 congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
 congress_constants <- congresso_env$constants
@@ -161,7 +163,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
   
   return(historico_temperatura)
 }
-
+  
 #' @title Extrai o regime de tramitação de um PL
 #' @description Obtém o regime de tramitação de um PL
 #' @param tram_df Dataframe da tramitação do PL.
@@ -181,6 +183,7 @@ extract_regime_tramitacao <- function(tram_df) {
   
   regime
 }
+  
 
 #' @title Extrai a forma de apreciação de um PL
 #' @description Obtém a forma de apreciação de um PL
@@ -346,6 +349,55 @@ get_pesos_locais <- function() {
   
   return(pesos_locais)
 }
+
+#' @title Extrai as próximas audiências públicas de uma PL
+#' @description Extrai as próximas audiências públicas de uma PL a
+#' @param initial_date data inicial no formato dd/mm/yyyy
+#' @param end_date data final no formato dd/mm/yyyy
+#' @param fases_tramitacao_df dataframe da PL preprocessada
+#' @return Dataframe com as próximas audiências públicas de uma PL 
+#' @examples
+#' get_next_audiencias_publicas('01/01/2017', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Agenda Nacional'), fetch_tramitacao(2121442, 'camara', T), 'camara'), casa='camara')
+#' @export
+get_next_audiencias_publicas <- function(initial_date, end_date, fases_tramitacao_df, casa) {
+ next_audiencias_data <- NULL
+  if (tolower(casa) == congress_constants$camara_label) {
+    
+    next_audiencias_publicas_by_orgao <- 
+      fetch_audiencias_publicas_by_orgao_camara(
+      initial_date, 
+      end_date, 
+      fases_tramitacao_df)
+      
+    next_audiencias_data <- 
+      get_next_audiencias_publicas_in_camara(
+        initial_date, end_date, 
+        fases_tramitacao_df, 
+        next_audiencias_publicas_by_orgao)
+  
+  } else if (tolower(casa) == congress_constants$senado_label) {
+    
+    # TODO: Adicionar get_next_audiencias_publicas_in_senado()
+  }
+  
+  return(next_audiencias_data)
+}
+
+#' @title Extrai autores do voto em separado
+#' @description Retorna um dataframe com a coluna autor_voto_separado
+#' @param df Dataframe da tramitação já com os eventos reconhecidos
+#' @return Dataframe 
+#' @examples
+#  get_autores_voto_separado(
+#  agoradigital::process_proposicao(agoradigital::fetch_proposicao(46249, 'camara'), agoradigital::fetch_tramitacao(46249, 'camara', TRUE), 'camara'))
+#' @export
+get_autores_voto_separado <- function(df) {
+  df %>%
+    dplyr::mutate(autor_voto_separado = dplyr::case_when(
+      evento == "voto_em_separado" ~
+        stringr::str_extract(texto_tramitacao, stringr::regex(camara_env$autor_voto_separado$regex, ignore_case=TRUE))))
+}
+
 
 #' @title Extrai os links quando as proposições podem ter sido modificadas
 #' @description Obtém a data e o link para o arquivo em pdf do texto da proposição
