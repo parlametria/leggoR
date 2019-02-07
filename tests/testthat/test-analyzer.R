@@ -111,6 +111,53 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   expect_true(all(energy_df$temperatura_recente == result))
 })
 
+test_that('get_historico_temperatura_recente() quando arquiva', {
+  data <- data.frame(prop_id = rep(1111,17),
+                     data_hora = c(lubridate::ymd_hms("2018-09-03 12:00:00"), 
+                                   lubridate::ymd_hms("2018-09-06 12:00:00"),
+                                   seq(lubridate::ymd_hms("2018-09-10 12:00:00"), lubridate::ymd_hms("2018-09-14 12:00:00"), by = "1 day"),
+                                   seq(lubridate::ymd_hms("2018-09-17 12:00:00"), lubridate::ymd_hms("2018-09-21 12:00:00"), by = "1 day"),
+                                   seq(lubridate::ymd_hms("2018-09-24 12:00:00"), lubridate::ymd_hms("2018-09-28 12:00:00"), by = "1 day")),
+                     evento = c("arquivamento", "evento_1",
+                                "distribuicao","designado_relator","evento_a","aprovacao_parecer","evento_b",
+                                "designado_relator","inicio_prazo_emendas","fim_prazo_emendas","evento_b","evento_c",
+                                "designado_relator","evento_d","evento_e","aprovacao_parecer","arquivamento"),
+                     local = c("Plenário", "evento_1",
+                               "CCJ","CFT","evento_a","Plenário","evento_b",
+                               "Plenário","CFT","CCJ","evento_b","evento_c",
+                               "CCJ","evento_d","evento_e","CCJ","evento_f"),
+                     stringsAsFactors = F)
+  
+  decaimento = 0.1
+  r <- 1 - decaimento
+  
+  peso_despacho <- congresso_env$tipos_eventos$peso[1]
+  peso_discussao <- congresso_env$tipos_eventos$peso[2]
+  peso_votacao <- congresso_env$tipos_eventos$peso[3]
+  peso_locais <- congresso_env$tipos_locais$peso[1]
+  
+  p_week1 <- 0
+  p_week2 <- 5 + (2 * peso_despacho) + peso_votacao + (3 * peso_locais)
+  p_week3 <- 5 + peso_despacho + (2 * peso_discussao) + (3 * peso_locais)
+  p_week4 <- 0
+  result <- c(
+    # semana 1
+    p_week1,
+    # semana 2
+    p_week2,
+    # semana 3
+    p_week3,
+    # semana 4
+    p_week4
+  )
+  
+  result <- round(result, digits = 2)
+  
+  energy_df <- get_historico_temperatura_recente(data, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"))
+  
+  expect_true(all(energy_df$temperatura_periodo == result))
+})
+
 test_that('get_pesos_eventos() returns all events from both houses', {
   eventos_camara <- camara_env$eventos
   eventos_senado <- senado_env$eventos

@@ -2,6 +2,8 @@ source(here::here("R/senado_analyzer.R"))
 source(here::here("R/camara_analyzer.R"))
 source(here::here("R/congresso-lib.R"))
 source(here::here("R/relatorias.R"))
+source(here::here("R/tramitacoes.R"))
+source(here::here("R/proposicoes.R"))
 
 congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
 congress_constants <- congresso_env$constants
@@ -107,26 +109,46 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
   
   temperatura_periodo <- data.frame()
   
+  get_arquivamento <- function(df, colunas) {
+    df %>% 
+      dplyr::filter(evento == "arquivamento") %>%
+      dplyr::select(colunas) %>%
+      dplyr::mutate(dummy = "Dummy")
+  }
+  
   #Agrupa eventos por período
   if (granularidade == "d") {
     temperatura_periodo <- eventos_extendidos %>%
       dplyr::group_by(data)
+    data_arquivamento <- 
+      temperatura_periodo %>% 
+      get_arquivamento(c("data"))
   } else if (granularidade == "s") {
     temperatura_periodo <- eventos_extendidos %>%
       dplyr::mutate(semana = lubridate::week(data),
                     ano = lubridate::year(data)) %>%
       dplyr::group_by(ano, semana)
+    data_arquivamento <- 
+      temperatura_periodo %>% 
+      get_arquivamento(c("semana", "ano"))
   } else if (granularidade == "m") {
     temperatura_periodo <- eventos_extendidos %>%
       dplyr::mutate(mes = lubridate::month(data),
                     ano = lubridate::year(data)) %>%
       dplyr::group_by(ano, mes)
+    data_arquivamento <- 
+      temperatura_periodo %>% 
+      get_arquivamento(c("mes", "ano"))
   }
   
-  temperatura_periodo <- temperatura_periodo %>%
+  temperatura_periodo <- 
+    temperatura_periodo %>%
     dplyr::summarize(periodo = dplyr::first(data),
                      temperatura_periodo = sum(peso_final, na.rm = T)) %>%
-    dplyr::ungroup() %>%
+    dplyr::ungroup()
+  temperatura_periodo <-
+    suppressMessages(dplyr::left_join(temperatura_periodo, data_arquivamento)) %>%
+    dplyr::mutate(temperatura_periodo = dplyr::if_else(!is.na(dummy), 0, temperatura_periodo)) %>%
     dplyr::select(periodo, temperatura_periodo) %>%
     dplyr::arrange(periodo)
   
@@ -359,4 +381,18 @@ get_next_audiencias_publicas <- function(initial_date, end_date, fases_tramitaca
   }
   
   return(next_audiencias_data)
+
+#' @title Extrai autores do voto em separado
+#' @description Retorna um dataframe com a coluna autor_voto_separado
+#' @param df Dataframe da tramitação já com os eventos reconhecidos
+#' @return Dataframe 
+#' @examples
+#  get_autores_voto_separado(
+#  agoradigital::process_proposicao(agoradigital::fetch_proposicao(46249, 'camara'), agoradigital::fetch_tramitacao(46249, 'camara', TRUE), 'camara'))
+#' @export
+get_autores_voto_separado <- function(df) {
+  df %>%
+    dplyr::mutate(autor_voto_separado = dplyr::case_when(
+      evento == "voto_em_separado" ~
+        stringr::str_extract(texto_tramitacao, stringr::regex(camara_env$autor_voto_separado$regex, ignore_case=TRUE))))
 }
