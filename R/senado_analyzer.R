@@ -600,30 +600,30 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
     extract_evento_Senado(proc_tram_df) %>%
     dplyr::mutate(data_audiencia = lubridate::dmy(data_audiencia))
   
-  virada_de_casa <- 
-    proc_tram_df %>% 
+  virada_de_casa <-
+    proc_tram_df %>%
     dplyr::filter(evento == 'virada_de_casa')
-  
-  index_of_sancao <- 
-    get_linha_remetida_a_sancao(proc_tram_df)
-  
+
+  index_of_final <-
+    get_linha_finalizacao_tramitacao(proc_tram_df)
+
   if (nrow(virada_de_casa) == 1) {
-    
+
     index_of_camara <-
       get_linha_virada_de_casa(proc_tram_df)
-    
-    if(index_of_camara > index_of_sancao) {
-      proc_tram_df <- 
-        proc_tram_df[1:index_of_sancao,]
-      
+
+    if(index_of_camara > index_of_final) {
+      proc_tram_df <-
+        proc_tram_df[1:index_of_final,]
+
     } else {
       proc_tram_df <-
         proc_tram_df[1:index_of_camara,]
     }
-    
+
   } else{
-    proc_tram_df <- 
-      proc_tram_df[1:index_of_sancao,]
+    proc_tram_df <-
+      proc_tram_df[1:index_of_final,]
   }
     
   proc_tram_df <-

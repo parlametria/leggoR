@@ -122,13 +122,14 @@ get_linha_virada_de_casa <- function(proc_tram_df) {
   return(ifelse(length(linha_virada_de_casa) == 0, nrow(proc_tram_df), linha_virada_de_casa))
 }
 
-#' @title Recupera o número de linha em que houve evento remetida_a_sancao
-#' @description Recupera o número da linha em que houve evento remetida_a_sancao
+#' @title Recupera o número de linha em que houve evento vetada_totalmente ou transformada_lei
+#' @description Recupera o número da linha em que houve evento vetada_totalmente ou transformada_lei
 #' @param df Dataframe da tramitação processada da proposiçao
-#' @return número da ultima linha cujo evento é remetida_a_sancao
+#' @return número da ultima linha cujo evento é vetada_totalmente ou transformada_lei
 #' @examples
-#'  get_linha_remetida_a_sancao(fetch_tramitacao(2121442, 'camara', T) %>% extract_events_in_camara())
-get_linha_remetida_a_sancao <- function(proc_tram_df) {
-  linha_remetida_a_sancao = which(proc_tram_df$evento == 'remetida_a_sancao')
-  return(ifelse(length(linha_remetida_a_sancao) == 0, nrow(proc_tram_df), linha_remetida_a_sancao))
+#'  get_linha_finalizacao_tramitacao(fetch_tramitacao(2121442, 'camara', T) %>% extract_events_in_camara())
+get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
+  linha_vetada = which(proc_tram_df$evento == 'vetada_totalmente')
+  linha_lei = which(proc_tram_df$evento == 'transformada_lei')
+  return(ifelse(length(linha_vetada) == 0, ifelse(length(linha_lei) == 0, nrow(proc_tram_df), linha_lei), linha_vetada))
 }

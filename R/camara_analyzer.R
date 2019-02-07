@@ -199,6 +199,11 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   if(nrow(virada_de_casa) == 1){
     proc_tram_df <-
     proc_tram_df[1:get_linha_virada_de_casa(proc_tram_df),]
+  }else {
+    index_of_sancao <-
+      get_linha_finalizacao_tramitacao(proc_tram_df)
+    proc_tram_df <-
+      proc_tram_df[1:index_of_sancao,]
   }
   
   proc_tram_df <-
