@@ -14,7 +14,7 @@ source(here::here("R/utils.R"))
 fetch_pauta_camara <- function(id, hora_inicio, hora_fim, sigla_orgao, nome_orgao) {
   url <- paste0("https://dadosabertos.camara.leg.br/api/v2/eventos/", id, "/pauta")
   json_proposicao <- fetch_json_try(url)
-  
+
   json_proposicao$dados %>%
     tibble::as.tibble() %>%
     dplyr::mutate(hora_inicio = hora_inicio,
@@ -38,7 +38,7 @@ fetch_pauta_camara <- function(id, hora_inicio, hora_fim, sigla_orgao, nome_orga
 fetch_agenda_camara <- function(initial_date, end_date) {
   url <- paste0("https://dadosabertos.camara.leg.br/api/v2/eventos?dataInicio=", initial_date, "&dataFim=", end_date, "&ordem=ASC&ordenarPor=dataHoraInicio")
   json_proposicao <- fetch_json_try(url)
-  
+
   descricoes_inuteis <- c('Seminário', 'Diligência', 'Sessão Não Deliberativa de Debates', 'Reunião de Instalação e Eleição', 'Outro Evento', 'Mesa Redonda', 'Sessão Não Deliberativa Solene')
   agenda <-
     json_proposicao$dados %>%
@@ -46,14 +46,14 @@ fetch_agenda_camara <- function(initial_date, end_date) {
     dplyr::filter(descricaoSituacao != 'Cancelada' &
                     !(descricaoTipo %in% descricoes_inuteis)) %>%
     tidyr::unnest()
-  
+
   agenda %>%
     dplyr::rowwise() %>%
     dplyr::do(fetch_pauta_camara(
       .$id, .$dataHoraInicio, .$dataHoraFim, .$sigla, .$nome) %>%
         tibble::as.tibble()) %>%
     unique()
-  
+
 }
 
 #' @title Baixa a agenda do senado
@@ -73,62 +73,62 @@ fetch_agenda_senado <- function(initial_date) {
   if (is.null(json_proposicao$AgendaPlenario)) {
     return(list(agenda = tibble::as.tibble(), materias = tibble::as.tibble(), oradores = tibble::as.tibble()))
   }
-  
+
   agenda <-
     json_proposicao$AgendaPlenario$Sessoes$Sessao %>%
     rename_table_to_underscore() %>%
     tibble::as.tibble()
-  
+
   descricoes_inuteis <- c('SESSÃO SOLENE', 'SESSÃO NÃO DELIBERATIVA', 'NÃO HAVERÁ SESSÃO', 'SESSÃO ESPECIAL')
-  
+
   agenda <-
     agenda %>%
     dplyr::filter(!(tipo_sessao %in% descricoes_inuteis))
-  
+
   materia <- tibble::tibble()
   if('materias_materia' %in% names(agenda)) {
     materia <- purrr::map_df(agenda$materias_materia, dplyr::bind_rows, .id = "codigo_sessao")
-    
+
     materia_not_null <-
       agenda %>%
       dplyr::filter(materias_materia != "NULL")
-    
+
     num_de_materias <-
       materia %>%
       dplyr::group_by(codigo_sessao) %>%
       dplyr::summarise(id = 0)
-    
+
     num_de_materias$id <- materia_not_null$codigo_sessao
-    
+
     materia <-
       merge(materia, num_de_materias) %>%
       dplyr::select(-codigo_sessao) %>%
       dplyr::rename("codigo_sessao" = id) %>%
       rename_table_to_underscore()
   }
-  
+
   oradores <- tibble::tibble()
   if('oradores_tipo_orador_orador_sessao_orador' %in% names(agenda)) {
     oradores <- purrr::map_df(agenda$oradores_tipo_orador_orador_sessao_orador, dplyr::bind_rows, .id = "codigo_sessao")
-    
+
     oradores_not_null <-
       agenda %>%
       dplyr::filter(oradores_tipo_orador_orador_sessao_orador != "NULL")
-    
+
     num_de_oradores <-
       oradores %>%
       dplyr::group_by(codigo_sessao) %>%
       dplyr::summarise(id = 0)
-    
+
     num_de_oradores$id <- oradores_not_null$codigo_sessao
-    
+
     oradores <-
       merge(oradores, num_de_oradores) %>%
       dplyr::select(-codigo_sessao) %>%
       dplyr::rename("codigo_sessao" = id) %>%
       rename_table_to_underscore()
   }
-  
+
   agenda <- list(agenda = agenda, materias = materia, oradores = oradores)
 }
 
@@ -154,7 +154,7 @@ auxiliar_agenda_senado_comissoes <- function(url) {
       dplyr::filter(partes_parte_itens_item != "NULL") %>%
       dplyr::mutate(index = as.character(dplyr::row_number())) %>%
       dplyr::select(-codigo)
-    
+
     partes_parte <- purrr::map_df(agenda2$partes_parte_itens_item, dplyr::bind_rows, .id = "index")
     dplyr::left_join(partes_parte, agenda2, by = "index")
   }else {
@@ -173,7 +173,7 @@ get_data_frame_agenda_senado <- function(initial_date, end_date) {
   url <-
     paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe")
   json_proposicao <- fetch_json_try(url)
-  
+
   json_proposicao$Reunioes$Reuniao %>%
     tibble::as.tibble() %>%
     rename_table_to_underscore() %>%
@@ -190,23 +190,23 @@ get_data_frame_agenda_senado <- function(initial_date, end_date) {
 #' fetch_agenda_senado_comissoes('2016-05-15', '2016-05-25')
 fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
   tipos_inuteis <- c('Outros eventos', 'Reunião', 'Reunião de Subcomissão')
-  
+
   agenda <-
     get_data_frame_agenda_senado(initial_date, end_date) %>%
     dplyr::filter(!(tipo %in% tipos_inuteis)) %>%
     unique()
-  
+
   if (nrow(agenda) != 0) {
     if ("partes_parte" %in% names(agenda)) {
       agenda <-
         agenda %>%
         dplyr::mutate(id_proposicao = purrr::map(partes_parte, ~ pega_id_proposicao(.))) %>%
         dplyr::mutate(nome = purrr::map(partes_parte, ~ pega_nome(.))) %>%
-        dplyr::filter(id_proposicao != "") 
-      
+        dplyr::filter(id_proposicao != "")
+
       if (nrow(agenda) != 0) {
         agenda <-
-          agenda %>% 
+          agenda %>%
           dplyr::rowwise() %>%
           dplyr::mutate(local = strsplit(titulo_da_reuniao, ",")[[1]][[1]]) %>%
           dplyr::select(c(data, nome, id_proposicao, local)) %>%
@@ -217,14 +217,14 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
       }else {
         return(tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local))
       }
-      
+
     }else {
       agenda <-
         agenda %>%
         dplyr::mutate(id_proposicao = purrr::map(partes_parte_itens_item, ~ .$Codigo)) %>%
         dplyr::mutate(nome = purrr::map(partes_parte_itens_item, ~ .$Nome)) %>%
-        dplyr::filter(partes_parte_tipo == "Deliberativa") 
-      
+        dplyr::filter(partes_parte_tipo == "Deliberativa")
+
       if (nrow(agenda) != 0) {
         agenda <-
           agenda %>%
@@ -232,23 +232,23 @@ fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
           tidyr::unnest() %>%
           dplyr::rowwise() %>%
           dplyr::mutate(local = strsplit(titulo_da_reuniao, ",")[[1]][[1]]) %>%
-          dplyr::select(c(data, nome, id_proposicao, local)) 
+          dplyr::select(c(data, nome, id_proposicao, local))
       }else {
         return(tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local))
       }
     }
-    
+
     new_names <- c("data", "sigla", "id_proposicao", "local")
     names(agenda) <- new_names
-    
+
     agenda %>%
       dplyr::mutate(data = lubridate::dmy(data)) %>%
       dplyr::arrange(data)
-    
+
   }else {
     tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local)
   }
-  
+
 }
 
 #' @title Extrai o nome da proposição
@@ -318,17 +318,17 @@ normalize_agendas <- function(agenda, house) {
     agenda <-
       merge(agenda, materias) %>%
       dplyr::mutate(sigla = paste0(sigla_materia, " ", numero_materia, "/", ano_materia))
-    
+
     if (!("local_sessao" %in% names(agenda))) {
       agenda <-
         agenda %>%
         dplyr::mutate(local_sessao = NA)
     }
-    
+
     agenda <-
       agenda %>%
       dplyr::select(c(data, sigla, codigo_materia, local_sessao))
-    
+
   }else {
     if (nrow(agenda) == 0) {return(tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local))}
     agenda <-
@@ -336,10 +336,10 @@ normalize_agendas <- function(agenda, house) {
       dplyr::mutate(sigla = paste0(proposicao_.siglaTipo, " ", proposicao_.numero, "/", proposicao_.ano)) %>%
       dplyr::select(c(hora_inicio, sigla, proposicao_.id, nome_orgao))
   }
-  
+
   new_names <- c("data", "sigla", "id_proposicao", "local")
   names(agenda) <- new_names
-  
+
   agenda %>% dplyr::arrange(data)
 }
 
@@ -356,7 +356,7 @@ normalize_agendas <- function(agenda, house) {
 fetch_agenda <- function(initial_date, end_date, house, orgao) {
   try(if (as.Date(end_date) < as.Date(initial_date))
     stop("A data inicial é depois da final!"))
-  
+
   if (tolower(orgao) == "plenario") {
     if (house == "camara") {
       normalize_agendas(
@@ -391,40 +391,40 @@ fetch_agenda_geral <- function(initial_date, end_date) {
   try(if(as.Date(end_date) < as.Date(initial_date)) stop("A data inicial é depois da final!"))
   print(initial_date)
   print(end_date)
-  
+
   agenda_plenario_camara <- normalize_agendas(fetch_agenda_camara(initial_date = initial_date, end_date = end_date), "camara") %>%
     dplyr::mutate(casa = "camara")
-  
+
   if (nrow(agenda_plenario_camara) != 0) {
-    agenda_plenario_camara <- 
+    agenda_plenario_camara <-
       agenda_plenario_camara %>%
       dplyr::rowwise() %>%
       dplyr::mutate(data = stringr::str_split(data,'T')[[1]][1]) %>%
       dplyr::ungroup()
   }
-  agenda_plenario_senado <- 
+  agenda_plenario_senado <-
     normalize_agendas(fetch_agenda_senado(initial_date), "senado") %>%
     dplyr::mutate(casa = "senado")
   agenda_comissoes_senado <- fetch_agenda_senado_comissoes(initial_date, end_date) %>%
     dplyr::mutate(data = as.character(data)) %>%
     dplyr::mutate(casa = "senado")
-  
+
   initial_date <- strsplit(as.character(initial_date), '-')
   end_date <- strsplit(as.character(end_date), '-')
-  agenda_comissoes_camara <- 
+  agenda_comissoes_camara <-
     fetch_agenda_comissoes_camara(
-      paste0(initial_date[[1]][[3]],'/', initial_date[[1]][[2]], '/', initial_date[[1]][[1]]), 
+      paste0(initial_date[[1]][[3]],'/', initial_date[[1]][[2]], '/', initial_date[[1]][[1]]),
       paste0(end_date[[1]][[3]],'/', end_date[[1]][[2]], '/', end_date[[1]][[1]])) %>%
     dplyr::mutate(data = as.character(data)) %>%
     dplyr::mutate(casa = "camara")
-  
+
   rbind(
     agenda_plenario_camara,
     agenda_plenario_senado,
     agenda_comissoes_senado,
     agenda_comissoes_camara
   ) %>%
-    dplyr::arrange(data) %>% 
+    dplyr::arrange(data) %>%
     dplyr::mutate_all(as.character) %>%
     dplyr::rename(id_ext = id_proposicao)
 }
@@ -437,21 +437,21 @@ fetch_agenda_geral <- function(initial_date, end_date) {
 #' @return Dataframe
 #' @importFrom RCurl getURL
 fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_date){
-  
+
   url <-
     RCurl::getURL(paste0(
       'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=',
       orgao_id, '&datIni=', initial_date, '&datFim=', end_date))
-  
+
   eventos_list <-
     XML::xmlParse(url) %>%
     XML::xmlToList()
-  
+
   df <-
     eventos_list %>%
     jsonlite::toJSON() %>%
     jsonlite::fromJSON()
-  
+
   if(purrr::is_list(df)){
     df <-
       df %>%
@@ -459,10 +459,10 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
       tibble::as.tibble() %>%
       t() %>%
       as.data.frame()
-    
+
     names(df) <- c("comissao","cod_reuniao", "num_reuniao", "data", "hora", "local",
                    "estado", "tipo", "titulo_reuniao", "objeto", "proposicoes")
-    
+
     proposicoes <- df$proposicoes
     df <-
       df %>%
@@ -470,26 +470,26 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
       lapply(unlist) %>%
       as.data.frame() %>%
       tibble::add_column(proposicoes)
-    
+
     df <-
       df %>%
       as.data.frame() %>%
       dplyr::filter(trimws(estado) != 'Cancelada') %>%
       tidyr::unnest()
-    
+
     if(nrow(df) != 0) {
       df <-
         df %>%
         dplyr::mutate(sigla = purrr::map(proposicoes, ~ .x[['sigla']]),
                       id_proposicao = purrr::map(proposicoes, ~ .x[['idProposicao']]))
     }
-    
+
   }else{
-    
+
     df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local,
                              ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes)
   }
-  
+
   return(df)
 }
 
@@ -502,8 +502,9 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
 #' fetch_agenda_comissoes_camara('12/05/2018', '26/05/2018')
 fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
   orgaos <-
-    fetch_orgaos_camara()
-  
+    fetch_todos_orgaos() %>%
+    dplyr::filter(codTipoOrgao %in% c(2, 3, 6))
+
   agenda <- purrr::map_df(orgaos$orgao_id, fetch_agendas_comissoes_camara_auxiliar, initial_date, end_date)
   if (nrow(agenda) == 0) {
     tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local)
@@ -516,7 +517,7 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
 }
 
 #' @title Baixa dados da agenda por semana
-#' @description Retorna um dataframe contendo dados sobre a agenda 
+#' @description Retorna um dataframe contendo dados sobre a agenda
 #' @param initial_date data inicial no formato dd/mm/yyyy
 #' @param end_date data final no formato dd/mm/yyyy
 #' @return Dataframe
@@ -524,10 +525,10 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
 #' junta_agendas('2018-11-05', '2018-11-12')
 #' @export
 junta_agendas <- function(initial_date, end_date) {
-  semanas <- 
+  semanas <-
     seq(lubridate::floor_date(as.Date(initial_date), unit="week") + 1, as.Date(end_date), by = "week") %>%
     tibble::as.tibble() %>%
     dplyr::mutate(fim_semana = as.Date(cut(value, "week")) + 4)
-  
-  materia <- purrr::map2_df(semanas$value, semanas$fim_semana, ~ fetch_agenda_geral(.x, .y)) 
+
+  materia <- purrr::map2_df(semanas$value, semanas$fim_semana, ~ fetch_agenda_geral(.x, .y))
 }
