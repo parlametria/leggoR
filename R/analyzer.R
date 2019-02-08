@@ -398,23 +398,3 @@ get_autores_voto_separado <- function(df) {
         stringr::str_extract(texto_tramitacao, stringr::regex(camara_env$autor_voto_separado$regex, ignore_case=TRUE))))
 }
 
-
-#' @title Extrai os links quando as proposições podem ter sido modificadas
-#' @description Obtém a data e o link para o arquivo em pdf do texto da proposição
-#' @param id ID da proposição.
-#' @param casa casa
-#' @return Dataframe contendo a data da versão e o link para o arquivo pdf
-#' @examples 
-#' extract_links_proposicao(46249, 'camara')
-#' @export
-extract_links_proposicao <- function(id, casa) {
-  if(tolower(casa) == congress_constants$camara_label) {
-    proposicao_df = agoradigital::fetch_proposicao(id, casa, '', '', T, F)
-    tramitacao_df = rcongresso::fetch_tramitacao(id)
-    return(extract_links_proposicao_camara(proposicao_df, tramitacao_df))
-  } else if(tolower(casa) == congress_constants$senado_label) {
-    #TODO: Implementar extração de links para o senado
-  }
-  
-  
-}
