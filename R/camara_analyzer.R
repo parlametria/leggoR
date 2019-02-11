@@ -304,7 +304,7 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
   fase_global_constants <- camara_env$fase_global
   
   casa_origem <-
-    dplyr::if_else(
+    dplyr::if_else(!is.null(proposicao_df$casa_origem) &
       !is.na(proposicao_df$casa_origem) & proposicao_df$casa_origem == "Senado Federal",
       fase_global_constants$revisao_camara,
       fase_global_constants$origem_camara
@@ -333,7 +333,7 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
   if (nrow(virada_de_casa) == 0) {
     data_tramitacao <-
       data_tramitacao %>%
-      dplyr::mutate(global = paste0(casa_origem))
+      dplyr::mutate(global = dplyr::if_else(length(casa_origem) ==0, '-', casa_origem))
     
   } else {
     
