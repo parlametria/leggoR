@@ -46,7 +46,7 @@ fetch_tramitacao <- function(id, casa) {
 #' @param bill_id ID de uma proposição na Camara
 #' @return Dataframe com os dados da tramitação de uma proposição da Camara
 #' @examples
-#' fetch_tramitacao_camara(2121442, TRUE)
+#' fetch_tramitacao_camara(2121442)
 fetch_tramitacao_camara <- function(bill_id) {
   rcongresso::fetch_tramitacao_camara(bill_id) %>%
     dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,"T"," ")),
