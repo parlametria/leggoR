@@ -1,7 +1,5 @@
 senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
-congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
-congress_constants <- congresso_env$constants
 
 #' @title Extrai os links quando as proposições podem ter sido modificadas
 #' @description Obtém a data e o link para o arquivo em pdf do texto da proposição
@@ -12,14 +10,16 @@ congress_constants <- congresso_env$constants
 #' extract_links_proposicao(46249, 'camara')
 #' @export
 extract_links_proposicao <- function(id, casa) {
-  if(tolower(casa) == congress_constants$camara_label) {
+  if(tolower(casa) == 'camara') {
     proposicao_df = agoradigital::fetch_proposicao(id, casa, '', '', T, F)
     tramitacao_df = rcongresso::fetch_tramitacao(id, casa)
-    return(extract_links_proposicao_camara(proposicao_df, tramitacao_df))
+    df <- extract_links_proposicao_camara(proposicao_df, tramitacao_df)
     
-  } else if(tolower(casa) == congress_constants$senado_label) {
-    return(extract_links_proposicao_senado(id))
+  } else if(tolower(casa) == 'senado') {
+    df <- extract_links_proposicao_senado(id)
   }
+  
+  return(df %>% extract_initial_page_from_link())
 }
 
 #' @title Checa se a uma requisição possui redirecionamento
@@ -135,7 +135,7 @@ mutate_links <- function(df) {
 #' @examples
 #' filter_links(textos_df)
 filter_links <- function(df) {
-  if(nrow(df) ==1 & df$id_proposicao == 41703) {
+  if(nrow(df) ==1 && df$id_proposicao == 41703) {
     return(df)
   } else if(typeof(df$NumeroEmenda) == 'NULL') {
     df <- df %>% 
@@ -183,4 +183,21 @@ extract_links_proposicao_senado <- function(id) {
       dplyr::select(-descricao_tipo_texto)
     return(textos_df)
   }
+}
+
+#' @title Extrai as páginas iniciais de um link
+#' @description Obtém a página onde o texto de interesse começa a partir da URL. Caso não haja detecção da página, a default será 1.
+#' @param df Dataframe contendo o link para o texto
+#' @return Dataframe contendo uma nova nova coluna chamada pagina_inicial com a página extraída da URL.
+#' @examples
+#' extract_initial_page_from_link(df)
+extract_initial_page_from_link <- function(df) {
+  df <-
+    df %>% 
+    dplyr::mutate(pagina_inicial = 
+                    dplyr::case_when(stringr::str_detect(tolower(link_inteiro_teor), 'txpagina=\\d.*') ~ 
+                                stringr::str_extract(tolower(link_inteiro_teor), 'txpagina=\\d*'), 
+                              TRUE ~ '1'),
+                  pagina_inicial = stringr::str_extract(pagina_inicial, '\\d.*'))
+  return(df)
 }
