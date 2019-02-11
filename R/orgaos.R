@@ -2,7 +2,7 @@
 #' @description Retorna um dataframe contendo todos os órgãos da câmara
 #' @return Dataframe contendo os órgãos da Câmara
 #' @export
- <- function() {
+fetch_orgaos_camara <- function() {
     rcongresso::fetch_orgaos_camara() %>%
         dplyr::rename("tipo_orgao_id"="codTipoOrgao", "descricao"="nome") %>%
         dplyr::mutate(
