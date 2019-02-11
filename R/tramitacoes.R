@@ -49,10 +49,9 @@ fetch_tramitacao <- function(id, casa) {
 #' fetch_tramitacao_camara(2121442, TRUE)
 fetch_tramitacao_camara <- function(bill_id) {
   rcongresso::fetch_tramitacao_camara(bill_id) %>%
-    rcongresso::rename_df_columns() %>%
     dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,"T"," ")),
                   casa = "camara",
-                  id_situacao = as.integer(id_tipo_tramitacao)) %>%
+                  id_situacao = as.integer(cod_tipo_tramitacao)) %>%
     dplyr::select(prop_id = id_prop,
                   casa,
                   data_hora,
