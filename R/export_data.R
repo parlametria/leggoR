@@ -16,13 +16,13 @@ process_etapa <- function(id, casa, agenda) {
   extended_prop <-
     merge(prop, status, by = "prop_id") %>%
     dplyr::mutate(temperatura = temperatura_value)
-  #emendas <- rcongresso::fetch_emendas(id, casa)
+  emendas <- rcongresso::fetch_emendas(id, casa, prop$tipo_materia, prop$numero, prop$ano)
 
   list(
     proposicao = extended_prop,
     fases_eventos = proc_tram,
-    hist_temperatura = historico_temperatura
-    #,emendas = emendas
+    hist_temperatura = historico_temperatura,
+    emendas = emendas
     )
 }
 
@@ -49,8 +49,8 @@ adiciona_locais_faltantes_progresso <- function(progresso_df) {
 adiciona_status <- function(tramitacao_df) {
   tramitacao_df %>%
     dplyr::group_by(id_ext, casa) %>%
-    dplyr::mutate(status = dplyr::case_when(dplyr::lead(evento) == "arquivamento" ~ "Arquivada",
-                                            dplyr::lead(evento) == "transformada_lei" ~ "Lei",
+    dplyr::mutate(descricao_situacao = dplyr::case_when(dplyr::lead(evento, order_by = data) == "arquivamento" ~ "Arquivada",
+                                            dplyr::lead(evento, order_by = data) == "transformada_lei" ~ "Lei",
                                             T ~ "Ativa"))
 }
 
@@ -92,14 +92,15 @@ export_data <- function(pls, export_path) {
     dplyr::rename(id_ext = prop_id, sigla_tipo = tipo_materia, apelido = apelido_materia)
   tramitacoes <-
     purrr::map_df(res, ~ .$fases_eventos) %>%
-    dplyr::rename(id_ext = prop_id, data = data_hora)
+    dplyr::rename(id_ext = prop_id, data = data_hora) %>%
+    adiciona_status()
   hists_temperatura <- purrr::map_df(res, ~ .$hist_temperatura)
   progressos <-
     purrr::map_df(res, ~ .$progresso) %>%
     dplyr::rename(id_ext = prop_id)
-  #emendas <-
-    #purrr::map_df(res, ~ .$emendas) %>%
-    #dplyr::rename(id_ext = prop_id)
+  emendas <-
+    purrr::map_df(res, ~ .$emendas) %>%
+    dplyr::rename(id_ext = prop_id)
   #comissoes <-
     #agoradigital::fetch_all_composicao_comissao()
 
