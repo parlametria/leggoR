@@ -105,29 +105,6 @@ fetch_apensadas <- function(prop_id) {
     tibble::tibble(apensadas = .)
 }
 
-#' @title Recupera os eventos (sessões/reuniões) de uma proposição na Câmara
-#' @description Retorna um dataframe contendo o timestamp, o local e a descrição do evento
-#' @param prop_id ID da proposição
-#' @return Dataframe contendo o timestamp, o local e a descrição do evento.
-#' @examples
-#' fetch_events(2121442)
-#' @export
-#' @importFrom utils timestamp
-fetch_events <- function(prop_id) {
-  events_base_url <-
-    'http://www.camara.gov.br/proposicoesWeb/sessoes_e_reunioes?idProposicao='
-  bill_events_url <- paste0(events_base_url, prop_id)
-  events <- bill_events_url %>%
-    xml2::read_html() %>%
-    rvest::html_nodes(xpath = '//*[@id="content"]/table') %>%
-    rvest::html_table()
-  events_df <- events[[1]]
-  names(events_df) <- c('timestamp', 'origem', 'descricao', 'links')
-  events_df %>%
-    dplyr::select(-links) %>%
-    dplyr::mutate(timestamp = lubridate::dmy_hm(timestamp))
-}
-
 ###################################################################
 
 #' @title Retorna o dataFrame com as audiências públicas do Senado
