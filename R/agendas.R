@@ -56,82 +56,6 @@ fetch_agenda_camara <- function(initial_date, end_date) {
 
 }
 
-#' @title Baixa a agenda do senado
-#' @description Retorna uma lista contendo 3 dataframes: agenda, materias e oradores,
-#' todos os dfs possuem a coluna codigo_sessao
-#' @param initial_date data inicial no formato yyyy-mm-dd
-#' @return list
-#' @examples
-#' fetch_agenda_senado('2018-07-03')
-#' @importFrom dplyr filter
-#' @importFrom dplyr select
-#' @importFrom tidyr unnest
-#' @importFrom tibble tibble
-fetch_agenda_senado <- function(initial_date) {
-  url <- paste0("http://legis.senado.leg.br/dadosabertos/plenario/agenda/mes/", gsub('-','', initial_date))
-  json_proposicao <- fetch_json_try(url)
-  if (is.null(json_proposicao$AgendaPlenario)) {
-    return(list(agenda = tibble::as.tibble(), materias = tibble::as.tibble(), oradores = tibble::as.tibble()))
-  }
-
-  agenda <-
-    json_proposicao$AgendaPlenario$Sessoes$Sessao %>%
-    rename_table_to_underscore() %>%
-    tibble::as.tibble()
-
-  descricoes_inuteis <- c('SESSÃO SOLENE', 'SESSÃO NÃO DELIBERATIVA', 'NÃO HAVERÁ SESSÃO', 'SESSÃO ESPECIAL')
-
-  agenda <-
-    agenda %>%
-    dplyr::filter(!(tipo_sessao %in% descricoes_inuteis))
-
-  materia <- tibble::tibble()
-  if('materias_materia' %in% names(agenda)) {
-    materia <- purrr::map_df(agenda$materias_materia, dplyr::bind_rows, .id = "codigo_sessao")
-
-    materia_not_null <-
-      agenda %>%
-      dplyr::filter(materias_materia != "NULL")
-
-    num_de_materias <-
-      materia %>%
-      dplyr::group_by(codigo_sessao) %>%
-      dplyr::summarise(id = 0)
-
-    num_de_materias$id <- materia_not_null$codigo_sessao
-
-    materia <-
-      merge(materia, num_de_materias) %>%
-      dplyr::select(-codigo_sessao) %>%
-      dplyr::rename("codigo_sessao" = id) %>%
-      rename_table_to_underscore()
-  }
-
-  oradores <- tibble::tibble()
-  if('oradores_tipo_orador_orador_sessao_orador' %in% names(agenda)) {
-    oradores <- purrr::map_df(agenda$oradores_tipo_orador_orador_sessao_orador, dplyr::bind_rows, .id = "codigo_sessao")
-
-    oradores_not_null <-
-      agenda %>%
-      dplyr::filter(oradores_tipo_orador_orador_sessao_orador != "NULL")
-
-    num_de_oradores <-
-      oradores %>%
-      dplyr::group_by(codigo_sessao) %>%
-      dplyr::summarise(id = 0)
-
-    num_de_oradores$id <- oradores_not_null$codigo_sessao
-
-    oradores <-
-      merge(oradores, num_de_oradores) %>%
-      dplyr::select(-codigo_sessao) %>%
-      dplyr::rename("codigo_sessao" = id) %>%
-      rename_table_to_underscore()
-  }
-
-  agenda <- list(agenda = agenda, materias = materia, oradores = oradores)
-}
-
 #' @title Retorna a agenda de uma comissão no Senado
 #' @description Função auxiliar que retorna um dataframe contendo a agenda de
 #' uma comissão do Senado
@@ -363,7 +287,7 @@ fetch_agenda <- function(initial_date, end_date, house, orgao) {
         fetch_agenda_camara(
           initial_date = initial_date, end_date = end_date), house)
     } else {
-      normalize_agendas(fetch_agenda_senado(initial_date), house)
+      normalize_agendas(rcongresso::fetch_agenda_senado(initial_date), house)
     }
   }else {
     if(house == 'camara') {
@@ -403,7 +327,7 @@ fetch_agenda_geral <- function(initial_date, end_date) {
       dplyr::ungroup()
   }
   agenda_plenario_senado <-
-    normalize_agendas(fetch_agenda_senado(initial_date), "senado") %>%
+    normalize_agendas(rcongresso::fetch_agenda_senado(initial_date), "senado") %>%
     dplyr::mutate(casa = "senado")
   agenda_comissoes_senado <- fetch_agenda_senado_comissoes(initial_date, end_date) %>%
     dplyr::mutate(data = as.character(data)) %>%
