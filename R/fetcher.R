@@ -40,55 +40,6 @@ fetch_votacoes <- function(proposicao_id) {
   rename_votacoes_df(votacoes_df)
 }
 
-#' @title Deferimento de requerimentos.
-#' @description Verifica deferimento ou não para uma lista de IDs de requerimentos.
-#' @param proposicao_id ID de um ou vários requerimentos
-#' @return Dataframe com IDs dos requerimentos e informação sobre deferimento.
-#' @examples
-#' fetch_deferimento(c("102343", "109173", "115853"))
-#' @importFrom utils tail
-#' @export
-fetch_deferimento <- function(proposicao_id) {
-  deferimento_regexes <- senado_env$deferimento
-  regexes <-
-    tibble::frame_data(
-      ~ deferimento,
-      ~ regex,
-      "indeferido",
-      deferimento_regexes$regex$indeferido,
-      "deferido",
-      deferimento_regexes$regex$deferido
-    )
-
-  fetch_one_deferimento <- function(proposicao_id) {
-    json <-
-      paste0(senado_env$endpoints_api$url_base,
-             "movimentacoes/",
-             proposicao_id) %>%
-      jsonlite::fromJSON()
-
-    resultados <-
-      json$MovimentacaoMateria$Materia$OrdensDoDia$OrdemDoDia$DescricaoResultado
-    # handle NULL
-    if (is.null(resultados))
-      resultados <- c('')
-
-    resultados %>%
-      tibble::as.tibble() %>%
-      dplyr::mutate(proposicao_id = proposicao_id) %>%
-      fuzzyjoin::regex_left_join(regexes, by = c(value = "regex")) %>%
-      tidyr::fill(deferimento) %>%
-      tail(., n = 1) %>%
-      dplyr::select(proposicao_id, deferimento)
-  }
-
-  proposicao_id %>%
-    unlist %>%
-    unique %>%
-    lapply(fetch_one_deferimento) %>%
-    plyr::rbind.fill()
-}
-
 #' @title Renomeia as colunas do dataframe de votação no Senado
 #' @description Renomeia as colunas do dataframe de votação no Senado usando o padrão
 #' de underscore e letras minúsculas
@@ -138,35 +89,7 @@ fetch_sessions <- function(bill_id) {
 }
 
 ###################################################################
-
-#' @title Recupera o estado e partido de um autor
-#' @description Retorna o estado e partido
-#' @param uri uri que contém dados sobre o autor
-#' @return Estado e partido
-#' @export
-extract_partido_estado_autor <- function(uri) {
-  if (!is.na(uri)) {
-    json_autor <- fetch_json_try(uri)
-
-    autor <-
-      json_autor %>%
-      magrittr::extract2('dados')
-
-    autor_uf <-
-      autor %>%
-      magrittr::extract2('ufNascimento')
-
-    autor_partido <-
-      autor %>%
-      magrittr::extract2('ultimoStatus') %>%
-      magrittr::extract2('siglaPartido')
-
-    paste0(autor_partido, '/', autor_uf)
-  } else {
-    ''
-  }
-}
-
+#
 #' @title Recupera as proposições apensadas
 #' @description Retorna os IDs das proposições apensadas a uma determinada proposição
 #' @param prop_id ID da proposição

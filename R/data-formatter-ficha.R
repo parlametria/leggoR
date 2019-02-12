@@ -249,7 +249,7 @@ gera_tabela_requerimentos <- function(bill_id, house) {
   } else if (house == 'senado') {
     requerimentos <-
       as.array(strsplit(fetch_proposicao(bill_id, 'senado',normalized = F)$proposicoes_relacionadas, " ")[[1]]) %>%
-      fetch_deferimento()
+      rcongresso::fetch_deferimento()
   }
   requerimentos
 }

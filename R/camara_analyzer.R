@@ -65,7 +65,7 @@ extract_autor_in_camara <- function(prop_id) {
   # authors <- authors %>%
   #   mutate(autor.nome = dplyr::if_else(casa_origem == 'Senado Federal', stringr::str_split(autor.nome,'-')[[2]], autor.nome))
 
-  partido_estado <- extract_partido_estado_autor(authors$autor.uri %>% tail(1))
+  partido_estado <- rcongresso::extract_partido_estado_autor(authors$autor.uri %>% tail(1))
 
   authors %>%
     dplyr::mutate(autor.nome = paste0(autor.nome, " ", partido_estado))
