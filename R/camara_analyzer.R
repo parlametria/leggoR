@@ -43,11 +43,11 @@ extract_events_in_camara <- function(tramitacao_df) {
 extract_autor_in_camara <- function(prop_id) {
   camara_exp <- "câmara dos deputados"
   senado_exp <- "senado federal"
-  
+
   url_base_autores <- "https://dadosabertos.camara.leg.br/api/v2/proposicoes/"
   url <- paste0(url_base_autores, prop_id, "/autores")
   json_voting <- jsonlite::fromJSON(url, flatten = T)
-  
+
   authors <- json_voting %>%
     magrittr::extract2("dados") %>%
     dplyr::rename(
@@ -61,12 +61,12 @@ extract_autor_in_camara <- function(prop_id) {
                       stringr::str_detect(tolower(autor.nome), senado_exp) | autor.tipo == "Senador" ~ "Senado Federal",
                       autor.cod_tipo == 40000 ~ "Senado Federal",
                       autor.cod_tipo == 2 ~ "Câmara dos Deputados"))
-  
+
   # authors <- authors %>%
   #   mutate(autor.nome = dplyr::if_else(casa_origem == 'Senado Federal', stringr::str_split(autor.nome,'-')[[2]], autor.nome))
-  
+
   partido_estado <- extract_partido_estado_autor(authors$autor.uri %>% tail(1))
-  
+
   authors %>%
     dplyr::mutate(autor.nome = paste0(autor.nome, " ", partido_estado))
 }
@@ -82,7 +82,7 @@ extract_locais_in_camara <- function(df) {
     c('votação', 'pronta para pauta', 'apresentação de proposição',
       'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
-  
+
   df %<>%
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(
@@ -102,11 +102,11 @@ extract_locais_in_camara <- function(df) {
         dplyr::case_when(stringr::str_detect(local, "^PL") ~ "Comissão Especial",
                          TRUE ~ local)
     )
-  
+
   if (is.na(df[1, ]$local)) {
     df[1, ]$local = 'CD-MESA-PLEN'
   }
-  
+
   df %>%
     tidyr::fill(local)
 }
@@ -145,7 +145,7 @@ extract_evento_in_camara <- function(df) {
 extract_fase_casa_in_camara <- function(df) {
   descricoes_plenario <- c('votação', 'pronta para pauta', 'apresentação de proposição', 'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
-  
+
   df <- df %>%
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(
@@ -156,12 +156,12 @@ extract_fase_casa_in_camara <- function(df) {
           (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') |
              tolower(texto_tramitacao) %in% descricoes_comissoes) & sigla_local != 'CCP' & !stringr::str_detect(tolower(sigla_local), '^s') ~ "Comissões")
     )
-  
-  
+
+
   if (is.na(df[1, ]$casa)) {
     df[1, ]$casa <- 'Apresentação'
   }
-  
+
   df %>%
     tidyr::fill(casa)
 }
@@ -176,7 +176,7 @@ extract_situacao_comissao <- function(df) {
 
   situacao_comissao <- camara_env$situacao_comissao
   situacao_comissao['local'] <- get_regex_comissoes_camara()
-  
+
   df %>%
     regex_left_match(situacao_comissao, "situacao_comissao") %>%
     tidyr::fill(situacao_comissao)
@@ -191,11 +191,11 @@ extract_situacao_comissao <- function(df) {
 process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   proc_tram_df <- tramitacao_df %>%
     extract_events_in_camara()
-  
-  virada_de_casa <- 
+
+  virada_de_casa <-
     proc_tram_df %>%
     dplyr::filter(evento == 'virada_de_casa')
-  
+
   if(nrow(virada_de_casa) == 1){
     proc_tram_df <-
     proc_tram_df[1:get_linha_virada_de_casa(proc_tram_df),]
@@ -205,14 +205,14 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
     proc_tram_df <-
       proc_tram_df[1:index_of_sancao,]
   }
-  
+
   proc_tram_df <-
     proc_tram_df %>%
     extract_locais_in_camara() %>%
-    extract_fase_global_in_camara(proposicao_df) %>% 
+    extract_fase_global_in_camara(proposicao_df) %>%
     refact_date() %>%
     sort_by_date()
-  
+
   return(proc_tram_df)
 }
 
@@ -221,7 +221,7 @@ fetch_proposicao_renamed <- function(id) {
   df <-
     fetch_proposicao_camara(id) %>%
     rename_df_columns
-  
+
   df[,!sapply(df, is.list)]
 }
 
@@ -245,9 +245,9 @@ extract_forma_apreciacao_camara <- function(prop_id) {
       'Plenário',
       'Sujeita à Apreciação do Plenário'
     )
-  
+
   page_df <- data.frame(page_url = paste0(base_url, prop_id), stringsAsFactors = F)
-  
+
   apreciacao_df <- page_df %>%
     dplyr::rowwise() %>%
     dplyr::mutate(page_html = list(xml2::read_html(page_url))) %>%
@@ -255,7 +255,7 @@ extract_forma_apreciacao_camara <- function(prop_id) {
                     rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
                     rvest::html_text()) %>%
     fuzzyjoin::regex_left_join(regex_apreciacao, by = c(temp = "regex"))
-  
+
   return(apreciacao_df[1,]$forma_apreciacao)
 }
 
@@ -268,10 +268,10 @@ extract_forma_apreciacao_camara <- function(prop_id) {
 extract_regime_tramitacao_camara <- function(tram_df) {
   regimes <- camara_env$regime %>%
     tibble::as.tibble()
-  
+
   prop_id <- tram_df[1,]$prop_id
-  
-  regime_df <- rcongresso::fetch_proposicao(prop_id) %>%
+
+  regime_df <- rcongresso::fetch_proposicao_camara(prop_id) %>%
     fuzzyjoin::regex_left_join(regimes,
                                by = c(statusProposicao.regime = "regex"))
   return(regime_df[1,]$regime_tramitacao)
@@ -302,53 +302,53 @@ extract_casas_in_camara <- function(tramitacao_df, casa_name) {
 #'  extract_fase_global_in_camara(fetch_tramitacao(2121442, 'camara', T) %>% extract_events_in_camara() %>% extract_locais_in_camara(), fetch_proposicao(2121442, 'camara', '', '', normalized=T))
 extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
   fase_global_constants <- camara_env$fase_global
-  
+
   casa_origem <-
     dplyr::if_else(!is.null(proposicao_df$casa_origem) &
       !is.na(proposicao_df$casa_origem) & proposicao_df$casa_origem == "Senado Federal",
       fase_global_constants$revisao_camara,
       fase_global_constants$origem_camara
     )
-  
+
   virada_de_casa <-
     data_tramitacao %>%
     dplyr::filter(evento == 'virada_de_casa') %>%
     dplyr::arrange(data_hora) %>%
     dplyr::select(data_hora)
-  
+
   casa_atual <-
     dplyr::if_else(
       casa_origem == " - Origem (Câmara)",
       fase_global_constants$revisao_senado,
       fase_global_constants$origem_camara
     )
-  
+
   casa_revisao2 <-
     dplyr::if_else(
       casa_origem == " - Origem (Câmara)",
       fase_global_constants$revisao2_camara,
       fase_global_constants$revisao2_senado
     )
-  
+
   if (nrow(virada_de_casa) == 0) {
     data_tramitacao <-
       data_tramitacao %>%
       dplyr::mutate(global = dplyr::if_else(length(casa_origem) ==0, '-', casa_origem))
-    
+
   } else {
-    
-    data_tramitacao <- 
+
+    data_tramitacao <-
       data_tramitacao %>%
       dplyr::mutate(global = dplyr::if_else(
         data_hora < virada_de_casa[1, ][[1]],
         casa_origem,
         casa_atual
       ))
-    
+
   }
-  
+
   if(nrow(virada_de_casa) > 1) {
-    data_tramitacao <- 
+    data_tramitacao <-
       data_tramitacao %>%
       dplyr::mutate(global = dplyr::if_else(
         data_hora >= virada_de_casa[nrow(virada_de_casa), ][[1]],
@@ -356,12 +356,12 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
         global
       ))
   }
-  
+
   data_tramitacao <-
     data_tramitacao %>%
-    dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao", "- Sanção/Veto", global)) %>% 
+    dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao", "- Sanção/Veto", global)) %>%
     tidyr::fill(global, .direction = "down")
-  
+
   return(data_tramitacao)
 }
 
@@ -372,22 +372,22 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
 #' @examples
 #'  extract_num_requerimento_audiencia_publica_in_camara(fetch_tramitacao(2121442, 'camara', T))
 extract_num_requerimento_audiencia_publica_in_camara <- function(tramitacao_df) {
-  tramitacao_df <- 
+  tramitacao_df <-
     tramitacao_df %>%
-    dplyr::filter(evento == 'aprovacao_audiencia_publica') %>% 
+    dplyr::filter(evento == 'aprovacao_audiencia_publica') %>%
     dplyr::mutate (
       extract_requerimento_num = dplyr::if_else(
         stringr::str_extract(
-          texto_tramitacao, camara_env$extract_requerimento_num$regex) != 'character(0)', 
-        stringr::str_extract(texto_tramitacao, camara_env$extract_requerimento_num$regex), 
+          texto_tramitacao, camara_env$extract_requerimento_num$regex) != 'character(0)',
+        stringr::str_extract(texto_tramitacao, camara_env$extract_requerimento_num$regex),
         '0'),
-      num_requerimento = dplyr::if_else(stringr::str_detect(extract_requerimento_num, stringr::regex('/[0-9]{4}')), 
-                                        sub('/[0-9]{2}', '/', extract_requerimento_num) %>% 
-                                          lapply(function(list)(gsub(" ","",list))), 
-                                        extract_requerimento_num %>% 
+      num_requerimento = dplyr::if_else(stringr::str_detect(extract_requerimento_num, stringr::regex('/[0-9]{4}')),
+                                        sub('/[0-9]{2}', '/', extract_requerimento_num) %>%
+                                          lapply(function(list)(gsub(" ","",list))),
+                                        extract_requerimento_num %>%
                                           lapply(function(list)(gsub(" ","",list))))
-      
-    ) %>% 
+
+    ) %>%
     dplyr::select(-extract_requerimento_num)
   tramitacao_df
 }
@@ -403,41 +403,41 @@ extract_num_requerimento_audiencia_publica_in_camara <- function(tramitacao_df) 
 get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases_tramitacao_df, next_audiencias_publicas_by_orgao){
   prop_id <- fases_tramitacao_df %>% dplyr::select(prop_id) %>% utils::tail(1)
   casa <- fases_tramitacao_df %>% dplyr::select(casa) %>% utils::tail(1)
-  
-  num_requerimentos_audiencias_publicas <- 
+
+  num_requerimentos_audiencias_publicas <-
     extract_num_requerimento_audiencia_publica_in_camara(fases_tramitacao_df)
-  
-  next_audiencias_publicas_by_orgao <- 
-    next_audiencias_publicas_by_orgao %>% 
+
+  next_audiencias_publicas_by_orgao <-
+    next_audiencias_publicas_by_orgao %>%
     dplyr::filter(num_requerimento != '0')
-  
+
   if(nrow(next_audiencias_publicas_by_orgao) > 0 & nrow(num_requerimentos_audiencias_publicas) > 0){
-    
+
     next_audiencias_publicas_by_orgao <-
-      next_audiencias_publicas_by_orgao %>% 
-      tidyr::unnest() %>% 
+      next_audiencias_publicas_by_orgao %>%
+      tidyr::unnest() %>%
       dplyr::distinct()
-    
+
     next_audiencias_publicas_pl <-
-      next_audiencias_publicas_by_orgao %>% 
-      merge(num_requerimentos_audiencias_publicas %>% 
+      next_audiencias_publicas_by_orgao %>%
+      merge(num_requerimentos_audiencias_publicas %>%
               dplyr::select(prop_id, casa, num_requerimento), by = "num_requerimento")
-    
+
     if(nrow(next_audiencias_publicas_pl) > 0){
       next_audiencias_publicas_pl$prop_id <- prop_id$prop_id
       next_audiencias_publicas_pl$casa <- casa$casa
-      
+
       next_audiencias_publicas_pl <-
-        next_audiencias_publicas_pl %>% 
-        dplyr::select(-num_requerimento, comissao, cod_reuniao, data, hora, local, 
-                      estado, tipo, titulo_reuniao, objeto, prop_id, casa) %>% 
-        dplyr::group_by(data) %>% 
+        next_audiencias_publicas_pl %>%
+        dplyr::select(-num_requerimento, comissao, cod_reuniao, data, hora, local,
+                      estado, tipo, titulo_reuniao, objeto, prop_id, casa) %>%
+        dplyr::group_by(data) %>%
         dplyr::distinct()
-      
+
       return(next_audiencias_publicas_pl)
     }
   }
-  return(tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local, 
+  return(tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local,
                             ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto,
                             ~ prop_id, ~ casa))
 }
@@ -447,7 +447,7 @@ get_next_audiencias_publicas_in_camara <- function(initial_date, end_date, fases
 #' @param df dataframe da agenda das audiências públicas
 #' @return Dataframe com as próximas audiências públicas com os requerimentos desencadeados
 remove_unnested_list <- function(df){
-  df %>% 
-    tidyr::unnest() %>% 
+  df %>%
+    tidyr::unnest() %>%
     dplyr::distinct()
 }

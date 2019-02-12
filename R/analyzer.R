@@ -266,7 +266,7 @@ fix_nomes_locais <- function(pautas_df) {
 #' @export
 #' @importFrom stats filter
 extract_status_tramitacao <- function(proposicao_id, casa) {
-  tram_df <- fetch_tramitacao(proposicao_id, casa, TRUE)
+  tram_df <- fetch_tramitacao(proposicao_id, casa)
   regime <- extract_regime_tramitacao(tram_df)
   apreciacao <- extract_forma_apreciacao(tram_df)
   relator_nome <- get_last_relator_name(proposicao_id, casa)
