@@ -211,5 +211,9 @@
     "regex_extract": {
       "senado": "senador[^,]+ | sen[^,]+"
     }
+  },
+  
+  "versoes_texto_proposicao":{
+    "tipos_texto_regex" : "(^projeto de lei .*)|(proposta de emenda .*)|(medida provisória .*)|(avulso de redação final)|(avulso inicial da matéria)|(^parecer nº.*)|(^emenda(s|).*)"
   }
 }

@@ -397,3 +397,4 @@ get_autores_voto_separado <- function(df) {
       evento == "voto_em_separado" ~
         stringr::str_extract(texto_tramitacao, stringr::regex(camara_env$autor_voto_separado$regex, ignore_case=TRUE))))
 }
+

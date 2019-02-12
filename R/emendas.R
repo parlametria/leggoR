@@ -22,7 +22,8 @@ fetch_emendas <- function(id, casa) {
     emendas %>%
     dplyr::mutate(prop_id = id, codigo_emenda = as.integer(codigo_emenda)) %>%
     dplyr::select(
-      prop_id, codigo_emenda, data_apresentacao, numero, local, autor, casa, tipo_documento, inteiro_teor)
+      prop_id, codigo_emenda, data_apresentacao, numero, local, autor, casa, tipo_documento, inteiro_teor) 
+  return(emendas)
 }
 
 #' @title Retorna as emendas de uma proposição na Camara
