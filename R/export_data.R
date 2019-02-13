@@ -52,7 +52,10 @@ adiciona_status <- function(tramitacao_df) {
     dplyr::mutate(status = dplyr::case_when(evento == "arquivamento" ~ "Arquivada",
                                                         evento == "desarquivamento" ~ "Ativa",
                                                         dplyr::lead(evento, order_by = data) == "transformada_lei" ~ "Lei")) %>%
-    tidyr::fill(status)
+    tidyr::fill(status) %>%
+    dplyr::mutate(status = dplyr::case_when(is.na(status) ~ "Ativa"),
+                  T ~ status)
+}
 
 process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows) {
   cat(paste(
