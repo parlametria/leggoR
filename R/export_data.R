@@ -49,10 +49,10 @@ adiciona_locais_faltantes_progresso <- function(progresso_df) {
 adiciona_status <- function(tramitacao_df) {
   tramitacao_df %>%
     dplyr::group_by(id_ext, casa) %>%
-    dplyr::mutate(descricao_situacao = dplyr::case_when(dplyr::lead(evento, order_by = data) == "arquivamento" ~ "Arquivada",
-                                            dplyr::lead(evento, order_by = data) == "transformada_lei" ~ "Lei",
-                                            T ~ "Ativa"))
-}
+    dplyr::mutate(status = dplyr::case_when(evento == "arquivamento" ~ "Arquivada",
+                                                        evento == "desarquivamento" ~ "Ativa",
+                                                        dplyr::lead(evento, order_by = data) == "transformada_lei" ~ "Lei")) %>%
+    tidyr::fill(status)
 
 process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows) {
   cat(paste(
