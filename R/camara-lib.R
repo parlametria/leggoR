@@ -125,38 +125,12 @@ fetch_proposicao_with_apensamentos <- function(prop_id) {
                                                   ' '))
 }
 
-#' @title Recupera os últimos eventos (sessões/reuniões) de uma proposição na Câmara
-#' @description Retorna um dataframe contendo o timestamp, o local e a descrição do evento
-#' @param prop_id ID da proposição
-#' @return Dataframe contendo o timestamp, o local e a descrição do evento.
-#' @examples
-#' get_latest_events(2121442)
-#' @export
-get_latest_events <- function(prop_id) {
-  fetch_events(prop_id) %>%
-    dplyr::filter(timestamp <= lubridate::now())
-}
-
-#' @title Recupera os próximos eventos (sessões/reuniões) de uma proposição na Câmara
-#' @description Retorna um dataframe contendo o timestamp, o local e a descrição do evento
-#' @param prop_id ID da proposição
-#' @return Dataframe contendo o timestamp, o local e a descrição do evento.
-#' @examples
-#' get_next_events(2121442)
-#' @export
-get_next_events <- function(prop_id) {
-  fetch_events(prop_id) %>%
-    dplyr::filter(timestamp > lubridate::now())
-}
-
-
-
 #' @title Recupera a proposição com as colunas renomeadas
 #' @description Recupera o Dataframe contendo os detalhes da proposição com as colunas renomeadas
 #' @param id ID da proposição
 #' @return Dataframe da proposição
 #' @examples
-#'  fetch_proposicao_renamed(345311)
+#' fetch_proposicao_renamed(345311)
 #' @export
 #Fetch a bill with renamed columns
 fetch_proposicao_renamed <- function(id) {

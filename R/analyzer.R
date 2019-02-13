@@ -388,8 +388,8 @@ get_next_audiencias_publicas <- function(initial_date, end_date, fases_tramitaca
 #' @param df Dataframe da tramitação já com os eventos reconhecidos
 #' @return Dataframe
 #' @examples
-#  get_autores_voto_separado(
-#  agoradigital::process_proposicao(agoradigital::fetch_proposicao(46249, 'camara'), agoradigital::fetch_tramitacao(46249, 'camara', TRUE), 'camara'))
+#'  get_autores_voto_separado(
+#'  agoradigital::process_proposicao(agoradigital::fetch_proposicao(46249, 'camara'), agoradigital::fetch_tramitacao(46249, 'camara', TRUE), 'camara'))
 #' @export
 get_autores_voto_separado <- function(df) {
   df %>%
