@@ -439,35 +439,6 @@ generate_dataframe <- function (column) {
     rename_df_columns()
 }
 
-
-#' @title Retorna as emendas de uma proposição no Congresso
-#' @description Retorna dataframe com os dados das emendas de uma proposição no Congresso.
-#' @param bill_id ID de uma proposição do Congresso
-#' @return Dataframe com as informações sobre as emendas de uma proposição no Congresso.
-#' @examples
-#' fetch_emendas(91341,'senado')
-#' @export
-fetch_emendas <- function(id, casa) {
-  casa <- tolower(casa)
-  if (casa == 'camara') {
-    prop <- rcongresso::fetch_proposicao_camara(id = id)
-    emendas <- rcongresso::fetch_emendas(casa='camara', sigla=prop$tipo_materia, numero=prop$numero, ano=prop$ano)
-  } else if (casa == 'senado') {
-    emendas <- fetch_emendas_senado(id)
-  } else {
-    stop('Parâmetro "casa" não identificado.')
-  }
-  
-  emendas
-}
-
-#' @title Função auxiliar para o fetch_emendas_camara
-#' @description Retorna dataframe com os dados das emendas de uma proposição na Camara
-fetch_emendas_camara_auxiliar <- function(id) {
-  fetch_proposicao(id, "camara", normalized = T, emendas = T) %>%
-    dplyr::select(c(prop_id, data_apresentacao, numero, status_proposicao_sigla_orgao, autor_nome, casa, tipo_materia, ementa))
-}
-
 #' @title Baixa os dados da tramitação de um Projeto de Lei
 #' @description Retorna dataframe com os dados da tramitação de uma proposição no Congresso
 #' @param id ID de uma proposição na sua respectiva casa
@@ -554,7 +525,7 @@ import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL)
   
   prop_df <- fetch_proposicao(prop_id,casa,apelido, tema, TRUE)
   tram_df <- fetch_tramitacao(prop_id,casa, TRUE)
-  emendas_df <- fetch_emendas(prop_id,casa)
+  emendas_df <- rcongresso::fetch_emendas(prop_id,casa)
   
   if (!is.null(out_folderpath)) {
     if (!is.null(prop_df)) readr::write_csv(prop_df, build_data_filepath(out_folderpath,'proposicao',casa,prop_id))
