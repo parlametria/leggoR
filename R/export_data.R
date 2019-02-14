@@ -16,7 +16,7 @@ process_etapa <- function(id, casa, agenda) {
   extended_prop <-
     merge(prop, status, by = "prop_id") %>%
     dplyr::mutate(temperatura = temperatura_value) 
-  emendas <- agoradigital::fetch_emendas(id, casa)
+  emendas <- rcongresso::fetch_emendas(id, casa)
   
   list(
     proposicao = extended_prop,
