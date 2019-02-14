@@ -2,6 +2,8 @@ source(here::here("R/senado_analyzer.R"))
 source(here::here("R/camara_analyzer.R"))
 source(here::here("R/congresso-lib.R"))
 source(here::here("R/relatorias.R"))
+source(here::here("R/tramitacoes.R"))
+source(here::here("R/proposicoes.R"))
 
 congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
 congress_constants <- congresso_env$constants
@@ -27,7 +29,7 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
         proposicao_df = proposicao_df, tramitacao_df = tramitacao_df)
     prop_id <- proc_tram_data[1, "prop_id"]
   }
-  
+
   if (!is.null(proc_tram_data) & !is.null(out_folderpath)) {
     readr::write_csv(
       proc_tram_data,
@@ -48,15 +50,15 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
 #' @export
 get_temperatura <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate::today()) {
   working_days <- ((days_ago / 7) * 5)
-  
+
   start_date <- pivot_day - lubridate::days(days_ago)
-  
+
   qtd_eventos <-
     tramitacao_df %>%
     dplyr::filter(data_hora >= start_date) %>%
     dplyr::filter(!is.na(evento)) %>%
     nrow()
-  
+
   qtd_eventos / working_days
 }
 
@@ -84,11 +86,11 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
   #Remove tempo do timestamp da tramitação
   eventos_sem_horario <- eventos_df %>%
     dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
-  
+
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
   full_dates <- data.frame(data = seq(min(eventos_sem_horario$data), max_date, by = "1 day"))
-  pesos_eventos <- 
+  pesos_eventos <-
     get_pesos_eventos() %>%
     dplyr::select(-tipo, -label)
   pesos_locais <-
@@ -103,43 +105,43 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     dplyr::mutate(peso_evento = dplyr::if_else(is.na(peso),0,as.numeric(peso))) %>%
     dplyr::mutate(peso_local = dplyr::if_else(is.na(peso_local),0,as.numeric(peso_local))) %>%
     dplyr::mutate(peso_final = peso_base + peso_evento + peso_local)
-  
-  
+
+
   temperatura_periodo <- data.frame()
-  
+
   get_arquivamento <- function(df, colunas) {
-    df %>% 
+    df %>%
       dplyr::filter(evento == "arquivamento") %>%
       dplyr::select(colunas) %>%
       dplyr::mutate(dummy = "Dummy")
   }
-  
+
   #Agrupa eventos por período
   if (granularidade == "d") {
     temperatura_periodo <- eventos_extendidos %>%
       dplyr::group_by(data)
-    data_arquivamento <- 
-      temperatura_periodo %>% 
+    data_arquivamento <-
+      temperatura_periodo %>%
       get_arquivamento(c("data"))
   } else if (granularidade == "s") {
     temperatura_periodo <- eventos_extendidos %>%
       dplyr::mutate(semana = lubridate::week(data),
                     ano = lubridate::year(data)) %>%
       dplyr::group_by(ano, semana)
-    data_arquivamento <- 
-      temperatura_periodo %>% 
+    data_arquivamento <-
+      temperatura_periodo %>%
       get_arquivamento(c("semana", "ano"))
   } else if (granularidade == "m") {
     temperatura_periodo <- eventos_extendidos %>%
       dplyr::mutate(mes = lubridate::month(data),
                     ano = lubridate::year(data)) %>%
       dplyr::group_by(ano, mes)
-    data_arquivamento <- 
-      temperatura_periodo %>% 
+    data_arquivamento <-
+      temperatura_periodo %>%
       get_arquivamento(c("mes", "ano"))
   }
-  
-  temperatura_periodo <- 
+
+  temperatura_periodo <-
     temperatura_periodo %>%
     dplyr::summarize(periodo = dplyr::first(data),
                      temperatura_periodo = sum(peso_final, na.rm = T)) %>%
@@ -149,7 +151,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     dplyr::mutate(temperatura_periodo = dplyr::if_else(!is.na(dummy), 0, temperatura_periodo)) %>%
     dplyr::select(periodo, temperatura_periodo) %>%
     dplyr::arrange(periodo)
-  
+
   #Computa soma deslizante com decaimento exponencial
   tamanho_janela <- nrow(temperatura_periodo)
   weights <- (1 - decaimento) ^ ((tamanho_janela - 1):0)
@@ -158,7 +160,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     dplyr::select(periodo,
                   temperatura_periodo,
                   temperatura_recente)
-  
+
   return(historico_temperatura)
 }
 
@@ -172,15 +174,16 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 extract_regime_tramitacao <- function(tram_df) {
   casa <- tram_df[1, "casa"]
   regime <- NULL
-  
+
   if (casa == congress_constants$camara_label) {
     regime <- extract_regime_tramitacao_camara(tram_df)
   } else if (casa == congress_constants$senado_label) {
     regime <- extract_regime_tramitacao_senado(tram_df)
   }
-  
+
   regime
 }
+
 
 #' @title Extrai a forma de apreciação de um PL
 #' @description Obtém a forma de apreciação de um PL
@@ -194,13 +197,13 @@ extract_forma_apreciacao <- function(tram_df) {
   casa <- tram_df[1, "casa"]
   prop_id <- tram_df[1, "prop_id"]
   apreciacao <- NULL
-  
+
   if (casa == congress_constants$camara_label) {
     apreciacao <- extract_forma_apreciacao_camara(prop_id)
   } else if (casa == congress_constants$senado_label) {
     apreciacao <- extract_forma_apreciacao_senado(prop_id)
   }
-  
+
   apreciacao
 }
 
@@ -222,7 +225,7 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
     dplyr::mutate(semana = lubridate::week(data),
                   ano = lubridate::year(data),
                   local = ifelse(is.na(local), "Local não informado", local)) %>%
-    dplyr::arrange(unlist(sigla), semana, desc(em_pauta)) %>% 
+    dplyr::arrange(unlist(sigla), semana, desc(em_pauta)) %>%
     unique() %>%
     dplyr::group_by(data, sigla) %>%
     dplyr::arrange(data) %>%
@@ -230,7 +233,7 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
     dplyr::ungroup() %>%
     fix_nomes_locais() %>%
     dplyr::select(-em_pauta)
-  
+
   readr::write_csv(pautas, paste0(export_path, "/pautas.csv"))
 }
 
@@ -250,7 +253,7 @@ fix_nomes_locais <- function(pautas_df) {
     dplyr::mutate(local = local_clean) %>%
     dplyr::ungroup() %>%
     dplyr::select(-local_clean)
-  
+
   return(pautas_locais_clean)
 }
 
@@ -267,7 +270,7 @@ extract_status_tramitacao <- function(proposicao_id, casa) {
   regime <- extract_regime_tramitacao(tram_df)
   apreciacao <- extract_forma_apreciacao(tram_df)
   relator_nome <- get_last_relator_name(proposicao_id, casa)
-  
+
   status_tram <-
     data.frame(
       prop_id = tram_df[1, ]$prop_id,
@@ -300,7 +303,7 @@ get_progresso <- function(proposicao_df, tramitacao_df) {
     dplyr::mutate(local_casa = dplyr::if_else(!is.na(data_inicio) & fase_global == congresso_env$fases_global$fase_global[[7]], 'presidencia', casa)) %>%
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
     tidyr::fill(prop_id, casa) %>%
-    tidyr::fill(prop_id, casa, .direction = "up") 
+    tidyr::fill(prop_id, casa, .direction = "up")
   return(progresso_data)
 }
 
@@ -314,16 +317,16 @@ get_pesos_eventos <- function() {
   eventos_camara <- camara_env$eventos
   eventos_senado <- senado_env$eventos
   tipos_eventos <- congresso_env$tipos_eventos
-  
+
   eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
     dplyr::select(evento = constant, tipo)
-  
+
   pesos_eventos <- dplyr::bind_rows(eventos_camara, eventos_senado, eventos_extra_senado) %>%
     dplyr::group_by(evento) %>%
-    dplyr::summarise(tipo = dplyr::first(tipo)) %>% 
+    dplyr::summarise(tipo = dplyr::first(tipo)) %>%
     dplyr::left_join(tipos_eventos, by="tipo") %>%
     dplyr::arrange()
-  
+
   return(pesos_eventos)
 }
 
@@ -337,12 +340,61 @@ get_pesos_locais <- function() {
   locais_camara <- camara_env$locais
   locais_senado <- senado_env$locais
   tipos_locais <- congresso_env$tipos_locais
-  
+
   pesos_locais <- dplyr::bind_rows(locais_camara, locais_senado) %>%
     dplyr::group_by(local) %>%
-    dplyr::summarise(tipo = dplyr::first(tipo)) %>% 
+    dplyr::summarise(tipo = dplyr::first(tipo)) %>%
     dplyr::left_join(tipos_locais, by="tipo") %>%
     dplyr::arrange()
-  
+
   return(pesos_locais)
 }
+
+#' @title Extrai as próximas audiências públicas de uma PL
+#' @description Extrai as próximas audiências públicas de uma PL a
+#' @param initial_date data inicial no formato dd/mm/yyyy
+#' @param end_date data final no formato dd/mm/yyyy
+#' @param fases_tramitacao_df dataframe da PL preprocessada
+#' @return Dataframe com as próximas audiências públicas de uma PL
+#' @examples
+#' get_next_audiencias_publicas('01/01/2017', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Agenda Nacional'), fetch_tramitacao(2121442, 'camara', T), 'camara'), casa='camara')
+#' @export
+get_next_audiencias_publicas <- function(initial_date, end_date, fases_tramitacao_df, casa) {
+ next_audiencias_data <- NULL
+  if (tolower(casa) == congress_constants$camara_label) {
+
+    next_audiencias_publicas_by_orgao <-
+      fetch_audiencias_publicas_by_orgao_camara(
+      initial_date,
+      end_date,
+      fases_tramitacao_df)
+
+    next_audiencias_data <-
+      get_next_audiencias_publicas_in_camara(
+        initial_date, end_date,
+        fases_tramitacao_df,
+        next_audiencias_publicas_by_orgao)
+
+  } else if (tolower(casa) == congress_constants$senado_label) {
+
+    # TODO: Adicionar get_next_audiencias_publicas_in_senado()
+  }
+
+  return(next_audiencias_data)
+}
+
+#' @title Extrai autores do voto em separado
+#' @description Retorna um dataframe com a coluna autor_voto_separado
+#' @param df Dataframe da tramitação já com os eventos reconhecidos
+#' @return Dataframe
+#' @examples
+#'  get_autores_voto_separado(
+#'  agoradigital::process_proposicao(agoradigital::fetch_proposicao(46249, 'camara'), agoradigital::fetch_tramitacao(46249, 'camara', TRUE), 'camara'))
+#' @export
+get_autores_voto_separado <- function(df) {
+  df %>%
+    dplyr::mutate(autor_voto_separado = dplyr::case_when(
+      evento == "voto_em_separado" ~
+        stringr::str_extract(texto_tramitacao, stringr::regex(camara_env$autor_voto_separado$regex, ignore_case=TRUE))))
+}
+

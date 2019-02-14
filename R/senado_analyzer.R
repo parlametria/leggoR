@@ -195,6 +195,7 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_p
 #' @return Dataframe com a coluna "evento" adicionada.
 #' @examples
 #' extract_evento_Senado(fetch_tramitacao(91341, 'senado', T))
+#' @export
 extract_evento_Senado <- function(tramitacao_df) {
   eventos_senado <- dplyr::select(senado_env$eventos, -tipo)
   eventos_extra_senado <- senado_env$evento
@@ -599,30 +600,30 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
     extract_evento_Senado(proc_tram_df) %>%
     dplyr::mutate(data_audiencia = lubridate::dmy(data_audiencia))
   
-  virada_de_casa <- 
-    proc_tram_df %>% 
+  virada_de_casa <-
+    proc_tram_df %>%
     dplyr::filter(evento == 'virada_de_casa')
-  
-  index_of_sancao <- 
-    get_linha_remetida_a_sancao(proc_tram_df)
-  
+
+  index_of_final <-
+    get_linha_finalizacao_tramitacao(proc_tram_df)
+
   if (nrow(virada_de_casa) == 1) {
-    
+
     index_of_camara <-
       get_linha_virada_de_casa(proc_tram_df)
-    
-    if(index_of_camara > index_of_sancao) {
-      proc_tram_df <- 
-        proc_tram_df[1:index_of_sancao,]
-      
+
+    if(index_of_camara > index_of_final) {
+      proc_tram_df <-
+        proc_tram_df[1:index_of_final,]
+
     } else {
       proc_tram_df <-
         proc_tram_df[1:index_of_camara,]
     }
-    
+
   } else{
-    proc_tram_df <- 
-      proc_tram_df[1:index_of_sancao,]
+    proc_tram_df <-
+      proc_tram_df[1:index_of_final,]
   }
     
   proc_tram_df <-

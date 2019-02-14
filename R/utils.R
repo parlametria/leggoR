@@ -85,3 +85,57 @@ filtra_dias_nao_uteis_congresso <- function(tramitacao_df) {
     dplyr::filter(!((lubridate::month(data) == 7) & (lubridate::day(data) > 17))) %>%
     dplyr::filter(!((lubridate::month(data) == 12) & (lubridate::day(data) > 22)))
 }
+
+fetch_json_try <- function(url) {
+  count <- 0
+  repeat {
+    json_data <- NULL
+    tryCatch({
+      json_data <- jsonlite::fromJSON(url, flatten = T)
+    },
+    error = function(msg) {
+    })
+    if (!is.null(json_data) & is.null(json_data$ERROR)) {
+      break
+    } else {
+      print("Erro ao baixar dados, tentando outra vez...")
+      count <- count + 1
+      print(paste("Tentativas: ", count))
+      Sys.sleep(2)
+    }
+  }
+  return(json_data)
+}
+
+#' @title Renomeia as colunas do dataframe passado para o formato underscore
+#' @description Renomeia as colunas do dataframe usando o padrão
+#' de underscore e letras minúsculas
+#' @param df Dataframe do Senado
+#' @return Dataframe com as colunas renomeadas
+#' @export
+rename_table_to_underscore <- function(df) {
+  new_names = names(df) %>%
+    to_underscore()
+  
+  names(df) <- new_names
+  
+  df
+}
+
+#' @title Retorna um dataframe a partir de uma coluna com listas encadeadas
+#' @description Retorna um dataframe a partir de uma coluna com listas encadeadas.
+#' @param column Coluna
+#' @return Dataframe com as informações provenientes de uma coluna com listas encadeadas.
+#' @examples
+#' generate_dataframe(column)
+#' @export
+generate_dataframe <- function (column) {
+  as.data.frame(column) %>%
+    tidyr::unnest() %>%
+    rename_df_columns()
+}
+
+build_data_filepath <- function(folder_path,data_prefix,house,bill_id) {
+  filename <- paste0(paste(bill_id,data_prefix,house, sep='-'),'.csv')
+  filepath <- paste(folder_path, house, filename, sep='/')
+}

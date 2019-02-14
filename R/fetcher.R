@@ -1,27 +1,7 @@
 source(here::here("R/utils.R"))
+source(here::here("R/agendas.R"))
 senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 senado_constants <- senado_env$constants
-
-fetch_json_try <- function(url) {
-  count <- 0
-  repeat {
-    json_data <- NULL
-    tryCatch({
-      json_data <- jsonlite::fromJSON(url, flatten = T)
-    },
-    error = function(msg) {
-    })
-    if (!is.null(json_data) & is.null(json_data$ERROR)) {
-      break
-    } else {
-      print("Erro ao baixar dados, tentando outra vez...")
-      count <- count + 1
-      print(paste("Tentativas: ", count))
-      Sys.sleep(2)
-    }
-  }
-  return(json_data)
-}
 
 #' @title Busca votações de uma proposição no Senado
 #' @description Retorna dataframe com os dados das votações de uma proposição no Senado.
@@ -34,7 +14,7 @@ fetch_json_try <- function(url) {
 fetch_votacoes <- function(proposicao_id) {
   url_base_votacoes <-
     paste0(senado_env$endpoints_api$url_base, "votacoes/")
-  
+
   url <- paste0(url_base_votacoes, proposicao_id)
   json_votacoes <- fetch_json_try(url)
   votacoes_data <-
@@ -51,142 +31,13 @@ fetch_votacoes <- function(proposicao_id) {
     magrittr::extract2("Votacoes") %>%
     purrr::map_df( ~ .) %>%
     tidyr::unnest()
-  
+
   votacoes_df <-
     votacoes_df %>%
     tibble::add_column(!!!votacoes_ids)
-  
+
   votacoes_df <- votacoes_df[,!sapply(votacoes_df, is.list)]
   rename_votacoes_df(votacoes_df)
-}
-
-#' @title Busca a movimentação da proposição
-#' @description Retorna dataframe com os dados da movimentação da proposição, incluindo tramitação, prazos, despachos e situação
-#' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
-#' @param proposicao_id ID de uma proposição do Senado
-#' @param normalized whether or not the output dataframe should be normalized (have the same format and column names for every house)
-#' @return Dataframe com as informações sobre a movimentação de uma proposição no Senado
-#' @examples
-#' fetch_tramitacao_senado(91341)
-fetch_tramitacao_senado <- function(proposicao_id, normalized=FALSE) {
-  url <-
-    paste0(senado_env$endpoints_api$url_base,
-           "movimentacoes/",
-           proposicao_id)
-  
-  json_tramitacao <- fetch_json_try(url)
-  
-  tramitacao_data <-
-    json_tramitacao %>%
-    magrittr::extract2("MovimentacaoMateria") %>%
-    magrittr::extract2("Materia")
-  tramitacao_ids <-
-    tramitacao_data %>%
-    magrittr::extract2("IdentificacaoMateria") %>%
-    tibble::as.tibble()
-  tramitacao_actual_situation <-
-    tramitacao_data %>%
-    magrittr::extract2("SituacaoAtual") %>%
-    magrittr::extract2("Autuacoes") %>%
-    magrittr::extract2("Autuacao") %>%
-    magrittr::extract2("Situacao") %>%
-    tibble::as.tibble()
-  proposicao_tramitacoes_df <-
-    tramitacao_data %>%
-    magrittr::extract2("Tramitacoes") %>%
-    magrittr::extract2("Tramitacao") %>%
-    tibble::as.tibble() %>%
-    tibble::add_column(!!!tramitacao_ids)
-  
-  proposicao_tramitacoes_df <-
-    proposicao_tramitacoes_df[, !sapply(proposicao_tramitacoes_df, is.list)]
-  
-  proposicao_tramitacoes_df <-
-    rename_tramitacao_df(proposicao_tramitacoes_df) %>%
-    dplyr::rename(data_hora = data_tramitacao, sequencia = numero_ordem_tramitacao)
-  
-  if (normalized) {
-    proposicao_tramitacoes_df <- proposicao_tramitacoes_df %>%
-      dplyr::mutate(data_hora = lubridate::ymd_hm(paste(data_hora, "00:00")),
-                    prop_id = as.integer(codigo_materia),
-                    sequencia = as.integer(sequencia),
-                    id_situacao = as.integer(situacao_codigo_situacao),
-                    casa = "senado") %>%
-      dplyr::select(prop_id,
-                    casa,
-                    data_hora,
-                    sequencia,
-                    texto_tramitacao,
-                    sigla_local = origem_tramitacao_local_sigla_local,
-                    id_situacao,
-                    descricao_situacao = situacao_descricao_situacao)
-  }
-  
-  proposicao_tramitacoes_df
-}
-
-#' @title Deferimento de requerimentos.
-#' @description Verifica deferimento ou não para uma lista de IDs de requerimentos.
-#' @param proposicao_id ID de um ou vários requerimentos
-#' @return Dataframe com IDs dos requerimentos e informação sobre deferimento.
-#' @examples
-#' fetch_deferimento(c("102343", "109173", "115853"))
-#' @importFrom utils tail
-#' @export
-fetch_deferimento <- function(proposicao_id) {
-  deferimento_regexes <- senado_env$deferimento
-  regexes <-
-    tibble::frame_data(
-      ~ deferimento,
-      ~ regex,
-      "indeferido",
-      deferimento_regexes$regex$indeferido,
-      "deferido",
-      deferimento_regexes$regex$deferido
-    )
-  
-  fetch_one_deferimento <- function(proposicao_id) {
-    json <-
-      paste0(senado_env$endpoints_api$url_base,
-             "movimentacoes/",
-             proposicao_id) %>%
-      jsonlite::fromJSON()
-    
-    resultados <-
-      json$MovimentacaoMateria$Materia$OrdensDoDia$OrdemDoDia$DescricaoResultado
-    # handle NULL
-    if (is.null(resultados))
-      resultados <- c('')
-    
-    resultados %>%
-      tibble::as.tibble() %>%
-      dplyr::mutate(proposicao_id = proposicao_id) %>%
-      fuzzyjoin::regex_left_join(regexes, by = c(value = "regex")) %>%
-      tidyr::fill(deferimento) %>%
-      tail(., n = 1) %>%
-      dplyr::select(proposicao_id, deferimento)
-  }
-  
-  proposicao_id %>%
-    unlist %>%
-    unique %>%
-    lapply(fetch_one_deferimento) %>%
-    plyr::rbind.fill()
-}
-
-#' @title Renomeia as colunas do dataframe passado para o formato underscore
-#' @description Renomeia as colunas do dataframe usando o padrão
-#' de underscore e letras minúsculas
-#' @param df Dataframe do Senado
-#' @return Dataframe com as colunas renomeadas
-#' @export
-rename_table_to_underscore <- function(df) {
-  new_names = names(df) %>%
-    to_underscore()
-  
-  names(df) <- new_names
-  
-  df
 }
 
 #' @title Renomeia as colunas do dataframe de votação no Senado
@@ -202,199 +53,10 @@ rename_votacoes_df <- function(df) {
       "sessao_plenaria_|tramitacao_identificacao_tramitacao_|identificacao_parlamentar_",
       ""
     )
-  
+
   names(df) <- new_names
-  
+
   df
-}
-
-#' @title Renomeia as colunas do dataframe de movimentação no Senado
-#' @description Renomeia as colunas do dataframe de movimentação no Senado usando o padrão
-#' de underscore e letras minúsculas
-#' @param df Dataframe da votação no Senado
-#' @return Dataframe com as colunas renomeadas
-#' @export
-rename_tramitacao_df <- function(df) {
-  new_names = names(df) %>%
-    to_underscore() %>%
-    stringr::str_replace(
-      "identificacao_tramitacao_|
-      identificacao_tramitacao_origem_tramitacao_local_|
-      identificacao_tramitacao_destino_tramitacao_local_|
-      identificacao_tramitacao_situacao_",
-      ""
-    )
-  
-  names(df) <- new_names
-  
-  df
-}
-
-#' @title Renomeia as colunas do dataframe dos detalhes da proposição no Senado
-#' @description Renomeia as colunas do dataframe dos detalhes da proposição no Senado usando o padrão
-#' de underscore e letras minúsculas
-#' @param df Dataframe dos detalhes da proposição no Senado
-#' @return Dataframe com as colunas renomeadas
-#' @export
-rename_proposicao_df <- function(df) {
-  new_names = names(df) %>%
-    to_underscore() %>%
-    stringr::str_replace("identificacao_parlamentar_", "")
-  
-  names(df) <- new_names
-  
-  df
-}
-
-#' @title Retorna a composição da comissão da camara
-#' @description Retorna um dataframe contendo os membros da comissão
-#' @param sigla_comissao Sigla da comissão da Camara
-#' @return dataframe
-#' @examples 
-#' fetch_composicao_comissoes_camara('cmads')
-fetch_composicao_comissoes_camara <- function(sigla_comissao) {
-  orgaos_camara <- 
-    fetch_orgaos_camara() %>%
-    dplyr::mutate_all(as.character) %>%
-    dplyr::filter(trimws(sigla) == toupper(sigla_comissao)) %>%
-    dplyr::select(orgao_id) %>% head(1)
-
-  if (nrow(orgaos_camara) == 0) {
-    warning("Comissão não encontrada")
-    n <- tibble::frame_data(~ cargo, ~ id, ~ partido, ~ uf, ~ situacao, ~ nome, ~ sigla, ~ casa)
-    return(n)
-  }
-  
-  url <- paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterMembrosOrgao?IDOrgao=', orgaos_camara[[1]])
-  
-  eventos_list <-
-    XML::xmlParse(url) %>%
-    XML::xmlToList()
-  
-  df <-
-    eventos_list %>%
-    jsonlite::toJSON() %>%
-    jsonlite::fromJSON() %>%
-    magrittr::extract2('membros') %>%
-    tibble::as.tibble() %>%
-    t() %>%
-    as.data.frame() %>%
-    tibble::rownames_to_column("VALUE")
-  
-  if (nrow(df) == 0) {
-    return(tibble::frame_data(~ cargo, ~ id, ~ nome, ~ partido, ~ uf, ~ situacao))
-  }
-  
-  new_names <- c('cargo', 'id', 'nome', 'partido', 'uf', 'situacao')
-  
-  names(df) <- new_names
-  df %>% 
-    rowwise() %>% 
-    dplyr::mutate(partido = ifelse(length(partido) == 0, "", partido)) %>% 
-    dplyr::mutate(uf = ifelse(length(uf) == 0, "", uf)) %>% 
-    dplyr::mutate(id = ifelse(length(id) == 0, "", id)) %>% 
-    tidyr::unnest() %>%
-    dplyr::arrange(nome)
-}
-
-#' @title Retorna a composição da comissão 
-#' @description Retorna dataframe com os dados dos membros de uma comissão
-#' @param sigla sigla da comissão
-#' @return Dataframe com os dados dos membros de uma comissão
-#' @examples
-#' fetch_composicao_comissao("CCJ",'senado')
-#' @export
-fetch_composicao_comissao <- function(sigla, casa) {
-  print(paste0('Baixando composição da comissão ', sigla, ' em ', casa))
-  casa <- tolower(casa)
-  
-  if (casa == 'camara') {
-    fetch_composicao_comissoes_camara(sigla) %>%
-      dplyr::mutate(sigla = sigla) %>%
-      dplyr::mutate(casa = casa)
-  } else if (casa == 'senado') {
-    new_name <- c("cargo", "id", "partido", "uf", "situacao", "nome", "sigla", "casa")
-    comissao <- 
-      fetch_composicao_comissoes_senado(sigla) %>% 
-      dplyr::mutate(sigla = sigla,
-                    casa = casa)
-    names(comissao) <- new_name
-    return(comissao)
-  } else {
-    print('Parâmetro "casa" não identificado.')
-  }
-}
-
-#' @title Retorna a composição da comissão do senado
-#' @description Retorna dataframe com os dados dos membros de uma comissão do Senado
-#' @param sigla Sigla da comissão do Senado
-#' @return Dataframes
-fetch_composicao_comissoes_senado <- function(sigla) {
-  url <- paste0('http://legis.senado.leg.br/dadosabertos/comissao/', sigla)
-  tryCatch(
-    {
-      json_sessions <- jsonlite::fromJSON(url, flatten = T)
-      
-      colegiado <-
-        json_sessions %>%
-        magrittr::extract2('DetalheComissao') %>%
-        magrittr::extract2('COLEGIADO') %>%
-        magrittr::extract2('COLEGIADO_ROW') 
-      
-      colegiado[sapply(colegiado, is.null)] <- NULL
-      comissao <-
-        colegiado %>% 
-        tibble::as.tibble() 
-      
-      cargos <- 
-        comissao %>%
-        magrittr::extract2('CARGOS') %>%
-        magrittr::extract2('CARGOS_ROW') %>%
-        tibble::as.tibble()
-      
-      membros <- 
-        comissao %>%
-        magrittr::extract2('MEMBROS_BLOCO') %>%
-        magrittr::extract2('MEMBROS_BLOCO_ROW')
-      
-      if(!is.null(membros)) {
-        
-        if('PARTIDOS_BLOCO.PARTIDOS_BLOCO_ROW' %in% names(membros) |
-           "MEMBROS.MEMBROS_ROW" %in% names(membros) &
-           typeof(membros$MEMBROS.MEMBROS_ROW) == "list") {
-          membros <- 
-            membros %>%
-            dplyr::select(-PARTIDOS_BLOCO.PARTIDOS_BLOCO_ROW) %>% 
-            tidyr::unnest()
-        }
-        membros <-
-          membros %>%
-          tidyr::unnest()
-        
-        if (nrow(cargos) == 0 | !('HTTP' %in% names(cargos))) {
-          membros %>%
-            dplyr::mutate(CARGO = NA) %>%
-            dplyr::select(c("CARGO", "@num", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR"))
-        } else {
-          if ("MEMBROS.MEMBROS_ROW.HTTP" %in% names(membros)) {
-            membros <- 
-              membros %>%
-              dplyr::left_join(cargos, by = c ("MEMBROS.MEMBROS_ROW.HTTP" = "HTTP")) %>%
-              dplyr::select(c("CARGO", "@num.x", "MEMBROS.MEMBROS_ROW.PARTIDO", "MEMBROS.MEMBROS_ROW.UF", "MEMBROS.MEMBROS_ROW.TIPO_VAGA", "MEMBROS.MEMBROS_ROW.PARLAMENTAR"))
-          }else {
-            membros %>%
-              dplyr::left_join(cargos, by = 'HTTP') %>%
-              dplyr::select(c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x"))
-          } 
-        }
-      }else {
-        tibble::frame_data(~ CARGO, ~ num.x, ~ PARTIDO, ~ UF, ~ TIPO_VAGA, ~ PARLAMENTAR.x)
-      }
-    },
-    error=function(cond) {
-      return(tibble::frame_data(~ CARGO, ~ num.x, ~ PARTIDO, ~ UF, ~ TIPO_VAGA, ~ PARLAMENTAR.x))
-    }
-  )  
 }
 
 #' @title Retorna as sessões deliberativas de uma proposição no Senado
@@ -408,13 +70,13 @@ fetch_sessions <- function(bill_id) {
   url_base_sessions <-
     "http://legis.senado.leg.br/dadosabertos/materia/ordia/"
   url <- paste0(url_base_sessions, bill_id)
-  
+
   json_sessions <- jsonlite::fromJSON(url, flatten = T)
-  
+
   sessions_data <- json_sessions %>%
     magrittr::extract2("OrdiaMateria") %>%
     magrittr::extract2("Materia")
-  
+
   ordem_do_dia_df <- sessions_data %>%
     magrittr::extract2("OrdensDoDia") %>%
     magrittr::extract2("OrdemDoDia") %>%
@@ -422,10 +84,8 @@ fetch_sessions <- function(bill_id) {
     purrr::map_df( ~ .) %>%
     tidyr::unnest() %>%
     rename_table_to_underscore()
-  
-  ordem_do_dia_df
-}
 
+<<<<<<< HEAD
 #' @title Retorna um dataframe a partir de uma coluna com listas encadeadas
 #' @description Retorna um dataframe a partir de uma coluna com listas encadeadas.
 #' @param column Coluna
@@ -534,38 +194,13 @@ import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL)
   }
   
   return(list(proposicao = prop_df, tramitacao = tram_df))
+=======
+  ordem_do_dia_df
+>>>>>>> d62c63642fcd5b62b363cbab5848116d7a025fac
 }
 
 ###################################################################
-
-#' @title Recupera o estado e partido de um autor
-#' @description Retorna o estado e partido
-#' @param uri uri que contém dados sobre o autor
-#' @return Estado e partido
-#' @export
-extract_partido_estado_autor <- function(uri) {
-  if (!is.na(uri)) {
-    json_autor <- fetch_json_try(uri)
-    
-    autor <-
-      json_autor %>%
-      magrittr::extract2('dados')
-    
-    autor_uf <-
-      autor %>%
-      magrittr::extract2('ufNascimento')
-    
-    autor_partido <-
-      autor %>%
-      magrittr::extract2('ultimoStatus') %>%
-      magrittr::extract2('siglaPartido')
-    
-    paste0(autor_partido, '/', autor_uf)
-  } else {
-    ''
-  }
-}
-
+#
 #' @title Recupera as proposições apensadas
 #' @description Retorna os IDs das proposições apensadas a uma determinada proposição
 #' @param prop_id ID da proposição
@@ -581,405 +216,7 @@ fetch_apensadas <- function(prop_id) {
     tibble::tibble(apensadas = .)
 }
 
-#' @title Recupera os eventos (sessões/reuniões) de uma proposição na Câmara
-#' @description Retorna um dataframe contendo o timestamp, o local e a descrição do evento
-#' @param prop_id ID da proposição
-#' @return Dataframe contendo o timestamp, o local e a descrição do evento.
-#' @examples
-#' fetch_events(2121442)
-#' @export
-#' @importFrom utils timestamp
-fetch_events <- function(prop_id) {
-  events_base_url <-
-    'http://www.camara.gov.br/proposicoesWeb/sessoes_e_reunioes?idProposicao='
-  bill_events_url <- paste0(events_base_url, prop_id)
-  events <- bill_events_url %>%
-    xml2::read_html() %>%
-    rvest::html_nodes(xpath = '//*[@id="content"]/table') %>%
-    rvest::html_table()
-  events_df <- events[[1]]
-  names(events_df) <- c('timestamp', 'origem', 'descricao', 'links')
-  events_df %>%
-    dplyr::select(-links) %>%
-    dplyr::mutate(timestamp = lubridate::dmy_hm(timestamp))
-}
-
 ###################################################################
-
-#' @title Recupera os detalhes de uma proposição no Senado ou na Câmara
-#' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
-#' @param id ID de uma proposição
-#' @param casa casa de onde a proposição esta
-#' @param apelido Apelido da proposição
-#' @param tema Tema da proposição
-#' @param normalized Se os dados vão ser normalizados
-#' @param emendas Se vai ser usando na função fetch_emendas
-#' @return Dataframe com as informações detalhadas de uma proposição
-#' @examples
-#' fetch_proposicao(129808, 'senado', 'Cadastro Positivo', 'Agenda Nacional', T, F)
-#' @export
-fetch_proposicao <- function(id, casa, apelido="", tema="", normalized=TRUE, emendas=FALSE) {
-  casa <- tolower(casa)
-  if (casa == "camara") {
-    fetch_proposicao_camara(id, normalized, apelido, tema, emendas)
-  } else if (casa == "senado") {
-    fetch_proposicao_senado(id, normalized, apelido, tema)
-  } else {
-    print("Parâmetro 'casa' não identificado.")
-  }
-}
-
-#' @title Recupera os detalhes de proposições no Senado ou na Câmara
-#' @description Retorna dataframe com os dados detalhados das proposições, incluindo número, ementa, tipo e data de apresentação.
-#' @param pls_ids Dataframe com id e casa das proposições
-#' @return Dataframe com as informações detalhadas das proposições
-#' @examples
-#' all_pls <- readr::read_csv('data/tabela_geral_ids_casa.csv')
-#' fetch_proposicoes(all_pls)
-#' @export
-fetch_proposicoes <- function(pls_ids) {
-  purrr::map2_df(pls_ids$id, pls_ids$casa, ~ fetch_proposicao(.x, .y, TRUE))
-}
-
-#' @title Recupera os detalhes de uma proposição no Senado
-#' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
-#' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
-#' @param proposicao_id ID de uma proposição do Senado
-#' @param normalized whether or not the output dataframe should be normalized (have the same format and column names for every house)
-#' @param apelido apelido da proposição
-#' @param tema tema da proposição
-#' @return Dataframe com as informações detalhadas de uma proposição no Senado
-#' @examples
-#' fetch_proposicao_senado(129808, T, 'Cadastro Positivo', 'Agenda Nacional')
-fetch_proposicao_senado <- function(proposicao_id, normalized=TRUE, apelido, tema) {
-  url_base_proposicao <-
-    "http://legis.senado.leg.br/dadosabertos/materia/"
-  da_url <- paste0(url_base_proposicao, proposicao_id)
-  
-  page_url_senado <-
-    "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
-  
-  parse_autor = function(row) {
-    return(paste(
-      paste(
-        row[["NomeAutor"]],
-        row[["IdentificacaoParlamentar.SiglaPartidoParlamentar"]]),
-      row[["UfAutor"]], sep = "/"))
-  }
-  
-  json_proposicao <- fetch_json_try(da_url)
-  proposicao_data <- json_proposicao$DetalheMateria$Materia
-  proposicao_ids <-
-    proposicao_data$IdentificacaoMateria %>%
-    tibble::as.tibble()
-  proposicao_basic_data <-
-    proposicao_data$DadosBasicosMateria %>%
-    purrr::flatten() %>%
-    tibble::as.tibble()
-  proposicao_author <-
-    proposicao_data$Autoria[[1]] %>%
-    tibble::as.tibble() %>%
-    purrrlyr::by_row(parse_autor) %>%
-    .[[".out"]] %>%
-    paste(collapse = ", ")
-  proposicao_specific_assunto <-
-    proposicao_data$Assunto$AssuntoEspecifico %>%
-    tibble::as.tibble() %>%
-    dplyr::rename(assunto_especifico = Descricao, codigo_assunto_especifico = Codigo)
-  proposicao_general_assunto <-
-    proposicao_data$Assunto$AssuntoGeral %>%
-    tibble::as.tibble() %>%
-    dplyr::rename(assunto_geral = Descricao, codigo_assunto_geral = Codigo)
-  proposicao_source <-
-    proposicao_data$OrigemMateria %>%
-    tibble::as.tibble()
-  anexadas <-
-    proposicao_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria
-  relacionadas <-
-    proposicao_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria
-  
-  proposicao_complete <-
-    proposicao_basic_data %>%
-    tibble::add_column(
-      !!!proposicao_ids,
-      !!!proposicao_specific_assunto,
-      !!!proposicao_general_assunto,
-      !!!proposicao_source,
-      autor_nome = proposicao_author,
-      page_url = paste0(page_url_senado, proposicao_id),
-      proposicoes_relacionadas = paste(relacionadas, collapse = " "),
-      proposicoes_apensadas = paste(anexadas, collapse = " ")
-    )
-  
-  proposicao_complete <-
-    proposicao_complete[,!sapply(proposicao_complete, is.list)]
-  
-  proposicao_complete <- rename_proposicao_df(proposicao_complete)
-  
-  if (normalized) {
-    proposicao_complete <-
-      proposicao_complete %>%
-      dplyr::mutate(
-        prop_id = as.integer(codigo_materia),
-        numero = as.integer(numero_materia),
-        ano = as.integer(ano_materia),
-        data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao, "00:00")),
-        casa = "senado",
-        apelido_materia = ifelse(
-          "apelido_materia" %in% names(.),
-          apelido_materia,
-          apelido),
-        tema = tema,
-        indexacao_materia = ifelse(
-          "indexacao_materia" %in% names(.),
-          indexacao_materia,
-          NA)
-      ) %>%
-      dplyr::select(prop_id,
-                    casa,
-                    tipo_materia = sigla_subtipo_materia,
-                    numero,
-                    ano,
-                    data_apresentacao,
-                    ementa = ementa_materia,
-                    palavras_chave = indexacao_materia,
-                    casa_origem = nome_casa_origem,
-                    autor_nome,
-                    apelido_materia,
-                    tema)
-  }
-  
-  proposicao_complete
-}
-
-
-#' @title Baixa dados sobre uma proposição
-#' @description Retorna um dataframe contendo dados sobre uma proposição
-#' @param prop_id Um ou mais IDs de proposições
-#' @param normalized whether or not the output dataframe should be normalized (have the same format and column names for every house)
-#' @param apelido Apelido da proposição
-#' @param tema Tema da proposição
-#' @param emendas se vai ser usado na função fetch_emendas
-#' @return Dataframe
-#' @examples
-#' fetch_proposicao_camara(2056568, T, "Lei para acabar zona de amortecimento", "Meio Ambiente", F)
-fetch_proposicao_camara <- function(prop_id, normalized=TRUE, apelido, tema, emendas=FALSE) {
-  prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%
-    rename_df_columns()
-  
-  if (normalized) {
-    autor_df <- extract_autor_in_camara(prop_id)
-    
-    prop_camara <- prop_camara %>%
-      dplyr::mutate(prop_id = as.integer(id),
-                    numero = as.integer(numero),
-                    ano = as.integer(ano),
-                    ementa = paste(ementa,ementa_detalhada),
-                    data_apresentacao = lubridate::ymd_hm(stringr::str_replace(data_apresentacao,'T',' ')),
-                    casa = 'camara',
-                    casa_origem = autor_df[1,]$casa_origem,
-                    autor_nome = autor_df[1,]$autor.nome,
-                    apelido_materia = apelido,
-                    tema = tema) 
-    if (emendas) {
-      prop_camara <-
-        prop_camara %>%
-        dplyr::select(prop_id,
-                      casa,
-                      tipo_materia = sigla_tipo,
-                      numero,
-                      ano,
-                      data_apresentacao,
-                      ementa,
-                      palavras_chave = keywords,
-                      autor_nome,
-                      casa_origem,
-                      apelido_materia,
-                      tema,
-                      status_proposicao_sigla_orgao)
-    }else {
-      prop_camara <-
-        prop_camara %>%
-        dplyr::select(prop_id,
-                      casa,
-                      tipo_materia = sigla_tipo,
-                      numero,
-                      ano,
-                      data_apresentacao,
-                      ementa,
-                      palavras_chave = keywords,
-                      autor_nome,
-                      casa_origem,
-                      apelido_materia,
-                      tema)
-    }
-
-  }
-  
-  prop_camara
-}
-
-#' @title Baixa a pauta de uma reunião
-#' @description Retorna um dataframe contendo dados sobre a pauta, função auxiliar usanda na
-#' fetch_agenda_camara()
-#' @param id id do evento
-#' @param hora_inicio hora que começou o evento
-#' @param hora_fim hora que finalizou o evento
-#' @return Dataframe
-#' @examples
-#' fetch_pauta_camara('53277', '2018-07-03T10:00', '2018-07-03T12:37')
-#' @importFrom dplyr mutate
-#' @importFrom tibble as.tibble
-fetch_pauta_camara <- function(id, hora_inicio, hora_fim, sigla_orgao, nome_orgao) {
-  url <- paste0("https://dadosabertos.camara.leg.br/api/v2/eventos/", id, "/pauta")
-  json_proposicao <- fetch_json_try(url)
-  
-  json_proposicao$dados %>%
-    tibble::as.tibble() %>%
-    dplyr::mutate(hora_inicio = hora_inicio,
-                  hora_fim = hora_fim,
-                  sigla_orgao = sigla_orgao,
-                  nome_orgao = nome_orgao)
-}
-
-#' @title Baixa a agenda da câmara
-#' @description Retorna um dataframe contendo toda a agenda das sessões/reuniões deliberativas da Câmara
-#' @param initial_date data inicial no formato yyyy-mm-dd
-#' @param end_date data final no formato yyyy-mm-dd
-#' @return Dataframe
-#' @examples
-#' fetch_agenda_camara('2018-07-03', '2018-07-10')
-#' @importFrom dplyr filter
-#' @importFrom dplyr do
-#' @importFrom dplyr rowwise
-#' @importFrom tidyr unnest
-#' @importFrom tibble as.tibble
-fetch_agenda_camara <- function(initial_date, end_date) {
-  url <- paste0("https://dadosabertos.camara.leg.br/api/v2/eventos?dataInicio=", initial_date, "&dataFim=", end_date, "&ordem=ASC&ordenarPor=dataHoraInicio")
-  json_proposicao <- fetch_json_try(url)
-  
-  descricoes_inuteis <- c('Seminário', 'Diligência', 'Sessão Não Deliberativa de Debates', 'Reunião de Instalação e Eleição', 'Outro Evento', 'Mesa Redonda', 'Sessão Não Deliberativa Solene')
-  agenda <-
-    json_proposicao$dados %>%
-    tibble::as.tibble() %>%
-    dplyr::filter(descricaoSituacao != 'Cancelada' &
-                    !(descricaoTipo %in% descricoes_inuteis)) %>%
-    tidyr::unnest()
-  
-  agenda %>%
-    dplyr::rowwise() %>%
-    dplyr::do(fetch_pauta_camara(
-      .$id, .$dataHoraInicio, .$dataHoraFim, .$sigla, .$nome) %>%
-        tibble::as.tibble()) %>%
-    unique()
-  
-}
-
-#' @title Baixa a agenda do senado
-#' @description Retorna uma lista contendo 3 dataframes: agenda, materias e oradores,
-#' todos os dfs possuem a coluna codigo_sessao
-#' @param initial_date data inicial no formato yyyy-mm-dd
-#' @return list
-#' @examples
-#' fetch_agenda_senado('2018-07-03')
-#' @importFrom dplyr filter
-#' @importFrom dplyr select
-#' @importFrom tidyr unnest
-#' @importFrom tibble tibble
-fetch_agenda_senado <- function(initial_date) {
-  url <- paste0("http://legis.senado.leg.br/dadosabertos/plenario/agenda/mes/", gsub('-','', initial_date))
-  json_proposicao <- fetch_json_try(url)
-  if (is.null(json_proposicao$AgendaPlenario)) {
-    return(list(agenda = tibble::as.tibble(), materias = tibble::as.tibble(), oradores = tibble::as.tibble()))
-  }
-  
-  agenda <-
-    json_proposicao$AgendaPlenario$Sessoes$Sessao %>%
-    rename_table_to_underscore() %>%
-    tibble::as.tibble()
-  
-  descricoes_inuteis <- c('SESSÃO SOLENE', 'SESSÃO NÃO DELIBERATIVA', 'NÃO HAVERÁ SESSÃO', 'SESSÃO ESPECIAL')
-  
-  agenda <-
-    agenda %>%
-    dplyr::filter(!(tipo_sessao %in% descricoes_inuteis))
-  
-  materia <- tibble::tibble()
-  if('materias_materia' %in% names(agenda)) {
-    materia <- purrr::map_df(agenda$materias_materia, dplyr::bind_rows, .id = "codigo_sessao")
-    
-    materia_not_null <-
-      agenda %>%
-      dplyr::filter(materias_materia != "NULL")
-    
-    num_de_materias <-
-      materia %>%
-      dplyr::group_by(codigo_sessao) %>%
-      dplyr::summarise(id = 0)
-    
-    num_de_materias$id <- materia_not_null$codigo_sessao
-    
-    materia <-
-      merge(materia, num_de_materias) %>%
-      dplyr::select(-codigo_sessao) %>%
-      dplyr::rename("codigo_sessao" = id) %>%
-      rename_table_to_underscore()
-  }
-  
-  oradores <- tibble::tibble()
-  if('oradores_tipo_orador_orador_sessao_orador' %in% names(agenda)) {
-    oradores <- purrr::map_df(agenda$oradores_tipo_orador_orador_sessao_orador, dplyr::bind_rows, .id = "codigo_sessao")
-    
-    oradores_not_null <-
-      agenda %>%
-      dplyr::filter(oradores_tipo_orador_orador_sessao_orador != "NULL")
-    
-    num_de_oradores <-
-      oradores %>%
-      dplyr::group_by(codigo_sessao) %>%
-      dplyr::summarise(id = 0)
-    
-    num_de_oradores$id <- oradores_not_null$codigo_sessao
-    
-    oradores <-
-      merge(oradores, num_de_oradores) %>%
-      dplyr::select(-codigo_sessao) %>%
-      dplyr::rename("codigo_sessao" = id) %>%
-      rename_table_to_underscore()
-  }
-  
-  agenda <- list(agenda = agenda, materias = materia, oradores = oradores)
-}
-
-#' @title Retorna a agenda de uma comissão no Senado
-#' @description Função auxiliar que retorna um dataframe contendo a agenda de
-#' uma comissão do Senado
-#' @param url Url dos dados abertos do senado para uma comissão
-#' @return Dataframe
-#' @examples
-#' auxiliar_agenda_senado_comissoes('http://legis.senado.leg.br/dadosabertos/agenda/20160515/20160525/detalhe?colegiado=CDH')
-auxiliar_agenda_senado_comissoes <- function(url) {
-  tipos_inuteis <- c('Outros eventos', 'Reunião')
-  json_proposicao <- fetch_json_try(url)
-  agenda2 <-
-    json_proposicao$Reunioes$Reuniao %>%
-    tibble::as.tibble() %>%
-    rename_table_to_underscore() %>%
-    dplyr::filter(situacao != 'Cancelada') %>%
-    dplyr::filter(!(tipo %in% tipos_inuteis))
-  if ("partes_parte_itens_item" %in% names(agenda2)) {
-    agenda2 <-
-      agenda2 %>%
-      dplyr::filter(partes_parte_itens_item != "NULL") %>%
-      dplyr::mutate(index = as.character(dplyr::row_number())) %>%
-      dplyr::select(-codigo)
-    
-    partes_parte <- purrr::map_df(agenda2$partes_parte_itens_item, dplyr::bind_rows, .id = "index")
-    dplyr::left_join(partes_parte, agenda2, by = "index")
-  }else {
-    tibble::tibble()
-  }
-}
 
 #' @title Retorna o dataFrame com as audiências públicas do Senado
 #' @description Retorna um dataframe contendo as audiências públicas do Senado
@@ -989,7 +226,7 @@ auxiliar_agenda_senado_comissoes <- function(url) {
 #' @examples
 #' get_audiencias_publicas('2016-05-15', '2016-05-25')
 get_audiencias_publicas <- function(initial_date, end_date) {
-  
+
   pega_audiencias_publicas_do_data_frame <- function(l){
     if(length(l$Tipo) == 1 ) {
       if (l$Tipo == "Audiência Pública Interativa") {
@@ -1005,285 +242,18 @@ get_audiencias_publicas <- function(initial_date, end_date) {
       }
     }
   }
-  
-  agenda_senado <- get_data_frame_agenda_senado(initial_date, end_date) %>% 
+
+  agenda_senado <- get_data_frame_agenda_senado(initial_date, end_date) %>%
     dplyr::mutate(id_proposicao = purrr::map_chr(partes_parte, ~ pega_audiencias_publicas_do_data_frame(.)))
-  
+
   if ("comissoes_comissao_sigla" %in% names(agenda_senado)) {
     agenda_senado %>%
       dplyr::select(data, hora, realizada, sigla = comissoes_comissao_sigla, id_proposicao)
   }else {
-    agenda_senado %>% 
+    agenda_senado %>%
       mutate(sigla = purrr::map_chr(comissoes_comissao, ~ paste(.$Sigla, collapse = " ,"))) %>%
       dplyr::select(data, hora, realizada, sigla, id_proposicao)
   }
-}
-
-#' @title Retorna o dataFrame da agenda do Senado
-#' @description Retorna um dataframe contendo a agenda do senado
-#' @param initial_date data inicial no formato yyyy-mm-dd
-#' @param end_date data final no formato yyyy-mm-dd
-#' @return Dataframe
-#' @examples
-#' get_data_frame_agenda_senado('2016-05-15', '2016-05-25')
-get_data_frame_agenda_senado <- function(initial_date, end_date) {
-  url <-
-    paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe")
-  json_proposicao <- fetch_json_try(url)
-  
-  json_proposicao$Reunioes$Reuniao %>%
-    tibble::as.tibble() %>%
-    rename_table_to_underscore() %>%
-    dplyr::filter(situacao != 'Cancelada')
-}
-
-
-#' @title Retorna a agenda das comissões no Senado
-#' @description Retorna um dataframe contendo a agenda do senado normalizada
-#' @param initial_date data inicial no formato yyyy-mm-dd
-#' @param end_date data final no formato yyyy-mm-dd
-#' @return Dataframe
-#' @examples
-#' fetch_agenda_senado_comissoes('2016-05-15', '2016-05-25')
-fetch_agenda_senado_comissoes <- function(initial_date, end_date) {
-  tipos_inuteis <- c('Outros eventos', 'Reunião', 'Reunião de Subcomissão')
-  
-  agenda <-
-    get_data_frame_agenda_senado(initial_date, end_date) %>%
-    dplyr::filter(!(tipo %in% tipos_inuteis)) %>%
-    unique()
-  
-  if (nrow(agenda) != 0) {
-    if ("partes_parte" %in% names(agenda)) {
-      agenda <-
-        agenda %>%
-        dplyr::mutate(id_proposicao = purrr::map(partes_parte, ~ pega_id_proposicao(.))) %>%
-        dplyr::mutate(nome = purrr::map(partes_parte, ~ pega_nome(.))) %>%
-        dplyr::filter(id_proposicao != "") 
-      
-      if (nrow(agenda) != 0) {
-        agenda <-
-          agenda %>% 
-          dplyr::rowwise() %>%
-          dplyr::mutate(local = strsplit(titulo_da_reuniao, ",")[[1]][[1]]) %>%
-          dplyr::select(c(data, nome, id_proposicao, local)) %>%
-          dplyr::mutate(id_proposicao = strsplit(as.character(id_proposicao), ",")) %>%
-          dplyr::mutate(nome = strsplit(as.character(nome), ",")) %>%
-          tidyr::unnest() %>%
-          dplyr::select(c(data, nome, id_proposicao, local))
-      }else {
-        return(tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local))
-      }
-      
-    }else {
-      agenda <-
-        agenda %>%
-        dplyr::mutate(id_proposicao = purrr::map(partes_parte_itens_item, ~ .$Codigo)) %>%
-        dplyr::mutate(nome = purrr::map(partes_parte_itens_item, ~ .$Nome)) %>%
-        dplyr::filter(partes_parte_tipo == "Deliberativa") 
-      
-      if (nrow(agenda) != 0) {
-        agenda <-
-          agenda %>%
-          dplyr::select(data, id_proposicao, nome, titulo_da_reuniao) %>%
-          tidyr::unnest() %>%
-          dplyr::rowwise() %>%
-          dplyr::mutate(local = strsplit(titulo_da_reuniao, ",")[[1]][[1]]) %>%
-          dplyr::select(c(data, nome, id_proposicao, local)) 
-      }else {
-        return(tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local))
-      }
-    }
-    
-    new_names <- c("data", "sigla", "id_proposicao", "local")
-    names(agenda) <- new_names
-    
-    agenda %>%
-      dplyr::mutate(data = lubridate::dmy(data)) %>%
-      dplyr::arrange(data)
-    
-  }else {
-    tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local)
-  }
-  
-}
-
-#' @title Extrai o nome da proposição
-#' @description Recebe uma lista derivada da agenda do Senado e retorna o nome das proposições
-#' que estarão em pauta
-#' @param l lista que contém o id
-#' @return char
-pega_nome <- function(l){
-  if(length(l$Tipo) == 1) {
-    if (l$Tipo == "Deliberativa") {
-      paste(l$Itens$Item$Nome, collapse = ",")
-    }else {
-      ""
-    }
-  }else {
-    if ("Deliberativa" %in% l$Tipo) {
-      # df <- l %>% tibble::as.tibble() %>% dplyr::filter(Tipo == "Deliberativa")
-      # l <- df$Itens.Item[[1]]
-      if(!is.null(l$Itens.Item)) {
-        paste(l$Nome, collapse = ",")
-      }else {
-        ""
-      }
-    }else {
-      ""
-    }
-  }
-}
-
-#' @title Extrai o id da proposição
-#' @description Recebe uma lista derivada da agenda do Senado e retorna o id das proposições
-#' que estarão em pauta
-#' @param l lista que contém o id
-#' @return char
-pega_id_proposicao <- function(l){
-  if(length(l$Tipo) == 1 ) {
-    if (l$Tipo == "Deliberativa") {
-      paste(l$Itens$Item$Codigo, collapse = ",")
-    }else {
-      ""
-    }
-  }else {
-    if ("Deliberativa" %in% l$Tipo) {
-      if(!is.null(l$Itens.Item)) {
-        paste(l$Itens.Item$Codigo, collapse = ",")
-      }else {
-        ""
-      }
-    }else {
-      ""
-    }
-  }
-}
-
-#' @title Normaliza as agendas da câmara ou do senado
-#' @description Retorna um dataframe contendo a agenda da camara ou do senado normalizada
-#' @param agenda dataframe com agenda
-#' @param house camara ou senado
-#' @return Dataframe
-#' @examples
-#' normalize_agendas(fetch_agenda_camara('2018-09-03', '2018-09-07'), 'camara')
-normalize_agendas <- function(agenda, house) {
-  if (tolower(house) == 'senado') {
-    if (nrow(agenda$materias) == 0) {return(agenda$materias)}
-    materias <- agenda$materias
-    agenda <- agenda$agenda
-    agenda <-
-      merge(agenda, materias) %>%
-      dplyr::mutate(sigla = paste0(sigla_materia, " ", numero_materia, "/", ano_materia))
-    
-    if (!("local_sessao" %in% names(agenda))) {
-      agenda <-
-        agenda %>%
-        dplyr::mutate(local_sessao = NA)
-    }
-    
-    agenda <-
-      agenda %>%
-      dplyr::select(c(data, sigla, codigo_materia, local_sessao))
-    
-  }else {
-    if (nrow(agenda) == 0) {return(tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local))}
-    agenda <-
-      agenda %>%
-      dplyr::mutate(sigla = paste0(proposicao_.siglaTipo, " ", proposicao_.numero, "/", proposicao_.ano)) %>%
-      dplyr::select(c(hora_inicio, sigla, proposicao_.id, nome_orgao))
-  }
-  
-  new_names <- c("data", "sigla", "id_proposicao", "local")
-  names(agenda) <- new_names
-  
-  agenda %>% dplyr::arrange(data)
-}
-
-#' @title Baixa a agenda da câmara ou do senado
-#' @description Retorna um dataframe contendo a agenda da camara ou do senado
-#' @param initial_date data inicial no formato yyyy-mm-dd
-#' @param end_date data final no formato yyyy-mm-dd
-#' @param house camara ou senado
-#' @param orgao plenario ou comissoes
-#' @return Dataframe
-#' @examples
-#' fetch_agenda('2018-07-03', '2018-07-10', 'camara', 'comissoes')
-#' @export
-fetch_agenda <- function(initial_date, end_date, house, orgao) {
-  try(if (as.Date(end_date) < as.Date(initial_date))
-    stop("A data inicial é depois da final!"))
-  
-  if (tolower(orgao) == "plenario") {
-    if (house == "camara") {
-      normalize_agendas(
-        fetch_agenda_camara(
-          initial_date = initial_date, end_date = end_date), house)
-    } else {
-      normalize_agendas(fetch_agenda_senado(initial_date), house)
-    }
-  }else {
-    if(house == 'camara') {
-      initial_date <- strsplit(initial_date, '-')
-      end_date <- strsplit(end_date, '-')
-      fetch_agenda_comissoes_camara(
-        paste0(initial_date[[1]][[3]],'/', initial_date[[1]][[2]], '/', initial_date[[1]][[1]]),
-        paste0(end_date[[1]][[3]],'/', end_date[[1]][[2]], '/', end_date[[1]][[1]]))
-    }else {
-      fetch_agenda_senado_comissoes(initial_date, end_date)
-    }
-  }
-}
-
-#' @title Baixa a agenda da camara e do senado
-#' @description Retorna um dataframe contendo a agenda geral da camara e do
-#' senado
-#' @param initial_date data inicial no formato yyyy-mm-dd
-#' @param end_date data final no formato yyyy-mm-dd
-#' @return Dataframe
-#' @examples
-#' fetch_agenda_geral('2018-07-03', '2018-07-10')
-#' @export
-fetch_agenda_geral <- function(initial_date, end_date) {
-  try(if(as.Date(end_date) < as.Date(initial_date)) stop("A data inicial é depois da final!"))
-  print(initial_date)
-  print(end_date)
-  
-  agenda_plenario_camara <- normalize_agendas(fetch_agenda_camara(initial_date = initial_date, end_date = end_date), "camara") %>%
-    dplyr::mutate(casa = "camara")
-  
-  if (nrow(agenda_plenario_camara) != 0) {
-    agenda_plenario_camara <- 
-      agenda_plenario_camara %>%
-      dplyr::rowwise() %>%
-      dplyr::mutate(data = stringr::str_split(data,'T')[[1]][1]) %>%
-      dplyr::ungroup()
-  }
-  agenda_plenario_senado <- 
-    normalize_agendas(fetch_agenda_senado(initial_date), "senado") %>%
-    dplyr::mutate(casa = "senado")
-  agenda_comissoes_senado <- fetch_agenda_senado_comissoes(initial_date, end_date) %>%
-    dplyr::mutate(data = as.character(data)) %>%
-    dplyr::mutate(casa = "senado")
-  
-  initial_date <- strsplit(as.character(initial_date), '-')
-  end_date <- strsplit(as.character(end_date), '-')
-  agenda_comissoes_camara <- 
-    fetch_agenda_comissoes_camara(
-      paste0(initial_date[[1]][[3]],'/', initial_date[[1]][[2]], '/', initial_date[[1]][[1]]), 
-      paste0(end_date[[1]][[3]],'/', end_date[[1]][[2]], '/', end_date[[1]][[1]])) %>%
-    dplyr::mutate(data = as.character(data)) %>%
-    dplyr::mutate(casa = "camara")
-  
-  rbind(
-    agenda_plenario_camara,
-    agenda_plenario_senado,
-    agenda_comissoes_senado,
-    agenda_comissoes_camara
-  ) %>%
-    dplyr::arrange(data) %>% 
-    dplyr::mutate_all(as.character) %>%
-    dplyr::rename(id_ext = id_proposicao)
 }
 
 #' @title Baixa dados de requerimentos relacionados
@@ -1302,23 +272,23 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
       'deferido',
       '^(Defiro)|(Aprovado)'
     )
-  
+
   related <-
     rcongresso::fetch_relacionadas(id)$uri %>%
     strsplit('/') %>%
     vapply(last, '') %>%
     unique %>%
     rcongresso::fetch_proposicao()
-  
+
   requerimentos <-
     related %>%
     dplyr::filter(stringr::str_detect(.$siglaTipo, '^REQ'))
-  
+
   if (!mark_deferimento)
     return(requerimentos)
-  
+
   tramitacoes <- fetch_tramitacao(requerimentos$id, 'camara', TRUE)
-  
+
   related <-
     tramitacoes %>%
     # mark tramitacoes rows based on regexes
@@ -1334,205 +304,134 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
     dplyr::left_join(related, by = c('prop_id' = 'id'))
 }
 
-#' @title Baixa dados da agenda de um orgão da Camara
-#' @description Retorna um dataframe contendo dados sobre a agenda de um orgão da camara
-#' @param orgao_id ID do orgão
+#' @title Baixa a agenda de audiências públicas na câmara por órgão
+#' @description Retorna um dataframe contendo as audiências públicas da camara ou do senado
 #' @param initial_date data inicial no formato dd/mm/yyyy
 #' @param end_date data final no formato dd/mm/yyyy
-#' @return Dataframe
-#' @importFrom RCurl getURL
-fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_date){
-  
-  url <-
-    RCurl::getURL(paste0(
+#' @param fases_tramitacao_df dataframe da PL preprocessada
+#' @return Dataframe com as audiências públicas de um órgão
+#' @examples
+#' fetch_audiencias_publicas_by_orgao_camara('01/01/2017', '30/10/2018', process_proposicao(fetch_proposicao(2121442, 'camara', 'Lei do Teto Remuneratório', 'Agenda Nacional'), fetch_tramitacao(2121442, 'camara', T), 'camara'))
+#' @importFrom dplyr filter
+#' @importFrom dplyr select
+#' @importFrom dplyr if_else
+#' @importFrom dplyr mutate
+#' @importFrom stringr str_detect
+#' @importFrom stringr str_extract_all
+#' @importFrom tidyr unnest
+#' @importFrom tibble tibble
+#' @importFrom utils tail
+#' @importFrom lubridate as_date
+fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fases_tramitacao_df){
+  orgao_atual <-
+    fases_tramitacao_df %>%
+    dplyr::filter(data_hora >= lubridate::as_date(lubridate::dmy(initial_date)) &
+                    data_hora <= lubridate::as_date((lubridate::dmy(end_date))) &
+                    sigla_local != 'MESA' &
+                    sigla_local != 'PLEN') %>%
+    utils::tail(1) %>%
+    dplyr::mutate(local =
+                    dplyr::if_else(toupper(local) == "PLENÁRIO", "PLEN", dplyr::if_else(local == 'Comissão Especial',
+                                                                                        sigla_local,
+                                                                                        local))) %>%
+    dplyr::distinct() %>%
+    dplyr::select(local) %>%
+    dplyr::rename(sigla = local)
+
+  if(nrow(orgao_atual) > 0){
+    orgao_id <-
+      fetch_todos_orgaos() %>%
+      dplyr::filter(stringr::str_detect(sigla, orgao_atual$sigla)) %>%
+      dplyr::select(orgao_id)
+
+
+    url <- RCurl::getURL(paste0(
       'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=',
-      orgao_id, '&datIni=', initial_date, '&datFim=', end_date))
-  
-  eventos_list <-
-    XML::xmlParse(url) %>%
-    XML::xmlToList()
-  
-  df <-
-    eventos_list %>%
-    jsonlite::toJSON() %>%
-    jsonlite::fromJSON()
-  
-  if(purrr::is_list(df)){
+      orgao_id$orgao_id, '&datIni=', initial_date, '&datFim=', end_date))
+
+    eventos_list <- readXML(url)
+
     df <-
-      df %>%
-      purrr::list_modify(".attrs" = NULL) %>%
-      tibble::as.tibble() %>%
-      t() %>%
-      as.data.frame()
-    
-    names(df) <- c("comissao","cod_reuniao", "num_reuniao", "data", "hora", "local",
-                   "estado", "tipo", "titulo_reuniao", "objeto", "proposicoes")
-    
-    proposicoes <- df$proposicoes
-    df <-
-      df %>%
-      dplyr::select(-c(num_reuniao, objeto, proposicoes)) %>%
-      lapply(unlist) %>%
-      as.data.frame() %>%
-      tibble::add_column(proposicoes)
-    
-    df <-
-      df %>%
-      as.data.frame() %>%
-      dplyr::filter(trimws(estado) != 'Cancelada') %>%
-      tidyr::unnest()
-    
-    if(nrow(df) != 0) {
-      df <-
-        df %>%
-        dplyr::mutate(sigla = purrr::map(proposicoes, ~ .x[['sigla']]),
-                      id_proposicao = purrr::map(proposicoes, ~ .x[['idProposicao']]))
+      eventos_list %>%
+      jsonlite::toJSON() %>%
+      jsonlite::fromJSON()
+
+    if(purrr::is_list(df)){
+      df <- df %>%
+        purrr::list_modify(".attrs" = NULL) %>%
+        tibble::as.tibble() %>%
+        t() %>%
+        as.data.frame()
+
+      names(df) <- c("comissao","cod_reuniao", "num_reuniao", "data", "hora", "local",
+                     "estado", "tipo", "titulo_reuniao", "objeto", "proposicoes")
+
+      df <- df %>%
+        dplyr::filter (tipo == 'Audiência Pública') %>%
+        dplyr::select(-c(num_reuniao, proposicoes)) %>%
+        as.data.frame() %>%
+        sapply( function(x) unlist(x)) %>%
+        as.data.frame()
+
+      #df <- df %>%
+      #  dplyr::mutate(proposicao = stringr::str_extract(tolower(objeto), '"discussão d(o|a) (pl|projeto de lei) .*"'),
+      #                tipo_materia = dplyr::case_when(
+      #                  stringr::str_detect(tolower(proposicao), 'pl| projeto de lei') ~ 'PL',
+      #                  TRUE ~ 'NA'),
+      #                numero_aux = stringr::str_extract(tolower(proposicao), "(\\d*.|)\\d* de"),
+      #                numero = stringr::str_extract(tolower(numero_aux), "(\\d*.|)\\d*"),
+      #                numero = gsub('\\.', '', numero),
+      #                ano_aux = stringr::str_extract(tolower(proposicao), "( de |/)\\d*"),
+      #                ano = stringr::str_extract(tolower(ano_aux), "\\d{4}|\\d{2}")) %>%
+      #  dplyr::select(-ano_aux, -numero_aux, -proposicao,  -tipo)
+
+      df <- df %>%
+        dplyr::mutate(requerimento =
+                        stringr::str_extract_all(tolower(objeto),
+                                                 camara_env$frase_requerimento$requerimento),
+                      num_requerimento =
+                        dplyr::if_else(
+                          stringr::str_extract_all(
+                            requerimento, camara_env$extract_requerimento_num$regex) != 'character(0)',
+                          stringr::str_extract_all(
+                            requerimento, camara_env$extract_requerimento_num$regex) %>% lapply(function(x)(preprocess_requerimentos(x))),
+                          list(0))) %>%
+        dplyr::select(-requerimento)
+
+      return(df)
+
     }
-    
-  }else{
-    
-    df <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local,
-                             ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes)
   }
-  
-  return(df)
+  return (tibble::frame_data(~ comissao, ~ cod_reuniao, ~ data, ~ hora, ~ local,
+                             ~ estado, ~ tipo_materia, ~ titulo_reuniao, ~ objeto, ~ numero, ~ ano))
+
 }
 
-#' @title Baixa dados da agenda de todos os orgãos da Camara
-#' @description Retorna um dataframe contendo dados sobre a agenda da camara
-#' @param initial_date data inicial no formato dd/mm/yyyy
-#' @param end_date data final no formato dd/mm/yyyy
-#' @return Dataframe
-#' @examples
-#' fetch_agenda_comissoes_camara('12/05/2018', '26/05/2018')
-fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
-  orgaos <-
-    fetch_orgaos_camara()
-  
-  agenda <- purrr::map_df(orgaos$orgao_id, fetch_agendas_comissoes_camara_auxiliar, initial_date, end_date)
-  if (nrow(agenda) == 0) {
-    tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local)
-  }else {
-    agenda %>%
-      dplyr::select(data, sigla, id_proposicao, local = comissao) %>%
-      dplyr::mutate(data = as.Date(data, "%d/%m/%Y")) %>%
-      dplyr::arrange(data)
-  }
+preprocess_requerimentos <- function(element){
+  element <- dplyr::if_else(
+    stringr::str_detect(element, stringr::regex('/[0-9]{4}')),
+    sub('/[0-9]{2}', '/', element),
+    element)
+
+  element <- gsub(" ","", element)
+
+  return (element)
 }
 
-#' @title Baixa os órgãos na câmara
-#' @description Retorna um dataframe contendo os órgãos da câmara
-#' @return Dataframe contendo os órgãos da Câmara
-#' @importFrom RCurl getURL
-fetch_orgaos_camara <- function(){
-  url <- RCurl::getURL('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterOrgaos')
-  
-  orgaos_list <-
+readXML <- function(url) {
+  out <- tryCatch({
     XML::xmlParse(url) %>%
-    XML::xmlToList()
-  
-  df <-
-    orgaos_list %>%
-    jsonlite::toJSON() %>%
-    jsonlite::fromJSON() %>%
-    tibble::as.tibble() %>%
-    t() %>%
-    as.data.frame()
-  
-  names(df) <- c("orgao_id", "tipo_orgao_id", "sigla", "descricao")
-  
-  return(df)
-}
-
-
-#' @title Baixa dados da agenda por semana
-#' @description Retorna um dataframe contendo dados sobre a agenda 
-#' @param initial_date data inicial no formato dd/mm/yyyy
-#' @param end_date data final no formato dd/mm/yyyy
-#' @return Dataframe
-#' @examples
-#' junta_agendas('2018-11-05', '2018-11-12')
-#' @export
-junta_agendas <- function(initial_date, end_date) {
-  semanas <- 
-    seq(lubridate::floor_date(as.Date(initial_date), unit="week") + 1, as.Date(end_date), by = "week") %>%
-    tibble::as.tibble() %>%
-    dplyr::mutate(fim_semana = as.Date(cut(value, "week")) + 4)
-  
-  materia <- purrr::map2_df(semanas$value, semanas$fim_semana, ~ fetch_agenda_geral(.x, .y)) 
-}
-
-#' @title Baixa todas as siglas das comissões atuais do Senado
-#' @description Retorna um dataframe contendo as siglas das comissões atuais do Senado
-#' @return Dataframe
-#' @examples
-#' fetch_orgaos_senado()
-#' @importFrom RCurl getURL
-#' @importFrom dplyr %>%
-fetch_orgaos_senado <- function() {
-  url <- 'http://legis.senado.leg.br/dadosabertos/dados/'
-  
-  url_comissoes_permanentes <- RCurl::getURL(paste0(url, 'ComissoesPermanentes.xml'))
-  
-  url_comissoes_temporarias <- RCurl::getURL(paste0(url, 'ComissoesTemporarias.xml'))
-  
-  comissoes_permanentes_df <- 
-    XML::xmlToDataFrame(nodes = XML::getNodeSet(
-      XML::xmlParse(url_comissoes_permanentes), 
-      "//Colegiado")) %>% 
-    dplyr::select(sigla = SiglaColegiado)
-  
-  comissoes_temporarias_df <- 
-    XML::xmlToDataFrame(nodes = XML::getNodeSet(
-      XML::xmlParse(url_comissoes_temporarias), 
-      "//Colegiado")) %>% 
-    dplyr::select(sigla = SiglaColegiado)
-  
-  url <- 'https://www.congressonacional.leg.br/dados/comissao/lista/'
-  
-  url_comissoes_mistas <- RCurl::getURL(paste0(url, 'mistas'))
-  
-  comissoes_mistas_df <- 
-    XML::xmlToDataFrame(nodes = XML::getNodeSet(XML::xmlParse(url_comissoes_mistas), 
-                                                "//IdentificacaoComissao")) %>% 
-    dplyr::select(sigla = SiglaComissao)
-  
-  df <-
-    rbind(comissoes_permanentes_df, comissoes_mistas_df) %>% 
-    rbind(comissoes_mistas_df) %>% 
-    dplyr::distinct()
-  
-  df <-
-    df %>% dplyr::filter(!stringr::str_detect(sigla, '^CMMPV'))
-  
-  return(df)
-}
-
-#' @title Baixa todas as composições das comissões atuais do Senado e da Câmara
-#' @description Retorna um dataframe contendo dados sobre as composições das comissões atuais do Senado e da Câmara
-#' @return Dataframe
-#' @examples
-#' fetch_all_composicao_comissao()
-#' @importFrom RCurl getURL
-#' @importFrom dplyr %>%
-#' @export
-fetch_all_composicao_comissao <- function() {
-  siglas_comissoes <- fetch_orgaos_camara() %>% 
-    dplyr::mutate_all(as.character) %>% 
-    dplyr::select(sigla) %>% 
-    dplyr::mutate(casa = 'camara',
-                  sigla = trimws(sigla)) %>% 
-    dplyr::filter(sigla != 'PLEN')
-  
-  siglas_comissoes <- 
-    rbind(siglas_comissoes,
-          fetch_orgaos_senado() %>%
-            dplyr::mutate(casa = 'senado')) %>% 
-    dplyr::distinct()
-  
-  composicao_comissoes <-
-    purrr::map2_df(siglas_comissoes$sigla, siglas_comissoes$casa, ~ fetch_composicao_comissao(.x, .y)) %>%
-    dplyr::mutate(partido = trimws(partido))
-  
-  return(composicao_comissoes)
+      XML::xmlToList()
+  },
+  error=function(cond) {
+    message(paste("Request returned Error 503 Service Unavailable. Please try again later."))
+    return(NA)
+  },
+  warning=function(cond) {
+    message(paste("Request caused a warning:", url))
+    message(cond)
+    return(NULL)
+  }
+  )
+  return(out)
 }

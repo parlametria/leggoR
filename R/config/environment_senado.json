@@ -88,7 +88,9 @@
     {"evento": "inicio_prazo_emendas", "id_situacao": "^20$", "tipo":"discussao"},
     {"evento": "fim_prazo_emendas", "id_situacao": "^153$", "tipo":"discussao"},
     {"evento": "remetida_a_sancao", "texto_tramitacao": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
-    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "tipo":"discussao"}
+    {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "tipo":"discussao"},
+    {"evento": "transformada_lei", "texto_tramitacao": "sancionada", "tipo":"votacao"},
+    {"evento": "vetada_totalmente", "texto_tramitacao": "vetada integralmente|vetado(,)* totalmente", "tipo":"votacao"}
   ],
   
  "locais": [
@@ -200,5 +202,18 @@
     {"local": "Plenário", "fase_global": "Revisão II"},
     {"local": "Presidência da República", "fase_global": "Sanção/Veto"},
     {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
-  ]
+  ],
+  
+  "requerimento": {
+    "regex_detect": {
+      "autoria": "autoria do | iniciativa do"
+    },
+    "regex_extract": {
+      "senado": "senador[^,]+ | sen[^,]+"
+    }
+  },
+  
+  "versoes_texto_proposicao":{
+    "tipos_texto_regex" : "(^projeto de lei .*)|(proposta de emenda .*)|(medida provisória .*)|(avulso de redação final)|(avulso inicial da matéria)|(^parecer nº.*)|(^emenda(s|).*)"
+  }
 }

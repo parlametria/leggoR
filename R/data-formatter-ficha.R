@@ -243,13 +243,13 @@ extract_informations_all_houses <- function(senado_id, camara_id) {
 gera_tabela_requerimentos <- function(bill_id, house) {
   requerimentos <- data.frame()
   if (house == 'camara') {
-    requerimentos <- 
-      fetch_related_requerimentos(bill_id) %>% 
+    requerimentos <-
+      fetch_related_requerimentos(bill_id) %>%
       dplyr::select(dataApresentacao,descricaoTipo,ementa,deferimento,statusProposicao.despacho)
   } else if (house == 'senado') {
-    requerimentos <- 
-      as.array(strsplit(fetch_proposicao(bill_id, 'senado',normalized = F)$proposicoes_relacionadas, " ")[[1]]) %>% 
-      fetch_deferimento()
+    requerimentos <-
+      as.array(strsplit(fetch_proposicao(bill_id, 'senado',normalized = F)$proposicoes_relacionadas, " ")[[1]]) %>%
+      rcongresso::fetch_deferimento()
   }
   requerimentos
 }
