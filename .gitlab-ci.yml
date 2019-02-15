@@ -26,6 +26,7 @@ r-release:
   image: rocker/r-ver:latest
   script:
     - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
+    - Rscript -e 'packageVersion("rcongresso")'
     - Rscript -e 'stopifnot(length(devtools::check(check_dir = ".", args = c("--no-examples", "--as-cran", "--no-manual", "--no-tests"))$errors) == 0L)'
     - Rscript -e 'res=devtools::test(reporter="summary");df=as.data.frame(res);if(sum(df$failed) > 0 || any(df$error)) {q(status=1)}'
     - Rscript -e 'library(covr);package_coverage()'
@@ -34,7 +35,7 @@ r-release:
       - "*.Rcheck"
     name: logs
   when: always
-    
+
 pages:
   stage: deploy
   tags:
