@@ -333,7 +333,7 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
   if (nrow(virada_de_casa) == 0) {
     data_tramitacao <-
       data_tramitacao %>%
-      dplyr::mutate(global = dplyr::if_else(length(casa_origem) ==0, '-', casa_origem))
+      dplyr::mutate(global = dplyr::if_else(length(casa_origem) == 0, '-', paste0(casa_origem, '')))
     
   } else {
 
