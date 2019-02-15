@@ -11,8 +11,8 @@ camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 #' @export
 extract_links_proposicao <- function(id, casa) {
   if(tolower(casa) == 'camara') {
-    proposicao_df = agoradigital::fetch_proposicao(id, casa, '', '', T, F)
-    tramitacao_df = rcongresso::fetch_tramitacao(id, casa)
+    proposicao_df = rcongresso::fetch_proposicao_camara(id)
+    tramitacao_df = rcongresso::fetch_proposicao_camara(id, casa)
     df <- extract_links_proposicao_camara(proposicao_df, tramitacao_df)
     
   } else if(tolower(casa) == 'senado') {
