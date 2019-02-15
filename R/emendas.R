@@ -22,7 +22,7 @@ fetch_emendas <- function(id, casa) {
     emendas %>%
     dplyr::mutate(prop_id = id, codigo_emenda = as.integer(codigo_emenda)) %>%
     dplyr::select(
-      prop_id, codigo_emenda, data_apresentacao, numero, local, autor, casa, tipo_documento, inteiro_teor) 
+      prop_id, codigo_emenda, data_apresentacao, numero, local, autor, casa, tipo_documento, inteiro_teor)
   return(emendas)
 }
 
@@ -40,7 +40,7 @@ fetch_emendas_camara <- function(id=NA, sigla="", numero="", ano="") {
     url <-
       paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterEmendasSubstitutivoRedacaoFinal?tipo=', sigla, '&numero=', numero, '&ano=', ano)
   }else {
-    prop <- fetch_proposicao(id, 'camara')
+    prop <- rcongresso::fetch_proposicao_camara(id)
     url <-
       paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterEmendasSubstitutivoRedacaoFinal?tipo=', prop$tipo_materia, '&numero=', prop$numero, '&ano=', prop$ano)
   }

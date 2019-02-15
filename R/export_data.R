@@ -1,6 +1,6 @@
 process_etapa <- function(id, casa, agenda) {
   prop <- agoradigital::fetch_proposicao(id, casa)
-  tram <- agoradigital::fetch_tramitacao(id, casa, TRUE)
+  tram <- agoradigital::fetch_tramitacao(id, casa)
   proc_tram <-
     agoradigital::process_proposicao(prop, tram, casa) %>%
     dplyr::mutate(data_hora = as.POSIXct(data_hora))
@@ -15,19 +15,20 @@ process_etapa <- function(id, casa, agenda) {
     .$temperatura_recente
   extended_prop <-
     merge(prop, status, by = "prop_id") %>%
-    dplyr::mutate(temperatura = temperatura_value) 
-  emendas <- agoradigital::fetch_emendas(id, casa)
-  
+    dplyr::mutate(temperatura = temperatura_value)
+  emendas <- rcongresso::fetch_emendas(id, casa, prop$tipo_materia, prop$numero, prop$ano)
+
   list(
     proposicao = extended_prop,
     fases_eventos = proc_tram,
     hist_temperatura = historico_temperatura,
-    emendas = emendas)
+    emendas = emendas
+    )
 }
 
 adiciona_coluna_pulou <- function(progresso_df) {
   progresso_df$prox_local_casa = dplyr::lead(progresso_df$local_casa)
-  
+
   progresso_df %>%
     dplyr::mutate(
       pulou = dplyr::if_else((is.na(local_casa) & !is.na(prox_local_casa)), T, F)) %>%
@@ -43,6 +44,17 @@ adiciona_locais_faltantes_progresso <- function(progresso_df) {
       fase_global == "Revisão II" ~ .$casa[[1]],
       is.na(local_casa) ~ casa,
       TRUE ~ local_casa))
+}
+
+adiciona_status <- function(tramitacao_df) {
+  tramitacao_df %>%
+    dplyr::group_by(id_ext, casa) %>%
+    dplyr::mutate(status = dplyr::case_when(evento == "arquivamento" ~ "Arquivada",
+                                                        evento == "desarquivamento" ~ "Ativa",
+                                                        dplyr::lead(evento, order_by = data) == "transformada_lei" ~ "Lei")) %>%
+    tidyr::fill(status) %>%
+    dplyr::mutate(status = dplyr::case_when(is.na(status) ~ "Ativa"),
+                  T ~ status)
 }
 
 process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows) {
@@ -62,7 +74,7 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
     adiciona_coluna_pulou() %>%
     adiciona_locais_faltantes_progresso()
   etapas$proposicao %<>%
-    dplyr::mutate(apelido_materia = apelido, tema = tema_pl) %>% 
+    dplyr::mutate(apelido_materia = apelido, tema = tema_pl) %>%
     dplyr::select(-casa_origem)
   etapas
 }
@@ -76,14 +88,15 @@ export_data <- function(pls, export_path) {
   # agenda <- fetch_agenda_geral(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4)
   agenda <- tibble::as_tibble()
   res <- pls %>% purrr::pmap(process_pl, agenda, nrow(pls))
-  
+
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
     dplyr::select(-ano) %>%
     dplyr::rename(id_ext = prop_id, sigla_tipo = tipo_materia, apelido = apelido_materia)
   tramitacoes <-
     purrr::map_df(res, ~ .$fases_eventos) %>%
-    dplyr::rename(id_ext = prop_id, data = data_hora)
+    dplyr::rename(id_ext = prop_id, data = data_hora) %>%
+    adiciona_status()
   hists_temperatura <- purrr::map_df(res, ~ .$hist_temperatura)
   progressos <-
     purrr::map_df(res, ~ .$progresso) %>%
@@ -91,15 +104,15 @@ export_data <- function(pls, export_path) {
   emendas <-
     purrr::map_df(res, ~ .$emendas) %>%
     dplyr::rename(id_ext = prop_id)
-  comissoes <-
-    agoradigital::fetch_all_composicao_comissao()
-  
+  #comissoes <-
+    #agoradigital::fetch_all_composicao_comissao()
+
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
   readr::write_csv(tramitacoes, paste0(export_path, "/trams.csv"))
   readr::write_csv(
     hists_temperatura, paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
-  readr::write_csv(emendas, paste0(export_path, "/emendas.csv"))
-  readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
+  #readr::write_csv(emendas, paste0(export_path, "/emendas.csv"))
+  #readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
 }
