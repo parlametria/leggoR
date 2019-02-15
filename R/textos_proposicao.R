@@ -12,7 +12,7 @@ camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 extract_links_proposicao <- function(id, casa) {
   if(casa == 'camara') {
     proposicao_df = rcongresso::fetch_proposicao_camara(id)
-    tramitacao_df = rcongresso::fetch_proposicao_camara(id, casa)
+    tramitacao_df = rcongresso::fetch_tramitacao(id, casa)
     df <- extract_links_proposicao_camara(proposicao_df, tramitacao_df)
     
   } else if(casa == 'senado') {
