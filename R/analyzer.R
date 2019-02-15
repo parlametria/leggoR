@@ -286,7 +286,7 @@ extract_status_tramitacao <- function(proposicao_id, casa) {
 #' @param tramitacao_df Dataframe da proposição do PL.
 #' @param casa Casa (Senado ou Câmara)
 #' @param out_folderpath Caminho destino do csv resultante
-#' @return Datafram
+#' @return Dataframe
 #' e contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)
 #' @examples
 #' etapas <- list()
