@@ -105,7 +105,7 @@ generate_progresso_df <- function(tramitacao_df){
   df$data_fim[nrow(df)] <- NA
   df <-
     df %>%
-    dplyr::mutate(local = ifelse(is.na(local), "Comissões", local))
+    dplyr::mutate(local = ifelse(is.na(local) & nrow(.) == 1, "Comissões", local))
   
   df %<>%
     dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global")) %>% 
