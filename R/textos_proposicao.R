@@ -94,9 +94,8 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                   data_hora,
                   texto_tramitacao,
                   link_inteiro_teor)
-
-  emendas <- rcongresso::fetch_emendas(id, casa, proposicao_df$tipo_materia, proposicao_df$numero, proposicao_df$ano) %>%
-    dplyr::mutate(prop_id = proposicao_df$prop_id,
+  emendas <- rcongresso::fetch_emendas(id, casa, proposicao_df$siglaTipo, proposicao_df$numero, proposicao_df$ano) %>% 
+    dplyr::mutate(prop_id = proposicao_df$id,
                   casa = "camara") %>%
     dplyr::select(prop_id,
                   casa,
