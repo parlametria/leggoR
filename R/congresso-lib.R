@@ -80,7 +80,7 @@ generate_progresso_df <- function(tramitacao_df){
   df <-
     tramitacao_df %>%
     dplyr::arrange(data_hora, fase_global) %>%
-    dplyr::filter(!is.na(fase_global) & !is.na(local)) %>%
+    dplyr::filter((!is.na(fase_global) & !is.na(local)) | !is.na(evento)) %>%
     dplyr::mutate(end_data = dplyr::lead(data_hora)) %>%
     dplyr::group_by(
       casa, prop_id, fase_global, local, sequence = data.table::rleid(fase_global)) %>%
@@ -103,6 +103,9 @@ generate_progresso_df <- function(tramitacao_df){
   } 
   
   df$data_fim[nrow(df)] <- NA
+  df <- 
+    df %>%
+    dplyr::mutate(local = ifelse(is.na(local), "Local não informado", local))
   
   df %<>%
     dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global")) %>% 
