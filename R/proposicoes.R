@@ -10,9 +10,9 @@ rename_proposicao_df <- function(df) {
   new_names = names(df) %>%
     to_underscore() %>%
     stringr::str_replace("identificacao_parlamentar_", "")
-  
+
   names(df) <- new_names
-  
+
   df
 }
 
@@ -32,17 +32,17 @@ import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL)
   if (!(casa %in% c('camara','senado'))) {
     print('Parâmetro "casa" não identificado.')
   }
-  
+
   prop_df <- fetch_proposicao(prop_id,casa,apelido, tema, TRUE)
-  tram_df <- fetch_tramitacao(prop_id,casa, TRUE)
-  emendas_df <- fetch_emendas(prop_id,casa)
-  
+  tram_df <- fetch_tramitacao(prop_id,casa)
+  emendas_df <- rcongresso::fetch_emendas(prop_id,casa, prop_df$tipo_materia, prop_df$numero, prop_df$ano)
+
   if (!is.null(out_folderpath)) {
     if (!is.null(prop_df)) readr::write_csv(prop_df, build_data_filepath(out_folderpath,'proposicao',casa,prop_id))
     if (!is.null(tram_df)) readr::write_csv(tram_df, build_data_filepath(out_folderpath,'tramitacao',casa,prop_id))
     if (!is.null(emendas_df)) readr::write_csv(emendas_df, build_data_filepath(out_folderpath,'emendas',casa,prop_id))
   }
-  
+
   return(list(proposicao = prop_df, tramitacao = tram_df))
 }
 
@@ -95,10 +95,10 @@ fetch_proposicao_senado <- function(proposicao_id, normalized=TRUE, apelido, tem
   url_base_proposicao <-
     "http://legis.senado.leg.br/dadosabertos/materia/"
   da_url <- paste0(url_base_proposicao, proposicao_id)
-  
+
   page_url_senado <-
     "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
-  
+
   parse_autor = function(row) {
     return(paste(
       paste(
@@ -106,7 +106,7 @@ fetch_proposicao_senado <- function(proposicao_id, normalized=TRUE, apelido, tem
         row[["IdentificacaoParlamentar.SiglaPartidoParlamentar"]]),
       row[["UfAutor"]], sep = "/"))
   }
-  
+
   json_proposicao <- fetch_json_try(da_url)
   proposicao_data <- json_proposicao$DetalheMateria$Materia
   proposicao_ids <-
@@ -153,7 +153,7 @@ fetch_proposicao_senado <- function(proposicao_id, normalized=TRUE, apelido, tem
     proposicao_data$MateriasAnexadas$MateriaAnexada$IdentificacaoMateria.CodigoMateria
   relacionadas <-
     proposicao_data$MateriasRelacionadas$MateriaRelacionada$IdentificacaoMateria.CodigoMateria
-  
+
   proposicao_complete <-
     proposicao_basic_data %>%
     tibble::add_column(
@@ -166,12 +166,12 @@ fetch_proposicao_senado <- function(proposicao_id, normalized=TRUE, apelido, tem
       proposicoes_relacionadas = paste(relacionadas, collapse = " "),
       proposicoes_apensadas = paste(anexadas, collapse = " ")
     )
-  
+
   proposicao_complete <-
     proposicao_complete[,!sapply(proposicao_complete, is.list)]
-  
+
   proposicao_complete <- rename_proposicao_df(proposicao_complete)
-  
+
   if (normalized) {
     proposicao_complete <-
       proposicao_complete %>%
@@ -204,7 +204,7 @@ fetch_proposicao_senado <- function(proposicao_id, normalized=TRUE, apelido, tem
                     apelido_materia,
                     tema)
   }
-  
+
   proposicao_complete
 }
 
@@ -219,12 +219,12 @@ fetch_proposicao_senado <- function(proposicao_id, normalized=TRUE, apelido, tem
 #' @examples
 #' fetch_proposicao_camara(2056568, T, "Lei para acabar zona de amortecimento", "Meio Ambiente", F)
 fetch_proposicao_camara <- function(prop_id, normalized=TRUE, apelido, tema, emendas=FALSE) {
-  prop_camara <- rcongresso::fetch_proposicao(prop_id) %>%
+  prop_camara <- rcongresso::fetch_proposicao_camara(prop_id) %>%
     rename_df_columns()
-  
+
   if (normalized) {
     autor_df <- extract_autor_in_camara(prop_id)
-    
+
     prop_camara <- prop_camara %>%
       dplyr::mutate(prop_id = as.integer(id),
                     numero = as.integer(numero),
@@ -235,7 +235,7 @@ fetch_proposicao_camara <- function(prop_id, normalized=TRUE, apelido, tema, eme
                     casa_origem = autor_df[1,]$casa_origem,
                     autor_nome = autor_df[1,]$autor.nome,
                     apelido_materia = apelido,
-                    tema = tema) 
+                    tema = tema)
     if (emendas) {
       prop_camara <-
         prop_camara %>%
@@ -268,8 +268,8 @@ fetch_proposicao_camara <- function(prop_id, normalized=TRUE, apelido, tema, eme
                       apelido_materia,
                       tema)
     }
-    
+
   }
-  
+
   prop_camara
 }

@@ -22,7 +22,7 @@ fetch_emendas <- function(id, casa) {
     emendas %>%
     dplyr::mutate(prop_id = id, codigo_emenda = as.integer(codigo_emenda)) %>%
     dplyr::select(
-      prop_id, codigo_emenda, data_apresentacao, numero, local, autor, casa, tipo_documento, inteiro_teor) 
+      prop_id, codigo_emenda, data_apresentacao, numero, local, autor, casa, tipo_documento, inteiro_teor)
   return(emendas)
 }
 
@@ -35,47 +35,13 @@ fetch_emendas <- function(id, casa) {
 #' @return Dataframe com as informações sobre as emendas de uma proposição na Camara
 #' @examples
 #' fetch_emendas_camara(408406)
-fetch_emendas_camara <- function(id=NA, sigla="", numero="", ano="") {
-  if(is.na(id)) {
-    url <-
-      paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterEmendasSubstitutivoRedacaoFinal?tipo=', sigla, '&numero=', numero, '&ano=', ano)
-  }else {
+fetch_emendas_camara <- function(id=NULL, sigla=NULL, numero=NULL, ano=NULL) {
+  if(!is.null(id)) {
     prop <- fetch_proposicao(id, 'camara')
-    url <-
-      paste0('http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterEmendasSubstitutivoRedacaoFinal?tipo=', prop$tipo_materia, '&numero=', prop$numero, '&ano=', prop$ano)
+    sigla <- prop$tipo_materia
+    numero <- prop$numero
+    ano <- prop$ano
   }
 
-  eventos_list <-
-    XML::xmlParse(url) %>%
-    XML::xmlToList()
-
-  df <-
-    eventos_list %>%
-    jsonlite::toJSON() %>%
-    jsonlite::fromJSON() %>%
-    magrittr::extract2('Emendas') %>%
-    tibble::as.tibble() %>%
-    t() %>%
-    as.data.frame()
-
-  if(nrow(df) == 0) {
-    return(tibble::frame_data( ~ codigo_emenda, ~ data_apresentacao, ~ numero, ~ local, ~ autor, ~ casa, ~ tipo_documento, ~ inteiro_teor))
-  }
-
-  new_names <- c("cod_proposicao", "descricao")
-  names(df) <- new_names
-
-  emendas <- purrr::map_df(df$cod_proposicao, fetch_emendas_camara_auxiliar)
-  normalizes_names <- c("codigo_emenda", "data_apresentacao", "numero", "local", "autor", "casa", "tipo_documento", "inteiro_teor")
-  names(emendas) <- normalizes_names
-
-  emendas %>%
-    dplyr::mutate(data_apresentacao = as.character(as.Date(data_apresentacao)))
-}
-
-#' @title Função auxiliar para o fetch_emendas_camara
-#' @description Retorna dataframe com os dados das emendas de uma proposição na Camara
-fetch_emendas_camara_auxiliar <- function(id) {
-  fetch_proposicao(id, "camara", normalized = T, emendas = T) %>%
-    dplyr::select(c(prop_id, data_apresentacao, numero, status_proposicao_sigla_orgao, autor_nome, casa, tipo_materia, ementa))
+  rcongresso::fetch_emendas_camara(sigla=sigla, numero=numero, ano=ano)
 }

@@ -8,7 +8,7 @@ source(here::here("R/utils.R"))
 #' fetch_composicao_comissoes_camara('cmads')
 fetch_composicao_comissoes_camara <- function(sigla_comissao) {
   orgaos_camara <-
-    fetch_todos_orgaos() %>%
+    fetch_orgaos_camara() %>%
     dplyr::mutate_all(as.character) %>%
     dplyr::filter(trimws(sigla) == toupper(sigla_comissao)) %>%
     dplyr::select(orgao_id) %>% head(1)
@@ -160,7 +160,7 @@ fetch_composicao_comissoes_senado <- function(sigla) {
 #' @importFrom dplyr %>%
 #' @export
 fetch_all_composicao_comissao <- function() {
-  siglas_comissoes <- fetch_todos_orgaos() %>%
+  siglas_comissoes <- fetch_orgaos_camara() %>%
     dplyr::mutate_all(as.character) %>%
     dplyr::select(sigla) %>%
     dplyr::mutate(casa = 'camara',

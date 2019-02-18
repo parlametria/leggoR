@@ -271,7 +271,7 @@ extract_regime_tramitacao_camara <- function(tram_df) {
 
   prop_id <- tram_df[1,]$prop_id
 
-  regime_df <- rcongresso::fetch_proposicao(prop_id) %>%
+  regime_df <- rcongresso::fetch_proposicao_camara(prop_id) %>%
     fuzzyjoin::regex_left_join(regimes,
                                by = c(statusProposicao.regime = "regex"))
   return(regime_df[1,]$regime_tramitacao)
@@ -333,7 +333,7 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
   if (nrow(virada_de_casa) == 0) {
     data_tramitacao <-
       data_tramitacao %>%
-      dplyr::mutate(global = dplyr::if_else(length(casa_origem) ==0, '-', casa_origem))
+      dplyr::mutate(global = dplyr::if_else(length(casa_origem) == 0, '-', paste0(casa_origem, '')))
     
   } else {
 
