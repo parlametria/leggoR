@@ -58,8 +58,12 @@ get_redirected_url <- function(url) {
     content_list <- content %>%
       xml2::as_list()
     attribute <- lapply(content_list$html$head, attributes)
-    url <- stringr::str_extract(attribute$meta$content, "http.*") %>%
+    new_url <- stringr::str_extract(attribute$meta$content, "http.*") %>%
       stringr::str_remove("&altura=.*")
+    
+    if(length(new_url) > 0) {
+      url <- new_url
+    }
   }
 
   return(url)
@@ -112,6 +116,7 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                   texto_tramitacao,
                   link_inteiro_teor)
   emendas <- rcongresso::fetch_emendas(proposicao_df$id, casa, proposicao_df$siglaTipo, proposicao_df$numero, proposicao_df$ano) %>% 
+    
     dplyr::mutate(prop_id = proposicao_df$id,
                   casa = "camara") %>%
     dplyr::select(prop_id,
@@ -119,11 +124,14 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                   data_hora = data_apresentacao,
                   texto_tramitacao = inteiro_teor,
                   codigo_emenda)
-  emendas$link_inteiro_teor <- do.call("rbind", lapply(emendas$codigo_emenda, get_emendas_links))
-
-  df <- df %>%
-    rbind(emendas %>%
-            select(-codigo_emenda))
+  
+  if(nrow(emendas) > 0) {
+    emendas$link_inteiro_teor <- do.call("rbind", lapply(emendas$codigo_emenda, get_emendas_links))
+    
+    df <- df %>%
+      rbind(emendas %>%
+              select(-codigo_emenda))
+  }
 
   if(nrow(df) > 0) {
     df <- df %>%
@@ -134,7 +142,8 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                     link_inteiro_teor) %>%
       dplyr::mutate(descricao =
                       stringr::str_remove(descricao,
-                                          camara_env$versoes_texto_proposicao$remove_publicacao_regex)) %>%
+                                          camara_env$versoes_texto_proposicao$remove_publicacao_regex))
+    df <- df %>%
       dplyr::rowwise() %>%
       dplyr::mutate(link_inteiro_teor = get_redirected_url(link_inteiro_teor))
   } else {
@@ -245,5 +254,5 @@ extract_initial_page_from_link <- function(df) {
 #' @examples
 #' get_emendas_links(577691)
 get_emendas_links <- function(id_emenda) {
-  return(rcongresso::fetch_proposicao(id_emenda)$urlInteiroTeor)
+  return(rcongresso::fetch_proposicao_camara(id_emenda)$urlInteiroTeor)
 }
