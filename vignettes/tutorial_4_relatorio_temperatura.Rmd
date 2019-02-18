@@ -37,7 +37,9 @@ Vamos baixar os dados da proposição e da tramitação e em seguida reconhecer 
 library(magrittr)
 id <- 345311
 casa <- 'camara'
-prop <- rcongresso::fetch_proposicao_camara(id)
+apelido <- 'Terras indigenas'
+tema <- 'Meio ambiente'
+prop <- agoradigital::fetch_proposicao(id, casa, apelido, tema, TRUE, FALSE)
 tram <- agoradigital::fetch_tramitacao(id,casa,TRUE)
 proc_tram <- agoradigital::process_proposicao(prop,tram,casa)
 
