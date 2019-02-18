@@ -1,6 +1,14 @@
+#' @title Processa a proposição
+#' @description Realiza todas os processamentos necessários para criar
+#' as tabelas para uma proposição
+#' @param id Id da proposição
+#' @param casa senado ou camara
+#' @param agenda dataframe com a agenda
+#' @return list com os dataframes: proposicao, fases_eventos, 
+#' hist_temperatura e emendas
 process_etapa <- function(id, casa, agenda) {
   prop <- agoradigital::fetch_proposicao(id, casa)
-  tram <- agoradigital::fetch_tramitacao(id, casa, TRUE)
+  tram <- agoradigital::fetch_tramitacao(id, casa)
   proc_tram <-
     agoradigital::process_proposicao(prop, tram, casa) %>%
     dplyr::mutate(data_hora = as.POSIXct(data_hora))
@@ -16,24 +24,33 @@ process_etapa <- function(id, casa, agenda) {
   extended_prop <-
     merge(prop, status, by = "prop_id") %>%
     dplyr::mutate(temperatura = temperatura_value)
-  emendas <- rcongresso::fetch_emendas(id, casa)
-  
+  emendas <- rcongresso::fetch_emendas(id, casa, prop$tipo_materia, prop$numero, prop$ano)
+
   list(
     proposicao = extended_prop,
     fases_eventos = proc_tram,
     hist_temperatura = historico_temperatura,
-    emendas = emendas)
+    emendas = emendas
+    )
 }
 
+#' @title Adiciona uma coluna para indicar se a proposição pulou alguma fase
+#' @description Verifica se a proposição pulou uma fase
+#' @param progresso_df DataFrame com o progresso da tramitação
+#' @return Dataframe
 adiciona_coluna_pulou <- function(progresso_df) {
   progresso_df$prox_local_casa = dplyr::lead(progresso_df$local_casa)
-  
+
   progresso_df %>%
     dplyr::mutate(
       pulou = dplyr::if_else((is.na(local_casa) & !is.na(prox_local_casa)), T, F)) %>%
     dplyr::select(-prox_local_casa)
 }
 
+#' @title Adiciona locais
+#' @description Adiciona locais faltantes ao progresso
+#' @param progresso_df DataFrame com o progresso da tramitação
+#' @return Dataframe
 adiciona_locais_faltantes_progresso <- function(progresso_df) {
   progresso_df %>%
     dplyr::mutate(local_casa = dplyr::case_when(
@@ -45,6 +62,31 @@ adiciona_locais_faltantes_progresso <- function(progresso_df) {
       TRUE ~ local_casa))
 }
 
+#' @title Adiciona o status da proposição
+#' @description Verifica se a proposição esta Ativa, Arquivada ou virou Lei
+#' @param tramitacao_df DataFrame com a tramitacao depois de ser processada pelo process_pl
+#' @return Dataframe
+adiciona_status <- function(tramitacao_df) {
+  tramitacao_df %>%
+    dplyr::group_by(id_ext, casa) %>%
+    dplyr::mutate(status = dplyr::case_when(evento == "arquivamento" ~ "Arquivada",
+                                                        evento == "desarquivamento" ~ "Ativa",
+                                                        dplyr::lead(evento, order_by = data) == "transformada_lei" ~ "Lei")) %>%
+    tidyr::fill(status) %>%
+    dplyr::mutate(status = dplyr::case_when(is.na(status) ~ "Ativa",
+                  T ~ status))
+}
+
+#' @title Gera etapas
+#' @description Gera a lista etapas com todas as tabelas necessárias para o back
+#' @param row_num Row number da proposição na tabela
+#' @param id_camara Id da proposição na camara
+#' @param id_senado Id da proposição no senado
+#' @param apelido Apelido da proposição
+#' @param tema_pl Tema da proposição
+#' @param agenda Agenda 
+#' @param total_rows número de linhas da tabela com os ids das proposições
+#' @return Dataframe
 process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows) {
   cat(paste(
     "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
@@ -83,7 +125,8 @@ export_data <- function(pls, export_path) {
     dplyr::rename(id_ext = prop_id, sigla_tipo = tipo_materia, apelido = apelido_materia)
   tramitacoes <-
     purrr::map_df(res, ~ .$fases_eventos) %>%
-    dplyr::rename(id_ext = prop_id, data = data_hora)
+    dplyr::rename(id_ext = prop_id, data = data_hora) %>%
+    adiciona_status()
   hists_temperatura <- purrr::map_df(res, ~ .$hist_temperatura)
   progressos <-
     purrr::map_df(res, ~ .$progresso) %>%
@@ -91,9 +134,10 @@ export_data <- function(pls, export_path) {
   emendas <-
     purrr::map_df(res, ~ .$emendas) %>%
     dplyr::rename(id_ext = prop_id)
-  comissoes <-
-    agoradigital::fetch_all_composicao_comissao()
-  
+  #TODO: Quando as comissões estiverem preenchidas
+  #comissoes <-
+    #agoradigital::fetch_all_composicao_comissao()
+
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
   readr::write_csv(tramitacoes, paste0(export_path, "/trams.csv"))
@@ -101,5 +145,6 @@ export_data <- function(pls, export_path) {
     hists_temperatura, paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
   readr::write_csv(emendas, paste0(export_path, "/emendas.csv"))
-  readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
+  #TODO: Quando as comissões estiverem preenchidas
+  #readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
 }

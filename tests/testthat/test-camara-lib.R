@@ -3,7 +3,7 @@ context('test-camara-lib.R')
 #PL 3729/2004 e PL 490/2007
 PROPOSICOES_ID <<- c(2121442)
 proposicao_data <<- agoradigital::fetch_proposicao(PROPOSICOES_ID, 'camara', TRUE)
-tramitacao_data <<- agoradigital::fetch_tramitacao(PROPOSICOES_ID, 'camara', TRUE)
+tramitacao_data <<- agoradigital::fetch_tramitacao(PROPOSICOES_ID, 'camara')
 
 test_that('get_ementas_in_camara() is dataframe', {
   expect_true(is.data.frame(get_ementas_in_camara(PROPOSICOES_ID)))
