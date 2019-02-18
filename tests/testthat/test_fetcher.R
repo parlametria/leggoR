@@ -44,6 +44,14 @@ test <- function(){
   test_that('fetch_emendas() returns dataframe', {
     expect_true(is.data.frame(fetch_emendas(91341, 'senado')))
   })
+  
+  test_that('fetch_apensadas() returns dataframe', {
+    proposicoes_fetch_apensadas <- senado_df %>%
+      dplyr::rowwise() %>%
+      dplyr::do(fetch_apensadas(.$SENADO_ID))
+    
+    expect_true(is.data.frame(proposicoes_fetch_apensadas))
+  })
 }
 
 if(check_api()){

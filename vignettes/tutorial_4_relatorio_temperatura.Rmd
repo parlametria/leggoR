@@ -40,7 +40,6 @@ casa <- 'camara'
 prop <- agoradigital::fetch_proposicao(id,casa)
 tram <- agoradigital::fetch_tramitacao(id,casa)
 proc_tram <- agoradigital::process_proposicao(prop,tram,casa)
-
 proc_tram %>%
   dplyr::select(data_hora, texto_tramitacao, sigla_local, evento) %>%
   dplyr::filter(!is.na(evento)) %>%
