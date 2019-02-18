@@ -121,8 +121,7 @@ sort_by_date <- function(df) {
 #' @export
 fetch_proposicao_with_apensamentos_camara <- function(prop_id) {
   rcongresso::fetch_proposicao_camara(prop_id) %>%
-    dplyr::mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse =
-                                                  ' '))
+    dplyr::mutate(proposicoes_apensadas = paste(rcongresso::fetch_apensadas_camara(prop_id), collapse = ' '))
 }
 
 #' @title Recupera a proposição com as colunas renomeadas
