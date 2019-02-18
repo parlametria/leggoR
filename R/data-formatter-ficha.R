@@ -96,7 +96,7 @@ extract_informations_from_single_house <- function(id, casa, url=NULL) {
   print(casa)
   casa <- tolower(casa)
   prop <- agoradigital::fetch_proposicao(id, casa, "", T)
-  tram <- agoradigital::fetch_tramitacao(id, casa, T)
+  tram <- agoradigital::fetch_tramitacao(id, casa)
   tram <- process_proposicao(prop, tram, casa)
   if (casa == 'camara') {
     nome_camara <- prop %>% dplyr::select(ementa, tipo_materia, numero) %>% tail(1)
@@ -265,7 +265,7 @@ gera_tabela_apensadas_camara <- function(bill_id_camara) {
   url_camara <- "http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao="
 
   apensadas <-
-    rcongresso::fetch_apensadas_camara(bill_id_camara)
+    fetch_apensadas(bill_id_camara)
 
   if (nrow(apensadas) != 0) {
     apensadas %>%

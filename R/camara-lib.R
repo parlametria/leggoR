@@ -11,7 +11,7 @@ camara_codes <-
 #' get_ementas_in_camara(2121442)
 #' @export
 get_ementas_in_camara <- function(prop_id) {
-  rcongresso::fetch_proposicao(prop_id) %>% dplyr::select(ementa, siglaTipo, numero)
+  rcongresso::fetch_proposicao_camara(prop_id) %>% dplyr::select(ementa, siglaTipo, numero)
 }
 
 #' @title Recupera os n últimos despachos na Câmara
@@ -117,11 +117,12 @@ sort_by_date <- function(df) {
 #' @param prop_id Id da proposição
 #' @return Dataframe da proposição + a coluna proposicoes_apensadas
 #' @examples
-#' fetch_proposicao_with_apensamentos(2121442)
+#' fetch_proposicao_with_apensamentos_camara(2121442)
 #' @export
-fetch_proposicao_with_apensamentos <- function(prop_id) {
+fetch_proposicao_with_apensamentos_camara <- function(prop_id) {
   rcongresso::fetch_proposicao_camara(prop_id) %>%
-    dplyr::mutate(proposicoes_apensadas = paste(rcongresso::fetch_apensadas_camara(prop_id), collapse = ' '))
+    dplyr::mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse =
+                                                  ' '))
 }
 
 #' @title Recupera a proposição com as colunas renomeadas

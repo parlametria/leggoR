@@ -271,7 +271,7 @@ extract_regime_tramitacao_camara <- function(tram_df) {
 
   prop_id <- tram_df[1,]$prop_id
 
-  regime_df <- rcongresso::fetch_proposicao(prop_id) %>%
+  regime_df <- rcongresso::fetch_proposicao_camara(prop_id) %>%
     fuzzyjoin::regex_left_join(regimes,
                                by = c(statusProposicao.regime = "regex"))
   return(regime_df[1,]$regime_tramitacao)

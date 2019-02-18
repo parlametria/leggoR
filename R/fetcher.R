@@ -85,7 +85,24 @@ fetch_sessions <- function(bill_id) {
     tidyr::unnest() %>%
     rename_table_to_underscore()
 
-  ordem_do_dia_df
+    ordem_do_dia_df
+}
+
+###################################################################
+#
+#' @title Recupera as proposições apensadas
+#' @description Retorna os IDs das proposições apensadas a uma determinada proposição
+#' @param prop_id ID da proposição
+#' @return Ventor contendo os IDs das proposições apensadas
+#' @examples
+#' fetch_apensadas(2121442)
+#' @export
+fetch_apensadas <- function(prop_id) {
+  api_v1_proposicao_url <- 'http://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID?IdProp='
+  xml2::read_xml(paste0(api_v1_proposicao_url, prop_id)) %>%
+    xml2::xml_find_all('//apensadas/proposicao/codProposicao') %>%
+    xml2::xml_text() %>%
+    tibble::tibble(apensadas = .)
 }
 
 ###################################################################
@@ -150,7 +167,7 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
     strsplit('/') %>%
     vapply(last, '') %>%
     unique %>%
-    rcongresso::fetch_proposicao()
+    rcongresso::fetch_proposicao_camara()
 
   requerimentos <-
     related %>%
@@ -159,7 +176,7 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
   if (!mark_deferimento)
     return(requerimentos)
 
-  tramitacoes <- fetch_tramitacao(requerimentos$id, 'camara', TRUE)
+  tramitacoes <- fetch_tramitacao(requerimentos$id, 'camara')
 
   related <-
     tramitacoes %>%
@@ -212,7 +229,7 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
 
   if(nrow(orgao_atual) > 0){
     orgao_id <-
-      fetch_todos_orgaos() %>%
+      fetch_orgaos_camara() %>%
       dplyr::filter(stringr::str_detect(sigla, orgao_atual$sigla)) %>%
       dplyr::select(orgao_id)
 
