@@ -32,10 +32,3 @@ test_that('last_n_despacho_in_camara() returns correct columns names', {
 test_that('extract_relator_in_camara() returns dataframe', {
   expect_true(is.data.frame(proposicao_data))
 })
-
-test_that('fetch_apensadas() returns dataframe', {
-  proposicoes_apensados <- as.data.frame(PROPOSICOES_ID) %>%
-    dplyr::rowwise() %>%
-    dplyr::do(fetch_apensadas(.$PROPOSICOES_ID))
-  expect_true(is.data.frame(proposicoes_apensados))
-})

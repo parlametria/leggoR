@@ -66,23 +66,23 @@ get_comissoes_in_camara <- function(df) {
     unlist(get_comissoes_camara()) %>%
     paste(collapse = '|') %>%
     stringr::regex(ignore_case = TRUE)
-  
+
   fix_names <- function(name) {
     ifelse(!stringr::str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name), paste("Comissão de", name), name)
   }
-  
+
   detect <- function(str, regex) {
     stringr::str_detect(str, stringr::regex(regex, ignore_case = TRUE))
   }
-  
+
   df %>%
     dplyr::mutate(
       comissoes = dplyr::case_when(
-        (detect(texto_tramitacao, 'cria..o de comiss.o tempor.ria') | 
-         detect(texto_tramitacao, 'à comiss.o .*especial')) ~ 
+        (detect(texto_tramitacao, 'cria..o de comiss.o tempor.ria') |
+         detect(texto_tramitacao, 'à comiss.o .*especial')) ~
         'Comissão Especial',
         ((detect(texto_tramitacao, '^às* comiss..s*') |
-         detect(texto_tramitacao, '^despacho à')) 
+         detect(texto_tramitacao, '^despacho à'))
          #|detect(texto_tramitacao, 'novo despacho')
          ) ~
         texto_tramitacao)
@@ -120,9 +120,8 @@ sort_by_date <- function(df) {
 #' fetch_proposicao_with_apensamentos(2121442)
 #' @export
 fetch_proposicao_with_apensamentos <- function(prop_id) {
-  rcongresso::fetch_proposicao(prop_id) %>%
-    dplyr::mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse =
-                                                  ' '))
+  rcongresso::fetch_proposicao_camara(prop_id) %>%
+    dplyr::mutate(proposicoes_apensadas = paste(rcongresso::fetch_apensadas_camara(prop_id), collapse = ' '))
 }
 
 #' @title Recupera a proposição com as colunas renomeadas
@@ -137,6 +136,6 @@ fetch_proposicao_renamed <- function(id) {
   df <-
     fetch_proposicao_camara(id) %>%
     rename_df_columns
-  
+
   df[,!sapply(df, is.list)]
 }
