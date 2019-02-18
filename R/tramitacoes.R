@@ -72,5 +72,5 @@ fetch_tramitacao_camara <- function(bill_id) {
 #' fetch_tramitacoes(all_pls)
 #' @export
 fetch_tramitacoes <- function(pls_ids) {
-    purrr::map2_df(pls_ids$id, pls_ids$casa, ~ fetch_tramitacao(.x, .y, TRUE))
+    purrr::map2_df(pls_ids$id, pls_ids$casa, ~ fetch_tramitacao(.x, .y))
 }
