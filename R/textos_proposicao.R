@@ -12,9 +12,8 @@ camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 extract_links_proposicao <- function(id, casa) {
   if(casa == 'camara') {
     proposicao_df = rcongresso::fetch_proposicao_camara(id)
-    tramitacao_df = rcongresso::fetch_tramitacao(id, casa)
+    tramitacao_df = rcongresso::fetch_tramitacao_camara(id)
     df <- extract_links_proposicao_camara(proposicao_df, tramitacao_df)
-    
   } else if(casa == 'senado') {
     df <- extract_links_proposicao_senado(id)
   }
@@ -71,11 +70,12 @@ get_redirected_url <- function(url) {
 #' @examples
 #' extract_links_proposicao_camara(rcongresso::fetch_proposicao(46249), rcongresso::fetch_tramitacao(46249, 'camara'))
 extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
+  casa <- "camara"
   tramitacao_df <- 
     tramitacao_df %>% 
     dplyr::filter(!is.na(url)) %>% 
     dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,'T',' ')),
-                  casa = 'camara',
+                  casa = casa,
                   id_situacao = as.integer(cod_tipo_tramitacao)) %>%
     dplyr::select(prop_id = id_prop,
                   casa,
@@ -103,6 +103,7 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                   data_hora = data_apresentacao, 
                   texto_tramitacao = inteiro_teor,
                   codigo_emenda)
+  
   emendas$link_inteiro_teor <- do.call("rbind", lapply(emendas$codigo_emenda, get_emendas_links))
   
   df <- df %>% 
