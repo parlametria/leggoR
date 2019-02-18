@@ -19,7 +19,7 @@ extract_links_proposicao <- function(id, casa) {
   } else if(casa == 'senado') {
     df <- extract_links_proposicao_senado(id)
   }
-
+  
   return(df %>% extract_initial_page_from_link())
 }
 
@@ -53,7 +53,7 @@ has_redirect_url <- function(content) {
 get_redirected_url <- function(url) {
   content <- httr::GET(url) %>%
     httr::content()
-
+  
   if(has_redirect_url(content)) {
     content_list <- content %>%
       xml2::as_list()
@@ -65,7 +65,7 @@ get_redirected_url <- function(url) {
       url <- new_url
     }
   }
-
+  
   return(url)
 }
 
@@ -132,7 +132,7 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
       rbind(emendas %>%
               select(-codigo_emenda))
   }
-
+  
   if(nrow(df) > 0) {
     df <- df %>%
       dplyr::select(id_proposicao = prop_id,
@@ -150,7 +150,7 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
     df <- dplyr::tribble(
       ~ id_proposicao, ~ casa, ~ data, ~ descricao, ~ link_inteiro_teor)
   }
-
+  
   return(df)
 }
 
@@ -203,7 +203,7 @@ filter_links <- function(df) {
 #' extract_links_proposicao_senado(127753)
 extract_links_proposicao_senado <- function(id) {
   url = paste0('http://legis.senado.leg.br/dadosabertos/materia/textos/', id)
-
+  
   textos_df <-
     XML::xmlToDataFrame(nodes = XML::getNodeSet(XML::xmlParse(RCurl::getURL(url)),
                                                 "//Texto")) %>%
@@ -212,11 +212,11 @@ extract_links_proposicao_senado <- function(id) {
                   casa = "senado") %>%
     mutate_links() %>%
     filter_links()
-
+  
   if(nrow(textos_df) == 0) {
     return(dplyr::tribble(
       ~ id_votacao, ~ casa, ~ data, ~ descricao, ~ link_inteiro_teor))
-
+    
   } else{
     textos_df <- textos_df %>%
       dplyr::select(id_proposicao,
@@ -241,8 +241,8 @@ extract_initial_page_from_link <- function(df) {
     df %>%
     dplyr::mutate(pagina_inicial =
                     dplyr::case_when(stringr::str_detect(tolower(link_inteiro_teor), 'txpagina=\\d.*') ~
-                                stringr::str_extract(tolower(link_inteiro_teor), 'txpagina=\\d*'),
-                              TRUE ~ '1'),
+                                       stringr::str_extract(tolower(link_inteiro_teor), 'txpagina=\\d*'),
+                                     TRUE ~ '1'),
                   pagina_inicial = stringr::str_extract(pagina_inicial, '\\d.*'))
   return(df)
 }
