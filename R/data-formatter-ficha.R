@@ -265,7 +265,7 @@ gera_tabela_apensadas_camara <- function(bill_id_camara) {
   url_camara <- "http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao="
 
   apensadas <-
-    rcongresso::fetch_apensadas_camara(bill_id_camara)
+    fetch_apensadas(bill_id_camara)
 
   if (nrow(apensadas) != 0) {
     apensadas %>%

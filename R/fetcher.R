@@ -89,6 +89,23 @@ fetch_sessions <- function(bill_id) {
 }
 
 ###################################################################
+#
+#' @title Recupera as proposições apensadas
+#' @description Retorna os IDs das proposições apensadas a uma determinada proposição
+#' @param prop_id ID da proposição
+#' @return Ventor contendo os IDs das proposições apensadas
+#' @examples
+#' fetch_apensadas(2121442)
+#' @export
+fetch_apensadas <- function(prop_id) {
+  api_v1_proposicao_url <- 'http://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID?IdProp='
+  xml2::read_xml(paste0(api_v1_proposicao_url, prop_id)) %>%
+    xml2::xml_find_all('//apensadas/proposicao/codProposicao') %>%
+    xml2::xml_text() %>%
+    tibble::tibble(apensadas = .)
+}
+
+###################################################################
 
 #' @title Retorna o dataFrame com as audiências públicas do Senado
 #' @description Retorna um dataframe contendo as audiências públicas do Senado
