@@ -52,55 +52,6 @@ test <- function(){
     
     expect_true(is.data.frame(proposicoes_fetch_apensadas))
   })
-  
-  test_that('fetch_proposicao() returns dataframe', {
-    proposicoes_fetch_proposicao_senado <- senado_df %>%
-      dplyr::rowwise() %>%
-      dplyr::do(fetch_proposicao(.$SENADO_ID, 'senado', '', '', TRUE))
-    
-    proposicoes_fetch_proposicao_camara <- camara_df %>%
-      dplyr::rowwise() %>%
-      dplyr::do(fetch_proposicao(.$CAMARA_ID, 'camara',TRUE))
-    
-    expect_true(is.data.frame(proposicoes_fetch_proposicao_senado))
-    expect_true(is.data.frame(proposicoes_fetch_proposicao_camara))
-  })
-  
-  test_that('fetch_proposicao_senado() returns dataframe', {
-    proposicoes_fetch_proposicao_senado <- senado_df %>%
-      dplyr::rowwise() %>%
-      dplyr::do(fetch_proposicao_senado(.$SENADO_ID,TRUE, '', ''))
-    
-    expect_true(is.data.frame(proposicoes_fetch_proposicao_senado))
-  })
-  
-  test_that('fetch_proposicao_camara() returns dataframe', {
-    proposicoes_fetch_proposicao_camara <- camara_df %>%
-      dplyr::rowwise() %>%
-      dplyr::do(fetch_proposicao_camara(.$CAMARA_ID,TRUE, '', ''))
-    
-    expect_true(is.data.frame(proposicoes_fetch_proposicao_camara))
-  })
-  
-  test_that('fetch_agenda() colnames senado plenario', {
-    proposicoes_fetch_agenda <- fetch_agenda(DATA_INICIO, DATA_FIM, 'senado', 'plenario') 
-    expect_true(all(names(proposicoes_fetch_agenda) %in% .COLNAMES_AGENDA))
-  })
-  
-  test_that('fetch_agenda() colnames senado comissoes', {
-    proposicoes_fetch_agenda <- fetch_agenda(DATA_INICIO, DATA_FIM, 'senado', 'comissoes') 
-    expect_true(all(names(proposicoes_fetch_agenda) %in% .COLNAMES_AGENDA))
-  })
-  
-  # test_that('fetch_agenda() colnames camara plenario', {
-  #   proposicoes_fetch_agenda <- fetch_agenda(DATA_INICIO, DATA_FIM, 'camara', 'plenario') 
-  #   expect_true(all(names(proposicoes_fetch_agenda) %in% .COLNAMES_AGENDA))
-  # })
-  # 
-  # test_that('fetch_agenda() colnames camara comissoes', {
-  #   proposicoes_fetch_agenda <- fetch_agenda(DATA_INICIO, DATA_FIM, 'camara', 'comissoes') 
-  #   expect_true(all(names(proposicoes_fetch_agenda) %in% .COLNAMES_AGENDA))
-  # })
 }
 
 if(check_api()){
