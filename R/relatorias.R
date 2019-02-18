@@ -3,7 +3,7 @@ senado_constants <- senado_env$constants
 
 #' @title Recupera o histórico de relatorias de uma proposição
 #' @description Retorna dataframe com o histórico de relatorias, contendo data e nome do relator. No senado contem informacoes
-#' extras sobre motivo do fim da relatoria e informacoes do relator. Na camara, contem o a sigla do local da relatoria 
+#' extras sobre motivo do fim da relatoria e informacoes do relator. Na camara, contem o a sigla do local da relatoria
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param proposicao_id ID de uma proposição do Senado
 #' @param last_n Pegar os ultimos N relatores
@@ -18,9 +18,9 @@ get_relatorias <- function(proposicao_id, casa, last_n=NULL) {
   else if(tolower(casa) == 'camara') {
     relatorias <- extract_relatorias_camara(proposicao_id)
   }
-  
+
   if(!is.null(last_n)){
-    relatorias <- 
+    relatorias <-
       relatorias %>%
       head(last_n)
   }
@@ -39,16 +39,16 @@ get_relatorias <- function(proposicao_id, casa, last_n=NULL) {
 fetch_relatorias_senado <- function(proposicao_id) {
   url_relatorias <-
     paste0(senado_env$endpoints_api$url_base, "relatorias/")
-  
+
   url <- paste0(url_relatorias, proposicao_id)
   json_relatorias <- jsonlite::fromJSON(url,flatten = T)
-  
+
   relatorias_data <-
     json_relatorias %>%
     magrittr::extract2("RelatoriaMateria") %>%
     magrittr::extract2("Materia") %>%
     magrittr::extract2("HistoricoRelatoria")
-  
+
   relatorias_df <-
     relatorias_data %>%
     magrittr::extract2("Relator") %>%
@@ -65,8 +65,8 @@ fetch_relatorias_senado <- function(proposicao_id) {
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
 extract_relatorias_senado <- function(proposicao_id) {
   relatorias <- fetch_relatorias_senado(proposicao_id)
-  
-  relatorias <- 
+
+  relatorias <-
     relatorias[,!sapply(relatorias, is.list)] %>%
     rename_relatorias_senado_columns
 }
@@ -91,7 +91,7 @@ rename_relatorias_senado_columns <- function(df) {
 #' @param proposicao_id ID de uma proposição da Camara
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição na Camara
 extract_relatorias_camara <- function(proposicao_id) {
-  fetch_tramitacao(proposicao_id, 'camara', T) %>%
+  fetch_tramitacao(proposicao_id, 'camara') %>%
     dplyr::filter(stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r')) %>%
     dplyr::select(
       data_hora,

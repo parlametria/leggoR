@@ -97,7 +97,7 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
       palavras_chave = indexacao_materia,
       casa_origem = nome_casa_origem,
     )
-   
+  
 }
 
 #' @title Baixa dados sobre uma proposição
@@ -114,17 +114,17 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
   proposicao <- rcongresso::fetch_proposicao_camara(id) %>%
     rename_df_columns() %>%
     dplyr::transmute(prop_id = as.integer(id),
-                  numero = as.integer(numero),
-                  ano = as.integer(ano),
-                  ementa = paste(ementa,ementa_detalhada),
-                  data_apresentacao = lubridate::ymd_hm(stringr::str_replace(data_apresentacao,'T',' ')),
-                  casa = 'camara',
-                  casa_origem = ifelse(tolower(autor_df$tipo) == "deputado",
-                                       "camara",
-                                       "senado"),
-                  autor_nome = autor_df$nome,
-                  apelido_materia = apelido,
-                  tema = tema,
-                  status_proposicao_sigla_orgao)
+                     numero = as.integer(numero),
+                     ano = as.integer(ano),
+                     ementa = paste(ementa,ementa_detalhada),
+                     data_apresentacao = lubridate::ymd_hm(stringr::str_replace(data_apresentacao,'T',' ')),
+                     casa = 'camara',
+                     casa_origem = ifelse(tolower(autor_df$tipo) == "deputado",
+                                          "camara",
+                                          "senado"),
+                     autor_nome = autor_df$nome,
+                     apelido_materia = apelido,
+                     tema = tema,
+                     status_proposicao_sigla_orgao)
   proposicao
 }

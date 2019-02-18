@@ -35,8 +35,8 @@ test <- function(){
       dplyr::rowwise() %>%
       dplyr::do(fetch_proposicao(.$CAMARA_ID, 'camara'))
     
-    expect_true(nrow(is.data.frame(proposicoes_senado) != 0))
-    expect_true(nrow(is.data.frame(proposicoes_camara) != 0))
+    expect_true(nrow(proposicoes_senado) != 0)
+    expect_true(nrow(proposicoes_camara) != 0)
   })
   
  

@@ -2,6 +2,7 @@ context('test-camara-lib.R')
 
 #PL 3729/2004 e PL 490/2007
 PROPOSICOES_ID <<- c(2121442)
+
 tramitacao_data <<- agoradigital::fetch_tramitacao(PROPOSICOES_ID, 'camara')
 
 test_that('get_ementas_in_camara() is dataframe', {

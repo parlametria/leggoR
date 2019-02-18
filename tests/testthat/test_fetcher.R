@@ -52,27 +52,6 @@ test <- function(){
     
     expect_true(is.data.frame(proposicoes_fetch_apensadas))
   })
-  
-  test_that('fetch_agenda() colnames senado plenario', {
-    proposicoes_fetch_agenda <- fetch_agenda(DATA_INICIO, DATA_FIM, 'senado', 'plenario') 
-    expect_true(all(names(proposicoes_fetch_agenda) %in% .COLNAMES_AGENDA))
-  })
-  
-  test_that('fetch_agenda() colnames senado comissoes', {
-    proposicoes_fetch_agenda <- fetch_agenda(DATA_INICIO, DATA_FIM, 'senado', 'comissoes') 
-    expect_true(all(names(proposicoes_fetch_agenda) %in% .COLNAMES_AGENDA))
-  })
-  
-  test_that('fetch_agenda() colnames camara plenario', {
-    proposicoes_fetch_agenda <- fetch_agenda(DATA_INICIO, DATA_FIM, 'camara', 'plenario') 
-    expect_true(all(names(proposicoes_fetch_agenda) %in% .COLNAMES_AGENDA))
-  })
-  
-  test_that('fetch_agenda() colnames camara comissoes', {
-    proposicoes_fetch_agenda <- fetch_agenda(DATA_INICIO, DATA_FIM, 'camara', 'comissoes') 
-    expect_true(all(names(proposicoes_fetch_agenda) %in% .COLNAMES_AGENDA))
-  })
-  
 }
 
 if(check_api()){
