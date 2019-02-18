@@ -17,7 +17,7 @@ import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL)
     print('Parâmetro "casa" não identificado.')
   }
   
-  prop_df <- fetch_proposicao(prop_id,casa,apelido, tema, TRUE)
+  prop_df <- fetch_proposicao(prop_id,casa,apelido, tema)
   tram_df <- fetch_tramitacao(prop_id,casa, TRUE)
   emendas_df <- fetch_emendas(prop_id,casa)
   
@@ -110,7 +110,7 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
 #' @param tema Tema da proposição
 #' @return Dataframe
 #' @examples
-#' fetch_proposicao_camara(2056568, "Lei para acabar zona de amortecimento", "Meio Ambiente", F)
+#' fetch_proposicao_camara(2056568, "Lei para acabar zona de amortecimento", "Meio Ambiente")
 fetch_proposicao_camara <- function(id, apelido, tema) {
   autor_df <- rcongresso::fetch_autor_camara(id)
   proposicao <- rcongresso::fetch_proposicao_camara(id) %>%
