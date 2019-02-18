@@ -426,8 +426,7 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
 #' fetch_agenda_comissoes_camara('12/05/2018', '26/05/2018')
 fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
   orgaos <-
-    fetch_todos_orgaos() %>%
-    dplyr::filter(codTipoOrgao %in% c(2, 3, 6))
+    fetch_orgaos_camara()
 
   agenda <- purrr::map_df(orgaos$orgao_id, fetch_agendas_comissoes_camara_auxiliar, initial_date, end_date)
   if (nrow(agenda) == 0) {

@@ -167,7 +167,7 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
     strsplit('/') %>%
     vapply(last, '') %>%
     unique %>%
-    rcongresso::fetch_proposicao()
+    rcongresso::fetch_proposicao_camara()
 
   requerimentos <-
     related %>%
@@ -176,7 +176,7 @@ fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
   if (!mark_deferimento)
     return(requerimentos)
 
-  tramitacoes <- fetch_tramitacao(requerimentos$id, 'camara', TRUE)
+  tramitacoes <- fetch_tramitacao(requerimentos$id, 'camara')
 
   related <-
     tramitacoes %>%
@@ -229,7 +229,7 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
 
   if(nrow(orgao_atual) > 0){
     orgao_id <-
-      fetch_todos_orgaos() %>%
+      fetch_orgaos_camara() %>%
       dplyr::filter(stringr::str_detect(sigla, orgao_atual$sigla)) %>%
       dplyr::select(orgao_id)
 
