@@ -10,12 +10,12 @@ camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 #' extract_links_proposicao(46249, 'camara')
 #' @export
 extract_links_proposicao <- function(id, casa) {
-  if(tolower(casa) == 'camara') {
+  if(casa == 'camara') {
     proposicao_df = rcongresso::fetch_proposicao_camara(id)
     tramitacao_df = rcongresso::fetch_tramitacao(id, casa)
     df <- extract_links_proposicao_camara(proposicao_df, tramitacao_df)
     
-  } else if(tolower(casa) == 'senado') {
+  } else if(casa == 'senado') {
     df <- extract_links_proposicao_senado(id)
   }
   
@@ -95,8 +95,8 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                   texto_tramitacao,
                   link_inteiro_teor)
   
-  emendas <- rcongresso::fetch_emendas(id, casa, proposicao_df$tipo_materia, proposicao_df$numero, proposicao_df$ano) %>% 
-    dplyr::mutate(prop_id = proposicao_df$prop_id,
+  emendas <- rcongresso::fetch_emendas(id, casa, proposicao_df$siglaTipo, proposicao_df$numero, proposicao_df$ano) %>% 
+    dplyr::mutate(prop_id = proposicao_df$id,
                   casa = "camara") %>%
     dplyr::select(prop_id, 
                   casa, 
@@ -229,5 +229,5 @@ extract_initial_page_from_link <- function(df) {
 #' @examples
 #' get_emendas_links(577691)
 get_emendas_links <- function(id_emenda) {
-  return(rcongresso::fetch_proposicao(id_emenda)$urlInteiroTeor)
+  return(rcongresso::fetch_proposicao_camara(id_emenda)$urlInteiroTeor)
 }
