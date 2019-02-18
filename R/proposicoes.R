@@ -18,8 +18,8 @@ import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL)
   }
   
   prop_df <- fetch_proposicao(prop_id,casa,apelido, tema)
-  tram_df <- fetch_tramitacao(prop_id,casa, TRUE)
-  emendas_df <- fetch_emendas(prop_id,casa)
+  tram_df <- fetch_tramitacao(prop_id,casa)
+  emendas_df <- rcongresso::fetch_emendas(prop_id,casa, prop_df$tipo_materia, prop_df$numero, prop_df$ano)
   
   if (!is.null(out_folderpath)) {
     if (!is.null(prop_df)) readr::write_csv(prop_df, build_data_filepath(out_folderpath,'proposicao',casa,prop_id))
@@ -29,7 +29,6 @@ import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL)
   
   return(list(proposicao = prop_df, tramitacao = tram_df))
 }
-
 #' @title Recupera os detalhes de uma proposição no Senado ou na Câmara
 #' @description Retorna dataframe com os dados detalhados da proposição, incluindo número, ementa, tipo e data de apresentação.
 #' @param id ID de uma proposição
