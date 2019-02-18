@@ -85,7 +85,7 @@ fetch_sessions <- function(bill_id) {
     tidyr::unnest() %>%
     rename_table_to_underscore()
 
-  ordem_do_dia_df
+    ordem_do_dia_df
 }
 
 ###################################################################

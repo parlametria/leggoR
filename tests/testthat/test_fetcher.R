@@ -40,10 +40,6 @@ test <- function(){
 
     expect_true(is.data.frame(proposicoes_fetch_tramitacao))
   })
-
-  test_that('fetch_emendas() returns dataframe', {
-    expect_true(is.data.frame(fetch_emendas(91341, 'senado')))
-  })
 }
 
 if(check_api()){
