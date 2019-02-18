@@ -36,8 +36,6 @@ import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL)
 #' @param casa casa de onde a proposição esta
 #' @param apelido Apelido da proposição
 #' @param tema Tema da proposição
-#' @param normalized Se os dados vão ser normalizados
-#' @param emendas Se vai ser usando na função fetch_emendas
 #' @return Dataframe com as informações detalhadas de uma proposição
 #' @examples
 #' fetch_proposicao(129808, 'senado', 'Cadastro Positivo', 'Agenda Nacional', F)
