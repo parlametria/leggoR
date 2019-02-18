@@ -11,7 +11,7 @@ camara_codes <-
 #' get_ementas_in_camara(2121442)
 #' @export
 get_ementas_in_camara <- function(prop_id) {
-  rcongresso::fetch_proposicao(prop_id) %>% dplyr::select(ementa, siglaTipo, numero)
+  rcongresso::fetch_proposicao_camara(prop_id) %>% dplyr::select(ementa, siglaTipo, numero)
 }
 
 #' @title Recupera os n últimos despachos na Câmara
@@ -120,7 +120,7 @@ sort_by_date <- function(df) {
 #' fetch_proposicao_with_apensamentos(2121442)
 #' @export
 fetch_proposicao_with_apensamentos <- function(prop_id) {
-  rcongresso::fetch_proposicao(prop_id) %>%
+  rcongresso::fetch_proposicao_camara(prop_id) %>%
     dplyr::mutate(proposicoes_apensadas = paste(fetch_apensadas(prop_id), collapse =
                                                   ' '))
 }
