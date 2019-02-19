@@ -1,6 +1,8 @@
 senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
+source("R/camara_analyzer.R")
+
 #' @title Extrai os links quando as proposições podem ter sido modificadas
 #' @description Obtém a data e o link para o arquivo em pdf do texto da proposição
 #' @param id ID da proposição.
@@ -17,7 +19,7 @@ extract_links_proposicao <- function(id, casa) {
   } else if(casa == 'senado') {
     df <- extract_links_proposicao_senado(id)
   }
-
+  
   return(df %>% extract_initial_page_from_link())
 }
 
@@ -51,16 +53,35 @@ has_redirect_url <- function(content) {
 get_redirected_url <- function(url) {
   content <- httr::GET(url) %>%
     httr::content()
-
+  
   if(has_redirect_url(content)) {
     content_list <- content %>%
       xml2::as_list()
     attribute <- lapply(content_list$html$head, attributes)
-    url <- stringr::str_extract(attribute$meta$content, "http.*") %>%
+    new_url <- stringr::str_extract(attribute$meta$content, "http.*") %>%
       stringr::str_remove("&altura=.*")
+    
+    if(length(new_url) > 0) {
+      url <- new_url
+    }
   }
-
+  
   return(url)
+}
+
+#' @title Processa dados de um proposição da câmara.
+#' @description Recebido um dataframe com a tramitação, a função recupera informações sobre uma proposição
+#' e sua tramitação e as salva em data/camara.
+#' @param tramitacao_df Dataframe com tramitação da proposição
+#' @importFrom magrittr %>%
+process_proposicao_camara <- function(tramitacao_df) {
+  proc_tram_df <- tramitacao_df %>%
+    extract_events_in_camara() %>% 
+    extract_locais_in_camara() %>%
+    refact_date() %>%
+    sort_by_date()
+  
+  return(proc_tram_df)
 }
 
 #' @title Extrai os links quando as proposições podem ter sido modificadas
@@ -86,15 +107,16 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                   id_situacao,
                   descricao_situacao,
                   link_inteiro_teor = url)
-  df <-
-    agoradigital::process_proposicao(proposicao_df, tramitacao_df, casa, NULL) %>%
-    dplyr::filter(stringr::str_detect(evento, camara_env$versoes_texto_proposicao$eventos_regex)) %>%
+  df <- 
+    process_proposicao_camara(tramitacao_df) %>%  
+    dplyr::filter(stringr::str_detect(evento, camara_env$versoes_texto_proposicao$eventos_regex)) %>% 
     dplyr::select(prop_id,
                   casa,
                   data_hora,
                   texto_tramitacao,
                   link_inteiro_teor)
-  emendas <- rcongresso::fetch_emendas(id, casa, proposicao_df$siglaTipo, proposicao_df$numero, proposicao_df$ano) %>% 
+  emendas <- rcongresso::fetch_emendas(proposicao_df$id, casa, proposicao_df$siglaTipo, proposicao_df$numero, proposicao_df$ano) %>% 
+    
     dplyr::mutate(prop_id = proposicao_df$id,
                   casa = "camara") %>%
     dplyr::select(prop_id,
@@ -103,12 +125,14 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                   texto_tramitacao = inteiro_teor,
                   codigo_emenda)
   
-  emendas$link_inteiro_teor <- do.call("rbind", lapply(emendas$codigo_emenda, get_emendas_links))
-
-  df <- df %>%
-    rbind(emendas %>%
-            select(-codigo_emenda))
-
+  if(nrow(emendas) > 0) {
+    emendas$link_inteiro_teor <- do.call("rbind", lapply(emendas$codigo_emenda, get_emendas_links))
+    
+    df <- df %>%
+      rbind(emendas %>%
+              select(-codigo_emenda))
+  }
+  
   if(nrow(df) > 0) {
     df <- df %>%
       dplyr::select(id_proposicao = prop_id,
@@ -118,14 +142,15 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                     link_inteiro_teor) %>%
       dplyr::mutate(descricao =
                       stringr::str_remove(descricao,
-                                          camara_env$versoes_texto_proposicao$remove_publicacao_regex)) %>%
+                                          camara_env$versoes_texto_proposicao$remove_publicacao_regex))
+    df <- df %>%
       dplyr::rowwise() %>%
       dplyr::mutate(link_inteiro_teor = get_redirected_url(link_inteiro_teor))
   } else {
     df <- dplyr::tribble(
       ~ id_proposicao, ~ casa, ~ data, ~ descricao, ~ link_inteiro_teor)
   }
-
+  
   return(df)
 }
 
@@ -178,7 +203,7 @@ filter_links <- function(df) {
 #' extract_links_proposicao_senado(127753)
 extract_links_proposicao_senado <- function(id) {
   url = paste0('http://legis.senado.leg.br/dadosabertos/materia/textos/', id)
-
+  
   textos_df <-
     XML::xmlToDataFrame(nodes = XML::getNodeSet(XML::xmlParse(RCurl::getURL(url)),
                                                 "//Texto")) %>%
@@ -187,11 +212,11 @@ extract_links_proposicao_senado <- function(id) {
                   casa = "senado") %>%
     mutate_links() %>%
     filter_links()
-
+  
   if(nrow(textos_df) == 0) {
     return(dplyr::tribble(
       ~ id_votacao, ~ casa, ~ data, ~ descricao, ~ link_inteiro_teor))
-
+    
   } else{
     textos_df <- textos_df %>%
       dplyr::select(id_proposicao,
@@ -216,8 +241,8 @@ extract_initial_page_from_link <- function(df) {
     df %>%
     dplyr::mutate(pagina_inicial =
                     dplyr::case_when(stringr::str_detect(tolower(link_inteiro_teor), 'txpagina=\\d.*') ~
-                                stringr::str_extract(tolower(link_inteiro_teor), 'txpagina=\\d*'),
-                              TRUE ~ '1'),
+                                       stringr::str_extract(tolower(link_inteiro_teor), 'txpagina=\\d*'),
+                                     TRUE ~ '1'),
                   pagina_inicial = stringr::str_extract(pagina_inicial, '\\d.*'))
   return(df)
 }
@@ -229,5 +254,5 @@ extract_initial_page_from_link <- function(df) {
 #' @examples
 #' get_emendas_links(577691)
 get_emendas_links <- function(id_emenda) {
-  return(rcongresso::fetch_proposicao(id_emenda)$urlInteiroTeor)
+  return(rcongresso::fetch_proposicao_camara(id_emenda)$urlInteiroTeor)
 }
