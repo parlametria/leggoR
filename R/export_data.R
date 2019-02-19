@@ -19,18 +19,18 @@ process_etapa <- function(id, casa, agenda) {
     dplyr::select(id_ext, casa, periodo, temperatura_periodo, temperatura_recente)
   temperatura_value <-
     historico_temperatura %>%
-    dplyr::slice(n()) %>%
+    dplyr::slice(dplyr::n()) %>%
     .$temperatura_recente
   extended_prop <-
     merge(prop, status, by = "prop_id") %>%
     dplyr::mutate(temperatura = temperatura_value)
-  emendas <- rcongresso::fetch_emendas(id, casa, prop$tipo_materia, prop$numero, prop$ano)
+  # emendas <- rcongresso::fetch_emendas(id, casa, prop$tipo_materia, prop$numero, prop$ano)
 
   list(
     proposicao = extended_prop,
     fases_eventos = proc_tram,
-    hist_temperatura = historico_temperatura,
-    emendas = emendas
+    hist_temperatura = historico_temperatura
+    # emendas = emendas
     )
 }
 
@@ -131,9 +131,9 @@ export_data <- function(pls, export_path) {
   progressos <-
     purrr::map_df(res, ~ .$progresso) %>%
     dplyr::rename(id_ext = prop_id)
-  emendas <-
-    purrr::map_df(res, ~ .$emendas) %>%
-    dplyr::rename(id_ext = prop_id)
+  # emendas <-
+  #   purrr::map_df(res, ~ .$emendas) %>%
+  #   dplyr::rename(id_ext = prop_id)
   #TODO: Quando as comissões estiverem preenchidas
   #comissoes <-
     #agoradigital::fetch_all_composicao_comissao()
@@ -144,7 +144,7 @@ export_data <- function(pls, export_path) {
   readr::write_csv(
     hists_temperatura, paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
-  readr::write_csv(emendas, paste0(export_path, "/emendas.csv"))
+  # readr::write_csv(emendas, paste0(export_path, "/emendas.csv"))
   #TODO: Quando as comissões estiverem preenchidas
   #readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
 }

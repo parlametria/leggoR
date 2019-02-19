@@ -80,7 +80,7 @@ generate_progresso_df <- function(tramitacao_df){
   df <-
     tramitacao_df %>%
     dplyr::arrange(data_hora, fase_global) %>%
-    dplyr::filter((!is.na(fase_global) & !is.na(local)) | !is.na(evento)) %>%
+    dplyr::filter((!is.na(fase_global)) & (!is.na(local))) %>%
     dplyr::mutate(end_data = dplyr::lead(data_hora)) %>%
     dplyr::group_by(
       casa, prop_id, fase_global, local, sequence = data.table::rleid(fase_global)) %>%
@@ -94,7 +94,7 @@ generate_progresso_df <- function(tramitacao_df){
     dplyr::select(-data_fim_anterior) %>%
     dplyr::arrange(data_inicio)
 
-  if (nrow(df %>% dplyr::group_by(fase_global, local) %>% dplyr::filter(n() > 1)) > 0) {
+  if (nrow(df %>% dplyr::group_by(fase_global, local) %>% dplyr::filter(dplyr::n() > 1)) > 0) {
     df %<>%
       dplyr::group_by(prop_id, casa, fase_global, local) %>%
       dplyr::summarise(data_inicio = min(data_inicio),
