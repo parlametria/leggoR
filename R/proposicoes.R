@@ -118,10 +118,10 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
                      ementa = paste(ementa,ementa_detalhada),
                      data_apresentacao = lubridate::ymd_hm(stringr::str_replace(data_apresentacao,'T',' ')),
                      casa = 'camara',
-                     casa_origem = ifelse(tolower(autor_df$tipo) == "deputado",
+                     casa_origem = ifelse(tolower(autor_df$tipo %>% tail(1)) == "deputado",
                                           "camara",
                                           "senado"),
-                     autor_nome = autor_df$nome,
+                     autor_nome = autor_df$nome %>% tail(1),
                      apelido_materia = apelido,
                      tema = tema,
                      status_proposicao_sigla_orgao)

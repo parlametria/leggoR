@@ -298,8 +298,8 @@ extract_status_tramitacao <- function(proposicao_id, casa) {
 get_progresso <- function(proposicao_df, tramitacao_df) {
   progresso_data <-
     tramitacao_df %>%
-    agoradigital:::extract_casas(proposicao_df) %>%
-    agoradigital:::generate_progresso_df() %>%
+    extract_casas(proposicao_df) %>%
+    generate_progresso_df() %>%
     dplyr::mutate(local_casa = dplyr::if_else(!is.na(data_inicio) & fase_global == congresso_env$fases_global$fase_global[[7]], 'presidencia', casa)) %>%
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
     tidyr::fill(prop_id, casa) %>%
