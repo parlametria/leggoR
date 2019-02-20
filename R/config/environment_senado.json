@@ -172,7 +172,6 @@
     "votacao": "http://legis.senado.leg.br/dadosabertos/materia/votacoes",
     "movimentacoes": "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes",
     "relatorias": "http://legis.senado.leg.br/dadosabertos/materia/relatorias",
-    "proposicao_sessoes": "http://legis.senado.leg.br/dadosabertos/materia/ordia",
     "glossario": "http://legis.senado.leg.br/dadosabertos/materia/glossario/lista?v=4",
     "situacoes": "http://legis.senado.leg.br/dadosabertos/materia/situacoes",
     "page_url_senado": "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
