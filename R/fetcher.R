@@ -59,37 +59,6 @@ rename_votacoes_df <- function(df) {
   df
 }
 
-#' @title Retorna as sessões deliberativas de uma proposição no Senado
-#' @description Retorna dataframe com os dados das sessões deliberativas de uma proposição no Senado.
-#' @param bill_id ID de uma proposição do Senado
-#' @return Dataframe com as informações sobre as sessões deliberativas de uma proposição no Senado
-#' @examples
-#' fetch_sessions(91341)
-#' @export
-fetch_sessions <- function(bill_id) {
-  url_base_sessions <-
-    "http://legis.senado.leg.br/dadosabertos/materia/ordia/"
-  url <- paste0(url_base_sessions, bill_id)
-
-  json_sessions <- jsonlite::fromJSON(url, flatten = T)
-
-  sessions_data <- json_sessions %>%
-    magrittr::extract2("OrdiaMateria") %>%
-    magrittr::extract2("Materia")
-
-  ordem_do_dia_df <- sessions_data %>%
-    magrittr::extract2("OrdensDoDia") %>%
-    magrittr::extract2("OrdemDoDia") %>%
-    magrittr::extract2("SessaoPlenaria") %>%
-    purrr::map_df( ~ .) %>%
-    tidyr::unnest() %>%
-    rename_table_to_underscore()
-
-    ordem_do_dia_df
-}
-
-###################################################################
-
 #' @title Retorna o dataFrame com as audiências públicas do Senado
 #' @description Retorna um dataframe contendo as audiências públicas do Senado
 #' @param initial_date data inicial no formato yyyy-mm-dd
