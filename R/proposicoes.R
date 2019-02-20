@@ -91,7 +91,7 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
         "indexacao_materia" %in% names(.),
         indexacao_materia,
         NA),
-      tipo_materia = sigla_subtipo_materia,
+      sigla_tipo = sigla_subtipo_materia,
       ementa = ementa_materia,
       palavras_chave = indexacao_materia,
       casa_origem = nome_casa_origem,
@@ -113,6 +113,7 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
   proposicao <- rcongresso::fetch_proposicao_camara(id) %>%
     rename_df_columns() %>%
     dplyr::transmute(prop_id = as.integer(id),
+                     sigla_tipo,
                      numero = as.integer(numero),
                      ano = as.integer(ano),
                      ementa = paste(ementa,ementa_detalhada),

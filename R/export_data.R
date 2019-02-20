@@ -122,7 +122,7 @@ export_data <- function(pls, export_path) {
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
     dplyr::select(-c(status_proposicao_sigla_orgao, indexacao_materia, ano)) %>%
-    dplyr::rename(id_ext = prop_id, sigla_tipo = tipo_materia, apelido = apelido_materia)
+    dplyr::rename(id_ext = prop_id, apelido = apelido_materia)
   tramitacoes <-
     purrr::map_df(res, ~ .$fases_eventos) %>%
     dplyr::rename(id_ext = prop_id, data = data_hora) %>%
