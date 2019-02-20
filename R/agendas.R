@@ -105,7 +105,7 @@ fetch_agenda_geral <- function(initial_date, end_date) {
   print(initial_date)
   print(end_date)
   
-  agenda_plenario_camara <- normalize_agendas(fetch_agenda_camara(initial_date = initial_date, end_date = end_date), "camara") %>%
+  agenda_plenario_camara <- normalize_agendas(rcongresso::fetch_agenda_camara(initial_date = initial_date, end_date = end_date), "camara") %>%
     dplyr::mutate(casa = "camara")
   
   if (nrow(agenda_plenario_camara) != 0) {
@@ -118,24 +118,25 @@ fetch_agenda_geral <- function(initial_date, end_date) {
   agenda_plenario_senado <-
     normalize_agendas(rcongresso::fetch_agenda_senado(initial_date), "senado") %>%
     dplyr::mutate(casa = "senado")
-  agenda_comissoes_senado <- fetch_agenda_senado_comissoes(initial_date, end_date) %>%
-    dplyr::mutate(data = as.character(data)) %>%
-    dplyr::mutate(casa = "senado")
-  
-  initial_date <- strsplit(as.character(initial_date), '-')
-  end_date <- strsplit(as.character(end_date), '-')
-  agenda_comissoes_camara <-
-    fetch_agenda_comissoes_camara(
-      paste0(initial_date[[1]][[3]],'/', initial_date[[1]][[2]], '/', initial_date[[1]][[1]]),
-      paste0(end_date[[1]][[3]],'/', end_date[[1]][[2]], '/', end_date[[1]][[1]])) %>%
-    dplyr::mutate(data = as.character(data)) %>%
-    dplyr::mutate(casa = "camara")
+  #TODO Descomentar depois do Carnaval
+  # agenda_comissoes_senado <- fetch_agenda_senado_comissoes(initial_date, end_date) %>%
+  #   dplyr::mutate(data = as.character(data)) %>%
+  #   dplyr::mutate(casa = "senado")
+  # 
+  # initial_date <- strsplit(as.character(initial_date), '-')
+  # end_date <- strsplit(as.character(end_date), '-')
+  # agenda_comissoes_camara <-
+  #   fetch_agenda_comissoes_camara(
+  #     paste0(initial_date[[1]][[3]],'/', initial_date[[1]][[2]], '/', initial_date[[1]][[1]]),
+  #     paste0(end_date[[1]][[3]],'/', end_date[[1]][[2]], '/', end_date[[1]][[1]])) %>%
+  #   dplyr::mutate(data = as.character(data)) %>%
+  #   dplyr::mutate(casa = "camara")
   
   rbind(
     agenda_plenario_camara,
-    agenda_plenario_senado,
-    agenda_comissoes_senado,
-    agenda_comissoes_camara
+    agenda_plenario_senado
+    # ,agenda_comissoes_senado,
+    # agenda_comissoes_camara
   ) %>%
     dplyr::arrange(data) %>%
     dplyr::mutate_all(as.character) %>%
