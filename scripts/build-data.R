@@ -1,5 +1,4 @@
 source(here::here("R/analyzer.R"))
-source(here::here("R/data-formatter-vistime.R"))
 args <- commandArgs(trailingOnly=TRUE)
 
 #' @title Cria todos os csvs de um proposição.
