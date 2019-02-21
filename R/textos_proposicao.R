@@ -1,7 +1,7 @@
 senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
-source("R/camara_analyzer.R")
+source(here::here("R/camara_analyzer.R"))
 
 #' @title Extrai os links quando as proposições podem ter sido modificadas
 #' @description Obtém a data e o link para o arquivo em pdf do texto da proposição
