@@ -229,7 +229,7 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
     unique() %>%
     dplyr::group_by(data, sigla) %>%
     dplyr::arrange(data) %>%
-    dplyr::filter(row_number()==n()) %>%
+    dplyr::filter(dplyr::row_number()==dplyr::n()) %>%
     dplyr::ungroup() %>%
     fix_nomes_locais() %>%
     dplyr::select(-em_pauta)

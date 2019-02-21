@@ -79,8 +79,8 @@ extract_casas <- function(tramitacao_df, proposicao_df){
 generate_progresso_df <- function(tramitacao_df){
   df <-
     tramitacao_df %>%
-    dplyr::arrange(data_hora, fase_global) %>%
-    dplyr::filter((!is.na(fase_global)) & (!is.na(local))) %>%
+    dplyr::arrange(data_hora, fase_global)  %>%
+    dplyr::filter((!is.na(fase_global)) & (!is.na(local))) %>% 
     dplyr::mutate(end_data = dplyr::lead(data_hora)) %>%
     dplyr::group_by(
       casa, prop_id, fase_global, local, sequence = data.table::rleid(fase_global)) %>%
@@ -103,13 +103,21 @@ generate_progresso_df <- function(tramitacao_df){
   } 
   
   df$data_fim[nrow(df)] <- NA
-  df <-
-    df %>%
-    dplyr::mutate(local = ifelse(is.na(local) & nrow(.) == 1, "Comissões", local))
   
   df %<>%
     dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global")) %>% 
     dplyr::ungroup()
+  
+  if (sum(is.na(df$casa)) == nrow(df)) {
+    tramitacao_df <- 
+      tramitacao_df %>%
+      dplyr::select(prop_id, casa) %>% 
+      head(1)
+    df <-
+      df %>%
+      dplyr::mutate(casa = tramitacao_df$casa) %>%
+      dplyr::mutate(prop_id = tramitacao_df$prop_id)
+  }
   
   return(df)
 }
