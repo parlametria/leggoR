@@ -1,5 +1,5 @@
 [![pipeline status](https://gitlab.com/analytics-ufcg/agora-digital/badges/master/pipeline.svg)](https://gitlab.com/analytics-ufcg/agora-digital/commits/master)
-[![coverage report](https://gitlab.com/analytics-ufcg/agora-digital/badges/master/coverage.svg)](https://gitlab.com/analytics-ufcg/agora-digital/commits/master)
+[![codecov](https://codecov.io/gh/analytics-ufcg/leggoR/branch/master/graph/badge.svg)](https://codecov.io/gh/analytics-ufcg/leggoR)
 
 # leggoR
 Acesso, tradução e modelos usando dados do congresso nacional.
