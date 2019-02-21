@@ -113,8 +113,10 @@ generate_progresso_df <- function(tramitacao_df){
       tramitacao_df %>%
       dplyr::select(prop_id, casa) %>% 
       head(1)
-    df$casa[[1]] <- tramitacao_df$casa
-    df$prop_id[[1]] <- tramitacao_df$prop_id
+    df <-
+      df %>%
+      dplyr::mutate(casa = tramitacao_df$casa) %>%
+      dplyr::mutate(prop_id = tramitacao_df$prop_id)
   }
   
   return(df)
