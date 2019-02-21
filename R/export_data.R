@@ -127,6 +127,12 @@ export_data <- function(pls, export_path) {
     purrr::map_df(res, ~ .$fases_eventos) %>%
     dplyr::rename(id_ext = prop_id, data = data_hora) %>%
     adiciona_status()
+  tramitacoes_que_viraram_lei <- 
+    tramitacoes %>%
+    dplyr::filter(evento == "transformada_lei")
+  tramitacoes <-
+    tramitacoes %>%
+    filter(!(id_ext %in% tramitacoes_que_viraram_lei$id_ext))
   hists_temperatura <- purrr::map_df(res, ~ .$hist_temperatura)
   progressos <-
     purrr::map_df(res, ~ .$progresso) %>%
