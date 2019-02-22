@@ -95,6 +95,7 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
       ementa = ementa_materia,
       palavras_chave = indexacao_materia,
       casa_origem = nome_casa_origem,
+      autor_nome
     )
   
 }
