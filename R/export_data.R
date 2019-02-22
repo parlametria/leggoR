@@ -132,7 +132,7 @@ export_data <- function(pls, export_path) {
     dplyr::filter(evento == "transformada_lei")
   tramitacoes <-
     tramitacoes %>%
-    filter(!(id_ext %in% tramitacoes_que_viraram_lei$id_ext))
+    dplyr::filter(!(id_ext %in% tramitacoes_que_viraram_lei$id_ext))
   hists_temperatura <- purrr::map_df(res, ~ .$hist_temperatura)
   progressos <-
     purrr::map_df(res, ~ .$progresso) %>%
