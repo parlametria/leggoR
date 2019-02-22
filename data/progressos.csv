@@ -143,7 +143,7 @@ camara,1738598,Revisão II,Comissões,NA,NA,camara,FALSE
 camara,1738598,Revisão II,Plenário,NA,NA,camara,FALSE
 camara,1738598,Sanção/Veto,Presidência da República,NA,NA,presidência da república,FALSE
 camara,1738598,Avaliação dos Vetos,Congresso,NA,NA,congresso,FALSE
-camara,14562,Construção,Comissões,2003-10-14T00:00:00Z,NA,camara,FALSE
+camara,14562,Construção,Comissões,2003-04-14T00:00:00Z,NA,camara,FALSE
 camara,14562,Construção,Plenário,NA,NA,camara,FALSE
 camara,14562,Revisão I,Comissões,NA,NA,senado,FALSE
 camara,14562,Revisão I,Plenário,NA,NA,senado,FALSE
@@ -271,3 +271,19 @@ camara,1594911,Revisão II,Comissões,NA,NA,senado,FALSE
 camara,1594911,Revisão II,Plenário,NA,NA,senado,FALSE
 camara,1594911,Sanção/Veto,Presidência da República,NA,NA,presidência da república,FALSE
 camara,1594911,Avaliação dos Vetos,Congresso,NA,NA,congresso,FALSE
+senado,96813,Construção,Comissões,2010-05-12T12:00:00Z,2014-02-10T15:14:00Z,senado,FALSE
+senado,96813,Construção,Plenário,NA,NA,senado,TRUE
+camara,604888,Revisão I,Comissões,2014-02-10T15:14:00Z,NA,camara,FALSE
+camara,604888,Revisão I,Plenário,NA,NA,camara,FALSE
+camara,604888,Revisão II,Comissões,NA,NA,senado,FALSE
+camara,604888,Revisão II,Plenário,NA,NA,senado,FALSE
+camara,604888,Sanção/Veto,Presidência da República,NA,NA,presidência da república,FALSE
+camara,604888,Avaliação dos Vetos,Congresso,NA,NA,congresso,FALSE
+camara,2192459,Construção,Comissões,NA,NA,camara,FALSE
+camara,2192459,Construção,Plenário,NA,NA,camara,FALSE
+camara,2192459,Revisão I,Comissões,NA,NA,camara,FALSE
+camara,2192459,Revisão I,Plenário,NA,NA,camara,FALSE
+camara,2192459,Revisão II,Comissões,NA,NA,camara,FALSE
+camara,2192459,Revisão II,Plenário,NA,NA,camara,FALSE
+camara,2192459,Sanção/Veto,Presidência da República,NA,NA,presidência da república,FALSE
+camara,2192459,Avaliação dos Vetos,Congresso,NA,NA,congresso,FALSE
