@@ -47,12 +47,6 @@
   ],
 
   "evento": {
-    "arquivamento": {
-      "regex": "processo arquivado(.)*",
-      "regex_complementar": "",
-      "constant": "arquivamento",
-      "tipo":"despacho"
-    },
     "virada": {
       "regex": "primeiro-secretário da câmara dos deputados.* encaminhando.* revisão",
       "regex_complementar": "",
@@ -82,6 +76,7 @@
     {"evento": "pedido_de_vista", "texto_tramitacao": "concedida vista", "tipo":"votacao"},
     {"evento": "designado_relator",
       "texto_tramitacao": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))", "tipo":"despacho"},
+    {"evento": "arquivamento", "texto_tramitacao": "processo arquivado(.)*|a proposição é arquivada", "tipo":"despacho"},
     {"evento": "desarquivamento", "id_situacao": "^149$", "tipo":"despacho"},
     {"evento": "aprovacao_substitutivo", "texto_tramitacao": "aprovado o substitutivo", "tipo":"votacao"},
     {"evento": "aprovacao_projeto", "texto_tramitacao": "aprovado o projeto", "tipo":"votacao"},
