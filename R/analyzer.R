@@ -173,7 +173,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 #' @export
 extract_regime_tramitacao <- function(tram_df) {
   casa <- tram_df[1, "casa"]
-  regime <- NULL
+  regime <- NA
 
   if (casa == congress_constants$camara_label) {
     regime <- extract_regime_tramitacao_camara(tram_df)
@@ -181,7 +181,11 @@ extract_regime_tramitacao <- function(tram_df) {
     regime <- extract_regime_tramitacao_senado(tram_df)
   }
 
-  regime
+  if(is.na(regime)) {
+    "Indefinido"
+  } else {
+    regime
+  }
 }
 
 
@@ -196,7 +200,7 @@ extract_regime_tramitacao <- function(tram_df) {
 extract_forma_apreciacao <- function(tram_df) {
   casa <- tram_df[1, "casa"]
   prop_id <- tram_df[1, "prop_id"]
-  apreciacao <- NULL
+  apreciacao <- NA
 
   if (casa == congress_constants$camara_label) {
     apreciacao <- extract_forma_apreciacao_camara(prop_id)
@@ -204,7 +208,11 @@ extract_forma_apreciacao <- function(tram_df) {
     apreciacao <- extract_forma_apreciacao_senado(prop_id)
   }
 
-  apreciacao
+  if(is.na(apreciacao)) {
+    "Indefinido"
+  } else {
+    apreciacao
+  }
 }
 
 #' @title Cria uma coluna com o nome pauta
