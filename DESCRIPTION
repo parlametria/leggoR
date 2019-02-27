@@ -32,7 +32,7 @@ Imports: magrittr,
     readr,
     roll,
     RCurl,
-    rlang (<= 0.3.1),
+    rlang (= 0.3.1),
     XML,
     DT
 Suggests: testthat,
