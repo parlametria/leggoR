@@ -13,8 +13,9 @@ process_etapa <- function(id, casa, agenda) {
     agoradigital::process_proposicao(prop, tram, casa) %>%
     dplyr::mutate(data_hora = as.POSIXct(data_hora))
   status <- agoradigital::extract_status_tramitacao(id, casa)
+  pautas <- readr::read_csv(paste0(export_path, "pautas.csv"))
   historico_temperatura <-
-    agoradigital::get_historico_temperatura_recente(proc_tram) %>%
+    agoradigital::get_historico_temperatura_recente(eventos_df = proc_tram, pautas = pautas) %>%
     dplyr::mutate(id_ext = prop$prop_id, casa = prop$casa) %>%
     dplyr::select(id_ext, casa, periodo, temperatura_periodo, temperatura_recente)
   temperatura_value <-
@@ -88,9 +89,9 @@ adiciona_status <- function(tramitacao_df) {
 #' @param total_rows número de linhas da tabela com os ids das proposições
 #' @return Dataframe
 process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows) {
-  cat(paste(
-    "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
-    "\nsenado", id_senado, "\n"))
+  # cat(paste(
+  #   "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
+  #   "\nsenado", id_senado, "\n"))
   etapas <- list()
   if (!is.na(id_camara)) {
     etapas %<>% append(list(process_etapa(id_camara, "camara", agenda)))
@@ -118,7 +119,6 @@ export_data <- function(pls, export_path) {
   # agenda <- fetch_agenda_geral(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4)
   agenda <- tibble::as_tibble()
   res <- pls %>% purrr::pmap(process_pl, agenda, nrow(pls))
-
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
     dplyr::select(-c(status_proposicao_sigla_orgao, indexacao_materia, ano)) %>%
