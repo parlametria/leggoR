@@ -412,12 +412,14 @@ extract_regime_tramitacao_senado <- function(tramitacao_df) {
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(regime =
                     dplyr::case_when(
-                      stringr::str_detect(tolower(texto_tramitacao), regime$regex) ~
+                      stringr::str_detect(tolower(texto_tramitacao), regime$regex_deixou_urgencia) ~
+                        regime$ordinaria,
+                      stringr::str_detect(tolower(texto_tramitacao), regime$regex_urgencia) ~
                         regime$urgencia
                     )) %>%
     tidyr::fill(regime)
 
-  if (is.na(df[nrow(df),]$regime)) {
+  if (is.na(df[nrow(df),]$regime) || df[nrow(df),]$regime == regime$ordinaria) {
     regime$ordinaria
   } else{
     df[nrow(df),]$regime
