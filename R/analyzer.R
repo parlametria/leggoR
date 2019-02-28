@@ -94,9 +94,14 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
   
   
   #Remove tempo do timestamp da tramitação
-  eventos_sem_horario <- eventos_df %>%
-    tibble::add_row(!!!pautas) %>%
-    dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
+  if(nrow(pautas) != 0) {
+    eventos_sem_horario <- eventos_df %>%
+      tibble::add_row(!!!pautas) %>%
+      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
+  }else {
+    eventos_sem_horario <- eventos_df %>%
+      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
+  }
 
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
