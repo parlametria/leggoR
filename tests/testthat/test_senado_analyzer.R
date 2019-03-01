@@ -4,7 +4,7 @@ context("senado_analyzer")
 setup <- function(){
   SENADO_ID <<- c(91341, 127753, 129808, 133943, 96813, 120768)
   senado_df <<- as.data.frame(SENADO_ID)
-  SENADO_EVENTOS <- as.data.frame(SENADO_ID) %>%
+  SENADO_EVENTOS <<- as.data.frame(SENADO_ID) %>%
       dplyr::rowwise() %>%
       dplyr::do(agoradigital::extract_evento_Senado(fetch_tramitacao(.$SENADO_ID, 'senado')))
   return(TRUE)
