@@ -104,8 +104,7 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
     adiciona_coluna_pulou() %>%
     adiciona_locais_faltantes_progresso()
   etapas$proposicao %<>%
-    dplyr::mutate(apelido_materia = apelido, tema = tema_pl) %>%
-    dplyr::select(-casa_origem)
+    dplyr::mutate(apelido_materia = apelido, tema = tema_pl)
   etapas
 }
 
