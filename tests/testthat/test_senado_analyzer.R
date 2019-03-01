@@ -6,7 +6,7 @@ setup <- function(){
   senado_df <<- as.data.frame(SENADO_ID)
   SENADO_EVENTOS <- as.data.frame(SENADO_ID) %>%
       dplyr::rowwise() %>%
-      dplyr::do(extract_evento_Senado(fetch_tramitacao(.$SENADO_ID, 'senado')))
+      dplyr::do(agoradigital::extract_evento_Senado(fetch_tramitacao(.$SENADO_ID, 'senado')))
   return(TRUE)
 }
 
