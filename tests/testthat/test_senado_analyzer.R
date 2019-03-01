@@ -19,11 +19,11 @@ check_api <- function(){
 test <- function(){
   
   test_that("extract_evento_Senado() returns dataframe", {
-    expect_true(is.data.frame(eventos))
+    expect_true(is.data.frame(.$eventos))
   })
   
   test_that('extract_evento_Senado() colnames', {
-    expect_true(all(names(eventos) %in% .COLNAMES_EVENTO_SEN))
+    expect_true(all(names(.$eventos) %in% .COLNAMES_EVENTO_SEN))
   })
 
 }
