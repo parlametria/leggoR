@@ -36,18 +36,29 @@ get_relatorias <- function(proposicao_id, casa, last_n=NULL) {
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
 #' @examples fetch_relatorias_senado(91341)
 #' @export
-fetch_relatorias_senado <- function(proposicao_id) {
+fetch_relatorias_senado <- function(proposicao_id, ultimo_relator = FALSE) {
   url_relatorias <-
     paste0(senado_env$endpoints_api$url_base, "relatorias/")
 
   url <- paste0(url_relatorias, proposicao_id)
   json_relatorias <- jsonlite::fromJSON(url,flatten = T)
 
-  relatorias_data <-
+  relatorias <-
     json_relatorias %>%
     magrittr::extract2("RelatoriaMateria") %>%
-    magrittr::extract2("Materia") %>%
-    magrittr::extract2("HistoricoRelatoria")
+    magrittr::extract2("Materia")
+  
+  relatorias_data <- NULL
+  if (ultimo_relator) {
+    relatorias_data <-
+      relatorias %>%
+      magrittr::extract2("RelatoriaAtual")
+  }
+  if (is.null(relatorias_data)) {
+    relatorias_data <-
+      relatorias %>%
+      magrittr::extract2("HistoricoRelatoria")
+  }
 
   relatorias_df <-
     relatorias_data %>%
@@ -64,7 +75,7 @@ fetch_relatorias_senado <- function(proposicao_id) {
 #' @param proposicao_id ID de uma proposição do Senado
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
 extract_relatorias_senado <- function(proposicao_id) {
-  relatorias <- fetch_relatorias_senado(proposicao_id)
+  relatorias <- fetch_relatorias_senado(proposicao_id, T)
 
   relatorias <-
     relatorias[,!sapply(relatorias, is.list)] %>%
@@ -118,5 +129,5 @@ get_last_relator_name <- function(proposicao_id, casa) {
   relatorias <- get_relatorias(proposicao_id, casa, 1)
   if(nrow(relatorias) == 0)
     return("Relator não encontrado")
-  return(get_relatorias(proposicao_id, casa, 1)$nome_parlamentar)
+  return(relatorias$nome_parlamentar)
 }
