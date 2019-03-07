@@ -8,7 +8,7 @@ Authors@R: c(
     )
 URL: https://github.com/analytics-ufcg/agora-digital
 BugReports: https://github.com/analytics-ufcg/agora-digital/issues
-Description: Provides propositions, votings, deputies and parties data from 
+Description: Provides propositions, votings, deputies and parties data from
     Brazilian lower house <https://dadosabertos.camara.leg.br> in data frames.
 License: AGPL
 Encoding: UTF-8

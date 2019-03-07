@@ -25,6 +25,7 @@ r-release:
     - docker
   image: rocker/r-ver:latest
   script:
+    - Rscript -e 'devtools::install_github("r-lib/rlang")'
     - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
     - Rscript -e 'packageVersion("rcongresso")'
     - Rscript -e 'stopifnot(length(devtools::check(check_dir = ".", args = c("--no-examples", "--as-cran", "--no-manual", "--no-tests"))$errors) == 0L)'
