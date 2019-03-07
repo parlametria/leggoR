@@ -30,6 +30,7 @@ rename_df_columns <- function(df) {
 #' @return Dataframe com a coluna "evento" adicionada.
 extract_events_in_camara <- function(tramitacao_df) {
   eventos_regex_df <- camara_env$eventos %>% dplyr::select(-tipo)
+  tramitacao_df <- tramitacao_df %>% dplyr::mutate(texto_tramitacao = stringr::str_trim(texto_tramitacao))
   tramitacao_df %>% regex_left_match(eventos_regex_df, "evento")
 }
 
