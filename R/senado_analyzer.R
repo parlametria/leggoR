@@ -188,7 +188,8 @@ extract_periodo_emendas_senado <- function(tramitacao_df) {
     dplyr::mutate(
       emendas = dplyr::case_when(
         stringr::str_detect(tolower(texto_tramitacao), 
-                            "prazo(.*) emenda(s)*") ~  stringr::str_extract_all(tolower(texto_tramitacao), "\\d+/\\d+/\\d+")
+                            senado_env$evento_emendas$regex_detect) ~  
+          stringr::str_extract_all(tolower(texto_tramitacao), senado_env$evento_emendas$regex_extract)
       )) 
 }
 

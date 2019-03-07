@@ -45,6 +45,11 @@
     {"fase": "encaminhamento", "code": [89, 159]},
     {"fase": "recebimento_comissao", "regex": "recebido na|nesta comissao"}
   ],
+  
+  "evento_emendas": {
+    "regex_detect": "prazo(.*) emenda(s)*|abertura do prazo",
+    "regex_extract": "\\d{1,2}/\\d{1,2}/\\d{4}|\\d{1,2}.\\d{2}.\\d{4}"
+  },
 
   "evento": {
     "virada": {
