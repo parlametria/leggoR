@@ -183,14 +183,20 @@ extract_evento_Senado <- function(tramitacao_df) {
 }
 
 extract_periodo_emendas_senado <- function(tramitacao_df) {
-  tramitacao_df <- 
-    tramitacao_df %>% 
+  tramitacao_df %>% 
     dplyr::mutate(
       emendas = dplyr::case_when(
         stringr::str_detect(tolower(texto_tramitacao), 
                             senado_env$evento_emendas$regex_detect) ~  
-          stringr::str_extract_all(tolower(texto_tramitacao), senado_env$evento_emendas$regex_extract)
-      )) 
+          stringr::str_extract_all(tolower(texto_tramitacao), senado_env$evento_emendas$regex_extract),
+        T ~ list("")
+      )) %>% 
+    dplyr::rowwise() %>%  
+    dplyr::mutate(emendas = dplyr::if_else(length(emendas) > 1, list(emendas), list(""))) %>% 
+    dplyr::mutate(emendas = list(tail(emendas,n=2))) %>%
+    tidyr::unnest() %>%
+    dplyr::mutate(emendas = lubridate::parse_date_time(x = emendas,
+                                            orders = c("%d.%m.%Y", "%d.%m.%Y"))) 
 }
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
@@ -555,6 +561,7 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
 
   proc_tram_df <-
     extract_evento_Senado(proc_tram_df) %>%
+    extract_periodo_emendas_senado() %>% 
     dplyr::mutate(data_audiencia = lubridate::dmy(data_audiencia))
   
   virada_de_casa <-
