@@ -179,7 +179,17 @@ extract_evento_Senado <- function(tramitacao_df) {
 
   df %>%
     dplyr::mutate(data_audiencia = stringr::str_extract(tolower(texto_tramitacao), "\\d+/\\d+/\\d+")) %>%
-    dplyr::mutate(data_audiencia = ifelse(evento == 'realizacao_audiencia_publica', data_audiencia, NA))
+    dplyr::mutate(data_audiencia = ifelse(evento == 'realizacao_audiencia_publica', data_audiencia, NA)) 
+}
+
+extract_periodo_emendas_senado <- function(tramitacao_df) {
+  tramitacao_df <- 
+    tramitacao_df %>% 
+    dplyr::mutate(
+      emendas = dplyr::case_when(
+        stringr::str_detect(tolower(texto_tramitacao), 
+                            "prazo(.*) emenda(s)*") ~  stringr::str_extract_all(tolower(texto_tramitacao), "\\d+/\\d+/\\d+")
+      )) 
 }
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
