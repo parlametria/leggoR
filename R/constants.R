@@ -84,64 +84,6 @@ COMISSOES_CAMARA <-
   )
 
 #Senado
-.COLNAMES_VOT_SEN <-
-  c(
-    "descricao_identificacao_materia",
-    "indicador_votacao_secreta",
-    "descricao_votacao",
-    "descricao_resultado",
-    "codigo_sessao",
-    "sigla_casa_sessao",
-    "nome_casa_sessao",
-    "codigo_sessao_legislativa",
-    "sigla_tipo_sessao",
-    "numero_sessao",
-    "data_sessao",
-    "hora_inicio_sessao",
-    "codigo_tramitacao",
-    "numero_autuacao",
-    "data_tramitacao",
-    "numero_ordem_tramitacao",
-    "texto_tramitacao",
-    "indicador_recebimento",
-    "data_recebimento",
-    "origem_tramitacao_local_codigo_local",
-    "origem_tramitacao_local_tipo_local",
-    "origem_tramitacao_local_sigla_casa_local",
-    "origem_tramitacao_local_nome_casa_local",
-    "origem_tramitacao_local_sigla_local",
-    "origem_tramitacao_local_nome_local",
-    "destino_tramitacao_local_codigo_local",
-    "destino_tramitacao_local_tipo_local",
-    "destino_tramitacao_local_sigla_casa_local",
-    "destino_tramitacao_local_nome_casa_local",
-    "destino_tramitacao_local_sigla_local",
-    "destino_tramitacao_local_nome_local",
-    "situacao_codigo_situacao",
-    "situacao_sigla_situacao",
-    "situacao_descricao_situacao",
-    "descricao_voto",
-    "codigo_parlamentar",
-    "nome_parlamentar",
-    "nome_completo_parlamentar",
-    "sexo_parlamentar",
-    "forma_tratamento",
-    "url_foto_parlamentar",
-    "url_pagina_parlamentar",
-    "email_parlamentar",
-    "sigla_partido_parlamentar",
-    "uf_parlamentar",
-    "codigo_materia",
-    "sigla_casa_identificacao_materia",
-    "nome_casa_identificacao_materia",
-    "sigla_subtipo_materia",
-    "descricao_subtipo_materia",
-    "descricao_identificacao_materia",
-    "numero_materia",
-    "ano_materia",
-    "indicador_tramitando",
-    "descricao_objetivo_processo"
-  )
 
 .COLNAMES_TRAMI_SEN <-
   c(
@@ -216,3 +158,17 @@ COMISSOES_CAMARA <-
 
 .COLNAMES_COMISSAO_SEN <-
   c("codigo_materia", "comissoes", "data_hora")
+
+.COLNAMES_EVENTO_SEN <-
+  c(
+    "prop_id",
+    "casa",
+    "data_hora",
+    "sequencia",
+    "texto_tramitacao",
+    "sigla_local",
+    "id_situacao",
+    "descricao_situacao",
+    "evento",
+    "data_audiencia"
+  )
