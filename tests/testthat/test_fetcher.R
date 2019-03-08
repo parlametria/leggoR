@@ -17,22 +17,6 @@ check_api <- function(){
 }
 
 test <- function(){
-
-  test_that("fetch_votacoes() returns dataframe", {
-    proposicoes_fetch_votacoes <- as.data.frame(SENADO_ID) %>%
-      dplyr::rowwise() %>%
-      dplyr::do(fetch_votacoes(.$SENADO_ID))
-
-    expect_true(is.data.frame(proposicoes_fetch_votacoes))
-  })
-
-  test_that('fetch_votacoes() colnames', {
-    proposicoes_fetch_votacoes <- as.data.frame(SENADO_ID) %>%
-      dplyr::rowwise() %>%
-      dplyr::do(fetch_votacoes(.$SENADO_ID))
-    expect_true(all(names(proposicoes_fetch_votacoes) %in% .COLNAMES_VOT_SEN))
-  })
-
   test_that('fetch_tramitacao() returns dataframe', {
     proposicoes_fetch_tramitacao <- as.data.frame(SENADO_ID) %>%
       dplyr::rowwise() %>%

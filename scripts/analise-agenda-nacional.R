@@ -7,7 +7,7 @@ library(ggplot2)
 plp_441_2017_id <- fetch_id_proposicao("PLP", 441, 2017)
 
 plp_441_2017 <- fetch_proposicao(plp_441_2017_id)
-plp_441_2017_votacoes <- fetch_votacoes(plp_441_2017_id)
+plp_441_2017_votacoes <- rcongresso::fetch_votacoes_senado(plp_441_2017_id)
 
 plp_441_2017_votos <- plp_441_2017_votacoes %>%
   rowwise() %>%

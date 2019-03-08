@@ -1,5 +1,11 @@
 # CAMARA
 
+.COLNAMES_AUTOR_CAMARA <- c("autor.uri" = "logical",
+                            "autor.nome" = "character",
+                            "autor.cod_tipo" = "integer",
+                            "autor.tipo" = "character",
+                            "casa_origem" = "character")
+
 .COLNAMES_EMENTAS_CAMARA <- c("ementa" = "character",
                               "sigla_tipo" = "character",
                               "numero" = "numeric")
