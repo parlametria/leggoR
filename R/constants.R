@@ -158,3 +158,17 @@ COMISSOES_CAMARA <-
 
 .COLNAMES_COMISSAO_SEN <-
   c("codigo_materia", "comissoes", "data_hora")
+
+.COLNAMES_EVENTO_SEN <-
+  c(
+    "prop_id",
+    "casa",
+    "data_hora",
+    "sequencia",
+    "texto_tramitacao",
+    "sigla_local",
+    "id_situacao",
+    "descricao_situacao",
+    "evento",
+    "data_audiencia"
+  )

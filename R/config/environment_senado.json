@@ -69,6 +69,8 @@
 
   "eventos": [
     {"evento": "apresentacao_pl", "texto_tramitacao": "^este processo contem", "tipo":"despacho"},
+    {"evento": "requerimento_audiencia_publica", "texto_tramitacao": "((requerendo a|requer a|com a finalidade de) realização de|aguardando leitura de requerimento.*) audiência", "tipo":"discussao"},
+    {"evento": "requerimento_seminario", "texto_tramitacao": "a realização de seminário", "tipo":"discussao"},
     {"evento": "recebimento_comissao", "texto_tramitacao": "recebido na|nesta comissao", "tipo":"despacho"},
     {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "aprovado requerimento de realização de audiência pública", "tipo":"discussao"},
     {"evento": "devolvido", "texto_tramitacao": "devolvido pel.*redistribu.*", "tipo":"despacho"},
