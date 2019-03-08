@@ -2,7 +2,7 @@ context("senado_analyzer")
 
 # Setup
 setup <- function(){
-  SENADO_ID <<- c(91341, 127753, 129808, 133943, 96813, 120768)
+  SENADO_ID <<- c(103831, 120768)
   senado_df <<- as.data.frame(SENADO_ID)
   SENADO_EVENTOS <<- as.data.frame(SENADO_ID) %>%
       dplyr::rowwise() %>%
@@ -22,6 +22,18 @@ test <- function(){
   
   test_that('extract_evento_Senado() colnames', {
     expect_true(all(names(SENADO_EVENTOS) %in% .COLNAMES_EVENTO_SEN))
+  })
+  
+  test_that('extract_evento_Senado() requerimento de audiência', {
+    IDS_REQ_AUDIENCIA <- c(103831, 120768, 126364, 103831, 115926, 102721, 106330, 91341)
+    expect_true(
+      all(
+        purrr::map(SENADO_ID, ~ any(
+          agoradigital::extract_evento_Senado(
+            fetch_tramitacao(.x, 'senado'))$evento == "requerimento_audiencia_publica")
+          )
+        )
+      )
   })
 
 }
