@@ -104,8 +104,7 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
     adiciona_coluna_pulou() %>%
     adiciona_locais_faltantes_progresso()
   etapas$proposicao %<>%
-    dplyr::mutate(apelido_materia = apelido, tema = tema_pl) %>%
-    dplyr::select(-casa_origem)
+    dplyr::mutate(apelido_materia = apelido, tema = tema_pl)
   etapas
 }
 
@@ -132,7 +131,7 @@ export_data <- function(pls, export_path) {
     dplyr::filter(evento == "transformada_lei")
   tramitacoes <-
     tramitacoes %>%
-    filter(!(id_ext %in% tramitacoes_que_viraram_lei$id_ext))
+    dplyr::filter(!(id_ext %in% tramitacoes_que_viraram_lei$id_ext))
   hists_temperatura <- purrr::map_df(res, ~ .$hist_temperatura)
   progressos <-
     purrr::map_df(res, ~ .$progresso) %>%

@@ -41,54 +41,6 @@ get_audiencias_publicas <- function(initial_date, end_date) {
   }
 }
 
-#' @title Baixa dados de requerimentos relacionados
-#' @description Retorna um dataframe contendo dados sobre os requerimentos relacionados a uma proposição
-#' @param id ID de uma proposição
-#' @param mark_deferimento valor default true
-#' @return Dataframe
-#' @export
-fetch_related_requerimentos <- function(id, mark_deferimento = TRUE) {
-  regexes <-
-    tibble::frame_data(
-      ~ deferimento,
-      ~ regex,
-      'indeferido',
-      '^Indefiro',
-      'deferido',
-      '^(Defiro)|(Aprovado)'
-    )
-
-  related <-
-    rcongresso::fetch_relacionadas(id)$uri %>%
-    strsplit('/') %>%
-    vapply(last, '') %>%
-    unique %>%
-    rcongresso::fetch_proposicao_camara()
-
-  requerimentos <-
-    related %>%
-    dplyr::filter(stringr::str_detect(.$siglaTipo, '^REQ'))
-
-  if (!mark_deferimento)
-    return(requerimentos)
-
-  tramitacoes <- fetch_tramitacao(requerimentos$id, 'camara')
-
-  related <-
-    tramitacoes %>%
-    # mark tramitacoes rows based on regexes
-    fuzzyjoin::regex_left_join(regexes, by = c(texto_tramitacao = 'regex')) %>%
-    dplyr::group_by(prop_id) %>%
-    # fill down marks
-    tidyr::fill(deferimento) %>%
-    # get last mark on each tramitacao
-    dplyr::do(tail(., n = 1)) %>%
-    dplyr::ungroup() %>%
-    dplyr::select(prop_id, deferimento) %>%
-    # and mark proposicoes based on last tramitacao mark
-    dplyr::left_join(related, by = c('prop_id' = 'id'))
-}
-
 #' @title Baixa a agenda de audiências públicas na câmara por órgão
 #' @description Retorna um dataframe contendo as audiências públicas da camara ou do senado
 #' @param initial_date data inicial no formato dd/mm/yyyy
