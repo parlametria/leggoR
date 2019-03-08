@@ -26,7 +26,7 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   peso_locais <- congresso_env$tipos_locais$peso[1]
   
   # 2018-09-10
-  p_dia1 <- 4 + (3 * peso_despacho) + (4 * peso_locais)
+  p_dia1 <- 4 + (3 * peso_despacho)+ (2 * peso_votacao) + (6 * peso_locais)
   # 2018-09-11
   p_dia2 <- 2 + peso_discussao + peso_votacao + (2 * peso_locais)
   # 2018-09-12
@@ -36,7 +36,7 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   # 2018-09-14
   p_dia5 <- 3 + peso_despacho +  (2 * peso_votacao) + (3 * peso_locais)
   # 2018-09-17
-  p_dia6 <- 3 + peso_despacho + peso_votacao + (3 * peso_locais)
+  p_dia6 <- 3 + peso_despacho + (2 * peso_votacao) + (4 * peso_locais)
   # 2018-09-18
   p_dia7 <- 0
   
@@ -59,7 +59,12 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   
   result <- round(result, digits = 2)
   
-  energy_df <- get_historico_temperatura_recente(data, granularidade = 'd', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-18 12:00:00"))
+  pautas <<- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano,
+                             "2018-09-10 12:00:00", "PLP 441/2017", 1111, "Plenário", "camara", 41, 2018,
+                             "2018-09-10 12:00:00", "PLP 441/2017", 1111, "Plenário", "camara", 41, 2018,
+                             "2018-09-17 12:00:00", "PLP 441/2017", 1111, "Plenário", "camara", 42, 2018)
+  
+  energy_df <- get_historico_temperatura_recente(data, granularidade = 'd', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-18 12:00:00"), pautas)
   
   expect_true(all(energy_df$temperatura_recente == result))
 })

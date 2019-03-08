@@ -92,8 +92,6 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     dplyr::select(-data) %>%
     dplyr::filter(prop_id == eventos_df$prop_id[1])
   
-  
-  #Remove tempo do timestamp da tramitação
   if(nrow(pautas) != 0) {
     eventos_sem_horario <- eventos_df %>%
       tibble::add_row(!!!pautas) %>%
