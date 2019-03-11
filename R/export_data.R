@@ -116,7 +116,13 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
 export_data <- function(pls, export_path) {
   # agenda <- fetch_agenda_geral(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4)
   agenda <- tibble::as_tibble()
-  pautas <- readr::read_csv(paste0(export_path, "pautas.csv"))
+  pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
+  tryCatch({
+    pautas <- readr::read_csv(paste0(export_path, "pautas.csv"))
+  },
+  error = function(msg) {
+  })
+
   res <- pls %>% purrr::pmap(process_pl, agenda, nrow(pls), pautas = pautas)
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
