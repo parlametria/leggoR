@@ -200,7 +200,7 @@ test_that('process_proposicao() returna abertura e encerramento do prazo das eme
     agoradigital::process_proposicao(prop, tram, casa) %>%
     dplyr::mutate(data_hora = as.POSIXct(data_hora))
   
-  expect_true(c("inicio_prazo_emendas", "fim_prazo_emendas") %in% proc_tram$evento)
+  expect_true(all(c("inicio_prazo_emendas", "fim_prazo_emendas") %in% proc_tram$evento))
 })
 
 test_that('extract_autor_in_camara() returns the right cols and author', {
