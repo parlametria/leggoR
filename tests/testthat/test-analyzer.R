@@ -190,3 +190,15 @@ test_that('get_pesos_eventos() returns all events with their correct weights for
   pesos_eventos_extra_senado <- merge(pesos_eventos,eventos_extra_senado,by=c('evento','peso'))
   expect_true(nrow(pesos_eventos_extra_senado) == nrow(eventos_extra_senado))
 })
+
+test_that('process_proposicao() returna abertura e encerramento do prazo das emendas', {
+  id <- 91341
+  casa <- "senado"
+  prop <- agoradigital::fetch_proposicao(id, casa)
+  tram <- agoradigital::fetch_tramitacao(id, casa)
+  proc_tram <-
+    agoradigital::process_proposicao(prop, tram, casa) %>%
+    dplyr::mutate(data_hora = as.POSIXct(data_hora))
+  
+  expect_true(c("inicio_prazo_emendas", "fim_prazo_emendas") %in% proc_tram$evento)
+})

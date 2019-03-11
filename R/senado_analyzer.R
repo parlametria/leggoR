@@ -182,6 +182,13 @@ extract_evento_Senado <- function(tramitacao_df) {
     dplyr::mutate(data_audiencia = ifelse(evento == 'realizacao_audiencia_publica', data_audiencia, NA)) 
 }
 
+#' @title Extrai o período de emendas do senado
+#' @description Adiciona o inicio e fim do prazo de emendas
+#' @param tramitacao_df Dataframe da tramitação no Senado
+#' @return Dataframe com prazo de emendas
+#' @examples
+#' extract_periodo_emendas_senado(fetch_tramitacao(91341, 'senado'))
+#' @export
 extract_periodo_emendas_senado <- function(tramitacao_df) {
   tramitacao_df %>% 
     dplyr::mutate(
@@ -196,7 +203,17 @@ extract_periodo_emendas_senado <- function(tramitacao_df) {
     dplyr::mutate(emendas = list(tail(emendas,n=2))) %>%
     tidyr::unnest() %>%
     dplyr::mutate(emendas = lubridate::parse_date_time(x = emendas,
-                                            orders = c("%d.%m.%Y", "%d.%m.%Y"))) 
+                                            orders = c("%d.%m.%Y", "%d.%m.%Y"))) %>% 
+    dplyr::arrange(emendas) %>%
+    dplyr::group_by(data_hora, sequencia) %>% 
+    dplyr::mutate(id = row_number()) %>%
+    dplyr::ungroup() %>% 
+    dplyr::mutate(data_hora = dplyr::if_else(!is.na(emendas), emendas, data_hora),
+                  evento = dplyr::case_when(!is.na(emendas) & id == 1 ~ senado_env$evento_emendas$evento_abertura,
+                                            !is.na(emendas) & id == 2 ~ senado_env$evento_emendas$evento_fim,
+                                            T ~ evento)) %>% 
+    dplyr::arrange(data_hora) %>%
+    dplyr::select(-c(emendas, id))
 }
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
