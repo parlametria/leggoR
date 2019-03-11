@@ -100,6 +100,7 @@ extract_locais_in_camara <- function(df) {
     dplyr::mutate(
       local =
         dplyr::case_when(stringr::str_detect(local, "^PL") ~ "Comissão Especial",
+                         stringr::str_detect(local, "^PEC") ~ "Comissão Especial",
                          TRUE ~ local)
     )
 
