@@ -6,7 +6,13 @@
 #' @examples
 #' fetch_tramitacao_senado(91341)
 fetch_tramitacao_senado <- function(prop_id) {
-    rcongresso::fetch_tramitacao_senado(prop_id) %>%
+    textos <- 
+      extract_links_proposicao_senado(prop_id) %>%
+      dplyr::select(data_hora = data,
+                    link_inteiro_teor) %>%
+      dplyr::mutate(data_hora = as.POSIXct(data_hora, tz = "UTC"))
+  
+    tramitacao <- rcongresso::fetch_tramitacao_senado(prop_id) %>%
       dplyr::mutate(data_hora = lubridate::ymd_hm(paste(data_hora, "00:00")),
                     prop_id = as.integer(codigo_materia),
                     sequencia = as.integer(sequencia),
@@ -19,7 +25,9 @@ fetch_tramitacao_senado <- function(prop_id) {
                     texto_tramitacao,
                     sigla_local = origem_tramitacao_local_sigla_local,
                     id_situacao,
-                    descricao_situacao = situacao_descricao_situacao)
+                    descricao_situacao = situacao_descricao_situacao) %>%
+      dplyr::left_join(textos, by = "data_hora")
+    
 }
 
 #' @title Baixa os dados da tramitação de um Projeto de Lei
@@ -59,7 +67,8 @@ fetch_tramitacao_camara <- function(bill_id) {
                   texto_tramitacao = despacho,
                   sigla_local = sigla_orgao,
                   id_situacao,
-                  descricao_situacao)
+                  descricao_situacao,
+                  link_inteiro_teor = url)
 }
 
 #' @title Baixa os dados da tramitação de vários Projetos de Lei

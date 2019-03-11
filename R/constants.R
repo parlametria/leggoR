@@ -170,5 +170,6 @@ COMISSOES_CAMARA <-
     "id_situacao",
     "descricao_situacao",
     "evento",
-    "data_audiencia"
+    "data_audiencia",
+    "link_inteiro_teor"
   )
