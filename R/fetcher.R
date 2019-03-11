@@ -3,62 +3,6 @@ source(here::here("R/agendas.R"))
 senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 senado_constants <- senado_env$constants
 
-#' @title Busca votações de uma proposição no Senado
-#' @description Retorna dataframe com os dados das votações de uma proposição no Senado.
-#' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
-#' @param proposicao_id ID de uma proposição do Senado
-#' @return Dataframe com as informações sobre as votações de uma proposição no Senado
-#' @examples
-#' fetch_votacoes(91341)
-#' @export
-fetch_votacoes <- function(proposicao_id) {
-  url_base_votacoes <-
-    paste0(senado_env$endpoints_api$url_base, "votacoes/")
-
-  url <- paste0(url_base_votacoes, proposicao_id)
-  json_votacoes <- fetch_json_try(url)
-  votacoes_data <-
-    json_votacoes %>%
-    magrittr::extract2("VotacaoMateria") %>%
-    magrittr::extract2("Materia")
-  votacoes_ids <-
-    votacoes_data %>%
-    magrittr::extract2("IdentificacaoMateria") %>%
-    tibble::as.tibble() %>%
-    unique()
-  votacoes_df <-
-    votacoes_data %>%
-    magrittr::extract2("Votacoes") %>%
-    purrr::map_df( ~ .) %>%
-    tidyr::unnest()
-
-  votacoes_df <-
-    votacoes_df %>%
-    tibble::add_column(!!!votacoes_ids)
-
-  votacoes_df <- votacoes_df[,!sapply(votacoes_df, is.list)]
-  rename_votacoes_df(votacoes_df)
-}
-
-#' @title Renomeia as colunas do dataframe de votação no Senado
-#' @description Renomeia as colunas do dataframe de votação no Senado usando o padrão
-#' de underscore e letras minúsculas
-#' @param df Dataframe da votação no Senado
-#' @return Dataframe com as colunas renomeadas
-#' @export
-rename_votacoes_df <- function(df) {
-  new_names = names(df) %>%
-    to_underscore() %>%
-    stringr::str_replace(
-      "sessao_plenaria_|tramitacao_identificacao_tramitacao_|identificacao_parlamentar_",
-      ""
-    )
-
-  names(df) <- new_names
-
-  df
-}
-
 #' @title Retorna o dataFrame com as audiências públicas do Senado
 #' @description Retorna um dataframe contendo as audiências públicas do Senado
 #' @param initial_date data inicial no formato yyyy-mm-dd
