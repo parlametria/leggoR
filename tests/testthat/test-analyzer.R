@@ -205,3 +205,10 @@ test_that('get_pesos_eventos() returns all events with their correct weights for
   pesos_eventos_extra_senado <- merge(pesos_eventos,eventos_extra_senado,by=c('evento','peso'))
   expect_true(nrow(pesos_eventos_extra_senado) == nrow(eventos_extra_senado))
 })
+
+test_that('extract_autor_in_camara() returns the right cols and author', {
+  autor_camara <- agoradigital::extract_autor_in_camara(2121442)
+  expect_true(all(sapply(autor_camara, class) %in% .COLNAMES_AUTOR_CAMARA))
+  expect_true(autor_camara$autor.nome == "Senado Federal - Comissão Especial do Extrateto SF ")
+  
+})
