@@ -35,8 +35,9 @@ extract_fase_Senado <-
 #' @param data_tramitacao Dataframe da tramitação no Senado
 #' @return Dataframe com as comissões faltantes
 #' @examples
-#' data_tramitacao %>% get_comissoes_faltantes()
-get_comissoes_faltantes <- function(data_tramitacao) {
+#' data_tramitacao %>% get_comissoes_faltantes_senado()
+#' @export
+get_comissoes_faltantes_senado <- function(data_tramitacao) {
   comissoes <-
     extract_comissoes_Senado(data_tramitacao) %>%
     dplyr::filter(data_hora == .$data_hora[[1]]) %>%
@@ -102,7 +103,7 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
       fase_global_constants$revisao_senado
     )
 
-  comissoes_faltantes <- get_comissoes_faltantes(data_tramitacao)
+  comissoes_faltantes <- get_comissoes_faltantes_senado(data_tramitacao)
 
   if (nrow(virada_de_casa) == 0) {
     data_tramitacao <-

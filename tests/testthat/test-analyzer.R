@@ -197,3 +197,16 @@ test_that('extract_autor_in_camara() returns the right cols and author', {
   expect_true(autor_camara$autor.nome == "Senado Federal - Comissão Especial do Extrateto SF ")
   
 })
+
+test_that('get_comissoes_faltantes()', {
+  prop_faltante <- agoradigital::fetch_proposicao(2085536, 'camara')
+  tram_faltante <- agoradigital::fetch_tramitacao(2085536, 'camara')
+  process_faltante <- agoradigital::process_proposicao(prop_faltante, tram_faltante, 'camara')
+  expect_true(nrow(get_comissoes_faltantes(process_faltante, 'camara')) != 0)
+  
+  prop_completa <- agoradigital::fetch_proposicao(91341, 'senado')
+  tram_completa <- agoradigital::fetch_tramitacao(91341, 'senado')
+  process_completa<- agoradigital::process_proposicao(prop_completa, tram_completa, 'senado')
+  expect_true(nrow(get_comissoes_faltantes(process_completa, 'senado')) == 0)
+  
+})

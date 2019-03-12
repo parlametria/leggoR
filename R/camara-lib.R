@@ -103,6 +103,7 @@ get_comissoes_in_camara <- function(df) {
 #' agoradigital::fetch_proposicao(2085536, 'camara'), 
 #' agoradigital::fetch_tramitacao(2085536, 'camara'), 
 #' 'camara') %>% get_comissoes_faltantes_camara()
+#' @export
 get_comissoes_faltantes_camara <- function(process_tramitacao) {
   todas_comissoes_camara <- 
     get_comissoes_camara() %>% 
