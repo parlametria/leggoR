@@ -39,7 +39,7 @@ extract_fase_Senado <-
 get_comissoes_faltantes <- function(data_tramitacao) {
   comissoes <-
     extract_comissoes_Senado(data_tramitacao) %>%
-    utils::head(1) %>%
+    dplyr::filter(data_hora == .$data_hora[[1]]) %>%
     dplyr::select(comissoes) %>%
     tidyr::unnest()
 
@@ -313,7 +313,8 @@ extract_comissoes_Senado <- function(df) {
   
   
   if(nrow(df) > 0) {
-    df %>%
+    df <-
+      df %>%
       dplyr::arrange(data_hora) %>%
       dplyr::select(comissoes, data_hora) %>%
       dplyr::rowwise() %>%
@@ -322,7 +323,7 @@ extract_comissoes_Senado <- function(df) {
       unique() %>%
       dplyr::mutate(comissoes = sapply(comissoes, fix_names)) %>%
       dplyr::rowwise() %>%
-      dplyr::filter(length(comissoes) != 0)
+      dplyr::filter(length(comissoes) != 0) 
   } 
   
   return(df)
