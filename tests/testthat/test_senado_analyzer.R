@@ -35,6 +35,31 @@ test <- function(){
         )
       )
   })
+  
+  test_that('extract_evento_Senado() apresentação parecer', {
+    IDS_APRESENTACAO_PARECER <- c(127753, 111048, 121572, 91341, 106330, 96813)
+    expect_true(
+      all(
+        purrr::map(IDS_APRESENTACAO_PARECER, ~ any(
+          agoradigital::extract_evento_Senado(
+            fetch_tramitacao(.x, 'senado'))$evento == "apresentacao_parecer")
+        )
+      )
+    )
+    
+  # Garante que eventos de apresentação de parecer sem terem ocorrido
+  # sejam capturados
+  test_that('extract_evento_Senado() não apresentação de parecer')
+    IDS_NAO_APRESENTACAO_PARECE <- c(103831, 120768, 126364, 103831, 115926, 102721)
+    expect_false(
+      all(
+        purrr::map(IDS_NAO_APRESENTACAO_PARECE, ~ !any(
+          agoradigital::extract_evento_Senado(
+            fetch_tramitacao(.x, 'senado'))$evento == "apresentacao_parecer")
+        )
+      )
+    )
+  })
 
 }
 
