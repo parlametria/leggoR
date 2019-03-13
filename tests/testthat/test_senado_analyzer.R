@@ -45,11 +45,11 @@ test <- function(){
             fetch_tramitacao(.x, 'senado'))$evento == "apresentacao_parecer")
         )
       )
-    )
+    )})
     
   # Garante que eventos de apresentação de parecer sem terem ocorrido
   # sejam capturados
-  test_that('extract_evento_Senado() não apresentação de parecer')
+  test_that('extract_evento_Senado() não apresentação de parecer', {
     IDS_NAO_APRESENTACAO_PARECE <- c(103831, 120768, 126364, 103831, 115926, 102721)
     expect_false(
       all(
