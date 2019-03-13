@@ -70,6 +70,12 @@
       "regex_complementar": "",
       "constant": "apresentacao_parecer",
       "tipo":"discussao"
+      
+    },
+    "desarquivamento": {
+      "regex": "a mat.ria foi desarquivada",
+      "constant": "desarquivamento",
+      "tipo":"despacho"
     }
   },
 

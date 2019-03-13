@@ -151,6 +151,9 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
       ~ id_proposicao, ~ casa, ~ data, ~ descricao, ~ link_inteiro_teor)
   }
   
+  df <- df %>%
+    dplyr::mutate(data = as.character(data))
+  
   return(df)
 }
 
