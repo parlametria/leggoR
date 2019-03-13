@@ -64,6 +64,11 @@
       "regex_complementar": "aprovado o requerimento",
       "constant": "realizacao_audiencia_publica",
       "tipo":"discussao"
+    },
+    "desarquivamento": {
+      "regex": "a mat.ria foi desarquivada",
+      "constant": "desarquivamento",
+      "tipo":"despacho"
     }
   },
 
