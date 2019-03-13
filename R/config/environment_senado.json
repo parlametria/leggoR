@@ -64,6 +64,12 @@
       "regex_complementar": "aprovado o requerimento",
       "constant": "realizacao_audiencia_publica",
       "tipo":"discussao"
+    },
+    "apresentacao_parecer": {
+      "regex": "(proferido pel(a|o).* parecer)|(leitura dos?( seguinte(s)?)? parecer)|(encaminhados à publicação o(s) (seguinte(s)) parecer(es:|profere parecer.*))",
+      "regex_complementar": "",
+      "constant": "apresentacao_parecer",
+      "tipo":"discussao"
     }
   },
 
