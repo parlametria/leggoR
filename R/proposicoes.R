@@ -14,7 +14,7 @@ source(here::here("R/utils.R"))
 import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL) {
   casa <- tolower(casa)
   if (!(casa %in% c('camara','senado'))) {
-    print('Parâmetro "casa" não identificado.')
+    return('Parâmetro "casa" não identificado.')
   }
   
   prop_df <- fetch_proposicao(prop_id,casa,apelido, tema)

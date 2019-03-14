@@ -197,3 +197,8 @@ test_that('extract_autor_in_camara() returns the right cols and author', {
   expect_true(autor_camara$autor.nome == "Senado Federal - Comissão Especial do Extrateto SF ")
   
 })
+
+test('extract_status_tramitacao returns dataframe', {
+  expect_true(is.data.frame(extract_status_tramitacao(91341, 'senado')))
+  expect_true(is.data.frame(extract_status_tramitacao(257161, 'camara')))
+})
