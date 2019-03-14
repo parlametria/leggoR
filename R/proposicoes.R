@@ -46,7 +46,7 @@ fetch_proposicao <- function(id, casa, apelido="", tema="") {
   } else if (casa == "senado") {
     fetch_proposicao_senado(id, apelido, tema)
   } else {
-    print("Parâmetro 'casa' não identificado.")
+    return("Parâmetro 'casa' não identificado.")
   }
 }
 
