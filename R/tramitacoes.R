@@ -45,7 +45,7 @@ fetch_tramitacao <- function(id, casa) {
   } else if (casa == "senado") {
     fetch_tramitacao_senado(id)
   } else {
-    print("Parâmetro 'casa' não identificado.")
+    return("Parâmetro 'casa' não identificado.")
   }
 }
 
