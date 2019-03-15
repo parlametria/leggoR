@@ -75,7 +75,7 @@ fetch_composicao_comissao <- function(sigla, casa) {
     names(comissao) <- new_name
     return(comissao)
   } else {
-    print('Parâmetro "casa" não identificado.')
+    return('Parâmetro "casa" não identificado.')
   }
 }
 
