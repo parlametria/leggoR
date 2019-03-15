@@ -582,3 +582,24 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
 
   proc_tram_df
 }
+
+#' @title Cria coluna com a fase global da tramitação no Senado	
+#' @description Cria uma nova coluna com a fase global no Senado	
+#' @param df Dataframe da tramitação no Senado	
+#' @return Dataframe com a coluna "global" adicionada.	
+#' @examples	
+#' extract_casas_in_senado(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', T))	
+extract_casas_in_senado <- function(data_tramitacao, casa_name) {
+  senado_constants <- senado_env$constants	
+  fase_global_constants <- senado_env$fase_global_plenario	
+  fase_global_presidencia <- senado_env$fase_global_sancao	
+  
+  data_tramitacao %>%	
+    dplyr::mutate(	
+      fase_global = casa_name,	
+      local =	
+        dplyr::case_when(	
+          situacao_descricao_situacao == fase_global_presidencia$situacao_sancao ~ senado_constants$presidencia,	
+          (stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) & sigla_local == "PLEN") ~ senado_constants$plenario,	
+          sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes & (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~ senado_constants$comissoes))	
+} 
