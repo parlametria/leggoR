@@ -194,7 +194,7 @@ test_that('get_pesos_eventos() returns all events with their correct weights for
   expect_true(nrow(pesos_eventos_extra_senado) == nrow(eventos_extra_senado))
 })
 
-test_that('process_proposicao() returna abertura e encerramento do prazo das emendas', {
+test_that('process_proposicao() retorna abertura e encerramento do prazo das emendas', {
   id <- 91341
   casa <- "senado"
   prop <- agoradigital::fetch_proposicao(id, casa)
