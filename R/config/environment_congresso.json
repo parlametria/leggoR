@@ -3,9 +3,8 @@
       "camara_label": "camara",
       "senado_label": "senado"
   },
-  
 
-   "fases_global":[
+  "fases_global":[
     {"local": "Comissões", "fase_global": "Construção"},
     {"local": "Plenário", "fase_global": "Construção"},
     {"local": "Comissões", "fase_global": "Revisão I"},
@@ -14,20 +13,58 @@
     {"local": "Plenário", "fase_global": "Revisão II"},
     {"local": "Presidência da República", "fase_global": "Sanção/Veto"},
     {"local": "Congresso", "fase_global": "Avaliação dos Vetos"}
-  ], 
-  
+  ],
+
    "fase_global_sancao":{
     "situacao_sancao": "remetida_a_sancao",
     "situacao_norma_juridica": "transformada_em_norma_jurídica"
   },
-  
+
   "tipos_eventos":[
     {"tipo":"despacho", "label":"Despacho", "peso":0.25},
     {"tipo":"discussao", "label":"Discussão", "peso":0.07},
     {"tipo":"votacao", "label":"Votação", "peso":0.68}
-  ], 
-  
+  ],
+
   "tipos_locais":[
     {"tipo":"decisivo", "label":"Decisivo", "peso":0.68}
+  ],
+
+  "eventos": [
+    {"evento": "requerimento_audiencia_publica", "nivel": 1},
+    {"evento": "aprovacao_parecer", "nivel": 1},
+    {"evento": "requerimento_seminario", "nivel": 1},
+    {"evento": "aprovacao_audiencia_publica", "nivel": 1},
+    {"evento": "requerimento_redistribuicao", "nivel": 1},
+    {"evento": "requerimento_apensacao", "nivel": 1},
+    {"evento": "requerimento_urgencia", "nivel": 1},
+    {"evento": "requerimento_prorrogacao", "nivel": 1},
+    {"evento": "projeto_reconstituido", "nivel": 2},
+    {"evento": "desarquivamento", "nivel": 1},
+    {"evento": "alteracao_de_regime", "nivel": 1},
+    {"evento": "redistribuicao", "nivel": 1},
+    {"evento": "distribuicao", "nivel": 2},
+    {"evento": "comissao_especial", "nivel": 2},
+    {"evento": "designado_relator", "nivel": 1},
+    {"evento": "voto_em_separado", "nivel": 2},
+    {"evento": "apresentacao_pl", "nivel": 2},
+    {"evento": "retirada_de_pauta", "nivel": 2},
+    {"evento": "pedido_de_vista", "nivel": 2},
+    {"evento": "inicio_prazo_emendas", "nivel": 1},
+    {"evento": "fim_prazo_emendas", "nivel": 1},
+    {"evento": "arquivamento", "nivel": 2},
+    {"evento": "parecer_pela_adequacao_financeira_e_orcamentaria", "nivel": 1},
+    {"evento": "parecer_pela_aprovacao_com_substitutivo", "nivel": 1},
+    {"evento": "parecer_pela_aprovacao", "nivel": 1},
+    {"evento": "parecer_pela_rejeicao", "nivel": 1},
+    {"evento": "parecer", "nivel": 1},
+    {"evento": "virada_de_casa", "nivel": 2},
+    {"evento": "remetida_a_sancao", "nivel": 2},
+    {"evento": "transformada_lei", "nivel": 2},
+    {"evento": "vetada_totalmente", "nivel": 1},
+    {"evento": "parecer_comissao", "nivel": 1},
+    {"evento": "aprovacao_projeto", "nivel": 1},
+    {"evento": "aprovacao_substitutivo", "nivel": 1},
+    {"evento": "devolvido", "nivel": 2}
   ]
 }
