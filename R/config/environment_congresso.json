@@ -31,6 +31,7 @@
   ],
 
   "eventos": [
+    {"evento": null, "nivel": 3},
     {"evento": "requerimento_audiencia_publica", "nivel": 1},
     {"evento": "aprovacao_parecer", "nivel": 1},
     {"evento": "requerimento_seminario", "nivel": 1},
