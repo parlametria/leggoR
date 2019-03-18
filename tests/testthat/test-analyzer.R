@@ -1,5 +1,8 @@
 testthat::context('test-analyzer.R')
 
+tram_91341 <<- fetch_tramitacao(91341, 'senado')
+tram_257161 <<- fetch_tramitacao(257161, 'camara')
+
 test_that('get_historico_temperatura_recente() has correct function passing the parameter day', {
   data <- data.frame(prop_id = rep(1111,18),
                     data_hora = c(rep(lubridate::ymd_hms('2018-09-10 12:00:00'), 4),
@@ -196,6 +199,32 @@ test_that('extract_autor_in_camara() returns the right cols and author', {
   expect_true(all(sapply(autor_camara, class) %in% .COLNAMES_AUTOR_CAMARA))
   expect_true(autor_camara$autor.nome == "Senado Federal - Comissão Especial do Extrateto SF ")
   
+})
+
+test_that('extract_status_tramitacao() returns dataframe', {
+  expect_true(is.data.frame(extract_status_tramitacao(91341, 'senado')))
+  expect_true(is.data.frame(extract_status_tramitacao(257161, 'camara')))
+})
+
+test_that('extract_forma_apreciacao() is not null', {
+  expect_false(is.null(extract_forma_apreciacao(tram_91341)))
+  expect_false(is.null(extract_forma_apreciacao(tram_257161)))
+})
+
+test_that('extract_regime_tramitacao() is not null', {
+  expect_false(is.null(extract_regime_tramitacao(tram_91341)))
+  expect_false(is.null(extract_regime_tramitacao(tram_257161)))
+})
+
+
+test_that('get_pesos_eventos() returns dataframe and is not empty', {
+  expect_true(is.data.frame(get_pesos_eventos()))
+  expect_true(nrow(get_pesos_eventos()) != 0)
+})
+
+test_that('get_pesos_locais() returns dataframe and is not empty', {
+  expect_true(is.data.frame(get_pesos_locais()))
+  expect_true(nrow(get_pesos_locais()) != 0)
 })
 
 test_that('get_comissoes_faltantes()', {

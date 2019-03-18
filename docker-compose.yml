@@ -12,9 +12,9 @@ services:
     image: agoradigital/r-scrapper
     container_name: rmod
     volumes:
-      - proposicoes_data:/agora-digital/data
+      - proposicoes_data:/agora-digital/exported
 
 volumes:
   proposicoes_data:
     external:
-      name: compose_proposicoes_data
+      name: back_proposicoes_data
