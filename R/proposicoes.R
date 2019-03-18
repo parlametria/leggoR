@@ -16,17 +16,17 @@ import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL)
   if (!(casa %in% c('camara','senado'))) {
     return('Parâmetro "casa" não identificado.')
   }
-  
+
   prop_df <- fetch_proposicao(prop_id,casa,apelido, tema)
   tram_df <- fetch_tramitacao(prop_id,casa)
   emendas_df <- rcongresso::fetch_emendas(prop_id,casa, prop_df$tipo_materia, prop_df$numero, prop_df$ano)
-  
+
   if (!is.null(out_folderpath)) {
     if (!is.null(prop_df)) readr::write_csv(prop_df, build_data_filepath(out_folderpath,'proposicao',casa,prop_id))
     if (!is.null(tram_df)) readr::write_csv(tram_df, build_data_filepath(out_folderpath,'tramitacao',casa,prop_id))
     if (!is.null(emendas_df)) readr::write_csv(emendas_df, build_data_filepath(out_folderpath,'emendas',casa,prop_id))
   }
-  
+
   return(list(proposicao = prop_df, tramitacao = tram_df))
 }
 #' @title Recupera os detalhes de uma proposição no Senado ou na Câmara
@@ -73,8 +73,8 @@ fetch_proposicoes <- function(pls_ids) {
 #' @examples
 #' fetch_proposicao_senado(91341, 'Cadastro Positivo', 'Agenda Nacional')
 fetch_proposicao_senado <- function(id, apelido, tema) {
-  
-  proposicao <- 
+
+  proposicao <-
     rcongresso::fetch_proposicao_senado(id) %>%
     dplyr::transmute(
       prop_id = as.integer(codigo_materia),
@@ -87,17 +87,17 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
         apelido_materia,
         apelido),
       tema = tema,
-      indexacao_materia = ifelse(
-        "indexacao_materia" %in% names(.),
-        indexacao_materia,
-        NA),
+      ## indexacao_materia = ifelse(
+      ##   "indexacao_materia" %in% names(.),
+      ##   indexacao_materia,
+      ##   NA),
       sigla_tipo = sigla_subtipo_materia,
       ementa = ementa_materia,
-      palavras_chave = indexacao_materia,
+      ## palavras_chave = indexacao_materia,
       casa_origem = nome_casa_origem,
       autor_nome
     )
-  
+
 }
 
 #' @title Baixa dados sobre uma proposição
