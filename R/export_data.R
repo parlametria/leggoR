@@ -4,7 +4,7 @@
 #' @param id Id da proposição
 #' @param casa senado ou camara
 #' @param agenda dataframe com a agenda
-#' @return list com os dataframes: proposicao, fases_eventos, 
+#' @return list com os dataframes: proposicao, fases_eventos,
 #' hist_temperatura e emendas
 process_etapa <- function(id, casa, agenda) {
   prop <- agoradigital::fetch_proposicao(id, casa)
@@ -84,7 +84,7 @@ adiciona_status <- function(tramitacao_df) {
 #' @param id_senado Id da proposição no senado
 #' @param apelido Apelido da proposição
 #' @param tema_pl Tema da proposição
-#' @param agenda Agenda 
+#' @param agenda Agenda
 #' @param total_rows número de linhas da tabela com os ids das proposições
 #' @return Dataframe
 process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows) {
@@ -120,13 +120,13 @@ export_data <- function(pls, export_path) {
 
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
-    dplyr::select(-c(status_proposicao_sigla_orgao, indexacao_materia, ano)) %>%
+    dplyr::select(-c(status_proposicao_sigla_orgao, ano)) %>%
     dplyr::rename(id_ext = prop_id, apelido = apelido_materia)
   tramitacoes <-
     purrr::map_df(res, ~ .$fases_eventos) %>%
     dplyr::rename(id_ext = prop_id, data = data_hora) %>%
     adiciona_status()
-  tramitacoes_que_viraram_lei <- 
+  tramitacoes_que_viraram_lei <-
     tramitacoes %>%
     dplyr::filter(evento == "transformada_lei")
   tramitacoes <-
