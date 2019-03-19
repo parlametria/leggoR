@@ -1,5 +1,4 @@
 source(here::here("R/senado_analyzer.R"))
-source(here::here("R/camara_analyzer.R"))
 source(here::here("R/congresso-lib.R"))
 source(here::here("R/relatorias.R"))
 source(here::here("R/tramitacoes.R"))
@@ -83,10 +82,25 @@ get_temperatura <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate:
 #' proc_tram <- agoradigital::process_proposicao(prop,tram,casa)
 #' get_historico_temperatura_recente(proc_tram, granularidade = 's', decaimento = 0.05)
 #' }
-get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.25, max_date = lubridate::now()) {
-  #Remove tempo do timestamp da tramitação
-  eventos_sem_horario <- eventos_df %>%
-    dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
+get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.25, max_date = lubridate::now(), pautas) {
+  pautas <-
+    pautas %>%
+    dplyr::select(prop_id = id_ext, data) %>%
+    dplyr::mutate(prop_id = as.integer(prop_id),
+                  data_hora = as.POSIXct(data),
+                  casa = eventos_df$casa[1],
+                  evento = 'na_pauta') %>%
+    dplyr::select(-data) %>%
+    dplyr::filter(prop_id == eventos_df$prop_id[1])
+  
+  if(nrow(pautas) != 0) {
+    eventos_sem_horario <- eventos_df %>%
+      tibble::add_row(!!!pautas) %>%
+      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
+  }else {
+    eventos_sem_horario <- eventos_df %>%
+      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
+  }
 
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
@@ -329,12 +343,16 @@ get_pesos_eventos <- function() {
 
   eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
     dplyr::select(evento = constant, tipo)
+  
+  na_pauta <- tibble::tribble(~evento, ~tipo, ~label, ~peso,
+                              "na_pauta", "votacao", "Votação", 0.68)
 
   pesos_eventos <- dplyr::bind_rows(eventos_camara, eventos_senado, eventos_extra_senado) %>%
     dplyr::group_by(evento) %>%
     dplyr::summarise(tipo = dplyr::first(tipo)) %>%
     dplyr::left_join(tipos_eventos, by="tipo") %>%
-    dplyr::arrange()
+    dplyr::arrange() %>%
+    dplyr::bind_rows(na_pauta)
 
   return(pesos_eventos)
 }

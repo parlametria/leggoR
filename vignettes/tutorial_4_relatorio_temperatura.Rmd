@@ -57,7 +57,8 @@ Vamos calcular a temperatura recente para todo o histórico da tramitação do P
 Os pontos pretos representam os valores da temperatura recente calculada para cada semana.
 
 ```{r, warning=FALSE, message=FALSE, fig.width=7, fig.align='center'}
-hist_temperatura_semanal <- agoradigital::get_historico_temperatura_recente(proc_tram, granularidade = 's', decaimento = 0.1)
+pautas <- tibble::frame_data(~data,	~sigla,	~id_ext,	~local,	~casa,	~semana,	~ano)
+hist_temperatura_semanal <- agoradigital::get_historico_temperatura_recente(proc_tram, granularidade = 's', decaimento = 0.1, pautas = pautas)
 
 ggplot2::ggplot(hist_temperatura_semanal, ggplot2::aes(x=periodo, y=temperatura_recente)) +
   ggplot2::xlab("Tempo") + 
