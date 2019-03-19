@@ -28,9 +28,10 @@ regex_left_match <- function(df, regex_df, new_column) {
       paste0(column, "X")
   }
   , USE.NAMES = TRUE)
-  
+
   regex_df[is.na(regex_df)] <- ".*"
-  
+
+
   df %>%
     dplyr::mutate(sort = dplyr::row_number()) %>%
     fuzzyjoin::regex_left_join(regex_df, by = columns, ignore_case = TRUE) %>%
@@ -66,7 +67,7 @@ to_underscore <- function(x) {
 }
 
 #' @title Filtra datas não-úteis da tramitação de um congresso.
-#' @description Remove do dataframe completo da tramitação as linhas cuja data representam dias não-úteis do Congresso, 
+#' @description Remove do dataframe completo da tramitação as linhas cuja data representam dias não-úteis do Congresso,
 #' incluindo fins de semana e dias de recesso parlamentar.
 #' @param tramitacao_df Dataframe com a tramitação completa
 #' @return Dataframe com a tramitação completa apenas com os dias úteis
@@ -116,9 +117,9 @@ fetch_json_try <- function(url) {
 rename_table_to_underscore <- function(df) {
   new_names = names(df) %>%
     to_underscore()
-  
+
   names(df) <- new_names
-  
+
   df
 }
 

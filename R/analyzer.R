@@ -36,7 +36,8 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
       paste0(
         out_folderpath, "/", casa, "/", prop_id, "-fases-tramitacao-", casa, ".csv"))
   }
-  return(proc_tram_data)
+  # Adiciona coluna com nível de importância dos eventos
+  proc_tram_data %>% dplyr::left_join(congresso_env$eventos, by="evento")
 }
 
 #' @title Retorna temperatura de uma proposição no congresso.
@@ -405,4 +406,3 @@ get_autores_voto_separado <- function(df) {
       evento == "voto_em_separado" ~
         stringr::str_extract(texto_tramitacao, stringr::regex(camara_env$autor_voto_separado$regex, ignore_case=TRUE))))
 }
-
