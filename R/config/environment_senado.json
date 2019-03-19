@@ -45,6 +45,13 @@
     {"fase": "encaminhamento", "code": [89, 159]},
     {"fase": "recebimento_comissao", "regex": "recebido na|nesta comissao"}
   ],
+  
+  "evento_emendas": {
+    "regex_detect": "prazo(.*) emenda(s)*|abertura do prazo",
+    "regex_extract": "\\d{1,2}/\\d{1,2}/\\d{4}|\\d{1,2}.\\d{2}.\\d{4}",
+    "evento_abertura": "inicio_prazo_emendas",
+    "evento_fim": "fim_prazo_emendas"
+  },
 
   "evento": {
     "virada": {
@@ -64,6 +71,18 @@
       "regex_complementar": "aprovado o requerimento",
       "constant": "realizacao_audiencia_publica",
       "tipo":"discussao"
+    },
+    "apresentacao_parecer": {
+      "regex": "(proferido pel(a|o).* parecer)|(leitura dos?( seguinte(s)?)? parecer)|(encaminhados à publicação o(s) (seguinte(s)) parecer(es:|profere parecer.*))",
+      "regex_complementar": "",
+      "constant": "apresentacao_parecer",
+      "tipo":"discussao"
+      
+    },
+    "desarquivamento": {
+      "regex": "a mat.ria foi desarquivada",
+      "constant": "desarquivamento",
+      "tipo":"despacho"
     }
   },
 
@@ -82,8 +101,6 @@
     {"evento": "desarquivamento", "id_situacao": "^149$", "tipo":"despacho"},
     {"evento": "aprovacao_substitutivo", "texto_tramitacao": "aprovado o substitutivo", "tipo":"votacao"},
     {"evento": "aprovacao_projeto", "texto_tramitacao": "aprovado o projeto", "tipo":"votacao"},
-    {"evento": "inicio_prazo_emendas", "id_situacao": "^20$", "tipo":"discussao"},
-    {"evento": "fim_prazo_emendas", "id_situacao": "^153$", "tipo":"discussao"},
     {"evento": "remetida_a_sancao", "texto_tramitacao": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
     {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "tipo":"discussao"},
     {"evento": "transformada_lei", "texto_tramitacao": "sancionada", "tipo":"votacao"},
@@ -98,7 +115,8 @@
 
   "regimes": {
     "urgencia": "Urgência",
-    "regex": "em regime de urg(ê|e)ncia",
+    "regex_urgencia": "em regime de urg(ê|e)ncia",
+    "regex_deixou_urgencia": "deixa de tramitar em regime de urg(ê|e)ncia",
     "ordinaria": "Ordinária"
   },
 

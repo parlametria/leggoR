@@ -1,5 +1,8 @@
 testthat::context('test-analyzer.R')
 
+tram_91341 <<- fetch_tramitacao(91341, 'senado')
+tram_257161 <<- fetch_tramitacao(257161, 'camara')
+
 test_that('get_historico_temperatura_recente() has correct function passing the parameter day', {
   data <- data.frame(prop_id = rep(1111,18),
                     data_hora = c(rep(lubridate::ymd_hms('2018-09-10 12:00:00'), 4),
@@ -17,6 +20,12 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
                     local = "Plenário",
                     stringsAsFactors = F)
 
+  pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano,
+                             "2018-09-10 12:00:00", "PLP 441/2017", 1111, "PLENARIO", "camara", 41, 2018,
+                             "2018-09-10 12:00:00", "PLP 441/2017", 1111, "PLENARIO", "camara", 41, 2018,
+                             "2018-09-17 12:00:00", "PLP 441/2017", 1111, "PLENARIO", "camara", 42, 2018)
+
+
   decaimento = 0.1
   r <- 1 - decaimento
   
@@ -26,7 +35,7 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   peso_locais <- congresso_env$tipos_locais$peso[1]
   
   # 2018-09-10
-  p_dia1 <- 4 + (3 * peso_despacho) + (4 * peso_locais)
+  p_dia1 <- 6 + (3 * peso_despacho) + (2 * peso_votacao) + (4 * peso_locais)
   # 2018-09-11
   p_dia2 <- 2 + peso_discussao + peso_votacao + (2 * peso_locais)
   # 2018-09-12
@@ -36,7 +45,7 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   # 2018-09-14
   p_dia5 <- 3 + peso_despacho +  (2 * peso_votacao) + (3 * peso_locais)
   # 2018-09-17
-  p_dia6 <- 3 + peso_despacho + peso_votacao + (3 * peso_locais)
+  p_dia6 <- 4 + peso_despacho + (2 * peso_votacao) + (3 * peso_locais)
   # 2018-09-18
   p_dia7 <- 0
   
@@ -59,7 +68,7 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   
   result <- round(result, digits = 2)
   
-  energy_df <- get_historico_temperatura_recente(data, granularidade = 'd', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-18 12:00:00"))
+  energy_df <- get_historico_temperatura_recente(data, granularidade = 'd', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-18 12:00:00"), pautas)
   
   expect_true(all(energy_df$temperatura_recente == result))
 })
@@ -81,6 +90,12 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
                               "CCJ","evento_d","evento_e","evento_f","CCJ"),
                     stringsAsFactors = F)
   
+  pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano,
+                             "2018-09-03 12:00:00", "PLP 441/2017", 1111, "PLENARIO", "camara", 41, 2018,
+                             "2018-09-06 12:00:00", "PLP 441/2017", 1111, "PLENARIO", "camara", 41, 2018,
+                             "2018-09-17 12:00:00", "PLP 441/2017", 1111, "PLENARIO", "camara", 42, 2018)
+  
+
   decaimento = 0.1
   r <- 1 - decaimento
   
@@ -89,9 +104,9 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   peso_votacao <- congresso_env$tipos_eventos$peso[3]
   peso_locais <- congresso_env$tipos_locais$peso[1]
   
-  p_week1 <- 2 + peso_despacho + peso_locais
+  p_week1 <- 4 + peso_despacho + peso_locais + (2 * peso_votacao)
   p_week2 <- 5 + (2 * peso_despacho) + peso_votacao + (3 * peso_locais)
-  p_week3 <- 5 + peso_despacho + (2 * peso_discussao) + (3 * peso_locais)
+  p_week3 <- 6 + peso_despacho + (2 * peso_discussao) + (3 * peso_locais) + peso_votacao
   p_week4 <- 5 + peso_despacho + peso_votacao + (2 * peso_locais)
   result <- c(
     # semana 1
@@ -106,7 +121,7 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   
   result <- round(result, digits = 2)
   
-  energy_df <- get_historico_temperatura_recente(data, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"))
+  energy_df <- get_historico_temperatura_recente(data, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"), pautas)
   
   expect_true(all(energy_df$temperatura_recente == result))
 })
@@ -128,6 +143,11 @@ test_that('get_historico_temperatura_recente() quando arquiva', {
                                "CCJ","evento_d","evento_e","CCJ","evento_f"),
                      stringsAsFactors = F)
   
+  pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano,
+                            "2018-09-03 12:00:00", "PLP 441/2017", 1111, "PLENARIO", "camara", 41, 2018,
+                            "2018-09-06 12:00:00", "PLP 441/2017", 1111, "PLENARIO", "camara", 41, 2018,
+                            "2018-09-17 12:00:00", "PLP 441/2017", 1111, "PLENARIO", "camara", 42, 2018)
+  
   decaimento = 0.1
   r <- 1 - decaimento
   
@@ -138,7 +158,7 @@ test_that('get_historico_temperatura_recente() quando arquiva', {
   
   p_week1 <- 0
   p_week2 <- 5 + (2 * peso_despacho) + peso_votacao + (3 * peso_locais)
-  p_week3 <- 5 + peso_despacho + (2 * peso_discussao) + (3 * peso_locais)
+  p_week3 <- 6 + peso_despacho + (2 * peso_discussao) + (3 * peso_locais) + peso_votacao
   p_week4 <- 0
   result <- c(
     # semana 1
@@ -153,7 +173,7 @@ test_that('get_historico_temperatura_recente() quando arquiva', {
   
   result <- round(result, digits = 2)
   
-  energy_df <- get_historico_temperatura_recente(data, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"))
+  energy_df <- get_historico_temperatura_recente(data, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"), pautas)
   
   expect_true(all(energy_df$temperatura_periodo == result))
 })
@@ -191,9 +211,60 @@ test_that('get_pesos_eventos() returns all events with their correct weights for
   expect_true(nrow(pesos_eventos_extra_senado) == nrow(eventos_extra_senado))
 })
 
+test_that('process_proposicao() retorna abertura e encerramento do prazo das emendas', {
+  id <- 91341
+  casa <- "senado"
+  prop <- agoradigital::fetch_proposicao(id, casa)
+  tram <- agoradigital::fetch_tramitacao(id, casa)
+  proc_tram <-
+    agoradigital::process_proposicao(prop, tram, casa) %>%
+    dplyr::mutate(data_hora = as.POSIXct(data_hora))
+  
+  expect_true(all(c("inicio_prazo_emendas", "fim_prazo_emendas") %in% proc_tram$evento))
+})
+
 test_that('extract_autor_in_camara() returns the right cols and author', {
   autor_camara <- agoradigital::extract_autor_in_camara(2121442)
   expect_true(all(sapply(autor_camara, class) %in% .COLNAMES_AUTOR_CAMARA))
   expect_true(autor_camara$autor.nome == "Senado Federal - Comissão Especial do Extrateto SF ")
+  
+})
+
+test_that('extract_status_tramitacao() returns dataframe', {
+  expect_true(is.data.frame(extract_status_tramitacao(91341, 'senado')))
+  expect_true(is.data.frame(extract_status_tramitacao(257161, 'camara')))
+})
+
+test_that('extract_forma_apreciacao() is not null', {
+  expect_false(is.null(extract_forma_apreciacao(tram_91341)))
+  expect_false(is.null(extract_forma_apreciacao(tram_257161)))
+})
+
+test_that('extract_regime_tramitacao() is not null', {
+  expect_false(is.null(extract_regime_tramitacao(tram_91341)))
+  expect_false(is.null(extract_regime_tramitacao(tram_257161)))
+})
+
+
+test_that('get_pesos_eventos() returns dataframe and is not empty', {
+  expect_true(is.data.frame(get_pesos_eventos()))
+  expect_true(nrow(get_pesos_eventos()) != 0)
+})
+
+test_that('get_pesos_locais() returns dataframe and is not empty', {
+  expect_true(is.data.frame(get_pesos_locais()))
+  expect_true(nrow(get_pesos_locais()) != 0)
+})
+
+test_that('get_comissoes_faltantes()', {
+  prop_faltante <- agoradigital::fetch_proposicao(2085536, 'camara')
+  tram_faltante <- agoradigital::fetch_tramitacao(2085536, 'camara')
+  process_faltante <- agoradigital::process_proposicao(prop_faltante, tram_faltante, 'camara')
+  expect_true(nrow(get_comissoes_faltantes(process_faltante, 'camara')) != 0)
+  
+  prop_completa <- agoradigital::fetch_proposicao(91341, 'senado')
+  tram_completa <- agoradigital::fetch_tramitacao(91341, 'senado')
+  process_completa<- agoradigital::process_proposicao(prop_completa, tram_completa, 'senado')
+  expect_true(nrow(get_comissoes_faltantes(process_completa, 'senado')) == 0)
   
 })

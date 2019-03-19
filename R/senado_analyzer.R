@@ -35,11 +35,12 @@ extract_fase_Senado <-
 #' @param data_tramitacao Dataframe da tramitação no Senado
 #' @return Dataframe com as comissões faltantes
 #' @examples
-#' data_tramitacao %>% get_comissoes_faltantes()
-get_comissoes_faltantes <- function(data_tramitacao) {
+#' data_tramitacao %>% get_comissoes_faltantes_senado()
+#' @export
+get_comissoes_faltantes_senado <- function(data_tramitacao) {
   comissoes <-
     extract_comissoes_Senado(data_tramitacao) %>%
-    utils::head(1) %>%
+    dplyr::filter(data_hora == .$data_hora[[1]]) %>%
     dplyr::select(comissoes) %>%
     tidyr::unnest()
 
@@ -102,7 +103,7 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
       fase_global_constants$revisao_senado
     )
 
-  comissoes_faltantes <- get_comissoes_faltantes(data_tramitacao)
+  comissoes_faltantes <- get_comissoes_faltantes_senado(data_tramitacao)
 
   if (nrow(virada_de_casa) == 0) {
     data_tramitacao <-
@@ -169,6 +170,8 @@ extract_evento_Senado <- function(tramitacao_df) {
     evento = dplyr::case_when(
       stringr::str_detect(tolower(texto_tramitacao), stringr::regex(designacao_relator$texto_tramitacao,
                                                            ignore_case = TRUE)) ~ designacao_relator$evento,
+      stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$apresentacao_parecer$regex) ~ eventos_extra_senado$apresentacao_parecer$constant,
+      stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$desarquivamento$regex) ~ eventos_extra_senado$desarquivamento$constant,
       stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$virada$regex) ~ eventos_extra_senado$virada$constant,
       stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$aprovacao_substitutivo$regex) ~ eventos_extra_senado$aprovacao_substitutivo$constant,
       (stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$realizacao_audiencia_publica$regex) &
@@ -179,7 +182,41 @@ extract_evento_Senado <- function(tramitacao_df) {
 
   df %>%
     dplyr::mutate(data_audiencia = stringr::str_extract(tolower(texto_tramitacao), "\\d+/\\d+/\\d+")) %>%
-    dplyr::mutate(data_audiencia = ifelse(evento == 'realizacao_audiencia_publica', data_audiencia, NA))
+    dplyr::mutate(data_audiencia = ifelse(evento == 'realizacao_audiencia_publica', data_audiencia, NA)) 
+}
+
+#' @title Extrai o período de emendas do senado
+#' @description Adiciona o inicio e fim do prazo de emendas
+#' @param tramitacao_df Dataframe da tramitação no Senado
+#' @return Dataframe com prazo de emendas
+#' @examples
+#' extract_periodo_emendas_senado(fetch_tramitacao(91341, 'senado'))
+#' @export
+extract_periodo_emendas_senado <- function(tramitacao_df) {
+  tramitacao_df %>% 
+    dplyr::mutate(
+      emendas = dplyr::case_when(
+        stringr::str_detect(tolower(texto_tramitacao), 
+                            senado_env$evento_emendas$regex_detect) ~  
+          stringr::str_extract_all(tolower(texto_tramitacao), senado_env$evento_emendas$regex_extract),
+        T ~ list("")
+      )) %>% 
+    dplyr::rowwise() %>%  
+    dplyr::mutate(emendas = dplyr::if_else(length(emendas) > 1, list(emendas), list(""))) %>% 
+    dplyr::mutate(emendas = list(tail(emendas,n=2))) %>%
+    tidyr::unnest() %>%
+    dplyr::mutate(emendas = lubridate::parse_date_time(x = emendas,
+                                            orders = c("%d.%m.%Y", "%d.%m.%Y"))) %>% 
+    dplyr::arrange(emendas) %>%
+    dplyr::group_by(data_hora, sequencia) %>% 
+    dplyr::mutate(id = row_number()) %>%
+    dplyr::ungroup() %>% 
+    dplyr::mutate(data_hora = dplyr::if_else(!is.na(emendas), emendas, data_hora),
+                  evento = dplyr::case_when(!is.na(emendas) & id == 1 ~ senado_env$evento_emendas$evento_abertura,
+                                            !is.na(emendas) & id == 2 ~ senado_env$evento_emendas$evento_fim,
+                                            T ~ evento)) %>% 
+    dplyr::arrange(data_hora) %>%
+    dplyr::select(-c(emendas, id))
 }
 
 #' @title Recupera os n últimos eventos importantes que aconteceram no Senado
@@ -313,7 +350,8 @@ extract_comissoes_Senado <- function(df) {
   
   
   if(nrow(df) > 0) {
-    df %>%
+    df <-
+      df %>%
       dplyr::arrange(data_hora) %>%
       dplyr::select(comissoes, data_hora) %>%
       dplyr::rowwise() %>%
@@ -322,7 +360,7 @@ extract_comissoes_Senado <- function(df) {
       unique() %>%
       dplyr::mutate(comissoes = sapply(comissoes, fix_names)) %>%
       dplyr::rowwise() %>%
-      dplyr::filter(length(comissoes) != 0)
+      dplyr::filter(length(comissoes) != 0) 
   } 
   
   return(df)
@@ -347,8 +385,8 @@ get_nome_ementa_Senado <- function(proposicao_id) {
 #' @param qtd  (opcional) Quantidade de eventos a serem recuperados
 #' @return Dataframe com as últimas n tramitações no Senado.
 #' @examples
-#' fetch_tramitacao(91341, 'senado', T) %>% tail_descricao_despacho_Senado()
-#' fetch_tramitacao(91341, 'senado', T) %>% tail_descricao_despacho_Senado(4)
+#' fetch_tramitacao(91341, 'senado') %>% tail_descricao_despacho_Senado()
+#' fetch_tramitacao(91341, 'senado') %>% tail_descricao_despacho_Senado(4)
 tail_descricao_despacho_Senado <- function(df, qtd = 1) {
   df %>%
     dplyr::arrange(data_hora) %>%
@@ -412,12 +450,14 @@ extract_regime_tramitacao_senado <- function(tramitacao_df) {
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(regime =
                     dplyr::case_when(
-                      stringr::str_detect(tolower(texto_tramitacao), regime$regex) ~
+                      stringr::str_detect(tolower(texto_tramitacao), regime$regex_deixou_urgencia) ~
+                        regime$ordinaria,
+                      stringr::str_detect(tolower(texto_tramitacao), regime$regex_urgencia) ~
                         regime$urgencia
                     )) %>%
     tidyr::fill(regime)
 
-  if (is.na(df[nrow(df),]$regime)) {
+  if (is.na(df[nrow(df),]$regime) || df[nrow(df),]$regime == regime$ordinaria) {
     regime$ordinaria
   } else{
     df[nrow(df),]$regime
@@ -544,6 +584,7 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
 
   proc_tram_df <-
     extract_evento_Senado(proc_tram_df) %>%
+    extract_periodo_emendas_senado() %>% 
     dplyr::mutate(data_audiencia = lubridate::dmy(data_audiencia))
   
   virada_de_casa <-
@@ -581,23 +622,23 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
   proc_tram_df
 }
 
-#' @title Cria coluna com a fase global da tramitação no Senado
-#' @description Cria uma nova coluna com a fase global no Senado
-#' @param df Dataframe da tramitação no Senado
-#' @return Dataframe com a coluna "global" adicionada.
-#' @examples
-#' extract_casas_in_senado(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', T))
+#' @title Cria coluna com a fase global da tramitação no Senado	
+#' @description Cria uma nova coluna com a fase global no Senado	
+#' @param df Dataframe da tramitação no Senado	
+#' @return Dataframe com a coluna "global" adicionada.	
+#' @examples	
+#' extract_casas_in_senado(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', T))	
 extract_casas_in_senado <- function(data_tramitacao, casa_name) {
-  senado_constants <- senado_env$constants
-  fase_global_constants <- senado_env$fase_global_plenario
-  fase_global_presidencia <- senado_env$fase_global_sancao
+  senado_constants <- senado_env$constants	
+  fase_global_constants <- senado_env$fase_global_plenario	
+  fase_global_presidencia <- senado_env$fase_global_sancao	
   
-  data_tramitacao %>%
-    dplyr::mutate(
-      fase_global = casa_name,
-      local =
-        dplyr::case_when(
-          situacao_descricao_situacao == fase_global_presidencia$situacao_sancao ~ senado_constants$presidencia,
-          (stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) & sigla_local == "PLEN") ~ senado_constants$plenario,
-          sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes & (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~ senado_constants$comissoes))
-}
+  data_tramitacao %>%	
+    dplyr::mutate(	
+      fase_global = casa_name,	
+      local =	
+        dplyr::case_when(	
+          situacao_descricao_situacao == fase_global_presidencia$situacao_sancao ~ senado_constants$presidencia,	
+          (stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) & sigla_local == "PLEN") ~ senado_constants$plenario,	
+          sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes & (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~ senado_constants$comissoes))	
+} 

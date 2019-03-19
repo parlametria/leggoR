@@ -33,7 +33,7 @@
     {"evento": "apresentacao_pl", "texto_tramitacao": "^apresentação do projeto de lei|^apresentação da proposta de emenda à constituição", "tipo":"despacho"},
     {"evento": "retirada_de_pauta", "texto_tramitacao": "^retirado de pauta", "tipo":"votacao"},
     {"evento": "pedido_de_vista", "texto_tramitacao": "^(vista conjunta aos|vista ao)", "tipo":"votacao"},
-    {"evento": "inicio_prazo_emendas", "texto_tramitacao": "^prazo para emendas|^abertura de prazo para emendas", "tipo":"discussao"},
+    {"evento": "inicio_prazo_emendas", "texto_tramitacao": "^prazo para emendas|^abertura de prazo para emendas|^reabertura de prazo para emendas", "tipo":"discussao"},
     {"evento": "fim_prazo_emendas", "texto_tramitacao": "^encerrado o prazo para emendas", "tipo":"discussao"},
     {"evento": "arquivamento", "texto_tramitacao": "^arquivad(o|a) nos termos", "tipo":"despacho"},
     {"evento": "parecer_pela_adequacao_financeira_e_orcamentaria",  "id_situacao": "^322$", "texto_tramitacao": "pela adequa..o financeira e or.ament.ria", "tipo":"votacao"},
