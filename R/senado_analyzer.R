@@ -35,11 +35,12 @@ extract_fase_Senado <-
 #' @param data_tramitacao Dataframe da tramitação no Senado
 #' @return Dataframe com as comissões faltantes
 #' @examples
-#' data_tramitacao %>% get_comissoes_faltantes()
-get_comissoes_faltantes <- function(data_tramitacao) {
+#' data_tramitacao %>% get_comissoes_faltantes_senado()
+#' @export
+get_comissoes_faltantes_senado <- function(data_tramitacao) {
   comissoes <-
     extract_comissoes_Senado(data_tramitacao) %>%
-    utils::head(1) %>%
+    dplyr::filter(data_hora == .$data_hora[[1]]) %>%
     dplyr::select(comissoes) %>%
     tidyr::unnest()
 
@@ -102,7 +103,7 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
       fase_global_constants$revisao_senado
     )
 
-  comissoes_faltantes <- get_comissoes_faltantes(data_tramitacao)
+  comissoes_faltantes <- get_comissoes_faltantes_senado(data_tramitacao)
 
   if (nrow(virada_de_casa) == 0) {
     data_tramitacao <-
@@ -349,7 +350,8 @@ extract_comissoes_Senado <- function(df) {
   
   
   if(nrow(df) > 0) {
-    df %>%
+    df <-
+      df %>%
       dplyr::arrange(data_hora) %>%
       dplyr::select(comissoes, data_hora) %>%
       dplyr::rowwise() %>%
@@ -358,7 +360,7 @@ extract_comissoes_Senado <- function(df) {
       unique() %>%
       dplyr::mutate(comissoes = sapply(comissoes, fix_names)) %>%
       dplyr::rowwise() %>%
-      dplyr::filter(length(comissoes) != 0)
+      dplyr::filter(length(comissoes) != 0) 
   } 
   
   return(df)
@@ -448,12 +450,14 @@ extract_regime_tramitacao_senado <- function(tramitacao_df) {
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(regime =
                     dplyr::case_when(
-                      stringr::str_detect(tolower(texto_tramitacao), regime$regex) ~
+                      stringr::str_detect(tolower(texto_tramitacao), regime$regex_deixou_urgencia) ~
+                        regime$ordinaria,
+                      stringr::str_detect(tolower(texto_tramitacao), regime$regex_urgencia) ~
                         regime$urgencia
                     )) %>%
     tidyr::fill(regime)
 
-  if (is.na(df[nrow(df),]$regime)) {
+  if (is.na(df[nrow(df),]$regime) || df[nrow(df),]$regime == regime$ordinaria) {
     regime$ordinaria
   } else{
     df[nrow(df),]$regime

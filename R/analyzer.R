@@ -36,7 +36,8 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
       paste0(
         out_folderpath, "/", casa, "/", prop_id, "-fases-tramitacao-", casa, ".csv"))
   }
-  return(proc_tram_data)
+  # Adiciona coluna com nível de importância dos eventos
+  proc_tram_data %>% dplyr::left_join(congresso_env$eventos, by="evento")
 }
 
 #' @title Retorna temperatura de uma proposição no congresso.
@@ -406,3 +407,16 @@ get_autores_voto_separado <- function(df) {
         stringr::str_extract(texto_tramitacao, stringr::regex(camara_env$autor_voto_separado$regex, ignore_case=TRUE))))
 }
 
+#' @title Pega as comissões faltantes
+#' @description Verifica por quais comissões uma proposição ainda irá passar
+#' @param df Dataframe da tramitação processada
+#' @param casa senado ou camara
+#' @return Dataframe com as comissões faltantes
+#' @export
+get_comissoes_faltantes <- function(df, casa) {
+  if (tolower(casa) == congress_constants$camara_label) {
+    get_comissoes_faltantes_camara(df)
+  } else if (tolower(casa) == congress_constants$senado_label) {
+    get_comissoes_faltantes_senado(df)
+  }
+}

@@ -159,7 +159,7 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
   
   eventos <-
     XML::xmlParse(url) %>%
-    XML::xmlToList()
+    XML::xmlToList() %>% 
     jsonlite::toJSON() %>%
     jsonlite::fromJSON()
   

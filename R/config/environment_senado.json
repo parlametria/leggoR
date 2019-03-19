@@ -115,7 +115,8 @@
 
   "regimes": {
     "urgencia": "Urgência",
-    "regex": "em regime de urg(ê|e)ncia",
+    "regex_urgencia": "em regime de urg(ê|e)ncia",
+    "regex_deixou_urgencia": "deixa de tramitar em regime de urg(ê|e)ncia",
     "ordinaria": "Ordinária"
   },
 

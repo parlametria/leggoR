@@ -68,7 +68,7 @@ get_comissoes_in_camara <- function(df) {
     stringr::regex(ignore_case = TRUE)
 
   fix_names <- function(name) {
-    ifelse(!stringr::str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name), paste("Comissão de", name), name)
+    ifelse(!stringr::str_detect(name, 'Comissão') & !grepl("^[[:upper:]]+$", name), ifelse(name == 'ce', "", paste("Comissão de", name)), name)
   }
 
   detect <- function(str, regex) {
@@ -78,20 +78,53 @@ get_comissoes_in_camara <- function(df) {
   df %>%
     dplyr::mutate(
       comissoes = dplyr::case_when(
-        (detect(texto_tramitacao, 'cria..o de comiss.o tempor.ria') |
-         detect(texto_tramitacao, 'à comiss.o .*especial')) ~
+        (stringr::str_detect(tolower(texto_tramitacao), 'cria..o de comiss.o tempor.ria') |
+           stringr::str_detect(tolower(texto_tramitacao), 'à comiss.o .*especial') |
+           stringr::str_detect(tolower(texto_tramitacao), 'constitui comiss.o .*especial')) ~
         'Comissão Especial',
-        ((detect(texto_tramitacao, '^às* comiss..s*') |
-         detect(texto_tramitacao, '^despacho à'))
+        ((stringr::str_detect(tolower(texto_tramitacao), 'às* comiss..s*') |
+            stringr::str_detect(tolower(texto_tramitacao), 'despacho à'))
          #|detect(texto_tramitacao, 'novo despacho')
          ) ~
-        texto_tramitacao)
-    ) %>%
+        texto_tramitacao)) %>%
     dplyr::filter(!is.na(comissoes)) %>%
     dplyr::mutate(proximas_comissoes = stringr::str_extract_all(comissoes, reg) %>% as.list()) %>%
     dplyr::select(data_hora, prop_id, proximas_comissoes) %>%
     dplyr::mutate(proximas_comissoes = purrr::map(proximas_comissoes, fix_names)) %>%
     unique()
+}
+
+#' @title Pega as comissões faltantes da camara
+#' @description Verifica por quais comissões uma proposição ainda irá passar
+#' @param process_tramitacao Dataframe da tramitação da camara processado
+#' @return Dataframe com as comissões faltantes
+#' @examples
+#' agoradigital::process_proposicao(
+#' agoradigital::fetch_proposicao(2085536, 'camara'), 
+#' agoradigital::fetch_tramitacao(2085536, 'camara'), 
+#' 'camara') %>% get_comissoes_faltantes_camara()
+#' @export
+get_comissoes_faltantes_camara <- function(process_tramitacao) {
+  todas_comissoes_camara <- 
+    get_comissoes_camara() %>% 
+    dplyr::select(-c(siglas_comissoes_antigas, comissoes_temporarias)) %>% 
+    tidyr::unnest() %>% 
+    dplyr::mutate(comissoes_permanentes = paste0("Comissão de ", comissoes_permanentes)) 
+  
+  despacho <-
+    get_comissoes_in_camara(process_tramitacao) %>%
+    tidyr::unnest() %>% 
+    dplyr::filter(proximas_comissoes != "") 
+  
+  if(nrow(despacho) != 0 & !("Comissão Especial" %in% despacho$proximas_comissoes)) {
+    comissoes <-
+      merge(despacho, todas_comissoes_camara, by.x="proximas_comissoes", by.y="comissoes_permanentes") %>% 
+      dplyr::select(local = siglas_comissoes)
+    
+    dplyr::anti_join(comissoes, process_tramitacao, by = "local") %>% unique()
+  }else {
+    tibble::tribble(~local)
+  }
 }
 
 #' @title Altera as datas da tramitação para formato mais fácil de tratar
