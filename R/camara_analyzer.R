@@ -1,4 +1,5 @@
 source(here::here("R/camara-lib.R"))
+source(here::here("R/requerimentos.R"))
 
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
@@ -205,12 +206,16 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
     proc_tram_df <-
       proc_tram_df[1:index_of_sancao,]
   }
+  
+  eventos_reqs <- fetch_eventos_reqs_prop(proposicao_df$prop_id, proposicao_df$casa)
 
   proc_tram_df <-
     proc_tram_df %>%
     extract_locais_in_camara() %>%
     extract_fase_global_in_camara(proposicao_df) %>%
     refact_date() %>%
+    dplyr::bind_rows(eventos_reqs) %>%
+    tidyr::fill(global) %>%
     sort_by_date()
 
   return(proc_tram_df)
