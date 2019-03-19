@@ -194,6 +194,18 @@ test_that('get_pesos_eventos() returns all events with their correct weights for
   expect_true(nrow(pesos_eventos_extra_senado) == nrow(eventos_extra_senado))
 })
 
+test_that('process_proposicao() retorna abertura e encerramento do prazo das emendas', {
+  id <- 91341
+  casa <- "senado"
+  prop <- agoradigital::fetch_proposicao(id, casa)
+  tram <- agoradigital::fetch_tramitacao(id, casa)
+  proc_tram <-
+    agoradigital::process_proposicao(prop, tram, casa) %>%
+    dplyr::mutate(data_hora = as.POSIXct(data_hora))
+  
+  expect_true(all(c("inicio_prazo_emendas", "fim_prazo_emendas") %in% proc_tram$evento))
+})
+
 test_that('extract_autor_in_camara() returns the right cols and author', {
   autor_camara <- agoradigital::extract_autor_in_camara(2121442)
   expect_true(all(sapply(autor_camara, class) %in% .COLNAMES_AUTOR_CAMARA))
