@@ -146,7 +146,8 @@ export_data <- function(pls, export_path) {
     purrr::map_df(res, ~ .$emendas) %>%
     dplyr::rename(id_ext = prop_id)
   comissoes <-
-    agoradigital::fetch_all_composicao_comissao()
+    agoradigital::fetch_all_composicao_comissao() %>% 
+    dplyr::rename(id_parlamentar = id)
 
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
