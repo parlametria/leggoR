@@ -66,6 +66,10 @@
     {"evento": "parecer_comissao", "nivel": 1},
     {"evento": "aprovacao_projeto", "nivel": 1},
     {"evento": "aprovacao_substitutivo", "nivel": 1},
-    {"evento": "devolvido", "nivel": 2}
+    {"evento": "devolvido", "nivel": 2},
+    {"evento": "req_apresentacao", "nivel": 1},
+    {"evento": "req_deferido", "nivel": 1},
+    {"evento": "req_indeferido", "nivel": 1},
+    {"evento": "req_arquivado", "nivel": 3}
   ]
 }

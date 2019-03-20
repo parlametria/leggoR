@@ -30,6 +30,11 @@ fetch_eventos_reqs_prop <- function(prop_id, casa) {
 #' fetch_eventos_reqs_prop_camara(46249)
 fetch_eventos_reqs_prop_camara <- function(prop_id) {
   reqs <- rcongresso::fetch_related_requerimentos_camara(prop_id = prop_id)
+  
+  if(nrow(reqs) == 0) {
+    return(tibble::tibble())
+  }
+  
   eventos_reqs <- purrr::map_df(reqs$id_req, ~rcongresso::fetch_events_requerimento_camara(.x)) %>%
     dplyr::select(-cod_situacao, -descricao_tramitacao, -regime, -uri_orgao, -id_req) %>%
     dplyr::rename(texto_tramitacao = despacho,

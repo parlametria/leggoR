@@ -215,8 +215,8 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
     extract_fase_global_in_camara(proposicao_df) %>%
     refact_date() %>%
     dplyr::bind_rows(eventos_reqs) %>%
-    tidyr::fill(global) %>%
-    sort_by_date()
+    sort_by_date() %>%
+    tidyr::fill(global)
 
   return(proc_tram_df)
 }

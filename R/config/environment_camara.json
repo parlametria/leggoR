@@ -45,7 +45,11 @@
     {"evento": "remetida_a_sancao", "texto_tramitacao": "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)", "tipo":"votacao"},
     {"evento": "transformada_lei", "texto_tramitacao": "transformado na lei ordinária", "tipo": "votacao"},
     {"evento": "vetada_totalmente", "texto_tramitacao": "proposição vetada totalmente", "tipo": "votacao"},
-    {"evento": "parecer_comissao", "texto_tramitacao": "^encaminhada à publicação. parecer da comissão.*", "tipo": "votacao"}
+    {"evento": "parecer_comissao", "texto_tramitacao": "^encaminhada à publicação. parecer da comissão.*", "tipo": "votacao"},
+    {"evento": "req_apresentacao", "texto_tramitacao": "", "tipo": "discussao"},
+    {"evento": "req_deferido", "texto_tramitacao": "", "tipo": "discussao"},
+    {"evento": "req_indeferido", "texto_tramitacao": "", "tipo": "discussao"},
+    {"evento": "req_arquivado", "texto_tramitacao": "", "tipo": "discussao"}
   ],
   
   "autor_voto_separado": {
