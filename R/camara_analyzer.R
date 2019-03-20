@@ -214,9 +214,9 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   proc_tram_df <-
     proc_tram_df %>%
     extract_locais_in_camara() %>%
+    dplyr::bind_rows(eventos_reqs) %>%
     extract_fase_global_in_camara(proposicao_df) %>%
     refact_date() %>%
-    dplyr::bind_rows(eventos_reqs) %>%
     sort_by_date() %>%
     tidyr::fill(global)
 
@@ -337,10 +337,14 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
       fase_global_constants$revisao2_senado
     )
   
+  data_apresentacao <- proposicao_df$data_apresentacao
+  
+  data_tramitacao <- data_tramitacao %>%
+    dplyr::mutate(global = dplyr::if_else(data_hora < data_apresentacao,"Pre-Origem",""))
+  
   if (nrow(virada_de_casa) == 0) { #não virou de casa
-    data_tramitacao <-
-      data_tramitacao %>%
-      dplyr::mutate(global = paste0(casa_origem, ''))
+    data_tramitacao <- data_tramitacao %>%
+      dplyr::mutate(global = dplyr::if_else(data_hora >= data_apresentacao,casa_origem,global))
     
   } else { #virou de casa pelo menos uma vez
     
