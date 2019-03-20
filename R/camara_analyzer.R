@@ -304,41 +304,41 @@ extract_casas_in_camara <- function(tramitacao_df, casa_name) {
 #'  extract_fase_global_in_camara(fetch_tramitacao(2121442, 'camara', T) %>% extract_events_in_camara() %>% extract_locais_in_camara(), fetch_proposicao(2121442, 'camara', '', '', normalized=T))
 extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
   fase_global_constants <- camara_env$fase_global
-
+  
   casa_origem <-
-    dplyr::if_else(!is.null(proposicao_df$casa_origem) &
-      !is.na(proposicao_df$casa_origem) & proposicao_df$casa_origem == "Senado Federal",
-      fase_global_constants$revisao_camara,
-      fase_global_constants$origem_camara
+    dplyr::if_else((!is.null(proposicao_df$casa_origem) & !is.na(proposicao_df$casa_origem)) & 
+                     (proposicao_df$casa_origem == "senado"),
+                   fase_global_constants$revisao_camara,
+                   fase_global_constants$origem_camara
     )
-
+  
   virada_de_casa <-
     data_tramitacao %>%
     dplyr::filter(evento == 'virada_de_casa') %>%
     dplyr::arrange(data_hora) %>%
     dplyr::select(data_hora)
-
+  
   casa_atual <-
     dplyr::if_else(
-      casa_origem == " - Origem (Câmara)",
+      casa_origem == fase_global_constants$origem_camara,
       fase_global_constants$revisao_senado,
       fase_global_constants$origem_camara
     )
-
+  
   casa_revisao2 <-
     dplyr::if_else(
-      casa_origem == " - Origem (Câmara)",
+      casa_origem == fase_global_constants$origem_camara,
       fase_global_constants$revisao2_camara,
       fase_global_constants$revisao2_senado
     )
-
-  if (nrow(virada_de_casa) == 0) {
+  
+  if (nrow(virada_de_casa) == 0) { #não virou de casa
     data_tramitacao <-
       data_tramitacao %>%
-      dplyr::mutate(global = dplyr::if_else(length(casa_origem) == 0, '-', paste0(casa_origem, '')))
+      dplyr::mutate(global = paste0(casa_origem, ''))
     
-  } else {
-
+  } else { #virou de casa pelo menos uma vez
+    
     data_tramitacao <-
       data_tramitacao %>%
       dplyr::mutate(global = dplyr::if_else(
@@ -346,10 +346,10 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
         casa_origem,
         casa_atual
       ))
-
+    
   }
-
-  if(nrow(virada_de_casa) > 1) {
+  
+  if(nrow(virada_de_casa) > 1) { #virou de casa duas vezes
     data_tramitacao <-
       data_tramitacao %>%
       dplyr::mutate(global = dplyr::if_else(
@@ -358,12 +358,12 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
         global
       ))
   }
-
+  
   data_tramitacao <-
     data_tramitacao %>%
     dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao", "- Sanção/Veto", global)) %>%
     tidyr::fill(global, .direction = "down")
-
+  
   return(data_tramitacao)
 }
 

@@ -88,9 +88,9 @@ adiciona_status <- function(tramitacao_df) {
 #' @param total_rows número de linhas da tabela com os ids das proposições
 #' @return Dataframe
 process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows, pautas) {
-  # cat(paste(
-  #   "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
-  #   "\nsenado", id_senado, "\n"))
+  cat(paste(
+    "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
+    "\nsenado", id_senado, "\n"))
   etapas <- list()
   if (!is.na(id_camara)) {
     etapas %<>% append(list(process_etapa(id_camara, "camara", agenda, pautas = pautas)))
