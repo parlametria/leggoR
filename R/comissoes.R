@@ -75,10 +75,10 @@ fetch_composicao_comissao <- function(sigla, casa, orgaos_camara) {
   if (casa == 'camara') {
     comissao <- 
       fetch_composicao_comissoes_camara(sigla, orgaos_camara) %>%
-      dplyr::mutate(sigla = sigla) %>%
+      dplyr::mutate(sigla = sigla, casa = casa, foto = paste0("https://www.camara.leg.br/internet/deputado/bandep/", id, ".jpg")) %>%
       dplyr::mutate(casa = casa)
   } else if (casa == 'senado') {
-    new_name <- c("cargo", "id", "partido", "uf", "situacao", "nome", "sigla", "casa")
+    new_name <- c("cargo", "id", "partido", "uf", "situacao", "nome", "foto", "sigla", "casa")
     comissao <-
       fetch_composicao_comissoes_senado(sigla) %>%
       dplyr::mutate(sigla = sigla,
@@ -110,13 +110,13 @@ fetch_composicao_comissoes_senado <- function(sigla) {
       colegiado[sapply(colegiado, is.null)] <- NULL
       comissao <-
         colegiado %>%
-        tibble::as.tibble()
+        tibble::as_tibble()
 
       cargos <-
         comissao %>%
         magrittr::extract2('CARGOS') %>%
         magrittr::extract2('CARGOS_ROW') %>%
-        tibble::as.tibble()
+        tibble::as_tibble()
 
       membros <-
         comissao %>%
@@ -140,25 +140,26 @@ fetch_composicao_comissoes_senado <- function(sigla) {
         if (nrow(cargos) == 0 | !('HTTP' %in% names(cargos))) {
           membros %>%
             dplyr::mutate(CARGO = NA) %>%
-            dplyr::select(c("CARGO", "@num", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR"))
+            dplyr::select(c("CARGO", "@num", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR", "FOTO"))
         } else {
           if ("MEMBROS.MEMBROS_ROW.HTTP" %in% names(membros)) {
             membros <-
               membros %>%
               dplyr::left_join(cargos, by = c ("MEMBROS.MEMBROS_ROW.HTTP" = "HTTP")) %>%
-              dplyr::select(c("CARGO", "@num.x", "MEMBROS.MEMBROS_ROW.PARTIDO", "MEMBROS.MEMBROS_ROW.UF", "MEMBROS.MEMBROS_ROW.TIPO_VAGA", "MEMBROS.MEMBROS_ROW.PARLAMENTAR"))
+              dplyr::select(
+                c("CARGO", "@num.x", "MEMBROS.MEMBROS_ROW.PARTIDO", "MEMBROS.MEMBROS_ROW.UF", "MEMBROS.MEMBROS_ROW.TIPO_VAGA", "MEMBROS.MEMBROS_ROW.PARLAMENTAR", "MEMBROS.MEMBROS_ROW.FOTO"))
           }else {
             membros %>%
               dplyr::left_join(cargos, by = 'HTTP') %>%
-              dplyr::select(c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x"))
+              dplyr::select(c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x", "FOTO"))
           }
         }
       }else {
-        tibble::frame_data(~ CARGO, ~ num.x, ~ PARTIDO, ~ UF, ~ TIPO_VAGA, ~ PARLAMENTAR.x)
+        tibble::tribble(~ CARGO, ~ num.x, ~ PARTIDO, ~ UF, ~ TIPO_VAGA, ~ PARLAMENTAR.x, ~ FOTO)
       }
     },
     error=function(cond) {
-      return(tibble::frame_data(~ CARGO, ~ num.x, ~ PARTIDO, ~ UF, ~ TIPO_VAGA, ~ PARLAMENTAR.x))
+      return(tibble::tribble(~ CARGO, ~ num.x, ~ PARTIDO, ~ UF, ~ TIPO_VAGA, ~ PARLAMENTAR.x, ~ FOTO))
     }
   )
 }
