@@ -94,7 +94,9 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
       sigla_tipo = sigla_subtipo_materia,
       ementa = ementa_materia,
       ## palavras_chave = indexacao_materia,
-      casa_origem = nome_casa_origem,
+      casa_origem = ifelse(tolower(nome_casa_origem) == "senado federal",
+                                         "senado",
+                                         "camara"),
       autor_nome
     )
 
@@ -120,9 +122,7 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
                      ementa = paste(ementa,ementa_detalhada),
                      data_apresentacao = lubridate::ymd_hm(stringr::str_replace(data_apresentacao,'T',' ')),
                      casa = 'camara',
-                     casa_origem = ifelse(tolower(autor_df$tipo %>% tail(1)) == "deputado",
-                                          "camara",
-                                          "senado"),
+                     casa_origem = ifelse(autor_df %>% head(1) %>% dplyr::select(codTipo) == 40000,"senado","camara"),
                      autor_nome = autor_df$nome %>% tail(1),
                      apelido_materia = apelido,
                      tema = tema,
