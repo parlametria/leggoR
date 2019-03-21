@@ -12,14 +12,20 @@ detect_fase <- function(element, set) {
 
 #' @title Extrai as casas globais de um PL
 #' @description Extrai as casas globais de um PL
-#' @param proposicao_df Dataframe da tramitação do PL.
-#' @param tramitacao_df Dataframe da proposição do PL.
-#' @param casa Casa (Senado ou Câmara)
+#' @param full_proposicao_df Dataframe da tramitação do PL.
+#' @param full_tramitacao_df Dataframe da proposição do PL.
 #' @return Dataframe com uma nova coluna chamada fase_global
-extract_casas <- function(tramitacao_df, proposicao_df){
+extract_casas <- function(full_proposicao_df, full_tramitacao_df){
+  #Filtra eventos pre-apresentação
+  pre_apresentacao <- full_tramitacao_df %>%
+    dplyr::filter(stringr::str_detect(global,'^Pre'))
+  
+  pos_apresentacao <- full_tramitacao_df %>%
+    dplyr::filter(stringr::str_detect(global,'^Pre',negate = T))
+  
   ## Prepara tabela que mapeia casa -> label
   labels <- list("Construção", "Revisão I", "Revisão II", "Sanção/Veto")
-  casa_label <- tramitacao_df %>%
+  casa_label <- full_tramitacao_df %>%
     dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) %>%
     dplyr::arrange(data) %>%
     
@@ -56,7 +62,7 @@ extract_casas <- function(tramitacao_df, proposicao_df){
       df %>% dplyr::mutate(local_casa = casa)
   }
 
-  tramitacao_df %>%
+  full_tramitacao_df %>%
     dplyr::arrange(data_hora) %>%
     dplyr::mutate(sequence = data.table::rleid(casa)) %>%
     dplyr::filter((sequence %in% sequencias)) %>%

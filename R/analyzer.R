@@ -305,8 +305,8 @@ extract_status_tramitacao <- function(proposicao_id, casa) {
 
 #' @title Extrai o progresso de um PL
 #' @description Extrai o progresso de um PL
-#' @param proposicao_df Dataframe da tramitação do PL.
-#' @param tramitacao_df Dataframe da proposição do PL.
+#' @param full_proposicao_df Dataframe da tramitação do PL.
+#' @param full_tramitacao_df Dataframe da proposição do PL.
 #' @param casa Casa (Senado ou Câmara)
 #' @param out_folderpath Caminho destino do csv resultante
 #' @return Dataframe
@@ -318,9 +318,9 @@ extract_status_tramitacao <- function(proposicao_id, casa) {
 #' etapas %<>% purrr::pmap(dplyr::bind_rows)
 #' get_progresso(etapas$proposicao, etapas$fases_eventos)
 #' @export
-get_progresso <- function(proposicao_df, tramitacao_df) {
+get_progresso <- function(full_proposicao_df, full_tramitacao_df) {
   progresso_data <-
-    extract_casas(tramitacao_df, proposicao_df) %>%
+    extract_casas(full_proposicao_df, full_tramitacao_df) %>%
     generate_progresso_df() %>%
     dplyr::mutate(local_casa = dplyr::if_else(!is.na(data_inicio) & fase_global == congresso_env$fases_global$fase_global[[7]], 'presidencia', casa)) %>%
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
