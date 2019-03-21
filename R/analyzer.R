@@ -187,7 +187,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 #' @examples
 #' extract_regime_tramitacao(fetch_tramitacao(91341,'senado'), fetch_proposicao(91341,'senado'))
 #' @export
-extract_regime_tramitacao <- function(tram_df, prop = NA) {
+extract_regime_tramitacao <- function(tram_df, prop) {
   casa <- tram_df[1, "casa"]
   regime <- NA
 
