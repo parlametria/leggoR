@@ -439,12 +439,17 @@ extract_locais <- function(df) {
 #' @description Verifica o regime de tramitação de um dataframe. Se apresentar as
 #' palavras 'estando a matéria em regime de urgência' é retornado 'Urgência' como resposta, caso contrário
 #' é retornado 'Ordinária'.
-#' @param df Dataframe da tramitação no Senado.
+#' @param tramitacao_df Dataframe da tramitação no Senado.
+#' @param prop Dataframe da proposição no Senado.
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
-#' extract_regime_tramitacao_senado(fetch_tramitacao(91341,'senado', T))
-extract_regime_tramitacao_senado <- function(tramitacao_df) {
+#' extract_regime_tramitacao_senado(fetch_tramitacao(91341,'senado'), fetch_proposicao(91341,'senado'))
+extract_regime_tramitacao_senado <- function(tramitacao_df, prop) {
   regime <- senado_env$regimes
+  if (toupper(prop$sigla_tipo[1]) == "MPV") {
+    return(regime$urgencia)
+  }
+  
   df <-
     tramitacao_df %>%
     dplyr::arrange(data_hora, sequencia) %>%
