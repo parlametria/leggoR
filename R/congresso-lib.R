@@ -16,64 +16,58 @@ detect_fase <- function(element, set) {
 #' @param full_tramitacao_df Dataframe da proposição do PL.
 #' @return Dataframe com uma nova coluna chamada fase_global
 extract_casas <- function(full_proposicao_df, full_tramitacao_df){
-  #Filtra eventos pre-apresentação
-  pre_apresentacao <- full_tramitacao_df %>%
-    dplyr::filter(stringr::str_detect(global,'^Pre'))
+  eventos_fases <- congresso_env$eventos_fases
   
-  pos_apresentacao <- full_tramitacao_df %>%
-    dplyr::filter(stringr::str_detect(global,'^Pre',negate = T))
+  full_ordered_tram <- full_tramitacao_df %>% dplyr::arrange(data_hora)
   
-  ## Prepara tabela que mapeia casa -> label
-  labels <- list("Construção", "Revisão I", "Revisão II", "Sanção/Veto")
-  casa_label <- full_tramitacao_df %>%
-    dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) %>%
-    dplyr::arrange(data) %>%
-    
-    dplyr::group_by(
-      casa, sequence = data.table::rleid(casa)) %>%
-    dplyr::summarise(
-      data_inicio = min(data_hora, na.rm = T),
-      data_fim = max(data_hora, na.rm = T)) %>%
-    dplyr::arrange(sequence) 
+  #number delimiting events
+  full_ordered_tram <- full_ordered_tram %>%
+    dplyr::group_by(evento) %>%
+    dplyr::mutate(evento_num = dplyr::if_else(evento %in% c('apresentacao_pl','virada_de_casa','remetida_a_sancao'),
+                                              paste0(evento,dplyr::row_number()),
+                                              '')) %>%
+    dplyr::ungroup()
   
-  if(nrow(casa_label) > 1) {  
-    casa_label <-
-      casa_label %>%
-      dplyr::filter(data_inicio < data_fim)
-  }
+  #label first event when happened before the presentation
+  if (full_ordered_tram[1,"evento_num"] != 'apresentacao_pl1')
+    full_ordered_tram[1,"evento_num"] <- 'primeiro_evento'
   
-  sequencias <- casa_label$sequence
-  casa_label <-
-    casa_label %>%
-    dplyr::select(casa) %>%
-    dplyr::ungroup() %>%
-    dplyr::mutate(label = head(labels, nrow(casa_label)))
-
-  ## Roda função específica para cada casa
-  extract_casas_subgroups <- function(tram, row_num) {
-      casa <- tolower(tram[1, ]$casa)
-      prop_id <- tram[1, ]$prop_id
-      label <- casa_label[["label"]][[row_num[[1]]]]
-      if (casa == congress_constants$camara_label) {
-        df <- extract_casas_in_camara(tram, label)
-      } else if (casa == congress_constants$senado_label) {
-        df <- extract_casas_in_senado(tram, label)
-      }
-      df %>% dplyr::mutate(local_casa = casa)
-  }
-
-  full_tramitacao_df %>%
+  delimiting_events <- full_ordered_tram %>% dplyr::filter(evento_num != '') %>%
+    dplyr::left_join(eventos_fases, by = 'evento_num')
+  
+  camara_ordered_tram <- full_ordered_tram %>%
+    dplyr::filter(casa == 'camara') %>%
+    dplyr::left_join(eventos_fases, by = 'evento_num') %>%
+    tidyr::fill(fase_global) %>% 
+    dplyr::bind_rows(delimiting_events) %>%
     dplyr::arrange(data_hora) %>%
-    dplyr::mutate(sequence = data.table::rleid(casa)) %>%
-    dplyr::filter((sequence %in% sequencias)) %>%
-    dplyr::group_by(
-      casa, sequence_2 = data.table::rleid(casa)) %>%
-    dplyr::do(extract_casas_subgroups(., .$sequence_2)) %>%
-    dplyr::mutate(fase_global = dplyr::if_else(global == paste0('- ', labels[[4]]), labels[[4]], fase_global)) %>% 
-    dplyr::ungroup() %>%
+    dplyr::distinct() %>%
+    tidyr::fill(fase_global, .direction = 'up') %>%
+    dplyr::filter(casa == 'camara') %>%
+    extract_local_global_in_camara() %>%
+    dplyr::group_by(fase_global) %>%
+    tidyr::fill(local) %>%
+    dplyr::ungroup()
+  
+  senado_ordered_tram <- full_ordered_tram %>%
+    dplyr::filter(casa == 'senado') %>%
+    dplyr::left_join(eventos_fases, by = 'evento_num') %>%
     tidyr::fill(fase_global) %>%
-    dplyr::mutate(local_casa = dplyr::if_else(!is.na(global) & global == paste0('- ', labels[[4]]), 'presidencia', local_casa)) %>% 
-    dplyr::select(-c(sequence_2, sequence))
+    dplyr::bind_rows(delimiting_events) %>%
+    dplyr::arrange(data_hora) %>%
+    dplyr::distinct() %>%
+    tidyr::fill(fase_global, .direction = 'up') %>%
+    dplyr::filter(casa == 'senado') %>%
+    extract_local_global_in_senado() %>%
+    dplyr::group_by(fase_global) %>%
+    tidyr::fill(local) %>%
+    dplyr::ungroup()
+  
+  full_ordered_tram_fases <- dplyr::bind_rows(camara_ordered_tram,senado_ordered_tram) %>%
+    dplyr::distinct() %>%
+    dplyr::arrange(data_hora) %>%
+    dplyr::mutate(local_casa = dplyr::if_else(fase_global == 'Sanção/Veto','presidência da república',
+                                              dplyr::if_else(fase_global == 'Avaliação dos Vetos','congresso',casa)))
 }
 
 #' @title Recupera o progresso de um PL

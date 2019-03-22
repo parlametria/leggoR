@@ -322,7 +322,7 @@ get_progresso <- function(full_proposicao_df, full_tramitacao_df) {
   progresso_data <-
     extract_casas(full_proposicao_df, full_tramitacao_df) %>%
     generate_progresso_df() %>%
-    dplyr::mutate(local_casa = dplyr::if_else(!is.na(data_inicio) & fase_global == congresso_env$fases_global$fase_global[[7]], 'presidencia', casa)) %>%
+    #dplyr::mutate(local_casa = dplyr::if_else(!is.na(data_inicio) & fase_global == congresso_env$fases_global$fase_global[[7]], 'presidencia', casa)) %>%
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
     tidyr::fill(prop_id, casa) %>%
     tidyr::fill(prop_id, casa, .direction = "up")

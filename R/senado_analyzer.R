@@ -145,10 +145,19 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_p
 #' extract_evento_Senado(fetch_tramitacao(91341, 'senado', T))
 #' @export
 extract_evento_Senado <- function(tramitacao_df) {
-  eventos_senado <- dplyr::select(senado_env$eventos, -tipo)
+  eventos_senado <- senado_env$eventos %>% dplyr::select(evento, regex)
   eventos_extra_senado <- senado_env$evento
-  df <- regex_left_match(tramitacao_df, eventos_senado, "evento")
-
+  df <- tramitacao_df %>% 
+    dplyr::mutate(texto_lower = tolower(stringr::str_trim(
+    stringr::str_replace_all(texto_tramitacao,'[\r\n]', '')))) %>% 
+    fuzzyjoin::regex_left_join(eventos_senado, by = c(texto_lower = "regex")) %>%
+    dplyr::select(-texto_lower, -regex)
+  
+  #Match evento de desarquivamento utilizando o ID da situação
+  #TODO - usar regex para fazer esse match
+  eventos_com_id <- senado_env$eventos %>% dplyr::select(evento, id_situacao) %>% dplyr::filter(!is.na(id_situacao))
+  df <- df %>%
+    dplyr::left_join(eventos_com_id, by=c("id_situacao","evento"))
 
   comissoes <- extract_comissoes_Senado(tramitacao_df)
   date_comissao_especial <- comissoes[match("Comissão Especial", comissoes$comissoes), ]$data_hora
@@ -168,7 +177,7 @@ extract_evento_Senado <- function(tramitacao_df) {
     df %>%
     dplyr::mutate(
     evento = dplyr::case_when(
-      stringr::str_detect(tolower(texto_tramitacao), stringr::regex(designacao_relator$texto_tramitacao,
+      stringr::str_detect(tolower(texto_tramitacao), stringr::regex(designacao_relator$regex,
                                                            ignore_case = TRUE)) ~ designacao_relator$evento,
       stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$apresentacao_parecer$regex) ~ eventos_extra_senado$apresentacao_parecer$constant,
       stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$desarquivamento$regex) ~ eventos_extra_senado$desarquivamento$constant,
@@ -622,20 +631,17 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
   proc_tram_df
 }
 
-#' @title Cria coluna com a fase global da tramitação no Senado	
-#' @description Cria uma nova coluna com a fase global no Senado	
-#' @param df Dataframe da tramitação no Senado	
-#' @return Dataframe com a coluna "global" adicionada.	
-#' @examples	
-#' extract_casas_in_senado(fetch_tramitacao(115926, 'senado', T), fetch_proposicao(115926, 'senado', T))	
-extract_casas_in_senado <- function(data_tramitacao, casa_name) {
+#' @title Extrai os locais globais (Comissões/Plenário/Presidência da República) para proposições do Senado
+#' @description Retorna o dataframe da tamitação com o local global setado na coluna chamada local
+#' @param tramitacao_com_fases Dataframe da tramitação no Senado já com as fases globais
+#' @return Dataframe da tramitacao com o local global setado na coluna chamada local
+extract_local_global_in_senado <- function(data_tramitacao) {
   senado_constants <- senado_env$constants	
   fase_global_constants <- senado_env$fase_global_plenario	
   fase_global_presidencia <- senado_env$fase_global_sancao	
   
   data_tramitacao %>%	
     dplyr::mutate(	
-      fase_global = casa_name,	
       local =	
         dplyr::case_when(	
           situacao_descricao_situacao == fase_global_presidencia$situacao_sancao ~ senado_constants$presidencia,	
