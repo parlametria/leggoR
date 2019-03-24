@@ -16,10 +16,13 @@
   ],
 
   "fases_global":[
+    {"local": "", "fase_global": "Pré-Construção"},
     {"local": "Comissões", "fase_global": "Construção"},
     {"local": "Plenário", "fase_global": "Construção"},
+    {"local": "", "fase_global": "Pré-Revisão I"},
     {"local": "Comissões", "fase_global": "Revisão I"},
     {"local": "Plenário", "fase_global": "Revisão I"},
+    {"local": "", "fase_global": "Pré-Revisão II"},
     {"local": "Comissões", "fase_global": "Revisão II"},
     {"local": "Plenário", "fase_global": "Revisão II"},
     {"local": "Presidência da República", "fase_global": "Sanção/Veto"},

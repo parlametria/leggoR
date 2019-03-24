@@ -119,6 +119,12 @@ generate_progresso_df <- function(tramitacao_df){
       dplyr::mutate(prop_id = tramitacao_df$prop_id)
   }
   
+  #Adding correct casa column value for phases: Sanção/Veto and Avaliação dos Vetos.
+  df <- df %>%
+    dplyr::mutate(local_casa = dplyr::if_else(fase_global %in% c('Sanção/Veto','Avaliação dos Vetos'),
+                                             tolower(local),
+                                             casa))
+  
   return(df)
 }
 

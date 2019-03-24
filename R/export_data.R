@@ -39,12 +39,12 @@ process_etapa <- function(id, casa, agenda, pautas) {
 #' @param progresso_df DataFrame com o progresso da tramitação
 #' @return Dataframe
 adiciona_coluna_pulou <- function(progresso_df) {
-  progresso_df$prox_local_casa = dplyr::lead(progresso_df$local_casa)
+  progresso_df$prox_data_inicio = dplyr::lead(progresso_df$data_inicio)
 
   progresso_df %>%
     dplyr::mutate(
-      pulou = dplyr::if_else((is.na(local_casa) & !is.na(prox_local_casa)), T, F)) %>%
-    dplyr::select(-prox_local_casa)
+      pulou = dplyr::if_else((is.na(data_inicio) & !is.na(prox_data_inicio)), T, F)) %>%
+    dplyr::select(-prox_data_inicio)
 }
 
 #' @title Adiciona locais
