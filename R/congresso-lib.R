@@ -35,33 +35,41 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df){
   delimiting_events <- full_ordered_tram %>% dplyr::filter(evento_num != '') %>%
     dplyr::left_join(eventos_fases, by = 'evento_num')
   
-  camara_ordered_tram <- full_ordered_tram %>%
-    dplyr::filter(casa == 'camara') %>%
-    dplyr::left_join(eventos_fases, by = 'evento_num') %>%
-    tidyr::fill(fase_global) %>% 
-    dplyr::bind_rows(delimiting_events) %>%
-    dplyr::arrange(data_hora) %>%
-    dplyr::distinct() %>%
-    tidyr::fill(fase_global, .direction = 'up') %>%
-    dplyr::filter(casa == 'camara') %>%
-    extract_local_global_in_camara() %>%
-    dplyr::group_by(fase_global) %>%
-    tidyr::fill(local) %>%
-    dplyr::ungroup()
+  camara_ordered_tram <- tibble::tibble()
+  senado_ordered_tram <- tibble::tibble()
   
-  senado_ordered_tram <- full_ordered_tram %>%
-    dplyr::filter(casa == 'senado') %>%
-    dplyr::left_join(eventos_fases, by = 'evento_num') %>%
-    tidyr::fill(fase_global) %>%
-    dplyr::bind_rows(delimiting_events) %>%
-    dplyr::arrange(data_hora) %>%
-    dplyr::distinct() %>%
-    tidyr::fill(fase_global, .direction = 'up') %>%
-    dplyr::filter(casa == 'senado') %>%
-    extract_local_global_in_senado() %>%
-    dplyr::group_by(fase_global) %>%
-    tidyr::fill(local) %>%
-    dplyr::ungroup()
+  if ('camara' %in% full_ordered_tram$casa) {
+    camara_ordered_tram <- full_ordered_tram %>%
+      dplyr::filter(casa == 'camara') %>%
+      dplyr::left_join(eventos_fases, by = 'evento_num') %>%
+      tidyr::fill(fase_global) %>% 
+      dplyr::bind_rows(delimiting_events) %>%
+      dplyr::arrange(data_hora) %>%
+      dplyr::distinct() %>%
+      tidyr::fill(fase_global, .direction = 'up') %>%
+      dplyr::filter(casa == 'camara') %>%
+      extract_local_global_in_camara() %>%
+      dplyr::group_by(fase_global) %>%
+      tidyr::fill(local) %>%
+      dplyr::ungroup()  
+  }
+  
+  
+  if ('senado' %in% full_ordered_tram$casa) {
+    senado_ordered_tram <- full_ordered_tram %>%
+      dplyr::filter(casa == 'senado') %>%
+      dplyr::left_join(eventos_fases, by = 'evento_num') %>%
+      tidyr::fill(fase_global) %>%
+      dplyr::bind_rows(delimiting_events) %>%
+      dplyr::arrange(data_hora) %>%
+      dplyr::distinct() %>%
+      tidyr::fill(fase_global, .direction = 'up') %>%
+      dplyr::filter(casa == 'senado') %>%
+      extract_local_global_in_senado() %>%
+      dplyr::group_by(fase_global) %>%
+      tidyr::fill(local) %>%
+      dplyr::ungroup()
+  }
   
   full_ordered_tram_fases <- dplyr::bind_rows(camara_ordered_tram,senado_ordered_tram) %>%
     dplyr::distinct() %>%
