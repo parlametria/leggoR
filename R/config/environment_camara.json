@@ -15,9 +15,9 @@
     },
 
   "eventos": [
-    {"evento": "requerimento_audiencia_publica", "regex": "^apresentação do (requerimento|req).*(requer|solicit(a|o|am))( a|) realização d.* audiências? públicas?", "tipo":"discussao"},
+    /*{"evento": "requerimento_audiencia_publica", "regex": "^apresentação do (requerimento|req).*(requer|solicit(a|o|am))( a|) realização d.* audiências? públicas?", "tipo":"discussao"},
+    {"evento": "aprovacao_audiencia_publica", "regex": "^aprovado requerimento.*(requer|solicit(a|o|am))( a|) realização d.* audiências? públicas?", "tipo":"discussao"},*/
     {"evento": "aprovacao_parecer", "regex": "^aprovado (?!.*requerimento).*parecer.*$", "tipo":"votacao"},
-    {"evento": "aprovacao_audiencia_publica", "regex": "^aprovado requerimento.*(requer|solicit(a|o|am))( a|) realização d.* audiências? públicas?", "tipo":"discussao"},
     {"evento": "requerimento_redistribuicao", "regex": "^apresentação do requerimento de redistribuição", "tipo":"despacho"},
     {"evento": "requerimento_apensacao", "regex": "^apresentação do requerimento de apensação", "tipo":"despacho"},
     {"evento": "requerimento_urgencia", "regex": "^apresentação do requerimento de urgência", "tipo":"despacho"},

@@ -11,7 +11,7 @@ phase_three <- c(42, 110, 88)
 phase_four <- c(52)
 
 important_eventos <- tibble::tribble(~ evento, ~ situacao_codigo_situacao,
-                                        'aprovacao_audiencia_publica', '110',
+                                        #'aprovacao_audiencia_publica', '110',
                                         'aprovacao_parecer', '89',
                                         'aprovacao_substitutivo', '113',
                                         'pedido_vista', '90',
