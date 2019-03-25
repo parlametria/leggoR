@@ -26,8 +26,9 @@ fetch_tramitacao_senado <- function(prop_id) {
                     sigla_local = origem_tramitacao_local_sigla_local,
                     id_situacao,
                     descricao_situacao = situacao_descricao_situacao) %>%
-      dplyr::left_join(textos, by = "data_hora")
-    
+      #dplyr::left_join(textos, by = "data_hora")
+      #TODO add correct link_inteiro_teor
+      dplyr::mutate(link_inteiro_teor = NA)
 }
 
 #' @title Baixa os dados da tramitação de um Projeto de Lei
