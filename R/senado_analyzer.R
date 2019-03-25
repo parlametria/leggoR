@@ -153,6 +153,15 @@ extract_evento_Senado <- function(tramitacao_df) {
     fuzzyjoin::regex_left_join(eventos_senado, by = c(texto_lower = "regex")) %>%
     dplyr::select(-texto_lower, -regex)
   
+  #Remove eventos de apresentação duplicados
+  eventos_apresentacao <- df %>% dplyr::filter(evento %in% 'apresentacao_pl') %>%
+    dplyr::arrange(data_hora, sequencia)
+  if(nrow(eventos_apresentacao) > 1)
+    primeira_apresentacao <- eventos_apresentacao %>% head(1) %>% dplyr::select(data_hora)
+    df <- df %>%
+      dplyr::mutate(evento = ifelse((evento %in% 'apresentacao_pl') & (data_hora > primeira_apresentacao[[1]][1]),
+                                            NA,evento))
+  
   #Match evento de desarquivamento utilizando o ID da situação
   #TODO - usar regex para fazer esse match
   eventos_com_id <- senado_env$eventos %>% dplyr::select(evento, id_situacao) %>% dplyr::filter(!is.na(id_situacao))
@@ -566,7 +575,7 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
   encaminhamento_phase <- c(89, 158, 159, 160, 161, 162, 163)
   phase_four <- c(52)
   comissoes_phase <- senado_env$fase_comissao %>%
-    dplyr::filter(fase == "analise_do_relator")
+   dplyr::filter(fase == "analise_do_relator")
   proc_tram_df <-
     extract_fase_Senado(
       tramitacao_df,
@@ -580,7 +589,7 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
     dplyr::mutate(data_hora = lubridate::ymd_hms(paste(data_hora, '12:00:00'))) %>%
     dplyr::arrange(data_hora, sequencia) %>%
     tidyr::fill(fase)
-
+  
   proc_tram_df$situacao_descricao_situacao <-
     to_underscore(proc_tram_df$descricao_situacao) %>%
     stringr::str_replace_all("\\s+", "_")
@@ -604,7 +613,6 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
     get_linha_finalizacao_tramitacao(proc_tram_df)
 
   if (nrow(virada_de_casa) == 1) {
-
     index_of_camara <-
       get_linha_virada_de_casa(proc_tram_df)
 
@@ -627,6 +635,13 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
     extract_locais() %>%
     extract_fase_global(proposicao_df) %>%
     unique()
+  
+  # Adiciona evento de apresentação quando não foi identificado
+  if(nrow(proc_tram_df %>% dplyr::filter(evento %in% 'apresentacao_pl')) == 0) {
+    data_apresentacao <- lubridate::ymd_hms(paste(as.character(proposicao_df$data_apresentacao), '12:00:00'))
+    proc_tram_df <- proc_tram_df %>%
+      dplyr::mutate(evento = dplyr::if_else((data_hora == data_apresentacao) & (sequencia == 1),'apresentacao_pl',evento))
+  }
 
   proc_tram_df
 }
