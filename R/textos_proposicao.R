@@ -161,14 +161,14 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
 #' @examples
 #' mutate_links(textos_df)
 mutate_links <- function(df) {
-  if(typeof(df$DescricaoTexto) == 'NULL') {
-    df <- df %>%
-      dplyr::mutate(DescricaoTexto = DescricaoTipoTexto)
-  } else {
+  if("DescricaoTexto" %in% names(df)) {
     df <- df %>%
       dplyr::mutate(DescricaoTexto = dplyr::if_else(is.na(DescricaoTexto),
                                                     DescricaoTipoTexto,
                                                     DescricaoTexto))
+  } else {
+    df <- df %>%
+      dplyr::mutate(DescricaoTexto = DescricaoTipoTexto)
   }
   return(df)
 }
@@ -182,15 +182,15 @@ mutate_links <- function(df) {
 filter_links <- function(df) {
   if(nrow(df) ==1 && df$id_proposicao == 41703) {
     return(df)
-  } else if(typeof(df$NumeroEmenda) == 'NULL') {
-    df <- df %>%
-      dplyr::filter(stringr::str_detect(tolower(DescricaoTexto),
-                                        senado_env$versoes_texto_proposicao$tipos_texto_regex))
-  }else {
+  } else if("NumeroEmenda" %in% names(df)) {
     df <- df %>%
       dplyr::filter(!is.na(NumeroEmenda) |
-                      stringr::str_detect(tolower(DescricaoTexto),
+                      stringr::str_detect(tolower(DescricaoTipoTexto),
                                           senado_env$versoes_texto_proposicao$tipos_texto_regex))
+  } else {
+    df <- df %>%
+      dplyr::filter(stringr::str_detect(tolower(DescricaoTipoTexto),
+                                        senado_env$versoes_texto_proposicao$tipos_texto_regex))
   }
   return(df)
 }
@@ -225,7 +225,8 @@ extract_links_proposicao_senado <- function(id) {
                     data = DataTexto,
                     descricao = DescricaoTexto,
                     link_inteiro_teor = UrlTexto) %>%
-      dplyr::select(-descricao_tipo_texto)
+      dplyr::select(-descricao_tipo_texto) %>% 
+      dplyr::mutate(data = as.POSIXct(data))
     return(textos_df)
   }
 }
