@@ -156,11 +156,12 @@ extract_evento_Senado <- function(tramitacao_df) {
   #Remove eventos de apresentação duplicados
   eventos_apresentacao <- df %>% dplyr::filter(evento %in% 'apresentacao_pl') %>%
     dplyr::arrange(data_hora, sequencia)
-  if(nrow(eventos_apresentacao) > 1)
+  if(nrow(eventos_apresentacao) > 1) {
     primeira_apresentacao <- eventos_apresentacao %>% head(1) %>% dplyr::select(data_hora)
     df <- df %>%
       dplyr::mutate(evento = ifelse((evento %in% 'apresentacao_pl') & (data_hora > primeira_apresentacao[[1]][1]),
                                             NA,evento))
+  }
   
   #Match evento de desarquivamento utilizando o ID da situação
   #TODO - usar regex para fazer esse match
