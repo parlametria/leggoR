@@ -228,6 +228,6 @@
   },
   
   "versoes_texto_proposicao":{
-    "tipos_texto_regex" : "(^projeto de lei .*)|(proposta de emenda .*)|(medida provisória .*)|(avulso de redação final)|(avulso inicial da matéria)|(^(avulso de |)parecer( nº.*|))|(^(avulso de |)emenda(s|).*)"
+    "tipos_texto_regex" : "(^projeto de lei .*)|(proposta de emenda .*)|(medida provisória .*)|(avulso de redação final)|(avulso inicial da matéria)|(^(avulso de |)parecer( nº.*|))|(^emenda(s|).*)"
   }
 }
