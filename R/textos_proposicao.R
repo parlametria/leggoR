@@ -78,7 +78,6 @@ process_proposicao_camara <- function(tramitacao_df) {
   proc_tram_df <- tramitacao_df %>%
     extract_events_in_camara() %>% 
     extract_locais_in_camara() %>%
-    refact_date() %>%
     sort_by_date()
   
   return(proc_tram_df)
@@ -95,7 +94,7 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
   tramitacao_df <- 
     tramitacao_df %>% 
     dplyr::filter(!is.na(url)) %>% 
-    dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,'T',' ')),
+    dplyr::mutate(data_hora = as.Date(data_hora, format = '%Y-%m-%dT%H:%M'),
                   casa = casa,
                   id_situacao = as.integer(cod_tipo_tramitacao)) %>%
     dplyr::select(prop_id = id_prop,
@@ -118,10 +117,11 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
   emendas <- rcongresso::fetch_emendas(proposicao_df$id, casa, proposicao_df$siglaTipo, proposicao_df$numero, proposicao_df$ano) %>% 
     
     dplyr::mutate(prop_id = proposicao_df$id,
-                  casa = "camara") %>%
+                  casa = "camara",
+                  data_hora = as.Date(data_apresentacao, format = '%Y-%m-%d')) %>%
     dplyr::select(prop_id,
                   casa,
-                  data_hora = data_apresentacao,
+                  data_hora,
                   texto_tramitacao = inteiro_teor,
                   codigo_emenda)
   
@@ -151,9 +151,6 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
       ~ id_proposicao, ~ casa, ~ data, ~ descricao, ~ link_inteiro_teor)
   }
   
-  df <- df %>%
-    dplyr::mutate(data = as.character(data))
-  
   return(df)
 }
 
@@ -166,7 +163,7 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
 mutate_links <- function(df) {
   if("DescricaoTexto" %in% names(df)) {
     df <- df %>%
-      dplyr::mutate(DescricaoTexto = dplyr::if_else(is.na(DescricaoTexto),
+      dplyr::mutate(DescricaoTexto = dplyr::if_else(is.na(DescricaoTexto) || DescricaoTexto == "-",
                                                     DescricaoTipoTexto,
                                                     DescricaoTexto))
   } else {
@@ -229,7 +226,7 @@ extract_links_proposicao_senado <- function(id) {
                     descricao = DescricaoTexto,
                     link_inteiro_teor = UrlTexto) %>%
       dplyr::select(-descricao_tipo_texto) %>% 
-      dplyr::mutate(data = as.POSIXct(data))
+      dplyr::mutate(data = as.Date(data))
     return(textos_df)
   }
 }
