@@ -1,5 +1,4 @@
 source(here::here("R/senado_analyzer.R"))
-source(here::here("R/camara_analyzer.R"))
 source(here::here("R/congresso-lib.R"))
 source(here::here("R/relatorias.R"))
 source(here::here("R/tramitacoes.R"))
@@ -36,7 +35,8 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
       paste0(
         out_folderpath, "/", casa, "/", prop_id, "-fases-tramitacao-", casa, ".csv"))
   }
-  return(proc_tram_data)
+  # Adiciona coluna com nível de importância dos eventos
+  proc_tram_data %>% dplyr::left_join(congresso_env$eventos, by="evento")
 }
 
 #' @title Retorna temperatura de uma proposição no congresso.
@@ -82,10 +82,25 @@ get_temperatura <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate:
 #' proc_tram <- agoradigital::process_proposicao(prop,tram,casa)
 #' get_historico_temperatura_recente(proc_tram, granularidade = 's', decaimento = 0.05)
 #' }
-get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.25, max_date = lubridate::now()) {
-  #Remove tempo do timestamp da tramitação
-  eventos_sem_horario <- eventos_df %>%
-    dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
+get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.25, max_date = lubridate::now(), pautas) {
+  pautas <-
+    pautas %>%
+    dplyr::select(prop_id = id_ext, data) %>%
+    dplyr::mutate(prop_id = as.integer(prop_id),
+                  data_hora = as.POSIXct(data),
+                  casa = eventos_df$casa[1],
+                  evento = 'na_pauta') %>%
+    dplyr::select(-data) %>%
+    dplyr::filter(prop_id == eventos_df$prop_id[1])
+  
+  if(nrow(pautas) != 0) {
+    eventos_sem_horario <- eventos_df %>%
+      tibble::add_row(!!!pautas) %>%
+      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
+  }else {
+    eventos_sem_horario <- eventos_df %>%
+      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
+  }
 
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
@@ -173,7 +188,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 #' @export
 extract_regime_tramitacao <- function(tram_df) {
   casa <- tram_df[1, "casa"]
-  regime <- NULL
+  regime <- NA
 
   if (casa == congress_constants$camara_label) {
     regime <- extract_regime_tramitacao_camara(tram_df)
@@ -181,7 +196,11 @@ extract_regime_tramitacao <- function(tram_df) {
     regime <- extract_regime_tramitacao_senado(tram_df)
   }
 
-  regime
+  if(is.na(regime)) {
+    "Indefinido"
+  } else {
+    regime
+  }
 }
 
 
@@ -196,7 +215,7 @@ extract_regime_tramitacao <- function(tram_df) {
 extract_forma_apreciacao <- function(tram_df) {
   casa <- tram_df[1, "casa"]
   prop_id <- tram_df[1, "prop_id"]
-  apreciacao <- NULL
+  apreciacao <- NA
 
   if (casa == congress_constants$camara_label) {
     apreciacao <- extract_forma_apreciacao_camara(prop_id)
@@ -204,7 +223,11 @@ extract_forma_apreciacao <- function(tram_df) {
     apreciacao <- extract_forma_apreciacao_senado(prop_id)
   }
 
-  apreciacao
+  if(is.na(apreciacao)) {
+    "Indefinido"
+  } else {
+    apreciacao
+  }
 }
 
 #' @title Cria uma coluna com o nome pauta
@@ -229,7 +252,7 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
     unique() %>%
     dplyr::group_by(data, sigla) %>%
     dplyr::arrange(data) %>%
-    dplyr::filter(row_number()==n()) %>%
+    dplyr::filter(dplyr::row_number()==dplyr::n()) %>%
     dplyr::ungroup() %>%
     fix_nomes_locais() %>%
     dplyr::select(-em_pauta)
@@ -320,12 +343,16 @@ get_pesos_eventos <- function() {
 
   eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
     dplyr::select(evento = constant, tipo)
+  
+  na_pauta <- tibble::tribble(~evento, ~tipo, ~label, ~peso,
+                              "na_pauta", "votacao", "Votação", 0.68)
 
   pesos_eventos <- dplyr::bind_rows(eventos_camara, eventos_senado, eventos_extra_senado) %>%
     dplyr::group_by(evento) %>%
     dplyr::summarise(tipo = dplyr::first(tipo)) %>%
     dplyr::left_join(tipos_eventos, by="tipo") %>%
-    dplyr::arrange()
+    dplyr::arrange() %>%
+    dplyr::bind_rows(na_pauta)
 
   return(pesos_eventos)
 }
@@ -398,3 +425,16 @@ get_autores_voto_separado <- function(df) {
         stringr::str_extract(texto_tramitacao, stringr::regex(camara_env$autor_voto_separado$regex, ignore_case=TRUE))))
 }
 
+#' @title Pega as comissões faltantes
+#' @description Verifica por quais comissões uma proposição ainda irá passar
+#' @param df Dataframe da tramitação processada
+#' @param casa senado ou camara
+#' @return Dataframe com as comissões faltantes
+#' @export
+get_comissoes_faltantes <- function(df, casa) {
+  if (tolower(casa) == congress_constants$camara_label) {
+    get_comissoes_faltantes_camara(df)
+  } else if (tolower(casa) == congress_constants$senado_label) {
+    get_comissoes_faltantes_senado(df)
+  }
+}

@@ -1,110 +1,43 @@
 id_camara,id_senado,apelido,tema
-257161,,Lei do Licenciamento Ambiental,Meio Ambiente/Clima
-,132865,Lei Geral de Licenciamento Ambiental,Meio Ambiente/Clima
+257161,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+NA,132865,Lei Geral de Licenciamento Ambiental,Meio Ambiente
 2088990,91341,Lei da Qualidade Fiscal,Agenda Governo
-46249,41703,PL do Veneno,Meio Ambiente/Clima
+46249,41703,PL do Veneno,Meio Ambiente
 2121442,127753,Lei do Teto Remuneratório,Agenda Governo
 2160860,129808,Lei do Cadastro Positivo,Agenda Governo
-345311,,Estatuto do Índio,Meio Ambiente/Clima
-2085536,,Lei para Acabar Zona de Amortecimento,Meio Ambiente/Clima
-2120775,,Política Governo de Redução de Agrotóxico,Meio Ambiente/Clima
+345311,NA,Estatuto do Índio,Meio Ambiente
+2085536,NA,Lei para Acabar Zona de Amortecimento,Meio Ambiente
+2120775,NA,Política Governo de Redução de Agrotóxico,Meio Ambiente
 2122766,115926,Modernização da Lei de Licitações e Contratos,Agenda Governo
-,126364,Alteração na Lei Antiterrorismo,Agenda Governo
-606722,,Escola Sem Partido,Agenda Governo
-541857,,Revogação do Estatuto do Desarmamento,Agenda Governo
-2119881,,Reforma da Previdência,Agenda Governo
-1214970,133613,Nova regulação para devolução de imóveis comprados na planta,Agenda Governo
+NA,126364,Alteração na Lei Antiterrorismo,Agenda Governo
+606722,NA,Escola Sem Partido,Agenda Governo
+541857,NA,Revogação do Estatuto do Desarmamento,Agenda Governo
+2119881,NA,Reforma da Previdência Temer,Agenda Governo
 2158425,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Governo
-2056568,,Indenização Propriedades Privadas em Unidades de Conservação,Meio Ambiente/Clima
-1738598,,Criação da Área de Proteção Ambiental de Canavieiras,Meio Ambiente/Clima
-14562,,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente/Clima
-2170839,,Lei do Pantanal - Molon,Meio Ambiente/Clima
-944279,,Lei do Cerrado,Meio Ambiente/Clima
-,102721,Cana na Amazônia,Meio Ambiente/Clima
-,103831,Lei do Pantanal - Maggi,Meio Ambiente/Clima
-1635730,126084,Aumento do Supremo,Agenda Governo 
+2056568,NA,Indenização Propriedades Privadas em Unidades de Conservação,Meio Ambiente
+1738598,NA,Criação da Área de Proteção Ambiental de Canavieiras,Meio Ambiente
+14562,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+2170839,NA,Lei do Pantanal - Molon,Meio Ambiente
+944279,NA,Lei do Cerrado,Meio Ambiente
+NA,102721,Cana na Amazônia,Meio Ambiente
+NA,103831,Lei do Pantanal - Maggi,Meio Ambiente
 2120019,111048,Lei das Agências Reguladoras,Agenda Governo
-51066,,Deixa de incluir FUNDEF no limite de gastos com pessoal,Educação
-518221,,Piso salarial do magistério público da educação básica - Moura,Educação
-532814,,Piso salarial do magistério público da educação básica - Marchezan,Educação
-,120143,Educação básica em tempo integral,Educação
-500183,,Autoriza trabalho a partir dos quatorze anos,Direito à Infância
-,106330,Redução da maioridade penal,Direito à Infância
-546383,,Trabalho infantil artístico,Direito à Infância
-,120768,Trabalho infantil artístico e despostivo,Direito à Infância
-1594911,121572,Aumento do tempo de internação,Direito à Infância
-643979,,PL 8048/2014,
-944350,,"PL 66/2019
-",
-604888,96813,PL 7005/2013,
-2190510,,PL 67/2019,
-2141142,,PL 7843/2017,
-2188211,,PL 11118/2018 ,
-,133832,PLS 323/2018,
-2080604,,PL 4850/2016 ,
-2190519,,PL 76/2019,
-2191189,,PL 478/2019,
-16526,1489,PL 1292/1995,
-944325,,PL 48/2015,
-2190518,,PL 75/2019,
-944736,,PL 74/2019,
-,131130,PLS 378/2018,
-,134184,PLS 377/2018,
-2171764,129547,PLS 181/2017 ,
-,134202,PLS 379/2018 ,
-2190515,,PL 72/2019,
-2140446,,"PEC 333/2017
-",
-2190558,,PL 105/2019,
-2190525,,PL 82/2019,
-483905,,PEC 505/2010 ,
-597232,,PEC 329/2013 ,
-2190499,,PLP 1/2019,
-,93534,PEC 45/2009,
-2191185,,PL 475/2019,
-2188218,,PL 11125/2018 ,
-2190501,,PLP 2/2019,
-2190529,,PL 86/2019,
-353631,,PL 1202/2007 ,
-2190527,,PL 84/2019,
-,127764,PLS 455/2016,
-2190512,,PL 70/2019,
-2155152,,PDC-787/2017,
-955443,,PL 522/2015,
-2080604,,PL 4850/2016 ,
-2190559,,PL 103/2019,
-,121321,PLS 297/2015,
-2190533,,PL 90/2019,
-,106404,"PLS 236/2012
-",
-2190552,,PL 101/2019,
-,126685,PLS 314/2016 ,
-2184458,,PL 10887/2018,
-2190546,,PL 99/2019,
-,134201,PLS 380/2018,
-2190513,,PL 69/2019,
-2190535,,PL 91/2019,
-2190523,,PL 78/2019,
-2190520,,PL 77/2019,
-2190526,,PL 83/2019,
-2190522,,PL 80/2019,
-2190514,,PL 71/2019,
-2190521,,PL 79/2019,
-2191186,,PL 476/2019,
-2190528,,PL 85/2019,
-2190524,,PL 81/2019,
-2190532,,PL 89/2019,
-2190531,,PL 88/2019,
-2190530,,PL 87/2019,
-2190561,,PL 107/2019,
-2190560,,PL 106/2019,
-2190555,,PL 104/2019,
-2190551,,PL 102/2019,
-2190549,,PL 100/2019,
-2190539,,PL 92/2019,
-2190537,,PL 93/2019,
-2190538,,PL 94/2019,
-2190541,,PL 95/2019,
-2190542,,PL 96/2019,
-2190545,,PL 97/2019,
-2190547,,PL 98/2019,
+51066,NA,Deixa de incluir FUNDEF no limite de gastos com pessoal,Educação
+518221,NA,Piso salarial do magistério público da educação básica - Moura,Educação
+532814,NA,Piso salarial do magistério público da educação básica - Marchezan,Educação
+NA,120143,Educação básica em tempo integral,Educação
+500183,NA,Autoriza trabalho a partir dos quatorze anos,Direitos Humanos
+NA,106330,Redução da maioridade penal,Direitos Humanos
+546383,NA,Trabalho infantil artístico,Direitos Humanos
+NA,120768,Trabalho infantil artístico e despostivo,Direitos Humanos
+1594911,121572,Aumento do tempo de internação,Direitos Humanos
+604888,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+2192459,NA,Reforma da Previdência Bolsonaro,Agenda Governo
+NA,135064,Monitoramento e Acompanhamento de ONGs,Agenda Governo
+2192352,NA,Pacote Moro Caixa 2,Agenda Governo
+2192353,NA,Pacote Moro Crime Organizado,Agenda Governo
+2192354,NA,Pacote Moro Anticorrupção,Agenda Governo
+NA,131906,Mercado da água,Meio Ambiente
+NA,120152,PEC Antiaborto,Direitos Humanos
+NA,135061,Altera o marco legal do saneamento básico,Agenda Governo
+353631,NA,Disciplina a atividade de lobby,Integridade e Transparência

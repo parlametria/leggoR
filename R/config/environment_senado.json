@@ -45,14 +45,15 @@
     {"fase": "encaminhamento", "code": [89, 159]},
     {"fase": "recebimento_comissao", "regex": "recebido na|nesta comissao"}
   ],
+  
+  "evento_emendas": {
+    "regex_detect": "prazo(.*) emenda(s)*|abertura do prazo",
+    "regex_extract": "\\d{1,2}/\\d{1,2}/\\d{4}|\\d{1,2}.\\d{2}.\\d{4}",
+    "evento_abertura": "inicio_prazo_emendas",
+    "evento_fim": "fim_prazo_emendas"
+  },
 
   "evento": {
-    "arquivamento": {
-      "regex": "processo arquivado(.)*",
-      "regex_complementar": "",
-      "constant": "arquivamento",
-      "tipo":"despacho"
-    },
     "virada": {
       "regex": "primeiro-secretário da câmara dos deputados.* encaminhando.* revisão",
       "regex_complementar": "",
@@ -70,11 +71,25 @@
       "regex_complementar": "aprovado o requerimento",
       "constant": "realizacao_audiencia_publica",
       "tipo":"discussao"
+    },
+    "apresentacao_parecer": {
+      "regex": "(proferido pel(a|o).* parecer)|(leitura dos?( seguinte(s)?)? parecer)|(encaminhados à publicação o(s) (seguinte(s)) parecer(es:|profere parecer.*))",
+      "regex_complementar": "",
+      "constant": "apresentacao_parecer",
+      "tipo":"discussao"
+      
+    },
+    "desarquivamento": {
+      "regex": "a mat.ria foi desarquivada",
+      "constant": "desarquivamento",
+      "tipo":"despacho"
     }
   },
 
   "eventos": [
     {"evento": "apresentacao_pl", "texto_tramitacao": "^este processo contem", "tipo":"despacho"},
+    {"evento": "requerimento_audiencia_publica", "texto_tramitacao": "((requerendo a|requer a|com a finalidade de) realização de|aguardando leitura de requerimento.*) audiência", "tipo":"discussao"},
+    {"evento": "requerimento_seminario", "texto_tramitacao": "a realização de seminário", "tipo":"discussao"},
     {"evento": "recebimento_comissao", "texto_tramitacao": "recebido na|nesta comissao", "tipo":"despacho"},
     {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "aprovado requerimento de realização de audiência pública", "tipo":"discussao"},
     {"evento": "devolvido", "texto_tramitacao": "devolvido pel.*redistribu.*", "tipo":"despacho"},
@@ -82,11 +97,10 @@
     {"evento": "pedido_de_vista", "texto_tramitacao": "concedida vista", "tipo":"votacao"},
     {"evento": "designado_relator",
       "texto_tramitacao": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))", "tipo":"despacho"},
+    {"evento": "arquivamento", "texto_tramitacao": "processo arquivado(.)*|a proposição é arquivada", "tipo":"despacho"},
     {"evento": "desarquivamento", "id_situacao": "^149$", "tipo":"despacho"},
     {"evento": "aprovacao_substitutivo", "texto_tramitacao": "aprovado o substitutivo", "tipo":"votacao"},
     {"evento": "aprovacao_projeto", "texto_tramitacao": "aprovado o projeto", "tipo":"votacao"},
-    {"evento": "inicio_prazo_emendas", "id_situacao": "^20$", "tipo":"discussao"},
-    {"evento": "fim_prazo_emendas", "id_situacao": "^153$", "tipo":"discussao"},
     {"evento": "remetida_a_sancao", "texto_tramitacao": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
     {"evento": "aprovacao_audiencia_publica", "texto_tramitacao": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "tipo":"discussao"},
     {"evento": "transformada_lei", "texto_tramitacao": "sancionada", "tipo":"votacao"},
@@ -101,7 +115,8 @@
 
   "regimes": {
     "urgencia": "Urgência",
-    "regex": "em regime de urg(ê|e)ncia",
+    "regex_urgencia": "em regime de urg(ê|e)ncia",
+    "regex_deixou_urgencia": "deixa de tramitar em regime de urg(ê|e)ncia",
     "ordinaria": "Ordinária"
   },
 
@@ -172,7 +187,6 @@
     "votacao": "http://legis.senado.leg.br/dadosabertos/materia/votacoes",
     "movimentacoes": "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes",
     "relatorias": "http://legis.senado.leg.br/dadosabertos/materia/relatorias",
-    "proposicao_sessoes": "http://legis.senado.leg.br/dadosabertos/materia/ordia",
     "glossario": "http://legis.senado.leg.br/dadosabertos/materia/glossario/lista?v=4",
     "situacoes": "http://legis.senado.leg.br/dadosabertos/materia/situacoes",
     "page_url_senado": "https://www25.senado.leg.br/web/atividade/materias/-/materia/"

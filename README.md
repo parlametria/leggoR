@@ -1,9 +1,7 @@
 [![pipeline status](https://gitlab.com/analytics-ufcg/agora-digital/badges/master/pipeline.svg)](https://gitlab.com/analytics-ufcg/agora-digital/commits/master)
-[![coverage report](https://gitlab.com/analytics-ufcg/agora-digital/badges/master/coverage.svg)](https://gitlab.com/analytics-ufcg/agora-digital/commits/master)
+[![codecov](https://codecov.io/gh/analytics-ufcg/leggoR/branch/master/graph/badge.svg)](https://codecov.io/gh/analytics-ufcg/leggoR)
 
-**Este pacote está em versão ALFA!**
-
-# Ágora Digital
+# leggoR
 Acesso, tradução e modelos usando dados do congresso nacional.
  
 - [Site com documentação](https://analytics-ufcg.github.io/agora-digital/public)
@@ -122,17 +120,6 @@ Para rodar os testes:
  > devtools::install_github('analytics-ufcg/agora-digital@nome_da_branch')
  
 Depois faça os testes necessários para garantir que o pacote está funcionando conforme esperado.
-    
-## Mais informações
-
-  Atualmente o pacote já foi testado para as seguintes proposições:
-  
-  - [PL 3729/2004](http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao=257161)
-  - [PL 6726/16](http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao=2121442)
-  - [PL 449/2016](https://www25.senado.leg.br/web/atividade/materias/-/materia/127753?o=d) 
-  - [PL 229/2009](https://www25.senado.leg.br/web/atividade/materias/-/materia/91341)
-  
-  Podendo apresentar problemas para outras proposições.
   
 ## Como contribuir
 

@@ -10,7 +10,7 @@ phase_two <- c(91, 99)
 phase_three <- c(42, 110, 88)
 phase_four <- c(52)
 
-important_eventos <- tibble::frame_data(~ evento, ~ situacao_codigo_situacao,
+important_eventos <- tibble::tribble(~ evento, ~ situacao_codigo_situacao,
                                         'aprovacao_audiencia_publica', '110',
                                         'aprovacao_parecer', '89',
                                         'aprovacao_substitutivo', '113',
@@ -21,8 +21,8 @@ important_eventos <- tibble::frame_data(~ evento, ~ situacao_codigo_situacao,
 # Setup
 setup <- function(){
   ## tramitacao_data <<- readr::read_csv(paste0(here::here("data/Senado/"), 91341, "-tramitacao-senado.csv"))
-  PROPOSICOES_ID <<- c(91341)
-  tramitacao_data <<- agoradigital::fetch_tramitacao(PROPOSICOES_ID, 'senado', TRUE)
+  PROPOSICOES_ID <- c(91341)
+  tramitacao_data <- agoradigital::fetch_tramitacao(PROPOSICOES_ID, 'senado', TRUE)
   return(TRUE)
 }
 
@@ -31,14 +31,6 @@ check_api <- function(){
 }
 
 test <- function(){
-  
-  test_that('fetch_votacoes() is dataframe', {
-    expect_true(is.data.frame(fetch_votacoes(PROPOSICOES_ID)))
-  })
-  
-  test_that('fetch_votacoes()', {
-    expect_true(all(names(fetch_votacoes(PROPOSICOES_ID)) %in% .COLNAMES_VOT_SEN))
-  })
   
   test_that('fetch_tramitacao()', {
     expect_true(all(names(fetch_tramitacao(PROPOSICOES_ID, 'senado')) %in% .COLNAMES_TRAMI_SEN))

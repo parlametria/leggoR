@@ -4,9 +4,9 @@
 #' @param id Id da proposição
 #' @param casa senado ou camara
 #' @param agenda dataframe com a agenda
-#' @return list com os dataframes: proposicao, fases_eventos, 
+#' @return list com os dataframes: proposicao, fases_eventos,
 #' hist_temperatura e emendas
-process_etapa <- function(id, casa, agenda) {
+process_etapa <- function(id, casa, agenda, pautas) {
   prop <- agoradigital::fetch_proposicao(id, casa)
   tram <- agoradigital::fetch_tramitacao(id, casa)
   proc_tram <-
@@ -14,7 +14,7 @@ process_etapa <- function(id, casa, agenda) {
     dplyr::mutate(data_hora = as.POSIXct(data_hora))
   status <- agoradigital::extract_status_tramitacao(id, casa)
   historico_temperatura <-
-    agoradigital::get_historico_temperatura_recente(proc_tram) %>%
+    agoradigital::get_historico_temperatura_recente(eventos_df = proc_tram, pautas = pautas) %>%
     dplyr::mutate(id_ext = prop$prop_id, casa = prop$casa) %>%
     dplyr::select(id_ext, casa, periodo, temperatura_periodo, temperatura_recente)
   temperatura_value <-
@@ -24,13 +24,13 @@ process_etapa <- function(id, casa, agenda) {
   extended_prop <-
     merge(prop, status, by = "prop_id") %>%
     dplyr::mutate(temperatura = temperatura_value)
-  # emendas <- rcongresso::fetch_emendas(id, casa, prop$tipo_materia, prop$numero, prop$ano)
+  emendas <- rcongresso::fetch_emendas(id, casa, extended_prop$sigla_tipo, extended_prop$numero, extended_prop$ano)
 
   list(
     proposicao = extended_prop,
     fases_eventos = proc_tram,
-    hist_temperatura = historico_temperatura
-    # emendas = emendas
+    hist_temperatura = historico_temperatura,
+    emendas = emendas
     )
 }
 
@@ -84,19 +84,19 @@ adiciona_status <- function(tramitacao_df) {
 #' @param id_senado Id da proposição no senado
 #' @param apelido Apelido da proposição
 #' @param tema_pl Tema da proposição
-#' @param agenda Agenda 
+#' @param agenda Agenda
 #' @param total_rows número de linhas da tabela com os ids das proposições
 #' @return Dataframe
-process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows) {
+process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows, pautas) {
   cat(paste(
     "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
     "\nsenado", id_senado, "\n"))
   etapas <- list()
   if (!is.na(id_camara)) {
-    etapas %<>% append(list(process_etapa(id_camara, "camara", agenda)))
+    etapas %<>% append(list(process_etapa(id_camara, "camara", agenda, pautas = pautas)))
   }
   if (!is.na(id_senado)) {
-    etapas %<>% append(list(process_etapa(id_senado, "senado", agenda)))
+    etapas %<>% append(list(process_etapa(id_senado, "senado", agenda, pautas = pautas)))
   }
   etapas %<>% purrr::pmap(dplyr::bind_rows)
   etapas[["progresso"]] <-
@@ -104,8 +104,7 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
     adiciona_coluna_pulou() %>%
     adiciona_locais_faltantes_progresso()
   etapas$proposicao %<>%
-    dplyr::mutate(apelido_materia = apelido, tema = tema_pl) %>%
-    dplyr::select(-casa_origem)
+    dplyr::mutate(apelido_materia = apelido, tema = tema_pl)
   etapas
 }
 
@@ -117,26 +116,38 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
 export_data <- function(pls, export_path) {
   # agenda <- fetch_agenda_geral(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4)
   agenda <- tibble::as_tibble()
-  res <- pls %>% purrr::pmap(process_pl, agenda, nrow(pls))
+  pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
+  tryCatch({
+    pautas <- readr::read_csv(paste0(export_path, "pautas.csv"))
+  },
+  error = function(msg) {
+  })
 
+  res <- pls %>% purrr::pmap(process_pl, agenda, nrow(pls), pautas = pautas)
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
-    dplyr::select(-c(status_proposicao_sigla_orgao, indexacao_materia, ano)) %>%
-    dplyr::rename(id_ext = prop_id, sigla_tipo = tipo_materia, apelido = apelido_materia)
+    dplyr::select(-c(status_proposicao_sigla_orgao, ano)) %>%
+    dplyr::rename(id_ext = prop_id, apelido = apelido_materia)
   tramitacoes <-
     purrr::map_df(res, ~ .$fases_eventos) %>%
     dplyr::rename(id_ext = prop_id, data = data_hora) %>%
     adiciona_status()
+  tramitacoes_que_viraram_lei <-
+    tramitacoes %>%
+    dplyr::filter(evento == "transformada_lei")
+  tramitacoes <-
+    tramitacoes %>%
+    dplyr::filter(!(id_ext %in% tramitacoes_que_viraram_lei$id_ext))
   hists_temperatura <- purrr::map_df(res, ~ .$hist_temperatura)
   progressos <-
     purrr::map_df(res, ~ .$progresso) %>%
     dplyr::rename(id_ext = prop_id)
-  # emendas <-
-  #   purrr::map_df(res, ~ .$emendas) %>%
-  #   dplyr::rename(id_ext = prop_id)
-  #TODO: Quando as comissões estiverem preenchidas
-  #comissoes <-
-    #agoradigital::fetch_all_composicao_comissao()
+  emendas <-
+    purrr::map_df(res, ~ .$emendas) %>%
+    dplyr::rename(id_ext = prop_id)
+  comissoes <-
+    agoradigital::fetch_all_composicao_comissao() %>% 
+    dplyr::rename(id_parlamentar = id)
 
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
@@ -144,7 +155,6 @@ export_data <- function(pls, export_path) {
   readr::write_csv(
     hists_temperatura, paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
-  # readr::write_csv(emendas, paste0(export_path, "/emendas.csv"))
-  #TODO: Quando as comissões estiverem preenchidas
-  #readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
+  readr::write_csv(emendas, paste0(export_path, "/emendas.csv"))
+  readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
 }
