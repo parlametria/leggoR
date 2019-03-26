@@ -25,6 +25,12 @@ process_etapa <- function(id, casa, agenda, pautas) {
     merge(prop, status, by = "prop_id") %>%
     dplyr::mutate(temperatura = temperatura_value)
   emendas <- rcongresso::fetch_emendas(id, casa, extended_prop$sigla_tipo, extended_prop$numero, extended_prop$ano)
+  
+  if (casa == 'camara') {
+    emendas <- 
+      emendas %>% 
+      dplyr::mutate(inteiro_teor = get_emendas_links(codigo_emenda))
+  }
 
   list(
     proposicao = extended_prop,
