@@ -130,7 +130,7 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
     
     df <- df %>%
       rbind(emendas %>%
-              select(-codigo_emenda))
+              dplyr::select(-codigo_emenda))
   }
   
   if(nrow(df) > 0) {
