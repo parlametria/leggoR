@@ -12,8 +12,8 @@ detect_fase <- function(element, set) {
 
 #' @title Extrai as casas globais de um PL
 #' @description Extrai as casas globais de um PL
-#' @param full_proposicao_df Dataframe da tramitação do PL.
-#' @param full_tramitacao_df Dataframe da proposição do PL.
+#' @param full_proposicao_df Dataframe da proposição do PL.
+#' @param full_tramitacao_df Dataframe da tramitação do PL.
 #' @return Dataframe com uma nova coluna chamada fase_global
 extract_casas <- function(full_proposicao_df, full_tramitacao_df){
   eventos_fases <- congresso_env$eventos_fases
