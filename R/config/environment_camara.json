@@ -171,5 +171,42 @@
   "versoes_texto_proposicao": {
     "remove_publicacao_regex": "Encaminhada à publicação. ",
     "eventos_regex":  "apresentacao_pl|parecer_comissao"
-  }
+  },
+  
+  "sigla_tipo_relacionadas":[
+    {"sigla": "EMC", "tipo": "Emenda na Comissão"},
+    {"sigla": "EMP", "tipo": "Emenda de Plenário"},
+    {"sigla": "EMS", "tipo": "Emenda/Substitutivo do Senado"},
+    {"sigla": "EMR", "tipo": "Emenda de Relator"},
+    {"sigla": "ESB", "tipo": "Emenda ao Substitutivo"},
+    {"sigla": "EMD", "tipo": "Emenda"},
+    {"sigla": "ERD", "tipo": "Emenda de Redação"},
+    {"sigla": "EPP", "tipo": "Emenda ao Plano Plurianual"},
+    {"sigla": "EAG", "tipo": "Emenda Substitutiva Aglutinativa Global"},
+    {"sigla": "ESP", "tipo": "Emenda Substitutiva de Plenário"},
+    {"sigla": "EMA", "tipo": "Emenda Aglutinativa de Plenário"},
+    {"sigla": "EMRP", "tipo": "Emenda de Relator Parcial"},
+    {"sigla": "EMC-A", "tipo": "Emenda Adotada pela Comissão"},
+    {"sigla": "EMPV", "tipo": "Emenda a Medida Provisória"},
+    {"sigla": "ERD-A", "tipo": "Emenda de Redação Adotada"},
+    {"sigla": "P.C", "tipo": "Parecer (CD)"},
+    {"sigla": "PAR", "tipo": "Parecer de Comissão"},
+    {"sigla": "PRL", "tipo": "Parecer do Relator"},
+    {"sigla": "PRV", "tipo": "Parecer Vencedor"},
+    {"sigla": "PPP", "tipo": "Parecer Proferido em Plenário"},
+    {"sigla": "PRR", "tipo": "Parecer Reformulado"},
+    {"sigla": "PES", "tipo": "Parecer às emendas apresentadas ao Substitutivo do Relator"},
+    {"sigla": "PEP", "tipo": "Parecer às Emendas de Plenário"},
+    {"sigla": "PSS", "tipo": "Parecer às Emendas ou ao Substitutivo do Senado"},
+    {"sigla": "PRT", "tipo": "Parecer Técnico"},
+    {"sigla": "PEA", "tipo": "Parecer à Emenda Aglutinativa"},
+    {"sigla": "PRST", "tipo": "Parecer à Redação para o Segundo Turno"},
+    {"sigla": "PARF", "tipo": "Parecer de Comissão para Redação Final"},
+    {"sigla": "PRP", "tipo": "Parecer do Relator Parcial"},
+    {"sigla": "RFP", "tipo": "Refomulação de Parecer - art. 130, parágrafo único do RICD."},
+    {"sigla": "PR/CNMP", "tipo": "Parecer do Conselho Nacional do Ministério Público"},
+    {"sigla": "PR/CNJ", "tipo": "Parecer do Conselho Nacional de Justiça"},
+    {"sigla": "SBT", "tipo": "Substitutivo"},
+    {"sigla": "SBT-A", "tipo": "Substitutivo adotado pela Comissão"}
+  ]
 }
