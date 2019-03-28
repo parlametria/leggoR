@@ -1,4 +1,5 @@
 source(here::here("R/camara-lib.R"))
+source(here::here("R/requerimentos.R"))
 
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
@@ -29,10 +30,12 @@ rename_df_columns <- function(df) {
 #' @param events_df Dataframe com os eventos contendo as colunas "evento" e "regex"
 #' @return Dataframe com a coluna "evento" adicionada.
 extract_events_in_camara <- function(tramitacao_df) {
-  eventos_regex_df <- camara_env$eventos %>% dplyr::select(-tipo)
-  tramitacao_df %>% 
-    dplyr::mutate(texto_tramitacao = stringr::str_trim(texto_tramitacao)) %>%
-    regex_left_match(eventos_regex_df, "evento")
+  eventos_camara <- camara_env$eventos %>% dplyr::select(evento, regex)
+  df <- tramitacao_df %>% 
+    dplyr::mutate(texto_lower = tolower(stringr::str_trim(
+      stringr::str_replace_all(texto_tramitacao,'[\r\n]', '')))) %>% 
+    fuzzyjoin::regex_left_join(eventos_camara, by = c(texto_lower = "regex")) %>%
+    dplyr::select(-texto_lower, -regex)
 }
 
 #' @title Recupera o autor de uma proposição na Câmara
@@ -207,11 +210,13 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
     proc_tram_df <-
       proc_tram_df[1:index_of_sancao,]
   }
+  
+  eventos_reqs <- fetch_eventos_reqs_prop(proposicao_df$prop_id, proposicao_df$casa)
 
   proc_tram_df <-
     proc_tram_df %>%
     extract_locais_in_camara() %>%
-    extract_fase_global_in_camara(proposicao_df) %>%
+    dplyr::bind_rows(eventos_reqs) %>%
     refact_date() %>%
     sort_by_date()
 
@@ -279,16 +284,13 @@ extract_regime_tramitacao_camara <- function(tram_df) {
   return(regime_df[1,]$regime_tramitacao)
 }
 
-#' @title Extrai as casas globais (Origem Câmara, Plenário Câmara, etc.) da Câmara
-#' @description Retorna o dataframe da tamitação contendo mais uma coluna chamada fase_global
-#' @param df Dataframe da tramitação na Câmara
-#' @return Dataframe da tramitacao contendo mais uma coluna chamada fase_global
-#' @examples
-#'  extract_casas_in_camara(fetch_tramitacao(2121442, 'camara', T), fetch_proposicao(2121442, 'camara', '', '', normalized=T))
-extract_casas_in_camara <- function(tramitacao_df, casa_name) {
-  tramitacao_df %>%
+#' @title Extrai os locais globais (Comissões/Plenário/Presidência da República) para proposições da Câmara
+#' @description Retorna o dataframe da tamitação com o local global setado na coluna chamada local
+#' @param tramitacao_com_fases Dataframe da tramitação na Câmara já com as fases globais
+#' @return Dataframe da tramitacao com o local global setado na coluna chamada local
+extract_local_global_in_camara <- function(tramitacao_com_fases) {
+  tramitacao_com_fases %>%
     dplyr::mutate(
-      fase_global = casa_name,
       local =
         dplyr::case_when(
           (stringr::str_detect(tolower(texto_tramitacao), "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)")) ~ 'Presidência da República',
@@ -332,10 +334,13 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
       fase_global_constants$revisao2_senado
     )
   
+  data_apresentacao <- proposicao_df$data_apresentacao
+  
   if (nrow(virada_de_casa) == 0) { #não virou de casa
-    data_tramitacao <-
-      data_tramitacao %>%
-      dplyr::mutate(global = paste0(casa_origem, ''))
+    data_tramitacao <- data_tramitacao %>%
+      # Tratando eventos de apensadas que ocorreram antes da apresentação
+      dplyr::mutate(global = dplyr::if_else(data_hora < data_apresentacao,paste0("Pre",casa_origem), 
+                                            casa_origem))
     
   } else { #virou de casa pelo menos uma vez
     

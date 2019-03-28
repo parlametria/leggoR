@@ -78,28 +78,27 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
     rcongresso::fetch_proposicao_senado(id) %>%
     dplyr::transmute(
       prop_id = as.integer(codigo_materia),
+      sigla_tipo = sigla_subtipo_materia,
       numero = as.integer(numero_materia),
       ano = as.integer(ano_materia),
+      ementa = ementa_materia,
       data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao, "00:00")),
       casa = "senado",
+      casa_origem = ifelse(tolower(nome_casa_origem) == "senado federal",
+                           "senado",
+                           "camara"),
+      autor_nome,
       apelido_materia = ifelse(
         "apelido_materia" %in% names(.),
         apelido_materia,
         apelido),
-      tema = tema,
+      tema = tema
       ## indexacao_materia = ifelse(
       ##   "indexacao_materia" %in% names(.),
       ##   indexacao_materia,
       ##   NA),
-      sigla_tipo = sigla_subtipo_materia,
-      ementa = ementa_materia,
       ## palavras_chave = indexacao_materia,
-      casa_origem = ifelse(tolower(nome_casa_origem) == "senado federal",
-                                         "senado",
-                                         "camara"),
-      autor_nome
     )
-
 }
 
 #' @title Baixa dados sobre uma proposição
@@ -125,7 +124,6 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
                      casa_origem = ifelse(autor_df %>% head(1) %>% dplyr::select(codTipo) == 40000,"senado","camara"),
                      autor_nome = autor_df$nome %>% tail(1),
                      apelido_materia = apelido,
-                     tema = tema,
-                     status_proposicao_sigla_orgao)
+                     tema = tema)
   proposicao
 }

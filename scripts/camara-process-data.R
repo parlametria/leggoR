@@ -30,8 +30,8 @@ process_proposicao <- function(pl_id) {
   phase_five <- c(502, 251)
 
   important_events <- frame_data(~ evento, ~ regex,
-             "requerimento_audiencia_publica", '^apresentação do requerimento.*requer a realização d.* audiências? públicas?',
-             "aprovacao_audiencia_publica", '^aprovado requerimento.*requer a realização d.* audiências? públicas?',
+             #"requerimento_audiencia_publica", '^apresentação do requerimento.*requer a realização d.* audiências? públicas?',
+             #"aprovacao_audiencia_publica", '^aprovado requerimento.*requer a realização d.* audiências? públicas?',
              "aprovacao_parecer", 'aprovado.*parecer',
              "requerimento_redistribuicao", '^apresentação do requerimento de redistribuição',
              "requerimento_apensacao", '^apresentação do requerimento de apensação',

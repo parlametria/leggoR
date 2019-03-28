@@ -45,12 +45,13 @@ process_etapa <- function(id, casa, agenda, pautas) {
 #' @param progresso_df DataFrame com o progresso da tramitação
 #' @return Dataframe
 adiciona_coluna_pulou <- function(progresso_df) {
-  progresso_df$prox_local_casa = dplyr::lead(progresso_df$local_casa)
+  progresso_df$fases_faltantes_abaixo = rev(cumsum(is.na(rev(progresso_df$data_inicio))))
 
   progresso_df %>%
     dplyr::mutate(
-      pulou = dplyr::if_else((is.na(local_casa) & !is.na(prox_local_casa)), T, F)) %>%
-    dplyr::select(-prox_local_casa)
+      pulou = dplyr::if_else((is.na(data_inicio) & 
+                                (fases_faltantes_abaixo < (dplyr::n() - dplyr::row_number() + 1))), T, F)) %>%
+    dplyr::select(-fases_faltantes_abaixo)
 }
 
 #' @title Adiciona locais
@@ -132,7 +133,7 @@ export_data <- function(pls, export_path) {
   res <- pls %>% purrr::pmap(process_pl, agenda, nrow(pls), pautas = pautas)
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
-    dplyr::select(-c(status_proposicao_sigla_orgao, ano)) %>%
+    dplyr::select(-c(ano)) %>%
     dplyr::rename(id_ext = prop_id, apelido = apelido_materia)
   tramitacoes <-
     purrr::map_df(res, ~ .$fases_eventos) %>%
