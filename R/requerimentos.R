@@ -29,7 +29,14 @@ fetch_eventos_reqs_prop <- function(prop_id, casa) {
 #' @examples
 #' fetch_eventos_reqs_prop_camara(46249)
 fetch_eventos_reqs_prop_camara <- function(prop_id) {
-  reqs <- rcongresso::fetch_related_requerimentos_camara(prop_id = prop_id)
+  reqs <- tryCatch(
+    rcongresso::fetch_related_requerimentos_camara(prop_id = prop_id),
+    error = function(error_message) {
+      message(paste("Erro na recuperação dos requerimentos do PL com id",prop_id))
+      message(error_message)
+      return(tibble::tibble())
+    }
+  )
   
   if(nrow(reqs) == 0) {
     return(tibble::tibble())
@@ -58,6 +65,7 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
 #' fetch_eventos_reqs_prop_senado(91341)
 fetch_eventos_reqs_prop_senado <- function(prop_id) {
   print("fetch_eventos_reqs_prop_senado not yet implemented.")
+  return(tibble::tibble())
   #reqs <- rcongresso::fetch_related_requerimentos_camara(prop_id = prop_id)
   #eventos_reqs <- purrr::map_df(reqs$id_req, ~rcongresso::fetch_events_requerimento_camara(.x)) %>%
   #  dplyr::select(-cod_situacao, -descricao_tramitacao, -regime, -uri_orgao, -id_req) %>%
