@@ -76,9 +76,18 @@ fetch_composicao_comissao <- function(sigla, casa, orgaos_camara) {
 
   if (casa == 'camara') {
     comissao <- 
-      fetch_composicao_comissoes_camara(sigla, orgaos_camara) %>%
-      dplyr::mutate(sigla = sigla, casa = casa, foto = paste0("https://www.camara.leg.br/internet/deputado/bandep/", id, ".jpg")) %>%
-      dplyr::mutate(casa = casa)
+      fetch_composicao_comissoes_camara(sigla, orgaos_camara) %>% 
+      dplyr::mutate(sigla = sigla, 
+                    casa = casa, 
+                    foto = paste0("https://www.camara.leg.br/internet/deputado/bandep/", id, ".jpg"),
+                    cargo = ifelse(dplyr::n() != 0 , dplyr::case_when(
+                                startsWith(cargo, "Presidente") ~ "PRESIDENTE",
+                                startsWith(cargo, "Titular") ~ "TITULAR",
+                                startsWith(cargo, "Suplente") ~ "SUPLENTE",
+                                startsWith(cargo, "PrimeiroVice-Presidente") ~ "VICE-PRESIDENTE",
+                                startsWith(cargo, "SegundoVice-Presidente") ~ "SEGUNDO-VICE-PRESIDENTE"
+                              ), cargo ))
+      
   } else if (casa == 'senado') {
     new_name <- c("cargo", "id", "partido", "uf", "situacao", "nome", "foto", "sigla", "casa")
     comissao <-
