@@ -52,6 +52,39 @@
     "evento_abertura": "inicio_prazo_emendas",
     "evento_fim": "fim_prazo_emendas"
   },
+  
+  "evento": {	
+    "virada": {	
+      "regex": "primeiro-secretário da câmara dos deputados.* encaminhando.* revisão",	
+      "regex_complementar": "",	
+      "constant": "virada_de_casa",	
+      "tipo":"votacao"	
+    },	
+    "aprovacao_substitutivo": {	
+      "regex": "aprovado o substitutivo",	
+      "regex_complementar": "",	
+      "constant": "aprovacao_substitutivo",	
+      "tipo":"votacao"	
+    },	
+    "realizacao_audiencia_publica": {	
+      "regex": "realizada(,)* (.)*audiência pública",	
+      "regex_complementar": "aprovado o requerimento",	
+      "constant": "realizacao_audiencia_publica",	
+      "tipo":"discussao"	
+    },	
+    "apresentacao_parecer": {	
+      "regex": "(proferido pel(a|o).* parecer)|(leitura dos?( seguinte(s)?)? parecer)|(encaminhados à publicação o(s) (seguinte(s)) parecer(es:|profere parecer.*))",	
+      "regex_complementar": "",	
+      "constant": "apresentacao_parecer",	
+      "tipo":"discussao"	
+
+     },	
+    "desarquivamento": {	
+      "regex": "a mat.ria foi desarquivada",	
+      "constant": "desarquivamento",	
+      "tipo":"despacho"	
+    }	
+  },
 
   "eventos": [
     {"evento": "apresentacao_pl", "regex": "^este process.*cont.*m", "tipo":"despacho"},
@@ -63,8 +96,8 @@
     {"evento": "aprovacao_parecer", "regex": "a comissão aprova o relatório|aprovado o relatório", "tipo":"votacao"},
     {"evento": "pedido_de_vista", "regex": "concedida vista", "tipo":"votacao"},
     {"evento": "designado_relator",
-      "regex": "(designa.*relator(a|) da matéria)|(designa.*relator(a|))|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$                 ))", "tipo":"despacho"},
-    /*{"evento": "designado_presidente_comissao", "regex": "eleit(a|o) .* presidente", "tipo": "despacho"},*/
+      "regex": "(designa.*relator(a|) da matéria)|(designad(o|a) relator(a|))|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria                  (.*|)$))", "tipo":"despacho"},
+    {"evento": "designado_presidente_comissao", "regex": "eleit(a|o) .* presidente", "tipo": "despacho"},
     {"evento": "arquivamento", "regex": "processo arquivado(.)*|a proposição é arquivada", "tipo":"despacho"},
     {"evento": "desarquivamento", "id_situacao": 149, "tipo":"despacho"},
     {"evento": "aprovacao_substitutivo", "regex": "aprovado o substitutivo", "tipo":"votacao"},
@@ -72,13 +105,7 @@
     {"evento": "remetida_a_sancao", "regex": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
     /*{"evento": "aprovacao_audiencia_publica", "regex": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "tipo":"discussao"},*/
     {"evento": "transformada_lei", "regex": "sancionada", "tipo":"votacao"},
-    {"evento": "vetada_totalmente", "regex": "vetada integralmente|vetado(,)* totalmente", "tipo":"votacao"},
-    {"evento": "virada_de_casa", "regex": "primeiro-secretário da câmara dos deputados.* encaminhando.* revisão","tipo":"votacao"},
-    {"evento": "aprovacao_substitutivo", "regex": "aprovado o substitutivo", "tipo":"votacao"},
-    {"evento": "realizacao_audiencia_publica","regex": "realizada(,)* (.)*audiência pública|aprovado o requerimento", "tipo":"discussao"},
-    {"evento": "apresentacao_parecer",
-    "regex": "(proferido pel(a|o).* parecer)|(leitura dos?( seguinte(s)?)? parecer)|(encaminhados à publicação o(s) (seguinte(s))                                                       parecer(es:|profere parecer.*))","tipo":"discussao"},
-    {"evento": "desarquivamento","regex": "a mat.ria foi desarquivada","tipo":"despacho"}
+    {"evento": "vetada_totalmente", "regex": "vetada integralmente|vetado(,)* totalmente", "tipo":"votacao"}
   ],
   
  "locais": [

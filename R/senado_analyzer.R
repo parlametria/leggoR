@@ -146,12 +146,12 @@ extract_fase_casa_Senado <- function(dataframe, fase_apresentacao, recebimento_p
 #' @export
 extract_evento_Senado <- function(tramitacao_df) {
   eventos_senado <- senado_env$eventos %>% dplyr::select(evento, regex)
+  eventos_extra_senado <- senado_env$evento
   df <- tramitacao_df %>% 
     dplyr::mutate(texto_lower = tolower(stringr::str_trim(
     stringr::str_replace_all(texto_tramitacao,'[\r\n]', '')))) %>% 
     fuzzyjoin::regex_left_join(eventos_senado, by = c(texto_lower = "regex")) %>%
-    dplyr::select(-texto_lower, -regex) %>% 
-    dplyr::filter(!is.na(prop_id))
+    dplyr::select(-texto_lower, -regex) 
   
   #Remove eventos de apresentação duplicados
   eventos_apresentacao <- df %>% dplyr::filter(evento %in% 'apresentacao_pl') %>%
@@ -182,6 +182,19 @@ extract_evento_Senado <- function(tramitacao_df) {
                         TRUE ~ evento
                       ))
   }
+  
+  df <-	
+    df %>%	
+    dplyr::mutate(	
+      evento = dplyr::case_when(	
+        stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$apresentacao_parecer$regex) ~ eventos_extra_senado$apresentacao_parecer$constant,	
+        stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$desarquivamento$regex) ~ eventos_extra_senado$desarquivamento$constant,	
+        stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$virada$regex) ~ eventos_extra_senado$virada$constant,	
+        stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$aprovacao_substitutivo$regex) ~ eventos_extra_senado$aprovacao_substitutivo$constant,	
+        (stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$realizacao_audiencia_publica$regex) &	
+           !stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$realizacao_audiencia_publica$regex_complementar)) ~ eventos_extra_senado$realizacao_audiencia_publica$constant,	
+        TRUE ~ evento	
+      ))
 
   df %>%
     dplyr::mutate(data_audiencia = stringr::str_extract(tolower(texto_tramitacao), "\\d+/\\d+/\\d+")) %>%
