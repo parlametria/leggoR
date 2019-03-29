@@ -187,7 +187,8 @@ fetch_all_composicao_comissao <- function() {
   siglas_comissoes <-
     rbind(siglas_comissoes,
           fetch_orgaos_senado() %>%
-            dplyr::mutate(casa = 'senado')) %>%
+            dplyr::mutate(casa = 'senado',
+                          sigla = stringr::str_replace_all(sigla, " ", ""))) %>%
     dplyr::distinct()
   
   orgaos_camara <- fetch_orgaos_camara()
