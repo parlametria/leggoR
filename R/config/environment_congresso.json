@@ -60,6 +60,7 @@
     {"evento": "redistribuicao", "nivel": 1},
     {"evento": "distribuicao", "nivel": 2},
     {"evento": "comissao_especial", "nivel": 2},
+    {"evento": "designado_presidente_comissao", "nivel": 1},
     {"evento": "designado_relator", "nivel": 1},
     {"evento": "voto_em_separado", "nivel": 2},
     {"evento": "apresentacao_pl", "nivel": 2},
