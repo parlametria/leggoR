@@ -20,7 +20,6 @@ devtools::install()
 
 ## Read PLs list and export their data
 readr::read_csv(pls_ids_filepath) %>%
-  dplyr::filter(dplyr::n() > 30) %>% 
 	dplyr::mutate(row_num = 1:dplyr::n()) %>%
 	dplyr::select(row_num,id_camara,id_senado,apelido,tema) %>%
 	agoradigital::export_data(export_path)
