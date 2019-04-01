@@ -13,9 +13,7 @@ source(here::here("R/camara_analyzer.R"))
 #' @export
 extract_links_proposicao <- function(id, casa) {
   if(casa == 'camara') {
-    proposicao_df = rcongresso::fetch_proposicao_camara(id)
-    tramitacao_df = rcongresso::fetch_tramitacao_camara(id)
-    df <- extract_links_proposicao_camara(proposicao_df, tramitacao_df)
+    df <- extract_links_proposicao_camara(id)
   } else if(casa == 'senado') {
     df <- extract_links_proposicao_senado(id)
   }
@@ -43,6 +41,17 @@ has_redirect_url <- function(content) {
   }
 }
 
+#' @title Remove a quebra de linha no fim de uma string
+#' @description Recebe uma string e remove a quebra de linha no fim de uma string.
+#' @param string String a ser processada
+#' @return string processada
+#' @examples
+#' remove_line_break("emenda\r\n")
+remove_line_break <- function(string) {
+  return(string %>% 
+    stringr::str_replace_all("\r\n$", ""))
+}
+
 #' @title Recupera a url de redirecionamento de um link na Câmara
 #' @description Recupera a url de redirecionamento de um link (quando houver) na Câmara. Caso não haja, a url retornada será a original.
 #' @param url URL do link
@@ -64,11 +73,10 @@ get_redirected_url <- function(url) {
       stringr::str_detect(attribute$meta$content, "/internet.*") ~ paste0("https://www.camara.leg.br", stringr::str_extract(attribute$meta$content, "/internet.*")))
       
     
-    if(length(new_url) > 0) {
+    if(!is.na(new_url) && length(new_url) > 0) {
       url <- new_url
     }
   }
-  
   return(url)
 }
 
@@ -77,33 +85,44 @@ get_redirected_url <- function(url) {
 #' @param df Dataframe da tramitação na Câmara.
 #' @return Dataframe contendo a data da versão e o link para o arquivo pdf
 #' @examples
-#' extract_links_proposicao_camara(rcongresso::fetch_proposicao_camara(46249), rcongresso::fetch_tramitacao(46249, 'camara'))
+#' extract_links_proposicao_camara(2121442)
 extract_links_proposicao_camara <- function(id) {
   tipo_sigla <- camara_env$sigla_tipo_relacionadas %>% 
     tibble::as_tibble()
   
   relacionadas <- rcongresso::fetch_relacionadas(id) %>%
-    dplyr::filter(siglaTipo %in% tipo_sigla$sigla) %>% 
-    dplyr::select(id_documento = id)
+    dplyr::filter(siglaTipo %in% tipo_sigla$sigla)
   
+  if(nrow(relacionadas) == 0) {
+    return(df <- dplyr::tribble(
+      ~ id_proposicao, ~ casa, ~ data, ~ tipo_texto, ~ descricao, ~ link_inteiro_teor))
+  }
+  
+  relacionadas <- relacionadas %>% 
+    dplyr::select(id_documento = id)
+
   df <- purrr::map_df(.x = relacionadas$id_documento, ~ rcongresso::fetch_proposicao_camara(.x)) %>% 
+    dplyr::filter(!is.na(urlInteiroTeor)) %>% 
     dplyr::select(-id) %>% 
     dplyr::mutate(id_proposicao = id,
                   casa = "camara",
                   data = as.Date(dataApresentacao, format = '%Y-%m-%d'),
+                  descricaoTipo = remove_line_break(descricaoTipo),
                   descricao = dplyr::if_else(is.na(ementa) | ementa == '',
                                              descricaoTipo,
-                                             ementa)) %>%
+                                             ementa) %>% 
+                    remove_line_break()) %>%
     dplyr::select(id_proposicao,
                   casa,
                   data,
                   tipo_texto = descricaoTipo,
                   descricao,
-                  link_inteiro_teor = urlInteiroTeor)
+                  link_inteiro_teor = urlInteiroTeor) %>% 
+    dplyr::distinct()
   
   if(nrow(df) > 0) {
     df <- df %>%
-      dplyr::rowwise() %>%
+      dplyr::rowwise() %>% 
       dplyr::mutate(link_inteiro_teor = get_redirected_url(link_inteiro_teor))
   } else {
     df <- dplyr::tribble(
