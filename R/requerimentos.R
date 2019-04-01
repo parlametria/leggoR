@@ -43,7 +43,7 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
   }
   
   eventos_reqs <- purrr::map_df(reqs$id_req, ~rcongresso::fetch_events_requerimento_camara(.x)) %>%
-    dplyr::select(-cod_situacao, -descricao_tramitacao, -regime, -uri_orgao, -id_req) %>%
+    dplyr::select(-descricao_tramitacao, -regime, -uri_orgao, -id_req) %>%
     dplyr::rename(texto_tramitacao = despacho,
                   sigla_local = sigla_orgao,
                   id_situacao = cod_tipo_tramitacao,

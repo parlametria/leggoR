@@ -97,7 +97,8 @@ extract_locais_in_camara <- function(df) {
           (tolower(texto_tramitacao) %in% descricoes_plenario |
              stringr::str_detect(tolower(texto_tramitacao), '^votação')) & sigla_local == 'PLEN' ~ 'Plenário',
           (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') |
-             tolower(texto_tramitacao) %in% descricoes_comissoes) &
+             tolower(texto_tramitacao) %in% descricoes_comissoes |
+             stringr::str_detect(tolower(texto_tramitacao), 'designad(o|a) relator(a)*')) &
             sigla_local != 'CCP' &
             !stringr::str_detect(tolower(sigla_local), '^s') ~ sigla_local,
           tolower(texto_tramitacao) == 'remessa ao senado federal' ~ 'Câmara')
