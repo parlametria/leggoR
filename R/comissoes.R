@@ -41,19 +41,32 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao, orgaos_camara) {
   
     if (nrow(df) == 0) {
       return(tibble::tribble(~ cargo, ~ id, ~ nome, ~ partido, ~ uf, ~ situacao))
+    } else {
+      new_names <- c('cargo', 'id', 'nome', 'partido', 'uf', 'situacao')
+      
+      names(df) <- new_names
+      df <-
+        df %>%
+        dplyr::rowwise() %>%
+        dplyr::mutate(partido = ifelse(length(partido) == 0, "", partido)) %>%
+        dplyr::mutate(uf = ifelse(length(uf) == 0, "", uf)) %>%
+        dplyr::mutate(id = ifelse(length(id) == 0, "", id)) %>%
+        tidyr::unnest() %>%
+        dplyr::arrange(nome) %>% 
+        dplyr::mutate(sigla = sigla_comissao, 
+                      casa = "camara", 
+                      foto = paste0("https://www.camara.leg.br/internet/deputado/bandep/", id, ".jpg"),
+                      cargo = dplyr::case_when(
+                        startsWith(cargo, "Presidente") ~ "PRESIDENTE",
+                        startsWith(cargo, "Titular") ~ "TITULAR",
+                        startsWith(cargo, "PrimeiroVice-Presidente") ~ "PRIMEIRO VICE-PRESIDENTE",
+                        startsWith(cargo, "Suplente") ~ "SUPLENTE",
+                        startsWith(cargo, "SegundoVice-Presidente") ~ "SEGUNDO VICE-PRESIDENTE",
+                        startsWith(cargo, "TerceiroVice-Presidente") ~ "TERCEIRO VICE-PRESIDENTE"
+                      ))
+      df <- df[!duplicated(df$id) | df$cargo %in% 
+                             c("PRESIDENTE", "VICE-PRESIDENTE", "SEGUNDO VICE-PRESIDENTE", "TERCEIRO VICE-PRESIDENTE"),,drop=FALSE]
     }
-  
-    new_names <- c('cargo', 'id', 'nome', 'partido', 'uf', 'situacao')
-  
-    names(df) <- new_names
-    df <-
-      df %>%
-      dplyr::rowwise() %>%
-      dplyr::mutate(partido = ifelse(length(partido) == 0, "", partido)) %>%
-      dplyr::mutate(uf = ifelse(length(uf) == 0, "", uf)) %>%
-      dplyr::mutate(id = ifelse(length(id) == 0, "", id)) %>%
-      tidyr::unnest() %>%
-      dplyr::arrange(nome)
     return(df)
       },
   error=function(cond) {
@@ -76,9 +89,8 @@ fetch_composicao_comissao <- function(sigla, casa, orgaos_camara) {
 
   if (casa == 'camara') {
     comissao <- 
-      fetch_composicao_comissoes_camara(sigla, orgaos_camara) %>%
-      dplyr::mutate(sigla = sigla, casa = casa, foto = paste0("https://www.camara.leg.br/internet/deputado/bandep/", id, ".jpg")) %>%
-      dplyr::mutate(casa = casa)
+      fetch_composicao_comissoes_camara(sigla, orgaos_camara) 
+      
   } else if (casa == 'senado') {
     new_name <- c("cargo", "id", "partido", "uf", "situacao", "nome", "foto", "sigla", "casa")
     comissao <-
@@ -187,7 +199,8 @@ fetch_all_composicao_comissao <- function() {
   siglas_comissoes <-
     rbind(siglas_comissoes,
           fetch_orgaos_senado() %>%
-            dplyr::mutate(casa = 'senado')) %>%
+            dplyr::mutate(casa = 'senado',
+                          sigla = stringr::str_replace_all(sigla, " ", ""))) %>%
     dplyr::distinct()
   
   orgaos_camara <- fetch_orgaos_camara()
