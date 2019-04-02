@@ -25,17 +25,17 @@ test <- function(){
     expect_true(all(names(SENADO_EVENTOS) %in% .COLNAMES_EVENTO_SEN))
   })
   
-  test_that('extract_evento_Senado() requerimento de audiência', {
-    IDS_REQ_AUDIENCIA <- c(103831, 120768, 102721, 91341)
-    expect_true(
-      all(
-        purrr::map(IDS_REQ_AUDIENCIA, ~ any(
-          agoradigital::extract_evento_Senado(
-            fetch_tramitacao(.x, 'senado'))$evento == "requerimento_audiencia_publica")
-          )
-        )
-      )
-  })
+  # test_that('extract_evento_Senado() requerimento de audiência', {
+  #   IDS_REQ_AUDIENCIA <- c(103831, 120768, 102721, 91341)
+  #   expect_true(
+  #     all(
+  #       purrr::map(IDS_REQ_AUDIENCIA, ~ any(
+  #         agoradigital::extract_evento_Senado(
+  #           fetch_tramitacao(.x, 'senado'))$evento == "requerimento_audiencia_publica")
+  #         )
+  #       )
+  #     )
+  # })
   
   test_that('extract_evento_Senado() apresentação parecer', {
     IDS_APRESENTACAO_PARECER <- c(127753, 111048, 121572, 91341, 106330, 96813)
