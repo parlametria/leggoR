@@ -25,7 +25,9 @@ get_data_frame_agenda_senado <- function(initial_date, end_date) {
 #' normalize_agendas(fetch_agenda_camara('2018-09-03', '2018-09-07'), 'camara')
 normalize_agendas <- function(agenda, house) {
   if (tolower(house) == 'senado') {
-    if (nrow(agenda$materias) == 0) {return(agenda$materias)}
+    if (is.null(agenda) | nrow(agenda$materias) == 0) {
+      return(tibble::tribble(~ data, ~ sigla, ~ id_proposicao, ~ local, ~ casa))
+    }
     materias <- agenda$materias
     agenda <- agenda$agenda
     agenda <-
@@ -115,12 +117,11 @@ fetch_agenda_geral <- function(initial_date, end_date) {
     dplyr::mutate(data = as.character(data)) %>%
     dplyr::mutate(casa = "senado")
 
-  initial_date <- strsplit(as.character(initial_date), '-')
-  end_date <- strsplit(as.character(end_date), '-')
   agenda_comissoes_camara <-
     fetch_agenda_comissoes_camara(
-      paste0(initial_date[[1]][[3]],'/', initial_date[[1]][[2]], '/', initial_date[[1]][[1]]),
-      paste0(end_date[[1]][[3]],'/', end_date[[1]][[2]], '/', end_date[[1]][[1]])) %>%
+      strftime(initial_date, "%d/%m/%Y"),
+      strftime(end_date, "%d/%m/%Y")
+      ) %>%
     dplyr::mutate(data = as.character(data)) %>%
     dplyr::mutate(casa = "camara")
   
@@ -153,15 +154,23 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
     jsonlite::toJSON() %>%
     jsonlite::fromJSON() %>%
     purrr::list_modify(".attrs" = NULL) %>%
-    tibble::as.tibble() %>%
-    t() %>%
-    tibble::as.tibble() %>%
-    tidyr::unnest() %>% 
-    t() %>%
-    tibble::as.tibble() 
+    tibble::as_tibble()
+  tryCatch({
+    eventos <-
+        eventos %>%
+        t() %>%
+        tibble::as_tibble() %>%
+        tidyr::unnest() %>% 
+        t() %>%
+        tibble::as_tibble() 
+  },
+  error = function(msg) {
+  })
   
-  if(ncol(eventos) == 1 && eventos$V1[[1]] == "Não houve reunião no período informado"){
-    eventos <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local,
+  
+  
+  if(ncol(eventos) != 11){
+    eventos <- tibble::tribble(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local,
                                   ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes)
   }else{
     names(eventos) <- c("comissao","cod_reuniao", "num_reuniao", "data", "hora", "local",
@@ -229,7 +238,7 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
 junta_agendas <- function(initial_date, end_date) {
   semanas <-
     seq(lubridate::floor_date(as.Date(initial_date), unit="week") + 1, as.Date(end_date), by = "week") %>%
-    tibble::as.tibble() %>%
+    tibble::as_tibble() %>%
     dplyr::mutate(fim_semana = as.Date(cut(value, "week")) + 4)
   
   materia <- purrr::map2_df(semanas$value, semanas$fim_semana, ~ fetch_agenda_geral(.x, .y))
