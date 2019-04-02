@@ -184,7 +184,14 @@ extract_links_proposicao_senado <- function(id) {
   
   textos_df <-
     XML::xmlToDataFrame(nodes = XML::getNodeSet(XML::xmlParse(RCurl::getURL(url)),
-                                                "//Texto")) %>%
+                                                "//Texto"))
+  
+  if (nrow(textos_df) == 0 ) {
+    return(dplyr::tribble(
+      ~ id_votacao, ~ casa, ~ data, ~ tipo_texto, ~ descricao, ~ link_inteiro_teor))
+  }
+  
+  textos_df <- textos_df %>%
     dplyr::rowwise() %>%
     dplyr::mutate(id_proposicao = id,
                   casa = "senado") %>%
@@ -193,7 +200,7 @@ extract_links_proposicao_senado <- function(id) {
   
   if(nrow(textos_df) == 0) {
     return(dplyr::tribble(
-      ~ id_votacao, ~ casa, ~ data, ~ descricao, ~ link_inteiro_teor))
+      ~ id_votacao, ~ casa, ~ data, ~ tipo_texto, ~ descricao, ~ link_inteiro_teor))
     
   } else{
     textos_df <- textos_df %>%
