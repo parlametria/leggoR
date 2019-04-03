@@ -42,7 +42,11 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
     return(tibble::tibble())
   }
   
+  reqs_tipos <- reqs %>%
+    dplyr::select(id_req, tipo_documento = descricaoTipo)
+  
   eventos_reqs <- purrr::map_df(reqs$id_req, ~rcongresso::fetch_events_requerimento_camara(.x)) %>%
+    dplyr::left_join(reqs_tipos, by="id_req") %>%
     dplyr::select(-cod_situacao, -descricao_tramitacao, -regime, -uri_orgao, -id_req) %>%
     dplyr::rename(texto_tramitacao = despacho,
                   sigla_local = sigla_orgao,
