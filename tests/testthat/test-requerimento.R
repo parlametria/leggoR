@@ -24,7 +24,7 @@ test <- function(){
     expect_true(nrow(fetch_eventos_reqs_prop(3123, 'senado')) == 0)
   }) 
   
-  test_that('fetch_eventos_reqs_prop() for senado returns empty dataframe', {
+  test_that('fetch_eventos_reqs_prop_camara() returns warning with id incorrect', {
     expect_warning(fetch_eventos_reqs_prop_camara(0))
   }) 
 }
