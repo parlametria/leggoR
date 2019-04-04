@@ -27,8 +27,7 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
   } else if (tolower(casa) == congress_constants$senado_label) {
     proc_tram_data <-
       process_proposicao_senado_df(
-        proposicao_df = proposicao_df, tramitacao_df = tramitacao_df) %>%
-      dplyr::mutate(tipo_documento = NA)
+        proposicao_df = proposicao_df, tramitacao_df = tramitacao_df)
     prop_id <- proc_tram_data[1, "prop_id"]
   }
 
@@ -38,6 +37,13 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
       paste0(
         out_folderpath, "/", casa, "/", prop_id, "-fases-tramitacao-", casa, ".csv"))
   }
+  
+  # Adiciona coluna tipo_documento se não houveram requerimentos relacionados
+  if (!("tipo_documento" %in% colnames(proc_tram_data))) {
+    proc_tram_data <- proc_tram_data %>%
+      dplyr::mutate(tipo_documento = NA)
+  }
+  
   # Adiciona colunas com nível de importância e título dos eventos
   proc_tram_data <- proc_tram_data %>% 
     dplyr::left_join(congresso_env$eventos, by="evento") %>%
