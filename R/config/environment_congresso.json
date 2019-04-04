@@ -68,6 +68,7 @@
     {"evento": "inicio_prazo_emendas", "titulo_evento": "Início do Prazo para Emendas" , "nivel": 1},
     {"evento": "fim_prazo_emendas", "titulo_evento": "Fim do Prazo para Emendas" , "nivel": 1},
     {"evento": "arquivamento", "titulo_evento": "Arquivamento" , "nivel": 2},
+    {"evento": "apresentacao_parecer", "titulo_evento": "Apresentação de Parecer" , "nivel": 1},
     {"evento": "parecer_pela_adequacao_financeira_e_orcamentaria", "titulo_evento": "Parecer pela Adequação Financeira e Orçamentária" , "nivel": 1},
     {"evento": "parecer_pela_aprovacao_com_substitutivo", "titulo_evento": "Parecer pela Aprovação com Substitutivo" , "nivel": 1},
     {"evento": "parecer_pela_aprovacao", "titulo_evento": "Parecer pela Aprovação" , "nivel": 1},
