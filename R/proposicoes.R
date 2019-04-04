@@ -111,7 +111,8 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
 #' @examples
 #' fetch_proposicao_camara(2056568, "Lei para acabar zona de amortecimento", "Meio Ambiente")
 fetch_proposicao_camara <- function(id, apelido, tema) {
-  autor_df <- rcongresso::fetch_autor_camara(id)
+  autor_df <- rcongresso::fetch_autor_camara(id) %>%
+    dplyr::rename(nome = nomeCivil)
   proposicao <- rcongresso::fetch_proposicao_camara(id) %>%
     rename_df_columns() %>%
     dplyr::transmute(prop_id = as.integer(id),
@@ -122,8 +123,11 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
                      data_apresentacao = lubridate::ymd_hm(stringr::str_replace(data_apresentacao,'T',' ')),
                      casa = 'camara',
                      casa_origem = ifelse(autor_df %>% head(1) %>% dplyr::select(codTipo) == 40000,"senado","camara"),
-                     autor_nome = autor_df$nome %>% tail(1),
+                     autor_nome = paste(unlist(t(autor_df$nome)),collapse=";"),
+                     autor_uf = paste(unlist(t(autor_df$ultimoStatus.siglaUf)),collapse=";"),
+                     autor_partido = paste(unlist(t(autor_df$ultimoStatus.siglaPartido)),collapse=";"),
                      apelido_materia = apelido,
                      tema = tema)
   proposicao
 }
+
