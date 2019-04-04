@@ -111,8 +111,11 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
 #' @examples
 #' fetch_proposicao_camara(2056568, "Lei para acabar zona de amortecimento", "Meio Ambiente")
 fetch_proposicao_camara <- function(id, apelido, tema) {
-  autor_df <- rcongresso::fetch_autor_camara(id) %>%
-    dplyr::rename(nome = nomeCivil)
+  autor_df <- rcongresso::fetch_autor_camara(id)
+  if("ultimoStatus.nomeEleitoral" %in% names(autor_df)) {
+    autor_df %<>%
+      dplyr::rename('nome' = 'ultimoStatus.nomeEleitoral')
+  }
   proposicao <- rcongresso::fetch_proposicao_camara(id) %>%
     rename_df_columns() %>%
     dplyr::transmute(prop_id = as.integer(id),
