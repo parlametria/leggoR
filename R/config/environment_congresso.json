@@ -68,7 +68,6 @@
     {"evento": "inicio_prazo_emendas", "titulo_evento": "Início do Prazo para Emendas" , "nivel": 1},
     {"evento": "fim_prazo_emendas", "titulo_evento": "Fim do Prazo para Emendas" , "nivel": 1},
     {"evento": "arquivamento", "titulo_evento": "Arquivamento" , "nivel": 2},
-    {"evento": "apresentacao_parecer", "titulo_evento": "Apresentação de Parecer" , "nivel": 1},
     {"evento": "parecer_pela_adequacao_financeira_e_orcamentaria", "titulo_evento": "Parecer pela Adequação Financeira e Orçamentária" , "nivel": 1},
     {"evento": "parecer_pela_aprovacao_com_substitutivo", "titulo_evento": "Parecer pela Aprovação com Substitutivo" , "nivel": 1},
     {"evento": "parecer_pela_aprovacao", "titulo_evento": "Parecer pela Aprovação" , "nivel": 1},
@@ -79,12 +78,15 @@
     {"evento": "transformada_lei", "titulo_evento": "Transformada em Lei" , "nivel": 2},
     {"evento": "vetada_totalmente", "titulo_evento": "Vetada Totalmente" , "nivel": 1},
     {"evento": "parecer_comissao", "titulo_evento": "Parecer emitido na Comissão" , "nivel": 1},
-    {"evento": "aprovacao_projeto", "titulo_evento": "Aprovação do Projeto" , "nivel": 1},
-    {"evento": "aprovacao_substitutivo", "titulo_evento": "Aprovação do Substitutivo" , "nivel": 1},
-    {"evento": "devolvido", "titulo_evento": "Devolução do Projeto pelo Relator" , "nivel": 2},
     {"evento": "req_apresentacao", "titulo_evento": "Apresentação de" , "nivel": 1},
     {"evento": "req_deferido", "titulo_evento": "Deferimento de" , "nivel": 1},
     {"evento": "req_indeferido", "titulo_evento": "Indeferimento de" , "nivel": 1},
-    {"evento": "req_arquivado", "titulo_evento": "Arquivamento de" , "nivel": 3}
+    {"evento": "req_arquivado", "titulo_evento": "Arquivamento de" , "nivel": 3},
+    {"evento": "aprovacao_substitutivo", "titulo_evento": "Aprovação do Substitutivo" , "nivel": 1},
+    {"evento": "realizacao_audiencia_publica", "titulo_evento": "Realização de Audiência Pública" , "nivel": 1},
+    {"evento": "apresentacao_parecer", "titulo_evento": "Apresentação de Parecer" , "nivel": 1},
+    {"evento": "devolvido", "titulo_evento": "Devolução do Projeto pelo Relator" , "nivel": 1},
+    {"evento": "recebimento_comissao", "titulo_evento": "Recebimento na Comissão" , "nivel": 2},
+    {"evento": "aprovacao_projeto", "titulo_evento": "Aprovação do Projeto" , "nivel": 1}
   ]
 }
