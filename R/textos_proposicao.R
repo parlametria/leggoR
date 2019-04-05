@@ -61,7 +61,7 @@ get_redirected_url <- function(url) {
     new_url <- stringr::str_extract(attribute$meta$content, "http.*") %>%
       stringr::str_remove("&altura=.*")
     
-    if(length(new_url) > 0) {
+    if(!is.na(new_url) && length(new_url) > 0) {
       url <- new_url
     }
   }
@@ -77,32 +77,47 @@ get_redirected_url <- function(url) {
 #' fetch_emendas(rcongresso::fetch_proposicao_camara(2121442))
 fetch_emendas <- function(proposicao_df) {
   casa <- "camara"
-  emendas <-rcongresso::fetch_emendas(proposicao_df$id, 
-                                      casa, 
-                                      proposicao_df$siglaTipo, 
-                                      proposicao_df$numero, 
-                                      proposicao_df$ano) %>% 
-    dplyr::mutate(id_proposicao = proposicao_df$id,
-                  casa = casa,
-                  data = as.Date(data_apresentacao, 
-                                 format = '%Y-%m-%d')) %>%
-    dplyr::left_join(camara_env$sigla_tipo_relacionadas, 
-                     by = c("tipo_documento" = "sigla")) %>% 
-    dplyr::select(id_proposicao,
-                  casa,
-                  data,
-                  tipo_texto = tipo,
-                  descricao = inteiro_teor,
-                  codigo_emenda)
   
+  emendas <- tryCatch({
+    rcongresso::fetch_emendas(proposicao_df$id, 
+                                casa, 
+                                proposicao_df$siglaTipo, 
+                                proposicao_df$numero, 
+                                proposicao_df$ano) %>%
+      dplyr::filter(tipo_documento %in% camara_env$sigla_tipo_relacionadas$sigla) %>% 
+      dplyr::left_join(camara_env$sigla_tipo_relacionadas, 
+                       by = c("tipo_documento" = "sigla")) %>%
+      dplyr::mutate(id_proposicao = proposicao_df$id,
+                    casa = casa,
+                    data = as.Date(data_apresentacao, 
+                                   format = '%Y-%m-%d'),
+                    descricao = 
+                      dplyr::if_else(
+                        !is.na(inteiro_teor) & inteiro_teor != "",
+                        inteiro_teor,
+                        tipo)) %>% 
+      dplyr::select(id_proposicao,
+                    casa,
+                    data,
+                    tipo_texto = tipo,
+                    descricao,
+                    codigo_emenda)
+    
+    }, error = function(e) {
+      data <- 
+        dplyr::tribble(~ id_proposicao, ~ casa, ~ data, ~ tipo_texto, ~ descricao, ~ link_inteiro_teor)
+      
+      return(data)
+  })
   
   if(nrow(emendas) == 0) {
     return(
       dplyr::tribble(~ id_proposicao, ~ casa, ~ data, ~ tipo_texto, ~ descricao, ~ link_inteiro_teor))
   } 
   
-  emendas$link_inteiro_teor <- do.call("rbind", 
-                                       lapply(emendas$codigo_emenda, get_emendas_links))
+  emendas$link_inteiro_teor <- 
+    do.call("rbind",
+            lapply(emendas$codigo_emenda, get_emendas_links))
   
   return(emendas %>%
            select(-codigo_emenda))
@@ -156,7 +171,8 @@ add_tipo_texto <- function(df) {
 #' @param df Dataframe da tramitação na Câmara.
 #' @return Dataframe contendo a data da versão e o link para o arquivo pdf
 #' @examples
-#' extract_links_proposicao_camara(rcongresso::fetch_proposicao_camara(46249), rcongresso::fetch_tramitacao_camara(46249))
+#' extract_links_proposicao_camara(rcongresso::fetch_proposicao_camara(46249),
+#' rcongresso::fetch_tramitacao_camara(46249))
 extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
   casa <- "camara"
   
@@ -176,22 +192,24 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
   
   if(nrow(df) > 0) {
     df <- df %>%
-      dplyr::mutate(descricao =
-                      stringr::str_remove(descricao,
-                                          camara_env$versoes_texto_proposicao$remove_publicacao_regex))
+      dplyr::mutate(
+        descricao = 
+          stringr::str_remove(descricao,
+                              camara_env$versoes_texto_proposicao$remove_publicacao_regex))
     df <- df %>%
       dplyr::rowwise() %>%
       dplyr::mutate(link_inteiro_teor = get_redirected_url(link_inteiro_teor))
   } else {
     df <- dplyr::tribble(
-      ~ id_proposicao, ~ casa, ~ data, ~ descricao, ~ link_inteiro_teor)
+      ~ id_proposicao, ~ casa, ~ data, ~tipo_texto, ~ descricao, ~ link_inteiro_teor)
   }
   
   return(df)
 }
 
 #' @title Muda texto dos links de textos de interesse
-#' @description  Muda texto dos links e retorna o dataframe contendo informações sobre os links dos textos de interesse (emendas, texto de apresentação e pareceres das comissões)
+#' @description  Muda texto dos links e retorna o dataframe contendo informações sobre os 
+#' links dos textos de interesse (emendas, texto de apresentação e pareceres das comissões)
 #' @param df Dataframe dos links
 #' @return Dataframe dos links contendo coluna DescricaoTexto
 #' @examples
@@ -199,9 +217,11 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
 mutate_links <- function(df) {
   if("DescricaoTexto" %in% names(df)) {
     df <- df %>%
-      dplyr::mutate(DescricaoTexto = dplyr::if_else(is.na(DescricaoTexto) || DescricaoTexto == "-",
-                                                    DescricaoTipoTexto,
-                                                    DescricaoTexto))
+      dplyr::mutate(
+        DescricaoTexto = 
+          dplyr::if_else(is.na(DescricaoTexto) || DescricaoTexto == "-",
+                         DescricaoTipoTexto,
+                         DescricaoTexto))
   } else {
     df <- df %>%
       dplyr::mutate(DescricaoTexto = DescricaoTipoTexto)
@@ -210,7 +230,8 @@ mutate_links <- function(df) {
 }
 
 #' @title Filtra os links de textos de interesse
-#' @description Filtra e retorna o dataframe contendo informações sobre os links dos textos de interesse (emendas, texto de apresentação e pareceres das comissões)
+#' @description Filtra e retorna o dataframe contendo informações 
+#' sobre os links dos textos de interesse (emendas, texto de apresentação e pareceres das comissões)
 #' @param df Dataframe dos links a serem filtrados
 #' @return Dataframe dos links filtrados
 #' @examples
@@ -267,14 +288,15 @@ extract_links_proposicao_senado <- function(id) {
         "https://github.com/analytics-ufcg/versoes-de-proposicoes/raw/master/data/PL-veneno-avulso-inicial.pdf")
     
     textos_df <- texto_inicial %>% 
-      dplyr::bind_rows(textos_df %>% 
-                         dplyr::select(id_proposicao,
-                                       casa,
-                                       data = DataTexto,
-                                       tipo_texto = DescricaoTipoTexto,
-                                       descricao = DescricaoTexto,
-                                       link_inteiro_teor = UrlTexto) %>% 
-                         dplyr::mutate(data = as.Date(data)))
+      dplyr::bind_rows(
+        textos_df %>%
+          dplyr::select(id_proposicao,
+                        casa,
+                        data = DataTexto,
+                        tipo_texto = DescricaoTipoTexto,
+                        descricao = DescricaoTexto,
+                        link_inteiro_teor = UrlTexto) %>% 
+          dplyr::mutate(data = as.Date(data)))
     return(textos_df)
   }
   
@@ -296,7 +318,8 @@ extract_links_proposicao_senado <- function(id) {
 }
 
 #' @title Extrai as páginas iniciais de um link
-#' @description Obtém a página onde o texto de interesse começa a partir da URL. Caso não haja detecção da página, a default será 1.
+#' @description Obtém a página onde o texto de interesse começa a partir da URL. 
+#' Caso não haja detecção da página, a default será 1.
 #' @param df Dataframe contendo o link para o texto
 #' @return Dataframe contendo uma nova nova coluna chamada pagina_inicial com a página extraída da URL.
 #' @examples

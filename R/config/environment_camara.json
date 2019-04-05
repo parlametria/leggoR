@@ -209,6 +209,10 @@
     {"sigla": "PR/CNMP", "tipo": "Parecer do Conselho Nacional do Ministério Público"},
     {"sigla": "PR/CNJ", "tipo": "Parecer do Conselho Nacional de Justiça"},
     {"sigla": "SBT", "tipo": "Substitutivo"},
-    {"sigla": "SBT-A", "tipo": "Substitutivo adotado pela Comissão"}
+    {"sigla": "SBT-A", "tipo": "Substitutivo adotado pela Comissão"},
+    {"sigla": "SSP", "tipo": "Subemenda Substitutiva de Plenário"},
+    {"sigla": "SAP", "tipo": "Subemenda Aglutinativa Substitutiva de Plenário"},
+    {"sigla": "SBE-A", "tipo": "Subemenda Adotada pela Comissão"},
+    {"sigla": "SBR", "tipo": "Subemenda de Relator"}
   ]
 }
