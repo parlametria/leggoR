@@ -69,34 +69,43 @@ get_redirected_url <- function(url) {
   return(url)
 }
 
-
+#' @title Recupera as emendas de uma proposição com seus respectivos links para inteiro teor
+#' @description Recupera as emendas de uma proposição com seus respectivos links para inteiro teor na Câmara.
+#' @param proposicao_df Dataframe da proposição
+#' @return dataframe contendo informações das emendas e link para o inteiro teor
+#' @examples
+#' fetch_emendas(rcongresso::fetch_proposicao_camara(2121442))
 fetch_emendas <- function(proposicao_df) {
-  rcongresso::fetch_emendas(proposicao_df$id, 
-                            casa, 
-                            proposicao_df$siglaTipo, 
-                            proposicao_df$numero, 
-                            proposicao_df$ano) %>% 
-    dplyr::mutate(prop_id = proposicao_df$id,
-                  casa = "camara",
-                  data_hora = as.Date(data_apresentacao, 
-                                      format = '%Y-%m-%d')) %>%
+  casa <- "camara"
+  emendas <-rcongresso::fetch_emendas(proposicao_df$id, 
+                                      casa, 
+                                      proposicao_df$siglaTipo, 
+                                      proposicao_df$numero, 
+                                      proposicao_df$ano) %>% 
+    dplyr::mutate(id_proposicao = proposicao_df$id,
+                  casa = casa,
+                  data = as.Date(data_apresentacao, 
+                                 format = '%Y-%m-%d')) %>%
     dplyr::left_join(camara_env$sigla_tipo_relacionadas, 
                      by = c("tipo_documento" = "sigla")) %>% 
-    dplyr::select(prop_id,
+    dplyr::select(id_proposicao,
                   casa,
-                  data_hora,
-                  tipo_documento = tipo,
-                  texto_tramitacao = inteiro_teor,
+                  data,
+                  tipo_texto = tipo,
+                  descricao = inteiro_teor,
                   codigo_emenda)
   
   
-  if(nrow(emendas) > 0) {
-    emendas$link_inteiro_teor <- do.call("rbind", lapply(emendas$codigo_emenda, get_emendas_links))
-    
-    df <- df %>%
-      rbind(emendas %>%
-              select(-codigo_emenda))
-  }
+  if(nrow(emendas) == 0) {
+    return(
+      dplyr::tribble(~ id_proposicao, ~ casa, ~ data, ~ tipo_texto, ~ descricao, ~ link_inteiro_teor))
+  } 
+  
+  emendas$link_inteiro_teor <- do.call("rbind", 
+                                       lapply(emendas$codigo_emenda, get_emendas_links))
+  
+  return(emendas %>%
+           select(-codigo_emenda))
 }
 
 #' @title Processa dados de um proposição da câmara.
@@ -109,7 +118,7 @@ process_proposicao_camara <- function(tramitacao_df) {
     tramitacao_df %>% 
     dplyr::filter(!is.na(url)) %>% 
     dplyr::mutate(data_hora = as.Date(data_hora, format = '%Y-%m-%dT%H:%M'),
-                  casa = casa,
+                  casa = "camara",
                   id_situacao = as.integer(cod_tipo_tramitacao)) %>%
     dplyr::select(prop_id = id_prop,
                   casa,
@@ -153,24 +162,20 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
   
   df <- 
     process_proposicao_camara(tramitacao_df) %>%  
-    dplyr::filter(stringr::str_detect(evento, camara_env$versoes_texto_proposicao$eventos_regex)) %>% 
+    dplyr::filter(
+      stringr::str_detect(evento, 
+                          camara_env$versoes_texto_proposicao$eventos_regex)) %>% 
     add_tipo_texto() %>% 
-    dplyr::select(prop_id,
+    dplyr::select(id_proposicao =prop_id,
                   casa,
-                  data_hora,
+                  data = data_hora,
                   tipo_texto,
                   descricao = texto_tramitacao,
-                  link_inteiro_teor)
-  
-  emendas <- fetch_emendas(proposicao_df)
+                  link_inteiro_teor) %>% 
+    dplyr::bind_rows(fetch_emendas(proposicao_df))
   
   if(nrow(df) > 0) {
     df <- df %>%
-      dplyr::select(id_proposicao = prop_id,
-                    casa,
-                    data = data_hora,
-                    descricao = texto_tramitacao,
-                    link_inteiro_teor) %>%
       dplyr::mutate(descricao =
                       stringr::str_remove(descricao,
                                           camara_env$versoes_texto_proposicao$remove_publicacao_regex))
