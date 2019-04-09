@@ -25,7 +25,9 @@ get_data_frame_agenda_senado <- function(initial_date, end_date) {
 #' normalize_agendas(fetch_agenda_camara('2018-09-03', '2018-09-07'), 'camara')
 normalize_agendas <- function(agenda, house) {
   if (tolower(house) == 'senado') {
-    if (nrow(agenda$materias) == 0) {return(agenda$materias)}
+    if (is.null(agenda) | nrow(agenda$materias) == 0) {
+      return(tibble::tribble(~ data, ~ sigla, ~ id_proposicao, ~ local, ~ casa))
+    }
     materias <- agenda$materias
     agenda <- agenda$agenda
     agenda <-
@@ -72,9 +74,12 @@ fetch_agenda <- function(initial_date, end_date, house, orgao) {
   
   if (tolower(orgao) == "plenario") {
     if (house == "camara") {
-      normalize_agendas(
-        rcongresso::fetch_agenda_camara(
-          initial_date = initial_date, end_date = end_date), house)
+      initial_date <- strsplit(initial_date, '-')
+      end_date <- strsplit(end_date, '-')
+      fetch_agenda_comissoes_camara(
+        paste0(initial_date[[1]][[3]],'/', initial_date[[1]][[2]], '/', initial_date[[1]][[1]]),
+        paste0(end_date[[1]][[3]],'/', end_date[[1]][[2]], '/', end_date[[1]][[1]])) %>% 
+        dplyr::filter(comissao == "PLEN - PLEN")
     } else {
       normalize_agendas(rcongresso::fetch_agenda_senado(initial_date), house)
     }
@@ -105,16 +110,6 @@ fetch_agenda_geral <- function(initial_date, end_date) {
   print(initial_date)
   print(end_date)
   
-  agenda_plenario_camara <- normalize_agendas(rcongresso::fetch_agenda_camara(initial_date = initial_date, end_date = end_date), "camara") %>%
-    dplyr::mutate(casa = "camara")
-  
-  if (nrow(agenda_plenario_camara) != 0) {
-    agenda_plenario_camara <-
-      agenda_plenario_camara %>%
-      dplyr::rowwise() %>%
-      dplyr::mutate(data = stringr::str_split(data,'T')[[1]][1]) %>%
-      dplyr::ungroup()
-  }
   agenda_plenario_senado <-
     normalize_agendas(rcongresso::fetch_agenda_senado(initial_date), "senado") %>%
     dplyr::mutate(casa = "senado")
@@ -122,17 +117,15 @@ fetch_agenda_geral <- function(initial_date, end_date) {
     dplyr::mutate(data = as.character(data)) %>%
     dplyr::mutate(casa = "senado")
 
-  initial_date <- strsplit(as.character(initial_date), '-')
-  end_date <- strsplit(as.character(end_date), '-')
   agenda_comissoes_camara <-
     fetch_agenda_comissoes_camara(
-      paste0(initial_date[[1]][[3]],'/', initial_date[[1]][[2]], '/', initial_date[[1]][[1]]),
-      paste0(end_date[[1]][[3]],'/', end_date[[1]][[2]], '/', end_date[[1]][[1]])) %>%
+      strftime(initial_date, "%d/%m/%Y"),
+      strftime(end_date, "%d/%m/%Y")
+      ) %>%
     dplyr::mutate(data = as.character(data)) %>%
     dplyr::mutate(casa = "camara")
   
   rbind(
-    agenda_plenario_camara,
     agenda_plenario_senado,
     agenda_comissoes_senado,
     agenda_comissoes_camara
@@ -151,27 +144,37 @@ fetch_agenda_geral <- function(initial_date, end_date) {
 #' @importFrom RCurl getURL
 fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_date){
   
-  url <-
-    RCurl::getURL(paste0(
-      'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=',
-      orgao_id, '&datIni=', initial_date, '&datFim=', end_date))
+  content <- httr::GET(paste0(
+    'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=',
+    orgao_id, '&datIni=', initial_date, '&datFim=', end_date)) %>%
+    httr::content()
   
-  eventos <-
-    XML::xmlParse(url) %>%
-    XML::xmlToList() %>% 
+  eventos <- content %>%
+    xml2::as_list() %>% 
     jsonlite::toJSON() %>%
-    jsonlite::fromJSON()
-  
-  if(purrr::is_list(eventos)){
+    jsonlite::fromJSON() %>%
+    purrr::list_modify(".attrs" = NULL) %>%
+    tibble::as_tibble()
+  tryCatch({
     eventos <-
-      eventos %>%
-      purrr::list_modify(".attrs" = NULL) %>%
-      tibble::as.tibble() %>%
-      t() %>%
-      as.data.frame()
-    
+        eventos %>%
+        t() %>%
+        tibble::as_tibble() %>%
+        tidyr::unnest() %>% 
+        t() %>%
+        tibble::as_tibble() 
+  },
+  error = function(msg) {
+  })
+  
+  
+  
+  if(ncol(eventos) != 11){
+    eventos <- tibble::tribble(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local,
+                                  ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes)
+  }else{
     names(eventos) <- c("comissao","cod_reuniao", "num_reuniao", "data", "hora", "local",
-                   "estado", "tipo", "titulo_reuniao", "objeto", "proposicoes")
+                        "estado", "tipo", "titulo_reuniao", "objeto", "proposicoes")
     
     proposicoes <- eventos$proposicoes
     eventos <-
@@ -193,11 +196,6 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
         dplyr::mutate(sigla = purrr::map(proposicoes, ~ .x[['sigla']]),
                       id_proposicao = purrr::map(proposicoes, ~ .x[['idProposicao']]))
     }
-    
-  }else{
-    
-    eventos <- tibble::frame_data(~ comissao, ~ cod_reuniao, ~ num_reuniao, ~ data, ~ hora, ~ local,
-                             ~ estado, ~ tipo, ~ titulo_reuniao, ~ objeto, ~ proposicoes)
   }
   
   return(eventos)
@@ -211,7 +209,11 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
 #' @examples
 #' fetch_agenda_comissoes_camara('12/05/2018', '26/05/2018')
 fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
-  orgaos <- rcongresso::fetch_orgaos_camara()
+  orgaos <- 
+    fetch_orgaos_camara() %>% 
+    dplyr::filter(casa == 'Câmara dos Deputados', 
+                  (tipo_orgao_id == 1 & orgao_id == 180) |
+                  (tipo_orgao_id == 2 & orgao_id > 1999))
   
   agenda <- purrr::map_df(orgaos$orgao_id, fetch_agendas_comissoes_camara_auxiliar, initial_date, end_date)
   
@@ -236,7 +238,7 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
 junta_agendas <- function(initial_date, end_date) {
   semanas <-
     seq(lubridate::floor_date(as.Date(initial_date), unit="week") + 1, as.Date(end_date), by = "week") %>%
-    tibble::as.tibble() %>%
+    tibble::as_tibble() %>%
     dplyr::mutate(fim_semana = as.Date(cut(value, "week")) + 4)
   
   materia <- purrr::map2_df(semanas$value, semanas$fim_semana, ~ fetch_agenda_geral(.x, .y))

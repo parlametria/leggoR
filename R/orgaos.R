@@ -53,8 +53,5 @@ fetch_orgaos_senado <- function() {
     rbind(comissoes_mistas_df) %>%
     dplyr::distinct()
 
-  df <-
-    df %>% dplyr::filter(!stringr::str_detect(sigla, '^CMMPV'))
-
   return(df)
 }

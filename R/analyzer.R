@@ -37,8 +37,19 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
       paste0(
         out_folderpath, "/", casa, "/", prop_id, "-fases-tramitacao-", casa, ".csv"))
   }
-  # Adiciona coluna com nível de importância dos eventos
-  proc_tram_data %>% dplyr::left_join(congresso_env$eventos, by="evento")
+  
+  # Adiciona coluna tipo_documento se não houveram requerimentos relacionados
+  if (!("tipo_documento" %in% colnames(proc_tram_data))) {
+    proc_tram_data <- proc_tram_data %>%
+      dplyr::mutate(tipo_documento = NA)
+  }
+  
+  # Adiciona colunas com nível de importância e título dos eventos
+  proc_tram_data <- proc_tram_data %>% 
+    dplyr::left_join(congresso_env$eventos, by="evento") %>%
+    # Corrige título dos documentos relacionados
+    dplyr::mutate(titulo_evento = dplyr::if_else(stringr::str_starts(evento, "req_"), 
+                                                 paste(titulo_evento,tipo_documento),titulo_evento))
 }
 
 #' @title Retorna temperatura de uma proposição no congresso.
