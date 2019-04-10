@@ -8,7 +8,11 @@
 #' hist_temperatura e emendas
 process_etapa <- function(id, casa, agenda, pautas) {
   prop <- agoradigital::fetch_proposicao(id, casa)
-  tram <- agoradigital::fetch_tramitacao(id, casa)
+  if (tolower(prop$sigla_tipo) == 'mpv') {
+    tram <- agoradigital::fetch_tramitacao(id, casa, TRUE)
+  } else {
+    tram <- agoradigital::fetch_tramitacao(id, casa)
+  }
   proc_tram <-
     agoradigital::process_proposicao(prop, tram, casa) %>%
     dplyr::mutate(data_hora = as.POSIXct(data_hora))
@@ -106,10 +110,16 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
     etapas %<>% append(list(process_etapa(id_senado, "senado", agenda, pautas = pautas)))
   }
   etapas %<>% purrr::pmap(dplyr::bind_rows)
-  etapas[["progresso"]] <-
-    agoradigital::get_progresso(etapas$proposicao, etapas$fases_eventos) %>%
-    adiciona_coluna_pulou() %>%
-    adiciona_locais_faltantes_progresso()
+  if (tolower(etapas$proposicao$sigla_tipo) == 'mpv') {
+    etapas[["progresso"]] <-
+      agoradigital::generate_progresso_df_mpv(etapas$fases_eventos) %>% 
+      dplyr::mutate(local = "", local_casa = "", pulou = FALSE)
+  }else {
+    etapas[["progresso"]] <-
+      agoradigital::get_progresso(etapas$proposicao, etapas$fases_eventos) %>%
+      adiciona_coluna_pulou() %>%
+      adiciona_locais_faltantes_progresso()
+  }
   etapas$proposicao %<>%
     dplyr::mutate(apelido_materia = apelido, tema = tema_pl)
   etapas

@@ -136,6 +136,60 @@ generate_progresso_df <- function(tramitacao_df){
   return(df)
 }
 
+#' @title Retorna um progresso de uma mpv
+#' @description Retorna um dataframe contendo os dados sobre o progresso de uma mpv
+#' @param tramitacao_df Dataframe processessado da tramitação
+#' @return Dataframe contendo o progresso
+#' @export
+generate_progresso_df_mpv <- function(tramitacao_df) {
+  tramitacao_df <-
+    tramitacao_df %>% 
+    dplyr::arrange(data_hora) %>% 
+    dplyr::mutate(fase_global = 
+                    dplyr::case_when(
+                      destino_tramitacao_local_nome_casa_local == "Câmara dos Deputados" ~ destino_tramitacao_local_nome_casa_local,
+                      dplyr::lag(origem_tramitacao_local_nome_casa_local) == "Câmara dos Deputados" ~ "Senado Federal",
+                      stringr::str_detect(tolower(texto_tramitacao), "sancionada") ~ 
+                        dplyr::if_else(stringr::str_detect(tolower(texto_tramitacao), "vetada"), "Transformada em Lei com vetos","Transformada em Lei"),
+                      dplyr::row_number() == 1 ~ "Comissão Mista")) %>% 
+    tidyr::fill(fase_global)
+  
+  df <-
+    tramitacao_df %>%
+    dplyr::arrange(data_hora, fase_global)  %>%
+    dplyr::mutate(end_data = dplyr::lead(data_hora)) %>%
+    dplyr::group_by(
+      casa, prop_id, fase_global, sequence = data.table::rleid(fase_global)) %>%
+    dplyr::summarise(
+      data_inicio = min(data_hora, na.rm = T),
+      data_fim = max(end_data, na.rm = T)) %>%
+    dplyr::select(-sequence) %>%
+    dplyr::group_by(fase_global) %>%
+    dplyr::mutate(data_fim_anterior = dplyr::lag(data_fim)) %>%
+    dplyr::select(-data_fim_anterior) %>%
+    dplyr::arrange(data_inicio)
+  
+  if (nrow(df) >= 4) {
+    df <- 
+      df %>% 
+      fuzzyjoin::regex_right_join(congresso_env$fases_global_mpv, by = c("fase_global")) %>% 
+      dplyr::ungroup() %>% 
+      dplyr::select(-fase_global.y) %>% 
+      dplyr::rename(fase_global = fase_global.x) 
+  } else {
+    df <-
+      df %>% 
+      fuzzyjoin::regex_right_join(congresso_env$fases_global_mpv, by = c("fase_global")) %>% 
+      dplyr::ungroup() %>% 
+      dplyr::select(-fase_global.x) %>% 
+      dplyr::rename(fase_global = fase_global.y) 
+  }
+  
+  df %>% 
+    tidyr::fill(casa, prop_id)
+
+}
+
 #' @title Recupera o número de linha em que houve virada_de_casa
 #' @description Recupera o número da linha em que houve evento virada_de_casa
 #' @param df Dataframe da tramitação processada da proposiçao
