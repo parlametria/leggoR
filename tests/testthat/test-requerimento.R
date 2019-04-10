@@ -3,7 +3,7 @@ context("Requerimentos")
 # Setup
 setup <- function(){
   CAMARA_ID <<- c(2158425, 2121442)
-  #SENADO_ID <<- c(91341, 111048)
+  
   return(TRUE)
 }
 
@@ -22,6 +22,10 @@ test <- function(){
   
   test_that('fetch_eventos_reqs_prop() for senado returns empty dataframe', {
     expect_true(nrow(fetch_eventos_reqs_prop(3123, 'senado')) == 0)
+  }) 
+  
+  test_that('fetch_eventos_reqs_prop_camara() returns warning with id incorrect', {
+    expect_warning(fetch_eventos_reqs_prop_camara(0))
   }) 
 }
 
