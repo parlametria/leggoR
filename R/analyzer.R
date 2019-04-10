@@ -195,18 +195,19 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 #' @title Extrai o regime de tramitação de um PL
 #' @description Obtém o regime de tramitação de um PL
 #' @param tram_df Dataframe da tramitação do PL.
+#' @param prop Dataframe da proposição do PL.
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
-#' extract_regime_tramitacao(fetch_tramitacao(91341,'senado', TRUE))
+#' extract_regime_tramitacao(fetch_tramitacao(91341,'senado'), fetch_proposicao(91341,'senado'))
 #' @export
-extract_regime_tramitacao <- function(tram_df) {
+extract_regime_tramitacao <- function(tram_df, prop) {
   casa <- tram_df[1, "casa"]
   regime <- NA
 
   if (casa == congress_constants$camara_label) {
     regime <- extract_regime_tramitacao_camara(tram_df)
   } else if (casa == congress_constants$senado_label) {
-    regime <- extract_regime_tramitacao_senado(tram_df)
+    regime <- extract_regime_tramitacao_senado(tram_df, prop)
   }
 
   if(is.na(regime)) {
@@ -295,21 +296,23 @@ fix_nomes_locais <- function(pautas_df) {
 
 #' @title Extrai o status da tramitação de um PL
 #' @description Obtém o status da tramitação de um PL
-#' @param tram_df Dataframe da tramitação do PL.
+#' @param proposicao_id Id do PL.
+#' @param casa Casa do PL.
+#' @param prop Dataframe da proposição do PL.
+#' @param tram Dataframe da tramitação do PL.
 #' @return Dataframe contendo id, regime de tramitação e forma de apreciação do PL
 #' @examples
-#' extract_status_tramitacao(91341, 'senado')
+#' extract_status_tramitacao(91341, 'senado', fetch_proposicao(91341, 'senado'), fetch_tramitacao(91341, 'senado))
 #' @export
 #' @importFrom stats filter
-extract_status_tramitacao <- function(proposicao_id, casa) {
-  tram_df <- fetch_tramitacao(proposicao_id, casa)
-  regime <- extract_regime_tramitacao(tram_df)
-  apreciacao <- extract_forma_apreciacao(tram_df)
+extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
+  regime <- extract_regime_tramitacao(tram, prop)
+  apreciacao <- extract_forma_apreciacao(tram)
   relator_nome <- get_last_relator_name(proposicao_id, casa)
 
   status_tram <-
     data.frame(
-      prop_id = tram_df[1, ]$prop_id,
+      prop_id = tram[1, ]$prop_id,
       regime_tramitacao = regime,
       forma_apreciacao = apreciacao,
       relator_nome = relator_nome

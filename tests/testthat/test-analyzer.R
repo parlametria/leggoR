@@ -1,7 +1,11 @@
 testthat::context('test-analyzer.R')
 
 tram_91341 <<- fetch_tramitacao(91341, 'senado')
+prop_91341 <<- fetch_proposicao(91341, 'senado')
 tram_257161 <<- fetch_tramitacao(257161, 'camara')
+prop_257161 <<- fetch_proposicao(257161, 'camara')
+tram_mpv_868 <<- fetch_tramitacao(135061, 'senado')
+prop_mpv_868 <<- fetch_proposicao(135061, 'senado')
 
 test_that('get_historico_temperatura_recente() has correct function passing the parameter day', {
   data <- data.frame(prop_id = rep(1111,18),
@@ -231,8 +235,8 @@ test_that('extract_autor_in_camara() returns the right cols and author', {
 })
 
 test_that('extract_status_tramitacao() returns dataframe', {
-  expect_true(is.data.frame(extract_status_tramitacao(91341, 'senado')))
-  expect_true(is.data.frame(extract_status_tramitacao(257161, 'camara')))
+  expect_true(is.data.frame(extract_status_tramitacao(91341, 'senado', prop_91341, tram_91341)))
+  expect_true(is.data.frame(extract_status_tramitacao(257161, 'camara', prop_257161, tram_257161)))
 })
 
 test_that('extract_forma_apreciacao() is not null', {
@@ -241,8 +245,9 @@ test_that('extract_forma_apreciacao() is not null', {
 })
 
 test_that('extract_regime_tramitacao() is not null', {
-  expect_false(is.null(extract_regime_tramitacao(tram_91341)))
-  expect_false(is.null(extract_regime_tramitacao(tram_257161)))
+  expect_false(is.null(extract_regime_tramitacao(tram_91341, prop_91341)))
+  expect_false(is.null(extract_regime_tramitacao(tram_257161, prop_257161)))
+  expect_true(extract_regime_tramitacao(tram_mpv_868, prop_mpv_868) == "Urgência")
 })
 
 
