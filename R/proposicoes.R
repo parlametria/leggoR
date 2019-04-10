@@ -128,16 +128,23 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
                      casa = 'camara',
                      casa_origem = ifelse(autor_df %>% head(1) %>% dplyr::select(codTipo) == 40000,"senado","camara"),
                      autor_nome = paste(unlist(t(autor_df$nome)),collapse="+"),
-                     autor_uf = ifelse(autor_df %>%
-                                        autor_df$codTipo ==  40000,
-                                       "senado-u",
-                                       (paste(unlist(t(autor_df$ultimoStatus.siglaUf)),collapse="+"))),
-                     autor_partido = ifelse(autor_df %>%
-                                              autor_df$codTipo ==  40000,
-                                            "senado-p",
-                                            paste(unlist(t(autor_df$ultimoStatus.siglaPartido)),collapse="+")),
+                     autor_uf = ifelse(length(autor_df) > 1 && autor_df$codTipo == 10000,
+                                       get_uf_autores(autor_df),
+                                       NA),
+                     autor_partido = ifelse(length(autor_df) > 1 && autor_df$codTipo == 10000,
+                                            get_partido_autores(autor_df),
+                                            NA),
                      apelido_materia = apelido,
                      tema = tema)
   proposicao
 }
 
+get_uf_autores <- function(autor_df) {
+  autores_uf <- (paste(unlist(t(autor_df$ultimoStatus.siglaUf)),collapse="+"))
+  return(autores_uf)
+}
+
+get_partido_autores <- function(autor_df) {
+  autores_partido <- (paste(unlist(t(autor_df$ultimoStatus.siglaPartido)),collapse="+"))
+  return(autores_partido)
+}
