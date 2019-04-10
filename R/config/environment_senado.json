@@ -88,10 +88,8 @@
 
   "eventos": [
     {"evento": "apresentacao_pl", "regex": "^este process.*cont.*m", "tipo":"despacho"},
-    /*{"evento": "requerimento_audiencia_publica", "regex": "((requerendo a|requer a|com a finalidade de) realização de|aguardando leitura de requerimento.*) audiência", "tipo":"discussao"},*/
     {"evento": "requerimento_seminario", "regex": "a realização de seminário", "tipo":"discussao"},
     {"evento": "recebimento_comissao", "regex": "recebido na|nesta comissao", "tipo":"despacho"},
-    /*{"evento": "aprovacao_audiencia_publica", "regex": "aprovado requerimento de realização de audiência pública", "tipo":"discussao"},*/
     {"evento": "devolvido", "regex": "devolvido pel.*redistribu.*", "tipo":"despacho"},
     {"evento": "aprovacao_parecer", "regex": "a comissão aprova o relatório|aprovado o relatório", "tipo":"votacao"},
     {"evento": "pedido_de_vista", "regex": "concedida vista", "tipo":"votacao"},
@@ -103,7 +101,6 @@
     {"evento": "aprovacao_substitutivo", "regex": "aprovado o substitutivo", "tipo":"votacao"},
     {"evento": "aprovacao_projeto", "regex": "aprovado o projeto", "tipo":"votacao"},
     {"evento": "remetida_a_sancao", "regex": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
-    /*{"evento": "aprovacao_audiencia_publica", "regex": "(aprovou|aprovado).* requerimento .* audiência(s)* pública(s)*", "tipo":"discussao"},*/
     {"evento": "transformada_lei", "regex": "sancionada", "tipo":"votacao"},
     {"evento": "vetada_totalmente", "regex": "vetada integralmente|vetado(,)* totalmente", "tipo":"votacao"}
   ],
