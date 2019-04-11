@@ -139,11 +139,19 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
   proposicao
 }
 
+#' @title Concatena siglas de unidade federativa de cada autor da proposição
+#' @description Retorna unidade federativa dos autores
+#' @param autor_df Autores da proposição
+#' @return character
 get_uf_autores <- function(autor_df) {
   autores_uf <- (paste(unlist(t(autor_df$ultimoStatus.siglaUf)),collapse="+"))
   return(autores_uf)
 }
 
+#' @title Concatena siglas de partido de cada autor da proposição
+#' @description Retorna partido dos autores
+#' @param autor_df Autores da proposição
+#' @return character
 get_partido_autores <- function(autor_df) {
   autores_partido <- (paste(unlist(t(autor_df$ultimoStatus.siglaPartido)),collapse="+"))
   return(autores_partido)
