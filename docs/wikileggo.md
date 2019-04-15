@@ -22,9 +22,9 @@ Plataforma digital com o objetivo de informar o cidadão o andamento das proposi
 ### Entendendo um pouco a estrutura política no Brasil
 #### 1. Estrutura política
 A estrutura do nosso país é composta por 3 poderes, judiciário, legislativo e executivo, sendo que cada um desses poderes possuem responsabilidades distintas, mas que, de forma harmônica, funcionam sob os âmbitos das áreas do governo federal, estadual e municipal
-Executivo:
-Judiciário:
-Legislativo: a seguir
+* Executivo:
+* Judiciário:
+* Legislativo: a seguir
 
 #### 2. O que é o sistema legislativo?
 Sistema responsável por elaborar as leis que regem o país e monitorar as decisões tomadas pelo poder executivo
