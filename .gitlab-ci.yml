@@ -17,7 +17,7 @@ before_script:
   - echo "options(Ncpus = $(nproc --all))" >> /usr/local/lib/R/etc/Rprofile.site
   - echo ".libPaths(\"$PWD/cache\")" >> /usr/local/lib/R/etc/Rprofile.site
   - install2.r devtools
-  - r -e 'devtools::install_dev_deps()'
+#  - r -e 'devtools::install_dev_deps()'
 
 r-release:
   stage: test
@@ -28,7 +28,7 @@ r-release:
     - Rscript -e 'devtools::install_github("r-lib/rlang")'
     - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
     - Rscript -e 'packageVersion("rcongresso")'
-    - Rscript -e 'tryCatch(num_errors <- length(devtools::check(check_dir = ".", args = c("--no-examples", "--as-cran", "--no-manual", "--no-tests"))$errors),error = function(error_message) {print(paste("Exception when checking code:",error_message))}); stopifnot(num_errors == 0)'
+    - Rscript -e 'tryCatch(stopifnot(length(devtools::check(check_dir = ".", args = c("--no-examples", "--as-cran", "--no-manual", "--no-tests"))$errors) == 0),error = function(error_message) {print(paste("Exception when checking code:",error_message))})'
     - Rscript -e 'res=devtools::test(reporter="summary");df=as.data.frame(res);if(sum(df$failed) > 0 || any(df$error)) {q(status=1)}'
     - Rscript -e 'library(covr);codecov()'
   artifacts:
