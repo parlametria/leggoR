@@ -17,7 +17,7 @@ before_script:
   - echo "options(Ncpus = $(nproc --all))" >> /usr/local/lib/R/etc/Rprofile.site
   - echo ".libPaths(\"$PWD/cache\")" >> /usr/local/lib/R/etc/Rprofile.site
   - install2.r devtools
-#  - r -e 'devtools::install_dev_deps()'
+  - r -e 'devtools::install_dev_deps()'
 
 r-release:
   stage: test
