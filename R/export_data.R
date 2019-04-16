@@ -119,8 +119,9 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
 #' @description Exporta para uma pasta CSVs com dados sobre uma lista de proposições.
 #' @param pls dataframe com proposições.
 #' @param export_path pasta para onde exportar dados.
+#' @param distances_folderpath pasta onde os arquivos de distâncias das emendas está localizado
 #' @export
-export_data <- function(pls, export_path) {
+export_data <- function(pls, export_path, distances_folderpath) {
   # agenda <- fetch_agenda_geral(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4)
   agenda <- tibble::as_tibble()
   pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
@@ -155,6 +156,9 @@ export_data <- function(pls, export_path) {
   comissoes <-
     agoradigital::fetch_all_composicao_comissao() %>% 
     dplyr::rename(id_parlamentar = id)
+  
+  source(here::here('R/distance.R'))
+  emendas <- add_distances_to_emendas(emendas, distances_folderpath)
 
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
