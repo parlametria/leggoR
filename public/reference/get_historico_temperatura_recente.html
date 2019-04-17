@@ -78,23 +78,11 @@ computado levando em consideração os eventos que aconteceram nos 30 dias anter
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
-    </li>
-  </ul>
-</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/analytics-ufcg/agora-digital">
+  <a href="https://github.com/analytics-ufcg/leggor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -112,7 +100,7 @@ computado levando em consideração os eventos que aconteceram nos 30 dias anter
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Retorna o histórico da temperatura de uma proposição no congresso.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/analyzer.R'><code>R/analyzer.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/leggor/blob/master/R/analyzer.R'><code>R/analyzer.R</code></a></small>
     <div class="hidden name"><code>get_historico_temperatura_recente.Rd</code></div>
     </div>
 
@@ -125,7 +113,7 @@ computado levando em consideração os eventos que aconteceram nos 30 dias anter
     </div>
 
     <pre class="usage"><span class='fu'>get_historico_temperatura_recente</span>(<span class='no'>eventos_df</span>, <span class='kw'>granularidade</span> <span class='kw'>=</span> <span class='st'>"s"</span>,
-  <span class='kw'>decaimento</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>max_date</span> <span class='kw'>=</span> <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/now.html'>now</a></span>())</pre>
+  <span class='kw'>decaimento</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>max_date</span> <span class='kw'>=</span> <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/now.html'>now</a></span>(), <span class='no'>pautas</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
