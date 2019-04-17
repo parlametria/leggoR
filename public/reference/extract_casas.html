@@ -76,23 +76,11 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
-    </li>
-  </ul>
-</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/analytics-ufcg/agora-digital">
+  <a href="https://github.com/analytics-ufcg/leggor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -110,7 +98,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Extrai as casas globais de um PL</h1>
-    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/congresso-lib.R'><code>R/congresso-lib.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/leggor/blob/master/R/congresso-lib.R'><code>R/congresso-lib.R</code></a></small>
     <div class="hidden name"><code>extract_casas.Rd</code></div>
     </div>
 
@@ -120,22 +108,18 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>extract_casas</span>(<span class='no'>tramitacao_df</span>, <span class='no'>proposicao_df</span>)</pre>
+    <pre class="usage"><span class='fu'>extract_casas</span>(<span class='no'>full_proposicao_df</span>, <span class='no'>full_tramitacao_df</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>tramitacao_df</th>
+      <th>full_proposicao_df</th>
       <td><p>Dataframe da proposição do PL.</p></td>
     </tr>
     <tr>
-      <th>proposicao_df</th>
+      <th>full_tramitacao_df</th>
       <td><p>Dataframe da tramitação do PL.</p></td>
-    </tr>
-    <tr>
-      <th>casa</th>
-      <td><p>Casa (Senado ou Câmara)</p></td>
     </tr>
     </table>
     
