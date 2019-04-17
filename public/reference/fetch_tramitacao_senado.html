@@ -77,23 +77,11 @@ Ao fim, a função retira todos as colunas que tenham tipo lista para uniformiza
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
-    </li>
-  </ul>
-</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/analytics-ufcg/agora-digital">
+  <a href="https://github.com/analytics-ufcg/leggor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -111,7 +99,7 @@ Ao fim, a função retira todos as colunas que tenham tipo lista para uniformiza
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Busca a movimentação da proposição</h1>
-    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/fetcher.R'><code>R/fetcher.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/leggor/blob/master/R/tramitacoes.R'><code>R/tramitacoes.R</code></a></small>
     <div class="hidden name"><code>fetch_tramitacao_senado.Rd</code></div>
     </div>
 
@@ -122,28 +110,24 @@ Ao fim, a função retira todos as colunas que tenham tipo lista para uniformiza
     
     </div>
 
-    <pre class="usage"><span class='fu'>fetch_tramitacao_senado</span>(<span class='no'>proposicao_id</span>, <span class='kw'>normalized</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>fetch_tramitacao_senado</span>(<span class='no'>prop_id</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>proposicao_id</th>
+      <th>prop_id</th>
       <td><p>ID de uma proposição do Senado</p></td>
-    </tr>
-    <tr>
-      <th>normalized</th>
-      <td><p>whether or not the output dataframe should be normalized (have the same format and column names for every house)</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Dataframe com as informações sobre a movimentação de uma proposição no Senado</p>
+    <p>Dataframe normalizado com as informações sobre a movimentação de uma proposição no Senado</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fetch_tramitacao_senado</span>(<span class='fl'>91341</span>)</div><div class='output co'>#&gt; <span class='error'>Error in json_tramitacao %&gt;% magrittr::extract2("MovimentacaoMateria") %&gt;%     magrittr::extract2("Materia"): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fetch_tramitacao_senado</span>(<span class='fl'>91341</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcongresso::fetch_tramitacao_senado(prop_id) %&gt;% dplyr::mutate(data_hora = lubridate::ymd_hm(paste(data_hora,     "00:00")), prop_id = as.integer(codigo_materia), sequencia = as.integer(sequencia),     id_situacao = as.integer(situacao_codigo_situacao), casa = "senado",     link_inteiro_teor = "") %&gt;% dplyr::select(prop_id, casa,     data_hora, sequencia, texto_tramitacao, sigla_local = origem_tramitacao_local_sigla_local,     id_situacao, descricao_situacao = situacao_descricao_situacao,     link_inteiro_teor): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
