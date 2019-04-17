@@ -8,7 +8,7 @@ Rscript fetch_updated_bills_data.R <pls_ids_filepath> <distances_folderpath> <ex
 
 ## Process args
 args <- commandArgs(trailingOnly = TRUE)
-min_num_args <- 2
+min_num_args <- 3
 if (length(args) < min_num_args) {
     stop(paste("Wrong number of arguments!", help, sep = "\n"))
 }
