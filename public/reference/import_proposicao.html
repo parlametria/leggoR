@@ -77,23 +77,11 @@ importar os dados daquela proposição." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
-    </li>
-  </ul>
-</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/analytics-ufcg/agora-digital">
+  <a href="https://github.com/analytics-ufcg/leggor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -111,7 +99,7 @@ importar os dados daquela proposição." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Importa as informações de uma proposição da internet.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/fetcher.R'><code>R/fetcher.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/leggor/blob/master/R/proposicoes.R'><code>R/proposicoes.R</code></a></small>
     <div class="hidden name"><code>import_proposicao.Rd</code></div>
     </div>
 
@@ -150,12 +138,16 @@ importar os dados daquela proposição.</p>
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>import_proposicao</span>(<span class='fl'>129808</span>, <span class='st'>'senado'</span>, <span class='st'>'Cadastro Positivo'</span>, <span class='st'>'Agenda Nacional'</span>, <span class='st'>'data/'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcongresso::fetch_proposicao_senado(id) %&gt;% dplyr::transmute(prop_id = as.integer(codigo_materia),     sigla_tipo = sigla_subtipo_materia, numero = as.integer(numero_materia),     ano = as.integer(ano_materia), ementa = ementa_materia, data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao,         "00:00")), casa = "senado", casa_origem = ifelse(tolower(nome_casa_origem) ==         "senado federal", "senado", "camara"), autor_nome, apelido_materia = ifelse("apelido_materia" %in%         names(.), apelido_materia, apelido), tema = tema): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

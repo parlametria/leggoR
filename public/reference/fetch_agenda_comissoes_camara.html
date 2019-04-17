@@ -76,23 +76,11 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
-    </li>
-  </ul>
-</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/analytics-ufcg/agora-digital">
+  <a href="https://github.com/analytics-ufcg/leggor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -110,7 +98,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Baixa dados da agenda de todos os orgãos da Camara</h1>
-    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/fetcher.R'><code>R/fetcher.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/leggor/blob/master/R/agendas.R'><code>R/agendas.R</code></a></small>
     <div class="hidden name"><code>fetch_agenda_comissoes_camara.Rd</code></div>
     </div>
 
@@ -141,7 +129,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fetch_agenda_comissoes_camara</span>(<span class='st'>'12/05/2018'</span>, <span class='st'>'26/05/2018'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in XML::xmlParse(url) %&gt;% XML::xmlToList(): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fetch_agenda_comissoes_camara</span>(<span class='st'>'12/05/2018'</span>, <span class='st'>'26/05/2018'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in fetch_orgaos_camara() %&gt;% dplyr::filter(casa == "Câmara dos Deputados",     (tipo_orgao_id == 1 &amp; orgao_id == 180) | (tipo_orgao_id ==         2 &amp; orgao_id &gt; 1999)): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
