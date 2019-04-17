@@ -157,8 +157,7 @@ export_data <- function(pls, export_path, distances_folderpath) {
     agoradigital::fetch_all_composicao_comissao() %>% 
     dplyr::rename(id_parlamentar = id)
   
-  source(here::here('R/distance.R'))
-  emendas <- add_distances_to_emendas(emendas, distances_folderpath)
+  emendas <- agoradigital::add_distances_to_emendas(emendas, distances_folderpath)
 
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))

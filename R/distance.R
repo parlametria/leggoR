@@ -1,5 +1,3 @@
-library(tidyverse)
-
 #' @title Lê todos os arquivos csv de uma pasta e os retorna em um único csv
 #' @description Recebe um datapath, lê todos os arquivos no formato csv e os une em um csv único
 #' @param distancias_datapath Caminho da pasta contendo os arquivos
@@ -18,6 +16,7 @@ read_distances_files <- function(distancias_datapath) {
 #' @param emendas_df Dataframe das emendas das proposições
 #' @param distancias_datapath Caminho da pasta contendo os arquivos
 #' @return Dataframe contendo todas a união de todos os csv's do caminho informado
+#' @export
 #' @examples
 #' add_distances_to_emendas(emendas_df, here::here("data/distancias/"))
 add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::here("data/distancias/")) {
@@ -27,9 +26,11 @@ add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::her
     dplyr::summarise(distancia = min(Distance))
   
   emendas_df <- 
-    left_join(emendas_df,
+    dplyr::left_join(emendas_df,
               distances_df, 
-              by="codigo_emenda")
+              by="codigo_emenda") %>%
+    dplyr::mutate(distancia = as.numeric(distancia)) %>%
+    dplyr::mutate(distancia = dplyr::if_else(is.na(distancia),-1,distancia))
   
   return(emendas_df)
 }
