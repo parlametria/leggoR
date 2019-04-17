@@ -32,9 +32,7 @@
 
 <meta property="og:title" content="Processa dados de um proposição da câmara. — process_proposicao_camara" />
 
-<meta property="og:description" content="Recebido um pl_id a função recupera informações sobre uma proposição
-e sua tramitação e as salva em data/camara.
-Recebido um dataframe com a tramitação, a função recupera informações sobre uma proposição
+<meta property="og:description" content="Recebido um dataframe com a tramitação, a função recupera informações sobre uma proposição
 e sua tramitação e as salva em data/camara." />
 <meta name="twitter:card" content="summary" />
 
@@ -79,29 +77,11 @@ e sua tramitação e as salva em data/camara." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/tutorial_1_fetcher.html">Baixando Dados</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_2_analyzer.html">Fases e Eventos de uma Proposição</a>
-    </li>
-    <li>
-      <a href="../articles/tutorial_3_csvs.html">Como Trabalhar com CSVs</a>
-    </li>
-  </ul>
-</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/analytics-ufcg/agora-digital">
+  <a href="https://github.com/analytics-ufcg/leggor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -119,22 +99,18 @@ e sua tramitação e as salva em data/camara." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Processa dados de um proposição da câmara.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/camara_analyzer.R'><code>R/camara_analyzer.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/leggor/blob/master/R/textos_proposicao.R'><code>R/textos_proposicao.R</code></a></small>
     <div class="hidden name"><code>process_proposicao_camara.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Recebido um pl_id a função recupera informações sobre uma proposição
-e sua tramitação e as salva em data/camara.</p>
-<p>Recebido um dataframe com a tramitação, a função recupera informações sobre uma proposição
+    <p>Recebido um dataframe com a tramitação, a função recupera informações sobre uma proposição
 e sua tramitação e as salva em data/camara.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>process_proposicao_camara</span>(<span class='no'>proposicao_df</span>, <span class='no'>tramitacao_df</span>)
-
-<span class='fu'>process_proposicao_camara</span>(<span class='no'>proposicao_df</span>, <span class='no'>tramitacao_df</span>)</pre>
+    <pre class="usage"><span class='fu'>process_proposicao_camara</span>(<span class='no'>tramitacao_df</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,23 +119,15 @@ e sua tramitação e as salva em data/camara.</p>
       <th>tramitacao_df</th>
       <td><p>Dataframe com tramitação da proposição</p></td>
     </tr>
-    <tr>
-      <th>pl_id</th>
-      <td><p>Identificador da proposição que pode ser recuperado no site da câmara.</p></td>
-    </tr>
     </table>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>process_proposicao_camara</span>(<span class='fl'>257161</span>)</div><div class='output co'>#&gt; <span class='error'>Error in tramitacao_df %&gt;% rename_df_columns %&gt;% extract_events_in_camara() %&gt;%     extract_locais_in_camara() %&gt;% extract_fase_casa_in_camara() %&gt;%     extract_situacao_comissao() %&gt;% refact_date() %&gt;% sort_by_date(): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
   </div>
 </div>

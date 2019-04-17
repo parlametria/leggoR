@@ -125,6 +125,7 @@ export_data <- function(pls, export_path, distances_folderpath) {
   # agenda <- fetch_agenda_geral(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4)
   agenda <- tibble::as_tibble()
   pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
+  
   tryCatch({
     pautas <- readr::read_csv(paste0(export_path, "pautas.csv"))
   },
