@@ -1,6 +1,5 @@
 pandoc: 1.17.2
 pkgdown: 1.1.0
 pkgdown_sha: ~
-articles:
-  tutorial_4_relatorio_temperatura: tutorial_4_relatorio_temperatura.html
+articles: []
 
