@@ -87,39 +87,15 @@ COMISSOES_CAMARA <-
 
 .COLNAMES_TRAMI_SEN <-
   c(
-    "descricao_identificacao_materia",
-    "codigo_tramitacao",
-    "numero_autuacao",
+    "prop_id",
+    "casa",
     "data_hora",
     "sequencia",
     "texto_tramitacao",
-    "indicador_recebimento",
-    "data_recebimento",
-    "descricao_identificacao_materia",
-    "origem_tramitacao_local_codigo_local",
-    "origem_tramitacao_local_tipo_local",
-    "origem_tramitacao_local_sigla_casa_local",
-    "origem_tramitacao_local_nome_casa_local",
-    "origem_tramitacao_local_sigla_local",
-    "origem_tramitacao_local_nome_local",
-    "destino_tramitacao_local_codigo_local",
-    "destino_tramitacao_local_tipo_local",
-    "destino_tramitacao_local_sigla_casa_local",
-    "destino_tramitacao_local_nome_casa_local",
-    "destino_tramitacao_local_sigla_local",
-    "destino_tramitacao_local_nome_local",
-    "situacao_codigo_situacao",
-    "situacao_sigla_situacao",
-    "situacao_descricao_situacao",
-    "codigo_materia",
-    "sigla_casa_identificacao_materia",
-    "nome_casa_identificacao_materia",
-    "sigla_subtipo_materia",
-    "descricao_subtipo_materia",
-    "numero_materia",
-    "ano_materia",
-    "indicador_tramitando",
-    "descricao_objetivo_processo"
+    "sigla_local",
+    "id_situacao",
+    "descricao_situacao",
+    "link_inteiro_teor"
   )
 
 .COLNAMES_DEFE_SEN <- c("proposicao_id", "deferimento")
