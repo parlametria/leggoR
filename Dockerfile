@@ -8,4 +8,4 @@ RUN Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
 COPY . .
 RUN Rscript -e 'devtools::install()'
 
-CMD Rscript scripts/fetch_updated_bills_data.R data/tabela_geral_ids_casa.csv exported
+CMD Rscript scripts/fetch_updated_bills_data.R data/tabela_geral_ids_casa.csv data/distancias/ exported
