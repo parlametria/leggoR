@@ -76,23 +76,11 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
-    </li>
-  </ul>
-</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/analytics-ufcg/agora-digital">
+  <a href="https://github.com/analytics-ufcg/leggor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -110,7 +98,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Extrai o status da tramitação de um PL</h1>
-    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/analyzer.R'><code>R/analyzer.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/leggor/blob/master/R/analyzer.R'><code>R/analyzer.R</code></a></small>
     <div class="hidden name"><code>extract_status_tramitacao.Rd</code></div>
     </div>
 
@@ -120,13 +108,25 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>extract_status_tramitacao</span>(<span class='no'>tram_df</span>, <span class='no'>agenda</span>)</pre>
+    <pre class="usage"><span class='fu'>extract_status_tramitacao</span>(<span class='no'>proposicao_id</span>, <span class='no'>casa</span>, <span class='no'>prop</span>, <span class='no'>tram</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>tram_df</th>
+      <th>proposicao_id</th>
+      <td><p>Id do PL.</p></td>
+    </tr>
+    <tr>
+      <th>casa</th>
+      <td><p>Casa do PL.</p></td>
+    </tr>
+    <tr>
+      <th>prop</th>
+      <td><p>Dataframe da proposição do PL.</p></td>
+    </tr>
+    <tr>
+      <th>tram</th>
       <td><p>Dataframe da tramitação do PL.</p></td>
     </tr>
     </table>
@@ -136,8 +136,6 @@
     <p>Dataframe contendo id, regime de tramitação e forma de apreciação do PL</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>extract_status_tramitacao</span>(<span class='fu'><a href='fetch_tramitacao.html'>fetch_tramitacao</a></span>(<span class='fl'>91341</span>, <span class='st'>'senado'</span>, <span class='fl'>TRUE</span>), <span class='fu'><a href='fetch_agenda_geral.html'>fetch_agenda_geral</a></span>(<span class='st'>'2018-07-03'</span>, <span class='st'>'2018-07-10'</span>))</div><div class='output co'>#&gt; <span class='error'>Error in json_tramitacao %&gt;% magrittr::extract2("MovimentacaoMateria") %&gt;%     magrittr::extract2("Materia"): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -145,9 +143,7 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>
