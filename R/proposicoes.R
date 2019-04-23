@@ -126,7 +126,8 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
                      ementa = paste(ementa,ementa_detalhada),
                      data_apresentacao = lubridate::ymd_hm(stringr::str_replace(data_apresentacao,'T',' ')),
                      casa = 'camara',
-                     casa_origem = ifelse(autor_df %>% head(1) %>% dplyr::select(codTipo) == 40000,"senado","camara"),
+                     casa_origem = ifelse(autor_df %>% head(1) %>%
+                                            dplyr::select(codTipo) == 40000,"senado","camara"),
                      autor_nome = paste(unlist(t(autor_df$nome)),collapse="+"),
                      autor_uf = ifelse(length(autor_df) > 1 && autor_df$codTipo == 10000,
                                        get_uf_autores(autor_df),
