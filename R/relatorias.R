@@ -103,8 +103,7 @@ rename_relatorias_senado_columns <- function(df) {
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição na Camara
 extract_relatorias_camara <- function(proposicao_id) {
   fetch_tramitacao(proposicao_id, 'camara') %>%
-    dplyr::filter(stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r') | 
-                    stringr::str_detect(tolower(texto_tramitacao), 'o relator(.)* deixou de ser membro da comiss.o')) %>%
+    dplyr::filter(stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r')) %>%
     dplyr::select(
       data_hora,
       texto_tramitacao,
@@ -112,14 +111,8 @@ extract_relatorias_camara <- function(proposicao_id) {
     ) %>%
     tibble::add_column() %>%
     dplyr::mutate(
-      nome_parlamentar = 
-        dplyr::if_else(stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r'), 
-                       stringr::str_extract(texto_tramitacao, stringr::regex('dep.?([^,]*)', ignore_case=TRUE)),
-                       "Relator não encontrado"),
-      partido = 
-        dplyr::if_else(stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r'),
-                       stringr::str_match(texto_tramitacao,'[(](.*?)[)]')[,2],
-                       "")
+      nome_parlamentar = stringr::str_extract(texto_tramitacao, stringr::regex('dep.?([^,]*)', ignore_case=TRUE)),
+      partido = stringr::str_match(texto_tramitacao,'[(](.*?)[)]')[,2]
     ) %>%
     dplyr::select(-c(texto_tramitacao)) %>%
     dplyr::arrange(desc(data_hora))
