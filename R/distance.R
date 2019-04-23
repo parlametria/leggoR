@@ -26,10 +26,14 @@ add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::her
     dplyr::group_by(codigo_emenda) %>% 
     dplyr::summarise(distancia = min(Distance))
   
+  if ("distancia" %in% names(emendas_df)) {
+    emendas_df <- emendas_df %>% 
+      dplyr::select(-distancia)
+  }
+  
   emendas_df <- 
     dplyr::left_join(
-      emendas_df %>% 
-        dplyr::select(-distancia),
+      emendas_df,
       distances_df, 
       by="codigo_emenda") %>%
     dplyr::mutate(distancia = as.numeric(distancia),
