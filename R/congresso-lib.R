@@ -148,7 +148,7 @@ generate_progresso_df_mpv <- function(tramitacao_df) {
     dplyr::mutate(fase_global = 
                     dplyr::case_when(
                       destino_tramitacao_local_nome_casa_local == "Câmara dos Deputados" ~ destino_tramitacao_local_nome_casa_local,
-                      dplyr::lag(origem_tramitacao_local_nome_casa_local) == "Câmara dos Deputados" ~ "Senado Federal",
+                      stringr::str_detect(tolower(texto_tramitacao), "encaminhada ao senado federal") ~ "Senado Federal",
                       stringr::str_detect(tolower(texto_tramitacao), "sancionada") ~ 
                         dplyr::if_else(stringr::str_detect(tolower(texto_tramitacao), "vetada"), "Transformada em Lei com vetos","Transformada em Lei"),
                       dplyr::row_number() == 1 ~ "Comissão Mista")) %>% 
@@ -156,7 +156,6 @@ generate_progresso_df_mpv <- function(tramitacao_df) {
   
   df <-
     tramitacao_df %>%
-    dplyr::arrange(data_hora, fase_global)  %>%
     dplyr::mutate(end_data = dplyr::lead(data_hora)) %>%
     dplyr::group_by(
       casa, prop_id, fase_global, sequence = data.table::rleid(fase_global)) %>%
@@ -169,24 +168,15 @@ generate_progresso_df_mpv <- function(tramitacao_df) {
     dplyr::select(-data_fim_anterior) %>%
     dplyr::arrange(data_inicio)
   
-  if (nrow(df) >= 4) {
-    df <- 
-      df %>% 
-      fuzzyjoin::regex_right_join(congresso_env$fases_global_mpv, by = c("fase_global")) %>% 
-      dplyr::ungroup() %>% 
-      dplyr::select(-fase_global.y) %>% 
-      dplyr::rename(fase_global = fase_global.x) 
-  } else {
-    df <-
-      df %>% 
-      fuzzyjoin::regex_right_join(congresso_env$fases_global_mpv, by = c("fase_global")) %>% 
-      dplyr::ungroup() %>% 
-      dplyr::select(-fase_global.x) %>% 
-      dplyr::rename(fase_global = fase_global.y) 
-  }
+  df <-
+    df %>% 
+    dplyr::right_join(congresso_env$fases_global_mpv, by = c("fase_global")) %>% 
+    dplyr::ungroup()
   
   df %>% 
-    tidyr::fill(casa, prop_id)
+    tidyr::fill(casa, prop_id) %>% 
+    unique() %>% 
+    dplyr::arrange(data_inicio)
 
 }
 

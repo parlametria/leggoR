@@ -20,7 +20,8 @@
     {"fase_global":"Câmara dos Deputados"},
     {"fase_global":"Senado Federal"},
     {"fase_global":"Câmara dos Deputados"},
-    {"fase_global":"Transformada em Lei|Transformada em Lei com vetos"}
+    {"fase_global":"Transformada em Lei"},
+    {"fase_global":"Transformada em Lei com vetos"}
   ],
 
   "fases_global":[
