@@ -29,7 +29,7 @@ process_etapa <- function(id, casa, agenda, pautas) {
   if (casa == 'camara') {
     emendas <- 
       emendas %>% 
-      dplyr::mutate(inteiro_teor = get_emendas_links(codigo_emenda))
+      dplyr::mutate(inteiro_teor = agoradigital::get_emendas_links(codigo_emenda))
   }
 
   list(
