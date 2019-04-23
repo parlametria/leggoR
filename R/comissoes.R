@@ -95,7 +95,7 @@ fetch_composicao_comissao <- function(sigla, casa, orgaos_camara) {
     new_name <- c("cargo", "id", "partido", "uf", "situacao", "nome", "foto", "sigla", "casa")
     comissao <-
       fetch_composicao_comissoes_senado(sigla) %>%
-      dplyr::mutate(sigla = sigla,
+      dplyr::mutate(sigla = strsplit(sigla, "/")[[1]][1],
                     casa = casa)
     names(comissao) <- new_name
   } else {
