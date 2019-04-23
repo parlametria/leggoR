@@ -112,7 +112,8 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
     adiciona_locais_faltantes_progresso()
   etapas$proposicao %<>%
     dplyr::mutate(apelido_materia = apelido, tema = tema_pl)
-  etapas
+  Sys.sleep(5*stats::runif(1))
+  return(etapas)
 }
 
 #' @title Exporta dados de proposições
