@@ -168,6 +168,12 @@ generate_progresso_df_mpv <- function(tramitacao_df) {
     dplyr::select(-data_fim_anterior) %>%
     dplyr::arrange(data_inicio)
   
+  if (nrow(df) == 1) {
+    df <- 
+      df %>% 
+      dplyr::mutate(data_fim = NA)
+  }
+  
   df <-
     df %>% 
     dplyr::right_join(congresso_env$fases_global_mpv, by = c("fase_global")) %>% 
