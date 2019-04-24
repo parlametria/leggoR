@@ -53,31 +53,6 @@
     "evento_fim": "fim_prazo_emendas"
   },
   
-  "evento": {	
-    "virada": {	
-      "regex": "primeiro-secretário da câmara dos deputados.* encaminhando.* revisão",	
-      "regex_complementar": "",	
-      "constant": "virada_de_casa",	
-      "tipo":"votacao"	
-    },	
-    "aprovacao_substitutivo": {	
-      "regex": "aprovado o substitutivo",	
-      "regex_complementar": "",	
-      "constant": "aprovacao_substitutivo",	
-      "tipo":"votacao"	
-    },	
-    "realizacao_audiencia_publica": {	
-      "regex": "realizada(,)* (.)*audiência pública",	
-      "regex_complementar": "aprovado o requerimento",	
-      "constant": "realizacao_audiencia_publica",	
-      "tipo":"discussao"	
-    },	
-    "apresentacao_parecer": {	
-      "regex": "(proferido pel(a|o).* parecer)|(leitura dos?( seguinte(s)?)? parecer)|(encaminhados à publicação o(s) (seguinte(s)) parecer(es:|profere parecer.*))",	
-      "regex_complementar": "",	
-      "constant": "apresentacao_parecer",	
-      "tipo":"discussao"	},
-
   "evento": {
     "realizacao_audiencia_publica": {
       "regex": "realizada(,)* (.)*audiência pública",
