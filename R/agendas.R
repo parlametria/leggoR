@@ -26,7 +26,7 @@ get_data_frame_agenda_senado <- function(initial_date, end_date) {
 normalize_agendas <- function(agenda, house) {
   if (tolower(house) == 'senado') {
     if (is.null(agenda) | nrow(agenda$materias) == 0) {
-      return(tibble::tribble(~ data, ~ sigla, ~ id_proposicao, ~ local, ~ casa))
+      return(tibble::tribble(~ data, ~ hora, ~ sigla, ~ id_proposicao, ~ local, ~ casa))
     }
     materias <- agenda$materias
     agenda <- agenda$agenda
@@ -42,7 +42,7 @@ normalize_agendas <- function(agenda, house) {
     
     agenda <-
       agenda %>%
-      dplyr::select(c(data, sigla, codigo_materia, local_sessao))
+      dplyr::select(c(data, hora, sigla, codigo_materia, local_sessao))
     
   }else {
     if (nrow(agenda) == 0) {return(tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local))}
@@ -52,7 +52,7 @@ normalize_agendas <- function(agenda, house) {
       dplyr::select(c(hora_inicio, sigla, proposicao_.id, nome_orgao))
   }
   
-  new_names <- c("data", "sigla", "id_proposicao", "local")
+  new_names <- c("data", "hora", "sigla", "id_proposicao", "local")
   names(agenda) <- new_names
   
   agenda %>% dplyr::arrange(data)
@@ -218,10 +218,10 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
   agenda <- purrr::map_df(orgaos$orgao_id, fetch_agendas_comissoes_camara_auxiliar, initial_date, end_date)
   
   if (nrow(agenda) == 0) {
-    tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local)
+    tibble::frame_data(~ data, ~hora, ~ sigla, ~ id_proposicao, ~ local)
   } else {
     agenda %>%
-      dplyr::select(data, sigla, id_proposicao, local = comissao) %>%
+      dplyr::select(data, hora, sigla, id_proposicao, local = comissao) %>%
       dplyr::mutate(data = as.Date(data, "%d/%m/%Y")) %>%
       dplyr::arrange(data)
   }
