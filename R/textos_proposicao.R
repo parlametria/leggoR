@@ -254,6 +254,7 @@ extract_initial_page_from_link <- function(df) {
 #' @description Extrai informações e link das emendas de uma proposição
 #' @param proposicao_df Dataframe da proposição
 #' @return Dataframe contendo informações sobre as emendas de uma proposição
+#' @export
 #' @examples
 #' get_emendas_links(577691)
 get_emendas_links <- function(id_emenda) {

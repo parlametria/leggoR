@@ -29,7 +29,7 @@ process_etapa <- function(id, casa, agenda, pautas) {
   if (casa == 'camara') {
     emendas <- 
       emendas %>% 
-      dplyr::mutate(inteiro_teor = get_emendas_links(codigo_emenda))
+      dplyr::mutate(inteiro_teor = agoradigital::get_emendas_links(codigo_emenda))
   }
 
   list(
@@ -112,15 +112,17 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
     adiciona_locais_faltantes_progresso()
   etapas$proposicao %<>%
     dplyr::mutate(apelido_materia = apelido, tema = tema_pl)
-  etapas
+  Sys.sleep(5*stats::runif(1))
+  return(etapas)
 }
 
 #' @title Exporta dados de proposições
 #' @description Exporta para uma pasta CSVs com dados sobre uma lista de proposições.
 #' @param pls dataframe com proposições.
 #' @param export_path pasta para onde exportar dados.
+#' @param distances_folderpath pasta onde os arquivos de distâncias das emendas está localizado
 #' @export
-export_data <- function(pls, export_path) {
+export_data <- function(pls, export_path, distances_folderpath) {
   # agenda <- fetch_agenda_geral(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4)
   agenda <- tibble::as_tibble()
   pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
@@ -156,6 +158,8 @@ export_data <- function(pls, export_path) {
   comissoes <-
     agoradigital::fetch_all_composicao_comissao() %>% 
     dplyr::rename(id_parlamentar = id)
+  
+  emendas <- agoradigital::add_distances_to_emendas(emendas, distances_folderpath)
 
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))

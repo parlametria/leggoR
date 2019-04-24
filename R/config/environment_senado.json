@@ -76,14 +76,15 @@
       "regex": "(proferido pel(a|o).* parecer)|(leitura dos?( seguinte(s)?)? parecer)|(encaminhados à publicação o(s) (seguinte(s)) parecer(es:|profere parecer.*))",	
       "regex_complementar": "",	
       "constant": "apresentacao_parecer",	
-      "tipo":"discussao"	
+      "tipo":"discussao"	},
 
-     },	
-    "desarquivamento": {	
-      "regex": "a mat.ria foi desarquivada",	
-      "constant": "desarquivamento",	
-      "tipo":"despacho"	
-    }	
+  "evento": {
+    "realizacao_audiencia_publica": {
+      "regex": "realizada(,)* (.)*audiência pública",
+      "regex_complementar": "aprovado o requerimento",
+      "constant": "realizacao_audiencia_publica",
+      "tipo":"discussao"
+    }
   },
 
   "eventos": [
@@ -91,18 +92,21 @@
     {"evento": "requerimento_seminario", "regex": "a realização de seminário", "tipo":"discussao"},
     {"evento": "recebimento_comissao", "regex": "recebido na|nesta comissao", "tipo":"despacho"},
     {"evento": "devolvido", "regex": "devolvido pel.*redistribu.*", "tipo":"despacho"},
+    {"evento": "apresentacao_parecer", "regex": "(proferido pel(a|o).* parecer)|(leitura dos?( seguinte(s)?)? parecer)|(encaminhados à publicação o(s) (seguinte(s)) parecer(es:|profere parecer.*))", "tipo":"votacao"},
     {"evento": "aprovacao_parecer", "regex": "a comissão aprova o relatório|aprovado o relatório", "tipo":"votacao"},
     {"evento": "pedido_de_vista", "regex": "concedida vista", "tipo":"votacao"},
     {"evento": "designado_relator",
       "regex": "(designa.*relator(a|) da matéria)|(designad(o|a) relator(a|))|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria                  (.*|)$))", "tipo":"despacho"},
     {"evento": "designado_presidente_comissao", "regex": "eleit(a|o) .* presidente", "tipo": "despacho"},
     {"evento": "arquivamento", "regex": "processo arquivado(.)*|a proposição é arquivada", "tipo":"despacho"},
+    {"evento": "desarquivamento", "regex": "a mat.ria foi desarquivada", "tipo":"despacho"},
     {"evento": "desarquivamento", "id_situacao": 149, "tipo":"despacho"},
     {"evento": "aprovacao_substitutivo", "regex": "aprovado o substitutivo", "tipo":"votacao"},
     {"evento": "aprovacao_projeto", "regex": "aprovado o projeto", "tipo":"votacao"},
     {"evento": "remetida_a_sancao", "regex": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
     {"evento": "transformada_lei", "regex": "sancionada", "tipo":"votacao"},
-    {"evento": "vetada_totalmente", "regex": "vetada integralmente|vetado(,)* totalmente", "tipo":"votacao"}
+    {"evento": "vetada_totalmente", "regex": "vetada integralmente|vetado(,)* totalmente", "tipo":"votacao"},
+    {"evento": "virada_de_casa", "regex": "primeiro(-| )secret(a|á)rio.*da.*c(a|â)mara.*dos.*deputados.*encaminhando.*revis(a|ã)o", "tipo":"votacao"}
   ],
   
  "locais": [
