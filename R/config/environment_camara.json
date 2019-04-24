@@ -172,6 +172,29 @@
   
   "versoes_texto_proposicao": {
     "remove_publicacao_regex": "Encaminhada à publicação. ",
-    "eventos_regex":  "apresentacao_pl|parecer_comissao"
-  }
+    "eventos_regex":  "apresentacao_pl"
+  },
+  
+  "tipos_emendas": [
+    {"sigla": "EMC", "tipo_texto": "Emenda na Comissão"},
+    {"sigla": "EMP", "tipo_texto": "Emenda de Plenário"},
+    {"sigla": "EMS", "tipo_texto": "Emenda/Substitutivo do Senado"},
+    {"sigla": "SBE", "tipo_texto": "Subemenda"},
+    {"sigla": "EMR", "tipo_texto": "Emenda de Relator"},
+    {"sigla": "ESB", "tipo_texto": "Emenda ao Substitutivo"},
+    {"sigla": "EMO", "tipo_texto": "Emenda ao Orçamento"},
+    {"sigla": "EMD", "tipo_texto": "Emenda"},
+    {"sigla": "EPP", "tipo_texto": "Emenda ao Plano Plurianual"},
+    {"sigla": "EAG", "tipo_texto": "Emenda Substitutiva Aglutinativa Global"},
+    {"sigla": "ESP", "tipo_texto": "Emenda Substitutiva de Plenário"},
+    {"sigla": "SSP", "tipo_texto": "Subemenda Substitutiva de Plenário"},
+    {"sigla": "SAP", "tipo_texto": "Subemenda Aglutinativa Substitutiva de Plenário"},
+    {"sigla": "EMA", "tipo_texto": "Emenda Aglutinativa de Plenário"},
+    {"sigla": "EMRP", "tipo_texto": "Emenda de Relator Parcial"},
+    {"sigla": "EMC-A", "tipo_texto": "Emenda Adotada pela Comissão"},
+    {"sigla": "SBE-A", "tipo_texto": "Subemenda Adotada pela Comissão"},
+    {"sigla": "EMPV", "tipo_texto": "Emenda a Medida Provisória"},
+    {"sigla": "SBR", "tipo_texto": "Subemenda de Relator"},
+    {"sigla": "ERD-A", "tipo_texto": "Emenda de Redação Adotada"}
+  ]
 }
