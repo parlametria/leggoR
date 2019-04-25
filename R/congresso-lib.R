@@ -168,6 +168,13 @@ generate_progresso_df_mpv <- function(tramitacao_df) {
     dplyr::select(-data_fim_anterior) %>%
     dplyr::arrange(data_inicio)
   
+  df <- df %>% 
+    dplyr::group_by(fase_global) %>% 
+    dplyr::mutate(Index=1:dplyr::n()) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::mutate(fase_global = dplyr::if_else(Index == 2, "Câmara dos Deputados - Revisão", fase_global)) %>% 
+    dplyr::select(-Index)
+  
   if (nrow(df) == 1) {
     df <- 
       df %>% 
