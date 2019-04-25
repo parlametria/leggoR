@@ -183,7 +183,7 @@ generate_progresso_df_mpv <- function(tramitacao_df) {
     tidyr::fill(casa, prop_id) %>% 
     unique() %>% 
     dplyr::mutate(data_fim =
-                    dplyr::if_else(fase_global %in% c("Transformada em Lei", "Transformada em Lei com vetos"),
+                    ifelse(fase_global %in% c("Transformada em Lei", "Transformada em Lei com vetos"),
                                    data_inicio,
                                    data_fim)) %>% 
     dplyr::arrange(data_inicio) 
