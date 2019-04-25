@@ -35,7 +35,7 @@ test <- function() {
                       'senado',134134,'Câmara dos Deputados','2018-09-17 12:00:00','2018-11-13 12:00:00',
                       'senado',134134,'Senado Federal','2018-11-13 12:00:00','2018-11-21 12:00:00',
                       'senado',134134,'Câmara dos Deputados','2018-11-21 12:00:00','2018-12-27 12:00:00',
-                      'senado',134134,'Transformada em Lei','2018-12-27 12:00:00',NA,
+                      'senado',134134,'Transformada em Lei','2018-12-27 12:00:00','2018-12-27 12:00:00',
                       'senado',134134,'Transformada em Lei com vetos',NA,NA) %>% 
       dplyr::mutate(prop_id = as.integer(prop_id))
     
