@@ -33,7 +33,7 @@ process_etapa <- function(id, casa, agenda, pautas) {
   if (casa == 'camara') {
     emendas <- 
       emendas %>% 
-      dplyr::mutate(inteiro_teor = get_emendas_links(codigo_emenda))
+      dplyr::mutate(inteiro_teor = agoradigital::get_emendas_links(codigo_emenda))
   }
 
   list(
@@ -122,7 +122,8 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
   }
   etapas$proposicao %<>%
     dplyr::mutate(apelido_materia = apelido, tema = tema_pl)
-  etapas
+  Sys.sleep(5*stats::runif(1))
+  return(etapas)
 }
 
 #' @title Exporta dados de proposições
