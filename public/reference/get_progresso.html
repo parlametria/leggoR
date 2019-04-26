@@ -76,23 +76,11 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
-    </li>
-  </ul>
-</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/analytics-ufcg/agora-digital">
+  <a href="https://github.com/analytics-ufcg/leggor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -110,7 +98,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Extrai o progresso de um PL</h1>
-    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/agora-digital/blob/master/R/analyzer.R'><code>R/analyzer.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/analytics-ufcg/leggor/blob/master/R/analyzer.R'><code>R/analyzer.R</code></a></small>
     <div class="hidden name"><code>get_progresso.Rd</code></div>
     </div>
 
@@ -120,37 +108,30 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_progresso</span>(<span class='no'>proposicao_df</span>, <span class='no'>tramitacao_df</span>)</pre>
+    <pre class="usage"><span class='fu'>get_progresso</span>(<span class='no'>full_proposicao_df</span>, <span class='no'>full_tramitacao_df</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>proposicao_df</th>
-      <td><p>Dataframe da tramitação do PL.</p></td>
-    </tr>
-    <tr>
-      <th>tramitacao_df</th>
+      <th>full_proposicao_df</th>
       <td><p>Dataframe da proposição do PL.</p></td>
     </tr>
     <tr>
-      <th>casa</th>
-      <td><p>Casa (Senado ou Câmara)</p></td>
-    </tr>
-    <tr>
-      <th>out_folderpath</th>
-      <td><p>Caminho destino do csv resultante</p></td>
+      <th>full_tramitacao_df</th>
+      <td><p>Dataframe da tramitação do PL.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Dataframe contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)</p>
+    <p>Dataframe
+e contendo id, fase global, data de inicio e data de fim (data atual, se nao houver fim)</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>etapas</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>()
-<span class='no'>etapas</span> <span class='kw'>%&lt;&gt;%</span> <span class='fu'>append</span>(<span class='fu'>list</span>(<span class='fu'>process_etapa</span>(<span class='fl'>2088990</span>, <span class='st'>"camara"</span>, <span class='fu'><a href='fetch_agenda_geral.html'>fetch_agenda_geral</a></span>(<span class='st'>'2018-07-03'</span>, <span class='st'>'2018-07-10'</span>))))</div><div class='output co'>#&gt; <span class='error'>Error in etapas %&lt;&gt;% append(list(process_etapa(2088990, "camara", fetch_agenda_geral("2018-07-03",     "2018-07-10")))): could not find function "%&lt;&gt;%"</span></div><div class='input'><span class='no'>etapas</span> <span class='kw'>%&lt;&gt;%</span> <span class='fu'>append</span>(<span class='fu'>list</span>(<span class='fu'>process_etapa</span>(<span class='fl'>91341</span>, <span class='st'>"senado"</span>, <span class='fu'><a href='fetch_agenda_geral.html'>fetch_agenda_geral</a></span>(<span class='st'>'2018-07-03'</span>, <span class='st'>'2018-07-10'</span>))))</div><div class='output co'>#&gt; <span class='error'>Error in etapas %&lt;&gt;% append(list(process_etapa(91341, "senado", fetch_agenda_geral("2018-07-03",     "2018-07-10")))): could not find function "%&lt;&gt;%"</span></div><div class='input'><span class='no'>etapas</span> <span class='kw'>%&lt;&gt;%</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map2'>pmap</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='no'><a href='http://dplyr.tidyverse.org/reference/bind.html'>bind_rows</a></span>)</div><div class='output co'>#&gt; <span class='error'>Error in etapas %&lt;&gt;% purrr::pmap(dplyr::bind_rows): could not find function "%&lt;&gt;%"</span></div><div class='input'><span class='fu'>get_progresso</span>(<span class='no'>etapas</span>$<span class='no'>proposicao</span>, <span class='no'>etapas</span>$<span class='no'>fases_eventos</span>)</div><div class='output co'>#&gt; <span class='error'>Error in tramitacao_df %&gt;% agoradigital:::extract_casas(proposicao_df) %&gt;%     agoradigital:::generate_progresso_df() %&gt;% dplyr::mutate(local_casa = casa) %&gt;%     tidyr::fill(prop_id, casa) %&gt;% tidyr::fill(prop_id, casa,     .direction = "up"): could not find function "%&gt;%"</span></div></pre>
+<span class='no'>etapas</span> <span class='kw'>%&lt;&gt;%</span> <span class='fu'>append</span>(<span class='fu'>list</span>(<span class='fu'><a href='process_etapa.html'>process_etapa</a></span>(<span class='fl'>1635730</span>, <span class='st'>"camara"</span>, <span class='fu'><a href='fetch_agenda_geral.html'>fetch_agenda_geral</a></span>(<span class='st'>'2018-07-03'</span>, <span class='st'>'2018-07-10'</span>))))</div><div class='output co'>#&gt; <span class='error'>Error in etapas %&lt;&gt;% append(list(process_etapa(1635730, "camara", fetch_agenda_geral("2018-07-03",     "2018-07-10")))): could not find function "%&lt;&gt;%"</span></div><div class='input'><span class='no'>etapas</span> <span class='kw'>%&lt;&gt;%</span> <span class='fu'>append</span>(<span class='fu'>list</span>(<span class='fu'><a href='process_etapa.html'>process_etapa</a></span>(<span class='fl'>126084</span>, <span class='st'>"senado"</span>, <span class='fu'><a href='fetch_agenda_geral.html'>fetch_agenda_geral</a></span>(<span class='st'>'2018-07-03'</span>, <span class='st'>'2018-07-10'</span>))))</div><div class='output co'>#&gt; <span class='error'>Error in etapas %&lt;&gt;% append(list(process_etapa(126084, "senado", fetch_agenda_geral("2018-07-03",     "2018-07-10")))): could not find function "%&lt;&gt;%"</span></div><div class='input'><span class='no'>etapas</span> <span class='kw'>%&lt;&gt;%</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map2.html'>pmap</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='no'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_rows</a></span>)</div><div class='output co'>#&gt; <span class='error'>Error in etapas %&lt;&gt;% purrr::pmap(dplyr::bind_rows): could not find function "%&lt;&gt;%"</span></div><div class='input'><span class='fu'>get_progresso</span>(<span class='no'>etapas</span>$<span class='no'>proposicao</span>, <span class='no'>etapas</span>$<span class='no'>fases_eventos</span>)</div><div class='output co'>#&gt; <span class='error'>Error in UseMethod("arrange_"): no applicable method for 'arrange_' applied to an object of class "NULL"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

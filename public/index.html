@@ -10,7 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Ágora Digital">
-<meta property="og:description" content="Provides propositions, votings, deputies and parties data from 
+<meta property="og:description" content="Provides propositions, votings, deputies and parties data from
     Brazilian lower house &lt;https://dadosabertos.camara.leg.br&gt; in data frames.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -45,22 +45,10 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="articles/tutorial_4_relatorio_temperatura.html">A Temperatura Recente de um Projeto de Lei</a>
-    </li>
-  </ul>
-</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/analytics-ufcg/agora-digital">
+  <a href="https://github.com/analytics-ufcg/leggor">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -78,10 +66,9 @@
   <div class="contents col-md-9">
     
 
-<p><strong>Este pacote está em versão ALFA!</strong></p>
-<div id="agora-digital" class="section level1">
+<div id="leggor" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#agora-digital" class="anchor"></a>Ágora Digital</h1></div>
+<a href="#leggor" class="anchor"></a>leggoR</h1></div>
 <p>Acesso, tradução e modelos usando dados do congresso nacional.</p>
 <ul>
 <li><a href="https://analytics-ufcg.github.io/agora-digital/public">Site com documentação</a></li>
@@ -188,18 +175,6 @@
 </blockquote>
 <p>Depois faça os testes necessários para garantir que o pacote está funcionando conforme esperado.</p>
 </div>
-<div id="mais-informacoes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#mais-informacoes" class="anchor"></a>Mais informações</h2>
-<p>Atualmente o pacote já foi testado para as seguintes proposições:</p>
-<ul>
-<li><a href="http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao=257161">PL 3729/2004</a></li>
-<li><a href="http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao=2121442">PL 6726/16</a></li>
-<li><a href="https://www25.senado.leg.br/web/atividade/materias/-/materia/127753?o=d">PL 449/2016</a></li>
-<li><a href="https://www25.senado.leg.br/web/atividade/materias/-/materia/91341">PL 229/2009</a></li>
-</ul>
-<p>Podendo apresentar problemas para outras proposições.</p>
-</div>
 <div id="como-contribuir" class="section level2">
 <h2 class="hasAnchor">
 <a href="#como-contribuir" class="anchor"></a>Como contribuir</h2>
@@ -214,9 +189,9 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/analytics-ufcg/agora-digital">https://​github.com/​analytics-ufcg/​agora-digital</a>
+<li>Browse source code at <br><a href="https://github.com/analytics-ufcg/leggor">https://​github.com/​analytics-ufcg/​leggor</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/analytics-ufcg/agora-digital/issues">https://​github.com/​analytics-ufcg/​agora-digital/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/analytics-ufcg/leggor/issues">https://​github.com/​analytics-ufcg/​leggor/​issues</a>
 </li>
 </ul>
 </div>
@@ -238,7 +213,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://gitlab.com/analytics-ufcg/agora-digital/commits/master"><img src="https://gitlab.com/analytics-ufcg/agora-digital/badges/master/pipeline.svg" alt="pipeline status"></a></li>
-<li><a href="https://gitlab.com/analytics-ufcg/agora-digital/commits/master"><img src="https://gitlab.com/analytics-ufcg/agora-digital/badges/master/coverage.svg" alt="coverage report"></a></li>
+<li><a href="https://codecov.io/gh/analytics-ufcg/leggoR"><img src="https://codecov.io/gh/analytics-ufcg/leggoR/branch/master/graph/badge.svg" alt="codecov"></a></li>
 </ul>
 </div>
 </div>

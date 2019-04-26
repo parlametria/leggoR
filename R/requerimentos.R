@@ -32,8 +32,7 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
   reqs <- tryCatch(
     rcongresso::fetch_related_requerimentos_camara(prop_id = prop_id),
     error = function(error_message) {
-      message(paste("Erro na recuperação dos requerimentos do PL com id",prop_id))
-      message(error_message)
+      warning(paste("Erro na recuperação dos requerimentos do PL com id - ",prop_id, error_message))
       return(tibble::tibble())
     }
   )

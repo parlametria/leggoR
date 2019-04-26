@@ -171,8 +171,6 @@ extract_evento_Senado <- function(tramitacao_df) {
 
   comissoes <- extract_comissoes_Senado(tramitacao_df)
   date_comissao_especial <- comissoes[match("Comissão Especial", comissoes$comissoes), ]$data_hora
-  designacao_relator <- senado_env$eventos %>%
-    dplyr::filter(evento == 'designado_relator')
 
   if (!is.na(date_comissao_especial)) {
     df %>%
@@ -187,12 +185,6 @@ extract_evento_Senado <- function(tramitacao_df) {
     df %>%
     dplyr::mutate(
     evento = dplyr::case_when(
-      stringr::str_detect(tolower(texto_tramitacao), stringr::regex(designacao_relator$regex,
-                                                           ignore_case = TRUE)) ~ designacao_relator$evento,
-      stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$apresentacao_parecer$regex) ~ eventos_extra_senado$apresentacao_parecer$constant,
-      stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$desarquivamento$regex) ~ eventos_extra_senado$desarquivamento$constant,
-      stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$virada$regex) ~ eventos_extra_senado$virada$constant,
-      stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$aprovacao_substitutivo$regex) ~ eventos_extra_senado$aprovacao_substitutivo$constant,
       (stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$realizacao_audiencia_publica$regex) &
          !stringr::str_detect(tolower(texto_tramitacao), eventos_extra_senado$realizacao_audiencia_publica$regex_complementar)) ~ eventos_extra_senado$realizacao_audiencia_publica$constant,
       TRUE ~ evento
@@ -458,12 +450,17 @@ extract_locais <- function(df) {
 #' @description Verifica o regime de tramitação de um dataframe. Se apresentar as
 #' palavras 'estando a matéria em regime de urgência' é retornado 'Urgência' como resposta, caso contrário
 #' é retornado 'Ordinária'.
-#' @param df Dataframe da tramitação no Senado.
+#' @param tramitacao_df Dataframe da tramitação no Senado.
+#' @param prop Dataframe da proposição no Senado.
 #' @return String com a situação do regime de tramitação da pl.
 #' @examples
-#' extract_regime_tramitacao_senado(fetch_tramitacao(91341,'senado', T))
-extract_regime_tramitacao_senado <- function(tramitacao_df) {
+#' extract_regime_tramitacao_senado(fetch_tramitacao(91341,'senado'), fetch_proposicao(91341,'senado'))
+extract_regime_tramitacao_senado <- function(tramitacao_df, prop) {
   regime <- senado_env$regimes
+  if (toupper(prop$sigla_tipo[1]) == "MPV") {
+    return(regime$urgencia)
+  }
+  
   df <-
     tramitacao_df %>%
     dplyr::arrange(data_hora, sequencia) %>%
@@ -641,7 +638,9 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
   if(nrow(proc_tram_df %>% dplyr::filter(evento %in% 'apresentacao_pl')) == 0) {
     data_apresentacao <- lubridate::ymd_hms(paste(as.character(proposicao_df$data_apresentacao), '12:00:00'))
     proc_tram_df <- proc_tram_df %>%
-      dplyr::mutate(evento = dplyr::if_else((data_hora == data_apresentacao) & (sequencia == 1),'apresentacao_pl',evento))
+      dplyr::mutate(evento = dplyr::if_else((data_hora == data_apresentacao) & 
+                                              ((dplyr::row_number() == 1) | (dplyr::lag(data_hora) != data_apresentacao)),
+                                            'apresentacao_pl',evento))
   }
 
   proc_tram_df
