@@ -88,14 +88,15 @@ generate_progresso_df <- function(tramitacao_df){
   df <-
     tramitacao_df %>%
     dplyr::arrange(data_hora, fase_global)  %>%
-    dplyr::filter((!is.na(fase_global)) & (!is.na(local))) %>% 
+    dplyr::filter(!is.na(fase_global)) %>% 
     dplyr::mutate(end_data = dplyr::lead(data_hora)) %>%
     dplyr::group_by(
       casa, prop_id, fase_global, local, sequence = data.table::rleid(fase_global)) %>%
     dplyr::summarise(
       data_inicio = min(data_hora, na.rm = T),
-      data_fim = max(end_data, na.rm = T)) %>%
+      data_fim = max(end_data, na.rm = (sum(is.na(end_data)) != dplyr::n()))) %>%
     dplyr::select(-sequence) %>%
+    dplyr::filter(!is.na(local)) %>%
     dplyr::group_by(fase_global) %>%
     dplyr::mutate(data_fim_anterior = dplyr::lag(data_fim)) %>%
     dplyr::filter(is.na(data_fim_anterior) | data_fim > data_fim_anterior) %>%
