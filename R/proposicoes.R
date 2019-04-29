@@ -93,11 +93,6 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
         apelido_materia,
         apelido),
       tema = tema
-      ## indexacao_materia = ifelse(
-      ##   "indexacao_materia" %in% names(.),
-      ##   indexacao_materia,
-      ##   NA),
-      ## palavras_chave = indexacao_materia,
     )
 }
 

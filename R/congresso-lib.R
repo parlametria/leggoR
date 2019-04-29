@@ -137,6 +137,66 @@ generate_progresso_df <- function(tramitacao_df){
   return(df)
 }
 
+#' @title Retorna um progresso de uma mpv
+#' @description Retorna um dataframe contendo os dados sobre o progresso de uma mpv
+#' @param tramitacao_df Dataframe processessado da tramitação
+#' @return Dataframe contendo o progresso
+#' @export
+generate_progresso_df_mpv <- function(tramitacao_df) {
+  tramitacao_df <-
+    tramitacao_df %>% 
+    dplyr::arrange(data_hora) %>% 
+    dplyr::mutate(fase_global = 
+                    dplyr::case_when(
+                      destino_tramitacao_local_nome_casa_local == "Câmara dos Deputados" ~ destino_tramitacao_local_nome_casa_local,
+                      stringr::str_detect(tolower(texto_tramitacao), "encaminhada ao senado federal") ~ "Senado Federal",
+                      stringr::str_detect(tolower(texto_tramitacao), "sancionada") ~ 
+                        dplyr::if_else(stringr::str_detect(tolower(texto_tramitacao), "vetada"), "Transformada em Lei com vetos","Transformada em Lei"),
+                      dplyr::row_number() == 1 ~ "Comissão Mista")) %>% 
+    tidyr::fill(fase_global)
+  
+  df <-
+    tramitacao_df %>%
+    dplyr::mutate(end_data = dplyr::lead(data_hora)) %>%
+    dplyr::group_by(
+      casa, prop_id, fase_global, sequence = data.table::rleid(fase_global)) %>%
+    dplyr::summarise(
+      data_inicio = min(data_hora, na.rm = T),
+      data_fim = max(end_data, na.rm = T)) %>%
+    dplyr::select(-sequence) %>%
+    dplyr::group_by(fase_global) %>%
+    dplyr::mutate(data_fim_anterior = dplyr::lag(data_fim)) %>%
+    dplyr::select(-data_fim_anterior) %>%
+    dplyr::arrange(data_inicio)
+  
+  df <- df %>% 
+    dplyr::group_by(fase_global) %>% 
+    dplyr::mutate(Index=1:dplyr::n()) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::mutate(fase_global = dplyr::if_else(Index == 2, "Câmara dos Deputados - Revisão", fase_global)) %>% 
+    dplyr::select(-Index)
+  
+  if (nrow(df) == 1) {
+    df <- 
+      df %>% 
+      dplyr::mutate(data_fim = NA)
+  }
+  
+  df <-
+    df %>% 
+    dplyr::right_join(congresso_env$fases_global_mpv, by = c("fase_global")) %>% 
+    dplyr::ungroup()
+  
+  df %>% 
+    tidyr::fill(casa, prop_id) %>% 
+    unique() %>% 
+    dplyr::mutate(data_fim =
+                    dplyr::if_else(fase_global %in% c("Transformada em Lei", "Transformada em Lei com vetos"),
+                                   data_inicio,
+                                   as.POSIXct(data_fim))) %>% 
+    dplyr::arrange(data_inicio) 
+}
+
 #' @title Recupera o número de linha em que houve virada_de_casa
 #' @description Recupera o número da linha em que houve evento virada_de_casa
 #' @param df Dataframe da tramitação processada da proposiçao
