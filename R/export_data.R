@@ -164,6 +164,6 @@ export_data <- function(pls, export_path) {
   readr::write_csv(
     hists_temperatura, paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
-  readr::write_csv(emendas, paste0(export_path, "/emendas.csv"))
+  readr::write_csv(emendas, paste0(export_path, "/emendas_raw.csv"))
   readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
 }
