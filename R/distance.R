@@ -16,6 +16,7 @@ read_distances_files <- function(distancias_datapath) {
 #' @param emendas_df Dataframe das emendas das proposições
 #' @param distancias_datapath Caminho da pasta contendo os arquivos
 #' @return Dataframe contendo todas a união de todos os csv's do caminho informado
+#' @importFrom magrittr %>% 
 #' @export
 #' @examples
 #' add_distances_to_emendas(emendas_df, here::here("data/distancias/"))
@@ -25,12 +26,18 @@ add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::her
     dplyr::group_by(codigo_emenda) %>% 
     dplyr::summarise(distancia = min(Distance))
   
+  if ("distancia" %in% names(emendas_df)) {
+    emendas_df <- emendas_df %>% 
+      dplyr::select(-distancia)
+  }
+  
   emendas_df <- 
-    dplyr::left_join(emendas_df,
-              distances_df, 
-              by="codigo_emenda") %>%
-    dplyr::mutate(distancia = as.numeric(distancia)) %>%
-    dplyr::mutate(distancia = dplyr::if_else(is.na(distancia),-1,distancia))
+    dplyr::left_join(
+      emendas_df,
+      distances_df, 
+      by="codigo_emenda") %>%
+    dplyr::mutate(distancia = as.numeric(distancia),
+                  distancia = dplyr::if_else(is.na(distancia),-1,distancia))
   
   return(emendas_df)
 }
