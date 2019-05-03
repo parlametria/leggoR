@@ -150,7 +150,7 @@ generate_progresso_df_mpv <- function(tramitacao_df) {
                     dplyr::case_when(
                       destino_tramitacao_local_nome_casa_local == "Câmara dos Deputados" ~ destino_tramitacao_local_nome_casa_local,
                       stringr::str_detect(tolower(texto_tramitacao), "encaminhada ao senado federal") ~ "Senado Federal",
-                      stringr::str_detect(tolower(texto_tramitacao), "sancionada") ~ "Congresso Nacional",
+                      stringr::str_detect(tolower(texto_tramitacao), "sancionada") ~ "Sanção Presidencial/Promulgação",
                       dplyr::row_number() == 1 ~ "Comissão Mista")) %>%
     tidyr::fill(fase_global)
 
@@ -190,7 +190,7 @@ generate_progresso_df_mpv <- function(tramitacao_df) {
     tidyr::fill(casa, prop_id) %>%
     unique() %>%
     dplyr::mutate(data_fim =
-                    dplyr::if_else(fase_global == "Congresso Nacional",
+                    dplyr::if_else(fase_global == "Sanção Presidencial/Promulgação",
                                    data_inicio,
                                    as.POSIXct(data_fim))) %>%
     dplyr::arrange(data_inicio)
