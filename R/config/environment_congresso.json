@@ -3,7 +3,7 @@
       "camara_label": "camara",
       "senado_label": "senado"
   },
-  
+
   "eventos_fases":[
     {"evento_num" : "primeiro_evento", "fase_global":"Pré-Construção"},
     {"evento_num" : "apresentacao_pl1", "fase_global":"Construção"},
@@ -14,14 +14,13 @@
     {"evento_num" : "remetida_a_sancao1", "fase_global":"Sanção/Veto"},
     {"evento_num" : "apresentacao_pl4", "fase_global":"Avaliação dos Vetos"}
   ],
-  
+
   "fases_global_mpv":[
     {"fase_global":"Comissão Mista"},
     {"fase_global":"Câmara dos Deputados"},
     {"fase_global":"Senado Federal"},
     {"fase_global":"Câmara dos Deputados - Revisão"},
-    {"fase_global":"Transformada em Lei"},
-    {"fase_global":"Transformada em Lei com vetos"}
+    {"fase_global":"Sanção Presidencial/Promulgação"}
   ],
 
   "fases_global":[
