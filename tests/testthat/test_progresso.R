@@ -38,7 +38,7 @@ test <- function() {
                       'senado',134134,'Câmara dos Deputados','2018-09-17 12:00:00','2018-11-13 12:00:00',
                       'senado',134134,'Senado Federal','2018-11-13 12:00:00','2018-11-21 12:00:00',
                       'senado',134134,'Câmara dos Deputados - Revisão','2018-11-21 12:00:00','2018-12-27 12:00:00',
-                      'senado',134134,'Congresso Nacional','2018-12-27 12:00:00','2018-12-27 12:00:00') %>% 
+                      'senado',134134,'Sanção Presidencial/Promulgação','2018-12-27 12:00:00','2018-12-27 12:00:00') %>% 
       dplyr::mutate(prop_id = as.integer(prop_id))
     
     expect_true(nrow(dplyr::anti_join(progresso_mpv_tramitacao_encerrada, progresso_134134)) == 0)
@@ -57,7 +57,7 @@ test <- function() {
                       'senado',135061,'Câmara dos Deputados',NA,NA,
                       'senado',135061,'Senado Federal',NA,NA,
                       'senado',135061,'Câmara dos Deputados - Revisão',NA,NA,
-                      'senado',135061,'Congresso Nacional',NA,NA) %>% 
+                      'senado',135061,'Sanção Presidencial/Promulgação',NA,NA) %>% 
       dplyr::mutate(prop_id = as.integer(prop_id))
     
     expect_true(nrow(dplyr::anti_join(progresso_mpv_em_tramitacao, progresso_135061)) == 0)
