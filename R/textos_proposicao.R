@@ -174,15 +174,21 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
 #' @examples
 #' mutate_links(textos_df)
 mutate_links <- function(df) {
-  if(typeof(df$DescricaoTexto) == 'NULL') {
+  if ("DescricaoTipoTexto" %in% names(df)) {
+    if(typeof(df$DescricaoTexto) == 'NULL') {
+      df <- df %>%
+        dplyr::mutate(DescricaoTexto = DescricaoTipoTexto)
+    } else {
+      df <- df %>%
+        dplyr::mutate(DescricaoTexto = dplyr::if_else(is.na(DescricaoTexto),
+                                                      DescricaoTipoTexto,
+                                                      DescricaoTexto))
+    }
+  }else {
     df <- df %>%
-      dplyr::mutate(DescricaoTexto = DescricaoTipoTexto)
-  } else {
-    df <- df %>%
-      dplyr::mutate(DescricaoTexto = dplyr::if_else(is.na(DescricaoTexto),
-                                                    DescricaoTipoTexto,
-                                                    DescricaoTexto))
+      dplyr::mutate(DescricaoTexto = "")
   }
+  
   return(df)
 }
 
