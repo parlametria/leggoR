@@ -103,6 +103,34 @@ Rodar o linter:
     
     > devtools::lint()
     
+Gerar csvs de Comissões, emendas, histórico_temperatura, progresso, proposições e tramitação:
+    
+    Seta o diretório para a pasta do leggoR (Ex: setwd("~/Documents/leggoR") )
+    
+    Caso tenha feito alguma alteração no código e queira que esta alteração se reflita nos csvs gerados rode:
+    > devtools::install()
+    
+    E por fim rodar o script
+    $ Rscript fetch_updated_bills_data.R <pls_ids_filepath> <distances_folderpath> <export_path>
+    
+    Onde o <pls_ids_filepath> é o csv com os ids das pls
+    O <distances_folderpath> é a pasta onde estão as distanciâncias das emendas 
+    O <export_path> é o caminho onde vai ser escrito os csvs
+    
+Gerar csvs de pautas:
+    
+    Seta o diretório para a pasta do leggoR (Ex: setwd("~/Documents/leggoR") )
+    
+    Caso tenha feito alguma alteração no código e queira que esta alteração se reflita nos csvs gerados rode:
+    > devtools::install()
+    
+    E por fim rodar o script
+    $ Rscript fetch_agenda.R <pls_ids_filepath> <initial_date> <end_date> <export_path>
+    Onde o <pls_ids_filepath> é o csv com os ids das pls
+    O <initial_date> é a data inicial no formato yyyy-mm-dd 
+    O <end_date> é a data fim no formato yyyy-mm-dd
+    O <export_path> é o caminho onde vai ser escrito os csvs
+    
 ## Como verificar o package localmente
 
 1. É necessário garantir que todas as suas funções estão documentadas e disponíveis para isso, para isso, você precisa adicionar `@export` a documentação da função para garantir que essa função será exportada, apois isso, gere a documentação do package.
