@@ -282,7 +282,8 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
 #' @examples
 #' fix_nomes_locais(pauta_df)
 fix_nomes_locais <- function(pautas_df) {
-  pautas_locais_clean <- pautas_df %>%
+  pautas_locais_clean <-
+    pautas_df %>%
     dplyr::rowwise() %>%
     dplyr::mutate(local_clean = stringr::str_split(local, ' - ')[[1]][1]) %>%
     dplyr::mutate(local_clean = dplyr::if_else(local_clean == 'Plenário da Câmara dos Deputados' || local_clean == 'PLEN', 'Plenário', local_clean)) %>%
@@ -290,8 +291,9 @@ fix_nomes_locais <- function(pautas_df) {
     dplyr::mutate(local = local_clean) %>%
     dplyr::ungroup() %>%
     dplyr::select(-local_clean)
-
+  
   return(pautas_locais_clean)
+
 }
 
 #' @title Extrai o status da tramitação de um PL
