@@ -1,6 +1,10 @@
 ---
 title: "Temperatura da Proposição por Temas"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
 ---
 
 Neste relatório, faremos uma análise histórica da Temperatura das proposições agregadas por tema ao longo dos anos.
