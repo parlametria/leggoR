@@ -213,7 +213,8 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
     fetch_orgaos_camara() %>% 
     dplyr::filter(casa == 'Câmara dos Deputados', 
                   (tipo_orgao_id == 1 & orgao_id == 180) |
-                  (tipo_orgao_id == 2 & orgao_id > 1999))
+                  (tipo_orgao_id == 2 & orgao_id > 1999) |
+                    (tipo_orgao_id == 3 & dataFim == ""))
   
   agenda <- purrr::map_df(orgaos$orgao_id, fetch_agendas_comissoes_camara_auxiliar, initial_date, end_date)
   
