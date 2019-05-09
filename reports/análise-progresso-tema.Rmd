@@ -1,0 +1,71 @@
+---
+title: "Relatório - Histórico do progresso por tema"
+date: "`r Sys.Date()`"
+author: "Matheus Leal"
+output:  
+  rmdformats::readthedown:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: false
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+library(rmdformats)
+library(tidyverse)
+library(plotly)
+progressos <- read_csv('../data/distancias/progressos.csv')
+temas <- read_csv('../data/tabela_geral_ids_casa.csv') %>% 
+  mutate(id_ext = ifelse(is.na(id_camara), id_senado, id_camara))
+```
+
+```{r}
+
+
+data <- merge(data_by_column, temas, by.x = "id_ext", by.y = "id_ext")
+data_subset <- data[ , c("id_ext", "data_inicio")]  
+data_by_column <- data[complete.cases(data_subset), ] %>% 
+                  mutate(fase_local = ifelse(is.na(local), fase_global, paste(fase_global, local, sep=" - ")))
+agenda_nacional <- data_by_column[is.na(data_by_column$data_fim), ]  %>% 
+              filter(tema == "Agenda Nacional") %>% 
+              group_by(fase_local) %>% 
+              summarise(pls = n())
+meio_ambiente <- data_by_column[is.na(data_by_column$data_fim), ]  %>% 
+              filter(tema == "Meio Ambiente") %>% 
+              group_by(fase_local) %>% 
+              summarise(pls = n())
+```
+
+
+```{r}
+p <- plot_ly(
+    type = 'scatterpolar',
+    theta = data_is.na$fase_local,
+    fill = 'toself'
+  ) %>%
+  add_trace(
+    r = agenda_nacional$pls,
+    theta = agenda_nacional$fase_local,
+    name = 'Agenda Nacional'
+  ) %>% 
+  add_trace(
+    r = meio_ambiente$pls,
+    theta = meio_ambiente$fase_local,
+    name = 'Meio Ambiente'
+  ) %>% 
+  layout(
+    polar = list(
+      radialaxis = list(
+        visible = T,
+        range = c(0,15)
+      )
+    ),
+    showlegend = F
+  )
+
+ggplotly(p)
+
+
+```
+
