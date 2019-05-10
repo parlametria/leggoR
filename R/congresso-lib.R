@@ -17,9 +17,9 @@ detect_fase <- function(element, set) {
 #' @return Dataframe com uma nova coluna chamada fase_global
 extract_casas <- function(full_proposicao_df, full_tramitacao_df){
   eventos_fases <- congresso_env$eventos_fases
-  
+
   full_ordered_tram <- full_tramitacao_df %>% dplyr::arrange(data_hora)
-  
+
   #number delimiting events
   full_ordered_tram <- full_ordered_tram %>%
     dplyr::group_by(evento) %>%
@@ -27,22 +27,22 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df){
                                               paste0(evento,dplyr::row_number()),
                                               '')) %>%
     dplyr::ungroup()
-  
+
   #label first event when happened before the presentation
   if (full_ordered_tram[1,"evento_num"] != 'apresentacao_pl1')
     full_ordered_tram[1,"evento_num"] <- 'primeiro_evento'
-  
+
   delimiting_events <- full_ordered_tram %>% dplyr::filter(evento_num != '') %>%
     dplyr::left_join(eventos_fases, by = 'evento_num')
-  
+
   camara_ordered_tram <- tibble::tibble()
   senado_ordered_tram <- tibble::tibble()
-  
+
   if ('camara' %in% full_ordered_tram$casa) {
     camara_ordered_tram <- full_ordered_tram %>%
       dplyr::filter(casa == 'camara') %>%
       dplyr::left_join(eventos_fases, by = 'evento_num') %>%
-      tidyr::fill(fase_global) %>% 
+      tidyr::fill(fase_global) %>%
       dplyr::bind_rows(delimiting_events) %>%
       dplyr::arrange(data_hora) %>%
       dplyr::distinct() %>%
@@ -51,10 +51,10 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df){
       extract_local_global_in_camara() %>%
       dplyr::group_by(fase_global) %>%
       tidyr::fill(local) %>%
-      dplyr::ungroup()  
+      dplyr::ungroup()
   }
-  
-  
+
+
   if ('senado' %in% full_ordered_tram$casa) {
     senado_ordered_tram <- full_ordered_tram %>%
       dplyr::filter(casa == 'senado') %>%
@@ -70,7 +70,7 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df){
       tidyr::fill(local) %>%
       dplyr::ungroup()
   }
-  
+
   full_ordered_tram_fases <- dplyr::bind_rows(camara_ordered_tram,senado_ordered_tram) %>%
     dplyr::distinct() %>%
     dplyr::arrange(data_hora) %>%
@@ -88,7 +88,7 @@ generate_progresso_df <- function(tramitacao_df){
   df <-
     tramitacao_df %>%
     dplyr::arrange(data_hora, fase_global)  %>%
-    dplyr::filter(!is.na(fase_global)) %>% 
+    dplyr::filter(!is.na(fase_global)) %>%
     dplyr::mutate(end_data = dplyr::lead(data_hora)) %>%
     dplyr::group_by(
       casa, prop_id, fase_global, local, sequence = data.table::rleid(fase_global)) %>%
@@ -107,34 +107,93 @@ generate_progresso_df <- function(tramitacao_df){
     df %<>%
       dplyr::group_by(prop_id, casa, fase_global, local) %>%
       dplyr::summarise(data_inicio = min(data_inicio),
-                       data_fim = max(data_fim)) %>% 
+                       data_fim = max(data_fim)) %>%
       dplyr::arrange(data_inicio)
-  } 
-  
+  }
+
   df$data_fim[nrow(df)] <- NA
-  
+
   df %<>%
-    dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global")) %>% 
+    dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global")) %>%
     dplyr::ungroup()
-  
+
   if (sum(is.na(df$casa)) == nrow(df)) {
-    tramitacao_df <- 
+    tramitacao_df <-
       tramitacao_df %>%
-      dplyr::select(prop_id, casa) %>% 
+      dplyr::select(prop_id, casa) %>%
       head(1)
     df <-
       df %>%
       dplyr::mutate(casa = tramitacao_df$casa) %>%
       dplyr::mutate(prop_id = tramitacao_df$prop_id)
   }
-  
+
   #Adding correct casa column value for phases: Sanção/Veto and Avaliação dos Vetos.
   df <- df %>%
     dplyr::mutate(local_casa = dplyr::if_else(fase_global %in% c('Sanção/Veto','Avaliação dos Vetos'),
                                              tolower(local),
                                              casa))
-  
+
   return(df)
+}
+
+#' @title Retorna um progresso de uma mpv
+#' @description Retorna um dataframe contendo os dados sobre o progresso de uma mpv
+#' @param tramitacao_df Dataframe processessado da tramitação
+#' @return Dataframe contendo o progresso
+#' @export
+generate_progresso_df_mpv <- function(tramitacao_df) {
+  tramitacao_df <-
+    tramitacao_df %>%
+    dplyr::arrange(data_hora) %>%
+    dplyr::mutate(fase_global =
+                    dplyr::case_when(
+                      destino_tramitacao_local_nome_casa_local == "Câmara dos Deputados" ~ destino_tramitacao_local_nome_casa_local,
+                      stringr::str_detect(tolower(texto_tramitacao), "encaminhada ao senado federal") ~ "Senado Federal",
+                      stringr::str_detect(tolower(texto_tramitacao), "sancionada") ~ "Sanção Presidencial/Promulgação",
+                      dplyr::row_number() == 1 ~ "Comissão Mista")) %>%
+    tidyr::fill(fase_global)
+
+  df <-
+    tramitacao_df %>%
+    dplyr::mutate(end_data = dplyr::lead(data_hora)) %>%
+    dplyr::group_by(
+      casa, prop_id, fase_global, sequence = data.table::rleid(fase_global)) %>%
+    dplyr::summarise(
+      data_inicio = min(data_hora, na.rm = T),
+      data_fim = max(end_data, na.rm = T)) %>%
+    dplyr::select(-sequence) %>%
+    dplyr::group_by(fase_global) %>%
+    dplyr::mutate(data_fim_anterior = dplyr::lag(data_fim)) %>%
+    dplyr::select(-data_fim_anterior) %>%
+    dplyr::arrange(data_inicio)
+
+  df <- df %>%
+    dplyr::group_by(fase_global) %>%
+    dplyr::mutate(Index=1:dplyr::n()) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(fase_global = dplyr::if_else(Index == 2, "Câmara dos Deputados - Revisão", fase_global)) %>%
+    dplyr::select(-Index)
+
+  if (nrow(df) == 1) {
+    df <-
+      df %>%
+      dplyr::mutate(data_fim = NA)
+  }
+
+  df <-
+    df %>%
+    dplyr::right_join(congresso_env$fases_global_mpv, by = c("fase_global")) %>%
+    dplyr::ungroup()
+
+  df %>%
+    tidyr::fill(casa, prop_id) %>%
+    unique() %>%
+    dplyr::mutate(data_fim =
+                    dplyr::if_else(fase_global == "Sanção Presidencial/Promulgação",
+                                   data_inicio,
+                                   as.POSIXct(data_fim))) %>%
+    dplyr::arrange(data_inicio)
 }
 
 #' @title Recupera o número de linha em que houve virada_de_casa

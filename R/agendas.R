@@ -42,6 +42,7 @@ normalize_agendas <- function(agenda, house) {
     
     agenda <-
       agenda %>%
+      dplyr::mutate(data = as.POSIXct(paste(data, hora))) %>% 
       dplyr::select(c(data, sigla, codigo_materia, local_sessao))
     
   }else {
@@ -114,7 +115,6 @@ fetch_agenda_geral <- function(initial_date, end_date) {
     normalize_agendas(rcongresso::fetch_agenda_senado(initial_date), "senado") %>%
     dplyr::mutate(casa = "senado")
   agenda_comissoes_senado <- rcongresso::fetch_agenda_senado_comissoes(initial_date, end_date) %>%
-    dplyr::mutate(data = as.character(data)) %>%
     dplyr::mutate(casa = "senado")
 
   agenda_comissoes_camara <-
@@ -122,7 +122,6 @@ fetch_agenda_geral <- function(initial_date, end_date) {
       strftime(initial_date, "%d/%m/%Y"),
       strftime(end_date, "%d/%m/%Y")
       ) %>%
-    dplyr::mutate(data = as.character(data)) %>%
     dplyr::mutate(casa = "camara")
   
   rbind(
@@ -131,7 +130,8 @@ fetch_agenda_geral <- function(initial_date, end_date) {
     agenda_comissoes_camara
   ) %>%
     dplyr::arrange(data) %>%
-    dplyr::mutate_all(as.character) %>%
+    dplyr::mutate(sigla = as.character(sigla),
+                  id_proposicao = as.character(id_proposicao)) %>%
     dplyr::rename(id_ext = id_proposicao)
 }
 
@@ -221,8 +221,8 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
     tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local)
   } else {
     agenda %>%
+      dplyr::mutate(data = as.POSIXct(paste(data, hora), format = "%d/%m/%Y %H:%M")) %>% 
       dplyr::select(data, sigla, id_proposicao, local = comissao) %>%
-      dplyr::mutate(data = as.Date(data, "%d/%m/%Y")) %>%
       dplyr::arrange(data)
   }
 }

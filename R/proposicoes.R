@@ -93,11 +93,6 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
         apelido_materia,
         apelido),
       tema = tema
-      ## indexacao_materia = ifelse(
-      ##   "indexacao_materia" %in% names(.),
-      ##   indexacao_materia,
-      ##   NA),
-      ## palavras_chave = indexacao_materia,
     )
 }
 
@@ -112,6 +107,11 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
 #' fetch_proposicao_camara(2056568, "Lei para acabar zona de amortecimento", "Meio Ambiente")
 fetch_proposicao_camara <- function(id, apelido, tema) {
   autor_df <- rcongresso::fetch_autor_camara(id)
+  if("ultimoStatus.nomeEleitoral" %in% names(autor_df)) {
+    autor_df %<>%
+      dplyr::rename('nome' = 'ultimoStatus.nomeEleitoral')
+  }
+
   proposicao <- rcongresso::fetch_proposicao_camara(id) %>%
     rename_df_columns() %>%
     dplyr::transmute(prop_id = as.integer(id),
@@ -121,9 +121,34 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
                      ementa = paste(ementa,ementa_detalhada),
                      data_apresentacao = lubridate::ymd_hm(stringr::str_replace(data_apresentacao,'T',' ')),
                      casa = 'camara',
-                     casa_origem = ifelse(autor_df %>% head(1) %>% dplyr::select(codTipo) == 40000,"senado","camara"),
-                     autor_nome = autor_df$nome %>% tail(1),
+                     casa_origem = ifelse(autor_df %>% head(1) %>%
+                                            dplyr::select(codTipo) == 40000,"senado","camara"),
+                     autor_nome = paste(unlist(t(autor_df$nome)),collapse="+"),
+                     autor_uf = ifelse(length(autor_df) > 1 && autor_df$codTipo == 10000,
+                                       get_uf_autores(autor_df),
+                                       NA),
+                     autor_partido = ifelse(length(autor_df) > 1 && autor_df$codTipo == 10000,
+                                            get_partido_autores(autor_df),
+                                            NA),
                      apelido_materia = apelido,
                      tema = tema)
   proposicao
+}
+
+#' @title Concatena siglas de unidade federativa de cada autor da proposição
+#' @description Retorna unidade federativa dos autores
+#' @param autor_df Autores da proposição
+#' @return character
+get_uf_autores <- function(autor_df) {
+  autores_uf <- (paste(unlist(t(autor_df$ultimoStatus.siglaUf)),collapse="+"))
+  return(autores_uf)
+}
+
+#' @title Concatena siglas de partido de cada autor da proposição
+#' @description Retorna partido dos autores
+#' @param autor_df Autores da proposição
+#' @return character
+get_partido_autores <- function(autor_df) {
+  autores_partido <- (paste(unlist(t(autor_df$ultimoStatus.siglaPartido)),collapse="+"))
+  return(autores_partido)
 }
