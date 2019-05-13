@@ -21,31 +21,30 @@ fetch_orgaos_camara <- function() {
 #' @importFrom RCurl getURL
 #' @importFrom dplyr %>%
 fetch_orgaos_senado <- function() {
-  url <- 'http://legis.senado.leg.br/dadosabertos/dados/'
+  url_base <- 'https://www.congressonacional.leg.br/dados/comissao/lista/'
 
-  url_comissoes_permanentes <- RCurl::getURL(paste0(url, 'ComissoesPermanentes.xml'))
+  url_comissoes_permanentes <- RCurl::getURL(paste0(url_base, 'permanente'))
+  
+  url_comissoes_especiais <- RCurl::getURL(paste0(url_base, 'mistaEspecial'))
 
-  url_comissoes_temporarias <- RCurl::getURL(paste0(url, 'ComissoesTemporarias.xml'))
-
+  url_comissoes_mistas <- RCurl::getURL(paste0(url_base, 'mistas'))
+  
   comissoes_permanentes_df <-
     XML::xmlToDataFrame(nodes = XML::getNodeSet(
       XML::xmlParse(url_comissoes_permanentes),
       "//Colegiado")) %>%
     dplyr::select(sigla = SiglaColegiado)
 
-  comissoes_temporarias_df <-
-    XML::xmlToDataFrame(nodes = XML::getNodeSet(
-      XML::xmlParse(url_comissoes_temporarias),
-      "//Colegiado")) %>%
-    dplyr::select(sigla = SiglaColegiado)
-
-  url <- 'https://www.congressonacional.leg.br/dados/comissao/lista/'
-
-  url_comissoes_mistas <- RCurl::getURL(paste0(url, 'mistas'))
-
+  #comissoes_temporarias_df <-
+  #  XML::xmlToDataFrame(nodes = XML::getNodeSet(
+  #    XML::xmlParse(url_comissoes_temporarias),
+  #    "//Colegiado")) %>%
+  #  dplyr::select(sigla = SiglaColegiado)
+  
   comissoes_mistas_df <-
-    XML::xmlToDataFrame(nodes = XML::getNodeSet(XML::xmlParse(url_comissoes_mistas),
-                                                "//IdentificacaoComissao")) %>%
+    XML::xmlToDataFrame(nodes = XML::getNodeSet(
+      XML::xmlParse(url_comissoes_mistas),
+      "//IdentificacaoComissao")) %>%
     dplyr::select(sigla = SiglaComissao)
 
   df <-
