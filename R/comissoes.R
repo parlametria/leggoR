@@ -84,14 +84,14 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao, orgaos_camara) {
 #' fetch_composicao_comissao("CCJ",'senado')
 #' @export
 fetch_composicao_comissao <- function(sigla, casa, orgaos_camara) {
-  print(paste0('Baixando composição da comissão ', sigla, ' em ', casa))
+  print(paste0('Baixando composição da comissão ', sigla, ' no(a) ', casa))
   casa <- tolower(casa)
 
   if (casa == 'camara') {
     comissao <- 
       fetch_composicao_comissoes_camara(sigla, orgaos_camara) 
       
-  } else if (casa == 'senado') {
+  } else if (casa == 'senado' || casa == 'congresso_nacional') {
     new_name <- c("cargo", "id", "partido", "uf", "situacao", "nome", "foto", "sigla", "casa")
     comissao <-
       fetch_composicao_comissoes_senado(sigla) %>%
@@ -187,24 +187,29 @@ fetch_composicao_comissoes_senado <- function(sigla) {
 #' @importFrom dplyr %>%
 #' @export
 fetch_all_composicao_comissao <- function() {
-  siglas_comissoes <- 
-    fetch_orgaos_camara() %>% 
+  orgaos_camara <- fetch_orgaos_camara()
+  
+  siglas_camara <- 
+    orgaos_camara %>% 
     dplyr::filter(tipo_orgao_id %in% c(2)) %>%
     dplyr::mutate_all(as.character) %>%
     dplyr::select(sigla) %>%
     dplyr::mutate(casa = 'camara',
                   sigla = trimws(sigla)) %>%
     dplyr::filter(sigla != 'PLEN')
-
-  siglas_comissoes <-
-    rbind(siglas_comissoes,
-          fetch_orgaos_senado() %>%
-            dplyr::mutate(casa = 'senado',
-                          sigla = stringr::str_replace_all(sigla, " ", ""))) %>%
-    dplyr::distinct()
   
-  orgaos_camara <- fetch_orgaos_camara()
+  siglas_senado <- fetch_orgaos_senado() %>% 
+    dplyr::mutate(casa = 'senado', 
+                  sigla = stringr::str_replace_all(sigla, " ", ""))
+  
+  siglas_cong_nacional <- fetch_orgaos_congresso_nacional() %>%
+    dplyr::mutate(casa = 'congresso_nacional', 
+                  sigla = stringr::str_replace_all(sigla, " ", ""))
 
+  siglas_comissoes <- rbind(siglas_camara, siglas_senado, siglas_cong_nacional) %>%
+    dplyr::distinct() %>%
+    dplyr::arrange(casa,sigla)
+  
   composicao_comissoes <-
     purrr::map2_df(siglas_comissoes$sigla, siglas_comissoes$casa, ~ fetch_composicao_comissao(.x, .y, orgaos_camara)) %>%
     dplyr::mutate(partido = trimws(partido))
