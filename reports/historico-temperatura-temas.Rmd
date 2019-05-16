@@ -15,7 +15,7 @@ library(magrittr)
 temperatura_props <- readr::read_csv('../data/hists_temperatura.csv')
 proposicoes <- readr::read_csv('../data/proposicoes.csv')
 
-temperatura_props_temas <- inner_join(temperatura_props,temas_props,by = "id_ext") %>%
+temperatura_props_temas <- inner_join(temperatura_props,proposicoes,by = c("id_ext","casa")) %>%
   tidyr::separate_rows(tema,sep=';') %>%
   mutate(semana = lubridate::floor_date(periodo, "weeks") + lubridate::days(1),
          ano = lubridate::year(periodo)) %>%
