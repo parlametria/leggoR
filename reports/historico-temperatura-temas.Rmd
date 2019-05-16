@@ -12,8 +12,8 @@ Neste relatório, faremos uma análise histórica da Temperatura das proposiçõ
 ```{r}
 library(dplyr)
 library(magrittr)
-temperatura_props <- readr::read_csv('/local/tarciso/workspace/leggoR/data/hists_temperatura.csv')
-proposicoes <- readr::read_csv('/local/tarciso/workspace/leggoR/data/proposicoes.csv')
+temperatura_props <- readr::read_csv('../data/hists_temperatura.csv')
+proposicoes <- readr::read_csv('../data/proposicoes.csv')
 
 temperatura_props_temas <- inner_join(temperatura_props,temas_props,by = "id_ext") %>%
   tidyr::separate_rows(tema,sep=';') %>%
@@ -57,6 +57,7 @@ temperatura_props_temas %>%
   filter((semana >= lubridate::ymd('2019-03-25')) & (semana <= lubridate::ymd('2019-04-15'))) %>%
   select(ano,semana,id_ext,casa,temperatura_recente)
 ```
+
 
 Agora mostrando todos os temas.
 
