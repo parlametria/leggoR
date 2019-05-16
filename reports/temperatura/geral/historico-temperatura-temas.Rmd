@@ -12,10 +12,13 @@ Neste relatório, faremos uma análise histórica da Temperatura das proposiçõ
 ```{r}
 library(dplyr)
 library(magrittr)
-temperatura_props <- readr::read_csv('../data/hists_temperatura.csv')
-proposicoes <- readr::read_csv('../data/proposicoes.csv')
+temperatura_props <- readr::read_csv('../../../data/hists_temperatura.csv')
+proposicoes <- readr::read_csv('../../../data/proposicoes.csv')
+temas_props <- proposicoes %>% 
+  dplyr::mutate(nome_pl = paste(sigla_tipo, paste(numero, lubridate::year(data_apresentacao),sep='/'))) %>%
+  dplyr::select(id_ext, nome_pl, apelido, tema)
 
-temperatura_props_temas <- inner_join(temperatura_props,proposicoes,by = c("id_ext","casa")) %>%
+temperatura_props_temas <- inner_join(temperatura_props,temas_props,by = "id_ext") %>%
   tidyr::separate_rows(tema,sep=';') %>%
   mutate(semana = lubridate::floor_date(periodo, "weeks") + lubridate::days(1),
          ano = lubridate::year(periodo)) %>%
@@ -55,7 +58,9 @@ PLs responsáveis pelo pico de temperatura entre 25/03 e 15/04:
 ```{r}
 temperatura_props_temas %>%
   filter((semana >= lubridate::ymd('2019-03-25')) & (semana <= lubridate::ymd('2019-04-15'))) %>%
-  select(ano,semana,id_ext,casa,temperatura_recente)
+  filter(temperatura_recente > 0) %>%
+  select(ano,semana,tema,casa,nome_pl,temperatura_recente) %>%
+  arrange(ano,semana,desc(temperatura_recente))
 ```
 
 
@@ -80,7 +85,9 @@ PLs responsáveis pelo pico de temperatura entre 25/03 e 15/04:
 temperatura_props_temas %>%
   filter((tema == 'Integridade e Transparência') &
            ((semana >= lubridate::ymd('2019-03-25')) & (semana <= lubridate::ymd('2019-04-15')))) %>%
-  select(ano,semana,tema,id_ext,casa,temperatura_recente)
+  filter(temperatura_recente > 0) %>%
+  select(ano,semana,tema,casa,nome_pl,temperatura_recente) %>%
+  arrange(ano,semana,desc(temperatura_recente))
 ```
 
 Por fim, quebrando por tema.
@@ -94,7 +101,9 @@ p <- temperatura_temas %>%
   ggplot2::ylab("Temperatura") +
   ggplot2::theme_minimal() +
   ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
-  ggplot2::facet_grid(rows = vars(tema))
+  ggplot2::facet_grid(rows = vars(tema)) + 
+  ggplot2::theme(strip.background = element_blank(),
+                 strip.text.y = element_blank())
 
 ggplotly(p)
 
@@ -127,7 +136,9 @@ p <- temperatura_temas %>%
   ggplot2::ylab("Temperatura") +
   ggplot2::theme_minimal() +
   ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
-  ggplot2::facet_grid(rows = vars(tema))
+  ggplot2::facet_grid(rows = vars(tema)) + 
+  ggplot2::theme(strip.background = element_blank(),
+                 strip.text.y = element_blank())
 
 ggplotly(p)
 
@@ -160,7 +171,9 @@ p <- temperatura_temas %>%
   ggplot2::ylab("Temperatura") +
   ggplot2::theme_minimal() +
   ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
-  ggplot2::facet_grid(rows = vars(tema))
+  ggplot2::facet_grid(rows = vars(tema)) + 
+  ggplot2::theme(strip.background = element_blank(),
+                 strip.text.y = element_blank())
 
 ggplotly(p)
 
@@ -193,7 +206,9 @@ p <- temperatura_temas %>%
   ggplot2::ylab("Temperatura") +
   ggplot2::theme_minimal() +
   ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
-  ggplot2::facet_grid(rows = vars(tema))
+  ggplot2::facet_grid(rows = vars(tema)) + 
+  ggplot2::theme(strip.background = element_blank(),
+                 strip.text.y = element_blank())
 
 ggplotly(p)
 
