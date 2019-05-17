@@ -1,0 +1,85 @@
+---
+title: "Temperatura Semanal por Temas"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+Neste relatório, faremos uma análise da Temperatura da semana de 06-10/05/2019.
+
+```{r}
+library(dplyr)
+library(magrittr)
+temperatura_props <- readr::read_csv('../../data/hists_temperatura.csv')
+proposicoes <- readr::read_csv('../../data/proposicoes.csv')
+temas_props <- proposicoes %>% 
+  dplyr::mutate(nome_pl = paste(sigla_tipo, paste(numero, lubridate::year(data_apresentacao),sep='/'))) %>%
+  dplyr::select(id_ext, nome_pl, apelido, tema)
+
+temperatura_props_temas <- inner_join(temperatura_props,temas_props,by = "id_ext") %>%
+  tidyr::separate_rows(tema,sep=';') %>%
+  mutate(semana = lubridate::floor_date(periodo, "weeks") + lubridate::days(1),
+         ano = lubridate::year(periodo)) %>%
+  arrange(semana,ano,tema,desc(temperatura_recente))
+
+temperatura_temas <- temperatura_props_temas %>%
+  group_by(tema,semana,ano) %>%
+  summarise(num_obs = n(),
+            min_temp = min(temperatura_recente),
+            max_temp = max(temperatura_recente),
+            median_temp = mean(temperatura_recente),
+            mean_temp = median(temperatura_recente),
+            std_temp = sd(temperatura_recente),
+            var_temp = var(temperatura_recente))
+```
+
+Vamos analisar graficamente a evolução da temperatura por tema nas últimas duas semanas.
+Primeiramente, uma análise geral, com a temperatura média por semana.
+
+```{r}
+library(ggplot2)
+library(plotly)
+
+semanas_destaque <- data.frame(semana = lubridate::ymd(c('2019-04-29','2019-05-06')
+                                                       , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+
+temperatura_semanas_destaque <- temperatura_temas %>%
+  inner_join(semanas_destaque, by = c("semana"))
+
+p <- temperatura_semanas_destaque %>% 
+  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp)) +
+  ggplot2::geom_col(position="dodge") +
+  ggplot2::xlab("Tempo") + 
+  ggplot2::ylab("Temperatura") +
+  ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
+  ggplot2::theme_minimal()
+
+ggplotly(p)
+```
+
+PLs responsáveis pelo pico de temperatura entre 25/03 e 08/04:
+```{r}
+
+temperatura_props_semanas_destaque <- temperatura_props_temas %>%
+  inner_join(semanas_destaque, by=c("semana"))
+
+temperatura_props_temas %>%
+  inner_join(semanas_destaque, by=c("semana")) %>%
+  filter(temperatura_recente > 0) %>%
+  select(ano,semana,tema,casa,nome_pl,temperatura_recente) %>%
+  arrange(ano,semana,desc(temperatura_recente))
+```
+
+Agora vamos repetir a mesma análise para todos os temas.
+
+## Agenda Nacional
+
+## Direitos Humanos
+
+## Educação
+
+## Integridade e Transparência
+
+## Meio Ambiente
