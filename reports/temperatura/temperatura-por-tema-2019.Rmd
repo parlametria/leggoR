@@ -12,8 +12,8 @@ Neste relatório, faremos uma análise histórica da Temperatura das proposiçõ
 ```{r}
 library(dplyr)
 library(magrittr)
-temperatura_props <- readr::read_csv('../../../data/hists_temperatura.csv')
-proposicoes <- readr::read_csv('../../../data/proposicoes.csv')
+temperatura_props <- readr::read_csv('../../data/hists_temperatura.csv')
+proposicoes <- readr::read_csv('../../data/proposicoes.csv')
 temas_props <- proposicoes %>% 
   dplyr::mutate(nome_pl = paste(sigla_tipo, paste(numero, lubridate::year(data_apresentacao),sep='/'))) %>%
   dplyr::select(id_ext, nome_pl, apelido, tema)
