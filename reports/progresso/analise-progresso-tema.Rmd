@@ -16,8 +16,8 @@ library(rmdformats)
 library(tidyverse)
 library(plotly)
 library(lubridate)
-progressos <- read_csv('../data/distancias/progressos.csv')
-temas <- read_csv('../data/tabela_geral_ids_casa.csv') %>% 
+progressos <- read_csv('../../data/distancias/progressos.csv')
+temas <- read_csv('../../data/tabela_geral_ids_casa.csv') %>% 
   mutate(id_ext = ifelse(is.na(id_camara), id_senado, id_camara))
 ```
 
@@ -27,7 +27,9 @@ temas <- read_csv('../data/tabela_geral_ids_casa.csv') %>%
 data <- merge(progressos, temas, by.x = "id_ext", by.y = "id_ext")
 data_subset <- data[ , c("id_ext", "data_inicio")]  
 data_by_column <- data[complete.cases(data_subset), ] %>% 
-                  mutate(fase_local = ifelse(is.na(local), fase_global, paste(fase_global, local, sep=" - ")))
+                  mutate(fase_local = ifelse(is.na(local), 
+                                             fase_global, 
+                                             paste(fase_global, local, sep=" - ")))
 
 agenda_nacional <- data_by_column[is.na(data_by_column$data_fim), ]  %>% 
               filter(tema == "Agenda Nacional") %>% 
@@ -82,16 +84,16 @@ p <- plot_ly(
     showlegend = F
   )
 
-p2 <- plot_ly(
+p2 <- plotly::plot_ly(
     type = 'scatterpolar',
     fill = 'toself'
   ) %>%
-  add_trace(
+  plotly::add_trace(
     r = meio_ambiente$pls,
     theta = meio_ambiente$fase_local,
     name = 'Agenda Nacional'
   )  %>% 
-  layout(
+  plotly::layout(
     polar = list(
       radialaxis = list(
         visible = T,
@@ -101,10 +103,9 @@ p2 <- plot_ly(
     showlegend = F
   )
 
-ggplotly(p0)
-ggplotly(p)
-ggplotly(p2)
-
+plotly::ggplotly(p0)
+plotly::ggplotly(p)
+plotly::ggplotly(p2)
 ```
 
 ```{r}
@@ -113,11 +114,22 @@ data_subset <- data[ , c("id_ext", "data_inicio", "data_fim", "tema")]
 progresso_data <- data_subset %>% 
   rowwise() %>% 
   filter(is.na(data_fim)) %>% 
-  mutate(semanas = time_length(interval(ymd(unlist(strsplit(as.character(data_inicio), " "))[1]), ymd(hoje)), "week")) %>%          filter(!is.na(data_inicio))
+  mutate(semanas = lubridate::time_length(lubridate::interval(
+                                          lubridate::ymd(
+                                          unlist(
+                                          strsplit(as.character(data_inicio), " "))[1]), 
+                                          lubridate::ymd(hoje)), "week")) %>% 
+  filter(!is.na(data_inicio))
 
-mediana_por_tema <- progresso_data %>% group_by(tema) %>% summarise(mediana = median(semanas))
+mediana_por_tema <- progresso_data %>% 
+                    group_by(tema) %>% 
+                    summarise(mediana = median(semanas))
 
-p <- ggplot2::diamonds %>% plot_ly(x = ~mediana_por_tema$tema, y = ~mediana_por_tema$mediana)
+p <- ggplot2::diamonds %>% 
+  plot_ly(
+  x = ~mediana_por_tema$tema, 
+  y = ~mediana_por_tema$mediana)
+
 ggplotly(p)
 ```
 ```{r}
@@ -127,12 +139,21 @@ boxplot(progresso_data$semanas)
 ```{r}
 data_subset <- data[ , c("id_ext", "data_inicio", "data_fim", "tema", "fase_global", "apelido")]
 data_by_column <- data[complete.cases(data_subset), ] %>% 
-                  mutate(fase_local = ifelse(is.na(local), fase_global, paste(fase_global, local, sep=" - ")))
+                  mutate(fase_local = ifelse(is.na(local), 
+                                             fase_global, 
+                                             paste(fase_global, 
+                                                   local, 
+                                                   sep=" - ")))
 progresso_data2 <- data_subset %>% 
   rowwise() %>% 
-  mutate(semanas = time_length(interval(ymd(unlist(strsplit(as.character(data_inicio), " "))[1]), ymd(hoje)), "week")) %>%          filter(!is.na(data_inicio))
+  mutate(semanas = lubridate::time_length(
+                   lubridate::interval(
+                   lubridate::ymd(unlist(strsplit(as.character(data_inicio), " "))[1]), 
+                   lubridate::ymd(hoje)), "week")) %>%           
+  filter(!is.na(data_inicio))
+
 p <- progresso_data2 %>%
-  plot_ly(
+  plotly::plot_ly(
     x = ~fase_global, 
     y = ~apelido, 
     color = ~tema, 
@@ -142,6 +163,6 @@ p <- progresso_data2 %>%
     type = 'scatter',
     mode = 'markers'
   )
-ggplotly(p)
+plotly::ggplotly(p)
 ```
 
