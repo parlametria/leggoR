@@ -98,6 +98,9 @@ fetch_composicao_comissao <- function(sigla, casa, orgaos_camara) {
       dplyr::mutate(sigla = strsplit(sigla, "/")[[1]][1],
                     casa = casa)
     names(comissao) <- new_name
+    comissao <-
+      comissao %>% 
+      dplyr::filter(!is.na(id))
   } else {
     return('Parâmetro "casa" não identificado.')
   }
