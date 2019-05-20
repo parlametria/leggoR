@@ -179,7 +179,11 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
     proposicoes <- eventos$proposicoes
     eventos <-
       eventos %>%
-      dplyr::select(-c(num_reuniao, objeto, proposicoes)) %>%
+      dplyr::select(-c(num_reuniao, objeto, proposicoes)) 
+    
+    eventos$local[eventos$local == "list()"] <- "Local não informado"
+    
+    eventos <- eventos %>%
       lapply(unlist) %>%
       as.data.frame() %>%
       tibble::add_column(proposicoes)
@@ -243,3 +247,4 @@ junta_agendas <- function(initial_date, end_date) {
   
   materia <- purrr::map2_df(semanas$value, semanas$fim_semana, ~ fetch_agenda_geral(.x, .y))
 }
+
