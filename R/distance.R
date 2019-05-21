@@ -11,20 +11,26 @@ read_distances_files <- function(distancias_datapath) {
   return()
 }
 
-#' @title Lê todos os arquivos csv de uma pasta e os retorna em um único csv
-#' @description Recebe um datapath, lê todos os arquivos no formato csv e os une em um csv único
+#' @title Padroniza tabela com distâncias das emendas
+#' @description Lê o arquivo jus_all_dist.csv gerado pelo script inter_emd_int.py
+#' do leggo-content
 #' @param distancias_datapath Caminho da pasta contendo os arquivos
-#' @return Dataframe contendo todas a união de todos os csv's do caminho informado
+#' @param write_datapath Caminho para a pasta de escrita
+#' @return Dataframe contendo todas a tabela de emendas formatada
 #' @examples
-#' read_distances_files(here::here("data/distancias/"))
-formata_tabela_distances_to_emendas <- function(distancias_df, distancias_datapath, nome_arquivos) {
-  distancias_df <- 
-    distancias_df %>% 
-    dplyr::mutate(array = strsplit(comparacao, "_")) %>% 
-    dplyr::mutate(CdProposition = sapply(array, head, 1),
-                  NumberItemProposition = sapply(array, tail, 1)) %>% 
-    dplyr::select(CdProposition, NumberItemProposition, Distance = distancia) %>% 
-    readr::write_csv(paste0(distancias_datapath, nome_arquivos))
+#' formata_tabela_distances_to_emendas(here::here("../leggo-content/util/data/jus_all_dist"), "data/distancias/")
+formata_tabela_distances_to_emendas <- function(distancias_datapath, write_datapath) {
+  files <- list.files(path=distancias_datapath, pattern="*.csv", full.names=TRUE, recursive=FALSE)
+  lapply(files, function(x) {
+    distancias_df <-
+      readr::read_csv(as.character(x)) %>% 
+        dplyr::mutate(array = strsplit(comparacao, "_")) %>% 
+        dplyr::mutate(CdProposition = sapply(array, head, 1),
+                      NumberItemProposition = sapply(array, tail, 1)) %>% 
+        dplyr::select(CdProposition, NumberItemProposition, Distance = distancia)
+        print("oi")
+        readr::write_csv(distancias_df, paste0(write_datapath, sapply(strsplit(as.character(x), "/"), tail, 1)))
+  })
 }
 
 #' @title Adiciona a distância às emendas
