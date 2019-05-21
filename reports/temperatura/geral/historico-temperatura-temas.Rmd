@@ -1,0 +1,215 @@
+---
+title: "Temperatura da Proposição por Temas"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+Neste relatório, faremos uma análise histórica da Temperatura das proposições agregadas por tema ao longo dos anos.
+
+```{r}
+library(dplyr)
+library(magrittr)
+temperatura_props <- readr::read_csv('../../../data/hists_temperatura.csv')
+proposicoes <- readr::read_csv('../../../data/proposicoes.csv')
+temas_props <- proposicoes %>% 
+  dplyr::mutate(nome_pl = paste(sigla_tipo, paste(numero, lubridate::year(data_apresentacao),sep='/'))) %>%
+  dplyr::select(id_ext, nome_pl, apelido, tema)
+
+temperatura_props_temas <- inner_join(temperatura_props,temas_props,by = "id_ext") %>%
+  tidyr::separate_rows(tema,sep=';') %>%
+  mutate(semana = lubridate::floor_date(periodo, "weeks") + lubridate::days(1),
+         ano = lubridate::year(periodo)) %>%
+  arrange(semana,ano,tema,desc(temperatura_recente))
+
+temperatura_temas <- temperatura_props_temas %>%
+  group_by(tema,semana,ano) %>%
+  summarise(num_obs = n(),
+            min_temp = min(temperatura_recente),
+            max_temp = max(temperatura_recente),
+            median_temp = mean(temperatura_recente),
+            mean_temp = median(temperatura_recente),
+            std_temp = sd(temperatura_recente),
+            var_temp = var(temperatura_recente))
+```
+
+Vamos analisar graficamente a evolução da temperatura por tema, começando pelo ano 2019.
+Primeiramente, uma análise geral, com a temperatura média por semana.
+
+```{r}
+library(ggplot2)
+library(plotly)
+
+p <- temperatura_temas %>% 
+  dplyr::filter(ano == 2019) %>%
+  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp)) +
+  ggplot2::geom_col(position="dodge") +
+  ggplot2::xlab("Tempo") + 
+  ggplot2::ylab("Temperatura") +
+  ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
+  ggplot2::theme_minimal()
+
+ggplotly(p)
+```
+
+PLs responsáveis pelo pico de temperatura entre 25/03 e 15/04:
+```{r}
+temperatura_props_temas %>%
+  filter((semana >= lubridate::ymd('2019-03-25')) & (semana <= lubridate::ymd('2019-04-15'))) %>%
+  filter(temperatura_recente > 0) %>%
+  select(ano,semana,tema,casa,nome_pl,temperatura_recente) %>%
+  arrange(ano,semana,desc(temperatura_recente))
+```
+
+
+Agora mostrando todos os temas.
+
+```{r}
+p <- temperatura_temas %>% 
+  dplyr::filter(semana >= lubridate::ymd('2019-01-01')) %>%
+  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp, colour=tema)) +
+  ggplot2::geom_line() +
+  ggplot2::xlab("Tempo") + 
+  ggplot2::ylab("Temperatura") +
+  ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
+  ggplot2::theme_minimal()
+
+ggplotly(p)
+
+```
+
+PLs responsáveis pelo pico de temperatura entre 25/03 e 15/04:
+```{r}
+temperatura_props_temas %>%
+  filter((tema == 'Integridade e Transparência') &
+           ((semana >= lubridate::ymd('2019-03-25')) & (semana <= lubridate::ymd('2019-04-15')))) %>%
+  filter(temperatura_recente > 0) %>%
+  select(ano,semana,tema,casa,nome_pl,temperatura_recente) %>%
+  arrange(ano,semana,desc(temperatura_recente))
+```
+
+Por fim, quebrando por tema.
+
+```{r}
+p <- temperatura_temas %>% 
+  dplyr::filter(ano == 2019) %>%
+  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp, fill=tema)) +
+  ggplot2::geom_bar(stat="identity", position="dodge") +
+  ggplot2::xlab("Tempo") + 
+  ggplot2::ylab("Temperatura") +
+  ggplot2::theme_minimal() +
+  ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
+  ggplot2::facet_grid(rows = vars(tema)) + 
+  ggplot2::theme(strip.background = element_blank(),
+                 strip.text.y = element_blank())
+
+ggplotly(p)
+
+```
+
+Temperatura Geral em 2018.
+
+```{r}
+p <- temperatura_temas %>% 
+  dplyr::filter(ano == 2018) %>%
+  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp)) +
+  ggplot2::geom_col(position="dodge") +
+  ggplot2::xlab("Tempo") + 
+  ggplot2::ylab("Temperatura") +
+  ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
+  ggplot2::theme_minimal()
+
+ggplotly(p)
+
+```
+
+Repetindo a análise separada por tema para o ano de 2018.
+
+```{r}
+p <- temperatura_temas %>% 
+  dplyr::filter(ano == 2018) %>%
+  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp, fill=tema)) +
+  ggplot2::geom_bar(stat="identity", position="dodge") +
+  ggplot2::xlab("Tempo") + 
+  ggplot2::ylab("Temperatura") +
+  ggplot2::theme_minimal() +
+  ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
+  ggplot2::facet_grid(rows = vars(tema)) + 
+  ggplot2::theme(strip.background = element_blank(),
+                 strip.text.y = element_blank())
+
+ggplotly(p)
+
+```
+
+Temperatura Geral em 2017.
+
+```{r}
+p <- temperatura_temas %>% 
+  dplyr::filter(ano == 2017) %>%
+  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp)) +
+  ggplot2::geom_col(position="dodge") +
+  ggplot2::xlab("Tempo") + 
+  ggplot2::ylab("Temperatura") +
+  ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
+  ggplot2::theme_minimal()
+
+ggplotly(p)
+
+```
+
+Repetindo a análise separada por tema para o ano de 2017.
+
+```{r}
+p <- temperatura_temas %>% 
+  dplyr::filter(ano == 2017) %>%
+  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp, fill=tema)) +
+  ggplot2::geom_bar(stat="identity", position="dodge") +
+  ggplot2::xlab("Tempo") + 
+  ggplot2::ylab("Temperatura") +
+  ggplot2::theme_minimal() +
+  ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
+  ggplot2::facet_grid(rows = vars(tema)) + 
+  ggplot2::theme(strip.background = element_blank(),
+                 strip.text.y = element_blank())
+
+ggplotly(p)
+
+```
+
+Temperatura Geral na legislatura anterior (2015-2017).
+
+```{r}
+p <- temperatura_temas %>% 
+  dplyr::filter((ano >= 2015) && (ano <= 2018)) %>%
+  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp)) +
+  ggplot2::geom_col(position="dodge") +
+  ggplot2::xlab("Tempo") + 
+  ggplot2::ylab("Temperatura") +
+  ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
+  ggplot2::theme_minimal()
+
+ggplotly(p)
+
+```
+
+Repetindo a análise separada por tema para a legislatura anterior (2015-2017).
+
+```{r}
+p <- temperatura_temas %>% 
+  dplyr::filter((ano >= 2015) && (ano <= 2018)) %>%
+  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp, fill=tema)) +
+  ggplot2::geom_bar(stat="identity", position="dodge") +
+  ggplot2::xlab("Tempo") + 
+  ggplot2::ylab("Temperatura") +
+  ggplot2::theme_minimal() +
+  ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
+  ggplot2::facet_grid(rows = vars(tema)) + 
+  ggplot2::theme(strip.background = element_blank(),
+                 strip.text.y = element_blank())
+
+ggplotly(p)
+
+```
