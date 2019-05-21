@@ -138,8 +138,6 @@ evolucao_semanal_temperatura_an
 Graficamente:
 
 ```{r}
-evolucao_semanal_temperatura_an
-
 plot_temperatura_pls_agenda_nacional <- evolucao_semanal_temperatura_an %>%
   mutate(name = forcats::fct_reorder(nome_pl, desc(evolucao_temp_recente))) %>%
   ggplot(aes(x=name, y=evolucao_temp_recente)) +
