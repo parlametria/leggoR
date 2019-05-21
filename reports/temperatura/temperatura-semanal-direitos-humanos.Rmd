@@ -177,7 +177,7 @@ eventos_resumidos_semana_pec_29
 
 Texto para o report: 
 
-Na semana passada (06-10/05/2019), o tema de Direitos Humanos houve queda de temperatura de `r abs(evolucao_temp_total_dh)` unidades, indo de  `r temp_total_semana_passada_dh` para `r temp_total_semana_atual_dh`, como pode ser visto no gráfico abaixo `r ggplotly(plot_temperatura_dh)`.
+Na semana passada (06-10/05/2019), o tema Direitos Humanos teve queda de temperatura de `r abs(evolucao_temp_total_dh)` unidades, indo de  `r temp_total_semana_passada_dh` para `r temp_total_semana_atual_dh`, como pode ser visto no gráfico abaixo `r ggplotly(plot_temperatura_dh)`.
 
 As proposições em atividade nesse período foram, em ordem decrescente de aumento da temperatura:
 `r ggplotly(plot_temperatura_pls_dh)`.
