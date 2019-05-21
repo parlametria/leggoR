@@ -11,6 +11,22 @@ read_distances_files <- function(distancias_datapath) {
   return()
 }
 
+#' @title Lê todos os arquivos csv de uma pasta e os retorna em um único csv
+#' @description Recebe um datapath, lê todos os arquivos no formato csv e os une em um csv único
+#' @param distancias_datapath Caminho da pasta contendo os arquivos
+#' @return Dataframe contendo todas a união de todos os csv's do caminho informado
+#' @examples
+#' read_distances_files(here::here("data/distancias/"))
+formata_tabela_distances_to_emendas <- function(distancias_df, distancias_datapath, nome_arquivos) {
+  distancias_df <- 
+    distancias_df %>% 
+    dplyr::mutate(array = strsplit(comparacao, "_")) %>% 
+    dplyr::mutate(CdProposition = sapply(array, head, 1),
+                  NumberItemProposition = sapply(array, tail, 1)) %>% 
+    dplyr::select(CdProposition, NumberItemProposition, Distance = distancia) %>% 
+    readr::write_csv(paste0(distancias_datapath, nome_arquivos))
+}
+
 #' @title Adiciona a distância às emendas
 #' @description Recebe o dataframe de emendas e o caminho para os arquivos csv das distancias calculadas
 #' @param emendas_df Dataframe das emendas das proposições
