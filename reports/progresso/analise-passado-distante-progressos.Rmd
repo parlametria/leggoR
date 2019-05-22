@@ -1,0 +1,176 @@
+---
+title: "Histórico dos progressos"
+author: "Matheus Leal"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::readthedown:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: false
+    highlight: tango
+---
+
+```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, paged.print=FALSE, results="asis"}
+library(tidyverse)
+library(lubridate)
+library(knitr)
+library(plotly)
+opts_chunk$set(echo = TRUE,
+	             cache = FALSE,
+               prompt = FALSE,
+               tidy = FALSE,
+               comment = NA,
+               message = FALSE,
+               warning = FALSE)
+```
+
+Nesta análise, vamos explorar o histórico do progresso das proposições ao longo do tempo.
+
+```{r}
+progressos <- readr::read_csv('../../data/distancias/progressos.csv')
+temas <- readr::read_csv('../../data/tabela_geral_ids_casa.csv') %>% 
+  mutate(id_ext = ifelse(is.na(id_camara), id_senado, id_camara))
+progresso_temas <- merge(progressos, temas, by.x = "id_ext", by.y = "id_ext")
+```
+
+```{r}
+progresso_temas <- progresso_temas %>% 
+                   mutate(fase_local = ifelse(is.na(local), fase_global, paste(fase_global, local, sep=" - ")))
+data_subset <- progresso_temas[ , c("id_ext", "data_inicio", "data_fim", "tema", "apelido", "fase_local")]
+```
+
+Primeiro, vejamos quais as pls em tramitação, seu tema, em qual fase se encontram e a quanto tempo estão nessa fase.
+
+```{r}
+hoje <-Sys.Date()
+progresso_data <- data_subset %>% 
+                  rowwise() %>% 
+                  filter(is.na(data_fim)) %>% select(-data_fim) %>% 
+                  mutate(semanas_decorridas = lubridate::time_length(
+                                              lubridate::interval(
+                                              lubridate::ymd(unlist(strsplit(as.character(data_inicio), " "))[1]), 
+                                              lubridate::ymd(hoje)), "week")) %>%
+                  filter(!is.na(data_inicio)) %>% 
+                  tidyr::separate_rows(tema,sep=';')
+
+progresso_data %>% select(-id_ext, - data_inicio)
+```
+Primeiro 
+
+Vejamos graficamente o panorama atual das proposições quanto ao seu progresso.
+
+```{r}
+etapa_proposicoes <- progresso_data %>% 
+                     group_by(fase_local) %>%
+                     filter(fase_local != "Câmara dos Deputados") %>% 
+                     summarise(n_pls = n())
+
+p <- ggplot2::ggplot(data=etapa_proposicoes, ggplot2::aes(x = fase_local, y = n_pls, fill=fase_local)) +
+     ggplot2::geom_bar(stat="identity") +
+     ggplot2::labs(x="Fase", y="Número de proposições")+
+     ggplot2::theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggplotly(p)
+```
+
+
+
+Tomando como premissa a atual situação das proposições, vejamos a quanto tempo (em semanas) elas estão na fase atual, quando agrupamos por tema.
+
+
+```{r}
+mediana_por_tema <- progresso_data %>% 
+                    group_by(tema) %>% 
+                    summarise(mediana = median(semanas_decorridas))
+
+p <-ggplot2::ggplot(data=mediana_por_tema, ggplot2::aes(x=tema, y=mediana, fill=tema)) +
+    ggplot2::geom_bar(stat="identity")  +
+    ggplot2::labs(x="Tema", y="Mediana das semanas decorridas") +
+    ggplot2::theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggplotly(p)
+```
+
+Quanto tempo (medido em semanas), em média, as proposições ficam em cada fase?
+
+```{r}
+tempo_fase <- progresso_data %>% 
+              group_by(fase_local) %>% 
+              filter(fase_local != "Câmara dos Deputados") %>% 
+              summarise(media = mean(semanas_decorridas))
+
+p <- ggplot2::ggplot(data=tempo_fase, ggplot2::aes(x = fase_local, y = media, fill=fase_local)) +
+     ggplot2::geom_bar(stat="identity") +
+     ggplot2::labs(x="Fase", y="Semanas")+
+     ggplot2::theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggplotly(p)
+```
+
+Iremos agora separá-las por tema.
+
+```{r}
+mediana_por_tema <- progresso_data %>% 
+                    group_by(tema) %>% 
+                    summarise(mediana = median(semanas_decorridas))
+
+historico_progresso<- data_subset %>% 
+                  rowwise() %>% 
+                  filter(fase_local != "Câmara dos Deputados" & fase_local != "Comissão Mista") %>% 
+                  mutate(semanas_decorridas = lubridate::time_length(
+                                              lubridate::interval(
+                                              lubridate::ymd(unlist(strsplit(as.character(data_inicio), " "))[1]), 
+                                              lubridate::ymd(hoje)), "week")) %>%
+                  filter(!is.na(data_inicio)) %>% 
+                  tidyr::separate_rows(tema,sep=';') %>% 
+                  group_by(tema, fase_local) %>% 
+                  summarise(mediana = median(semanas_decorridas))
+
+p <- historico_progresso %>% 
+      ggplot2::ggplot(ggplot2::aes(x=fase_local, y=mediana, fill=tema)) +
+      ggplot2::geom_bar(stat="identity", position="dodge") +
+      ggplot2::xlab("Fase") + 
+      ggplot2::ylab("Semanas") +
+      ggplot2::theme_minimal() +
+      ggplot2::facet_grid(rows = vars(tema)) +
+      ggplot2::theme(axis.text.x = element_text(angle = 45, hjust = 1))
+p
+```
+
+Considerando agora as fases também concluídas.
+
+```{r}
+historico_progresso<- data_subset %>% 
+                  rowwise() %>% 
+                  filter(fase_local != "Câmara dos Deputados" & fase_local != "Comissão Mista") %>% 
+                  mutate(semanas_decorridas = ifelse(is.na(data_fim), 
+                                              lubridate::time_length(
+                                              lubridate::interval(
+                                              lubridate::ymd(unlist(strsplit(as.character(data_inicio), " "))[1]), 
+                                              lubridate::ymd(hoje)), "week"), 
+                                              lubridate::time_length(
+                                              lubridate::interval(
+                                              lubridate::ymd(unlist(strsplit(as.character(data_inicio), " "))[1]), 
+                                              lubridate::ymd(hoje)), "week") - 
+                                              lubridate::time_length(
+                                              lubridate::interval(
+                                              lubridate::ymd(unlist(strsplit(as.character(data_fim), " "))[1]), 
+                                              lubridate::ymd(hoje)), "week"))) %>%
+                  filter(!is.na(data_inicio)) %>% 
+                  tidyr::separate_rows(tema,sep=';') %>% 
+                  group_by(tema, fase_local) %>% 
+                  summarise(mediana = median(semanas_decorridas))
+
+
+p <- historico_progresso %>% 
+      ggplot2::ggplot(ggplot2::aes(x=fase_local, y=mediana, fill=tema)) +
+      ggplot2::geom_bar(stat="identity", position="dodge") +
+      ggplot2::xlab("Fase") + 
+      ggplot2::ylab("Semanas") +
+      ggplot2::theme_minimal() +
+      ggplot2::facet_grid(rows = vars(tema)) +
+      ggplot2::theme(axis.text.x = element_text(angle = 45, hjust = 1))
+p
+```
+
