@@ -36,14 +36,14 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
       return(tibble::tibble())
     }
   )
-  
+
   if(nrow(reqs) == 0) {
     return(tibble::tibble())
   }
-  
+
   reqs_tipos <- reqs %>%
     dplyr::select(id_req, tipo_documento = descricaoTipo)
-  
+
   eventos_reqs <- purrr::map_df(reqs$id_req, ~rcongresso::fetch_events_requerimento_camara(.x)) %>%
     dplyr::left_join(reqs_tipos, by="id_req") %>%
     dplyr::select(-cod_situacao, -descricao_tramitacao, -regime, -uri_orgao, -id_req) %>%
@@ -56,33 +56,18 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
                   prop_id = prop_id,
                   casa = congresso_constants$camara_label,
                   id_situacao = as.integer(id_situacao))
-  
+
   return(eventos_reqs)
 }
 
-#' @title Busca a movimentação dos requerimentos de uma proposição na Câmara
+#' @title Busca a movimentação dos requerimentos de uma proposição no Senado
 #' @description Retorna dataframe com os dados da movimentação de requerimentos de uma proposição, incluindo tramitação, despachos e situação
 #' @param prop_id ID de uma proposição no Senado
 #' @return Dataframe normalizado com as informações sobre a movimentação de requerimentos de uma proposição no Senado
 #' @examples
 #' fetch_eventos_reqs_prop_senado(91341)
 fetch_eventos_reqs_prop_senado <- function(prop_id) {
-  print("fetch_eventos_reqs_prop_senado not yet implemented.")
-  return(tibble::tibble())
-  #reqs <- rcongresso::fetch_related_requerimentos_camara(prop_id = prop_id)
-  #eventos_reqs <- purrr::map_df(reqs$id_req, ~rcongresso::fetch_events_requerimento_camara(.x)) %>%
-  #  dplyr::select(-cod_situacao, -descricao_tramitacao, -regime, -uri_orgao, -id_req) %>%
-  #  dplyr::rename(texto_tramitacao = despacho,
-  #                sigla_local = sigla_orgao,
-  #                id_situacao = cod_tipo_tramitacao,
-  #                link_inteiro_teor = url) %>%
-  #  dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,'T','')),
-  #                local = sigla_local,
-  #                prop_id = prop_id,
-  #                casa = congresso_constants$senado_label,
-  #                id_situacao = as.integer(id_situacao))
-  #
-  #return(eventos_reqs)
+  reqs <- rcongresso::fetch_relacionadas_senado(prop_id)
+  eventos_reqs <- purrr::map_df(reqs$CodigoMateria, ~rcongresso::fetch_events_requerimento_senado(.x))
+  return(eventos_reqs)
 }
-
-
