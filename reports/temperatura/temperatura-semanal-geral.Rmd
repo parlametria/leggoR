@@ -191,9 +191,9 @@ resumo_eventos_semana_mpv_870_2019 <- eventos_semana_mpv_870_2019 %>%
 resumo_eventos_semana_mpv_870_2019
 ```
 
-Texto para o report: 
+## Texto para o report: 
 
-Na semana passada (06-10/05/2019), as proposições acompanhadas pelo Leggo tiveram um acréscimo de temperatura total de `r evolucao_temp_total_tema` unidades, indo de  `r temp_total_semana_passada_tema` para `r temp_total_semana_atual_tema`, como pode ser visto no gráfico abaixo `r ggplotly(plot_temperatura_tema)`.
+Na semana passada (06-10/05/2019), as proposições acompanhadas pelo Leggo tiveram um acréscimo de temperatura total de `r evolucao_temp_total_tema` unidades, indo de  `r temp_total_semana_passada_tema` para `r temp_total_semana_atual_tema`, como pode ser visto no gráfico abaixo. `r ggplotly(plot_temperatura_tema)`
 
 As proposições responsáveis por esse aumento foram, em ordem decrescente de aumento da temperatura:
 `r ggplotly(plot_temperatura_pls_tema)`.

@@ -52,65 +52,28 @@ temperatura_temas <- temperatura_props_temas %>%
             var_temp = var(temperatura_recente))
 ```
 
-Vamos analisar graficamente a evolução da temperatura por tema nas últimas duas semanas.
-Primeiramente, uma análise geral, com a temperatura média por semana.
-
-```{r}
-library(ggplot2)
-library(plotly)
-
-semanas_destaque <- data.frame(semana = lubridate::ymd(c('2019-04-29','2019-05-06')
-                                                       , tz=lubridate::tz(temperatura_props_temas$semana[1])))
-
-temperatura_semanas_destaque <- temperatura_temas %>%
-  inner_join(semanas_destaque) %>%
-  group_by(semana,ano) %>%
-  summarise(total_temp = sum(total_temp))
-
-plot_temperatura_geral <- temperatura_semanas_destaque %>% 
-  ggplot(aes(x=as.Date(semana), y=total_temp)) +
-  geom_col(position="dodge") +
-  xlab("Tempo") + 
-  ylab("Temperatura") +
-  scale_x_date(date_labels = "%d-%m-%Y") +
-  theme_minimal()
-
-ggplotly(plot_temperatura_geral)
-```
-
-PLs cuja temperatura subiu :
-```{r}
-semana <- data.frame(semana = lubridate::ymd(c('2019-05-06')
-                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
-evolucao_semanal_temperatura_geral <- evolucao_semanal_temperatura %>%
-  inner_join(semana) %>%
-  filter(evolucao_temp_recente > 0) %>%
-  select(ano,semana,tema,casa,nome_pl,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
-  arrange(ano,semana,desc(evolucao_temp_recente))
-
-evolucao_semanal_temperatura_geral
-```
-
-Agora vamos repetir a mesma análise para todos os temas.
+Vamos analisar graficamente a evolução da temperatura total do tema nas últimas duas semanas.
 
 ## Agenda Nacional
 
 ```{r}
-semanas_destaque_an <- data.frame(tema = "Agenda Nacional",
+library(ggplot2)
+library(plotly)
+semanas_destaque_tema <- data.frame(tema = "Agenda Nacional",
                                semana = lubridate::ymd(c('2019-04-29','2019-05-06')
                                                        , tz=lubridate::tz(temperatura_props_temas$semana[1])))
 
-temperatura_semanas_destaque_an <- temperatura_temas %>%
-  inner_join(semanas_destaque_an) %>%
+temperatura_semanas_destaque_tema <- temperatura_temas %>%
+  inner_join(semanas_destaque_tema) %>%
   group_by(semana,ano) %>%
   summarise(total_temp = sum(total_temp))
 
-evolucao_temp_total_an = temperatura_semanas_destaque_an$total_temp[2] - 
-  temperatura_semanas_destaque_an$total_temp[1]
-temp_total_semana_passada_an = temperatura_semanas_destaque_an$total_temp[1]
-temp_total_semana_atual_an = temperatura_semanas_destaque_an$total_temp[2]
+evolucao_temp_total_tema = temperatura_semanas_destaque_tema$total_temp[2] - 
+  temperatura_semanas_destaque_tema$total_temp[1]
+temp_total_semana_passada_tema = temperatura_semanas_destaque_tema$total_temp[1]
+temp_total_semana_atual_tema = temperatura_semanas_destaque_tema$total_temp[2]
 
-plot_temperatura_agenda_nacional <- temperatura_semanas_destaque_an %>% 
+plot_temperatura_agenda_nacional <- temperatura_semanas_destaque_tema %>% 
   ggplot(aes(x=as.Date(semana), y=total_temp)) +
   geom_col(position="dodge") +
   xlab("Tempo") + 
@@ -126,19 +89,19 @@ PLs cuja temperatura subiu :
 semana <- data.frame(tema = "Agenda Nacional",
                      semana = lubridate::ymd(c('2019-05-06')
                                              , tz=lubridate::tz(temperatura_props_temas$semana[1])))
-evolucao_semanal_temperatura_an <- evolucao_semanal_temperatura %>%
+evolucao_semanal_temperatura_tema <- evolucao_semanal_temperatura %>%
   inner_join(semana, by=c("tema","semana")) %>%
   filter(evolucao_temp_recente > 0) %>%
   select(casa,id_ext,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
   arrange(desc(evolucao_temp_recente))
 
-evolucao_semanal_temperatura_an
+evolucao_semanal_temperatura_tema
 ```
 
 Graficamente:
 
 ```{r}
-plot_temperatura_pls_agenda_nacional <- evolucao_semanal_temperatura_an %>%
+plot_temperatura_pls_agenda_nacional <- evolucao_semanal_temperatura_tema %>%
   mutate(name = forcats::fct_reorder(nome_pl, desc(evolucao_temp_recente))) %>%
   ggplot(aes(x=name, y=evolucao_temp_recente)) +
   geom_col(stat="identity") +
@@ -153,94 +116,168 @@ ggplotly(plot_temperatura_pls_agenda_nacional)
 Vamos analisar quais os eventos que produziram a subida de temperatura dos PLs acima nessa semana.
 
 ### PEC 6/2019 - Reforma da Previdência Bolsonaro
+
+Vejamos, para a proposição atual, quais os eventos ocorridos na semana
 ```{r}
 pl_destaque <- data.frame(id_ext = 2192459,
                      semana = lubridate::ymd(c('2019-05-06')
                                              , tz=lubridate::tz(temperatura_props_temas$semana[1])))
 
-eventos_semana_an <- eventos_semanais %>%
-  inner_join(pl_destaque) %>%
+eventos_semana_pec_6_2019 <- eventos_semanais %>%
+  inner_join(pl_destaque)
+
+eventos_semana_pec_6_2019
+```
+
+Vejamos agora de forma resumida (agregada) os eventos reconhecidos na semana
+```{r}
+eventos_resumidos_semana_pec_6_2019 <- eventos_semana_pec_6_2019 %>%
   filter(!is.na(titulo_evento)) %>%
   group_by(titulo_evento) %>%
   summarise(num_eventos = n()) %>%
   arrange(desc(num_eventos))
 
-eventos_semana_an
+eventos_resumidos_semana_pec_6_2019
 ```
 
 ### MPV 870/2019 - Monitoramento e Acompanhamento de ONGs
+
+Vejamos, para a proposição atual, quais os eventos ocorridos na semana
 ```{r}
 pl_destaque <- data.frame(id_ext = 135064,
                      semana = lubridate::ymd(c('2019-05-06')
                                              , tz=lubridate::tz(temperatura_props_temas$semana[1])))
 
-eventos_semana_mpv_870 <- eventos_semanais %>%
-  inner_join(pl_destaque) %>%
+eventos_semana_mpv_870_2019 <- eventos_semanais %>%
+  inner_join(pl_destaque)
+
+eventos_semana_mpv_870_2019
+```
+
+Vejamos agora de forma resumida (agregada) os eventos reconhecidos na semana
+```{r}
+eventos_resumidos_semana_mpv_870_2019 <- eventos_semana_mpv_870_2019 %>%
   filter(!is.na(titulo_evento)) %>%
   group_by(titulo_evento) %>%
   summarise(num_eventos = n()) %>%
   arrange(desc(num_eventos))
 
-eventos_semana_mpv_870
+eventos_resumidos_semana_mpv_870_2019
 ```
 
 ### MPV 867/2018 -	Programa de Regularização Ambiental
+
+Vejamos, para a proposição atual, quais os eventos ocorridos na semana
 ```{r}
 pl_destaque <- data.frame(id_ext = 135060,
                      semana = lubridate::ymd(c('2019-05-06')
                                              , tz=lubridate::tz(temperatura_props_temas$semana[1])))
 
-eventos_semana_mpv_867 <- eventos_semanais %>%
-  inner_join(pl_destaque) %>%
+eventos_semana_mpv_867_2019 <- eventos_semanais %>%
+  inner_join(pl_destaque)
+
+eventos_semana_mpv_867_2019
+```
+
+Vejamos agora de forma resumida (agregada) os eventos reconhecidos na semana
+
+```{r}
+eventos_resumidos_semana_mpv_867_2019 <- eventos_semana_mpv_867_2019 %>%
   filter(!is.na(titulo_evento)) %>%
   group_by(titulo_evento) %>%
   summarise(num_eventos = n()) %>%
   arrange(desc(num_eventos))
 
-eventos_semana_mpv_867
+eventos_resumidos_semana_mpv_867_2019
 ```
 
 ### MPV 868/2018	Altera o marco legal do saneamento básico
+
+Vejamos, para a proposição atual, quais os eventos ocorridos na semana
 ```{r}
 pl_destaque <- data.frame(id_ext = 135061,
                      semana = lubridate::ymd(c('2019-05-06')
                                              , tz=lubridate::tz(temperatura_props_temas$semana[1])))
 
-eventos_semana_mpv_868 <- eventos_semanais %>%
-  inner_join(pl_destaque) %>%
+eventos_semana_mpv_868_2019 <- eventos_semanais %>%
+  inner_join(pl_destaque)
+
+eventos_semana_mpv_868_2019
+```
+
+Vejamos agora de forma resumida (agregada) os eventos reconhecidos na semana
+```{r}
+eventos_resumidos_semana_mpv_868_2019 <- eventos_semana_mpv_868_2019 %>%
   filter(!is.na(titulo_evento)) %>%
   group_by(titulo_evento) %>%
   summarise(num_eventos = n()) %>%
   arrange(desc(num_eventos))
 
-eventos_semana_mpv_868
+eventos_resumidos_semana_mpv_868_2019
 ```
 
+
 ### PL 1864/2019	Pacote Moro - Crime Organizado
+
+Vejamos, para a proposição atual, quais os eventos ocorridos na semana
 ```{r}
 pl_destaque <- data.frame(id_ext = 136033,
                      semana = lubridate::ymd(c('2019-05-06')
                                              , tz=lubridate::tz(temperatura_props_temas$semana[1])))
 
-eventos_semana_pl_1864 <- eventos_semanais %>%
-  inner_join(pl_destaque) %>%
+eventos_semana_pl_1864_2019 <- eventos_semanais %>%
+  inner_join(pl_destaque)
+
+eventos_semana_pl_1864_2019
+```
+
+Vejamos agora de forma resumida (agregada) os eventos reconhecidos na semana
+```{r}
+eventos_resumidos_semana_pl_1864_2019 <- eventos_semana_pl_1864_2019 %>%
   filter(!is.na(titulo_evento)) %>%
   group_by(titulo_evento) %>%
   summarise(num_eventos = n()) %>%
   arrange(desc(num_eventos))
 
-eventos_semana_pl_1864
+eventos_resumidos_semana_pl_1864_2019
 ```
 
-Texto para o report: 
+## Texto para o report: 
 
-Na semana passada (06-10/05/2019), o tema de Agenda Nacional teve um acréscimo de temperatura de `r evolucao_temp_total_an` unidades, indo de  `r temp_total_semana_passada_an` para `r temp_total_semana_atual_an`, como pode ser visto no gráfico abaixo `r ggplotly(plot_temperatura_agenda_nacional)`.
+Na semana passada (06-10/05/2019), o tema Agenda Nacional teve um acréscimo de temperatura total de `r evolucao_temp_total_tema` unidades, indo de  `r temp_total_semana_passada_tema` para `r temp_total_semana_atual_tema`, como pode ser visto no gráfico abaixo. `r ggplotly(plot_temperatura_agenda_nacional)`
 
 As proposições responsáveis por esse aumento foram, em ordem decrescente de aumento da temperatura:
 `r ggplotly(plot_temperatura_pls_agenda_nacional)`.
 
 Principais atualizações:
 
-Na Reforma da Previdência (PEC 6/2019), foram apresentados 104 requerimentos, dos quais 65 foram de Audiência Pública. De todos os requerimentos apresentados (incluindo os apresentados em semanas anteriores), 119 foram deferidos, sendo 81 deles de audiência pública; e 21 foram arquivados, sendo 6 deles de audiência pública. [Mais informações](leggo.org.br)
+Na Reforma da Previdência (PEC 6/2019):
 
-Na MPV de Monitoramento e Acompanhamento de ONGs (MPV 870/2019), foi feito um pedido de vista (pelo Dep. X) e o parecer do relator Y foi aprovado. [Mais informações](leggo.org.br)
+  * Foram apresentados 104 requerimentos, dos quais 65 foram de Audiência Pública. 
+  * De todos os requerimentos apresentados (incluindo os apresentados em semanas anteriores), 119 foram deferidos, sendo 81 deles de audiência pública
+  * De todos os requerimentos apresentados (incluindo os apresentados em semanas anteriores), 21 foram arquivados, sendo 6 deles de audiência pública. [Mais informações](leggo.org.br)
+
+Na MPV de Monitoramento e Acompanhamento de ONGs (MPV 870/2019):
+
+  * Os parlamentares Senador Major Olímpio, Deputada Policial Katia Sastre e Deputado Subtenente Gonzaga retiraram suas respectivas emendas ao texto.
+  * Foi concedido um pedido de vista coletiva (aos seguintes parlamentares: ...) 
+  * O Senador Fernando Bezerra Coelho submeteu duas complementações de voto
+  * O Deputado Rodrigo Agostinho votou em separado
+  * O parecer do relator Senador Fernando Bezerra Coelho foi aprovado. [Mais informações](leggo.org.br)
+  
+Na MPV do Programa de Regularização Ambiental (MPV 867/2019):
+
+  * O Deputado Nilto Tatto apresentou Voto em Separado
+  * Foi concedido um pedido de vista (aos seguintes parlamentares: ...) 
+  * O Deputado Sérgio Souza submeteu duas complementações de voto
+  * O parecer do relator Deputado Sérgio Souza foi aprovado com emendas, gerando o PLV 9/2019. [Mais informações](leggo.org.br)
+  
+Na MPV que Altera o marco legal do saneamento básico (MPV 868/2019):
+
+  * O Deputado Afonso Florence apresentou Voto em Separado
+  * O Senador Tasso Jereissati submeteu uma complementação de voto
+  * O parecer do relator Senador Tasso Jereissati foi aprovado com emendas, gerando o PLV 8/2019. [Mais informações](leggo.org.br)
+  
+No Pacote Moro - Crime Organizado (PL 1864/2019):
+
+  * Foram juntadas as emendas de nos. 22 a 28, do Senador Marcos do Val
