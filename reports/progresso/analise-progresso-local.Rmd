@@ -43,6 +43,7 @@ trams <- tramitacoes %>%
   group_by(id_ext,local) %>% 
   summarise(data_inicio = first(data),
             data_fim = last(data))
+
 df <- trams %>% filter(id_ext=="46249") 
 #progresso_local <- merge(temas, trams, by.x = "id_ext", by.y = "id_ext")
 ```

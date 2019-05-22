@@ -174,3 +174,13 @@ p <- historico_progresso %>%
 p
 ```
 
+ Acho que é importante mostrar os pontos junto com o sumário nas visualizações. (Ex: nessa da mediana do tempo). ggbeeswarm talvez?
+
+
+```{r}
+library(ggbeeswarm)
+ ggplot2::ggplot(progresso_data,aes(tema, semanas_decorridas, color = tema)) +
+  geom_quasirandom(width=.1) +
+  coord_flip()
+```
+
