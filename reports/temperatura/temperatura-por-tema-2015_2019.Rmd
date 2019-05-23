@@ -3,15 +3,18 @@ title: "Temperatura da Proposição por Temas"
 output:
   html_document:
     df_print: paged
+    code_folding: "hide"
   html_notebook: default
-  pdf_document: default
 ---
 
 Neste relatório, faremos uma análise histórica da Temperatura das proposições agregadas por tema ao longo dos anos.
 
-```{r}
+```{r warnings=FALSE, message=FALSE}
 library(dplyr)
 library(magrittr)
+library(ggplot2)
+library(plotly)
+
 temperatura_props <- readr::read_csv('../../data/hists_temperatura.csv')
 proposicoes <- readr::read_csv('../../data/proposicoes.csv')
 temas_props <- proposicoes %>% 
@@ -35,15 +38,11 @@ temperatura_temas <- temperatura_props_temas %>%
             var_temp = var(temperatura_recente))
 ```
 
-Vamos analisar graficamente a evolução da temperatura por tema, começando pelo ano 2019.
-Primeiramente, uma análise geral, com a temperatura média por semana.
+Temperatura Geral na legislatura anterior (2015-2018).
 
 ```{r}
-library(ggplot2)
-library(plotly)
-
 p <- temperatura_temas %>% 
-  dplyr::filter(ano == 2019) %>%
+  dplyr::filter((ano >= 2015) && (ano <= 2018)) %>%
   ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp)) +
   ggplot2::geom_col(position="dodge") +
   ggplot2::xlab("Tempo") + 
@@ -52,23 +51,31 @@ p <- temperatura_temas %>%
   ggplot2::theme_minimal()
 
 ggplotly(p)
+
 ```
 
-Agora mostrando todos os temas.
+Repetindo a análise separada por tema para a legislatura anterior (2015-2018).
 
 ```{r}
 p <- temperatura_temas %>% 
-  dplyr::filter(semana >= lubridate::ymd('2019-01-01')) %>%
-  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp, colour=tema)) +
-  ggplot2::geom_line() +
+  dplyr::filter((ano >= 2015) && (ano <= 2018)) %>%
+  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp, fill=tema)) +
+  ggplot2::geom_bar(stat="identity", position="dodge") +
   ggplot2::xlab("Tempo") + 
   ggplot2::ylab("Temperatura") +
+  ggplot2::theme_minimal() +
   ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
-  ggplot2::theme_minimal()
+  ggplot2::facet_grid(rows = vars(tema)) + 
+  ggplot2::theme(strip.background = element_blank(),
+                 strip.text.y = element_blank())
 
 ggplotly(p)
 
 ```
+
+
+
+
 
 Por fim, quebrando por tema.
 
@@ -159,37 +166,3 @@ ggplotly(p)
 
 ```
 
-Temperatura Geral na legislatura anterior (2015-2017).
-
-```{r}
-p <- temperatura_temas %>% 
-  dplyr::filter((ano >= 2015) && (ano <= 2018)) %>%
-  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp)) +
-  ggplot2::geom_col(position="dodge") +
-  ggplot2::xlab("Tempo") + 
-  ggplot2::ylab("Temperatura") +
-  ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
-  ggplot2::theme_minimal()
-
-ggplotly(p)
-
-```
-
-Repetindo a análise separada por tema para a legislatura anterior (2015-2017).
-
-```{r}
-p <- temperatura_temas %>% 
-  dplyr::filter((ano >= 2015) && (ano <= 2018)) %>%
-  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp, fill=tema)) +
-  ggplot2::geom_bar(stat="identity", position="dodge") +
-  ggplot2::xlab("Tempo") + 
-  ggplot2::ylab("Temperatura") +
-  ggplot2::theme_minimal() +
-  ggplot2::scale_x_date(date_labels = "%d-%m-%Y") +
-  ggplot2::facet_grid(rows = vars(tema)) + 
-  ggplot2::theme(strip.background = element_blank(),
-                 strip.text.y = element_blank())
-
-ggplotly(p)
-
-```
