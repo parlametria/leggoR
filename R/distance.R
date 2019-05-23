@@ -18,8 +18,9 @@ read_distances_files <- function(distancias_datapath) {
 #' @param write_datapath Caminho para a pasta de escrita
 #' @return Dataframe contendo todas a tabela de emendas formatada
 #' @examples
-#' formata_tabela_distances_to_emendas(here::here("../leggo-content/util/data/jus_all_dist"), "data/distancias/")
-formata_tabela_distances_to_emendas <- function(distancias_datapath, write_datapath) {
+#' format_table_distances_to_emendas(here::here("../leggo-content/util/data/jus_all_dist"), "data/distancias/")
+#' @export
+format_table_distances_to_emendas <- function(distancias_datapath, write_datapath) {
   files <- list.files(path=distancias_datapath, pattern="*.csv", full.names=TRUE, recursive=FALSE)
   lapply(files, function(x) {
     distancias_df <-
@@ -28,7 +29,6 @@ formata_tabela_distances_to_emendas <- function(distancias_datapath, write_datap
         dplyr::mutate(CdProposition = sapply(array, head, 1),
                       NumberItemProposition = sapply(array, tail, 1)) %>% 
         dplyr::select(CdProposition, NumberItemProposition, Distance = distancia)
-        print("oi")
         readr::write_csv(distancias_df, paste0(write_datapath, sapply(strsplit(as.character(x), "/"), tail, 1)))
   })
 }
@@ -42,11 +42,12 @@ formata_tabela_distances_to_emendas <- function(distancias_datapath, write_datap
 #' @export
 #' @examples
 #' add_distances_to_emendas(emendas_df, here::here("data/distancias/"))
+#' @export
 add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::here("data/distancias/")) {
   distances_df <- read_distances_files(distancias_datapath) %>% 
     dplyr::rename("codigo_emenda" = "CdProposition") %>% 
     dplyr::group_by(codigo_emenda) %>% 
-    dplyr::summarise(distancia = min(Distance))
+    dplyr::summarise(distancia = min(Distance)) 
   
   if ("distancia" %in% names(emendas_df)) {
     emendas_df <- emendas_df %>% 
