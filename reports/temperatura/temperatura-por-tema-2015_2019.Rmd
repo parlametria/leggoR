@@ -1,10 +1,10 @@
 ---
 title: "Temperatura da Proposição por Temas"
 output:
+  html_notebook: default
   html_document:
     df_print: paged
     code_folding: "hide"
-  html_notebook: default
 ---
 
 Neste relatório, faremos uma análise histórica da Temperatura das proposições agregadas por tema ao longo dos anos.
@@ -88,6 +88,79 @@ p <- temperatura_temas %>%
 
 ggplotly(p)
 
+```
+Podemos verificar alguns picos em cada uma das temáticas apresentadas anteriormente. Podemos verificar
+esses picos e identificar quais foram as proposições que elevaram a temperatura naquele período.
+A seguir é possível verificar quais são essas proposições:
+
+## Agenda Nacional - Semana de pico: 13/02/2017 
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Agenda Nacional",
+                     semana = lubridate::ymd(c('2017-02-13')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_tema <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+evolucao_semanal_temperatura_tema
+```
+
+## Direitos Humanos - Semana de pico: 16/07/2017
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Direitos Humanos",
+                     semana = lubridate::ymd(c('2015-07-06')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_tema <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+evolucao_semanal_temperatura_tema
+```
+
+## Educação - Semana de pico: 20/02/2017 
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Educação",
+                     semana = lubridate::ymd(c('2017-02-20')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_tema <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+evolucao_semanal_temperatura_tema
+```
+
+## Integridade e Transparências - Semana de pico: 09/04/2018 
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Integridade e Transparências",
+                     semana = lubridate::ymd(c('2018-04-09')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_tema <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+evolucao_semanal_temperatura_tema
+```
+
+## Meio Ambiente - Semana de pico: 04/06/2018 
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Meio Ambiente",
+                     semana = lubridate::ymd(c('2018-06-04')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_tema <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+evolucao_semanal_temperatura_tema
 ```
 
 Agora, vamos fazer a mesma análise pra cada ano individualmente.
