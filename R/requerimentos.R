@@ -67,7 +67,15 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
 #' @examples
 #' fetch_eventos_reqs_prop_senado(91341)
 fetch_eventos_reqs_prop_senado <- function(prop_id) {
-  reqs <- rcongresso::fetch_relacionadas_senado(prop_id)
-  eventos_reqs <- purrr::map_df(reqs$CodigoMateria, ~rcongresso::fetch_events_requerimento_senado(.x))
+  reqs <- rcongresso::fetch_relacionadas_senado(prop_id) %>%
+    dplyr::select(codigo_texto,
+                  codigo_materia)
+
+  eventos_reqs <- rcongresso::fetch_events_requerimento_senado(prop_id)
+
+  eventos <-
+    eventos_reqs %>%
+    dplyr::left_join(reqs, eventos_reqs, by = "codigo_materia")
+
   return(eventos_reqs)
 }
