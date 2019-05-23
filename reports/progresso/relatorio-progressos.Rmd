@@ -1,0 +1,96 @@
+---
+title: "Análise do progresso das proposições"
+author: "Equipe Leg.go"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, paged.print=FALSE, results="asis"}
+library(magrittr)
+knitr::opts_chunk$set(echo = FALSE,
+	             cache = FALSE,
+               prompt = FALSE,
+               tidy = FALSE,
+               comment = NA,
+               message = FALSE,
+               warning = FALSE)
+```
+
+```{r}
+progressos <- readr::read_csv('../../data/distancias/progressos.csv') 
+temas <- readr::read_csv('../../data/tabela_geral_ids_casa.csv') %>%
+  dplyr::mutate(id_geral = dplyr::row_number())
+
+ids_pls <- dplyr::bind_rows(
+  dplyr::select(temas,
+                id_geral,
+                tema,
+                apelido,
+                id_ext = id_camara),
+  dplyr::select(temas,
+                id_geral,
+                tema,
+                apelido,
+                id_ext = id_senado)) %>%
+  dplyr::filter(!is.na(id_ext)) %>%
+  dplyr::arrange(id_geral)
+progresso_temas <- merge(progressos, ids_pls, by = "id_ext")
+proposicoes <- readr::read_csv('../../data/distancias/proposicoes.csv') %>% 
+  dplyr::mutate(nome_pl = paste(sigla_tipo, paste(numero, lubridate::year(data_apresentacao),sep='/'))) %>% 
+  dplyr::group_by(id_ext) %>% 
+  dplyr::select(id_ext, nome_pl)
+```
+
+```{r}
+progresso_temas <- progresso_temas %>% 
+                   dplyr::mutate(fase_local = ifelse(is.na(local), fase_global, paste(fase_global, local, sep=" - ")))
+data_subset <- progresso_temas[ , c("id_ext", "data_inicio", "data_fim", "tema", "apelido", "fase_local", "id_geral")]
+```
+
+```{r}
+hoje <-Sys.Date()
+progresso_data <- data_subset %>% 
+                  dplyr::rowwise() %>% 
+                  dplyr::filter(is.na(data_fim)) %>% 
+                  dplyr::select(-data_fim) %>% 
+                  dplyr::mutate(meses_decorridos = lubridate::time_length(
+                                              lubridate::interval(
+                                              lubridate::ymd(unlist(strsplit(as.character(data_inicio), " "))[1]), 
+                                              lubridate::ymd(hoje)), "month")) %>%
+                  dplyr::filter(!is.na(data_inicio)) %>% 
+                  tidyr::separate_rows(tema,sep=';')
+```
+
+Nesta breve análise, vamos explorar o histórico do progresso das proposições em tramitação.
+
+
+
+
+##Há quanto tempo as proposições estão na fase atual?
+
+```{r}
+pls <- merge(progresso_data, proposicoes) %>% dplyr::filter(!grepl("MPV", nome_pl))
+p <- ggplot2::ggplot(pls,ggplot2::aes(fase_local, 
+                                   meses_decorridos, 
+                                   color = tema,
+                                   text=paste(nome_pl,"<br>", apelido))) +
+    ggbeeswarm::geom_quasirandom(width=.3) + 
+    ggplot2::scale_colour_brewer("Tema", palette="Set1") +
+    hrbrthemes::theme_ft_rc() +
+    ggplot2::theme(axis.text.x = 
+    ggplot2::element_text(angle = 45,
+                          hjust = 1)) 
+gg <- plotly::ggplotly(p, tooltip = c("text")) %>% 
+  plotly::layout(title = 'Progresso das Proposições',
+                 xaxis = list(title = 'Fase'),
+                 yaxis = list(title = 'Tempo decorrido (em meses)'))
+gg
+```
+
+
+**Obs:** Estamos omitindo da nossa visualização as **MPVs**, pois só temos 3 em tramitação, todas atualmente na **Câmara dos Deputados**.
+
+A primeira coisa que notamos é que a maioria das proposições, cerca de 79%, estão na etapa de Construção nas Comissões. Outra coisa a se destacar é a existência de proposições que estão em algumas fases a mais de 200 meses, como a PL do Veneno  que está na etapa de Revisão nas Comissões a cerca de 205 meses (mais de 17 anos). 
