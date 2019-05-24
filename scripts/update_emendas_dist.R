@@ -9,7 +9,7 @@ Rscript update_emendas_dist.R <emendas_raw_filepath> <distances_folderpath> <out
 ## Process args
 args <- commandArgs(trailingOnly = TRUE)
 num_args <- 4
-if (length(args) != min_num_args) {
+if (length(args) != num_args) {
   stop(paste("Wrong number of arguments!", help, sep = "\n"))
 }
 
