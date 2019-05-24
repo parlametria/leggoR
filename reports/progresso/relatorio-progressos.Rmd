@@ -112,13 +112,13 @@ p <- pls %>% ggplot(aes(meses_decorridos,
                         text=paste(nome_pl,"<br>", apelido))) + 
              scale_x_continuous(trans = log2_trans(), 
                                 breaks = c(3, 6, 12, 24, 48, 96, 192), 
-                                labels = c("3M", "6M", "1A", "2A", "4A", "8A", "16A")) +
+                                labels = c("3m", "6m", "1a", "2a", "4a", "8a", "16a")) +
              ggplot2::scale_colour_brewer("", palette="Set1") +
-             geom_jitter(height = .3, alpha =.8, size = 1.2) +
+             geom_jitter(height = .3, alpha =.9, size = 1.2) +
              hrbrthemes::theme_ipsum_rc() +
              facet_wrap( ~ fase_local, ncol=4 ) +
              labs( x="Tempo", y="") +
-             theme(axis.text.x = element_text(size=10)) 
+             theme(axis.text.x = element_text(size=8)) 
 
 p <- ggplotly(p, tooltip = c("text")) %>% 
      layout(title = 'Tempo decorrido na fase atual das proposições divididas por tema',
@@ -127,11 +127,11 @@ p
 ```
 
 O primeiro fato interessante notado é que a maior parte das proposições está há mais de 2 anos na fase de Construção nas Comissões. Quando analisamos por temas, vemos que as proposições de `Direitos Humanos` estão há pelo menos 2 anos paradas, sendo aquelas que estão na fase de Construção nas Comissões paradas há mais de 4 anos. 
-Além disso, excluindo a PL 9950/2018 (Lei do Pantanal - Molon), apenas proposições da `Agenda Nacional` entraram no nosso radar nos últimos 12 meses.
+Das proposições apresentadas na legislatura atual, apenas o tema `Agenda Nacional` está representado no Leg.go. São elas: a PEC 6/2019 (Nova Previdência), o PL 881/2019 (Pacote Moro Caixa 2), o PLP 38/2019 (Pacote Moro Anticorrupção) e o PL 1864/2019 (Pacote Moro - Crime Organizado). 
 
 ###Pontos destoantes
 
-1. Temos apenas uma PL na fase de Construção no Plenário: PL 1202/2007 (Disciplina a atividade de lobby);
-2. A PL 6299/2002 (PL do Veneno) está há mais de 16 anos parada na fase de Revisão nas Comissões.
+1. Temos apenas uma proposição na fase de Construção no Plenário: o PL 1202/2007 (Disciplina a atividade de lobby);
+2. O PL 6299/2002 (PL do Veneno) está há mais de 16 anos parada na fase de Revisão nas Comissões.
 
 Acompanhe melhor: https://www.leggo.org.br
