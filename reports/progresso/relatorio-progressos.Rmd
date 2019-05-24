@@ -1,10 +1,10 @@
 ---
 title: "Análise do progresso das proposições"
 author: "Equipe Leg.go"
-date: "`r Sys.Date()`"
+date: "24/05/2019"
 output:
   prettydoc::html_pretty:
-    theme: hpstr
+    theme: leonids
     highlight: github
 ---
 
@@ -64,33 +64,74 @@ progresso_data <- data_subset %>%
                   tidyr::separate_rows(tema,sep=';')
 ```
 
-Nesta breve análise, vamos explorar o histórico do progresso das proposições em tramitação.
+Nesta breve análise, vamos explorar o histórico do progresso das proposições em tramitação **que são monitoradas pelo Leg.go**.
 
+**Obs:** Estaremos omitindo das nossas visualizações as **MPVs**, pois só temos 3 em tramitação, todas atualmente na **Câmara dos Deputados**.
 
+##Qual a situação das proposições em tramitação quanto ao seu progresso?
+
+```{r fig.width=10}
+set.seed(42)
+pls <- merge(progresso_data, proposicoes) %>% dplyr::filter(!grepl("MPV", nome_pl))
+p <- ggplot2::ggplot(pls,ggplot2::aes(fase_local, 
+                                   tema,
+                                   color= tema,
+                                   text=paste(nome_pl,"<br>", apelido))) +
+    ggplot2::scale_colour_brewer("", palette="Set1") +
+    ggplot2::geom_jitter(height = .3, width = .3, alpha =.8, size = 1.2, ) +
+    hrbrthemes::theme_ipsum_rc() +
+    ggplot2::theme(axis.text.x = 
+    ggplot2::element_text(angle = 45,
+                          hjust = 1))
+gg <- plotly::ggplotly(p, tooltip = c("text")) %>% 
+  plotly::layout(title = 'Progresso das proposições divididas por tema',
+                 xaxis = list(title = 'Fase'),
+                 yaxis = list(title = ''),
+                 showlegend = FALSE)
+gg
+```
+
+A primeira coisa que notamos é que a maioria das proposições, cerca de 80%, estão na etapa de Construção nas Comissões. Outra coisa que conseguimos observar é que todas as proposições do tema `Educação` não avançaram de fase desde sua criação, enquanto as proposições do tema `Integridade e Transparência` são as únicas que chegaram na fase de Revisão no Plenário. 
+
+Observando por outro aspecto, a fase de Revisão nas Comissões tem mais proposições da `Agenda Nacional`.
 
 
 ##Há quanto tempo as proposições estão na fase atual?
 
-```{r}
-pls <- merge(progresso_data, proposicoes) %>% dplyr::filter(!grepl("MPV", nome_pl))
-p <- ggplot2::ggplot(pls,ggplot2::aes(fase_local, 
-                                   meses_decorridos, 
-                                   color = tema,
-                                   text=paste(nome_pl,"<br>", apelido))) +
-    ggbeeswarm::geom_quasirandom(width=.3) + 
-    ggplot2::scale_colour_brewer("Tema", palette="Set1") +
-    hrbrthemes::theme_ft_rc() +
-    ggplot2::theme(axis.text.x = 
-    ggplot2::element_text(angle = 45,
-                          hjust = 1)) 
-gg <- plotly::ggplotly(p, tooltip = c("text")) %>% 
-  plotly::layout(title = 'Progresso das Proposições',
-                 xaxis = list(title = 'Fase'),
-                 yaxis = list(title = 'Tempo decorrido (em meses)'))
-gg
+
+```{r fig.width=10, fig.height=5}
+library(ggplot2)
+library(plotly)
+library(secr)
+library(scales)
+
+p <- pls %>% ggplot(aes(meses_decorridos,
+                        tema, 
+                        color=tema,
+                        label = "",
+                        text=paste(nome_pl,"<br>", apelido))) + 
+             scale_x_continuous(trans = log2_trans(), 
+                                breaks = c(3, 6, 12, 24, 48, 96, 192), 
+                                labels = c("3M", "6M", "1A", "2A", "4A", "8A", "16A")) +
+             ggplot2::scale_colour_brewer("", palette="Set1") +
+             geom_jitter(height = .3, alpha =.8, size = 1.2) +
+             hrbrthemes::theme_ipsum_rc() +
+             facet_wrap( ~ fase_local, ncol=4 ) +
+             labs( x="Tempo", y="") +
+             theme(axis.text.x = element_text(size=10)) 
+
+p <- ggplotly(p, tooltip = c("text")) %>% 
+     layout(title = 'Tempo decorrido na fase atual das proposições divididas por tema',
+           showlegend = FALSE)
+p
 ```
 
+O primeiro fato interessante notado é que a maior parte das proposições está há mais de 2 anos na fase de Construção nas Comissões. Quando analisamos por temas, vemos que as proposições de `Direitos Humanos` estão há pelo menos 2 anos paradas, sendo aquelas que estão na fase de Construção nas Comissões paradas há mais de 4 anos. 
+Além disso, excluindo a PL 9950/2018 (Lei do Pantanal - Molon), apenas proposições da `Agenda Nacional` entraram no nosso radar nos últimos 12 meses.
 
-**Obs:** Estamos omitindo da nossa visualização as **MPVs**, pois só temos 3 em tramitação, todas atualmente na **Câmara dos Deputados**.
+###Pontos destoantes
 
-A primeira coisa que notamos é que a maioria das proposições, cerca de 79%, estão na etapa de Construção nas Comissões. Outra coisa a se destacar é a existência de proposições que estão em algumas fases a mais de 200 meses, como a PL do Veneno  que está na etapa de Revisão nas Comissões a cerca de 205 meses (mais de 17 anos). 
+1. Temos apenas uma PL na fase de Construção no Plenário: PL 1202/2007 (Disciplina a atividade de lobby);
+2. A PL 6299/2002 (PL do Veneno) está há mais de 16 anos parada na fase de Revisão nas Comissões.
+
+Acompanhe melhor: https://www.leggo.org.br
