@@ -18,31 +18,41 @@ library(plotly)
 min_date <- lubridate::ymd_hms('2015-01-01 00:00:00')
 max_date <- lubridate::ymd_hms('2019-05-10 23:59:59')
 
-temperatura_props <- readr::read_csv('../../data/hists_temperatura.csv') %>%
-  mutate(semana = lubridate::floor_date(periodo, "weeks") + lubridate::days(1)) %>%
-  group_by(id_ext,semana) %>%
-  summarise()
-  select(-periodo)
-  
+temperatura_props <- readr::read_csv('../../data/novo_historico_temperatura.csv')
+leggo_ids <- readr::read_csv('../../data/leggo_ids.csv')
 proposicoes <- readr::read_csv('../../data/proposicoes.csv')
-temas_props <- proposicoes %>% 
+
+nomes_pls <- proposicoes %>% 
   mutate(nome_pl = paste(sigla_tipo, paste(numero, lubridate::year(data_apresentacao),sep='/'))) %>%
-  select(id_ext, nome_pl, apelido, tema)
+  select(id_ext, nome_pl)
+
+leggo_ids_nomes <- leggo_ids %>%
+  inner_join(nomes_pls) %>%
+  select(id_leggo, id_ext, nome_pl, everything()) %>%
+  group_by(id_leggo) %>%
+  summarise(id_ext = paste0(id_ext, collapse = "|"),
+            nome_pl = paste0(nome_pl, collapse = "|"),
+            apelido = first(apelido),
+            tema = first(tema))
+  
+# 
+# temas_props <- proposicoes %>% 
+#   mutate(nome_pl = paste(sigla_tipo, paste(numero, lubridate::year(data_apresentacao),sep='/'))) %>%
+#   select(id_ext, nome_pl, apelido, tema)
 
 temperatura_props_temas <- temperatura_props %>%
   filter((periodo >= min_date) & (periodo <= max_date)) %>%
-  inner_join(temas_props,by = "id_ext") %>%
+  inner_join(leggo_ids_nomes,by = "id_leggo") %>%
   tidyr::separate_rows(tema,sep=';') %>%
-  mutate(semana = lubridate::floor_date(periodo, "weeks") + lubridate::days(1)) %>%
-  select(id_ext, casa, tema, nome_pl, apelido, semana, temperatura_periodo, temperatura_recente) %>%
+  select(id_leggo, tema, nome_pl, apelido, semana = periodo, temperatura_periodo, temperatura_recente) %>%
   arrange(semana,tema,desc(temperatura_recente))
 
 evolucao_semanal_temperatura <- temperatura_props_temas %>%
-  group_by(id_ext) %>%
+  group_by(id_leggo) %>%
   arrange(semana) %>%
   mutate(evolucao_temp_recente = temperatura_recente - lag(temperatura_recente, default = 0)) %>%
   ungroup() %>%
-  arrange(id_ext,semana)
+  arrange(id_leggo,semana)
 
 temperatura_temas <- temperatura_props_temas %>%
   group_by(tema,semana) %>%
@@ -60,13 +70,15 @@ Temperatura Geral na legislatura anterior (2015-2018).
 
 ```{r}
 
-temperatura_geral <- temperatura_temas %>% 
-  dplyr::ungroup() %>%
-  dplyr::group_by(semana) %>%
-  dplyr::summarise(total_temp = sum(total_temp))
+temperatura_geral <- temperatura_props %>%
+  filter((periodo >= min_date) & (periodo <= max_date)) %>%
+  inner_join(leggo_ids,by = "id_leggo") %>%
+  mutate(semana = periodo) %>%
+  group_by(semana) %>%
+  summarise(total_temp = sum(temperatura_recente))
 
 p <- temperatura_geral %>%
-  dplyr::filter((semana >= lubridate::ymd_hms('2015-01-01 00:00:00')) && (semana <= lubridate::ymd_hms('2018-12-31 23:59:59'))) %>%
+  filter((semana >= lubridate::ymd_hms('2015-01-01 00:00:00')) && (semana <= lubridate::ymd_hms('2018-12-31 23:59:59'))) %>%
   ggplot(aes(x=as.Date(semana), y=total_temp)) +
   geom_col(position="dodge") +
   xlab("Tempo") + 
@@ -82,7 +94,7 @@ Repetindo a análise separada por tema para a legislatura anterior (2015-2018).
 
 ```{r, fig.height=8}
 p <- temperatura_temas %>% 
-  dplyr::filter((semana >= lubridate::ymd_hms('2015-01-01 00:00:00')) && (semana <= lubridate::ymd_hms('2018-12-31 23:59:59'))) %>%
+  filter((semana >= lubridate::ymd_hms('2015-01-01 00:00:00')) && (semana <= lubridate::ymd_hms('2018-12-31 23:59:59'))) %>%
   ggplot(aes(x=semana, y=total_temp, fill=tema)) +
   # geom_col() +
   geom_area() +
@@ -104,7 +116,7 @@ A seguir é possível verificar quais são essas proposições:
 
 ```{r, fig.width=8, fig.height=3}
 temperatura_temas %>% 
-  dplyr::filter(semana >= lubridate::ymd('2016-06-01'), 
+  filter(semana >= lubridate::ymd('2016-06-01'), 
                 tema == "Agenda Nacional") %>%
   ggplot(aes(x=semana, y=total_temp, fill=tema)) +
   geom_area() +
@@ -124,9 +136,23 @@ semana <- data.frame(tema = "Agenda Nacional",
                                              , tz=lubridate::tz(temperatura_props_temas$semana[1])))
 evolucao_semanal_temperatura_tema <- evolucao_semanal_temperatura %>%
   inner_join(semana) %>%
-  filter(temperatura_recente > 0) %>%
+  filter(evolucao_temp_recente > 0) %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
-  arrange(desc(temperatura_recente))
+  arrange(desc(evolucao_temp_recente))
+
+evolucao_semanal_temperatura_tema
+```
+
+## Agenda Nacional - Semana de pico: 13/02/2017 
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Agenda Nacional",
+                     semana = lubridate::ymd(c('2019-05-06')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_tema <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
 
 evolucao_semanal_temperatura_tema
 ```
