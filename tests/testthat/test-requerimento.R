@@ -21,7 +21,7 @@ test <- function(){
   }) 
   
   test_that('fetch_eventos_reqs_prop() for senado returns empty dataframe', {
-    expect_true(nrow(fetch_eventos_reqs_prop(3123, 'senado')) == 0)
+    expect_true(is.character(fetch_eventos_reqs_prop(3123, 'senado')))
   }) 
   
   test_that('fetch_eventos_reqs_prop_camara() returns warning with id incorrect', {
