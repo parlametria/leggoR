@@ -67,15 +67,31 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
 #' @examples
 #' fetch_eventos_reqs_prop_senado(91341)
 fetch_eventos_reqs_prop_senado <- function(prop_id) {
-  reqs <- rcongresso::fetch_relacionadas_senado(prop_id) %>%
-    dplyr::select(codigo_texto,
-                  codigo_materia)
+  reqs <- rcongresso::fetch_relacionadas_senado(prop_id)
 
-  eventos_reqs <- rcongresso::fetch_events_requerimento_senado(prop_id)
+  if (is.character(reqs)) {
+    eventos_reqs <- reqs
+  } else {
+    reqs <- reqs %>%
+      dplyr::mutate(proposicao_id = prop_id) %>%
+      dplyr::select(req_ids = codigo_materia,
+                    codigo_materia = proposicao_id,
+                    descricao_situacao.x = descricao_subtipo_materia.x,
+                    descricao_situacao.y = descricao_subtipo_materia.y)
 
-  eventos <-
-    eventos_reqs %>%
-    dplyr::left_join(reqs, eventos_reqs, by = "codigo_materia")
+    reqs$codigo_materia <- stringr::str_conv(reqs$codigo_materia, "UTF-8")
+
+    eventos_reqs <- rcongresso::fetch_events_requerimento_senado(prop_id) %>%
+      dplyr::select(data_hora,
+                    evento,
+                    id_situacao = situacao_codigo_situacao,
+                    texto_tramitacao = texto_tramitacao,
+                    descricao_situacao = situacao_descricao_situacao,
+                    sigla_local = origem_tramitacao_local_sigla_local,
+                    local = origem_tramitacao_local_sigla_local,
+                    prop_id = codigo_materia,
+                    casa = nome_casa_identificacao_materia)
+  }
 
   return(eventos_reqs)
 }
