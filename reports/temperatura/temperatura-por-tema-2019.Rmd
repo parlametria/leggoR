@@ -3,48 +3,61 @@ title: "Temperatura da Proposição por Temas"
 output:
   html_document:
     df_print: paged
+    code_folding: "hide"
   html_notebook: default
   pdf_document: default
 ---
 
 Neste relatório, faremos uma análise histórica da Temperatura das proposições agregadas por tema em 2019.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 library(dplyr)
 library(magrittr)
+library(ggplot2)
+library(plotly)
+
+min_date <- lubridate::ymd_hms('2019-01-01 00:00:00')
+max_date <- lubridate::ymd_hms('2019-05-10 23:59:59')
+
 temperatura_props <- readr::read_csv('../../data/hists_temperatura.csv')
 proposicoes <- readr::read_csv('../../data/proposicoes.csv')
 temas_props <- proposicoes %>% 
-  dplyr::mutate(nome_pl = paste(sigla_tipo, paste(numero, lubridate::year(data_apresentacao),sep='/'))) %>%
-  dplyr::select(id_ext, nome_pl, apelido, tema)
+  mutate(nome_pl = paste(sigla_tipo, paste(numero, lubridate::year(data_apresentacao),sep='/'))) %>%
+  select(id_ext, nome_pl, apelido, tema)
 
-temperatura_props_temas <- inner_join(temperatura_props,temas_props,by = "id_ext") %>%
+temperatura_props_temas <- temperatura_props %>%
+  filter((periodo >= min_date) & (periodo <= max_date)) %>%
+  inner_join(temas_props,by = "id_ext") %>%
   tidyr::separate_rows(tema,sep=';') %>%
-  mutate(semana = lubridate::floor_date(periodo, "weeks") + lubridate::days(1),
-         ano = lubridate::year(periodo)) %>%
-  arrange(semana,ano,tema,desc(temperatura_recente))
+  mutate(semana = lubridate::floor_date(periodo, "weeks") + lubridate::days(1)) %>%
+  select(id_ext, casa, tema, nome_pl, apelido, semana, temperatura_periodo, temperatura_recente) %>%
+  arrange(semana,tema,desc(temperatura_recente))
+
+evolucao_semanal_temperatura <- temperatura_props_temas %>%
+  group_by(id_ext) %>%
+  arrange(semana) %>%
+  mutate(evolucao_temp_recente = temperatura_recente - lag(temperatura_recente, default = 0)) %>%
+  ungroup() %>%
+  arrange(id_ext,semana)
 
 temperatura_temas <- temperatura_props_temas %>%
-  group_by(tema,semana,ano) %>%
+  group_by(tema,semana) %>%
   summarise(num_obs = n(),
+            total_temp = sum(temperatura_recente),
             min_temp = min(temperatura_recente),
             max_temp = max(temperatura_recente),
-            median_temp = mean(temperatura_recente),
-            mean_temp = median(temperatura_recente),
+            mean_temp = mean(temperatura_recente),
+            median_temp = median(temperatura_recente),
             std_temp = sd(temperatura_recente),
             var_temp = var(temperatura_recente))
 ```
 
-Vamos analisar graficamente a evolução da temperatura por tema no ano de 2019 até o presente momento.
-Primeiramente, uma análise geral, com a temperatura média por semana.
+Vamos analisar graficamente a evolução da temperatura no ano de 2019 até 10/05.
+Primeiramente, uma análise geral, com a temperatura total por semana.
 
-```{r}
-library(ggplot2)
-library(plotly)
-
+```{r warning=FALSE, message=FALSE}
 p <- temperatura_temas %>% 
-  dplyr::filter(ano == 2019) %>%
-  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp)) +
+  ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=total_temp)) +
   ggplot2::geom_col(position="dodge") +
   ggplot2::xlab("Tempo") + 
   ggplot2::ylab("Temperatura") +
@@ -54,23 +67,25 @@ p <- temperatura_temas %>%
 ggplotly(p)
 ```
 
+
+
 PLs responsáveis pelo pico de temperatura entre 25/03 e 08/04:
-```{r}
-semanas_destaque <- data.frame(semana = lubridate::ymd(c('2019-03-25','2019-04-01','2019-04-29','2019-05-06')
+```{r warning=FALSE, message=FALSE}
+semanas_destaque <- data.frame(semana = lubridate::ymd(c('2019-04-22','2019-04-29','2019-05-06')
                                                        , tz=lubridate::tz(temperatura_props_temas$semana[1])))
 
-temperatura_props_temas %>%
+evolucao_semanal_temperatura %>%
   inner_join(semanas_destaque, by=c("semana")) %>%
-  filter(temperatura_recente > 0) %>%
-  select(ano,semana,tema,casa,nome_pl,temperatura_recente) %>%
-  arrange(ano,semana,desc(temperatura_recente))
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
 ```
 
 Agora vamos repetir a mesma análise para todos os temas.
 
 ## Agenda Nacional
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 p <- temperatura_temas %>% 
   dplyr::filter((ano == 2019) & (tema == "Agenda Nacional")) %>%
   ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp)) +
@@ -86,7 +101,7 @@ ggplotly(p)
 ```
 
 PLs responsáveis pelo pico de temperatura entre 22/04 e 13/05:
-```{r}
+```{r warning=FALSE, message=FALSE}
 semanas_destaque <- data.frame(tema = "Agenda Nacional",
                                semana = lubridate::ymd(c('2019-04-22','2019-04-29','2019-05-06','2019-05-13')
                                                        , tz=lubridate::tz(temperatura_props_temas$semana[1])))
@@ -100,7 +115,7 @@ temperatura_props_temas %>%
 
 ## Direitos Humanos
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 p <- temperatura_temas %>% 
   dplyr::filter((ano == 2019) & (tema == "Direitos Humanos")) %>%
   ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp)) +
@@ -116,7 +131,7 @@ ggplotly(p)
 ```
 
 PLs responsáveis pelo pico de temperatura em 18/02 e entre 15/04 e 29/04:
-```{r}
+```{r warning=FALSE, message=FALSE}
 semanas_destaque <- data.frame(tema = "Direitos Humanos",
                                semana = lubridate::ymd(c('2019-02-18','2019-04-15','2019-04-22','2019-04-29')
                                                        , tz=lubridate::tz(temperatura_props_temas$semana[1])))
@@ -130,7 +145,7 @@ temperatura_props_temas %>%
 
 ## Educação
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 p <- temperatura_temas %>% 
   dplyr::filter((ano == 2019) & (tema == "Educação")) %>%
   ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp)) +
@@ -146,7 +161,7 @@ ggplotly(p)
 ```
 
 PLs responsáveis pelo pico de temperatura entre 22/04 e 13/05:
-```{r}
+```{r warning=FALSE, message=FALSE}
 semanas_destaque <- data.frame(tema = "Educação",
                                semana = lubridate::ymd(c('2019-02-18','2019-04-15')
                                                        , tz=lubridate::tz(temperatura_props_temas$semana[1])))
@@ -161,7 +176,7 @@ temperatura_props_temas %>%
 
 ## Integridade e Transparência
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 p <- temperatura_temas %>% 
   dplyr::filter((ano == 2019) & (tema == "Integridade e Transparência")) %>%
   ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp)) +
@@ -177,7 +192,7 @@ ggplotly(p)
 ```
 
 PLs responsáveis pelo pico de temperatura nas semanas começando em 11/03, 25/03, 01/04 e 08/04:
-```{r}
+```{r warning=FALSE, message=FALSE}
 semanas_destaque <- data.frame(tema = "Integridade e Transparência",
                                semana = lubridate::ymd(c('2019-03-11','2019-03-25','2019-04-01','2019-04-08')
                                                        , tz=lubridate::tz(temperatura_props_temas$semana[1])))
@@ -191,7 +206,7 @@ temperatura_props_temas %>%
 
 ## Meio Ambiente
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 p <- temperatura_temas %>% 
   dplyr::filter((ano == 2019) & (tema == "Meio Ambiente")) %>%
   ggplot2::ggplot(ggplot2::aes(x=as.Date(semana), y=median_temp)) +
@@ -207,7 +222,7 @@ ggplotly(p)
 ```
 
 PLs responsáveis pelo pico de temperatura nas semanas começando em 18/02, 25/02 e 05/06:
-```{r}
+```{r warning=FALSE, message=FALSE}
 semanas_destaque <- data.frame(tema = "Meio Ambiente",
                                semana = lubridate::ymd(c('2019-02-18','2019-02-25','2019-05-06')
                                                        , tz=lubridate::tz(temperatura_props_temas$semana[1])))
