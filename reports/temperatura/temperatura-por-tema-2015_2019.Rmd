@@ -1,19 +1,28 @@
 ---
-title: "Temperatura da Proposição por Temas"
+title: "Análise da Temperatura por Tema"
+author: "Equipe Leg.go"
+date: "25/05/2019"
 output:
-  html_notebook: default
-  html_document:
-    df_print: paged
-    code_folding: "hide"
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
 ---
 
 Neste relatório, faremos uma análise histórica da Temperatura das proposições agregadas por tema ao longo dos anos.
 
-```{r warning=FALSE, message=FALSE}
+```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, paged.print=FALSE, results="asis"}
 library(dplyr)
 library(magrittr)
 library(ggplot2)
 library(plotly)
+
+knitr::opts_chunk$set(echo = FALSE,
+	             cache = FALSE,
+               prompt = FALSE,
+               tidy = FALSE,
+               comment = NA,
+               message = FALSE,
+               warning = FALSE)
 
 min_date <- lubridate::ymd_hms('2015-01-01 00:00:00')
 max_date <- lubridate::ymd_hms('2019-05-10 23:59:59')
@@ -66,7 +75,7 @@ temperatura_temas <- temperatura_props_temas %>%
             var_temp = var(temperatura_recente))
 ```
 
-Temperatura Geral na legislatura anterior (2015-2018).
+## Qual foi o comportamento da temperatura geral das proposições acompanhadas pelo Leggo nos últimos anos (2015-2019)?
 
 ```{r}
 
@@ -90,7 +99,13 @@ ggplotly(p)
 
 ```
 
-Repetindo a análise separada por tema para a legislatura anterior (2015-2018).
+Como podemos perceber, para o nosso sub-conjunto de proposições, a temperatura estava mais baixa em 2015 e 2016, subindo do final de 2016 para o início de 2017. 
+Em seguida, houve uma queda e voltou a subir no primeiro semestre de 2018.
+No período anterior e durante as eleições houve uma (natural) queda e voltou a subir do final do ano de 2018 até o presente momento (Maio/2019).
+
+Vamos analisar a temperatura por tema para podermos compreender melhor que temas/proposições influcenciaram essas subidas de temperatura observadas.
+
+## Qual foi o comportamento da temperatura de cada tema acompanhado pelo Leggo nos últimos anos (2015-2019)? 
 
 ```{r, fig.height=8}
 p <- temperatura_temas %>% 
@@ -110,9 +125,10 @@ ggplotly(p)
 
 ```
 Podemos verificar alguns picos no histórico da temparatura em cada um dos temas apresentadas anteriormente. 
-Vamos analisar esses picos e identificar quais foram as proposições que elevaram a temperatura naquele período.
+Vamos analisar os principais picos para cada tema e identificar quais foram as proposições que elevaram a temperatura naquele período.
 <br>
-A seguir é possível verificar quais são essas proposições:
+
+Iniciemos pelo tema Agenda Nacional
 
 ```{r, fig.width=8, fig.height=3}
 temperatura_temas %>% 
