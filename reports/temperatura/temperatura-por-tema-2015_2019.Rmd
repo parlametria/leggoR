@@ -44,11 +44,6 @@ leggo_ids_nomes <- leggo_ids %>%
             apelido = first(apelido),
             tema = first(tema))
   
-# 
-# temas_props <- proposicoes %>% 
-#   mutate(nome_pl = paste(sigla_tipo, paste(numero, lubridate::year(data_apresentacao),sep='/'))) %>%
-#   select(id_ext, nome_pl, apelido, tema)
-
 temperatura_props_temas <- temperatura_props %>%
   filter((periodo >= min_date) & (periodo <= max_date)) %>%
   inner_join(leggo_ids_nomes,by = "id_leggo") %>%
@@ -73,11 +68,17 @@ temperatura_temas <- temperatura_props_temas %>%
             median_temp = median(temperatura_recente),
             std_temp = sd(temperatura_recente),
             var_temp = var(temperatura_recente))
+
+cor_agenda_nacional <- "#F5E4A3"
+cor_direitos_humanos <- "#90A4C5"
+cor_educacao <-"#F28BB9"
+cor_integridade_transparencia <- "#75E4CD"
+cor_meio_ambiente <- "#9A7891"
 ```
 
 ## Qual foi o comportamento da temperatura geral das proposições acompanhadas pelo Leggo nos últimos anos (2015-2019)?
 
-```{r}
+```{r fig.width=12}
 
 temperatura_geral <- temperatura_props %>%
   filter((periodo >= min_date) & (periodo <= max_date)) %>%
@@ -89,29 +90,30 @@ temperatura_geral <- temperatura_props %>%
 p <- temperatura_geral %>%
   filter((semana >= lubridate::ymd_hms('2015-01-01 00:00:00')) && (semana <= lubridate::ymd_hms('2018-12-31 23:59:59'))) %>%
   ggplot(aes(x=as.Date(semana), y=total_temp)) +
-  geom_col(position="dodge") +
+  geom_col(position="dodge", fill="#dc6060") +
   xlab("Tempo") + 
   ylab("Temperatura") +
   scale_x_date(date_labels = "%d-%m-%Y") +
-  theme_minimal()
+  theme_minimal() + 
+  theme(legend.title = element_blank())
 
 ggplotly(p)
 
 ```
 
-Como podemos perceber, para o nosso sub-conjunto de proposições, a temperatura estava mais baixa em 2015 e 2016, subindo do final de 2016 para o início de 2017. 
+Como podemos perceber, para o nosso sub-conjunto de proposições, a temperatura estava mais baixa em 2015 e 2016, apresentando uma aumento do final de 2016 para o início de 2017. 
 Em seguida, houve uma queda e voltou a subir no primeiro semestre de 2018.
-No período anterior e durante as eleições houve uma (natural) queda e voltou a subir do final do ano de 2018 até o presente momento (Maio/2019).
+No período anterior e durante as eleições houve uma (natural) queda e vem subindo do final do ano de 2018 até o presente momento (Maio/2019).
+Obs: Os espaços em branco no gráfico são períodos de recesso parlamentar.
 
 Vamos analisar a temperatura por tema para podermos compreender melhor que temas/proposições influcenciaram essas subidas de temperatura observadas.
 
 ## Qual foi o comportamento da temperatura de cada tema acompanhado pelo Leggo nos últimos anos (2015-2019)? 
 
-```{r, fig.height=8}
+```{r, fig.width=12}
 p <- temperatura_temas %>% 
   filter((semana >= lubridate::ymd_hms('2015-01-01 00:00:00')) && (semana <= lubridate::ymd_hms('2018-12-31 23:59:59'))) %>%
   ggplot(aes(x=as.Date(semana), y=total_temp, fill=tema)) +
-  # geom_col() +
   geom_area() +
   xlab("Tempo") + 
   ylab("Temperatura") +
@@ -119,22 +121,27 @@ p <- temperatura_temas %>%
   facet_wrap(~ tema, ncol = 1) + 
   scale_y_sqrt() + 
   scale_x_date(date_labels = "%d-%m-%Y") +
+  scale_fill_manual(values = c(cor_agenda_nacional, cor_direitos_humanos, cor_educacao, cor_integridade_transparencia, cor_meio_ambiente)) +
   theme(strip.background = element_blank(), 
-                 legend.position = "None")
+                 legend.title = element_blank(),
+                 legend.position = "none")
 
 ggplotly(p)
 
 ```
-Podemos verificar alguns picos no histórico da temparatura em cada um dos temas apresentadas anteriormente. 
+
+Observando o comportamento da temperatura para cada tema acima, podemos perceber que o tema Agenda Nacional tem tido mais atenção por parte do Congresso nos últimos anos, mostrando a força do executivo. Já os outros temas têm tido pouca movimentação, com alguns poucos momentos de crescimento da temperatura.
+
+Podemos verificar alguns picos no histórico da temperatura em cada um dos temas apresentadas anteriormente. 
 Vamos analisar os principais picos para cada tema e identificar quais foram as proposições que elevaram a temperatura naquele período.
 
 ### Agenda Nacional
 
-```{r, fig.width=8, fig.height=3}
+```{r, fig.width=12}
 temperatura_temas %>% 
   filter(tema == "Agenda Nacional") %>%
-  ggplot(aes(x=semana, y=total_temp, fill=tema)) +
-  geom_area() +
+  ggplot(aes(x=semana, y=total_temp)) +
+  geom_area(fill=cor_agenda_nacional) +
   xlab("Tempo") + 
   ylab("Temperatura") +
   theme_minimal() +
@@ -149,8 +156,8 @@ No gráfico de temperatura por tema acima, podemos identificar, no tema Agenda N
 temperatura_temas %>% 
   filter(semana >= lubridate::ymd('2016-06-01'), 
                 tema == "Agenda Nacional") %>%
-  ggplot(aes(x=semana, y=total_temp, fill=tema)) +
-  geom_area() +
+  ggplot(aes(x=semana, y=total_temp)) +
+  geom_area(fill=cor_agenda_nacional) +
   xlab("Tempo") + 
   ylab("Temperatura") +
   theme_minimal() +
@@ -188,16 +195,16 @@ evolucao_semanal_temperatura_an_2 <- evolucao_semanal_temperatura %>%
 
 Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que ambos são PECs de Reforma da Previdência: 
 
-  * em 2017, a do Governo Temer, responsável por `r round(100*(evolucao_semanal_temperatura_an_1$evolucao_temp_recente[1]/sum(evolucao_semanal_temperatura_an_1$evolucao_temp_recente)),2)`% do aumento na temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_an_1$semana), format="%d/%m/%Y")`)
-  * em 2019, a do Governo Bolsonaro, responsável por `r round(100*(evolucao_semanal_temperatura_an_2$evolucao_temp_recente[1]/sum(evolucao_semanal_temperatura_an_2$evolucao_temp_recente)),2)`% do aumento na temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_an_2$semana), format="%d/%m/%Y")`)
+  * em 2017, a do Governo Temer, responsável por `r round(100*(evolucao_semanal_temperatura_an_1$evolucao_temp_recente[1]/sum(evolucao_semanal_temperatura_an_1$evolucao_temp_recente)))`% do aumento na temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_an_1$semana), format="%d/%m/%Y")`)
+  * em 2019, a do Governo Bolsonaro, responsável por `r round(100*(evolucao_semanal_temperatura_an_2$evolucao_temp_recente[1]/sum(evolucao_semanal_temperatura_an_2$evolucao_temp_recente)))`% do aumento na temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_an_2$semana), format="%d/%m/%Y")`)
 
 ### Direitos Humanos
 
-```{r, fig.width=8, fig.height=3}
+```{r, fig.width=12}
 temperatura_temas %>% 
   filter(tema == "Direitos Humanos") %>%
-  ggplot(aes(x=semana, y=total_temp, fill=tema)) +
-  geom_area() +
+  ggplot(aes(x=semana, y=total_temp)) +
+  geom_area(fill = cor_direitos_humanos) +
   xlab("Tempo") + 
   ylab("Temperatura") +
   theme_minimal() +
@@ -213,8 +220,8 @@ temperatura_temas %>%
   filter(semana >= lubridate::ymd('2015-06-01'),
          semana <= lubridate::ymd('2015-12-31'),
                 tema == "Direitos Humanos") %>%
-  ggplot(aes(x=semana, y=total_temp, fill=tema)) +
-  geom_area() +
+  ggplot(aes(x=semana, y=total_temp)) +
+  geom_area(fill = cor_direitos_humanos) +
   xlab("Tempo") + 
   ylab("Temperatura") +
   theme_minimal() +
@@ -236,15 +243,15 @@ evolucao_semanal_temperatura_dh <- evolucao_semanal_temperatura %>%
 #evolucao_semanal_temperatura_dh
 ```
 
-O projeto de lei que mais contribuiu para o aumento da temperatura nesse pico observado foi a PEC 18/2011 (que autoriza o trabalho a partir dos 14 anos), responsável por `r round(100*(evolucao_semanal_temperatura_dh$evolucao_temp_recente[1]/sum(evolucao_semanal_temperatura_dh$evolucao_temp_recente)),2)`% do aumento na temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_dh$semana), format="%d/%m/%Y")`) 
+O projeto de lei que mais contribuiu para o aumento da temperatura nesse pico observado foi a PEC 18/2011 (que autoriza o trabalho a partir dos 14 anos), responsável por `r round(100*(evolucao_semanal_temperatura_dh$evolucao_temp_recente[1]/sum(evolucao_semanal_temperatura_dh$evolucao_temp_recente)))`% do aumento na temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_dh$semana), format="%d/%m/%Y")`) 
 
 ## Educação
 
-```{r, fig.width=8, fig.height=3}
+```{r, fig.width=12}
 temperatura_temas %>% 
   filter(tema == "Educação") %>%
-  ggplot(aes(x=semana, y=total_temp, fill=tema)) +
-  geom_area() +
+  ggplot(aes(x=semana, y=total_temp)) +
+  geom_area(fill = cor_educacao) +
   xlab("Tempo") + 
   ylab("Temperatura") +
   theme_minimal() +
@@ -260,8 +267,8 @@ temperatura_temas %>%
   filter(semana >= lubridate::ymd('2016-06-01'),
          semana <= lubridate::ymd('2017-05-31'),
                 tema == "Educação") %>%
-  ggplot(aes(x=semana, y=total_temp, fill=tema)) +
-  geom_area() +
+  ggplot(aes(x=semana, y=total_temp)) +
+  geom_area(fill = cor_educacao) +
   xlab("Tempo") + 
   ylab("Temperatura") +
   theme_minimal() +
@@ -287,11 +294,11 @@ A PEC 15/2015 (que objetiva tornar o FUNDEB permanente) foi o projeto de lei res
 
 ## Integridade e Transparência
 
-```{r, fig.width=8, fig.height=3}
+```{r, fig.width=12}
 temperatura_temas %>% 
   filter(tema == "Integridade e Transparência") %>%
-  ggplot(aes(x=semana, y=total_temp, fill=tema)) +
-  geom_area() +
+  ggplot(aes(x=semana, y=total_temp)) +
+  geom_area(fill=cor_integridade_transparencia) +
   xlab("Tempo") + 
   ylab("Temperatura") +
   theme_minimal() +
@@ -307,8 +314,8 @@ temperatura_temas %>%
   filter(semana >= lubridate::ymd('2017-06-01'),
          semana <= lubridate::ymd('2018-05-31'),
                 tema == "Integridade e Transparência") %>%
-  ggplot(aes(x=semana, y=total_temp, fill=tema)) +
-  geom_area() +
+  ggplot(aes(x=semana, y=total_temp)) +
+  geom_area(fill=cor_integridade_transparencia) +
   xlab("Tempo") + 
   ylab("Temperatura") +
   theme_minimal() +
@@ -334,11 +341,11 @@ O PL 1292/1995, também conhecido como PL das Compras Públicas ou Nova Lei de L
 
 ## Meio Ambiente
 
-```{r, fig.width=8, fig.height=3}
+```{r, fig.width=12}
 temperatura_temas %>% 
   filter(tema == "Meio Ambiente") %>%
-  ggplot(aes(x=semana, y=total_temp, fill=tema)) +
-  geom_area() +
+  ggplot(aes(x=semana, y=total_temp)) +
+  geom_area(fill=cor_meio_ambiente) +
   xlab("Tempo") + 
   ylab("Temperatura") +
   theme_minimal() +
@@ -354,8 +361,8 @@ temperatura_temas %>%
   filter(semana >= lubridate::ymd('2018-01-01'),
          semana <= lubridate::ymd('2019-01-01'),
                 tema == "Meio Ambiente") %>%
-  ggplot(aes(x=semana, y=total_temp, fill=tema)) +
-  geom_area() +
+  ggplot(aes(x=semana, y=total_temp)) +
+  geom_area(fill=cor_meio_ambiente) +
   xlab("Tempo") + 
   ylab("Temperatura") +
   theme_minimal() +
@@ -377,4 +384,4 @@ evolucao_semanal_temperatura_ma <- evolucao_semanal_temperatura %>%
 #evolucao_semanal_temperatura_ma
 ```
 
-O projeto de lei que mais contribuiu para o aumento da temperatura nesse pico observado foi o PL 6670/2016, também conhecido como a Política do Governo de Redução de Agrotóxico, responsável por `r round(100*(evolucao_semanal_temperatura_ma$evolucao_temp_recente[1]/sum(evolucao_semanal_temperatura_ma$evolucao_temp_recente)),2)`% do aumento na temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_ma$semana), format="%d/%m/%Y")`).
+O projeto de lei que mais contribuiu para o aumento da temperatura nesse pico observado foi o PL 6670/2016, também conhecido como a Política do Governo de Redução de Agrotóxico, responsável por `r round(100*(evolucao_semanal_temperatura_ma$evolucao_temp_recente[1]/sum(evolucao_semanal_temperatura_ma$evolucao_temp_recente)))`% do aumento na temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_ma$semana), format="%d/%m/%Y")`).
