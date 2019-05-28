@@ -98,6 +98,9 @@ fetch_composicao_comissao <- function(sigla, casa, orgaos_camara) {
       dplyr::mutate(sigla = strsplit(sigla, "/")[[1]][1],
                     casa = casa)
     names(comissao) <- new_name
+    comissao <-
+      comissao %>% 
+      dplyr::filter(!is.na(id))
   } else {
     return('Parâmetro "casa" não identificado.')
   }
@@ -154,26 +157,26 @@ fetch_composicao_comissoes_senado <- function(sigla) {
         if (nrow(cargos) == 0 | !('HTTP' %in% names(cargos))) {
           membros %>%
             dplyr::mutate(CARGO = NA) %>%
-            dplyr::select(c("CARGO", "@num", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR", "FOTO"))
+            dplyr::select(c("CARGO", "HTTP", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR", "FOTO"))
         } else {
           if ("MEMBROS.MEMBROS_ROW.HTTP" %in% names(membros)) {
             membros <-
               membros %>%
               dplyr::left_join(cargos, by = c ("MEMBROS.MEMBROS_ROW.HTTP" = "HTTP")) %>%
               dplyr::select(
-                c("CARGO", "@num.x", "MEMBROS.MEMBROS_ROW.PARTIDO", "MEMBROS.MEMBROS_ROW.UF", "MEMBROS.MEMBROS_ROW.TIPO_VAGA", "MEMBROS.MEMBROS_ROW.PARLAMENTAR", "MEMBROS.MEMBROS_ROW.FOTO"))
+                c("CARGO", "MEMBROS.MEMBROS_ROW.HTTP", "MEMBROS.MEMBROS_ROW.PARTIDO", "MEMBROS.MEMBROS_ROW.UF", "MEMBROS.MEMBROS_ROW.TIPO_VAGA", "MEMBROS.MEMBROS_ROW.PARLAMENTAR", "MEMBROS.MEMBROS_ROW.FOTO"))
           }else {
             membros %>%
-              dplyr::left_join(cargos, by = 'HTTP') %>%
-              dplyr::select(c("CARGO", "@num.x", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x", "FOTO"))
+              dplyr::left_join(cargos, by = "HTTP") %>%
+              dplyr::select(c("CARGO", "HTTP", "PARTIDO", "UF", "TIPO_VAGA", "PARLAMENTAR.x", "FOTO"))
           }
         }
       }else {
-        tibble::tribble(~ CARGO, ~ num.x, ~ PARTIDO, ~ UF, ~ TIPO_VAGA, ~ PARLAMENTAR.x, ~ FOTO)
+        tibble::tribble(~ CARGO, ~ HTTP, ~ PARTIDO, ~ UF, ~ TIPO_VAGA, ~ PARLAMENTAR.x, ~ FOTO)
       }
     },
     error=function(cond) {
-      return(tibble::tribble(~ CARGO, ~ num.x, ~ PARTIDO, ~ UF, ~ TIPO_VAGA, ~ PARLAMENTAR.x, ~ FOTO))
+      return(tibble::tribble(~ CARGO, ~ HTTP, ~ PARTIDO, ~ UF, ~ TIPO_VAGA, ~ PARLAMENTAR.x, ~ FOTO))
     }
   )
 }
