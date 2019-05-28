@@ -1,17 +1,29 @@
 ---
 title: "Análise da Evolução Semanal da Temperatura - Agenda Nacional"
 output:
-  html_document:
-    df_print: paged
-  html_notebook: default
-  pdf_document: default
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
 ---
 
 Neste relatório, faremos uma análise da Temperatura da semana de 06-10/05/2019.
 
+```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, paged.print=FALSE, results="asis"}
+library(magrittr)
+knitr::opts_chunk$set(echo = FALSE,
+	             cache = FALSE,
+               prompt = FALSE,
+               tidy = FALSE,
+               comment = NA,
+               message = FALSE,
+               warning = FALSE)
+```
+
+
 ```{r}
 library(dplyr)
-library(magrittr)
+library(prettydoc)
+
 temperatura_props <- readr::read_csv('../../data/hists_temperatura.csv')
 proposicoes <- readr::read_csv('../../data/proposicoes.csv')
 eventos <- readr::read_csv('../../data/trams.csv')
@@ -81,7 +93,7 @@ temperatura_semanas_destaque_tema %>%
   scale_x_date(date_labels = "%d-%m-%Y") +
   theme_minimal()
 
-ggplotly(plot_temperatura_agenda_nacional)
+#ggplotly(plot_temperatura_agenda_nacional)
 ```
 
 PLs cuja temperatura subiu :
@@ -262,7 +274,7 @@ eventos_resumidos_semana_pl_1864_2019
 
 ## Texto para o report: 
 
-Na semana passada (06-10/05/2019), o tema Agenda Nacional teve um acréscimo de temperatura total de `r evolucao_temp_total_tema` unidades, indo de  `r temp_total_semana_passada_tema` para `r temp_total_semana_atual_tema`, como pode ser visto no gráfico abaixo. `r ggplotly(plot_temperatura_agenda_nacional)`
+Na semana passada (06-10/05/2019), o tema Agenda Nacional teve um acréscimo de temperatura total de `r evolucao_temp_total_tema` unidades, indo de  `r temp_total_semana_passada_tema` para `r temp_total_semana_atual_tema`, como pode ser visto no gráfico abaixo. 
 
 As proposições responsáveis por esse aumento foram, em ordem decrescente de aumento da temperatura:
 `r ggplotly(plot_temperatura_pls_agenda_nacional)`.
