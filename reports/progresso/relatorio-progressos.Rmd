@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = FALSE,
 ```
 
 ```{r}
-progressos <- readr::read_csv('../../data/distancias/progressos.csv') 
+progressos <- readr::read_csv('../../data/progressos.csv') 
 temas <- readr::read_csv('../../data/tabela_geral_ids_casa.csv') %>%
   dplyr::mutate(id_geral = dplyr::row_number())
 
@@ -38,7 +38,7 @@ ids_pls <- dplyr::bind_rows(
   dplyr::filter(!is.na(id_ext)) %>%
   dplyr::arrange(id_geral)
 progresso_temas <- merge(progressos, ids_pls, by = "id_ext")
-proposicoes <- readr::read_csv('../../data/distancias/proposicoes.csv') %>% 
+proposicoes <- readr::read_csv('../../data/proposicoes.csv') %>% 
   dplyr::mutate(nome_pl = paste(sigla_tipo, paste(numero, lubridate::year(data_apresentacao),sep='/'))) %>% 
   dplyr::group_by(id_ext) %>% 
   dplyr::select(id_ext, nome_pl)
