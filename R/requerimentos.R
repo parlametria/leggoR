@@ -55,7 +55,8 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
                   local = sigla_local,
                   prop_id = prop_id,
                   casa = congresso_constants$camara_label,
-                  id_situacao = as.integer(id_situacao))
+                  id_situacao = as.integer(id_situacao),
+                  tipo_documento = dplyr::if_else(tipo_documento == 'Requerimento', 'Requerimento (tipo não especificado)', tipo_documento))
   
   return(eventos_reqs)
 }
@@ -84,5 +85,3 @@ fetch_eventos_reqs_prop_senado <- function(prop_id) {
   #
   #return(eventos_reqs)
 }
-
-
