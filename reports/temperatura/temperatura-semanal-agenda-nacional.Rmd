@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = FALSE,
 ```
 
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(dplyr)
 library(prettydoc)
 
