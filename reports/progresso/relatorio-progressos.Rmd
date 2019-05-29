@@ -1,5 +1,5 @@
 ---
-title: "Análise do progresso das proposições"
+title: "Progresso das proposições por tema"
 author: "Equipe Leg.go"
 date: "24/05/2019"
 output:
@@ -64,17 +64,20 @@ progresso_data <- data_subset %>%
                   tidyr::separate_rows(tema,sep=';')
 ```
 
-Nesta breve análise, vamos explorar o histórico do progresso das proposições em tramitação **que são monitoradas pelo Leg.go**.
+Nesta breve análise, exploramos o progresso das proposições em tramitação **que são monitoradas pelo Leg.go**.
 
-**Obs:** Estaremos omitindo das nossas visualizações as **MPVs**, pois só temos 3 em tramitação, todas atualmente na **Câmara dos Deputados**.
+**Obs:** Omitimos as **MPVs**, pois elas têm tramitação diferente e, daquelas que são monitoradas pelo leggo, apenas a MPV 870/2019 (Monitoramento e Acompanhamento de ONGs) alcançou o Senado Federal, as remanescente estão todas na Câmara do Deputados.
 
-##Qual a situação das proposições em tramitação quanto ao seu progresso?
+##Em que etapa estão as proposições?
 
 ```{r fig.width=10}
 set.seed(42)
-pls <- merge(progresso_data, proposicoes) %>% dplyr::filter(!grepl("MPV", nome_pl))
+pls <- merge(progresso_data, proposicoes) %>% dplyr::filter(!grepl("MPV", nome_pl)) %>%
+  dplyr::mutate(importancia = dplyr::if_else(fase_local == "Construção - Comissões",1,
+                              dplyr:: if_else(fase_local == "Construção - Plenário",20,
+                                       dplyr::if_else(fase_local == "Revisão I - Comissões",150,750))))
 p <- ggplot2::ggplot(pls,ggplot2::aes(fase_local, 
-                                   tema,
+                                   reorder(tema, importancia, sum),
                                    color= tema,
                                    text=paste(nome_pl,"<br>", apelido))) +
     ggplot2::scale_colour_brewer("", palette="Set1") +
@@ -91,9 +94,11 @@ gg <- plotly::ggplotly(p, tooltip = c("text")) %>%
 gg
 ```
 
-A primeira coisa que notamos é que a maioria das proposições, cerca de 80%, estão na etapa de Construção nas Comissões. Outra coisa que conseguimos observar é que todas as proposições do tema `Educação` não avançaram de fase desde sua criação, enquanto as proposições do tema `Integridade e Transparência` são as únicas que chegaram na fase de Revisão no Plenário. 
+A maioria das proposições (cerca de 80%) estão na etapa de Construção nas Comissões. Nenhuma das proposições de `Educação` avançaram de fase desde sua criação, enquanto as proposições de `Integridade e Transparência` são as únicas que chegaram na fase de Revisão no Plenário. 
 
 Observando por outro aspecto, a fase de Revisão nas Comissões tem mais proposições da `Agenda Nacional`.
+
+
 
 
 ##Há quanto tempo as proposições estão na fase atual?
@@ -114,7 +119,8 @@ p <- pls %>% ggplot(aes(meses_decorridos,
                                 breaks = c(3, 6, 12, 24, 48, 96, 192), 
                                 labels = c("3m", "6m", "1a", "2a", "4a", "8a", "16a")) +
              ggplot2::scale_colour_brewer("", palette="Set1") +
-             geom_jitter(height = .3, alpha =.9, size = 1.2) +
+             ggbeeswarm::geom_quasirandom(width = .4) +
+             # geom_jitter(height = 0) +
              hrbrthemes::theme_ipsum_rc() +
              facet_wrap( ~ fase_local, ncol=4 ) +
              labs( x="Tempo", y="") +
@@ -126,12 +132,10 @@ p <- ggplotly(p, tooltip = c("text")) %>%
 p
 ```
 
-O primeiro fato interessante notado é que a maior parte das proposições está há mais de 2 anos na fase de Construção nas Comissões. Quando analisamos por temas, vemos que as proposições de `Direitos Humanos` estão há pelo menos 2 anos paradas, sendo aquelas que estão na fase de Construção nas Comissões paradas há mais de 4 anos. 
-Das proposições apresentadas na legislatura atual, apenas o tema `Agenda Nacional` está representado no Leg.go. São elas: a PEC 6/2019 (Nova Previdência), o PL 881/2019 (Pacote Moro Caixa 2), o PLP 38/2019 (Pacote Moro Anticorrupção) e o PL 1864/2019 (Pacote Moro - Crime Organizado). 
+O primeiro fato interessante notado é que a maior parte das proposições está há mais de 2 anos na fase de Construção nas Comissões. Quando analisamos por temas, vemos que as proposições de `Direitos Humanos` estão há pelo menos 2 anos paradas, sendo que aquelas que estão na fase de Construção nas Comissões paradas há mais de 4 anos. A proposição mais recente do tema `Educação` está parada há quase 2 anos.
 
-###Pontos destoantes
+###Ponto destoante
 
-1. Temos apenas uma proposição na fase de Construção no Plenário: o PL 1202/2007 (Disciplina a atividade de lobby);
-2. O PL 6299/2002 (PL do Veneno) está há mais de 16 anos parada na fase de Revisão nas Comissões.
+O PL 6299/2002 (PL do Veneno) está há mais de 16 anos parada na fase de Revisão nas Comissões.
 
 Acompanhe melhor: https://www.leggo.org.br
