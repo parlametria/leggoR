@@ -44,6 +44,8 @@ process_etapa <- function(id, casa, agenda, pautas) {
     )
 }
 
+safe_process_etapa <- purrr::safely(process_etapa)
+
 #' @title Adiciona uma coluna para indicar se a proposição pulou alguma fase
 #' @description Verifica se a proposição pulou uma fase
 #' @param progresso_df DataFrame com o progresso da tramitação
@@ -102,12 +104,13 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
   cat(paste(
     "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
     "\nsenado", id_senado, "\n"))
+
   etapas <- list()
   if (!is.na(id_camara)) {
-    etapas %<>% append(list(process_etapa(id_camara, "camara", agenda, pautas = pautas)))
+    etapas %<>% append(list(safe_process_etapa(id_camara, "camara", agenda, pautas = pautas)))
   }
   if (!is.na(id_senado)) {
-    etapas %<>% append(list(process_etapa(id_senado, "senado", agenda, pautas = pautas)))
+    etapas %<>% append(list(safe_process_etapa(id_senado, "senado", agenda, pautas = pautas)))
   }
   etapas %<>% purrr::pmap(dplyr::bind_rows)
   if (tolower(etapas$proposicao$sigla_tipo) == 'mpv') {
@@ -126,6 +129,8 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
   return(etapas)
 }
 
+safe_process_pl <- purrr::safely(process_pl)
+
 #' @title Exporta dados de proposições
 #' @description Exporta para uma pasta CSVs com dados sobre uma lista de proposições.
 #' @param pls dataframe com proposições.
@@ -142,10 +147,9 @@ export_data <- function(pls, export_path) {
   error = function(msg) {
   })
 
-  res <- pls %>% purrr::pmap(process_pl, agenda, nrow(pls), pautas = pautas)
+  res <- pls %>% purrr::pmap(safe_process_pl, agenda, nrow(pls), pautas = pautas)
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
-    dplyr::select(-c(ano)) %>%
     dplyr::rename(id_ext = prop_id, apelido = apelido_materia)
   tramitacoes <-
     purrr::map_df(res, ~ .$fases_eventos) %>%

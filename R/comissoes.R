@@ -192,7 +192,7 @@ fetch_composicao_comissoes_senado <- function(sigla) {
 fetch_all_composicao_comissao <- function() {
   orgaos_camara <- fetch_orgaos_camara()
   
-  siglas_comissoes <- 
+  siglas_camara <- 
     orgaos_camara %>% 
     dplyr::filter(tipo_orgao_id == 2 |
                     (tipo_orgao_id == 3 & dataFim == "")) %>%
