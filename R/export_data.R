@@ -105,10 +105,10 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
 
   etapas <- list()
   if (!is.na(id_camara)) {
-    etapas %<>% append(list(process_etapa(id_camara, "camara", agenda, pautas = pautas)$result))
+    etapas %<>% append(list(process_etapa(id_camara, "camara", agenda, pautas = pautas)))
   }
   if (!is.na(id_senado)) {
-    etapas %<>% append(list(process_etapa(id_senado, "senado", agenda, pautas = pautas)$result))
+    etapas %<>% append(list(process_etapa(id_senado, "senado", agenda, pautas = pautas)))
   }
   etapas %<>% purrr::pmap(dplyr::bind_rows)
   if (tolower(etapas$proposicao$sigla_tipo) == 'mpv') {
