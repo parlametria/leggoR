@@ -44,21 +44,6 @@ process_etapa <- function(id, casa, agenda, pautas) {
     )
 }
 
-default <- 
-  list(
-  proposicao = tibble::tribble(~prop_id, ~sigla_tipo, ~numero, ~ano, ~ementa, ~data_apresentacao, ~casa, ~casa_origem, 
-                               ~autor_nome, ~autor_uf, ~autor_partido, ~apelido_materia, ~tema, ~regime_tramitacao,
-                               ~forma_apreciacao, ~relator_nome, ~temperatura),
-  fases_eventos = tibble::tribble(~prop_id, ~casa, ~data_hora, ~sequencia, ~texto_tramitacao, ~sigla_local, ~id_situacao, 
-                                  ~descricao_situacao, ~link_inteiro_teor, ~evento, ~local, ~tipo_documento, ~nivel, 
-                                  ~titulo_evento),
-  hist_temperatura = tibble::tribble(~id_ext, ~casa, ~periodo, ~temperatura_periodo, ~temperatura_recente),
-  emendas = tibble::tribble(~prop_id, ~codigo_emenda, ~data_apresentacao, ~numero, ~local, ~autor, ~casa,
-                            ~tipo_documento)
-)
-
-safe_process_etapa <- purrr::safely(process_etapa, otherwise = default)
-
 #' @title Adiciona uma coluna para indicar se a proposição pulou alguma fase
 #' @description Verifica se a proposição pulou uma fase
 #' @param progresso_df DataFrame com o progresso da tramitação
@@ -120,10 +105,10 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
 
   etapas <- list()
   if (!is.na(id_camara)) {
-    etapas %<>% append(list(safe_process_etapa(id_camara, "camara", agenda, pautas = pautas)$result))
+    etapas %<>% append(list(process_etapa(id_camara, "camara", agenda, pautas = pautas)$result))
   }
   if (!is.na(id_senado)) {
-    etapas %<>% append(list(safe_process_etapa(id_senado, "senado", agenda, pautas = pautas)$result))
+    etapas %<>% append(list(process_etapa(id_senado, "senado", agenda, pautas = pautas)$result))
   }
   etapas %<>% purrr::pmap(dplyr::bind_rows)
   if (tolower(etapas$proposicao$sigla_tipo) == 'mpv') {
