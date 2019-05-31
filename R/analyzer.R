@@ -248,11 +248,13 @@ extract_forma_apreciacao <- function(tram_df) {
 #' @description Extrai se um vectors de proposições estarão em pauta
 #' @param agenda Dataframe com a agenda
 #' @param tabela_geral_ids_casa Dataframe com as colunas id_senado, id_camara
+#' @param export_path Caminho para diretório destino do dataframe
+#' @param pautas_df Dataframe com as pautas
 #' @return Dataframe com a coluna em_pauta
 #' @examples
 #' extract_pauta(fetch_agenda_geral('2018-10-01', '2018-10-26'), c("91341", "2121442", "115926", "132136"))
 #' @export
-extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
+extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path, pautas_df) {
   proposicao_id <- as.vector(as.matrix(tabela_geral_ids_casa[,c("id_camara", "id_senado")]))
   proposicao_id <- proposicao_id[!is.na(proposicao_id)]
   pautas <-
@@ -269,9 +271,18 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
     dplyr::filter(dplyr::row_number()==dplyr::n()) %>%
     dplyr::ungroup() %>%
     fix_nomes_locais() %>%
-    dplyr::select(-em_pauta)
+    dplyr::select(-em_pauta) %>%
+    dplyr::mutate(id_ext = as.numeric(id_ext))
 
-  readr::write_csv(pautas, paste0(export_path, "/pautas.csv"))
+  hoje <- Sys.Date()
+  semana_atual <- lubridate::epiweek(hoje)
+  semana_retrasada <- semana_atual - 2
+
+  pautas_df <- pautas_df %>% dplyr::filter(semana < semana_retrasada)
+
+  new_pautas <- dplyr::bind_rows(pautas, pautas_df) %>% unique()
+
+  readr::write_csv(new_pautas, paste0(export_path, "/pautas.csv"))
 }
 
 
