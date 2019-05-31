@@ -37,18 +37,18 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
       paste0(
         out_folderpath, "/", casa, "/", prop_id, "-fases-tramitacao-", casa, ".csv"))
   }
-  
+
   # Adiciona coluna tipo_documento se não houveram requerimentos relacionados
   if (!("tipo_documento" %in% colnames(proc_tram_data))) {
     proc_tram_data <- proc_tram_data %>%
       dplyr::mutate(tipo_documento = NA)
   }
-  
+
   # Adiciona colunas com nível de importância e título dos eventos
-  proc_tram_data <- proc_tram_data %>% 
+  proc_tram_data <- proc_tram_data %>%
     dplyr::left_join(congresso_env$eventos, by="evento") %>%
     # Corrige título dos documentos relacionados
-    dplyr::mutate(titulo_evento = dplyr::if_else(stringr::str_starts(evento, "req_"), 
+    dplyr::mutate(titulo_evento = dplyr::if_else(stringr::str_starts(evento, "req_"),
                                                  paste(titulo_evento,tipo_documento),titulo_evento))
 }
 
@@ -105,14 +105,14 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
                   evento = 'na_pauta') %>%
     dplyr::select(-data) %>%
     dplyr::filter(prop_id == eventos_df$prop_id[1])
-  
+
   if(nrow(pautas) != 0) {
     eventos_sem_horario <- eventos_df %>%
       tibble::add_row(!!!pautas) %>%
-      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
+      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
   }else {
     eventos_sem_horario <- eventos_df %>%
-      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
+      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
   }
 
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
@@ -259,7 +259,7 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
     agenda %>%
     dplyr::mutate(em_pauta = id_ext %in% proposicao_id) %>%
     dplyr::filter(em_pauta) %>%
-    dplyr::mutate(semana = lubridate::week(data),
+    dplyr::mutate(semana = lubridate::epiweek(data),
                   ano = lubridate::year(data),
                   local = ifelse(is.na(local), "Local não informado", local)) %>%
     dplyr::arrange(unlist(sigla), semana, desc(em_pauta)) %>%
@@ -291,7 +291,7 @@ fix_nomes_locais <- function(pautas_df) {
     dplyr::mutate(local = local_clean) %>%
     dplyr::ungroup() %>%
     dplyr::select(-local_clean)
-  
+
   return(pautas_locais_clean)
 
 }
@@ -357,7 +357,7 @@ get_pesos_eventos <- function() {
 
   eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
     dplyr::select(evento = constant, tipo)
-  
+
   na_pauta <- tibble::tribble(~evento, ~tipo, ~label, ~peso,
                               "na_pauta", "votacao", "Votação", 0.68)
 
