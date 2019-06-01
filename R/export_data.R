@@ -44,20 +44,69 @@ process_etapa <- function(id, casa, agenda, pautas) {
     )
 }
 
-default <- 	
-  list(	
-    proposicao = tibble::tribble(~prop_id, ~sigla_tipo, ~numero, ~ano, ~ementa, ~data_apresentacao, ~casa, ~casa_origem, 	
-                                 ~autor_nome, ~autor_uf, ~autor_partido, ~apelido_materia, ~tema, ~regime_tramitacao,	
-                                 ~forma_apreciacao, ~relator_nome, ~temperatura),	
-    fases_eventos = tibble::tribble(~prop_id, ~casa, ~data_hora, ~sequencia, ~texto_tramitacao, ~sigla_local, ~id_situacao, 	
-                                    ~descricao_situacao, ~link_inteiro_teor, ~evento, ~local, ~tipo_documento, ~nivel, 	
-                                    ~titulo_evento),	
-    hist_temperatura = tibble::tribble(~id_ext, ~casa, ~periodo, ~temperatura_periodo, ~temperatura_recente),	
-    emendas = tibble::tribble(~prop_id, ~codigo_emenda, ~data_apresentacao, ~numero, ~local, ~autor, ~casa,	
-                              ~tipo_documento)	
-  )	
+safe_process_etapa <- purrr::safely(
+    process_etapa,
+    otherwise =
+      list(
+        proposicao = tibble::tribble(
+          ~ prop_id,
+          ~ sigla_tipo,
+          ~ numero,
+          ~ ano,
+          ~ ementa,
+          ~ data_apresentacao,
+          ~ casa,
+          ~ casa_origem,
+          ~
+            autor_nome,
+          ~ autor_uf,
+          ~ autor_partido,
+          ~ apelido_materia,
+          ~ tema,
+          ~ regime_tramitacao,
+          ~
+            forma_apreciacao,
+          ~ relator_nome,
+          ~ temperatura
+        ),
+        fases_eventos = tibble::tribble(
+          ~ prop_id,
+          ~ casa,
+          ~ data_hora,
+          ~ sequencia,
+          ~ texto_tramitacao,
+          ~ sigla_local,
+          ~ id_situacao,
+          ~
+            descricao_situacao,
+          ~ link_inteiro_teor,
+          ~ evento,
+          ~ local,
+          ~ tipo_documento,
+          ~ nivel,
+          ~
+            titulo_evento
+        ),
+        hist_temperatura = tibble::tribble(
+          ~ id_ext,
+          ~ casa,
+          ~ periodo,
+          ~ temperatura_periodo,
+          ~ temperatura_recente
+        ),
+        emendas = tibble::tribble(
+          ~ prop_id,
+          ~ codigo_emenda,
+          ~ data_apresentacao,
+          ~ numero,
+          ~ local,
+          ~ autor,
+          ~ casa,
+          ~ tipo_documento
+        )
+      )
+  )
 
-safe_process_etapa <- purrr::safely(process_etapa, otherwise = default)
 
 #' @title Adiciona uma coluna para indicar se a proposição pulou alguma fase
 #' @description Verifica se a proposição pulou uma fase
@@ -114,17 +163,30 @@ adiciona_status <- function(tramitacao_df) {
 #' @param total_rows número de linhas da tabela com os ids das proposições
 #' @return Dataframe
 process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows, pautas) {
-  cat(paste(
-    "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
-    "\nsenado", id_senado, "\n"))
+   cat(paste(
+     "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
+     "\nsenado", id_senado, "\n"))
 
   etapas <- list()
   if (!is.na(id_camara)) {
-    etapas %<>% append(list(safe_process_etapa(id_camara, "camara", agenda, pautas = pautas)$result))
+    etapa_processada <- safe_process_etapa(id_camara, "camara", agenda, pautas = pautas)
+    etapas %<>% append(list(etapa_processada$result))
+    if (!is.null(etapa_processada$error)) {
+      print(etapa_processada$error)  
+      return(etapas)
+    }
   }
   if (!is.na(id_senado)) {
-    etapas %<>% append(list(safe_process_etapa(id_senado, "senado", agenda, pautas = pautas)$result))
+    etapa_processada <- safe_process_etapa(id_senado, "senado", agenda, pautas = pautas)
+    etapas %<>% append(list(etapa_processada$result))
+    if (!is.null(etapa_processada$error)) {
+      print(etapa_processada$error)  
+      return(etapas)
+    }
   }
+  
+  
+  
   etapas %<>% purrr::pmap(dplyr::bind_rows)
   if (nrow(etapas$proposicao) != 0) {
     if (tolower(etapas$proposicao$sigla_tipo) == 'mpv') {
@@ -162,16 +224,28 @@ export_data <- function(pls, export_path) {
   
   res <- list()
   count <- 0
-  proposicaos_que_nao_baixaram <- pls
+  proposicoes_que_nao_baixaram <- pls
+  proposicoes_individuais_a_baixar_camara <- pls %>%
+    dplyr::mutate(casa = "camara") %>%
+    dplyr::select(casa,
+                  id_casa = id_camara,
+                  apelido,
+                  tema) %>%
+    dplyr::filter(!is.na(id_casa))
+  
+  proposicoes_individuais_a_baixar_senado <- pls %>%
+    dplyr::mutate(casa = "senado") %>%
+    dplyr::select(casa,
+                  id_casa = id_senado,
+                  apelido,
+                  tema) %>%
+    dplyr::filter(!is.na(id_casa))
+  
+  proposicoes_individuais_a_baixar <- dplyr::bind_rows(proposicoes_individuais_a_baixar_camara,
+                                                   proposicoes_individuais_a_baixar_senado)
   while (count < 5 ) {
-    cat(paste(
-      "\n--- Tentativa ", count + 1,"\n"))
-    
-    if (count == 0) {
-      res <- append(res, pls %>% purrr::pmap(process_pl, agenda, nrow(pls), pautas = pautas)) 
-    }else {
-      res <- append(res, proposicaos_que_nao_baixaram %>% purrr::pmap(process_pl, agenda, nrow(proposicaos_que_nao_baixaram), pautas = pautas)) 
-    }
+    cat(paste("\n--- Tentativa ", count + 1,"\n"))
+    res <- append(res, proposicoes_que_nao_baixaram %>% purrr::pmap(process_pl, agenda, nrow(proposicoes_que_nao_baixaram), pautas = pautas)) 
 
     proposicoes <-
       purrr::map_df(res, ~ .$proposicao) %>%
@@ -179,13 +253,27 @@ export_data <- function(pls, export_path) {
       dplyr::rename(id_ext = prop_id, apelido = apelido_materia) %>% 
       unique()
     
-    proposicaos_que_nao_baixaram_temp <- dplyr::anti_join(proposicaos_que_nao_baixaram, proposicoes, by=c("id_camara" = "id_ext"))
-    proposicaos_que_nao_baixaram <- dplyr::anti_join(proposicaos_que_nao_baixaram_temp, proposicoes, by=c("id_senado" = "id_ext"))
+    proposicoes_baixadas <- proposicoes %>%
+      dplyr::select(casa,
+             id_casa = id_ext,
+             apelido,
+             tema)
+    
+    proposicoes_que_nao_baixaram_temp <- dplyr::anti_join(proposicoes_individuais_a_baixar, proposicoes_baixadas)
+    proposicoes_que_nao_baixaram <- proposicoes_que_nao_baixaram %>%
+      dplyr::filter((id_camara %in% proposicoes_que_nao_baixaram_temp$id_casa) |
+                      (id_senado %in% proposicoes_que_nao_baixaram_temp$id_casa)) %>%
+      dplyr::mutate(row_num = dplyr::row_number())
 
-    if(nrow(proposicaos_que_nao_baixaram) == 0) {
+    if(nrow(proposicoes_que_nao_baixaram) == 0) {
       break()
     }
     count <- count + 1
+  }
+  
+  if (nrow(proposicoes_que_nao_baixaram) > 0) {
+    print("Could not download the following propositions:")
+    print(proposicoes_que_nao_baixaram)
   }
   
   
