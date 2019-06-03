@@ -273,7 +273,7 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path, pautas_df)
     fix_nomes_locais() %>%
     dplyr::select(-em_pauta) %>%
     dplyr::mutate(id_ext = as.numeric(id_ext))
-
+  attr(pautas_df$data, "tzone") <- ""
   hoje <- Sys.Date()
   semana_atual <- lubridate::epiweek(hoje)
   semana_retrasada <- semana_atual - 2
@@ -281,8 +281,11 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path, pautas_df)
   pautas_df <- pautas_df %>% dplyr::filter(semana < semana_retrasada)
 
   new_pautas <- dplyr::bind_rows(pautas, pautas_df) %>% unique()
+  attr(new_pautas$data, "tzone") <- ""
 
   readr::write_csv(new_pautas, paste0(export_path, "/pautas.csv"))
+
+  df <- readr::read_csv(paste0(export_path, "/pautas.csv"))
 }
 
 
