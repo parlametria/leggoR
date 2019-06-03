@@ -266,6 +266,7 @@ export_data <- function(pls, export_path) {
       dplyr::mutate(row_num = dplyr::row_number())
 
     if(nrow(proposicoes_que_nao_baixaram) == 0) {
+      print("Downloaded all propositions! =)")
       break()
     }
     count <- count + 1
