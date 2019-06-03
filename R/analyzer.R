@@ -96,24 +96,27 @@ get_temperatura <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate:
 #' get_historico_temperatura_recente(proc_tram, granularidade = 's', decaimento = 0.05)
 #' }
 get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.25, max_date = lubridate::now(), pautas) {
-  pautas <-
-    pautas %>%
-    dplyr::select(prop_id = id_ext, data) %>%
-    dplyr::mutate(prop_id = as.integer(prop_id),
-                  data_hora = as.POSIXct(data),
-                  casa = eventos_df$casa[1],
-                  evento = 'na_pauta') %>%
-    dplyr::select(-data) %>%
-    dplyr::filter(prop_id == eventos_df$prop_id[1])
+  eventos_pautas_pl <- tibble::tibble()
   
-  if(nrow(pautas) != 0) {
-    eventos_sem_horario <- eventos_df %>%
-      tibble::add_row(!!!pautas) %>%
-      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
-  }else {
-    eventos_sem_horario <- eventos_df %>%
-      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
+  if (nrow(pautas) != 0) {
+    eventos_pautas_pl <-
+      pautas %>%
+      dplyr::select(prop_id = id_ext, data) %>%
+      dplyr::mutate(prop_id = as.integer(prop_id),
+                    data_hora = as.POSIXct(data),
+                    casa = eventos_df$casa[1],
+                    evento = 'na_pauta') %>%
+      dplyr::select(-data) %>%
+      dplyr::filter(prop_id == eventos_df$prop_id[1])
   }
+  
+  if(nrow(eventos_pautas_pl) != 0) {
+    eventos_df <- eventos_df %>%
+      tibble::add_row(!!!eventos_pautas_pl)
+  }
+  
+  eventos_sem_horario <- eventos_df %>%
+      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
 
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
