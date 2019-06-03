@@ -102,6 +102,7 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
   cat(paste(
     "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
     "\nsenado", id_senado, "\n"))
+
   etapas <- list()
   if (!is.na(id_camara)) {
     etapas %<>% append(list(process_etapa(id_camara, "camara", agenda, pautas = pautas)))
@@ -143,6 +144,7 @@ export_data <- function(pls, export_path) {
   })
 
   res <- pls %>% purrr::pmap(process_pl, agenda, nrow(pls), pautas = pautas)
+  
   proposicoes <-
     purrr::map_df(res, ~ .$proposicao) %>%
     dplyr::select(-c(ano)) %>%
