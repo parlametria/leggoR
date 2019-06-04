@@ -259,6 +259,7 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path, pautas_df)
   proposicao_id <- proposicao_id[!is.na(proposicao_id)]
   pautas <-
     agenda %>%
+    dplyr::mutate(data = lubridate::ymd_hms(as.character(data), tz = "America/Sao_Paulo")) %>%
     dplyr::mutate(em_pauta = id_ext %in% proposicao_id) %>%
     dplyr::filter(em_pauta) %>%
     dplyr::mutate(semana = lubridate::epiweek(data),
@@ -272,20 +273,24 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path, pautas_df)
     dplyr::ungroup() %>%
     fix_nomes_locais() %>%
     dplyr::select(-em_pauta) %>%
-    dplyr::mutate(id_ext = as.numeric(id_ext))
-  attr(pautas_df$data, "tzone") <- ""
+    dplyr::mutate(id_ext = as.numeric(id_ext),
+                  data = as.character(data))
+
+  #lubridate::force_tz(pautas, tzone = "America/Los_Angeles")
   hoje <- Sys.Date()
   semana_atual <- lubridate::epiweek(hoje)
   semana_retrasada <- semana_atual - 2
 
+  pautas_df <- pautas_df %>% dplyr::mutate(data = as.character(data)) %>% dplyr::filter(semana < semana_retrasada)
   pautas_df <- pautas_df %>% dplyr::filter(semana < semana_retrasada)
+ # lubridate::force_tz(pautas_df, tzone = "America/Sao_Paulo")
+  new_pautas <- dplyr::bind_rows(pautas, pautas_df) %>%
+    unique() %>%
+    dplyr::arrange(data) %>%
+    dplyr::mutate(data = as.POSIXct(data, tz="UTC"))
 
-  new_pautas <- dplyr::bind_rows(pautas, pautas_df) %>% unique()
-  attr(new_pautas$data, "tzone") <- ""
 
   readr::write_csv(new_pautas, paste0(export_path, "/pautas.csv"))
-
-  df <- readr::read_csv(paste0(export_path, "/pautas.csv"))
 }
 
 
