@@ -35,6 +35,11 @@ test <- function(){
   test_that('fetch_eventos_reqs_prop_camara() returns warning with id incorrect', {
     expect_warning(fetch_eventos_reqs_prop_camara(0))
   })
+
+  test_that('fetch_eventos_reqs_prop() for senado returns empty dataframe', {
+    expect_true(nrow(fetch_eventos_reqs_prop(46249, 'senado')) == 0)
+  })
+
 }
 
 if(check_api()){
