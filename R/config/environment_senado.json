@@ -72,7 +72,7 @@
     {"evento": "pedido_de_vista", "regex": "concedida vista", "tipo":"votacao"},
     {"evento": "designado_relator",
       "regex": "(designa.*relator(a|) da matéria)|(designad(o|a) relator(a|))|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria                  (.*|)$))", "tipo":"despacho"},
-    {"evento": "designado_presidente_comissao", "regex": "eleit(a|o) .* presidente", "tipo": "despacho"},
+    {"evento": "designado_presidente_comissao", "regex": "eleit(a|o)(s)* .* presidente", "tipo": "despacho"},
     {"evento": "arquivamento", "regex": "processo arquivado(.)*|a proposição é arquivada", "tipo":"despacho"},
     {"evento": "desarquivamento", "regex": "a mat.ria foi desarquivada", "tipo":"despacho"},
     {"evento": "desarquivamento", "id_situacao": 149, "tipo":"despacho"},
