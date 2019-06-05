@@ -179,7 +179,11 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
     proposicoes <- eventos$proposicoes
     eventos <-
       eventos %>%
-      dplyr::select(-c(num_reuniao, objeto, proposicoes)) %>%
+      dplyr::select(-c(num_reuniao, objeto, proposicoes)) 
+    
+    eventos$local[eventos$local == "list()"] <- "Local não informado"
+    
+    eventos <- eventos %>%
       lapply(unlist) %>%
       as.data.frame() %>%
       tibble::add_column(proposicoes)
@@ -213,7 +217,8 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
     fetch_orgaos_camara() %>% 
     dplyr::filter(casa == 'Câmara dos Deputados', 
                   (tipo_orgao_id == 1 & orgao_id == 180) |
-                  (tipo_orgao_id == 2 & orgao_id > 1999))
+                  (tipo_orgao_id == 2 & orgao_id > 1999) |
+                    (tipo_orgao_id == 3 & dataFim == ""))
   
   agenda <- purrr::map_df(orgaos$orgao_id, fetch_agendas_comissoes_camara_auxiliar, initial_date, end_date)
   
@@ -243,3 +248,4 @@ junta_agendas <- function(initial_date, end_date) {
   
   materia <- purrr::map2_df(semanas$value, semanas$fim_semana, ~ fetch_agenda_geral(.x, .y))
 }
+
