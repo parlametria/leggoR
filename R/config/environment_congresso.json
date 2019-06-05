@@ -95,6 +95,7 @@
     {"evento": "apresentacao_parecer", "titulo_evento": "Apresentação de Parecer" , "nivel": 1},
     {"evento": "devolvido", "titulo_evento": "Devolução do Projeto pelo Relator" , "nivel": 1},
     {"evento": "recebimento_comissao", "titulo_evento": "Recebimento na Comissão" , "nivel": 2},
-    {"evento": "aprovacao_projeto", "titulo_evento": "Aprovação do Projeto" , "nivel": 1}
+    {"evento": "aprovacao_projeto", "titulo_evento": "Aprovação do Projeto" , "nivel": 1},
+    {"evento": "rejeicao_projeto", "titulo_evento": "Rejeição do Projeto" , "nivel": 1}
   ]
 }
