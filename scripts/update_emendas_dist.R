@@ -3,7 +3,7 @@ library(magrittr)
 
 help <- "
 Usage:
-Rscript update_emendas_dist.R <emendas_raw_filepath> <distances_folderpath> <output_filepath> <path_para_jus_all_dist>
+Rscript update_emendas_dist.R <emendas_raw_filepath> <distances_folderpath> <output_filename> <path_para_jus_all_dist>
 "
 
 ## Process args
@@ -15,7 +15,7 @@ if (length(args) != num_args) {
 
 emendas_raw_filepath <- args[1]
 distances_folderpath <- args[2]
-output_filepath <- args[3]
+output_filename <- args[3]
 path_para_jus_all_dist <- args[4]
 
 ## Install local repository R package version
@@ -25,4 +25,4 @@ devtools::install()
 agoradigital::format_table_distances_to_emendas(path_para_jus_all_dist, distances_folderpath)
 readr::read_csv(emendas_raw_filepath) %>%
   agoradigital::add_distances_to_emendas(distances_folderpath) %>% 
-  readr::write_csv(output_filepath, append = T)
+  readr::write_csv(output_filename, append = T)
