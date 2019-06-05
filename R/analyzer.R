@@ -97,7 +97,7 @@ get_temperatura <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate:
 #' }
 get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.25, max_date = lubridate::now(), pautas) {
   eventos_pautas_pl <- tibble::tibble()
-  
+
   if (nrow(pautas) != 0) {
     eventos_pautas_pl <-
       pautas %>%
@@ -109,14 +109,14 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
       dplyr::select(-data) %>%
       dplyr::filter(prop_id == eventos_df$prop_id[1])
   }
-  
+
   if(nrow(eventos_pautas_pl) != 0) {
     eventos_df <- eventos_df %>%
       tibble::add_row(!!!eventos_pautas_pl)
   }
-  
+
   eventos_sem_horario <- eventos_df %>%
-      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
+      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
 
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
@@ -258,12 +258,15 @@ extract_forma_apreciacao <- function(tram_df) {
 #' extract_pauta(fetch_agenda_geral('2018-10-01', '2018-10-26'), c("91341", "2121442", "115926", "132136"))
 #' @export
 extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path, pautas_df) {
-  proposicao_id <- as.vector(as.matrix(tabela_geral_ids_casa[,c("id_camara", "id_senado")]))
-  proposicao_id <- proposicao_id[!is.na(proposicao_id)]
+  proposicao_id_camara <- as.vector(as.matrix(tabela_geral_ids_casa[,c("id_camara")]))
+  proposicao_id_camara <- proposicao_id_camara[!is.na(proposicao_id_camara)]
+  proposicao_id_senado <- as.vector(as.matrix(tabela_geral_ids_casa[,c("id_senado")]))
+  proposicao_id_senado <- proposicao_id_senado[!is.na(proposicao_id_senado)]
   pautas <-
     agenda %>%
     dplyr::mutate(data = lubridate::ymd_hms(as.character(data), tz = "America/Sao_Paulo")) %>%
-    dplyr::mutate(em_pauta = id_ext %in% proposicao_id) %>%
+    dplyr::mutate(em_pauta = (casa == "camara" & id_ext %in% proposicao_id_camara) |
+                            ((casa == "senado" & id_ext %in% proposicao_id_senado))) %>%
     dplyr::filter(em_pauta) %>%
     dplyr::mutate(semana = lubridate::epiweek(data),
                   ano = lubridate::year(data),
@@ -279,20 +282,15 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path, pautas_df)
     dplyr::mutate(id_ext = as.numeric(id_ext),
                   data = as.character(data))
 
-  #lubridate::force_tz(pautas, tzone = "America/Los_Angeles")
-  hoje <- Sys.Date()
-  semana_atual <- lubridate::epiweek(hoje)
-  semana_retrasada <- semana_atual - 2
+  old_pautas_df <- pautas_df %>%
+    dplyr::mutate(semana = lubridate::epiweek(data)) %>%
+    dplyr::mutate(data = as.character(data)) %>%
+    dplyr::filter(as.Date(data) < lubridate::floor_date(lubridate::today() - lubridate::weeks(2), "weeks") + lubridate::days(1))
 
-  pautas_df <- pautas_df %>% dplyr::mutate(data = as.character(data)) %>% dplyr::filter(semana < semana_retrasada)
-  pautas_df <- pautas_df %>% dplyr::filter(semana < semana_retrasada)
- # lubridate::force_tz(pautas_df, tzone = "America/Sao_Paulo")
-  new_pautas <- dplyr::bind_rows(pautas, pautas_df) %>%
+  new_pautas <- dplyr::bind_rows(pautas, old_pautas_df) %>%
     unique() %>%
     dplyr::arrange(data) %>%
     dplyr::mutate(data = as.POSIXct(data, tz="UTC"))
-
-
   readr::write_csv(new_pautas, paste0(export_path, "/pautas.csv"))
 }
 
