@@ -3,7 +3,7 @@ library(magrittr)
 
 help <- "
 Usage:
-Rscript fetch_agenda.R <pls_ids_filepath> <initial_date> <end_date> <export_folder_path> <pautas_df>
+Rscript fetch_agenda.R <pls_ids_filepath> <initial_date> <end_date> <export_folder_path> <current_pautas_filepath>
 "
 
 ## Process args
@@ -17,10 +17,10 @@ ids <- args[1]
 initial_date <- args[2]
 end_date <- args[3]
 export_folder_path <- args[4]
-pautas_df <- args[5]
+current_pautas_filepath <- args[5]
 
 ## Install local repository R package version
 devtools::install()
 
 ## Read PLs list and export their data
-agoradigital::extract_pauta(agoradigital::junta_agendas(initial_date, end_date), readr::read_csv(ids), export_folder_path, readr::read_csv(pautas_df))
+agoradigital::extract_pauta(agoradigital::junta_agendas(initial_date, end_date), readr::read_csv(ids), export_folder_path, readr::read_csv(current_pautas_filepath))
