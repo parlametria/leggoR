@@ -26,9 +26,9 @@ format_table_distances_to_emendas <- function(distancias_datapath, write_datapat
     distancias_df <-
       readr::read_csv(as.character(x)) %>% 
         dplyr::mutate(array = strsplit(comparacao, "_")) %>% 
-        dplyr::mutate(CdProposition = sapply(array, head, 1),
-                      NumberItemProposition = sapply(array, tail, 1)) %>% 
-        dplyr::select(CdProposition, NumberItemProposition, Distance = distancia)
+        dplyr::mutate(id_emenda = sapply(array, head, 1),
+                      num_linha_proposicao = sapply(array, tail, 1)) %>% 
+        dplyr::select(id_emenda, num_linha_proposicao, Distance = distancia)
         readr::write_csv(distancias_df, paste0(write_datapath, sapply(strsplit(as.character(x), "/"), tail, 1)))
   })
 }
@@ -45,7 +45,7 @@ format_table_distances_to_emendas <- function(distancias_datapath, write_datapat
 #' @export
 add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::here("data/distancias/")) {
   distances_df <- read_distances_files(distancias_datapath) %>% 
-    dplyr::rename("codigo_emenda" = "CdProposition") %>% 
+    dplyr::rename("codigo_emenda" = "id_emenda") %>% 
     dplyr::group_by(codigo_emenda) %>% 
     dplyr::summarise(distancia = min(Distance)) 
   
