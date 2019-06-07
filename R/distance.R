@@ -45,8 +45,7 @@ format_table_distances_to_emendas <- function(distancias_datapath, write_datapat
 #' @export
 add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::here("data/distancias/")) {
   distances_df <- read_distances_files(distancias_datapath) %>% 
-    dplyr::rename("codigo_emenda" = "id_emenda") %>% 
-    dplyr::group_by(codigo_emenda) %>% 
+    dplyr::group_by(id_emenda) %>% 
     dplyr::summarise(distancia = min(Distance)) 
   
   if ("distancia" %in% names(emendas_df)) {
@@ -58,7 +57,7 @@ add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::her
     dplyr::left_join(
       emendas_df,
       distances_df, 
-      by="codigo_emenda") %>%
+      by=c("codigo_emenda"="id_emenda")) %>%
     dplyr::mutate(distancia = as.numeric(distancia),
                   distancia = dplyr::if_else(is.na(distancia),-1,distancia))
   
