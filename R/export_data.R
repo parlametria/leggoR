@@ -8,7 +8,11 @@
 #' hist_temperatura e emendas
 process_etapa <- function(id, casa, agenda, pautas) {
   prop <- agoradigital::fetch_proposicao(id, casa)
-  tram <- agoradigital::fetch_tramitacao(id, casa)
+  if (tolower(prop$sigla_tipo) == 'mpv') {
+    tram <- agoradigital::fetch_tramitacao(id, casa, TRUE)
+  } else {
+    tram <- agoradigital::fetch_tramitacao(id, casa)
+  }
   proc_tram <-
     agoradigital::process_proposicao(prop, tram, casa) %>%
     dplyr::mutate(data_hora = as.POSIXct(data_hora))
@@ -39,6 +43,70 @@ process_etapa <- function(id, casa, agenda, pautas) {
     emendas = emendas
     )
 }
+
+safe_process_etapa <- purrr::safely(
+    process_etapa,
+    otherwise =
+      list(
+        proposicao = tibble::tribble(
+          ~ prop_id,
+          ~ sigla_tipo,
+          ~ numero,
+          ~ ano,
+          ~ ementa,
+          ~ data_apresentacao,
+          ~ casa,
+          ~ casa_origem,
+          ~
+            autor_nome,
+          ~ autor_uf,
+          ~ autor_partido,
+          ~ apelido_materia,
+          ~ tema,
+          ~ regime_tramitacao,
+          ~
+            forma_apreciacao,
+          ~ relator_nome,
+          ~ temperatura
+        ),
+        fases_eventos = tibble::tribble(
+          ~ prop_id,
+          ~ casa,
+          ~ data_hora,
+          ~ sequencia,
+          ~ texto_tramitacao,
+          ~ sigla_local,
+          ~ id_situacao,
+          ~
+            descricao_situacao,
+          ~ link_inteiro_teor,
+          ~ evento,
+          ~ local,
+          ~ tipo_documento,
+          ~ nivel,
+          ~
+            titulo_evento
+        ),
+        hist_temperatura = tibble::tribble(
+          ~ id_ext,
+          ~ casa,
+          ~ periodo,
+          ~ temperatura_periodo,
+          ~ temperatura_recente
+        ),
+        emendas = tibble::tribble(
+          ~ prop_id,
+          ~ codigo_emenda,
+          ~ data_apresentacao,
+          ~ numero,
+          ~ local,
+          ~ autor,
+          ~ casa,
+          ~ tipo_documento
+        )
+      )
+  )
+
 
 #' @title Adiciona uma coluna para indicar se a proposição pulou alguma fase
 #' @description Verifica se a proposição pulou uma fase
@@ -95,21 +163,43 @@ adiciona_status <- function(tramitacao_df) {
 #' @param total_rows número de linhas da tabela com os ids das proposições
 #' @return Dataframe
 process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows, pautas) {
-  cat(paste(
-    "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
-    "\nsenado", id_senado, "\n"))
+   cat(paste(
+     "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
+     "\nsenado", id_senado, "\n"))
+
   etapas <- list()
   if (!is.na(id_camara)) {
-    etapas %<>% append(list(process_etapa(id_camara, "camara", agenda, pautas = pautas)))
+    etapa_processada <- safe_process_etapa(id_camara, "camara", agenda, pautas = pautas)
+    etapas %<>% append(list(etapa_processada$result))
+    if (!is.null(etapa_processada$error)) {
+      print(etapa_processada$error)  
+      return(etapas)
+    }
   }
   if (!is.na(id_senado)) {
-    etapas %<>% append(list(process_etapa(id_senado, "senado", agenda, pautas = pautas)))
+    etapa_processada <- safe_process_etapa(id_senado, "senado", agenda, pautas = pautas)
+    etapas %<>% append(list(etapa_processada$result))
+    if (!is.null(etapa_processada$error)) {
+      print(etapa_processada$error)  
+      return(etapas)
+    }
   }
+  
+  
+  
   etapas %<>% purrr::pmap(dplyr::bind_rows)
-  etapas[["progresso"]] <-
-    agoradigital::get_progresso(etapas$proposicao, etapas$fases_eventos) %>%
-    adiciona_coluna_pulou() %>%
-    adiciona_locais_faltantes_progresso()
+  if (nrow(etapas$proposicao) != 0) {
+    if (tolower(etapas$proposicao$sigla_tipo) == 'mpv') {
+      etapas[["progresso"]] <-
+        agoradigital::generate_progresso_df_mpv(etapas$fases_eventos) %>% 
+        dplyr::mutate(local = "", local_casa = "", pulou = FALSE)
+    }else {
+      etapas[["progresso"]] <-
+        agoradigital::get_progresso(etapas$proposicao, etapas$fases_eventos) %>%
+        adiciona_coluna_pulou() %>%
+        adiciona_locais_faltantes_progresso()
+    } 
+  }
   etapas$proposicao %<>%
     dplyr::mutate(apelido_materia = apelido, tema = tema_pl)
   Sys.sleep(5*stats::runif(1))
@@ -120,9 +210,8 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
 #' @description Exporta para uma pasta CSVs com dados sobre uma lista de proposições.
 #' @param pls dataframe com proposições.
 #' @param export_path pasta para onde exportar dados.
-#' @param distances_folderpath pasta onde os arquivos de distâncias das emendas está localizado
 #' @export
-export_data <- function(pls, export_path, distances_folderpath) {
+export_data <- function(pls, export_path) {
   # agenda <- fetch_agenda_geral(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4)
   agenda <- tibble::as_tibble()
   pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
@@ -132,34 +221,88 @@ export_data <- function(pls, export_path, distances_folderpath) {
   },
   error = function(msg) {
   })
+  
+  res <- list()
+  count <- 0
+  proposicoes_que_nao_baixaram <- pls
+  proposicoes_individuais_a_baixar_camara <- pls %>%
+    dplyr::mutate(casa = "camara") %>%
+    dplyr::select(casa,
+                  id_casa = id_camara,
+                  apelido,
+                  tema) %>%
+    dplyr::filter(!is.na(id_casa))
+  
+  proposicoes_individuais_a_baixar_senado <- pls %>%
+    dplyr::mutate(casa = "senado") %>%
+    dplyr::select(casa,
+                  id_casa = id_senado,
+                  apelido,
+                  tema) %>%
+    dplyr::filter(!is.na(id_casa))
+  
+  proposicoes_individuais_a_baixar <- dplyr::bind_rows(proposicoes_individuais_a_baixar_camara,
+                                                   proposicoes_individuais_a_baixar_senado)
+  while (count < 5 ) {
+    cat(paste("\n--- Tentativa ", count + 1,"\n"))
+    res <- append(res, proposicoes_que_nao_baixaram %>% purrr::pmap(process_pl, agenda, nrow(proposicoes_que_nao_baixaram), pautas = pautas)) 
 
-  res <- pls %>% purrr::pmap(process_pl, agenda, nrow(pls), pautas = pautas)
-  proposicoes <-
-    purrr::map_df(res, ~ .$proposicao) %>%
-    dplyr::select(-c(ano)) %>%
-    dplyr::rename(id_ext = prop_id, apelido = apelido_materia)
+    proposicoes <-
+      purrr::map_df(res, ~ .$proposicao) %>%
+      dplyr::select(-c(ano)) %>%
+      dplyr::rename(id_ext = prop_id, apelido = apelido_materia) %>% 
+      unique()
+    
+    proposicoes_baixadas <- proposicoes %>%
+      dplyr::select(casa,
+             id_casa = id_ext,
+             apelido,
+             tema)
+    
+    proposicoes_que_nao_baixaram_temp <- dplyr::anti_join(proposicoes_individuais_a_baixar, proposicoes_baixadas)
+    proposicoes_que_nao_baixaram <- proposicoes_que_nao_baixaram %>%
+      dplyr::filter((id_camara %in% proposicoes_que_nao_baixaram_temp$id_casa) |
+                      (id_senado %in% proposicoes_que_nao_baixaram_temp$id_casa)) %>%
+      dplyr::mutate(row_num = dplyr::row_number())
+
+    if(nrow(proposicoes_que_nao_baixaram) == 0) {
+      print("Downloaded all propositions! =)")
+      break()
+    }
+    count <- count + 1
+  }
+  
+  if (nrow(proposicoes_que_nao_baixaram) > 0) {
+    print("Could not download the following propositions:")
+    print(proposicoes_que_nao_baixaram)
+  }
+  
+  
   tramitacoes <-
     purrr::map_df(res, ~ .$fases_eventos) %>%
     dplyr::rename(id_ext = prop_id, data = data_hora) %>%
-    adiciona_status()
+    adiciona_status() %>% 
+    unique()
   tramitacoes_que_viraram_lei <-
     tramitacoes %>%
-    dplyr::filter(evento == "transformada_lei")
+    dplyr::filter(evento == "transformada_lei") %>% 
+    unique()
   tramitacoes <-
     tramitacoes %>%
     dplyr::filter(!(id_ext %in% tramitacoes_que_viraram_lei$id_ext))
-  hists_temperatura <- purrr::map_df(res, ~ .$hist_temperatura)
+  hists_temperatura <- purrr::map_df(res, ~ .$hist_temperatura) %>% 
+    unique()
   progressos <-
     purrr::map_df(res, ~ .$progresso) %>%
-    dplyr::rename(id_ext = prop_id)
+    dplyr::rename(id_ext = prop_id) %>% 
+    unique()
   emendas <-
     purrr::map_df(res, ~ .$emendas) %>%
-    dplyr::rename(id_ext = prop_id)
+    dplyr::rename(id_ext = prop_id) %>% 
+    unique()
   comissoes <-
     agoradigital::fetch_all_composicao_comissao() %>% 
     dplyr::rename(id_parlamentar = id)
-  
-  emendas <- agoradigital::add_distances_to_emendas(emendas, distances_folderpath)
 
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
@@ -167,6 +310,6 @@ export_data <- function(pls, export_path, distances_folderpath) {
   readr::write_csv(
     hists_temperatura, paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
-  readr::write_csv(emendas, paste0(export_path, "/emendas.csv"))
+  readr::write_csv(emendas, paste0(export_path, "/emendas_raw.csv"))
   readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
 }

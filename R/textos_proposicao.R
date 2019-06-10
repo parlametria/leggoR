@@ -105,39 +105,49 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                   texto_tramitacao = despacho,
                   sigla_local = sigla_orgao,
                   id_situacao,
-                  descricao_situacao,
+                  descricao_tramitacao,
                   link_inteiro_teor = url)
   df <- 
     process_proposicao_camara(tramitacao_df) %>%  
     dplyr::filter(stringr::str_detect(evento, camara_env$versoes_texto_proposicao$eventos_regex)) %>% 
+    dplyr::mutate(codigo_texto = stringr::str_extract(tolower(link_inteiro_teor), '\\d.*')) %>% 
     dplyr::select(prop_id,
                   casa,
+                  codigo_texto,
                   data_hora,
+                  tipo_texto = descricao_tramitacao,
                   texto_tramitacao,
                   link_inteiro_teor)
-  emendas <- rcongresso::fetch_emendas(proposicao_df$id, casa, proposicao_df$siglaTipo, proposicao_df$numero, proposicao_df$ano) %>% 
+  
+  tipos_emendas <- camara_env$tipos_emendas
+  
+  emendas <- rcongresso::fetch_emendas(proposicao_df$id, casa, proposicao_df$siglaTipo, 
+                                       proposicao_df$numero, proposicao_df$ano) %>% 
     
     dplyr::mutate(prop_id = proposicao_df$id,
-                  casa = "camara") %>%
+                  casa = "camara")  %>% 
+    dplyr::left_join(tipos_emendas, by=(c("tipo_documento" = "sigla"))) %>% 
     dplyr::select(prop_id,
                   casa,
+                  codigo_texto = codigo_emenda,
                   data_hora = data_apresentacao,
-                  texto_tramitacao = inteiro_teor,
-                  codigo_emenda)
+                  tipo_texto,
+                  texto_tramitacao = inteiro_teor)
   
   if(nrow(emendas) > 0) {
-    emendas$link_inteiro_teor <- do.call("rbind", lapply(emendas$codigo_emenda, get_emendas_links))
+    emendas$link_inteiro_teor <- do.call("rbind", lapply(emendas$codigo_texto, get_emendas_links))
     
     df <- df %>%
-      rbind(emendas %>%
-              dplyr::select(-codigo_emenda))
+      rbind(emendas)
   }
   
   if(nrow(df) > 0) {
     df <- df %>%
       dplyr::select(id_proposicao = prop_id,
                     casa,
+                    codigo_texto,
                     data = data_hora,
+                    tipo_texto,
                     descricao = texto_tramitacao,
                     link_inteiro_teor) %>%
       dplyr::mutate(descricao =
@@ -148,7 +158,7 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
       dplyr::mutate(link_inteiro_teor = get_redirected_url(link_inteiro_teor))
   } else {
     df <- dplyr::tribble(
-      ~ id_proposicao, ~ casa, ~ data, ~ descricao, ~ link_inteiro_teor)
+      ~ id_proposicao, ~ casa, ~codigo_texto,  ~ data, ~ tipo_texto, ~ descricao, ~ link_inteiro_teor)
   }
   
   df <- df %>%
@@ -164,15 +174,21 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
 #' @examples
 #' mutate_links(textos_df)
 mutate_links <- function(df) {
-  if(typeof(df$DescricaoTexto) == 'NULL') {
+  if ("DescricaoTipoTexto" %in% names(df)) {
+    if(typeof(df$DescricaoTexto) == 'NULL') {
+      df <- df %>%
+        dplyr::mutate(DescricaoTexto = DescricaoTipoTexto)
+    } else {
+      df <- df %>%
+        dplyr::mutate(DescricaoTexto = dplyr::if_else(is.na(DescricaoTexto),
+                                                      DescricaoTipoTexto,
+                                                      DescricaoTexto))
+    }
+  }else {
     df <- df %>%
-      dplyr::mutate(DescricaoTexto = DescricaoTipoTexto)
-  } else {
-    df <- df %>%
-      dplyr::mutate(DescricaoTexto = dplyr::if_else(is.na(DescricaoTexto),
-                                                    DescricaoTipoTexto,
-                                                    DescricaoTexto))
+      dplyr::mutate(DescricaoTexto = "")
   }
+  
   return(df)
 }
 
@@ -218,17 +234,17 @@ extract_links_proposicao_senado <- function(id) {
   
   if(nrow(textos_df) == 0) {
     return(dplyr::tribble(
-      ~ id_votacao, ~ casa, ~ data, ~ descricao, ~ link_inteiro_teor))
+      ~ id_votacao, ~ casa, ~ codigo_texto, ~ data, ~ tipo_texto, ~ descricao, ~ link_inteiro_teor))
     
   } else{
     textos_df <- textos_df %>%
       dplyr::select(id_proposicao,
                     casa,
-                    descricao_tipo_texto = DescricaoTipoTexto,
+                    codigo_texto = CodigoTexto,
                     data = DataTexto,
+                    tipo_texto = DescricaoTipoTexto,
                     descricao = DescricaoTexto,
-                    link_inteiro_teor = UrlTexto) %>%
-      dplyr::select(-descricao_tipo_texto)
+                    link_inteiro_teor = UrlTexto)
     return(textos_df)
   }
 }

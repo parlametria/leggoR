@@ -1,7 +1,6 @@
 testthat::context('test-senado-lib.R')
 
 # Constantes
-PROPOSICOES_ID <<- c(91341)
 TAM_LISTA_PROPOSICOES <<- 2
 APRECIACAO_91341 <<- 'Plenário'
 TRAMITACAO_91341 <<- 'Ordinária'
@@ -22,7 +21,7 @@ important_eventos <- tibble::tribble(~ evento, ~ situacao_codigo_situacao,
 setup <- function(){
   ## tramitacao_data <<- readr::read_csv(paste0(here::here("data/Senado/"), 91341, "-tramitacao-senado.csv"))
   PROPOSICOES_ID <- c(91341)
-  tramitacao_data <- agoradigital::fetch_tramitacao(PROPOSICOES_ID, 'senado', TRUE)
+  tramitacao_data <- agoradigital::fetch_tramitacao(PROPOSICOES_ID, 'senado')
   return(TRUE)
 }
 
@@ -33,7 +32,7 @@ check_api <- function(){
 test <- function(){
   
   test_that('fetch_tramitacao()', {
-    expect_true(all(names(fetch_tramitacao(PROPOSICOES_ID, 'senado')) %in% .COLNAMES_TRAMI_SEN))
+    expect_true(all(names(tramitacao_data) %in% .COLNAMES_TRAMI_SEN))
   })
   
   test_that('Regime de apreciacao', {

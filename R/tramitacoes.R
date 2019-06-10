@@ -5,8 +5,9 @@
 #' @return Dataframe normalizado com as informações sobre a movimentação de uma proposição no Senado
 #' @examples
 #' fetch_tramitacao_senado(91341)
-fetch_tramitacao_senado <- function(prop_id) {
-    rcongresso::fetch_tramitacao_senado(prop_id) %>%
+fetch_tramitacao_senado <- function(prop_id, isMPV = FALSE) {
+    tramitacao <- 
+      rcongresso::fetch_tramitacao_senado(prop_id) %>%
       dplyr::mutate(data_hora = lubridate::ymd_hm(paste(data_hora, "00:00")),
                     prop_id = as.integer(codigo_materia),
                     sequencia = as.integer(sequencia),
@@ -21,7 +22,17 @@ fetch_tramitacao_senado <- function(prop_id) {
                     sigla_local = origem_tramitacao_local_sigla_local,
                     id_situacao,
                     descricao_situacao = situacao_descricao_situacao,
-                    link_inteiro_teor)
+                    link_inteiro_teor,
+                    origem_tramitacao_local_nome_casa_local,
+                    destino_tramitacao_local_nome_casa_local)
+  
+  if(!isMPV) {
+    tramitacao <-
+      tramitacao %>% 
+      dplyr::select(-c(origem_tramitacao_local_nome_casa_local, destino_tramitacao_local_nome_casa_local))
+  }
+    
+    return (tramitacao)
 }
 
 #' @title Baixa os dados da tramitação de um Projeto de Lei
@@ -32,12 +43,12 @@ fetch_tramitacao_senado <- function(prop_id) {
 #' @examples
 #' fetch_tramitacao(91341, "senado")
 #' @export
-fetch_tramitacao <- function(id, casa) {
+fetch_tramitacao <- function(id, casa, isMPV = FALSE) {
   casa <- tolower(casa)
   if (casa == "camara") {
     fetch_tramitacao_camara(id)
   } else if (casa == "senado") {
-    fetch_tramitacao_senado(id)
+    fetch_tramitacao_senado(id, isMPV)
   } else {
     return("Parâmetro 'casa' não identificado.")
   }
