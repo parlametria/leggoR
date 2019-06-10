@@ -37,18 +37,18 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
       paste0(
         out_folderpath, "/", casa, "/", prop_id, "-fases-tramitacao-", casa, ".csv"))
   }
-  
+
   # Adiciona coluna tipo_documento se não houveram requerimentos relacionados
   if (!("tipo_documento" %in% colnames(proc_tram_data))) {
     proc_tram_data <- proc_tram_data %>%
       dplyr::mutate(tipo_documento = NA)
   }
-  
+
   # Adiciona colunas com nível de importância e título dos eventos
-  proc_tram_data <- proc_tram_data %>% 
+  proc_tram_data <- proc_tram_data %>%
     dplyr::left_join(congresso_env$eventos, by="evento") %>%
     # Corrige título dos documentos relacionados
-    dplyr::mutate(titulo_evento = dplyr::if_else(stringr::str_starts(evento, "req_"), 
+    dplyr::mutate(titulo_evento = dplyr::if_else(stringr::str_starts(evento, "req_"),
                                                  paste(titulo_evento,tipo_documento),titulo_evento))
 }
 
@@ -96,24 +96,27 @@ get_temperatura <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate:
 #' get_historico_temperatura_recente(proc_tram, granularidade = 's', decaimento = 0.05)
 #' }
 get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', decaimento = 0.25, max_date = lubridate::now(), pautas) {
-  pautas <-
-    pautas %>%
-    dplyr::select(prop_id = id_ext, data) %>%
-    dplyr::mutate(prop_id = as.integer(prop_id),
-                  data_hora = as.POSIXct(data),
-                  casa = eventos_df$casa[1],
-                  evento = 'na_pauta') %>%
-    dplyr::select(-data) %>%
-    dplyr::filter(prop_id == eventos_df$prop_id[1])
-  
-  if(nrow(pautas) != 0) {
-    eventos_sem_horario <- eventos_df %>%
-      tibble::add_row(!!!pautas) %>%
-      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
-  }else {
-    eventos_sem_horario <- eventos_df %>%
-      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day")) 
+  eventos_pautas_pl <- tibble::tibble()
+
+  if (nrow(pautas) != 0) {
+    eventos_pautas_pl <-
+      pautas %>%
+      dplyr::select(prop_id = id_ext, data) %>%
+      dplyr::mutate(prop_id = as.integer(prop_id),
+                    data_hora = as.POSIXct(data),
+                    casa = eventos_df$casa[1],
+                    evento = 'na_pauta') %>%
+      dplyr::select(-data) %>%
+      dplyr::filter(prop_id == eventos_df$prop_id[1])
   }
+
+  if(nrow(eventos_pautas_pl) != 0) {
+    eventos_df <- eventos_df %>%
+      tibble::add_row(!!!eventos_pautas_pl)
+  }
+
+  eventos_sem_horario <- eventos_df %>%
+      dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
 
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
@@ -248,18 +251,24 @@ extract_forma_apreciacao <- function(tram_df) {
 #' @description Extrai se um vectors de proposições estarão em pauta
 #' @param agenda Dataframe com a agenda
 #' @param tabela_geral_ids_casa Dataframe com as colunas id_senado, id_camara
+#' @param export_path Caminho para diretório destino do dataframe
+#' @param pautas_df Dataframe com as pautas
 #' @return Dataframe com a coluna em_pauta
 #' @examples
 #' extract_pauta(fetch_agenda_geral('2018-10-01', '2018-10-26'), c("91341", "2121442", "115926", "132136"))
 #' @export
-extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
-  proposicao_id <- as.vector(as.matrix(tabela_geral_ids_casa[,c("id_camara", "id_senado")]))
-  proposicao_id <- proposicao_id[!is.na(proposicao_id)]
+extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path, pautas_df) {
+  proposicao_id_camara <- as.vector(as.matrix(tabela_geral_ids_casa[,c("id_camara")]))
+  proposicao_id_camara <- proposicao_id_camara[!is.na(proposicao_id_camara)]
+  proposicao_id_senado <- as.vector(as.matrix(tabela_geral_ids_casa[,c("id_senado")]))
+  proposicao_id_senado <- proposicao_id_senado[!is.na(proposicao_id_senado)]
   pautas <-
     agenda %>%
-    dplyr::mutate(em_pauta = id_ext %in% proposicao_id) %>%
+    dplyr::mutate(data = lubridate::ymd_hms(as.character(data), tz = "America/Sao_Paulo")) %>%
+    dplyr::mutate(em_pauta = (casa == "camara" & id_ext %in% proposicao_id_camara) |
+                            ((casa == "senado" & id_ext %in% proposicao_id_senado))) %>%
     dplyr::filter(em_pauta) %>%
-    dplyr::mutate(semana = lubridate::week(data),
+    dplyr::mutate(semana = lubridate::epiweek(data),
                   ano = lubridate::year(data),
                   local = ifelse(is.na(local), "Local não informado", local)) %>%
     dplyr::arrange(unlist(sigla), semana, desc(em_pauta)) %>%
@@ -269,9 +278,20 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path) {
     dplyr::filter(dplyr::row_number()==dplyr::n()) %>%
     dplyr::ungroup() %>%
     fix_nomes_locais() %>%
-    dplyr::select(-em_pauta)
+    dplyr::select(-em_pauta) %>%
+    dplyr::mutate(id_ext = as.numeric(id_ext),
+                  data = as.character(data))
 
-  readr::write_csv(pautas, paste0(export_path, "/pautas.csv"))
+  old_pautas_df <- pautas_df %>%
+    dplyr::mutate(semana = lubridate::epiweek(data)) %>%
+    dplyr::mutate(data = as.character(data)) %>%
+    dplyr::filter(as.Date(data) < lubridate::floor_date(lubridate::today() - lubridate::weeks(2), "weeks") + lubridate::days(1))
+
+  new_pautas <- dplyr::bind_rows(pautas, old_pautas_df) %>%
+    unique() %>%
+    dplyr::arrange(data) %>%
+    dplyr::mutate(data = as.POSIXct(data, tz="UTC"))
+  readr::write_csv(new_pautas, paste0(export_path, "/pautas.csv"))
 }
 
 
@@ -291,7 +311,7 @@ fix_nomes_locais <- function(pautas_df) {
     dplyr::mutate(local = local_clean) %>%
     dplyr::ungroup() %>%
     dplyr::select(-local_clean)
-  
+
   return(pautas_locais_clean)
 
 }
@@ -357,7 +377,7 @@ get_pesos_eventos <- function() {
 
   eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
     dplyr::select(evento = constant, tipo)
-  
+
   na_pauta <- tibble::tribble(~evento, ~tipo, ~label, ~peso,
                               "na_pauta", "votacao", "Votação", 0.68)
 
