@@ -26,4 +26,4 @@ files <- list.files(path=unformatted_distances_folderpath, pattern="*.csv", full
 emendas_distances_list <- purrr::map(files, ~ agoradigital::format_table_distances_to_emendas(distancias_datapath = .x, write_datapath=distances_folderpath))
 readr::read_csv(emendas_raw_filepath) %>%
   agoradigital::add_distances_to_emendas(distances_folderpath) %>% 
-  readr::write_csv(processed_emendas_filepath, append = T)
+  readr::write_csv(processed_emendas_filepath)
