@@ -1,10 +1,10 @@
 id_camara,id_senado,apelido,tema
-<<<<<<< HEAD
+<<<<<<< HEAD,,,
 NA,129778,Tornar o FUNDEB permanente (Senado),Educação
 1198512,NA,Tornar o FUNDEB permanente (Câmara),Educação
 16526,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
 2196833,NA,Reforma tributária,Agenda Nacional
-=======
+Err:510,,,
 257161,NA,Lei do Licenciamento Ambiental,Meio Ambiente
 NA,132865,Lei Geral de Licenciamento Ambiental,Meio Ambiente
 2088990,91341,Lei da Qualidade Fiscal,Agenda Nacional
@@ -59,4 +59,4 @@ NA,131429,Programa de Integridade para Partidos,Integridade e Transparência
 NA,129778,Tornar o FUNDEB permanente (Senado),Educação
 1198512,NA,Tornar o FUNDEB permanente (Câmara),Educação
 16526,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
->>>>>>> 453a039f5eaa9a96d8239a713793d9917a81520b
+2196833,NA,Reforma tributária,Agenda Nacional
