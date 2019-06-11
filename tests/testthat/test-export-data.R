@@ -1,7 +1,28 @@
 context('test-export-data.R')
 
 pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
-process_etapa_data <- process_etapa(91341, 'senado', tibble::tibble(), pautas)
+proposicao <- tibble::tribble(
+  ~ id_ext,
+  ~ sigla_tipo,
+  ~ numero,
+  ~ ano,
+  ~ ementa,
+  ~ data_apresentacao,
+  ~ casa,
+  ~ casa_origem,
+  ~
+    autor_nome,
+  ~ autor_uf,
+  ~ autor_partido,
+  ~ apelido_materia,
+  ~ tema,
+  ~ regime_tramitacao,
+  ~
+    forma_apreciacao,
+  ~ relator_nome,
+  ~ temperatura
+)
+process_etapa_data <- process_etapa(91341, 'senado', pautas, proposicao)
 proposicao <- process_etapa_data$proposicao
 tram <<- process_etapa_data$fases_eventos
 temperatura <- process_etapa_data$hist_temperatura

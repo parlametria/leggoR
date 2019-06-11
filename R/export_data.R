@@ -17,13 +17,15 @@ get_tram <- function(sigla_tipo, id, casa) {
 #' a tabela com dados gerais da proposiçaõ
 #' @param id Id da proposição
 #' @param casa senado ou camara
-#' @return dataframe com a proposição
+#' @return lista com os dataframes da proposição e da tramitação
 get_prop <- function(id, casa) {
+  prop_tram <- list()
   prop <- agoradigital::fetch_proposicao(id, casa)
-  tram <- get_tram(prop, id, casa)
+  tram <- get_tram(tolower(prop$sigla_tipo), id, casa)
   status <- agoradigital::extract_status_tramitacao(id, casa, prop, tram)
-  merge(prop, status, by = "prop_id") %>%
+  prop <- merge(prop, status, by = "prop_id") %>%
     dplyr::rename(id_ext = prop_id, apelido = apelido_materia)
+  list(prop = prop, tram = tram)
 }
 
 #' @title Processa a tramitação
@@ -32,11 +34,12 @@ get_prop <- function(id, casa) {
 #' @param prop Proposição
 #' @param id Id da proposição
 #' @param casa senado ou camara
+#' @param tram df da tramitação
 #' @return dataframe com a tramitação processada
-get_tram_processada <- function(prop, id, casa) {
+get_tram_processada <- function(prop, id, casa, tram) {
   agoradigital::process_proposicao(
     prop, 
-    get_tram(tolower(prop$sigla_tipo), id, casa), 
+    tram, 
     casa) %>%
     dplyr::mutate(data_hora = as.POSIXct(data_hora))
 }
@@ -69,11 +72,15 @@ process_etapa <- function(id, casa, pautas, proposicoes_df) {
   is_new_prop <- nrow(extended_prop) == 0
   
   if (is_new_prop) {
-    extended_prop <- get_prop(id, casa)
-  } 
+    prop_tram <- get_prop(id, casa)
+    extended_prop <- prop_tram$prop
+    tram <- prop_tram$tram
+  } else {
+    tram <- get_tram(tolower(prop$sigla_tipo), id, casa)
+  }
   
   proc_tram <-
-    get_tram_processada(extended_prop, id, casa)
+    get_tram_processada(extended_prop, id, casa, tram)
 
   historico_temperatura <-
     get_historico_temperatura(proc_tram, pautas, extended_prop)
