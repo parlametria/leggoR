@@ -21,16 +21,19 @@ read_distances_files <- function(distancias_datapath) {
 #' format_table_distances_to_emendas(here::here("../leggo-content/util/data/jus_all_dist"), "data/distancias/")
 #' @export
 format_table_distances_to_emendas <- function(distancias_datapath, write_datapath) {
-  files <- list.files(path=distancias_datapath, pattern="*.csv", full.names=TRUE, recursive=FALSE)
-  lapply(files, function(x) {
-    distancias_df <-
-      readr::read_csv(as.character(x)) %>% 
-        dplyr::mutate(array = strsplit(comparacao, "_")) %>% 
-        dplyr::mutate(id_emenda = sapply(array, head, 1),
-                      num_linha_proposicao = sapply(array, tail, 1)) %>% 
-        dplyr::select(id_emenda, num_linha_proposicao, Distance = distancia)
-        readr::write_csv(distancias_df, paste0(write_datapath, sapply(strsplit(as.character(x), "/"), tail, 1)))
-  })
+  out_file_name <- stringr::str_split(distancias_datapath,'/')[[1]] %>% tail(1)
+  print(out_file_name)
+  
+  formatted_dists_df <- readr::read_csv(as.character(distancias_datapath), 
+                  col_types = list(readr::col_integer(),
+                                   readr::col_character(),
+                                   readr::col_double())) %>% 
+      dplyr::mutate(array = strsplit(comparacao, "_")) %>% 
+      dplyr::mutate(id_emenda = sapply(array, head, 1),
+                    num_linha_proposicao = sapply(array, tail, 1)) %>% 
+      dplyr::select(id_emenda, num_linha_proposicao, Distance = distancia)
+  
+  readr::write_csv(formatted_dists_df, paste0(write_datapath, out_file_name))
 }
 
 #' @title Adiciona a distância às emendas
@@ -48,12 +51,7 @@ add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::her
     dplyr::group_by(id_emenda) %>% 
     dplyr::summarise(distancia = min(Distance)) 
   
-  if ("distancia" %in% names(emendas_df)) {
-    emendas_df <- emendas_df %>% 
-      dplyr::select(-distancia)
-  }
-  
-  emendas_df <- 
+  emendas_with_distances <- 
     dplyr::left_join(
       emendas_df,
       distances_df, 
