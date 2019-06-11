@@ -76,7 +76,7 @@ process_etapa <- function(id, casa, pautas, proposicoes_df) {
     extended_prop <- prop_tram$prop
     tram <- prop_tram$tram
   } else {
-    tram <- get_tram(tolower(prop$sigla_tipo), id, casa)
+    tram <- get_tram(tolower(extended_prop$sigla_tipo), id, casa)
   }
   
   proc_tram <-
