@@ -22,7 +22,6 @@ read_distances_files <- function(distancias_datapath) {
 #' @export
 format_table_distances_to_emendas <- function(distancias_datapath, write_datapath) {
   out_file_name <- stringr::str_split(distancias_datapath,'/')[[1]] %>% tail(1)
-  print(out_file_name)
   
   formatted_dists_df <- readr::read_csv(as.character(distancias_datapath), 
                   col_types = list(readr::col_integer(),
@@ -32,6 +31,8 @@ format_table_distances_to_emendas <- function(distancias_datapath, write_datapat
       dplyr::mutate(id_emenda = sapply(array, head, 1),
                     num_linha_proposicao = sapply(array, tail, 1)) %>% 
       dplyr::select(id_emenda, num_linha_proposicao, Distance = distancia)
+  
+  print(paste("Saving distances file:",out_file_name))
   
   readr::write_csv(formatted_dists_df, paste0(write_datapath, out_file_name))
 }
