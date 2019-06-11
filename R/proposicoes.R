@@ -135,6 +135,20 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
   proposicao
 }
 
+#' @title Baixa todos os documentos relacionados a uma proposição
+#' @description Retorna um dataframe contendo os documentos relacionados a uma proposição
+#' @param id IDs de uma proposição
+#' @return Dataframe
+#' @examples
+#' fetch_relacionadas(2056568)
+fetch_relacionadas <- function(id) {
+  proposicoes <- rcongresso::fetch_ids_relacionadas(id)
+
+  relacionadas <- purrr::map_df(proposicoes$id_relacionada, ~ rcongresso::fetch_proposicao_camara(.x))
+  prop_relacionadas <- merge(proposicoes, relacionadas)
+  prop_relacionadas
+}
+
 #' @title Concatena siglas de unidade federativa de cada autor da proposição
 #' @description Retorna unidade federativa dos autores
 #' @param autor_df Autores da proposição
