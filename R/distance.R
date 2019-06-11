@@ -59,5 +59,5 @@ add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::her
     dplyr::mutate(distancia = as.numeric(distancia),
                   distancia = dplyr::if_else(is.na(distancia),-1,distancia))
   
-  return(emendas_df)
+  return(emendas_with_distances)
 }
