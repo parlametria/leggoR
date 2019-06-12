@@ -204,7 +204,9 @@ filter_links <- function(df) {
   } else if(typeof(df$NumeroEmenda) == 'NULL') {
     df <- df %>%
       dplyr::filter(stringr::str_detect(tolower(DescricaoTexto),
-                                        senado_env$versoes_texto_proposicao$tipos_texto_regex))
+                                        senado_env$versoes_texto_proposicao$tipos_texto_regex) |
+                      stringr::str_detect(tolower(DescricaoTipoTexto),
+                                          senado_env$versoes_texto_proposicao$tipos_texto_regex))
   }else {
     df <- df %>%
       dplyr::filter(!is.na(NumeroEmenda) |
