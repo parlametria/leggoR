@@ -19,8 +19,24 @@ emendas_raw_filepath <- args[3]
 processed_emendas_filepath <- args[4]
 
 ## Read emendas csv, add their distances and export the new emendas csv file
-files <- list.files(path=unformatted_distances_folderpath, pattern="*.csv", full.names=TRUE, recursive=FALSE)
-emendas_distances_list <- purrr::map(files, ~ agoradigital::format_table_distances_to_emendas(distancias_datapath = .x, write_datapath=distances_folderpath))
-readr::read_csv(emendas_raw_filepath) %>%
-  agoradigital::add_distances_to_emendas(distances_folderpath) %>% 
+files <- list.files(path = unformatted_distances_folderpath,pattern = "*.csv",
+                    full.names = TRUE,
+                    recursive = FALSE)
+emendas_distances_list <- purrr::map(files, ~ agoradigital::format_table_distances_to_emendas(
+  distancias_datapath = .x, write_datapath = distances_folderpath))
+readr::read_csv(
+  emendas_raw_filepath,
+  col_types = list(
+    id_ext = readr::col_double(),
+    codigo_emenda = readr::col_double(),
+    data_apresentacao = readr::col_date(format = ""),
+    numero = readr::col_double(),
+    local = readr::col_character(),
+    autor = readr::col_character(),
+    casa = readr::col_character(),
+    tipo_documento = readr::col_character(),
+    inteiro_teor = readr::col_character()
+  )
+) %>%
+  agoradigital::add_distances_to_emendas(distances_folderpath) %>%
   readr::write_csv(processed_emendas_filepath)
