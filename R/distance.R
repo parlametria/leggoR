@@ -11,6 +11,32 @@ read_distances_files <- function(distancias_datapath) {
   return()
 }
 
+#' @title Padroniza tabela com distâncias das emendas
+#' @description Lê o arquivo jus_all_dist.csv gerado pelo script inter_emd_int.py
+#' do leggo-content
+#' @param distancias_datapath Caminho da pasta contendo os arquivos
+#' @param write_datapath Caminho para a pasta de escrita
+#' @return Dataframe contendo todas a tabela de emendas formatada
+#' @examples
+#' format_table_distances_to_emendas(here::here("../leggo-content/util/data/jus_all_dist"), "data/distancias/")
+#' @export
+format_table_distances_to_emendas <- function(distancias_datapath, write_datapath) {
+  out_file_name <- stringr::str_split(distancias_datapath,'/')[[1]] %>% tail(1)
+  
+  formatted_dists_df <- readr::read_csv(as.character(distancias_datapath), 
+                  col_types = list(readr::col_integer(),
+                                   readr::col_character(),
+                                   readr::col_double())) %>% 
+      dplyr::mutate(array = strsplit(comparacao, "_")) %>% 
+      dplyr::mutate(id_emenda = sapply(array, head, 1),
+                    num_linha_proposicao = sapply(array, tail, 1)) %>% 
+      dplyr::select(id_emenda, num_linha_proposicao, Distance = distancia)
+  
+  print(paste("Saving distances file:",out_file_name))
+  
+  readr::write_csv(formatted_dists_df, paste0(write_datapath, out_file_name))
+}
+
 #' @title Adiciona a distância às emendas
 #' @description Recebe o dataframe de emendas e o caminho para os arquivos csv das distancias calculadas
 #' @param emendas_df Dataframe das emendas das proposições
@@ -20,24 +46,19 @@ read_distances_files <- function(distancias_datapath) {
 #' @export
 #' @examples
 #' add_distances_to_emendas(emendas_df, here::here("data/distancias/"))
+#' @export
 add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::here("data/distancias/")) {
   distances_df <- read_distances_files(distancias_datapath) %>% 
-    dplyr::rename("codigo_emenda" = "CdProposition") %>% 
-    dplyr::group_by(codigo_emenda) %>% 
-    dplyr::summarise(distancia = min(Distance))
+    dplyr::group_by(id_emenda) %>% 
+    dplyr::summarise(distancia = min(Distance)) 
   
-  if ("distancia" %in% names(emendas_df)) {
-    emendas_df <- emendas_df %>% 
-      dplyr::select(-distancia)
-  }
-  
-  emendas_df <- 
+  emendas_with_distances <- 
     dplyr::left_join(
       emendas_df,
       distances_df, 
-      by="codigo_emenda") %>%
+      by=c("codigo_emenda"="id_emenda")) %>%
     dplyr::mutate(distancia = as.numeric(distancia),
                   distancia = dplyr::if_else(is.na(distancia),-1,distancia))
   
-  return(emendas_df)
+  return(emendas_with_distances)
 }
