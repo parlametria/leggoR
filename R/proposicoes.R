@@ -135,18 +135,41 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
   proposicao
 }
 
-#' @title Baixa todos os documentos relacionados a uma proposição
+#' @title Baixa todos os novos documentos relacionados a uma proposição
 #' @description Retorna um dataframe contendo os documentos relacionados a uma proposição
-#' @param id IDs de uma proposição
+#' @param all_pls_ids IDs das proposições principais
+#' @param current_relacionadas_ids IDs dos documentos relacionados
 #' @return Dataframe
 #' @examples
 #' fetch_relacionadas(2056568)
-fetch_relacionadas <- function(id) {
-  proposicoes <- rcongresso::fetch_ids_relacionadas(id)
+#' @export
+fetch_new_relacionadas <- function(all_pls_ids, current_relacionadas_ids) {
 
-  relacionadas_camara <- purrr::map_df(proposicoes$id_relacionada, ~ rcongresso::fetch_proposicao_camara(.x))
-  prop_relacionadas <- merge(proposicoes, relacionadas)
-  prop_relacionadas
+  pls_principais_ids <- all_pls_ids %>%
+    dplyr::filter(casa == "camara") %>%
+    select(id_principal)
+
+  all_relacionadas_ids <- purrr::map_df(pls_principais_ids$id_principal, ~rcongresso::fetch_ids_relacionadas(.x)) %>%
+    dplyr::rename(id_principal = id_prop)
+
+  new_relacionadas_ids <- all_relacionadas_ids %>%
+    dplyr::anti_join(current_relacionadas_ids, by=c("id_relacionada","id_principal","casa"))
+
+  if (nrow(new_relacionadas_ids > 0)) {
+    relacionadas_camara <- purrr::map_df(new_relacionadas_ids$id_relacionada, ~ fetch_all_documents(.x))
+  }
+
+  new_relacionadas <- merge(relacionadas_camara, all_relacionadas_ids, by.x="id", by.y = "id_relacionada") %>%
+    dplyr::distinct() %>%
+    dplyr::select(id_relacionada = id,
+                  id_principal,
+                  casa,
+                  sigla_tipo = siglaTipo,
+                  data_apresentacao = dataApresentacao,
+                  ementa,
+                  dplyr::everything())
+  new_relacionadas
+
 }
 
 #' @title Concatena siglas de unidade federativa de cada autor da proposição
@@ -167,7 +190,9 @@ get_partido_autores <- function(autor_df) {
   return(autores_partido)
 }
 
-.get_all_ids <- function(pls_ids_df) {
+
+#' @export
+get_all_ids <- function(pls_ids_df) {
   pls_ids_camara <- pls_ids_df %>%
     dplyr::mutate(casa = "camara") %>%
     dplyr::select(id_principal = id_camara,casa,apelido,tema) %>%
@@ -181,19 +206,29 @@ get_partido_autores <- function(autor_df) {
   pls_ids_all <- dplyr::bind_rows(pls_ids_camara,pls_ids_senado)
   return(pls_ids_all)
 }
+#
+# update_proposicoes <- function(current_props_df, pls_ids_df) {
+#   pls_ids_all <- .get_all_ids(pls_ids_df)
+#
+#   new_props <- pls_ids_all %>%
+#     dplyr::anti_join(current_props_df, by=c("id_principal","casa")) %>%
+#     dplyr::rename(id = id_principal)
+#
+#   if (nrow(new_props > 0)) {
+#     new_props <- purrr::map2_df(new_props$id, new_props$casa, ~ agoradigital::fetch_proposicao(.x, .y))
+#   }
+#
+#
+#   return(new_props)
+#
+# }
+safe_fetch_proposicao <- purrr::safely(rcongresso::fetch_proposicao_camara,otherwise = tibble::tibble())
 
-update_proposicoes <- function(current_props_df, pls_ids_df) {
-  pls_ids_all <- .get_all_ids(pls_ids_df)
-
-  new_props <- pls_ids_all %>%
-    dplyr::anti_join(current_props_df, by=c("id_principal","casa")) %>%
-    dplyr::rename(id = id_principal)
-
-  if (nrow(new_props > 0)) {
-    new_props <- purrr::map2_df(new_props$id, new_props$casa, ~ agoradigital::fetch_proposicao(.x, .y))
+fetch_all_documents <- function(id_documento) {
+  fetch_prop_output <- safe_fetch_proposicao(id_documento)
+  if (!is.null(fetch_prop_output$error)) {
+    print(fetch_prop_output$error)
   }
-
-
-  return(new_props)
-
+  return(fetch_prop_output$result)
 }
+

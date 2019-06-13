@@ -27,51 +27,48 @@ pls_ids <- readr::read_csv(pls_ids_filepath,
                              tema = readr::col_character()
                            ))
 
+all_pls_ids <- agoradigital::get_all_ids(pls_ids)
 
-# Read current proposições
-current_props <- readr::read_csv(paste0(export_path,'/proposicoes.csv'),
-                                 col_types = list(
-                                     id_ext = readr::col_double(),
-                                     sigla_tipo = readr::col_character(),
-                                     numero = readr::col_double(),
-                                     ementa = readr::col_character(),
-                                     data_apresentacao = readr::col_datetime(format = ""),
-                                     casa = readr::col_character(),
-                                     casa_origem = readr::col_character(),
-                                     apelido = readr::col_character(),
-                                     tema = readr::col_character()
-                                 ))
-
-# Check if there are any new proposições
-curr_props_ids <- current_props %>%
-  dplyr::select(id_principal = id_ext,
-                casa)
-
-
-updated_props <- update_proposicoes(curr_props_ids, pls_ids)
-
-# Identify relacionadas
-all_documents <- pls_ids %>%
-  purrr::map_df(~ rcongresso::fetch_ids_relacionadas(.x))
+# # Read current proposições
+# current_props <- readr::read_csv(paste0(export_path,'/proposicoes.csv'),
+#                                  col_types = list(
+#                                      id_ext = readr::col_double(),
+#                                      sigla_tipo = readr::col_character(),
+#                                      numero = readr::col_double(),
+#                                      ano = readr::col_character(),
+#                                      ementa = readr::col_character(),
+#                                      data_apresentacao = readr::col_datetime(format = ""),
+#                                      casa = readr::col_character(),
+#                                      casa_origem = readr::col_character(),
+#                                      apelido = readr::col_character(),
+#                                      tema = readr::col_character()
+#                                  ))
+#
+# # Check if there are any new proposições
+# curr_props_ids <- current_props %>%
+#   dplyr::select(id_principal = id_ext,
+#                 casa)
+#
+#
+# updated_props <- update_proposicoes(curr_props_ids, pls_ids) %>%
+#   dplyr::rename(apelido = apelido_materia, id_ext = prop_id) %>%
+#   select(-autor_nome)
+#
+# # Identify relacionadas
+# all_documents <- pls_ids %>%
+#   purrr::map_df(~ rcongresso::fetch_ids_relacionadas(.x))
 
 # Read current relacionadas
-current_relacionadas <- readr::read_csv(paste0(export_path,'/relacionadas.csv'),
-                                        col_types = list(
-                                          id_principal = readr::col_double(),
-                                          id_ext = readr::col_double(),
-                                          sigla_tipo = readr::col_character(),
-                                          numero = readr::col_double(),
-                                          ementa = readr::col_character(),
-                                          data_apresentacao = readr::col_datetime(format = ""),
-                                          casa = readr::col_character(),
-                                          casa_origem = readr::col_character(),
-                                          regime_tramitacao = readr::col_character(),
-                                          forma_apreciacao = readr::col_character()
-                                        ))
+current_relacionadas <- readr::read_csv(paste0(export_path,'/relacionadas.csv'))
 
-new_props <-
+current_relacionadas_ids <- current_relacionadas %>%
+  dplyr::select(id_relacionada,
+                id_principal,
+                casa)
+new_relacionadas <- agoradigital::fetch_new_relacionadas(all_pls_ids, current_relacionadas_ids) %>%
+  dplyr::mutate_all(dplyr::funs(as.character(.)))
 
- %>%
-	dplyr::mutate(row_num = 1:dplyr::n()) %>%
-	dplyr::select(row_num,id_camara,id_senado,apelido,tema) %>%
-	agoradigital::export_data(export_path)
+updated_relacionadas <- rbind(current_relacionadas, new_relacionadas)
+
+readr::write_csv(updated_relacionadas, paste0(export_path , "/relacionadas.csv"))
+
