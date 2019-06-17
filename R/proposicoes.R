@@ -160,6 +160,10 @@ find_new_relacionadas <- function(all_pls_ids, current_relacionadas_ids) {
   return(new_relacionadas_ids)
 }
 
+fetch_autores_relacionadas <- function(relacionadas_ids_df) {
+  relacionadas_camara <- purrr::map_df(relacionadas_ids_df$id_relacionada, ~ fetch_all_autores(.x))
+}
+
 #' @title Baixa dados das matérias relacionadas, adequando as colunas ao padrão desejado
 #' @description Retorna um dataframe contendo dados das matérias relacionadas
 #' @param relacionadas_ids IDs das matérias relacionadas a serem baixadas
@@ -243,6 +247,16 @@ safe_fetch_proposicao <- purrr::safely(rcongresso::fetch_proposicao_camara,other
 
 fetch_all_documents <- function(id_documento) {
   fetch_prop_output <- safe_fetch_proposicao(id_documento)
+  if (!is.null(fetch_prop_output$error)) {
+    print(fetch_prop_output$error)
+  }
+  return(fetch_prop_output$result)
+}
+
+safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores_camara,otherwise = tibble::tibble())
+
+fetch_all_autores <- function(id_documento) {
+  fetch_prop_output <- safe_fetch_autores(id_documento)
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)
   }
