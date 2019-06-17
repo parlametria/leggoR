@@ -145,6 +145,7 @@ generate_progresso_df <- function(tramitacao_df){
 generate_progresso_df_mpv <- function(tramitacao_df) {
   tramitacao_df <-
     tramitacao_df %>%
+    dplyr::filter(casa == 'senado') %>% 
     dplyr::arrange(data_hora) %>%
     dplyr::mutate(fase_global =
                     dplyr::case_when(
