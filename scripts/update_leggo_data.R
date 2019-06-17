@@ -27,7 +27,7 @@ pls_ids <- readr::read_csv(pls_ids_filepath,
                              tema = readr::col_character()
                            ))
 
-all_pls_ids <- agoradigital::get_all_ids(pls_ids)
+all_pls_ids <- agoradigital::get_all_leggo_props_ids(pls_ids)
 
 # # Read current proposições
 # current_props <- readr::read_csv(paste0(export_path,'/proposicoes.csv'),
@@ -59,16 +59,37 @@ all_pls_ids <- agoradigital::get_all_ids(pls_ids)
 #   purrr::map_df(~ rcongresso::fetch_ids_relacionadas(.x))
 
 # Read current relacionadas
-current_relacionadas <- readr::read_csv(paste0(export_path,'/relacionadas.csv'))
+current_relacionadas <- readr::read_csv(paste0(export_path,'/relacionadas.csv'),
+                                        col_types = list(
+                                            .default = readr::col_character(),
+                                            id_relacionada = readr::col_double(),
+                                            id_principal = readr::col_double(),
+                                            numero = readr::col_integer(),
+                                            ano = readr::col_integer(),
+                                            data_apresentacao = readr::col_datetime(format = ""),
+                                            codTipo = readr::col_integer(),
+                                            statusProposicao.codSituacao = readr::col_integer(),
+                                            statusProposicao.codTipoTramitacao = readr::col_integer(),
+                                            statusProposicao.dataHora = readr::col_datetime(format = ""),
+                                            statusProposicao.sequencia = readr::col_integer()
+                                        ))
 
 current_relacionadas_ids <- current_relacionadas %>%
   dplyr::select(id_relacionada,
                 id_principal,
                 casa)
-new_relacionadas <- agoradigital::fetch_new_relacionadas(all_pls_ids, current_relacionadas_ids) %>%
-  dplyr::mutate_all(dplyr::funs(as.character(.)))
 
-updated_relacionadas <- rbind(current_relacionadas, new_relacionadas)
+new_relacionadas_ids <- agoradigital::find_new_relacionadas(all_pls_ids, current_relacionadas_ids)
+new_relacionadas_data <- tibble::tibble()
 
-readr::write_csv(updated_relacionadas, paste0(export_path , "/relacionadas.csv"))
+if (nrow(new_relacionadas_ids) > 0) {
+  new_relacionadas_data <- agoradigital::fetch_relacionadas_data(new_relacionadas_ids) %>%
+    dplyr::mutate_all(list(names = ~ as.character(.)))
+  
+  print(paste("Adicionando ",nrow(new_relacionadas_data)," novas matérias relacionadas."))
+  updated_relacionadas <- rbind(current_relacionadas, new_relacionadas_data)
+  readr::write_csv(updated_relacionadas, paste0(export_path , "/relacionadas.csv"))
+}
+
+
 

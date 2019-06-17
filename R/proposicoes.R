@@ -135,41 +135,58 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
   proposicao
 }
 
-#' @title Baixa todos os novos documentos relacionados a uma proposição
-#' @description Retorna um dataframe contendo os documentos relacionados a uma proposição
+#' @title Baixa os ids das matérias relacionadas a partir dos ids das principais, verificando quais delas são novas
+#' @description Retorna um dataframe contendo as novas matérias relacionadas a uma proposição
 #' @param all_pls_ids IDs das proposições principais
-#' @param current_relacionadas_ids IDs dos documentos relacionados
+#' @param current_relacionadas_ids IDs das matérias relacionadas atualmente baixadas
 #' @return Dataframe
 #' @examples
-#' fetch_relacionadas(2056568)
+#' \dontrun{
+#' new_relacionadas <- find_new_relacionadas(2056568)
+#' }
 #' @export
-fetch_new_relacionadas <- function(all_pls_ids, current_relacionadas_ids) {
+find_new_relacionadas <- function(all_pls_ids, current_relacionadas_ids) {
 
   pls_principais_ids <- all_pls_ids %>%
     dplyr::filter(casa == "camara") %>%
-    select(id_principal)
+    dplyr::select(id_principal)
 
   all_relacionadas_ids <- purrr::map_df(pls_principais_ids$id_principal, ~rcongresso::fetch_ids_relacionadas(.x)) %>%
     dplyr::rename(id_principal = id_prop)
 
   new_relacionadas_ids <- all_relacionadas_ids %>%
     dplyr::anti_join(current_relacionadas_ids, by=c("id_relacionada","id_principal","casa"))
+  
+  return(new_relacionadas_ids)
+}
 
-  if (nrow(new_relacionadas_ids > 0)) {
-    relacionadas_camara <- purrr::map_df(new_relacionadas_ids$id_relacionada, ~ fetch_all_documents(.x))
+#' @title Baixa dados das matérias relacionadas, adequando as colunas ao padrão desejado
+#' @description Retorna um dataframe contendo dados das matérias relacionadas
+#' @param relacionadas_ids IDs das matérias relacionadas a serem baixadas
+#' @return Dataframe
+#' @examples
+#' \dontrun{
+#'   relacionadas_data <- fetch_relacionadas(2056568)
+#' }
+#' @export
+fetch_relacionadas_data <- function(relacionadas_ids) {
+  relacionadas_camara <- purrr::map_df(relacionadas_ids$id_relacionada, ~ fetch_all_documents(.x))
+  formatted_relacionadas_df <- tibble::tibble()
+  
+  if (nrow(formatted_relacionadas_df) > 0) {
+    formatted_relacionadas_df <- merge(relacionadas_camara, relacionadas_ids, by.x="id", by.y = "id_relacionada") %>%
+      dplyr::distinct() %>%
+      dplyr::select(id_relacionada = id,
+                    id_principal,
+                    casa,
+                    sigla_tipo = siglaTipo,
+                    numero,
+                    ano,
+                    data_apresentacao = dataApresentacao,
+                    ementa,
+                    dplyr::everything())  
   }
-
-  new_relacionadas <- merge(relacionadas_camara, all_relacionadas_ids, by.x="id", by.y = "id_relacionada") %>%
-    dplyr::distinct() %>%
-    dplyr::select(id_relacionada = id,
-                  id_principal,
-                  casa,
-                  sigla_tipo = siglaTipo,
-                  data_apresentacao = dataApresentacao,
-                  ementa,
-                  dplyr::everything())
-  new_relacionadas
-
+  return(formatted_relacionadas_df)
 }
 
 #' @title Concatena siglas de unidade federativa de cada autor da proposição
@@ -192,13 +209,13 @@ get_partido_autores <- function(autor_df) {
 
 
 #' @export
-get_all_ids <- function(pls_ids_df) {
-  pls_ids_camara <- pls_ids_df %>%
+get_all_leggo_props_ids <- function(leggo_props_df) {
+  pls_ids_camara <- leggo_props_df %>%
     dplyr::mutate(casa = "camara") %>%
     dplyr::select(id_principal = id_camara,casa,apelido,tema) %>%
     dplyr::filter(!is.na(id_principal))
 
-  pls_ids_senado <- pls_ids_df %>%
+  pls_ids_senado <- leggo_props_df %>%
     dplyr::mutate(casa = "senado") %>%
     dplyr::select(id_principal = id_senado,casa,apelido,tema) %>%
     dplyr::filter(!is.na(id_principal))
