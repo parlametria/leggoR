@@ -156,7 +156,7 @@ find_new_relacionadas <- function(all_pls_ids, current_relacionadas_ids) {
 
   new_relacionadas_ids <- all_relacionadas_ids %>%
     dplyr::anti_join(current_relacionadas_ids, by=c("id_relacionada","id_principal","casa"))
-  
+
   return(new_relacionadas_ids)
 }
 
@@ -172,8 +172,8 @@ find_new_relacionadas <- function(all_pls_ids, current_relacionadas_ids) {
 fetch_relacionadas_data <- function(relacionadas_ids) {
   relacionadas_camara <- purrr::map_df(relacionadas_ids$id_relacionada, ~ fetch_all_documents(.x))
   formatted_relacionadas_df <- tibble::tibble()
-  
-  if (nrow(formatted_relacionadas_df) > 0) {
+
+  if (nrow(relacionadas_camara) > 0) {
     formatted_relacionadas_df <- merge(relacionadas_camara, relacionadas_ids, by.x="id", by.y = "id_relacionada") %>%
       dplyr::distinct() %>%
       dplyr::select(id_relacionada = id,
@@ -184,7 +184,7 @@ fetch_relacionadas_data <- function(relacionadas_ids) {
                     ano,
                     data_apresentacao = dataApresentacao,
                     ementa,
-                    dplyr::everything())  
+                    dplyr::everything())
   }
   return(formatted_relacionadas_df)
 }
