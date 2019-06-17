@@ -34,7 +34,7 @@ format_table_distances_to_emendas <- function(distancias_datapath, write_datapat
   
   print(paste("Saving distances file:",out_file_name))
   
-  readr::write_csv(formatted_dists_df, paste0(write_datapath, out_file_name))
+  readr::write_csv(formatted_dists_df, paste0(write_datapath, '/', out_file_name))
 }
 
 #' @title Adiciona a distância às emendas
