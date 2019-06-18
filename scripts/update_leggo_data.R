@@ -102,7 +102,7 @@ if (nrow(new_relacionadas_ids) > 0) {
   new_relacionadas_data <- agoradigital::fetch_relacionadas_data(new_relacionadas_ids) %>%
     dplyr::mutate_all(~ as.character(.))
 
-   new_autores_data <- agoradigital::fetch_autores_relacionadas(new_relacionadas_ids) %>%
+  new_autores_data <- agoradigital::fetch_autores_relacionadas(new_relacionadas_ids) %>%
      dplyr::mutate_all(~ as.character(.))
 
   print(paste("Adicionando ",nrow(new_relacionadas_data)," novas matérias relacionadas."))
