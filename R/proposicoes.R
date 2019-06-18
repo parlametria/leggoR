@@ -163,9 +163,16 @@ find_new_relacionadas <- function(all_pls_ids, current_relacionadas_ids) {
   return(new_relacionadas_ids)
 }
 
+#' @title Baixa autores das matérias relacionadas, adequando as colunas ao padrão desejado
+#' @description Retorna um dataframe contendo autores das matérias relacionadas
+#' @param relacionadas_ids Dataframe com os ids das matérias relacionadas a serem baixadas
+#' @return Dataframe
 #' @export
 fetch_autores_relacionadas <- function(relacionadas_ids_df) {
-  autores_relacionadas_camara <- purrr::map_df(relacionadas_ids_df$id_relacionada, ~ fetch_all_autores(.x))
+  autores_relacionadas_camara <- purrr::map_df(relacionadas_ids_df$id_relacionada, ~ fetch_all_autores(.x)) %>%
+    dplyr::mutate(casa = 'camara')
+
+  autores_relacionadas_camara
 }
 
 #' @title Baixa dados das matérias relacionadas, adequando as colunas ao padrão desejado
