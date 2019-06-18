@@ -307,7 +307,7 @@ export_data <- function(pls, export_path) {
 
   ## export data to CSVs
   emendas_raw_old <- readr::read_csv(paste0(export_path, "/emendas_raw.csv"))
-  readr::write_csv(emendas_raw_old, "../versoes-de-proposicoes/data/emendas_raw_old.csv")
+  readr::write_csv(emendas_raw_old, paste0(export_path, "/emendas_raw_old.csv"))
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
   readr::write_csv(tramitacoes, paste0(export_path, "/trams.csv"))
   readr::write_csv(
