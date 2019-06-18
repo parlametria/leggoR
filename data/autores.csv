@@ -1,1 +1,1 @@
-id_principal,id_relacionada,id_autor,nome_autor,casa,codTipo,tipo,uri
+id_autor,nome,cod_tipo,tipo,uri,id_documento,casa
