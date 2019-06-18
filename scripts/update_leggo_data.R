@@ -17,6 +17,9 @@ export_path <- args[2]
 
 ## Install local repository R package version
 devtools::install()
+library(magrittr)
+
+# Read current data csvs
 
 ## Read PLs list
 pls_ids <- readr::read_csv(pls_ids_filepath,
@@ -27,42 +30,10 @@ pls_ids <- readr::read_csv(pls_ids_filepath,
                              tema = readr::col_character()
                            ))
 
-all_pls_ids <- agoradigital::get_all_leggo_props_ids(pls_ids)
-
-# # Read current proposições
-# current_props <- readr::read_csv(paste0(export_path,'/proposicoes.csv'),
-#                                  col_types = list(
-#                                      id_ext = readr::col_double(),
-#                                      sigla_tipo = readr::col_character(),
-#                                      numero = readr::col_double(),
-#                                      ano = readr::col_character(),
-#                                      ementa = readr::col_character(),
-#                                      data_apresentacao = readr::col_datetime(format = ""),
-#                                      casa = readr::col_character(),
-#                                      casa_origem = readr::col_character(),
-#                                      apelido = readr::col_character(),
-#                                      tema = readr::col_character()
-#                                  ))
-#
-# # Check if there are any new proposições
-# curr_props_ids <- current_props %>%
-#   dplyr::select(id_principal = id_ext,
-#                 casa)
-#
-#
-# updated_props <- update_proposicoes(curr_props_ids, pls_ids) %>%
-#   dplyr::rename(apelido = apelido_materia, id_ext = prop_id) %>%
-#   select(-autor_nome)
-#
-# # Identify relacionadas
-# all_documents <- pls_ids %>%
-#   purrr::map_df(~ rcongresso::fetch_ids_relacionadas(.x))
-
-# Read current relacionadas
-current_relacionadas <- readr::read_csv(paste0(export_path,'/relacionadas.csv'),
+current_docs <- readr::read_csv(paste0(export_path,'/documentos.csv'),
                                         col_types = list(
                                             .default = readr::col_character(),
-                                            id_relacionada = readr::col_double(),
+                                            id_documento = readr::col_double(),
                                             id_principal = readr::col_double(),
                                             numero = readr::col_integer(),
                                             ano = readr::col_integer(),
@@ -74,16 +45,8 @@ current_relacionadas <- readr::read_csv(paste0(export_path,'/relacionadas.csv'),
                                             statusProposicao.sequencia = readr::col_integer()
                                         ))
 
-current_relacionadas_ids <- current_relacionadas %>%
-  dplyr::select(id_relacionada,
-                id_principal,
-                casa)
-
-new_relacionadas_ids <- agoradigital::find_new_relacionadas(all_pls_ids, current_relacionadas_ids)
-new_relacionadas_data <- tibble::tibble()
-
 current_autores <- readr::read_csv(paste0(export_path, '/autores.csv'),
-                                    col_types = list(
+                                   col_types = list(
                                      .default = readr::col_character(),
                                      id_autor = readr::col_character(),
                                      nome = readr::col_character(),
@@ -94,22 +57,38 @@ current_autores <- readr::read_csv(paste0(export_path, '/autores.csv'),
                                      casa = readr::col_character()
                                    ))
 
-new_autores_data <- tibble::tibble()
+# Check for new data
+all_pls_ids <- agoradigital::get_all_leggo_props_ids(pls_ids)
 
-if (nrow(new_relacionadas_ids) > 0) {
-  new_relacionadas_data <- agoradigital::fetch_relacionadas_data(new_relacionadas_ids) %>%
+current_docs_ids <- current_docs %>%
+  dplyr::select(id_documento,
+                id_principal,
+                casa)
+
+new_docs_ids <- agoradigital::find_new_documentos(all_pls_ids, current_docs)
+
+print(paste("Foram encontrados",nrow(new_docs_ids), "novos documentos."))
+
+if (nrow(new_docs_ids) > 0) {
+  new_docs_data <- tibble::tibble()
+  new_autores_data <- tibble::tibble()
+  
+  new_docs_data <- agoradigital::fetch_documentos_data(new_docs_ids) %>%
+    dplyr::mutate_all(~ as.character(.))
+  
+  if (nrow(new_docs_data) == 0) {
+    print(paste("Não foi possível baixar os novos documentos encontrados =("))
+    quit(status=1)
+  }
+
+  print(paste("Adicionando ",nrow(new_docs_data)," novos documentos."))
+  updated_docs <- rbind(current_docs, new_docs_data)
+  readr::write_csv(updated_docs, paste0(export_path , "/documentos.csv"))
+
+  new_autores_data <- agoradigital::fetch_autores_documentos(new_docs_data) %>%
     dplyr::mutate_all(~ as.character(.))
 
-  print(paste("Adicionando ",nrow(new_relacionadas_data)," novas matérias relacionadas."))
-  updated_relacionadas <- rbind(current_relacionadas, new_relacionadas_data)
-  readr::write_csv(updated_relacionadas, paste0(export_path , "/relacionadas.csv"))
-
-  # new_autores_data <- agoradigital::fetch_autores_relacionadas(new_relacionadas_data) %>%
-  new_autores_data <- agoradigital::fetch_autores_relacionadas(updated_relacionadas) %>%
-    dplyr::mutate_all(~ as.character(.))
-
-  print(paste("Adicionando ",nrow(new_autores_data)," novos autores de relacionadas."))
-  updated_autores_relacionadas <- rbind(current_autores, new_autores_data)
-  readr::write_csv(updated_autores_relacionadas, paste0(export_path , "/autores.csv"))
-
+  print(paste("Adicionando ",nrow(new_autores_data)," novos autores de documentos."))
+  updated_autores_docs <- rbind(current_autores, new_autores_data)
+  readr::write_csv(updated_autores_docs, paste0(export_path , "/autores.csv"))
 }

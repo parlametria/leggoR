@@ -135,63 +135,64 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
   proposicao
 }
 
-#' @title Baixa os ids das matérias relacionadas a partir dos ids das principais, verificando quais delas são novas
-#' @description Retorna um dataframe contendo as novas matérias relacionadas a uma proposição
+#' @title Baixa os ids dos documentos a partir dos ids das principais, verificando quais delas são novas
+#' @description Retorna um dataframe contendo os novos documentos
 #' @param all_pls_ids IDs das proposições principais
-#' @param current_relacionadas_ids IDs das matérias relacionadas atualmente baixadas
+#' @param current_docs_ids IDs dos documentos atualmente baixados
 #' @return Dataframe
 #' @examples
 #' \dontrun{
-#' new_relacionadas <- find_new_relacionadas(2056568)
+#' new_docs <- find_new_docs(2056568)
 #' }
 #' @export
-find_new_relacionadas <- function(all_pls_ids, current_relacionadas_ids) {
+find_new_documentos <- function(all_pls_ids, current_docs_ids) {
 
   pls_principais_ids <- all_pls_ids %>%
     dplyr::filter(casa == "camara") %>%
     dplyr::select(id_principal,
                   casa) %>%
-    dplyr::mutate(id_relacionada = id_principal)
+    dplyr::mutate(id_documento = id_principal)
 
-  all_relacionadas_ids <- purrr::map_df(pls_principais_ids$id_principal, ~rcongresso::fetch_ids_relacionadas(.x)) %>%
-    dplyr::rename(id_principal = id_prop) %>%
+  all_docs_ids <- purrr::map_df(pls_principais_ids$id_principal, ~rcongresso::fetch_ids_relacionadas(.x)) %>%
+    dplyr::rename(id_principal = id_prop,
+                  id_documento = id_relacionada) %>%
     dplyr::bind_rows(pls_principais_ids)
 
-  new_relacionadas_ids <- all_relacionadas_ids %>%
-    dplyr::anti_join(current_relacionadas_ids, by=c("id_relacionada","id_principal","casa"))
+  new_docs_ids <- all_docs_ids %>%
+    dplyr::anti_join(current_docs_ids, by=c("id_documento","id_principal","casa"))
 
-  return(new_relacionadas_ids)
+  return(new_docs_ids)
 }
 
-#' @title Baixa autores das matérias relacionadas, adequando as colunas ao padrão desejado
-#' @description Retorna um dataframe contendo autores das matérias relacionadas
-#' @param relacionadas_ids Dataframe com os ids das matérias relacionadas a serem baixadas
+#' @title Baixa autores de documentos, adequando as colunas ao padrão desejado
+#' @description Retorna um dataframe contendo autores dos documentos
+#' @param docs_ids_df Dataframe com os ids dos documentos a serem baixadas
 #' @return Dataframe
 #' @export
-fetch_autores_relacionadas <- function(relacionadas_ids_df) {
-  autores_relacionadas_camara <- purrr::map_df(relacionadas_ids_df$id_relacionada, ~ fetch_all_autores(.x)) %>%
+fetch_autores_documentos <- function(docs_ids_df) {
+  autores_docs_camara <- purrr::map_df(docs_ids_df$id_documento, ~ fetch_all_autores(.x)) %>%
     dplyr::mutate(casa = 'camara')
 
-  autores_relacionadas_camara
+  autores_docs_camara
 }
 
-#' @title Baixa dados das matérias relacionadas, adequando as colunas ao padrão desejado
-#' @description Retorna um dataframe contendo dados das matérias relacionadas
-#' @param relacionadas_ids IDs das matérias relacionadas a serem baixadas
+#' @title Baixa dados dos documentos, adequando as colunas ao padrão desejado
+#' @description Retorna um dataframe contendo dados dos documentos
+#' @param docs_ids IDs dos documentos a serem baixados
 #' @return Dataframe
 #' @examples
 #' \dontrun{
-#'   relacionadas_data <- fetch_relacionadas(2056568)
+#'   docs_data <- fetch_docs_data(2056568)
 #' }
 #' @export
-fetch_relacionadas_data <- function(relacionadas_ids) {
-  relacionadas_camara <- purrr::map_df(relacionadas_ids$id_relacionada, ~ fetch_all_documents(.x))
-  formatted_relacionadas_df <- tibble::tibble()
+fetch_documentos_data <- function(docs_ids) {
+  docs_camara <- purrr::map_df(docs_ids$id_documento, ~ fetch_all_documents(.x))
+  formatted_docs_df <- tibble::tibble()
 
-  if (nrow(relacionadas_camara) > 0) {
-    formatted_relacionadas_df <- merge(relacionadas_camara, relacionadas_ids, by.x="id", by.y = "id_relacionada") %>%
+  if (nrow(docs_camara) > 0) {
+    formatted_docs_df <- merge(docs_camara, docs_ids, by.x="id", by.y = "id_documento") %>%
       dplyr::distinct() %>%
-      dplyr::select(id_relacionada = id,
+      dplyr::select(id_documento = id,
                     id_principal,
                     casa,
                     sigla_tipo = siglaTipo,
@@ -201,7 +202,7 @@ fetch_relacionadas_data <- function(relacionadas_ids) {
                     ementa,
                     dplyr::everything())
   }
-  return(formatted_relacionadas_df)
+  return(formatted_docs_df)
 }
 
 #' @title Concatena siglas de unidade federativa de cada autor da proposição
