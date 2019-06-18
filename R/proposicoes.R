@@ -149,10 +149,13 @@ find_new_relacionadas <- function(all_pls_ids, current_relacionadas_ids) {
 
   pls_principais_ids <- all_pls_ids %>%
     dplyr::filter(casa == "camara") %>%
-    dplyr::select(id_principal)
+    dplyr::select(id_principal,
+                  casa) %>%
+    dplyr::mutate(id_relacionada = id_principal)
 
   all_relacionadas_ids <- purrr::map_df(pls_principais_ids$id_principal, ~rcongresso::fetch_ids_relacionadas(.x)) %>%
-    dplyr::rename(id_principal = id_prop)
+    dplyr::rename(id_principal = id_prop) %>%
+    dplyr::bind_rows(pls_principais_ids)
 
   new_relacionadas_ids <- all_relacionadas_ids %>%
     dplyr::anti_join(current_relacionadas_ids, by=c("id_relacionada","id_principal","casa"))
@@ -160,8 +163,9 @@ find_new_relacionadas <- function(all_pls_ids, current_relacionadas_ids) {
   return(new_relacionadas_ids)
 }
 
+#' @export
 fetch_autores_relacionadas <- function(relacionadas_ids_df) {
-  relacionadas_camara <- purrr::map_df(relacionadas_ids_df$id_relacionada, ~ fetch_all_autores(.x))
+  autores_relacionadas_camara <- purrr::map_df(relacionadas_ids_df$id_relacionada, ~ fetch_all_autores(.x))
 }
 
 #' @title Baixa dados das matérias relacionadas, adequando as colunas ao padrão desejado
@@ -257,9 +261,13 @@ safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores_camara,otherwise =
 
 fetch_all_autores <- function(id_documento) {
   fetch_prop_output <- safe_fetch_autores(id_documento)
+  autores_result <- fetch_prop_output$result
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)
+  } else {
+    autores_result <- autores_result %>%
+      dplyr::mutate(id_documento = id_documento)
   }
-  return(fetch_prop_output$result)
+  return(autores_result)
 }
 
