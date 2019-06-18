@@ -82,35 +82,33 @@ current_relacionadas_ids <- current_relacionadas %>%
 new_relacionadas_ids <- agoradigital::find_new_relacionadas(all_pls_ids, current_relacionadas_ids)
 new_relacionadas_data <- tibble::tibble()
 
-# current_autores <- readr::read_csv(paste0(export_path, '/autores.csv'),
-#                                    col_types = list(
-#                                      .default = readr::col_character(),
-#                                      id_principal = readr::col_character(),
-#                                      id_relacionada = readr::col_character(),
-#                                      id_autor = readr::col_character(),
-#                                      nome_autor = readr::col_character(),
-#                                      casa = readr::col_character(),
-#                                      codTipo = readr::col_integer(),
-#                                      tipo = readr::col_character(),
-#                                      uri = readr::col_character()
-#                                    ))
+current_autores <- readr::read_csv(paste0(export_path, '/autores.csv'),
+                                    col_types = list(
+                                     .default = readr::col_character(),
+                                     id_autor = readr::col_character(),
+                                     nome = readr::col_character(),
+                                     cod_tipo = readr::col_integer(),
+                                     tipo = readr::col_character(),
+                                     uri = readr::col_character(),
+                                     id_documento = readr::col_character(),
+                                     casa = readr::col_character()
+                                   ))
 
-#new_autores_relacionadas <- agora::find_autores_relacionadas(all_pls_ids, current_relacionadas_ids)
 new_autores_data <- tibble::tibble()
 
 if (nrow(new_relacionadas_ids) > 0) {
   new_relacionadas_data <- agoradigital::fetch_relacionadas_data(new_relacionadas_ids) %>%
     dplyr::mutate_all(~ as.character(.))
 
-  new_autores_data <- agoradigital::fetch_autores_relacionadas(new_relacionadas_ids) %>%
+  new_autores_data <- agoradigital::fetch_autores_relacionadas(updated_relacionadas) %>%
      dplyr::mutate_all(~ as.character(.))
 
   print(paste("Adicionando ",nrow(new_relacionadas_data)," novas matérias relacionadas."))
   updated_relacionadas <- rbind(current_relacionadas, new_relacionadas_data)
   readr::write_csv(updated_relacionadas, paste0(export_path , "/relacionadas.csv"))
 
-  # print(paste("Adicionando ",nrow(new_autores_data)," novos autores de relacionadas."))
-  # updated_autores_relacionadas <- rbind(current_autores, new_autores_relacionadas)
-  # readr::write_csv(updated_autores_relacionadas, paste0(export_path , "/autores.csv"))
+  print(paste("Adicionando ",nrow(new_autores_data)," novos autores de relacionadas."))
+  updated_autores_relacionadas <- rbind(current_autores, new_autores_data)
+  readr::write_csv(updated_autores_relacionadas, paste0(export_path , "/autores.csv"))
 
 }
