@@ -140,10 +140,6 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
 #' @param all_pls_ids IDs das proposições principais
 #' @param current_docs_ids IDs dos documentos atualmente baixados
 #' @return Dataframe
-#' @examples
-#' \dontrun{
-#' new_docs <- find_new_docs(2056568)
-#' }
 #' @export
 find_new_documentos <- function(all_pls_ids, current_docs_ids) {
 
@@ -178,7 +174,7 @@ fetch_autores_documentos <- function(docs_ids_df) {
 
 #' @title Baixa dados dos documentos, adequando as colunas ao padrão desejado
 #' @description Retorna um dataframe contendo dados dos documentos
-#' @param docs_ids IDs dos documentos a serem baixados
+#' @param docs_ids Dataframe com os IDs dos documentos a serem baixados
 #' @return Dataframe
 #' @examples
 #' \dontrun{
@@ -239,7 +235,7 @@ get_all_leggo_props_ids <- function(leggo_props_df) {
   pls_ids_all <- dplyr::bind_rows(pls_ids_camara,pls_ids_senado)
   return(pls_ids_all)
 }
-#
+
 # update_proposicoes <- function(current_props_df, pls_ids_df) {
 #   pls_ids_all <- .get_all_ids(pls_ids_df)
 #
@@ -255,8 +251,15 @@ get_all_leggo_props_ids <- function(leggo_props_df) {
 #   return(new_props)
 #
 # }
+
+
 safe_fetch_proposicao <- purrr::safely(rcongresso::fetch_proposicao_camara,otherwise = tibble::tibble())
 
+#' @title Realiza busca das informações de um documento
+#' @description Retorna dados de um documento caso a requisição seja bem-sucedida,
+#' caso contrário retorna um Dataframe vazio
+#' @param id_documento ID do documento
+#' @return Dataframe
 fetch_all_documents <- function(id_documento) {
   fetch_prop_output <- safe_fetch_proposicao(id_documento)
   if (!is.null(fetch_prop_output$error)) {
@@ -265,8 +268,14 @@ fetch_all_documents <- function(id_documento) {
   return(fetch_prop_output$result)
 }
 
+
 safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores_camara,otherwise = tibble::tibble())
 
+#' @title Realiza busca dos autores de um documento
+#' @description Retorna autores de um documento caso a requisição seja bem-sucedida,
+#' caso contrário retorna um Dataframe vazio
+#' @param id_documento ID do documento
+#' @return Dataframe
 fetch_all_autores <- function(id_documento) {
   fetch_prop_output <- safe_fetch_autores(id_documento)
   autores_result <- fetch_prop_output$result
