@@ -7,8 +7,8 @@ setup <- function(){
   return(TRUE)
 }
 
-pls_ids_filepath <- "data/tabela_geral_ids_casa.csv"
-export_path <- "data"
+pls_ids_filepath <- "../../data/tabela_geral_ids_casa.csv"
+export_path <- "../../data"
 
 pls_ids <- readr::read_csv(pls_ids_filepath,
                            col_types = list(
