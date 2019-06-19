@@ -284,13 +284,6 @@ export_data <- function(pls, export_path) {
     dplyr::rename(id_ext = prop_id, data = data_hora) %>%
     adiciona_status() %>% 
     unique()
-  tramitacoes_que_viraram_lei <-
-    tramitacoes %>%
-    dplyr::filter(evento == "transformada_lei") %>% 
-    unique()
-  tramitacoes <-
-    tramitacoes %>%
-    dplyr::filter(!(id_ext %in% tramitacoes_que_viraram_lei$id_ext))
   hists_temperatura <- purrr::map_df(res, ~ .$hist_temperatura) %>% 
     unique()
   progressos <-
