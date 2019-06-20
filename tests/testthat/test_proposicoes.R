@@ -7,10 +7,7 @@ setup <- function(){
   return(TRUE)
 }
 
-pls_ids_filepath <- "../../data/tabela_geral_ids_casa.csv"
-export_path <- "../../data"
-
-pls_ids <- readr::read_csv(pls_ids_filepath,
+pls_ids <- readr::read_csv(here::here("data/tabela_geral_ids_casa.csv"),
                            col_types = list(
                              id_camara = readr::col_double(),
                              id_senado = readr::col_double(),
@@ -18,7 +15,7 @@ pls_ids <- readr::read_csv(pls_ids_filepath,
                              tema = readr::col_character()
                            ))
 
-current_docs <- readr::read_csv(paste0(export_path,'/documentos.csv'),
+current_docs <- readr::read_csv(here::here("data/documentos.csv"),
                                 col_types = list(
                                   .default = readr::col_character(),
                                   id_documento = readr::col_double(),
