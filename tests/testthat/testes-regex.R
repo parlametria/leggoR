@@ -2,7 +2,6 @@ context("Regex")
 
 # Setup
 setup <- function(){
-  camara_env <<- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
   tipos_documentos <<- camara_env$tipos_documentos
   regex_documento_emenda <<- tipos$regex[1]
   regex_documento_proposicao <<- tipos$regex[2]
