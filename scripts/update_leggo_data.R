@@ -83,14 +83,15 @@ if (nrow(new_docs_ids) > 0) {
     quit(status=1)
   }
 
+  print(paste("Buscando os autores dos novos documentos..."))
+  new_autores_data <- agoradigital::fetch_autores_documentos(new_docs_data) %>%
+    dplyr::mutate_all(~ as.character(.))
+  
   print(paste("Adicionando ",nrow(new_docs_data)," novos documentos."))
   updated_docs <- rbind(current_docs, new_docs_data)
   readr::write_csv(updated_docs, paste0(export_path , "/documentos.csv"))
 
-  new_autores_data <- agoradigital::fetch_autores_documentos(new_docs_data) %>%
-    dplyr::mutate_all(~ as.character(.))
-
-  print(paste("Adicionando ",nrow(new_autores_data)," novos autores de documentos."))
+  print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
   updated_autores_docs <- rbind(current_autores, new_autores_data)
   readr::write_csv(updated_autores_docs, paste0(export_path , "/autores.csv"))
 }
