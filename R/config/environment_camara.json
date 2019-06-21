@@ -201,10 +201,8 @@
   "tipos_documentos": [
     {"tipo": "Emenda", "regex": "^emenda|^subemenda"},
     {"tipo": "Proposição", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de conversão|proposta de emenda . constitui..o"},
-    {"tipo": "Mensagem", "regex": "^mensagem"},
-    {"tipo": "Parecer", "regex": "^parecer"},
-    {"tipo": "Recurso", "regex": "^recurso"},
+    {"tipo": "Parecer", "regex": "^parecer|^complementa..o de voto|^reda..o final|^substitutivo"},
     {"tipo": "Requerimento", "regex": "^requerimento"},
-    {"tipo": "Substitutivo", "regex": "^substitutivo"}
+    {"tipo": "Voto em Separado", "regex": "^voto em separado"}
     ]
 }
