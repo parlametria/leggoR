@@ -65,6 +65,8 @@ current_docs_ids <- current_docs %>%
                 id_principal,
                 casa)
 
+print(paste("Verificando se há novos documentos..."))
+
 new_docs_ids <- agoradigital::find_new_documentos(all_pls_ids, current_docs)
 
 print(paste("Foram encontrados",nrow(new_docs_ids), "novos documentos."))
