@@ -4,17 +4,17 @@
 #' @return Dataframe
 #' @export
 create_tabela_atores <- function(documentos_df, autores_df) {
-  atores <- merge(documentos_df, autores_df, by = c("id_documento", "casa")) %>%
-    dplyr::select(casa,
+  autores_docs <- merge(documentos_df, autores_df, by = c("id_documento", "casa")) %>%
+    dplyr::select(id_principal,
+                  casa,
+                  id_documento,
                   id_autor,
                   nome_autor = nome,
-                  sigla_tipo,
                   codTipo,
-                  id_documento,
-                  id_principal,
+                  sigla_tipo,
                   descricao_tipo = descricaoTipo)
 
-  atores <- atores %>%
+  atores <- autores_docs %>%
     dplyr::group_by(id_principal,
                     casa,
                     id_autor,
