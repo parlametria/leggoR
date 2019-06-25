@@ -13,25 +13,37 @@ library(plotly)
 ```
 
 ```{r}
-atores <- read_csv("../data/atores.csv")
+atores_raw <- read_csv("../data/atores.csv")
+tipos_documentos <- atores_raw %>%
+  select(descricaoTipo = descricao_tipo) %>%
+  agoradigital::add_tipo_evento_documento() %>% 
+  select(tipo_generico = tipo)
+
+atores_tipos_docs <- atores_raw %>% 
+  bind_cols(tipos_documentos) %>% 
+  select(id_principal, casa, id_autor, nome_autor, codTipo, sigla_tipo, descricao_tipo, tipo_generico, qtd_de_documentos)
+
+
 ```
 
 ```{r}
 atores_2192459 <- 
-  atores %>% 
-  filter(id_principal == 2192459)
+  atores_tipos_docs %>% 
+  filter(id_principal == 2192459) %>% 
+  group_by(nome_autor, tipo_generico) %>% 
+  summarise(num_eventos_unicos = sum(qtd_de_documentos))
 
 atores_grouped <- 
   atores_2192459 %>% 
-  group_by(nome_autor, descricao_tipo) %>% 
-  summarise(num_eventos_unicos = sum(qtd_de_documentos)) %>% 
+  group_by(nome_autor) %>% 
+  summarise(num_eventos_unicos = sum(num_eventos_unicos)) %>% 
   arrange(desc(num_eventos_unicos)) %>% 
   head(5) %>% 
   select(nome_autor)
 
-atores_2192459 <- atores_2192459 %>% filter(atores_2192459$nome_autor %in% atores_grouped$nome_autor)
+atores_2192459 <- atores_2192459 %>% filter(nome_autor %in% atores_grouped$nome_autor)
 
-p <- ggplot(atores_2192459, aes(x = nome_autor, y = qtd_de_documentos, fill = descricao_tipo))+
+p <- ggplot(atores_2192459, aes(x = reorder(nome_autor, -num_eventos_unicos, sum), y = num_eventos_unicos, fill = tipo_generico))+
   geom_col() +
   xlab("Autor") +
   ylab("Quantidade de Documentos")
