@@ -1,5 +1,7 @@
 testthat::context('test-analyzer.R')
 
+library(magrittr)
+
 tram_91341 <<- fetch_tramitacao(91341, 'senado')
 prop_91341 <<- fetch_proposicao(91341, 'senado')
 tram_257161 <<- fetch_tramitacao(257161, 'camara')

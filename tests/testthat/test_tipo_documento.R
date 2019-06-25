@@ -10,7 +10,7 @@ setup <- function(){
   regex_documento_voto_em_separado <<- tipos_documentos[5]
   regex_documento_outros <<- tipos_documentos[6]
   
-  docs_emendas <- tibble::tibble(descricaoTipo = c("Emenda",
+  docs_emendas <<- tibble::tibble(descricaoTipo = c("Emenda",
                                                    "Emenda adotada pela comissão",
                                                    "Emenda adotada pela comissao",
                                                    "Emenda ao substitutivo",
@@ -25,9 +25,9 @@ setup <- function(){
                                                    "Subemenda substitutiva de plenário",
                                                    "Subemenda substitutiva de plenario"))
   
-  docs_emendas_gt <- dplyr::mutate(docs_emendas, tipo = rep(regex_documento_emenda,14))
+  docs_emendas_gt <<- dplyr::mutate(docs_emendas, tipo = rep(regex_documento_emenda,14))
   
-  docs_proposicoes <- tibble::tibble(descricaoTipo = c("Medida provisoria",
+  docs_proposicoes <<- tibble::tibble(descricaoTipo = c("Medida provisoria",
                                                           "Medida provisória",
                                                           "Projeto de lei",
                                                           "Projeto de lei complementar",
@@ -36,9 +36,9 @@ setup <- function(){
                                                           "Proposta de Emenda a constituicao",
                                                           "Proposta de Emenda à constituição"))
   
-  docs_proposicoes_gt <- dplyr::mutate(docs_proposicoes, tipo = rep(regex_documento_proposicao,8))
+  docs_proposicoes_gt <<- dplyr::mutate(docs_proposicoes, tipo = rep(regex_documento_proposicao,8))
   
-  docs_pareceres <- tibble::tibble(descricaoTipo = c("Parecer às Emendas apresentadas ao substitutivo do relator",
+  docs_pareceres <<- tibble::tibble(descricaoTipo = c("Parecer às Emendas apresentadas ao substitutivo do relator",
                                                      "Parecer às Emendas de plenário",
                                                      "Parecer às Emendas ou ao substitutivo do senado",
                                                      "Parecer de comissão",
@@ -56,9 +56,9 @@ setup <- function(){
                                                      "Substitutivo adotado pela Comissão",
                                                      "Substitutivo adotado pela comissao"))
   
-  docs_pareceres_gt <- dplyr::mutate(docs_pareceres, tipo = rep(regex_documento_parecer,17))
+  docs_pareceres_gt <<- dplyr::mutate(docs_pareceres, tipo = rep(regex_documento_parecer,17))
   
-  docs_requerimentos <- tibble::tibble(descricaoTipo = c("Requerimento",
+  docs_requerimentos <<- tibble::tibble(descricaoTipo = c("Requerimento",
                                                          "Requerimento de apensação",
                                                          "Requerimento de audiência pública",
                                                          "Requerimento de constituição de comissão especial de pec",
@@ -83,19 +83,19 @@ setup <- function(){
                                                          "Requerimento de urgência (art. 154 do ricd)",
                                                          "Requerimento de urgência (art. 155 do ricd)"))
   
-  docs_requerimentos_gt <- dplyr::mutate(docs_requerimentos, tipo = rep(regex_documento_requerimento,24))
+  docs_requerimentos_gt <<- dplyr::mutate(docs_requerimentos, tipo = rep(regex_documento_requerimento,24))
   
-  docs_voto_em_separado <- tibble::tibble(descricaoTipo = c("Voto em Separado"))
+  docs_voto_em_separado <<- tibble::tibble(descricaoTipo = c("Voto em Separado"))
   
-  docs_voto_em_separado_gt <- dplyr::mutate(docs_voto_em_separado, tipo = c(regex_documento_voto_em_separado))
+  docs_voto_em_separado_gt <<- dplyr::mutate(docs_voto_em_separado, tipo = c(regex_documento_voto_em_separado))
   
-  docs_outros <- tibble::tibble(descricaoTipo = c("Ata",
+  docs_outros <<- tibble::tibble(descricaoTipo = c("Ata",
                                                   "Autógrafo",
                                                   "Mensagem",
                                                   "Reclamação",
                                                   "Recurso"))
   
-  docs_outros_gt <- dplyr::mutate(docs_outros, tipo = rep(regex_documento_outros,5))
+  docs_outros_gt <<- dplyr::mutate(docs_outros, tipo = rep(regex_documento_outros,5))
   
   return(TRUE)
 }
