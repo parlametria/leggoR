@@ -1,11 +1,11 @@
-{
+  {
    "situacao_comissao": [
     {"situacao_comissao": "recebimento", "id_tipo_tramitacao": "^500$"},
     {"situacao_comissao": "analise_do_relator", "id_tipo_tramitacao": "^320$"},
     {"situacao_comissao": "discussao_votacao", "id_tipo_tramitacao": "^322$|^240$"},
     {"situacao_comissao": "encaminhamento", "id_tipo_tramitacao": "^180$"}
   ],
-  
+
     "fase_global": {
       "origem_camara": " - Origem (Câmara)",
       "revisao_camara": " - Revisão (Câmara)",
@@ -49,7 +49,7 @@
     {"evento": "req_indeferido", "regex": "", "tipo": "discussao"},
     {"evento": "req_arquivado", "regex": "", "tipo": "discussao"}
   ],
-  
+
   "autor_voto_separado": {
     "regex" : "deputado[^,]+ | dep[^,]+"
   },
@@ -150,31 +150,31 @@
     {"local": "Presidência da República", "fase_global": "Sanção/Veto"},
     {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
   ],
-  
+
     "fase_global_sancao":{
     "situacao_sancao": "remetida_a_sancao"
   },
-  
+
   "regimes": [
     {"regime_tramitacao": "Ordinária", "regex": "Ordinária"},
     {"regime_tramitacao": "Urgência", "regex": "Urgência"},
     {"regime_tramitacao": "Prioridade", "regex": "Prioridade"},
     {"regime_tramitacao": "Especial", "regex": "Especial"}
   ],
-  
+
   "frase_requerimento":{
     "requerimento":"(requerimento(s|)|req(s|)(.|))( n(s|)º|) ((\\d*.|)(\\d*/\\d*)+(,( |)| |))*(e ((\\d*.|)(\\d*/\\d*))|)"
   },
-  
+
   "extract_requerimento_num":{
     "regex":"(((\\d)*).|)(\\d*/\\d*)+"
   },
-  
+
   "versoes_texto_proposicao": {
     "remove_publicacao_regex": "Encaminhada à publicação. ",
     "eventos_regex":  "apresentacao_pl"
   },
-  
+
   "tipos_emendas": [
     {"sigla": "EMC", "tipo_texto": "Emenda na Comissão"},
     {"sigla": "EMP", "tipo_texto": "Emenda de Plenário"},
@@ -196,5 +196,13 @@
     {"sigla": "EMPV", "tipo_texto": "Emenda a Medida Provisória"},
     {"sigla": "SBR", "tipo_texto": "Subemenda de Relator"},
     {"sigla": "ERD-A", "tipo_texto": "Emenda de Redação Adotada"}
-  ]
+  ],
+
+  "tipos_documentos": [
+    {"tipo": "Emenda", "regex": "^emenda|^subemenda"},
+    {"tipo": "Proposição", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de conversão|proposta de emenda . constitui..o"},
+    {"tipo": "Parecer", "regex": "^parecer|^complementa..o de voto|^reda..o final|^substitutivo"},
+    {"tipo": "Requerimento", "regex": "^requerimento"},
+    {"tipo": "Voto em Separado", "regex": "^voto em separado"}
+    ]
 }
