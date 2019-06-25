@@ -1,4 +1,5 @@
 source(here::here("R/utils.R"))
+camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
 #' @title Importa as informações de uma proposição da internet.
 #' @description Recebido um id e a casa, a função roda os scripts para
@@ -199,6 +200,20 @@ fetch_documentos_data <- function(docs_ids) {
                     dplyr::everything())
   }
   return(formatted_docs_df)
+}
+
+#' @title Agrupa os tipos dos documentos
+#' @description Retorna um dataframe contendo dados dos documentos
+#' com uma coluna a mais (tipo)
+#' @param docs_data Dataframe com os todos os dados dos documentos
+#' @return Dataframe
+#' @export
+add_tipo_evento_documento <- function(docs_data) {
+  docs_data %>%
+    fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricaoTipo = "regex"), ignore_case = T) %>%
+    dplyr::select(-regex) %>%
+    dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
+
 }
 
 #' @title Concatena siglas de unidade federativa de cada autor da proposição
