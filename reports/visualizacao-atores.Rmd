@@ -32,7 +32,9 @@ atores_grouped <-
 atores_2192459 <- atores_2192459 %>% filter(atores_2192459$nome_autor %in% atores_grouped$nome_autor)
 
 p <- ggplot(atores_2192459, aes(x = nome_autor, y = qtd_de_documentos, fill = descricao_tipo))+
-  geom_col()
+  geom_col() +
+  xlab("Autor") +
+  ylab("Quantidade de Documentos")
 
 ggplotly(p)
 
