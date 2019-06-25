@@ -151,7 +151,7 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids) {
 
   all_docs_ids <- purrr::map_df(pls_principais_ids$id_principal, ~rcongresso::fetch_ids_relacionadas(.x)) %>%
     dplyr::rename(id_principal = id_prop,
-                  id_documento = id_relacionada) %>%
+                  id_documento = id_relacionada)  %>%
     dplyr::bind_rows(pls_principais_ids)
 
   new_docs_ids <- all_docs_ids %>%
@@ -166,7 +166,7 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids) {
 #' @return Dataframe
 #' @export
 fetch_autores_documentos <- function(docs_ids_df) {
-  autores_docs_camara <- purrr::map_df(docs_ids_df$id_documento, ~ fetch_all_autores(.x)) %>%
+  autores_docs_camara <- purrr::map2_df(docs_ids_df$id_documento, docs_ids_df$sigla_tipo, ~ fetch_all_autores(.x, .y)) %>%
     dplyr::mutate(casa = 'camara')
 
   autores_docs_camara
@@ -276,8 +276,8 @@ safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores_camara,otherwise =
 #' caso contrário retorna um Dataframe vazio
 #' @param id_documento ID do documento
 #' @return Dataframe
-fetch_all_autores <- function(id_documento) {
-  fetch_prop_output <- safe_fetch_autores(id_documento)
+fetch_all_autores <- function(id_documento, sigla_tipo) {
+  fetch_prop_output <- safe_fetch_autores(id_documento, sigla_tipo)
   autores_result <- fetch_prop_output$result
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)
