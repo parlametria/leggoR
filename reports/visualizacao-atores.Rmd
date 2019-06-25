@@ -1,0 +1,44 @@
+---
+title: "Top Atores"
+author: "Matheus Leal"
+date: "June 25, 2019"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+
+```
+
+```{r}
+atores <- read_csv("../data/atores.csv")
+```
+
+```{r}
+atores_2192459 <- 
+  atores %>% 
+  filter(id_principal == 2192459)
+
+atores_grouped <- 
+  atores_2192459 %>% 
+  group_by(nome_autor, descricao_tipo) %>% 
+  summarise(num_eventos_unicos = sum(qtd_de_documentos)) %>% 
+  arrange(desc(num_eventos_unicos)) %>% 
+  head(5) %>% 
+  select(nome_autor)
+
+atores_2192459 <- atores_2192459 %>% filter(atores_2192459$nome_autor %in% atores_grouped$nome_autor)
+
+p <- ggplot(atores_2192459, aes(x = nome_autor, y = qtd_de_documentos, fill = descricao_tipo))+
+  geom_col()
+
+ggplotly(p)
+
+```
+
+```{r}
+a <- atores %>% group_by(id_principal) %>% summarise(relacionados = sum(qtd_de_documentos))
+```
+
