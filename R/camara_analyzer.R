@@ -241,10 +241,8 @@ fetch_proposicao_renamed <- function(id) {
 #' @export
 #' @importFrom stats filter
 extract_forma_apreciacao_camara <- function(prop_id) {
-  base_url <-
-    'http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao='
   regex_apreciacao <-
-    tibble::frame_data(
+    tibble::tribble(
       ~ forma_apreciacao,
       ~ regex,
       'Conclusiva',
@@ -252,16 +250,14 @@ extract_forma_apreciacao_camara <- function(prop_id) {
       'Plenário',
       'Sujeita à Apreciação do Plenário'
     )
+  
+  base_url <-
+    'https://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID?IdProp='
 
-  page_df <- data.frame(page_url = paste0(base_url, prop_id), stringsAsFactors = F)
-
-  apreciacao_df <- page_df %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(page_html = list(xml2::read_html(page_url))) %>%
-    dplyr::mutate(temp =
-                    rvest::html_node(page_html, '#informacoesDeTramitacao') %>%
-                    rvest::html_text()) %>%
-    fuzzyjoin::regex_left_join(regex_apreciacao, by = c(temp = "regex"))
+  apreciacao_df <- 
+    XML::xmlToDataFrame(nodes = XML::getNodeSet(XML::xmlParse(RCurl::getURL(paste0(base_url, prop_id))),
+                                                "//Apreciacao"))  %>%
+    fuzzyjoin::regex_left_join(regex_apreciacao, by = c(text = "regex"))
 
   return(apreciacao_df[1,]$forma_apreciacao)
 }
