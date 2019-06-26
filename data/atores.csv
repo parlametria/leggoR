@@ -1072,7 +1072,7 @@ id_principal,casa,id_autor,nome_autor,codTipo,sigla_tipo,descricao_tipo,qtd_de_d
 604888,camara,74041,Luiz Couto,190,PRL,Parecer do Relator,2
 604888,camara,74041,Luiz Couto,255,SBT,Substitutivo,2
 604888,camara,88950,Rodrigo Garcia,131,EMP,Emenda de Plenário,2
-604888,camara,-1,,810,ATA,Ata,1
+604888,camara,-1,NA,810,ATA,Ata,1
 604888,camara,-1,Comissão de Constituição e Justiça e de Cidadania,187,PAR,Parecer de Comissão,1
 604888,camara,-1,Comissão de Constituição e Justiça e de Cidadania,339,REQ,Requerimento de Reconstituição de proposição,1
 604888,camara,-1,Comissão de Constituição e Justiça e de Cidadania,702,EMC-A,Emenda Adotada pela Comissão,1
