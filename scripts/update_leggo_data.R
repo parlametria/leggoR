@@ -109,7 +109,7 @@ if (nrow(new_docs_ids) > 0) {
     dplyr::mutate_all(~ as.character(.))
   
   print("Buscando os autores dos novos documentos...")
-  new_autores_data <- agoradigital::fetch_autores_documentos(new_docs_ids) %>%
+  new_autores_data <- agoradigital::fetch_autores_documentos(new_docs_data) %>%
     dplyr::mutate_all(~ as.character(.))
 
   fetch_status <- get_fetch_status(new_docs_ids, new_docs_data, new_autores_data)
@@ -123,7 +123,7 @@ if (nrow(new_docs_ids) > 0) {
   
   if (nrow(complete_docs) == 0) {
     print("Não foi possível baixar dados completos (proposição e autores) para nenhum dos novos documentos =(")
-    quit(status=1)
+    quit(save = "no", status=1)
   }
 
   print(paste("Adicionando ",nrow(new_docs_data)," novos documentos."))
