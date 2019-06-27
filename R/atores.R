@@ -19,7 +19,8 @@ create_tabela_atores <- function(documentos_df, autores_df) {
                   nome_autor = nome,
                   codTipo,
                   sigla_tipo,
-                  descricao_tipo = descricaoTipo)
+                  descricao_tipo = descricaoTipo,
+                  sigla_orgao = statusProposicao.siglaOrgao)
 
   atores_df <- autores_docs %>%
     dplyr::group_by(id_principal,
@@ -28,7 +29,8 @@ create_tabela_atores <- function(documentos_df, autores_df) {
                     nome_autor,
                     codTipo,
                     sigla_tipo,
-                    descricao_tipo) %>%
+                    descricao_tipo,
+                    sigla_orgao) %>%
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
     dplyr::arrange(id_principal, -qtd_de_documentos)
 

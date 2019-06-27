@@ -26,12 +26,18 @@ atores_tipos_docs <- atores_raw %>%
 ```
 
 ```{r}
-plot_prop <- function(id, name) {
+plot_prop <- function(id, name, comissao=NULL) {
   atores_prop <- 
-  atores_tipos_docs %>% 
-  filter(id_principal == id) %>% 
-  group_by(nome_autor, tipo_generico) %>% 
-  summarise(num_eventos_unicos = sum(qtd_de_documentos))
+    atores_tipos_docs %>% 
+    filter(id_principal == id)
+  if (!is.null(comissao)) {
+    atores_prop <-
+      atores_prop %>% 
+      filter(sigla_orgao == comissao)
+  }
+  atores_prop <- atores_prop %>% 
+    group_by(nome_autor, tipo_generico) %>% 
+    summarise(num_eventos_unicos = sum(qtd_de_documentos))
 
   atores_grouped <- 
     atores_prop %>% 
