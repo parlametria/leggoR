@@ -9,7 +9,6 @@ output: html_document
 library(tidyverse)
 library(ggplot2)
 library(plotly)
-
 ```
 
 ```{r}
@@ -27,32 +26,42 @@ atores_tipos_docs <- atores_raw %>%
 ```
 
 ```{r}
-atores_2192459 <- 
+plot_prop <- function(id, name) {
+  atores_prop <- 
   atores_tipos_docs %>% 
-  filter(id_principal == 2192459) %>% 
+  filter(id_principal == id) %>% 
   group_by(nome_autor, tipo_generico) %>% 
   summarise(num_eventos_unicos = sum(qtd_de_documentos))
 
-atores_grouped <- 
-  atores_2192459 %>% 
-  group_by(nome_autor) %>% 
-  summarise(num_eventos_unicos = sum(num_eventos_unicos)) %>% 
-  arrange(desc(num_eventos_unicos)) %>% 
-  head(5) %>% 
-  select(nome_autor)
-
-atores_2192459 <- atores_2192459 %>% filter(nome_autor %in% atores_grouped$nome_autor)
-
-p <- ggplot(atores_2192459, aes(x = reorder(nome_autor, -num_eventos_unicos, sum), y = num_eventos_unicos, fill = tipo_generico))+
-  geom_col() +
-  xlab("Autor") +
-  ylab("Quantidade de Documentos")
-
-ggplotly(p)
+  atores_grouped <- 
+    atores_prop %>% 
+    group_by(nome_autor) %>% 
+    summarise(num_eventos_unicos = sum(num_eventos_unicos)) %>% 
+    arrange(desc(num_eventos_unicos)) %>% 
+    head(5) %>% 
+    select(nome_autor)
+  
+  atores_prop <- atores_prop %>% filter(nome_autor %in% atores_grouped$nome_autor)
+  
+  p <- ggplot(atores_prop, aes(x = reorder(nome_autor, -num_eventos_unicos, sum),
+                               y = num_eventos_unicos,
+                               fill = tipo_generico))+
+    geom_col() + 
+    scale_colour_brewer("", palette="Set3", aesthetics = "fill") +
+    xlab("Autor") +
+    ylab("Quantidade de Documentos") +
+    labs(fill = "Documentos", title = name)
+    
+  
+  ggplotly(p)
+}
+  
 
 ```
 
 ```{r}
-a <- atores %>% group_by(id_principal) %>% summarise(relacionados = sum(qtd_de_documentos))
+plot_prop(2192459, "PEC 6/2019 - Nova Previdência") 
+plot_prop(16526, "PL 1292/1995 - PL das Compras Públicas (Nova Lei de Licitações)")
+plot_prop(2193540, "PL 1321/2019 - Anistia Tributária para Partidos")
 ```
 
