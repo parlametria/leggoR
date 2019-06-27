@@ -42,6 +42,7 @@ atores_tipos_docs <- atores_raw %>%
 ```{r}
 plot_prop <- function(id, name) {
   atores_prop <- 
+
   atores_tipos_docs %>% 
   dplyr::filter(id == id_principal) %>% 
   dplyr::group_by(nome_autor, tipo_generico) %>% 
@@ -87,5 +88,11 @@ plot_prop <- function(id, name) {
 plot_prop(2192459, "PEC 6/2019 - Nova Previdência") 
 plot_prop(16526, "PL 1292/1995 - PL das Compras Públicas")
 plot_prop(2193540, "PL 1321/2019 - Anistia Tributária para Partidos")
+```
+
+
+## Gráfico por comissão
+```{r}
+plot_prop(2192459, "PEC 6/2019 - Nova Previdência")
 ```
 
