@@ -9,6 +9,11 @@ output: html_document
 library(tidyverse)
 library(ggplot2)
 library(plotly)
+library(hrbrthemes)
+library(extrafont)
+library(dplyr)
+library(tools)
+
 ```
 
 ```{r}
@@ -20,7 +25,16 @@ tipos_documentos <- atores_raw %>%
 
 atores_tipos_docs <- atores_raw %>% 
   bind_cols(tipos_documentos) %>% 
-  select(id_principal, casa, id_autor, nome_autor, codTipo, sigla_tipo, descricao_tipo, tipo_generico, qtd_de_documentos)
+  select(id_principal, 
+         casa, 
+         id_autor, 
+         nome_autor, 
+         codTipo, 
+         sigla_tipo, 
+         descricao_tipo, 
+         tipo_generico, 
+         qtd_de_documentos) %>% 
+  mutate(nome_autor = tolower(nome_autor) %>% toTitleCase())
 
 
 ```
@@ -29,26 +43,36 @@ atores_tipos_docs <- atores_raw %>%
 plot_prop <- function(id, name) {
   atores_prop <- 
   atores_tipos_docs %>% 
-  filter(id_principal == id) %>% 
-  group_by(nome_autor, tipo_generico) %>% 
-  summarise(num_eventos_unicos = sum(qtd_de_documentos))
+  dplyr::filter(id == id_principal) %>% 
+  dplyr::group_by(nome_autor, tipo_generico) %>% 
+  dplyr::summarise(num_eventos_unicos = sum(qtd_de_documentos))
 
   atores_grouped <- 
     atores_prop %>% 
-    group_by(nome_autor) %>% 
-    summarise(num_eventos_unicos = sum(num_eventos_unicos)) %>% 
+    dplyr::group_by(nome_autor) %>% 
+    dplyr::summarise(num_eventos_unicos = sum(num_eventos_unicos)) %>% 
     arrange(desc(num_eventos_unicos)) %>% 
     head(5) %>% 
     select(nome_autor)
   
-  atores_prop <- atores_prop %>% filter(nome_autor %in% atores_grouped$nome_autor)
+  atores_prop <- atores_prop %>% dplyr::filter(nome_autor %in% atores_grouped$nome_autor)
   
-  p <- ggplot(atores_prop, aes(x = reorder(nome_autor, -num_eventos_unicos, sum),
+  
+  
+  p <- ggplot(atores_prop, aes(x = reorder(nome_autor, num_eventos_unicos, sum),
                                y = num_eventos_unicos,
                                fill = tipo_generico))+
+    
+    theme_ipsum_rc(axis_title_size = 11,plot_margin = margin(30, 30, 30, 30)) +
     geom_col() + 
-    scale_colour_brewer("", palette="Set3", aesthetics = "fill") +
-    xlab("Autor") +
+    coord_flip() +
+    scale_colour_manual(values = c("Emenda" = "#DF8C6C",
+                                   "Parecer" = "#87C6CD",
+                                   "Voto em Separado" = "#A9A5AD", 
+                                   "Requerimento" = "#A5C882",
+                                   "Proposição" = "#F7DD72",
+                                   "Outros" = "#FF7F9D"), aesthetics = "fill") +
+    xlab("") +
     ylab("Quantidade de Documentos") +
     labs(fill = "Documentos", title = name)
     
@@ -61,7 +85,7 @@ plot_prop <- function(id, name) {
 
 ```{r}
 plot_prop(2192459, "PEC 6/2019 - Nova Previdência") 
-plot_prop(16526, "PL 1292/1995 - PL das Compras Públicas (Nova Lei de Licitações)")
+plot_prop(16526, "PL 1292/1995 - PL das Compras Públicas")
 plot_prop(2193540, "PL 1321/2019 - Anistia Tributária para Partidos")
 ```
 
