@@ -11,8 +11,8 @@ library(ggplot2)
 library(plotly)
 library(hrbrthemes)
 library(extrafont)
-library(dplyr)
 library(tools)
+camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
 ```
 
@@ -33,7 +33,8 @@ atores_tipos_docs <- atores_raw %>%
          sigla_tipo, 
          descricao_tipo, 
          tipo_generico, 
-         qtd_de_documentos) %>% 
+         qtd_de_documentos,
+         sigla_orgao) %>% 
   mutate(nome_autor = tolower(nome_autor) %>% toTitleCase())
 
 
@@ -93,6 +94,41 @@ plot_prop(2193540, "PL 1321/2019 - Anistia Tributária para Partidos")
 
 ## Gráfico por comissão
 ```{r}
-plot_prop(2192459, "PEC 6/2019 - Nova Previdência")
+plot_prop_comissoes <- function(id, name) {
+  atores_prop <- 
+    atores_tipos_docs %>% 
+    dplyr::filter(id_principal == id) %>% 
+    dplyr::group_by(nome_autor, tipo_generico, sigla_orgao) %>% 
+    dplyr::summarise(num_eventos_unicos = sum(qtd_de_documentos))
+
+  atores_grouped <- 
+    atores_prop %>% 
+    dplyr::group_by(nome_autor) %>% 
+    dplyr::summarise(num_eventos_unicos = sum(num_eventos_unicos)) %>% 
+    dplyr::arrange(desc(num_eventos_unicos)) %>% 
+    head(5) %>% 
+    dplyr::select(nome_autor)
+  
+  atores_prop <- atores_prop %>%
+    dplyr::filter(nome_autor %in% atores_grouped$nome_autor) %>% 
+    dplyr::filter(sigla_orgao %in% c(camara_env$comissoes$siglas_comissoes, "PLEN"))
+  
+  p <- ggplot(atores_prop, aes(x = reorder(nome_autor, -num_eventos_unicos, sum),
+                               y = num_eventos_unicos,
+                               fill = tipo_generico))+
+    theme_ipsum_rc(axis_title_size = 11,plot_margin = margin(30, 30, 30, 30)) +
+    geom_col() + 
+    scale_colour_brewer("", palette="Set3", aesthetics = "fill") +
+    facet_grid(rows = vars(sigla_orgao))+
+    xlab("Autor") +
+    ylab("Quantidade de Documentos") +
+    labs(fill = "Documentos", title = name) 
+  
+  ggplotly(p)
+}
+plot_prop_comissoes(2192459, "PEC 6/2019 - Nova Previdência") 
+plot_prop_comissoes(16526, "PL 1292/1995 - PL das Compras Públicas (Nova Lei de Licitações)")
+plot_prop_comissoes(604557, "PL 6969/2013 - PNCMar")
+plot_prop_comissoes(2193540, "PL 1321/2019 - Anistia Tributária para Partidos")
 ```
 
