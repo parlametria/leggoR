@@ -16,7 +16,7 @@ before_script:
   - export PATH="/usr/local/lib/R/site-library/littler/examples/:${PATH}"
   - echo "options(Ncpus = $(nproc --all))" >> /usr/local/lib/R/etc/Rprofile.site
   - echo ".libPaths(\"$PWD/cache\")" >> /usr/local/lib/R/etc/Rprofile.site
-  - RUN R -e "install.packages('devtools')"
+  - Rscript -e "install.packages('devtools')"
   - r -e 'devtools::install_dev_deps()'
 
 r-release:
@@ -43,7 +43,7 @@ pages:
     - docker
   image: rocker/tidyverse:latest
   script:
-    - RUN R -e "install.packages('pkgdown')"
+    - Rscript -e "install.packages('pkgdown')"
     - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
     - Rscript -e 'devtools::install()'
     - Rscript -e 'devtools::document()'
