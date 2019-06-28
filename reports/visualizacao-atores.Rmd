@@ -81,9 +81,7 @@ plot_prop <- function(id, name) {
     xlab("") +
     ylab("Quantidade de Documentos") +
     labs(fill = "Documentos", title = name)
-    
-  
-  ggplotly(p)
+  p
 }
   
 
@@ -105,23 +103,25 @@ plot_prop_comissoes <- function(id, name) {
     dplyr::group_by(nome_autor, tipo_generico, sigla_orgao, id_autor) %>% 
     dplyr::summarise(num_eventos_unicos = sum(qtd_de_documentos))
 
-  atores_grouped <- 
+  atuacoes_por_comissao <- 
     atores_prop %>% 
-    dplyr::group_by(nome_autor) %>% 
-    dplyr::summarise(num_eventos_unicos = sum(num_eventos_unicos)) %>% 
-    dplyr::arrange(desc(num_eventos_unicos)) %>% 
-    head(5) %>% 
-    dplyr::select(nome_autor)
+    dplyr::group_by(id_autor, nome_autor, sigla_orgao) %>% 
+    dplyr::summarise(num_eventos_unicos = sum(num_eventos_unicos)) %>%
+    dplyr::group_by(sigla_orgao) %>%
+    dplyr::arrange(sigla_orgao,-num_eventos_unicos) %>%
+    dplyr::filter(dplyr::row_number() <= 5)
   
-  atores_prop <- atores_prop %>%
-    dplyr::filter(nome_autor %in% atores_grouped$nome_autor) %>% 
+  atores_comissoes <- atuacoes_por_comissao %>%
     dplyr::filter(id_autor != -1) %>% 
-    dplyr::filter(sigla_orgao %in% c(camara_env$comissoes$siglas_comissoes, "PLEN"))
+    dplyr::filter(sigla_orgao %in% c(camara_env$comissoes$siglas_comissoes, "PLEN", "PEC00619", "PL129295")) %>% 
+    select(-num_eventos_unicos) %>% 
+  #  dplyr::filter(nome_autor %in% (atuacoes_por_comissao %>% filter())$nome_autor) %>% 
+    merge(atores_prop, by = c("nome_autor", "id_autor", "sigla_orgao"))
   
-  p <- ggplot(atores_prop, aes(x = reorder(nome_autor, -num_eventos_unicos, sum),
+  p <- ggplot(atores_comissoes, aes(x = reorder(nome_autor, -num_eventos_unicos, sum),
                                y = num_eventos_unicos,
                                fill = tipo_generico))+
-    theme_ipsum_rc(axis_title_size = 11,plot_margin = margin(30, 30, 30, 30)) +
+    theme_ipsum_rc(axis_title_size = 11, plot_margin = margin(30, 30, 30, 30)) +
     geom_col() + 
     coord_flip() +
     scale_colour_manual(values = c("Emenda" = "#DF8C6C",
@@ -135,11 +135,11 @@ plot_prop_comissoes <- function(id, name) {
     ylab("Quantidade de Documentos") +
     labs(fill = "Documentos", title = name) 
   
-  ggplotly(p)
+  p
 }
 plot_prop_comissoes(2192459, "PEC 6/2019 - Nova Previdência") 
-plot_prop_comissoes(16526, "PL 1292/1995 - PL das Compras Públicas (Nova Lei de Licitações)")
+plot_prop_comissoes(16526, "PL 1292/1995 - PL das \nCompras Públicas \n(Nova Lei de Licitações)")
 plot_prop_comissoes(604557, "PL 6969/2013 - PNCMar")
-plot_prop_comissoes(2193540, "PL 1321/2019 - Anistia Tributária para Partidos")
+plot_prop_comissoes(2193540, "PL 1321/2019 - Anistia\nTributária para Partidos")
 ```
 
