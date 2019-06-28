@@ -103,6 +103,7 @@ print(paste("Foram encontrados",nrow(new_docs_ids), "novos documentos."))
 if (nrow(new_docs_ids) > 0) {
   new_docs_data <- tibble::tibble()
   new_autores_data <- tibble::tibble()
+  new_tramitacao_data <- tibble::tibble()
   
   print("Buscando dados sobre os novos documentos...")
   new_docs_data <- agoradigital::fetch_documentos_data(new_docs_ids) %>%
@@ -111,6 +112,9 @@ if (nrow(new_docs_ids) > 0) {
   print("Buscando os autores dos novos documentos...")
   new_autores_data <- agoradigital::fetch_autores_documentos(new_docs_data) %>%
     dplyr::mutate_all(~ as.character(.))
+  
+  print("Buscando a tramitação dos novos documentos...")
+  new_tramitacao_data <- agoradigital::fetch_tramitacao_data(new_docs_ids) 
 
   fetch_status <- get_fetch_status(new_docs_ids, new_docs_data, new_autores_data)
   complete_docs <- fetch_status$complete_docs

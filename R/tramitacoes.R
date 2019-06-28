@@ -76,6 +76,31 @@ fetch_tramitacao_camara <- function(bill_id) {
                   link_inteiro_teor = url)
 }
 
+#' @title Baixa dados dos documentos, adequando as colunas ao padrão desejado
+#' @description Retorna um dataframe contendo dados dos documentos
+#' @param docs_ids Dataframe com os IDs dos documentos a serem baixados
+#' @return Dataframe
+#' @examples
+#' \dontrun{
+#'   docs_data <- fetch_docs_data(2056568)
+#' }
+#' @export
+fetch_tramitacao_data <- function(docs_ids) {
+  docs_camara <-
+    purrr::pmap_df(list(x = ".", y = docs_ids$id_documento, z = docs_ids$id_principal), write_docs(x, y, z))
+}
+
+write_docs <- function(export_path, id_documento, id_principal) {
+  tram <- 
+    fetch_tramitacao_camara(id_documento) %>% 
+    dplyr::mutate(id_principal = id_documento)
+  
+  path <- paste0(export_path, "/", id_principal, "_camara")
+  ifelse(!dir.exists(file.path(path)), dir.create(file.path(path)), FALSE)
+  readr::write_csv(tram, paste0(path, "/", id_documento, ".csv"))
+  
+}
+
 #' @title Baixa os dados da tramitação de vários Projetos de Lei
 #' @description Retorna dataframe com os dados da tramitação de proposições no Congresso
 #' @param id ID de uma proposição na sua respectiva casa
