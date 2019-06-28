@@ -144,12 +144,13 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
 find_new_documentos <- function(all_pls_ids, current_docs_ids) {
 
   pls_principais_ids <- all_pls_ids %>%
-    dplyr::filter(casa == "camara") %>%
+    #dplyr::filter(casa == "camara") %>%
     dplyr::select(id_principal,
                   casa) %>%
     dplyr::mutate(id_documento = id_principal)
 
-  all_docs_ids <- purrr::map_df(pls_principais_ids$id_principal, ~rcongresso::fetch_ids_relacionadas(.x)) %>%
+  all_docs_ids <- purrr::map2_df(pls_principais_ids$id_principal, pls_principais_ids$casa,
+                                 ~rcongresso::fetch_ids_relacionadas(.x, .y)) %>%
     dplyr::rename(id_principal = id_prop,
                   id_documento = id_relacionada) %>%
     dplyr::bind_rows(pls_principais_ids)
@@ -181,8 +182,8 @@ fetch_autores_documentos <- function(docs_ids_df) {
 #'   docs_data <- fetch_docs_data(2056568)
 #' }
 #' @export
-fetch_documentos_data <- function(docs_ids) {
-  docs_camara <- purrr::map_df(docs_ids$id_documento, ~ fetch_all_documents(.x))
+fetch_documentos_data <- function(docs_ids, casa) {
+  docs_camara <- purrr::map2_df(docs_ids$id_documento, docs_ids$casa, ~ fetch_all_documents(.x, .y))
   formatted_docs_df <- tibble::tibble()
 
   if (nrow(docs_camara) > 0) {
