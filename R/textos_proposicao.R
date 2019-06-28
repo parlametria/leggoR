@@ -201,7 +201,7 @@ mutate_links <- function(df) {
 filter_links <- function(df) {
   if(nrow(df) ==1 && df$id_proposicao == 41703) {
     return(df)
-  } else if(typeof(df$NumeroEmenda) == 'NULL') {
+  } else if(!("NumeroEmenda" %in% names(textos_df))) {
     df <- df %>%
       dplyr::filter(stringr::str_detect(tolower(DescricaoTexto),
                                         senado_env$versoes_texto_proposicao$tipos_texto_regex) |

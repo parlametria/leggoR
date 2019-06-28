@@ -1,4 +1,5 @@
 source(here::here("R/utils.R"))
+camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
 #' @title Importa as informações de uma proposição da internet.
 #' @description Recebido um id e a casa, a função roda os scripts para
@@ -151,7 +152,7 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids) {
 
   all_docs_ids <- purrr::map_df(pls_principais_ids$id_principal, ~rcongresso::fetch_ids_relacionadas(.x)) %>%
     dplyr::rename(id_principal = id_prop,
-                  id_documento = id_relacionada) %>%
+                  id_documento = id_relacionada)  %>%
     dplyr::bind_rows(pls_principais_ids)
 
   new_docs_ids <- all_docs_ids %>%
@@ -166,7 +167,7 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids) {
 #' @return Dataframe
 #' @export
 fetch_autores_documentos <- function(docs_ids_df) {
-  autores_docs_camara <- purrr::map_df(docs_ids_df$id_documento, ~ fetch_all_autores(.x)) %>%
+  autores_docs_camara <- purrr::map2_df(docs_ids_df$id_documento, docs_ids_df$sigla_tipo, ~ fetch_all_autores(.x, .y)) %>%
     dplyr::mutate(casa = 'camara')
 
   autores_docs_camara
@@ -199,6 +200,20 @@ fetch_documentos_data <- function(docs_ids) {
                     dplyr::everything())
   }
   return(formatted_docs_df)
+}
+
+#' @title Agrupa os tipos dos documentos
+#' @description Retorna um dataframe contendo dados dos documentos
+#' com uma coluna a mais (tipo)
+#' @param docs_data Dataframe com os todos os dados dos documentos
+#' @return Dataframe
+#' @export
+add_tipo_evento_documento <- function(docs_data) {
+  docs_data %>%
+    fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricaoTipo = "regex"), ignore_case = T) %>%
+    dplyr::select(-regex) %>%
+    dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
+
 }
 
 #' @title Concatena siglas de unidade federativa de cada autor da proposição
@@ -276,8 +291,8 @@ safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores_camara,otherwise =
 #' caso contrário retorna um Dataframe vazio
 #' @param id_documento ID do documento
 #' @return Dataframe
-fetch_all_autores <- function(id_documento) {
-  fetch_prop_output <- safe_fetch_autores(id_documento)
+fetch_all_autores <- function(id_documento, sigla_tipo) {
+  fetch_prop_output <- safe_fetch_autores(id_documento, sigla_tipo)
   autores_result <- fetch_prop_output$result
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)
