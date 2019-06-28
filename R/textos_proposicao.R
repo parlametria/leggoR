@@ -135,7 +135,8 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                   texto_tramitacao = inteiro_teor)
   
   if(nrow(emendas) > 0) {
-    emendas$link_inteiro_teor <- do.call("rbind", lapply(emendas$codigo_texto, get_emendas_links))
+    links_inteiro_teor <- purrr::map_chr(emendas$codigo_texto, ~get_emendas_links(.x))
+    emendas$link_inteiro_teor <- links_inteiro_teor
     
     df <- df %>%
       rbind(emendas)
