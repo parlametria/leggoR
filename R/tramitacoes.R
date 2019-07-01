@@ -87,7 +87,7 @@ fetch_tramitacao_camara <- function(bill_id) {
 #' @export
 fetch_tramitacao_data <- function(docs_ids) {
   docs_camara <-
-    purrr::pmap_df(list(x = ".", y = docs_ids$id_documento, z = docs_ids$id_principal), write_docs(x, y, z))
+    purrr::pmap(list(".",docs_ids$id_documento, docs_ids$id_principal), function(a, b, c) write_docs(a, b, c))
 }
 
 write_docs <- function(export_path, id_documento, id_principal) {
