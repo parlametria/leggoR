@@ -5,7 +5,7 @@ date: "June 25, 2019"
 output: html_document
 ---
 
-```{r}
+```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, paged.print=FALSE, results="asis"}
 library(tidyverse)
 library(ggplot2)
 library(plotly)
@@ -17,7 +17,7 @@ camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
 ```
 
-```{r}
+```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, paged.print=FALSE, results="asis"}
 deputados <- read_csv("../data/deputados.csv")
 deputados <- deputados %>% dplyr::select(id, ultimo_status_sigla_partido, ultimo_status_sigla_uf)
 atores_raw <- read_csv("../data/atores.csv")
@@ -45,14 +45,15 @@ atores_tipos_docs <- merge(atores_tipos_docs, deputados, by.x = "id_autor", by.y
 
 ```
 
-```{r}
+```{r echo=FALSE}
 plot_prop <- function(id, name) {
   atores_prop <- 
   atores_tipos_docs %>% 
   dplyr::filter(id_principal == id) %>% 
   dplyr::group_by(nome_autor, tipo_generico, ultimo_status_sigla_partido, ultimo_status_sigla_uf) %>% 
   dplyr::summarise(total_eventos_ator_tipo_gen = sum(qtd_de_documentos)) %>% 
-  dplyr::mutate(autor = paste(nome_autor, " - ", ultimo_status_sigla_partido, "/", ultimo_status_sigla_uf))
+  dplyr::mutate(autor = paste(nome_autor, "\n", substring(ultimo_status_sigla_partido, 0, 4),
+                                ifelse(is.na(ultimo_status_sigla_uf), "", paste("/", ultimo_status_sigla_uf))))
 
   atores_grouped <- 
     atores_prop %>% 
@@ -84,24 +85,25 @@ plot_prop <- function(id, name) {
 
 ```
 
+# Gráficos por Proposição
 ```{r}
-plot_prop(2192459, "PEC 6/2019 - Nova Previdência") 
-plot_prop(16526, "PL 1292/1995 - PL das Compras Públicas")
-plot_prop(2193540, "PL 1321/2019 - Anistia Tributária para\nPartidos")
+plot_prop(2192459, "PEC 6/2019\nNova Previdência") 
+plot_prop(16526, "PL 1292/1995 - PL das \nCompras Públicas \n(Nova Lei de Licitações)")
+plot_prop(2193540, "PL 1321/2019\nAnistia Tributária para\nPartidos")
 ```
 
 
-## Gráfico por comissão
-```{r}
+# Gráfico por comissão
+```{r echo=FALSE }
 plot_prop_comissoes <- function(id, name) {
   atores_prop <- 
     atores_tipos_docs %>% 
     dplyr::filter(id_principal == id) %>% 
     dplyr::group_by(nome_autor, tipo_generico, sigla_orgao, id_autor, ultimo_status_sigla_partido, ultimo_status_sigla_uf) %>% 
     dplyr::summarise(total_eventos_ator_tipo_gen = sum(qtd_de_documentos)) %>% 
-    dplyr::mutate(autor = ifelse(is.na(ultimo_status_sigla_uf),
-                                 paste(nome_autor, " - ", substring(ultimo_status_sigla_partido, 0, 4)),
-                                 paste(nome_autor, " - ", substring(ultimo_status_sigla_partido, 0, 4), "/", ultimo_status_sigla_uf)))
+    dplyr::mutate(autor = paste(nome_autor, "\n", substring(ultimo_status_sigla_partido, 0, 4),
+                                ifelse(is.na(ultimo_status_sigla_uf), "", paste("/", ultimo_status_sigla_uf)))
+    )
 
   atuacoes_por_comissao <- 
     atores_prop %>% 
@@ -122,14 +124,13 @@ plot_prop_comissoes <- function(id, name) {
   plots <- vector("list",length(unique(atores_comissoes$sigla_orgao)))
   names(plots) <- unique(atores_comissoes$sigla_orgao)
   #par(mfrow=c(length(unique(atores_comissoes$sigla_orgao)),1))
-  layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE))
   for (var in unique(atores_comissoes$sigla_orgao)) {
     #dev.new()
     p <- ggplot(atores_comissoes %>% dplyr::filter(sigla_orgao == var), aes(x = reorder(autor, -total_eventos_ator_tipo_gen, sum),
                                y = total_eventos_ator_tipo_gen,
                                fill = tipo_generico)) +
     scale_y_continuous(limits = c(0, quant_doc_max *1.1)) +
-    theme_ipsum_rc(axis_title_size = 11, plot_margin = margin(30, 30, 30, 30)) +
+    theme_ipsum_rc(axis_title_size = 11, plot_margin = margin(30, 30, 30, 30), base_size = 10) +
     geom_col() + 
     coord_flip() +
     scale_colour_manual(values = c("Emenda" = "#DF8C6C",
@@ -148,9 +149,16 @@ plot_prop_comissoes <- function(id, name) {
 ```
 
 ```{r}
-plot_prop_comissoes(2192459, "PEC 6/2019 - Nova Previdência") 
+plot_prop_comissoes(2192459, "PEC 6/2019 - Nova Previdência")
+```
+
+```{r}
 plot_prop_comissoes(16526, "PL 1292/1995 - PL das \nCompras Públicas \n(Nova Lei de Licitações)")
+```
+```{r}
 plot_prop_comissoes(604557, "PL 6969/2013 - PNCMar")
+```
+```{r}
 plot_prop_comissoes(2193540, "PL 1321/2019 - Anistia\nTributária para Partidos")
 ```
 
