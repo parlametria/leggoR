@@ -1,0 +1,48 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+274348,camara,2004-12-22T19:34:00Z,1,Apresentação do Projeto de Lei.,PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=260412,274348
+274348,camara,2004-12-22T19:34:00Z,2,Originada da SUG-84/2004,MESA,180,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=0,274348
+274348,camara,2004-12-23T09:20:00Z,3,Recebimento pela SEPRO.,SEPRO,500,NA,NA,274348
+274348,camara,2004-12-23T09:20:00Z,6,Recebimento pela SEPRO.,SEPRO,500,NA,NA,274348
+274348,camara,2004-12-23T09:21:00Z,4,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,274348
+274348,camara,2004-12-23T09:21:00Z,5,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,274348
+274348,camara,2004-12-23T09:22:00Z,7,Encaminhado à SECAP(SGM).,SEPRO,180,NA,NA,274348
+274348,camara,2004-12-23T09:22:00Z,8,Encaminhado através do Protocolo nº 311,SEPRO,180,NA,NA,274348
+274348,camara,2004-12-23T17:01:00Z,9,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,274348
+274348,camara,2005-01-20T00:00:00Z,10,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=262661,274348
+274348,camara,2005-02-04T00:00:00Z,11,Despacho Chancelado,SECAP(SGM),180,NA,NA,274348
+274348,camara,2005-02-04T00:00:00Z,12,Apense-se a(o) PL-6928/2002,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=262661,274348
+274348,camara,2005-02-04T00:00:00Z,13,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,274348
+274348,camara,2005-02-04T00:00:00Z,14,Encaminhado à CCP.,MESA,180,NA,NA,274348
+274348,camara,2005-02-04T14:56:00Z,15,Encaminhado através do Protocolo nº 425,SECAP(SGM),180,NA,NA,274348
+274348,camara,2005-02-04T15:17:00Z,16,Recebimento pela CCP.,CCP,500,NA,NA,274348
+274348,camara,2005-02-17T00:00:00Z,17,Encaminhada à publicação. Publicação Inicial no DCD de 17/02/2005 PÁG 00825 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=297376,274348
+274348,camara,2005-02-24T00:00:00Z,18,Realizar o Encaminhamento para CCJC,CCP,910,NA,NA,274348
+274348,camara,2005-02-24T00:00:00Z,19,Encaminhado à CCJC.,CCP,180,NA,NA,274348
+274348,camara,2005-02-24T00:00:00Z,20,Recebimento pela CCJC.,CCJC,500,NA,NA,274348
+274348,camara,2005-02-24T00:00:00Z,21,Apensação desta proposição ao PL 6928/2002.,CCJC,106,NA,NA,274348
+274348,camara,2005-02-24T00:00:00Z,22,"Designado Relator, Dep. Roberto Freire (PPS-PE)",CCJC,320,NA,NA,274348
+274348,camara,2007-01-31T00:00:00Z,23,Arquivado nos termos do Artigo 105 do Regimento Interno.DCD de 01 02 07 PÁG 260 COL 01. Suplemento A ao Nº 21.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=474374,274348
+274348,camara,2007-02-06T16:27:00Z,24,"Apresentação do REQUERIMENTO N.º 38, DE 2007, pelo Deputado(a) Vanessa Grazziotin, que solicita o desarquivamento de proposição.",MESA,640,NA,NA,274348
+274348,camara,2007-03-09T00:00:00Z,25,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-38/2007 => PEC-181/1999.DCD de 13 03 07 PÁG 9554 COL 01.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=437705,274348
+274348,camara,2007-03-09T09:32:00Z,26,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,274348
+274348,camara,2007-03-13T15:57:00Z,27,"Apresentação do REQUERIMENTO N.º 497, DE 2007, pelo Deputado(a) Comissão de Legislação Participativa, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=441669,274348
+274348,camara,2007-04-30T00:00:00Z,28,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-497/2007.DCD 01 05 07 PAG 20070 COL 01",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=451242,274348
+274348,camara,2011-01-31T00:00:00Z,29,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados. Publicação no DCD do dia 01/02/2011 - Suplemento ao nº 14.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=850547,274348
+274348,camara,2011-02-15T10:10:00Z,30,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-40/2011.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=839709,274348
+274348,camara,2011-02-15T10:10:00Z,31,Reentrada na comissão por motivo de desarquivamento,SECAP(SGM),630,NA,NA,274348
+274348,camara,2011-03-29T13:34:00Z,32,"Apresentação do REQ 1006/2011, pelo Dep. Comissão de Legislação Participativa, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=853507,274348
+274348,camara,2011-03-29T13:34:00Z,33,"Apresentação do Requerimento de Desarquivamento de Proposições n. 1006/2011, pela Comissão de Legislação Participativa, que: ""Requer o desarquivamento das proposições de iniciativa da Comissão de Legislação Participativa"".",PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=853507,274348
+274348,camara,2011-04-01T00:00:00Z,34,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-1006/2011. DCD 05/04/11 PAG 15297 COL 01.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=917991,274348
+274348,camara,2014-01-08T14:31:00Z,35,"Recebimento pela CCP, apensado ao PL-6928/2002",CCP,500,NA,NA,274348
+274348,camara,2014-02-10T15:14:00Z,36,"Recebimento pela CCJC, apensado ao PL-6928/2002",CCJC,500,NA,NA,274348
+274348,camara,2015-07-08T13:19:00Z,37,Apense-se a este(a) o(a) PL-2115/2015.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1357415,274348
+274348,camara,2015-07-10T15:04:00Z,38,Apensação do PL 2115/2015 a esta proposição.,CCJC,504,NA,NA,274348
+274348,camara,2017-10-11T17:23:00Z,39,Apense-se a este(a) o(a) PL-8648/2017.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1607740,274348
+274348,camara,2017-10-26T10:27:00Z,40,Apensação do PL 8648/2017 a esta proposição.,CCJC,504,NA,NA,274348
+274348,camara,2018-04-09T11:29:00Z,41,"Recebimento pela CCP, apensado ao PL-6928/2002",CCP,500,NA,NA,274348
+274348,camara,2018-04-09T17:54:00Z,42,Apensação desta proposição ao PL 6928/2002.,CCP,106,NA,NA,274348
+274348,camara,2019-06-24T00:00:00Z,43,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1768134,274348
+274348,camara,2019-06-24T00:00:00Z,46,"Despacho exarado nos Projetos de Lei n. 6.928/2002, n. 689/2003, n. 758/2003, n. 4.718/2004, n. 7.004/2006, n. 1.846/2007, n. 3.310/2012, n. 3.453/2012, n. 6.056/2013, n. 2.115/2015, n. 7.574/2017, n. 8.648/2017, n. 11.119/2018, n. 67/2019, n. 2.262/2019 e n. 2.660/2019 do bloco encabeçado pelo Projeto de Lei n. 7.005/2013, conforme o seguinte teor:    Desapensem-se os Projetos de Lei n. 6.928/2002, n. 689/2003, n. 758/2003, n. 4.718/2004, n. 7.004/2006, n. 1.846/2007, n. 3.310/2012, n. 3.453/2012, n. 6.056/2013, n. 2.115/2015, n. 7.574/2017, n. 8.648/2017, n. 11.119/2018, n. 67/2019, n. 2.262/2019 e n. 2.660/2019 do bloco encabeçado pelo Projeto de Lei n. 7.005/2013. Por conseguinte, determino a criação de um novo bloco de proposições a ser encabeçado pelo PL n. 6.928/2002, ao qual deverão ser apensados os PLs n. 689/2003 (e a este, os PLs n. 1.846/2007 e n. 3.453/2012), n. 758/2003, n. 4.718/2004 (e a este, os PLs n. 2.115/2015 e n. 8.648/2017), n. 7.004/2006, n. 3.310/2012, n. 6.056/2013, n. 7.574/2017 (e a este, o PL n. 2.262/2019) e n. 11.119/2018 (e a este, os PLs n. 2.660/2019 e n. 67/2019). Distribua-se o bloco à Comissão de Constituição e Justiça e de Cidadania (mérito e art. 54 do RICD), para que seja apreciado pelo Plenário, em regime de urgência (art. 155 do RICD). Ao PL n. 7005/2013, apensem-se os PLs n. 4.219/2008 (e a este, o PL n. 7.003/2010), n. 4.764/2009 (e a este, o PL n. 5.121/2013), n. 4.805/2009, n. 6.827/2013 e n. 7.682/2014. Publique-se. [ATUALIZAÇÃO DO DESPACHO DO PROJETO DE LEI N. 6.928/2002: à CCJC (mérito e art. 54 do RICD). Proposição sujeita à apreciação do Plenário. . . Regime de Tramitação:",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1768134,274348
+274348,camara,2019-06-24T15:58:00Z,44,Despacho Chancelado,MESA,180,NA,NA,274348
+274348,camara,2019-06-24T15:58:00Z,45,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,274348
+274348,camara,2019-06-24T15:59:00Z,47,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,274348

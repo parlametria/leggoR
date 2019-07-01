@@ -1,0 +1,15 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2200103,camara,2019-05-07T13:53:00Z,1,"Apresentação do Projeto de Lei n. 2614/2019, pelo Deputado João Daniel PT, que:""Dispõe sobre a responsabilidade civil do comerciante, fabricante, produtor, nacional ou estrangeiro, e importador de produtos agrotóxicos por danos causados a trabalhadores, agricultores, transportadores, consumidores ou pessoas que comprovadamente hajam entrado em contato com o produto por inalação, manipulação, ingestão ou qualquer outra forma"".",SEPRO,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1741612,2200103
+2200103,camara,2019-05-07T13:53:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2200103
+2200103,camara,2019-05-07T13:53:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2200103
+2200103,camara,2019-05-08T11:14:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 547/2019.,SEPRO,180,NA,NA,2200103
+2200103,camara,2019-05-08T11:43:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2200103
+2200103,camara,2019-05-22T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1751570,2200103
+2200103,camara,2019-05-24T15:02:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2200103
+2200103,camara,2019-05-24T15:02:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2200103
+2200103,camara,2019-05-24T15:03:00Z,9,"Apense-se à(ao) PL-6042/2016. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Prioridade (Art. 151, II, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1751570,2200103
+2200103,camara,2019-05-24T15:03:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2200103
+2200103,camara,2019-05-24T16:13:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 175/2019.,SECAP(SGM),180,NA,NA,2200103
+2200103,camara,2019-05-24T16:32:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2200103
+2200103,camara,2019-05-24T17:33:00Z,13,Apensação desta proposição ao PL 6042/2016.,CCP,106,NA,NA,2200103
+2200103,camara,2019-05-28T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 29/05/2019.,CCP,604,NA,NA,2200103

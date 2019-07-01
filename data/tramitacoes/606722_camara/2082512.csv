@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2082512,camara,2016-04-26T18:26:00Z,1,"Apresentação do Requerimento de Redistribuição n. 4365/2016, pelo Deputado João Campos (PRB-GO), que: ""Requer a redistribuição do Projeto de Lei nº 7.180, de 2014, e apensos, para incluir, em sua tramitação, a Comissão de Seguridade Social e Família e a Comissão de Direitos Humanas e Minorias, bem como a análise do mérito pela Comissão de Constituição e Justiça e de Cidadania"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1452636,2082512
+2082512,camara,2016-04-26T18:51:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,2082512
+2082512,camara,2016-04-27T08:46:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 2627/2016.,SEPRO,180,NA,NA,2082512
+2082512,camara,2016-05-04T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1455423,2082512
+2082512,camara,2016-05-04T00:00:00Z,8,Despacho Chancelado,SGMGAB,180,NA,NA,2082512
+2082512,camara,2016-05-04T00:00:00Z,9,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2082512
+2082512,camara,2016-05-04T00:00:00Z,10,Notificação à Sinopse de Despacho Chancelado,SGMGAB,1005,NA,NA,2082512
+2082512,camara,2016-05-04T00:00:00Z,5,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,2082512
+2082512,camara,2016-05-04T00:00:00Z,13,Publicação inicial no DCD do dia 05/05/2016,PLEN,605,NA,NA,2082512
+2082512,camara,2016-05-04T15:42:00Z,11,Despacho Chancelado,SGMGAB,180,NA,NA,2082512
+2082512,camara,2016-05-04T15:42:00Z,12,"Com base no art. 164, I, do RICD, julgo parcialmente prejudicado o Requerimento n. 4.365/2016, tendo em vista que o Projeto de Lei n. 7.180/2014 já foi redistribuído às Comissões de Seguridade Social e Família e de Direitos Humanos e Minorias, conforme despacho atualizado. Defiro o Requerimento n. 4.365/2016, nos termos do art. 141 do Regimento Interno da Câmara dos Deputados - RICD, e revejo o despacho inicial aposto ao Projeto de Lei n. 7.180/2014, para incluir o exame de mérito pela Comissão de Constituição e Justiça e de Cidadania. Por versar a referida proposição matéria de competência de mais de três Comissões de mérito, consoante o que dispõe o artigo 34, inciso II, do Regimento Interno, decido criar Comissão Especial. Publique-se. Oficie-se.[ATUALIZAÇÃO DO DESPACHO DO PL n. 7.180/2014: Às CSSF, CDHM, CE e CCJC (mérito e art. 54 do RICD). Proposição sujeita à apreciação conclusiva pelas Comissões (art. 24, II, do RICD). Regime de tramitação: Ordinário.]",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1455426,2082512
+2082512,camara,2016-05-04T17:26:00Z,4,Recebimento pelo NAJUR(SGM) -  - Teresinha Passos Silva.,NAJUR(SGM),500,NA,NA,2082512
+2082512,camara,2016-05-04T17:28:00Z,6,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 368/2016.,NAJUR(SGM),180,NA,NA,2082512
+2082512,camara,2016-05-05T00:00:00Z,16,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1455426,2082512
+2082512,camara,2016-05-05T15:38:00Z,14,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2082512
+2082512,camara,2016-05-05T15:42:00Z,16,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2082512
+2082512,camara,2016-05-05T15:42:00Z,17,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2082512
+2082512,camara,2016-05-05T15:42:00Z,18,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2082512
+2082512,camara,2016-05-05T15:58:00Z,19,Encaminhado à(ao) CCP através da guia de Remessa (GR/SGMGAB) nº 635/2016.,SGMGAB,180,NA,NA,2082512
+2082512,camara,2016-05-05T16:42:00Z,20,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2082512

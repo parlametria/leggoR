@@ -103,7 +103,6 @@ print(paste("Foram encontrados",nrow(new_docs_ids), "novos documentos."))
 if (nrow(new_docs_ids) > 0) {
   new_docs_data <- tibble::tibble()
   new_autores_data <- tibble::tibble()
-  new_tramitacao_data <- tibble::tibble()
   
   print("Buscando dados sobre os novos documentos...")
   new_docs_data <- agoradigital::fetch_documentos_data(new_docs_ids) %>%
@@ -129,6 +128,9 @@ if (nrow(new_docs_ids) > 0) {
     print("Não foi possível baixar dados completos (proposição e autores) para nenhum dos novos documentos =(")
     quit(save = "no", status=1)
   }
+  
+  print("Baixando as novas tramitações")
+  fetch_tramitacao_data(paste0(export_path, "/tramitacoes"), new_docs_ids)
 
   print(paste("Adicionando ",nrow(new_docs_data)," novos documentos."))
   updated_docs <- rbind(current_docs, new_docs_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))

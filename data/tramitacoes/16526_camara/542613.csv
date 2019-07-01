@@ -1,0 +1,23 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+542613,camara,2012-04-25T00:00:00Z,2,Publicação inicial no DCD do dia 26/04/12 PAG 14110 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1013460,542613
+542613,camara,2012-04-25T16:08:00Z,1,"Apresentação do Projeto de Lei n. 3757/2012, pelo Deputado Antonio Carlos Mendes Thame (PSDB-SP), que: ""Altera o parágrafo único do art. 61 da Lei nº 8.666, de 21 de junho de 1993, para dar maior transparência e permitir maior controle dos contratos firmados pela Administração Pública"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=985818,542613
+542613,camara,2012-04-26T14:24:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,542613
+542613,camara,2012-04-26T14:24:00Z,4,Recebimento pela SEPRO -  - Maristela Araújo Medeiros Portela.,SEPRO,500,NA,NA,542613
+542613,camara,2012-04-26T14:52:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 2235/2012.,SEPRO,180,NA,NA,542613
+542613,camara,2012-04-26T15:23:00Z,6,Recebimento pel a SECAP(SGM).,SECAP(SGM),500,NA,NA,542613
+542613,camara,2012-05-02T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=987588,542613
+542613,camara,2012-05-08T00:00:00Z,14,Publicação do despacho no DCD do dia 09/05/2012,CCP,605,NA,NA,542613
+542613,camara,2012-05-08T14:49:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,542613
+542613,camara,2012-05-08T14:51:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,542613
+542613,camara,2012-05-08T14:55:00Z,10,Apense-se à(ao) PL-6242/2009.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=987588,542613
+542613,camara,2012-05-08T14:55:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 675/2012.,SECAP(SGM),180,NA,NA,542613
+542613,camara,2012-05-08T15:02:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,542613
+542613,camara,2012-05-08T15:17:00Z,13,Recebimento pel a CCP.,CCP,500,NA,NA,542613
+542613,camara,2012-05-11T00:00:00Z,16,Encaminhada à publicação. Avulso Inicial,CCP,604,NA,NA,542613
+542613,camara,2012-05-11T10:31:00Z,15,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 4191/2012.,CCP,180,NA,NA,542613
+542613,camara,2012-05-11T17:59:00Z,17,Recebimento pel a CCJC.,CCJC,500,NA,NA,542613
+542613,camara,2012-05-14T00:00:00Z,19,"Designado Relator, Dep. Fabio Trad (PMDB-MS)",CCJC,320,NA,NA,542613
+542613,camara,2012-05-14T09:15:00Z,18,Apensação desta proposição ao PL 6242/2009.,CCJC,106,NA,NA,542613
+542613,camara,2018-03-23T10:29:00Z,20,"Recebimento pela CCP, apensado ao PL-6242/2009",CCP,500,NA,NA,542613
+542613,camara,2018-03-23T10:43:00Z,21,"Recebimento pela PL129295, apensado ao PL-6242/2009",PL129295,500,NA,NA,542613
+542613,camara,2018-12-05T18:01:00Z,22,"Recebimento pela CCP, apensado ao PL-6242/2009",CCP,500,NA,NA,542613

@@ -1,0 +1,14 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2191315,camara,2019-02-06T13:25:00Z,1,"Apresentação do Projeto de Lei n. 512/2019, pela Deputadoa Eduardo Bismarck PDT, que:""Altera os incisos I e II do caput do art. 23 da Lei nº 8.666, de 21 de junho de 1993, para atualizar os valores determinantes das modalidades de licitação"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1708056,2191315
+2191315,camara,2019-02-07T00:00:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2191315
+2191315,camara,2019-02-07T13:41:00Z,3,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 18/2019.,SEPRO,180,NA,NA,2191315
+2191315,camara,2019-02-07T13:45:00Z,4,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2191315
+2191315,camara,2019-03-11T00:00:00Z,5,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1717346,2191315
+2191315,camara,2019-03-12T15:12:00Z,6,Despacho Chancelado,SECAP(SGM),180,NA,NA,2191315
+2191315,camara,2019-03-12T15:12:00Z,7,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2191315
+2191315,camara,2019-03-12T15:15:00Z,8,"Apense-se à(ao) PL-6957/2002. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Prioridade (Art. 151, II, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1717346,2191315
+2191315,camara,2019-03-12T15:15:00Z,9,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2191315
+2191315,camara,2019-03-12T15:49:00Z,10,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 37/2019.,SECAP(SGM),180,NA,NA,2191315
+2191315,camara,2019-03-12T16:46:00Z,11,Recebimento pela CCP.,CCP,500,NA,NA,2191315
+2191315,camara,2019-03-12T16:48:00Z,12,Apensação desta proposição ao PL 6957/2002.,CCP,106,NA,NA,2191315
+2191315,camara,2019-03-13T00:00:00Z,13,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 14/03/19 PÁG 343.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1739919,2191315

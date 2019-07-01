@@ -1,0 +1,24 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+1618069,camara,2015-08-11T18:03:00Z,1,"Apresentação do Projeto de Lei n. 2588/2015, pelo Deputado Pr. Marco Feliciano (PSC-SP), que: ""Dispõe sobre a inclusão do porte e da utilização de armas privativas das Forças Armadas, por civis, na  ""Lei do Crime Hediondo"""".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1369603,1618069
+1618069,camara,2015-08-11T20:34:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,1618069
+1618069,camara,2015-08-11T20:34:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,1618069
+1618069,camara,2015-08-11T21:38:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 1265/2015.,SEPRO,180,NA,NA,1618069
+1618069,camara,2015-08-12T09:21:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,1618069
+1618069,camara,2015-08-13T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1371117,1618069
+1618069,camara,2015-08-17T18:09:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,1618069
+1618069,camara,2015-08-17T18:09:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,1618069
+1618069,camara,2015-08-17T18:28:00Z,9,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 277/2015.,SECAP(SGM),180,NA,NA,1618069
+1618069,camara,2015-08-18T18:31:00Z,10,Recebimento pela CCP.,CCP,500,NA,NA,1618069
+1618069,camara,2015-08-18T18:39:00Z,11,Apense-se à(ao) PL-3722/2012. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Ordinária,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1371117,1618069
+1618069,camara,2015-08-18T18:39:00Z,12,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,1618069
+1618069,camara,2015-08-18T19:32:00Z,13,Encaminhado à(ao) PL372212 através da guia de Remessa (GR/CCP) nº 3045/2015.,CCP,180,NA,NA,1618069
+1618069,camara,2015-08-19T00:00:00Z,15,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 20/08/15 PÁG 284 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1402874,1618069
+1618069,camara,2015-08-19T17:27:00Z,14,Recebimento pela PL372212.,PL372212,500,NA,NA,1618069
+1618069,camara,2015-09-16T18:16:00Z,16,Apensação desta proposição ao PL 3722/2012.,PL372212,106,NA,NA,1618069
+1618069,camara,2017-06-26T12:03:00Z,17,Apense-se a este(a) o(a) PL-7784/2017.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1570421,1618069
+1618069,camara,2017-06-29T10:39:00Z,18,Apense-se a este(a) o(a) PL-7784/2017.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1570421,1618069
+1618069,camara,2017-06-29T16:09:00Z,19,Apensação do PL 7784/2017 a esta proposição.,CCP,504,NA,NA,1618069
+1618069,camara,2019-02-21T17:50:00Z,20,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-121/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713274,1618069
+1618069,camara,2019-02-22T18:20:00Z,21,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,1618069
+1618069,camara,2019-02-22T18:27:00Z,23,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,1618069
+1618069,camara,2019-02-22T18:30:00Z,22,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,1618069

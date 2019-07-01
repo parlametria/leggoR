@@ -1,0 +1,96 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+500183,camara,2011-05-03T00:00:00Z,7,Publicação inicial no DCD do dia 04/05/11 PÁG 20948 COL 02.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=940045,500183
+500183,camara,2011-05-03T15:20:00Z,1,"Apresentação da Proposta de Emenda à Constituição n. 18/2011, pelos Deputados Dilceu Sperafico (PP-PR) e outros, que: ""Dá nova redação ao inciso XXXIII do art. 7º da Constituição Federal, para autorizar o trabalho sob o regime de tempo parcial a partir dos quatorze anos de idade"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=865344,500183
+500183,camara,2011-05-03T16:22:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,500183
+500183,camara,2011-05-03T16:22:00Z,3,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,500183
+500183,camara,2011-05-03T16:22:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,500183
+500183,camara,2011-05-03T16:51:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 491/2011.,SEPRO,180,NA,NA,500183
+500183,camara,2011-05-03T17:42:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,500183
+500183,camara,2011-05-04T00:00:00Z,8,Relatório de Conferência de Assinaturas da PEC 18/11.,MESA,1042,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=866563,500183
+500183,camara,2011-05-12T00:00:00Z,9,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=870838,500183
+500183,camara,2011-05-12T11:27:00Z,10,Despacho Chancelado,SECAP(SGM),180,NA,NA,500183
+500183,camara,2011-05-16T00:00:00Z,16,Publicação do despacho no DCD do dia 17/05/11 PÁG 23995 COL 01.,CCP,605,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=956953,500183
+500183,camara,2011-05-16T11:27:00Z,11,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,500183
+500183,camara,2011-05-16T11:35:00Z,12,À Comissão de Constituição e Justiça e de CidadaniaProposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Especial,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=870838,500183
+500183,camara,2011-05-16T11:35:00Z,14,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 228/2011.,SECAP(SGM),180,NA,NA,500183
+500183,camara,2011-05-16T11:35:00Z,13,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,500183
+500183,camara,2011-05-16T14:54:00Z,15,Recebimento pela CCP.,CCP,500,NA,NA,500183
+500183,camara,2011-05-17T17:20:00Z,17,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 1215/2011.,CCP,180,NA,NA,500183
+500183,camara,2011-05-18T00:00:00Z,18,Encaminhada à publicação. Avulso Inicial,CCP,604,NA,NA,500183
+500183,camara,2011-05-18T17:00:00Z,19,Recebimento pela CCJC.,CCJC,500,Aguardando Designação de Relator,NA,500183
+500183,camara,2011-07-13T00:00:00Z,20,"Designada Relatora, Dep. Sandra Rosado (PSB-RN)",CCJC,320,Aguardando Designação de Relator,NA,500183
+500183,camara,2011-08-10T17:44:00Z,21,"Apresentação do Requerimento de Apensação n. 2749/2011, pela Deputada Sandra Rosado (PSB-RN), que: ""Requer a apensação da Proposta de Emenda à Constituição nº 35, de 2011"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=906554,500183
+500183,camara,2011-08-22T00:00:00Z,22,"Deferido o REQ. n. 2.749/2011, conforme o despacho do seguinte teor: ""Defiro o Requerimento n. 2.749/2011. Apense-se a Proposta de Emenda à Constituição n. 35/2011, à Proposta de Emenda à Constituição n. 18/2011, nos termos do art. 142, caput e parágrafo único, c.c. o art. 143, inciso II, alínea b, ambos do RICD. Publique-se. Oficie-se.""",MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=911315,500183
+500183,camara,2011-08-24T00:00:00Z,23,Memorando n.º 301/2011 à CCJC solicitando a apensação da PEC n.º 35/11 à PEC n.º 18/11.,CCP,1005,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=913110,500183
+500183,camara,2011-08-24T00:00:00Z,24,Apensação da PEC 35/2011 a esta proposição.,CCJC,504,Aguardando Designação de Relator,NA,500183
+500183,camara,2011-08-25T00:00:00Z,26,"Designado Relator, Dep. Paulo Maluf (PP-SP)",CCJC,320,Aguardando Designação de Relator,NA,500183
+500183,camara,2011-08-25T16:26:00Z,25,Devolvida sem Manifestação.,CCJC,507,Aguardando Designação de Relator,NA,500183
+500183,camara,2011-08-25T17:59:00Z,27,"Apresentação do Parecer do Relator n. 1 CCJC, pelo Deputado Paulo Maluf (PP-SP).",CCJC,501,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=913529,500183
+500183,camara,2011-08-25T17:59:00Z,28,"Parecer do Relator, Dep. Paulo Maluf (PP-SP), pela admissibilidade desta e da PEC 35/2011, apensada.",CCJC,322,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=913529,500183
+500183,camara,2011-08-29T17:40:00Z,29,"Apresentação do Voto em Separado n. 1 CCJC, pela Deputada Sandra Rosado (PSB-RN).",CCJC,431,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=914081,500183
+500183,camara,2011-08-30T14:30:00Z,30,"Durante Verificação de Votação de Requerimento de Retirada de Pauta, apresentado pelo Dep. Luiz Couto, a reunião foi encerrada por falta de quorum.",CCJC,221,Aguardando Designação de Relator,NA,500183
+500183,camara,2011-08-31T14:48:00Z,31,"Apresentação do Requerimento n. 36/2011, pelos Deputados Alessandro Molon (PT-RJ) e outros, que: ""Requer a realização de Audiência Pública para discutir acerca da Proposta de Emenda à Constituição n° 18, de 2011"".",CCJC,194,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=915164,500183
+500183,camara,2011-09-13T14:30:00Z,32,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2011-09-13T18:26:00Z,33,"Apresentação do Voto em Separado n. 2 CCJC, pelo Deputado Luiz Couto (PT-PB).",CCJC,431,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=919029,500183
+500183,camara,2011-09-21T10:00:00Z,34,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2011-09-27T14:30:00Z,35,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2011-09-28T10:00:00Z,36,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2011-10-18T14:30:00Z,37,"Durante votação de Requerimento para Retirada de Pauta, a reunião foi encerrada por falta de quorum.",CCJC,221,Aguardando Designação de Relator,NA,500183
+500183,camara,2011-10-25T14:30:00Z,38,"Aprovado requerimento do Sr. Alessandro Molon e outros que requer a realização de Audiência Pública para discutir acerca da Proposta de Emenda à Constituição n° 18, de 2011.",CCJC,195,Aguardando Designação de Relator,NA,500183
+500183,camara,2013-06-07T09:42:00Z,39,Apense-se a este(a) o(a) PEC-274/2013.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1097359,500183
+500183,camara,2013-06-12T17:51:00Z,40,Apensação da PEC 274/2013 a esta proposição.,CCJC,504,Aguardando Designação de Relator,NA,500183
+500183,camara,2013-06-18T00:00:00Z,41,"Devolvido ao Relator, Dep. Paulo Maluf (PP-SP)",CCJC,170,Aguardando Designação de Relator,NA,500183
+500183,camara,2014-11-18T14:34:00Z,42,"Apresentação do Parecer do Relator n. 2 CCJC, pelo Deputado Paulo Maluf (PP-SP).",CCJC,501,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1287293,500183
+500183,camara,2014-11-18T14:34:00Z,43,"Parecer do Relator, Dep. Paulo Maluf (PP-SP), pela admissibilidade desta, da PEC 35/2011 e da PEC 274/2013, apensadas.",CCJC,322,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1287293,500183
+500183,camara,2015-01-31T00:00:00Z,44,Arquivada nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,500183
+500183,camara,2015-02-04T10:35:00Z,45,"Apresentação do Requerimento de Desarquivamento de Proposições n. 169/2015, pelo Deputado Dilceu Sperafico (PP-PR), que: ""Requerer o desarquivamento de proposições"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1297627,500183
+500183,camara,2015-02-09T13:47:00Z,46,"Desarquivada nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-169/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298380,500183
+500183,camara,2015-02-09T13:47:00Z,47,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,500183
+500183,camara,2015-02-09T13:47:00Z,48,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,500183
+500183,camara,2015-02-09T13:47:00Z,49,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,500183
+500183,camara,2015-06-30T14:30:00Z,50,Não deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-07-01T10:00:00Z,51,Não deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-07-02T10:00:00Z,52,"Retirada de pauta, de ofício, por acordo.",CCJC,250,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-07-07T14:30:00Z,53,Não deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-07-08T10:00:00Z,55,Apresentado Requerimento de Retirada de Pauta pelo Deputado Padre João.,CCJC,1040,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-07-08T10:00:00Z,56,"Encaminharam a votação do Requerimento de Retirada de Pauta, a favor e contra, os Deputados Maria do Rosário e Delegado Eder, respectivamente.",CCJC,1040,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-07-08T10:00:00Z,57,Retirado o Requerimento de Retirada de Pauta pelo seu autor.,CCJC,1040,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-07-08T10:00:00Z,58,Proferido o Parecer.,CCJC,221,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-07-08T10:00:00Z,59,Vista conjunta concedida a todos os membros presentes.,CCJC,221,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-07-08T10:44:00Z,54,"Designado Relator Substituto, Dep. Esperidião Amin (PP-SC)",CCJC,320,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-07-09T10:00:00Z,60,Cumprindo prazo de vista.,CCJC,1040,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-07-09T16:12:00Z,61,"Apresentação do Requerimento de Audiência Pública n. 30/2015, pelo Deputado Max Filho (PSDB-ES), que: ""Proposta de emenda à Constituição nº 18 de 2011, que 'dá nova redação ao inciso XXXIII do art. 7º da Constituição Federal, para autorizar o trabalho sob o regime de tempo parcial a partir dos quatorze anos de idade'"".",CCJC,194,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1359766,500183
+500183,camara,2015-07-14T11:31:00Z,62,"Apresentação do Voto em Separado n. 3 CCJC, pelo Deputado Tadeu Alencar (PSB-PE).",CCJC,431,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1361234,500183
+500183,camara,2015-07-14T14:30:00Z,63,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-07-14T17:21:00Z,64,"Apresentação do Requerimento de Audiência Pública n. 31/2015, pelos Deputados Alessandro Molon (REDE-RJ) e outros, que: ""Requer Audiência Pública para discutir a PEC nº 18, de 2011, que 'dá nova redação ao inciso XXXIII do art. 7º da Constituição Federal, para autorizar o trabalho sob o regime de tempo parcial a partir dos quatorze anos de idade' e dos seus apensados"".",CCJC,194,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1361735,500183
+500183,camara,2015-07-15T10:00:00Z,65,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-07-16T10:00:00Z,66,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-08-04T14:30:00Z,68,Não deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-08-04T15:58:00Z,67,"Apresentação do Voto em Separado n. 4 CCJC, pelo Deputado Indio da Costa (PSD-RJ).",CCJC,431,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1366162,500183
+500183,camara,2015-08-05T10:00:00Z,69,Não deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-08-05T16:53:00Z,70,"Apresentação do Voto em Separado n. 5 CCJC, pelos Deputados Chico Alencar (PSOL-RJ) e Ivan Valente (PSOL-SP).",CCJC,431,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1367239,500183
+500183,camara,2015-08-06T10:00:00Z,71,Não deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-08-11T14:30:00Z,73,Não deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-08-11T14:41:00Z,72,"Apresentação do Voto em Separado n. 6 CCJC, pelo Deputado Glauber Braga (PSB-RJ).",CCJC,431,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1369279,500183
+500183,camara,2015-08-12T10:00:00Z,74,Não deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-08-13T11:46:00Z,75,"Apresentação do Voto em Separado n. 7 CCJC, pelo Deputado Afonso Motta (PDT-RS).",CCJC,431,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1370903,500183
+500183,camara,2015-08-13T15:18:00Z,76,"Apresentação do Voto em Separado n. 8 CCJC, pelo Deputado Luciano Ducci (PSB-PR).",CCJC,431,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1371211,500183
+500183,camara,2015-08-14T00:00:00Z,78,"Devolvido ao Relator, Dep. Esperidião Amin (PP-SC), em virtude de novo apensado.",CCJC,170,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-08-14T10:57:00Z,77,Apense-se a este(a) o(a) PEC-108/2015.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1370858,500183
+500183,camara,2015-08-18T10:00:00Z,79,Apensação da PEC 108/2015 a esta proposição.,CCJC,504,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-08-19T20:33:00Z,80,"Apresentação do Voto em Separado n. 9 CCJC, pelos Deputados Juscelino Filho (PRP-MA) e Hiran Gonçalves (PMN-RR).",CCJC,431,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1374514,500183
+500183,camara,2015-09-08T14:30:00Z,81,Não deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-09-09T10:00:00Z,82,Apresentado Requerimento de Retirada de Pauta pela Deputada Maria do Rosário.,CCJC,1040,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-09-09T10:00:00Z,84,Aprovado o Requerimento de Retirada de Pauta.,CCJC,1040,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-09-09T10:00:00Z,83,Encaminhou a votação do Requerimento de Retirada de Pauta a Deputada Maria do Rosário.,CCJC,1040,Aguardando Designação de Relator,NA,500183
+500183,camara,2015-09-10T10:00:00Z,85,Não deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,500183
+500183,camara,2016-08-11T17:19:00Z,86,Devolvida pelo Relator sem Manifestação.,CCJC,507,Aguardando Designação de Relator,NA,500183
+500183,camara,2016-08-25T00:00:00Z,87,"Designado Relator, Dep. Betinho Gomes (PSDB-PE)",CCJC,320,Aguardando Designação de Relator,NA,500183
+500183,camara,2016-10-04T16:20:00Z,88,"Apresentação do Parecer do Relator n. 3 CCJC, pelo Deputado Betinho Gomes (PSDB-PE).",CCJC,501,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1495967,500183
+500183,camara,2016-10-04T16:20:00Z,89,"Parecer do Relator, Dep. Betinho Gomes (PSDB-PE), pela inadmissibilidade desta, da PEC 35/2011, da PEC 274/2013, da PEC 108/2015, da PEC 77/2015 e da PEC 107/2015, apensadas.",CCJC,322,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1495967,500183
+500183,camara,2019-01-31T00:00:00Z,90,Arquivada nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,500183
+500183,camara,2019-01-31T23:59:00Z,91,"(Fim de Legislatura) O Relator, Dep. Betinho Gomes, deixou de ser membro da Comissão",CCJC,1255,Aguardando Designação de Relator,NA,500183
+500183,camara,2019-02-19T20:34:00Z,92,"Desarquivada nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-130/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711875,500183
+500183,camara,2019-02-19T20:34:00Z,93,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,500183
+500183,camara,2019-02-19T20:34:00Z,94,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,500183
+500183,camara,2019-02-20T20:37:00Z,95,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-268/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712075,500183

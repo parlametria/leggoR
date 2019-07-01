@@ -1,0 +1,18 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+945592,camara,2015-02-03T16:54:00Z,1,"Apresentação do Requerimento de Desarquivamento de Proposições n. 124/2015, pelo Deputado Jean Wyllys (PSOL-RJ), que: ""Requer o desarquivamento das proposições legislativas que menciona"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1297311,945592
+945592,camara,2015-02-03T19:03:00Z,2,Recebimento pela SEPRO -  - Cristoffe De Campos Oliveira.,SEPRO,500,NA,NA,945592
+945592,camara,2015-02-04T00:00:00Z,3,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,945592
+945592,camara,2015-02-04T10:12:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 22/2015.,SEPRO,180,NA,NA,945592
+945592,camara,2015-02-04T14:58:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,945592
+945592,camara,2015-02-04T14:59:00Z,6,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SECAP(SGM)) nº 5/2015.,SECAP(SGM),180,NA,NA,945592
+945592,camara,2015-02-04T16:57:00Z,7,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,945592
+945592,camara,2015-02-05T00:00:00Z,8,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298212,945592
+945592,camara,2015-02-06T09:47:00Z,9,Despacho Chancelado,SGMGAB,180,NA,NA,945592
+945592,camara,2015-02-06T09:47:00Z,11,Notificação à Sinopse de Despacho Chancelado,NAJUR(SGM),1005,NA,NA,945592
+945592,camara,2015-02-06T09:47:00Z,12,"Nos termos do parágrafo único do art. 105 do RICD, DEFIRO o pedido de desarquivamento das seguintes proposições: PDC 1441/2014, PL 7187/2014, PL 7270/2014, PL 693/1999, PL 726/1999, PL 2074/1999, PL 2304/2000, PL 2390/2000, PL 3355/2000, PL 3438/2000, PL 4459/2001, PL 7174/2014, PL 7412/2014, PL 4866/2001, PL 4353/2012, PL 5630/2013, PL 7524/2014, PL 7633/2014, PL 8048/2014, PDC 1289/2013, PDC 1299/2013, PL 3974/2012, PL 4253/2012, PL 4968/2013, PL 8288/2014, PL 5002/2013, PL 580/2007, PL 4914/2009, PL 5167/2009, PL 1865/2011, PL 5120/2013, PL 3388/2012, PL 4211/2012, PRC 53/2011, PRC 92/2011, PRC 130/2012, PL 1606/2011, PL 2669/2011, PL 648/2011 e PL 771/2011. INDEFIRO o pedido de desarquivamento do REQ 8882/2013, em virtude de a proposição ter sido arquivada definitivamente. DECLARO PREJUDICADO o pedido de desarquivamento das seguintes proposições: PL 4270/2012 e PL 1786/2011, haja vista as proposições já se encontrarem desarquivadas. Publique-se.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298212,945592
+945592,camara,2015-02-06T09:47:00Z,10,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,945592
+945592,camara,2015-02-06T09:47:00Z,13,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,945592
+945592,camara,2015-02-06T11:06:00Z,14,Encaminhado à(ao) CCP através da guia de Remessa (GR/NAJUR(SGM)) nº 6/2015.,NAJUR(SGM),180,NA,NA,945592
+945592,camara,2015-02-06T11:23:00Z,15,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,945592
+945592,camara,2015-02-09T00:00:00Z,16,Publicação inicial no DCD do dia 10/02/2015,PLEN,605,NA,NA,945592
+945592,camara,2015-02-11T09:42:00Z,17,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,945592

@@ -1,0 +1,22 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2175218,camara,2018-05-15T20:35:00Z,1,"Apresentação do Requerimento de Desapensação n. 8647/2018, pelo Deputado Paulo Teixeira (PT-SP), que: ""Requer a desapensação do PL 4412, de 2012 apensado ao PL 6299, de 2002"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1660164,2175218
+2175218,camara,2018-05-15T20:35:00Z,2,Realizar o Encaminhamento para NAJUR(SGM),SEPRO,910,NA,NA,2175218
+2175218,camara,2018-05-15T22:24:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 5849/2018.,SEPRO,180,NA,NA,2175218
+2175218,camara,2018-05-16T00:00:00Z,5,Realizar o Encaminhamento para SECAP(SGM),NAJUR(SGM),910,NA,NA,2175218
+2175218,camara,2018-05-16T13:10:00Z,4,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2175218
+2175218,camara,2018-05-16T13:48:00Z,6,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/NAJUR(SGM)) nº 1166/2018.,NAJUR(SGM),180,NA,NA,2175218
+2175218,camara,2018-05-16T13:53:00Z,7,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2175218
+2175218,camara,2018-05-29T16:52:00Z,8,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SECAP(SGM)) nº 1506/2018.,SECAP(SGM),180,NA,NA,2175218
+2175218,camara,2018-05-29T16:56:00Z,9,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2175218
+2175218,camara,2018-06-08T00:00:00Z,10,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,2175218
+2175218,camara,2018-06-08T20:25:00Z,11,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 1195/2018.,NAJUR(SGM),180,NA,NA,2175218
+2175218,camara,2018-06-11T00:00:00Z,12,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1667612,2175218
+2175218,camara,2018-06-11T00:00:00Z,18,Realizar o Encaminhamento para CCP,MESA,910,NA,NA,2175218
+2175218,camara,2018-06-11T17:28:00Z,15,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2175218
+2175218,camara,2018-06-11T17:28:00Z,16,"Indefiro o Requerimento n. 8.647/2018, nos termos do art. 142 do Regimento Interno da Câmara dos Deputados, porquanto os Projetos de Lei n. 4.412/2012 e 6.299/2002 tratam de matérias correlatas. Publique-se. Oficie-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1667612,2175218
+2175218,camara,2018-06-11T17:28:00Z,13,Despacho Chancelado,SGMGAB,180,Aguardando Recebimento,NA,2175218
+2175218,camara,2018-06-11T17:28:00Z,14,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2175218
+2175218,camara,2018-06-11T17:28:00Z,17,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2175218
+2175218,camara,2018-06-11T18:12:00Z,19,Encaminhado à(ao) CCP através da guia de Remessa (GR/MESA) nº 1430/2018.,MESA,180,NA,NA,2175218
+2175218,camara,2018-06-12T00:00:00Z,21,Publicação inicial no DCD do dia 12/06/2018,PLEN,605,NA,NA,2175218
+2175218,camara,2018-06-12T09:15:00Z,20,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2175218

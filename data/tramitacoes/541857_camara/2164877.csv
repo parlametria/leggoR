@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2164877,camara,2017-12-06T15:20:00Z,1,"Apresentação do Projeto de Lei n. 9266/2017, pelo Deputado Heuler Cruvinel (PSD-GO), que: ""Acrescenta o inciso XII no artigo 6º da Lei nº 10.826 de 22 de dezembro de 2003 e dá outras providências"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1629681,2164877
+2164877,camara,2017-12-06T15:20:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2164877
+2164877,camara,2017-12-06T15:21:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2164877
+2164877,camara,2017-12-06T21:22:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 5284/2017.,SEPRO,180,NA,NA,2164877
+2164877,camara,2017-12-07T09:16:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2164877
+2164877,camara,2017-12-14T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1632945,2164877
+2164877,camara,2017-12-18T17:07:00Z,7,Apense-se a este(a) o(a) PL-9294/2017.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1632189,2164877
+2164877,camara,2017-12-18T17:40:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,2164877
+2164877,camara,2017-12-18T17:41:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2164877
+2164877,camara,2017-12-18T17:43:00Z,10,"Apense-se à(ao) PL-1257/2015. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Ordinária (Art. 151, III, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1632945,2164877
+2164877,camara,2017-12-18T17:44:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2164877
+2164877,camara,2017-12-19T14:33:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1350/2017.,SECAP(SGM),180,NA,NA,2164877
+2164877,camara,2017-12-19T16:56:00Z,13,"Recebimento pela CCP, com a proposição PL-9294/2017 apensada.",CCP,500,NA,NA,2164877
+2164877,camara,2017-12-19T21:13:00Z,14,Apensação desta proposição ao PL 1257/2015.,CCP,106,NA,NA,2164877
+2164877,camara,2017-12-19T21:16:00Z,15,Apensação do PL 9294/2017 a esta proposição.,CCP,504,NA,NA,2164877
+2164877,camara,2017-12-21T00:00:00Z,16,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 22/12/17 PÁG 139 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1639082,2164877
+2164877,camara,2019-02-21T17:50:00Z,17,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-121/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713274,2164877
+2164877,camara,2019-02-22T18:20:00Z,18,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,2164877
+2164877,camara,2019-02-22T18:27:00Z,20,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,2164877
+2164877,camara,2019-02-22T18:30:00Z,19,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,2164877

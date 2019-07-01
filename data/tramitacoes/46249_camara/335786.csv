@@ -1,0 +1,38 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+335786,camara,2006-11-13T16:29:00Z,1,Apresentação do Projeto de Lei pelo Deputado Carlos Nader (PL-RJ).,PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=424326,335786
+335786,camara,2006-11-14T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=424546,335786
+335786,camara,2006-11-14T09:45:00Z,2,Recebimento pela SEPRO -  - Sueli de Souza.,SEPRO,500,NA,NA,335786
+335786,camara,2006-11-14T09:45:00Z,3,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,335786
+335786,camara,2006-11-14T09:45:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,335786
+335786,camara,2006-11-14T10:01:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 2261/2006.,SEPRO,180,NA,NA,335786
+335786,camara,2006-11-14T10:41:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,335786
+335786,camara,2006-11-16T00:00:00Z,10,Apense-se à(ao) PL-713/1999.Proposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 IIRegime de Tramitação: Ordinária,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=424546,335786
+335786,camara,2006-11-16T15:40:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,335786
+335786,camara,2006-11-16T15:40:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,335786
+335786,camara,2006-11-16T16:00:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1226/2006.,SECAP(SGM),180,NA,NA,335786
+335786,camara,2006-11-16T16:01:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,335786
+335786,camara,2006-11-16T16:57:00Z,13,Recebimento pela CCP.,CCP,500,NA,NA,335786
+335786,camara,2006-11-17T11:48:00Z,14,Encaminhado à(ao) CSSF através da guia de Remessa (GR/CCP) nº 3423/2006.,CCP,180,NA,NA,335786
+335786,camara,2006-11-21T00:00:00Z,15,Encaminhada à publicação. Publicação Inicial no DCD de 22/11/06 PÁG 50883 COL 02.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=449329,335786
+335786,camara,2006-11-23T09:49:00Z,16,Recebimento pela CSSF.,CSSF,500,NA,NA,335786
+335786,camara,2006-11-28T10:29:00Z,17,Apensação desta proposição ao PL 713/1999.,CSSF,106,NA,NA,335786
+335786,camara,2007-01-31T00:00:00Z,18,Arquivado nos termos do Artigo 105 do Regimento Interno.DCD de 01 02 07 PÁG 342 COL 01. Suplemento A ao Nº 21.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=481531,335786
+335786,camara,2007-02-15T18:18:00Z,19,"Apresentação do REQUERIMENTO N.º 314, DE 2007, pelo Deputado(a) Dr. Rosinha, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=435609,335786
+335786,camara,2007-04-16T00:00:00Z,20,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-314/2007. DCD 17 04 07 PAG 16681 COL 01.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=447218,335786
+335786,camara,2007-04-16T18:57:00Z,21,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,335786
+335786,camara,2007-04-16T18:57:00Z,22,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,335786
+335786,camara,2007-04-16T18:57:00Z,23,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,335786
+335786,camara,2007-04-16T18:57:00Z,24,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,335786
+335786,camara,2007-04-16T18:57:00Z,25,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,335786
+335786,camara,2007-12-20T16:36:00Z,26,"Recebimento pela CAPADR, apensado ao PL-713/1999",CAPADR,500,NA,NA,335786
+335786,camara,2008-10-31T11:55:00Z,27,"Recebimento pela CMADS, apensado ao PL-713/1999",CMADS,500,NA,NA,335786
+335786,camara,2009-09-18T16:29:00Z,28,"Recebimento pela CCJC, apensado ao PL-713/1999",CCJC,500,NA,NA,335786
+335786,camara,2011-01-31T00:00:00Z,29,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados. Publicação no DCD do dia 01/02/2011 - Suplemento ao nº 14.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=850547,335786
+335786,camara,2011-02-16T15:32:00Z,30,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-229/2011.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=840291,335786
+335786,camara,2011-02-16T15:32:00Z,31,Reentrada na comissão por motivo de desarquivamento,SECAP(SGM),630,NA,NA,335786
+335786,camara,2011-02-16T15:32:00Z,32,Reentrada na comissão por motivo de desarquivamento,SECAP(SGM),630,NA,NA,335786
+335786,camara,2015-01-31T00:00:00Z,33,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,335786
+335786,camara,2015-02-10T10:08:00Z,34,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-241/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298914,335786
+335786,camara,2015-02-10T10:08:00Z,35,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,335786
+335786,camara,2017-08-30T16:55:00Z,36,"Recebimento pela PL629902, apensado ao PL-713/1999",PL629902,500,NA,NA,335786
+335786,camara,2018-06-26T15:07:00Z,37,"Recebimento pela CCP, apensado ao PL-713/1999",CCP,500,NA,NA,335786

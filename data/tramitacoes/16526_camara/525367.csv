@@ -1,0 +1,24 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+525367,camara,2011-10-26T00:00:00Z,5,Publicação inicial no DCD do dia 27/10/11 PÁG 58750 COL 01,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=989631,525367
+525367,camara,2011-10-26T18:50:00Z,1,"Apresentação do Projeto de Lei n. 2603/2011, pela Deputada Erika Kokay (PT-DF), que: ""Acrescenta o art. 56-A à Lei nº 8.666, de 21 de junho de 1993, para dispor sobre a garantia nas contratações de serviços terceirizados"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=933710,525367
+525367,camara,2011-10-26T21:36:00Z,2,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,525367
+525367,camara,2011-10-26T21:36:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,525367
+525367,camara,2011-10-26T21:38:00Z,4,Recebimento pel a SEPRO.,SEPRO,500,NA,NA,525367
+525367,camara,2011-10-27T10:05:00Z,6,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 1395/2011.,SEPRO,180,NA,NA,525367
+525367,camara,2011-10-27T11:16:00Z,7,Recebimento pel a SECAP(SGM).,SECAP(SGM),500,NA,NA,525367
+525367,camara,2011-11-08T00:00:00Z,8,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=936623,525367
+525367,camara,2011-11-16T00:00:00Z,14,Publicação do despacho no DCD de 17/11/11 PÁG 61908 COL 01.,CCP,605,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=997327,525367
+525367,camara,2011-11-16T16:32:00Z,9,Despacho Chancelado,SECAP(SGM),180,NA,NA,525367
+525367,camara,2011-11-16T16:34:00Z,10,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,525367
+525367,camara,2011-11-16T17:27:00Z,11,Apense-se à(ao) PL-1587/2003.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=936623,525367
+525367,camara,2011-11-16T17:27:00Z,13,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 507/2011.,SECAP(SGM),180,NA,NA,525367
+525367,camara,2011-11-16T17:31:00Z,12,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,525367
+525367,camara,2011-11-17T15:22:00Z,15,Recebimento pel a CCP.,CCP,500,NA,NA,525367
+525367,camara,2011-11-29T15:30:00Z,16,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 2979/2011.,CCP,180,NA,NA,525367
+525367,camara,2011-11-30T00:00:00Z,17,Encaminhada à publicação. Avulso Inicial,CCP,604,NA,NA,525367
+525367,camara,2011-11-30T00:00:00Z,20,"Designado Relator, Dep. Fabio Trad (PMDB-MS)",CCJC,320,NA,NA,525367
+525367,camara,2011-11-30T17:00:00Z,18,Recebimento pel a CCJC.,CCJC,500,NA,NA,525367
+525367,camara,2011-11-30T17:07:00Z,19,Apensação desta proposição ao PL 1587/2003.,CCJC,106,NA,NA,525367
+525367,camara,2018-03-23T10:29:00Z,21,"Recebimento pela CCP, apensado ao PL-1587/2003",CCP,500,NA,NA,525367
+525367,camara,2018-03-23T10:43:00Z,22,"Recebimento pela PL129295, apensado ao PL-1587/2003",PL129295,500,NA,NA,525367
+525367,camara,2018-12-05T18:01:00Z,23,"Recebimento pela CCP, apensado ao PL-1587/2003",CCP,500,NA,NA,525367

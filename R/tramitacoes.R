@@ -76,20 +76,25 @@ fetch_tramitacao_camara <- function(bill_id) {
                   link_inteiro_teor = url)
 }
 
-#' @title Baixa dados dos documentos, adequando as colunas ao padrão desejado
-#' @description Retorna um dataframe contendo dados dos documentos
+#' @title Baixa dados das tramitações das proposições
+#' @description Escreve as tramitações dos ids passados
+#' @param export_path Path para ser escritos as tramitações
 #' @param docs_ids Dataframe com os IDs dos documentos a serem baixados
-#' @return Dataframe
-#' @examples
-#' \dontrun{
-#'   docs_data <- fetch_docs_data(2056568)
-#' }
 #' @export
-fetch_tramitacao_data <- function(docs_ids) {
-  docs_camara <-
-    purrr::pmap(list(".",docs_ids$id_documento, docs_ids$id_principal), function(a, b, c) write_docs(a, b, c))
+fetch_tramitacao_data <- function(export_path, docs_ids) {
+    purrr::pmap(list(export_path, docs_ids$id_documento, docs_ids$id_principal), function(a, b, c) safe_write_docs(a, b, c))
 }
 
+#' @title Write_docs seguro
+safe_write_docs <- purrr::safely(
+  write_docs,
+  otherwise = tibble::tibble())
+
+#' @title Baixa dados das tramitações das proposições
+#' @description Escreve as tramitações dos ids passados
+#' @param export_path Path para ser escritos as tramitações
+#' @param id_documento Id do documento para ser baixado
+#' @param id_principal Id da proposição principal
 write_docs <- function(export_path, id_documento, id_principal) {
   tram <- 
     fetch_tramitacao_camara(id_documento) %>% 

@@ -1,0 +1,118 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2190237,camara,2018-12-27T00:00:00Z,3,"Prazo para Emendas: 04/02/2019 a 11/02/2019. Comissão Mista: *Câmara dos Deputados: até 03/03/2019. Senado Federal: 04/03/2019 a 17/03/2019. Retorno à Câmara dos Deputados (se houver): 18/03/2019 a 20/03/2019. Sobrestar Pauta: a partir de 21/03/2019. Congresso Nacional: 04/02/2019 a 04/04/2019. Prorrogação pelo Congresso Nacional: 03/06/2019.*Declaração incidental de inconstitucionalidade do art. 5º, caput, art. 6º, §§ 1º e 2º, da Resolução do Congresso Nacional nº 1/2002, com eficácia ex nunc - Ação Direta de Inconstitucionalidade nº 4.029 (DOU de 16/3/12).",CN,350,NA,NA,2190237
+2190237,camara,2018-12-27T11:14:00Z,1,Publicação da Medida Provisória no Diário Oficial da União.,EXEC,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1703456,2190237
+2190237,camara,2018-12-27T11:15:00Z,2,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2190237
+2190237,camara,2019-02-20T00:00:00Z,4,"Ofício n. 66-CN, de 20/02/19, comunica a constituição da Comissão Mista incumbida de emitir parecer sobre a matéria e informa o calendário para sua tramitação.",MESA,1002,Perdeu a Eficácia,NA,2190237
+2190237,camara,2019-03-27T00:00:00Z,5,"Instalada a Comissão, é eleita Presidente a Senadora Juíza Selma e designado Relator o Deputado Sérgio Souza.",MESA,1002,Perdeu a Eficácia,NA,2190237
+2190237,camara,2019-03-28T00:00:00Z,6,"Ato Declaratório n. 15, de 27/03/19, do Presidente da Mesa do Congresso Nacional, prorroga a vigência da Medida Provisória nº 867, de 26/12/18, pelo período de sessenta dias. DOU de 28/03/19, Seção 1, Página 3.",MESA,352,Perdeu a Eficácia,NA,2190237
+2190237,camara,2019-05-08T00:00:00Z,7,"Aprovado o Parecer n. 1/2019, da Comissão Mista, que concluiu pela aprovação da Medida Provisória nos termos do Projeto de Lei de Conversão n. X/2019.",MESA,322,Perdeu a Eficácia,NA,2190237
+2190237,camara,2019-05-09T00:00:00Z,9,"Recebido o Ofício nº 153/2019, do Congresso Nacional, que encaminha o processado da Medida Provisória nº 867/2018. Informa, ainda, que à Medida foram oferecidas 35(trinta e cinco) emendas e que a Comissão Mista emitiu o Parecer nº 1, de 2019-CN, que conclui pelo PLV nº 9, de 2019.",MESA,500,Perdeu a Eficácia,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1745363,2190237
+2190237,camara,2019-05-09T00:00:00Z,12,"PARECER nº 1, de 2019-CN, da Comissão Mista da MPV 867/2018, sobre a Medida Provisória nº 867, de 2018, que ""Altera a Lei nº 12.651, de 25 de maio de 2012, para dispor sobre a extensão do prazo para adesão ao Programa de Regularização Ambiental"".",MESA,500,Perdeu a Eficácia,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1745385,2190237
+2190237,camara,2019-05-09T18:12:00Z,10,"Recebida a Mensagem nº 773/2018, do Poder Executivo, que submete à apreciação do Congresso Nacional o texto da Medida Provisória nº 867/2018.",MESA,100,Perdeu a Eficácia,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1745149,2190237
+2190237,camara,2019-05-09T18:28:00Z,13,"Recebido o PLV nº 9, de 2019, da Comissão Mista da MPV 867/2018, que Altera a Lei nº 12.651, de 25 de maio de 2012, para dispor sobre a extensão do prazo para adesão ao Programa de Regularização Ambiental..",MESA,100,Perdeu a Eficácia,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1745344,2190237
+2190237,camara,2019-05-09T18:30:00Z,8,Recebimento pela SEPRO.,SEPRO,500,NA,NA,2190237
+2190237,camara,2019-05-09T19:08:00Z,14,Encaminhado à(ao) COAPP(SGM) através da guia de Remessa (GR/SEPRO) nº 575/2019.,SEPRO,180,NA,NA,2190237
+2190237,camara,2019-05-10T00:00:00Z,15,Despacho a Confirmar.,MESA,110,Perdeu a Eficácia,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1745982,2190237
+2190237,camara,2019-05-10T14:39:00Z,16,Despacho Chancelado,PLEN,180,NA,NA,2190237
+2190237,camara,2019-05-10T14:39:00Z,17,Notificação à Sinopse de Despacho Chancelado,PLEN,1005,NA,NA,2190237
+2190237,camara,2019-05-10T14:39:00Z,18,"Ao Plenário, para leitura. Publique-se.",MESA,110,Perdeu a Eficácia,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1745982,2190237
+2190237,camara,2019-05-10T14:39:00Z,19,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Perdeu a Eficácia,NA,2190237
+2190237,camara,2019-05-10T14:52:00Z,20,Recebimento pela COAPP(SGM).,COAPP(SGM),500,NA,NA,2190237
+2190237,camara,2019-05-10T14:54:00Z,21,Encaminhado à(ao) CCP através da guia de Remessa (GR/COAPP(SGM)) nº 20/2019.,COAPP(SGM),180,NA,NA,2190237
+2190237,camara,2019-05-10T15:15:00Z,22,Recebimento pela CCP.,CCP,500,NA,NA,2190237
+2190237,camara,2019-05-10T16:51:00Z,23,Encaminhado à(ao) NATEC(SGM) através da guia de Remessa (GR/CCP) nº 2330/2019.,CCP,180,NA,NA,2190237
+2190237,camara,2019-05-13T00:00:00Z,24,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 14/05/2019.,CCP,604,NA,NA,2190237
+2190237,camara,2019-05-13T00:00:00Z,26,Realizar o Encaminhamento para COAPP(SGM),NATEC(SGM),910,NA,NA,2190237
+2190237,camara,2019-05-13T14:41:00Z,25,Recebimento pelo NATEC(SGM).,NATEC(SGM),500,NA,NA,2190237
+2190237,camara,2019-05-14T00:00:00Z,29,"Leitura do recebimento do Ofício nº 153/2019, do Congresso Nacional (CN), que encaminha o processado da Medida Provisória n° 867/2018 (Sessão Deliberativa Ordinária de 14/05/2019 - 14h - 100ª Sessão).",PLEN,1005,NA,NA,2190237
+2190237,camara,2019-05-14T13:53:00Z,27,Encaminhado à(ao) COAPP(SGM) através da guia de Remessa (GR/NATEC(SGM)) nº 9/2019.,NATEC(SGM),180,NA,NA,2190237
+2190237,camara,2019-05-14T13:56:00Z,28,Recebimento pela COAPP(SGM).,COAPP(SGM),500,NA,NA,2190237
+2190237,camara,2019-05-21T14:00:00Z,30,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,NA,NA,2190237
+2190237,camara,2019-05-22T09:00:00Z,31,"Retirado de pauta, de ofício.",PLEN,1241,NA,NA,2190237
+2190237,camara,2019-05-28T14:00:00Z,32,Discussão em turno único.,PLEN,222,NA,NA,2190237
+2190237,camara,2019-05-28T14:00:00Z,33,"Votação do Requerimento da Bancada do PSOL, que solicita votação nominal para o Requerimento de retirada de pauta desta Medida Provisória.",PLEN,223,NA,NA,2190237
+2190237,camara,2019-05-28T14:00:00Z,34,Encaminharam a Votação: Dep. Ivan Valente (PSOL-SP) e Dep. Bibo Nunes (PSL-RS).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-28T14:00:00Z,35,"Verificação da votação, solicitada pelos Deputados Ivan Valente, Líder do PSOL; e Bibo Nunes, na qualidade de Líder do PSL, em razão do resultado proclamado pela Mesa: ""Rejeitado o Requerimento"", passando-se à votação pelo processo nominal.",PLEN,1239,NA,NA,2190237
+2190237,camara,2019-05-28T14:00:00Z,36,Rejeitado o Requerimento. Sim: 8; não: 280; abstenção: 1; total: 289.,PLEN,1236,NA,NA,2190237
+2190237,camara,2019-05-28T14:00:00Z,37,"Votação do Requerimento da Bancada do PSOL, que solicita a retirada de pauta desta Medida Provisória.",PLEN,223,NA,NA,2190237
+2190237,camara,2019-05-28T14:00:00Z,38,Encaminharam a Votação: Dep. Talíria Petrone (PSOL-RJ) e Dep. Aline Sleutjes (PSL-PR).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-28T14:00:00Z,39,Rejeitado o Requerimento. Sim: 64; não: 202; abstenção: 1; total: 267.,PLEN,1236,NA,NA,2190237
+2190237,camara,2019-05-28T14:00:00Z,40,"Discutiram a Matéria: Dep. Jorge Solla (PT-BA), Dep. Alencar Santana Braga (PT-SP), Dep. Celso Maldaner (MDB-SC), Dep. Margarida Salomão (PT-MG) e Dep. Sergio Souza (MDB-PR).",PLEN,242,NA,NA,2190237
+2190237,camara,2019-05-28T14:00:00Z,41,Adiada a continuação da discussão em face do encerramento da Sessão.,PLEN,1244,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,42,Continuação da discussão em turno único.,PLEN,222,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,43,"Votação do Requerimento da Bancada do PSOL, que solicita a retirada de pauta desta Medida Provisória.",PLEN,223,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,44,Encaminhou a Votação a Dep. Fernanda Melchionna (PSOL-RS).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,45,"Verificação da votação, solicitada pelos Deputados Nilto Tatto, na qualidade de Líder do PT; e Hiran Gonçalves, na qualidade de Líder do Bloco Parlamentar PP, MDB, PTB, em razão do resultado proclamado pela Mesa: ""Rejeitado o Requerimento"", passando-se à votação pelo processo nominal.",PLEN,1239,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,46,Rejeitado o Requerimento. Sim: 17; não: 256; abstenção: 3; total: 276.,PLEN,1236,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,47,Votação do Requerimento dos Srs. Líderes que solicita o encerramento da discussão e do encaminhamento da votação.,PLEN,223,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,48,Encaminharam a Votação: Dep. Nilto Tatto (PT-SP) e Dep. Alceu Moreira (MDB-RS).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,49,Aprovado o Requerimento. Sim: 287; não: 20; abstenção: 2; total: 309.,PLEN,1235,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,50,Encerrada a discussão e o encaminhamento da votação.,PLEN,227,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,51,"Votação do Requerimento da Bancada do PT, que solicita adiamento da votação por duas sessões.",PLEN,1232,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,52,Encaminhou a Votação a Dep. Erika Kokay (PT-DF).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,53,Rejeitado o Requerimento. Sim: 15; não: 246; abstenção: 2; total: 263.,PLEN,1236,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,54,"Votação do Requerimento da Bancada do PT, que solicita votação da matéria artigo por artigo.",PLEN,1232,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,55,Encaminhou a Votação o Dep. Joseildo Ramos (PT-BA).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,56,Rejeitado o Requerimento. Sim 16: não: 265; abstenção: 2; total: 283.,PLEN,1236,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,57,Votação preliminar em turno único.,PLEN,1231,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,58,Encaminharam a Votação: Dep. Celina Leão (PP-DF) e Dep. Nilto Tatto (PT-SP).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,59,"Aprovado, em apreciação preliminar, o Parecer da Comissão Mista, na parte em que manifesta opinião favorável quanto ao atendimento dos pressupostos constitucionais de relevância e urgência e de sua adequação financeira e orçamentária, nos termos do artigo 8º da Resolução nº 01, de 2002-CN. Sim: 293; não: 15; abstenção: 4; total: 312.",PLEN,1235,NA,NA,2190237
+2190237,camara,2019-05-28T20:01:00Z,60,Adiada a continuação da votação em face do encerramento da Sessão.,PLEN,1244,NA,NA,2190237
+2190237,camara,2019-05-29T00:00:00Z,116,Remessa ao Senado Federal por meio do Of. nº  453/2019/SGM-P.,MESA,128,Perdeu a Eficácia,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1757427,2190237
+2190237,camara,2019-05-29T09:00:00Z,77,"Rejeitada a admissibilidade dos destaques simples. Em consequência, ficam prejudicados os referidos destaques. Sim: 9; não: 263; abstenção: 1; total: 273",PLEN,1236,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,61,Continuação da votação em turno único.,PLEN,1231,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,62,"Votação do Requerimento da Bancada do PSOL, que solicita a retirada de pauta desta Medida Providória.",PLEN,1232,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,63,Encaminhou a Votação o Dep. David Miranda (PSOL-RJ).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,64,"Verificação da votação, solicitada pelos Deputados Nilto Tatto, na qualidade de Líder do PT; e Daniel Freitas, na qualidade de Líder do PSL, em razão do resultado proclamado pela Mesa: ""Rejeitado o Requerimento"", passando-se à votação pelo processo nominal.",PLEN,1239,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,65,Rejeitado o Requerimento. Sim: 15; não: 240; abstenção: 2; total: 257.,PLEN,1236,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,66,Votação preliminar em turno único.,PLEN,1231,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,67,Encaminhou a Votação o Dep. Celso Sabino (PSDB-PA).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,68,"Aprovado, em apreciação preliminar, o Parecer da Comissão Mista, na parte em que manifesta opinião pelo não atendimento dos pressupostos constitucionais de relevância e urgência e de sua adequação financeira e orçamentária, nos termos do artigo 8º da Resolução nº 01, de 2002-CN. Sim: 247; não: 12; abstenção: 1; total: 260.",PLEN,1235,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,69,"Votação do destaque da bancada do CIDADANIA, que solicita votação do texto original da MPV para que tenha preferência quanto ao Projeto de Lei de Conversão 9/19 - DTQ 4.",PLEN,1233,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,70,Encaminharam a Votação: Dep. Daniel Coelho (CIDADANIA-PE) e Dep. Sergio Souza (MDB-PR).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,71,Rejeitado o Requerimento. Sim: 118; não: 262; total: 380.,PLEN,1236,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,72,"Votação do Requerimento dos Srs. Líderes, que solicita a votação em globo de admissibilidade dos destaques simples.",PLEN,1233,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,73,Encaminharam a Votação: Dep. Nilto Tatto (PT-SP) e Dep. Celso Sabino (PSDB-PA).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,74,"Verificação da votação, solicitada pelos Deputados Erika Kokay, na qualidade de Líder do PT, e Daniel Freitas, na qualidade de Líder do PSL, em razão do resultado proclamado pela Mesa: ""Aprovado o requerimento"", passando-se à votação pelo processo nominal.",PLEN,1239,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,75,Aprovado o Requerimento. Sim: 245; não: 12; abstenção: 1; total: 258.,PLEN,1235,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,76,"Votação, em globo, da admissibilidade dos destaques simples.",PLEN,1233,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,78,"Votação, quanto ao mérito, em turno único.",PLEN,1231,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,79,"Aprovada a Medida Provisória nº 867, de 2018, na forma do Projeto de Lei de Conversão nº 9, de 2019, ressalvados os destaques. Sim: 243; não: 19; abstenção: 2; total: 264.",PLEN,1235,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,80,"Votação do destaque do Bloco PP/MDB/PTB, que solicita votação do DTQ 7, apresentado pelo PSB, que pede a votação em separado do §3º do art. 68 da Lei 12651/2012, contido no art. 1º do PLV nº 9/2019, para que seja apreciado em 1º lugar, logo após a apreciação do PLV - DTQ 12.",PLEN,1233,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,81,Aprovado o DTQ 12. Sim: 241; não: 18; abstenção: 2; total: 261.,PLEN,1235,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,83,Encaminharam a Votação: Dep. Rodrigo Agostinho (PSB-SP) e Dep. Sergio Souza (MDB-PR).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,82,"Votação do §3º do art. 68, da Lei 12.651/2012, contido no art. 1º do PLV nº 9/2019, apresentado à MPV 867/18, com vistas à supressão, objeto do destaque para votação em separado da bancada do PSB - DTQ 7.",PLEN,1233,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,84,Mantido o texto. Sim: 252; não: 79; abstenção: 2; total: 333.,PLEN,1237,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,85,"Prejudicado o destaque da bancada do PODEMOS, para a votação em separado do art. 68 da Lei nº 12651/12, alterado pelo art. 1º do PLV apresentado à MPV 867, de 2018, para fins de sua supressão - DTQ 13.",PLEN,1240,NA,NA,2190237
+2190237,camara,2019-05-29T09:00:00Z,86,Adiada a continuação da votação em face do encerramento da Sessão.,PLEN,1244,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,87,Continuação da votação em turno único.,PLEN,1231,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,89,"Votação do Requerimento do Dep. Nilto Tatto (PT - SP), que solicita a retirada de pauta desta Medida Provisória.",PLEN,1232,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,89,Encaminhou a Votação o Dep. Nilto Tatto (PT-SP).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,90,"Verificação da votação, solicitada pelos Deputado Nilto Tatto, na condição de Líder do PT, em razão do resultado proclamado pela Mesa: ""Rejeitado o Requerimento"", passando-se à votação pelo processo nominal.",PLEN,1239,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,91,Rejeitado o Requerimento. Sim: 12; não: 250; abstenção: 2; total: 264.,PLEN,1236,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,92,"Votação do inciso III do § 3º do art. 34 da Lei 12651/12, constante do art. 1º do PLV 9/19, apresentado à MP 867/18, com vistas à sua supressão, objeto do destaque para votação em separado da bancada do PT - DTQ 1.",PLEN,1233,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,93,Encaminhou a Votação o Dep. Nilto Tatto (PT-SP).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,94,Mantido o texto. Sim: 242; não: 17; abstenção: 1; total: 260.,PLEN,1237,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,95,"Votação do art. 42 da Lei 12.651/12, constante do art. 1º do PLV 9/19, apresentado à MP 867/18, com vistas à sua supressão, objeto do destaque para votação em separado da bancada do PT - DTQ 2.",PLEN,1233,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,96,Encaminhou a Votação o Dep. Joseildo Ramos (PT-BA).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,98,"Votação do art. 59 da Lei 12651/12, constante do art. 1º do PLV 9/19, apresentado à MP 867/18, com vistas à sua supressão, objeto do destaque para votação em separado da bancada do PT - DTQ 3.",PLEN,1233,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,97,Mantido o texto. Sim: 240; não: 18; abstenção: 1; total: 259.,PLEN,1237,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,99,Encaminhou a Votação a Dep. Erika Kokay (PT-DF).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,100,Mantido o texto. Sim: 249; não: 22; abstenção: 2; total: 273.,PLEN,1237,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,101,"Votação do §9º, do art. 59 da Lei 12.651/12, constante do art. 1º do PLV 9/19, para sua supressão, objeto do destaque para votação em separado da bancada do PSOL - DTQ 11.",PLEN,1233,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,102,Encaminhou a Votação o Dep. Ivan Valente (PSOL-SP).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,103,Mantido o texto. Sim: 249; não: 13; abstenção: 1; total: 263.,PLEN,1237,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,104,"Votação do §13 do art. 59 da Lei 12651/2012, contido no art. 1º do PLV nº 9/2019, apresentado à MPV 867/18, com vistas à supressão, objeto do destaque para votação em separado da bancada do PSB - DTQ 8.",PLEN,1233,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,105,Encaminhou a Votação o Dep. Rodrigo Agostinho (PSB-SP).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,106,Mantido o texto. Sim: 223; não: 31; abstenção: 2; total: 256.,PLEN,1237,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,107,"Votação do art. 60-A do PLV apresentado à MP 867/18, com vistas à sua supressão, objeto do destaque para votação em separado da bancada do PCdoB - DTQ 9.",PLEN,1233,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,108,Encaminhou a Votação o Dep. Daniel Almeida (PCdoB-BA).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,109,Mantido o texto. Sim: 247; não: 31; abstenção: 3; total: 281.,PLEN,1237,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,110,"Votação das expressões: ""porém, em caso de conversão nesses biomas e formas de vegetação para a produção agrícola com cultivos anuais ou perenes, respeitar-se-á o limite de manutenção da reserva legal, previstos na Lei 12.651, de 25 de maio de 2012"", constante da parte final do inciso V, do § 3º do art. 68 da Lei 12.651/2012, com redação dada pelo artigo 1º do PLV 09/2019, oferecido à MPV 867/2018, para fins de sua supressão, objeto do destaque para votação em separado do Bloco PP/MDB/PTB - DTQ 10.",PLEN,1233,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,111,Encaminhou a Votação o Dep. Alceu Moreira (MDB-RS).,PLEN,219,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,112,Suprimido o texto. Sim: 21; não: 241; total: 262.,PLEN,1238,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,113,Votação da Redação Final.,PLEN,1231,NA,NA,2190237
+2190237,camara,2019-05-29T17:21:00Z,114,"Aprovada a Redação Final assinada pelo Dep. Sergio Souza (MDB-PR), Relator-Revisor da Comissão Mista.",PLEN,1235,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1757414,2190237
+2190237,camara,2019-05-29T17:21:00Z,115,"A matéria vai ao Senado Federal, incluindo o processado (MPV 867-A/2018) - (PLV 9/2019).",PLEN,1243,NA,NA,2190237
+2190237,camara,2019-06-05T00:00:00Z,117,"Ato n. 35, de 04/06/19, do Presidente da Mesa do Congresso Nacional, comunica o encerramento do prazo de vigência da Medida Provisória n. 867, de 2018, no dia 3 de junho do corrente ano (DOU de 05/06/19 - Seção 1 - pág. 3)",MESA,620,Perdeu a Eficácia,NA,2190237
+2190237,camara,2019-06-05T00:00:00Z,118,"Recebido o Of n. 215-CN, de 05/06/19, que comunica o término do prazo integral de vigência da Medida Provisória n. 867, de 2018, que expirou em 03/06/2019",MESA,1002,Perdeu a Eficácia,NA,2190237

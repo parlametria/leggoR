@@ -1,0 +1,143 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+345311,camara,2007-03-20T16:13:00Z,1,Apresentação do Projeto de Lei pelo Deputado Homero Pereira (PR-MT).,PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=444088,345311
+345311,camara,2007-03-20T17:18:00Z,2,Recebimento pela SEPRO -  - Sueli de Souza.,SEPRO,500,NA,NA,345311
+345311,camara,2007-03-20T17:18:00Z,3,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,345311
+345311,camara,2007-03-20T17:18:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,345311
+345311,camara,2007-03-21T09:05:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 195/2007.,SEPRO,180,NA,NA,345311
+345311,camara,2007-03-21T11:42:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,345311
+345311,camara,2007-03-27T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=446157,345311
+345311,camara,2007-03-28T09:46:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,345311
+345311,camara,2007-03-28T09:46:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,345311
+345311,camara,2007-03-28T10:38:00Z,10,"Às Comissões de Direitos Humanos e Minorias e Constituição e Justiça e de Cidadania (Mérito e Art. 54, RICD) - Art. 24, IIProposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 IIRegime de Tramitação: Ordinária",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=446157,345311
+345311,camara,2007-03-28T10:38:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 96/2007.,SECAP(SGM),180,NA,NA,345311
+345311,camara,2007-03-28T10:39:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,345311
+345311,camara,2007-03-28T14:36:00Z,13,Recebimento pela CCP.,CCP,500,NA,NA,345311
+345311,camara,2007-03-28T17:26:00Z,14,Encaminhado à(ao) CDHM através da guia de Remessa (GR/CCP) nº 481/2007.,CCP,180,NA,NA,345311
+345311,camara,2007-03-29T00:00:00Z,15,Recebimento pela CDHM.,CDHM,500,NA,NA,345311
+345311,camara,2007-03-29T00:00:00Z,16,Encaminhada à publicação. Publicação Inicial no DCD 30 03 07 PAG 13560 COL 02.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=528575,345311
+345311,camara,2007-04-11T00:00:00Z,17,"Designada Relatora, Dep. Iriny Lopes (PT-ES)",CDHM,320,NA,NA,345311
+345311,camara,2007-04-13T00:00:00Z,18,Prazo para Emendas ao Projeto  (5 sessões ordinárias a partir de 16/04/2007),CDHM,350,NA,NA,345311
+345311,camara,2007-04-24T00:00:00Z,19,Encerrado o prazo para emendas ao projeto. Não foram apresentadas emendas.,CDHM,600,NA,NA,345311
+345311,camara,2007-06-14T11:09:00Z,20,Apense-se a este o PL-1218/2007.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=468200,345311
+345311,camara,2007-06-19T16:56:00Z,21,Apensação do PL 1218/2007 a esta proposição.,CDHM,504,NA,NA,345311
+345311,camara,2007-08-27T19:02:00Z,22,"Apresentação do Parecer do Relator, PRL 1 CDHM, pela Dep. Iriny Lopes",CDHM,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=496664,345311
+345311,camara,2007-08-27T19:02:00Z,23,"Parecer da Relatora, Dep. Iriny Lopes (PT-ES), pela rejeição deste, e do PL 1218/2007, apensado.",CDHM,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=496664,345311
+345311,camara,2007-08-28T00:00:00Z,24,"Devolvida à Relatora, Dep. Iriny Lopes (PT-ES)",CDHM,170,NA,NA,345311
+345311,camara,2007-10-19T12:07:00Z,25,"Apresentação do Parecer do Relator, PRL 2 CDHM, pela Dep. Iriny Lopes",CDHM,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=496664,345311
+345311,camara,2007-10-19T12:07:00Z,26,"Pela rejeição do PL nº 490, de 2007, e do apenso, PL nº 1.218, de 2007.",CDHM,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=496664,345311
+345311,camara,2007-10-24T14:00:00Z,27,"Vista conjunta aos Deputados Janete Rocha Pietá, Lucenira Pimentel e Veloso.",CDHM,420,NA,NA,345311
+345311,camara,2007-10-25T00:00:00Z,28,"Apresentação do Requerimento nº 1911/2007, pelo Deputado Homero Pereira, que ""Requer a manifestação da Comissão de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural a respeito do Pl 490/2007"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=517170,345311
+345311,camara,2007-10-30T00:00:00Z,29,Prazo de Vista Encerrado,CDHM,600,NA,NA,345311
+345311,camara,2007-11-06T00:00:00Z,30,"Deferido o REQ 1911/07, conforme seguinte despacho: ""Defiro. Inclua-se no despacho inicial aposto ao PL nº 490/2007, a Comissão de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural, devendo manifestar-se antes da Comissão de Direitos Humanos e Minorias. NOVO DESPACHO: CAPADR, CDHM e CCJC (mérito e art. 54 do RICD). Proposição sujeita à apreciação conclusiva pelas comissões - Art. 24, II do RICD. Regime de tramitação: ordinária. Oficie-se e, após, publique-se.""DCD de 07/11/107 PÁG 59779 COL 02.",MESA,203,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=583240,345311
+345311,camara,2007-11-06T00:00:00Z,31,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=520509,345311
+345311,camara,2007-11-06T00:00:00Z,33,"NOVO DESPACHO: CAPADR, CDHM e CCJC (mérito e art. 54 do RICD). Proposição sujeita à apreciação conclusiva pelas comissões - Art. 24, II do RICD. Regime de tramitação: ordinária. Oficie-se e, após, publique-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=520509,345311
+345311,camara,2007-11-06T17:29:00Z,32,Despacho Chancelado,SGMGAB,180,NA,NA,345311
+345311,camara,2007-11-06T17:29:00Z,34,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,345311
+345311,camara,2007-11-08T00:00:00Z,37,"Memorando n.º 313/07 à CDHM, solicitando devolução, em razão de redistribuição.",CCP,1005,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=521274,345311
+345311,camara,2007-11-08T00:00:00Z,38,"Devolvida à Relatora, Dep. Iriny Lopes (PT-ES)",CDHM,170,NA,NA,345311
+345311,camara,2007-11-08T11:20:00Z,35,Apense-se a este o PL-2302/2007.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=520185,345311
+345311,camara,2007-11-08T11:20:00Z,36,Apense-se a este o PL-2311/2007.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=520290,345311
+345311,camara,2007-11-12T00:00:00Z,39,Devolução à CCP,CDHM,1010,NA,NA,345311
+345311,camara,2007-11-12T00:00:00Z,40,Devolução à CCP,CDHM,1010,NA,NA,345311
+345311,camara,2007-11-12T18:07:00Z,41,Encaminhado à(ao) CCP através da guia de Remessa (GR/CDHM) nº 16/2007.,CDHM,180,NA,NA,345311
+345311,camara,2007-11-16T09:57:00Z,42,Apensação do PL-2311/2007 a esta proposição.,CCP,504,NA,NA,345311
+345311,camara,2007-11-16T09:57:00Z,43,Apensação do PL-2302/2007 a esta proposição.,CCP,504,NA,NA,345311
+345311,camara,2007-11-16T09:59:00Z,44,"Recebimento pela CCP, com as proposições PL-1218/2007, PL-2302/2007, PL-2311/2007 apensadas.",CCP,500,NA,NA,345311
+345311,camara,2007-11-16T10:00:00Z,45,Encaminhado à(ao) CAPADR através da guia de Remessa (GR/CCP) nº 3327/2007.,CCP,180,NA,NA,345311
+345311,camara,2007-11-19T14:25:00Z,46,"Recebimento pela CAPADR, com as proposições PL-1218/2007, PL-2302/2007, PL-2311/2007 apensadas.",CAPADR,500,NA,NA,345311
+345311,camara,2007-11-28T00:00:00Z,47,"Designado Relator, Dep. Waldir Neves (PSDB-MS)",CAPADR,320,NA,NA,345311
+345311,camara,2007-11-29T00:00:00Z,48,Prazo para Emendas ao Projeto  (5 sessões ordinárias a partir de 30/11/2007),CAPADR,350,NA,NA,345311
+345311,camara,2007-12-12T00:00:00Z,49,Encerrado o prazo para emendas ao projeto. Não foram apresentadas emendas.,CAPADR,600,NA,NA,345311
+345311,camara,2008-03-27T15:10:00Z,50,"Apresentação do Parecer do Relator, PRL 1 CAPADR, pelo Dep. Waldir Neves",CAPADR,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=548173,345311
+345311,camara,2008-03-27T15:10:00Z,51,"Parecer do Relator, Dep. Waldir Neves (PSDB-MS), pela aprovação deste, do PL 1218/2007, do PL 2302/2007 e do PL 2311/2007, apensados, com substitutivo.",CAPADR,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=548173,345311
+345311,camara,2008-03-31T00:00:00Z,52,Prazo para Emendas ao Substitutivo  (5 sessões ordinárias a partir de 01/04/2008),CAPADR,350,NA,NA,345311
+345311,camara,2008-04-09T00:00:00Z,53,Encerrado o prazo para emendas ao substitutivo.  Foram apresentadas 7 emendas ao substitutivo.,CAPADR,600,NA,NA,345311
+345311,camara,2008-05-13T17:52:00Z,54,"Apresentação do Parecer às emendas apresentadas ao Substitutivo do Relator, PES 1 CAPADR, pelo Dep. Waldir Neves",CAPADR,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=562905,345311
+345311,camara,2008-05-13T17:52:00Z,55,"pela aprovação deste, do PL 1218/2007, do PL 2302/2007, e do PL 2311/2007, apensados, COM SUBSTITUTIVO, e pela rejeição da Emenda ao Substitutivo 1 ao SBT 1 CAPADR, da Emenda ao Substitutivo 2 ao SBT 1 CAPADR, da Emenda ao Substitutivo 3 ao SBT 1 CAPADR, da Emenda ao Substitutivo 4 ao SBT 1 CAPADR, da Emenda ao Substitutivo 5 ao SBT 1 CAPADR, da Emenda ao Substitutivo 6 ao SBT 1 CAPADR, e da Emenda ao Substitutivo 7 ao SBT 1 CAPADR.",CAPADR,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=562905,345311
+345311,camara,2008-05-28T00:00:00Z,57,Devolução de Vista (Dep. Beto Faro).,CAPADR,602,NA,NA,345311
+345311,camara,2008-05-28T10:00:00Z,56,Vista ao Deputado Beto Faro.,CAPADR,420,NA,NA,345311
+345311,camara,2008-06-04T10:00:00Z,58,Não Deliberado,CAPADR,1008,NA,NA,345311
+345311,camara,2008-06-10T00:00:00Z,59,"Apresentação do Voto em Separado, VTS 1 CAPADR, pelo Dep. Beto Faro",CAPADR,431,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=574063,345311
+345311,camara,2008-06-11T10:00:00Z,60,Não Deliberado,CAPADR,1008,NA,NA,345311
+345311,camara,2008-06-25T10:00:00Z,61,"Adiada a votação por falta de ""quorum"".",CAPADR,234,NA,NA,345311
+345311,camara,2008-07-02T10:00:00Z,62,"Aprovado o Parecer, apresentou voto em separado o Deputado Beto Faro.",CAPADR,240,NA,NA,345311
+345311,camara,2008-07-02T19:36:00Z,63,Encaminhado à(ao) CDHM através da guia de Remessa (GR/CAPADR) nº 106/2008.,CAPADR,180,NA,NA,345311
+345311,camara,2008-07-02T19:36:00Z,64,Encaminhamento de Parecer à CCP para publicação.,CAPADR,604,NA,NA,345311
+345311,camara,2008-07-03T09:36:00Z,65,Parecer recebido para publicação.,CCP,604,NA,NA,345311
+345311,camara,2008-07-03T10:10:00Z,66,"Recebimento pela CDHM, com as proposições PL-1218/2007, PL-2302/2007, PL-2311/2007 apensadas.",CDHM,500,NA,NA,345311
+345311,camara,2008-07-04T00:00:00Z,67,"Encaminhada à publicação. Parecer da Comissão de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural publicado no DCD de 05/07/08, PÁG 31445 COL 02, Letra A.",CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=619362,345311
+345311,camara,2008-08-04T00:00:00Z,68,"Designada Relatora, Dep. Iriny Lopes (PT-ES)",CDHM,320,NA,NA,345311
+345311,camara,2009-06-22T14:51:00Z,69,"Apresentação do Parecer do Relator, PRL 3 CDHM, pela Dep. Iriny Lopes",CDHM,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=666263,345311
+345311,camara,2009-06-22T14:51:00Z,70,"Parecer da Relatora, Dep. Iriny Lopes (PT-ES), pela rejeição deste, do PL 1218/2007, do PL 2302/2007, e do PL 2311/2007, apensados.",CDHM,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=666263,345311
+345311,camara,2009-06-23T16:59:00Z,71,"Apresentação do REQ 408/2009 CAPADR, pelo Dep. Homero Pereira, que ""solicito realização de Audiência Pública Conjunta com a Comissão de Direitos Humanos e Minoria por esta Comissão, para debater o PL 490/2007""",CAPADR,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=666607,345311
+345311,camara,2009-06-24T14:00:00Z,72,Retirado de pauta de Ofício.,CDHM,250,NA,NA,345311
+345311,camara,2009-07-08T10:00:00Z,73,"Aprovado requerimento do Sr. Homero Pereira que solicito realização de Audiência Pública Conjunta com a Comissão de Direitos Humanos e Minoria por esta Comissão, para debater o PL 490/2007",CAPADR,195,NA,NA,345311
+345311,camara,2009-07-08T14:00:00Z,74,Não Deliberado,CDHM,1008,NA,NA,345311
+345311,camara,2009-08-05T14:00:00Z,75,Aprovado o Parecer.,CDHM,240,NA,NA,345311
+345311,camara,2009-08-07T16:03:00Z,76,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CDHM) nº 42/2009.,CDHM,180,NA,NA,345311
+345311,camara,2009-08-07T16:03:00Z,77,Encaminhamento de Parecer à CCP para publicação.,CDHM,604,NA,NA,345311
+345311,camara,2009-08-07T16:16:00Z,78,"Recebimento pela CCJC, com as proposições PL-1218/2007, PL-2302/2007, PL-2311/2007 apensadas.",CCJC,500,Aguardando Parecer,NA,345311
+345311,camara,2009-08-10T10:24:00Z,79,Parecer recebido para publicação.,CCP,604,NA,NA,345311
+345311,camara,2009-08-13T00:00:00Z,80,À SGM o Ofício 664/09 - CDHM comunicando a divergência de pareceres com relação a este.,CCP,1005,NA,NA,345311
+345311,camara,2009-08-14T00:00:00Z,81,"Recebido o Ofício 664/09, da CDHM, comunicando que o PL 490/07 e seus apensados PL 1218/07, PL 2302/07 e PL 2311/07, receberam pareceres divergentes nas comissões CAPADR e CDHM. DCD 28 08 09 PAG 45269 COL 01.",MESA,500,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=732664,345311
+345311,camara,2009-08-27T00:00:00Z,82,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=684297,345311
+345311,camara,2009-08-27T00:00:00Z,84,"Transfira-se ao Plenário a competência para apreciar o PL 490/07 e seus apensados, pois configurou-se a hipótese do art. 24, inciso II, alínea “g”, do RICD. Oficie-se. Publique-se.",MESA,1023,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=684297,345311
+345311,camara,2009-08-27T11:35:00Z,83,Despacho Chancelado,SGMGAB,180,NA,NA,345311
+345311,camara,2009-08-27T11:35:00Z,85,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,345311
+345311,camara,2009-09-23T10:40:00Z,86,Apense-se a este o PL-5993/2009.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=694227,345311
+345311,camara,2009-09-25T09:24:00Z,87,Apensação do PL 5993/2009 a esta proposição.,CCJC,504,Aguardando Parecer,NA,345311
+345311,camara,2010-03-04T00:00:00Z,88,"Designado Relator, Dep. Onyx Lorenzoni (DEM-RS)",CCJC,320,Aguardando Parecer,NA,345311
+345311,camara,2011-01-31T00:00:00Z,89,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados. Publicação no DCD do dia 01/02/2011 - Suplemento ao nº 14.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=850547,345311
+345311,camara,2011-02-08T19:45:00Z,90,"Apresentação do REQ 228/2011, pelo Dep. Homero Pereira, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=838228,345311
+345311,camara,2011-02-16T15:19:00Z,91,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-228/2011.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=840251,345311
+345311,camara,2011-02-16T15:19:00Z,92,Reentrada na comissão por motivo de desarquivamento,SECAP(SGM),630,NA,NA,345311
+345311,camara,2011-02-16T15:19:00Z,93,Reentrada na comissão por motivo de desarquivamento,SECAP(SGM),630,NA,NA,345311
+345311,camara,2011-10-25T17:56:00Z,94,Apense-se a este(a) o(a) PL-2479/2011.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=930933,345311
+345311,camara,2011-10-31T10:23:00Z,95,Apensação do PL 2479/2011 a esta proposição.,CCJC,504,Aguardando Parecer,NA,345311
+345311,camara,2011-11-08T18:26:00Z,96,"Apresentação do Requerimento de Desapensação n. 3702/2011, pelo Deputado Alceu Moreira (PMDB-RS), que: ""Requer a desapensação do Projeto de Lei nº 2479, de 2011"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=936658,345311
+345311,camara,2011-11-30T00:00:00Z,97,"Indeferido o REQ 3702/11, conforme despacho do seguinte teor: ""Indefiro o pedido contido no Requerimento n. 3702/2011, eis que a apensação se deu na forma regimental. Publique-se. Oficie-se.""",MESA,203,NA,NA,345311
+345311,camara,2013-04-11T15:27:00Z,98,Devolvida sem Manifestação.,CCJC,507,Aguardando Parecer,NA,345311
+345311,camara,2013-05-14T00:00:00Z,99,"Designado Relator, Dep. Bonifácio de Andrada (PSDB-MG)",CCJC,320,Aguardando Parecer,NA,345311
+345311,camara,2013-06-19T00:00:00Z,100,"Apresentação do Requerimento n. 139/2013, pelo Deputado Bonifácio de Andrada (PSDB-MG), que: ""Requer envio de cópias do Projeto de Lei nº 490, de 2007, (e demais apensos), para análise do Grupo de Trabalho destinado a debater a questão das terras indígenas - GTTERRAS"". Em 19/06/2013, foi deferido o Requerimento e encaminhada cópia do Projeto de Lei nº 490, de 2007 (e demais apensados) ao Grupo de Trabalho Destinado a Debater a Questão das Terras Indígenas - GTTERRA, por meio do Ofício P - Nº 038/2013.",CCJC,194,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1101641,345311
+345311,camara,2013-12-03T10:28:00Z,101,Apense-se a este(a) o(a) PL-6818/2013.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1199799,345311
+345311,camara,2013-12-04T18:54:00Z,102,Apensação do PL 6818/2013 a esta proposição.,CCJC,504,Aguardando Parecer,NA,345311
+345311,camara,2015-01-31T00:00:00Z,103,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,345311
+345311,camara,2015-02-10T09:40:00Z,104,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-205/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298894,345311
+345311,camara,2015-02-10T09:40:00Z,105,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,345311
+345311,camara,2015-02-10T09:40:00Z,106,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,345311
+345311,camara,2015-04-14T19:01:00Z,107,"Apresentação do Requerimento de Desapensação n. 1421/2015, pelo Deputado Edio Lopes (PMDB-RR), que: ""Requer a desapensação do Projeto de Lei nº 1.003, de 2015, do Projeto de Lei nº 2.311, de 2007"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1320842,345311
+345311,camara,2015-04-22T00:00:00Z,108,"Indeferido o Requerimento n. 1.421/2015, conforme despacho do seguinte teor: ""Indefiro o Requerimento n. 1.421/2015, nos termos do art. 142 do Regimento Interno da Câmara dos Deputados, porque os Projetos de Lei de números 1.003/2015, 2.311/2007 e 490/2007 tratam de matéria correlata. Publique-se. Oficie-se.""",MESA,203,NA,NA,345311
+345311,camara,2015-06-22T00:00:00Z,109,À CCJC Memo nº 138/15 - COPER solicitando a desapensação e a devolução do PL 139/15.,CCP,1005,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1351628,345311
+345311,camara,2017-12-01T00:00:00Z,110,Devolvido sem manifestação pelo Relator não-membro.,CCJC,507,Aguardando Parecer,NA,345311
+345311,camara,2018-02-01T00:00:00Z,111,"Designado Relator, Dep. Jerônimo Goergen (PP-RS)",CCJC,320,Aguardando Parecer,NA,345311
+345311,camara,2018-04-10T18:15:00Z,113,"Apresentação do Parecer do Relator n. 1 CCJC, pelo Deputado Jerônimo Goergen (PP-RS).",CCJC,501,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1650047,345311
+345311,camara,2018-04-10T18:15:00Z,115,"Parecer do Relator, Dep. Jerônimo Goergen (PP-RS).",CCJC,322,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1650047,345311
+345311,camara,2018-05-08T19:19:00Z,116,"Apresentação do Parecer do Relator, PRL 2 CCJC, pelo Dep. Jerônimo Goergen",CCJC,501,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1657613,345311
+345311,camara,2018-05-08T19:19:00Z,117,"Parecer do Relator, Dep. Jerônimo Goergen (PP-RS).",CCJC,322,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1657613,345311
+345311,camara,2018-05-22T12:41:00Z,118,"Apresentação do Voto em Separado n. 1 CCJC, pelos Deputados Chico Alencar (PSOL-RJ) e Ivan Valente (PSOL-SP).",CCJC,431,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1661850,345311
+345311,camara,2018-05-22T14:48:00Z,119,"Apresentação do Parecer do Relator, PRL 3 CCJC, pelo Dep. Jerônimo Goergen",CCJC,501,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1661901,345311
+345311,camara,2018-05-22T14:48:00Z,120,"Parecer do Relator, Dep. Jerônimo Goergen (PP-RS), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação do PL 6818/2013, apensado, com substitutivo; e pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela rejeição do PL 490/2007, do PL 1218/2007, do PL 2302/2007, do PL 2311/2007, do PL 5993/2009, do PL 2479/2011, do PL 1606/2015, do PL 3896/2012, do PL 1003/2015, do PL 1216/2015 e do PL 1218/2015, apensados, e do Substitutivo da Comissão de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural.",CCJC,322,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1661901,345311
+345311,camara,2018-06-05T14:30:00Z,121,Não Deliberado,CCJC,1008,Aguardando Parecer,NA,345311
+345311,camara,2018-06-06T10:00:00Z,122,Não Deliberado,CCJC,1008,Aguardando Parecer,NA,345311
+345311,camara,2018-06-12T14:30:00Z,123,"Retirado de pauta, de ofício, por acordo.",CCJC,1005,Aguardando Parecer,NA,345311
+345311,camara,2018-06-13T10:00:00Z,124,Não Deliberado.,CCJC,1008,Aguardando Parecer,NA,345311
+345311,camara,2018-11-06T14:36:00Z,125,"Apresentação do Requerimento de Redistribuição n. 9224/2018, pelo Deputado Sarney Filho (PV-MA), que: ""Requer a revisão do despacho inicial aposto ao Projeto de Lei nº 490/2007, para que seja incluída a Comissão de Meio Ambiente e Desenvolvimento Sustentável - CMADS no rol de Comissões Permanentes que devem se manifestar sobre o mérito da proposição"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1690122,345311
+345311,camara,2018-11-07T10:00:00Z,126,Não Deliberado.,CCJC,1008,Aguardando Parecer,NA,345311
+345311,camara,2018-11-13T00:00:00Z,128,"Indeferido o Requerimento n. 9.224/2018, conforme despacho do seguinte teor: ""Indefiro o Requerimento 9.224/2018, porque a matéria versada no Projeto de Lei n. 490/2007 não se enquadra no campo temático da Comissão de Meio Ambiente e Desenvolvimento Sustentável, delimitado no inciso XIII do art. 32 do Regimento Interno da Câmara dos Deputados - RICD. Publique-se. Oficie-se.""",MESA,203,NA,NA,345311
+345311,camara,2018-11-13T10:00:00Z,127,Não Deliberado,CCJC,1008,Aguardando Parecer,NA,345311
+345311,camara,2018-11-20T14:30:00Z,129,Não Deliberado,CCJC,1008,Aguardando Parecer,NA,345311
+345311,camara,2018-11-21T10:00:00Z,130,Não Deliberado,CCJC,1008,Aguardando Parecer,NA,345311
+345311,camara,2018-11-27T14:30:00Z,131,Não Deliberado,CCJC,1008,Aguardando Parecer,NA,345311
+345311,camara,2018-11-28T10:00:00Z,132,Não Deliberado,CCJC,1008,Aguardando Parecer,NA,345311
+345311,camara,2018-12-04T14:30:00Z,133,Não Deliberado,CCJC,1008,Aguardando Parecer,NA,345311
+345311,camara,2018-12-05T10:00:00Z,134,Não Deliberado,CCJC,1008,Aguardando Parecer,NA,345311
+345311,camara,2019-01-31T00:00:00Z,135,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,345311
+345311,camara,2019-01-31T23:59:00Z,136,"(Fim de Legislatura) O Relator, Dep. Jerônimo Goergen, deixou de ser membro da Comissão",CCJC,1255,Aguardando Parecer,NA,345311
+345311,camara,2019-02-19T20:26:00Z,137,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-114/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711860,345311
+345311,camara,2019-02-19T20:26:00Z,138,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,345311
+345311,camara,2019-02-19T20:26:00Z,139,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,345311
+345311,camara,2019-02-21T11:46:00Z,140,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-332/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713037,345311
+345311,camara,2019-02-22T18:27:00Z,142,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-269/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713670,345311
+345311,camara,2019-02-22T18:30:00Z,141,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-269/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713670,345311
+345311,camara,2019-02-22T19:05:00Z,143,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-269/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1714081,345311
+345311,camara,2019-05-14T00:00:00Z,144,"Designado Relator, Dep. Arthur Oliveira Maia (DEM-BA)",CCJC,320,Aguardando Parecer,NA,345311

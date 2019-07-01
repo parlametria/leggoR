@@ -1,0 +1,4 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2205921,camara,2019-05-30T00:00:00Z,1,"Apresentação da Emenda na Comissão n. 207/2019 PEC00619, pelo Deputado Dagoberto Nogueira (PDT-MS).",PEC00619,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1758024,2205921
+2205921,camara,2019-05-30T00:00:00Z,3,Emenda declarada insubsistente por não ter obtido o quórum mínimo de assinaturas de apoiamento.,PEC00619,1000,NA,NA,2205921
+2205921,camara,2019-05-30T00:00:00Z,2,Relatório de Conferência de Assinaturas da EMC-207/2019 PEC00619 => PEC-6/2019,PEC00619,1042,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1758207,2205921

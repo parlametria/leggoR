@@ -1,0 +1,24 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2182535,camara,2018-08-08T00:00:00Z,5,Despacho a Confirmar.,MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1679563,2182535
+2182535,camara,2018-08-08T11:52:00Z,1,"Apresentação do Recurso contra apreciação conclusiva de comissão (Art. 58, § 1º c/c art. 132, § 2º, RICD) n. 322/2018, pela Deputada Margarida Salomão (PT-MG), que: ""Recurso contra apreciação conclusiva na comissão especial do Substitutivo ao PL 6621/16, que dispõe sobre Agências Reguladoras"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1679327,2182535
+2182535,camara,2018-08-08T11:52:00Z,2,Realizar o Encaminhamento para,SEPRO,910,NA,NA,2182535
+2182535,camara,2018-08-08T15:17:00Z,3,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 6190/2018.,SEPRO,180,NA,NA,2182535
+2182535,camara,2018-08-08T15:31:00Z,4,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2182535
+2182535,camara,2018-08-16T00:00:00Z,6,Relatório de Conferência de Assinaturas,MESA,1042,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1681463,2182535
+2182535,camara,2018-08-16T00:00:00Z,13,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 17/08/18 PÁG 27 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1703900,2182535
+2182535,camara,2018-08-16T13:04:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2182535
+2182535,camara,2018-08-16T13:04:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2182535
+2182535,camara,2018-08-16T13:05:00Z,9,Publique-se. Submeta-se ao Plenário. Proposição Sujeita à Apreciação do Plenário,MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1679563,2182535
+2182535,camara,2018-08-16T13:05:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Arquivada,NA,2182535
+2182535,camara,2018-08-16T13:14:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1580/2018.,SECAP(SGM),180,NA,NA,2182535
+2182535,camara,2018-08-16T16:02:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2182535
+2182535,camara,2018-11-20T14:00:00Z,14,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,NA,NA,2182535
+2182535,camara,2018-11-21T09:33:00Z,15,"Retirado de pauta, de ofício.",PLEN,1241,NA,NA,2182535
+2182535,camara,2018-11-27T14:00:00Z,16,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,NA,NA,2182535
+2182535,camara,2018-11-27T20:34:00Z,17,Matéria sobre a Mesa.,PLEN,1245,NA,NA,2182535
+2182535,camara,2018-11-27T20:34:00Z,18,"Votação do Requerimento do Dep. Paulo Pimenta (PT-RS), que solicita a retirada de pauta deste Recurso.",PLEN,1232,NA,NA,2182535
+2182535,camara,2018-11-27T20:34:00Z,19,Encaminharam a Votação: Dep. Henrique Fontana (PT-RS) e Dep. Danilo Forte (PSDB-CE).,PLEN,219,NA,NA,2182535
+2182535,camara,2018-11-27T20:34:00Z,20,Rejeitado o Requerimento. Sim: 61; não: 206; abstenção: 1; total: 268.,PLEN,1236,NA,NA,2182535
+2182535,camara,2018-11-27T20:34:00Z,21,Encaminharam a Votação: Dep. Luiz Carlos Hauly (PSDB-PR) e Dep. Henrique Fontana (PT-RS).,PLEN,219,NA,NA,2182535
+2182535,camara,2018-11-27T20:34:00Z,22,Rejeitado o Recurso. Sim: 119; não: 202; abstenção: 1; total: 322.,PLEN,1236,NA,NA,2182535
+2182535,camara,2018-11-27T20:34:00Z,23,A matéria segue a tramitação inicialmente prevista.,PLEN,1245,NA,NA,2182535

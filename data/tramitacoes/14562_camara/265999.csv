@@ -1,0 +1,39 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+265999,camara,2004-10-06T17:39:00Z,1,Apresentação da Proposta de Emenda à Constituição  pelo Dep. Zequinha Marinho,PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=243796,265999
+265999,camara,2004-10-06T20:36:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,265999
+265999,camara,2004-10-06T20:36:00Z,3,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SEPRO,1003,NA,NA,265999
+265999,camara,2004-10-06T20:36:00Z,4,Encaminhado  à CEDI (Legislação Citada),SEPRO,1004,NA,NA,265999
+265999,camara,2004-10-07T09:51:00Z,5,Encaminhado à SECAP(SGM).,SEPRO,180,NA,NA,265999
+265999,camara,2004-10-07T09:51:00Z,6,Encaminhado através do Protocolo nº 57,SEPRO,180,NA,NA,265999
+265999,camara,2004-10-07T15:04:00Z,7,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,265999
+265999,camara,2004-10-14T12:13:00Z,8,Comunicado ao Secretário-Geral da Mesa constando o número de signatários.,SECAP(SGM),1022,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=244682,265999
+265999,camara,2004-10-20T00:00:00Z,9,Apense-se a(o) PEC-215/2000.,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=245428,265999
+265999,camara,2004-10-20T15:37:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,265999
+265999,camara,2004-10-20T16:22:00Z,11,Encaminhado à CCP.,MESA,180,NA,NA,265999
+265999,camara,2004-10-20T16:22:00Z,12,Encaminhado através do Protocolo nº 327,SECAP(SGM),180,NA,NA,265999
+265999,camara,2004-10-20T16:23:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,265999
+265999,camara,2004-10-20T17:34:00Z,13,Recebimento pela CCP.,CCP,500,NA,NA,265999
+265999,camara,2004-10-22T10:30:00Z,14,Encaminhado à CCJC.,CCP,180,NA,NA,265999
+265999,camara,2004-10-22T11:03:00Z,15,Recebimento pela CCJC.,CCJC,500,NA,NA,265999
+265999,camara,2004-10-25T00:00:00Z,16,Encaminhada à publicação. Publicação Inicial no DCD de 26/10/04 PÁG 45937 COL 02.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=267478,265999
+265999,camara,2004-12-14T00:00:00Z,18,"Designado Relator, Dep. Luiz Couto (PT-PB)",CCJC,320,NA,NA,265999
+265999,camara,2004-12-14T17:30:00Z,17,Apensação desta proposição à PEC 215/2000.,CCJC,106,NA,NA,265999
+265999,camara,2007-01-31T00:00:00Z,19,Arquivada nos termos do Artigo 105 do Regimento Interno DCD 01 02 07 PAG 32 COL 01 SUPLEMENTO 01 AO Nº 21.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=471520,265999
+265999,camara,2007-02-07T18:14:00Z,20,"Apresentação do REQUERIMENTO N.º 108, DE 2007, pelo Deputado(a) Carlos Souza, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=434291,265999
+265999,camara,2007-02-08T17:58:00Z,21,"Apresentação do REQUERIMENTO N.º 155, DE 2007, pelo Deputado(a) Zequinha Marinho, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=434483,265999
+265999,camara,2007-02-12T14:53:00Z,22,"Apresentação do REQUERIMENTO N.º 169, DE 2007, pelo Deputado(a) Zonta, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=434638,265999
+265999,camara,2007-03-22T00:00:00Z,23,"Desarquivada nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-108/2007.DCD 23 03 07 PAG 11938 COL 01.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=443145,265999
+265999,camara,2007-03-22T16:50:00Z,24,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,265999
+265999,camara,2007-03-28T00:00:00Z,25,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-155/2007.DCD de 29/03/07 PÁG 13194 COL 01.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=440187,265999
+265999,camara,2007-03-28T00:00:00Z,26,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-169/2007.DCD de 29/03/07 PÁG 13208 COL 01.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=441500,265999
+265999,camara,2011-01-31T00:00:00Z,27,Arquivada nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados. Publicação no DCD do dia 01/02/2011 - Suplemento ao nº 14.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=850547,265999
+265999,camara,2011-02-09T14:07:00Z,28,"Apresentação do REQ 238/2011, pelo Dep. Zequinha Marinho, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=838408,265999
+265999,camara,2011-02-16T17:08:00Z,29,"Desarquivada nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-238/2011.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=840322,265999
+265999,camara,2011-02-16T17:08:00Z,30,Reentrada na comissão por motivo de desarquivamento,SECAP(SGM),630,NA,NA,265999
+265999,camara,2012-03-27T18:43:00Z,31,"Recebimento pela CCP, apensada à PEC-215/2000",CCP,500,NA,NA,265999
+265999,camara,2013-12-11T17:16:00Z,32,"Recebimento pela PEC21500, apensada à PEC-215/2000",PEC21500,500,NA,NA,265999
+265999,camara,2015-01-31T00:00:00Z,33,Arquivada nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,265999
+265999,camara,2015-02-06T10:54:00Z,34,"Desarquivada nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-153/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298367,265999
+265999,camara,2015-02-06T10:54:00Z,35,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,265999
+265999,camara,2015-03-17T19:10:00Z,36,"Recebimento pela PEC21500, apensada à PEC-215/2000",PEC21500,500,NA,NA,265999
+265999,camara,2015-10-28T18:30:00Z,37,"Recebimento pela CCP, apensada à PEC-215/2000",CCP,500,NA,NA,265999

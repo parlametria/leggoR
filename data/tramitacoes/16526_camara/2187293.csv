@@ -1,0 +1,12 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2187293,camara,2018-11-26T18:08:00Z,1,"Apresentação do Requerimento de Apensação n. 9289/2018, pelo Deputado Darcísio Perondi (MDB-RS), que: ""matéria correlata / identidade de objetos, art. 142, caput, RICD- PL nº 7552 de 2017)"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1695007,2187293
+2187293,camara,2018-11-26T18:08:00Z,2,Realizar o Encaminhamento para NAJUR(SGM),SEPRO,910,NA,NA,2187293
+2187293,camara,2018-11-26T18:56:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 6464/2018.,SEPRO,180,NA,NA,2187293
+2187293,camara,2018-11-27T00:00:00Z,5,Realizar o Encaminhamento para SECAP(SGM),NAJUR(SGM),910,NA,NA,2187293
+2187293,camara,2018-11-27T13:06:00Z,4,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2187293
+2187293,camara,2018-11-27T13:17:00Z,6,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/NAJUR(SGM)) nº 1303/2018.,NAJUR(SGM),180,NA,NA,2187293
+2187293,camara,2018-11-27T13:25:00Z,7,Recebimento pela SECAP(SGM) -  - Paula Regina dos Santos.,SECAP(SGM),500,NA,NA,2187293
+2187293,camara,2018-11-29T14:04:00Z,8,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SECAP(SGM)) nº 1658/2018.,SECAP(SGM),180,NA,NA,2187293
+2187293,camara,2018-11-29T16:50:00Z,9,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2187293
+2187293,camara,2019-06-26T00:00:00Z,10,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,2187293
+2187293,camara,2019-06-26T21:55:00Z,11,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 129/2019.,NAJUR(SGM),180,NA,NA,2187293

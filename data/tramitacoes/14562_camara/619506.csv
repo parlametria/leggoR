@@ -1,0 +1,11 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+619506,camara,2014-07-02T00:00:00Z,4,Despacho a Confirmar.,MESA,110,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1263768,619506
+619506,camara,2014-07-02T15:45:00Z,1,"Apresentação do Requerimento de Prorrogação de prazo de Comissão Temporária n. 10493/2014, pela Comissão Especial destinada a apreciar e proferir parecer à Proposta de Emenda à Constituição nº 215-A, de 2000, do Sr. Almir Sá e outros, que ""acrescenta o inciso XVIII ao art. 49; modifica o § 4º e acrescenta o § 8º ambos no art. 231, da Constituição Federal"" (inclui dentre as competências exclusivas do Congresso Nacional a aprovação de demarcação das terras tradicionalmente ocupadas pelos índios e a ratificação das demarcações já homologadas; estabelecendo que os critérios e procedimentos de demarcação serão regulamentados por lei), e apensadas, que: ""Solicita prorrogação do prazo da Comissão Especial"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1263699,619506
+619506,camara,2014-07-02T15:58:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,619506
+619506,camara,2014-07-02T16:35:00Z,3,Encaminhado à(ao) SERCO(SGM) através da guia de Remessa (GR/SEPRO) nº 5807/2014.,SEPRO,180,NA,NA,619506
+619506,camara,2014-07-03T00:00:00Z,10,Publicação inicial no DCD do dia 04/07/2014,PLEN,605,NA,NA,619506
+619506,camara,2014-07-03T16:22:00Z,7,Notificação à Sinopse de Despacho Chancelado,SERCO(SGM),1005,Aguardando Recebimento,NA,619506
+619506,camara,2014-07-03T16:22:00Z,8,"Defiro, ""ad referendum"" do Plenário. Publique-se.",MESA,110,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1263768,619506
+619506,camara,2014-07-03T16:22:00Z,5,Despacho Chancelado,SGMGAB,180,Aguardando Encaminhamento,NA,619506
+619506,camara,2014-07-03T16:22:00Z,6,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,619506
+619506,camara,2014-07-03T16:22:00Z,9,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,619506

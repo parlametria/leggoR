@@ -1,0 +1,4 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2207774,camara,2019-06-12T16:52:00Z,1,"Apresentação do Requerimento n. 1734/2019, pelo Deputado Roberto de Lucena (PODE/SP), que ""Requer a inclusão na Ordem do Dia do Plenário da Câmara dos Deputados, do Projeto de Lei nº 7005, de 2013, que trata da subscrição eletrônica para apresentação de projeto de lei de iniciativa popular"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1763935,2207774
+2207774,camara,2019-06-12T16:52:00Z,2,Realizar o Encaminhamento para COAPP(SGM),SEPRO,910,NA,NA,2207774
+2207774,camara,2019-06-12T18:35:00Z,3,Encaminhado à(ao) COAPP(SGM) através da guia de Remessa (GR/SEPRO) nº 801/2019.,SEPRO,180,NA,NA,2207774

@@ -1,0 +1,15 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2192038,camara,2019-02-13T18:28:00Z,1,"Apresentação do Requerimento de Desarquivamento de Proposições n. 429/2019, pelo Deputado Lucio Mosquini (MDB-RO), que: ""Requer o desarquivamento das proposições que menciona"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1710585,2192038
+2192038,camara,2019-02-13T18:28:00Z,2,Realizar o Encaminhamento para NAJUR(SGM),SEPRO,910,NA,NA,2192038
+2192038,camara,2019-02-14T13:48:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 69/2019.,SEPRO,180,NA,NA,2192038
+2192038,camara,2019-02-14T15:56:00Z,4,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,Aguardando Análise,NA,2192038
+2192038,camara,2019-03-12T00:00:00Z,5,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1717680,2192038
+2192038,camara,2019-03-12T00:00:00Z,11,Realizar o Encaminhamento para CCP,MESA,910,NA,NA,2192038
+2192038,camara,2019-03-12T00:00:00Z,12,Publicação inicial no DCD do dia 13/03/2019,PLEN,605,NA,NA,2192038
+2192038,camara,2019-03-12T20:08:00Z,6,Despacho Chancelado,SGMGAB,180,NA,NA,2192038
+2192038,camara,2019-03-12T20:08:00Z,8,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2192038
+2192038,camara,2019-03-12T20:08:00Z,7,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2192038
+2192038,camara,2019-03-12T20:09:00Z,9,"Nos termos do parágrafo único do art. 105 do RICD, DEFIRO o pedido de desarquivamento das seguintes proposições: PL 2152/2015, PL 2865/2015, PL 3530/2015, PL 5843/2016, PL 6016/2016, PL 6794/2017, PL 6964/2017, PL 7293/2017, PL 8346/2017, PL 8377/2017, PL 9221/2017 e PL 9514/2018, . NÃO CONHEÇO DO REQUERIMENTO o pedido de desarquivamento das seguintes proposições: PL 1603/2015, PL 1890/2015, PL 2405/2015, PL 2537/2015, PL 3685/2015, PL 5099/2016, PL 5335/2016, PL 6226/2016, PL 8157/2017 e PLP 400/2017, porquanto a(s) proposição(ões) não foi(ram) arquivada(s). DECLARO PREJUDICADO o pedido de desarquivamento das seguintes proposições: PL 1292/2015, PL 6453/2016, PL 9177/2017 e PL 10275/2018, haja vista a(s) proposição(ões) já se encontrar(em) desarquivada(s).Publique-se.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1717680,2192038
+2192038,camara,2019-03-12T20:10:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2192038
+2192038,camara,2019-03-12T20:48:00Z,13,Encaminhado à(ao) CCP através da guia de Remessa (GR/MESA) nº 102/2019.,MESA,180,NA,NA,2192038
+2192038,camara,2019-03-13T14:46:00Z,14,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2192038

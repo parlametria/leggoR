@@ -1,0 +1,15 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2196513,camara,2019-04-02T00:00:00Z,1,"Apresentação do Projeto de Lei n. 1977/2019, pelo Deputado Eduardo Bismarck (PDT), que:""Altera os incisos V do art. 13 da Lei nº 8.666, de 21 de junho de 1993, para equiparar serviços de assessoria e consultoria jurídica às assessorias e consultorias financeiras e tributárias. "".",SEPRO,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1727398,2196513
+2196513,camara,2019-04-02T19:44:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2196513
+2196513,camara,2019-04-02T19:44:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2196513
+2196513,camara,2019-04-03T11:54:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 379/2019.,SEPRO,180,NA,NA,2196513
+2196513,camara,2019-04-03T12:07:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2196513
+2196513,camara,2019-04-30T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1739551,2196513
+2196513,camara,2019-05-06T10:09:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2196513
+2196513,camara,2019-05-06T10:11:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2196513
+2196513,camara,2019-05-06T10:11:00Z,9,"Apense-se à(ao) PL-3146/2008. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Urgência (Art. 154, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1739551,2196513
+2196513,camara,2019-05-06T10:12:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2196513
+2196513,camara,2019-05-06T11:46:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 133/2019.,SECAP(SGM),180,NA,NA,2196513
+2196513,camara,2019-05-06T15:02:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2196513
+2196513,camara,2019-05-06T15:07:00Z,13,Apensação desta proposição ao PL 3146/2008.,CCP,106,NA,NA,2196513
+2196513,camara,2019-05-07T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 08/05/2019.,CCP,604,NA,NA,2196513

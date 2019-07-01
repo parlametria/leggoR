@@ -1,0 +1,15 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+1048913,camara,2015-03-18T11:04:00Z,1,"Apresentação do Requerimento de Redistribuição n. 1009/2015, pelo Deputado Nelson Marchezan Junior (PSDB-RS), que: ""Requer que o Projeto de Lei nº 3.020, de 2011 seja encaminhado para a Comissão seguinte ou Plenário por falta do cumprimento do prazo regimental de apresentação do parecer do Relator designado"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1310401,1048913
+1048913,camara,2015-03-18T13:48:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,1048913
+1048913,camara,2015-03-18T16:30:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 358/2015.,SEPRO,180,NA,NA,1048913
+1048913,camara,2015-03-18T16:41:00Z,4,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,1048913
+1048913,camara,2015-03-24T00:00:00Z,5,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,1048913
+1048913,camara,2015-03-24T00:00:00Z,8,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1313107,1048913
+1048913,camara,2015-03-24T00:00:00Z,14,Publicação inicial no DCD do dia 25/03/2015,PLEN,605,NA,NA,1048913
+1048913,camara,2015-03-24T10:40:00Z,6,Encaminhado à(ao) SGM através da guia de Remessa (GR/NAJUR(SGM)) nº 65/2015.,NAJUR(SGM),180,NA,NA,1048913
+1048913,camara,2015-03-24T10:40:00Z,7,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 66/2015.,NAJUR(SGM),180,NA,NA,1048913
+1048913,camara,2015-03-24T17:01:00Z,9,Despacho Chancelado,SGMGAB,180,Aguardando Encaminhamento,NA,1048913
+1048913,camara,2015-03-24T17:01:00Z,11,Notificação à Sinopse de Despacho Chancelado,SGMGAB,1005,Aguardando Encaminhamento,NA,1048913
+1048913,camara,2015-03-24T17:01:00Z,12,"Concedo o prazo adicional de dez sessões à Comissão de Finanças e Tributação - CFT para votar o parecer relativo ao Projeto de Lei n. 3.020/2011, após o quê deverá ser remetido à Comissão de Constituição e Justiça e de Cidadania, na forma do art. 52, § 6º, do Regimento Interno da Câmara dos Deputados. Publique-se. Oficie-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1313107,1048913
+1048913,camara,2015-03-24T17:01:00Z,10,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,1048913
+1048913,camara,2015-03-24T17:01:00Z,13,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,1048913

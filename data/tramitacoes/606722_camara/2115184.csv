@@ -1,0 +1,15 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2115184,camara,2016-10-24T00:00:00Z,2,Realizar o Encaminhamento para NAJUR(SGM),SEPRO,910,NA,NA,2115184
+2115184,camara,2016-10-24T17:55:00Z,1,"Apresentação do Requerimento de Retirada de assinatura em proposição que não seja de iniciativa coletiva n. 5378/2016, pelo Deputado Flavinho (PSB-SP), que: ""Nos termos regimentais, requeiro a Vossa Excelência a retirada de minha assinatura como coautor do Projeto de Lei 1859/2015, que acrescenta Parágrafo único ao artigo 3º da Lei 9.394/96 (Lei de Diretrizes e Bases da Educação)"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1501305,2115184
+2115184,camara,2016-10-24T18:26:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 3492/2016.,SEPRO,180,NA,NA,2115184
+2115184,camara,2016-10-25T00:00:00Z,5,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1501626,2115184
+2115184,camara,2016-10-25T00:00:00Z,11,Publicação inicial no DCD do dia 26/10/2016,PLEN,605,NA,NA,2115184
+2115184,camara,2016-10-25T00:00:00Z,12,Realizar o Encaminhamento para CCP,MESA,910,NA,NA,2115184
+2115184,camara,2016-10-25T09:25:00Z,4,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2115184
+2115184,camara,2016-10-25T14:38:00Z,6,Despacho Chancelado,SGMGAB,180,NA,NA,2115184
+2115184,camara,2016-10-25T14:38:00Z,8,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2115184
+2115184,camara,2016-10-25T14:38:00Z,9,"Defiro a retirada de assinatura do Projeto de Lei n. 1.859/2015, nos termos do art. 102, § 4º, do Regimento Interno da Câmara dos Deputados. Publique-se. Oficie-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1501626,2115184
+2115184,camara,2016-10-25T14:38:00Z,7,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2115184
+2115184,camara,2016-10-25T14:38:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2115184
+2115184,camara,2016-10-25T14:49:00Z,13,Encaminhado à(ao) CCP através da guia de Remessa (GR/MESA) nº 200/2016.,MESA,180,NA,NA,2115184
+2115184,camara,2016-10-25T16:33:00Z,14,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2115184

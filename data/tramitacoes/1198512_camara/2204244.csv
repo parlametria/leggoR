@@ -1,0 +1,5 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2204244,camara,2019-05-22T09:09:00Z,1,"Apresentação do Requerimento n. 10/2019, pelo Deputado Bacelar (PODE-BA), que: ""Requer a realização de Audiência Pública da Comissão Especial referente à PEC nº 15 de 2015- Fundeb Permanente"".",PEC01515,100,Aguardando Providências Internas,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1750765,2204244
+2204244,camara,2019-05-28T14:30:00Z,2,Aprovado,PEC01515,241,Aguardando Providências Internas,NA,2204244
+2204244,camara,2019-06-04T00:00:00Z,3,"Audiência Pública realizada com o senhor PAULO CÉSAR RIBEIRO LIMA - Consultor da Câmara dos Deputados, Engenheiro Especialista em Minas e Energia, PhD em Engenharia na Área do Petróleo.",PEC01515,1005,Aguardando Providências Internas,NA,2204244
+2204244,camara,2019-06-18T00:00:00Z,4,"Audiência Pública realizada com a presença do Sr. Thiago Alves, Professor da Universidade de Goiás e Pesquisador responsável pelo Simulador de Custo-Aluno Qualidade - SIMCAQ.",PEC01515,1005,Aguardando Providências Internas,NA,2204244

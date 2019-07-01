@@ -1,0 +1,23 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2150268,camara,2017-09-04T18:45:00Z,1,"Apresentação do Projeto de Lei n. 8463/2017, pelo Deputado Jhonatan de Jesus (PRB-RR), que: ""Acrescenta inciso VI ao art. 27 da Lei nº 8.666, de 21 de junho de 1993, para adicionar o requisito de habilitação que especifica, e dá outras providências"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1594424,2150268
+2150268,camara,2017-09-04T18:45:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2150268
+2150268,camara,2017-09-04T18:46:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2150268
+2150268,camara,2017-09-04T22:13:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 4792/2017.,SEPRO,180,NA,NA,2150268
+2150268,camara,2017-09-05T11:19:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2150268
+2150268,camara,2017-09-14T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1598234,2150268
+2150268,camara,2017-09-15T17:29:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2150268
+2150268,camara,2017-09-15T17:29:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2150268
+2150268,camara,2017-09-15T17:29:00Z,9,"Apense-se à(ao) PL-1292/1995. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Prioridade (Art. 151, II, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1598234,2150268
+2150268,camara,2017-09-15T17:30:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2150268
+2150268,camara,2017-09-15T17:33:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1210/2017.,SECAP(SGM),180,NA,NA,2150268
+2150268,camara,2017-09-18T09:46:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2150268
+2150268,camara,2017-09-20T00:00:00Z,15,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 21/09/2017.,CCP,604,NA,NA,2150268
+2150268,camara,2017-09-20T10:43:00Z,13,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 11501/2017.,CCP,180,NA,NA,2150268
+2150268,camara,2017-09-20T16:59:00Z,14,Recebimento pela CCJC.,CCJC,500,NA,NA,2150268
+2150268,camara,2017-09-21T00:00:00Z,17,"Designado Relator, Dep. Evandro Gussi (PV-SP)",CCJC,320,NA,NA,2150268
+2150268,camara,2017-09-21T10:25:00Z,16,Apensação desta proposição ao PL 1292/1995.,CCJC,106,NA,NA,2150268
+2150268,camara,2018-03-23T10:29:00Z,18,"Recebimento pela CCP, apensado ao PL-1292/1995",CCP,500,NA,NA,2150268
+2150268,camara,2018-03-23T10:43:00Z,19,"Recebimento pela PL129295, apensado ao PL-1292/1995",PL129295,500,NA,NA,2150268
+2150268,camara,2018-12-05T18:01:00Z,20,"Recebimento pela CCP, apensado ao PL-1292/1995",CCP,500,NA,NA,2150268
+2150268,camara,2019-04-10T10:44:00Z,21,Apense-se a este(a) o(a) PL-1784/2019.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1729882,2150268
+2150268,camara,2019-04-11T14:32:00Z,22,Apensação do PL 1784/2019 a esta proposição.,CCP,504,NA,NA,2150268

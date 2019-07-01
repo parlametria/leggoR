@@ -1,0 +1,5 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2192356,camara,2019-02-19T16:00:00Z,1,"Apresentação da Mensagem n. 52/2019, pelo Poder Executivo, que: ""Submete à  deliberação do Congresso Nacional o texto do projeto de lei que 'Altera a Lei nº 4.737, de 15 de julho de 1965- Código Eleitoral, para criminalizar o uso de caixa dois em eleições'"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712128,2192356
+2192356,camara,2019-02-19T16:00:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2192356
+2192356,camara,2019-02-19T16:39:00Z,3,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 98/2019.,SEPRO,180,NA,NA,2192356
+2192356,camara,2019-02-19T16:43:00Z,4,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2192356

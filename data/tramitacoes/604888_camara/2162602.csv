@@ -1,0 +1,20 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2162602,camara,2017-11-21T00:00:00Z,1,"Recebido o Ofício nº  1242/18, do Senado Federal,  que submete à revisão da Câmara dos Deputados, nos termos do art. 65 da Constituição Federal, o Projeto de Lei do Senado n° 267, de 2016, de autoria do Senador Reguffe, constante dos autógrafos em anexo, que ""Altera a Lei n° 9.709, de 18 de novembro de 1998, para possibilitar a assinatura eletrônica de projetos de lei de iniciativa popular pelos cidadãos brasileiros"".",MESA,500,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1624141,2162602
+2162602,camara,2017-11-21T18:51:00Z,2,"Apresentação do Projeto de Lei n. 9115/2017, pelo Senado Federal, que: ""Altera a Lei nº 9.709, de 18 de novembro de 1998, para possibilitar a assinatura eletrônica de projetos de lei de iniciativa popular pelos cidadãos brasileiros"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1624037,2162602
+2162602,camara,2017-11-21T18:51:00Z,4,Realizar o Encaminhamento para,SEPRO,910,NA,NA,2162602
+2162602,camara,2017-11-21T18:54:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2162602
+2162602,camara,2017-11-22T00:05:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 5204/2017.,SEPRO,180,NA,NA,2162602
+2162602,camara,2017-11-22T09:48:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2162602
+2162602,camara,2017-11-28T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1626071,2162602
+2162602,camara,2017-11-29T12:56:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,2162602
+2162602,camara,2017-11-29T12:56:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2162602
+2162602,camara,2017-11-29T12:56:00Z,10,"Apense-se à(ao) PL-7005/2013. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Prioridade (Art. 151, II, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1626071,2162602
+2162602,camara,2017-11-29T12:56:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2162602
+2162602,camara,2017-11-29T13:23:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1305/2017.,SECAP(SGM),180,NA,NA,2162602
+2162602,camara,2017-11-29T16:11:00Z,13,Recebimento pela CCP.,CCP,500,NA,NA,2162602
+2162602,camara,2017-11-30T00:00:00Z,16,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 01/12/17 PÁG 190 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1637724,2162602
+2162602,camara,2017-11-30T15:15:00Z,14,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 12424/2017.,CCP,180,NA,NA,2162602
+2162602,camara,2017-11-30T17:30:00Z,15,Recebimento pela CCJC.,CCJC,500,NA,NA,2162602
+2162602,camara,2017-12-06T00:00:00Z,18,"Devolvido ao Relator, Dep. Luiz Couto (PT-PB).",CCJC,170,NA,NA,2162602
+2162602,camara,2017-12-06T13:33:00Z,17,Apensação desta proposição ao PL 7005/2013.,CCJC,106,NA,NA,2162602
+2162602,camara,2018-04-09T11:29:00Z,19,"Recebimento pela CCP, apensado ao PL-7005/2013",CCP,500,NA,NA,2162602

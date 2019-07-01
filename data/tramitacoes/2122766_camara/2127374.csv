@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2127374,camara,2017-03-28T17:44:00Z,1,"Apresentação do Projeto de Lei n. 7228/2017, pelos Deputados Lúcio Vale (PR-PA) e outros, que: ""Regulamenta o art. 37, XXI, da Constituição Federal, para instituir normas gerais voltadas à realização de licitações e à celebração de contratos no âmbito da União, dos Estados, do Distrito Federal e dos Municípios, e dá outras providências"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1538603,2127374
+2127374,camara,2017-03-28T17:44:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2127374
+2127374,camara,2017-03-28T17:46:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2127374
+2127374,camara,2017-03-28T20:30:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 4105/2017.,SEPRO,180,NA,NA,2127374
+2127374,camara,2017-03-29T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1539818,2127374
+2127374,camara,2017-03-29T09:07:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2127374
+2127374,camara,2017-03-30T14:49:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2127374
+2127374,camara,2017-03-30T14:49:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2127374
+2127374,camara,2017-03-30T14:49:00Z,9,"Apense-se à(ao) PL-6814/2017. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Prioridade (Art. 151, II, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1539818,2127374
+2127374,camara,2017-03-30T14:49:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2127374
+2127374,camara,2017-03-30T15:47:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 945/2017.,SECAP(SGM),180,NA,NA,2127374
+2127374,camara,2017-03-30T16:22:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2127374
+2127374,camara,2017-04-03T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 04/04/17 PÁG 81.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1564037,2127374
+2127374,camara,2017-04-03T16:36:00Z,13,Apensação desta proposição ao PL-6814/2017.,CCP,106,NA,NA,2127374
+2127374,camara,2018-02-27T00:00:00Z,15,"Recebimento pela PL681417, apensado ao PL-6814/2017",PL129295,500,NA,NA,2127374
+2127374,camara,2018-03-23T10:29:00Z,16,"Recebimento pela CCP, apensado ao PL-6814/2017",CCP,500,NA,NA,2127374
+2127374,camara,2018-03-23T10:43:00Z,17,"Recebimento pela PL129295, apensado ao PL-6814/2017",PL129295,500,NA,NA,2127374
+2127374,camara,2018-04-04T16:31:00Z,18,"Apresentação do Requerimento de Desapensação n. 8373/2018, pelo Deputado João Arruda (PMDB-PR), que: ""Requer a desapensação dos Projetos de Lei n° 6.814 e 7.228, de 2017, do Projeto de Lei n° 1.292, de 1995"".",PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1648852,2127374
+2127374,camara,2018-05-14T00:00:00Z,19,"Indeferido o Requerimento n. 8.373/2018, conforme despacho do seguinte teor: ""Indefiro, nos termos do art. 142 do Regimento Interno da Câmara dos Deputados, o pedido de desapensação contido no Requerimento n. 8.373/2018, porquanto os Projetos de Lei n. 6.814/2017, n. 7.228/2017 e n. 1.292/1995 tratam de matérias correlatas. Publique-se. Oficie-se"".",MESA,203,NA,NA,2127374
+2127374,camara,2018-12-05T18:01:00Z,20,"Recebimento pela CCP, apensado ao PL-6814/2017",CCP,500,NA,NA,2127374

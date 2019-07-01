@@ -1,0 +1,4 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2202974,camara,2019-05-13T17:58:00Z,1,"Apresentação do Requerimento de Audiência Pública n. 7/2019, pela Deputada Daniela do Waguinho (MDB-RJ), que: ""Requer a realização de Audiência Pública da Comissão Especial, para debater a PEC nº 15 de 2015, com a presença do Ministro da Educação"".",PEC01515,100,Aguardando Providências Internas,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1747014,2202974
+2202974,camara,2019-05-14T14:30:00Z,2,Aprovado.,PEC01515,241,Aguardando Providências Internas,NA,2202974
+2202974,camara,2019-06-25T00:00:00Z,3,"Audiência Pública realizada com a presença do Sr. Abraham Weintraub, Ministro da Educação.",PEC01515,1005,Aguardando Providências Internas,NA,2202974

@@ -1,0 +1,20 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+491587,camara,2011-02-09T00:00:00Z,6,Publicação inicial no DCD do dia 10/02/2011,SEPUB(SGM),604,NA,NA,491587
+491587,camara,2011-02-09T14:52:00Z,1,"Apresentação do Requerimento de Desarquivamento de Proposições n. 245/2011, pelo Deputado Paulo Pimenta (PT-RS), que: ""Requer o desarquivamento de proposições"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=838487,491587
+491587,camara,2011-02-09T18:27:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,491587
+491587,camara,2011-02-09T19:39:00Z,3,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/SEPRO) nº 65/2011.,SEPRO,180,NA,NA,491587
+491587,camara,2011-02-09T19:39:00Z,4,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 66/2011.,SEPRO,180,NA,NA,491587
+491587,camara,2011-02-09T19:39:00Z,5,Encaminhado à(ao) SECOD(SGM) através da guia de Remessa (GR/SEPRO) nº 67/2011.,SEPRO,180,NA,NA,491587
+491587,camara,2011-02-15T00:00:00Z,8,Despacho a Confirmar.,MESA,110,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=840352,491587
+491587,camara,2011-02-15T16:07:00Z,7,Recebimento pela NAJUR(SGM).,NAJUR(SGM),500,NA,NA,491587
+491587,camara,2011-02-16T00:00:00Z,17,Publicação do despacho no DCD do dia 17/02/2011,SEPUB(SGM),605,NA,NA,491587
+491587,camara,2011-02-16T00:00:00Z,18,Publicação do despacho no DCD do dia 17/02/11 PÁG 7144 COL 02.,SEPUB(SGM),605,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=937443,491587
+491587,camara,2011-02-16T00:00:00Z,13,Realizar o Encaminhamento para CCP,SECAP(SGM),910,NA,NA,491587
+491587,camara,2011-02-16T00:00:00Z,14,"Nos termos do parágrafo único do art. 105 do RICD, DEFIRO o pedido de desarquivamento das seguintes proposições: PL 2312/2000, PL 2388/2000, PL 2490/2000, PL 3165/2000, PL 3437/2000, PL 3570/2000, PL 3671/2000, PL 3760/2000, PL 3761/2000, PL 4044/2001, PL 4225/2001, PL 4630/2001, PL 4657/2001, PL 4727/2001, PL 4948/2001, PL 5652/2001, PL 5992/2001, PL 6215/2002, PL 6611/2002, PL 6889/2002, PL 6902/2002, PL 7114/2002, PL 7373/2002, PL 7465/2002, PL 485/2003, PL 697/2003, PL 825/2003, PL 1023/2003, PL 1465/2003, PEC 381/2005, PEC 66/2003, PEC 392/2005, PL 5329/2005, PL 5743/2005, PL 291/2003, PL 7364/2006, PL 143/2007, PL 458/2007, PL 145/2007, PL 461/2007, PL 146/2007, PL 151/2007, PL 462/2007, PL 6267/2009, PEC 137/2007, PL 1956/2007, PL 2444/2007, PL 4863/2009, PLP 466/2009, PL 5159/2009, PL 5218/2009, PL 5444/2009, PL 4875/2009, PL 6137/2009, PL 6412/2009, PL 6414/2009, PL 7400/2010, PL 7402/2010, PL 7535/2010 e PEC 499/2010.DECLARO PREJUDICADO o pedido de desarquivamento das seguintes proposições: PL 3345/2004, PL 6590/2006, PL 6591/2006, PL 474/2007, PL 752/2007, PL 4805/2009, PL 4991/2009, PL 6181/2009, PL 7403/2010, PL 7412/2010 e PL 7707/2010, haja vista já se encontrarem desarquivadas. Publique-se.",MESA,640,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=840352,491587
+491587,camara,2011-02-16T16:01:00Z,9,Novo Despacho,SECAP(SGM),171,NA,NA,491587
+491587,camara,2011-02-16T16:59:00Z,10,Despacho Chancelado,SGMGAB,180,NA,NA,491587
+491587,camara,2011-02-16T16:59:00Z,12,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,491587
+491587,camara,2011-02-16T16:59:00Z,11,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,491587
+491587,camara,2011-02-16T17:08:00Z,16,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 49/2011.,SECAP(SGM),180,NA,NA,491587
+491587,camara,2011-02-16T17:09:00Z,15,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,491587
+491587,camara,2011-02-18T16:05:00Z,19,Recebimento pela CCP.,CCP,500,NA,NA,491587

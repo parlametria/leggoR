@@ -1,0 +1,111 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+604557,camara,2013-12-17T00:00:00Z,1,"Apresentação do Projeto de Lei n. 6969/2013, pelo Deputado Sarney Filho (PV-MA), que: ""Institui a Política Nacional para a Conservação e o Uso Sustentável do Bioma Marinho Brasileiro (PNCMar) e dá outras providências"".",PLEN,100,Aguardando Deliberação,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1214143,604557
+604557,camara,2013-12-17T12:14:00Z,2,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,604557
+604557,camara,2013-12-17T13:15:00Z,3,Recebimento pela SEPRO.,SEPRO,500,NA,NA,604557
+604557,camara,2013-12-17T16:20:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 5028/2013.,SEPRO,180,NA,NA,604557
+604557,camara,2013-12-17T16:29:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,604557
+604557,camara,2013-12-20T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1215639,604557
+604557,camara,2014-01-08T13:37:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,604557
+604557,camara,2014-01-08T13:37:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,604557
+604557,camara,2014-01-08T13:40:00Z,9,"Às Comissões de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural; Meio Ambiente e Desenvolvimento Sustentável e Constituição e Justiça e de Cidadania (Art. 54 RICD) - Art. 24, IIProposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 IIRegime de Tramitação: Ordinária",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1215639,604557
+604557,camara,2014-01-08T13:41:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,604557
+604557,camara,2014-01-08T14:09:00Z,11,"Às Comissões de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural; Meio Ambiente e Desenvolvimento Sustentável e Constituição e Justiça e de Cidadania (Art. 54 RICD) - Art. 24, IIProposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 IIRegime de Tramitação: Ordinária",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1215639,604557
+604557,camara,2014-01-08T14:09:00Z,16,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1460/2014.,SECAP(SGM),180,NA,NA,604557
+604557,camara,2014-01-08T14:09:00Z,13,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1459/2014.,SECAP(SGM),180,NA,NA,604557
+604557,camara,2014-01-08T14:09:00Z,14,"Às Comissões de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural; Meio Ambiente e Desenvolvimento Sustentável e Constituição e Justiça e de Cidadania (Art. 54 RICD) - Art. 24, IIProposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 IIRegime de Tramitação: Ordinária",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1215639,604557
+604557,camara,2014-01-08T14:09:00Z,12,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,604557
+604557,camara,2014-01-08T14:12:00Z,15,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,604557
+604557,camara,2014-01-08T14:31:00Z,17,Recebimento pela CCP.,CCP,500,NA,NA,604557
+604557,camara,2014-01-08T16:32:00Z,18,Encaminhado à(ao) CAPADR através da guia de Remessa (GR/CCP) nº 8485/2014.,CCP,180,NA,NA,604557
+604557,camara,2014-02-04T00:00:00Z,19,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 05/02/14 PAG 422 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1267636,604557
+604557,camara,2014-02-10T15:19:00Z,20,Recebimento pela CAPADR.,CAPADR,500,NA,NA,604557
+604557,camara,2014-03-12T00:00:00Z,21,"Designado Relator, Dep. Dilceu Sperafico (PP-PR)",CAPADR,320,NA,NA,604557
+604557,camara,2014-03-13T00:00:00Z,22,Prazo para Emendas ao Projeto (5 sessões ordinárias a partir de 14/03/2014),CAPADR,350,NA,NA,604557
+604557,camara,2014-03-26T00:00:00Z,23,Encerrado o prazo para emendas ao projeto. Não foram apresentadas emendas.,CAPADR,600,NA,NA,604557
+604557,camara,2015-01-31T00:00:00Z,24,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,604557
+604557,camara,2015-02-04T09:06:00Z,25,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-5/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1297255,604557
+604557,camara,2015-02-04T09:06:00Z,26,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,604557
+604557,camara,2015-02-04T09:06:00Z,27,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,604557
+604557,camara,2015-02-04T09:06:00Z,28,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,604557
+604557,camara,2015-02-04T09:08:00Z,29,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-5/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1297255,604557
+604557,camara,2015-03-23T11:15:00Z,30,Devolvida sem Manifestação.,CAPADR,507,NA,NA,604557
+604557,camara,2015-03-24T00:00:00Z,31,"Designado Relator, Dep. Alexandre Baldy (PSDB-GO)",CAPADR,320,NA,NA,604557
+604557,camara,2015-05-12T17:12:00Z,32,"Apresentação do Parecer do Relator n. 1 CAPADR, pelo Deputado Alexandre Baldy (PSDB-GO).",CAPADR,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1332867,604557
+604557,camara,2015-05-12T17:12:00Z,33,"Parecer do Relator, Dep. Alexandre Baldy (PSDB-GO), pela rejeição.",CAPADR,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1332867,604557
+604557,camara,2015-05-13T10:00:00Z,34,Não Deliberado,CAPADR,1008,NA,NA,604557
+604557,camara,2015-05-27T10:00:00Z,35,Vista conjunta aos Deputados Evair de Melo e Marcos Montes.,CAPADR,420,NA,NA,604557
+604557,camara,2015-05-28T00:00:00Z,36,Devolução de Vista (Dep. Evair de Melo e Dep. Marcos Montes).,CAPADR,602,NA,NA,604557
+604557,camara,2015-06-02T16:06:00Z,37,"Apresentação do Requerimento n. 94/2015, pelo Deputado Evair de Melo (PV-ES), que: ""Requer a realização de Audiência Pública para discutir o PL 6.969/2013 que 'institui a Política Nacional para a Conservação e o Uso Sustentável do Bioma Marinho Brasileiro (PNCMar) e dá outras providências'"".",CAPADR,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1343716,604557
+604557,camara,2015-06-02T16:10:00Z,38,"Apresentação do Voto em Separado n. 1 CAPADR, pelo Deputado Evair de Melo (PV-ES).",CAPADR,431,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1343719,604557
+604557,camara,2015-06-10T10:00:00Z,39,"Aprovado o Parecer contra os votos dos Deputados Valmir Assunção, Zeca do Pt, Evair de Melo, Bohn Gass, João Daniel e Marcon. Apresentou voto em separado o Deputado Evair de Melo.",CAPADR,240,NA,NA,604557
+604557,camara,2015-06-17T15:45:00Z,40,Encaminhado à(ao) CMADS através da guia de Remessa (GR/CAPADR) nº 28/2015.,CAPADR,180,NA,NA,604557
+604557,camara,2015-06-17T15:45:00Z,41,Encaminhamento de Parecer à CCP para publicação.,CAPADR,604,NA,NA,604557
+604557,camara,2015-06-17T15:58:00Z,42,Recebimento pela CMADS.,CMADS,500,NA,NA,604557
+604557,camara,2015-06-17T16:00:00Z,43,Parecer recebido para publicação.,CCP,604,NA,NA,604557
+604557,camara,2015-06-18T00:00:00Z,44,"Encaminhada à publicação. Parecer da Comissão de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural Publicado em avulso e no DCD de 19/06/15 PÁG 486 COL 01, Letra A.",CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1372242,604557
+604557,camara,2015-10-01T00:00:00Z,45,"Designado Relator, Dep. Átila Lira (PSB-PI)",CMADS,320,NA,NA,604557
+604557,camara,2015-10-02T00:00:00Z,46,Prazo para Emendas ao Projeto (5 sessões a partir de 05/10/2015),CMADS,350,NA,NA,604557
+604557,camara,2015-10-14T00:00:00Z,47,Encerrado o prazo para emendas ao projeto. Não foram apresentadas emendas.,CMADS,600,NA,NA,604557
+604557,camara,2015-10-16T16:45:00Z,48,"Apresentação do Requerimento n. 87/2015, pelo Deputado Átila Lira (PSB-PI), que: ""Requer a realização de Audiência Pública para debater sobre a conservação e o uso sustentável dos ecossistemas costeiros e marinhos"".",CMADS,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1401146,604557
+604557,camara,2015-10-21T10:00:00Z,49,Aprovado requerimento do Sr. Átila Lira que requer a realização de Audiência Pública para debater sobre a conservação e o uso sustentável dos ecossistemas costeiros e marinhos.,CMADS,195,NA,NA,604557
+604557,camara,2016-05-09T14:55:00Z,50,Devolvida sem Manifestação.,CMADS,507,NA,NA,604557
+604557,camara,2016-05-11T00:00:00Z,51,"Designado Relator, Dep. Ricardo Tripoli (PSDB-SP)",CMADS,320,NA,NA,604557
+604557,camara,2017-05-23T00:00:00Z,53,"Designado Relator, Dep. Alessandro Molon (REDE-RJ)",CMADS,320,NA,NA,604557
+604557,camara,2017-05-23T16:22:00Z,52,Devolvida pelo Relator sem Manifestação.,CMADS,507,NA,NA,604557
+604557,camara,2017-06-14T17:53:00Z,54,"Apresentação do Parecer do Relator n. 1 CMADS, pelo Deputado Alessandro Molon (REDE-RJ).",CMADS,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1569678,604557
+604557,camara,2017-06-14T18:02:00Z,55,"Parecer do Relator, Dep. Alessandro Molon (REDE-RJ), pela aprovação.",CMADS,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1569678,604557
+604557,camara,2017-06-21T00:00:00Z,57,Prazo para Emendas ao Substitutivo (5 sessões a partir de 22/06/2017),CMADS,350,NA,NA,604557
+604557,camara,2017-07-05T18:52:00Z,57,Encerrado o prazo para emendas ao substitutivo.  Não foram apresentadas emendas ao substitutivo.,CMADS,600,NA,NA,604557
+604557,camara,2017-08-09T10:00:00Z,61,"Aprovado o Parecer, por unanimidade, com Complementação de Voto.",CMADS,240,NA,NA,604557
+604557,camara,2017-08-09T15:06:00Z,58,"Apresentação da Complementação de Voto, CVO 1 CMADS, pelo Dep. Alessandro Molon",CMADS,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1584330,604557
+604557,camara,2017-08-09T15:06:00Z,60,"Parecer com Complementação de Voto, Dep. Alessandro Molon (REDE-RJ), pela aprovação.",CMADS,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1584330,604557
+604557,camara,2017-08-16T00:00:00Z,66,Devolução à CCP.,CCJC,1010,Aguardando Parecer,NA,604557
+604557,camara,2017-08-16T15:32:00Z,62,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CMADS) nº 139/2017.,CMADS,180,NA,NA,604557
+604557,camara,2017-08-16T15:32:00Z,63,Encaminhamento de Parecer à CCP para publicação.,CMADS,604,NA,NA,604557
+604557,camara,2017-08-16T15:58:00Z,64,Parecer recebido para publicação.,CCP,604,NA,NA,604557
+604557,camara,2017-08-16T16:00:00Z,65,Recebimento pela CCJC.,CCJC,500,Aguardando Parecer,NA,604557
+604557,camara,2017-08-16T16:10:00Z,67,Encaminhado à(ao) CCP através da guia de Remessa (GR/CCJC) nº 778/2017.,CCJC,180,Aguardando Parecer,NA,604557
+604557,camara,2017-08-16T16:57:00Z,68,Recebimento pela CCP.,CCP,500,NA,NA,604557
+604557,camara,2017-08-23T00:00:00Z,69,"À SGM, Ofício nº 02/17 - CMADS, comunicando divergênciade pareceres.",CMADS,1005,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1592288,604557
+604557,camara,2017-08-28T00:00:00Z,71,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1592619,604557
+604557,camara,2017-08-28T00:00:00Z,70,"Encaminhada à publicação. Parecer da Comissão de Meio Ambiente e Desenvolvimento Sustentável Publicado no DCD de 29/08/17, PÁG 750 COL 01, Letra B.VOL II.",CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1611983,604557
+604557,camara,2017-08-28T18:43:00Z,72,Despacho Chancelado,MESA,180,NA,NA,604557
+604557,camara,2017-08-28T18:43:00Z,73,"Transfira-se ao Plenário a competência para apreciar o Projeto de Lei n. 6.969/2013, porquanto se configurou a hipótese do art. 24, II, g, do Regimento Interno da Câmara dos Deputados. Publique-se. Oficie-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1592619,604557
+604557,camara,2017-08-29T18:43:00Z,74,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,604557
+604557,camara,2017-08-31T12:47:00Z,75,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 11246/2017.,CCP,180,NA,NA,604557
+604557,camara,2017-08-31T16:20:00Z,76,Recebimento pela CCJC.,CCJC,500,Aguardando Parecer,NA,604557
+604557,camara,2017-09-05T00:00:00Z,77,"Designado Relator, Dep. Alessandro Molon (REDE-RJ)",CCJC,320,Aguardando Parecer,NA,604557
+604557,camara,2017-09-06T00:00:00Z,78,Prazo para Emendas ao Projeto (5 sessões a partir de 08/09/2017),CCJC,350,Aguardando Parecer,NA,604557
+604557,camara,2017-09-20T00:00:00Z,79,Encerrado o prazo para emendas ao projeto. Não foram apresentadas emendas.,CCJC,600,Aguardando Parecer,NA,604557
+604557,camara,2017-12-05T17:41:00Z,80,"Apresentação do Parecer do Relator n. 1 CCJC, pelo Deputado Alessandro Molon (REDE-RJ).",CCJC,501,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1629057,604557
+604557,camara,2017-12-05T17:41:00Z,81,"Parecer do Relator, Dep. Alessandro Molon (REDE-RJ).",CCJC,322,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1629057,604557
+604557,camara,2017-12-11T21:27:00Z,82,"Apresentação do Parecer do Relator, PRL 2 CCJC, pelo Dep. Alessandro Molon",CCJC,501,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1631697,604557
+604557,camara,2017-12-11T21:27:00Z,83,"Parecer do Relator, Dep. Alessandro Molon (REDE-RJ), pela constitucionalidade, juridicidade e técnica legislativa deste, na forma do Substitutivo da Comissão de Meio Ambiente e Desenvolvimento Sustentável, que saneia inconstitucionalidades e injuridicidades.",CCJC,322,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1631697,604557
+604557,camara,2017-12-13T09:00:00Z,84,Não Deliberado,CCJC,1008,Aguardando Parecer,NA,604557
+604557,camara,2017-12-14T09:00:00Z,85,Não Deliberado,CCJC,1008,Aguardando Parecer,NA,604557
+604557,camara,2017-12-19T10:00:00Z,86,Não Deliberado.,CCJC,1008,Aguardando Parecer,NA,604557
+604557,camara,2018-04-11T10:00:00Z,87,Não Deliberado,CCJC,1008,Aguardando Parecer,NA,604557
+604557,camara,2018-06-05T14:30:00Z,88,Proferido o Parecer.,CCJC,221,Aguardando Parecer,NA,604557
+604557,camara,2018-06-05T14:30:00Z,89,Vista ao Deputado Arnaldo Faria de Sá.,CCJC,420,Aguardando Parecer,NA,604557
+604557,camara,2018-06-06T00:00:00Z,94,"Encaminhada à publicação. Parecer da Comissão de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural Publicado em Avulso.",CCP,604,NA,NA,604557
+604557,camara,2018-06-06T10:00:00Z,90,Cumprindo prazo de vista.,CCJC,1005,Aguardando Parecer,NA,604557
+604557,camara,2018-06-06T18:29:00Z,93,Alteração do Regime de Tramitação desta proposição em virtude da Aprovação do REQ 8795/2018 => PL 6969/2013.,PLEN,196,Aguardando Deliberação,NA,604557
+604557,camara,2018-06-06T18:29:00Z,92,"Aprovado requerimento do Líderes que requer urgência para a tramitação do Projeto de Lei n. 6969 de 2013, que ""Institui a Política Nacional para a Conservação e o Uso Sustentável do Bioma Marinho Brasileiro (PNCMar) e dá outras providências.""",PLEN,196,Aguardando Deliberação,NA,604557
+604557,camara,2018-06-06T19:27:00Z,91,"Apresentação do Requerimento de Urgência (Art. 155 do RICD) n. 8795/2018, pelo Líderes, que: ""Requer urgência para a tramitação do Projeto de Lei n. 6969 de 2013, que 'Institui a Política Nacional para a Conservação e o Uso Sustentável do Bioma Marinho Brasileiro (PNCMar) e dá outras providências.'"".",PLEN,194,Aguardando Deliberação,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1666486,604557
+604557,camara,2018-06-07T10:16:00Z,95,Prazo de Vista Encerrado,CCJC,600,Aguardando Parecer,NA,604557
+604557,camara,2018-12-19T00:00:00Z,97,"Devolvido ao Relator, Dep. Alessandro Molon (PSB-RJ)",CCJC,170,Aguardando Parecer,NA,604557
+604557,camara,2018-12-19T16:10:00Z,96,"Apresentação do Requerimento n. 9388/2018, pelo Deputado Alessandro Molon (PSB-RJ), que: ""Requer a coautoria do PL 6969 de 2013"".",PLEN,194,Aguardando Deliberação,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1702263,604557
+604557,camara,2018-12-19T19:10:00Z,98,Devolvida pelo Relator sem Manifestação.,CCJC,507,Aguardando Parecer,NA,604557
+604557,camara,2018-12-21T00:00:00Z,99,"Deferido o Requerimento n. 9.388/2018, conforme despacho do seguinte teor: ""Defiro. Publique-se.""",MESA,203,NA,NA,604557
+604557,camara,2019-01-31T00:00:00Z,100,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,604557
+604557,camara,2019-03-14T18:01:00Z,101,"Apresentação do Requerimento de Desarquivamento de Proposições n. 795/2019, pelo Deputado Alessandro Molon (PSB-RJ), que: ""Requer o desarquivamento do PL 6969/2013, que 'Institui a Política Nacional para a Conservação e o Uso Sustentável do Bioma Marinho Brasileiro (PNCMar) e dá outras providências'. "".",PLEN,194,Aguardando Deliberação,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1719314,604557
+604557,camara,2019-03-19T21:32:00Z,102,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-795/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1720054,604557
+604557,camara,2019-03-19T21:32:00Z,103,Reentrada na comissão por motivo de desarquivamento,MESA,630,NA,NA,604557
+604557,camara,2019-03-19T21:32:00Z,104,Reentrada na comissão por motivo de desarquivamento,MESA,630,NA,NA,604557
+604557,camara,2019-03-19T21:32:00Z,105,Reentrada na comissão por motivo de desarquivamento,MESA,630,NA,NA,604557
+604557,camara,2019-05-20T00:00:00Z,106,"Designado Relator, Dep. Túlio Gadêlha (PDT-PE)",CCJC,320,Aguardando Parecer,NA,604557
+604557,camara,2019-06-06T09:00:00Z,107,Matéria não apreciada em face do cancelamento da Ordem do Dia.,PLEN,1244,Aguardando Deliberação,NA,604557
+604557,camara,2019-06-12T13:00:00Z,108,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,Aguardando Deliberação,NA,604557
+604557,camara,2019-06-12T18:05:00Z,109,Matéria não apreciada em face do cancelamento da Ordem do Dia.,PLEN,1244,Aguardando Deliberação,NA,604557
+604557,camara,2019-06-18T14:00:00Z,110,Matéria não apreciada em face do cancelamento da Ordem do Dia.,PLEN,1244,Aguardando Deliberação,NA,604557
+604557,camara,2019-06-25T14:00:00Z,111,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,Aguardando Deliberação,NA,604557
