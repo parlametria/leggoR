@@ -97,8 +97,11 @@ plot_prop_comissoes <- function(id, name) {
   atores_prop <- 
     atores_tipos_docs %>% 
     dplyr::filter(id_principal == id) %>% 
-    dplyr::group_by(nome_autor, tipo_generico, sigla_orgao, id_autor) %>% 
-    dplyr::summarise(total_eventos_ator_tipo_gen = sum(qtd_de_documentos))
+    dplyr::group_by(nome_autor, tipo_generico, sigla_orgao, id_autor, ultimo_status_sigla_partido, ultimo_status_sigla_uf) %>% 
+    dplyr::summarise(total_eventos_ator_tipo_gen = sum(qtd_de_documentos)) %>% 
+    dplyr::mutate(autor = ifelse(is.na(ultimo_status_sigla_uf),
+                                 paste(nome_autor, " - ", substring(ultimo_status_sigla_partido, 0, 4)),
+                                 paste(nome_autor, " - ", substring(ultimo_status_sigla_partido, 0, 4), "/", ultimo_status_sigla_uf)))
 
   atuacoes_por_comissao <- 
     atores_prop %>% 
@@ -107,6 +110,7 @@ plot_prop_comissoes <- function(id, name) {
     dplyr::group_by(sigla_orgao) %>%
     dplyr::arrange(sigla_orgao,-total_eventos_ator) %>%
     dplyr::filter(dplyr::row_number() <= 5)
+  quant_doc_max <- head(atuacoes_por_comissao %>% arrange(-total_eventos_ator), 1)$total_eventos_ator
   
   atores_comissoes <- atuacoes_por_comissao %>%
     dplyr::filter(id_autor != -1) %>% 
@@ -118,11 +122,13 @@ plot_prop_comissoes <- function(id, name) {
   plots <- vector("list",length(unique(atores_comissoes$sigla_orgao)))
   names(plots) <- unique(atores_comissoes$sigla_orgao)
   #par(mfrow=c(length(unique(atores_comissoes$sigla_orgao)),1))
+  layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE))
   for (var in unique(atores_comissoes$sigla_orgao)) {
     #dev.new()
-    p <- ggplot(atores_comissoes %>% dplyr::filter(sigla_orgao == var), aes(x = reorder(nome_autor, -total_eventos_ator_tipo_gen, sum),
+    p <- ggplot(atores_comissoes %>% dplyr::filter(sigla_orgao == var), aes(x = reorder(autor, -total_eventos_ator_tipo_gen, sum),
                                y = total_eventos_ator_tipo_gen,
-                               fill = tipo_generico))+
+                               fill = tipo_generico)) +
+    scale_y_continuous(limits = c(0, quant_doc_max *1.1)) +
     theme_ipsum_rc(axis_title_size = 11, plot_margin = margin(30, 30, 30, 30)) +
     geom_col() + 
     coord_flip() +
@@ -134,11 +140,10 @@ plot_prop_comissoes <- function(id, name) {
                                    "Outros" = "#FF7F9D"), aesthetics = "fill") +
     xlab("") +
     ylab("Quantidade de Documentos") +
-    labs(fill = "Documentos", title = var) 
-    plots[[var]] <- p
-    #print(p)
+    labs(fill = "Documentos", title = name, subtitle = var)
+    print(p)
   }
-  grid.arrange(grobs = plots, ncol=1, top = name)
+  #grid.arrange(grobs = plots, ncol=1, top = name)
 }
 ```
 
