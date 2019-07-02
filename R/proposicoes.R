@@ -144,13 +144,12 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
 find_new_documentos <- function(all_pls_ids, current_docs_ids) {
 
   pls_principais_ids <- all_pls_ids %>%
-    #dplyr::filter(casa == "camara") %>%
     dplyr::select(id_principal,
                   casa) %>%
     dplyr::mutate(id_documento = id_principal)
 
   all_docs_ids <- purrr::map2_df(pls_principais_ids$id_principal, pls_principais_ids$casa,
-                                 ~rcongresso::fetch_ids_relacionadas(.x, .y)) %>%
+                                 ~safe_fetch_ids_relacionadas(.x, .y)$result) %>%
     dplyr::rename(id_principal = id_prop,
                   id_documento = id_relacionada) %>%
     dplyr::bind_rows(pls_principais_ids)
@@ -160,6 +159,8 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids) {
 
   return(new_docs_ids)
 }
+
+safe_fetch_ids_relacionadas <- purrr::safely(rcongresso::fetch_ids_relacionadas,otherwise = tibble::tibble())
 
 #' @title Baixa autores de documentos, adequando as colunas ao padrão desejado
 #' @description Retorna um dataframe contendo autores dos documentos
