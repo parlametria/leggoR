@@ -12,15 +12,21 @@ source(here::here("R/camara_analyzer.R"))
 #' extract_links_proposicao(46249, 'camara')
 #' @export
 extract_links_proposicao <- function(id, casa) {
-  if(casa == 'camara') {
-    proposicao_df = rcongresso::fetch_proposicao_camara(id)
-    tramitacao_df = rcongresso::fetch_tramitacao_camara(id)
-    df <- extract_links_proposicao_camara(proposicao_df, tramitacao_df)
-  } else if(casa == 'senado') {
-    df <- extract_links_proposicao_senado(id)
-  }
-  
-  return(df %>% extract_initial_page_from_link())
+  tryCatch({
+    if(casa == 'camara') {
+      proposicao_df = rcongresso::fetch_proposicao_camara(id)
+      tramitacao_df = rcongresso::fetch_tramitacao_camara(id)
+      df <- extract_links_proposicao_camara(proposicao_df, tramitacao_df)
+    } else if(casa == 'senado') {
+      df <- extract_links_proposicao_senado(id)
+    }
+    
+    return(df %>% extract_initial_page_from_link())
+  },
+  error = function(msg) {
+    warning(msg)
+    return(tibble::tribble(~ id_proposicao, ~ casa, ~ codigo_texto, ~ data, ~ tipo_texto, ~ descricao,  ~ link_inteiro_teor, ~ pagina_inicial))
+  })
 }
 
 #' @title Checa se a uma requisição possui redirecionamento
