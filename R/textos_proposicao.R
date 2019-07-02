@@ -24,6 +24,7 @@ extract_links_proposicao <- function(id, casa) {
     return(df %>% extract_initial_page_from_link())
   },
   error = function(msg) {
+    warning(msg)
     return(tibble::tribble(~ id_proposicao, ~ casa, ~ codigo_texto, ~ data, ~ tipo_texto, ~ descricao,  ~ link_inteiro_teor, ~ pagina_inicial))
   })
 }
