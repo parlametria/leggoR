@@ -79,20 +79,6 @@ fetch_tramitacao_camara <- function(bill_id) {
 #' @title Baixa dados das tramitações das proposições
 #' @description Escreve as tramitações dos ids passados
 #' @param export_path Path para ser escritos as tramitações
-#' @param docs_ids Dataframe com os IDs dos documentos a serem baixados
-#' @export
-fetch_tramitacao_data <- function(export_path, docs_ids) {
-    purrr::pmap(list(export_path, docs_ids$id_documento, docs_ids$id_principal), function(a, b, c) safe_write_docs(a, b, c))
-}
-
-#' @title Write_docs seguro
-safe_write_docs <- purrr::safely(
-  write_docs,
-  otherwise = tibble::tibble())
-
-#' @title Baixa dados das tramitações das proposições
-#' @description Escreve as tramitações dos ids passados
-#' @param export_path Path para ser escritos as tramitações
 #' @param id_documento Id do documento para ser baixado
 #' @param id_principal Id da proposição principal
 write_docs <- function(export_path, id_documento, id_principal) {
@@ -104,6 +90,20 @@ write_docs <- function(export_path, id_documento, id_principal) {
   ifelse(!dir.exists(file.path(path)), dir.create(file.path(path)), FALSE)
   readr::write_csv(tram, paste0(path, "/", id_documento, ".csv"))
   
+}
+
+#' @title Write_docs seguro
+safe_write_docs <- purrr::safely(
+  write_docs,
+  otherwise = tibble::tibble())
+
+#' @title Baixa dados das tramitações das proposições
+#' @description Escreve as tramitações dos ids passados
+#' @param export_path Path para ser escritos as tramitações
+#' @param docs_ids Dataframe com os IDs dos documentos a serem baixados
+#' @export
+fetch_tramitacao_data <- function(export_path, docs_ids) {
+    purrr::pmap(list(export_path, docs_ids$id_documento, docs_ids$id_principal), function(a, b, c) safe_write_docs(a, b, c))
 }
 
 #' @title Baixa os dados da tramitação de vários Projetos de Lei
