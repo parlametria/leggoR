@@ -177,18 +177,19 @@ fetch_autores_documentos <- function(docs_ids_df) {
 #' @title Baixa dados dos documentos, adequando as colunas ao padrão desejado
 #' @description Retorna um dataframe contendo dados dos documentos
 #' @param docs_ids Dataframe com os IDs dos documentos a serem baixados
+#' @param casa Caso onde está tramitando o documento
 #' @return Dataframe
 #' @examples
 #' \dontrun{
-#'   docs_data <- fetch_docs_data(2056568)
+#'   docs_data <- fetch_documentos_data(257161, 'camara')
 #' }
 #' @export
 fetch_documentos_data <- function(docs_ids, casa) {
-  docs_camara <- purrr::map2_df(docs_ids$id_documento, docs_ids$casa, ~ fetch_all_documents(.x, .y))
+  docs <- purrr::map2_df(docs_ids$id_documento, docs_ids$casa, ~ fetch_all_documents(.x, .y))
   formatted_docs_df <- tibble::tibble()
 
-  if (nrow(docs_camara) > 0) {
-    formatted_docs_df <- merge(docs_camara, docs_ids, by.x="id", by.y = "id_documento") %>%
+  if (nrow(docs) > 0) {
+    formatted_docs_df <- merge(docs, docs_ids, by.x="id", by.y = "id_documento") %>%
       dplyr::distinct() %>%
       dplyr::select(id_documento = id,
                     id_principal,
@@ -220,7 +221,6 @@ get_partido_autores <- function(autor_df) {
   autores_partido <- (paste(unlist(t(autor_df$ultimoStatus.siglaPartido)),collapse="+"))
   return(autores_partido)
 }
-
 
 #' @export
 get_all_leggo_props_ids <- function(leggo_props_df) {
@@ -274,6 +274,7 @@ safe_fetch_proposicao <- function(id_documento, casa) {
 #' @description Retorna dados de um documento caso a requisição seja bem-sucedida,
 #' caso contrário retorna um Dataframe vazio
 #' @param id_documento ID do documento
+#' @param casa Casa onde está tramitando o documento
 #' @return Dataframe
 fetch_all_documents <- function(id_documento, casa) {
   fetch_prop_output <- safe_fetch_proposicao(id_documento, casa)
