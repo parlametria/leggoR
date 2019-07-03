@@ -20,6 +20,8 @@ create_tabela_atores <- function(documentos_df, autores_df) {
                   nome_autor = nome,
                   codTipo,
                   sigla_tipo,
+                  partido,
+                  uf,
                   descricao_tipo = descricaoTipo)
 
   atores_df <- autores_docs %>%
