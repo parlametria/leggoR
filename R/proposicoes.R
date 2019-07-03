@@ -149,7 +149,7 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids) {
     dplyr::mutate(id_documento = id_principal)
 
   all_docs_ids <- purrr::map2_df(pls_principais_ids$id_principal, pls_principais_ids$casa,
-                                 ~safe_fetch_ids_relacionadas(.x, .y)$result) %>%
+                                 ~safe_fetch_ids_relacionadas(.x, .y)) %>%
     dplyr::rename(id_principal = id_prop,
                   id_documento = id_relacionada) %>%
     dplyr::bind_rows(pls_principais_ids)
