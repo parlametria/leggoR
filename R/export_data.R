@@ -259,6 +259,7 @@ export_data <- function(pls, export_path) {
              apelido,
              tema)
     
+    
     proposicoes_que_nao_baixaram_temp <- dplyr::anti_join(proposicoes_individuais_a_baixar, proposicoes_baixadas)
     proposicoes_que_nao_baixaram <- proposicoes_que_nao_baixaram %>%
       dplyr::filter((id_camara %in% proposicoes_que_nao_baixaram_temp$id_casa) |
@@ -283,13 +284,6 @@ export_data <- function(pls, export_path) {
     dplyr::rename(id_ext = prop_id, data = data_hora) %>%
     adiciona_status() %>% 
     unique()
-  tramitacoes_que_viraram_lei <-
-    tramitacoes %>%
-    dplyr::filter(evento == "transformada_lei") %>% 
-    unique()
-  tramitacoes <-
-    tramitacoes %>%
-    dplyr::filter(!(id_ext %in% tramitacoes_que_viraram_lei$id_ext))
   hists_temperatura <- purrr::map_df(res, ~ .$hist_temperatura) %>% 
     unique()
   progressos <-
@@ -305,6 +299,8 @@ export_data <- function(pls, export_path) {
     dplyr::rename(id_parlamentar = id)
 
   ## export data to CSVs
+  emendas_raw_old <- readr::read_csv(paste0(export_path, "/emendas_raw.csv"))
+  readr::write_csv(emendas_raw_old, paste0(export_path, "/emendas_raw_old.csv"))
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
   readr::write_csv(tramitacoes, paste0(export_path, "/trams.csv"))
   readr::write_csv(

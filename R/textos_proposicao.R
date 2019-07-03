@@ -12,15 +12,21 @@ source(here::here("R/camara_analyzer.R"))
 #' extract_links_proposicao(46249, 'camara')
 #' @export
 extract_links_proposicao <- function(id, casa) {
-  if(casa == 'camara') {
-    proposicao_df = rcongresso::fetch_proposicao_camara(id)
-    tramitacao_df = rcongresso::fetch_tramitacao_camara(id)
-    df <- extract_links_proposicao_camara(proposicao_df, tramitacao_df)
-  } else if(casa == 'senado') {
-    df <- extract_links_proposicao_senado(id)
-  }
-  
-  return(df %>% extract_initial_page_from_link())
+  tryCatch({
+    if(casa == 'camara') {
+      proposicao_df = rcongresso::fetch_proposicao_camara(id)
+      tramitacao_df = rcongresso::fetch_tramitacao_camara(id)
+      df <- extract_links_proposicao_camara(proposicao_df, tramitacao_df)
+    } else if(casa == 'senado') {
+      df <- extract_links_proposicao_senado(id)
+    }
+    
+    return(df %>% extract_initial_page_from_link())
+  },
+  error = function(msg) {
+    warning(msg)
+    return(tibble::tribble(~ id_proposicao, ~ casa, ~ codigo_texto, ~ data, ~ tipo_texto, ~ descricao,  ~ link_inteiro_teor, ~ pagina_inicial))
+  })
 }
 
 #' @title Checa se a uma requisição possui redirecionamento
@@ -135,7 +141,8 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                   texto_tramitacao = inteiro_teor)
   
   if(nrow(emendas) > 0) {
-    emendas$link_inteiro_teor <- do.call("rbind", lapply(emendas$codigo_texto, get_emendas_links))
+    links_inteiro_teor <- purrr::map_chr(emendas$codigo_texto, ~get_emendas_links(.x))
+    emendas$link_inteiro_teor <- links_inteiro_teor
     
     df <- df %>%
       rbind(emendas)
@@ -201,10 +208,12 @@ mutate_links <- function(df) {
 filter_links <- function(df) {
   if(nrow(df) ==1 && df$id_proposicao == 41703) {
     return(df)
-  } else if(typeof(df$NumeroEmenda) == 'NULL') {
+  } else if(!("NumeroEmenda" %in% names(df))) {
     df <- df %>%
       dplyr::filter(stringr::str_detect(tolower(DescricaoTexto),
-                                        senado_env$versoes_texto_proposicao$tipos_texto_regex))
+                                        senado_env$versoes_texto_proposicao$tipos_texto_regex) |
+                      stringr::str_detect(tolower(DescricaoTipoTexto),
+                                          senado_env$versoes_texto_proposicao$tipos_texto_regex))
   }else {
     df <- df %>%
       dplyr::filter(!is.na(NumeroEmenda) |

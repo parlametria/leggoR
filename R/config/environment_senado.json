@@ -71,7 +71,8 @@
     {"evento": "aprovacao_parecer", "regex": "a comissão aprova o relatório|aprovado o relatório", "tipo":"votacao"},
     {"evento": "pedido_de_vista", "regex": "concedida vista", "tipo":"votacao"},
     {"evento": "designado_relator",
-      "regex": "(designa.*relator(a|) da matéria)|(designad(o|a) relator(a|))|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria                  (.*|)$))", "tipo":"despacho"},
+      "regex": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))|avocada a relatoria", 
+      "tipo":"despacho"},
     {"evento": "designado_presidente_comissao", "regex": "eleit(a|o)(s)* .* presidente", "tipo": "despacho"},
     {"evento": "arquivamento", "regex": "processo arquivado(.)*|a proposição é arquivada|o projeto vai ao arquivo", "tipo":"despacho"},
     {"evento": "desarquivamento", "regex": "a mat.ria foi desarquivada", "tipo":"despacho"},
@@ -206,6 +207,6 @@
   },
   
   "versoes_texto_proposicao":{
-    "tipos_texto_regex" : "(^projeto de lei .*)|(proposta de emenda .*)|(medida provisória .*)|(avulso de redação final)|(avulso inicial da matéria)|(^parecer nº.*)|(^emenda(s|).*)"
+    "tipos_texto_regex" : "(^projeto de lei .*)|(proposta de emenda .*)|(medida provisória .*)|(avulso de redação final)|(avulso inicial da matéria)|(^parecer nº.*)|(^emenda(s|).*)|(^medida provisória)"
   }
 }
