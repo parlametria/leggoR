@@ -1,5 +1,4 @@
 source(here::here("R/utils.R"))
-camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 
 #' @title Importa as informações de uma proposição da internet.
 #' @description Recebido um id e a casa, a função roda os scripts para
@@ -145,14 +144,14 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
 find_new_documentos <- function(all_pls_ids, current_docs_ids) {
 
   pls_principais_ids <- all_pls_ids %>%
-    dplyr::filter(casa == "camara") %>%
     dplyr::select(id_principal,
                   casa) %>%
     dplyr::mutate(id_documento = id_principal)
 
-  all_docs_ids <- purrr::map_df(pls_principais_ids$id_principal, ~rcongresso::fetch_ids_relacionadas(.x)) %>%
+  all_docs_ids <- purrr::map2_df(pls_principais_ids$id_principal, pls_principais_ids$casa,
+                                 ~rcongresso::fetch_ids_relacionadas(.x, .y)) %>%
     dplyr::rename(id_principal = id_prop,
-                  id_documento = id_relacionada)  %>%
+                  id_documento = id_relacionada) %>%
     dplyr::bind_rows(pls_principais_ids)
 
   new_docs_ids <- all_docs_ids %>%
@@ -161,13 +160,15 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids) {
   return(new_docs_ids)
 }
 
+safe_fetch_ids_relacionadas <- purrr::safely(rcongresso::fetch_ids_relacionadas,otherwise = tibble::tibble())
+
 #' @title Baixa autores de documentos, adequando as colunas ao padrão desejado
 #' @description Retorna um dataframe contendo autores dos documentos
 #' @param docs_ids_df Dataframe com os ids dos documentos a serem baixadas
 #' @return Dataframe
 #' @export
 fetch_autores_documentos <- function(docs_ids_df) {
-  autores_docs_camara <- purrr::map2_df(docs_ids_df$id_documento, docs_ids_df$sigla_tipo, ~ fetch_all_autores(.x, .y)) %>%
+  autores_docs_camara <- purrr::map_df(docs_ids_df$id_documento, ~ fetch_all_autores(.x)) %>%
     dplyr::mutate(casa = 'camara')
 
   autores_docs_camara
@@ -176,18 +177,19 @@ fetch_autores_documentos <- function(docs_ids_df) {
 #' @title Baixa dados dos documentos, adequando as colunas ao padrão desejado
 #' @description Retorna um dataframe contendo dados dos documentos
 #' @param docs_ids Dataframe com os IDs dos documentos a serem baixados
+#' @param casa Caso onde está tramitando o documento
 #' @return Dataframe
 #' @examples
 #' \dontrun{
-#'   docs_data <- fetch_docs_data(2056568)
+#'   docs_data <- fetch_documentos_data(257161, 'camara')
 #' }
 #' @export
-fetch_documentos_data <- function(docs_ids) {
-  docs_camara <- purrr::map_df(docs_ids$id_documento, ~ fetch_all_documents(.x))
+fetch_documentos_data <- function(docs_ids, casa) {
+  docs <- purrr::map2_df(docs_ids$id_documento, docs_ids$casa, ~ fetch_all_documents(.x, .y))
   formatted_docs_df <- tibble::tibble()
 
-  if (nrow(docs_camara) > 0) {
-    formatted_docs_df <- merge(docs_camara, docs_ids, by.x="id", by.y = "id_documento") %>%
+  if (nrow(docs) > 0) {
+    formatted_docs_df <- merge(docs, docs_ids, by.x="id", by.y = "id_documento") %>%
       dplyr::distinct() %>%
       dplyr::select(id_documento = id,
                     id_principal,
@@ -200,20 +202,6 @@ fetch_documentos_data <- function(docs_ids) {
                     dplyr::everything())
   }
   return(formatted_docs_df)
-}
-
-#' @title Agrupa os tipos dos documentos
-#' @description Retorna um dataframe contendo dados dos documentos
-#' com uma coluna a mais (tipo)
-#' @param docs_data Dataframe com os todos os dados dos documentos
-#' @return Dataframe
-#' @export
-add_tipo_evento_documento <- function(docs_data) {
-  docs_data %>%
-    fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricaoTipo = "regex"), ignore_case = T) %>%
-    dplyr::select(-regex) %>%
-    dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
-
 }
 
 #' @title Concatena siglas de unidade federativa de cada autor da proposição
@@ -233,7 +221,6 @@ get_partido_autores <- function(autor_df) {
   autores_partido <- (paste(unlist(t(autor_df$ultimoStatus.siglaPartido)),collapse="+"))
   return(autores_partido)
 }
-
 
 #' @export
 get_all_leggo_props_ids <- function(leggo_props_df) {
@@ -267,16 +254,30 @@ get_all_leggo_props_ids <- function(leggo_props_df) {
 #
 # }
 
+safe_fetch_proposicao <- function(id_documento, casa) {
+  if (casa == 'camara') {
+    safe_autores <- .safe_fetch_proposicao_camara(id_documento)
+  } else if (casa == 'senado') {
+    safe_autores <- .safe_fetch_proposicao_senado(id_documento)
+  } else {
+    return("Parâmetro 'casa' não encontrado.")
+  }
 
-safe_fetch_proposicao <- purrr::safely(rcongresso::fetch_proposicao_camara,otherwise = tibble::tibble())
+  return(safe_autores)
+}
+
+.safe_fetch_proposicao_camara <- purrr::safely(rcongresso::fetch_proposicao_camara,otherwise = tibble::tibble())
+
+.safe_fetch_proposicao_senado <- purrr::safely(rcongresso::fetch_proposicao_senado,otherwise = tibble::tibble())
 
 #' @title Realiza busca das informações de um documento
 #' @description Retorna dados de um documento caso a requisição seja bem-sucedida,
 #' caso contrário retorna um Dataframe vazio
 #' @param id_documento ID do documento
+#' @param casa Casa onde está tramitando o documento
 #' @return Dataframe
-fetch_all_documents <- function(id_documento) {
-  fetch_prop_output <- safe_fetch_proposicao(id_documento)
+fetch_all_documents <- function(id_documento, casa) {
+  fetch_prop_output <- safe_fetch_proposicao(id_documento, casa)
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)
   }
@@ -291,8 +292,8 @@ safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores_camara,otherwise =
 #' caso contrário retorna um Dataframe vazio
 #' @param id_documento ID do documento
 #' @return Dataframe
-fetch_all_autores <- function(id_documento, sigla_tipo) {
-  fetch_prop_output <- safe_fetch_autores(id_documento, sigla_tipo)
+fetch_all_autores <- function(id_documento) {
+  fetch_prop_output <- safe_fetch_autores(id_documento)
   autores_result <- fetch_prop_output$result
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)
