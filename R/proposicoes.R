@@ -148,19 +148,23 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids) {
                   casa) %>%
     dplyr::mutate(id_documento = id_principal)
 
+  pls_principais_ids$id_principal <- as.character(pls_principais_ids$id_principal)
+  pls_principais_ids$id_documento <- as.character(pls_principais_ids$id_documento)
+
   all_docs_ids <- purrr::map2_df(pls_principais_ids$id_principal, pls_principais_ids$casa,
-                                 ~safe_fetch_ids_relacionadas(.x, .y)) %>%
+                                 ~rcongresso::fetch_ids_relacionadas(.x, .y)) %>%
     dplyr::rename(id_principal = id_prop,
                   id_documento = id_relacionada) %>%
     dplyr::bind_rows(pls_principais_ids)
+
+  current_docs_ids$id_principal <- as.character(current_docs_ids$id_principal)
+  current_docs_ids$id_documento <- as.character(current_docs_ids$id_documento)
 
   new_docs_ids <- all_docs_ids %>%
     dplyr::anti_join(current_docs_ids, by=c("id_documento","id_principal","casa"))
 
   return(new_docs_ids)
 }
-
-safe_fetch_ids_relacionadas <- purrr::safely(rcongresso::fetch_ids_relacionadas,otherwise = tibble::tibble())
 
 #' @title Baixa autores de documentos, adequando as colunas ao padrão desejado
 #' @description Retorna um dataframe contendo autores dos documentos
