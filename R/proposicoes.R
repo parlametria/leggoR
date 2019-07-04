@@ -185,17 +185,20 @@ fetch_autores_documentos <- function(docs_ids_df) {
 #' @return Dataframe
 #' @examples
 #' \dontrun{
-#'   docs_data <- fetch_documentos_data(257161, 'camara')
+#'   docs_data <- fetch_documentos_data(257161)
 #' }
 #' @export
-fetch_documentos_data <- function(docs_ids, casa) {
+fetch_documentos_data <- function(docs_ids) {
   docs <- purrr::map2_df(docs_ids$id_documento, docs_ids$casa, ~ fetch_all_documents(.x, .y))
+  docs <- docs %>%
+    dplyr::mutate(id_documento = ifelse(!is.na(codigo_materia), id, codigo_materia))
+
   formatted_docs_df <- tibble::tibble()
 
   if (nrow(docs) > 0) {
-    formatted_docs_df <- merge(docs, docs_ids, by.x="id", by.y = "id_documento") %>%
+    formatted_docs_df <- merge(docs, docs_ids, by.x="id", by.y="id_documento") %>%
       dplyr::distinct() %>%
-      dplyr::select(id_documento = id,
+      dplyr::select(id_documento = ifelse(casa == 'camara', id, codigo_materia),
                     id_principal,
                     casa,
                     sigla_tipo = siglaTipo,
