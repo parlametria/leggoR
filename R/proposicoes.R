@@ -199,14 +199,16 @@ fetch_documentos_data <- function(docs_ids) {
   if (nrow(docs) > 0) {
     formatted_docs_df <- merge(docs, docs_ids, by="id_documento") %>%
       dplyr::distinct() %>%
+      dplyr::mutate(sigla_tipo = ifelse(is.na(siglaTipo), sigla_subtipo_materia, siglaTipo)) %>%
       dplyr::select(id_documento,
                     id_principal,
                     casa,
-                    sigla_tipo = siglaTipo,
+                    sigla_tipo,
                     numero,
                     ano,
                     data_apresentacao = dataApresentacao,
                     ementa,
+                    -sigla_subtipo_materia,
                     dplyr::everything())
   }
   return(formatted_docs_df)
