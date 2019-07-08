@@ -284,16 +284,15 @@ fetch_all_documents <- function(id_documento, casa) {
   return(fetch_prop_output$result)
 }
 
-
-safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores_camara,otherwise = tibble::tibble())
+safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores,otherwise = tibble::tibble())
 
 #' @title Realiza busca dos autores de um documento
 #' @description Retorna autores de um documento caso a requisição seja bem-sucedida,
 #' caso contrário retorna um Dataframe vazio
 #' @param id_documento ID do documento
 #' @return Dataframe
-fetch_all_autores <- function(id_documento) {
-  fetch_prop_output <- safe_fetch_autores(id_documento)
+fetch_all_autores <- function(id_documento, casa) {
+  fetch_prop_output <- safe_fetch_autores(id_documento, casa)
   autores_result <- fetch_prop_output$result
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)
@@ -303,4 +302,3 @@ fetch_all_autores <- function(id_documento) {
   }
   return(autores_result)
 }
-
