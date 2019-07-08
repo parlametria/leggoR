@@ -168,7 +168,12 @@ safe_fetch_ids_relacionadas <- purrr::safely(rcongresso::fetch_ids_relacionadas,
 #' @return Dataframe
 #' @export
 fetch_autores_documentos <- function(docs_ids_df) {
-  autores_docs <- purrr::map_df(docs_ids_df$id_documento, docs_ids$casa ~ fetch_all_autores(.x, .y))
+  autores_docs <- purrr::map2_df(docs_ids_df$id_documento, docs_ids_df$casa, ~ fetch_all_autores(.x, .y))
+
+  autores_docs <- autores_docs %>%
+    dplyr::select(id_autor = ifelse(is.na(id_autor), id_parlamentar, id_autor),
+                  -id_parlamentar,
+                  dplyr::everything())
 
   return(autores_docs)
 }
