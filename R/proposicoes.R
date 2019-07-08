@@ -168,10 +168,9 @@ safe_fetch_ids_relacionadas <- purrr::safely(rcongresso::fetch_ids_relacionadas,
 #' @return Dataframe
 #' @export
 fetch_autores_documentos <- function(docs_ids_df) {
-  autores_docs_camara <- purrr::map_df(docs_ids_df$id_documento, ~ fetch_all_autores(.x)) %>%
-    dplyr::mutate(casa = 'camara')
+  autores_docs <- purrr::map_df(docs_ids_df$id_documento, docs_ids$casa ~ fetch_all_autores(.x, .y))
 
-  autores_docs_camara
+  return(autores_docs)
 }
 
 #' @title Baixa dados dos documentos, adequando as colunas ao padrão desejado
