@@ -145,11 +145,12 @@ generate_progresso_df <- function(tramitacao_df){
 generate_progresso_df_mpv <- function(tramitacao_df) {
   tramitacao_df <-
     tramitacao_df %>%
+    dplyr::filter(casa == 'senado') %>% 
     dplyr::arrange(data_hora) %>%
     dplyr::mutate(fase_global =
                     dplyr::case_when(
                       destino_tramitacao_local_nome_casa_local == "Câmara dos Deputados" ~ destino_tramitacao_local_nome_casa_local,
-                      stringr::str_detect(tolower(texto_tramitacao), "encaminhada ao senado federal") ~ "Senado Federal",
+                      stringr::str_detect(tolower(texto_tramitacao), "encaminhad(.) ao senado federal") ~ "Senado Federal",
                       stringr::str_detect(tolower(texto_tramitacao), "sancionada") ~ "Sanção Presidencial/Promulgação",
                       dplyr::row_number() == 1 ~ "Comissão Mista")) %>%
     tidyr::fill(fase_global)
@@ -161,11 +162,9 @@ generate_progresso_df_mpv <- function(tramitacao_df) {
       casa, prop_id, fase_global, sequence = data.table::rleid(fase_global)) %>%
     dplyr::summarise(
       data_inicio = min(data_hora, na.rm = T),
-      data_fim = max(end_data, na.rm = T)) %>%
+      data_fim = max(end_data)) %>%
     dplyr::select(-sequence) %>%
     dplyr::group_by(fase_global) %>%
-    dplyr::mutate(data_fim_anterior = dplyr::lag(data_fim)) %>%
-    dplyr::select(-data_fim_anterior) %>%
     dplyr::arrange(data_inicio)
 
   df <- df %>%

@@ -71,12 +71,14 @@
     {"evento": "aprovacao_parecer", "regex": "a comissão aprova o relatório|aprovado o relatório", "tipo":"votacao"},
     {"evento": "pedido_de_vista", "regex": "concedida vista", "tipo":"votacao"},
     {"evento": "designado_relator",
-      "regex": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))", "tipo":"despacho"},
-    {"evento": "arquivamento", "regex": "processo arquivado(.)*|a proposição é arquivada", "tipo":"despacho"},
+      "regex": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))|avocada a relatoria", 
+      "tipo":"despacho"},
+    {"evento": "arquivamento", "regex": "processo arquivado(.)*|a proposição é arquivada|o projeto vai ao arquivo", "tipo":"despacho"},
     {"evento": "desarquivamento", "regex": "a mat.ria foi desarquivada", "tipo":"despacho"},
     {"evento": "desarquivamento", "id_situacao": 149, "tipo":"despacho"},
     {"evento": "aprovacao_substitutivo", "regex": "aprovado o substitutivo", "tipo":"votacao"},
     {"evento": "aprovacao_projeto", "regex": "aprovado o projeto", "tipo":"votacao"},
+    {"evento": "rejeicao_projeto", "regex": "(plc*|pec|mpv) rejeitad(o|a)", "tipo":"votacao"},
     {"evento": "remetida_a_sancao", "regex": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
     {"evento": "transformada_lei", "regex": "sancionada", "tipo":"votacao"},
     {"evento": "vetada_totalmente", "regex": "vetada integralmente|vetado(,)* totalmente", "tipo":"votacao"},
@@ -204,6 +206,6 @@
   },
   
   "versoes_texto_proposicao":{
-    "tipos_texto_regex" : "(^projeto de lei .*)|(proposta de emenda .*)|(medida provisória .*)|(avulso de redação final)|(avulso inicial da matéria)|(^parecer nº.*)|(^emenda(s|).*)"
+    "tipos_texto_regex" : "(^projeto de lei .*)|(proposta de emenda .*)|(medida provisória .*)|(avulso de redação final)|(avulso inicial da matéria)|(^parecer nº.*)|(^emenda(s|).*)|(^medida provisória)"
   }
 }

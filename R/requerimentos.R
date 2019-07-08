@@ -36,27 +36,33 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
       return(tibble::tibble())
     }
   )
-  
+
   if(nrow(reqs) == 0) {
     return(tibble::tibble())
   }
-  
+
   reqs_tipos <- reqs %>%
     dplyr::select(id_req, tipo_documento = descricaoTipo)
-  
-  eventos_reqs <- purrr::map_df(reqs$id_req, ~rcongresso::fetch_events_requerimento_camara(.x)) %>%
-    dplyr::left_join(reqs_tipos, by="id_req") %>%
-    dplyr::select(-cod_situacao, -descricao_tramitacao, -regime, -uri_orgao, -id_req) %>%
-    dplyr::rename(texto_tramitacao = despacho,
-                  sigla_local = sigla_orgao,
-                  id_situacao = cod_tipo_tramitacao,
-                  link_inteiro_teor = url) %>%
-    dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,'T','')),
-                  local = sigla_local,
-                  prop_id = prop_id,
-                  casa = congresso_constants$camara_label,
-                  id_situacao = as.integer(id_situacao))
-  
+
+  eventos_reqs <- purrr::map_df(reqs$id_req, ~rcongresso::fetch_events_requerimento_camara(.x))
+
+  if(nrow(eventos_reqs) != 0) {
+    eventos_reqs <-
+      eventos_reqs %>%
+      dplyr::left_join(reqs_tipos, by="id_req") %>%
+      dplyr::select(-cod_situacao, -descricao_tramitacao, -regime, -uri_orgao, -id_req) %>%
+      dplyr::rename(texto_tramitacao = despacho,
+                    sigla_local = sigla_orgao,
+                    id_situacao = cod_tipo_tramitacao,
+                    link_inteiro_teor = url) %>%
+      dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,'T','')),
+                    local = sigla_local,
+                    prop_id = prop_id,
+                    casa = congresso_constants$camara_label,
+                    id_situacao = as.integer(id_situacao),
+                    tipo_documento = dplyr::if_else(tipo_documento == 'Requerimento', 'Requerimento (tipo não especificado)', tipo_documento))
+  }
+
   return(eventos_reqs)
 }
 
@@ -84,5 +90,3 @@ fetch_eventos_reqs_prop_senado <- function(prop_id) {
   #
   #return(eventos_reqs)
 }
-
-
