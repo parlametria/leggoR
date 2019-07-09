@@ -8,30 +8,30 @@ Rscript update_leggo_data.R <pls_ids_filepath> <export_path>
 
 #Functions
 
-# Analyzes fetched data and returns a list with ids of docs 
+# Analyzes fetched data and returns a list with ids of docs
 # whose fetch operation was successful (complete) and not successful (incomplete)
 get_fetch_status <- function(docs_ids, docs_data, authors_data) {
-  
+
   if (nrow(docs_data) == 0 | nrow(authors_data) == 0) {
     return(list(complete_docs = tibble::tibble(), incomplete_docs = docs_ids))
   }
-  
-  fetched_data_docs <- docs_data %>% 
+
+  fetched_data_docs <- docs_data %>%
     dplyr::select(id_documento, casa) %>%
     dplyr::mutate(id_documento = as.numeric(id_documento))
-  
-  fetched_autor_docs <- authors_data %>% 
+
+  fetched_autor_docs <- authors_data %>%
     dplyr::select(id_documento, casa) %>%
     dplyr::mutate(id_documento = as.numeric(id_documento))
-  
+
   complete_docs_df <- dplyr::inner_join(docs_ids,
                                      dplyr::inner_join(fetched_data_docs,fetched_autor_docs,
                                                        by=c("id_documento","casa")),
                                      by=c("id_documento","casa"))
-  
-  incomplete_docs_df <- dplyr::anti_join(docs_ids, complete_docs_df, 
+
+  incomplete_docs_df <- dplyr::anti_join(docs_ids, complete_docs_df,
                                          by=c("id_documento","id_principal","casa"))
-  
+
   return(list(complete_docs = complete_docs_df, incomplete_docs = incomplete_docs_df))
 }
 
@@ -46,7 +46,6 @@ export_path <- args[2]
 
 ## Install local repository R package version
 devtools::install()
-library(magrittr)
 
 # Read current data csvs
 
@@ -103,11 +102,11 @@ print(paste("Foram encontrados",nrow(new_docs_ids), "novos documentos."))
 if (nrow(new_docs_ids) > 0) {
   new_docs_data <- tibble::tibble()
   new_autores_data <- tibble::tibble()
-  
+
   print("Buscando dados sobre os novos documentos...")
   new_docs_data <- agoradigital::fetch_documentos_data(new_docs_ids) %>%
     dplyr::mutate_all(~ as.character(.))
-  
+
   print("Buscando os autores dos novos documentos...")
   new_autores_data <- agoradigital::fetch_autores_documentos(new_docs_data) %>%
     dplyr::mutate_all(~ as.character(.))
@@ -115,12 +114,12 @@ if (nrow(new_docs_ids) > 0) {
   fetch_status <- get_fetch_status(new_docs_ids, new_docs_data, new_autores_data)
   complete_docs <- fetch_status$complete_docs
   incomplete_docs <- fetch_status$incomplete_docs
-  
+
   if (nrow(incomplete_docs) > 0) {
     print("Não foi possível baixar dados completos (proposição e autores) para os seguintes documentos:")
     print(incomplete_docs)
   }
-  
+
   if (nrow(complete_docs) == 0) {
     print("Não foi possível baixar dados completos (proposição e autores) para nenhum dos novos documentos =(")
     quit(save = "no", status=1)
