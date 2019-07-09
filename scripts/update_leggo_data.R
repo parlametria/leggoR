@@ -73,10 +73,9 @@ current_docs <- readr::read_csv(paste0(export_path,'/documentos.csv'),
                                             statusProposicao.sequencia = readr::col_integer()
                                         ))
 
-current_autores <- readr::read_csv(paste0(export_path, '/teste.csv'),
+current_autores <- readr::read_csv(paste0(export_path, '/autores.csv'),
                                    col_types = list(
                                      .default = readr::col_character(),
-                                     codigo_publico_atual = readr::col_double(),
                                      id_autor = readr::col_character(),
                                      nome_autor = readr::col_character(),
                                      nome_completo = readr::col_character(),
