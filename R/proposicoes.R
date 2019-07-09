@@ -171,9 +171,13 @@ fetch_autores_documentos <- function(docs_ids_df) {
   autores_docs <- purrr::map2_df(docs_ids_df$id_documento, docs_ids_df$casa, ~ fetch_all_autores(.x, .y))
 
   autores_docs <- autores_docs %>%
-    dplyr::select(id_autor = ifelse(is.na(id_autor), id_parlamentar, id_autor),
-                  -id_parlamentar,
-                  dplyr::everything())
+    dplyr::mutate(tipo = ifelse(is.na(tipo), descricao_tipo_autor, tipo),
+                  id_autor = ifelse(is.na(id_autor), id_parlamentar, id_autor),
+                  nome_autor = ifelse(is.na(nome), nome_autor, nome)) %>%
+    dplyr::select(-id_parlamentar,
+                  -forma_de_tratamento,
+                  -nome,
+                  -descricao_tipo_autor)
 
   return(autores_docs)
 }
