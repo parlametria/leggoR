@@ -173,7 +173,8 @@ fetch_autores_documentos <- function(docs_ids_df) {
   autores_docs <- autores_docs %>%
     dplyr::mutate(tipo = ifelse(is.na(tipo), descricao_tipo_autor, tipo),
                   id_autor = ifelse(is.na(id_autor), id_parlamentar, id_autor),
-                  nome_autor = ifelse(is.na(nome), nome_autor, nome)) %>%
+                  nome_autor = ifelse(is.na(nome), nome_autor, nome),
+                  casa = ifelse((!is.na(uri) & !is.na(tipo)), 'camara', 'senado')) %>%
     dplyr::select(-id_parlamentar,
                   -forma_de_tratamento,
                   -nome,
