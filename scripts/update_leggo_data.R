@@ -46,7 +46,6 @@ export_path <- args[2]
 
 ## Install local repository R package version
 devtools::install()
-library(magrittr)
 
 # Read current data csvs
 

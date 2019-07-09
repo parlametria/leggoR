@@ -299,6 +299,7 @@ safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores,otherwise = tibble
 #' @description Retorna autores de um documento caso a requisição seja bem-sucedida,
 #' caso contrário retorna um Dataframe vazio
 #' @param id_documento ID do documento
+#' @param sigla_tipo Sigla do tipo do documento
 #' @return Dataframe
 fetch_all_autores <- function(id_documento, casa) {
   fetch_prop_output <- safe_fetch_autores(id_documento, casa)
