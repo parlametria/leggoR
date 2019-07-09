@@ -39,7 +39,9 @@ create_tabela_atores <- function(documentos_df, autores_df) {
     dplyr::ungroup()
 
   atores_df <- atores_df %>%
-    dplyr::mutate(cod_tipo = ifelse(is.na(cod_tipo), -1,cod_tipo))
+    dplyr::mutate(cod_tipo = ifelse(is.na(cod_tipo), -1,cod_tipo)) %>%
+    agoradigital::add_tipo_evento_documento() %>%
+    dplyr::mutate(tipo_generico = tipo)
 
   return(atores_df)
 }

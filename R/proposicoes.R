@@ -214,7 +214,7 @@ fetch_documentos_data <- function(docs_ids) {
 #' @export
 add_tipo_evento_documento <- function(docs_data) {
   docs_data %>%
-    fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricaoTipo = "regex"), ignore_case = T) %>%
+    fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricao_tipo = "regex"), ignore_case = T) %>%
     dplyr::select(-regex) %>%
     dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
 
