@@ -40,7 +40,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 107283,Gleisi Hoffmann,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/107283,2200005,camara,PT,PR
 107283,Gleisi Hoffmann,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/107283,2205954,camara,PT,PR
 108338,Jaqueline Cassol,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/108338,2204443,camara,PP,RO
-109152,Bernardo Santana de Vasconcellos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/109152,604559,camara,NA,MG
+109152,Bernardo Santana De Vasconcellos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/109152,604559,camara,NA,MG
 109429,Benes Leocádio,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/109429,2201844,camara,PRB,RN
 109429,Benes Leocádio,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/109429,2201843,camara,PRB,RN
 109429,Benes Leocádio,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/109429,2201847,camara,PRB,RN
@@ -53,9 +53,9 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 114941,Josi Nunes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/114941,2143178,camara,PROS,TO
 114941,Josi Nunes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/114941,2117877,camara,PROS,TO
 114941,Josi Nunes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/114941,2055061,camara,PROS,TO
-116379,Darci de Matos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/116379,2205451,camara,PSD,SC
-116379,Darci de Matos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/116379,2203061,camara,PSD,SC
-116379,Darci de Matos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/116379,2205280,camara,PSD,SC
+116379,Darci De Matos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/116379,2205451,camara,PSD,SC
+116379,Darci De Matos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/116379,2203061,camara,PSD,SC
+116379,Darci De Matos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/116379,2205280,camara,PSD,SC
 118594,Marcelo Squassoni,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/118594,2176196,camara,PRB,SP
 118594,Marcelo Squassoni,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/118594,1692944,camara,PRB,SP
 118594,Marcelo Squassoni,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/118594,1307190,camara,PRB,SP
@@ -225,11 +225,11 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 141372,Aelton Freitas,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141372,593386,camara,PR,MG
 141383,Antonio Bulhões,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141383,2120650,camara,PRB,SP
 141383,Antonio Bulhões,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141383,2187012,camara,PRB,SP
-141389,Indio da Costa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141389,1783395,camara,PSD,RJ
-141389,Indio da Costa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141389,1805139,camara,PSD,RJ
-141389,Indio da Costa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141389,1805137,camara,PSD,RJ
-141389,Indio da Costa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141389,1594654,camara,PSD,RJ
-141389,Indio da Costa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141389,358734,camara,PSD,RJ
+141389,Indio Da Costa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141389,1783395,camara,PSD,RJ
+141389,Indio Da Costa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141389,1805139,camara,PSD,RJ
+141389,Indio Da Costa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141389,1805137,camara,PSD,RJ
+141389,Indio Da Costa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141389,1594654,camara,PSD,RJ
+141389,Indio Da Costa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141389,358734,camara,PSD,RJ
 141390,Antônio Roberto,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141390,602118,camara,PV,MG
 141391,Arnaldo Jardim,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141391,2178892,camara,CIDADANIA,SP
 141391,Arnaldo Jardim,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141391,2197944,camara,CIDADANIA,SP
@@ -330,12 +330,12 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 141417,Edio Lopes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141417,945595,camara,PL,RR
 141417,Edio Lopes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141417,359502,camara,PL,RR
 141417,Edio Lopes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141417,1197831,camara,PL,RR
-141421,Eduardo da Fonte,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141421,2124995,camara,PP,PE
-141421,Eduardo da Fonte,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141421,2125219,camara,PP,PE
-141421,Eduardo da Fonte,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141421,2125317,camara,PP,PE
-141421,Eduardo da Fonte,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141421,2055513,camara,PP,PE
-141421,Eduardo da Fonte,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141421,2205638,camara,PP,PE
-141421,Eduardo da Fonte,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141421,2205643,camara,PP,PE
+141421,Eduardo Da Fonte,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141421,2124995,camara,PP,PE
+141421,Eduardo Da Fonte,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141421,2125219,camara,PP,PE
+141421,Eduardo Da Fonte,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141421,2125317,camara,PP,PE
+141421,Eduardo Da Fonte,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141421,2055513,camara,PP,PE
+141421,Eduardo Da Fonte,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141421,2205638,camara,PP,PE
+141421,Eduardo Da Fonte,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141421,2205643,camara,PP,PE
 141422,Efraim Filho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141422,2197505,camara,DEM,NA
 141422,Efraim Filho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141422,2125320,camara,DEM,NA
 141422,Efraim Filho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141422,2077778,camara,DEM,NA
@@ -371,7 +371,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 141433,Filipe Pereira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141433,430421,camara,PSC,NA
 141433,Filipe Pereira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141433,494857,camara,PSC,NA
 141438,Francisco Praciano,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141438,531913,camara,PT,AM
-141439,Chico D'Angelo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141439,2208520,camara,PDT,RJ
+141439,Chico D'angelo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141439,2208520,camara,PDT,RJ
 141442,Geraldo Pudim,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141442,458855,camara,PR,RJ
 141442,Geraldo Pudim,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141442,453475,camara,PR,RJ
 141445,Pepe Vargas,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141445,2123669,camara,PT,NA
@@ -420,7 +420,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 141464,José Airton Cirilo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141464,2058080,camara,PT,CE
 141464,José Airton,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141464,491459,camara,PT,CE
 141464,José Airton Cirilo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141464,460261,camara,PT,CE
-141466,José Fernando Aparecido de Oliveira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141466,349660,camara,PV,MG
+141466,José Fernando Aparecido De Oliveira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141466,349660,camara,PV,MG
 141468,Iran Barbosa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141468,405021,camara,PT,SE
 141470,José Guimarães,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141470,2205954,camara,PT,CE
 141470,José Guimarães,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141470,401159,camara,PT,CE
@@ -594,32 +594,32 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 141516,Paulo Abi-Ackel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141516,491763,camara,PSDB,MG
 141516,Paulo Abi-Ackel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141516,2191329,camara,PSDB,MG
 141517,Paulo Henrique Lustosa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141517,2058273,camara,PP,CE
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2199605,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2200893,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2201211,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2200076,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2195735,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2195795,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2124336,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2200077,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2196543,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2199226,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2195740,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2196526,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2195753,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2199571,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2201033,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2199233,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2203229,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2195800,camara,SOLIDARIEDADE,SP
-141518,Paulo Pereira da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2123537,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2199605,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2200893,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2201211,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2200076,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2195735,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2195795,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2124336,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2200077,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2196543,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2199226,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2195740,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2196526,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2195753,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2199571,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2201033,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2199233,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2203229,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2195800,camara,SOLIDARIEDADE,SP
+141518,Paulo Pereira Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141518,2123537,camara,SOLIDARIEDADE,SP
 141519,Paulo Piau,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141519,486641,camara,PMDB,NA
 141522,Sabino Castelo Branco,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141522,2138956,camara,PTB,AM
 141523,Raul Henry,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141523,2204636,camara,MDB,PE
 141529,Roberto Britto,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141529,2077691,camara,PP,BA
 141530,Rodovalho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141530,470759,camara,PP**,DF
 141530,Rodovalho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141530,345114,camara,PP**,DF
-141531,Rodrigo de Castro,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141531,1307190,camara,PSDB,MG
+141531,Rodrigo De Castro,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141531,1307190,camara,PSDB,MG
 141536,Rômulo Gouveia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141536,2148603,camara,NA,PB
 141536,Rômulo Gouveia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141536,2170586,camara,NA,PB
 141536,Rômulo Gouveia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141536,2057637,camara,NA,PB
@@ -670,8 +670,8 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 141555,Vinicius Carvalho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141555,2204263,camara,PRB,SP
 141555,Vinicius Carvalho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141555,2205986,camara,PRB,SP
 141555,Vinicius Carvalho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141555,2123412,camara,PRB,SP
-141556,Vital do Rêgo Filho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141556,354128,camara,PMDB,PB
-141556,Vital do Rêgo Filho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141556,482978,camara,PMDB,PB
+141556,Vital Do Rêgo Filho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141556,354128,camara,PMDB,PB
+141556,Vital Do Rêgo Filho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141556,482978,camara,PMDB,PB
 141559,Waldir Neves,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141559,388353,camara,PSDB,NA
 141559,Waldir Neves,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141559,394263,camara,PSDB,NA
 141559,Waldir Neves,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141559,388493,camara,PSDB,NA
@@ -691,8 +691,8 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 146788,Marcelo Aro,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/146788,2178170,camara,PP,MG
 146788,Marcelo Aro,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/146788,2205912,camara,PP,MG
 146788,Marcelo Aro,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/146788,2205913,camara,PP,MG
-146949,Rosinha da Adefal,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/146949,2124318,camara,AVANTE,AL
-146949,Rosinha da Adefal,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/146949,2124964,camara,AVANTE,AL
+146949,Rosinha Da Adefal,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/146949,2124318,camara,AVANTE,AL
+146949,Rosinha Da Adefal,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/146949,2124964,camara,AVANTE,AL
 148134,Professor Victório Galli,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/148134,1279026,camara,PSL,MT
 148134,Professor Victório Galli,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/148134,1214965,camara,PSL,MT
 148134,Professor Victório Galli,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/148134,2182574,camara,PSL,MT
@@ -914,9 +914,9 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 160528,Danilo Cabral,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160528,2202277,camara,PSB,PE
 160528,Danilo Cabral,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160528,2202276,camara,PSB,PE
 160530,Antonio Imbassahy,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160530,1302894,camara,PSDB,BA
-160531,Jhonatan de Jesus,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160531,2170886,camara,PRB,RR
-160531,Jhonatan de Jesus,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160531,2191144,camara,PRB,RR
-160531,Jhonatan de Jesus,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160531,2150268,camara,PRB,RR
+160531,Jhonatan De Jesus,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160531,2170886,camara,PRB,RR
+160531,Jhonatan De Jesus,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160531,2191144,camara,PRB,RR
+160531,Jhonatan De Jesus,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160531,2150268,camara,PRB,RR
 160532,Eli Correa Filho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160532,536057,camara,DEM,SP
 160535,Marcon,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160535,2205950,camara,PT,RS
 160535,Marcon,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160535,2177547,camara,PT,RS
@@ -1519,31 +1519,31 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 160651,Rogério Peninha Mendonça,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160651,2083308,camara,MDB,SC
 160651,Rogério Peninha Mendonça,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160651,542947,camara,MDB,SC
 160651,Rogério Peninha Mendonça,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160651,1228670,camara,MDB,SC
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2179182,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125982,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2207774,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2179181,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125335,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2123507,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2199387,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2123512,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2200952,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125339,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2199779,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125336,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125338,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125334,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,522447,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125214,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2123516,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2178573,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2200951,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125387,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2192236,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2123514,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2176225,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2123522,camara,PODE,SP
-160653,Roberto de Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125392,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2179182,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125982,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2207774,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2179181,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125335,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2123507,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2199387,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2123512,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2200952,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125339,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2199779,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125336,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125338,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125334,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,522447,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125214,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2123516,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2178573,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2200951,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125387,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2192236,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2123514,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2176225,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2123522,camara,PODE,SP
+160653,Roberto De Lucena,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160653,2125392,camara,PODE,SP
 160655,Ricardo Izar,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160655,1527035,camara,PP,SP
 160655,Ricardo Izar,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160655,2204287,camara,PP,SP
 160655,Ricardo Izar,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160655,2176136,camara,PP,SP
@@ -1737,7 +1737,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 171617,Paulão,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/171617,2205947,camara,PT,AL
 171617,Paulão,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/171617,2146673,camara,PT,AL
 171617,Paulão,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/171617,2205949,camara,PT,AL
-171618,Luiz de Deus,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/171618,614781,camara,DEM,BA
+171618,Luiz De Deus,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/171618,614781,camara,DEM,BA
 171619,Margarida Salomão,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/171619,2201320,camara,PT,MG
 171619,Margarida Salomão,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/171619,2202043,camara,PT,MG
 171619,Margarida Salomão,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/171619,2205954,camara,PT,MG
@@ -1795,10 +1795,10 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 177282,Subtenente Gonzaga,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/177282,2203690,camara,PDT,MG
 177282,Subtenente Gonzaga,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/177282,2125031,camara,PDT,MG
 178802,Luiz Carlos Ramos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178802,2077691,camara,PR,RJ
-178825,Leo de Brito,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178825,2188306,camara,PT,NA
-178825,Leo de Brito,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178825,2169295,camara,PT,NA
-178825,Leo de Brito,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178825,1307432,camara,PT,NA
-178825,Leo de Brito,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178825,2170859,camara,PT,NA
+178825,Leo De Brito,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178825,2188306,camara,PT,NA
+178825,Leo De Brito,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178825,2169295,camara,PT,NA
+178825,Leo De Brito,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178825,1307432,camara,PT,NA
+178825,Leo De Brito,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178825,2170859,camara,PT,NA
 178826,Major Olimpio,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178826,2123393,camara,PSL,SP
 178826,Major Olimpio,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178826,2201971,camara,PSL,SP
 178826,Major Olimpio,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178826,2201972,camara,PSL,SP
@@ -1984,15 +1984,15 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 178869,Vitor Valim,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178869,2128150,camara,PROS,CE
 178869,Vitor Valim,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178869,1307583,camara,PROS,CE
 178869,Vitor Valim,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178869,2122909,camara,PROS,CE
-178871,Evair Vieira de Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2201810,camara,PP,ES
-178871,Evair de Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,1301749,camara,PP,ES
-178871,Evair Vieira de Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2151381,camara,PP,ES
-178871,Evair Vieira de Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2201803,camara,PP,ES
-178871,Evair Vieira de Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2173154,camara,PP,ES
-178871,Evair Vieira de Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2170629,camara,PP,ES
-178871,Evair Vieira de Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2201811,camara,PP,ES
-178871,Evair de Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,1301751,camara,PP,ES
-178871,Evair Vieira de Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2201802,camara,PP,ES
+178871,Evair Vieira De Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2201810,camara,PP,ES
+178871,Evair De Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,1301749,camara,PP,ES
+178871,Evair Vieira De Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2151381,camara,PP,ES
+178871,Evair Vieira De Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2201803,camara,PP,ES
+178871,Evair Vieira De Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2173154,camara,PP,ES
+178871,Evair Vieira De Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2170629,camara,PP,ES
+178871,Evair Vieira De Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2201811,camara,PP,ES
+178871,Evair De Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,1301751,camara,PP,ES
+178871,Evair Vieira De Melo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178871,2201802,camara,PP,ES
 178873,Helder Salomão,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178873,2205952,camara,PT,ES
 178873,Helder Salomão,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178873,2205948,camara,PT,ES
 178873,Helder Salomão,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178873,2205946,camara,PT,ES
@@ -2224,10 +2224,10 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 178910,Joaquim Passarinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178910,2170249,camara,PSD,PA
 178912,Pedro Cunha Lima,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178912,2053243,camara,PSDB,PB
 178912,Pedro Cunha Lima,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178912,2053263,camara,PSDB,PB
-178913,Veneziano Vital do Rêgo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178913,1295730,camara,PSB,PB
-178913,Veneziano Vital do Rêgo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178913,1199844,camara,PSB,PB
-178913,Veneziano Vital do Rêgo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178913,2152900,camara,PSB,PB
-178913,Veneziano Vital do Rêgo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178913,1555430,camara,PSB,PB
+178913,Veneziano Vital Do Rêgo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178913,1295730,camara,PSB,PB
+178913,Veneziano Vital Do Rêgo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178913,1199844,camara,PSB,PB
+178913,Veneziano Vital Do Rêgo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178913,2152900,camara,PSB,PB
+178913,Veneziano Vital Do Rêgo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178913,1555430,camara,PSB,PB
 178915,Betinho Gomes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178915,2193061,camara,PSDB,PE
 178915,Betinho Gomes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178915,2124558,camara,PSDB,PE
 178915,Betinho Gomes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178915,2112799,camara,PSDB,PE
@@ -2438,8 +2438,8 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 178964,Heitor Schuch,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178964,2123681,camara,PSB,RS
 178964,Heitor Schuch,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178964,2190540,camara,PSB,RS
 178964,Heitor Schuch,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178964,2204607,camara,PSB,RS
-178966,Geovania de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178966,2205213,camara,PSDB,SC
-178966,Geovania de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178966,2125027,camara,PSDB,SC
+178966,Geovania De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178966,2205213,camara,PSDB,SC
+178966,Geovania De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178966,2125027,camara,PSDB,SC
 178970,João Daniel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178970,2201956,camara,PT,SE
 178970,João Daniel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178970,2200949,camara,PT,SE
 178970,João Daniel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178970,2201955,camara,PT,SE
@@ -2799,8 +2799,8 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 204366,Rodrigo Coelho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204366,2205344,camara,PSB,SC
 204366,Rodrigo Coelho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204366,2205343,camara,PSB,SC
 204367,Daniel Freitas,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204367,2205759,camara,PSL,SC
-204369,Caroline de Toni,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204369,2201317,camara,PSL,SC
-204369,Caroline de Toni,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204369,2190752,camara,PSL,SC
+204369,Caroline De Toni,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204369,2201317,camara,PSL,SC
+204369,Caroline De Toni,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204369,2190752,camara,PSL,SC
 204370,Célio Moura,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204370,2205952,camara,PT,TO
 204370,Célio Moura,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204370,2205950,camara,PT,TO
 204370,Célio Moura,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204370,2205947,camara,PT,TO
@@ -3016,9 +3016,9 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 204439,Dr. Leonardo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204439,2205621,camara,SOLIDARIEDADE,MT
 204439,Dr. Leonardo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204439,2205622,camara,SOLIDARIEDADE,MT
 204440,Christino Aureo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204440,2205885,camara,PP,RJ
-204441,Otoni de Paula,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204441,2193903,camara,PSC,RJ
-204441,Otoni de Paula,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204441,2200553,camara,PSC,RJ
-204441,Otoni de Paula,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204441,2200555,camara,PSC,RJ
+204441,Otoni De Paula,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204441,2193903,camara,PSC,RJ
+204441,Otoni De Paula,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204441,2200553,camara,PSC,RJ
+204441,Otoni De Paula,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204441,2200555,camara,PSC,RJ
 204442,Gurgel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204442,2203690,camara,PSL,RJ
 204442,Gurgel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204442,2190752,camara,PSL,RJ
 204449,Nelson Barbudo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204449,2202007,camara,PSL,MT
@@ -3112,7 +3112,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 204456,Gutemberg Reis,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204456,2199068,camara,MDB,RJ
 204456,Gutemberg Reis,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204456,2200683,camara,MDB,RJ
 204456,Gutemberg Reis,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204456,2204284,camara,MDB,RJ
-204459,Daniela do Waguinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204459,2202974,camara,MDB,RJ
+204459,Daniela Do Waguinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204459,2202974,camara,MDB,RJ
 204460,Carlos Jordy,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204460,2190752,camara,PSL,RJ
 204461,Paulo Ganime,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204461,2205744,camara,NOVO,RJ
 204461,Paulo Ganime,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204461,2205743,camara,NOVO,RJ
@@ -3237,7 +3237,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 204480,Rogério Correia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204480,2205948,camara,PT,MG
 204480,Rogério Correia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204480,2201291,camara,PT,MG
 204482,Euclydes Pettersen,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204482,2205745,camara,PSC,MG
-204483,Vilson da Fetaemg,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204483,2205698,camara,PSB,MG
+204483,Vilson Da Fetaemg,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204483,2205698,camara,PSB,MG
 204486,Mauro Benevides Filho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204486,2200465,camara,PDT,NA
 204486,Mauro Benevides Filho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204486,2204507,camara,PDT,NA
 204486,Mauro Benevides Filho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204486,2199381,camara,PDT,NA
@@ -3343,7 +3343,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 204503,Alexandre Padilha,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204503,2205952,camara,PT,SP
 204503,Alexandre Padilha,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204503,2205954,camara,PT,SP
 204503,Alexandre Padilha,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204503,2205946,camara,PT,SP
-204504,Cezinha de Madureira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204504,2196619,camara,PSD,SP
+204504,Cezinha De Madureira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204504,2196619,camara,PSD,SP
 204505,Vavá Martins,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204505,2205109,camara,PRB,PA
 204506,Marcos Pereira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204506,2206906,camara,PRB,SP
 204506,Marcos Pereira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204506,2204803,camara,PRB,SP
@@ -3420,11 +3420,11 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 204523,Lucas Gonzalez,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204523,2199551,camara,NOVO,MG
 204523,Lucas Gonzalez,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204523,2205743,camara,NOVO,MG
 204524,Pinheirinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204524,2203250,camara,PP,MG
-204526,Luiz Philippe de Orleans e Bragança,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204526,2197922,camara,PSL,SP
-204526,Luiz Philippe de Orleans e Bragança,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204526,2197837,camara,PSL,SP
-204526,Luiz Philippe de Orleans e Bragança,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204526,2190752,camara,PSL,SP
-204526,Luiz Philippe de Orleans e Bragança,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204526,2198154,camara,PSL,SP
-204526,Luiz Philippe de Orleans e Bragança,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204526,2208828,camara,PSL,SP
+204526,Luiz Philippe De Orleans e Bragança,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204526,2197922,camara,PSL,SP
+204526,Luiz Philippe De Orleans e Bragança,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204526,2197837,camara,PSL,SP
+204526,Luiz Philippe De Orleans e Bragança,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204526,2190752,camara,PSL,SP
+204526,Luiz Philippe De Orleans e Bragança,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204526,2198154,camara,PSL,SP
+204526,Luiz Philippe De Orleans e Bragança,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204526,2208828,camara,PSL,SP
 204527,Geninho Zuliani,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204527,2191267,camara,DEM,SP
 204527,Geninho Zuliani,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204527,2205560,camara,DEM,SP
 204528,Adriana Ventura,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204528,2205743,camara,NOVO,SP
@@ -3613,14 +3613,14 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 204559,Zé Neto,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204559,2205953,camara,PT,BA
 204559,Zé Neto,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204559,2205951,camara,PT,BA
 204559,Zé Neto,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204559,2205948,camara,PT,BA
-204561,Bira do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2200981,camara,PSB,MA
-204561,Bira do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2205753,camara,PSB,MA
-204561,Bira do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2204607,camara,PSB,MA
-204561,Bira do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2201214,camara,PSB,MA
-204561,Bira do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2200980,camara,PSB,MA
-204561,Bira do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2203430,camara,PSB,MA
-204561,Bira do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2200982,camara,PSB,MA
-204561,Bira do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2201215,camara,PSB,MA
+204561,Bira Do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2200981,camara,PSB,MA
+204561,Bira Do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2205753,camara,PSB,MA
+204561,Bira Do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2204607,camara,PSB,MA
+204561,Bira Do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2201214,camara,PSB,MA
+204561,Bira Do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2200980,camara,PSB,MA
+204561,Bira Do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2203430,camara,PSB,MA
+204561,Bira Do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2200982,camara,PSB,MA
+204561,Bira Do Pindaré,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204561,2201215,camara,PSB,MA
 204563,Josimar Maranhãozinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204563,2205945,camara,PL,MA
 204563,Josimar Maranhãozinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204563,2196537,camara,PL,MA
 204563,Josimar Maranhãozinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204563,2205944,camara,PL,MA
@@ -3832,85 +3832,85 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 73433,Arlindo Chinaglia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73433,2123628,camara,PT,SP
 73433,Arlindo Chinaglia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73433,2175834,camara,PT,SP
 73433,Arlindo Chinaglia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73433,2123417,camara,PT,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123889,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017041,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123890,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125369,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124635,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123774,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017037,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123561,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123778,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125305,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123372,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125393,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123765,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124078,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017039,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125367,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2126032,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2117209,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017028,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123767,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123769,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123376,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123370,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123557,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123373,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125397,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124634,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125394,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124079,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123755,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2120643,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123371,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123775,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2120650,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2126031,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123829,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124088,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123683,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123543,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123763,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017036,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125331,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125366,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123772,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,619188,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123750,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123771,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125329,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125380,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125365,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125149,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017030,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125395,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125368,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017033,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017031,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2077780,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125364,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124224,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125216,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017032,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125383,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124723,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017063,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124688,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123756,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123379,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2079670,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125215,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,619186,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123761,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123753,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123378,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,1215071,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125328,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123757,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123754,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123377,camara,PP,SP
-73434,Arnaldo Faria de Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125218,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123889,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017041,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123890,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125369,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124635,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123774,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017037,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123561,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123778,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125305,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123372,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125393,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123765,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124078,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017039,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125367,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2126032,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2117209,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017028,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123767,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123769,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123376,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123370,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123557,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123373,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125397,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124634,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125394,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124079,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123755,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2120643,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123371,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123775,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2120650,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2126031,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123829,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124088,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123683,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123543,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123763,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017036,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125331,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125366,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123772,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,619188,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123750,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123771,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125329,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125380,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125365,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125149,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017030,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125395,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125368,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017033,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017031,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2077780,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125364,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124224,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125216,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017032,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125383,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124723,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2017063,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2124688,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123756,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123379,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2079670,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125215,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,619186,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123761,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123753,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123378,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,1215071,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125328,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123757,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123754,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2123377,camara,PP,SP
+73434,Arnaldo Faria De Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73434,2125218,camara,PP,SP
 73441,Celso Russomanno,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73441,2077775,camara,PRB,SP
 73441,Celso Russomanno,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73441,2178170,camara,PRB,SP
 73441,Celso Russomanno,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73441,1618127,camara,PRB,SP
@@ -4028,26 +4028,26 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 73483,Luis Carlos Heinze,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73483,2201812,camara,PP,NA
 73483,Luis Carlos Heinze,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73483,1215554,camara,PP,NA
 73483,Luis Carlos Heinze,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73483,2201808,camara,PP,NA
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,19298,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2197295,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2203221,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2125001,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2175522,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2205966,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2190899,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2205967,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,105006,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,1194785,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2186122,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2175523,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2193934,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2195364,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2194982,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2186795,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2125002,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2194773,camara,PDT,RS
-73486,Pompeo de Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2132521,camara,PDT,RS
-73490,Ricarte de Freitas,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73490,99375,camara,PTB,MT
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,19298,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2197295,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2203221,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2125001,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2175522,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2205966,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2190899,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2205967,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,105006,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,1194785,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2186122,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2175523,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2193934,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2195364,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2194982,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2186795,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2125002,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2194773,camara,PDT,RS
+73486,Pompeo De Mattos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73486,2132521,camara,PDT,RS
+73490,Ricarte De Freitas,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73490,99375,camara,PTB,MT
 73492,Antonio Carlos Biscaia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73492,104799,camara,PT,RJ
 73492,Antonio Carlos Biscaia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73492,287960,camara,PT,RJ
 73492,Antonio Carlos Biscaia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73492,285840,camara,PT,RJ
@@ -4110,7 +4110,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 73532,Jair Meneguelli,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73532,284918,camara,PT,SP
 73532,Jair Meneguelli,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73532,284914,camara,PT,SP
 73532,Jair Meneguelli,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73532,284912,camara,PT,SP
-73544,KOYU IHA,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73544,15184,camara,PSDB,SP
+73544,Koyu Iha,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73544,15184,camara,PSDB,SP
 73545,Luciano Zica,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73545,257161,camara,PT,SP
 73553,Nelson Marquezelli,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73553,306980,camara,PTB,SP
 73553,Nelson Marquezelli,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73553,608448,camara,PTB,SP
@@ -4181,7 +4181,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 73604,Rui Falcão,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73604,2198214,camara,PT,SP
 73604,Rui Falcão,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73604,2205953,camara,PT,SP
 73604,Rui Falcão,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73604,2207109,camara,PT,SP
-73644,WELSON GASPARINI,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73644,19913,camara,PSDB,SP
+73644,Welson Gasparini,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73644,19913,camara,PSDB,SP
 73651,Rogério Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73651,110230,camara,PP**,MT
 73653,Welinton Fagundes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73653,15175,camara,PR,MT
 73654,Agnelo Queiroz,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73654,15946,camara,PCdoB,DF
@@ -4217,19 +4217,19 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 73674,Roberto Balestra,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73674,2112466,camara,PP,GO
 73674,Roberto Balestra,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73674,2121247,camara,PP,GO
 73674,Roberto Balestra,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73674,2112468,camara,PP,GO
-73701,Benedita da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205947,camara,PT,RJ
-73701,Benedita da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205949,camara,PT,RJ
-73701,Benedita da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205953,camara,PT,RJ
-73701,Benedita da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2207109,camara,PT,RJ
-73701,Benedita da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205954,camara,PT,RJ
-73701,Benedita da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2082143,camara,PT,RJ
-73701,Benedita da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205946,camara,PT,RJ
-73701,Benedita da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205951,camara,PT,RJ
-73701,Benedita da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205948,camara,PT,RJ
-73701,Benedita da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,613702,camara,PT,RJ
-73701,Benedita da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205950,camara,PT,RJ
-73701,Benedita da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2147357,camara,PT,RJ
-73701,Benedita da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205952,camara,PT,RJ
+73701,Benedita Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205947,camara,PT,RJ
+73701,Benedita Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205949,camara,PT,RJ
+73701,Benedita Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205953,camara,PT,RJ
+73701,Benedita Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2207109,camara,PT,RJ
+73701,Benedita Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205954,camara,PT,RJ
+73701,Benedita Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2082143,camara,PT,RJ
+73701,Benedita Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205946,camara,PT,RJ
+73701,Benedita Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205951,camara,PT,RJ
+73701,Benedita Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205948,camara,PT,RJ
+73701,Benedita Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,613702,camara,PT,RJ
+73701,Benedita Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205950,camara,PT,RJ
+73701,Benedita Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2147357,camara,PT,RJ
+73701,Benedita Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73701,2205952,camara,PT,RJ
 73764,Abelardo Lupion,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73764,453046,camara,DEM,PR
 73768,Dilceu Sperafico,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73768,2090394,camara,PP,PR
 73768,Dilceu Sperafico,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73768,500183,camara,PP,PR
@@ -4512,7 +4512,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 74060,Daniel Almeida,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74060,2205887,camara,PCdoB,BA
 74060,Daniel Almeida,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74060,2205894,camara,PCdoB,BA
 74062,Fábio Souto,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74062,495918,camara,DEM,BA
-74063,Fernando de Fabinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74063,425903,camara,DEM,BA
+74063,Fernando De Fabinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74063,425903,camara,DEM,BA
 74072,Anivaldo Vale,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74072,16677,camara,PSDB,PA
 74077,Giovanni Queiroz,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74077,537400,camara,PDT,PA
 74077,Giovanni Queiroz,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74077,606750,camara,PDT,PA
@@ -4556,7 +4556,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 74150,Dr. Francisco Gonçalves,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74150,337611,camara,PPS,MG
 74153,Ivo José,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74153,257161,camara,PT,MG
 74153,Ivo José,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74153,290325,camara,PT,MG
-74154,João Paulo Gomes da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74154,327619,camara,PSB,MG
+74154,João Paulo Gomes Da Silva,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74154,327619,camara,PSB,MG
 74156,Leonardo Monteiro,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74156,2205948,camara,PT,MG
 74156,Leonardo Monteiro,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74156,2205960,camara,PT,MG
 74156,Leonardo Monteiro,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74156,2205952,camara,PT,MG
@@ -4688,7 +4688,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 74210,Sarney Filho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74210,605749,camara,PV,MA
 74212,Aníbal Gomes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74212,1513916,camara,DEM,CE
 74213,Antonio Balhmann,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74213,493415,camara,PDT,CE
-74216,Raimundo Gomes de Matos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74216,605811,camara,PSDB,CE
+74216,Raimundo Gomes De Matos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74216,605811,camara,PSDB,CE
 74218,Walter Pinheiro,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74218,257161,camara,PT,BA
 74222,Asdrubal Bentes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74222,537400,camara,PMDB,PA
 74235,Marcus Vicente,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74235,2169608,camara,PP,ES
@@ -4747,7 +4747,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 74285,Carlos Abicalil,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74285,405021,camara,PT,MT
 74285,Carlos Abicalil,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74285,133035,camara,PT,MT
 74285,Carlos Abicalil,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74285,352792,camara,PT,MT
-74286,Thelma de Oliveira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74286,337677,camara,PSDB,MT
+74286,Thelma De Oliveira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74286,337677,camara,PSDB,MT
 74295,Inácio Arruda,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74295,17372,camara,PCdoB,CE
 74298,José Pimentel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74298,284851,camara,PT,CE
 74298,José Pimentel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74298,264558,camara,PT,CE
@@ -4770,7 +4770,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 74321,Betinho Rosado,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74321,367396,camara,PP**,RN
 74341,Almir Sá,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74341,14562,camara,PR,RR
 74343,Dr. Benedito Dias,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74343,280830,camara,PP**,AP
-74343,Dr. Benedito Dias-Pres. da CSSF,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74343,318155,camara,PP**,AP
+74343,Dr. Benedito Dias-Pres. Da Cssf,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74343,318155,camara,PP**,AP
 74345,Evandro Milhomen,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74345,460473,camara,PCdoB,AP
 74345,Evandro Milhomen,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74345,492393,camara,PCdoB,AP
 74354,Zenaldo Coutinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74354,478844,camara,PSDB,NA
@@ -4854,39 +4854,39 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 74376,Vander Loubet,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74376,2201251,camara,PT,MS
 74376,Vander Loubet,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74376,2205951,camara,PT,MS
 74376,Vander Loubet,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74376,2205954,camara,PT,MS
-74378,Assis do Couto,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74378,2124950,camara,PDT,PR
-74378,Assis do Couto,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74378,2125033,camara,PDT,PR
-74378,Assis do Couto,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74378,2124924,camara,PDT,PR
+74378,Assis Do Couto,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74378,2124950,camara,PDT,PR
+74378,Assis Do Couto,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74378,2125033,camara,PDT,PR
+74378,Assis Do Couto,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74378,2124924,camara,PDT,PR
 74379,Cezar Silvestri,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74379,405287,camara,PPS,PR
 74381,Dra. Clair,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74381,122145,camara,PT,PR
 74389,Mauro Passos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74389,257161,camara,PT,SC
 74391,Vignatti,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74391,257161,camara,PT,SC
 74392,Zonta,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74392,131687,camara,PSB,NA
 74397,Luciana Genro,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74397,352792,camara,PSOL,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123248,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205946,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2190650,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205953,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2146079,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2199054,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123243,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205952,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123251,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2129725,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123249,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123250,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205949,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205954,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205947,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123246,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2201326,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205951,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205948,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123247,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205950,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2198214,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2121253,camara,PT,RS
-74398,Maria do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2207109,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123248,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205946,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2190650,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205953,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2146079,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2199054,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123243,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205952,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123251,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2129725,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123249,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123250,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205949,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205954,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205947,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123246,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2201326,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205951,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205948,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2123247,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2205950,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2198214,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2121253,camara,PT,RS
+74398,Maria Do Rosário,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74398,2207109,camara,PT,RS
 74399,Onyx Lorenzoni,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74399,2123535,camara,DEM,NA
 74399,Onyx Lorenzoni,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74399,2146252,camara,DEM,NA
 74399,Onyx Lorenzoni,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74399,2123629,camara,DEM,NA
@@ -4998,9 +4998,9 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 74455,Léo Alcântara,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74455,349273,camara,PR,CE
 74459,Átila Lira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74459,2018336,camara,PSB,PI
 74459,Átila Lira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74459,2131276,camara,PSB,PI
-74471,André de Paula,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74471,464842,camara,PSD,PE
-74471,André de Paula,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74471,464832,camara,PSD,PE
-74471,André de Paula,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74471,2125415,camara,PSD,PE
+74471,André De Paula,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74471,464842,camara,PSD,PE
+74471,André De Paula,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74471,464832,camara,PSD,PE
+74471,André De Paula,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74471,2125415,camara,PSD,PE
 74474,Carlos Eduardo Cadoca,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74474,2124988,camara,PDT,PE
 74478,Luciano Bivar,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74478,2194545,camara,PSL,PE
 74485,Mariângela Duarte,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74485,126309,camara,PT,SP
@@ -5102,9 +5102,9 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 74585,Lincoln Portela,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74585,491051,camara,PL,MG
 74592,Ronaldo Vasconcellos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74592,26098,camara,PTB,NA
 74641,Severiano Alves,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74641,372077,camara,PMDB,BA
-74650,Bonifácio de Andrada,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74650,581603,camara,DEM,MG
-74650,Bonifácio de Andrada,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74650,1302894,camara,DEM,MG
-74650,Bonifácio de Andrada,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74650,2169270,camara,DEM,MG
+74650,Bonifácio De Andrada,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74650,581603,camara,DEM,MG
+74650,Bonifácio De Andrada,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74650,1302894,camara,DEM,MG
+74650,Bonifácio De Andrada,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74650,2169270,camara,DEM,MG
 74655,Eduardo Barbosa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74655,2205594,camara,PSDB,MG
 74655,Eduardo Barbosa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74655,2200953,camara,PSDB,MG
 74655,Eduardo Barbosa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74655,2170432,camara,PSDB,MG
@@ -5132,7 +5132,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 74693,Rodrigo Maia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74693,306980,camara,DEM,RJ
 74693,Rodrigo Maia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74693,2196544,camara,DEM,RJ
 74702,Bispo Wanderval,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74702,111576,camara,PR,SP
-74741,JOSE SANTANA DE VASCONCELLOS,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74741,15708,camara,PR,MG
+74741,Jose Santana De Vasconcellos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74741,15708,camara,PR,MG
 74750,Newton Cardoso,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74750,2077775,camara,PMDB,MG
 74754,Paulo Delgado,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74754,27746,camara,PT,MG
 74771,Feu Rosa,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74771,272259,camara,PP**,ES
@@ -5162,17 +5162,17 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 74793,Ricardo Berzoini,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74793,580865,camara,PT,NA
 74800,Lino Rossi,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74800,299862,camara,PP**,MT
 74812,Pedro Chaves,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74812,2125944,camara,MDB,GO
-74838,EDSON EZEQUIEL,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16801,camara,PMDB,RJ
-74838,EDSON EZEQUIEL,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16803,camara,PMDB,RJ
-74838,EDSON EZEQUIEL,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16820,camara,PMDB,RJ
-74838,EDSON EZEQUIEL,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16799,camara,PMDB,RJ
-74838,EDSON EZEQUIEL,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16825,camara,PMDB,RJ
-74838,EDSON EZEQUIEL,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16807,camara,PMDB,RJ
-74838,EDSON EZEQUIEL,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16814,camara,PMDB,RJ
-74838,EDSON EZEQUIEL,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16805,camara,PMDB,RJ
-74838,EDSON EZEQUIEL,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16822,camara,PMDB,RJ
-74838,EDSON EZEQUIEL,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16818,camara,PMDB,RJ
-74838,EDSON EZEQUIEL,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16809,camara,PMDB,RJ
+74838,Edson Ezequiel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16801,camara,PMDB,RJ
+74838,Edson Ezequiel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16803,camara,PMDB,RJ
+74838,Edson Ezequiel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16820,camara,PMDB,RJ
+74838,Edson Ezequiel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16799,camara,PMDB,RJ
+74838,Edson Ezequiel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16825,camara,PMDB,RJ
+74838,Edson Ezequiel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16807,camara,PMDB,RJ
+74838,Edson Ezequiel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16814,camara,PMDB,RJ
+74838,Edson Ezequiel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16805,camara,PMDB,RJ
+74838,Edson Ezequiel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16822,camara,PMDB,RJ
+74838,Edson Ezequiel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16818,camara,PMDB,RJ
+74838,Edson Ezequiel,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74838,16809,camara,PMDB,RJ
 74841,Fernando Gabeira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74841,352792,camara,PV,RJ
 74841,Fernando Gabeira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74841,16326,camara,PV,RJ
 74841,Fernando Gabeira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74841,16328,camara,PV,RJ
@@ -5316,7 +5316,7 @@ id_autor,nome,cod_tipo,tipo,uri,id_documento,casa,partido,uf
 97707,Heráclito Fortes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/97707,2077778,camara,DEM,PI
 97707,Heráclito Fortes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/97707,2077988,camara,DEM,PI
 97707,Heráclito Fortes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/97707,2077941,camara,DEM,PI
-98057,Lafayette de Andrada,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/98057,2203355,camara,PRB,MG
+98057,Lafayette De Andrada,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/98057,2203355,camara,PRB,MG
 99654,Erivelton Santana,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/99654,606723,camara,PATRI,BA
 99654,Erivelton Santana,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/99654,606722,camara,PATRI,BA
 99654,Erivelton Santana,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/99654,2113931,camara,PATRI,BA
