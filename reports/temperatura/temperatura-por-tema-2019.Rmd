@@ -106,10 +106,6 @@ temperatura_geral %>%
 
 ```
 
-Como podemos perceber, para o nosso sub-conjunto de proposições, a temperatura estava mais baixa em 2015 e 2016, apresentando um aumento do final de 2016 para o início de 2017. 
-Em seguida, houve uma queda e voltou a subir no primeiro semestre de 2018.
-No período anterior e durante as eleições houve uma (natural) queda e vem subindo do final do ano de 2018 até o presente momento (Julho/2019).
-
 Vamos analisar a temperatura por tema para podermos compreender melhor que temas/proposições influenciaram essas subidas de temperatura observadas.
 
 ## Qual foi o comportamento da temperatura de cada tema acompanhado pelo Leggo nos últimos anos (2015-2019)? 
@@ -140,20 +136,20 @@ Vamos analisar os principais picos para cada tema e identificar quais foram as p
 ### Agenda Nacional
 
 ```{r, fig.width=12,fig.align='center'}
-temperatura_temas %>%
-  filter(tema == "Agenda Nacional") %>%
-  ggplot(aes(x=semana, y=total_temp, label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp))) +
-  geom_area(fill=cor_agenda_nacional) +
-  xlab("Tempo") +
-  ylab("Temperatura") +
-  theme_minimal() +
-  scale_y_sqrt() +
-  theme(strip.background = element_blank(),
-                 legend.position = "None") +
-  #annotate("segment", x = lubridate::ymd_hms('2017-01-01 00:00:00'), xend = lubridate::ymd_hms('2017-02-06 00:00:00'), y = 479, yend = 629, colour = "red", size=3, alpha=0.6, arrow=arrow())
-  #scale_fill_manual( values = c( "destaque"=cor_temperatura, "normal"=cor_agenda_nacional), guide = FALSE )
-  geom_point(data=temp_semanas_destaque_an, colour="red", size=3) +
-  geom_text(data=temp_semanas_destaque_an, aes(x=semana, y=total_temp),vjust="inward",hjust=1.2)
+# temperatura_temas %>%
+#   filter(tema == "Agenda Nacional") %>%
+#   ggplot(aes(x=semana, y=total_temp, label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp))) +
+#   geom_area(fill=cor_agenda_nacional) +
+#   xlab("Tempo") +
+#   ylab("Temperatura") +
+#   theme_minimal() +
+#   scale_y_sqrt() +
+#   theme(strip.background = element_blank(),
+#                  legend.position = "None") +
+#   #annotate("segment", x = lubridate::ymd_hms('2017-01-01 00:00:00'), xend = lubridate::ymd_hms('2017-02-06 00:00:00'), y = 479, yend = 629, colour = "red", size=3, alpha=0.6, arrow=arrow())
+#   #scale_fill_manual( values = c( "destaque"=cor_temperatura, "normal"=cor_agenda_nacional), guide = FALSE )
+#   geom_point(data=temp_semanas_destaque_an, colour="red", size=3) +
+#   geom_text(data=temp_semanas_destaque_an, aes(x=semana, y=total_temp),vjust="inward",hjust=1.2)
 ```
 
 ```{r}
@@ -260,7 +256,7 @@ temperatura_temas %>%
 
 
 
-Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que a principal foi a PEC da Reforma da Previdência do Governo Bolsonaro - **PEC 6/2019**, responsável por `r round(100*(evolucao_semanal_temperatura_an_2$evolucao_temp_recente[1]/sum(evolucao_semanal_temperatura_an_2$evolucao_temp_recente)))`% do aumento na temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_an_2$semana), format="%d/%m/%Y")`). A curva de temperatura da proposição pode ser vista no gráfico. É possível observar que a temperatura está baixando depois do segundo pico, mas não podemos dizer muito ainda já que ele é recente e não temos muitos dados depois dele.
+Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que a principal foi a PEC da Reforma da Previdência do Governo Bolsonaro - **PEC 6/2019**.
 
 ### Direitos Humanos
 
@@ -351,10 +347,6 @@ temperatura_temas %>%
   geom_line(data=temp_pecs_destaque_dh, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
   gghighlight(label_key = nome_pl)
 ```
-
-
-
-O projeto de lei que mais contribuiu para o aumento da temperatura nesse pico observado foi a **PEC 18/2011** (que autoriza o trabalho a partir dos 14 anos), responsável por `r round(100*(evolucao_semanal_temperatura_dh$evolucao_temp_recente[1]/sum(evolucao_semanal_temperatura_dh$evolucao_temp_recente)))`% do aumento na temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_dh$semana), format="%d/%m/%Y")`). A curva de temperatura da proposição pode ser vista no gráfico. É possível observar que a temperatura não se manteve alta, mas foi baixando com o tempo.
 
 ## Educação
 
@@ -459,10 +451,6 @@ temperatura_temas %>%
   gghighlight(label_key = nome_pl)
 ```
 
-
-
-A **PEC 15/2015** (que objetiva tornar o FUNDEB permanente) foi o projeto de lei responsável pela totalidade do aumento da temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_ed$semana), format="%d/%m/%Y")`). A curva de temperatura da proposição pode ser vista no gráfico. É possível observar que essa proposição é a principal fonte da temperatura do tema ao longo do período analisado. Além disso, a temperatura não se manteve alta, mas foi baixando com o tempo.
-
 ## Integridade e Transparência
 
 ```{r, fig.width=12,fig.align='center'}
@@ -553,13 +541,6 @@ temperatura_temas %>%
   geom_line(data=temp_pecs_destaque_it, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
   gghighlight(label_key = nome_pl)
 ```
-
-
-
-Em 2018, o **PL 1292/1995**, também conhecido como PL das Compras Públicas ou Nova Lei de Licitações, foi o projeto de lei responsável pela totalidade do aumento da temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_it$semana), format="%d/%m/%Y")`). A curva de temperatura da proposição pode ser vista no gráfico. É possível observar que a temperatura foi baixando após o primeiro pico e depois subiu um pouco, ajudando a formar o segundo. Além disso, essa proposição é a principal fonte da temperatura do tema durante a maior parte do período analisado.
-<br>
-<br>
-Já em 2019, o **PL 1321/2019**, também conhecido como PL da Anistia Tributária para Partidos, foi o projeto de lei responsável por `r round(100*(evolucao_semanal_temperatura_it_2$evolucao_temp_recente[1]/sum(evolucao_semanal_temperatura_it_2$evolucao_temp_recente)))`% do aumento na temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_it_2$semana), format="%d/%m/%Y")`). A curva de temperatura da proposição pode ser vista no gráfico. É possível observar que a temperatura está baixando depois do segundo pico, mas não podemos dizer muito ainda já que ele é recente e não temos muitos dados depois dele.
 
 ## Meio Ambiente
 
@@ -664,20 +645,3 @@ temperatura_temas %>%
   gghighlight(label_key = nome_pl)
 ```
 
-
-
-O projeto de lei que mais contribuiu para o aumento da temperatura nesse pico observado foi o **PL 6670/2016**, também conhecido como a Política do Governo de Redução de Agrotóxico, responsável por `r round(100*(evolucao_semanal_temperatura_ma$evolucao_temp_recente[1]/sum(evolucao_semanal_temperatura_ma$evolucao_temp_recente)))`% do aumento na temperatura registrado naquela semana (iniciada em `r format(first(evolucao_semanal_temperatura_ma$semana), format="%d/%m/%Y")`). A curva de temperatura da proposição pode ser vista no gráfico. É possível observar que a temperatura está baixando depois do pico, até ter um novo pico (desta vez menor) no final de 2018.
-
-## Geral
-
-Ao final dessa análise, podemos perceber que, dentre os projetos de Lei responsáveis pelos maiores picos de temperatura para todos os temas, as PECs são mais comuns (cerca de 57%):
-
-  * PEC 287/2016
-  * PEC 6/2019
-  * PEC 18/2011
-  * PEC 15/2015
-  * PL 1292/1995
-  * PL 1321/2019
-  * PL 6670/2016
-  
-Isso pode ser devido tanto ao fato de que tais tipos de proposição demandam mais atenção por parte do legislativo (sempre passam pelo plenário e precisam de pelo menos $\frac{3}{5}$ dos votos para aprovação) quanto à sua importância natural por modificarem a Constituição.
