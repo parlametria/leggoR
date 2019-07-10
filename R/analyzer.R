@@ -156,7 +156,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
       get_arquivamento(c("data"))
   } else if (granularidade == "s") {
     temperatura_periodo <- eventos_extendidos %>%
-      dplyr::mutate(semana = lubridate::week(data),
+      dplyr::mutate(semana = lubridate::epiweek(data),
                     ano = lubridate::year(data)) %>%
       dplyr::group_by(ano, semana)
     data_arquivamento <-
