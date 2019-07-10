@@ -174,7 +174,8 @@ safe_fetch_ids_relacionadas <- purrr::safely(rcongresso::fetch_ids_relacionadas,
 #' @return Dataframe
 #' @export
 fetch_autores_documentos <- function(docs_ids_df) {
-  autores_docs <- purrr::map2_df(docs_ids_df$id_documento, docs_ids_df$casa, ~ fetch_all_autores(.x, .y))
+  autores_docs <- purrr::pmap_df(list(docs_ids_df$id_documento, docs_ids_df$casa, docs_ids_df$sigla_tipo),
+                              function(id_documento, casa, sigla_tipo) fetch_all_autores(id_documento, casa, sigla_tipo))
 
   autores_docs <- autores_docs %>%
     dplyr::mutate(tipo = ifelse(is.na(tipo), descricao_tipo_autor, tipo),
@@ -182,7 +183,6 @@ fetch_autores_documentos <- function(docs_ids_df) {
                   nome_autor = ifelse(is.na(nome), nome_autor, nome),
                   casa = ifelse((!is.na(uri) & !is.na(tipo)), 'camara', 'senado')) %>%
     dplyr::select(-id_parlamentar,
-                  -forma_de_tratamento,
                   -nome,
                   -descricao_tipo_autor)
 
@@ -199,7 +199,7 @@ fetch_autores_documentos <- function(docs_ids_df) {
 #' }
 #' @export
 fetch_documentos_data <- function(docs_ids) {
-  docs <- purrr::map2_df(docs_ids$id_documento, docs_ids$casa, ~ fetch_all_documents(.x, .y))
+  docs <- purrr::map2_df(docs_ids$id_documento, docs_ids$casa, ~ fetch_all_documents(.x, .y, ))
   docs <- docs %>%
     dplyr::mutate(id_documento = ifelse(is.na(codigo_materia), id, codigo_materia)) %>%
     dplyr::select(-codigo_materia,
@@ -306,8 +306,8 @@ safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores,otherwise = tibble
 #' @param id_documento ID do documento
 #' @param sigla_tipo Sigla do tipo do documento
 #' @return Dataframe
-fetch_all_autores <- function(id_documento, casa) {
-  fetch_prop_output <- safe_fetch_autores(id_documento, casa)
+fetch_all_autores <- function(id_documento, casa, sigla_tipo) {
+  fetch_prop_output <- safe_fetch_autores(id_documento, casa, sigla_tipo)
   autores_result <- fetch_prop_output$result
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)

@@ -77,23 +77,23 @@ current_autores <- readr::read_csv(paste0(export_path, '/autores.csv'),
                                    col_types = list(
                                      .default = readr::col_character(),
                                      id_autor = readr::col_character(),
-                                     nome_autor = readr::col_character(),
-                                     nome_completo = readr::col_character(),
-                                     sexo = readr::col_character(),
-                                     sigla_partido = readr::col_character(),
-                                     sigla_tipo_autor = readr::col_character(),
-                                     uf_autor = readr::col_character(),
-                                     uf_parlamentar = readr::col_character(),
-                                     url_foto = readr::col_character(),
-                                     url_pagina = readr::col_character(),
+                                     nome = readr::col_character(),
+                                     #nome_completo = readr::col_character(),
+                                     #sexo = readr::col_character(),
+                                     #sigla_partido = readr::col_character(),
+                                     #sigla_tipo_autor = readr::col_character(),
+                                     #uf_autor = readr::col_character(),
+                                     #uf_parlamentar = readr::col_character(),
+                                     #url_foto = readr::col_character(),
+                                     #url_pagina = readr::col_character(),
                                      cod_tipo = readr::col_integer(),
                                      tipo = readr::col_character(),
                                      uri = readr::col_character(),
                                      id_documento = readr::col_character(),
-                                     casa = readr::col_character(),
-                                     email = readr::col_character(),
-                                     indicador_outros_autores = readr::col_character(),
-                                     num_ordem_autor = readr::col_character()
+                                     casa = readr::col_character()
+                                     #email = readr::col_character(),
+                                     #indicador_outros_autores = readr::col_character(),
+                                     #num_ordem_autor = readr::col_character()
                                    ))
 
 # Check for new data
