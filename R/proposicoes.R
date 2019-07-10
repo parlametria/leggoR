@@ -174,10 +174,19 @@ safe_fetch_ids_relacionadas <- purrr::safely(rcongresso::fetch_ids_relacionadas,
 #' @return Dataframe
 #' @export
 fetch_autores_documentos <- function(docs_ids_df) {
-  autores_docs_camara <- purrr::map_df(docs_ids_df$id_documento, ~ fetch_all_autores(.x)) %>%
-    dplyr::mutate(casa = 'camara')
+  autores_docs <- purrr::map2_df(docs_ids_df$id_documento, docs_ids_df$casa, ~ fetch_all_autores(.x, .y))
 
-  autores_docs_camara
+  autores_docs <- autores_docs %>%
+    dplyr::mutate(tipo = ifelse(is.na(tipo), descricao_tipo_autor, tipo),
+                  id_autor = ifelse(is.na(id_autor), id_parlamentar, id_autor),
+                  nome_autor = ifelse(is.na(nome), nome_autor, nome),
+                  casa = ifelse((!is.na(uri) & !is.na(tipo)), 'camara', 'senado')) %>%
+    dplyr::select(-id_parlamentar,
+                  -forma_de_tratamento,
+                  -nome,
+                  -descricao_tipo_autor)
+
+  return(autores_docs)
 }
 
 #' @title Baixa dados dos documentos, adequando as colunas ao padrão desejado
@@ -289,8 +298,7 @@ fetch_all_documents <- function(id_documento, casa) {
   return(fetch_prop_output$result)
 }
 
-
-safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores_camara,otherwise = tibble::tibble())
+safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores,otherwise = tibble::tibble())
 
 #' @title Realiza busca dos autores de um documento
 #' @description Retorna autores de um documento caso a requisição seja bem-sucedida,
@@ -298,8 +306,8 @@ safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores_camara,otherwise =
 #' @param id_documento ID do documento
 #' @param sigla_tipo Sigla do tipo do documento
 #' @return Dataframe
-fetch_all_autores <- function(id_documento) {
-  fetch_prop_output <- safe_fetch_autores(id_documento)
+fetch_all_autores <- function(id_documento, casa) {
+  fetch_prop_output <- safe_fetch_autores(id_documento, casa)
   autores_result <- fetch_prop_output$result
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)
@@ -309,4 +317,3 @@ fetch_all_autores <- function(id_documento) {
   }
   return(autores_result)
 }
-
