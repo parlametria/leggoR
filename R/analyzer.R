@@ -150,33 +150,25 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
   #Agrupa eventos por período
   if (granularidade == "d") {
     temperatura_periodo <- eventos_extendidos %>%
-      dplyr::group_by(data)
-    data_arquivamento <-
-      temperatura_periodo %>%
-      get_arquivamento(c("data"))
+      dplyr::mutate(periodo = data)
   } else if (granularidade == "s") {
     temperatura_periodo <- eventos_extendidos %>%
-      dplyr::mutate(semana = lubridate::epiweek(data),
-                    ano = lubridate::year(data)) %>%
-      dplyr::group_by(ano, semana)
-    data_arquivamento <-
-      temperatura_periodo %>%
-      get_arquivamento(c("semana", "ano"))
+      dplyr::mutate(periodo = lubridate::floor_date(data, "weeks") + lubridate::days(1))
   } else if (granularidade == "m") {
     temperatura_periodo <- eventos_extendidos %>%
-      dplyr::mutate(mes = lubridate::month(data),
-                    ano = lubridate::year(data)) %>%
-      dplyr::group_by(ano, mes)
-    data_arquivamento <-
-      temperatura_periodo %>%
-      get_arquivamento(c("mes", "ano"))
+      dplyr::mutate(periodo = lubridate::floor_date(data, "months"))
   }
+  
+  data_arquivamento <-
+    temperatura_periodo %>%
+    get_arquivamento(c("periodo"))
 
   temperatura_periodo <-
     temperatura_periodo %>%
-    dplyr::summarize(periodo = dplyr::first(data),
-                     temperatura_periodo = sum(peso_final, na.rm = T)) %>%
+    dplyr::group_by(periodo) %>%
+    dplyr::summarize(temperatura_periodo = sum(peso_final, na.rm = T)) %>%
     dplyr::ungroup()
+  
   temperatura_periodo <-
     suppressMessages(dplyr::left_join(temperatura_periodo, data_arquivamento)) %>%
     dplyr::mutate(temperatura_periodo = dplyr::if_else(!is.na(dummy), 0, temperatura_periodo)) %>%
