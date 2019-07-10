@@ -18,11 +18,13 @@ get_fetch_status <- function(docs_ids, docs_data, authors_data) {
 
   fetched_data_docs <- docs_data %>%
     dplyr::select(id_documento, casa) %>%
-    dplyr::mutate(id_documento = as.numeric(id_documento))
+    dplyr::distinct()
+  #%>%dplyr::mutate(id_documento = as.numeric(id_documento))
 
   fetched_autor_docs <- authors_data %>%
     dplyr::select(id_documento, casa) %>%
-    dplyr::mutate(id_documento = as.numeric(id_documento))
+    dplyr::distinct()
+  #%>%dplyr::mutate(id_documento = as.numeric(id_documento))
 
   complete_docs_df <- dplyr::inner_join(docs_ids,
                                      dplyr::inner_join(fetched_data_docs,fetched_autor_docs,
@@ -78,22 +80,11 @@ current_autores <- readr::read_csv(paste0(export_path, '/autores.csv'),
                                      .default = readr::col_character(),
                                      id_autor = readr::col_character(),
                                      nome = readr::col_character(),
-                                     #nome_completo = readr::col_character(),
-                                     #sexo = readr::col_character(),
-                                     #sigla_partido = readr::col_character(),
-                                     #sigla_tipo_autor = readr::col_character(),
-                                     #uf_autor = readr::col_character(),
-                                     #uf_parlamentar = readr::col_character(),
-                                     #url_foto = readr::col_character(),
-                                     #url_pagina = readr::col_character(),
                                      cod_tipo = readr::col_integer(),
                                      tipo = readr::col_character(),
                                      uri = readr::col_character(),
                                      id_documento = readr::col_character(),
                                      casa = readr::col_character()
-                                     #email = readr::col_character(),
-                                     #indicador_outros_autores = readr::col_character(),
-                                     #num_ordem_autor = readr::col_character()
                                    ))
 
 # Check for new data
