@@ -166,6 +166,8 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids) {
   return(new_docs_ids)
 }
 
+safe_fetch_ids_relacionadas <- purrr::safely(rcongresso::fetch_ids_relacionadas,otherwise = tibble::tibble())
+
 #' @title Baixa autores de documentos, adequando as colunas ao padrão desejado
 #' @description Retorna um dataframe contendo autores dos documentos
 #' @param docs_ids_df Dataframe com os ids dos documentos a serem baixadas
@@ -181,7 +183,6 @@ fetch_autores_documentos <- function(docs_ids_df) {
 #' @title Baixa dados dos documentos, adequando as colunas ao padrão desejado
 #' @description Retorna um dataframe contendo dados dos documentos
 #' @param docs_ids Dataframe com os IDs dos documentos a serem baixados
-#' @param casa Caso onde está tramitando o documento
 #' @return Dataframe
 #' @examples
 #' \dontrun{
@@ -200,16 +201,9 @@ fetch_documentos_data <- function(docs_ids) {
     formatted_docs_df <- merge(docs, docs_ids, by="id_documento") %>%
       dplyr::distinct() %>%
       dplyr::mutate(sigla_tipo = ifelse(is.na(siglaTipo), sigla_subtipo_materia, siglaTipo)) %>%
-      dplyr::select(id_documento,
-                    id_principal,
-                    casa,
-                    sigla_tipo,
-                    numero,
-                    ano,
-                    data_apresentacao = dataApresentacao,
-                    ementa,
-                    -sigla_subtipo_materia,
-                    dplyr::everything())
+      dplyr::select(-sigla_subtipo_materia,
+                    -siglaTipo)
+
   }
   return(formatted_docs_df)
 }
@@ -301,6 +295,7 @@ safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores_camara,otherwise =
 #' @description Retorna autores de um documento caso a requisição seja bem-sucedida,
 #' caso contrário retorna um Dataframe vazio
 #' @param id_documento ID do documento
+#' @param sigla_tipo Sigla do tipo do documento
 #' @return Dataframe
 fetch_all_autores <- function(id_documento) {
   fetch_prop_output <- safe_fetch_autores(id_documento)

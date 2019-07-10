@@ -1,16 +1,17 @@
-#' @title Cria tabela com autores de documentos com seus respectivos tipos de documentos
+#' @title Cria tabela com atores de documentos com seus respectivos tipos de documentos
 #' @description Retorna um dataframe contendo informações com os autores dos documentos e seus tipos
-#' @param docs_ids_df Dataframe com os ids dos documentos e de autores
+#' @param documentos_df Dataframe dos documentos
+#' @param autores_df Dataframe com autores dos documentos
 #' @return Dataframe
 #' @export
 create_tabela_atores <- function(documentos_df, autores_df) {
-  
+
   if ((is.null(documentos_df) | is.null(autores_df)) |
       ((nrow(documentos_df) == 0) | (nrow(autores_df) == 0))) {
     warning("Dataframes de entrada devem ser não-nulos e não-vazios.")
     return(tibble::tibble())
   }
-  
+
   autores_docs <- merge(documentos_df, autores_df, by = c("id_documento", "casa")) %>%
     dplyr::select(id_principal,
                   casa,
