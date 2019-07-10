@@ -20,13 +20,13 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 14562,camara,134812,Edmilson Rodrigues,PSOL,PA,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 14562,camara,134812,Edmilson Rodrigues,PSOL,PA,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 14562,camara,141335,Beto Faro,PT,PA,145,REM,Reclamação,1,Outros,Outros
-14562,camara,141405,Celso Maldaner,MDB,SC,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+14562,camara,141405,Celso Maldaner,MDB,SC,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 14562,camara,141405,Celso Maldaner,MDB,SC,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 14562,camara,141411,Dagoberto,PDT,MS,147,REQ,Requerimento,1,Requerimento,Requerimento
-14562,camara,141417,Edio Lopes,PL,RR,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
-14562,camara,141423,Eliene Lima,PSD,MT,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+14562,camara,141417,Edio Lopes,PL,RR,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
+14562,camara,141423,Eliene Lima,PSD,MT,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 14562,camara,141423,Eliene Lima,PSD,MT,147,REQ,Requerimento,1,Requerimento,Requerimento
-14562,camara,141425,Ernandes Amorim,PTB,RO,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+14562,camara,141425,Ernandes Amorim,PTB,RO,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 14562,camara,141442,Geraldo Pudim,PR,RJ,147,REQ,Requerimento,1,Requerimento,Requerimento
 14562,camara,141442,Geraldo Pudim,PR,RJ,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
 14562,camara,141470,José Guimarães,PT,CE,144,REC,Recurso,1,Outros,Outros
@@ -55,18 +55,18 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 14562,camara,178986,Nilto Tatto,PT,SP,145,REM,Reclamação,1,Outros,Outros
 14562,camara,73463,Osmar Serraglio,PP,PR,195,CVO,Complementação de Voto,1,Parecer,Parecer
 14562,camara,73463,Osmar Serraglio,PP,PR,257,EMR,Emenda de Relator,1,Emenda,Emenda
-14562,camara,73472,Gervásio Silva,PSDB,SC,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+14562,camara,73472,Gervásio Silva,PSDB,SC,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 14562,camara,73483,Luis Carlos Heinze,PP,,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
 14562,camara,73483,Luis Carlos Heinze,PP,,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-14562,camara,73490,Ricarte De Freitas,PTB,MT,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+14562,camara,73490,Ricarte De Freitas,PTB,MT,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 14562,camara,73531,Ivan Valente,PSOL,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
 14562,camara,73531,Ivan Valente,PSOL,SP,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 14562,camara,73553,Nelson Marquezelli,PTB,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
 14562,camara,73568,Celso Jacob,MDB,RJ,147,REQ,Requerimento,1,Requerimento,Requerimento
-14562,camara,73764,Abelardo Lupion,DEM,PR,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+14562,camara,73764,Abelardo Lupion,DEM,PR,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 14562,camara,73926,Janete Capiberibe,PSB,AP,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-14562,camara,73933,Zequinha Marinho,PSC,,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
-14562,camara,73934,Carlos Souza,PSDB,,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+14562,camara,73933,Zequinha Marinho,PSC,,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
+14562,camara,73934,Carlos Souza,PSDB,,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 14562,camara,73934,Carlos Souza,PSDB,,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 14562,camara,74041,Luiz Couto,PT,PB,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 14562,camara,74077,Giovanni Queiroz,PDT,PA,147,REQ,Requerimento,1,Requerimento,Requerimento
@@ -77,72 +77,72 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 14562,camara,74210,Sarney Filho,PV,MA,-1,VTS,260,1,Outros,Outros
 14562,camara,74216,Raimundo Gomes De Matos,PSDB,CE,147,REQ,Requerimento,1,Requerimento,Requerimento
 14562,camara,74270,Gilberto Nascimento,PSC,SP,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-14562,camara,74341,Almir Sá,PR,RR,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+14562,camara,74341,Almir Sá,PR,RR,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 14562,camara,74366,João Campos,PRB,GO,359,REQ,Requerimento de Constituição de Comissão Especial de PEC,1,Requerimento,Requerimento
-14562,camara,74392,Zonta,PSB,,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+14562,camara,74392,Zonta,PSB,,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 14562,camara,74566,Geraldo Simões,PT,BA,147,REQ,Requerimento,1,Requerimento,Requerimento
 14562,camara,74585,Lincoln Portela,PL,MG,147,REQ,Requerimento,1,Requerimento,Requerimento
-14562,camara,74858,Lindberg Farias,PT,,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+14562,camara,74858,Lindberg Farias,PT,,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 16526,camara,74043,Wellington Roberto,PL,PB,131,EMP,Emenda de Plenário,17,Emenda,Emenda
 16526,camara,204396,Vermelho,PSD,PR,131,EMP,Emenda de Plenário,11,Emenda,Emenda
-16526,camara,74838,Edson Ezequiel,PMDB,RJ,139,PL,Projeto de Lei,11,Proposição,Proposição
+16526,camara,74838,Edson Ezequiel,PMDB,RJ,139,PL,Projeto de Lei,11,Proposição Apensada,Proposição Apensada
 16526,camara,160508,Afonso Florence,PT,BA,131,EMP,Emenda de Plenário,9,Emenda,Emenda
-16526,camara,141536,Rômulo Gouveia,,PB,139,PL,Projeto de Lei,6,Proposição,Proposição
+16526,camara,141536,Rômulo Gouveia,,PB,139,PL,Projeto de Lei,6,Proposição Apensada,Proposição Apensada
 16526,camara,151208,Laercio Oliveira,PP,SE,131,EMP,Emenda de Plenário,6,Emenda,Emenda
 16526,camara,160573,João Arruda,MDB,PR,294,REQ,Requerimento de Audiência Pública,6,Requerimento,Requerimento
 16526,camara,160639,Professora Dorinha Seabra Rezende,DEM,TO,131,EMP,Emenda de Plenário,6,Emenda,Emenda
 16526,camara,204388,Bibo Nunes,PSL,RS,131,EMP,Emenda de Plenário,6,Emenda,Emenda
 16526,camara,141391,Arnaldo Jardim,CIDADANIA,SP,131,EMP,Emenda de Plenário,5,Emenda,Emenda
-16526,camara,160575,Erika Kokay,PT,DF,139,PL,Projeto de Lei,5,Proposição,Proposição
+16526,camara,160575,Erika Kokay,PT,DF,139,PL,Projeto de Lei,5,Proposição Apensada,Proposição Apensada
 16526,camara,178890,Adelmo Carneiro Leão,PT,MG,294,REQ,Requerimento de Audiência Pública,5,Requerimento,Requerimento
 16526,camara,204477,Felício Laterça,PSL,RJ,131,EMP,Emenda de Plenário,5,Emenda,Emenda
-16526,camara,204541,Eduardo Bismarck,PDT,CE,139,PL,Projeto de Lei,5,Proposição,Proposição
+16526,camara,204541,Eduardo Bismarck,PDT,CE,139,PL,Projeto de Lei,5,Proposição Apensada,Proposição Apensada
 16526,camara,73532,Jair Meneguelli,PT,SP,130,EMC,Emenda na Comissão,5,Emenda,Emenda
-16526,camara,73584,Antonio Carlos Mendes Thame,PV,SP,139,PL,Projeto de Lei,5,Proposição,Proposição
+16526,camara,73584,Antonio Carlos Mendes Thame,PV,SP,139,PL,Projeto de Lei,5,Proposição Apensada,Proposição Apensada
 16526,camara,74171,Chico Alencar,PSOL,RJ,294,REQ,Requerimento de Audiência Pública,5,Requerimento,Requerimento
 16526,camara,133439,André Figueiredo,PDT,CE,131,EMP,Emenda de Plenário,4,Emenda,Emenda
 16526,camara,141470,José Guimarães,PT,CE,304,REQ,Requerimento de Apensação,4,Requerimento,Requerimento
 16526,camara,178890,Adelmo Carneiro Leão,PT,MG,147,REQ,Requerimento,4,Requerimento,Requerimento
 16526,camara,74060,Daniel Almeida,PCdoB,BA,131,EMP,Emenda de Plenário,4,Emenda,Emenda
 16526,camara,74158,Mário Heringer,PDT,MG,131,EMP,Emenda de Plenário,4,Emenda,Emenda
-16526,camara,141408,Cleber Verde,PRB,MA,139,PL,Projeto de Lei,3,Proposição,Proposição
+16526,camara,141408,Cleber Verde,PRB,MA,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
 16526,camara,141458,João Carlos Bacelar,PL,BA,294,REQ,Requerimento de Audiência Pública,3,Requerimento,Requerimento
-16526,camara,149327,Major Fábio,PROS,PB,139,PL,Projeto de Lei,3,Proposição,Proposição
+16526,camara,149327,Major Fábio,PROS,PB,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
 16526,camara,159237,Assis Carvalho,PT,PI,294,REQ,Requerimento de Audiência Pública,3,Requerimento,Requerimento
-16526,camara,160544,Junji Abe,MDB,SP,139,PL,Projeto de Lei,3,Proposição,Proposição
+16526,camara,160544,Junji Abe,MDB,SP,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
 16526,camara,160587,Fábio Trad,PSD,MS,131,EMP,Emenda de Plenário,3,Emenda,Emenda
 16526,camara,160587,Fábio Trad,PSD,MS,255,SBT,Substitutivo,3,Parecer,Parecer
 16526,camara,160617,Thiago Peixoto,PSD,GO,294,REQ,Requerimento de Audiência Pública,3,Requerimento,Requerimento
-16526,camara,160629,Romero Rodrigues,PSDB,,139,PL,Projeto de Lei,3,Proposição,Proposição
-16526,camara,160666,Félix Mendonça Júnior,PDT,BA,139,PL,Projeto de Lei,3,Proposição,Proposição
+16526,camara,160629,Romero Rodrigues,PSDB,,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
+16526,camara,160666,Félix Mendonça Júnior,PDT,BA,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
 16526,camara,164359,Delegado Waldir,PSL,GO,131,EMP,Emenda de Plenário,3,Emenda,Emenda
-16526,camara,178887,Rubens Pereira Júnior,PCdoB,,139,PL,Projeto de Lei,3,Proposição,Proposição
+16526,camara,178887,Rubens Pereira Júnior,PCdoB,,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
 16526,camara,178988,João Paulo Papa,PSDB,SP,294,REQ,Requerimento de Audiência Pública,3,Requerimento,Requerimento
 16526,camara,205865,Reinhold Stephanes Junior,PSD,PR,131,EMP,Emenda de Plenário,3,Emenda,Emenda
-16526,camara,73486,Pompeo De Mattos,PDT,RS,139,PL,Projeto de Lei,3,Proposição,Proposição
-16526,camara,73568,Celso Jacob,MDB,RJ,139,PL,Projeto de Lei,3,Proposição,Proposição
-16526,camara,74010,Valdir Colatto,MDB,SC,139,PL,Projeto de Lei,3,Proposição,Proposição
+16526,camara,73486,Pompeo De Mattos,PDT,RS,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
+16526,camara,73568,Celso Jacob,MDB,RJ,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
+16526,camara,74010,Valdir Colatto,MDB,SC,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
 16526,camara,74548,Jaques Wagner,PT,BA,130,EMC,Emenda na Comissão,3,Emenda,Emenda
-16526,camara,74851,José Carlos Coutinho,PFL,RJ,139,PL,Projeto de Lei,3,Proposição,Proposição
+16526,camara,74851,José Carlos Coutinho,PFL,RJ,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
 16526,camara,81055,Márcio Jerry,PCdoB,MA,131,EMP,Emenda de Plenário,3,Emenda,Emenda
 16526,camara,141405,Celso Maldaner,MDB,SC,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
-16526,camara,141433,Filipe Pereira,PSC,,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,141464,José Airton Cirilo,PT,CE,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,141470,José Guimarães,PT,CE,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,141477,Juvenil Alves,PRTB,,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,141484,Lúcio Vale,PR,,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,141488,Paulo Teixeira,PT,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,141530,Rodovalho,PP**,DF,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,141556,Vital Do Rêgo Filho,PMDB,PB,139,PL,Projeto de Lei,2,Proposição,Proposição
+16526,camara,141433,Filipe Pereira,PSC,,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,141464,José Airton Cirilo,PT,CE,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,141470,José Guimarães,PT,CE,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,141477,Juvenil Alves,PRTB,,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,141484,Lúcio Vale,PR,,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,141488,Paulo Teixeira,PT,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,141530,Rodovalho,PP**,DF,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,141556,Vital Do Rêgo Filho,PMDB,PB,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 16526,camara,151208,Laercio Oliveira,PP,SE,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
 16526,camara,160573,João Arruda,MDB,PR,305,REQ,Requerimento de Desapensação,2,Requerimento,Requerimento
 16526,camara,160575,Erika Kokay,PT,DF,363,REQ,Requerimento de Desarquivamento de Proposições,2,Requerimento,Requerimento
 16526,camara,160576,César Halum,PRB,TO,363,REQ,Requerimento de Desarquivamento de Proposições,2,Requerimento,Requerimento
 16526,camara,160587,Fabio Trad,PSD,MS,147,REQ,Requerimento,2,Requerimento,Requerimento
 16526,camara,160587,Fabio Trad,PSD,MS,255,SBT,Substitutivo,2,Parecer,Parecer
-16526,camara,160672,Jean Wyllys,PSOL,,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,160677,Francisco Floriano,DEM,RJ,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,178829,Capitão Augusto,PL,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
+16526,camara,160672,Jean Wyllys,PSOL,,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,160677,Francisco Floriano,DEM,RJ,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,178829,Capitão Augusto,PL,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 16526,camara,178834,Bebeto,PSB,BA,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
 16526,camara,178834,Bebeto,PSB,BA,304,REQ,Requerimento de Apensação,2,Requerimento,Requerimento
 16526,camara,178854,Elmar Nascimento,DEM,BA,131,EMP,Emenda de Plenário,2,Emenda,Emenda
@@ -151,95 +151,95 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 16526,camara,178910,Joaquim Passarinho,PSD,PA,131,EMP,Emenda de Plenário,2,Emenda,Emenda
 16526,camara,178910,Joaquim Passarinho,PSD,PA,147,REQ,Requerimento,2,Requerimento,Requerimento
 16526,camara,178910,Joaquim Passarinho,PSD,PA,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
-16526,camara,178913,Veneziano Vital Do Rêgo,PSB,PB,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,178960,Remídio Monai,PR,RR,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,178992,Vitor Lippi,PSDB,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
+16526,camara,178913,Veneziano Vital Do Rêgo,PSB,PB,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,178960,Remídio Monai,PR,RR,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,178992,Vitor Lippi,PSDB,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 16526,camara,204398,Felipe Francischini,PSL,PR,131,EMP,Emenda de Plenário,2,Emenda,Emenda
 16526,camara,204418,Luizão Goulart,PRB,PR,131,EMP,Emenda de Plenário,2,Emenda,Emenda
-16526,camara,204530,Rodrigo Agostinho,PSB,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,73443,Cunha Bueno,PPB,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,73448,Eduardo Jorge,PT,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,73466,Rubens Bueno,CIDADANIA,PR,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,73492,Antonio Carlos Biscaia,PT,RJ,139,PL,Projeto de Lei,2,Proposição,Proposição
+16526,camara,204530,Rodrigo Agostinho,PSB,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,73443,Cunha Bueno,PPB,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,73448,Eduardo Jorge,PT,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,73466,Rubens Bueno,CIDADANIA,PR,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,73492,Antonio Carlos Biscaia,PT,RJ,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 16526,camara,73531,Ivan Valente,PSOL,SP,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
-16526,camara,73889,Augusto Nardes,PP**,,139,PL,Projeto de Lei,2,Proposição,Proposição
+16526,camara,73889,Augusto Nardes,PP**,,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 16526,camara,74010,Valdir Colatto,MDB,SC,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
-16526,camara,74045,Maurício Rands,PT,PE,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,74171,Chico Alencar,PSOL,RJ,139,PL,Projeto de Lei,2,Proposição,Proposição
+16526,camara,74045,Maurício Rands,PT,PE,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,74171,Chico Alencar,PSOL,RJ,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 16526,camara,74171,Chico Alencar,PSOL,RJ,363,REQ,Requerimento de Desarquivamento de Proposições,2,Requerimento,Requerimento
 16526,camara,74274,José Eduardo Cardozo,PT,,147,REQ,Requerimento,2,Requerimento,Requerimento
 16526,camara,74283,Vicentinho,PT,SP,363,REQ,Requerimento de Desarquivamento de Proposições,2,Requerimento,Requerimento
 16526,camara,74366,João Campos,PRB,GO,131,EMP,Emenda de Plenário,2,Emenda,Emenda
-16526,camara,74371,Rubens Otoni,PT,GO,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,74655,Eduardo Barbosa,PSDB,MG,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,74841,Fernando Gabeira,PV,RJ,139,PL,Projeto de Lei,2,Proposição,Proposição
-16526,camara,74862,Miro Teixeira,REDE,RJ,139,PL,Projeto de Lei,2,Proposição,Proposição
+16526,camara,74371,Rubens Otoni,PT,GO,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,74655,Eduardo Barbosa,PSDB,MG,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,74841,Fernando Gabeira,PV,RJ,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+16526,camara,74862,Miro Teixeira,REDE,RJ,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 16526,camara,113247,Valmir Prascidelli,PT,SP,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-16526,camara,114941,Josi Nunes,PROS,TO,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,129618,Gorete Pereira,PR,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,133810,Marcelo Moraes,PTB,RS,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,141372,Aelton Freitas,PR,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,114941,Josi Nunes,PROS,TO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,129618,Gorete Pereira,PR,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,133810,Marcelo Moraes,PTB,RS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,141372,Aelton Freitas,PR,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,141372,Aelton Freitas,PR,MG,147,REQ,Requerimento,1,Requerimento,Requerimento
-16526,camara,141396,Cândido Vaccarezza,PT,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,141398,Carlos Zarattini,PT,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,141396,Cândido Vaccarezza,PT,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,141398,Carlos Zarattini,PT,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,141398,Carlos Zarattini,PT,SP,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
-16526,camara,141405,Celso Maldaner,MDB,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,141405,Celso Maldaner,MDB,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,141405,Celso Maldaner,MDB,SC,391,REQ,Requerimento de Urgência (Art. 154 do RICD),1,Requerimento,Requerimento
 16526,camara,141405,Celso Maldaner,MDB,SC,686,REQ,Requerimento de Participação ou Realização de Eventos fora da Câmara,1,Requerimento,Requerimento
-16526,camara,141416,Edgar Moury,PMDB,PE,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,141438,Francisco Praciano,PT,AM,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,141449,Barbosa Neto,PDT,,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,141450,Hugo Leal,PSD,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,141416,Edgar Moury,PMDB,PE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,141438,Francisco Praciano,PT,AM,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,141449,Barbosa Neto,PDT,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,141450,Hugo Leal,PSD,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,141450,Hugo Leal,PSD,RJ,686,REQ,Requerimento de Participação ou Realização de Eventos fora da Câmara,1,Requerimento,Requerimento
-16526,camara,141456,Jilmar Tatto,PT,,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,141456,Jilmar Tatto,PT,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,141464,José Airton,PT,CE,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-16526,camara,141466,José Fernando Aparecido De Oliveira,PV,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,141466,José Fernando Aparecido De Oliveira,PV,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,141470,José Guimarães,PT,CE,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
-16526,camara,141471,José Paulo Tóffano,PV,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,141485,Luiz Carlos Busato,PTB,,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,141490,Manoel Junior,MDB,,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,141497,Márcio França,PSB,,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,141506,Maurício Trindade,PROS,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,141471,José Paulo Tóffano,PV,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,141485,Luiz Carlos Busato,PTB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,141490,Manoel Junior,MDB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,141497,Márcio França,PSB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,141506,Maurício Trindade,PROS,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,141508,Mauro Nazif,PSB,RO,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
 16526,camara,141519,Paulo Piau,PMDB,,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
 16526,camara,141555,Vinicius Carvalho,PRB,SP,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-16526,camara,141555,Vinicius Carvalho,PRB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,151208,Laercio Oliveira,PP,SE,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,141555,Vinicius Carvalho,PRB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,151208,Laercio Oliveira,PP,SE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,151208,Laercio Oliveira,PP,SE,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
-16526,camara,154734,Fernando Chiarelli,PDT,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,154734,Fernando Chiarelli,PDT,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,160508,Afonso Florence,PT,BA,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-16526,camara,160511,Alessandro Molon,PSB,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,160517,Paulo Foletto,PSB,,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,160511,Alessandro Molon,PSB,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,160517,Paulo Foletto,PSB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,160517,Paulo Foletto,PSB,,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-16526,camara,160518,Weliton Prado,PROS,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,160519,Júlio Campos,DEM,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,160531,Jhonatan De Jesus,PRB,RR,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,160532,Eli Correa Filho,DEM,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,160536,Marco Tebaldi,PSDB,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,160518,Weliton Prado,PROS,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,160519,Júlio Campos,DEM,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,160531,Jhonatan De Jesus,PRB,RR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,160532,Eli Correa Filho,DEM,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,160536,Marco Tebaldi,PSDB,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,160536,Marco Tebaldi,PSDB,SC,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-16526,camara,160563,Onofre Santo Agostini,PSD,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,160563,Onofre Santo Agostini,PSD,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,160573,João Arruda,MDB,PR,190,PRL,Parecer do Relator,1,Parecer,Parecer
 16526,camara,160573,João Arruda,MDB,PR,255,SBT,Substitutivo,1,Parecer,Parecer
 16526,camara,160573,João Arruda,MDB,PR,686,REQ,Requerimento de Participação ou Realização de Eventos fora da Câmara,1,Requerimento,Requerimento
-16526,camara,160576,César Halum,PRB,TO,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,160576,César Halum,PRB,TO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,160578,Edmar Arruda,PSD,PR,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 16526,camara,160587,Fabio Trad,PSD,MS,190,PRL,Parecer do Relator,1,Parecer,Parecer
 16526,camara,160587,Fábio Trad,PSD,MS,190,PRL,Parecer do Relator,1,Parecer,Parecer
-16526,camara,160591,Vinicius Gurgel,PL,AP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,160592,Zeca Dirceu,PT,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,160591,Vinicius Gurgel,PL,AP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,160592,Zeca Dirceu,PT,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,160598,Flávia Morais,PDT,GO,147,REQ,Requerimento,1,Requerimento,Requerimento
-16526,camara,160611,Toninho Pinheiro,PP,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,160611,Toninho Pinheiro,PP,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,160611,Toninho Pinheiro,PP,MG,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 16526,camara,160611,Toninho Pinheiro,PP,MG,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
-16526,camara,160625,Zoinho,PR,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,160632,Zé Silva,SOLIDARIEDADE,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,160625,Zoinho,PR,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,160632,Zé Silva,SOLIDARIEDADE,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,160635,Ruy Carneiro,PSDB,PB,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-16526,camara,160638,Ângelo Agnolin,PDT,TO,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,160638,Ângelo Agnolin,PDT,TO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,160639,Professora Dorinha Seabra Rezende,DEM,TO,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-16526,camara,160644,Miriquinho Batista,PT,PA,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,160651,Rogério Peninha Mendonça,MDB,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,160653,Roberto De Lucena,PODE,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,160655,Ricardo Izar,PP,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,160644,Miriquinho Batista,PT,PA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,160651,Rogério Peninha Mendonça,MDB,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,160653,Roberto De Lucena,PODE,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,160655,Ricardo Izar,PP,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,160665,Augusto Coutinho,SOLIDARIEDADE,PE,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 16526,camara,160665,Augusto Coutinho,SOLIDARIEDADE,PE,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 16526,camara,160665,Augusto Coutinho,SOLIDARIEDADE,PE,442,PEP,Parecer às Emendas de Plenário,1,Parecer,Parecer
@@ -248,152 +248,152 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 16526,camara,160665,Augusto Coutinho,SOLIDARIEDADE,PE,686,REQ,Requerimento de Participação ou Realização de Eventos fora da Câmara,1,Requerimento,Requerimento
 16526,camara,160666,Félix Mendonça Júnior,PDT,BA,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 16526,camara,160666,Félix Mendonça Júnior,PDT,BA,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-16526,camara,160674,Hugo Motta,PRB,PB,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,160678,Artur Bruno,PT,,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,167614,Severino Ninho,PSB,PE,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,171618,Luiz De Deus,DEM,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,178842,Jhc,PSB,AL,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,178856,João Gualberto,PSDB,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,178862,Tia Eron,PRB,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,178863,Uldurico Junior,PROS,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,178869,Vitor Valim,PROS,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,178871,Evair Vieira De Melo,PP,ES,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,160674,Hugo Motta,PRB,PB,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,160678,Artur Bruno,PT,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,167614,Severino Ninho,PSB,PE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,171618,Luiz De Deus,DEM,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,178842,Jhc,PSB,AL,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,178856,João Gualberto,PSDB,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,178862,Tia Eron,PRB,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,178863,Uldurico Junior,PROS,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,178869,Vitor Valim,PROS,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,178871,Evair Vieira De Melo,PP,ES,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,178871,Evair Vieira De Melo,PP,ES,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-16526,camara,178873,Helder Salomão,PT,ES,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,178874,Sergio Vidigal,PDT,ES,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,178873,Helder Salomão,PT,ES,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,178874,Sergio Vidigal,PDT,ES,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,178874,Sergio Vidigal,PDT,ES,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
-16526,camara,178878,Giuseppe Vecci,PSDB,GO,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,178878,Giuseppe Vecci,PSDB,GO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,178884,Hildo Rocha,MDB,MA,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-16526,camara,178884,Hildo Rocha,MDB,MA,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,178884,Hildo Rocha,MDB,MA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,178890,Adelmo Carneiro Leão,PT,MG,686,REQ,Requerimento de Participação ou Realização de Eventos fora da Câmara,1,Requerimento,Requerimento
 16526,camara,178910,Joaquim Passarinho,PSD,PA,686,REQ,Requerimento de Participação ou Realização de Eventos fora da Câmara,1,Requerimento,Requerimento
 16526,camara,178915,Betinho Gomes,PSDB,PE,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
 16526,camara,178916,Daniel Coelho,CIDADANIA,PE,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-16526,camara,178927,Aliel Machado,PSB,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,178930,Evandro Roman,PSD,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,178927,Aliel Machado,PSB,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,178930,Evandro Roman,PSD,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,178930,Evandro Roman,PSD,PR,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 16526,camara,178930,Evandro Roman,PSD,PR,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-16526,camara,178932,Marcelo Belinati,PP,,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,178945,Rosangela Gomes,PRB,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,178973,Ana Perugini,PT,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,178932,Marcelo Belinati,PP,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,178945,Rosangela Gomes,PRB,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,178973,Ana Perugini,PT,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,178977,Eduardo Cury,PSDB,SP,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-16526,camara,178979,Floriano Pesaro,PSDB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,178979,Floriano Pesaro,PSDB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,178992,Vitor Lippi,PSDB,SP,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 16526,camara,178992,Vitor Lippi,PSDB,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
 16526,camara,178992,Vitor Lippi,PSDB,SP,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-16526,camara,178993,Carlos Henrique Gaguim,DEM,TO,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,193165,Atila A. Nunes,MDB,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,178993,Carlos Henrique Gaguim,DEM,TO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,193165,Atila A. Nunes,MDB,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,194260,Nivaldo Albuquerque,PTB,AL,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-16526,camara,198963,Rogério Silva,MDB,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,198963,Rogério Silva,MDB,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,204358,Beto Pereira,PSDB,MS,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 16526,camara,204364,Eli Borges,SOLIDARIEDADE,TO,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 16526,camara,204365,Gilson Marques,NOVO,SC,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 16526,camara,204371,Felipe Rigoni,PSB,ES,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 16526,camara,204389,Elias Vaz,PSB,GO,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-16526,camara,204427,Fernando Rodolfo,PL,PE,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,204427,Fernando Rodolfo,PL,PE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,204429,João H. Campos,PSB,PE,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-16526,camara,204452,Márcio Labre,PSL,,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,204452,Márcio Labre,PSL,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,204504,Cezinha De Madureira,PSD,SP,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 16526,camara,204506,Marcos Pereira,PRB,SP,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-16526,camara,204506,Marcos Pereira,PRB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,204506,Marcos Pereira,PRB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,204513,Guiga Peixoto,PSL,SP,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 16526,camara,204524,Pinheirinho,PP,MG,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 16526,camara,204536,Kim Kataguiri,DEM,SP,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 16526,camara,204543,Luiz Flávio Gomes,PSB,SP,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-16526,camara,4930,Silvio Costa,AVANTE,PE,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,66828,Fausto Pinato,PP,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,67138,Iracema Portella,PP,PI,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,4930,Silvio Costa,AVANTE,PE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,66828,Fausto Pinato,PP,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,67138,Iracema Portella,PP,PI,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,69871,Bacelar,PODE,BA,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-16526,camara,73431,Antonio Carlos Pannunzio,PSDB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73441,Celso Russomanno,PRB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73446,Duilio Pisaneschi,PTB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73458,Alex Canziani,PTB,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73483,Luis Carlos Heinze,PP,,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,73431,Antonio Carlos Pannunzio,PSDB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73441,Celso Russomanno,PRB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73446,Duilio Pisaneschi,PTB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73458,Alex Canziani,PTB,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73483,Luis Carlos Heinze,PP,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,73492,Antonio Carlos Biscaia,PT,RJ,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
 16526,camara,73492,Antonio Carlos Biscaia,PT,RJ,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
-16526,camara,73544,Koyu Iha,PSDB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73559,Salvador Zimbaldi,PROS,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73569,Jorge Pinheiro,PRB,GO,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73579,Alberto Fraga,DEM,DF,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73595,Chico Sardelli,PV,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73644,Welson Gasparini,PSDB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73653,Welinton Fagundes,PR,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73654,Agnelo Queiroz,PCdoB,DF,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73666,Jovair Arantes,PTB,GO,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73701,Benedita Da Silva,PT,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73778,Luiz Carlos Hauly,PSDB,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,73544,Koyu Iha,PSDB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73559,Salvador Zimbaldi,PROS,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73569,Jorge Pinheiro,PRB,GO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73579,Alberto Fraga,DEM,DF,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73595,Chico Sardelli,PV,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73644,Welson Gasparini,PSDB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73653,Welinton Fagundes,PR,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73654,Agnelo Queiroz,PCdoB,DF,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73666,Jovair Arantes,PTB,GO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73701,Benedita Da Silva,PT,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73778,Luiz Carlos Hauly,PSDB,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,73778,Luiz Carlos Hauly,PSDB,PR,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
 16526,camara,73778,Luiz Carlos Hauly,PSDB,PR,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-16526,camara,73780,Max Rosenmann,PMDB,,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73783,Padre Roque,PT,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73825,Carlos Nader,PR,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73883,Paulo Bornhausen,PSB,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,73780,Max Rosenmann,PMDB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73783,Padre Roque,PT,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73825,Carlos Nader,PR,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73883,Paulo Bornhausen,PSB,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,73891,Darcísio Perondi,MDB,RS,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
-16526,camara,73910,Paulo Paim,PT,RS,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73934,Carlos Souza,PSDB,,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73943,Perpétua Almeida,PCdoB,AC,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,73910,Paulo Paim,PT,RS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73934,Carlos Souza,PSDB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73943,Perpétua Almeida,PCdoB,AC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,73943,Perpétua Almeida,PCdoB,AC,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 16526,camara,73982,Luciano Castro,PR,RR,190,PRL,Parecer do Relator,1,Parecer,Parecer
-16526,camara,73989,Telmo Kirst,PPB,RS,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73990,Fioravante,PT,RS,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,73994,Júlio Redecker,PSDB,,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,73989,Telmo Kirst,PPB,RS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73990,Fioravante,PT,RS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,73994,Júlio Redecker,PSDB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,74010,Valdir Colatto,MDB,SC,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-16526,camara,74027,Dr. Ribamar Alves,PSB,,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74057,Alice Portugal,PCdoB,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,74027,Dr. Ribamar Alves,PSB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74057,Alice Portugal,PCdoB,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,74057,Alice Portugal,PCdoB,BA,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-16526,camara,74062,Fábio Souto,DEM,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74063,Fernando De Fabinho,DEM,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74072,Anivaldo Vale,PSDB,PA,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74146,Anderson Adauto,PL*,,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74154,João Paulo Gomes Da Silva,PSB,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74158,Mário Heringer,PDT,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,74062,Fábio Souto,DEM,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74063,Fernando De Fabinho,DEM,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74072,Anivaldo Vale,PSDB,PA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74146,Anderson Adauto,PL*,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74154,João Paulo Gomes Da Silva,PSB,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74158,Mário Heringer,PDT,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,74160,Patrus Ananias,PT,MG,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-16526,camara,74161,Reginaldo Lopes,PT,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74162,Iriny Lopes,PT,ES,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,74161,Reginaldo Lopes,PT,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74162,Iriny Lopes,PT,ES,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,74162,Iriny Lopes,PT,ES,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
-16526,camara,74164,Marcelino Fraga,PMDB,,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74210,Sarney Filho,PV,MA,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,74164,Marcelino Fraga,PMDB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74210,Sarney Filho,PV,MA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,74213,Antonio Balhmann,PDT,CE,381,REC,"Recurso contra declaração de prejudicialidade. (Art. 164, § 2º, RICD)",1,Outros,Outros
 16526,camara,74235,Marcus Vicente,PP,ES,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 16526,camara,74238,Moacir Micheletto,PMDB,,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
 16526,camara,74262,Carlos Sampaio,PSDB,SP,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-16526,camara,74263,Cláudio Magrão,PPS,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74283,Vicentinho,PT,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,74263,Cláudio Magrão,PPS,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74283,Vicentinho,PT,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,74283,Vicentinho,PT,SP,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
-16526,camara,74284,Walter Feldman,PSB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74295,Inácio Arruda,PCdoB,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,74284,Walter Feldman,PSB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74295,Inácio Arruda,PCdoB,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,74298,José Pimentel,PT,CE,130,EMC,Emenda na Comissão,1,Emenda,Emenda
 16526,camara,74298,José Pimentel,PT,CE,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
-16526,camara,74345,Evandro Milhomen,PCdoB,AP,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,74345,Evandro Milhomen,PCdoB,AP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,74345,Evandro Milhomen,PCdoB,AP,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-16526,camara,74357,Vanessa Grazziotin,PCdoB,AM,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74363,Marcio Bittar,PSDB,AC,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74364,Marcos Afonso,PT,AC,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74366,João Campos,PRB,GO,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,74357,Vanessa Grazziotin,PCdoB,AM,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74363,Marcio Bittar,PSDB,AC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74364,Marcos Afonso,PT,AC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74366,João Campos,PRB,GO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,74381,Dra. Clair,PT,PR,190,PRL,Parecer do Relator,1,Parecer,Parecer
-16526,camara,74419,Gonzaga Patriota,PSB,PE,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74449,Pedro Fernandes,PTB,MA,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,74419,Gonzaga Patriota,PSB,PE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74449,Pedro Fernandes,PTB,MA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,74449,Pedro Fernandes,PTB,MA,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-16526,camara,74450,Adolfo Marinho,PSDB,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74455,Léo Alcântara,PR,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74485,Mariângela Duarte,PT,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,74450,Adolfo Marinho,PSDB,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74455,Léo Alcântara,PR,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74485,Mariângela Duarte,PT,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,74550,João Leão,PP**,,190,PRL,Parecer do Relator,1,Parecer,Parecer
 16526,camara,74550,João Leão,PP**,,195,CVO,Complementação de Voto,1,Parecer,Parecer
-16526,camara,74563,Jorge Alberto,PMDB,SE,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74580,Edmar Moreira,PTB,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74592,Ronaldo Vasconcellos,PTB,,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74674,Ricardo Ferraço,PPS,ES,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74676,Bispo Rodrigues,PL*,,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74741,Jose Santana De Vasconcellos,PR,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74754,Paulo Delgado,PT,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74771,Feu Rosa,PP**,ES,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74777,Rita Camata,PSDB,ES,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74787,Milton Monti,PR,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-16526,camara,74848,Jandira Feghali,PCdoB,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,74563,Jorge Alberto,PMDB,SE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74580,Edmar Moreira,PTB,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74592,Ronaldo Vasconcellos,PTB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74674,Ricardo Ferraço,PPS,ES,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74676,Bispo Rodrigues,PL*,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74741,Jose Santana De Vasconcellos,PR,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74754,Paulo Delgado,PT,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74771,Feu Rosa,PP**,ES,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74777,Rita Camata,PSDB,ES,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74787,Milton Monti,PR,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+16526,camara,74848,Jandira Feghali,PCdoB,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 16526,camara,92699,Fernando Monteiro,PP,PE,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 16526,camara,93472,Cristiane Brasil,PTB,RJ,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-16526,camara,99654,Erivelton Santana,PATRI,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
+16526,camara,99654,Erivelton Santana,PATRI,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,160666,Félix Mendonça Júnior,PDT,BA,257,EMR,Emenda de Relator,27,Emenda,Emenda
 46249,camara,162332,Luiz Nishimori,PL,PR,294,REQ,Requerimento de Audiência Pública,19,Requerimento,Requerimento
 46249,camara,141537,Moreira Mendes,PSD,,257,EMR,Emenda de Relator,10,Emenda,Emenda
@@ -410,48 +410,48 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 46249,camara,141488,Paulo Teixeira,PT,SP,260,VTS,Voto em Separado,2,Voto em Separado,Voto em Separado
 46249,camara,160538,Bohn Gass,PT,RS,260,VTS,Voto em Separado,2,Voto em Separado,Voto em Separado
 46249,camara,160542,Márcio Macêdo,PT,SE,255,SBT,Substitutivo,2,Parecer,Parecer
-46249,camara,160556,Padre João,PT,MG,139,PL,Projeto de Lei,2,Proposição,Proposição
+46249,camara,160556,Padre João,PT,MG,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 46249,camara,160556,Padre João,PT,MG,260,VTS,Voto em Separado,2,Voto em Separado,Voto em Separado
 46249,camara,160556,Padre João,PT,MG,305,REQ,Requerimento de Desapensação,2,Requerimento,Requerimento
 46249,camara,160576,César Halum,PRB,TO,363,REQ,Requerimento de Desarquivamento de Proposições,2,Requerimento,Requerimento
 46249,camara,162332,Luiz Nishimori,PL,PR,304,REQ,Requerimento de Apensação,2,Requerimento,Requerimento
-46249,camara,178963,Covatti Filho,PP,,139,PL,Projeto de Lei,2,Proposição,Proposição
-46249,camara,178970,João Daniel,PT,SE,139,PL,Projeto de Lei,2,Proposição,Proposição
+46249,camara,178963,Covatti Filho,PP,,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+46249,camara,178970,João Daniel,PT,SE,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 46249,camara,178970,João Daniel,PT,SE,260,VTS,Voto em Separado,2,Voto em Separado,Voto em Separado
 46249,camara,178986,Nilto Tatto,PT,SP,260,VTS,Voto em Separado,2,Voto em Separado,Voto em Separado
-46249,camara,73483,Luis Carlos Heinze,PP,,139,PL,Projeto de Lei,2,Proposição,Proposição
+46249,camara,73483,Luis Carlos Heinze,PP,,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 46249,camara,74010,Valdir Colatto,MDB,SC,190,PRL,Parecer do Relator,2,Parecer,Parecer
 46249,camara,74563,Jorge Alberto,PMDB,SE,190,PRL,Parecer do Relator,2,Parecer,Parecer
 46249,camara,74848,Jandira Feghali,PCdoB,RJ,260,VTS,Voto em Separado,2,Voto em Separado,Voto em Separado
-46249,camara,133968,Paulo Ramos,PDT,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,133968,Paulo Ramos,PDT,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,134812,Edmilson Rodrigues,PSOL,PA,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-46249,camara,141488,Paulo Teixeira,PT,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,141488,Paulo Teixeira,PT,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,141488,Paulo Teixeira,PT,SP,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
 46249,camara,141488,Paulo Teixeira,PT,SP,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 46249,camara,141500,Marcos Montes,PSD,MG,190,PRL,Parecer do Relator,1,Parecer,Parecer
 46249,camara,141501,Cida Diogo,PT,RJ,191,PRV,Parecer Vencedor,1,Parecer,Parecer
 46249,camara,141501,Cida Diogo,PT,RJ,257,EMR,Emenda de Relator,1,Emenda,Emenda
-46249,camara,141522,Sabino Castelo Branco,PTB,AM,139,PL,Projeto de Lei,1,Proposição,Proposição
-46249,camara,141536,Rômulo Gouveia,,PB,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,141522,Sabino Castelo Branco,PTB,AM,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+46249,camara,141536,Rômulo Gouveia,,PB,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,141536,Rômulo Gouveia,,PB,686,REQ,Requerimento de Participação ou Realização de Eventos fora da Câmara,1,Requerimento,Requerimento
 46249,camara,141537,Moreira Mendes,PSD,,190,PRL,Parecer do Relator,1,Parecer,Parecer
-46249,camara,148134,Professor Victório Galli,PSL,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,148134,Professor Victório Galli,PSL,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,160538,Bohn Gass,PT,RS,-1,REQ,e de Procurador do Ministério Público do Trabalho.,1,Outros,Outros
 46249,camara,160542,Márcio Macêdo,PT,SE,190,PRL,Parecer do Relator,1,Parecer,Parecer
 46249,camara,160556,Padre João,PT,MG,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 46249,camara,160556,Padre João,PT,MG,686,REQ,Requerimento de Participação ou Realização de Eventos fora da Câmara,1,Requerimento,Requerimento
 46249,camara,160556,Padre João,PT,MG,-1,REQ,e de Procurador do Ministério Público do Trabalho.,1,Outros,Outros
-46249,camara,160565,Mara Gabrilli,PSDB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-46249,camara,160576,César Halum,PRB,TO,139,PL,Projeto de Lei,1,Proposição,Proposição
-46249,camara,160646,Delegado Francischini,PSL,,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,160565,Mara Gabrilli,PSDB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+46249,camara,160576,César Halum,PRB,TO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+46249,camara,160646,Delegado Francischini,PSL,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,160651,Rogério Peninha Mendonça,MDB,SC,686,REQ,Requerimento de Participação ou Realização de Eventos fora da Câmara,1,Requerimento,Requerimento
 46249,camara,162332,Luiz Nishimori,PL,PR,190,PRL,Parecer do Relator,1,Parecer,Parecer
 46249,camara,162332,Luiz Nishimori,PL,PR,255,SBT,Substitutivo,1,Parecer,Parecer
-46249,camara,164360,Carmen Zanotto,CIDADANIA,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,164360,Carmen Zanotto,CIDADANIA,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,178832,Leandre,PV,PR,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
 46249,camara,178843,Marx Beltrão,PSD,AL,190,PRL,Parecer do Relator,1,Parecer,Parecer
 46249,camara,178843,Marx Beltrão,PSD,AL,255,SBT,Substitutivo,1,Parecer,Parecer
-46249,camara,178857,Jorge Solla,PT,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,178857,Jorge Solla,PT,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,178857,Jorge Solla,PT,BA,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 46249,camara,178890,Adelmo Carneiro Leão,PT,MG,190,PRL,Parecer do Relator,1,Parecer,Parecer
 46249,camara,178890,Adelmo Carneiro Leão,PT,MG,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
@@ -469,27 +469,27 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 46249,camara,178986,Nilto Tatto,PT,SP,257,EMR,Emenda de Relator,1,Emenda,Emenda
 46249,camara,178986,Nilto Tatto,PT,SP,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 46249,camara,178986,Nilto Tatto,PT,SP,686,REQ,Requerimento de Participação ou Realização de Eventos fora da Câmara,1,Requerimento,Requerimento
-46249,camara,178993,Carlos Henrique Gaguim,DEM,TO,139,PL,Projeto de Lei,1,Proposição,Proposição
-46249,camara,198198,Luzia Ferreira,PPS,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-46249,camara,72442,Felipe Carreras,PSB,PE,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,178993,Carlos Henrique Gaguim,DEM,TO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+46249,camara,198198,Luzia Ferreira,PPS,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+46249,camara,72442,Felipe Carreras,PSB,PE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,73427,Alberto Goldman,PSDB,,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-46249,camara,73459,Dr. Rosinha,PT,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
-46249,camara,73466,Rubens Bueno,CIDADANIA,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,73459,Dr. Rosinha,PT,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+46249,camara,73466,Rubens Bueno,CIDADANIA,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,73466,Rubens Bueno,CIDADANIA,PR,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
-46249,camara,73471,Fernando Coruja,PPS,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,73471,Fernando Coruja,PPS,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,73483,Luis Carlos Heinze,PP,,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
 46249,camara,73483,Luis Carlos Heinze,PP,,311,REQ,Requerimento de Retirada de proposição de iniciativa individual,1,Requerimento,Requerimento
 46249,camara,73531,Ivan Valente,PSOL,SP,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 46249,camara,73553,Nelson Marquezelli,PTB,SP,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-46249,camara,73592,Kátia Abreu,PFL,TO,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,73592,Kátia Abreu,PFL,TO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,73592,Kátia Abreu,PFL,TO,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
 46249,camara,73674,Roberto Balestra,PP,GO,190,PRL,Parecer do Relator,1,Parecer,Parecer
 46249,camara,73674,Roberto Balestra,PP,GO,255,SBT,Substitutivo,1,Parecer,Parecer
 46249,camara,73768,Dilceu Sperafico,PP,PR,686,REQ,Requerimento de Participação ou Realização de Eventos fora da Câmara,1,Requerimento,Requerimento
-46249,camara,73776,José Janene,PP**,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,73776,José Janene,PP**,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,73776,José Janene,PP**,PR,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 46249,camara,73778,Luiz Carlos Hauly,PSDB,PR,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-46249,camara,73825,Carlos Nader,PR,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,73825,Carlos Nader,PR,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,74010,Valdir Colatto,MDB,SC,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 46249,camara,74150,Dr. Francisco Gonçalves,PPS,MG,190,PRL,Parecer do Relator,1,Parecer,Parecer
 46249,camara,74150,Dr. Francisco Gonçalves,PPS,MG,193,PRR,Parecer Reformulado,1,Parecer,Parecer
@@ -504,53 +504,53 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 46249,camara,74343,Dr. Benedito Dias,PP**,AP,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
 46249,camara,74343,Dr. Benedito Dias-Pres. Da Cssf,PP**,AP,314,REQ,Requerimento de Envio de proposições pendentes de parecer à Comissão seguinte ou ao Plenário,1,Requerimento,Requerimento
 46249,camara,74379,Cezar Silvestri,PPS,PR,190,PRL,Parecer do Relator,1,Parecer,Parecer
-46249,camara,74400,Paulo Pimenta,PT,RS,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,74400,Paulo Pimenta,PT,RS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 46249,camara,74692,Paulo Baltazar,PSB,RJ,190,PRL,Parecer do Relator,1,Parecer,Parecer
 46249,camara,74692,Paulo Baltazar,PSB,RJ,255,SBT,Substitutivo,1,Parecer,Parecer
 46249,camara,74693,Rodrigo Maia,DEM,RJ,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-46249,camara,74800,Lino Rossi,PP**,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
+46249,camara,74800,Lino Rossi,PP**,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 51066,camara,160575,Erika Kokay,PT,DF,363,REQ,Requerimento de Desarquivamento de Proposições,3,Requerimento,Requerimento
 51066,camara,160515,Ronaldo Benedet,MDB,SC,363,REQ,Requerimento de Desarquivamento de Proposições,2,Requerimento,Requerimento
-51066,camara,160611,Toninho Pinheiro,PP,MG,140,PLP,Projeto de Lei Complementar,2,Proposição,Proposição
-51066,camara,160619,José Nunes,PSD,BA,140,PLP,Projeto de Lei Complementar,2,Proposição,Proposição
+51066,camara,160611,Toninho Pinheiro,PP,MG,140,PLP,Projeto de Lei Complementar,2,Proposição Apensada,Proposição Apensada
+51066,camara,160619,José Nunes,PSD,BA,140,PLP,Projeto de Lei Complementar,2,Proposição Apensada,Proposição Apensada
 51066,camara,160619,José Nunes,PSD,BA,363,REQ,Requerimento de Desarquivamento de Proposições,2,Requerimento,Requerimento
-51066,camara,74285,Carlos Abicalil,PT,MT,140,PLP,Projeto de Lei Complementar,2,Proposição,Proposição
+51066,camara,74285,Carlos Abicalil,PT,MT,140,PLP,Projeto de Lei Complementar,2,Proposição Apensada,Proposição Apensada
 51066,camara,74574,Paulo Magalhães,PSD,BA,190,PRL,Parecer do Relator,2,Parecer,Parecer
-51066,camara,141391,Arnaldo Jardim,CIDADANIA,SP,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
+51066,camara,141391,Arnaldo Jardim,CIDADANIA,SP,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
 51066,camara,141391,Arnaldo Jardim,CIDADANIA,SP,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-51066,camara,141468,Iran Barbosa,PT,SE,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,160515,Ronaldo Benedet,MDB,SC,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,160528,Danilo Cabral,PSB,PE,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,160543,Andre Moura,PSC,,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,160575,Erika Kokay,PT,DF,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,160620,Washington Reis,MDB,,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,160621,Sandro Alex,PSD,,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,164360,Carmen Zanotto,CIDADANIA,SC,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
+51066,camara,141468,Iran Barbosa,PT,SE,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,160515,Ronaldo Benedet,MDB,SC,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,160528,Danilo Cabral,PSB,PE,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,160543,Andre Moura,PSC,,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,160575,Erika Kokay,PT,DF,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,160620,Washington Reis,MDB,,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,160621,Sandro Alex,PSD,,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,164360,Carmen Zanotto,CIDADANIA,SC,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
 51066,camara,164360,Carmen Zanotto,CIDADANIA,SC,147,REQ,Requerimento,1,Requerimento,Requerimento
 51066,camara,171619,Margarida Salomão,PT,MG,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
 51066,camara,171619,Margarida Salomão,PT,MG,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-51066,camara,178978,Flavinho,PSC,SP,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,195997,Pollyana Gama,PPS,SP,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,73673,Pedro Wilson,PT,GO,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
+51066,camara,178978,Flavinho,PSC,SP,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,195997,Pollyana Gama,PPS,SP,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,73673,Pedro Wilson,PT,GO,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
 51066,camara,74298,José Pimentel,PT,CE,190,PRL,Parecer do Relator,1,Parecer,Parecer
-51066,camara,74398,Maria Do Rosário,PT,RS,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,74439,Wolney Queiroz,PDT,PE,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,74641,Severiano Alves,PMDB,BA,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,74655,Eduardo Barbosa,PSDB,MG,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,74688,Luiz Sérgio,PT,RJ,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-51066,camara,74856,Laura Carneiro,DEM,RJ,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
+51066,camara,74398,Maria Do Rosário,PT,RS,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,74439,Wolney Queiroz,PDT,PE,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,74641,Severiano Alves,PMDB,BA,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,74655,Eduardo Barbosa,PSDB,MG,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,74688,Luiz Sérgio,PT,RJ,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+51066,camara,74856,Laura Carneiro,DEM,RJ,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
 257161,camara,124411,Mauro Pereira,MDB,RS,190,PRL,Parecer do Relator,12,Parecer,Parecer
 257161,camara,124411,Mauro Pereira,MDB,RS,255,SBT,Substitutivo,11,Parecer,Parecer
 257161,camara,178832,Leandre,PV,PR,304,REQ,Requerimento de Apensação,3,Requerimento,Requerimento
-257161,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,139,PL,Projeto de Lei,3,Proposição,Proposição
+257161,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
 257161,camara,74171,Chico Alencar,PSOL,RJ,363,REQ,Requerimento de Desarquivamento de Proposições,3,Requerimento,Requerimento
 257161,camara,141472,Ricardo Tripoli,PSDB,SP,190,PRL,Parecer do Relator,2,Parecer,Parecer
 257161,camara,141472,Ricardo Tripoli,PSDB,SP,255,SBT,Substitutivo,2,Parecer,Parecer
 257161,camara,141516,Paulo Abi-Ackel,PSDB,MG,147,REQ,Requerimento,2,Requerimento,Requerimento
-257161,camara,160515,Ronaldo Benedet,MDB,SC,139,PL,Projeto de Lei,2,Proposição,Proposição
+257161,camara,160515,Ronaldo Benedet,MDB,SC,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 257161,camara,160515,Ronaldo Benedet,MDB,SC,363,REQ,Requerimento de Desarquivamento de Proposições,2,Requerimento,Requerimento
 257161,camara,178954,Lucio Mosquini,MDB,RO,363,REQ,Requerimento de Desarquivamento de Proposições,2,Requerimento,Requerimento
-257161,camara,74153,Ivo José,PT,MG,139,PL,Projeto de Lei,2,Proposição,Proposição
+257161,camara,74153,Ivo José,PT,MG,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 257161,camara,80920,Penna,PV,SP,190,PRL,Parecer do Relator,2,Parecer,Parecer
 257161,camara,80920,Penna,PV,SP,255,SBT,Substitutivo,2,Parecer,Parecer
 257161,camara,134812,Edmilson Rodrigues,PSOL,PA,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
@@ -560,29 +560,29 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 257161,camara,141472,Ricardo Tripoli,PSDB,SP,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
 257161,camara,141480,Lázaro Botelho,PP,TO,190,PRL,Parecer do Relator,1,Parecer,Parecer
 257161,camara,141482,Leonardo Quintão,MDB,MG,147,REQ,Requerimento,1,Requerimento,Requerimento
-257161,camara,141483,Lindomar Garçon,PRB,RO,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,141483,Lindomar Garçon,PRB,RO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,141484,Lúcio Vale,PR,,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-257161,camara,141516,Paulo Abi-Ackel,PSDB,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,141516,Paulo Abi-Ackel,PSDB,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,141516,Paulo Abi-Ackel,PSDB,MG,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-257161,camara,141536,Rômulo Gouveia,,PB,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,141536,Rômulo Gouveia,,PB,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,141537,Moreira Mendes,PSD,,190,PRL,Parecer do Relator,1,Parecer,Parecer
 257161,camara,141537,Moreira Mendes,PSD,,255,SBT,Substitutivo,1,Parecer,Parecer
-257161,camara,141550,Dr. Talmir,PV,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,141550,Dr. Talmir,PV,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,144523,Daniel Vilela,MDB,GO,147,REQ,Requerimento,1,Requerimento,Requerimento
 257161,camara,160426,Rogério Rosso,PSD,DF,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-257161,camara,160511,Alessandro Molon,PSB,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,160511,Alessandro Molon,PSB,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,160511,Alessandro Molon,PSB,RJ,147,REQ,Requerimento,1,Requerimento,Requerimento
 257161,camara,160511,Alessandro Molon,PSB,RJ,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 257161,camara,160511,Alessandro Molon,PSB,RJ,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
 257161,camara,160515,Ronaldo Benedet,MDB,SC,147,REQ,Requerimento,1,Requerimento,Requerimento
-257161,camara,160559,Alceu Moreira,MDB,,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,160559,Alceu Moreira,MDB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,160618,Edson Pimenta,PSD,BA,190,PRL,Parecer do Relator,1,Parecer,Parecer
 257161,camara,160618,Edson Pimenta,PSD,BA,257,EMR,Emenda de Relator,1,Emenda,Emenda
 257161,camara,160630,Ságuas Moraes,PT,MT,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-257161,camara,160636,Wilson Filho,PTB,PB,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,160643,Dr. Jorge Silva,SOLIDARIEDADE,ES,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,160636,Wilson Filho,PTB,PB,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,160643,Dr. Jorge Silva,SOLIDARIEDADE,ES,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,160643,Dr. Jorge Silva,SOLIDARIEDADE,ES,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-257161,camara,160677,Francisco Floriano,DEM,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,160677,Francisco Floriano,DEM,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,167722,Marcos Rogério,DEM,,147,REQ,Requerimento,1,Requerimento,Requerimento
 257161,camara,167722,Marcos Rogério,DEM,,190,PRL,Parecer do Relator,1,Parecer,Parecer
 257161,camara,167722,Marcos Rogério,DEM,,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
@@ -590,95 +590,95 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 257161,camara,178835,Afonso Motta,PDT,RS,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
 257161,camara,178850,Marcos Rotta,MDB,,147,REQ,Requerimento,1,Requerimento,Requerimento
 257161,camara,178869,Vitor Valim,PROS,CE,147,REQ,Requerimento,1,Requerimento,Requerimento
-257161,camara,178896,Newton Cardoso Jr,MDB,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,178896,Newton Cardoso Jr,MDB,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,178896,Newton Cardoso Jr,MDB,MG,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-257161,camara,178954,Lucio Mosquini,MDB,RO,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,178954,Lucio Mosquini,MDB,RO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,178975,Baleia Rossi,MDB,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
 257161,camara,204536,Kim Kataguiri,DEM,SP,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
-257161,camara,73454,João Grandão,PT,MS,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,73474,Luci Choinacki,PT,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,73531,Ivan Valente,PSOL,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,73545,Luciano Zica,PT,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,73569,Jorge Pinheiro,PRB,GO,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,73454,João Grandão,PT,MS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,73474,Luci Choinacki,PT,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,73531,Ivan Valente,PSOL,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,73545,Luciano Zica,PT,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,73569,Jorge Pinheiro,PRB,GO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,73569,Jorge Pinheiro,PRB,GO,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-257161,camara,73584,Antonio Carlos Mendes Thame,PV,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,73584,Antonio Carlos Mendes Thame,PV,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 257161,camara,73666,Jovair Arantes,PTB,GO,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-257161,camara,73928,Ann Pontes,PMDB,PA,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,73945,Eduardo Gomes,SD,TO,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,73928,Ann Pontes,PMDB,PA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,73945,Eduardo Gomes,SD,TO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,74010,Valdir Colatto,MDB,SC,147,REQ,Requerimento,1,Requerimento,Requerimento
 257161,camara,74010,Valdir Colatto,MDB,SC,190,PRL,Parecer do Relator,1,Parecer,Parecer
 257161,camara,74010,Valdir Colatto,MDB,SC,255,SBT,Substitutivo,1,Parecer,Parecer
 257161,camara,74010,Valdir Colatto,MDB,SC,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
 257161,camara,74010,Valdir Colatto,MDB,SC,339,REQ,Requerimento de Reconstituição de proposição,1,Requerimento,Requerimento
-257161,camara,74031,João Alfredo,PSOL,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74133,Luiz Alberto,PT,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74137,Luiz Eduardo Greenhalgh,PT,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74145,Zezéu Ribeiro,PT,,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74162,Iriny Lopes,PT,ES,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74171,Chico Alencar,PSOL,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74210,Sarney Filho,PV,MA,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,74031,João Alfredo,PSOL,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74133,Luiz Alberto,PT,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74137,Luiz Eduardo Greenhalgh,PT,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74145,Zezéu Ribeiro,PT,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74162,Iriny Lopes,PT,ES,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74171,Chico Alencar,PSOL,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74210,Sarney Filho,PV,MA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,74212,Aníbal Gomes,DEM,CE,147,REQ,Requerimento,1,Requerimento,Requerimento
-257161,camara,74218,Walter Pinheiro,PT,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74253,Julio Lopes,PP,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,74218,Walter Pinheiro,PT,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74253,Julio Lopes,PP,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,74253,Julio Lopes,PP,RJ,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
 257161,camara,74254,Leonardo Picciani,MDB,RJ,147,REQ,Requerimento,1,Requerimento,Requerimento
 257161,camara,74262,Carlos Sampaio,PSDB,SP,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-257161,camara,74285,Carlos Abicalil,PT,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74300,Marcelo Teixeira,PR,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74321,Betinho Rosado,PP**,RN,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,74285,Carlos Abicalil,PT,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74300,Marcelo Teixeira,PR,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74321,Betinho Rosado,PP**,RN,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,74321,Betinho Rosado,PP**,RN,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
 257161,camara,74321,Betinho Rosado,PP**,RN,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-257161,camara,74356,Silas Câmara,PRB,AM,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,74356,Silas Câmara,PRB,AM,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,74356,Silas Câmara,PRB,AM,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 257161,camara,74363,Marcio Bittar,PSDB,AC,190,PRL,Parecer do Relator,1,Parecer,Parecer
 257161,camara,74363,Marcio Bittar,PSDB,AC,257,EMR,Emenda de Relator,1,Emenda,Emenda
-257161,camara,74389,Mauro Passos,PT,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74391,Vignatti,PT,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74397,Luciana Genro,PSOL,RS,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74439,Wolney Queiroz,PDT,PE,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,74389,Mauro Passos,PT,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74391,Vignatti,PT,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74397,Luciana Genro,PSOL,RS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74439,Wolney Queiroz,PDT,PE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,74439,Wolney Queiroz,PDT,PE,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 257161,camara,74471,André De Paula,PSD,PE,190,PRL,Parecer do Relator,1,Parecer,Parecer
 257161,camara,74471,André De Paula,PSD,PE,255,SBT,Substitutivo,1,Parecer,Parecer
-257161,camara,74491,Nazareno Fonteles,PT,PI,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74665,Jaime Martins,PROS,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74777,Rita Camata,PSDB,ES,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74780,Iara Bernardi,PT,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-257161,camara,74841,Fernando Gabeira,PV,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+257161,camara,74491,Nazareno Fonteles,PT,PI,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74665,Jaime Martins,PROS,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74777,Rita Camata,PSDB,ES,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74780,Iara Bernardi,PT,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+257161,camara,74841,Fernando Gabeira,PV,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 257161,camara,81232,Irajá Abreu,PSD,TO,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
 345311,camara,73886,Adão Pretto,PT,,258,ESB,Emenda ao Substitutivo,7,Emenda,Emenda
 345311,camara,160570,Jerônimo Goergen,PP,RS,190,PRL,Parecer do Relator,3,Parecer,Parecer
 345311,camara,160570,Jerônimo Goergen,PP,RS,255,SBT,Substitutivo,3,Parecer,Parecer
 345311,camara,204478,Vinicius Farah,MDB,RJ,363,REQ,Requerimento de Desarquivamento de Proposições,3,Requerimento,Requerimento
 345311,camara,74162,Iriny Lopes,PT,ES,190,PRL,Parecer do Relator,3,Parecer,Parecer
-345311,camara,141417,Edio Lopes,PL,RR,139,PL,Projeto de Lei,2,Proposição,Proposição
+345311,camara,141417,Edio Lopes,PL,RR,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 345311,camara,141417,Edio Lopes,PL,RR,363,REQ,Requerimento de Desarquivamento de Proposições,2,Requerimento,Requerimento
 345311,camara,73933,Zequinha Marinho,PSC,,363,REQ,Requerimento de Desarquivamento de Proposições,2,Requerimento,Requerimento
 345311,camara,141335,Beto Faro,PT,PA,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 345311,camara,141417,Edio Lopes,PL,RR,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
-345311,camara,141448,Homero Pereira,PSD,,139,PL,Projeto de Lei,1,Proposição,Proposição
+345311,camara,141448,Homero Pereira,PSD,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 345311,camara,141448,Homero Pereira,PSD,,147,REQ,Requerimento,1,Requerimento,Requerimento
 345311,camara,141448,Homero Pereira,PSD,,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
 345311,camara,141448,Homero Pereira,PSD,,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 345311,camara,141559,Waldir Neves,PSDB,,190,PRL,Parecer do Relator,1,Parecer,Parecer
 345311,camara,141559,Waldir Neves,PSDB,,196,PES,Parecer às emendas apresentadas ao Substitutivo do Relator,1,Parecer,Parecer
 345311,camara,141559,Waldir Neves,PSDB,,255,SBT,Substitutivo,1,Parecer,Parecer
-345311,camara,148134,Professor Victório Galli,PSL,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
-345311,camara,160559,Alceu Moreira,MDB,,139,PL,Projeto de Lei,1,Proposição,Proposição
+345311,camara,148134,Professor Victório Galli,PSL,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+345311,camara,160559,Alceu Moreira,MDB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 345311,camara,160559,Alceu Moreira,MDB,,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
 345311,camara,160559,Alceu Moreira,MDB,,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-345311,camara,160670,Padre Ton,PT,RO,139,PL,Projeto de Lei,1,Proposição,Proposição
+345311,camara,160670,Padre Ton,PT,RO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 345311,camara,160670,Padre Ton,PT,RO,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
-345311,camara,166401,Nilson Leitão,PSDB,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
-345311,camara,178963,Covatti Filho,PP,,139,PL,Projeto de Lei,1,Proposição,Proposição
+345311,camara,166401,Nilson Leitão,PSDB,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+345311,camara,178963,Covatti Filho,PP,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 345311,camara,178963,Covatti Filho,PP,,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 345311,camara,73531,Ivan Valente,PSOL,SP,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-345311,camara,73933,Zequinha Marinho,PSC,,139,PL,Projeto de Lei,1,Proposição,Proposição
-345311,camara,74010,Valdir Colatto,MDB,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
+345311,camara,73933,Zequinha Marinho,PSC,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+345311,camara,74010,Valdir Colatto,MDB,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 345311,camara,74171,Chico Alencar,PSOL,RJ,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 345311,camara,74210,Sarney Filho,PV,MA,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
-345311,camara,74542,Félix Mendonça,DEM,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
-345311,camara,74566,Geraldo Simões,PT,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
+345311,camara,74542,Félix Mendonça,DEM,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+345311,camara,74566,Geraldo Simões,PT,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 345311,camara,74650,Bonifácio De Andrada,DEM,MG,147,REQ,Requerimento,1,Requerimento,Requerimento
 353631,camara,93472,Cristiane Brasil,PTB,RJ,257,EMR,Emenda de Relator,6,Emenda,Emenda
 353631,camara,132504,Enio Verri,PT,,131,EMP,Emenda de Plenário,3,Emenda,Emenda
@@ -693,14 +693,14 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 353631,camara,113247,Valmir Prascidelli,PT,SP,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 353631,camara,124411,Mauro Pereira,MDB,RS,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 353631,camara,133374,Ademir Camilo,MDB,MG,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-353631,camara,141398,Carlos Zarattini,PT,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+353631,camara,141398,Carlos Zarattini,PT,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 353631,camara,141398,Carlos Zarattini,PT,SP,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 353631,camara,141398,Carlos Zarattini,PT,SP,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
 353631,camara,141422,Efraim Filho,DEM,,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 353631,camara,141529,Roberto Britto,PP,BA,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
 353631,camara,143632,Domingos Neto,PSD,CE,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
 353631,camara,150418,Márcio Marinho,PRB,BA,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-353631,camara,160426,Rogério Rosso,PSD,DF,139,PL,Projeto de Lei,1,Proposição,Proposição
+353631,camara,160426,Rogério Rosso,PSD,DF,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 353631,camara,160426,Rogério Rosso,PSD,DF,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
 353631,camara,160508,Afonso Florence,PT,BA,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
 353631,camara,160649,Esperidião Amin,PP,SC,147,REQ,Requerimento,1,Requerimento,Requerimento
@@ -730,15 +730,15 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 353631,camara,93472,Cristiane Brasil,PTB,RJ,509,SSP,Subemenda Substitutiva de Plenário,1,Emenda,Emenda
 500183,camara,132056,Paulo Maluf,PP,,190,PRL,Parecer do Relator,2,Parecer,Parecer
 500183,camara,141389,Indio Da Costa,PSD,RJ,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-500183,camara,148134,Professor Victório Galli,PSL,MT,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+500183,camara,148134,Professor Victório Galli,PSL,MT,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 500183,camara,152605,Glauber Braga,PSOL,RJ,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 500183,camara,160511,Alessandro Molon,PSB,RJ,147,REQ,Requerimento,1,Requerimento,Requerimento
 500183,camara,160511,Alessandro Molon,PSB,RJ,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-500183,camara,160563,Onofre Santo Agostini,PSD,SC,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+500183,camara,160563,Onofre Santo Agostini,PSD,SC,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 500183,camara,160566,Nelson Padovani,PSDB,PR,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
 500183,camara,160578,Edmar Arruda,PSD,PR,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
 500183,camara,160649,Esperidião Amin,PP,SC,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-500183,camara,160655,Ricardo Izar,PP,SP,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+500183,camara,160655,Ricardo Izar,PP,SP,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 500183,camara,178827,Max Filho,PSDB,,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 500183,camara,178835,Afonso Motta,PDT,RS,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 500183,camara,178886,Juscelino Filho,DEM,MA,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
@@ -746,11 +746,11 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 500183,camara,178922,Tadeu Alencar,PSB,PE,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 500183,camara,178931,Luciano Ducci,PSB,PR,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 500183,camara,178959,Hiran Gonçalves,PP,RR,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-500183,camara,73441,Celso Russomanno,PRB,SP,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+500183,camara,73441,Celso Russomanno,PRB,SP,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 500183,camara,73531,Ivan Valente,PSOL,SP,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-500183,camara,73768,Dilceu Sperafico,PP,PR,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+500183,camara,73768,Dilceu Sperafico,PP,PR,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 500183,camara,73768,Dilceu Sperafico,PP,PR,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-500183,camara,73793,Edinho Bez,MDB,SC,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+500183,camara,73793,Edinho Bez,MDB,SC,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 500183,camara,74039,Sandra Rosado,PSB,RN,147,REQ,Requerimento,1,Requerimento,Requerimento
 500183,camara,74039,Sandra Rosado,PSB,RN,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 500183,camara,74039,Sandra Rosado,PSB,RN,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
@@ -759,12 +759,12 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 500183,camara,74041,Luiz Couto,PT,PB,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 500183,camara,74171,Chico Alencar,PSOL,RJ,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 518221,camara,178887,Rubens Pereira Júnior,PCdoB,,190,PRL,Parecer do Relator,2,Parecer,Parecer
-518221,camara,160543,Andre Moura,PSC,,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+518221,camara,160543,Andre Moura,PSC,,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 518221,camara,160567,Nelson Marchezan Junior,PSDB,,190,PRL,Parecer do Relator,1,Parecer,Parecer
-518221,camara,160636,Wilson Filho,PTB,PB,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
-518221,camara,195278,Moisés Diniz,PCdoB,AC,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
-518221,camara,74095,Pauderney Avelino,DEM,,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
-522447,camara,160653,Roberto De Lucena,PODE,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+518221,camara,160636,Wilson Filho,PTB,PB,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
+518221,camara,195278,Moisés Diniz,PCdoB,AC,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
+518221,camara,74095,Pauderney Avelino,DEM,,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
+522447,camara,160653,Roberto De Lucena,PODE,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 522447,camara,178881,Aluisio Mendes,PODE,MA,190,PRL,Parecer do Relator,1,Parecer,Parecer
 522447,camara,73466,Rubens Bueno,CIDADANIA,PR,190,PRL,Parecer do Relator,1,Parecer,Parecer
 522447,camara,73466,Rubens Bueno,CIDADANIA,PR,255,SBT,Substitutivo,1,Parecer,Parecer
@@ -774,11 +774,11 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 532814,camara,141516,Paulo Abi-Ackel,PSDB,MG,257,EMR,Emenda de Relator,1,Emenda,Emenda
 532814,camara,148134,Professor Victório Galli,PSL,MT,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
 532814,camara,160508,Afonso Florence,PT,BA,190,PRL,Parecer do Relator,1,Parecer,Parecer
-532814,camara,160567,Nelson Marchezan Junior,PSDB,,139,PL,Projeto de Lei,1,Proposição,Proposição
+532814,camara,160567,Nelson Marchezan Junior,PSDB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 532814,camara,160567,Nelson Marchezan Junior,PSDB,,258,ESB,Emenda ao Substitutivo,1,Emenda,Emenda
 532814,camara,160567,Nelson Marchezan Junior,PSDB,,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
 532814,camara,160567,Nelson Marchezan Junior,PSDB,,314,REQ,Requerimento de Envio de proposições pendentes de parecer à Comissão seguinte ou ao Plenário,1,Requerimento,Requerimento
-532814,camara,160639,Professora Dorinha Seabra Rezende,DEM,TO,139,PL,Projeto de Lei,1,Proposição,Proposição
+532814,camara,160639,Professora Dorinha Seabra Rezende,DEM,TO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 532814,camara,160639,Professora Dorinha Seabra Rezende,DEM,TO,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 532814,camara,178884,Hildo Rocha,MDB,MA,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 532814,camara,178912,Pedro Cunha Lima,PSDB,PB,190,PRL,Parecer do Relator,1,Parecer,Parecer
@@ -787,110 +787,110 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 532814,camara,74037,Fátima Bezerra,PT,RN,190,PRL,Parecer do Relator,1,Parecer,Parecer
 532814,camara,74037,Fátima Bezerra,PT,RN,195,CVO,Complementação de Voto,1,Parecer,Parecer
 532814,camara,74037,Fátima Bezerra,PT,RN,255,SBT,Substitutivo,1,Parecer,Parecer
-541857,camara,73579,Alberto Fraga,DEM,DF,139,PL,Projeto de Lei,10,Proposição,Proposição
-541857,camara,164359,Delegado Waldir,PSL,GO,139,PL,Projeto de Lei,5,Proposição,Proposição
-541857,camara,74399,Onyx Lorenzoni,DEM,,139,PL,Projeto de Lei,5,Proposição,Proposição
-541857,camara,74585,Lincoln Portela,PL,MG,139,PL,Projeto de Lei,5,Proposição,Proposição
-541857,camara,92346,Eduardo Bolsonaro,PSL,SP,139,PL,Projeto de Lei,5,Proposição,Proposição
+541857,camara,73579,Alberto Fraga,DEM,DF,139,PL,Projeto de Lei,10,Proposição Apensada,Proposição Apensada
+541857,camara,164359,Delegado Waldir,PSL,GO,139,PL,Projeto de Lei,5,Proposição Apensada,Proposição Apensada
+541857,camara,74399,Onyx Lorenzoni,DEM,,139,PL,Projeto de Lei,5,Proposição Apensada,Proposição Apensada
+541857,camara,74585,Lincoln Portela,PL,MG,139,PL,Projeto de Lei,5,Proposição Apensada,Proposição Apensada
+541857,camara,92346,Eduardo Bolsonaro,PSL,SP,139,PL,Projeto de Lei,5,Proposição Apensada,Proposição Apensada
 541857,camara,178894,Laudivio Carvalho,PODE,MG,304,REQ,Requerimento de Apensação,4,Requerimento,Requerimento
 541857,camara,160571,João Rodrigues,PSD,,260,VTS,Voto em Separado,3,Voto em Separado,Voto em Separado
-541857,camara,160596,Heuler Cruvinel,PP,GO,139,PL,Projeto de Lei,3,Proposição,Proposição
-541857,camara,160651,Rogério Peninha Mendonça,MDB,SC,139,PL,Projeto de Lei,3,Proposição,Proposição
+541857,camara,160596,Heuler Cruvinel,PP,GO,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
+541857,camara,160651,Rogério Peninha Mendonça,MDB,SC,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
 541857,camara,160651,Rogério Peninha Mendonça,MDB,SC,147,REQ,Requerimento,3,Requerimento,Requerimento
-541857,camara,178826,Major Olimpio,PSL,SP,139,PL,Projeto de Lei,3,Proposição,Proposição
+541857,camara,178826,Major Olimpio,PSL,SP,139,PL,Projeto de Lei,3,Proposição Apensada,Proposição Apensada
 541857,camara,178894,Laudivio Carvalho,PODE,MG,255,SBT,Substitutivo,3,Parecer,Parecer
-541857,camara,141478,Laerte Bessa,PR,DF,139,PL,Projeto de Lei,2,Proposição,Proposição
+541857,camara,141478,Laerte Bessa,PR,DF,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 541857,camara,141500,Marcos Montes,PSD,MG,147,REQ,Requerimento,2,Requerimento,Requerimento
 541857,camara,141515,Otavio Leite,PSDB,RJ,190,PRL,Parecer do Relator,2,Parecer,Parecer
 541857,camara,141515,Otavio Leite,PSDB,RJ,255,SBT,Substitutivo,2,Parecer,Parecer
 541857,camara,141516,Paulo Abi-Ackel,PSDB,MG,147,REQ,Requerimento,2,Requerimento,Requerimento
 541857,camara,159238,Marcus Pestana,PSDB,MG,147,REQ,Requerimento,2,Requerimento,Requerimento
-541857,camara,160545,Alexandre Leite,DEM,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
-541857,camara,160571,João Rodrigues,PSD,,139,PL,Projeto de Lei,2,Proposição,Proposição
+541857,camara,160545,Alexandre Leite,DEM,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+541857,camara,160571,João Rodrigues,PSD,,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 541857,camara,160571,João Rodrigues,PSD,,147,REQ,Requerimento,2,Requerimento,Requerimento
 541857,camara,160651,Rogério Peninha Mendonça,MDB,SC,305,REQ,Requerimento de Desapensação,2,Requerimento,Requerimento
 541857,camara,177282,Subtenente Gonzaga,PDT,MG,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
-541857,camara,178829,Capitão Augusto,PL,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
+541857,camara,178829,Capitão Augusto,PL,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 541857,camara,178865,Cabo Sabino,AVANTE,CE,147,REQ,Requerimento,2,Requerimento,Requerimento
 541857,camara,178894,Laudivio Carvalho,PODE,MG,147,REQ,Requerimento,2,Requerimento,Requerimento
 541857,camara,178894,Laudivio Carvalho,PODE,MG,305,REQ,Requerimento de Desapensação,2,Requerimento,Requerimento
-541857,camara,178924,Capitão Fábio Abreu,PL,,139,PL,Projeto de Lei,2,Proposição,Proposição
-541857,camara,178953,Expedito Netto,PSD,RO,139,PL,Projeto de Lei,2,Proposição,Proposição
+541857,camara,178924,Capitão Fábio Abreu,PL,,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+541857,camara,178953,Expedito Netto,PSD,RO,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 541857,camara,178954,Lucio Mosquini,MDB,RO,363,REQ,Requerimento de Desarquivamento de Proposições,2,Requerimento,Requerimento
-541857,camara,204456,Gutemberg Reis,MDB,RJ,139,PL,Projeto de Lei,2,Proposição,Proposição
-541857,camara,204548,Heitor Freire,PSL,CE,139,PL,Projeto de Lei,2,Proposição,Proposição
-541857,camara,73434,Arnaldo Faria De Sá,PP,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
-541857,camara,73486,Pompeo De Mattos,PDT,RS,139,PL,Projeto de Lei,2,Proposição,Proposição
+541857,camara,204456,Gutemberg Reis,MDB,RJ,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+541857,camara,204548,Heitor Freire,PSL,CE,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+541857,camara,73434,Arnaldo Faria De Sá,PP,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+541857,camara,73486,Pompeo De Mattos,PDT,RS,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 541857,camara,73531,Ivan Valente,PSOL,SP,260,VTS,Voto em Separado,2,Voto em Separado,Voto em Separado
 541857,camara,74057,Alice Portugal,PCdoB,BA,147,REQ,Requerimento,2,Requerimento,Requerimento
 541857,camara,74537,Claudio Cajado,PP,BA,147,REQ,Requerimento,2,Requerimento,Requerimento
-541857,camara,74847,Jair Bolsonaro,PSL,,139,PL,Projeto de Lei,2,Proposição,Proposição
-541857,camara,109152,Bernardo Santana De Vasconcellos,,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,114941,Josi Nunes,PROS,TO,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,116379,Darci De Matos,PSD,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,74847,Jair Bolsonaro,PSL,,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+541857,camara,109152,Bernardo Santana De Vasconcellos,,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,114941,Josi Nunes,PROS,TO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,116379,Darci De Matos,PSD,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,122466,Ronaldo Martins,PRB,CE,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
-541857,camara,134812,Edmilson Rodrigues,PSOL,PA,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,134812,Edmilson Rodrigues,PSOL,PA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,136811,Afonso Hamm,PP,RS,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
-541857,camara,137070,Vicentinho Júnior,PL,TO,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,141411,Dagoberto Nogueira,PDT,MS,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,141417,Edio Lopes,PL,RR,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,137070,Vicentinho Júnior,PL,TO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,141411,Dagoberto Nogueira,PDT,MS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,141417,Edio Lopes,PL,RR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,141417,Edio Lopes,PL,RR,147,REQ,Requerimento,1,Requerimento,Requerimento
 541857,camara,141417,Edio Lopes,PL,RR,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 541857,camara,141417,Edio Lopes,PL,RR,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-541857,camara,141464,José Airton Cirilo,PT,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,141464,José Airton Cirilo,PT,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,141488,Paulo Teixeira,PT,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
-541857,camara,141498,Dr. Ubiali,PSB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,141516,Paulo Abi-Ackel,PSDB,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,141536,Rômulo Gouveia,,PB,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,141555,Vinicius Carvalho,PRB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,141562,Lelo Coimbra,MDB,ES,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,148134,Professor Victório Galli,PSL,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,149327,Major Fábio,PROS,PB,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,151208,Laercio Oliveira,PP,SE,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,159238,Marcus Pestana,PSDB,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,160511,Alessandro Molon,PSB,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,141498,Dr. Ubiali,PSB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,141516,Paulo Abi-Ackel,PSDB,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,141536,Rômulo Gouveia,,PB,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,141555,Vinicius Carvalho,PRB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,141562,Lelo Coimbra,MDB,ES,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,148134,Professor Victório Galli,PSL,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,149327,Major Fábio,PROS,PB,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,151208,Laercio Oliveira,PP,SE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,159238,Marcus Pestana,PSDB,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,160511,Alessandro Molon,PSB,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,160511,Alessandro Molon,PSB,RJ,147,REQ,Requerimento,1,Requerimento,Requerimento
 541857,camara,160511,Alessandro Molon,PSB,RJ,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 541857,camara,160511,Alessandro Molon,PSB,RJ,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 541857,camara,160518,Weliton Prado,PROS,MG,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
 541857,camara,160545,Alexandre Leite,DEM,SP,190,PRL,Parecer do Relator,1,Parecer,Parecer
 541857,camara,160545,Alexandre Leite,DEM,SP,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-541857,camara,160559,Alceu Moreira,MDB,,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,160559,Alceu Moreira,MDB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,160559,Alceu Moreira,MDB,,147,REQ,Requerimento,1,Requerimento,Requerimento
 541857,camara,160567,Nelson Marchezan Junior,PSDB,,147,REQ,Requerimento,1,Requerimento,Requerimento
-541857,camara,160598,Flávia Morais,PDT,GO,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,160598,Flávia Morais,PDT,GO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,160598,Flávia Morais,PDT,GO,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-541857,camara,160601,Pr. Marco Feliciano,PODE,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,160636,Wilson Filho,PTB,PB,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,160637,Ronaldo Fonseca,PODE,DF,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,160646,Delegado Francischini,PSL,,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,160646,Fernando Francischini,PSL,,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,160601,Pr. Marco Feliciano,PODE,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,160636,Wilson Filho,PTB,PB,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,160637,Ronaldo Fonseca,PODE,DF,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,160646,Delegado Francischini,PSL,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,160646,Fernando Francischini,PSL,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,160651,Rogério Peninha Mendonça,MDB,SC,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
 541857,camara,160651,Rogério Peninha Mendonça,MDB,SC,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
 541857,camara,160660,Marcelo Aguiar,DEM,SP,379,REC,"Recurso contra apensação/desapensação de proposição (Art. 142, I, RICD)",1,Outros,Outros
-541857,camara,160663,Leopoldo Meyer,PSB,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,160663,Leopoldo Meyer,PSB,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,160667,Guilherme Mussi,PP,SP,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 541857,camara,160667,Guilherme Mussi,PP,SP,521,REQ,Requerimento de Constituição de Comissão Especial de Projeto,1,Requerimento,Requerimento
-541857,camara,162332,Luiz Nishimori,PL,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,162332,Luiz Nishimori,PL,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,164359,Delegado Waldir,PSL,GO,147,REQ,Requerimento,1,Requerimento,Requerimento
-541857,camara,166401,Nilson Leitão,PSDB,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,166401,Nilson Leitão,PSDB,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,166402,Magda Mofatto,PL,GO,147,REQ,Requerimento,1,Requerimento,Requerimento
-541857,camara,167614,Severino Ninho,PSB,PE,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,177282,Subtenente Gonzaga,PDT,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,167614,Severino Ninho,PSB,PE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,177282,Subtenente Gonzaga,PDT,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,177282,Subtenente Gonzaga,PDT,MG,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 541857,camara,177282,Subtenente Gonzaga,PDT,MG,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-541857,camara,178825,Leo De Brito,PT,,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,178826,Major Olimpio Gomes,PSL,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,178825,Leo De Brito,PT,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,178826,Major Olimpio Gomes,PSL,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,178829,Capitão Augusto,PL,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
 541857,camara,178829,Capitão Augusto,PL,SP,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 541857,camara,178829,Capitão Augusto,PL,SP,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
-541857,camara,178852,Marcos Reategui,PSD,AP,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,178864,Adail Carneiro,PODE,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,178865,Cabo Sabino,AVANTE,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,178852,Marcos Reategui,PSD,AP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,178864,Adail Carneiro,PODE,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,178865,Cabo Sabino,AVANTE,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,178865,Cabo Sabino,AVANTE,CE,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-541857,camara,178869,Vitor Valim,PROS,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,178869,Vitor Valim,PROS,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,178869,Vitor Valim,PROS,CE,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
-541857,camara,178881,Aluisio Mendes,PODE,MA,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,178881,Aluisio Mendes,PODE,MA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,178893,Delegado Edson Moreira,PR,MG,147,REQ,Requerimento,1,Requerimento,Requerimento
 541857,camara,178894,Laudivio Carvalho,PODE,MG,190,PRL,Parecer do Relator,1,Parecer,Parecer
 541857,camara,178894,Laudivio Carvalho,PODE,MG,193,PRR,Parecer Reformulado,1,Parecer,Parecer
@@ -898,44 +898,44 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 541857,camara,178894,Laudivio Carvalho,PODE,MG,311,REQ,Requerimento de Retirada de proposição de iniciativa individual,1,Requerimento,Requerimento
 541857,camara,178894,Laudivio Carvalho,PODE,MG,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
 541857,camara,178894,Laudivio Carvalho,PODE,MG,379,REC,"Recurso contra apensação/desapensação de proposição (Art. 142, I, RICD)",1,Outros,Outros
-541857,camara,178898,Tenente Lúcio,PR,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,178900,Carlos Marun,MDB,,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,178908,Delegado Éder Mauro,PSD,PA,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,178898,Tenente Lúcio,PR,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,178900,Carlos Marun,MDB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,178908,Delegado Éder Mauro,PSD,PA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,178908,Delegado Éder Mauro,PSD,PA,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
-541857,camara,178913,Veneziano Vital Do Rêgo,PSB,PB,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,178913,Veneziano Vital Do Rêgo,PSB,PB,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,178924,Capitão Fábio Abreu,PL,,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
-541857,camara,178948,Beto Rosado,PP,RN,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,178948,Beto Rosado,PP,RN,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,178948,Beto Rosado,PP,RN,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-541857,camara,178954,Lucio Mosquini,MDB,RO,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,178954,Lucio Mosquini,MDB,RO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,178954,Lucio Mosquini,MDB,RO,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
-541857,camara,178963,Covatti Filho,PP,,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,178964,Heitor Schuch,PSB,RS,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,178963,Covatti Filho,PP,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,178964,Heitor Schuch,PSB,RS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,178964,Heitor Schuch,PSB,RS,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-541857,camara,178993,Carlos Henrique Gaguim,DEM,TO,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,179587,Major Vitor Hugo,PSL,GO,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,178993,Carlos Henrique Gaguim,DEM,TO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,179587,Major Vitor Hugo,PSL,GO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,179587,Major Vitor Hugo,PSL,GO,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
-541857,camara,185500,Deoclides Macedo,PDT,MA,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,194260,Nivaldo Albuquerque,PTB,AL,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,195826,Marcelo Delaroli,PR,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,204356,Amaro Neto,PRB,ES,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,185500,Deoclides Macedo,PDT,MA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,194260,Nivaldo Albuquerque,PTB,AL,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,195826,Marcelo Delaroli,PR,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,204356,Amaro Neto,PRB,ES,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,204359,Léo Moraes,PODE,RO,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
-541857,camara,204388,Bibo Nunes,PSL,RS,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,204391,José Nelto,PODE,GO,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,204416,Sanderson,PSL,RS,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,204388,Bibo Nunes,PSL,RS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,204391,José Nelto,PODE,GO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,204416,Sanderson,PSL,RS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,204416,Ubiratan Sanderson,PSL,RS,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
 541857,camara,204416,Ubiratan Sanderson,PSL,RS,319,REQ,Requerimento de Retirada de proposição,1,Requerimento,Requerimento
 541857,camara,204416,Ubiratan Sanderson,PSL,RS,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-541857,camara,204420,Julian Lemos,PSL,PB,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,204421,Edna Henrique,PSDB,PB,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,204441,Otoni De Paula,PSC,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,204472,José Medeiros,PODE,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,204512,Delegado Marcelo Freitas,PSL,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,204529,Policial Katia Sastre,PL,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,204531,Guilherme Derrite,PP,,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,204550,Júnior Mano,PL,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,204576,João Roma,PRB,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,66179,Norma Ayub,DEM,ES,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,66828,Fausto Pinato,PP,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,204420,Julian Lemos,PSL,PB,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,204421,Edna Henrique,PSDB,PB,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,204441,Otoni De Paula,PSC,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,204472,José Medeiros,PODE,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,204512,Delegado Marcelo Freitas,PSL,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,204529,Policial Katia Sastre,PL,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,204531,Guilherme Derrite,PP,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,204550,Júnior Mano,PL,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,204576,João Roma,PRB,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,66179,Norma Ayub,DEM,ES,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,66828,Fausto Pinato,PP,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,66828,Fausto Pinato,PP,SP,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
 541857,camara,73434,Arnaldo Faria De Sá,PP,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
 541857,camara,73434,Arnaldo Faria De Sá,PP,SP,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
@@ -944,47 +944,47 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 541857,camara,73579,Alberto Fraga,DEM,DF,147,REQ,Requerimento,1,Requerimento,Requerimento
 541857,camara,73579,Alberto Fraga,DEM,DF,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 541857,camara,73579,Alberto Fraga,DEM,DF,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-541857,camara,73588,Mauro Benevides,MDB,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,73943,Perpétua Almeida,PCdoB,AC,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,74040,Benjamin Maranhão,MDB,PB,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,73588,Mauro Benevides,MDB,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,73943,Perpétua Almeida,PCdoB,AC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,74040,Benjamin Maranhão,MDB,PB,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,74041,Luiz Couto,PT,PB,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-541857,camara,74048,Raul Jungmann,PPS,PE,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,74048,Raul Jungmann,PPS,PE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,74156,Leonardo Monteiro,PT,MG,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
-541857,camara,74161,Reginaldo Lopes,PT,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,74253,Julio Lopes,PP,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-541857,camara,74366,João Campos,PRB,GO,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,74161,Reginaldo Lopes,PT,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,74253,Julio Lopes,PP,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+541857,camara,74366,João Campos,PRB,GO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,74399,Onyx Lorenzoni,DEM,,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-541857,camara,74419,Gonzaga Patriota,PSB,PE,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,74419,Gonzaga Patriota,PSB,PE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,74419,Gonzaga Patriota,PSB,PE,190,PRL,Parecer do Relator,1,Parecer,Parecer
 541857,camara,74419,Gonzaga Patriota,PSB,PE,255,SBT,Substitutivo,1,Parecer,Parecer
 541857,camara,74537,Claudio Cajado,PP,BA,190,PRL,Parecer do Relator,1,Parecer,Parecer
 541857,camara,74537,Claudio Cajado,PP,BA,255,SBT,Substitutivo,1,Parecer,Parecer
 541857,camara,74537,Claudio Cajado,PP,BA,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-541857,camara,74650,Bonifácio De Andrada,DEM,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,74650,Bonifácio De Andrada,DEM,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,74847,Jair Bolsonaro,PSL,,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
 541857,camara,74847,Jair Bolsonaro,PSL,,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-541857,camara,76874,Marcelo Freixo,PSOL,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+541857,camara,76874,Marcelo Freixo,PSOL,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 541857,camara,92346,Eduardo Bolsonaro,PSL,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
 546383,camara,73701,Benedita Da Silva,PT,RJ,190,PRL,Parecer do Relator,2,Parecer,Parecer
-546383,camara,114941,Josi Nunes,PROS,TO,139,PL,Projeto de Lei,1,Proposição,Proposição
-546383,camara,141490,Manoel Junior,MDB,,139,PL,Projeto de Lei,1,Proposição,Proposição
-546383,camara,141517,Paulo Henrique Lustosa,PP,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
-546383,camara,160514,Dr. Grilo,SD,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-546383,camara,160628,Luciana Santos,PCdoB,,139,PL,Projeto de Lei,1,Proposição,Proposição
-546383,camara,160672,Jean Wyllys,PSOL,,139,PL,Projeto de Lei,1,Proposição,Proposição
+546383,camara,114941,Josi Nunes,PROS,TO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+546383,camara,141490,Manoel Junior,MDB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+546383,camara,141517,Paulo Henrique Lustosa,PP,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+546383,camara,160514,Dr. Grilo,SD,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+546383,camara,160628,Luciana Santos,PCdoB,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+546383,camara,160672,Jean Wyllys,PSOL,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 546383,camara,160672,Jean Wyllys,PSOL,,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-546383,camara,73579,Alberto Fraga,DEM,DF,139,PL,Projeto de Lei,1,Proposição,Proposição
+546383,camara,73579,Alberto Fraga,DEM,DF,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 604557,camara,160511,Alessandro Molon,PSB,RJ,190,PRL,Parecer do Relator,3,Parecer,Parecer
 604557,camara,160511,Alessandro Molon,PSB,RJ,255,SBT,Substitutivo,2,Parecer,Parecer
-604557,camara,160511,Alessandro Molon,PSB,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+604557,camara,160511,Alessandro Molon,PSB,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 604557,camara,160511,Alessandro Molon,PSB,RJ,147,REQ,Requerimento,1,Requerimento,Requerimento
 604557,camara,160511,Alessandro Molon,PSB,RJ,195,CVO,Complementação de Voto,1,Parecer,Parecer
 604557,camara,160511,Alessandro Molon,PSB,RJ,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 604557,camara,178871,Evair De Melo,PP,ES,147,REQ,Requerimento,1,Requerimento,Requerimento
 604557,camara,178871,Evair De Melo,PP,ES,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 604557,camara,178875,Alexandre Baldy,PP,GO,190,PRL,Parecer do Relator,1,Parecer,Parecer
-604557,camara,74210,Sarney Filho,PV,MA,139,PL,Projeto de Lei,1,Proposição,Proposição
+604557,camara,74210,Sarney Filho,PV,MA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 604557,camara,74459,Átila Lira,PSB,PI,147,REQ,Requerimento,1,Requerimento,Requerimento
 604888,camara,141429,Felipe Maia,DEM,RN,318,REQ,Requerimento de Inclusão na Ordem do Dia,3,Requerimento,Requerimento
 604888,camara,74400,Paulo Pimenta,PT,RS,363,REQ,Requerimento de Desarquivamento de Proposições,3,Requerimento,Requerimento
@@ -996,52 +996,52 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 604888,camara,74041,Luiz Couto,PT,PB,190,PRL,Parecer do Relator,2,Parecer,Parecer
 604888,camara,74041,Luiz Couto,PT,PB,255,SBT,Substitutivo,2,Parecer,Parecer
 604888,camara,88950,Rodrigo Garcia,DEM,,131,EMP,Emenda de Plenário,2,Emenda,Emenda
-604888,camara,137983,Francisco Escórcio,PMDB,MA,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,141390,Antônio Roberto,PV,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,141429,Felipe Maia,DEM,RN,139,PL,Projeto de Lei,1,Proposição,Proposição
+604888,camara,137983,Francisco Escórcio,PMDB,MA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,141390,Antônio Roberto,PV,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,141429,Felipe Maia,DEM,RN,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 604888,camara,141429,Felipe Maia,DEM,RN,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
 604888,camara,141429,Felipe Maia,DEM,RN,305,REQ,Requerimento de Desapensação,1,Requerimento,Requerimento
 604888,camara,141429,Felipe Maia,DEM,RN,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-604888,camara,141450,Hugo Leal,PSD,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,141462,Lira Maia,DEM,PA,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,141470,José Guimarães,PT,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
+604888,camara,141450,Hugo Leal,PSD,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,141462,Lira Maia,DEM,PA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,141470,José Guimarães,PT,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 604888,camara,141488,Paulo Teixeira,PT,SP,190,PRL,Parecer do Relator,1,Parecer,Parecer
 604888,camara,141488,Paulo Teixeira,PT,SP,255,SBT,Substitutivo,1,Parecer,Parecer
-604888,camara,141548,Sueli Vidigal,PDT,,139,PL,Projeto de Lei,1,Proposição,Proposição
+604888,camara,141548,Sueli Vidigal,PDT,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 604888,camara,141548,Sueli Vidigal,PDT,,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-604888,camara,152605,Glauber Braga,PSOL,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+604888,camara,152605,Glauber Braga,PSOL,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 604888,camara,160511,Alessandro Molon,PSB,RJ,190,PRL,Parecer do Relator,1,Parecer,Parecer
 604888,camara,160511,Alessandro Molon,PSB,RJ,257,EMR,Emenda de Relator,1,Emenda,Emenda
 604888,camara,160511,Alessandro Molon,PSB,RJ,391,REQ,Requerimento de Urgência (Art. 154 do RICD),1,Requerimento,Requerimento
-604888,camara,160512,Aureo,SOLIDARIEDADE,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+604888,camara,160512,Aureo,SOLIDARIEDADE,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 604888,camara,160598,Flávia Morais,PDT,GO,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 604888,camara,160622,Vicente Candido,PT,SP,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
-604888,camara,160650,Oziel Oliveira,PDT,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
+604888,camara,160650,Oziel Oliveira,PDT,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 604888,camara,160653,Roberto De Lucena,PODE,SP,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
-604888,camara,160655,Ricardo Izar,PP,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+604888,camara,160655,Ricardo Izar,PP,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 604888,camara,167722,Marcos Rogério,DEM,,147,REQ,Requerimento,1,Requerimento,Requerimento
 604888,camara,167722,Marcos Rogério,DEM,,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 604888,camara,178881,Aluisio Mendes,PODE,MA,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-604888,camara,178883,Eliziane Gama,PPS,MA,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,204488,Célio Studart,PV,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,204526,Luiz Philippe De Orleans e Bragança,PSL,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,204530,Rodrigo Agostinho,PSB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,73459,Dr. Rosinha,PT,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,73651,Rogério Silva,PP**,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,73933,Zequinha Marinho,PSC,,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,74039,Sandra Rosado,PSB,RN,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,74077,Giovanni Queiroz,PDT,PA,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,74222,Asdrubal Bentes,PMDB,PA,139,PL,Projeto de Lei,1,Proposição,Proposição
+604888,camara,178883,Eliziane Gama,PPS,MA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,204488,Célio Studart,PV,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,204526,Luiz Philippe De Orleans e Bragança,PSL,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,204530,Rodrigo Agostinho,PSB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,73459,Dr. Rosinha,PT,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,73651,Rogério Silva,PP**,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,73933,Zequinha Marinho,PSC,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,74039,Sandra Rosado,PSB,RN,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,74077,Giovanni Queiroz,PDT,PA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,74222,Asdrubal Bentes,PMDB,PA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 604888,camara,74354,Zenaldo Coutinho,PSDB,,147,REQ,Requerimento,1,Requerimento,Requerimento
 604888,camara,74354,Zenaldo Coutinho,PSDB,,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
-604888,camara,74357,Vanessa Grazziotin,PCdoB,AM,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,74400,Paulo Pimenta,PT,RS,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,74419,Gonzaga Patriota,PSB,PE,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,74585,Lincoln Portela,PL,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+604888,camara,74357,Vanessa Grazziotin,PCdoB,AM,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,74400,Paulo Pimenta,PT,RS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,74419,Gonzaga Patriota,PSB,PE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,74585,Lincoln Portela,PL,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 604888,camara,74585,Lincoln Portela,PL,MG,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
-604888,camara,74665,Jaime Martins,PROS,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,74702,Bispo Wanderval,PR,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-604888,camara,74784,Luiza Erundina,PSOL,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+604888,camara,74665,Jaime Martins,PROS,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,74702,Bispo Wanderval,PR,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+604888,camara,74784,Luiza Erundina,PSOL,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,178947,Sóstenes Cavalcante,DEM,RJ,258,ESB,Emenda ao Substitutivo,14,Emenda,Emenda
 606722,camara,74366,João Campos,PRB,GO,258,ESB,Emenda ao Substitutivo,13,Emenda,Emenda
 606722,camara,178978,Flavinho,PSC,SP,294,REQ,Requerimento de Audiência Pública,6,Requerimento,Requerimento
@@ -1050,51 +1050,51 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 606722,camara,204478,Vinicius Farah,MDB,RJ,363,REQ,Requerimento de Desarquivamento de Proposições,3,Requerimento,Requerimento
 606722,camara,160558,Paulo Freire,PL,SP,147,REQ,Requerimento,2,Requerimento,Requerimento
 606722,camara,160575,Erika Kokay,PT,DF,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
-606722,camara,160642,Pastor Eurico,PATRIOTA,PE,139,PL,Projeto de Lei,2,Proposição,Proposição
+606722,camara,160642,Pastor Eurico,PATRIOTA,PE,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 606722,camara,167722,Marcos Rogério,DEM,,147,REQ,Requerimento,2,Requerimento,Requerimento
-606722,camara,178836,Alan Rick,DEM,AC,139,PL,Projeto de Lei,2,Proposição,Proposição
+606722,camara,178836,Alan Rick,DEM,AC,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 606722,camara,178947,Sóstenes Cavalcante,DEM,RJ,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
 606722,camara,178978,Flavinho,PSC,SP,255,SBT,Substitutivo,2,Parecer,Parecer
-606722,camara,4931,Izalci,PSDB,DF,139,PL,Projeto de Lei,2,Proposição,Proposição
+606722,camara,4931,Izalci,PSDB,DF,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 606722,camara,73486,Pompeo De Mattos,PDT,RS,147,REQ,Requerimento,2,Requerimento,Requerimento
 606722,camara,73486,Pompeo De Mattos,PDT,RS,258,ESB,Emenda ao Substitutivo,2,Emenda,Emenda
 606722,camara,74366,João Campos,PRB,GO,308,REQ,Requerimento de Redistribuição,2,Requerimento,Requerimento
 606722,camara,74585,Lincoln Portela,PL,MG,147,REQ,Requerimento,2,Requerimento,Requerimento
 606722,camara,92346,Eduardo Bolsonaro,PSL,SP,147,REQ,Requerimento,2,Requerimento,Requerimento
-606722,camara,99654,Erivelton Santana,PATRI,BA,139,PL,Projeto de Lei,2,Proposição,Proposição
+606722,camara,99654,Erivelton Santana,PATRI,BA,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 606722,camara,124411,Mauro Pereira,MDB,RS,147,REQ,Requerimento,1,Requerimento,Requerimento
 606722,camara,134812,Edmilson Rodrigues,PSOL,PA,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 606722,camara,141383,Antonio Bulhões,PRB,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
-606722,camara,141411,Dagoberto Nogueira,PDT,MS,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,148134,Professor Victório Galli,PSL,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,141411,Dagoberto Nogueira,PDT,MS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,148134,Professor Victório Galli,PSL,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,152605,Glauber Braga,PSOL,RJ,147,REQ,Requerimento,1,Requerimento,Requerimento
 606722,camara,152605,Glauber Braga,PSOL,RJ,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 606722,camara,152605,Glauber Braga,PSOL,RJ,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-606722,camara,160530,Antonio Imbassahy,PSDB,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,160531,Jhonatan De Jesus,PRB,RR,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,160530,Antonio Imbassahy,PSDB,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,160531,Jhonatan De Jesus,PRB,RR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,160531,Jhonatan De Jesus,PRB,RR,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 606722,camara,160575,Erika Kokay,PT,DF,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 606722,camara,160575,Erika Kokay,PT,DF,376,REC,"Recurso contra devolução de proposição (Art. 137, § 2º, RICD)",1,Outros,Outros
 606722,camara,160575,Erika Kokay,PT,DF,381,REC,"Recurso contra declaração de prejudicialidade. (Art. 164, § 2º, RICD)",1,Outros,Outros
-606722,camara,160601,Pr. Marco Feliciano,PODE,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,160601,Pr. Marco Feliciano,PODE,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,160601,Pr. Marco Feliciano,PODE,SP,311,REQ,Requerimento de Retirada de proposição de iniciativa individual,1,Requerimento,Requerimento
-606722,camara,160640,Eros Biondini,PROS,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,160640,Eros Biondini,PROS,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,160641,Professora Marcivania,PCdoB,AP,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-606722,camara,160672,Jean Wyllys,PSOL,,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,160672,Jean Wyllys,PSOL,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,160672,Jean Wyllys,PSOL,,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-606722,camara,164359,Delegado Waldir,PSL,GO,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,164359,Delegado Waldir,PSL,GO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,164359,Delegado Waldir,PSL,GO,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 606722,camara,178825,Leo De Brito,PT,,145,REM,Reclamação,1,Outros,Outros
-606722,camara,178828,Evandro Gussi,PV,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,178828,Evandro Gussi,PV,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,178884,Hildo Rocha,MDB,MA,147,REQ,Requerimento,1,Requerimento,Requerimento
 606722,camara,178910,Joaquim Passarinho,PSD,PA,147,REQ,Requerimento,1,Requerimento,Requerimento
 606722,camara,178929,Diego Garcia,PODE,PR,190,PRL,Parecer do Relator,1,Parecer,Parecer
 606722,camara,178929,Diego Garcia,PODE,PR,255,SBT,Substitutivo,1,Parecer,Parecer
 606722,camara,178929,Diego Garcia,PODE,PR,312,REQ,Requerimento de Retirada de Proposição de Iniciativa Coletiva,1,Requerimento,Requerimento
-606722,camara,178938,Cabo Daciolo,PATRI,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,178945,Rosangela Gomes,PRB,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,178947,Sóstenes Cavalcante,DEM,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,178977,Eduardo Cury,PSDB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,178938,Cabo Daciolo,PATRI,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,178945,Rosangela Gomes,PRB,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,178947,Sóstenes Cavalcante,DEM,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,178977,Eduardo Cury,PSDB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,178978,Flavinho,PSC,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
 606722,camara,178978,Flavinho,PSC,SP,190,PRL,Parecer do Relator,1,Parecer,Parecer
 606722,camara,178978,Flavinho,PSC,SP,195,CVO,Complementação de Voto,1,Parecer,Parecer
@@ -1106,53 +1106,53 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 606722,camara,178978,Flavinho,PSC,SP,-1,REQ,Padre José Eduardo,1,Outros,Outros
 606722,camara,178978,Flavinho,PSC,SP,-1,REQ,Pedro Sérgio dos Santos - Diretor da Faculdade de Direito da UFG - GO,1,Outros,Outros
 606722,camara,178978,Flavinho,PSC,SP,-1,REQ,Roberto Geraldo de Paiva Dornas - CONFENEM,1,Outros,Outros
-606722,camara,193726,Paulo Eduardo Martins,PSC,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,193726,Paulo Eduardo Martins,PSC,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,194258,Creuza Pereira,PSB,PE,147,REQ,Requerimento,1,Requerimento,Requerimento
-606722,camara,204369,Caroline De Toni,PSL,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204374,Bia Kicis,PSL,DF,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,204369,Caroline De Toni,PSL,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204374,Bia Kicis,PSL,DF,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,204374,Bia Kicis,PSL,DF,147,REQ,Requerimento,1,Requerimento,Requerimento
-606722,camara,204376,Coronel Armando,PSL,SC,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204400,Aline Sleutjes,PSL,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204407,Fernanda Melchionna,PSOL,RS,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204411,Filipe Barros,PSL,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204420,Julian Lemos,PSL,PB,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204441,Otoni De Paula,PSC,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204442,Gurgel,PSL,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204449,Nelson Barbudo,PSL,MT,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204453,Natália Bonavides,PT,RN,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204460,Carlos Jordy,PSL,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204462,Chris Tonietto,PSL,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204464,Talíria Petrone,PSOL,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204503,Alexandre Padilha,PT,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204507,Carla Zambelli,PSL,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204509,Áurea Carolina,PSOL,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204516,Alexis Fonteyne,NOVO,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204526,Luiz Philippe De Orleans e Bragança,PSL,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204535,Sâmia Bomfim,PSOL,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204536,Kim Kataguiri,DEM,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204545,Alê Silva,PSL,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204546,Joice Hasselmann,PSL,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,204547,Léo Motta,PSL,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,207309,Enéias Reis,PSL,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,204376,Coronel Armando,PSL,SC,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204400,Aline Sleutjes,PSL,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204407,Fernanda Melchionna,PSOL,RS,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204411,Filipe Barros,PSL,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204420,Julian Lemos,PSL,PB,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204441,Otoni De Paula,PSC,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204442,Gurgel,PSL,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204449,Nelson Barbudo,PSL,MT,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204453,Natália Bonavides,PT,RN,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204460,Carlos Jordy,PSL,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204462,Chris Tonietto,PSL,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204464,Talíria Petrone,PSOL,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204503,Alexandre Padilha,PT,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204507,Carla Zambelli,PSL,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204509,Áurea Carolina,PSOL,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204516,Alexis Fonteyne,NOVO,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204526,Luiz Philippe De Orleans e Bragança,PSL,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204535,Sâmia Bomfim,PSOL,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204536,Kim Kataguiri,DEM,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204545,Alê Silva,PSL,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204546,Joice Hasselmann,PSL,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,204547,Léo Motta,PSL,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,207309,Enéias Reis,PSL,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,69871,Bacelar,PODE,BA,258,ESB,Emenda ao Substitutivo,1,Emenda,Emenda
 606722,camara,69871,Bacelar,PODE,BA,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 606722,camara,69871,Bacelar,PODE,BA,343,REQ,Requerimento de Transformação de Sessão Plenaria em Comissão Geral,1,Requerimento,Requerimento
-606722,camara,73441,Celso Russomanno,PRB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,73441,Celso Russomanno,PRB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,73531,Ivan Valente,PSOL,SP,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-606722,camara,73584,Antonio Carlos Mendes Thame,PV,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,73778,Luiz Carlos Hauly,PSDB,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,73584,Antonio Carlos Mendes Thame,PV,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,73778,Luiz Carlos Hauly,PSDB,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,74041,Luiz Couto,PT,PB,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
 606722,camara,74057,Alice Portugal,PCdoB,BA,147,REQ,Requerimento,1,Requerimento,Requerimento
 606722,camara,74057,Alice Portugal,PCdoB,BA,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 606722,camara,74103,Ariosto Holanda,PDT,CE,190,PRL,Parecer do Relator,1,Parecer,Parecer
-606722,camara,74254,Leonardo Picciani,MDB,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,74366,João Campos,PRB,GO,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,74254,Leonardo Picciani,MDB,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,74366,João Campos,PRB,GO,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,74366,João Campos,PRB,GO,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-606722,camara,74558,Givaldo Carimbão,AVANTE,AL,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,74650,Bonifácio De Andrada,DEM,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
-606722,camara,74784,Luiza Erundina,PSOL,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,74558,Givaldo Carimbão,AVANTE,AL,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,74650,Bonifácio De Andrada,DEM,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+606722,camara,74784,Luiza Erundina,PSOL,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 606722,camara,74784,Luiza Erundina,PSOL,SP,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-606722,camara,92776,Stefano Aguiar,PSD,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+606722,camara,92776,Stefano Aguiar,PSD,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 944279,camara,178993,Carlos Henrique Gaguim,DEM,TO,257,EMR,Emenda de Relator,3,Emenda,Emenda
 944279,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,190,PRL,Parecer do Relator,3,Parecer,Parecer
 944279,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,255,SBT,Substitutivo,2,Parecer,Parecer
@@ -1161,7 +1161,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 944279,camara,73483,Luis Carlos Heinze,PP,,191,PRV,Parecer Vencedor,1,Parecer,Parecer
 944279,camara,73768,Dilceu Sperafico,PP,PR,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
 944279,camara,74010,Valdir Colatto,MDB,SC,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-944279,camara,74210,Sarney Filho,PV,MA,139,PL,Projeto de Lei,1,Proposição,Proposição
+944279,camara,74210,Sarney Filho,PV,MA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 1198512,camara,160639,Professora Dorinha Seabra Rezende,DEM,TO,147,REQ,Requerimento,20,Requerimento,Requerimento
 1198512,camara,160639,Professora Dorinha Seabra Rezende,DEM,TO,294,REQ,Requerimento de Audiência Pública,3,Requerimento,Requerimento
 1198512,camara,178998,Raquel Muniz,PSD,MG,294,REQ,Requerimento de Audiência Pública,3,Requerimento,Requerimento
@@ -1200,7 +1200,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 1198512,camara,178925,Rejane Dias,PT,PI,130,EMC,Emenda na Comissão,1,Emenda,Emenda
 1198512,camara,178970,João Daniel,PT,SE,130,EMC,Emenda na Comissão,1,Emenda,Emenda
 1198512,camara,178986,Nilto Tatto,PT,SP,130,EMC,Emenda na Comissão,1,Emenda,Emenda
-1198512,camara,178998,Raquel Muniz,PSD,MG,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+1198512,camara,178998,Raquel Muniz,PSD,MG,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 1198512,camara,188097,Merlong Solano,PT,,130,EMC,Emenda na Comissão,1,Emenda,Emenda
 1198512,camara,195997,Pollyana Gama,PPS,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
 1198512,camara,198783,Emanuel Pinheiro Neto,PTB,MT,130,EMC,Emenda na Comissão,1,Emenda,Emenda
@@ -1264,7 +1264,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 1307190,camara,178917,João Fernando Coutinho,PROS,PE,147,REQ,Requerimento,2,Requerimento,Requerimento
 1307190,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,258,ESB,Emenda ao Substitutivo,2,Emenda,Emenda
 1307190,camara,118594,Marcelo Squassoni,PRB,SP,130,EMC,Emenda na Comissão,1,Emenda,Emenda
-1307190,camara,118594,Marcelo Squassoni,PRB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+1307190,camara,118594,Marcelo Squassoni,PRB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 1307190,camara,118594,Marcelo Squassoni,PRB,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
 1307190,camara,133439,André Figueiredo,PDT,CE,130,EMC,Emenda na Comissão,1,Emenda,Emenda
 1307190,camara,137070,Vicentinho Júnior,PL,TO,147,REQ,Requerimento,1,Requerimento,Requerimento
@@ -1273,12 +1273,12 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 1307190,camara,141454,Alfredo Kaefer,PP,PR,258,ESB,Emenda ao Substitutivo,1,Emenda,Emenda
 1307190,camara,141458,João Carlos Bacelar,PL,BA,258,ESB,Emenda ao Substitutivo,1,Emenda,Emenda
 1307190,camara,141482,Leonardo Quintão,MDB,MG,130,EMC,Emenda na Comissão,1,Emenda,Emenda
-1307190,camara,141531,Rodrigo De Castro,PSDB,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+1307190,camara,141531,Rodrigo De Castro,PSDB,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 1307190,camara,160536,Marco Tebaldi,PSDB,SC,147,REQ,Requerimento,1,Requerimento,Requerimento
 1307190,camara,160602,Arnaldo Jordy,PPS,PA,147,REQ,Requerimento,1,Requerimento,Requerimento
 1307190,camara,160607,Jose Stédile,PSB,RS,147,REQ,Requerimento,1,Requerimento,Requerimento
-1307190,camara,178844,Pedro Vilela,PSDB,AL,139,PL,Projeto de Lei,1,Proposição,Proposição
-1307190,camara,178868,Odorico Monteiro,PSB,CE,139,PL,Projeto de Lei,1,Proposição,Proposição
+1307190,camara,178844,Pedro Vilela,PSDB,AL,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+1307190,camara,178868,Odorico Monteiro,PSB,CE,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 1307190,camara,178893,Delegado Edson Moreira,PR,MG,147,REQ,Requerimento,1,Requerimento,Requerimento
 1307190,camara,178905,Fabio Garcia,DEM,MT,190,PRL,Parecer do Relator,1,Parecer,Parecer
 1307190,camara,178905,Fabio Garcia,DEM,MT,196,PES,Parecer às emendas apresentadas ao Substitutivo do Relator,1,Parecer,Parecer
@@ -1295,33 +1295,33 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 1307190,camara,178970,João Daniel,PT,SE,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
 1307190,camara,178984,Miguel Haddad,PSDB,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
 1307190,camara,178990,Samuel Moreira,PSDB,SP,147,REQ,Requerimento,1,Requerimento,Requerimento
-1307190,camara,204505,Vavá Martins,PRB,PA,139,PL,Projeto de Lei,1,Proposição,Proposição
+1307190,camara,204505,Vavá Martins,PRB,PA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 1307190,camara,73584,Antonio Carlos Mendes Thame,PV,SP,130,EMC,Emenda na Comissão,1,Emenda,Emenda
-1307190,camara,73584,Antonio Carlos Mendes Thame,PV,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
-1307190,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,139,PL,Projeto de Lei,1,Proposição,Proposição
+1307190,camara,73584,Antonio Carlos Mendes Thame,PV,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
+1307190,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 1307190,camara,73786,Reinhold Stephanes,PSD,PR,130,EMC,Emenda na Comissão,1,Emenda,Emenda
 1307190,camara,74235,Marcus Vicente,PP,ES,147,REQ,Requerimento,1,Requerimento,Requerimento
 1307190,camara,74253,Julio Lopes,PP,RJ,258,ESB,Emenda ao Substitutivo,1,Emenda,Emenda
 1307190,camara,74445,João Castelo,PSDB,,147,REQ,Requerimento,1,Requerimento,Requerimento
-1594911,camara,152610,Roberto Alves,PRB,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+1594911,camara,152610,Roberto Alves,PRB,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 1594911,camara,74366,João Campos,PRB,GO,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
 1738598,camara,160655,Ricardo Izar,PP,SP,190,PRL,Parecer do Relator,2,Parecer,Parecer
 1738598,camara,160535,Marcon,PT,RS,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 1738598,camara,160535,Marcon,PT,RS,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 1738598,camara,178930,Evandro Roman,PSD,PR,190,PRL,Parecer do Relator,1,Parecer,Parecer
 1738598,camara,178930,Evandro Roman,PSD,PR,257,EMR,Emenda de Relator,1,Emenda,Emenda
-1738598,camara,73808,Sérgio Brito,PSD,,139,PL,Projeto de Lei,1,Proposição,Proposição
+1738598,camara,73808,Sérgio Brito,PSD,,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 1738598,camara,73808,Sérgio Brito,PSD,,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
 2056568,camara,141454,Alfredo Kaefer,PP,PR,190,PRL,Parecer do Relator,2,Parecer,Parecer
 2056568,camara,141454,Alfredo Kaefer,PP,PR,709,SBR,Subemenda de Relator,2,Emenda,Emenda
 2056568,camara,73674,Roberto Balestra,PP,GO,190,PRL,Parecer do Relator,2,Parecer,Parecer
 2056568,camara,134812,Edmilson Rodrigues,PSOL,PA,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
-2056568,camara,160611,Toninho Pinheiro,PP,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+2056568,camara,160611,Toninho Pinheiro,PP,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 2056568,camara,178986,Nilto Tatto,PT,SP,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 2056568,camara,73674,Roberto Balestra,PP,GO,255,SBT,Substitutivo,1,Parecer,Parecer
 2085536,camara,73674,Roberto Balestra,PP,GO,190,PRL,Parecer do Relator,2,Parecer,Parecer
 2085536,camara,73674,Roberto Balestra,PP,GO,257,EMR,Emenda de Relator,2,Emenda,Emenda
-2085536,camara,160611,Toninho Pinheiro,PP,MG,139,PL,Projeto de Lei,1,Proposição,Proposição
+2085536,camara,160611,Toninho Pinheiro,PP,MG,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 2085536,camara,93083,Cacá Leão,PP,BA,190,PRL,Parecer do Relator,1,Parecer,Parecer
 2088990,camara,204523,Lucas Gonzalez,NOVO,MG,521,REQ,Requerimento de Constituição de Comissão Especial de Projeto,1,Requerimento,Requerimento
 2119881,camara,73434,Arnaldo Faria De Sá,PP,SP,294,REQ,Requerimento de Audiência Pública,35,Requerimento,Requerimento
@@ -1607,7 +1607,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 2121442,camara,178939,Clarissa Garotinho,PROS,RJ,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 2121442,camara,178993,Carlos Henrique Gaguim,DEM,TO,147,REQ,Requerimento,1,Requerimento,Requerimento
 2121442,camara,178998,Raquel Muniz,PSD,MG,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-2121442,camara,204544,Alexandre Frota,PSL,SP,139,PL,Projeto de Lei,1,Proposição,Proposição
+2121442,camara,204544,Alexandre Frota,PSL,SP,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 2121442,camara,73434,Arnaldo Faria De Sá,PP,SP,145,REM,Reclamação,1,Outros,Outros
 2121442,camara,73466,Rubens Bueno,CIDADANIA,PR,190,PRL,Parecer do Relator,1,Parecer,Parecer
 2121442,camara,73466,Rubens Bueno,CIDADANIA,PR,195,CVO,Complementação de Voto,1,Parecer,Parecer
@@ -1629,32 +1629,32 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 2122766,camara,141470,José Guimarães,PT,CE,304,REQ,Requerimento de Apensação,4,Requerimento,Requerimento
 2122766,camara,74171,Chico Alencar,PSOL,RJ,294,REQ,Requerimento de Audiência Pública,4,Requerimento,Requerimento
 2122766,camara,141405,Celso Maldaner,MDB,SC,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
-2122766,camara,141408,Cleber Verde,PRB,MA,139,PL,Projeto de Lei,2,Proposição,Proposição
+2122766,camara,141408,Cleber Verde,PRB,MA,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 2122766,camara,141458,João Carlos Bacelar,PL,BA,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
-2122766,camara,141484,Lúcio Vale,PR,,139,PL,Projeto de Lei,2,Proposição,Proposição
-2122766,camara,141488,Paulo Teixeira,PT,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
-2122766,camara,141536,Rômulo Gouveia,,PB,139,PL,Projeto de Lei,2,Proposição,Proposição
+2122766,camara,141484,Lúcio Vale,PR,,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+2122766,camara,141488,Paulo Teixeira,PT,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+2122766,camara,141536,Rômulo Gouveia,,PB,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 2122766,camara,151208,Laercio Oliveira,PP,SE,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
 2122766,camara,159237,Assis Carvalho,PT,PI,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
-2122766,camara,160544,Junji Abe,MDB,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
+2122766,camara,160544,Junji Abe,MDB,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 2122766,camara,160573,João Arruda,MDB,PR,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
 2122766,camara,160573,João Arruda,MDB,PR,305,REQ,Requerimento de Desapensação,2,Requerimento,Requerimento
 2122766,camara,160617,Thiago Peixoto,PSD,GO,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
-2122766,camara,160666,Félix Mendonça Júnior,PDT,BA,139,PL,Projeto de Lei,2,Proposição,Proposição
-2122766,camara,178829,Capitão Augusto,PL,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
+2122766,camara,160666,Félix Mendonça Júnior,PDT,BA,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+2122766,camara,178829,Capitão Augusto,PL,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 2122766,camara,178834,Bebeto,PSB,BA,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
 2122766,camara,178834,Bebeto,PSB,BA,304,REQ,Requerimento de Apensação,2,Requerimento,Requerimento
 2122766,camara,178884,Hildo Rocha,MDB,MA,147,REQ,Requerimento,2,Requerimento,Requerimento
 2122766,camara,178890,Adelmo Carneiro Leão,PT,MG,147,REQ,Requerimento,2,Requerimento,Requerimento
 2122766,camara,178890,Adelmo Carneiro Leão,PT,MG,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
 2122766,camara,178910,Joaquim Passarinho,PSD,PA,147,REQ,Requerimento,2,Requerimento,Requerimento
-2122766,camara,178960,Remídio Monai,PR,RR,139,PL,Projeto de Lei,2,Proposição,Proposição
+2122766,camara,178960,Remídio Monai,PR,RR,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 2122766,camara,178988,João Paulo Papa,PSDB,SP,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
-2122766,camara,178992,Vitor Lippi,PSDB,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
+2122766,camara,178992,Vitor Lippi,PSDB,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 2122766,camara,73531,Ivan Valente,PSOL,SP,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
 2122766,camara,74010,Valdir Colatto,MDB,SC,294,REQ,Requerimento de Audiência Pública,2,Requerimento,Requerimento
-2122766,camara,74371,Rubens Otoni,PT,GO,139,PL,Projeto de Lei,2,Proposição,Proposição
-2122766,camara,74655,Eduardo Barbosa,PSDB,MG,139,PL,Projeto de Lei,2,Proposição,Proposição
+2122766,camara,74371,Rubens Otoni,PT,GO,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+2122766,camara,74655,Eduardo Barbosa,PSDB,MG,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 2158425,camara,141411,Dagoberto Nogueira,PDT,MS,131,EMP,Emenda de Plenário,5,Emenda,Emenda
 2158425,camara,141431,Fernando Coelho Filho,DEM,PE,192,PPP,Parecer Proferido em Plenário,3,Parecer,Parecer
 2158425,camara,141431,Fernando Coelho Filho,DEM,PE,442,PEP,Parecer às Emendas de Plenário,3,Parecer,Parecer
@@ -1669,34 +1669,34 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 2158425,camara,178987,Orlando Silva,PCdoB,SP,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 2158425,camara,73891,Darcísio Perondi,MDB,RS,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 2158425,camara,74553,José Carlos Aleluia,DEM,BA,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-2158425,camara,74553,José Carlos Aleluia,DEM,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
+2158425,camara,74553,José Carlos Aleluia,DEM,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 2158425,camara,74553,José Carlos Aleluia,DEM,BA,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
 2158425,camara,74693,Rodrigo Maia,DEM,RJ,506,AA,Autógrafo,1,Outros,Outros
 2170839,camara,178986,Nilto Tatto,PT,SP,257,EMR,Emenda de Relator,42,Emenda,Emenda
 2170839,camara,178986,Nilto Tatto,PT,SP,190,PRL,Parecer do Relator,2,Parecer,Parecer
-2170839,camara,160511,Alessandro Molon,PSB,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+2170839,camara,160511,Alessandro Molon,PSB,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 2170839,camara,160511,Alessandro Molon,PSB,RJ,376,REC,"Recurso contra devolução de proposição (Art. 137, § 2º, RICD)",1,Outros,Outros
 2170839,camara,178986,Nilto Tatto,PT,SP,195,CVO,Complementação de Voto,1,Parecer,Parecer
 2170839,camara,204386,Jose Mario Schreiner,DEM,GO,308,REQ,Requerimento de Redistribuição,1,Requerimento,Requerimento
 2178170,camara,204506,Marcos Pereira,PRB,SP,190,PRL,Parecer do Relator,4,Parecer,Parecer
 2178170,camara,76874,Marcelo Freixo,PSOL,RJ,148,RIC,Requerimento de Informação,4,Requerimento,Requerimento
 2178170,camara,164359,Delegado Waldir,PSL,GO,304,REQ,Requerimento de Apensação,3,Requerimento,Requerimento
-2178170,camara,143632,Domingos Neto,PSD,CE,139,PL,Projeto de Lei,2,Proposição,Proposição
-2178170,camara,146788,Marcelo Aro,PP,MG,139,PL,Projeto de Lei,2,Proposição,Proposição
-2178170,camara,160510,Luis Tibé,AVANTE,MG,139,PL,Projeto de Lei,2,Proposição,Proposição
-2178170,camara,166401,Nilson Leitão,PSDB,MT,139,PL,Projeto de Lei,2,Proposição,Proposição
-2178170,camara,178920,Ricardo Teobaldo,PODE,PE,139,PL,Projeto de Lei,2,Proposição,Proposição
-2178170,camara,178975,Baleia Rossi,MDB,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
+2178170,camara,143632,Domingos Neto,PSD,CE,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+2178170,camara,146788,Marcelo Aro,PP,MG,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+2178170,camara,160510,Luis Tibé,AVANTE,MG,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+2178170,camara,166401,Nilson Leitão,PSDB,MT,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+2178170,camara,178920,Ricardo Teobaldo,PODE,PE,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+2178170,camara,178975,Baleia Rossi,MDB,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
 2178170,camara,204366,Rodrigo Coelho,PSB,SC,318,REQ,Requerimento de Inclusão na Ordem do Dia,2,Requerimento,Requerimento
 2178170,camara,204497,Júnior Ferrari,PSD,PA,318,REQ,Requerimento de Inclusão na Ordem do Dia,2,Requerimento,Requerimento
-2178170,camara,73441,Celso Russomanno,PRB,SP,139,PL,Projeto de Lei,2,Proposição,Proposição
-2178170,camara,73930,Wladimir Costa,SOLIDARIEDADE,PA,139,PL,Projeto de Lei,2,Proposição,Proposição
-2178170,camara,74554,José Rocha,PL,BA,139,PL,Projeto de Lei,2,Proposição,Proposição
-2178170,camara,88950,Rodrigo Garcia,DEM,,139,PL,Projeto de Lei,2,Proposição,Proposição
-2178170,camara,160512,Aureo,SOLIDARIEDADE,RJ,139,PL,Projeto de Lei,1,Proposição,Proposição
+2178170,camara,73441,Celso Russomanno,PRB,SP,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+2178170,camara,73930,Wladimir Costa,SOLIDARIEDADE,PA,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+2178170,camara,74554,José Rocha,PL,BA,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+2178170,camara,88950,Rodrigo Garcia,DEM,,139,PL,Projeto de Lei,2,Proposição Apensada,Proposição Apensada
+2178170,camara,160512,Aureo,SOLIDARIEDADE,RJ,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 2178170,camara,160512,Aureo Ribeiro,SOLIDARIEDADE,RJ,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 2178170,camara,160587,Fábio Trad,PSD,MS,304,REQ,Requerimento de Apensação,1,Requerimento,Requerimento
-2178170,camara,178832,Leandre,PV,PR,139,PL,Projeto de Lei,1,Proposição,Proposição
+2178170,camara,178832,Leandre,PV,PR,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 2178170,camara,178832,Leandre,PV,PR,311,REQ,Requerimento de Retirada de proposição de iniciativa individual,1,Requerimento,Requerimento
 2178170,camara,178832,Leandre,PV,PR,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
 2178170,camara,204527,Geninho Zuliani,DEM,SP,363,REQ,Requerimento de Desarquivamento de Proposições,1,Requerimento,Requerimento
@@ -1823,7 +1823,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 2192352,camara,204506,Marcos Pereira,PRB,SP,190,PRL,Parecer do Relator,4,Parecer,Parecer
 2192352,camara,76874,Marcelo Freixo,PSOL,RJ,148,RIC,Requerimento de Informação,4,Requerimento,Requerimento
 2192352,camara,164359,Delegado Waldir,PSL,GO,304,REQ,Requerimento de Apensação,3,Requerimento,Requerimento
-2192352,camara,178884,Hildo Rocha,MDB,MA,139,PL,Projeto de Lei,1,Proposição,Proposição
+2192352,camara,178884,Hildo Rocha,MDB,MA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 2192352,camara,204366,Rodrigo Coelho,PSB,SC,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
 2192353,camara,204506,Marcos Pereira,PRB,SP,190,PRL,Parecer do Relator,4,Parecer,Parecer
 2192353,camara,76874,Marcelo Freixo,PSOL,RJ,148,RIC,Requerimento de Informação,4,Requerimento,Requerimento
@@ -1832,13 +1832,13 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 2192353,camara,204497,Júnior Ferrari,PSD,PA,318,REQ,Requerimento de Inclusão na Ordem do Dia,2,Requerimento,Requerimento
 2192354,camara,204506,Marcos Pereira,PRB,SP,190,PRL,Parecer do Relator,4,Parecer,Parecer
 2192354,camara,76874,Marcelo Freixo,PSOL,RJ,148,RIC,Requerimento de Informação,4,Requerimento,Requerimento
-2192354,camara,160570,Jerônimo Goergen,PP,RS,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-2192354,camara,160653,Roberto De Lucena,PODE,SP,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-2192354,camara,178989,Renata Abreu,PODE,SP,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
+2192354,camara,160570,Jerônimo Goergen,PP,RS,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+2192354,camara,160653,Roberto De Lucena,PODE,SP,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+2192354,camara,178989,Renata Abreu,PODE,SP,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
 2192354,camara,204366,Rodrigo Coelho,PSB,SC,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
-2192354,camara,204391,José Nelto,PODE,GO,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-2192354,camara,204526,Luiz Philippe De Orleans e Bragança,PSL,SP,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
-2192354,camara,204536,Kim Kataguiri,DEM,SP,140,PLP,Projeto de Lei Complementar,1,Proposição,Proposição
+2192354,camara,204391,José Nelto,PODE,GO,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+2192354,camara,204526,Luiz Philippe De Orleans e Bragança,PSL,SP,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
+2192354,camara,204536,Kim Kataguiri,DEM,SP,140,PLP,Projeto de Lei Complementar,1,Proposição Apensada,Proposição Apensada
 2192354,camara,204543,Luiz Flávio Gomes,PSB,SP,318,REQ,Requerimento de Inclusão na Ordem do Dia,1,Requerimento,Requerimento
 2192459,camara,178857,Jorge Solla,PT,BA,294,REQ,Requerimento de Audiência Pública,23,Requerimento,Requerimento
 2192459,camara,73531,Ivan Valente,PSOL,SP,294,REQ,Requerimento de Audiência Pública,17,Requerimento,Requerimento
@@ -2257,7 +2257,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 2193540,camara,141518,Paulo Pereira Da Silva,SOLIDARIEDADE,SP,509,SSP,Subemenda Substitutiva de Plenário,1,Emenda,Emenda
 2193540,camara,160510,Luis Tibé,AVANTE,MG,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 2193540,camara,164359,Delegado Waldir,PSL,GO,131,EMP,Emenda de Plenário,1,Emenda,Emenda
-2193540,camara,178854,Elmar Nascimento,DEM,BA,139,PL,Projeto de Lei,1,Proposição,Proposição
+2193540,camara,178854,Elmar Nascimento,DEM,BA,139,PL,Projeto de Lei,1,Proposição Apensada,Proposição Apensada
 2193540,camara,178854,Elmar Nascimento,DEM,BA,392,REQ,Requerimento de Urgência (Art. 155 do RICD),1,Requerimento,Requerimento
 2193540,camara,204358,Beto Pereira,PSDB,MS,131,EMP,Emenda de Plenário,1,Emenda,Emenda
 2193540,camara,73482,Henrique Fontana,PT,RS,131,EMP,Emenda de Plenário,1,Emenda,Emenda
@@ -2271,7 +2271,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,cod_tipo,sigla_tipo,descricao_tipo,qt
 2196833,camara,141488,Paulo Teixeira,PT,SP,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 2196833,camara,141513,Bilac Pinto,DEM,MG,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 2196833,camara,178939,Clarissa Garotinho,PROS,RJ,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
-2196833,camara,178975,Baleia Rossi,MDB,SP,136,PEC,Proposta de Emenda à Constituição,1,Proposição,Proposição
+2196833,camara,178975,Baleia Rossi,MDB,SP,136,PEC,Proposta de Emenda à Constituição,1,Proposição Apensada,Proposição Apensada
 2196833,camara,204464,Talíria Petrone,PSOL,RJ,260,VTS,Voto em Separado,1,Voto em Separado,Voto em Separado
 2196833,camara,204541,Eduardo Bismarck,PDT,CE,294,REQ,Requerimento de Audiência Pública,1,Requerimento,Requerimento
 2196833,camara,204576,João Roma,PRB,BA,190,PRL,Parecer do Relator,1,Parecer,Parecer
