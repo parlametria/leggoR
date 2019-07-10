@@ -193,7 +193,8 @@ fetch_documentos_data <- function(docs_ids) {
   docs <- purrr::map2_df(docs_ids$id_documento, docs_ids$casa, ~ fetch_all_documents(.x, .y))
   docs <- docs %>%
     dplyr::mutate(id_documento = ifelse(is.na(codigo_materia), id, codigo_materia)) %>%
-    dplyr::select(-codigo_materia)
+    dplyr::select(-codigo_materia,
+                  -id)
 
   formatted_docs_df <- tibble::tibble()
 
