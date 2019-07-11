@@ -1,5 +1,13 @@
 source(here::here("R/utils.R"))
 
+camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+camara_colunas <- camara_env$colunas_camara
+camara_autores <- camara_env$autores_colunas
+
+senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
+senado_colunas <- senado_env$colunas_senado
+senado_autores <- senado_env$autores_colunas
+
 #' @title Importa as informações de uma proposição da internet.
 #' @description Recebido um id e a casa, a função roda os scripts para
 #' importar os dados daquela proposição.
@@ -199,7 +207,7 @@ fetch_autores_documentos <- function(docs_ids_df) {
 #' }
 #' @export
 fetch_documentos_data <- function(docs_ids) {
-  docs <- purrr::map2_df(docs_ids$id_documento, docs_ids$casa, ~ fetch_all_documents(.x, .y, ))
+  docs <- purrr::map2_df(docs_ids$id_documento, docs_ids$casa, ~ fetch_all_documents(.x, .y))
   docs <- docs %>%
     dplyr::mutate(id_documento = ifelse(is.na(codigo_materia), id, codigo_materia)) %>%
     dplyr::select(-codigo_materia,
@@ -295,6 +303,23 @@ fetch_all_documents <- function(id_documento, casa) {
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)
   }
+
+  if (!(senado_colunas %in% names(fetch_prop_output$result))) {
+    new_cols_senado <- setNames(data.frame(matrix(ncol = length(senado_colunas), nrow = nrow(fetch_prop_output$result))),
+                                senado_colunas) %>%
+      dplyr::bind_rows(fetch_prop_output$result)
+    return(new_cols_senado)
+
+  }
+
+  if (!(camara_colunas %in% names(fetch_prop_output$result))) {
+    new_col_camara <- setNames(data.frame(matrix(ncol = length(camara_colunas), nrow = nrow(fetch_prop_output$result))),
+                               camara_colunas) %>%
+      dplyr::bind_rows(fetch_prop_output$result)
+    return(new_col_camara)
+
+  }
+
   return(fetch_prop_output$result)
 }
 
@@ -308,12 +333,28 @@ safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores,otherwise = tibble
 #' @return Dataframe
 fetch_all_autores <- function(id_documento, casa, sigla_tipo) {
   fetch_prop_output <- safe_fetch_autores(id_documento, casa, sigla_tipo)
-  autores_result <- fetch_prop_output$result
+
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)
   } else {
+
+    if (!(senado_autores %in% names(fetch_prop_output$result))) {
+      new_cols_senado <- setNames(data.frame(matrix(ncol = length(senado_autores), nrow = nrow(fetch_prop_output$result))),
+                                  senado_autores) %>%
+        dplyr::bind_rows(fetch_prop_output$result)
+      return(new_cols_senado)
+    }
+
+    if (!(camara_autores %in% names(fetch_prop_output$result))) {
+      new_col_camara <- setNames(data.frame(matrix(ncol = length(camara_autores), nrow = nrow(fetch_prop_output$result))),
+                                 camara_autores) %>%
+        dplyr::bind_rows(fetch_prop_output$result)
+      return(new_col_camara)
+    }
     autores_result <- autores_result %>%
       dplyr::mutate(id_documento = id_documento)
+
+    return(autores_result)
   }
-  return(autores_result)
+
 }

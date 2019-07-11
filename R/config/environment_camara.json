@@ -204,5 +204,44 @@
     {"tipo": "Parecer", "regex": "^parecer|^complementa..o de voto|^reda..o final|^substitutivo"},
     {"tipo": "Requerimento", "regex": "^requerimento"},
     {"tipo": "Voto em Separado", "regex": "^voto em separado"}
-    ]
+    ],
+
+  "colunas_camara": [
+    "ano",
+    "codTipo",
+    "dataApresentacao",
+    "descricaoTipo",
+    "ementa",
+    "ementaDetalhada",
+    "id",
+    "keywords",
+    "numero",
+    "siglaTipo",
+    "statusProposicao.codSituacao",
+    "statusProposicao.codTipoTramitacao",
+    "statusProposicao.dataHora",
+    "statusProposicao.descricaoSituacao",
+    "statusProposicao.descricaoTramitacao",
+    "statusProposicao.despacho",
+    "statusProposicao.regime",
+    "statusProposicao.sequencia",
+    "statusProposicao.siglaOrgao",
+    "statusProposicao.uriOrgao",
+    "statusProposicao.uriUltimoRelator",
+    "statusProposicao.url",
+    "uri",
+    "uriAutores",
+    "uriPropPosterior",
+    "uriPropPrincipal",
+    "uriUltimoRelator",
+    "urlInteiroTeor"
+  ],
+
+  "autores_colunas": [
+    "id_autor",
+    "nome",
+    "cod_tipo",
+    "tipo",
+    "uri"
+  ]
 }

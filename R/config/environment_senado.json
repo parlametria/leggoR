@@ -45,7 +45,7 @@
     {"fase": "encaminhamento", "code": [89, 159]},
     {"fase": "recebimento_comissao", "regex": "recebido na|nesta comissao"}
   ],
-  
+
   "evento_emendas": {
     "regex_detect": "prazo(.*) emenda(s)*|abertura do prazo",
     "regex_extract": "\\d{1,2}/\\d{1,2}/\\d{4}|\\d{1,2}.\\d{2}.\\d{4}",
@@ -71,7 +71,7 @@
     {"evento": "aprovacao_parecer", "regex": "a comissão aprova o relatório|aprovado o relatório", "tipo":"votacao"},
     {"evento": "pedido_de_vista", "regex": "concedida vista", "tipo":"votacao"},
     {"evento": "designado_relator",
-      "regex": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))|avocada a relatoria", 
+      "regex": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))|avocada a relatoria",
       "tipo":"despacho"},
     {"evento": "arquivamento", "regex": "processo arquivado(.)*|a proposição é arquivada|o projeto vai ao arquivo", "tipo":"despacho"},
     {"evento": "desarquivamento", "regex": "a mat.ria foi desarquivada", "tipo":"despacho"},
@@ -84,7 +84,7 @@
     {"evento": "vetada_totalmente", "regex": "vetada integralmente|vetado(,)* totalmente", "tipo":"votacao"},
     {"evento": "virada_de_casa", "regex": "primeiro(-| )secret(a|á)rio.*da.*c(a|â)mara.*dos.*deputados.*encaminhando.*revis(a|ã)o", "tipo":"votacao"}
   ],
-  
+
  "locais": [
     {"local": "CCJ", "tipo":"decisivo"},
     {"local": "Plenário", "tipo":"decisivo"},
@@ -179,7 +179,7 @@
   "fase_global_plenario":{
     "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)|(à slsf, a pedido.)"
   },
-  
+
   "fase_global_sancao":{
     "situacao_sancao": "remetida_à_sanção",
     "situacao_norma_juridica": "transformada_em_norma_jurídica"
@@ -195,7 +195,7 @@
     {"local": "Presidência da República", "fase_global": "Sanção/Veto"},
     {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
   ],
-  
+
   "requerimento": {
     "regex_detect": {
       "autoria": "autoria do | iniciativa do"
@@ -204,8 +204,61 @@
       "senado": "senador[^,]+ | sen[^,]+"
     }
   },
-  
+
   "versoes_texto_proposicao":{
     "tipos_texto_regex" : "(^projeto de lei .*)|(proposta de emenda .*)|(medida provisória .*)|(avulso de redação final)|(avulso inicial da matéria)|(^parecer nº.*)|(^emenda(s|).*)|(^medida provisória)"
-  }
+  },
+
+  "colunas_senado": [
+    "ano_materia",
+    "apelido_materia",
+    "assunto_especifico",
+    "assunto_geral",
+    "autor_nome",
+    "codigo_assunto_especifico",
+    "codigo_assunto_geral",
+    "codigo_materia",
+    "codigo_natureza",
+    "data_apresentacao",
+    "data_leitura",
+    "descricao_identificacao_materia" ,
+    "descricao_natureza",
+    "descricao_objetivo_processo",
+    "descricao_subtipo_materia",
+    "ementa_materia",
+    "explicacao_ementa_materia",
+    "indicador_complementar",
+    "indicador_tramitando",
+    "nome_casa_identificacao_materia",
+    "nome_casa_leitura",
+    "nome_casa_origem",
+    "nome_natureza",
+    "nome_poder_origem",
+    "numero_materia",
+     "proposicoes_apensadas",
+    "proposicoes_relacionadas" ,
+    "sigla_casa_identificacao_materia",
+    "sigla_casa_leitura",
+    "sigla_casa_origem",
+    "sigla_subtipo_materia"
+  ],
+
+  "autores_colunas": [
+    "descricao_tipo_autor",
+    "email",
+    "forma_de_tratamento",
+    "id_parlamentar",
+    "indicador_outros_autores",
+    "nome",
+    "nome_autor",
+    "nome_completo",
+    "num_ordem_autor",
+    "sexo",
+    "sigla_partido",
+    "sigla_tipo_autor",
+    "uf_autor",
+    "uf_parlamentar",
+    "url_foto",
+    "url_pagina"
+  ]
 }
