@@ -5628,7 +5628,7 @@ NA,NA,NA,Câmara dos Deputados,NA,136173,senado,NA,NA,Não,Câmara dos Deputados
 178990,NA,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178990,1692944,camara,NA,NA,NA,Samuel Moreira,NA,NA,NA,NA,NA,NA,NA,NA,NA
 178917,NA,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178917,1693073,camara,NA,NA,NA,João Fernando Coutinho,NA,NA,NA,NA,NA,NA,NA,NA,NA
 178917,NA,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178917,2010546,camara,NA,NA,NA,João Fernando Coutinho,NA,NA,NA,NA,NA,NA,NA,NA,NA
--1,NA,2,COMISSÃO PERMANENTE,,2025504,camara,NA,NA,NA,Comissão de Defesa do Consumidor,NA,NA,NA,NA,NA,NA,NA,NA,NA
+-1,NA,2,COMISSÃO PERMANENTE,NA,2025504,camara,NA,NA,NA,Comissão de Defesa do Consumidor,NA,NA,NA,NA,NA,NA,NA,NA,NA
 178905,NA,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178905,2168204,camara,NA,NA,NA,Fabio Garcia,NA,NA,NA,NA,NA,NA,NA,NA,NA
 178970,NA,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178970,2173044,camara,NA,NA,NA,João Daniel,NA,NA,NA,NA,NA,NA,NA,NA,NA
 178905,NA,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178905,2175045,camara,NA,NA,NA,Fabio Garcia,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -5817,8 +5817,8 @@ NA,NA,NA,Câmara dos Deputados,NA,136173,senado,NA,NA,Não,Câmara dos Deputados
 204535,NA,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204535,2211129,camara,NA,NA,NA,Sâmia Bomfim,NA,NA,NA,NA,NA,NA,NA,NA,NA
 178990,NA,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178990,2211137,camara,NA,NA,NA,Samuel Moreira,NA,NA,NA,NA,NA,NA,NA,NA,NA
 178990,NA,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178990,2211138,camara,NA,NA,NA,Samuel Moreira,NA,NA,NA,NA,NA,NA,NA,NA,NA
--1,NA,3,COMISSÃO ESPECIAL,,2211139,camara,NA,NA,NA,"Comissão Especial destinada a proferir parecer à Proposta de Emenda à Constituição nº 6-A, de 2019, do Poder Executivo, que ""modifica o sistema de previdência social, estabelece regras de transição e disposições transitórias, e dá outras providências""",NA,NA,NA,NA,NA,NA,NA,NA,NA
--1,NA,3,COMISSÃO ESPECIAL,,2211140,camara,NA,NA,NA,"Comissão Especial destinada a proferir parecer à Proposta de Emenda à Constituição nº 6-A, de 2019, do Poder Executivo, que ""modifica o sistema de previdência social, estabelece regras de transição e disposições transitórias, e dá outras providências""",NA,NA,NA,NA,NA,NA,NA,NA,NA
+-1,NA,3,COMISSÃO ESPECIAL,NA,2211139,camara,NA,NA,NA,"Comissão Especial destinada a proferir parecer à Proposta de Emenda à Constituição nº 6-A, de 2019, do Poder Executivo, que ""modifica o sistema de previdência social, estabelece regras de transição e disposições transitórias, e dá outras providências""",NA,NA,NA,NA,NA,NA,NA,NA,NA
+-1,NA,3,COMISSÃO ESPECIAL,NA,2211140,camara,NA,NA,NA,"Comissão Especial destinada a proferir parecer à Proposta de Emenda à Constituição nº 6-A, de 2019, do Poder Executivo, que ""modifica o sistema de previdência social, estabelece regras de transição e disposições transitórias, e dá outras providências""",NA,NA,NA,NA,NA,NA,NA,NA,NA
 178990,NA,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178990,2211141,camara,NA,NA,NA,Samuel Moreira,NA,NA,NA,NA,NA,NA,NA,NA,NA
 156190,NA,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/156190,2211588,camara,NA,NA,NA,Marcel Van Hattem,NA,NA,NA,NA,NA,NA,NA,NA,NA
 90842,NA,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/90842,2211592,camara,NA,NA,NA,Santini,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -5830,3 +5830,80 @@ NA,NA,NA,Câmara dos Deputados,NA,136173,senado,NA,NA,Não,Câmara dos Deputados
 1206,NA,NA,Senador,NA,96123,senado,raimundocolombo@senador.leg.br,Senador,Não,Raimundo Colombo,João Raimundo Colombo,1,Masculino,DEM,SENADOR,SC,SC,http://www.senado.leg.br/senadores/img/fotos-oficiais/senador1206.jpg,http://www25.senado.leg.br/web/senadores/senador/-/perfil/1206
 3362,NA,NA,Senador,NA,96813,senado,serys@senadora.leg.br,Senadora,Não,Serys Slhessarenko,Serys Marly Slhessarenko,1,Feminino,PT,SENADOR,MT,MT,http://www.senado.leg.br/senadores/img/fotos-oficiais/senador3362.jpg,http://www25.senado.leg.br/web/senadores/senador/-/perfil/3362
 73,NA,NA,Senador,NA,96979,senado,romero.juca@senador.leg.br,Senador,Não,Romero Jucá,Romero Jucá Filho,1,Masculino,MDB,SENADOR,RR,RR,http://www.senado.leg.br/senadores/img/fotos-oficiais/senador73.jpg,http://www25.senado.leg.br/web/senadores/senador/-/perfil/73
+178917,João Fernando Coutinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178917,2178886,camara,NA,NA,NA,João Fernando Coutinho,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178917,João Fernando Coutinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178917,2178887,camara,NA,NA,NA,João Fernando Coutinho,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178917,João Fernando Coutinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178917,2178888,camara,NA,NA,NA,João Fernando Coutinho,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178917,João Fernando Coutinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178917,2178889,camara,NA,NA,NA,João Fernando Coutinho,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178917,João Fernando Coutinho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178917,2178890,camara,NA,NA,NA,João Fernando Coutinho,NA,NA,NA,NA,NA,NA,NA,NA,NA
+141391,Arnaldo Jardim,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141391,2178892,camara,NA,NA,NA,Arnaldo Jardim,NA,NA,NA,NA,NA,NA,NA,NA,NA
+141391,Arnaldo Jardim,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141391,2178893,camara,NA,NA,NA,Arnaldo Jardim,NA,NA,NA,NA,NA,NA,NA,NA,NA
+141391,Arnaldo Jardim,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141391,2178895,camara,NA,NA,NA,Arnaldo Jardim,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73433,Arlindo Chinaglia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73433,2178910,camara,NA,NA,NA,Arlindo Chinaglia,NA,NA,NA,NA,NA,NA,NA,NA,NA
+160575,Erika Kokay,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160575,2178910,camara,NA,NA,NA,Erika Kokay,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73433,Arlindo Chinaglia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73433,2178911,camara,NA,NA,NA,Arlindo Chinaglia,NA,NA,NA,NA,NA,NA,NA,NA,NA
+160575,Erika Kokay,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160575,2178911,camara,NA,NA,NA,Erika Kokay,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73433,Arlindo Chinaglia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73433,2178913,camara,NA,NA,NA,Arlindo Chinaglia,NA,NA,NA,NA,NA,NA,NA,NA,NA
+160575,Erika Kokay,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160575,2178913,camara,NA,NA,NA,Erika Kokay,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73433,Arlindo Chinaglia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73433,2178914,camara,NA,NA,NA,Arlindo Chinaglia,NA,NA,NA,NA,NA,NA,NA,NA,NA
+160575,Erika Kokay,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160575,2178914,camara,NA,NA,NA,Erika Kokay,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73433,Arlindo Chinaglia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73433,2178915,camara,NA,NA,NA,Arlindo Chinaglia,NA,NA,NA,NA,NA,NA,NA,NA,NA
+160575,Erika Kokay,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160575,2178915,camara,NA,NA,NA,Erika Kokay,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73433,Arlindo Chinaglia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73433,2178916,camara,NA,NA,NA,Arlindo Chinaglia,NA,NA,NA,NA,NA,NA,NA,NA,NA
+160575,Erika Kokay,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160575,2178916,camara,NA,NA,NA,Erika Kokay,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73433,Arlindo Chinaglia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73433,2178917,camara,NA,NA,NA,Arlindo Chinaglia,NA,NA,NA,NA,NA,NA,NA,NA,NA
+160575,Erika Kokay,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160575,2178917,camara,NA,NA,NA,Erika Kokay,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73433,Arlindo Chinaglia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73433,2178918,camara,NA,NA,NA,Arlindo Chinaglia,NA,NA,NA,NA,NA,NA,NA,NA,NA
+160575,Erika Kokay,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160575,2178918,camara,NA,NA,NA,Erika Kokay,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73655,Augusto Carvalho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73655,2178920,camara,NA,NA,NA,Augusto Carvalho,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73655,Augusto Carvalho,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73655,2178922,camara,NA,NA,NA,Augusto Carvalho,NA,NA,NA,NA,NA,NA,NA,NA,NA
+74553,José Carlos Aleluia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74553,2178924,camara,NA,NA,NA,José Carlos Aleluia,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73891,Darcísio Perondi,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73891,2178926,camara,NA,NA,NA,Darcísio Perondi,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73891,Darcísio Perondi,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73891,2178928,camara,NA,NA,NA,Darcísio Perondi,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73891,Darcísio Perondi,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73891,2178929,camara,NA,NA,NA,Darcísio Perondi,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73891,Darcísio Perondi,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73891,2178930,camara,NA,NA,NA,Darcísio Perondi,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178905,Fabio Garcia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178905,2180835,camara,NA,NA,NA,Fabio Garcia,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178905,Fabio Garcia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178905,2180838,camara,NA,NA,NA,Fabio Garcia,NA,NA,NA,NA,NA,NA,NA,NA,NA
+204505,Vavá Martins,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204505,2205109,camara,NA,NA,NA,Vavá Martins,NA,NA,NA,NA,NA,NA,NA,NA,NA
+204536,Kim Kataguiri,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204536,2209244,camara,NA,NA,NA,Kim Kataguiri,NA,NA,NA,NA,NA,NA,NA,NA,NA
+204386,Jose Mario Schreiner,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204386,2209700,camara,NA,NA,NA,Jose Mario Schreiner,NA,NA,NA,NA,NA,NA,NA,NA,NA
+179587,Major Vitor Hugo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/179587,2209950,camara,NA,NA,NA,Major Vitor Hugo,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73482,Henrique Fontana,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73482,2210327,camara,NA,NA,NA,Henrique Fontana,NA,NA,NA,NA,NA,NA,NA,NA,NA
+74371,Rubens Otoni,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74371,2210327,camara,NA,NA,NA,Rubens Otoni,NA,NA,NA,NA,NA,NA,NA,NA,NA
+107283,Gleisi Hoffmann,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/107283,2210327,camara,NA,NA,NA,Gleisi Hoffmann,NA,NA,NA,NA,NA,NA,NA,NA,NA
+141470,José Guimarães,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141470,2210327,camara,NA,NA,NA,José Guimarães,NA,NA,NA,NA,NA,NA,NA,NA,NA
+141488,Paulo Teixeira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141488,2210327,camara,NA,NA,NA,Paulo Teixeira,NA,NA,NA,NA,NA,NA,NA,NA,NA
+160604,Pedro Uczai,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160604,2210327,camara,NA,NA,NA,Pedro Uczai,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178857,Jorge Solla,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178857,2210327,camara,NA,NA,NA,Jorge Solla,NA,NA,NA,NA,NA,NA,NA,NA,NA
+204426,Carlos Veras,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204426,2210327,camara,NA,NA,NA,Carlos Veras,NA,NA,NA,NA,NA,NA,NA,NA,NA
+141408,Cleber Verde,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/141408,2210749,camara,NA,NA,NA,Cleber Verde,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178990,Samuel Moreira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178990,2210849,camara,NA,NA,NA,Samuel Moreira,NA,NA,NA,NA,NA,NA,NA,NA,NA
+73531,Ivan Valente,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/73531,2211129,camara,NA,NA,NA,Ivan Valente,NA,NA,NA,NA,NA,NA,NA,NA,NA
+74784,Luiza Erundina,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74784,2211129,camara,NA,NA,NA,Luiza Erundina,NA,NA,NA,NA,NA,NA,NA,NA,NA
+204535,Sâmia Bomfim,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204535,2211129,camara,NA,NA,NA,Sâmia Bomfim,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178990,Samuel Moreira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178990,2211137,camara,NA,NA,NA,Samuel Moreira,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178990,Samuel Moreira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178990,2211138,camara,NA,NA,NA,Samuel Moreira,NA,NA,NA,NA,NA,NA,NA,NA,NA
+-1,"Comissão Especial destinada a proferir parecer à Proposta de Emenda à Constituição nº 6-A, de 2019, do Poder Executivo, que ""modifica o sistema de previdência social, estabelece regras de transição e disposições transitórias, e dá outras providências""",3,COMISSÃO ESPECIAL,,2211139,camara,NA,NA,NA,"Comissão Especial destinada a proferir parecer à Proposta de Emenda à Constituição nº 6-A, de 2019, do Poder Executivo, que ""modifica o sistema de previdência social, estabelece regras de transição e disposições transitórias, e dá outras providências""",NA,NA,NA,NA,NA,NA,NA,NA,NA
+-1,"Comissão Especial destinada a proferir parecer à Proposta de Emenda à Constituição nº 6-A, de 2019, do Poder Executivo, que ""modifica o sistema de previdência social, estabelece regras de transição e disposições transitórias, e dá outras providências""",3,COMISSÃO ESPECIAL,,2211140,camara,NA,NA,NA,"Comissão Especial destinada a proferir parecer à Proposta de Emenda à Constituição nº 6-A, de 2019, do Poder Executivo, que ""modifica o sistema de previdência social, estabelece regras de transição e disposições transitórias, e dá outras providências""",NA,NA,NA,NA,NA,NA,NA,NA,NA
+178990,Samuel Moreira,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178990,2211141,camara,NA,NA,NA,Samuel Moreira,NA,NA,NA,NA,NA,NA,NA,NA,NA
+156190,Marcel Van Hattem,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/156190,2211588,camara,NA,NA,NA,Marcel Van Hattem,NA,NA,NA,NA,NA,NA,NA,NA,NA
+90842,Santini,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/90842,2211592,camara,NA,NA,NA,Santini,NA,NA,NA,NA,NA,NA,NA,NA,NA
+156190,Marcel Van Hattem,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/156190,2211606,camara,NA,NA,NA,Marcel Van Hattem,NA,NA,NA,NA,NA,NA,NA,NA,NA
+133439,André Figueiredo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/133439,2211612,camara,NA,NA,NA,André Figueiredo,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178854,Elmar Nascimento,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178854,2211631,camara,NA,NA,NA,Elmar Nascimento,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178975,Baleia Rossi,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178975,2211700,camara,NA,NA,NA,Baleia Rossi,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178854,Elmar Nascimento,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178854,2211705,camara,NA,NA,NA,Elmar Nascimento,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178881,Aluisio Mendes,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178881,2211706,camara,NA,NA,NA,Aluisio Mendes,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178835,Afonso Motta,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178835,2211707,camara,NA,NA,NA,Afonso Motta,NA,NA,NA,NA,NA,NA,NA,NA,NA
+204403,Marlon Santos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204403,2211732,camara,NA,NA,NA,Marlon Santos,NA,NA,NA,NA,NA,NA,NA,NA,NA
+133439,André Figueiredo,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/133439,2211822,camara,NA,NA,NA,André Figueiredo,NA,NA,NA,NA,NA,NA,NA,NA,NA
+116379,Darci de Matos,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/116379,2211853,camara,NA,NA,NA,Darci de Matos,NA,NA,NA,NA,NA,NA,NA,NA,NA
+160600,Arthur Oliveira Maia,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160600,2211873,camara,NA,NA,NA,Arthur Oliveira Maia,NA,NA,NA,NA,NA,NA,NA,NA,NA
+178975,Baleia Rossi,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178975,2211874,camara,NA,NA,NA,Baleia Rossi,NA,NA,NA,NA,NA,NA,NA,NA,NA
+160575,Erika Kokay,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160575,2211877,camara,NA,NA,NA,Erika Kokay,NA,NA,NA,NA,NA,NA,NA,NA,NA
+160575,Erika Kokay,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/160575,2211881,camara,NA,NA,NA,Erika Kokay,NA,NA,NA,NA,NA,NA,NA,NA,NA
+204572,Capitão Alberto Neto,10000,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204572,2211898,camara,NA,NA,NA,Capitão Alberto Neto,NA,NA,NA,NA,NA,NA,NA,NA,NA
+111,Blairo Maggi,NA,Senador,NA,41703,senado,blairomaggi@senador.leg.br,Senador,Não,Blairo Maggi,Blairo Borges Maggi,1,Masculino,PL,SENADOR,MT,MT,http://www.senado.leg.br/senadores/img/fotos-oficiais/senador111.jpg,http://www25.senado.leg.br/web/senadores/senador/-/perfil/111
+3396,Tasso Jereissati,NA,Senador,NA,91341,senado,tasso.jereissati@senador.leg.br,Senador,Não,Tasso Jereissati,Tasso Ribeiro Jereissati,1,Masculino,PSDB,SENADOR,CE,CE,http://www.senado.leg.br/senadores/img/fotos-oficiais/senador3396.jpg,http://www25.senado.leg.br/web/senadores/senador/-/perfil/3396
+1206,Raimundo Colombo,NA,Senador,NA,96123,senado,raimundocolombo@senador.leg.br,Senador,Não,Raimundo Colombo,João Raimundo Colombo,1,Masculino,DEM,SENADOR,SC,SC,http://www.senado.leg.br/senadores/img/fotos-oficiais/senador1206.jpg,http://www25.senado.leg.br/web/senadores/senador/-/perfil/1206
+3362,Serys Slhessarenko,NA,Senador,NA,96813,senado,serys@senadora.leg.br,Senadora,Não,Serys Slhessarenko,Serys Marly Slhessarenko,1,Feminino,PT,SENADOR,MT,MT,http://www.senado.leg.br/senadores/img/fotos-oficiais/senador3362.jpg,http://www25.senado.leg.br/web/senadores/senador/-/perfil/3362
+73,Romero Jucá,NA,Senador,NA,96979,senado,romero.juca@senador.leg.br,Senador,Não,Romero Jucá,Romero Jucá Filho,1,Masculino,MDB,SENADOR,RR,RR,http://www.senado.leg.br/senadores/img/fotos-oficiais/senador73.jpg,http://www25.senado.leg.br/web/senadores/senador/-/perfil/73

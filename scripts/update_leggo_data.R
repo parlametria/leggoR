@@ -19,12 +19,10 @@ get_fetch_status <- function(docs_ids, docs_data, authors_data) {
   fetched_data_docs <- docs_data %>%
     dplyr::select(id_documento, casa) %>%
     dplyr::distinct()
-  #%>%dplyr::mutate(id_documento = as.numeric(id_documento))
 
   fetched_autor_docs <- authors_data %>%
     dplyr::select(id_documento, casa) %>%
     dplyr::distinct()
-  #%>%dplyr::mutate(id_documento = as.numeric(id_documento))
 
   complete_docs_df <- dplyr::inner_join(docs_ids,
                                      dplyr::inner_join(fetched_data_docs,fetched_autor_docs,
