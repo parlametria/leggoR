@@ -16,6 +16,7 @@ library(magrittr)
 library(ggplot2)
 library(plotly)
 library(gghighlight)
+library(DT)
 
 knitr::opts_chunk$set(echo = FALSE,
 	             cache = FALSE,
@@ -108,7 +109,7 @@ temperatura_geral %>%
 
 Vamos analisar a temperatura por tema para podermos compreender melhor que temas/proposições influenciaram essas subidas de temperatura observadas.
 
-## Qual foi o comportamento da temperatura de cada tema acompanhado pelo Leggo nos últimos anos (2015-2019)? 
+## Qual foi o comportamento da temperatura de cada tema acompanhado pelo Leggo em 2019? 
 
 ```{r, fig.width=12,fig.height=8,fig.align='center'}
 temperatura_temas %>% 
@@ -178,7 +179,7 @@ evolucao_semanal_temperatura_an_2 <- evolucao_semanal_temperatura %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
   arrange(desc(evolucao_temp_recente))
 
-evolucao_semanal_temperatura_an_2
+datatable(evolucao_semanal_temperatura_an_2)
 ```
 
 ```{r warning=FALSE, message=FALSE}
@@ -191,10 +192,10 @@ evolucao_semanal_temperatura_an_3 <- evolucao_semanal_temperatura %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
   arrange(desc(evolucao_temp_recente))
 
-evolucao_semanal_temperatura_an_3
+datatable(evolucao_semanal_temperatura_an_3)
 ```
 
-No gráfico de temperatura por tema acima, podemos identificar, no tema `Agenda Nacional`, dois picos principais no início de 2017 e de 2019, respectivamente. Abaixo mostramos mais de perto esses picos, numa linha do tempo mais resumida.
+No gráfico de temperatura por tema acima, podemos identificar, no tema `Agenda Nacional`, dois picos principais na semana do dia 22/04/2019 e outro na semana do dia 06/05/2019, respectivamente. Abaixo mostramos mais de perto esses picos, numa linha do tempo mais resumida.
 
 ```{r, fig.width=12,fig.height=4,fig.align='center'}
 semanas_destaque_an <- data.frame(tema = "Agenda Nacional",
@@ -231,7 +232,7 @@ temperatura_temas %>%
 
 
 
-Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que a principal foi a PEC da Reforma da Previdência do Governo Bolsonaro - **PEC 6/2019**.
+Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que a principal foi a PEC da Nova Previdência - **PEC 6/2019**.
 
 ### Direitos Humanos
 
@@ -275,7 +276,7 @@ evolucao_semanal_temperatura_dh_1 <- evolucao_semanal_temperatura %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
   arrange(desc(evolucao_temp_recente))
 
-evolucao_semanal_temperatura_dh_1
+datatable(evolucao_semanal_temperatura_dh_1)
 ```
 
 ```{r warning=FALSE, message=FALSE}
@@ -288,10 +289,10 @@ evolucao_semanal_temperatura_dh_2 <- evolucao_semanal_temperatura %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
   arrange(desc(evolucao_temp_recente))
 
-evolucao_semanal_temperatura_dh_2
+datatable(evolucao_semanal_temperatura_dh_2)
 ```
 
-No tema Direitos Humanos, identificamos um pico no segundo semestre de 2015. Abaixo mostramos mais de perto esse pico, numa linha do tempo mais resumida.
+No tema Direitos Humanos, identificamos dois picos um na semana do dia 12/02/2019 e outro na semana do dia 22/04/2019. Abaixo mostramos mais de perto esses picos, numa linha do tempo mais resumida.
 
 ```{r, fig.width=12,fig.height=4,fig.align='center'}
 semanas_destaque_dh <- data.frame(tema = "Direitos Humanos",
@@ -323,6 +324,8 @@ temperatura_temas %>%
   scale_colour_manual(values = c("#92B771", "#728E58",'#21291A','#415233')) + 
   gghighlight(label_key = nome_pl)
 ```
+
+
 
 ## Educação
 
@@ -366,7 +369,7 @@ evolucao_semanal_temperatura_ed_1 <- evolucao_semanal_temperatura %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
   arrange(desc(evolucao_temp_recente))
 
-evolucao_semanal_temperatura_ed_1
+datatable(evolucao_semanal_temperatura_ed_1)
 ```
 
 ```{r warning=FALSE, message=FALSE}
@@ -379,7 +382,7 @@ evolucao_semanal_temperatura_ed_2 <- evolucao_semanal_temperatura %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
   arrange(desc(evolucao_temp_recente))
 
-evolucao_semanal_temperatura_ed_2
+datatable(evolucao_semanal_temperatura_ed_2)
 ```
 
 ```{r warning=FALSE, message=FALSE}
@@ -392,10 +395,10 @@ evolucao_semanal_temperatura_ed_3 <- evolucao_semanal_temperatura %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
   arrange(desc(evolucao_temp_recente))
 
-evolucao_semanal_temperatura_ed_3
+datatable(evolucao_semanal_temperatura_ed_3)
 ```
 
-Observando a temperatura histórica do tema `Educação`, é possível perceber um pico no início do ano 2017. Abaixo mostramos mais de perto esse pico, numa linha do tempo mais resumida.
+Observando a temperatura histórica do tema `Educação`, é possível perceber três picos um na semana do dia 18/02/2019, na semana do dia 06/05/2019 e outro na semana do dia 27/05/2019. Abaixo mostramos mais de perto esses picos, numa linha do tempo mais resumida.
 
 ```{r, fig.width=12,fig.height=4,fig.align='center'}
 semanas_destaque_ed <- data.frame(tema = "Educação",
@@ -427,6 +430,8 @@ temperatura_temas %>%
   scale_colour_manual(values = c('#44412B','#9F9864')) + 
   gghighlight(label_key = nome_pl)
 ```
+Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que a principal foi a PEC de Tornar o FUNDEB Permanente - **PEC 15/2015**.
+
 
 ## Integridade e Transparência
 
@@ -470,7 +475,7 @@ evolucao_semanal_temperatura_it <- evolucao_semanal_temperatura %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
   arrange(desc(evolucao_temp_recente))
 
-evolucao_semanal_temperatura_it
+datatable(evolucao_semanal_temperatura_it)
 ```
 
 ```{r warning=FALSE, message=FALSE}
@@ -483,10 +488,10 @@ evolucao_semanal_temperatura_it_2 <- evolucao_semanal_temperatura %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
   arrange(desc(evolucao_temp_recente))
 
-evolucao_semanal_temperatura_it_2
+datatable(evolucao_semanal_temperatura_it_2)
 ```
 
-Para o tema `Integridade e Transparência`, observamos um aumento mais expressivo no primeiro semestre de 2018 e outro no início de 2019. Abaixo mostramos mais de perto esse comportamento, numa linha do tempo mais resumida.
+Para o tema `Integridade e Transparência`, observamos um aumento mais expressivo na semana do dia 01/04/2019 e outro na semana do dia 24/06/2019. Abaixo mostramos mais de perto esse comportamento, numa linha do tempo mais resumida.
 
 ```{r, fig.width=12,fig.height=4,fig.align='center'}
 semanas_destaque_it <- data.frame(tema = "Integridade e Transparência",
@@ -562,7 +567,7 @@ evolucao_semanal_temperatura_ma <- evolucao_semanal_temperatura %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
   arrange(desc(evolucao_temp_recente))
 
-evolucao_semanal_temperatura_ma
+datatable(evolucao_semanal_temperatura_ma)
 ```
 
 ```{r warning=FALSE, message=FALSE}
@@ -575,7 +580,7 @@ evolucao_semanal_temperatura_ma_2 <- evolucao_semanal_temperatura %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
   arrange(desc(temperatura_recente))
 
-evolucao_semanal_temperatura_ma_2
+datatable(evolucao_semanal_temperatura_ma_2)
 ```
 
 ```{r warning=FALSE, message=FALSE}
@@ -588,10 +593,10 @@ evolucao_semanal_temperatura_ma_3 <- evolucao_semanal_temperatura %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
   arrange(desc(evolucao_temp_recente))
 
-evolucao_semanal_temperatura_ma_3
+datatable(evolucao_semanal_temperatura_ma_3)
 ```
 
-Finalmente, observando a evolução histórica da temperatura do tema `Meio Ambiente`, percebemos um pico mais agudo no final do primeiro semestre de 2018. Abaixo mostramos mais de perto esse comportamento, numa linha do tempo mais resumida.
+Finalmente, observando a evolução histórica da temperatura do tema `Meio Ambiente`, percebemos três pico um na semana do dia 18/02/2019, outro na semana do dia 06/05/2019 e um na semana do dia 27/05/2019. Abaixo mostramos mais de perto esse comportamento, numa linha do tempo mais resumida.
 
 ```{r, fig.width=12,fig.height=4,fig.align='center'}
 semanas_destaque_ma <- data.frame(tema = "Meio Ambiente",
