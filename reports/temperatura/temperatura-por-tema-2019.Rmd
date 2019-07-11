@@ -1,7 +1,7 @@
 ---
 title: "Análise da Temperatura por Tema"
 author: "Equipe Leg.go"
-date: "27/05/2019"
+date: "11/07/2019"
 output:
   prettydoc::html_pretty:
     theme: leonids
@@ -325,6 +325,7 @@ temperatura_temas %>%
   gghighlight(label_key = nome_pl)
 ```
 
+Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que as principais foram a PEC que Autoriza o Trabalho Infantil a partir dos Quatorze Anos **PEC 18/2011**, a PL da Situação Jurídica do Estrangeiro no Brasil **PL 2443/2011**, a PL da Extição das Cotas de Candidaturas Femininas **PL 1256/2019** e a PEC Antiaborto **PEC 29/2015**
 
 
 ## Educação
@@ -430,7 +431,7 @@ temperatura_temas %>%
   scale_colour_manual(values = c('#44412B','#9F9864')) + 
   gghighlight(label_key = nome_pl)
 ```
-Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que a principal foi a PEC de Tornar o FUNDEB Permanente - **PEC 15/2015**.
+Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que a principal foi a PEC de Tornar o FUNDEB Permanente - **PEC 15/2015** e a **PLP 307/2002** que também trata sobre o FUNDEB
 
 
 ## Integridade e Transparência
