@@ -21,10 +21,8 @@ setup <- function(){
                                       nome_autor = c('Dep. C','Dep. A','Dep. C','Dep. D'),
                                       partido = c('Partido C','Partido A','Partido C','Partido B'),
                                       uf = c('PB', "SP", "PB", "BA"),
-                                      cod_tipo = c(125,125,121,121),
-                                      sigla_tipo = c('EMC','EMC','REQ','REQ'),
-                                      descricao_tipo = c('Emenda na Comissão','Emenda na Comissão',
-                                                         'Requerimento de Audiência Pública','Requerimento de Audiência Pública'),
+                                      tipo_generico = c('Emenda','Emenda',
+                                                         'Requerimento','Requerimento'),
                                       qtd_de_documentos = as.integer(c(2,1,1,1)))
 
   return(TRUE)

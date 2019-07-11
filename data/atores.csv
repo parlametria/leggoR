@@ -528,7 +528,6 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 257161,camara,178896,Newton Cardoso Jr,MDB,MG,Requerimento,1
 257161,camara,178954,Lucio Mosquini,MDB,RO,Proposição Apensada,1
 257161,camara,178975,Baleia Rossi,MDB,SP,Requerimento,1
-257161,camara,204536,Kim Kataguiri,DEM,SP,Requerimento,1
 257161,camara,73454,João Grandão,PT,MS,Proposição Apensada,1
 257161,camara,73474,Luci Choinacki,PT,SC,Proposição Apensada,1
 257161,camara,73531,Ivan Valente,PSOL,SP,Proposição Apensada,1
@@ -805,7 +804,6 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 541857,camara,178964,Heitor Schuch,PSB,RS,Requerimento,1
 541857,camara,178993,Carlos Henrique Gaguim,DEM,TO,Proposição Apensada,1
 541857,camara,179587,Major Vitor Hugo,PSL,GO,Proposição Apensada,1
-541857,camara,179587,Major Vitor Hugo,PSL,GO,Requerimento,1
 541857,camara,185500,Deoclides Macedo,PDT,MA,Proposição Apensada,1
 541857,camara,194260,Nivaldo Albuquerque,PTB,AL,Proposição Apensada,1
 541857,camara,195826,Marcelo Delaroli,PR,RJ,Proposição Apensada,1
@@ -1091,59 +1089,6 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 1198512,camara,74400,Paulo Pimenta,PT,RS,Emenda,1
 1198512,camara,74459,Átila Lira,PSB,PI,Requerimento,1
 1198512,camara,74571,Nelson Pellegrino,PT,BA,Emenda,1
-1307190,camara,160604,Pedro Uczai,PT,SC,Emenda,26
-1307190,camara,160575,Erika Kokay,PT,DF,Requerimento,14
-1307190,camara,178986,Nilto Tatto,PT,SP,Requerimento,14
-1307190,camara,73433,Arlindo Chinaglia,PT,SP,Requerimento,14
-1307190,camara,73584,Antonio Carlos Mendes Thame,PV,SP,Emenda,13
-1307190,camara,160575,Erika Kokay,PT,DF,Emenda,12
-1307190,camara,74299,Leônidas Cristino,PDT,CE,Emenda,10
-1307190,camara,74553,José Carlos Aleluia,DEM,BA,Emenda,9
-1307190,camara,141482,Leonardo Quintão,MDB,MG,Emenda,8
-1307190,camara,73433,Arlindo Chinaglia,PT,SP,Emenda,8
-1307190,camara,141391,Arnaldo Jardim,CIDADANIA,SP,Emenda,7
-1307190,camara,178917,João Fernando Coutinho,PROS,PE,Emenda,7
-1307190,camara,178905,Fabio Garcia,DEM,MT,Parecer,4
-1307190,camara,73891,Darcísio Perondi,MDB,RS,Emenda,4
-1307190,camara,178905,Fabio Garcia,DEM,MT,Requerimento,3
-1307190,camara,178917,João Fernando Coutinho,PROS,PE,Requerimento,3
-1307190,camara,141398,Carlos Zarattini,PT,SP,Emenda,2
-1307190,camara,160666,Félix Mendonça Júnior,PDT,BA,Emenda,2
-1307190,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,Emenda,2
-1307190,camara,118594,Marcelo Squassoni,PRB,SP,Emenda,1
-1307190,camara,118594,Marcelo Squassoni,PRB,SP,Proposição Apensada,1
-1307190,camara,118594,Marcelo Squassoni,PRB,SP,Requerimento,1
-1307190,camara,133439,André Figueiredo,PDT,CE,Emenda,1
-1307190,camara,137070,Vicentinho Júnior,PL,TO,Requerimento,1
-1307190,camara,141408,Cleber Verde,PRB,MA,Requerimento,1
-1307190,camara,141450,Hugo Leal,PSD,RJ,Requerimento,1
-1307190,camara,141454,Alfredo Kaefer,PP,PR,Emenda,1
-1307190,camara,141458,João Carlos Bacelar,PL,BA,Emenda,1
-1307190,camara,141531,Rodrigo De Castro,PSDB,MG,Proposição Apensada,1
-1307190,camara,160536,Marco Tebaldi,PSDB,SC,Requerimento,1
-1307190,camara,160602,Arnaldo Jordy,PPS,PA,Requerimento,1
-1307190,camara,160607,Jose Stédile,PSB,RS,Requerimento,1
-1307190,camara,178844,Pedro Vilela,PSDB,AL,Proposição Apensada,1
-1307190,camara,178868,Odorico Monteiro,PSB,CE,Proposição Apensada,1
-1307190,camara,178893,Delegado Edson Moreira,PR,MG,Requerimento,1
-1307190,camara,178910,Joaquim Passarinho,PSD,PA,Emenda,1
-1307190,camara,178917,João Fernando Coutinho,PROS,PE,Parecer,1
-1307190,camara,178934,Toninho Wandscheer,PROS,PR,Emenda,1
-1307190,camara,178937,Altineu Côrtes,PL,RJ,Requerimento,1
-1307190,camara,178948,Beto Rosado,PP,RN,Requerimento,1
-1307190,camara,178954,Lucio Mosquini,MDB,RO,Requerimento,1
-1307190,camara,178957,Abel Mesquita Jr.,DEM,RR,Requerimento,1
-1307190,camara,178958,Carlos Andrade,PHS,RR,Requerimento,1
-1307190,camara,178970,João Daniel,PT,SE,Requerimento,1
-1307190,camara,178984,Miguel Haddad,PSDB,SP,Requerimento,1
-1307190,camara,178990,Samuel Moreira,PSDB,SP,Requerimento,1
-1307190,camara,204505,Vavá Martins,PRB,PA,Proposição Apensada,1
-1307190,camara,73584,Antonio Carlos Mendes Thame,PV,SP,Proposição Apensada,1
-1307190,camara,73655,Augusto Carvalho,SOLIDARIEDADE,DF,Proposição Apensada,1
-1307190,camara,73786,Reinhold Stephanes,PSD,PR,Emenda,1
-1307190,camara,74235,Marcus Vicente,PP,ES,Requerimento,1
-1307190,camara,74253,Julio Lopes,PP,RJ,Emenda,1
-1307190,camara,74445,João Castelo,PSDB,,Requerimento,1
 1594911,camara,152610,Roberto Alves,PRB,SP,Proposição Apensada,1
 1594911,camara,74366,João Campos,PRB,GO,Requerimento,1
 1738598,camara,160655,Ricardo Izar,PP,SP,Parecer,2
@@ -1471,7 +1416,6 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 2170839,camara,178986,Nilto Tatto,PT,SP,Parecer,3
 2170839,camara,160511,Alessandro Molon,PSB,RJ,Outros,1
 2170839,camara,160511,Alessandro Molon,PSB,RJ,Proposição Apensada,1
-2170839,camara,204386,Jose Mario Schreiner,DEM,GO,Requerimento,1
 2178170,camara,204506,Marcos Pereira,PRB,SP,Parecer,4
 2178170,camara,76874,Marcelo Freixo,PSOL,RJ,Requerimento,4
 2178170,camara,164359,Delegado Waldir,PSL,GO,Requerimento,3
@@ -1708,7 +1652,6 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 2192459,camara,160570,Jerônimo Goergen,PP,RS,Emenda,6
 2192459,camara,178946,Soraya Santos,PL,RJ,Emenda,6
 2192459,camara,178987,Orlando Silva,PCdoB,SP,Emenda,6
-2192459,camara,178990,Samuel Moreira,PSDB,SP,Parecer,6
 2192459,camara,204500,Eduardo Costa,PTB,PA,Emenda,6
 2192459,camara,68720,Fábio Henrique,PDT,SE,Requerimento,6
 2192459,camara,74060,Daniel Almeida,PCdoB,BA,Emenda,6
@@ -1786,15 +1729,12 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 2192459,camara,116379,Darci De Matos,PSD,SC,Emenda,2
 2192459,camara,141421,Eduardo Da Fonte,PP,PE,Emenda,2
 2192459,camara,141427,Fábio Ramalho,MDB,MG,Emenda,2
-2192459,camara,141470,José Guimarães,PT,CE,Voto em Separado,2
-2192459,camara,141488,Paulo Teixeira,PT,SP,Voto em Separado,2
 2192459,camara,143632,Domingos Neto,PSD,CE,Emenda,2
 2192459,camara,146788,Marcelo Aro,PP,MG,Emenda,2
 2192459,camara,156190,Marcel Van Hattem,NOVO,RS,Emenda,2
 2192459,camara,160511,Alessandro Molon,PSB,RJ,Requerimento,2
 2192459,camara,160512,Aureo Ribeiro,SOLIDARIEDADE,RJ,Emenda,2
 2192459,camara,160570,Jerônimo Goergen,PP,RS,Requerimento,2
-2192459,camara,160604,Pedro Uczai,PT,SC,Voto em Separado,2
 2192459,camara,160632,Zé Silva,SOLIDARIEDADE,MG,Emenda,2
 2192459,camara,164359,Delegado Waldir,PSL,GO,Outros,2
 2192459,camara,164360,Carmen Zanotto,CIDADANIA,SC,Emenda,2
@@ -1808,6 +1748,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 2192459,camara,178964,Heitor Schuch,PSB,RS,Requerimento,2
 2192459,camara,178975,Baleia Rossi,MDB,SP,Emenda,2
 2192459,camara,178977,Eduardo Cury,PSDB,SP,Requerimento,2
+2192459,camara,178990,Samuel Moreira,PSDB,SP,Parecer,2
 2192459,camara,204365,Gilson Marques,NOVO,SC,Emenda,2
 2192459,camara,204372,Julio Cesar Ribeiro,PRB,DF,Emenda,2
 2192459,camara,204381,Luis Miranda,DEM,DF,Emenda,2
@@ -1837,10 +1778,8 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 2192459,camara,73891,Darcísio Perondi,MDB,RS,Requerimento,2
 2192459,camara,74044,Wilson Santiago,PTB,PB,Emenda,2
 2192459,camara,74366,João Campos,PRB,GO,Requerimento,2
-2192459,camara,74371,Rubens Otoni,PT,GO,Voto em Separado,2
 2192459,camara,74655,Eduardo Barbosa,PSDB,MG,Emenda,2
 2192459,camara,90842,Santini,PTB,RS,Emenda,2
-2192459,camara,107283,Gleisi Hoffmann,PT,PR,Voto em Separado,1
 2192459,camara,108338,Jaqueline Cassol,PP,RO,Emenda,1
 2192459,camara,122158,Pedro Paulo,DEM,RJ,Emenda,1
 2192459,camara,122158,Pedro Paulo,DEM,RJ,Requerimento,1
@@ -1854,6 +1793,8 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 2192459,camara,141439,Chico D'angelo,PDT,RJ,Voto em Separado,1
 2192459,camara,141450,Hugo Leal,PSD,RJ,Emenda,1
 2192459,camara,141459,João Maia,PL,RN,Emenda,1
+2192459,camara,141470,José Guimarães,PT,CE,Voto em Separado,1
+2192459,camara,141488,Paulo Teixeira,PT,SP,Voto em Separado,1
 2192459,camara,141513,Bilac Pinto,DEM,MG,Emenda,1
 2192459,camara,141516,Paulo Abi-Ackel,PSDB,MG,Emenda,1
 2192459,camara,141518,Paulo Pereira Da Silva,SOLIDARIEDADE,SP,Emenda,1
@@ -1865,6 +1806,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 2192459,camara,160575,Erika Kokay,PT,DF,Voto em Separado,1
 2192459,camara,160588,Diego Andrade,PSD,MG,Emenda,1
 2192459,camara,160592,Zeca Dirceu,PT,PR,Voto em Separado,1
+2192459,camara,160604,Pedro Uczai,PT,SC,Voto em Separado,1
 2192459,camara,160642,Pastor Eurico,PATRIOTA,PE,Emenda,1
 2192459,camara,160653,Roberto De Lucena,PODE,SP,Emenda,1
 2192459,camara,160655,Ricardo Izar,PP,SP,Emenda,1
@@ -1879,7 +1821,6 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 2192459,camara,178836,Alan Rick,DEM,AC,Requerimento,1
 2192459,camara,178842,Jhc,PSB,AL,Emenda,1
 2192459,camara,178854,Elmar Nascimento,DEM,BA,Emenda,1
-2192459,camara,178857,Jorge Solla,PT,BA,Voto em Separado,1
 2192459,camara,178882,André Fufuca,PP,MA,Emenda,1
 2192459,camara,178921,Sebastião Oliveira,PL,PE,Emenda,1
 2192459,camara,178922,Tadeu Alencar,PSB,PE,Voto em Separado,1
@@ -1915,7 +1856,6 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 2192459,camara,204418,Professor Luizão Goulart,PRB,PR,Requerimento,1
 2192459,camara,204421,Edna Henrique,PSDB,PB,Emenda,1
 2192459,camara,204425,Silvio Costa Filho,PRB,PE,Requerimento,1
-2192459,camara,204426,Carlos Veras,PT,PE,Voto em Separado,1
 2192459,camara,204429,João H. Campos,PSB,PE,Emenda,1
 2192459,camara,204429,João H. Campos,PSB,PE,Voto em Separado,1
 2192459,camara,204432,Marina Santos,SOLIDARIEDADE,PI,Emenda,1
@@ -1955,7 +1895,6 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 2192459,camara,204528,Adriana Ventura,NOVO,SP,Requerimento,1
 2192459,camara,204532,Vinicius Poit,NOVO,SP,Requerimento,1
 2192459,camara,204533,Idilvan Alencar,PDT,CE,Emenda,1
-2192459,camara,204535,Sâmia Bomfim,PSOL,SP,Voto em Separado,1
 2192459,camara,204536,Kim Kataguiri,DEM,SP,Emenda,1
 2192459,camara,204537,Enrico Misasi,PV,SP,Emenda,1
 2192459,camara,204538,Paulo Bengtson,PTB,PA,Emenda,1
@@ -1971,9 +1910,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 2192459,camara,207176,Bia Cavassa,PSDB,MS,Emenda,1
 2192459,camara,69871,Bacelar,PODE,BA,Emenda,1
 2192459,camara,73460,Gustavo Fruet,PDT,PR,Emenda,1
-2192459,camara,73482,Henrique Fontana,PT,RS,Voto em Separado,1
 2192459,camara,73486,Pompeo De Mattos,PDT,RS,Voto em Separado,1
-2192459,camara,73531,Ivan Valente,PSOL,SP,Voto em Separado,1
 2192459,camara,73586,Júlio Delgado,PSB,MG,Voto em Separado,1
 2192459,camara,73604,Rui Falcão,PT,SP,Voto em Separado,1
 2192459,camara,73801,Renildo Calheiros,PCdoB,PE,Voto em Separado,1
@@ -1987,12 +1924,12 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,qtd_de_documentos
 2192459,camara,74305,Roberto Pessoa,PSDB,CE,Emenda,1
 2192459,camara,74317,Júlio Cesar,PSD,PI,Emenda,1
 2192459,camara,74371,Rubens Otoni,PT,GO,Requerimento,1
+2192459,camara,74371,Rubens Otoni,PT,GO,Voto em Separado,1
 2192459,camara,74398,Maria Do Rosário,PT,RS,Requerimento,1
 2192459,camara,74398,Maria Do Rosário,PT,RS,Voto em Separado,1
 2192459,camara,74400,Paulo Pimenta,PT,RS,Requerimento,1
 2192459,camara,74571,Nelson Pellegrino,PT,BA,Requerimento,1
 2192459,camara,74571,Nelson Pellegrino,PT,BA,Voto em Separado,1
-2192459,camara,74784,Luiza Erundina,PSOL,SP,Voto em Separado,1
 2192459,camara,74848,Jandira Feghali,PCdoB,RJ,Outros,1
 2192459,camara,74848,Jandira Feghali,PCdoB,RJ,Requerimento,1
 2192459,camara,75431,Maurício Dziedricki,PTB,RS,Emenda,1
