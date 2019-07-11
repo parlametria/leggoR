@@ -18,11 +18,13 @@ get_fetch_status <- function(docs_ids, docs_data, authors_data) {
 
   fetched_data_docs <- docs_data %>%
     dplyr::select(id_documento, casa) %>%
-    dplyr::mutate(id_documento = as.numeric(id_documento))
+    dplyr::mutate(id_documento = as.numeric(id_documento)) %>% 
+    dplyr::distinct()
 
   fetched_autor_docs <- authors_data %>%
     dplyr::select(id_documento, casa) %>%
-    dplyr::mutate(id_documento = as.numeric(id_documento))
+    dplyr::mutate(id_documento = as.numeric(id_documento)) %>% 
+    dplyr::distinct()
 
   complete_docs_df <- dplyr::inner_join(docs_ids,
                                      dplyr::inner_join(fetched_data_docs,fetched_autor_docs,
@@ -144,7 +146,7 @@ if (nrow(new_docs_ids) > 0) {
   readr::write_csv(updated_docs, paste0(export_path , "/documentos.csv"))
 
   print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
+  new_autores_data <- merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id")
   updated_autores_docs <- rbind(current_autores, new_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
-  updated_autores_docs <- merge(updated_autores_docs, deputados, by.x = "id_autor", by.y = "id")
   readr::write_csv(updated_autores_docs, paste0(export_path , "/autores.csv"))
 }
