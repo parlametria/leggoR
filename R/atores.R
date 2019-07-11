@@ -13,12 +13,12 @@ create_tabela_atores <- function(documentos_df, autores_df) {
   }
 
   autores_docs <- merge(documentos_df, autores_df, by = c("id_documento", "casa")) %>%
+    dplyr::mutate(nome_autor = ifelse(is.na(nome), nome_autor, nome)) %>%
     dplyr::select(id_principal,
                   casa,
                   id_documento,
                   id_autor,
-                  nome_autor = nome,
-                  codTipo,
+                  nome_autor,
                   sigla_tipo,
                   descricao_tipo = descricaoTipo)
 
