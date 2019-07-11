@@ -621,7 +621,7 @@ temperatura_temas %>%
                                                label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp)),
             vjust="inward",hjust=1.2) +
   geom_line(data=temp_pecs_destaque_ma, size = 1, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
-  scale_colour_manual(values = c('#42313E','#694E63', '#694E63', '#694E63')) + 
+  scale_colour_manual(values = c('#1B1419','#352732', '#4F3B4A', '#694E63')) + 
   gghighlight(label_key = nome_pl)
 ```
 
