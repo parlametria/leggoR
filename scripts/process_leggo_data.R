@@ -46,6 +46,8 @@ autores <- readr::read_csv(paste0(input_path, '/autores.csv'),
                                      nome = readr::col_character(),
                                      cod_tipo = readr::col_integer(),
                                      tipo = readr::col_character(),
+                                     sigla_tipo = readr::col_character(),
+                                     partido = readr::col_character(),
                                      uri = readr::col_character(),
                                      id_documento = readr::col_character(),
                                      casa = readr::col_character()
@@ -55,4 +57,4 @@ print(paste("Gerando tabela de atores a partir de dados atualizados de documento
 
 atores_df <- agoradigital::create_tabela_atores(documentos, autores)
 
-readr::write_csv(atores_df, paste0(output_path, '/atores.csv'))
+readr::write_csv(atores_df, paste0(output_path, '/atores.csv'), na = "")

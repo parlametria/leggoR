@@ -18,20 +18,25 @@ create_tabela_atores <- function(documentos_df, autores_df) {
                   id_documento,
                   id_autor,
                   nome_autor = nome,
-                  codTipo,
+                  cod_tipo = codTipo,
                   sigla_tipo,
+                  partido,
+                  uf,
                   descricao_tipo = descricaoTipo)
 
   atores_df <- autores_docs %>%
-    dplyr::group_by(id_principal,
+    agoradigital::add_tipo_evento_documento() %>%
+    dplyr::rename(tipo_generico = tipo) %>%
+    dplyr::group_by(id_ext = id_principal,
                     casa,
                     id_autor,
                     nome_autor,
-                    codTipo,
-                    sigla_tipo,
-                    descricao_tipo) %>%
+                    partido,
+                    uf,
+                    tipo_generico) %>%
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
-    dplyr::arrange(id_principal, -qtd_de_documentos)
+    dplyr::arrange(id_ext, -qtd_de_documentos) %>%
+    dplyr::ungroup()
 
   return(atores_df)
 }
