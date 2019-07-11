@@ -81,12 +81,12 @@ temperatura_geral <- temperatura_props_temas %>%
             std_temp = sd(temperatura_recente),
             var_temp = var(temperatura_recente))
 
-cor_temperatura = "#dc6060"
-cor_agenda_nacional <- "#F5E4A3"
-cor_direitos_humanos <- "#90A4C5"
-cor_educacao <-"#F28BB9"
-cor_integridade_transparencia <- "#75E4CD"
-cor_meio_ambiente <- "#9A7891"
+cor_temperatura = "#a5a5a5"
+cor_agenda_nacional <- "#FB9A99"
+cor_direitos_humanos <- "#C0E49F"
+cor_educacao <-"#F9EE9D"
+cor_integridade_transparencia <- "#80B1D3"
+cor_meio_ambiente <- "#906B87"
 ```
 
 ## Qual foi o comportamento da temperatura geral das proposições acompanhadas pelo Leggo nos últimos anos (2015-2019)?
@@ -170,19 +170,6 @@ ggplotly(plot_evol_temp_an)
 
 ```{r warning=FALSE, message=FALSE}
 semana <- data.frame(tema = "Agenda Nacional",
-                     semana = lubridate::ymd(c('2019-02-18')
-                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
-evolucao_semanal_temperatura_an_1 <- evolucao_semanal_temperatura %>%
-  inner_join(semana) %>%
-  filter(evolucao_temp_recente > 0) %>%
-  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
-  arrange(desc(evolucao_temp_recente))
-
-evolucao_semanal_temperatura_an_1
-```
-
-```{r warning=FALSE, message=FALSE}
-semana <- data.frame(tema = "Agenda Nacional",
                      semana = lubridate::ymd(c('2019-04-22')
                                              , tz=lubridate::tz(temperatura_props_temas$semana[1])))
 evolucao_semanal_temperatura_an_2 <- evolucao_semanal_temperatura %>%
@@ -207,24 +194,11 @@ evolucao_semanal_temperatura_an_3 <- evolucao_semanal_temperatura %>%
 evolucao_semanal_temperatura_an_3
 ```
 
-```{r warning=FALSE, message=FALSE}
-semana <- data.frame(tema = "Agenda Nacional",
-                     semana = lubridate::ymd(c('2019-07-01')
-                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
-evolucao_semanal_temperatura_an_4 <- evolucao_semanal_temperatura %>%
-  inner_join(semana) %>%
-  filter(evolucao_temp_recente > 0) %>%
-  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
-  arrange(desc(evolucao_temp_recente))
-
-evolucao_semanal_temperatura_an_4
-```
-
 No gráfico de temperatura por tema acima, podemos identificar, no tema `Agenda Nacional`, dois picos principais no início de 2017 e de 2019, respectivamente. Abaixo mostramos mais de perto esses picos, numa linha do tempo mais resumida.
 
 ```{r, fig.width=12,fig.height=4,fig.align='center'}
 semanas_destaque_an <- data.frame(tema = "Agenda Nacional",
-                     semana = lubridate::ymd(c('2019-02-18','2019-04-22','2019-05-06','2019-07-01')
+                     semana = lubridate::ymd(c('2019-04-22','2019-05-06')
                                              , tz=lubridate::tz(temperatura_props_temas$semana[1])))
 
 temp_semanas_destaque_an <- temperatura_temas %>%
@@ -249,7 +223,8 @@ temperatura_temas %>%
   geom_text(data=temp_semanas_destaque_an, aes(x=as.Date(semana), y=total_temp, 
                                                label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp)),
             vjust="inward",hjust=1.3) +
-  geom_line(data=temp_pecs_destaque_an, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+  geom_line(data=temp_pecs_destaque_an, size=1, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+  scale_colour_manual(values = c('#A06362')) + 
   gghighlight(label_key = nome_pl)
 ```
 
@@ -343,8 +318,9 @@ temperatura_temas %>%
   geom_point(data=temp_semanas_destaque_dh, colour="red", size=3) + 
   geom_text(data=temp_semanas_destaque_dh, aes(x=as.Date(semana), y=total_temp, 
                                                label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp)),
-            vjust="inward",hjust=1.2) +
-  geom_line(data=temp_pecs_destaque_dh, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+            vjust="inward", hjust=1.2) +
+  geom_line(data=temp_pecs_destaque_dh, size=1, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+  scale_colour_manual(values = c("#92B771", "#728E58",'#21291A','#415233')) + 
   gghighlight(label_key = nome_pl)
 ```
 
@@ -447,7 +423,8 @@ temperatura_temas %>%
   geom_text(data=temp_semanas_destaque_ed, aes(x=as.Date(semana), y=total_temp,
                                                label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp)),
             vjust="inward",hjust=1.2) +
-  geom_line(data=temp_pecs_destaque_ed, aes(x=as.Date(semana), y=temperatura_recente, group=nome_pl)) +
+  geom_line(data=temp_pecs_destaque_ed, size=1, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+  scale_colour_manual(values = c('#44412B','#9F9864')) + 
   gghighlight(label_key = nome_pl)
 ```
 
@@ -513,7 +490,7 @@ Para o tema `Integridade e Transparência`, observamos um aumento mais expressiv
 
 ```{r, fig.width=12,fig.height=4,fig.align='center'}
 semanas_destaque_it <- data.frame(tema = "Integridade e Transparência",
-                     semana = lubridate::ymd(c('2018-04-09','2019-04-01')
+                     semana = lubridate::ymd(c('2019-04-01', '2019-06-24')
                                              , tz=lubridate::tz(temperatura_props_temas$semana[1])))
 
 temp_semanas_destaque_it <- temperatura_temas %>%
@@ -538,7 +515,8 @@ temperatura_temas %>%
   geom_text(data=temp_semanas_destaque_it, aes(x=as.Date(semana), y=total_temp,
                                                label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp)),
             vjust="inward",hjust=1.2) +
-  geom_line(data=temp_pecs_destaque_it, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+  geom_line(data=temp_pecs_destaque_it, size=1, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+  scale_colour_manual(values = c('#3B5160','#182127',"#5E819A")) + 
   gghighlight(label_key = nome_pl)
 ```
 
@@ -593,9 +571,9 @@ semana <- data.frame(tema = "Meio Ambiente",
                                              , tz=lubridate::tz(temperatura_props_temas$semana[1])))
 evolucao_semanal_temperatura_ma_2 <- evolucao_semanal_temperatura %>%
   inner_join(semana) %>%
-  filter(evolucao_temp_recente > 0) %>%
+  filter(temperatura_recente > 0) %>%
   select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
-  arrange(desc(evolucao_temp_recente))
+  arrange(desc(temperatura_recente))
 
 evolucao_semanal_temperatura_ma_2
 ```
@@ -624,7 +602,8 @@ temp_semanas_destaque_ma <- temperatura_temas %>%
   inner_join(semanas_destaque_ma)
 
 temp_pecs_destaque_ma <- evolucao_semanal_temperatura %>%
-  filter(nome_pl %in% c("PL 3729/2004","PL 490/2007"))
+  filter(nome_pl %in% c("PL 3729/2004","PL 490/2007", "MPV 867/2018|MPV 867/2018", "MPV 868/2018|MPV 868/2018")) %>% 
+  mutate(nome_pl = stringr::str_sub(nome_pl,end=12))
 
 temperatura_temas %>% 
   filter(tema == "Meio Ambiente") %>%
@@ -641,7 +620,8 @@ temperatura_temas %>%
   geom_text(data=temp_semanas_destaque_ma, aes(x=as.Date(semana), y=total_temp,
                                                label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp)),
             vjust="inward",hjust=1.2) +
-  geom_line(data=temp_pecs_destaque_ma, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+  geom_line(data=temp_pecs_destaque_ma, size = 1, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+  scale_colour_manual(values = c('#42313E','#694E63', '#694E63', '#694E63')) + 
   gghighlight(label_key = nome_pl)
 ```
 
