@@ -18,8 +18,8 @@ casa <- args[2]
 ## Install local repository R package version
 devtools::install()
 
-if (is.na(casa)) {
 
+update_deputados <- function() {
   ids_deputados <- rcongresso::fetch_ids_deputados()
   print("Buscando deputados...")
   deputados <- rcongresso::fetch_all_deputados(ids_deputados) %>%
@@ -28,16 +28,18 @@ if (is.na(casa)) {
     dplyr::mutate(ultimo_status_nome_eleitoral = tolower(ultimo_status_nome_eleitoral) %>% tools::toTitleCase())
   readr::write_csv(deputados, paste0(export_path, "/deputados.csv"))
 
+}
+
+if (is.na(casa)) {
+
+  update_deputados()
   #Implementar fetch_all_senadores
   print("Buscando senadores...")
 } else {
 
   if (casa == "camara") {
 
-    ids_deputados <- rcongresso::fetch_ids_deputados()
-    print("Buscando deputados...")
-    deputados <- rcongresso::fetch_all_deputados(ids_deputados)
-    readr::write_csv(deputados, paste0(export_path, "/deputados.csv"))
+    update_deputados()
 
   } else if (casa == "senado") {
 
@@ -50,4 +52,6 @@ if (is.na(casa)) {
   }
 
 }
+
+
 

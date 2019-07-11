@@ -18,11 +18,13 @@ get_fetch_status <- function(docs_ids, docs_data, authors_data) {
 
   fetched_data_docs <- docs_data %>%
     dplyr::select(id_documento, casa) %>%
-    dplyr::mutate(id_documento = as.numeric(id_documento))
+    dplyr::mutate(id_documento = as.numeric(id_documento)) %>% 
+    dplyr::distinct()
 
   fetched_autor_docs <- authors_data %>%
     dplyr::select(id_documento, casa) %>%
-    dplyr::mutate(id_documento = as.numeric(id_documento))
+    dplyr::mutate(id_documento = as.numeric(id_documento)) %>% 
+    dplyr::distinct()
 
   complete_docs_df <- dplyr::inner_join(docs_ids,
                                      dplyr::inner_join(fetched_data_docs,fetched_autor_docs,
@@ -85,6 +87,20 @@ current_autores <- readr::read_csv(paste0(export_path, '/autores.csv'),
                                      casa = readr::col_character()
                                    ))
 
+deputados <- readr::read_csv(paste0(export_path,'/deputados.csv'),
+                                     col_types = list(
+                                       .default = readr::col_character(),
+                                       data_falecimento = readr::col_date(format = ""),
+                                       data_nascimento = readr::col_date(format = ""),
+                                       id = readr::col_double(),
+                                       ultimo_status_gabinete_andar = readr::col_double(),
+                                       ultimo_status_gabinete_sala = readr::col_double(),
+                                       ultimo_status_id = readr::col_double(),
+                                       ultimo_status_id_legislatura = readr::col_double()
+                                     ))
+
+deputados <- deputados %>% dplyr::select(id, partido = ultimo_status_sigla_partido, uf = ultimo_status_sigla_uf)
+
 # Check for new data
 all_pls_ids <- agoradigital::get_all_leggo_props_ids(pls_ids)
 
@@ -130,6 +146,7 @@ if (nrow(new_docs_ids) > 0) {
   readr::write_csv(updated_docs, paste0(export_path , "/documentos.csv"))
 
   print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
+  new_autores_data <- merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id")
   updated_autores_docs <- rbind(current_autores, new_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
   readr::write_csv(updated_autores_docs, paste0(export_path , "/autores.csv"))
 }

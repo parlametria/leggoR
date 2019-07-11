@@ -150,9 +150,13 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids) {
                   casa) %>%
     dplyr::mutate(id_documento = id_principal)
 
-  all_docs_ids <- purrr::map_df(pls_principais_ids$id_principal, ~rcongresso::fetch_ids_relacionadas(.x)) %>%
+  all_docs_ids <- purrr::map2_df(pls_principais_ids$id_principal,
+                                 pls_principais_ids$casa,
+                                 ~rcongresso::fetch_ids_relacionadas(.x, .y)) %>%
     dplyr::rename(id_principal = id_prop,
                   id_documento = id_relacionada)  %>%
+    dplyr::mutate(id_principal = as.double(id_principal),
+                  id_documento = as.double(id_documento)) %>%
     dplyr::bind_rows(pls_principais_ids)
 
   new_docs_ids <- all_docs_ids %>%
@@ -210,7 +214,7 @@ fetch_documentos_data <- function(docs_ids) {
 #' @export
 add_tipo_evento_documento <- function(docs_data) {
   docs_data %>%
-    fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricaoTipo = "regex"), ignore_case = T) %>%
+    fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricao_tipo = "regex"), ignore_case = T) %>%
     dplyr::select(-regex) %>%
     dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
 
