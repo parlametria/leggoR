@@ -117,7 +117,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 
   eventos_sem_horario <- eventos_df %>%
       dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
-
+  
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
   full_dates <- data.frame(data = seq(min(eventos_sem_horario$data), max_date, by = "1 day"))
@@ -142,7 +142,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 
   get_arquivamento <- function(df, colunas) {
     df %>%
-      dplyr::filter(evento == "arquivamento") %>%
+      dplyr::filter(evento %in% c("arquivamento","transformada_lei")) %>%
       dplyr::select(colunas) %>%
       dplyr::mutate(dummy = "Dummy")
   }
