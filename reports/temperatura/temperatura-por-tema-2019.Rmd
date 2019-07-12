@@ -29,7 +29,7 @@ knitr::opts_chunk$set(echo = FALSE,
 min_date <- lubridate::ymd_hms('2019-01-01 00:00:00')
 max_date <- lubridate::ymd_hms('2019-07-10 23:59:59')
 
-temperatura_props <- readr::read_csv('../../data/novo_historico_temperatura.csv')
+raw_temperatura_props <- readr::read_csv('../../data/novo_historico_temperatura.csv')
 leggo_ids <- readr::read_csv('../../data/leggo_ids.csv')
 proposicoes <- readr::read_csv('../../data/proposicoes.csv')
 
@@ -45,6 +45,22 @@ leggo_ids_nomes <- leggo_ids %>%
             nome_pl = paste0(nome_pl, collapse = "|"),
             apelido = first(apelido),
             tema = first(tema))
+
+##Filtro para corrigir problema da temperatura que continua após o fim da tramitação
+mpv867 <- raw_temperatura_props %>%
+  dplyr::filter(id_leggo == 43,periodo < lubridate::ymd_hms('2019-05-30 00:00:00'))
+
+mpv868 <- raw_temperatura_props %>%
+  dplyr::filter(id_leggo == 40,periodo < lubridate::ymd_hms('2019-06-06 00:00:00'))
+
+pl1321 <- raw_temperatura_props %>%
+  dplyr::filter(id_leggo == 46,periodo < lubridate::ymd_hms('2019-05-21 00:00:00'))
+
+other_pls <- raw_temperatura_props %>%
+  dplyr::filter(!(id_leggo %in% c(40,43,46)))
+
+temperatura_props <- dplyr::bind_rows(other_pls,mpv867,mpv868,pl1321)
+
   
 temperatura_props_temas <- temperatura_props %>%
   filter((periodo >= min_date) & (periodo <= max_date)) %>%
@@ -90,7 +106,7 @@ cor_integridade_transparencia <- "#80B1D3"
 cor_meio_ambiente <- "#906B87"
 ```
 
-## Qual foi o comportamento da temperatura geral das proposições acompanhadas pelo Leggo nos últimos anos (2015-2019)?
+## Qual foi o comportamento da temperatura geral das proposições acompanhadas pelo Leggo em 2019?
 
 ```{r fig.width=12,fig.align='center'}
 
