@@ -83,7 +83,7 @@
     {"evento": "transformada_lei", "regex": "sancionada", "tipo":"votacao"},
     {"evento": "vetada_totalmente", "regex": "vetada integralmente|vetado(,)* totalmente", "tipo":"votacao"},
     {"evento": "virada_de_casa", "regex": "primeiro(-| )secret(a|á)rio.*da.*c(a|â)mara.*dos.*deputados.*encaminhando.*revis(a|ã)o", "tipo":"votacao"},
-    {"evento": "perca_da_eficacia", "regex": "t(é|e)rmino do prazo de vig(ê|e)ncia", "tipo":"votacao"}
+    {"evento": "perda_da_eficacia", "regex": "t(é|e)rmino do prazo de vig(ê|e)ncia", "tipo":"votacao"}
   ],
   
  "locais": [
