@@ -57,11 +57,13 @@ fetch_tramitacao <- function(id, casa, isMPV = FALSE) {
 #' @title Baixa os dados da tramitação da Câmara
 #' @description Retorna dataframe com os dados da tramitação de uma proposição da Camara
 #' @param bill_id ID de uma proposição na Camara
+#' @param data_inicio Data inicio no formato AAAA-MM-DD
+#' @param data_fim Data final no formato AAAA-MM-DD
 #' @return Dataframe com os dados da tramitação de uma proposição da Camara
 #' @examples
 #' fetch_tramitacao_camara(2121442)
-fetch_tramitacao_camara <- function(bill_id) {
-  rcongresso::fetch_tramitacao_camara(bill_id) %>%
+fetch_tramitacao_camara <- function(bill_id, data_inicio = NA, data_fim = NA) {
+  rcongresso::fetch_tramitacao_camara(bill_id, data_inicio, data_fim) %>%
     dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,"T"," ")),
                   casa = "camara",
                   id_situacao = as.integer(cod_tipo_tramitacao)) %>%
@@ -82,14 +84,19 @@ fetch_tramitacao_camara <- function(bill_id) {
 #' @param id_documento Id do documento para ser baixado
 #' @param id_principal Id da proposição principal
 write_docs <- function(export_path, id_documento, id_principal) {
-  tram <- 
-    fetch_tramitacao_camara(id_documento) %>% 
-    dplyr::mutate(id_principal = id_documento)
-  
   path <- paste0(export_path, "/", id_principal, "_camara")
   ifelse(!dir.exists(file.path(path)), dir.create(file.path(path)), FALSE)
-  readr::write_csv(tram, paste0(path, "/", id_documento, ".csv"))
-  
+  destfile <- paste0(path, "/", id_documento, ".csv")
+  if(!file.exists(destfile)){
+    tram <- 
+      fetch_tramitacao_camara(id_documento, lubridate::today() - 14, lubridate::today()) %>% 
+      dplyr::mutate(id_principal = id_documento)
+  } else {
+    tram <- 
+      fetch_tramitacao_camara(id_documento) %>% 
+      dplyr::mutate(id_principal = id_documento)
+  }
+  readr::write_csv(tram, destfile, append = T)
 }
 
 #' @title Write_docs seguro
