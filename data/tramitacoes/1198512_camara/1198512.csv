@@ -181,6 +181,6 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 1198512,camara,2019-05-29T12:38:00Z,182,Despacho Chancelado,MESA,180,NA,NA,1198512
 1198512,camara,2019-05-29T12:39:00Z,182,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,1198512
 1198512,camara,2019-06-06T00:00:00Z,184,"Encerrado o prazo para emendas, foram apresentadas 5 emendas.",PEC01515,1005,Aguardando Parecer,NA,1198512
-1198512,camara,2019-06-06T00:00:00Z,186,"Encaminhada à publicação. Emenda(s) apresentada(s) na Comissão Especial publicada(s) no DCD de 07/06/2019, Letra B.",CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1761775,1198512
+1198512,camara,2019-06-06T00:00:00Z,186,"Encaminhada à publicação. Emenda(s) apresentada(s) na Comissão Especial publicada(s) no DCD de 07/06/19, Letra B, PÁG 248.",CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1761775,1198512
 1198512,camara,2019-06-06T00:00:00Z,185,Encerrado o prazo para emendas ao projeto. Foram apresentadas 5 emendas.,PEC01515,600,Aguardando Parecer,NA,1198512
 1198512,camara,2019-06-07T00:00:00Z,187,Notificação para publicação das emendas apresentadas na Comissão Especial.,CCP,1050,NA,NA,1198512

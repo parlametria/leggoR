@@ -126,9 +126,6 @@ if (nrow(new_docs_ids) > 0) {
   print("Buscando os autores dos novos documentos...")
   new_autores_data <- agoradigital::fetch_autores_documentos(new_docs_data) %>%
     dplyr::mutate_all(~ as.character(.))
-  
-  print("Buscando a tramitação dos novos documentos...")
-  new_tramitacao_data <- agoradigital::fetch_tramitacao_data(new_docs_ids) 
 
   fetch_status <- get_fetch_status(new_docs_ids, new_docs_data, new_autores_data)
   complete_docs <- fetch_status$complete_docs
@@ -143,13 +140,13 @@ if (nrow(new_docs_ids) > 0) {
     print("Não foi possível baixar dados completos (proposição e autores) para nenhum dos novos documentos =(")
     quit(save = "no", status=1)
   }
-  
-  print("Baixando as novas tramitações")
-  fetch_tramitacao_data(paste0(export_path, "/tramitacoes"), new_docs_ids)
 
   print(paste("Adicionando ",nrow(new_docs_data)," novos documentos."))
   updated_docs <- rbind(current_docs, new_docs_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
   readr::write_csv(updated_docs, paste0(export_path , "/documentos.csv"))
+  
+  print("Buscando a tramitação dos documentos")
+  new_tramitacao_data <- agoradigital::fetch_tramitacao_data(paste0(export_path, "/tramitacoes"), updated_docs) 
 
   print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
   new_autores_data <- merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id")

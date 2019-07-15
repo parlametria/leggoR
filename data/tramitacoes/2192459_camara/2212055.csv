@@ -1,5 +1,11 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
 2212055,camara,2019-07-11T22:08:00Z,1,"Apresentação do Recurso contra decisão do Presidente da CD em Questao de Ordem (Art. 95, § 8º, RICD) n. 32/2019, pela Deputada Erika Kokay (PT-DF), que: ""Recorre, corn base no art. 95, §8° do Regimento Interno da Câmara dos Deputados, da decisão do Presidente na Questãode Ordem nº 47/2019"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1778424,2212055
 2212055,camara,2019-07-11T22:08:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2212055
 2212055,camara,2019-07-11T22:14:00Z,3,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 1002/2019.,SEPRO,180,NA,NA,2212055
 2212055,camara,2019-07-12T00:00:00Z,5,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1779002,2212055
-2212055,camara,2019-07-12T10:58:00Z,4,Recebimento pela SECAP(SGM).,SECAP(SGM),500,Aguardando Despacho do Presidente da Câmara dos Deputados,NA,2212055
+2212055,camara,2019-07-12T10:58:00Z,4,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2212055
+2212055,camara,2019-07-15T15:14:00Z,6,Despacho Chancelado,SECAP(SGM),180,NA,NA,2212055
+2212055,camara,2019-07-15T15:14:00Z,7,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2212055
+2212055,camara,2019-07-15T15:16:00Z,8,"Submeta-se ao Plenário, após ter sido ouvida a Comissão de Constituição e Justiça e de Cidadania, nos termos do art. 95, § 8º, do Regimento Interno. Publique-se. Proposição Sujeita à Apreciação do Plenário",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1779002,2212055
+2212055,camara,2019-07-15T15:16:00Z,9,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2212055
+2212055,camara,2019-07-15T15:19:00Z,10,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 297/2019.,SECAP(SGM),180,NA,NA,2212055

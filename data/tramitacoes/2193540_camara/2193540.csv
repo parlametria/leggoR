@@ -107,7 +107,7 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 2193540,camara,2019-04-23T19:41:00Z,104,Novo Despacho,SECAP(SGM),171,NA,NA,2193540
 2193540,camara,2019-04-23T19:46:00Z,106,Despacho Chancelado,SECAP(SGM),180,NA,NA,2193540
 2193540,camara,2019-04-23T19:47:00Z,108,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Transformado em Norma Jurídica,NA,2193540
-2193540,camara,2019-04-24T00:00:00Z,111,"Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 25/04/2019, Letra C.",CCP,604,NA,NA,2193540
+2193540,camara,2019-04-24T00:00:00Z,111,"Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 25/04/19, Letra C, PÁG 312.",CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1774336,2193540
 2193540,camara,2019-04-24T00:00:00Z,126,"Rejeitadas as Emendas do Senado Federal nºs 1, 2, 3 e 5.",PLEN,1236,NA,NA,2193540
 2193540,camara,2019-04-24T09:45:00Z,109,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 119/2019.,SECAP(SGM),180,NA,NA,2193540
 2193540,camara,2019-04-24T09:50:00Z,110,Recebimento pela CCP.,CCP,500,NA,NA,2193540
@@ -144,3 +144,4 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 2193540,camara,2019-05-17T00:00:00Z,143,Encaminhar ao Arquivo,SEXPE(SGM),910,NA,NA,2193540
 2193540,camara,2019-06-18T00:00:00Z,144,Recebimento do Ofício nº 276/2019 (CN) comunicando veto parcial e encaminhando cópia da Mensagem e autógrafo do PL 1.321/2019).,MESA,500,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1767835,2193540
 2193540,camara,2019-06-18T00:00:00Z,145,Recebimento do Ofício nº 280/2019 (CN) comunicando resultado da apreciação do veto do PL 1.321/2019. Resultado: rejeitado o veto parcial.,MESA,500,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1767839,2193540
+2193540,camara,2019-06-26T00:00:00Z,146,Recebimento do Ofício nº 300/2019 (CN) encaminhando autógrafo de partes vetadas de Projeto de Lei promulgado.,MESA,500,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1772927,2193540

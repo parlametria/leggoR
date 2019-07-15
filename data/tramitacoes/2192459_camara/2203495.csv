@@ -14,7 +14,9 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 2203495,camara,2019-05-27T15:28:00Z,10,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,Aguardando Definição Encaminhamento,NA,2203495
 2203495,camara,2019-05-27T15:29:00Z,13,Encaminhamento de Despacho de Distribuição à SEPUB(SGM) para publicação.,MESA,604,Aguardando Definição Encaminhamento,NA,2203495
 2203495,camara,2019-05-27T15:45:00Z,14,Encaminhado à(ao) 1SECM através da guia de Remessa (GR/MESA) nº 423/2019.,MESA,180,Aguardando Definição Encaminhamento,NA,2203495
-2203495,camara,2019-05-27T18:26:00Z,15,Recebimento pela 1SECM.,1SECM,500,Aguardando Resposta ,NA,2203495
-2203495,camara,2019-05-31T00:00:00Z,17,"Remessa por meio do Ofício 1ªSec/RI/E nº 531/2019, ao Ministro da Economia.",1SECM,138,Aguardando Resposta ,NA,2203495
-2203495,camara,2019-05-31T00:00:00Z,18,Prazo para Resposta Externas (de 01/06/2019 a 01/07/2019),1SECM,350,Aguardando Resposta ,NA,2203495
+2203495,camara,2019-05-27T18:26:00Z,15,Recebimento pela 1SECM.,1SECM,500,Aguardando Remessa ao Arquivo,NA,2203495
+2203495,camara,2019-05-31T00:00:00Z,17,"Remessa por meio do Ofício 1ªSec/RI/E nº 531/2019, ao Ministro da Economia.",1SECM,138,Aguardando Remessa ao Arquivo,NA,2203495
+2203495,camara,2019-05-31T00:00:00Z,18,Prazo para Resposta Externas (de 01/06/2019 a 01/07/2019),1SECM,350,Aguardando Remessa ao Arquivo,NA,2203495
 2203495,camara,2019-06-04T11:00:00Z,19,"Ratificado o parecer ""ad referendum""",MESA,1040,Aguardando Definição Encaminhamento,NA,2203495
+2203495,camara,2019-07-02T00:00:00Z,20,"Recebimento de resposta conforme Ofício nº 318/2019/GME-ME, de 01 de julho de 2019, do Ministério da Economia.",1SECM,162,Aguardando Remessa ao Arquivo,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1774021,2203495
+2203495,camara,2019-07-03T00:00:00Z,21,Encaminhamento de resposta por meio do sistema Infoleg.,1SECM,1056,Aguardando Remessa ao Arquivo,NA,2203495

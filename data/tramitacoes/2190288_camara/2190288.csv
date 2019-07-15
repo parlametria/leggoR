@@ -22,15 +22,15 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 2190288,camara,2019-05-10T14:52:00Z,21,Recebimento pela COAPP(SGM).,COAPP(SGM),500,NA,NA,2190288
 2190288,camara,2019-05-10T14:54:00Z,22,Encaminhado à(ao) CCP através da guia de Remessa (GR/COAPP(SGM)) nº 20/2019.,COAPP(SGM),180,NA,NA,2190288
 2190288,camara,2019-05-10T15:15:00Z,23,Recebimento pela CCP.,CCP,500,NA,NA,2190288
-2190288,camara,2019-05-13T00:00:00Z,24,Realizar o Encaminhamento para COAPP(SGM),NATEC(SGM),910,NA,NA,2190288
+2190288,camara,2019-05-13T00:00:00Z,24,Realizar o Encaminhamento para COAPP(SGM),NATEC(SGM),910,Aguardando Recebimento,NA,2190288
 2190288,camara,2019-05-13T00:00:00Z,29,"Recebido o PLV nº 10, de 2019, com retificações, da Comissão Mista da MPV 870/2019, que Estabelece a organização básica dos órgãos da Presidência da República e dos Ministérios..",MESA,100,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1747081,2190288
 2190288,camara,2019-05-13T00:00:00Z,27,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 14/05/2019.,CCP,604,NA,NA,2190288
 2190288,camara,2019-05-13T00:00:00Z,28,"Recebido o Ofício n. 156/2019 (CN), do Presidente da Mesa do Congresso Nacional, comunicando que foi constatada inexatidão material no texto do Projeto de Lei de Conversão n. 10, de 2019 (MPV n. 870, de 2019).",MESA,500,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1747079,2190288
-2190288,camara,2019-05-13T15:50:00Z,25,Encaminhado à(ao) COAPP(SGM) através da guia de Remessa (GR/NATEC(SGM)) nº 7/2019.,NATEC(SGM),180,NA,NA,2190288
+2190288,camara,2019-05-13T15:50:00Z,25,Encaminhado à(ao) COAPP(SGM) através da guia de Remessa (GR/NATEC(SGM)) nº 7/2019.,NATEC(SGM),180,Aguardando Recebimento,NA,2190288
 2190288,camara,2019-05-13T17:01:00Z,26,Encaminhado à(ao) NATEC(SGM) através da guia de Remessa (GR/CCP) nº 2372/2019.,CCP,180,NA,NA,2190288
 2190288,camara,2019-05-14T00:00:00Z,32,"Leitura do recebimento do Ofício nº 154/2019, do Congresso Nacional (CN), que encaminha o processado da Medida Provisória nº 870/2019 (Sessão Deliberativa Ordinária de 14/05/2019 - 14h - 100ª Sessão).Leitura do recebimento do Ofício nº 156/2019 (CN), do Presidente da Mesa do Congresso Nacional, comunicando que foi constatada inexatidão material no texto do Projeto de Lei de Conversão nº 10, de 2019 (Sessão Deliberativa Ordinária de 14/05/2019 - 14h - 100ª Sessão).",PLEN,1005,NA,NA,2190288
 2190288,camara,2019-05-14T00:00:00Z,33,"Encaminhada à publicação. Republicação em avulso e DCD, no DCD de 15/5/19 PÁG 335.",CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1768525,2190288
-2190288,camara,2019-05-14T10:11:00Z,30,Recebimento pelo NATEC(SGM) -  - Maria Ivania Amorim.,NATEC(SGM),500,NA,NA,2190288
+2190288,camara,2019-05-14T10:11:00Z,30,Recebimento pelo NATEC(SGM) -  - Maria Ivania Amorim.,NATEC(SGM),500,Aguardando Recebimento,NA,2190288
 2190288,camara,2019-05-14T10:38:00Z,31,Recebimento pela COAPP(SGM) -  - Fernanda Lima de Carvalho Fernandes.,COAPP(SGM),500,NA,NA,2190288
 2190288,camara,2019-05-21T14:00:00Z,34,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,NA,NA,2190288
 2190288,camara,2019-05-22T09:00:00Z,35,Discussão em turno único.,PLEN,222,NA,NA,2190288
@@ -112,4 +112,8 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 2190288,camara,2019-05-24T00:00:00Z,111,Remessa ao Senado Federal por meio do Of. nº  414/2019/SGM-P.,MESA,128,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1752741,2190288
 2190288,camara,2019-06-03T00:00:00Z,112,Recebimento do Ofício nº 190/2019 (CN) que comunica remessa de matéria à sanção.,MESA,500,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1758797,2190288
 2190288,camara,2019-06-18T00:00:00Z,113,Transformado na Lei Ordinária 13844/2019. DOU 18/06/19 PÁG 04 COL 01 - EDIÇÃO EXTRA. Vetado parcialmente. (MSC 254/19-PE). Razões do veto: DOU 18/06/19 PÁG 23 COL 01 - EDIÇÃO EXTRA.,MESA,1012,Transformado em Norma Jurídica,NA,2190288
-2190288,camara,2019-06-18T00:00:00Z,114,Encaminhar ao Arquivo,SEXPE(SGM),910,Aguardando Encaminhamento,NA,2190288
+2190288,camara,2019-06-18T00:00:00Z,114,Encaminhar ao Arquivo,SEXPE(SGM),910,NA,NA,2190288
+2190288,camara,2019-07-01T00:00:00Z,115,Recebimento do Ofício nº 317/2019 (CN) comunicando veto parcial e encaminhando cópia da Mensagem e autógrafo do PLv 10/2019 (MPv 870/2019),MESA,500,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1772802,2190288
+2190288,camara,2019-07-03T00:00:00Z,116,"Encaminhados, via Livro de Protocolo, original dos ofícios nº 307/2019 (CN), 315/2019 (CN), 317/2019 (CN) e 318/2019 (CN), à NATEC, para inclusão no processado",MESA,1005,Transformado em Norma Jurídica,NA,2190288
+2190288,camara,2019-07-03T00:00:00Z,117,Realizar o Encaminhamento para NATEC(SGM),COAPP(SGM),910,NA,NA,2190288
+2190288,camara,2019-07-03T17:29:00Z,118,Encaminhado à(ao) NATEC(SGM) através da guia de Remessa (GR/COAPP(SGM)) nº 32/2019.,COAPP(SGM),180,NA,NA,2190288

@@ -1,5 +1,5 @@
 prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
-604557,camara,2013-12-17T00:00:00Z,1,"Apresentação do Projeto de Lei n. 6969/2013, pelo Deputado Sarney Filho (PV-MA), que: ""Institui a Política Nacional para a Conservação e o Uso Sustentável do Bioma Marinho Brasileiro (PNCMar) e dá outras providências"".",PLEN,100,Aguardando Deliberação,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1214143,604557
+604557,camara,2013-12-17T00:00:00Z,1,"Apresentação do Projeto de Lei n. 6969/2013, pelo Deputado Sarney Filho (PV-MA), que: ""Institui a Política Nacional para a Conservação e o Uso Sustentável do Bioma Marinho Brasileiro (PNCMar) e dá outras providências"".",PLEN,100,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1214143,604557
 604557,camara,2013-12-17T12:14:00Z,2,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,604557
 604557,camara,2013-12-17T13:15:00Z,3,Recebimento pela SEPRO.,SEPRO,500,NA,NA,604557
 604557,camara,2013-12-17T16:20:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 5028/2013.,SEPRO,180,NA,NA,604557
@@ -89,23 +89,24 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 604557,camara,2018-06-05T14:30:00Z,89,Vista ao Deputado Arnaldo Faria de Sá.,CCJC,420,Aguardando Parecer,NA,604557
 604557,camara,2018-06-06T00:00:00Z,94,"Encaminhada à publicação. Parecer da Comissão de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural Publicado em Avulso.",CCP,604,NA,NA,604557
 604557,camara,2018-06-06T10:00:00Z,90,Cumprindo prazo de vista.,CCJC,1005,Aguardando Parecer,NA,604557
-604557,camara,2018-06-06T18:29:00Z,93,Alteração do Regime de Tramitação desta proposição em virtude da Aprovação do REQ 8795/2018 => PL 6969/2013.,PLEN,196,Aguardando Deliberação,NA,604557
-604557,camara,2018-06-06T18:29:00Z,92,"Aprovado requerimento do Líderes que requer urgência para a tramitação do Projeto de Lei n. 6969 de 2013, que ""Institui a Política Nacional para a Conservação e o Uso Sustentável do Bioma Marinho Brasileiro (PNCMar) e dá outras providências.""",PLEN,196,Aguardando Deliberação,NA,604557
-604557,camara,2018-06-06T19:27:00Z,91,"Apresentação do Requerimento de Urgência (Art. 155 do RICD) n. 8795/2018, pelo Líderes, que: ""Requer urgência para a tramitação do Projeto de Lei n. 6969 de 2013, que 'Institui a Política Nacional para a Conservação e o Uso Sustentável do Bioma Marinho Brasileiro (PNCMar) e dá outras providências.'"".",PLEN,194,Aguardando Deliberação,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1666486,604557
+604557,camara,2018-06-06T18:29:00Z,93,Alteração do Regime de Tramitação desta proposição em virtude da Aprovação do REQ 8795/2018 => PL 6969/2013.,PLEN,196,Pronta para Pauta,NA,604557
+604557,camara,2018-06-06T18:29:00Z,92,"Aprovado requerimento do Líderes que requer urgência para a tramitação do Projeto de Lei n. 6969 de 2013, que ""Institui a Política Nacional para a Conservação e o Uso Sustentável do Bioma Marinho Brasileiro (PNCMar) e dá outras providências.""",PLEN,196,Pronta para Pauta,NA,604557
+604557,camara,2018-06-06T19:27:00Z,91,"Apresentação do Requerimento de Urgência (Art. 155 do RICD) n. 8795/2018, pelo Líderes, que: ""Requer urgência para a tramitação do Projeto de Lei n. 6969 de 2013, que 'Institui a Política Nacional para a Conservação e o Uso Sustentável do Bioma Marinho Brasileiro (PNCMar) e dá outras providências.'"".",PLEN,194,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1666486,604557
 604557,camara,2018-06-07T10:16:00Z,95,Prazo de Vista Encerrado,CCJC,600,Aguardando Parecer,NA,604557
 604557,camara,2018-12-19T00:00:00Z,97,"Devolvido ao Relator, Dep. Alessandro Molon (PSB-RJ)",CCJC,170,Aguardando Parecer,NA,604557
-604557,camara,2018-12-19T16:10:00Z,96,"Apresentação do Requerimento n. 9388/2018, pelo Deputado Alessandro Molon (PSB-RJ), que: ""Requer a coautoria do PL 6969 de 2013"".",PLEN,194,Aguardando Deliberação,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1702263,604557
+604557,camara,2018-12-19T16:10:00Z,96,"Apresentação do Requerimento n. 9388/2018, pelo Deputado Alessandro Molon (PSB-RJ), que: ""Requer a coautoria do PL 6969 de 2013"".",PLEN,194,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1702263,604557
 604557,camara,2018-12-19T19:10:00Z,98,Devolvida pelo Relator sem Manifestação.,CCJC,507,Aguardando Parecer,NA,604557
 604557,camara,2018-12-21T00:00:00Z,99,"Deferido o Requerimento n. 9.388/2018, conforme despacho do seguinte teor: ""Defiro. Publique-se.""",MESA,203,NA,NA,604557
 604557,camara,2019-01-31T00:00:00Z,100,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,604557
-604557,camara,2019-03-14T18:01:00Z,101,"Apresentação do Requerimento de Desarquivamento de Proposições n. 795/2019, pelo Deputado Alessandro Molon (PSB-RJ), que: ""Requer o desarquivamento do PL 6969/2013, que 'Institui a Política Nacional para a Conservação e o Uso Sustentável do Bioma Marinho Brasileiro (PNCMar) e dá outras providências'. "".",PLEN,194,Aguardando Deliberação,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1719314,604557
+604557,camara,2019-03-14T18:01:00Z,101,"Apresentação do Requerimento de Desarquivamento de Proposições n. 795/2019, pelo Deputado Alessandro Molon (PSB-RJ), que: ""Requer o desarquivamento do PL 6969/2013, que 'Institui a Política Nacional para a Conservação e o Uso Sustentável do Bioma Marinho Brasileiro (PNCMar) e dá outras providências'. "".",PLEN,194,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1719314,604557
 604557,camara,2019-03-19T21:32:00Z,102,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-795/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1720054,604557
 604557,camara,2019-03-19T21:32:00Z,103,Reentrada na comissão por motivo de desarquivamento,MESA,630,NA,NA,604557
 604557,camara,2019-03-19T21:32:00Z,104,Reentrada na comissão por motivo de desarquivamento,MESA,630,NA,NA,604557
 604557,camara,2019-03-19T21:32:00Z,105,Reentrada na comissão por motivo de desarquivamento,MESA,630,NA,NA,604557
 604557,camara,2019-05-20T00:00:00Z,106,"Designado Relator, Dep. Túlio Gadêlha (PDT-PE)",CCJC,320,Aguardando Parecer,NA,604557
-604557,camara,2019-06-06T09:00:00Z,107,Matéria não apreciada em face do cancelamento da Ordem do Dia.,PLEN,1244,Aguardando Deliberação,NA,604557
-604557,camara,2019-06-12T13:00:00Z,108,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,Aguardando Deliberação,NA,604557
-604557,camara,2019-06-12T18:05:00Z,109,Matéria não apreciada em face do cancelamento da Ordem do Dia.,PLEN,1244,Aguardando Deliberação,NA,604557
-604557,camara,2019-06-18T14:00:00Z,110,Matéria não apreciada em face do cancelamento da Ordem do Dia.,PLEN,1244,Aguardando Deliberação,NA,604557
-604557,camara,2019-06-25T14:00:00Z,111,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,Aguardando Deliberação,NA,604557
+604557,camara,2019-06-06T09:00:00Z,107,Matéria não apreciada em face do cancelamento da Ordem do Dia.,PLEN,1244,Pronta para Pauta,NA,604557
+604557,camara,2019-06-12T13:00:00Z,108,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,Pronta para Pauta,NA,604557
+604557,camara,2019-06-12T18:05:00Z,109,Matéria não apreciada em face do cancelamento da Ordem do Dia.,PLEN,1244,Pronta para Pauta,NA,604557
+604557,camara,2019-06-18T14:00:00Z,110,Matéria não apreciada em face do cancelamento da Ordem do Dia.,PLEN,1244,Pronta para Pauta,NA,604557
+604557,camara,2019-06-25T14:00:00Z,111,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,Pronta para Pauta,NA,604557
+604557,camara,2019-07-02T14:00:00Z,112,Matéria não apreciada em face do cancelamento da Ordem do Dia.,PLEN,1244,Pronta para Pauta,NA,604557
