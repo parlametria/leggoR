@@ -282,8 +282,8 @@ test_that('get_comissoes_faltantes()', {
 })
 
 test_that('testa_eventos_mpvs()', {
-  expect_true(nrow(mpv_sem_eficacia_867 %>% dplyr::filter(evento == "perca_da_eficacia")) != 0)
-  expect_true(nrow(mpv_sem_eficacia_868 %>% dplyr::filter(evento == "perca_da_eficacia")) != 0)
+  expect_true(nrow(mpv_sem_eficacia_867 %>% dplyr::filter(evento == "perda_da_eficacia")) != 0)
+  expect_true(nrow(mpv_sem_eficacia_868 %>% dplyr::filter(evento == "perda_da_eficacia")) != 0)
   expect_true(nrow(mpv_rejeitada_850 %>% dplyr::filter(evento == "rejeicao_projeto")) != 0)
   expect_true(nrow(mpv_rejeitada_816 %>% dplyr::filter(evento == "rejeicao_projeto")) != 0)
   expect_true(nrow(mpv_aprovada_870 %>% dplyr::filter(evento == "transformada_lei")) != 0)
