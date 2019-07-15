@@ -78,11 +78,12 @@
     {"evento": "desarquivamento", "id_situacao": 149, "tipo":"despacho"},
     {"evento": "aprovacao_substitutivo", "regex": "aprovado o substitutivo", "tipo":"votacao"},
     {"evento": "aprovacao_projeto", "regex": "aprovado o projeto", "tipo":"votacao"},
-    {"evento": "rejeicao_projeto", "regex": "(plc*|pec|mpv) rejeitad(o|a)", "tipo":"votacao"},
+    {"evento": "rejeicao_projeto", "regex": "(plc*|pec|mpv) rejeitad(o|a)|comunicando a rejei.(ã|a)o da medida provis(ó|o)ria|rejeitado os pressupostos constitucionais", "tipo":"votacao"},
     {"evento": "remetida_a_sancao", "regex": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
     {"evento": "transformada_lei", "regex": "sancionada", "tipo":"votacao"},
     {"evento": "vetada_totalmente", "regex": "vetada integralmente|vetado(,)* totalmente", "tipo":"votacao"},
-    {"evento": "virada_de_casa", "regex": "primeiro(-| )secret(a|á)rio.*da.*c(a|â)mara.*dos.*deputados.*encaminhando.*revis(a|ã)o", "tipo":"votacao"}
+    {"evento": "virada_de_casa", "regex": "primeiro(-| )secret(a|á)rio.*da.*c(a|â)mara.*dos.*deputados.*encaminhando.*revis(a|ã)o", "tipo":"votacao"},
+    {"evento": "perda_da_eficacia", "regex": "t(é|e)rmino do prazo de vig(ê|e)ncia", "tipo":"votacao"}
   ],
   
  "locais": [

@@ -8,6 +8,11 @@ tram_257161 <<- fetch_tramitacao(257161, 'camara')
 prop_257161 <<- fetch_proposicao(257161, 'camara')
 tram_mpv_868 <<- fetch_tramitacao(135061, 'senado')
 prop_mpv_868 <<- fetch_proposicao(135061, 'senado')
+mpv_sem_eficacia_867 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(135060, 'senado', T))
+mpv_sem_eficacia_868 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(135061, 'senado', T))
+mpv_rejeitada_850 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(134245, 'senado', T)) 
+mpv_rejeitada_816 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(132070, 'senado', T)) 
+mpv_aprovada_870 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(135064, 'senado', T))
 
 test_that('get_historico_temperatura_recente() has correct function passing the parameter day', {
   data <- data.frame(prop_id = rep(1111,18),
@@ -274,4 +279,21 @@ test_that('get_comissoes_faltantes()', {
   process_completa<- agoradigital::process_proposicao(prop_completa, tram_completa, 'senado')
   expect_true(nrow(get_comissoes_faltantes(process_completa, 'senado')) == 0)
   
+})
+
+test_that('testa_eventos_mpvs()', {
+  expect_true(nrow(mpv_sem_eficacia_867 %>% dplyr::filter(evento == "perda_da_eficacia")) != 0)
+  expect_true(nrow(mpv_sem_eficacia_868 %>% dplyr::filter(evento == "perda_da_eficacia")) != 0)
+  expect_true(nrow(mpv_rejeitada_850 %>% dplyr::filter(evento == "rejeicao_projeto")) != 0)
+  expect_true(nrow(mpv_rejeitada_816 %>% dplyr::filter(evento == "rejeicao_projeto")) != 0)
+  expect_true(nrow(mpv_aprovada_870 %>% dplyr::filter(evento == "transformada_lei")) != 0)
+})
+
+test_that('testa_status()', {
+  expect_true(
+    (mpv_aprovada_870 %>% dplyr::rename(id_ext = prop_id) %>% agoradigital::adiciona_status() %>% dplyr::arrange(data_hora) %>% tail(1))$status == "Lei")
+  expect_true(
+    (mpv_rejeitada_850 %>% dplyr::rename(id_ext = prop_id) %>% agoradigital::adiciona_status() %>% dplyr::arrange(data_hora) %>% tail(1))$status == "Rejeitada")
+  expect_true(
+    (mpv_sem_eficacia_868 %>% dplyr::rename(id_ext = prop_id) %>% agoradigital::adiciona_status() %>% dplyr::arrange(data_hora) %>% tail(1))$status == "Caducou")
 })
