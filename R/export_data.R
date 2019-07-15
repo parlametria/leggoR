@@ -147,7 +147,7 @@ adiciona_status <- function(tramitacao_df) {
     dplyr::group_by(id_ext, casa) %>%
     dplyr::mutate(status = dplyr::case_when(evento == "arquivamento" ~ "Arquivada",
                                             evento == "desarquivamento" ~ "Ativa",
-                                            evento == "perca_da_eficacia" ~ "Caducou",
+                                            evento == "perda_da_eficacia" ~ "Caducou",
                                             evento == "rejeicao_projeto" ~ "Rejeitada",
                                             evento == "transformada_lei" ~ "Lei")) %>%
     tidyr::fill(status, .direction = "up") %>%
