@@ -2,6 +2,7 @@
 
 export(add_distances_to_emendas)
 export(add_tipo_evento_documento)
+export(adiciona_status)
 export(create_tabela_atores)
 export(detect_fase)
 export(export_data)

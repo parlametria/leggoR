@@ -141,13 +141,16 @@ adiciona_locais_faltantes_progresso <- function(progresso_df) {
 #' @description Verifica se a proposição esta Ativa, Arquivada ou virou Lei
 #' @param tramitacao_df DataFrame com a tramitacao depois de ser processada pelo process_pl
 #' @return Dataframe
+#' @export
 adiciona_status <- function(tramitacao_df) {
   tramitacao_df %>%
     dplyr::group_by(id_ext, casa) %>%
     dplyr::mutate(status = dplyr::case_when(evento == "arquivamento" ~ "Arquivada",
-                                                        evento == "desarquivamento" ~ "Ativa",
-                                                        dplyr::lead(evento, order_by = data) == "transformada_lei" ~ "Lei")) %>%
-    tidyr::fill(status) %>%
+                                            evento == "desarquivamento" ~ "Ativa",
+                                            evento == "perca_da_eficacia" ~ "Caducou",
+                                            evento == "rejeicao_projeto" ~ "Rejeitada",
+                                            evento == "transformada_lei" ~ "Lei")) %>%
+    tidyr::fill(status, .direction = "up") %>%
     dplyr::mutate(status = dplyr::case_when(is.na(status) ~ "Ativa",
                   T ~ status))
 }
