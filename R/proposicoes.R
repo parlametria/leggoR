@@ -140,12 +140,13 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
 #' @description Retorna um dataframe contendo os novos documentos
 #' @param all_pls_ids IDs das proposições principais
 #' @param current_docs_ids IDs dos documentos atualmente baixados
+#' @param casa_prop Casa de origem dos documentos
 #' @return Dataframe
 #' @export
-find_new_documentos <- function(all_pls_ids, current_docs_ids) {
+find_new_documentos <- function(all_pls_ids, current_docs_ids, casa_prop) {
 
   pls_principais_ids <- all_pls_ids %>%
-    dplyr::filter(casa == "camara") %>%
+    dplyr::filter(casa == casa_prop) %>%
     dplyr::select(id_principal,
                   casa) %>%
     dplyr::mutate(id_documento = id_principal)
