@@ -140,6 +140,7 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
 #' @description Retorna um dataframe contendo os novos documentos
 #' @param all_pls_ids IDs das proposições principais
 #' @param current_docs_ids IDs dos documentos atualmente baixados
+#' @param casa_prop Casa de origem dos documentos
 #' @return Dataframe
 #' @export
 find_new_documentos <- function(all_pls_ids, current_docs_ids, casa_prop) {

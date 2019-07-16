@@ -112,6 +112,11 @@ casa <- args[3]
 ## Install local repository R package version
 devtools::install()
 
+if (casa == 'senado') {
+  warning("Funcionalidades do senado ainda não implementadas!")
+  quit(save = "no", status=1)
+}
+
 # Read current data csvs
 print("Lendo csvs com dados atuais...")
 pls_ids <- read_pls_ids(pls_ids_filepath)
