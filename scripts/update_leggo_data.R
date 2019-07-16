@@ -119,25 +119,14 @@ pls_ids <- read_pls_ids(pls_ids_filepath)
 current_docs <- tibble::tibble()
 current_autores <- tibble::tibble()
 parlamentares <- tibble::tibble()
-docs_filepath <- ''
-autores_filepath <- ''
-parlamentares_filepath <- ''
 
-if (casa == "camara") {
-  docs_filepath <- paste0(export_path,'/documentos.csv')
-  autores_filepath <- paste0(export_path, '/autores.csv')
-  parlamentares_filepath <- paste0(export_path,'/deputados.csv')
+docs_filepath <- paste0(export_path, '/', casa, '/documentos.csv')
+autores_filepath <- paste0(export_path, '/', casa, '/autores.csv')
+parlamentares_filepath <- paste0(export_path, '/', casa, '/parlamentares.csv')
 
-  current_docs <- read_current_docs_camara(docs_filepath)
-  current_autores <- read_current_autores_camara(autores_filepath)
-  parlamentares <- read_deputados(paste0(export_path,'/deputados.csv'))
-
-} else if (casa == "senado") {
-  print("A parte do Senado ainda não foi implementada.")
-} else {
-  print("Parâmetro inválido!")
-  quit(save = "no", status=1)
-}
+parlamentares <- read_deputados(parlamentares_filepath)
+current_docs <- read_current_docs_camara(docs_filepath)
+current_autores <- read_current_autores_camara(autores_filepath)
 
 # Check for new data
 all_pls_ids <- agoradigital::get_all_leggo_props_ids(pls_ids)
@@ -149,7 +138,7 @@ current_docs_ids <- current_docs %>%
 
 print(paste("Verificando se há novos documentos..."))
 
-new_docs_ids <- agoradigital::find_new_documentos(all_pls_ids, current_docs)
+new_docs_ids <- agoradigital::find_new_documentos(all_pls_ids, current_docs, casa)
 
 print(paste("Foram encontrados",nrow(new_docs_ids), "novos documentos."))
 
@@ -161,14 +150,11 @@ if (nrow(new_docs_ids) > 0) {
   new_docs_data <- agoradigital::fetch_documentos_data(new_docs_ids) %>%
     dplyr::mutate_all(~ as.character(.))
 
-  if (nrow(new_docs_data) == 0) {
-    print("Não foi possível baixar dados dos novos documentos")
-    quit(save = "no", status=1)
+  if (nrow(new_docs_data) > 0) {
+    print("Buscando os autores dos novos documentos...")
+    new_autores_data <- agoradigital::fetch_autores_documentos(new_docs_data) %>%
+      dplyr::mutate_all(~ as.character(.))
   }
-  print("Buscando os autores dos novos documentos...")
-  new_autores_data <- agoradigital::fetch_autores_documentos(new_docs_data) %>%
-    dplyr::mutate_all(~ as.character(.))
-
 
   fetch_status <- get_fetch_status(new_docs_ids, new_docs_data, new_autores_data)
   complete_docs <- fetch_status$complete_docs
