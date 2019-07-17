@@ -172,8 +172,10 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids, casa_prop) {
 #' @return Dataframe
 #' @export
 fetch_autores_documentos <- function(docs_ids_df) {
-  autores_docs_camara <- purrr::map2_df(docs_ids_df$id_documento, docs_ids_df$sigla_tipo, ~ fetch_all_autores(.x, .y)) %>%
-    dplyr::mutate(casa = 'camara')
+  casa_prop <- docs_ids_df$casa[1]
+  autores_docs_camara <- purrr::pmap_df(list(docs_ids_df$id_documento, docs_ids_df$casa, 
+                                        docs_ids_df$sigla_tipo), function(a,b,c) fetch_all_autores(a,b,c)) %>%
+    dplyr::mutate(casa = casa_prop)
 
   autores_docs_camara
 }
@@ -211,11 +213,11 @@ fetch_documentos_data <- function(docs_ids) {
         dplyr::select(id_documento,
                       id_principal,
                       casa,
-                      sigla_subtipo_materia,
-                      numero_materia,
-                      ano_materia,
+                      sigla_tipo = sigla_subtipo_materia,
+                      numero = numero_materia,
+                      ano = ano_materia,
                       data_apresentacao,
-                      ementa_materia,
+                      ementa = ementa_materia,
                       dplyr::everything())
 
     } else {
@@ -299,8 +301,8 @@ safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores,otherwise = tibble
 #' @param id_documento ID do documento
 #' @param sigla_tipo Sigla do tipo do documento
 #' @return Dataframe
-fetch_all_autores <- function(id_documento, sigla_tipo) {
-  fetch_prop_output <- safe_fetch_autores(id_documento, sigla_tipo)
+fetch_all_autores <- function(id_documento, casa, sigla_tipo) {
+  fetch_prop_output <- safe_fetch_autores(id_documento, casa, sigla_tipo)
   autores_result <- fetch_prop_output$result
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)

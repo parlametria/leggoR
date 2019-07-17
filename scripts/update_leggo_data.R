@@ -58,11 +58,11 @@ read_current_docs_camara <- function(file_path) {
                                     numero = readr::col_integer(),
                                     ano = readr::col_integer(),
                                     data_apresentacao = readr::col_datetime(format = ""),
-                                    codTipo = readr::col_integer(),
-                                    statusProposicao.codSituacao = readr::col_integer(),
-                                    statusProposicao.codTipoTramitacao = readr::col_integer(),
-                                    statusProposicao.dataHora = readr::col_datetime(format = ""),
-                                    statusProposicao.sequencia = readr::col_integer()
+                                    cod_tipo = readr::col_integer(),
+                                    status_proposicao_cod_situacao = readr::col_integer(),
+                                    status_proposicao_cod_tipo_tramitacao = readr::col_integer(),
+                                    status_proposicao_data_hora = readr::col_datetime(format = ""),
+                                    status_proposicao_sequencia = readr::col_integer()
                                   ))
 
 }
@@ -99,6 +99,33 @@ read_deputados <- function(file_path) {
 
 }
 
+read_current_docs_senado <- function(file_path) {
+  current_docs <- readr::read_csv(file_path,
+                                  col_types = list(
+                                    .default = readr::col_character(),
+                                    id_documento = readr::col_double(),
+                                    id_principal = readr::col_double(),
+                                    ano = readr::col_double(),
+                                    data_apresentacao = readr::col_date(format = ""),
+                                    codigo_assunto_especifico = readr::col_double(),
+                                    codigo_assunto_geral = readr::col_double(),
+                                    codigo_natureza = readr::col_double(),
+                                    data_leitura = readr::col_date(format = ""),
+                                    proposicoes_apensadas = readr::col_logical()
+                                  ))
+  
+}
+
+read_current_autores_senado <- function(file_path) {
+  current_autores <- readr::read_csv(file_path,
+                                     col_types = list(
+                                       .default = readr::col_character(),
+                                       id_parlamentar = readr::col_double(),
+                                       id_documento = readr::col_double()
+                                     ))
+  
+}
+
 ## Process args
 args <- commandArgs(trailingOnly = TRUE)
 min_num_args <- 3
@@ -112,26 +139,28 @@ casa <- args[3]
 ## Install local repository R package version
 devtools::install()
 
-if (casa == 'senado') {
-  warning("Funcionalidades do senado ainda não implementadas!")
-  quit(save = "no", status=1)
-}
+current_docs <- tibble::tibble()
+current_autores <- tibble::tibble()
+parlamentares <- tibble::tibble()
 
 # Read current data csvs
 print("Lendo csvs com dados atuais...")
 pls_ids <- read_pls_ids(pls_ids_filepath)
 
-current_docs <- tibble::tibble()
-current_autores <- tibble::tibble()
-parlamentares <- tibble::tibble()
-
 docs_filepath <- paste0(export_path, '/', casa, '/documentos.csv')
 autores_filepath <- paste0(export_path, '/', casa, '/autores.csv')
 parlamentares_filepath <- paste0(export_path, '/', casa, '/parlamentares.csv')
 
-parlamentares <- read_deputados(parlamentares_filepath)
-current_docs <- read_current_docs_camara(docs_filepath)
-current_autores <- read_current_autores_camara(autores_filepath)
+if (casa == 'camara') {
+  parlamentares <- read_deputados(parlamentares_filepath)
+  current_docs <- read_current_docs_camara(docs_filepath)
+  current_autores <- read_current_autores_camara(autores_filepath)
+}
+
+if (casa == 'senado') {
+  current_docs <- read_current_docs_senado(docs_filepath)
+  current_autores <- read_current_autores_senado(autores_filepath)
+}
 
 # Check for new data
 all_pls_ids <- agoradigital::get_all_leggo_props_ids(pls_ids)
@@ -180,7 +209,9 @@ if (nrow(new_docs_ids) > 0) {
   readr::write_csv(updated_docs, docs_filepath)
 
   print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
-  new_autores_data <- merge(new_autores_data, parlamentares, by.x = "id_autor", by.y = "id")
+  if (casa == 'camara') {
+    new_autores_data <- merge(new_autores_data, parlamentares, by.x = "id_autor", by.y = "id")
+  }
   updated_autores_docs <- rbind(current_autores, new_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
   readr::write_csv(updated_autores_docs, autores_filepath)
 }
