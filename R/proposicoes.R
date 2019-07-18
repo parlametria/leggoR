@@ -1,5 +1,6 @@
 source(here::here("R/utils.R"))
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 
 #' @title Importa as informações de uma proposição da internet.
 #' @description Recebido um id e a casa, a função roda os scripts para
@@ -196,8 +197,8 @@ fetch_autores_documentos <- function(docs_data_df) {
         dplyr::distinct() %>%
         dplyr::select(id_autor = id_parlamentar,
                       nome,
-                      descricao_tipo = descricao_tipo_autor,
-                      uri = url_pagina,
+                      tipo_autor = descricao_tipo_autor,
+                      uri_autor = url_pagina,
                       id_documento,
                       casa,
                       partido = sigla_partido,
@@ -269,10 +270,25 @@ fetch_documentos_data <- function(docs_ids) {
 #' @return Dataframe
 #' @export
 add_tipo_evento_documento <- function(docs_data) {
-  docs_data %>%
-    fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricao_tipo_documento = "regex"), ignore_case = T) %>%
-    dplyr::select(-regex) %>%
-    dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
+  casa_prop <- docs_data$casa[1]
+  docs <- tibble::tibble()
+  if (casa_prop == 'camara') {
+    docs <- docs_data %>%
+      fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricao_tipo_documento = "regex"), ignore_case = T) %>%
+      dplyr::select(-regex) %>%
+      dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
+
+  } else if (casa_prop == 'senado') {
+    docs <- docs_data %>%
+      fuzzyjoin::regex_left_join(senado_env$tipos_documentos, by = c(sigla_tipo = "regex"), ignore_case = T) %>%
+      dplyr::select(-regex) %>%
+      dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
+
+  } else {
+    warning('Casa inválida')
+  }
+
+  return(docs)
 
 }
 

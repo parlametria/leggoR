@@ -30,6 +30,9 @@ senado_autores <- agoradigital::read_current_autores_senado(paste0(input_path, "
 
 print(paste("Gerando tabela de atores a partir de dados atualizados de documentos e autores..."))
 
-atores_df <- agoradigital::create_tabela_atores_camara(camara_docs, camara_autores)
+atores_camara <- agoradigital::create_tabela_atores_camara(camara_docs, camara_autores)
+atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores)
+
+atores_df <- dplyr::bind_rows(atores_camara, atores_senado)
 
 readr::write_csv(atores_df, paste0(output_path, '/atores.csv'), na = "")

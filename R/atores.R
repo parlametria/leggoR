@@ -15,7 +15,6 @@ create_tabela_atores_camara <- function(documentos_df, autores_df) {
                   id_documento,
                   id_autor,
                   nome_autor = nome,
-                  cod_tipo_autor,
                   sigla_tipo,
                   partido,
                   uf,
@@ -55,12 +54,23 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
                   id_documento,
                   id_autor,
                   nome_autor = nome,
-                  cod_tipo = codTipo,
                   sigla_tipo,
                   partido,
-                  uf,
-                  descricao_tipo = descricaoTipo)
+                  uf)
 
+  atores_df <- autores_docs %>%
+    agoradigital::add_tipo_evento_documento() %>%
+    dplyr::rename(tipo_generico = tipo) %>%
+    dplyr::group_by(id_ext = id_principal,
+                    casa,
+                    id_autor,
+                    nome_autor,
+                    partido,
+                    uf,
+                    tipo_generico) %>%
+    dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
+    dplyr::arrange(id_ext, -qtd_de_documentos) %>%
+    dplyr::ungroup()
 
   return(atores_df)
 }
