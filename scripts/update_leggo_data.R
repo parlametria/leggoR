@@ -64,7 +64,6 @@ read_current_docs_camara <- function(file_path) {
                                     status_proposicao_data_hora = readr::col_datetime(format = ""),
                                     status_proposicao_sequencia = readr::col_integer()
                                   ))
-
 }
 
 read_current_autores_camara <- function(file_path) {
@@ -210,7 +209,8 @@ if (nrow(new_docs_ids) > 0) {
 
   print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
   if (casa == 'camara') {
-    new_autores_data <- merge(new_autores_data, parlamentares, by.x = "id_autor", by.y = "id")
+    new_autores_data <- merge(new_autores_data, parlamentares, by.x = "id_autor", by.y = "id") %>% 
+      dplyr::select(id_autor,nome,descricao_tipo,uri,id_documento,casa,partido,uf,dplyr::everything())
   }
   updated_autores_docs <- rbind(current_autores, new_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
   readr::write_csv(updated_autores_docs, autores_filepath)

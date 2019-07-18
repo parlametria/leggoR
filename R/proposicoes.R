@@ -168,16 +168,46 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids, casa_prop) {
 
 #' @title Baixa autores de documentos, adequando as colunas ao padrão desejado
 #' @description Retorna um dataframe contendo autores dos documentos
-#' @param docs_ids_df Dataframe com os ids dos documentos a serem baixadas
+#' @param docs_data_df Dataframe com os dados dos documentos a serem baixadas
 #' @return Dataframe
 #' @export
-fetch_autores_documentos <- function(docs_ids_df) {
-  casa_prop <- docs_ids_df$casa[1]
-  autores_docs_camara <- purrr::pmap_df(list(docs_ids_df$id_documento, docs_ids_df$casa, 
-                                        docs_ids_df$sigla_tipo), function(a,b,c) fetch_all_autores(a,b,c)) %>%
-    dplyr::mutate(casa = casa_prop)
+fetch_autores_documentos <- function(docs_data_df) {
+  casa_prop <- docs_data_df$casa[1]
+  autores_docs <- purrr::pmap_df(list(docs_data_df$id_documento, docs_data_df$casa, 
+                                      docs_data_df$sigla_tipo), function(a,b,c) fetch_all_autores(a,b,c)) %>%
+  dplyr::mutate(casa = casa_prop) %>% 
+  rename_table_to_underscore()
+  
+  formatted_atores_df <- tibble::tibble()
+  if (nrow(autores_docs) > 0) {
+    if (casa_prop == 'camara') {
+      formatted_atores_df <- autores_docs %>%
+        dplyr::distinct() %>%
+        dplyr::select(id_autor,
+                      nome,
+                      descricao_tipo = tipo,
+                      uri,
+                      id_documento,
+                      casa,
+                      dplyr::everything())
+    } else if (casa_prop == 'senado') {
+      formatted_atores_df <- autores_docs %>%
+        dplyr::distinct() %>%
+        dplyr::select(id_autor = id_parlamentar,
+                      nome,
+                      descricao_tipo = descricao_tipo_autor,
+                      uri = url_pagina,
+                      id_documento,
+                      casa,
+                      partido = sigla_partido,
+                      uf = uf_parlamentar,
+                      dplyr::everything())
+    } else {
+      warning('Casa inválida')
+    }
+  }
 
-  autores_docs_camara
+  formatted_atores_df
 }
 
 #' @title Baixa dados dos documentos, adequando as colunas ao padrão desejado
