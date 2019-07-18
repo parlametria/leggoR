@@ -1,4 +1,4 @@
-id_autor,nome,descricao_tipo,uri,id_documento,casa,partido,uf,cod_tipo
+id_autor,nome,tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor
 133968,Paulo Ramos,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/133968,2212337,camara,PDT,RJ,10000
 178989,Renata Abreu,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178989,2212494,camara,PODE,SP,10000
 204537,Enrico Misasi,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204537,2212511,camara,PV,SP,10000
