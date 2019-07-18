@@ -173,11 +173,11 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids, casa_prop) {
 #' @export
 fetch_autores_documentos <- function(docs_data_df) {
   casa_prop <- docs_data_df$casa[1]
-  autores_docs <- purrr::pmap_df(list(docs_data_df$id_documento, docs_data_df$casa, 
+  autores_docs <- purrr::pmap_df(list(docs_data_df$id_documento, docs_data_df$casa,
                                       docs_data_df$sigla_tipo), function(a,b,c) fetch_all_autores(a,b,c)) %>%
-  dplyr::mutate(casa = casa_prop) %>% 
+  dplyr::mutate(casa = casa_prop) %>%
   rename_table_to_underscore()
-  
+
   formatted_atores_df <- tibble::tibble()
   if (nrow(autores_docs) > 0) {
     if (casa_prop == 'camara') {
@@ -185,10 +185,11 @@ fetch_autores_documentos <- function(docs_data_df) {
         dplyr::distinct() %>%
         dplyr::select(id_autor,
                       nome,
-                      descricao_tipo = tipo,
-                      uri,
+                      tipo_autor = tipo,
+                      uri_autor = uri,
                       id_documento,
                       casa,
+                      cod_tipo_autor = cod_tipo,
                       dplyr::everything())
     } else if (casa_prop == 'senado') {
       formatted_atores_df <- autores_docs %>%
@@ -236,6 +237,9 @@ fetch_documentos_data <- function(docs_ids) {
                       ano,
                       data_apresentacao,
                       ementa,
+                      descricao_tipo_documento = descricao_tipo,
+                      cod_tipo_documento = cod_tipo,
+                      uri_documento = uri,
                       dplyr::everything())
     } else if (casa == 'senado') {
       formatted_docs_df <- merge(docs_ids, docs, by.x="id_documento", by.y = "codigo_materia") %>%
@@ -266,7 +270,7 @@ fetch_documentos_data <- function(docs_ids) {
 #' @export
 add_tipo_evento_documento <- function(docs_data) {
   docs_data %>%
-    fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricao_tipo = "regex"), ignore_case = T) %>%
+    fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricao_tipo_documento = "regex"), ignore_case = T) %>%
     dplyr::select(-regex) %>%
     dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
 
