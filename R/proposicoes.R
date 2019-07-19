@@ -1,5 +1,6 @@
 source(here::here("R/utils.R"))
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 
 #' @title Importa as informações de uma proposição da internet.
 #' @description Recebido um id e a casa, a função roda os scripts para
@@ -168,14 +169,47 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids, casa_prop) {
 
 #' @title Baixa autores de documentos, adequando as colunas ao padrão desejado
 #' @description Retorna um dataframe contendo autores dos documentos
-#' @param docs_ids_df Dataframe com os ids dos documentos a serem baixadas
+#' @param docs_data_df Dataframe com os dados dos documentos a serem baixadas
 #' @return Dataframe
 #' @export
-fetch_autores_documentos <- function(docs_ids_df) {
-  autores_docs_camara <- purrr::map2_df(docs_ids_df$id_documento, docs_ids_df$sigla_tipo, ~ fetch_all_autores(.x, .y)) %>%
-    dplyr::mutate(casa = 'camara')
+fetch_autores_documentos <- function(docs_data_df) {
+  casa_prop <- docs_data_df$casa[1]
+  autores_docs <- purrr::pmap_df(list(docs_data_df$id_documento, docs_data_df$casa,
+                                      docs_data_df$sigla_tipo), function(a,b,c) fetch_autores_documento(a,b,c)) %>%
+  dplyr::mutate(casa = casa_prop) %>%
+  rename_table_to_underscore()
 
-  autores_docs_camara
+  formatted_atores_df <- tibble::tibble()
+  if (nrow(autores_docs) > 0) {
+    if (casa_prop == 'camara') {
+      formatted_atores_df <- autores_docs %>%
+        dplyr::distinct() %>%
+        dplyr::select(id_autor,
+                      nome,
+                      tipo_autor = tipo,
+                      uri_autor = uri,
+                      id_documento,
+                      casa,
+                      cod_tipo_autor = cod_tipo,
+                      dplyr::everything())
+    } else if (casa_prop == 'senado') {
+      formatted_atores_df <- autores_docs %>%
+        dplyr::distinct() %>%
+        dplyr::select(id_autor = id_parlamentar,
+                      nome,
+                      tipo_autor = descricao_tipo_autor,
+                      uri_autor = url_pagina,
+                      id_documento,
+                      casa,
+                      partido = sigla_partido,
+                      uf = uf_parlamentar,
+                      dplyr::everything())
+    } else {
+      warning('Casa inválida')
+    }
+  }
+
+  formatted_atores_df
 }
 
 #' @title Baixa dados dos documentos, adequando as colunas ao padrão desejado
@@ -188,21 +222,43 @@ fetch_autores_documentos <- function(docs_ids_df) {
 #' }
 #' @export
 fetch_documentos_data <- function(docs_ids) {
-  docs_camara <- purrr::map_df(docs_ids$id_documento, ~ fetch_all_documents(.x))
+  docs <- purrr::map2_df(docs_ids$id_documento, docs_ids$casa, ~ fetch_documento(.x, .y)) %>%
+    rename_table_to_underscore()
   formatted_docs_df <- tibble::tibble()
+  casa <- docs_ids$casa[1]
+  if (nrow(docs) > 0) {
+    if (casa == 'camara') {
+      formatted_docs_df <- merge(docs_ids, docs, by.x="id_documento", by.y = "id") %>%
+        dplyr::distinct() %>%
+        dplyr::select(id_documento,
+                      id_principal,
+                      casa,
+                      sigla_tipo,
+                      numero,
+                      ano,
+                      data_apresentacao,
+                      ementa,
+                      descricao_tipo_documento = descricao_tipo,
+                      cod_tipo_documento = cod_tipo,
+                      uri_documento = uri,
+                      dplyr::everything())
+    } else if (casa == 'senado') {
+      formatted_docs_df <- merge(docs_ids, docs, by.x="id_documento", by.y = "codigo_materia") %>%
+        dplyr::distinct() %>%
+        dplyr::select(id_documento,
+                      id_principal,
+                      casa,
+                      sigla_tipo = sigla_subtipo_materia,
+                      numero = numero_materia,
+                      ano = ano_materia,
+                      data_apresentacao,
+                      ementa = ementa_materia,
+                      dplyr::everything())
 
-  if (nrow(docs_camara) > 0) {
-    formatted_docs_df <- merge(docs_camara, docs_ids, by.x="id", by.y = "id_documento") %>%
-      dplyr::distinct() %>%
-      dplyr::select(id_documento = id,
-                    id_principal,
-                    casa,
-                    sigla_tipo = siglaTipo,
-                    numero,
-                    ano,
-                    data_apresentacao = dataApresentacao,
-                    ementa,
-                    dplyr::everything())
+    } else {
+      warning('Casa inválida')
+    }
+
   }
   return(formatted_docs_df)
 }
@@ -214,10 +270,25 @@ fetch_documentos_data <- function(docs_ids) {
 #' @return Dataframe
 #' @export
 add_tipo_evento_documento <- function(docs_data) {
-  docs_data %>%
-    fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricao_tipo = "regex"), ignore_case = T) %>%
-    dplyr::select(-regex) %>%
-    dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
+  casa_prop <- docs_data$casa[1]
+  docs <- tibble::tibble()
+  if (casa_prop == 'camara') {
+    docs <- docs_data %>%
+      fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricao_tipo_documento = "regex"), ignore_case = T) %>%
+      dplyr::select(-regex) %>%
+      dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
+
+  } else if (casa_prop == 'senado') {
+    docs <- docs_data %>%
+      fuzzyjoin::regex_left_join(senado_env$tipos_documentos, by = c(sigla_tipo = "regex"), ignore_case = T) %>%
+      dplyr::select(-regex) %>%
+      dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
+
+  } else {
+    warning('Casa inválida')
+  }
+
+  return(docs)
 
 }
 
@@ -256,32 +327,16 @@ get_all_leggo_props_ids <- function(leggo_props_df) {
   return(pls_ids_all)
 }
 
-# update_proposicoes <- function(current_props_df, pls_ids_df) {
-#   pls_ids_all <- .get_all_ids(pls_ids_df)
-#
-#   new_props <- pls_ids_all %>%
-#     dplyr::anti_join(current_props_df, by=c("id_principal","casa")) %>%
-#     dplyr::rename(id = id_principal)
-#
-#   if (nrow(new_props > 0)) {
-#     new_props <- purrr::map2_df(new_props$id, new_props$casa, ~ agoradigital::fetch_proposicao(.x, .y))
-#   }
-#
-#
-#   return(new_props)
-#
-# }
-
-
-safe_fetch_proposicao <- purrr::safely(rcongresso::fetch_proposicao_camara,otherwise = tibble::tibble())
+safe_fetch_proposicao <- purrr::safely(rcongresso::fetch_proposicao,otherwise = tibble::tibble())
 
 #' @title Realiza busca das informações de um documento
 #' @description Retorna dados de um documento caso a requisição seja bem-sucedida,
 #' caso contrário retorna um Dataframe vazio
 #' @param id_documento ID do documento
-#' @return Dataframe
-fetch_all_documents <- function(id_documento) {
-  fetch_prop_output <- safe_fetch_proposicao(id_documento)
+#' @param casa casa onde o documento foi apresentado
+#' @return Dataframe com dados do documento
+fetch_documento <- function(id_documento, casa) {
+  fetch_prop_output <- safe_fetch_proposicao(id_documento, casa)
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)
   }
@@ -289,16 +344,17 @@ fetch_all_documents <- function(id_documento) {
 }
 
 
-safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores_camara,otherwise = tibble::tibble())
+safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores,otherwise = tibble::tibble())
 
 #' @title Realiza busca dos autores de um documento
 #' @description Retorna autores de um documento caso a requisição seja bem-sucedida,
 #' caso contrário retorna um Dataframe vazio
 #' @param id_documento ID do documento
+#' @param casa casa onde o documento foi apresentado
 #' @param sigla_tipo Sigla do tipo do documento
-#' @return Dataframe
-fetch_all_autores <- function(id_documento, sigla_tipo) {
-  fetch_prop_output <- safe_fetch_autores(id_documento, sigla_tipo)
+#' @return Dataframe contendo dados dos autores do documento
+fetch_autores_documento <- function(id_documento, casa, sigla_tipo) {
+  fetch_prop_output <- safe_fetch_autores(id_documento, casa, sigla_tipo)
   autores_result <- fetch_prop_output$result
   if (!is.null(fetch_prop_output$error)) {
     print(fetch_prop_output$error)
