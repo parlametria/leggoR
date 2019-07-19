@@ -22,7 +22,8 @@ create_tabela_atores <- function(documentos_df, autores_df) {
                   sigla_tipo,
                   partido,
                   uf,
-                  descricao_tipo = descricaoTipo)
+                  descricao_tipo = descricaoTipo,
+                  sigla_local = statusProposicao.siglaOrgao)
 
   atores_df <- autores_docs %>%
     agoradigital::add_tipo_evento_documento() %>%
@@ -33,7 +34,8 @@ create_tabela_atores <- function(documentos_df, autores_df) {
                     nome_autor,
                     partido,
                     uf,
-                    tipo_generico) %>%
+                    tipo_generico,
+                    sigla_local) %>%
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -qtd_de_documentos) %>%
     dplyr::ungroup()
