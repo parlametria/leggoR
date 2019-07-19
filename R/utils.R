@@ -147,8 +147,9 @@ build_data_filepath <- function(folder_path,data_prefix,house,bill_id) {
 #' @return Dataframe vazio.
 #' @export
 check_dataframe <- function(df) {
-  if ((is.null(df) | (nrow(df) == 0))) {
+  if ((is.null(df) || (nrow(df) == 0))) {
     warning("Dataframe de entrada deve ser não-nulo e não-vazio.")
-    return(tibble::tibble())
+    return(FALSE)
   }
+  return(TRUE)
 }

@@ -45,8 +45,10 @@ create_tabela_atores_camara <- function(documentos_df, autores_df) {
 #' @export
 create_tabela_atores_senado <- function(documentos_df, autores_df) {
 
-  agoradigital::check_dataframe(documentos_df)
-  agoradigital::check_dataframe(autores_df)
+  if (!(agoradigital::check_dataframe(documentos_df)) || 
+      (!agoradigital::check_dataframe(autores_df))) {
+    return(tibble::tibble())
+  }
 
   autores_docs <- merge(documentos_df, autores_df, by = c("id_documento", "casa")) %>%
     dplyr::select(id_principal,
