@@ -6,7 +6,8 @@ setup <- function(){
                             id_documento = c(11,12,21),
                             cod_tipo = c(125,125,121),
                             sigla_tipo = c('EMC','EMC','REQ'),
-                            descricao_tipo_documento = c('Emenda na Comissão', 'Emenda na Comissão', 'Requerimento de Audiência Pública'))
+                            descricao_tipo_documento = c('Emenda na Comissão', 'Emenda na Comissão', 'Requerimento de Audiência Pública'),
+                            status_proposicao_sigla_orgao = c('PLEN', 'CCJ', 'CFT'))
 
   autores_sample_df <<- tibble::tibble(id_documento = c(11,11,12,21,21),
                                       casa = c('camara','camara','camara','camara','camara'),
