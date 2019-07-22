@@ -35,4 +35,4 @@ atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_a
 
 atores_df <- dplyr::bind_rows(atores_camara, atores_senado)
 
-readr::write_csv(atores_prop, paste0(output_path, '/atores.csv'), na = "")
+readr::write_csv(atores_df, paste0(output_path, '/atores.csv'), na = "")
