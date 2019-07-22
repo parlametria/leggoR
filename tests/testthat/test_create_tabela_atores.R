@@ -24,8 +24,8 @@ setup <- function(){
                                       uf = c("SP","PB", "PB", "PB", "BA"),
                                       tipo_generico = c('Emenda','Emenda','Emenda',
                                                          'Requerimento','Requerimento'),
-                                      qtd_de_documentos = as.integer(c(1,1,1,1,1)),
                                       sigla_local = c('PLEN', 'CCJ', 'PLEN', 'CFT', 'CFT'),
+                                      qtd_de_documentos = as.integer(c(1,1,1,1,1)),
                                       is_important = c(T, F, T, T, T))
 
   return(TRUE)
@@ -49,7 +49,7 @@ test <- function(){
   })
 
   test_that('create_tabela_atores() returns correct atores table', {
-    expect_equal(create_tabela_atores_camara(docs_sample_df, autores_sample_df), atores_sample_df)
+    expect_equal(agoradigital::create_tabela_atores_camara(docs_sample_df, autores_sample_df), atores_sample_df)
   })
 }
 
