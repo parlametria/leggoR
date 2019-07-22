@@ -24,7 +24,8 @@ setup <- function(){
                                       uf = c('PB', "SP", "PB", "BA"),
                                       tipo_generico = c('Emenda','Emenda',
                                                          'Requerimento','Requerimento'),
-                                      qtd_de_documentos = as.integer(c(2,1,1,1)))
+                                      qtd_de_documentos = as.integer(c(2,1,1,1)),
+                                      sigla_tipo = c('PLEN', 'CCJ', 'PLEN', 'CFT', 'CFT'))
 
   return(TRUE)
 }
