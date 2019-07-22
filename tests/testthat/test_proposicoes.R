@@ -77,11 +77,11 @@ test <- function(){
   })
 
   test_that('find_new_documentos() return dataframe', {
-    expect_true(is.data.frame(find_new_documentos(all_pls_ids, current_docs_ids)))
+    expect_true(is.data.frame(find_new_documentos(all_pls_ids, current_docs_ids, 'camara')))
   })
-  
+
   test_that('find_new_documentos() finds correct documents', {
-    expect_true(nrow(find_new_documentos(all_pls_ids, current_docs_ids)) == 
+    expect_true(nrow(find_new_documentos(all_pls_ids, current_docs_ids, 'camara')) ==
                                 (nrow(relacionadas_257161) + nrow(relacionadas_2088990)))
   })
 
