@@ -32,7 +32,8 @@ create_tabela_atores_camara <- function(documentos_df, autores_df) {
                     nome_autor,
                     partido,
                     uf,
-                    tipo_generico) %>%
+                    tipo_generico,
+                    sigla_local) %>%
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -qtd_de_documentos) %>%
     dplyr::ungroup()
@@ -72,8 +73,7 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
                     nome_autor,
                     partido,
                     uf,
-                    tipo_generico,
-                    sigla_local) %>%
+                    tipo_generico) %>%
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -qtd_de_documentos) %>%
     dplyr::ungroup()
