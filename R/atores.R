@@ -1,6 +1,6 @@
 
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
-
+senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 #' @title Cria tabela com atores de documentos com seus respectivos tipos de documentos
 #' @description Retorna um dataframe contendo informações com os autores dos documentos e seus tipos
 #' @param documentos_df Dataframe dos documentos
@@ -69,7 +69,8 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
                   nome_autor = nome,
                   sigla_tipo,
                   partido,
-                  uf)
+                  uf,
+                  sigla_local)
 
   atores_df <- autores_docs %>%
     agoradigital::add_tipo_evento_documento() %>%
@@ -80,11 +81,16 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
                     nome_autor,
                     partido,
                     uf,
-                    tipo_generico) %>%
+                    tipo_generico,
+                    sigla_local) %>%
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -qtd_de_documentos) %>%
-    dplyr::ungroup() %>% 
-    dplyr::filter(!is.na(id_autor))
+    dplyr::ungroup() %>%
+    dplyr::filter(!is.na(id_autor)) %>%
+    dplyr::mutate(is_important = sigla_local %in% c(senado_env$comissoes_nomes$siglas_comissoes) |
+                    stringr::str_detect(tolower(sigla_local), 'pl') |
+                    stringr::str_detect(tolower(sigla_local), 'pec') |
+                    stringr::str_detect(tolower(sigla_local), 'mpv'))
 
   return(atores_df)
 }
