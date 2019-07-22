@@ -25,7 +25,8 @@ setup <- function(){
                                       tipo_generico = c('Emenda','Emenda','Emenda',
                                                          'Requerimento','Requerimento'),
                                       qtd_de_documentos = as.integer(c(1,1,1,1,1)),
-                                      sigla_local = c('PLEN', 'CCJ', 'PLEN', 'CFT', 'CFT'))
+                                      sigla_local = c('PLEN', 'CCJ', 'PLEN', 'CFT', 'CFT'),
+                                      is_important = c(T, F, T, T, T))
 
   return(TRUE)
 }
