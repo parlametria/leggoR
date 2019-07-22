@@ -6,7 +6,8 @@ setup <- function(){
                             id_documento = c(11,12,21),
                             cod_tipo = c(125,125,121),
                             sigla_tipo = c('EMC','EMC','REQ'),
-                            descricao_tipo_documento = c('Emenda na Comissão', 'Emenda na Comissão', 'Requerimento de Audiência Pública'))
+                            descricao_tipo_documento = c('Emenda na Comissão', 'Emenda na Comissão', 'Requerimento de Audiência Pública'),
+                            status_proposicao_sigla_orgao = c('PLEN', 'CCJ', 'CFT'))
 
   autores_sample_df <<- tibble::tibble(id_documento = c(11,11,12,21,21),
                                       casa = c('camara','camara','camara','camara','camara'),
@@ -15,15 +16,17 @@ setup <- function(){
                                       uf = c('SP', "PB", "PB", "PB", "BA"),
                                      nome = c('Dep. A', 'Dep. C', 'Dep. C', 'Dep. C', 'Dep. D'))
 
-  atores_sample_df <<- tibble::tibble(id_ext = c(1,1,2,2),
-                                      casa = c('camara','camara','camara','camara'),
-                                      id_autor = c(5,1,5,6),
-                                      nome_autor = c('Dep. C','Dep. A','Dep. C','Dep. D'),
-                                      partido = c('Partido C','Partido A','Partido C','Partido B'),
-                                      uf = c('PB', "SP", "PB", "BA"),
-                                      tipo_generico = c('Emenda','Emenda',
+  atores_sample_df <<- tibble::tibble(id_ext = c(1,1,1,2,2),
+                                      casa = c('camara','camara','camara','camara','camara'),
+                                      id_autor = c(1,5,5,5,6),
+                                      nome_autor = c('Dep. A','Dep. C','Dep. C','Dep. C','Dep. D'),
+                                      partido = c('Partido A','Partido C','Partido C','Partido C','Partido B'),
+                                      uf = c("SP","PB", "PB", "PB", "BA"),
+                                      tipo_generico = c('Emenda','Emenda','Emenda',
                                                          'Requerimento','Requerimento'),
-                                      qtd_de_documentos = as.integer(c(2,1,1,1)))
+                                      sigla_local = c('PLEN', 'CCJ', 'PLEN', 'CFT', 'CFT'),
+                                      qtd_de_documentos = as.integer(c(1,1,1,1,1)),
+                                      is_important = c(T, F, T, T, T))
 
   return(TRUE)
 }
@@ -46,7 +49,7 @@ test <- function(){
   })
 
   test_that('create_tabela_atores() returns correct atores table', {
-    expect_equal(create_tabela_atores_camara(docs_sample_df, autores_sample_df), atores_sample_df)
+    expect_equal(agoradigital::create_tabela_atores_camara(docs_sample_df, autores_sample_df), atores_sample_df)
   })
 }
 
