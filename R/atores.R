@@ -1,3 +1,6 @@
+
+camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+
 #' @title Cria tabela com atores de documentos com seus respectivos tipos de documentos
 #' @description Retorna um dataframe contendo informações com os autores dos documentos e seus tipos
 #' @param documentos_df Dataframe dos documentos
