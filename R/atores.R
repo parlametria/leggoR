@@ -36,7 +36,11 @@ create_tabela_atores_camara <- function(documentos_df, autores_df) {
                     sigla_local) %>%
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -qtd_de_documentos) %>%
-    dplyr::ungroup()
+    dplyr::ungroup() %>%
+    dplyr::mutate(is_important = sigla_local %in% c(camara_env$comissoes$siglas_comissoes) |
+                    stringr::str_detect(tolower(sigla_local), 'pl') |
+                    stringr::str_detect(tolower(sigla_local), 'pec') |
+                    stringr::str_detect(tolower(sigla_local), 'mpv'))
 
   return(atores_df)
 }

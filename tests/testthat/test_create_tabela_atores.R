@@ -16,16 +16,16 @@ setup <- function(){
                                       uf = c('SP', "PB", "PB", "PB", "BA"),
                                      nome = c('Dep. A', 'Dep. C', 'Dep. C', 'Dep. C', 'Dep. D'))
 
-  atores_sample_df <<- tibble::tibble(id_ext = c(1,1,2,2),
-                                      casa = c('camara','camara','camara','camara'),
-                                      id_autor = c(5,1,5,6),
-                                      nome_autor = c('Dep. C','Dep. A','Dep. C','Dep. D'),
-                                      partido = c('Partido C','Partido A','Partido C','Partido B'),
-                                      uf = c('PB', "SP", "PB", "BA"),
-                                      tipo_generico = c('Emenda','Emenda',
+  atores_sample_df <<- tibble::tibble(id_ext = c(1,1,1,2,2),
+                                      casa = c('camara','camara','camara','camara','camara'),
+                                      id_autor = c(1,5,5,5,6),
+                                      nome_autor = c('Dep. A','Dep. C','Dep. C','Dep. C','Dep. D'),
+                                      partido = c('Partido A','Partido C','Partido C','Partido C','Partido B'),
+                                      uf = c("SP","PB", "PB", "PB", "BA"),
+                                      tipo_generico = c('Emenda','Emenda','Emenda',
                                                          'Requerimento','Requerimento'),
-                                      qtd_de_documentos = as.integer(c(2,1,1,1)),
-                                      sigla_tipo = c('PLEN', 'CCJ', 'PLEN', 'CFT', 'CFT'))
+                                      qtd_de_documentos = as.integer(c(1,1,1,1,1)),
+                                      sigla_local = c('PLEN', 'CCJ', 'PLEN', 'CFT', 'CFT'))
 
   return(TRUE)
 }

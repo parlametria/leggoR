@@ -35,11 +35,4 @@ atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_a
 
 atores_df <- dplyr::bind_rows(atores_camara, atores_senado)
 
-atores_prop <-
-  atores_df %>%
-  dplyr::mutate(is_important = sigla_local %in% c(camara_env$comissoes$siglas_comissoes) |
-                  stringr::str_detect(tolower(sigla_local), 'pl') |
-                                        stringr::str_detect(tolower(sigla_local), 'pec') |
-                                                              stringr::str_detect(tolower(sigla_local), 'mpv'))
-
 readr::write_csv(atores_prop, paste0(output_path, '/atores.csv'), na = "")
