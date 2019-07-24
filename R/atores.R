@@ -91,7 +91,12 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
   return(atores_df)
 }
 
-.detect_sigla_local <- function(atores_docs, casa_env) {
+#' @title Detecta comissoes importantes da Camara e Senado
+#' @description Retorna um dataframe contendo informacoes de importancia de comissoes
+#' @param atores_df Dataframe dos atores
+#' @param casa_env Camara ou Senado
+#' @return Dataframe
+.detect_sigla_local <- function(atores_df, casa_env) {
   atores_df <- atores_df %>%
     dplyr::mutate(is_important = sigla_local %in% c(casa_env$comissoes_nomes$siglas_comissoes) |
                     stringr::str_detect(tolower(sigla_local), 'pl') |
@@ -99,5 +104,4 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
                     stringr::str_detect(tolower(sigla_local), 'mpv'))
 
   return(atores_df)
-
 }
