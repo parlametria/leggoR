@@ -1,0 +1,145 @@
+---
+title: "Top Atores"
+author: "Matheus Leal"
+date: "June 25, 2019"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+library(hrbrthemes)
+library(extrafont)
+library(tools)
+camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+
+```
+
+```{r}
+deputados <- read_csv("../data/deputados.csv")
+deputados <- deputados %>% dplyr::select(id, ultimo_status_sigla_partido, ultimo_status_sigla_uf)
+atores_raw <- read_csv("../data/atores.csv")
+tipos_documentos <- atores_raw %>%
+  select(descricao_tipo) %>%
+  agoradigital::add_tipo_evento_documento() %>% 
+  select(tipo_generico = tipo)
+
+atores_tipos_docs <- atores_raw %>% 
+  bind_cols(tipos_documentos) %>% 
+  select(id_principal, 
+         casa, 
+         id_autor, 
+         nome_autor, 
+         codTipo, 
+         sigla_tipo, 
+         descricao_tipo, 
+         tipo_generico, 
+         qtd_de_documentos,
+         sigla_orgao) %>% 
+  mutate(nome_autor = tolower(nome_autor) %>% toTitleCase())
+
+
+atores_tipos_docs <- merge(atores_tipos_docs, deputados, by.x = "id_autor", by.y = "id")
+
+```
+
+```{r}
+plot_prop <- function(id, name) {
+  atores_prop <- 
+  atores_tipos_docs %>% 
+  dplyr::filter(id == id_principal) %>% 
+  dplyr::group_by(nome_autor, tipo_generico, ultimo_status_sigla_partido, ultimo_status_sigla_uf) %>% 
+  dplyr::summarise(num_eventos_unicos = sum(qtd_de_documentos)) %>% 
+  dplyr::mutate(autor = paste(nome_autor, " - ", ultimo_status_sigla_partido, "/", ultimo_status_sigla_uf))
+
+  atores_grouped <- 
+    atores_prop %>% 
+    dplyr::group_by(autor) %>% 
+    dplyr::summarise(num_eventos_unicos = sum(num_eventos_unicos)) %>% 
+    arrange(desc(num_eventos_unicos)) %>% 
+    head(5) %>% 
+    select(autor)
+  
+  atores_prop <- atores_prop %>% dplyr::filter(autor %in% atores_grouped$autor)
+  
+  
+  
+  p <- ggplot(atores_prop, aes(x = reorder(autor, num_eventos_unicos, sum),
+                               y = num_eventos_unicos,
+                               fill = tipo_generico))+
+    
+    theme_ipsum_rc(axis_title_size = 11,plot_margin = margin(30, 30, 30, 30)) +
+    geom_col() + 
+    coord_flip() +
+    scale_colour_manual(values = c("Emenda" = "#DF8C6C",
+                                   "Parecer" = "#87C6CD",
+                                   "Voto em Separado" = "#A9A5AD", 
+                                   "Requerimento" = "#A5C882",
+                                   "Proposição" = "#F7DD72",
+                                   "Outros" = "#FF7F9D"), aesthetics = "fill") +
+    xlab("") +
+    ylab("Quantidade de Documentos") +
+    labs(fill = "Documentos", title = name)
+    
+  
+  ggplotly(p)
+}
+  
+
+```
+
+```{r}
+plot_prop(2192459, "PEC 6/2019 - Nova Previdência") 
+plot_prop(16526, "PL 1292/1995 - PL das Compras Públicas")
+plot_prop(2193540, "PL 1321/2019 - Anistia Tributária para Partidos")
+```
+
+
+## Gráfico por comissão
+```{r}
+plot_prop_comissoes <- function(id, name) {
+  atores_prop <- 
+    atores_tipos_docs %>% 
+    dplyr::filter(id_principal == id) %>% 
+    dplyr::group_by(nome_autor, tipo_generico, sigla_orgao, id_autor) %>% 
+    dplyr::summarise(num_eventos_unicos = sum(qtd_de_documentos))
+
+  atores_grouped <- 
+    atores_prop %>% 
+    dplyr::group_by(nome_autor) %>% 
+    dplyr::summarise(num_eventos_unicos = sum(num_eventos_unicos)) %>% 
+    dplyr::arrange(desc(num_eventos_unicos)) %>% 
+    head(5) %>% 
+    dplyr::select(nome_autor)
+  
+  atores_prop <- atores_prop %>%
+    dplyr::filter(nome_autor %in% atores_grouped$nome_autor) %>% 
+    dplyr::filter(id_autor != -1) %>% 
+    dplyr::filter(sigla_orgao %in% c(camara_env$comissoes$siglas_comissoes, "PLEN"))
+  
+  p <- ggplot(atores_prop, aes(x = reorder(nome_autor, -num_eventos_unicos, sum),
+                               y = num_eventos_unicos,
+                               fill = tipo_generico))+
+    theme_ipsum_rc(axis_title_size = 11,plot_margin = margin(30, 30, 30, 30)) +
+    geom_col() + 
+    coord_flip() +
+    scale_colour_manual(values = c("Emenda" = "#DF8C6C",
+                                   "Parecer" = "#87C6CD",
+                                   "Voto em Separado" = "#A9A5AD", 
+                                   "Requerimento" = "#A5C882",
+                                   "Proposição" = "#F7DD72",
+                                   "Outros" = "#FF7F9D"), aesthetics = "fill") +
+    facet_grid(rows = vars(sigla_orgao))+
+    xlab("") +
+    ylab("Quantidade de Documentos") +
+    labs(fill = "Documentos", title = name) 
+  
+  ggplotly(p)
+}
+plot_prop_comissoes(2192459, "PEC 6/2019 - Nova Previdência") 
+plot_prop_comissoes(16526, "PL 1292/1995 - PL das Compras Públicas (Nova Lei de Licitações)")
+plot_prop_comissoes(604557, "PL 6969/2013 - PNCMar")
+plot_prop_comissoes(2193540, "PL 1321/2019 - Anistia Tributária para Partidos")
+```
+
