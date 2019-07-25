@@ -263,6 +263,14 @@ fetch_documentos_data <- function(docs_ids) {
   return(formatted_docs_df)
 }
 
+fetch_documento_relacionados_senado <- function(pls_ids) {
+  docs <- purrr::map2_df(pls_ids$id_principal, pls_ids$casa, ~ rcongresso::scrap_senado_congresso_documentos(.x, 'False', .y))
+  atores <- docs %>% dplyr::filter(!is.na(autor)) %>%
+    dplyr::filter(stringr::str_extract(autor, regex("\((.)*\/(.)*\)")))
+
+
+}
+
 #' @title Agrupa os tipos dos documentos
 #' @description Retorna um dataframe contendo dados dos documentos
 #' com uma coluna a mais (tipo)
