@@ -263,12 +263,71 @@ fetch_documentos_data <- function(docs_ids) {
   return(formatted_docs_df)
 }
 
+#' @title Baixa dados dos documentos, através de um scrap
+#' @description Retorna um dataframe contendo dados dos documentos
+#' @param pls_ids Dataframe com os IDs das proposições cujos documentos 
+#' iremos baixar, formato (id_principal, casa)
+#' @return Dataframe
+#' @export
 fetch_documento_relacionados_senado <- function(pls_ids) {
-  docs <- purrr::map2_df(pls_ids$id_principal, pls_ids$casa, ~ rcongresso::scrap_senado_congresso_documentos(.x, 'False', .y))
-  atores <- docs %>% dplyr::filter(!is.na(autor)) %>%
-    dplyr::filter(stringr::str_extract(autor, regex("\((.)*\/(.)*\)")))
+  docs <- 
+    purrr::map2_df(pls_ids$id_principal, pls_ids$casa, ~ rcongresso::scrap_senado_congresso_documentos(.x, T, .y)) %>% 
+  dplyr::mutate(id_documento = dplyr::row_number())
+  return(docs)
+}
 
+#' @title Extrai dos autores de documentos o partido, estado e nome
+#' @description Recebi uma lista de autores e retorna um dataframe com
+#' nome, partido e estado dos autores
+#' @param autor_raw lista com autores
+#' @param id_doc id do documento
+#' @return Dataframe
+extract_autor_relacionadas_senado <- function(autor_raw, id_doc) {
+  stringr::str_split(autor_raw,",") %>% 
+  purrr::pluck(1) %>% 
+  purrr::map_df(.aux_extract_autor_relacionadas_senado) %>% 
+  dplyr::mutate(id_documento = id_doc) %>% 
+  dplyr::distinct()
+}
 
+#' @title Recebi uma string com o autor e quebra ela em nome, partido e estado
+#' @description Recebi uma string com o autor e quebra ela em nome, partido e estado
+#' @param autores_raw_element Autor
+#' @return Dataframe
+.aux_extract_autor_relacionadas_senado <- function(autores_raw_element) {
+  clean_autor_raw = trimws(autores_raw_element)
+  nome_autor = ifelse(grepl('\\(',clean_autor_raw),stringr::str_extract(clean_autor_raw,"(.*?)(?=\\()"),clean_autor_raw)
+  partido = stringr::str_extract(clean_autor_raw,"(?<=\\()(.*?)(?=\\/)")
+  uf = stringr::str_extract(clean_autor_raw,"(?<=\\/)(.*?)(?=\\))")
+  
+  tibble::tibble(nome_autor = nome_autor, partido = partido, uf = uf)
+}
+
+#' @title Baixa dados dos autores dos documentos
+#' @description Retorna um dataframe contendo dados dos autores dos documentos
+#' @param relacionadas_docs Dataframe com os documetos oriundos do scrap
+#' @return Dataframe
+#' @export
+fetch_autores_relacionadas_senado <- function(relacionadas_docs) {
+  autores_raw <- 
+    relacionadas_docs %>%
+    dplyr::rename(autor_raw = autor) %>% 
+    dplyr::filter(!is.na(autor_raw)) %>%
+    dplyr::mutate(autor_raw =
+        dplyr::if_else(stringr::str_detect(autor_raw,"Comissão de Constituição, Justiça e Cidadania"),
+                       stringr::str_replace_all(autor_raw, "Comissão de Constituição, Justiça e Cidadania",
+                                            "Comissão de Constituição Justiça e Cidadania"), autor_raw)) %>% 
+    dplyr::select(id_principal, id_documento, casa, autor_raw)
+  
+  autores_metadata <- 
+    purrr::map2_df(autores_raw$autor_raw, 
+                                     autores_raw$id_documento,
+                                     ~extract_autor_relacionadas_senado(.x, .y))
+  
+  autores <- 
+    autores_raw %>% 
+    dplyr::inner_join(autores_metadata, by="id_documento") %>% 
+    dplyr::select(-autor_raw)
 }
 
 #' @title Agrupa os tipos dos documentos
@@ -277,23 +336,30 @@ fetch_documento_relacionados_senado <- function(pls_ids) {
 #' @param docs_data Dataframe com os todos os dados dos documentos
 #' @return Dataframe
 #' @export
-add_tipo_evento_documento <- function(docs_data) {
+add_tipo_evento_documento <- function(docs_data, documentos_scrap = F) {
   casa_prop <- docs_data$casa[1]
   docs <- tibble::tibble()
-  if (casa_prop == 'camara') {
+  if(documentos_scrap) {
     docs <- docs_data %>%
-      fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricao_tipo_documento = "regex"), ignore_case = T) %>%
+      fuzzyjoin::regex_left_join(senado_env$tipos_documentos_scrap, by = c(identificacao = "regex"), ignore_case = T) %>%
       dplyr::select(-regex) %>%
       dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
-
-  } else if (casa_prop == 'senado') {
-    docs <- docs_data %>%
-      fuzzyjoin::regex_left_join(senado_env$tipos_documentos, by = c(sigla_tipo = "regex"), ignore_case = T) %>%
-      dplyr::select(-regex) %>%
-      dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
-
-  } else {
-    warning('Casa inválida')
+  }else {
+    if (casa_prop == 'camara') {
+      docs <- docs_data %>%
+        fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricao_tipo_documento = "regex"), ignore_case = T) %>%
+        dplyr::select(-regex) %>%
+        dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
+      
+    } else if (casa_prop == 'senado') {
+      docs <- docs_data %>%
+        fuzzyjoin::regex_left_join(senado_env$tipos_documentos, by = c(sigla_tipo = "regex"), ignore_case = T) %>%
+        dplyr::select(-regex) %>%
+        dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
+      
+    } else {
+      warning('Casa inválida')
+    } 
   }
 
   return(docs)
