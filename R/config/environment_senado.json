@@ -220,7 +220,7 @@
     
   "tipos_documentos_scrap": [
     {"tipo": "Emenda", "regex": "emenda|subemenda"},
-    {"tipo": "Parecer", "regex": "parecer|^complementa..o de voto|^reda..o final|^substitutivo|p\\.s"},
+    {"tipo": "Parecer", "regex": "parecer|^complementa..o de voto|^reda..o final|^substitutivo|p\\.s|^relat(ó|o)rio|^par"},
     {"tipo": "Requerimento", "regex": "requerimento|rqe|rqs|rqj|rra|req|rdh|rma"}, 
     {"tipo": "Voto em Separado", "regex": "voto em separado"}
     ]
