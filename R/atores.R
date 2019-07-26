@@ -84,7 +84,9 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -qtd_de_documentos) %>%
     dplyr::ungroup() %>% 
-    dplyr::filter(!is.na(id_autor))
+    dplyr::filter(!is.na(id_autor)) %>% 
+    dplyr::mutate(sigla_local = NA,
+                  is_important = FALSE)
 
   return(atores_df)
 }
