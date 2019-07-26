@@ -17,6 +17,31 @@ current_docs <- tibble::tibble(id_documento = c(260606,257161),
                                id_principal = c(257161,257161),
                                casa = c('camara','camara'))
 
+autores <- "Comissão de Constituição Justiça e Cidadania, Comissão de Constituição Justiça e Cidadania, Senador Cidinho Santos (PL/MT)"
+gabarito_extract_autor <-
+  tibble::tibble(nome_autor = c("Comissão de Constituição Justiça e Cidadania", "Senador Cidinho Santos "), 
+                 partido = c(NA, "PL"),
+                 uf = c(NA, "MT"),
+                 id_documento = c(1, 1))
+
+doc_example <-
+  tibble::tibble(acao_legislativa = "  Apresentada, nesta data, emendas de autoria do Senador Eduardo Gomes. Devolvido ao relator, Senador Marco Rogério, para manifestação sobre as emendas apresentas.",
+                 autor = "Senador Eduardo Gomes (MDB/TO)",
+                 casa = "senado",
+                 data = "09/07/2019",
+                 descricao_ementa = NA, 
+                 identificacao = "EMENDA 5 - PLS 232/2016",
+                 id_principal = 126049,
+                 local = "Comissão de Serviços de Infraestrutura",
+                 id_documento = 2135)
+gabarito_fetch_autor <- 
+  tibble::tibble(id_principal = 126049,
+                 id_documento = 2135,
+                 casa = "senado",
+                 nome_autor = "Senador Eduardo Gomes ",
+                 partido = "MDB",
+                 uf = "TO")
+
 all_pls_ids <- agoradigital::get_all_leggo_props_ids(pls_ids)
 
 current_docs_ids <- current_docs %>%
@@ -92,6 +117,16 @@ test <- function(){
   test_that('fetch_autores_documentos() return dataframe', {
     expect_true(is.data.frame(fetch_autores_documentos(pls_ids)))
   })
+  
+  test_that('extract_autor_relacionadas_senado() is equal', {
+    expect_equal(extract_autor_relacionadas_senado(autores, 1), gabarito_extract_autor)
+  })
+  
+  test_that('fetch_autores_relacionadas_senado() is equal', {
+    expect_equal(
+      fetch_autores_relacionadas_senado(doc_example), gabarito_fetch_autor)
+  })
+  
 
 }
 
