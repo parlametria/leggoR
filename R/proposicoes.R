@@ -317,6 +317,10 @@ fetch_autores_relacionadas_senado <- function(relacionadas_docs) {
         dplyr::if_else(stringr::str_detect(autor_raw,"Comissão de Constituição, Justiça e Cidadania"),
                        stringr::str_replace_all(autor_raw, "Comissão de Constituição, Justiça e Cidadania",
                                             "Comissão de Constituição Justiça e Cidadania"), autor_raw)) %>% 
+    dplyr::mutate(autor_raw =
+        dplyr::if_else(stringr::str_detect(autor_raw, "Comissão Mista da Medida Provisória .*"),
+                                   stringr::str_replace_all(autor_raw, "Comissão Mista da Medida Provisória .*",
+                                                            "Comissão Mista"), autor_raw)) %>% 
     dplyr::select(id_principal, id_documento, casa, autor_raw)
   
   autores_metadata <- 
