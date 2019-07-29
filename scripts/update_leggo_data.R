@@ -81,6 +81,8 @@ current_docs_ids <- current_docs %>%
                 id_principal,
                 casa)
 
+
+
 print(paste("Verificando se há novos documentos..."))
 
 new_docs_ids <- agoradigital::find_new_documentos(all_pls_ids, current_docs, casa)
@@ -128,4 +130,12 @@ if (nrow(new_docs_ids) > 0) {
   readr::write_csv(updated_autores_docs, autores_filepath)
 }
 
+if (casa == 'senado') {
+  print("Realizando raspagem dos dados no site do senado...")
+  pls_senado <- all_pls_ids %>%  dplyr::filter(casa == 'senado')
+  senado_docs_scrap <- agoradigital::fetch_documentos_relacionados_senado(pls_senado)
+  senado_autores_scrap <- agoradigital::fetch_autores_relacionadas_senado(senado_docs_scrap)
+  readr::write_csv(senado_docs_scrap, paste0(export_path, "/senado/documentos_scrap.csv"))
+  readr::write_csv(senado_autores_scrap, paste0(export_path, "/senado/autores_scrap.csv"))
+}
 
