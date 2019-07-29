@@ -104,10 +104,14 @@ create_tabela_atores_senado_scrap <- function(documentos_df, autores_df) {
   
   autores_docs <- 
     merge(documentos_df, autores_df %>% dplyr::select(-id_principal), by = c("id_documento", "casa")) %>% 
-    dplyr::mutate(identificacao = stringr::str_trim(identificacao))
+    dplyr::mutate(identificacao = stringr::str_trim(identificacao)) 
   
   atores_df <- 
     autores_docs %>%
+    dplyr::mutate(nome_autor = stringr::str_replace(nome_autor, "(\\()(.*?)(\\))", "")) %>% 
+    dplyr::mutate(nome_autor = stringr::str_replace(nome_autor, "Deputad(o|a)", "")) %>% 
+    dplyr::mutate(nome_autor = stringr::str_replace(nome_autor, "Federal", "")) %>% 
+    dplyr::mutate(nome_autor = stringr::str_replace(nome_autor, "Senador(a)*", ""))
     agoradigital::add_tipo_evento_documento(T) %>% 
     dplyr::rename(tipo_generico = tipo) %>%
     dplyr::group_by(id_ext = id_principal,

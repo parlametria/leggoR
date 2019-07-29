@@ -34,6 +34,7 @@ print(paste("Gerando tabela de atores a partir de dados atualizados de documento
 
 atores_camara <- agoradigital::create_tabela_atores_camara(camara_docs, camara_autores)
 atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores)
+atores_senado_scrap <- agoradigital::create_tabela_atores_senado_scrap(senado_docs_scrap, senado_autores_scrap)
 
 atores_df <- dplyr::bind_rows(atores_camara, atores_senado)
 
