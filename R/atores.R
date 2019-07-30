@@ -83,8 +83,10 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
                     sigla_local) %>%
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -qtd_de_documentos) %>%
-    dplyr::ungroup() %>%
-    dplyr::filter(!is.na(id_autor))
+    dplyr::ungroup() %>% 
+    dplyr::filter(!is.na(id_autor)) %>% 
+    dplyr::mutate(sigla_local = NA,
+                  is_important = FALSE)
 
   atores_df <- .detect_sigla_local(atores_df, senado_env)
 
