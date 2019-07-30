@@ -1,7 +1,7 @@
 ---
 title: "Progresso das proposições por tema"
 author: "Equipe Leg.go"
-date: "24/05/2019"
+date: "11/07/2019"
 output:
   prettydoc::html_pretty:
     theme: leonids
@@ -66,7 +66,7 @@ progresso_data <- data_subset %>%
 
 Nesta breve análise, exploramos o progresso das proposições em tramitação **que são monitoradas pelo Leg.go**.
 
-**Obs:** Omitimos as **MPVs**, pois elas têm tramitação diferente e, daquelas que são monitoradas pelo leggo, apenas a MPV 870/2019 (Monitoramento e Acompanhamento de ONGs) alcançou o Senado Federal, as remanescente estão todas na Câmara do Deputados.
+**Obs:** Omitimos as **MPVs**, pois elas têm tramitação diferente.
 
 ##Em que etapa estão as proposições?
 
@@ -104,7 +104,7 @@ Observando por outro aspecto, a fase de Revisão nas Comissões tem mais proposi
 ##Há quanto tempo as proposições estão na fase atual?
 
 
-```{r fig.width=10, fig.height=5}
+```{r fig.width=13, fig.height=7}
 library(ggplot2)
 library(plotly)
 library(secr)
@@ -116,8 +116,8 @@ p <- pls %>% ggplot(aes(meses_decorridos,
                         label = "",
                         text=paste(nome_pl,"<br>", apelido))) + 
              scale_x_continuous(trans = log2_trans(), 
-                                breaks = c(3, 6, 12, 24, 48, 96, 192), 
-                                labels = c("3m", "6m", "1a", "2a", "4a", "8a", "16a")) +
+                                breaks = c(0.07, 0.15, 0.375, 0.75, 1.5, 3, 6, 12, 24, 48, 96, 192), 
+                                labels = c("2d", "4d", "1s", "3s", "1m" ,"3m", "6m", "1a", "2a", "4a", "8a", "16a")) +
              ggplot2::scale_colour_brewer("", palette="Set1") +
              ggbeeswarm::geom_quasirandom(width = .4) +
              # geom_jitter(height = 0) +
@@ -132,7 +132,7 @@ p <- ggplotly(p, tooltip = c("text")) %>%
 p
 ```
 
-O primeiro fato interessante notado é que a maior parte das proposições está há mais de 2 anos na fase de Construção nas Comissões. Quando analisamos por temas, vemos que as proposições de `Direitos Humanos` estão há pelo menos 2 anos paradas, sendo que aquelas que estão na fase de Construção nas Comissões paradas há mais de 4 anos. A proposição mais recente do tema `Educação` está parada há quase 2 anos.
+O primeiro fato interessante notado é que a maior parte das proposições está há mais de 2 anos na fase de Construção nas Comissões. Quando analisamos por temas, vemos que as proposições de `Direitos Humanos` estão há pelo menos 2 anos paradas, sendo que aquelas que estão na fase de Construção nas Comissões paradas há mais de 4 anos, exceto o PL 1256/2019 - Extinção das Cotas de Candidaturas Femininas, que está a cerca de 6 meses na fase. A proposição mais recente do tema `Educação` está parada há quase 2 anos.
 
 ###Ponto destoante
 
