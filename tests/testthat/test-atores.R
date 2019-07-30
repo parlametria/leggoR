@@ -1,10 +1,10 @@
 context("Atores")
 
 setup <- function() {
-  documentos_camara <- read.csv("data/camara/documentos.csv")
-  autores_camara <- read.csv("data/camara/autores.csv")
-  documentos_senado <- read.csv("data/senado/documentos.csv")
-  autores_senado <- read.csv("data/senado/autores.csv")
+  documentos_camara <- readr::read_csv("data/camara/documentos.csv")
+  autores_camara <- readr::read_csv("data/camara/autores.csv")
+  documentos_senado <- readr::read_csv("data/senado/documentos.csv")
+  autores_senado <- readr::read_csv("data/senado/autores.csv")
 
   atores_camara <- create_tabela_atores_camara(documentos_camara, autores_camara)
   atores_senado <- create_tabela_atores_senado(documentos_senado, autores_senado)
