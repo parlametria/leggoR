@@ -416,6 +416,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,sigla_local,qtd_de_docu
 46249,camara,178970,João Daniel,PT,SE,Voto em Separado,PL629902,2,TRUE
 46249,camara,178986,Nilto Tatto,PT,SP,Voto em Separado,PL629902,2,TRUE
 46249,camara,72442,Felipe Carreras,PSB,PE,Proposição Apensada,CCP,1,FALSE
+46249,camara,72442,Felipe Carreras,PSB,PE,Proposição Apensada,MESA,1,FALSE
 46249,camara,73427,Alberto Goldman,PSDB,,Requerimento,MESA,1,FALSE
 46249,camara,73459,Dr. Rosinha,PT,PR,Proposição Apensada,MESA,1,FALSE
 46249,camara,73459,Dr. Rosinha,PT,PR,Requerimento,MESA,1,FALSE
@@ -578,6 +579,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,sigla_local,qtd_de_docu
 257161,camara,74777,Rita Camata,PSDB,ES,Proposição Apensada,CCJC,1,TRUE
 257161,camara,74780,Iara Bernardi,PT,SP,Proposição Apensada,CCJC,1,TRUE
 257161,camara,74841,Fernando Gabeira,PV,RJ,Proposição Apensada,CCJC,1,TRUE
+257161,camara,76874,Marcelo Freixo,PSOL,RJ,Proposição Apensada,MESA,1,FALSE
 257161,camara,81232,Irajá Abreu,PSD,TO,Requerimento,PLEN,1,TRUE
 257161,camara,134812,Edmilson Rodrigues,PSOL,PA,Requerimento,PLEN,1,TRUE
 257161,camara,141421,Eduardo Da Fonte,PP,PE,Requerimento,PLEN,1,TRUE
@@ -896,6 +898,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,sigla_local,qtd_de_docu
 541857,camara,195826,Marcelo Delaroli,PR,RJ,Proposição Apensada,MESA,1,FALSE
 541857,camara,204356,Amaro Neto,PRB,ES,Proposição Apensada,CCP,1,FALSE
 541857,camara,204359,Léo Moraes,PODE,RO,Requerimento,PLEN,1,TRUE
+541857,camara,204368,Fabio Schiochet,PSL,SC,Proposição Apensada,MESA,1,FALSE
 541857,camara,204388,Bibo Nunes,PSL,RS,Proposição Apensada,CCP,1,FALSE
 541857,camara,204391,José Nelto,PODE,GO,Proposição Apensada,CCP,1,FALSE
 541857,camara,204416,Sanderson,PSL,RS,Proposição Apensada,CCP,1,FALSE
@@ -2243,6 +2246,7 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,sigla_local,qtd_de_docu
 2193540,camara,204358,Beto Pereira,PSDB,MS,Emenda,PLEN,1,TRUE
 2196833,camara,178989,Renata Abreu,PODE,SP,Requerimento,PEC04519,3,TRUE
 2196833,camara,204559,Zé Neto,PT,BA,Requerimento,PEC04519,3,TRUE
+2196833,camara,74478,Luciano Bivar,PSL,PE,Emenda,PEC04519,2,TRUE
 2196833,camara,116379,Darci de Matos,PSD,SC,Requerimento,PEC04519,2,TRUE
 2196833,camara,177282,Subtenente Gonzaga,PDT,MG,Requerimento,CCJC,2,TRUE
 2196833,camara,204464,Talíria Petrone,PSOL,RJ,Requerimento,CCJC,2,TRUE
@@ -2262,247 +2266,247 @@ id_ext,casa,id_autor,nome_autor,partido,uf,tipo_generico,sigla_local,qtd_de_docu
 2196833,camara,204541,Eduardo Bismarck,PDT,CE,Requerimento,CCJC,1,TRUE
 2196833,camara,204572,Capitão Alberto Neto,PRB,AM,Emenda,PEC04519,1,TRUE
 2196833,camara,204576,João Roma,PRB,BA,Parecer,CCJC,1,TRUE
-1489,senado,52,Lauro Campos,,DF,Proposição Apensada,COARQ,1,FALSE
-41703,senado,111,Blairo Maggi,PL,MT,Proposição Apensada,ATRSGM,1,FALSE
-91341,senado,765,Francisco Dornelles,PP,RJ,Requerimento,,2,
-91341,senado,73,Romero Jucá,MDB,RR,Requerimento,,1,
-91341,senado,615,José Pimentel,PT,CE,Requerimento,,1,
-91341,senado,846,Aloysio Nunes Ferreira,PSDB,SP,Requerimento,,1,
-91341,senado,1206,Raimundo Colombo,DEM,SC,Requerimento,,1,
-91341,senado,3360,Delcídio do Amaral,S/Partido,MS,Requerimento,CAE,1,TRUE
-91341,senado,3366,Marcelo Crivella,PRB,RJ,Requerimento,,1,
-91341,senado,3396,Tasso Jereissati,PSDB,CE,Proposição Apensada,COARQ,1,FALSE
-91341,senado,3396,Tasso Jereissati,PSDB,CE,Requerimento,,1,
-91341,senado,3398,Cristovam Buarque,CIDADANIA,DF,Requerimento,,1,
-91341,senado,4893,Ruben Figueiró,PSDB,MS,Requerimento,,1,
-91341,senado,4988,Ana Amélia,PP,RS,Requerimento,,1,
-91341,senado,5012,Randolfe Rodrigues,REDE,AP,Requerimento,,1,
-96813,senado,3362,Serys Slhessarenko,PT,MT,Proposição Apensada,COARQ,1,FALSE
-102721,senado,3398,Cristovam Buarque,CIDADANIA,DF,Requerimento,,2,
-102721,senado,4990,Jorge Viana,PT,AC,Requerimento,PLEN,2,TRUE
-102721,senado,17,Eduardo Suplicy,PT,SP,Outros,,1,
-102721,senado,615,José Pimentel,PT,CE,Outros,,1,
-102721,senado,825,Paulo Paim,PT,RS,Outros,,1,
-102721,senado,3360,Delcídio do Amaral,S/Partido,MS,Requerimento,CRA,1,TRUE
-102721,senado,3394,João Capiberibe,PSB,AP,Outros,,1,
-102721,senado,3394,João Capiberibe,PSB,AP,Requerimento,PLEN,1,TRUE
-102721,senado,3398,Cristovam Buarque,CIDADANIA,DF,Outros,,1,
-102721,senado,3634,Flexa Ribeiro,PSDB,PA,Proposição Apensada,COARQ,1,FALSE
-102721,senado,3695,Lindbergh Farias,PT,RJ,Outros,,1,
-102721,senado,4593,Rodrigo Rollemberg,PSB,DF,Outros,,1,
-102721,senado,4767,Eduardo Lopes,PRB,RJ,Outros,,1,
-102721,senado,4837,Anibal Diniz,PT,AC,Outros,,1,
-102721,senado,4869,Ana Rita,PT,ES,Outros,,1,
-102721,senado,5008,Humberto Costa,PT,PE,Outros,,1,
-102721,senado,5012,Randolfe Rodrigues,REDE,AP,Outros,,1,
-102721,senado,5012,Randolfe Rodrigues,REDE,AP,Requerimento,PLEN,1,TRUE
-102721,senado,5020,Paulo Davim,PV,RN,Outros,,1,
-102721,senado,5048,Sergio Souza,MDB,PR,Requerimento,CRA,1,TRUE
-103831,senado,111,Blairo Maggi,PL,MT,Proposição Apensada,COARQ,1,FALSE
-103831,senado,5108,Cidinho Santos,PL,,Requerimento,,1,
-103831,senado,5116,Pedro Chaves,PRB,MS,Outros,CMA,1,TRUE
-106330,senado,635,Ricardo Ferraço,PSDB,ES,Requerimento,,2,
-106330,senado,3,Antonio Carlos Valadares,PSB,SE,Outros,COARQ,1,FALSE
-106330,senado,13,Casildo Maldaner,MDB,SC,Outros,COARQ,1,FALSE
-106330,senado,40,José Agripino,DEM,RN,Outros,COARQ,1,FALSE
-106330,senado,73,Romero Jucá,MDB,RR,Outros,COARQ,1,FALSE
-106330,senado,111,Blairo Maggi,PL,MT,Outros,COARQ,1,FALSE
-106330,senado,391,Aécio Neves,PSDB,MG,Outros,COARQ,1,FALSE
-106330,senado,612,Eunício Oliveira,MDB,CE,Outros,COARQ,1,FALSE
-106330,senado,615,José Pimentel,PT,CE,Outros,COARQ,1,FALSE
-106330,senado,715,Armando Monteiro,PTB,PE,Outros,COARQ,1,FALSE
-106330,senado,765,Francisco Dornelles,PP,RJ,Outros,COARQ,1,FALSE
-106330,senado,846,Aloysio Nunes Ferreira,PSDB,SP,Outros,COARQ,1,FALSE
-106330,senado,846,Aloysio Nunes Ferreira,PSDB,SP,Requerimento,,1,
-106330,senado,945,Alvaro Dias,PODEMOS,PR,Outros,COARQ,1,FALSE
-106330,senado,952,Mozarildo Cavalcanti,PTB,RR,Outros,COARQ,1,FALSE
-106330,senado,1176,Waldemir Moka,MDB,MS,Outros,COARQ,1,FALSE
-106330,senado,3394,João Capiberibe,PSB,AP,Outros,COARQ,1,FALSE
-106330,senado,3634,Flexa Ribeiro,PSDB,PA,Outros,COARQ,1,FALSE
-106330,senado,3713,Fátima Bezerra,PT,RN,Requerimento,CCJ,1,TRUE
-106330,senado,3823,Benedito de Lira,PP,AL,Requerimento,,1,
-106330,senado,4529,Cícero Lucena,PSDB,PB,Outros,COARQ,1,FALSE
-106330,senado,4531,Jayme Campos,DEM,MT,Outros,COARQ,1,FALSE
-106330,senado,4763,Vicentinho Alves,PL,TO,Outros,COARQ,1,FALSE
-106330,senado,4776,Jorge Afonso Argello,PTB,DF,Outros,COARQ,1,FALSE
-106330,senado,4837,Anibal Diniz,PT,AC,Outros,COARQ,1,FALSE
-106330,senado,4877,Cyro Miranda,PSDB,GO,Outros,COARQ,1,FALSE
-106330,senado,4988,Ana Amélia,PP,RS,Outros,COARQ,1,FALSE
-106330,senado,4990,Jorge Viana,PT,AC,Requerimento,CCJ,1,TRUE
-106330,senado,4994,Eduardo Braga,MDB,AM,Outros,COARQ,1,FALSE
-106330,senado,5004,Ivo Cassol,PP,RO,Outros,COARQ,1,FALSE
-106330,senado,5010,Pedro Taques,PDT,MT,Outros,COARQ,1,FALSE
-106330,senado,5012,Randolfe Rodrigues,REDE,AP,Outros,COARQ,1,FALSE
-106330,senado,5012,Randolfe Rodrigues,REDE,AP,Requerimento,CCJ,1,TRUE
-106330,senado,5144,Zeze Perrella,MDB,MG,Outros,COARQ,1,FALSE
-106330,senado,5197,Cássio Cunha Lima,PSDB,PB,Requerimento,,1,
-106330,senado,5535,Telmário Mota,PROS,RR,Requerimento,CCJ,1,TRUE
-111048,senado,612,Eunício Oliveira,MDB,CE,Proposição Apensada,COARQ,1,FALSE
-115926,senado,17,Eduardo Suplicy,PT,SP,Requerimento,,2,
-115926,senado,612,Eunício Oliveira,MDB,CE,Requerimento,,1,
-115926,senado,1249,Kátia Abreu,PDT,TO,Requerimento,,1,
-115926,senado,5529,Antonio Anastasia,PSDB,MG,Requerimento,,1,
-120143,senado,87,Garibaldi Alves Filho,MDB,RN,Outros,COARQ,1,FALSE
-120143,senado,111,Blairo Maggi,PL,MT,Outros,COARQ,1,FALSE
-120143,senado,604,Walter Pinheiro,S/Partido,BA,Outros,COARQ,1,FALSE
-120143,senado,615,José Pimentel,PT,CE,Outros,COARQ,1,FALSE
-120143,senado,631,Magno Malta,PL,ES,Outros,COARQ,1,FALSE
-120143,senado,643,Lúcia Vânia,PSB,GO,Outros,COARQ,1,FALSE
-120143,senado,825,Paulo Paim,PT,RS,Outros,COARQ,1,FALSE
-120143,senado,846,Aloysio Nunes Ferreira,PSDB,SP,Outros,COARQ,1,FALSE
-120143,senado,950,João Alberto Souza,MDB,MA,Outros,COARQ,1,FALSE
-120143,senado,1023,Maria do Carmo Alves,DEM,SE,Outros,COARQ,1,FALSE
-120143,senado,1176,Waldemir Moka,MDB,MS,Outros,COARQ,1,FALSE
-120143,senado,2207,Raimundo Lira,PSD,PB,Outros,COARQ,1,FALSE
-120143,senado,2632,Fernando Ribeiro,MDB,PA,Outros,COARQ,1,FALSE
-120143,senado,3360,Delcídio do Amaral,S/Partido,MS,Outros,COARQ,1,FALSE
-120143,senado,3366,Marcelo Crivella,PRB,RJ,Outros,COARQ,1,FALSE
-120143,senado,3396,Tasso Jereissati,PSDB,CE,Outros,COARQ,1,FALSE
-120143,senado,3398,Cristovam Buarque,CIDADANIA,DF,Outros,COARQ,1,FALSE
-120143,senado,3634,Flexa Ribeiro,PSDB,PA,Outros,COARQ,1,FALSE
-120143,senado,3713,Fátima Bezerra,PT,RN,Outros,COARQ,1,FALSE
-120143,senado,3823,Benedito de Lira,PP,AL,Outros,COARQ,1,FALSE
-120143,senado,4560,Sérgio Petecão,PSD,AC,Outros,COARQ,1,FALSE
-120143,senado,4721,Eduardo Amorim,PSDB,SE,Outros,COARQ,1,FALSE
-120143,senado,5008,Humberto Costa,PT,PE,Outros,COARQ,1,FALSE
-120143,senado,5182,Regina Sousa,PT,PI,Outros,COARQ,1,FALSE
-120143,senado,5322,Romário,PODEMOS,RJ,Outros,COARQ,1,FALSE
-120143,senado,5523,Otto Alencar,PSD,BA,Outros,COARQ,1,FALSE
-120143,senado,5525,Omar Aziz,PSD,AM,Outros,COARQ,1,FALSE
-120143,senado,5529,Antonio Anastasia,PSDB,MG,Outros,COARQ,1,FALSE
-120143,senado,5531,Elmano Férrer,PODEMOS,PI,Outros,COARQ,1,FALSE
-120143,senado,5535,Telmário Mota,PROS,RR,Outros,COARQ,1,FALSE
-120143,senado,5540,Fernando Bezerra Coelho,MDB,PE,Outros,COARQ,1,FALSE
-120152,senado,3,Antonio Carlos Valadares,PSB,SE,Outros,CCJ,1,TRUE
-120152,senado,40,José Agripino,DEM,RN,Outros,CCJ,1,TRUE
-120152,senado,72,Roberto Requião,MDB,PR,Outros,CCJ,1,TRUE
-120152,senado,87,Garibaldi Alves Filho,MDB,RN,Outros,CCJ,1,TRUE
-120152,senado,111,Blairo Maggi,PL,MT,Outros,CCJ,1,TRUE
-120152,senado,374,Paulo Rocha,PT,PA,Outros,CCJ,1,TRUE
-120152,senado,391,Aécio Neves,PSDB,MG,Outros,CCJ,1,TRUE
-120152,senado,604,Walter Pinheiro,S/Partido,BA,Outros,CCJ,1,TRUE
-120152,senado,612,Eunício Oliveira,MDB,CE,Outros,CCJ,1,TRUE
-120152,senado,631,Magno Malta,PL,ES,Outros,CCJ,1,TRUE
-120152,senado,635,Ricardo Ferraço,PSDB,ES,Outros,CCJ,1,TRUE
-120152,senado,677,Roberto Rocha,PSDB,MA,Requerimento,,1,
-120152,senado,751,Arolde de Oliveira,PSD,RJ,Requerimento,,1,
-120152,senado,825,Paulo Paim,PT,RS,Outros,CCJ,1,TRUE
-120152,senado,846,Aloysio Nunes Ferreira,PSDB,SP,Outros,CCJ,1,TRUE
-120152,senado,945,Alvaro Dias,PODEMOS,PR,Outros,CCJ,1,TRUE
-120152,senado,945,Alvaro Dias,PODEMOS,PR,Requerimento,,1,
-120152,senado,1186,Luis Carlos Heinze,PP,RS,Requerimento,,1,
-120152,senado,2207,Raimundo Lira,PSD,PB,Outros,CCJ,1,TRUE
-120152,senado,2331,Rose de Freitas,PODEMOS,ES,Outros,CCJ,1,TRUE
-120152,senado,2632,Fernando Ribeiro,MDB,PA,Outros,CCJ,1,TRUE
-120152,senado,3360,Delcídio do Amaral,S/Partido,MS,Outros,CCJ,1,TRUE
-120152,senado,3396,Tasso Jereissati,PSDB,CE,Requerimento,,1,
-120152,senado,3634,Flexa Ribeiro,PSDB,PA,Outros,CCJ,1,TRUE
-120152,senado,3806,Zequinha Marinho,PSC,PA,Requerimento,,1,
-120152,senado,4531,Jayme Campos,DEM,MT,Requerimento,,1,
-120152,senado,4558,Gladson Cameli,PP,AC,Outros,CCJ,1,TRUE
-120152,senado,4560,Sérgio Petecão,PSD,AC,Requerimento,,1,
-120152,senado,4981,Acir Gurgacz,PDT,RO,Outros,CCJ,1,TRUE
-120152,senado,5002,Luiz Henrique,MDB,SC,Outros,CCJ,1,TRUE
-120152,senado,5012,Randolfe Rodrigues,REDE,AP,Requerimento,,1,
-120152,senado,5164,Ataídes Oliveira,PSDB,TO,Outros,CCJ,1,TRUE
-120152,senado,5197,Cássio Cunha Lima,PSDB,PB,Outros,CCJ,1,TRUE
-120152,senado,5236,Reguffe,S/Partido,DF,Outros,CCJ,1,TRUE
-120152,senado,5236,Reguffe,S/Partido,DF,Requerimento,,1,
-120152,senado,5322,Romário,PODEMOS,RJ,Outros,CCJ,1,TRUE
-120152,senado,5322,Romário,PODEMOS,RJ,Requerimento,,1,
-120152,senado,5411,Weverton,PDT,MA,Requerimento,,1,
-120152,senado,5422,Marcos Rogério,DEM,RO,Requerimento,,1,
-120152,senado,5523,Otto Alencar,PSD,BA,Requerimento,,1,
-120152,senado,5527,Simone Tebet,MDB,MS,Requerimento,,1,
-120152,senado,5529,Antonio Anastasia,PSDB,MG,Outros,CCJ,1,TRUE
-120152,senado,5531,Elmano Férrer,PODEMOS,PI,Outros,CCJ,1,TRUE
-120152,senado,5531,Elmano Férrer,PODEMOS,PI,Requerimento,,1,
-120152,senado,5533,Lasier Martins,PODEMOS,RS,Outros,CCJ,1,TRUE
-120152,senado,5533,Lasier Martins,PODEMOS,RS,Requerimento,,1,
-120152,senado,5585,Luiz do Carmo,MDB,GO,Requerimento,,1,
-120152,senado,5895,Jorge Kajuru,PSB,GO,Requerimento,,1,
-120152,senado,5905,Rodrigo Cunha,PSDB,AL,Requerimento,,1,
-120152,senado,5926,Lucas Barreto,PSD,AP,Requerimento,,1,
-120152,senado,5929,Juíza Selma,PSL,MT,Requerimento,,1,
-120152,senado,5942,Marcos do Val,CIDADANIA,ES,Requerimento,,1,
-120152,senado,5959,Styvenson Valentim,PODEMOS,RN,Requerimento,,1,
-120152,senado,5967,Angelo Coronel,PSD,BA,Requerimento,,1,
-120152,senado,5976,Eduardo Girão,PODEMOS,CE,Requerimento,,1,
-120152,senado,5982,Alessandro Vieira,CIDADANIA,SE,Requerimento,,1,
-120768,senado,374,Paulo Rocha,PT,PA,Requerimento,,1,
-120768,senado,825,Paulo Paim,PT,RS,Outros,CDH,1,TRUE
-120768,senado,3372,Valdir Raupp,MDB,RO,Proposição Apensada,CDH,1,TRUE
-120768,senado,5000,Marta Suplicy,MDB,SP,Outros,CDH,1,TRUE
-121572,senado,4575,Lídice da Mata,PSB,BA,Requerimento,,3,
-121572,senado,615,José Pimentel,PT,CE,Requerimento,,2,
-121572,senado,5527,Simone Tebet,MDB,MS,Requerimento,,2,
-121572,senado,35,Jader Barbalho,MDB,PA,Requerimento,,1,
-121572,senado,90,José Serra,PSDB,SP,Proposição Apensada,COARQ,1,FALSE
-121572,senado,90,José Serra,PSDB,SP,Requerimento,,1,
-121572,senado,846,Aloysio Nunes Ferreira,PSDB,SP,Requerimento,,1,
-121572,senado,4525,Fernando Collor,PROS,AL,Requerimento,,1,
-121572,senado,5000,Marta Suplicy,MDB,SP,Requerimento,,1,
-121572,senado,5012,Randolfe Rodrigues,REDE,AP,Requerimento,,1,
-121572,senado,5038,Sandra Braga,MDB,AM,Requerimento,,1,
-126049,senado,5197,Cássio Cunha Lima,PSDB,PB,Proposição Apensada,CI,1,TRUE
-126364,senado,3695,Lindbergh Farias,PT,RJ,Requerimento,CCJ,1,TRUE
-126364,senado,5533,Lasier Martins,PODEMOS,RS,Proposição Apensada,CCJ,1,TRUE
-128634,senado,5164,Ataídes Oliveira,PSDB,TO,Requerimento,PLEN,1,TRUE
-128634,senado,5666,Major Olimpio,PSL,SP,Requerimento,,1,
-128634,senado,5895,Jorge Kajuru,PSB,GO,Requerimento,PLEN,1,TRUE
-129778,senado,3,Antonio Carlos Valadares,PSB,SE,Outros,SLSF,1,FALSE
-129778,senado,72,Roberto Requião,MDB,PR,Outros,SLSF,1,FALSE
-129778,senado,87,Garibaldi Alves Filho,MDB,RN,Outros,SLSF,1,FALSE
-129778,senado,374,Paulo Rocha,PT,PA,Outros,SLSF,1,FALSE
-129778,senado,615,José Pimentel,PT,CE,Outros,SLSF,1,FALSE
-129778,senado,643,Lúcia Vânia,PSB,GO,Outros,SLSF,1,FALSE
-129778,senado,825,Paulo Paim,PT,RS,Outros,SLSF,1,FALSE
-129778,senado,945,Alvaro Dias,PODEMOS,PR,Outros,SLSF,1,FALSE
-129778,senado,1023,Maria do Carmo Alves,DEM,SE,Outros,SLSF,1,FALSE
-129778,senado,3361,José Maranhão,MDB,PB,Outros,SLSF,1,FALSE
-129778,senado,3394,João Capiberibe,PSB,AP,Outros,SLSF,1,FALSE
-129778,senado,3398,Cristovam Buarque,CIDADANIA,DF,Outros,SLSF,1,FALSE
-129778,senado,3695,Lindbergh Farias,PT,RJ,Outros,SLSF,1,FALSE
-129778,senado,3741,Paulo Bauer,PSDB,SC,Outros,SLSF,1,FALSE
-129778,senado,3823,Benedito de Lira,PP,AL,Outros,SLSF,1,FALSE
-129778,senado,4575,Lídice da Mata,PSB,BA,Outros,SLSF,1,FALSE
-129778,senado,4763,Vicentinho Alves,PL,TO,Outros,SLSF,1,FALSE
-129778,senado,4981,Acir Gurgacz,PDT,RO,Outros,SLSF,1,FALSE
-129778,senado,4990,Jorge Viana,PT,AC,Outros,SLSF,1,FALSE
-129778,senado,5012,Randolfe Rodrigues,REDE,AP,Outros,SLSF,1,FALSE
-129778,senado,5052,Roberto Muniz,PP,BA,Outros,SLSF,1,FALSE
-129778,senado,5164,Ataídes Oliveira,PSDB,TO,Outros,SLSF,1,FALSE
-129778,senado,5182,Regina Sousa,PT,PI,Outros,SLSF,1,FALSE
-129778,senado,5322,Romário,PODEMOS,RJ,Outros,SLSF,1,FALSE
-129778,senado,5531,Elmano Férrer,PODEMOS,PI,Outros,SLSF,1,FALSE
-129778,senado,5533,Lasier Martins,PODEMOS,RS,Outros,SLSF,1,FALSE
-129778,senado,5535,Telmário Mota,PROS,RR,Outros,SLSF,1,FALSE
-131429,senado,5529,Antonio Anastasia,PSDB,MG,Proposição Apensada,PLEN,1,TRUE
-131906,senado,3396,Tasso Jereissati,PSDB,CE,Proposição Apensada,CCJ,1,TRUE
-132865,senado,4981,Acir Gurgacz,PDT,RO,Proposição Apensada,CCJ,1,TRUE
-133943,senado,73,Romero Jucá,MDB,RR,Requerimento,PLEN,1,TRUE
-133943,senado,456,Ronaldo Caiado,DEM,GO,Requerimento,PLEN,1,TRUE
-133943,senado,715,Armando Monteiro,PTB,PE,Requerimento,PLEN,1,TRUE
-133943,senado,739,Ciro Nogueira,PP,PI,Requerimento,PLEN,1,TRUE
-133943,senado,3713,Fátima Bezerra,PT,RN,Requerimento,,1,
-133943,senado,3741,Paulo Bauer,PSDB,SC,Requerimento,PLEN,1,TRUE
-133943,senado,4763,Vicentinho Alves,PL,TO,Requerimento,PLEN,1,TRUE
-133943,senado,4767,Eduardo Lopes,PRB,RJ,Requerimento,PLEN,1,TRUE
-133943,senado,5527,Simone Tebet,MDB,MS,Requerimento,PLEN,1,TRUE
-135505,senado,5967,Angelo Coronel,PSD,BA,Proposição Apensada,ATRSGM,1,FALSE
-135799,senado,285,Marcio Bittar,MDB,AC,Proposição Apensada,COARQ,1,FALSE
-135799,senado,285,Marcio Bittar,MDB,AC,Requerimento,,1,
-136033,senado,945,Alvaro Dias,PODEMOS,PR,Proposição Apensada,CCJ,1,TRUE
-136033,senado,5012,Randolfe Rodrigues,REDE,AP,Proposição Apensada,CCJ,1,TRUE
-136033,senado,5531,Elmano Férrer,PODEMOS,PI,Proposição Apensada,CCJ,1,TRUE
-136033,senado,5533,Lasier Martins,PODEMOS,RS,Proposição Apensada,CCJ,1,TRUE
-136033,senado,5666,Major Olimpio,PSL,SP,Proposição Apensada,CCJ,1,TRUE
-136033,senado,5718,Eliziane Gama,CIDADANIA,MA,Proposição Apensada,CCJ,1,TRUE
-136033,senado,5895,Jorge Kajuru,PSB,GO,Proposição Apensada,CCJ,1,TRUE
-136033,senado,5905,Rodrigo Cunha,PSDB,AL,Proposição Apensada,CCJ,1,TRUE
-136033,senado,5953,Fabiano Contarato,REDE,ES,Proposição Apensada,CCJ,1,TRUE
-136033,senado,5959,Styvenson Valentim,PODEMOS,RN,Proposição Apensada,CCJ,1,TRUE
-136033,senado,5976,Eduardo Girão,PODEMOS,CE,Proposição Apensada,CCJ,1,TRUE
-136033,senado,5982,Alessandro Vieira,CIDADANIA,SE,Proposição Apensada,CCJ,1,TRUE
-136033,senado,5988,Soraya Thronicke,PSL,MS,Proposição Apensada,CCJ,1,TRUE
-136173,senado,739,Ciro Nogueira,PP,PI,Requerimento,,1,
+1489,senado,52,Lauro Campos,,DF,Proposição Apensada,,1,FALSE
+41703,senado,111,Blairo Maggi,PL,MT,Proposição Apensada,,1,FALSE
+91341,senado,765,Francisco Dornelles,PP,RJ,Requerimento,,2,FALSE
+91341,senado,73,Romero Jucá,MDB,RR,Requerimento,,1,FALSE
+91341,senado,615,José Pimentel,PT,CE,Requerimento,,1,FALSE
+91341,senado,846,Aloysio Nunes Ferreira,PSDB,SP,Requerimento,,1,FALSE
+91341,senado,1206,Raimundo Colombo,DEM,SC,Requerimento,,1,FALSE
+91341,senado,3360,Delcídio do Amaral,S/Partido,MS,Requerimento,,1,FALSE
+91341,senado,3366,Marcelo Crivella,PRB,RJ,Requerimento,,1,FALSE
+91341,senado,3396,Tasso Jereissati,PSDB,CE,Proposição Apensada,,1,FALSE
+91341,senado,3396,Tasso Jereissati,PSDB,CE,Requerimento,,1,FALSE
+91341,senado,3398,Cristovam Buarque,CIDADANIA,DF,Requerimento,,1,FALSE
+91341,senado,4893,Ruben Figueiró,PSDB,MS,Requerimento,,1,FALSE
+91341,senado,4988,Ana Amélia,PP,RS,Requerimento,,1,FALSE
+91341,senado,5012,Randolfe Rodrigues,REDE,AP,Requerimento,,1,FALSE
+96813,senado,3362,Serys Slhessarenko,PT,MT,Proposição Apensada,,1,FALSE
+102721,senado,3398,Cristovam Buarque,CIDADANIA,DF,Requerimento,,2,FALSE
+102721,senado,4990,Jorge Viana,PT,AC,Requerimento,,2,FALSE
+102721,senado,17,Eduardo Suplicy,PT,SP,Outros,,1,FALSE
+102721,senado,615,José Pimentel,PT,CE,Outros,,1,FALSE
+102721,senado,825,Paulo Paim,PT,RS,Outros,,1,FALSE
+102721,senado,3360,Delcídio do Amaral,S/Partido,MS,Requerimento,,1,FALSE
+102721,senado,3394,João Capiberibe,PSB,AP,Outros,,1,FALSE
+102721,senado,3394,João Capiberibe,PSB,AP,Requerimento,,1,FALSE
+102721,senado,3398,Cristovam Buarque,CIDADANIA,DF,Outros,,1,FALSE
+102721,senado,3634,Flexa Ribeiro,PSDB,PA,Proposição Apensada,,1,FALSE
+102721,senado,3695,Lindbergh Farias,PT,RJ,Outros,,1,FALSE
+102721,senado,4593,Rodrigo Rollemberg,PSB,DF,Outros,,1,FALSE
+102721,senado,4767,Eduardo Lopes,PRB,RJ,Outros,,1,FALSE
+102721,senado,4837,Anibal Diniz,PT,AC,Outros,,1,FALSE
+102721,senado,4869,Ana Rita,PT,ES,Outros,,1,FALSE
+102721,senado,5008,Humberto Costa,PT,PE,Outros,,1,FALSE
+102721,senado,5012,Randolfe Rodrigues,REDE,AP,Outros,,1,FALSE
+102721,senado,5012,Randolfe Rodrigues,REDE,AP,Requerimento,,1,FALSE
+102721,senado,5020,Paulo Davim,PV,RN,Outros,,1,FALSE
+102721,senado,5048,Sergio Souza,MDB,PR,Requerimento,,1,FALSE
+103831,senado,111,Blairo Maggi,PL,MT,Proposição Apensada,,1,FALSE
+103831,senado,5108,Cidinho Santos,PL,,Requerimento,,1,FALSE
+103831,senado,5116,Pedro Chaves,PRB,MS,Outros,,1,FALSE
+106330,senado,635,Ricardo Ferraço,PSDB,ES,Requerimento,,2,FALSE
+106330,senado,3,Antonio Carlos Valadares,PSB,SE,Outros,,1,FALSE
+106330,senado,13,Casildo Maldaner,MDB,SC,Outros,,1,FALSE
+106330,senado,40,José Agripino,DEM,RN,Outros,,1,FALSE
+106330,senado,73,Romero Jucá,MDB,RR,Outros,,1,FALSE
+106330,senado,111,Blairo Maggi,PL,MT,Outros,,1,FALSE
+106330,senado,391,Aécio Neves,PSDB,MG,Outros,,1,FALSE
+106330,senado,612,Eunício Oliveira,MDB,CE,Outros,,1,FALSE
+106330,senado,615,José Pimentel,PT,CE,Outros,,1,FALSE
+106330,senado,715,Armando Monteiro,PTB,PE,Outros,,1,FALSE
+106330,senado,765,Francisco Dornelles,PP,RJ,Outros,,1,FALSE
+106330,senado,846,Aloysio Nunes Ferreira,PSDB,SP,Outros,,1,FALSE
+106330,senado,846,Aloysio Nunes Ferreira,PSDB,SP,Requerimento,,1,FALSE
+106330,senado,945,Alvaro Dias,PODEMOS,PR,Outros,,1,FALSE
+106330,senado,952,Mozarildo Cavalcanti,PTB,RR,Outros,,1,FALSE
+106330,senado,1176,Waldemir Moka,MDB,MS,Outros,,1,FALSE
+106330,senado,3394,João Capiberibe,PSB,AP,Outros,,1,FALSE
+106330,senado,3634,Flexa Ribeiro,PSDB,PA,Outros,,1,FALSE
+106330,senado,3713,Fátima Bezerra,PT,RN,Requerimento,,1,FALSE
+106330,senado,3823,Benedito de Lira,PP,AL,Requerimento,,1,FALSE
+106330,senado,4529,Cícero Lucena,PSDB,PB,Outros,,1,FALSE
+106330,senado,4531,Jayme Campos,DEM,MT,Outros,,1,FALSE
+106330,senado,4763,Vicentinho Alves,PL,TO,Outros,,1,FALSE
+106330,senado,4776,Jorge Afonso Argello,PTB,DF,Outros,,1,FALSE
+106330,senado,4837,Anibal Diniz,PT,AC,Outros,,1,FALSE
+106330,senado,4877,Cyro Miranda,PSDB,GO,Outros,,1,FALSE
+106330,senado,4988,Ana Amélia,PP,RS,Outros,,1,FALSE
+106330,senado,4990,Jorge Viana,PT,AC,Requerimento,,1,FALSE
+106330,senado,4994,Eduardo Braga,MDB,AM,Outros,,1,FALSE
+106330,senado,5004,Ivo Cassol,PP,RO,Outros,,1,FALSE
+106330,senado,5010,Pedro Taques,PDT,MT,Outros,,1,FALSE
+106330,senado,5012,Randolfe Rodrigues,REDE,AP,Outros,,1,FALSE
+106330,senado,5012,Randolfe Rodrigues,REDE,AP,Requerimento,,1,FALSE
+106330,senado,5144,Zeze Perrella,MDB,MG,Outros,,1,FALSE
+106330,senado,5197,Cássio Cunha Lima,PSDB,PB,Requerimento,,1,FALSE
+106330,senado,5535,Telmário Mota,PROS,RR,Requerimento,,1,FALSE
+111048,senado,612,Eunício Oliveira,MDB,CE,Proposição Apensada,,1,FALSE
+115926,senado,17,Eduardo Suplicy,PT,SP,Requerimento,,2,FALSE
+115926,senado,612,Eunício Oliveira,MDB,CE,Requerimento,,1,FALSE
+115926,senado,1249,Kátia Abreu,PDT,TO,Requerimento,,1,FALSE
+115926,senado,5529,Antonio Anastasia,PSDB,MG,Requerimento,,1,FALSE
+120143,senado,87,Garibaldi Alves Filho,MDB,RN,Outros,,1,FALSE
+120143,senado,111,Blairo Maggi,PL,MT,Outros,,1,FALSE
+120143,senado,604,Walter Pinheiro,S/Partido,BA,Outros,,1,FALSE
+120143,senado,615,José Pimentel,PT,CE,Outros,,1,FALSE
+120143,senado,631,Magno Malta,PL,ES,Outros,,1,FALSE
+120143,senado,643,Lúcia Vânia,PSB,GO,Outros,,1,FALSE
+120143,senado,825,Paulo Paim,PT,RS,Outros,,1,FALSE
+120143,senado,846,Aloysio Nunes Ferreira,PSDB,SP,Outros,,1,FALSE
+120143,senado,950,João Alberto Souza,MDB,MA,Outros,,1,FALSE
+120143,senado,1023,Maria do Carmo Alves,DEM,SE,Outros,,1,FALSE
+120143,senado,1176,Waldemir Moka,MDB,MS,Outros,,1,FALSE
+120143,senado,2207,Raimundo Lira,PSD,PB,Outros,,1,FALSE
+120143,senado,2632,Fernando Ribeiro,MDB,PA,Outros,,1,FALSE
+120143,senado,3360,Delcídio do Amaral,S/Partido,MS,Outros,,1,FALSE
+120143,senado,3366,Marcelo Crivella,PRB,RJ,Outros,,1,FALSE
+120143,senado,3396,Tasso Jereissati,PSDB,CE,Outros,,1,FALSE
+120143,senado,3398,Cristovam Buarque,CIDADANIA,DF,Outros,,1,FALSE
+120143,senado,3634,Flexa Ribeiro,PSDB,PA,Outros,,1,FALSE
+120143,senado,3713,Fátima Bezerra,PT,RN,Outros,,1,FALSE
+120143,senado,3823,Benedito de Lira,PP,AL,Outros,,1,FALSE
+120143,senado,4560,Sérgio Petecão,PSD,AC,Outros,,1,FALSE
+120143,senado,4721,Eduardo Amorim,PSDB,SE,Outros,,1,FALSE
+120143,senado,5008,Humberto Costa,PT,PE,Outros,,1,FALSE
+120143,senado,5182,Regina Sousa,PT,PI,Outros,,1,FALSE
+120143,senado,5322,Romário,PODEMOS,RJ,Outros,,1,FALSE
+120143,senado,5523,Otto Alencar,PSD,BA,Outros,,1,FALSE
+120143,senado,5525,Omar Aziz,PSD,AM,Outros,,1,FALSE
+120143,senado,5529,Antonio Anastasia,PSDB,MG,Outros,,1,FALSE
+120143,senado,5531,Elmano Férrer,PODEMOS,PI,Outros,,1,FALSE
+120143,senado,5535,Telmário Mota,PROS,RR,Outros,,1,FALSE
+120143,senado,5540,Fernando Bezerra Coelho,MDB,PE,Outros,,1,FALSE
+120152,senado,3,Antonio Carlos Valadares,PSB,SE,Outros,,1,FALSE
+120152,senado,40,José Agripino,DEM,RN,Outros,,1,FALSE
+120152,senado,72,Roberto Requião,MDB,PR,Outros,,1,FALSE
+120152,senado,87,Garibaldi Alves Filho,MDB,RN,Outros,,1,FALSE
+120152,senado,111,Blairo Maggi,PL,MT,Outros,,1,FALSE
+120152,senado,374,Paulo Rocha,PT,PA,Outros,,1,FALSE
+120152,senado,391,Aécio Neves,PSDB,MG,Outros,,1,FALSE
+120152,senado,604,Walter Pinheiro,S/Partido,BA,Outros,,1,FALSE
+120152,senado,612,Eunício Oliveira,MDB,CE,Outros,,1,FALSE
+120152,senado,631,Magno Malta,PL,ES,Outros,,1,FALSE
+120152,senado,635,Ricardo Ferraço,PSDB,ES,Outros,,1,FALSE
+120152,senado,677,Roberto Rocha,PSDB,MA,Requerimento,,1,FALSE
+120152,senado,751,Arolde de Oliveira,PSD,RJ,Requerimento,,1,FALSE
+120152,senado,825,Paulo Paim,PT,RS,Outros,,1,FALSE
+120152,senado,846,Aloysio Nunes Ferreira,PSDB,SP,Outros,,1,FALSE
+120152,senado,945,Alvaro Dias,PODEMOS,PR,Outros,,1,FALSE
+120152,senado,945,Alvaro Dias,PODEMOS,PR,Requerimento,,1,FALSE
+120152,senado,1186,Luis Carlos Heinze,PP,RS,Requerimento,,1,FALSE
+120152,senado,2207,Raimundo Lira,PSD,PB,Outros,,1,FALSE
+120152,senado,2331,Rose de Freitas,PODEMOS,ES,Outros,,1,FALSE
+120152,senado,2632,Fernando Ribeiro,MDB,PA,Outros,,1,FALSE
+120152,senado,3360,Delcídio do Amaral,S/Partido,MS,Outros,,1,FALSE
+120152,senado,3396,Tasso Jereissati,PSDB,CE,Requerimento,,1,FALSE
+120152,senado,3634,Flexa Ribeiro,PSDB,PA,Outros,,1,FALSE
+120152,senado,3806,Zequinha Marinho,PSC,PA,Requerimento,,1,FALSE
+120152,senado,4531,Jayme Campos,DEM,MT,Requerimento,,1,FALSE
+120152,senado,4558,Gladson Cameli,PP,AC,Outros,,1,FALSE
+120152,senado,4560,Sérgio Petecão,PSD,AC,Requerimento,,1,FALSE
+120152,senado,4981,Acir Gurgacz,PDT,RO,Outros,,1,FALSE
+120152,senado,5002,Luiz Henrique,MDB,SC,Outros,,1,FALSE
+120152,senado,5012,Randolfe Rodrigues,REDE,AP,Requerimento,,1,FALSE
+120152,senado,5164,Ataídes Oliveira,PSDB,TO,Outros,,1,FALSE
+120152,senado,5197,Cássio Cunha Lima,PSDB,PB,Outros,,1,FALSE
+120152,senado,5236,Reguffe,S/Partido,DF,Outros,,1,FALSE
+120152,senado,5236,Reguffe,S/Partido,DF,Requerimento,,1,FALSE
+120152,senado,5322,Romário,PODEMOS,RJ,Outros,,1,FALSE
+120152,senado,5322,Romário,PODEMOS,RJ,Requerimento,,1,FALSE
+120152,senado,5411,Weverton,PDT,MA,Requerimento,,1,FALSE
+120152,senado,5422,Marcos Rogério,DEM,RO,Requerimento,,1,FALSE
+120152,senado,5523,Otto Alencar,PSD,BA,Requerimento,,1,FALSE
+120152,senado,5527,Simone Tebet,MDB,MS,Requerimento,,1,FALSE
+120152,senado,5529,Antonio Anastasia,PSDB,MG,Outros,,1,FALSE
+120152,senado,5531,Elmano Férrer,PODEMOS,PI,Outros,,1,FALSE
+120152,senado,5531,Elmano Férrer,PODEMOS,PI,Requerimento,,1,FALSE
+120152,senado,5533,Lasier Martins,PODEMOS,RS,Outros,,1,FALSE
+120152,senado,5533,Lasier Martins,PODEMOS,RS,Requerimento,,1,FALSE
+120152,senado,5585,Luiz do Carmo,MDB,GO,Requerimento,,1,FALSE
+120152,senado,5895,Jorge Kajuru,PSB,GO,Requerimento,,1,FALSE
+120152,senado,5905,Rodrigo Cunha,PSDB,AL,Requerimento,,1,FALSE
+120152,senado,5926,Lucas Barreto,PSD,AP,Requerimento,,1,FALSE
+120152,senado,5929,Juíza Selma,PSL,MT,Requerimento,,1,FALSE
+120152,senado,5942,Marcos do Val,CIDADANIA,ES,Requerimento,,1,FALSE
+120152,senado,5959,Styvenson Valentim,PODEMOS,RN,Requerimento,,1,FALSE
+120152,senado,5967,Angelo Coronel,PSD,BA,Requerimento,,1,FALSE
+120152,senado,5976,Eduardo Girão,PODEMOS,CE,Requerimento,,1,FALSE
+120152,senado,5982,Alessandro Vieira,CIDADANIA,SE,Requerimento,,1,FALSE
+120768,senado,374,Paulo Rocha,PT,PA,Requerimento,,1,FALSE
+120768,senado,825,Paulo Paim,PT,RS,Outros,,1,FALSE
+120768,senado,3372,Valdir Raupp,MDB,RO,Proposição Apensada,,1,FALSE
+120768,senado,5000,Marta Suplicy,MDB,SP,Outros,,1,FALSE
+121572,senado,4575,Lídice da Mata,PSB,BA,Requerimento,,3,FALSE
+121572,senado,615,José Pimentel,PT,CE,Requerimento,,2,FALSE
+121572,senado,5527,Simone Tebet,MDB,MS,Requerimento,,2,FALSE
+121572,senado,35,Jader Barbalho,MDB,PA,Requerimento,,1,FALSE
+121572,senado,90,José Serra,PSDB,SP,Proposição Apensada,,1,FALSE
+121572,senado,90,José Serra,PSDB,SP,Requerimento,,1,FALSE
+121572,senado,846,Aloysio Nunes Ferreira,PSDB,SP,Requerimento,,1,FALSE
+121572,senado,4525,Fernando Collor,PROS,AL,Requerimento,,1,FALSE
+121572,senado,5000,Marta Suplicy,MDB,SP,Requerimento,,1,FALSE
+121572,senado,5012,Randolfe Rodrigues,REDE,AP,Requerimento,,1,FALSE
+121572,senado,5038,Sandra Braga,MDB,AM,Requerimento,,1,FALSE
+126049,senado,5197,Cássio Cunha Lima,PSDB,PB,Proposição Apensada,,1,FALSE
+126364,senado,3695,Lindbergh Farias,PT,RJ,Requerimento,,1,FALSE
+126364,senado,5533,Lasier Martins,PODEMOS,RS,Proposição Apensada,,1,FALSE
+128634,senado,5164,Ataídes Oliveira,PSDB,TO,Requerimento,,1,FALSE
+128634,senado,5666,Major Olimpio,PSL,SP,Requerimento,,1,FALSE
+128634,senado,5895,Jorge Kajuru,PSB,GO,Requerimento,,1,FALSE
+129778,senado,3,Antonio Carlos Valadares,PSB,SE,Outros,,1,FALSE
+129778,senado,72,Roberto Requião,MDB,PR,Outros,,1,FALSE
+129778,senado,87,Garibaldi Alves Filho,MDB,RN,Outros,,1,FALSE
+129778,senado,374,Paulo Rocha,PT,PA,Outros,,1,FALSE
+129778,senado,615,José Pimentel,PT,CE,Outros,,1,FALSE
+129778,senado,643,Lúcia Vânia,PSB,GO,Outros,,1,FALSE
+129778,senado,825,Paulo Paim,PT,RS,Outros,,1,FALSE
+129778,senado,945,Alvaro Dias,PODEMOS,PR,Outros,,1,FALSE
+129778,senado,1023,Maria do Carmo Alves,DEM,SE,Outros,,1,FALSE
+129778,senado,3361,José Maranhão,MDB,PB,Outros,,1,FALSE
+129778,senado,3394,João Capiberibe,PSB,AP,Outros,,1,FALSE
+129778,senado,3398,Cristovam Buarque,CIDADANIA,DF,Outros,,1,FALSE
+129778,senado,3695,Lindbergh Farias,PT,RJ,Outros,,1,FALSE
+129778,senado,3741,Paulo Bauer,PSDB,SC,Outros,,1,FALSE
+129778,senado,3823,Benedito de Lira,PP,AL,Outros,,1,FALSE
+129778,senado,4575,Lídice da Mata,PSB,BA,Outros,,1,FALSE
+129778,senado,4763,Vicentinho Alves,PL,TO,Outros,,1,FALSE
+129778,senado,4981,Acir Gurgacz,PDT,RO,Outros,,1,FALSE
+129778,senado,4990,Jorge Viana,PT,AC,Outros,,1,FALSE
+129778,senado,5012,Randolfe Rodrigues,REDE,AP,Outros,,1,FALSE
+129778,senado,5052,Roberto Muniz,PP,BA,Outros,,1,FALSE
+129778,senado,5164,Ataídes Oliveira,PSDB,TO,Outros,,1,FALSE
+129778,senado,5182,Regina Sousa,PT,PI,Outros,,1,FALSE
+129778,senado,5322,Romário,PODEMOS,RJ,Outros,,1,FALSE
+129778,senado,5531,Elmano Férrer,PODEMOS,PI,Outros,,1,FALSE
+129778,senado,5533,Lasier Martins,PODEMOS,RS,Outros,,1,FALSE
+129778,senado,5535,Telmário Mota,PROS,RR,Outros,,1,FALSE
+131429,senado,5529,Antonio Anastasia,PSDB,MG,Proposição Apensada,,1,FALSE
+131906,senado,3396,Tasso Jereissati,PSDB,CE,Proposição Apensada,,1,FALSE
+132865,senado,4981,Acir Gurgacz,PDT,RO,Proposição Apensada,,1,FALSE
+133943,senado,73,Romero Jucá,MDB,RR,Requerimento,,1,FALSE
+133943,senado,456,Ronaldo Caiado,DEM,GO,Requerimento,,1,FALSE
+133943,senado,715,Armando Monteiro,PTB,PE,Requerimento,,1,FALSE
+133943,senado,739,Ciro Nogueira,PP,PI,Requerimento,,1,FALSE
+133943,senado,3713,Fátima Bezerra,PT,RN,Requerimento,,1,FALSE
+133943,senado,3741,Paulo Bauer,PSDB,SC,Requerimento,,1,FALSE
+133943,senado,4763,Vicentinho Alves,PL,TO,Requerimento,,1,FALSE
+133943,senado,4767,Eduardo Lopes,PRB,RJ,Requerimento,,1,FALSE
+133943,senado,5527,Simone Tebet,MDB,MS,Requerimento,,1,FALSE
+135505,senado,5967,Angelo Coronel,PSD,BA,Proposição Apensada,,1,FALSE
+135799,senado,285,Marcio Bittar,MDB,AC,Proposição Apensada,,1,FALSE
+135799,senado,285,Marcio Bittar,MDB,AC,Requerimento,,1,FALSE
+136033,senado,945,Alvaro Dias,PODEMOS,PR,Proposição Apensada,,1,FALSE
+136033,senado,5012,Randolfe Rodrigues,REDE,AP,Proposição Apensada,,1,FALSE
+136033,senado,5531,Elmano Férrer,PODEMOS,PI,Proposição Apensada,,1,FALSE
+136033,senado,5533,Lasier Martins,PODEMOS,RS,Proposição Apensada,,1,FALSE
+136033,senado,5666,Major Olimpio,PSL,SP,Proposição Apensada,,1,FALSE
+136033,senado,5718,Eliziane Gama,CIDADANIA,MA,Proposição Apensada,,1,FALSE
+136033,senado,5895,Jorge Kajuru,PSB,GO,Proposição Apensada,,1,FALSE
+136033,senado,5905,Rodrigo Cunha,PSDB,AL,Proposição Apensada,,1,FALSE
+136033,senado,5953,Fabiano Contarato,REDE,ES,Proposição Apensada,,1,FALSE
+136033,senado,5959,Styvenson Valentim,PODEMOS,RN,Proposição Apensada,,1,FALSE
+136033,senado,5976,Eduardo Girão,PODEMOS,CE,Proposição Apensada,,1,FALSE
+136033,senado,5982,Alessandro Vieira,CIDADANIA,SE,Proposição Apensada,,1,FALSE
+136033,senado,5988,Soraya Thronicke,PSL,MS,Proposição Apensada,,1,FALSE
+136173,senado,739,Ciro Nogueira,PP,PI,Requerimento,,1,FALSE
