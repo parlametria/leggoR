@@ -130,13 +130,12 @@ create_tabela_atores_senado_scrap <- function(documentos_df, autores_df) {
     senado_env$comissoes_nomes %>% 
     tibble::as_tibble() %>% 
     dplyr::select(-comissoes_temporarias) %>% 
-    dplyr::mutate(comissoes_permanentes = paste0("Comissão ", comissoes_permanentes))
+    dplyr::mutate(comissoes_permanentes = paste0("Comissão ", comissoes_permanentes)) %>% 
+    rbind(list("Plenário", "Plen(á|a)rio")) %>% 
+    rbind(list("Comissão Especial", "Especial"))
   
   autores_docs <-
     fuzzyjoin::regex_left_join(autores_docs, senado_comissoes, by=c("local" = "comissoes_permanentes")) %>% 
-    dplyr::mutate(siglas_comissoes = dplyr::case_when(stringr::str_detect(tolower(local), "plen(á|a)rio") ~ "Plenário", 
-                                                      stringr::str_detect(tolower(local), "especial") ~ "Comissão Especial",
-                                                      T ~ siglas_comissoes)) %>% 
     dplyr::select(-c(local, comissoes_permanentes)) %>% 
     dplyr::rename(sigla_local = siglas_comissoes)
   
