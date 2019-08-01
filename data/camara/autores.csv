@@ -5790,3 +5790,7 @@ id_autor,nome,tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor
 178989,Renata Abreu,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/178989,2212494,camara,PODE,SP,10000
 204537,Enrico Misasi,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204537,2212511,camara,PV,SP,10000
 204559,Zé Neto,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204559,2212378,camara,PT,BA,10000
+204368,Fabio Schiochet,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/204368,2211991,camara,PSL,SC,10000
+72442,Felipe Carreras,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/72442,2211325,camara,PSB,PE,10000
+74478,Luciano Bivar,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/74478,2212300,camara,PSL,PE,10000
+76874,Marcelo Freixo,Deputado,https://dadosabertos.camara.leg.br/api/v2/deputados/76874,2212180,camara,PSOL,RJ,10000

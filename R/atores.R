@@ -100,10 +100,11 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
 #' @return Dataframe
 .detect_sigla_local <- function(atores_df, casa_env) {
   atores_df <- atores_df %>%
-    dplyr::mutate(is_important = sigla_local %in% c(casa_env$comissoes_nomes$siglas_comissoes) |
-                    stringr::str_detect(tolower(sigla_local), 'pl') |
-                    stringr::str_detect(tolower(sigla_local), 'pec') |
-                    stringr::str_detect(tolower(sigla_local), 'mpv'))
+    dplyr::mutate(is_important = dplyr::if_else(is.na(sigla_local),FALSE,
+                                                dplyr::if_else((sigla_local %in% c(casa_env$comissoes_nomes$siglas_comissoes) |
+                                                  stringr::str_detect(tolower(sigla_local), 'pl') |
+                                                  stringr::str_detect(tolower(sigla_local), 'pec') |
+                                                  stringr::str_detect(tolower(sigla_local), 'mpv')),TRUE,FALSE)))
 
   return(atores_df)
 }
