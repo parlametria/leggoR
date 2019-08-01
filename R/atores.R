@@ -123,8 +123,22 @@ create_tabela_atores_senado_scrap <- function(documentos_df, autores_df) {
   }
   
   autores_docs <- 
-    merge(documentos_df, autores_df %>% dplyr::select(-id_principal), by = c("id_documento", "casa")) %>% 
+    merge(documentos_df, autores_df, by = c("id_principal", "id_documento", "casa")) %>% 
     dplyr::mutate(identificacao = stringr::str_trim(identificacao)) 
+  
+  senado_comissoes <-
+    senado_env$comissoes_nomes %>% 
+    tibble::as_tibble() %>% 
+    dplyr::select(-comissoes_temporarias) %>% 
+    dplyr::mutate(comissoes_permanentes = paste0("Comissão ", comissoes_permanentes))
+  
+  autores_docs <-
+    fuzzyjoin::regex_left_join(autores_docs, senado_comissoes, by=c("local" = "comissoes_permanentes")) %>% 
+    dplyr::mutate(siglas_comissoes = dplyr::case_when(stringr::str_detect(tolower(local), "plen(á|a)rio") ~ "Plenário", 
+                                                      stringr::str_detect(tolower(local), "especial") ~ "Comissão Especial",
+                                                      T ~ siglas_comissoes)) %>% 
+    dplyr::select(-c(local, comissoes_permanentes)) %>% 
+    dplyr::rename(sigla_local = siglas_comissoes)
   
   atores_df <- 
     autores_docs %>%
@@ -142,10 +156,15 @@ create_tabela_atores_senado_scrap <- function(documentos_df, autores_df) {
                     nome_autor,
                     partido,
                     uf,
-                    tipo_generico) %>%
+                    tipo_generico,
+                    sigla_local) %>%
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -qtd_de_documentos) %>%
     dplyr::ungroup()
+  
+  atores_df <- 
+    .detect_sigla_local(atores_df, senado_env) %>% 
+    dplyr::mutate(id_autor = NA)
   
   return(atores_df)
 }

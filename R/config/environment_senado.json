@@ -131,7 +131,8 @@
       "CMCVM",
       "CMMC",
       "CMO",
-      "FIPA"
+      "FIPA",
+      "CMMPV"
     ],
     "comissoes_permanentes": [
       "de Assuntos Econômicos",
@@ -154,7 +155,8 @@
       "Permanente Mista de Combate à Violência contra a Mulher",
       "Mista Permanente sobre Mudanças Climáticas",
       "Mista de Planos, Orçamentos Públicos e Fiscalização",
-      "Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas"
+      "Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas",
+      "Mista da Medida Provisória"
     ],
     "comissoes_temporarias": [
       "Especial"
