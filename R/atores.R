@@ -1,5 +1,5 @@
-
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 
 #' @title Cria tabela com atores de documentos com seus respectivos tipos de documentos
 #' @description Retorna um dataframe contendo informações com os autores dos documentos e seus tipos
@@ -39,11 +39,9 @@ create_tabela_atores_camara <- function(documentos_df, autores_df) {
                     sigla_local) %>%
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -qtd_de_documentos) %>%
-    dplyr::ungroup() %>%
-    dplyr::mutate(is_important = sigla_local %in% c(camara_env$comissoes$siglas_comissoes) |
-                    stringr::str_detect(tolower(sigla_local), 'pl') |
-                    stringr::str_detect(tolower(sigla_local), 'pec') |
-                    stringr::str_detect(tolower(sigla_local), 'mpv'))
+    dplyr::ungroup()
+
+  atores_df <- .detect_sigla_local(atores_df, camara_env)
 
   return(atores_df)
 }
@@ -69,7 +67,8 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
                   nome_autor = nome,
                   sigla_tipo,
                   partido,
-                  uf)
+                  uf,
+                  sigla_local)
 
   atores_df <- autores_docs %>%
     agoradigital::add_tipo_evento_documento() %>%
@@ -80,11 +79,32 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
                     nome_autor,
                     partido,
                     uf,
-                    tipo_generico) %>%
+                    tipo_generico,
+                    sigla_local) %>%
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -qtd_de_documentos) %>%
     dplyr::ungroup() %>% 
-    dplyr::filter(!is.na(id_autor))
+    dplyr::filter(!is.na(id_autor)) %>% 
+    dplyr::mutate(sigla_local = NA,
+                  is_important = FALSE)
+
+  atores_df <- .detect_sigla_local(atores_df, senado_env)
+
+  return(atores_df)
+}
+
+#' @title Detecta comissoes importantes da Camara e Senado
+#' @description Retorna um dataframe contendo informacoes de importancia de comissoes
+#' @param atores_df Dataframe dos atores
+#' @param casa_env Camara ou Senado
+#' @return Dataframe
+.detect_sigla_local <- function(atores_df, casa_env) {
+  atores_df <- atores_df %>%
+    dplyr::mutate(is_important = dplyr::if_else(is.na(sigla_local),FALSE,
+                                                dplyr::if_else((sigla_local %in% c(casa_env$comissoes_nomes$siglas_comissoes) |
+                                                  stringr::str_detect(tolower(sigla_local), 'pl') |
+                                                  stringr::str_detect(tolower(sigla_local), 'pec') |
+                                                  stringr::str_detect(tolower(sigla_local), 'mpv')),TRUE,FALSE)))
 
   return(atores_df)
 }

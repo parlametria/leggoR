@@ -271,13 +271,13 @@ fetch_documentos_data <- function(docs_ids) {
 #' @export
 fetch_documentos_relacionados_senado <- function(pls_ids) {
   docs <- 
-    purrr::map2_df(pls_ids$id_principal, pls_ids$casa, ~ rcongresso::scrap_senado_congresso_documentos(.x, T, .y)) %>% 
+    purrr::map2_df(pls_ids$id_principal, pls_ids$casa, ~ rcongresso::scrap_senado_congresso_documentos(.x, .y, T)) %>% 
   dplyr::mutate(id_documento = dplyr::row_number())
   return(docs)
 }
 
 #' @title Extrai dos autores de documentos o partido, estado e nome
-#' @description Recebi uma lista de autores e retorna um dataframe com
+#' @description Recebe uma lista de autores e retorna um dataframe com
 #' nome, partido e estado dos autores
 #' @param autor_raw lista com autores
 #' @param id_doc id do documento
@@ -290,8 +290,8 @@ extract_autor_relacionadas_senado <- function(autor_raw, id_doc) {
   dplyr::distinct()
 }
 
-#' @title Recebi uma string com o autor e quebra ela em nome, partido e estado
-#' @description Recebi uma string com o autor e quebra ela em nome, partido e estado
+#' @title Recebe uma string com o autor e quebra ela em nome, partido e estado
+#' @description Recebe uma string com o autor e quebra ela em nome, partido e estado
 #' @param autores_raw_element Autor
 #' @return Dataframe
 .aux_extract_autor_relacionadas_senado <- function(autores_raw_element) {

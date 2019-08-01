@@ -80,7 +80,12 @@ read_current_docs_senado <- function(file_path) {
                                     codigo_assunto_geral = readr::col_double(),
                                     codigo_natureza = readr::col_double(),
                                     data_leitura = readr::col_date(format = ""),
-                                    proposicoes_apensadas = readr::col_logical()
+                                    proposicoes_apensadas = readr::col_logical(),
+                                    codigo_local = readr::col_double(),
+                                    codigo_situacao = readr::col_double(),
+                                    data_apresentacao = readr::col_date(format = ""),
+                                    data_local = readr::col_date(format = ""),
+                                    data_situacao = readr::col_date(format = "")
                                   ))
 
 }

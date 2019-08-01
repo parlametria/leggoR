@@ -111,11 +111,11 @@ test <- function(){
   })
 
   test_that('fetch_documentos_data() return dataframe', {
-    expect_true(is.data.frame(fetch_documentos_data(pls_ids)))
+    expect_true(is.data.frame(fetch_documentos_data(current_docs_ids)))
   })
 
   test_that('fetch_autores_documentos() return dataframe', {
-    expect_true(is.data.frame(fetch_autores_documentos(pls_ids)))
+    expect_true(is.data.frame(fetch_autores_documentos(current_docs_ids %>% dplyr::mutate(sigla_tipo = c('PL','PL')))))
   })
   
   test_that('extract_autor_relacionadas_senado() is equal', {
