@@ -1,16 +1,16 @@
 context("Atores")
 
 setup <- function() {
-  documentos_camara <- read_current_docs_camara("data/camara/documentos.csv")
-  autores_camara <- read_current_autores_camara("data/camara/autores.csv")
-  documentos_senado <- read_current_docs_senado("data/senado/documentos.csv")
-  autores_senado <- read_current_autores_senado("data/senado/autores.csv")
-  documentos_senado_scrap <- read_current_docs_senado_scrap("data/senado/documentos_scrap.csv")
-  autores_senado_scrap <- read_current_autores_senado_scrap("data/senado/autores_scrap.csv")
+  documentos_camara <- read_current_docs_camara("../../data/camara/documentos.csv")
+  autores_camara <- read_current_autores_camara("../../data/camara/autores.csv")
+  documentos_senado <- read_current_docs_senado("../../data/senado/documentos.csv")
+  autores_senado <- read_current_autores_senado("../../data/senado/autores.csv")
+  documentos_senado_scrap <- read_current_docs_senado_scrap("../../data/senado/documentos_scrap.csv")
+  autores_senado_scrap <- read_current_autores_senado_scrap("../../data/senado/autores_scrap.csv")
 
-  atores_camara <- create_tabela_atores_camara(documentos_camara, autores_camara)
-  atores_senado <- create_tabela_atores_senado(documentos_senado, autores_senado)
-  atores_senado_scrap <- create_tabela_atores_senado_scrap(documentos_senado_scrap, autores_senado_scrap)
+  atores_camara <<- create_tabela_atores_camara(documentos_camara, autores_camara)
+  atores_senado <<- create_tabela_atores_senado(documentos_senado, autores_senado)
+  atores_senado_scrap <<- create_tabela_atores_senado_scrap(documentos_senado_scrap, autores_senado_scrap)
   
   docs_sample_df <<- tibble::tibble(id_principal = c(1,1,2),
                                     casa = c('camara','camara','camara'),
@@ -69,11 +69,14 @@ setup <- function() {
                                                   is_important = c(T, T, T),
                                                   id_autor = c(NA, NA, NA)) %>% 
     dplyr::mutate(qtd_de_documentos = as.integer(qtd_de_documentos))
-  
+  return(TRUE)
 }
 
 check_api <- function(){
-  tryCatch(setup(), error = function(e){return(FALSE)})
+  tryCatch(setup(), error = function(e){
+    print(e)
+    return(FALSE)
+  })
 }
 
 test <- function() {
@@ -110,5 +113,3 @@ test <- function() {
 if(check_api()){
   test()
 } else testthat::skip('Erro no setup!')
-
-
