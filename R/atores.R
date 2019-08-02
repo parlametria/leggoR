@@ -93,22 +93,6 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
   return(atores_df)
 }
 
-#' @title Detecta comissoes importantes da Camara e Senado
-#' @description Retorna um dataframe contendo informacoes de importancia de comissoes
-#' @param atores_df Dataframe dos atores
-#' @param casa_env Camara ou Senado
-#' @return Dataframe
-.detect_sigla_local <- function(atores_df, casa_env) {
-  atores_df <- atores_df %>%
-    dplyr::mutate(is_important = dplyr::if_else(is.na(sigla_local),FALSE,
-                                                dplyr::if_else((sigla_local %in% c(casa_env$comissoes_nomes$siglas_comissoes) |
-                                                  stringr::str_detect(tolower(sigla_local), 'pl') |
-                                                  stringr::str_detect(tolower(sigla_local), 'pec') |
-                                                  stringr::str_detect(tolower(sigla_local), 'mpv')),TRUE,FALSE)))
-
-  return(atores_df)
-}
-
 #' @title Cria tabela com atores de documentos com seus respectivos tipos de documentos
 #' @description Retorna um dataframe contendo informações com os autores dos documentos e seus tipos
 #' @param documentos_df Dataframe dos documentos
@@ -163,7 +147,24 @@ create_tabela_atores_senado_scrap <- function(documentos_df, autores_df) {
   
   atores_df <- 
     .detect_sigla_local(atores_df, senado_env) %>% 
-    dplyr::mutate(id_autor = NA)
+    dplyr::mutate(id_autor = NA) %>% 
+    dplyr::select(id_ext, casa, id_autor, dplyr::everything())
+  
+  return(atores_df)
+}
+
+#' @title Detecta comissoes importantes da Camara e Senado
+#' @description Retorna um dataframe contendo informacoes de importancia de comissoes
+#' @param atores_df Dataframe dos atores
+#' @param casa_env Camara ou Senado
+#' @return Dataframe
+.detect_sigla_local <- function(atores_df, casa_env) {
+  atores_df <- atores_df %>%
+    dplyr::mutate(is_important = dplyr::if_else(is.na(sigla_local),FALSE,
+                                                dplyr::if_else((sigla_local %in% c(casa_env$comissoes_nomes$siglas_comissoes) |
+                                                                  stringr::str_detect(tolower(sigla_local), 'pl') |
+                                                                  stringr::str_detect(tolower(sigla_local), 'pec') |
+                                                                  stringr::str_detect(tolower(sigla_local), 'mpv')),TRUE,FALSE)))
   
   return(atores_df)
 }
