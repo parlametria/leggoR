@@ -61,7 +61,7 @@ read_deputados <- function(file_path) {
                                  ultimo_status_id_legislatura = readr::col_double()
                                ))
 
-  deputados <- deputados %>% dplyr::select(id, partido = ultimo_status_sigla_partido, uf = ultimo_status_sigla_uf)
+  deputados <- deputados %>% dplyr::select(id, partido = ultimo_status_sigla_partido, uf = ultimo_status_sigla_uf, dplyr::everything())
 
 }
 
@@ -103,6 +103,17 @@ read_current_autores_senado <- function(file_path) {
 
 }
 
+#' @title Ler arquivos de senadores
+#' @param file_path caminho do arquivo
+#' @export
+read_senadores <- function(file_path) {
+  senadores <- readr::read_csv(file_path,
+                                     col_types = list(
+                                       .default = readr::col_character(),
+                                       id_parlamentar = readr::col_double()
+                                     ))
+}
+
 #' @title Ler arquivos de documentos do senado oriundos do scrap
 #' @param file_path caminho do arquivo
 #' @export
@@ -128,11 +139,9 @@ read_current_docs_senado_scrap <- function(file_path) {
 read_current_autores_senado_scrap <- function(file_path) {
   current_autores <- readr::read_csv(file_path,
                                   col_types = list(
+                                    .default = readr::col_character(),
                                     id_principal = readr::col_double(),
                                     id_documento = readr::col_double(),
-                                    casa = readr::col_character(),
-                                    nome_autor = readr::col_character(),
-                                    partido = readr::col_character(),
-                                    uf = readr::col_character()
+                                    id_autor = readr::col_double()
                                   ))
 }
