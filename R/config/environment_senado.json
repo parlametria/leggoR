@@ -131,7 +131,8 @@
       "CMCVM",
       "CMMC",
       "CMO",
-      "FIPA"
+      "FIPA",
+      "CMMPV"
     ],
     "comissoes_permanentes": [
       "de Assuntos Econômicos",
@@ -154,7 +155,8 @@
       "Permanente Mista de Combate à Violência contra a Mulher",
       "Mista Permanente sobre Mudanças Climáticas",
       "Mista de Planos, Orçamentos Públicos e Fiscalização",
-      "Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas"
+      "Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas",
+      "Mista da Medida Provisória"
     ],
     "comissoes_temporarias": [
       "Especial"
@@ -220,7 +222,7 @@
     
   "tipos_documentos_scrap": [
     {"tipo": "Emenda", "regex": "emenda|subemenda"},
-    {"tipo": "Parecer", "regex": "parecer|^complementa..o de voto|^reda..o final|^substitutivo|p\\.s"},
+    {"tipo": "Parecer", "regex": "parecer|^complementa..o de voto|^reda..o final|^substitutivo|p\\.s|^relat(ó|o)rio|^par"},
     {"tipo": "Requerimento", "regex": "requerimento|rqe|rqs|rqj|rra|req|rdh|rma"}, 
     {"tipo": "Voto em Separado", "regex": "voto em separado"}
     ]

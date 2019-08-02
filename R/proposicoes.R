@@ -269,7 +269,7 @@ fetch_documentos_data <- function(docs_ids) {
 #' iremos baixar, formato (id_principal, casa)
 #' @return Dataframe
 #' @export
-fetch_documento_relacionados_senado <- function(pls_ids) {
+fetch_documentos_relacionados_senado <- function(pls_ids) {
   docs <- 
     purrr::map2_df(pls_ids$id_principal, pls_ids$casa, ~ rcongresso::scrap_senado_congresso_documentos(.x, .y, T)) %>% 
   dplyr::mutate(id_documento = dplyr::row_number())
@@ -296,6 +296,7 @@ extract_autor_relacionadas_senado <- function(autor_raw, id_doc) {
 #' @return Dataframe
 .aux_extract_autor_relacionadas_senado <- function(autores_raw_element) {
   clean_autor_raw = trimws(autores_raw_element)
+  clean_autor_raw = stringr::str_replace(clean_autor_raw, "S/Partido","")
   nome_autor = ifelse(grepl('\\(',clean_autor_raw),stringr::str_extract(clean_autor_raw,"(.*?)(?=\\()"),clean_autor_raw)
   partido = stringr::str_extract(clean_autor_raw,"(?<=\\()(.*?)(?=\\/)")
   uf = stringr::str_extract(clean_autor_raw,"(?<=\\/)(.*?)(?=\\))")

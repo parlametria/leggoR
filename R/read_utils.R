@@ -1,3 +1,5 @@
+#' @title Ler a tabela de ids
+#' @param pls_ids_filepath caminho do arquivo
 #' @export
 read_pls_ids <- function(pls_ids_filepath) {
   pls_ids <- readr::read_csv(pls_ids_filepath,
@@ -10,6 +12,8 @@ read_pls_ids <- function(pls_ids_filepath) {
   pls_ids
 }
 
+#' @title Ler arquivos de documentos da camara 
+#' @param file_path caminho do arquivo
 #' @export
 read_current_docs_camara <- function(file_path) {
   current_docs <- readr::read_csv(file_path,
@@ -28,6 +32,8 @@ read_current_docs_camara <- function(file_path) {
                                   ))
 }
 
+#' @title Ler arquivos de autores da camara 
+#' @param file_path caminho do arquivo
 #' @export
 read_current_autores_camara <- function(file_path) {
   current_autores <- readr::read_csv(file_path,
@@ -39,6 +45,8 @@ read_current_autores_camara <- function(file_path) {
 
 }
 
+#' @title Ler arquivos de deputados 
+#' @param file_path caminho do arquivo
 #' @export
 read_deputados <- function(file_path) {
   deputados <- readr::read_csv(file_path,
@@ -57,6 +65,8 @@ read_deputados <- function(file_path) {
 
 }
 
+#' @title Ler arquivos de documentos do senado 
+#' @param file_path caminho do arquivo
 #' @export
 read_current_docs_senado <- function(file_path) {
   current_docs <- readr::read_csv(file_path,
@@ -80,6 +90,8 @@ read_current_docs_senado <- function(file_path) {
 
 }
 
+#' @title Ler arquivos de autores do senado 
+#' @param file_path caminho do arquivo
 #' @export
 read_current_autores_senado <- function(file_path) {
   current_autores <- readr::read_csv(file_path,
@@ -89,4 +101,38 @@ read_current_autores_senado <- function(file_path) {
                                        id_documento = readr::col_double()
                                      ))
 
+}
+
+#' @title Ler arquivos de documentos do senado oriundos do scrap
+#' @param file_path caminho do arquivo
+#' @export
+read_current_docs_senado_scrap <- function(file_path) {
+  current_docs <- readr::read_csv(file_path,
+                                     col_types = list(
+                                       acao_legislativa = readr::col_character(),
+                                       autor = readr::col_character(),
+                                       casa = readr::col_character(),
+                                       data = readr::col_character(),
+                                       descricao_ementa = readr::col_character(),
+                                       identificacao = readr::col_character(),
+                                       id_principal = readr::col_double(),
+                                       local = readr::col_character(),
+                                       id_documento = readr::col_double()
+                                     ))
+  
+}
+
+#' @title Ler arquivos de autores do senado oriundos do scrap
+#' @param file_path caminho do arquivo
+#' @export
+read_current_autores_senado_scrap <- function(file_path) {
+  current_autores <- readr::read_csv(file_path,
+                                  col_types = list(
+                                    id_principal = readr::col_double(),
+                                    id_documento = readr::col_double(),
+                                    casa = readr::col_character(),
+                                    nome_autor = readr::col_character(),
+                                    partido = readr::col_character(),
+                                    uf = readr::col_character()
+                                  ))
 }
