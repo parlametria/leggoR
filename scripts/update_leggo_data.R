@@ -72,7 +72,7 @@ if (casa == 'camara') {
 }
 
 if (casa == 'senado') {
-  senadores <- agoradigital::read_senadores(parlamentares_filepath)
+  senadores <- agoradigital::read_senadores(senadores_filepath)
   current_docs <- agoradigital::read_current_docs_senado(docs_filepath)
   current_autores <- agoradigital::read_current_autores_senado(autores_filepath)
 }
@@ -140,32 +140,9 @@ if (casa == 'senado') {
   senado_docs_scrap <- agoradigital::fetch_documentos_relacionados_senado(pls_senado)
   senado_autores_scrap <- agoradigital::fetch_autores_relacionadas_senado(senado_docs_scrap)
   
-  tipos_autores_scrap <- senado_env$tipos_autores_scrap
-  
-  autores_senado_tipo <- senado_autores_scrap %>% 
-    fuzzyjoin::regex_left_join(tipos_autores_scrap, by=c("nome_autor" = "regex")) %>% 
-    dplyr::select(-regex) %>% 
-    dplyr::mutate(tipo_autor = dplyr::if_else(is.na(tipo_autor),"nao_parlamentar",tipo_autor)) %>% 
-    dplyr::mutate(nome_autor_clean = tolower(stringr::str_trim(stringr::str_replace(nome_autor,
-                                                         "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", ""))))
-  
-  senadores_ids <- senadores %>% dplyr::select(nome_eleitoral, id_autor = id_parlamentar) %>% dplyr::mutate(nome_eleitoral = tolower(nome_eleitoral))
-  
-  autores_senado_tipo_senadores <- autores_senado_tipo %>% 
-    dplyr::filter(tipo_autor == 'senador') %>% 
-    dplyr::left_join(senadores_ids, by = c("nome_autor_clean"="nome_eleitoral"))
-  
-  deputados_ids <- deputados %>% dplyr::select(ultimo_status_nome_eleitoral, id_autor = id) %>% dplyr::mutate(ultimo_status_nome_eleitoral = tolower(ultimo_status_nome_eleitoral))
-  
-  autores_senado_tipo_deputados <- autores_senado_tipo %>% 
-    dplyr::filter(tipo_autor == 'deputado') %>% 
-    dplyr::left_join(deputados_ids, by = c("nome_autor_clean"="ultimo_status_nome_eleitoral"))
-  
-  senado_autores_scrap_com_id <- dplyr::bind_rows(autores_senado_tipo_senadores,autores_senado_tipo_deputados) %>% 
-    dplyr::bind_rows((autores_senado_tipo %>% dplyr::filter(tipo_autor == "nao_parlamentar") %>% dplyr::mutate(id_autor = NA))) %>% 
-    dplyr::select(-nome_autor_clean)
+  senado_autores_scrap_com_id_autor <- agoradigital::match_autores_senado_scrap_to_parlamentares(senado_autores_scrap, senadores, deputados)
   
   readr::write_csv(senado_docs_scrap, paste0(export_path, "/senado/documentos_scrap.csv"))
-  readr::write_csv(senado_autores_scrap_com_id, paste0(export_path, "/senado/autores_scrap.csv"))
+  readr::write_csv(senado_autores_scrap_com_id_autor, paste0(export_path, "/senado/autores_scrap.csv"))
 }
 

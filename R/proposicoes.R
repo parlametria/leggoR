@@ -444,3 +444,62 @@ fetch_autores_documento <- function(id_documento, casa, sigla_tipo) {
   return(autores_result)
 }
 
+#' @title Realiza o pareamento dos dados dos autores dos documentos do Senado obtidos via scrapping da página com parlamentares de ambas as casas
+#' @description Retorna os autores pareados com seus respectivos ids (em suas respectivas casas),
+#' caso não seja possível parear retorna um Dataframe vazio
+#' @param autores_senado_scrap dataframe com autores dos documentos
+#' @param senadores_df dataframe com dados dos senadores das últimas legislaturas
+#' @param deputados_df dataframe com dados dos deputados das últimas legislaturas
+#' @return Dataframe contendo dados dos autores com seus respectivos ids em suas respectivas casas
+#' @export
+match_autores_senado_scrap_to_parlamentares <- function(autores_senado_scrap, senadores_df, deputados_df) {
+  tipos_autores_scrap <- senado_env$tipos_autores_scrap
+  
+  autores_senado_tipo <- senado_autores_scrap %>% 
+    fuzzyjoin::regex_left_join(tipos_autores_scrap, by=c("nome_autor" = "regex")) %>% 
+    dplyr::select(-regex) %>% 
+    dplyr::mutate(tipo_autor = dplyr::if_else(is.na(tipo_autor),"nao_parlamentar",tipo_autor)) %>% 
+    dplyr::mutate(nome_autor_clean = tolower(stringr::str_trim(stringr::str_replace(nome_autor,
+    "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", ""))))
+  
+  autores_senado_tipo_senadores <- match_autores_senado_scrap_to_senadores(autores_senado_tipo, senadores_df)
+  autores_senado_tipo_deputados <- match_autores_senado_scrap_to_deputados(autores_senado_tipo, deputados_df)
+    
+  senado_autores_scrap_com_id <- dplyr::bind_rows(autores_senado_tipo_senadores,autores_senado_tipo_deputados) %>% 
+    dplyr::bind_rows((autores_senado_tipo %>% dplyr::filter(tipo_autor == "nao_parlamentar") %>% dplyr::mutate(id_autor = NA))) %>% 
+    dplyr::select(-nome_autor_clean)
+  
+  return(senado_autores_scrap_com_id)
+}
+
+#' @title Realiza o pareamento dos dados dos autores dos documentos do Senado obtidos via scrapping da página com senadores
+#' @description Retorna os autores pareados com seus respectivos ids no Senado,
+#' caso não seja possível parear retorna um Dataframe vazio
+#' @param autores_senado_scrap_senadores dataframe com autores dos documentos que são senadores
+#' @param senadores_df dataframe com dados dos senadores das últimas legislaturas
+#' @return Dataframe contendo dados dos autores com seus respectivos ids no Senado
+match_autores_senado_scrap_to_senadores <- function(autores_senado_scrap_senadores, senadores_df) {
+  senadores_ids <- senadores %>% dplyr::select(nome_eleitoral, id_autor = id_parlamentar) %>% dplyr::mutate(nome_eleitoral = tolower(nome_eleitoral))
+  
+  autores_senado_tipo_senadores <- autores_senado_scrap_senadores %>% 
+    dplyr::filter(tipo_autor == 'senador') %>% 
+    dplyr::left_join(senadores_ids, by = c("nome_autor_clean"="nome_eleitoral"))
+  
+  return(autores_senado_tipo_senadores)
+}
+
+#' @title Realiza o pareamento dos dados dos autores dos documentos do Senado obtidos via scrapping da página com deputados
+#' @description Retorna os autores pareados com seus respectivos ids na Câmara,
+#' caso não seja possível parear retorna um Dataframe vazio
+#' @param autores_senado_scrap_senadores dataframe com autores dos documentos que são deputados
+#' @param senadores_df dataframe com dados dos deputados das últimas legislaturas
+#' @return Dataframe contendo dados dos autores com seus respectivos ids na Câmara
+match_autores_senado_scrap_to_deputados <- function(autores_senado_scrap_deputados, deputados_df) {
+  deputados_ids <- deputados %>% dplyr::select(ultimo_status_nome_eleitoral, id_autor = id) %>% dplyr::mutate(ultimo_status_nome_eleitoral = tolower(ultimo_status_nome_eleitoral))
+  
+  autores_senado_tipo_deputados <- autores_senado_scrap_deputados %>% 
+    dplyr::filter(tipo_autor == 'deputado') %>% 
+    dplyr::left_join(deputados_ids, by = c("nome_autor_clean"="ultimo_status_nome_eleitoral"))
+  
+  return(autores_senado_tipo_deputados)
+}
