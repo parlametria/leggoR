@@ -2743,6 +2743,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 136033,senado,945,senador,Alvaro Dias,PODEMOS,PR,Requerimento,Plenário,1,TRUE
 136033,senado,2331,senador,Rose de Freitas,PODEMOS,ES,Emenda,CCJ,1,TRUE
 136033,senado,4770,senador,Izalci Lucas,PSDB,DF,Outros,Plenário,1,TRUE
+136033,senado,4994,senador,Eduardo Braga,MDB,AM,Requerimento,CCJ,1,TRUE
 136033,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Outros,Plenário,1,TRUE
 136033,senado,5531,senador,Elmano Férrer,PODEMOS,PI,Outros,Plenário,1,TRUE
 136033,senado,5533,senador,Lasier Martins,PODEMOS,RS,Outros,Plenário,1,TRUE
