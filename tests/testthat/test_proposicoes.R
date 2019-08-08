@@ -52,8 +52,8 @@ current_docs_ids <- current_docs %>%
 relacionadas_257161 <- rcongresso::fetch_relacionadas("camara",257161)
 relacionadas_2088990 <- rcongresso::fetch_relacionadas("camara",2088990)
 
-senadores <- agoradigital::read_senadores('../../data/senado/parlamentares.csv')
-deputados <- agoradigital::read_deputados('../../data/camara/parlamentares.csv')
+senadores <<- agoradigital::read_senadores('../../data/senado/parlamentares.csv')
+deputados <<- agoradigital::read_deputados('../../data/camara/parlamentares.csv')
 
 
 autores_senado_scrapped_deputados <- tibble::tibble(nome_autor = c("Deputado Federal Alessandro Molon",
