@@ -30,6 +30,7 @@ setup <- function() {
   atores_sample_df <<- tibble::tibble(id_ext = c(1,1,1,2,2),
                                       casa = c('camara','camara','camara','camara','camara'),
                                       id_autor = c(1,5,5,5,6),
+                                      tipo_autor = rep("deputado",5),
                                       nome_autor = c('Dep. A','Dep. C','Dep. C','Dep. C','Dep. D'),
                                       partido = c('Partido A','Partido C','Partido C','Partido C','Partido B'),
                                       uf = c("SP","PB", "PB", "PB", "BA"),
@@ -56,18 +57,21 @@ setup <- function() {
                                              casa = c("senado","senado","senado"),
                                              nome_autor = c("Câmara dos Deputados", "Senador Ataídes Oliveira", "Senador Lasier Martins"),
                                              partido = c(NA, "PSDB", "PSD"),
-                                             uf = c(NA, "TO", "RS"))
+                                             uf = c(NA, "TO", "RS"),
+                                             tipo_autor = c("nao_parlamentar","senador","senador"),
+                                             id_autor = c(NA, 5164, 5533))
   
-  atores_senado_scrap_gabarito <<- tibble::tibble(id_ext = c(128634, 128634, 128634),
-                                                  casa = c("senado","senado","senado"),
-                                                  nome_autor = c("Câmara dos Deputados", "Senador Ataídes Oliveira", "Senador Lasier Martins"),
-                                                  partido = c(NA, "PSDB", "PSD"),
-                                                  uf = c(NA, "TO", "RS"),
-                                                  tipo_generico = c("Outros", "Requerimento", "Emenda"),
-                                                  sigla_local = c("Plenário", "Plenário", "CCJ"),
-                                                  qtd_de_documentos = c(1, 1, 1),
-                                                  is_important = c(T, T, T),
-                                                  id_autor = c(NA, NA, NA)) %>% 
+  atores_senado_scrap_gabarito <<- tibble::tibble(id_ext = c(128634, 128634),
+                                                  casa = c("senado","senado"),
+                                                  id_autor = c(5164, 5533),
+                                                  tipo_autor = c("senador","senador"),
+                                                  nome_autor = c("Ataídes Oliveira", "Lasier Martins"),
+                                                  partido = c("PSDB", "PSD"),
+                                                  uf = c("TO", "RS"),
+                                                  tipo_generico = c("Requerimento", "Emenda"),
+                                                  sigla_local = c("Plenário", "CCJ"),
+                                                  qtd_de_documentos = c(1, 1),
+                                                  is_important = c(T, T)) %>% 
     dplyr::mutate(qtd_de_documentos = as.integer(qtd_de_documentos))
   return(TRUE)
 }

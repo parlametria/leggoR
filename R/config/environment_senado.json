@@ -225,6 +225,11 @@
     {"tipo": "Parecer", "regex": "parecer|^complementa..o de voto|^reda..o final|^substitutivo|p\\.s|^relat(ó|o)rio|^par"},
     {"tipo": "Requerimento", "regex": "requerimento|rqe|rqs|rqj|rra|req|rdh|rma"}, 
     {"tipo": "Voto em Separado", "regex": "voto em separado"}
-    ]
+    ],
+    
+  "tipos_autores_scrap": [
+    {"tipo_autor": "senador", "regex": "^Senador(a)*|^Líder do ((.*?)(\\s))|^Presidente do Senado Federal: Senador"},
+    {"tipo_autor": "deputado", "regex": "^Deputad(o|a)|^Deputad(o|a) Federal"}
+  ]
 
 }

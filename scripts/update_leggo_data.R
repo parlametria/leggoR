@@ -52,7 +52,8 @@ devtools::install()
 
 current_docs <- tibble::tibble()
 current_autores <- tibble::tibble()
-parlamentares <- tibble::tibble()
+deputados <- tibble::tibble()
+senadores <- tibble::tibble()
 
 # Read current data csvs
 print("Lendo csvs com dados atuais...")
@@ -60,15 +61,18 @@ pls_ids <- agoradigital::read_pls_ids(pls_ids_filepath)
 
 docs_filepath <- paste0(export_path, '/', casa, '/documentos.csv')
 autores_filepath <- paste0(export_path, '/', casa, '/autores.csv')
-parlamentares_filepath <- paste0(export_path, '/', casa, '/parlamentares.csv')
+deputados_filepath <- paste0(export_path, '/camara/parlamentares.csv')
+senadores_filepath <- paste0(export_path, '/senado/parlamentares.csv')
+
+deputados <- agoradigital::read_deputados(deputados_filepath)
 
 if (casa == 'camara') {
-  parlamentares <- agoradigital::read_deputados(parlamentares_filepath)
   current_docs <- agoradigital::read_current_docs_camara(docs_filepath)
   current_autores <- agoradigital::read_current_autores_camara(autores_filepath)
 }
 
 if (casa == 'senado') {
+  senadores <- agoradigital::read_senadores(senadores_filepath)
   current_docs <- agoradigital::read_current_docs_senado(docs_filepath)
   current_autores <- agoradigital::read_current_autores_senado(autores_filepath)
 }
@@ -135,7 +139,10 @@ if (casa == 'senado') {
   pls_senado <- all_pls_ids %>%  dplyr::filter(casa == 'senado')
   senado_docs_scrap <- agoradigital::fetch_documentos_relacionados_senado(pls_senado)
   senado_autores_scrap <- agoradigital::fetch_autores_relacionadas_senado(senado_docs_scrap)
+  
+  senado_autores_scrap_com_id_autor <- agoradigital::match_autores_senado_scrap_to_parlamentares(senado_autores_scrap, senadores, deputados)
+  
   readr::write_csv(senado_docs_scrap, paste0(export_path, "/senado/documentos_scrap.csv"))
-  readr::write_csv(senado_autores_scrap, paste0(export_path, "/senado/autores_scrap.csv"))
+  readr::write_csv(senado_autores_scrap_com_id_autor, paste0(export_path, "/senado/autores_scrap.csv"))
 }
 
