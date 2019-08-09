@@ -412,6 +412,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 46249,camara,162332,deputado,Luiz Nishimori,PL,PR,Parecer,PL629902,2,TRUE
 46249,camara,162332,deputado,Luiz Nishimori,PL,PR,Requerimento,PLEN,2,TRUE
 46249,camara,178843,deputado,Marx Beltrão,PSD,AL,Parecer,CSSF,2,TRUE
+46249,camara,178970,deputado,João Daniel,PT,SE,Proposição Apensada,MESA,2,FALSE
 46249,camara,178970,deputado,João Daniel,PT,SE,Requerimento,PL629902,2,TRUE
 46249,camara,178970,deputado,João Daniel,PT,SE,Voto em Separado,PL629902,2,TRUE
 46249,camara,178986,deputado,Nilto Tatto,PT,SP,Voto em Separado,PL629902,2,TRUE
@@ -479,7 +480,6 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 46249,camara,178964,deputado,Heitor Schuch,PSB,RS,Requerimento,PL629902,1,TRUE
 46249,camara,178970,deputado,João Daniel,PT,SE,Outros,.,1,FALSE
 46249,camara,178970,deputado,João Daniel,PT,SE,Proposição Apensada,CCP,1,FALSE
-46249,camara,178970,deputado,João Daniel,PT,SE,Proposição Apensada,MESA,1,FALSE
 46249,camara,178970,deputado,João Daniel,PT,SE,Requerimento,PLEN,1,TRUE
 46249,camara,178986,deputado,Nilto Tatto,PT,SP,Emenda,CMADS,1,TRUE
 46249,camara,178986,deputado,Nilto Tatto,PT,SP,Parecer,CMADS,1,TRUE
@@ -781,6 +781,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 541857,camara,160571,deputado,João Rodrigues,PSD,,Requerimento,PL372212,2,TRUE
 541857,camara,160651,deputado,Rogério Peninha Mendonça,MDB,SC,Proposição Apensada,MESA,2,FALSE
 541857,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,PL372212,2,TRUE
+541857,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,PLEN,2,TRUE
 541857,camara,178829,deputado,Capitão Augusto,PL,SP,Proposição Apensada,MESA,2,FALSE
 541857,camara,178894,deputado,Laudivio Carvalho,PODE,MG,Requerimento,PL372212,2,TRUE
 541857,camara,178924,deputado,Capitão Fábio Abreu,PL,,Proposição Apensada,MESA,2,FALSE
@@ -820,6 +821,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 541857,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Proposição Apensada,MESA,1,FALSE
 541857,camara,136811,deputado,Afonso Hamm,PP,RS,Requerimento,PLEN,1,TRUE
 541857,camara,137070,deputado,Vicentinho Júnior,PL,TO,Proposição Apensada,MESA,1,FALSE
+541857,camara,141401,deputado,Carlos Bezerra,MDB,,Proposição Apensada,CCP,1,FALSE
 541857,camara,141411,deputado,Dagoberto Nogueira,PDT,MS,Proposição Apensada,MESA,1,FALSE
 541857,camara,141417,deputado,Edio Lopes,PL,RR,Proposição Apensada,MESA,1,FALSE
 541857,camara,141417,deputado,Edio Lopes,PL,RR,Requerimento,PLEN,1,TRUE
@@ -861,7 +863,6 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 541857,camara,166402,deputado,Magda Mofatto,PL,GO,Requerimento,PL372212,1,TRUE
 541857,camara,167614,deputado,Severino Ninho,PSB,PE,Proposição Apensada,MESA,1,FALSE
 541857,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Proposição Apensada,MESA,1,FALSE
-541857,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,PLEN,1,TRUE
 541857,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Voto em Separado,PL372212,1,TRUE
 541857,camara,178825,deputado,Leo De Brito,PT,,Proposição Apensada,MESA,1,FALSE
 541857,camara,178826,deputado,Major Olimpio Gomes,PSL,SP,Proposição Apensada,MESA,1,FALSE
@@ -1332,6 +1333,8 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 2080604,camara,178968,deputado,Adelson Barreto,PR,SE,Emenda,PLEN,1,TRUE
 2080604,camara,178975,deputado,Baleia Rossi,MDB,SP,Emenda,PLEN,1,TRUE
 2080604,camara,178984,deputado,Miguel Haddad,PSDB,SP,Requerimento,PLEN,1,TRUE
+2081681,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,PLEN,2,TRUE
+2081681,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Proposição Apensada,CTASP,1,TRUE
 2085536,camara,73674,deputado,Roberto Balestra,PP,GO,Emenda,CMADS,2,TRUE
 2085536,camara,73674,deputado,Roberto Balestra,PP,GO,Parecer,CMADS,2,TRUE
 2085536,camara,93083,deputado,Cacá Leão,PP,BA,Parecer,CDU,1,TRUE
@@ -2132,6 +2135,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 2192459,camara,178836,deputado,Alan Rick,DEM,AC,Requerimento,PEC00619,1,TRUE
 2192459,camara,178842,deputado,Jhc,PSB,AL,Emenda,PEC00619,1,TRUE
 2192459,camara,178854,deputado,Elmar Nascimento,DEM,BA,Emenda,PEC00619,1,TRUE
+2192459,camara,178854,deputado,Elmar Nascimento,DEM,BA,Requerimento,PLEN,1,TRUE
 2192459,camara,178881,deputado,Aluisio Mendes,PODE,MA,Emenda,PLEN,1,TRUE
 2192459,camara,178882,deputado,André Fufuca,PP,MA,Emenda,PEC00619,1,TRUE
 2192459,camara,178921,deputado,Sebastião Oliveira,PL,PE,Emenda,PEC00619,1,TRUE
@@ -2244,6 +2248,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 2193540,camara,178854,deputado,Elmar Nascimento,DEM,BA,Proposição Apensada,MESA,1,FALSE
 2193540,camara,178854,deputado,Elmar Nascimento,DEM,BA,Requerimento,PLEN,1,TRUE
 2193540,camara,204358,deputado,Beto Pereira,PSDB,MS,Emenda,PLEN,1,TRUE
+2196833,camara,141488,deputado,Paulo Teixeira,PT,SP,Requerimento,PEC04519,3,TRUE
 2196833,camara,178989,deputado,Renata Abreu,PODE,SP,Requerimento,PEC04519,3,TRUE
 2196833,camara,204559,deputado,Zé Neto,PT,BA,Requerimento,PEC04519,3,TRUE
 2196833,camara,74478,deputado,Luciano Bivar,PSL,PE,Emenda,PEC04519,2,TRUE
@@ -2256,16 +2261,78 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 2196833,camara,141427,deputado,Fábio Ramalho,MDB,MG,Requerimento,PLEN,1,TRUE
 2196833,camara,141488,deputado,Paulo Teixeira,PT,SP,Requerimento,CCJC,1,TRUE
 2196833,camara,141513,deputado,Bilac Pinto,DEM,MG,Requerimento,CCJC,1,TRUE
+2196833,camara,178829,deputado,Capitão Augusto,PL,SP,Requerimento,PLEN,1,TRUE
 2196833,camara,178835,deputado,Afonso Motta,PDT,RS,Requerimento,PLEN,1,TRUE
+2196833,camara,178884,deputado,Hildo Rocha,MDB,MA,Requerimento,PEC04519,1,TRUE
 2196833,camara,178939,deputado,Clarissa Garotinho,PROS,RJ,Requerimento,CCJC,1,TRUE
 2196833,camara,178975,deputado,Baleia Rossi,MDB,SP,Proposição Apensada,PLEN,1,TRUE
 2196833,camara,178977,deputado,Eduardo Cury,PSDB,SP,Requerimento,PEC04519,1,TRUE
 2196833,camara,204403,deputado,Marlon Santos,PDT,RS,Requerimento,PEC04519,1,TRUE
+2196833,camara,204419,deputado,Glaustin Fokus,PSC,GO,Requerimento,MESA,1,FALSE
 2196833,camara,204419,deputado,Glaustin Fokus,PSC,GO,Requerimento,PEC04519,1,TRUE
 2196833,camara,204464,deputado,Talíria Petrone,PSOL,RJ,Voto em Separado,CCJC,1,TRUE
 2196833,camara,204541,deputado,Eduardo Bismarck,PDT,CE,Requerimento,CCJC,1,TRUE
+2196833,camara,204552,deputado,Eduardo Braide,PMN,MA,Requerimento,PEC04519,1,TRUE
 2196833,camara,204572,deputado,Capitão Alberto Neto,PRB,AM,Emenda,PEC04519,1,TRUE
 2196833,camara,204576,deputado,João Roma,PRB,BA,Parecer,CCJC,1,TRUE
+2199763,camara,74400,deputado,Paulo Pimenta,PT,RS,Emenda,MPV88119,18,TRUE
+2199763,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,MPV88119,18,TRUE
+2199763,camara,178977,deputado,Eduardo Cury,PSDB,SP,Emenda,MPV88119,17,TRUE
+2199763,camara,204516,deputado,Alexis Fonteyne,NOVO,SP,Emenda,MPV88119,16,TRUE
+2199763,camara,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,MPV88119,13,TRUE
+2199763,camara,74548,deputado,Jaques Wagner,PT,BA,Emenda,MPV88119,12,TRUE
+2199763,camara,204532,deputado,Vinicius Poit,NOVO,SP,Emenda,MPV88119,11,TRUE
+2199763,camara,178897,deputado,Rodrigo Pacheco,DEM,MG,Emenda,MPV88119,10,TRUE
+2199763,camara,204429,deputado,João H. Campos,PSB,PE,Emenda,MPV88119,9,TRUE
+2199763,camara,160568,deputado,Rogério Carvalho,PT,SE,Emenda,MPV88119,8,TRUE
+2199763,camara,74398,deputado,Maria do Rosário,PT,RS,Emenda,MPV88119,6,TRUE
+2199763,camara,68720,deputado,Fábio Henrique,PDT,SE,Emenda,MPV88119,5,TRUE
+2199763,camara,74057,deputado,Alice Portugal,PCdoB,BA,Emenda,MPV88119,5,TRUE
+2199763,camara,74060,deputado,Daniel Almeida,PCdoB,BA,Emenda,MPV88119,5,TRUE
+2199763,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Emenda,MPV88119,5,TRUE
+2199763,camara,73531,deputado,Ivan Valente,PSOL,SP,Emenda,MPV88119,4,TRUE
+2199763,camara,73801,deputado,Renildo Calheiros,PCdoB,PE,Emenda,MPV88119,4,TRUE
+2199763,camara,81055,deputado,Márcio Jerry,PCdoB,MA,Emenda,MPV88119,4,TRUE
+2199763,camara,160511,deputado,Alessandro Molon,PSB,RJ,Emenda,MPV88119,4,TRUE
+2199763,camara,204389,deputado,Elias Vaz,PSB,GO,Emenda,MPV88119,4,TRUE
+2199763,camara,204395,deputado,Pedro Lupion,DEM,PR,Emenda,MPV88119,4,TRUE
+2199763,camara,204477,deputado,Felício Laterça,PSL,RJ,Emenda,MPV88119,4,TRUE
+2199763,camara,73486,deputado,Pompeo de Mattos,PDT,RS,Emenda,MPV88119,3,TRUE
+2199763,camara,74585,deputado,Lincoln Portela,PL,MG,Emenda,MPV88119,3,TRUE
+2199763,camara,141488,deputado,Paulo Teixeira,PT,SP,Emenda,MPV88119,3,TRUE
+2199763,camara,160632,deputado,Zé Silva,SOLIDARIEDADE,MG,Emenda,MPV88119,3,TRUE
+2199763,camara,178949,deputado,Zenaide Maia,PHS,RN,Emenda,MPV88119,3,TRUE
+2199763,camara,204548,deputado,Heitor Freire,PSL,CE,Emenda,MPV88119,3,TRUE
+2199763,camara,4931,deputado,Izalci Lucas,PSDB,DF,Emenda,MPV88119,2,TRUE
+2199763,camara,73933,deputado,Zequinha Marinho,PSC,,Emenda,MPV88119,2,TRUE
+2199763,camara,73945,deputado,Eduardo Gomes,SD,TO,Emenda,MPV88119,2,TRUE
+2199763,camara,74478,deputado,Luciano Bivar,PSL,PE,Emenda,MPV88119,2,TRUE
+2199763,camara,178836,deputado,Alan Rick,DEM,AC,Emenda,MPV88119,2,TRUE
+2199763,camara,178871,deputado,Evair Vieira de Melo,PP,ES,Emenda,MPV88119,2,TRUE
+2199763,camara,178961,deputado,Shéridan,PSDB,RR,Emenda,MPV88119,2,TRUE
+2199763,camara,178970,deputado,João Daniel,PT,SE,Emenda,MPV88119,2,TRUE
+2199763,camara,204380,deputado,Celina Leão,PP,DF,Emenda,MPV88119,2,TRUE
+2199763,camara,204386,deputado,Jose Mario Schreiner,DEM,GO,Emenda,MPV88119,2,TRUE
+2199763,camara,204485,deputado,Luiz Carlos Motta,PL,SP,Emenda,MPV88119,2,TRUE
+2199763,camara,204536,deputado,Kim Kataguiri,DEM,SP,Emenda,MPV88119,2,TRUE
+2199763,camara,69871,deputado,Bacelar,PODE,BA,Emenda,MPV88119,1,TRUE
+2199763,camara,73592,deputado,Kátia Abreu,PFL,TO,Emenda,MPV88119,1,TRUE
+2199763,camara,73924,deputado,Davi Alcolumbre,DEM,AP,Emenda,MPV88119,1,TRUE
+2199763,camara,73943,deputado,Perpétua Almeida,PCdoB,AC,Emenda,MPV88119,1,TRUE
+2199763,camara,74400,deputado,Paulo Pimenta,PT,RS,Requerimento,PLEN,1,TRUE
+2199763,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Emenda,MPV88119,1,TRUE
+2199763,camara,108338,deputado,Jaqueline Cassol,PP,RO,Emenda,MPV88119,1,TRUE
+2199763,camara,141391,deputado,Arnaldo Jardim,CIDADANIA,SP,Emenda,MPV88119,1,TRUE
+2199763,camara,141411,deputado,Dagoberto Nogueira,PDT,MS,Emenda,MPV88119,1,TRUE
+2199763,camara,172711,deputado,Plínio Valério,PSDB,AM,Emenda,MPV88119,1,TRUE
+2199763,camara,178874,deputado,Sergio Vidigal,PDT,ES,Emenda,MPV88119,1,TRUE
+2199763,camara,178909,deputado,Hélio Leite,DEM,PA,Emenda,MPV88119,1,TRUE
+2199763,camara,204410,deputado,Luisa Canziani,PTB,PR,Emenda,MPV88119,1,TRUE
+2199763,camara,204425,deputado,Silvio Costa Filho,PRB,PE,Emenda,MPV88119,1,TRUE
+2199763,camara,204472,deputado,José Medeiros,PODE,MT,Emenda,MPV88119,1,TRUE
+2199763,camara,204500,deputado,Eduardo Costa,PTB,PA,Emenda,MPV88119,1,TRUE
+2199763,camara,204504,deputado,Cezinha de Madureira,PSD,SP,Emenda,MPV88119,1,TRUE
+2199763,camara,204556,deputado,Marcelo Ramos,PL,AM,Emenda,MPV88119,1,TRUE
 91341,senado,551,senador,Arthur Virgílio,PSDB,AM,Parecer,CCJ,2,TRUE
 91341,senado,635,senador,Ricardo Ferraço,MDB,ES,Parecer,CAE,2,TRUE
 91341,senado,635,senador,Ricardo Ferraço,PSDB,ES,Parecer,CAE,2,TRUE
@@ -2481,6 +2548,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 131429,senado,5627,senador,Jean Paul Prates,PT,RN,Outros,Plenário,1,TRUE
 131429,senado,5783,senador,Zenaide Maia,PROS,RN,Outros,Plenário,1,TRUE
 131906,senado,3396,senador,Tasso Jereissati,PSDB,CE,Outros,Plenário,1,TRUE
+131906,senado,5531,senador,Elmano Férrer,PODEMOS,PI,Parecer,CCJ,1,TRUE
 132865,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Emenda,CCJ,42,TRUE
 132865,senado,1173,senador,Wellington Fagundes,PL,MT,Emenda,CCJ,24,TRUE
 132865,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Requerimento,Plenário,3,TRUE

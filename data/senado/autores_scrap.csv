@@ -542,44 +542,44 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135064,1185,senado,Senador Fernando Bezerra Coelho ,MDB,PE,senador,5540
 135064,1186,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
 131906,1194,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
-120152,1195,senado,Senador Eduardo Amorim ,PSDB,SE,senador,4721
-120152,1196,senado,Senador Eduardo Girão ,PODE,CE,senador,5976
-120152,1196,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
-120152,1196,senado,Senador Alvaro Dias ,PODE,PR,senador,945
-120152,1196,senado,Senador Angelo Coronel ,PSD,BA,senador,5967
-120152,1196,senado,Senador Arolde de Oliveira ,PSD,RJ,senador,751
-120152,1196,senado,Senador Elmano Férrer ,PODE,PI,senador,5531
-120152,1196,senado,Senador Jayme Campos ,DEM,MT,senador,4531
-120152,1196,senado,Senador Jorge Kajuru ,PSB,GO,senador,5895
-120152,1196,senado,Senador Lasier Martins ,PODE,RS,senador,5533
-120152,1196,senado,Senador Lucas Barreto ,PSD,AP,senador,5926
-120152,1196,senado,Senador Luis Carlos Heinze ,PP,RS,senador,1186
-120152,1196,senado,Senador Luiz do Carmo ,MDB,GO,senador,5585
-120152,1196,senado,Senador Marcos Rogério ,DEM,RO,senador,5422
-120152,1196,senado,Senador Marcos do Val ,CIDADANIA,ES,senador,5942
-120152,1196,senado,Senador Otto Alencar ,PSD,BA,senador,5523
-120152,1196,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
-120152,1196,senado,Senador Reguffe ,,DF,senador,5236
-120152,1196,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
-120152,1196,senado,Senador Rodrigo Cunha ,PSDB,AL,senador,5905
-120152,1196,senado,Senador Romário ,PODE,RJ,senador,5322
-120152,1196,senado,Senadora Juíza Selma ,PSL,MT,senador,5929
-120152,1196,senado,Senador Sérgio Petecão ,PSD,AC,senador,4560
-120152,1196,senado,Senadora Simone Tebet ,MDB,MS,senador,5527
-120152,1196,senado,Senador Styvenson Valentim ,PODE,RN,senador,5959
-120152,1196,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
-120152,1196,senado,Senador Weverton ,PDT,MA,senador,5411
-120152,1196,senado,Senador Zequinha Marinho ,PSC,PA,senador,3806
-120152,1200,senado,Senadora Juíza Selma ,PSL,MT,senador,5929
-120152,1201,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
-120152,1202,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
-135061,1313,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
+131906,1195,senado,Senador Elmano Férrer ,PODEMOS,PI,senador,5531
+120152,1196,senado,Senador Eduardo Amorim ,PSDB,SE,senador,4721
+120152,1197,senado,Senador Eduardo Girão ,PODE,CE,senador,5976
+120152,1197,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+120152,1197,senado,Senador Alvaro Dias ,PODE,PR,senador,945
+120152,1197,senado,Senador Angelo Coronel ,PSD,BA,senador,5967
+120152,1197,senado,Senador Arolde de Oliveira ,PSD,RJ,senador,751
+120152,1197,senado,Senador Elmano Férrer ,PODE,PI,senador,5531
+120152,1197,senado,Senador Jayme Campos ,DEM,MT,senador,4531
+120152,1197,senado,Senador Jorge Kajuru ,PSB,GO,senador,5895
+120152,1197,senado,Senador Lasier Martins ,PODE,RS,senador,5533
+120152,1197,senado,Senador Lucas Barreto ,PSD,AP,senador,5926
+120152,1197,senado,Senador Luis Carlos Heinze ,PP,RS,senador,1186
+120152,1197,senado,Senador Luiz do Carmo ,MDB,GO,senador,5585
+120152,1197,senado,Senador Marcos Rogério ,DEM,RO,senador,5422
+120152,1197,senado,Senador Marcos do Val ,CIDADANIA,ES,senador,5942
+120152,1197,senado,Senador Otto Alencar ,PSD,BA,senador,5523
+120152,1197,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+120152,1197,senado,Senador Reguffe ,,DF,senador,5236
+120152,1197,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
+120152,1197,senado,Senador Rodrigo Cunha ,PSDB,AL,senador,5905
+120152,1197,senado,Senador Romário ,PODE,RJ,senador,5322
+120152,1197,senado,Senadora Juíza Selma ,PSL,MT,senador,5929
+120152,1197,senado,Senador Sérgio Petecão ,PSD,AC,senador,4560
+120152,1197,senado,Senadora Simone Tebet ,MDB,MS,senador,5527
+120152,1197,senado,Senador Styvenson Valentim ,PODE,RN,senador,5959
+120152,1197,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
+120152,1197,senado,Senador Weverton ,PDT,MA,senador,5411
+120152,1197,senado,Senador Zequinha Marinho ,PSC,PA,senador,3806
+120152,1201,senado,Senadora Juíza Selma ,PSL,MT,senador,5929
+120152,1202,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
+120152,1203,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
 135061,1314,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
 135061,1315,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
 135061,1316,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
 135061,1317,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
 135061,1318,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
-135061,1347,senado,Senador Major Olimpio ,PSL,SP,senador,5666
+135061,1319,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
 135061,1348,senado,Senador Major Olimpio ,PSL,SP,senador,5666
 135061,1349,senado,Senador Major Olimpio ,PSL,SP,senador,5666
 135061,1350,senado,Senador Major Olimpio ,PSL,SP,senador,5666
@@ -587,10 +587,10 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1352,senado,Senador Major Olimpio ,PSL,SP,senador,5666
 135061,1353,senado,Senador Major Olimpio ,PSL,SP,senador,5666
 135061,1354,senado,Senador Major Olimpio ,PSL,SP,senador,5666
-135061,1425,senado,Senador Weverton ,PDT,MA,senador,5411
+135061,1355,senado,Senador Major Olimpio ,PSL,SP,senador,5666
 135061,1426,senado,Senador Weverton ,PDT,MA,senador,5411
-135061,1429,senado,Senador Weverton ,PDT,MA,senador,5411
-135061,1541,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+135061,1427,senado,Senador Weverton ,PDT,MA,senador,5411
+135061,1430,senado,Senador Weverton ,PDT,MA,senador,5411
 135061,1542,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 135061,1543,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 135061,1544,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
@@ -600,7 +600,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1548,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 135061,1549,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 135061,1550,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
-135061,1561,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
+135061,1551,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 135061,1562,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
 135061,1563,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
 135061,1564,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
@@ -652,99 +652,99 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1610,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
 135061,1611,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
 135061,1612,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
-135061,1715,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
-135061,1718,senado,Senador Major Olimpio ,PSL,SP,senador,5666
-135061,1724,senado,Líder do PODEMOS Igor Timo ,PODEMOS,MG,senador,NA
-135061,1725,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
-135061,1729,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
-135060,1771,senado,Senador Luis Carlos Heinze ,PP,RS,senador,1186
+135061,1613,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
+135061,1716,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
+135061,1719,senado,Senador Major Olimpio ,PSL,SP,senador,5666
+135061,1725,senado,Líder do PODEMOS Igor Timo ,PODEMOS,MG,senador,NA
+135061,1726,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
+135061,1730,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
 135060,1772,senado,Senador Luis Carlos Heinze ,PP,RS,senador,1186
 135060,1773,senado,Senador Luis Carlos Heinze ,PP,RS,senador,1186
-135060,1776,senado,Senador Luis Carlos Heinze ,PP,RS,senador,1186
+135060,1774,senado,Senador Luis Carlos Heinze ,PP,RS,senador,1186
 135060,1777,senado,Senador Luis Carlos Heinze ,PP,RS,senador,1186
-135060,1787,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
-136033,1811,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
-136033,1811,senado,Senador Rodrigo Cunha ,PSDB,AL,senador,5905
-136033,1811,senado,Senador Alvaro Dias ,PODEMOS,PR,senador,945
-136033,1811,senado,Senador Major Olimpio ,PSL,SP,senador,5666
-136033,1811,senado,Senador Eduardo Girão ,PODEMOS,CE,senador,5976
-136033,1811,senado,Senador Elmano Férrer ,PODEMOS,PI,senador,5531
-136033,1811,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
-136033,1811,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
-136033,1811,senado,Senador Styvenson Valentim ,PODEMOS,RN,senador,5959
-136033,1811,senado,Senador Jorge Kajuru ,PSB,GO,senador,5895
-136033,1811,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
-136033,1811,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
-136033,1811,senado,Senador Lasier Martins ,PODEMOS,RS,senador,5533
+135060,1778,senado,Senador Luis Carlos Heinze ,PP,RS,senador,1186
+135060,1788,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
 136033,1812,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
+136033,1812,senado,Senador Rodrigo Cunha ,PSDB,AL,senador,5905
+136033,1812,senado,Senador Alvaro Dias ,PODEMOS,PR,senador,945
+136033,1812,senado,Senador Major Olimpio ,PSL,SP,senador,5666
+136033,1812,senado,Senador Eduardo Girão ,PODEMOS,CE,senador,5976
+136033,1812,senado,Senador Elmano Férrer ,PODEMOS,PI,senador,5531
+136033,1812,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+136033,1812,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
+136033,1812,senado,Senador Styvenson Valentim ,PODEMOS,RN,senador,5959
+136033,1812,senado,Senador Jorge Kajuru ,PSB,GO,senador,5895
+136033,1812,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+136033,1812,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
+136033,1812,senado,Senador Lasier Martins ,PODEMOS,RS,senador,5533
 136033,1813,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
-136033,1814,senado,Senador Marcio Bittar ,MDB,AC,senador,285
+136033,1814,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
 136033,1815,senado,Senador Marcio Bittar ,MDB,AC,senador,285
 136033,1816,senado,Senador Marcio Bittar ,MDB,AC,senador,285
-136033,1817,senado,Senador Otto Alencar ,PSD,BA,senador,5523
+136033,1817,senado,Senador Marcio Bittar ,MDB,AC,senador,285
 136033,1818,senado,Senador Otto Alencar ,PSD,BA,senador,5523
 136033,1819,senado,Senador Otto Alencar ,PSD,BA,senador,5523
 136033,1820,senado,Senador Otto Alencar ,PSD,BA,senador,5523
 136033,1821,senado,Senador Otto Alencar ,PSD,BA,senador,5523
-136033,1822,senado,Senador Major Olimpio ,PSL,SP,senador,5666
+136033,1822,senado,Senador Otto Alencar ,PSD,BA,senador,5523
 136033,1823,senado,Senador Major Olimpio ,PSL,SP,senador,5666
-136033,1824,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
+136033,1824,senado,Senador Major Olimpio ,PSL,SP,senador,5666
 136033,1825,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
 136033,1826,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
 136033,1827,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
 136033,1828,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
-136033,1829,senado,Senador Alvaro Dias ,PODEMOS,PR,senador,945
-136033,1830,senado,Senadora Rose de Freitas ,PODEMOS,ES,senador,2331
-136033,1831,senado,Senador Elmano Férrer ,PODEMOS,PI,senador,5531
+136033,1829,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
+136033,1830,senado,Senador Alvaro Dias ,PODEMOS,PR,senador,945
+136033,1831,senado,Senadora Rose de Freitas ,PODEMOS,ES,senador,2331
 136033,1832,senado,Senador Elmano Férrer ,PODEMOS,PI,senador,5531
-136033,1833,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
-136033,1834,senado,Senador Marcos do Val ,CIDADANIA,ES,senador,5942
-136033,1835,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+136033,1833,senado,Senador Elmano Férrer ,PODEMOS,PI,senador,5531
+136033,1834,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+136033,1835,senado,Senador Marcos do Val ,CIDADANIA,ES,senador,5942
 136033,1836,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 136033,1837,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
-136033,1838,senado,Presidente do Senado Federal: Senador Izalci Lucas ,PSDB,DF,senador,4770
-136033,1839,senado,Senador Arolde de Oliveira ,PSD,RJ,senador,751
+136033,1838,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+136033,1839,senado,Presidente do Senado Federal: Senador Izalci Lucas ,PSDB,DF,senador,4770
 136033,1840,senado,Senador Arolde de Oliveira ,PSD,RJ,senador,751
 136033,1841,senado,Senador Arolde de Oliveira ,PSD,RJ,senador,751
 136033,1842,senado,Senador Arolde de Oliveira ,PSD,RJ,senador,751
 136033,1843,senado,Senador Arolde de Oliveira ,PSD,RJ,senador,751
 136033,1844,senado,Senador Arolde de Oliveira ,PSD,RJ,senador,751
 136033,1845,senado,Senador Arolde de Oliveira ,PSD,RJ,senador,751
-136033,1846,senado,Senador Marcos do Val ,CIDADANIA,ES,senador,5942
-136033,1847,senado,Senador Eduardo Braga ,MDB,AM,senador,4994
-136173,1850,senado,Senador Ciro Nogueira ,PP,PI,senador,739
+136033,1846,senado,Senador Arolde de Oliveira ,PSD,RJ,senador,751
+136033,1847,senado,Senador Marcos do Val ,CIDADANIA,ES,senador,5942
+136033,1848,senado,Senador Eduardo Braga ,MDB,AM,senador,4994
 136173,1851,senado,Senador Ciro Nogueira ,PP,PI,senador,739
 136173,1852,senado,Senador Ciro Nogueira ,PP,PI,senador,739
-136173,1853,senado,Senador Lasier Martins ,PODEMOS,RS,senador,5533
+136173,1853,senado,Senador Ciro Nogueira ,PP,PI,senador,739
 136173,1854,senado,Senador Lasier Martins ,PODEMOS,RS,senador,5533
 136173,1855,senado,Senador Lasier Martins ,PODEMOS,RS,senador,5533
-136173,1857,senado,Senador Lasier Martins ,PODEMOS,RS,senador,5533
-136173,1858,senado,Senador Marcos Rogério ,DEM,RO,senador,5422
-136173,1859,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
-136173,1860,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
-136173,1861,senado,Senador Oriovisto Guimarães ,PODEMOS,PR,senador,5924
+136173,1856,senado,Senador Lasier Martins ,PODEMOS,RS,senador,5533
+136173,1858,senado,Senador Lasier Martins ,PODEMOS,RS,senador,5533
+136173,1859,senado,Senador Marcos Rogério ,DEM,RO,senador,5422
+136173,1860,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
+136173,1861,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
 136173,1862,senado,Senador Oriovisto Guimarães ,PODEMOS,PR,senador,5924
-136173,1866,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
-136173,1867,senado,Senador Wellington Fagundes ,PL,MT,senador,1173
-136173,1868,senado,Senador Styvenson Valentim ,PODEMOS,RN,senador,5959
-136173,1869,senado,Senador Marcos Rogério ,DEM,RO,senador,5422
-135799,1879,senado,Senador Marcio Bittar ,MDB,AC,senador,285
+136173,1863,senado,Senador Oriovisto Guimarães ,PODEMOS,PR,senador,5924
+136173,1867,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
+136173,1868,senado,Senador Wellington Fagundes ,PL,MT,senador,1173
+136173,1869,senado,Senador Styvenson Valentim ,PODEMOS,RN,senador,5959
+136173,1870,senado,Senador Marcos Rogério ,DEM,RO,senador,5422
 135799,1880,senado,Senador Marcio Bittar ,MDB,AC,senador,285
-135799,1881,senado,Presidente do Senado Federal: Senador Sérgio Petecão ,PSD,AC,senador,4560
-135799,1882,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
-135505,1886,senado,Senador Angelo Coronel ,PSD,BA,senador,5967
-135505,1887,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
-135505,1888,senado,Senador Angelo Coronel ,PSD,BA,senador,5967
-135505,1889,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
-135505,1890,senado,Presidente do Senado Federal: Senador Jorge Kajuru ,PSB,GO,senador,5895
-135062,1933,senado,Senador Rodrigo Pacheco ,DEM,MG,senador,5732
-135062,1951,senado,Senador Esperidião Amin ,PP,SC,senador,22
+135799,1881,senado,Senador Marcio Bittar ,MDB,AC,senador,285
+135799,1882,senado,Presidente do Senado Federal: Senador Sérgio Petecão ,PSD,AC,senador,4560
+135799,1883,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
+135505,1887,senado,Senador Angelo Coronel ,PSD,BA,senador,5967
+135505,1888,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
+135505,1889,senado,Senador Angelo Coronel ,PSD,BA,senador,5967
+135505,1890,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
+135505,1891,senado,Presidente do Senado Federal: Senador Jorge Kajuru ,PSB,GO,senador,5895
+135062,1934,senado,Senador Rodrigo Pacheco ,DEM,MG,senador,5732
 135062,1952,senado,Senador Esperidião Amin ,PP,SC,senador,22
-135062,1955,senado,Senador Oriovisto Guimarães ,PODEMOS,PR,senador,5924
+135062,1953,senado,Senador Esperidião Amin ,PP,SC,senador,22
 135062,1956,senado,Senador Oriovisto Guimarães ,PODEMOS,PR,senador,5924
 135062,1957,senado,Senador Oriovisto Guimarães ,PODEMOS,PR,senador,5924
-135062,1959,senado,Senador Otto Alencar ,PSD,BA,senador,5523
-135062,1960,senado,Senador Humberto Costa ,PT,PE,senador,5008
+135062,1958,senado,Senador Oriovisto Guimarães ,PODEMOS,PR,senador,5924
+135062,1960,senado,Senador Otto Alencar ,PSD,BA,senador,5523
 135062,1961,senado,Senador Humberto Costa ,PT,PE,senador,5008
 135062,1962,senado,Senador Humberto Costa ,PT,PE,senador,5008
 135062,1963,senado,Senador Humberto Costa ,PT,PE,senador,5008
@@ -753,8 +753,8 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135062,1966,senado,Senador Humberto Costa ,PT,PE,senador,5008
 135062,1967,senado,Senador Humberto Costa ,PT,PE,senador,5008
 135062,1968,senado,Senador Humberto Costa ,PT,PE,senador,5008
-135062,1985,senado,Senador Jorginho Mello ,PL,SC,senador,5350
-135062,1986,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
+135062,1969,senado,Senador Humberto Costa ,PT,PE,senador,5008
+135062,1986,senado,Senador Jorginho Mello ,PL,SC,senador,5350
 135062,1987,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
 135062,1988,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
 135062,1989,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
@@ -766,127 +766,127 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135062,1995,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
 135062,1996,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
 135062,1997,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
-135062,2007,senado,Senador Irajá ,PSD,TO,senador,5385
-135062,2010,senado,Senador Weverton ,PDT,MA,senador,5411
+135062,1998,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
+135062,2008,senado,Senador Irajá ,PSD,TO,senador,5385
 135062,2011,senado,Senador Weverton ,PDT,MA,senador,5411
-135062,2021,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+135062,2012,senado,Senador Weverton ,PDT,MA,senador,5411
 135062,2022,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 135062,2023,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 135062,2024,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 135062,2025,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 135062,2026,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 135062,2027,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
-135062,2029,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
-135062,2057,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
+135062,2028,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+135062,2030,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
 135062,2058,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
-135062,2064,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
+135062,2059,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
 135062,2065,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
 135062,2066,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
-135062,2085,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
-135062,2089,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
-131429,2109,senado,Senador Antonio Anastasia ,PSDB,MG,senador,5529
-131429,2110,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
-131429,2114,senado,Senador Humberto Costa ,PT,PE,senador,5008
-131429,2114,senado,Senador Paulo Rocha ,PT,PA,senador,374
-131429,2114,senado,Senadora Zenaide Maia ,PROS,RN,senador,5783
-131429,2114,senado,Senador Jaques Wagner ,PT,BA,senador,581
-131429,2114,senado,Senador Elmano Férrer ,PODEMOS,PI,senador,5531
-131429,2114,senado,Senador Jean Paul Prates ,PT,RN,senador,5627
-131429,2114,senado,Senador Paulo Paim ,PT,RS,senador,825
-131429,2114,senado,Senador Irajá ,PSD,TO,senador,5385
-131429,2114,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+135062,2067,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
+135062,2086,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
+135062,2090,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
+131429,2110,senado,Senador Antonio Anastasia ,PSDB,MG,senador,5529
+131429,2111,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
 131429,2115,senado,Senador Humberto Costa ,PT,PE,senador,5008
-131429,2116,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
-129778,2119,senado,Senadora Lídice da Mata ,PSB,BA,senador,4575
-129778,2119,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
-129778,2119,senado,Senador Alvaro Dias ,PV,PR,senador,945
-129778,2119,senado,Senador Antonio Carlos Valadares ,PSB,SE,senador,3
-129778,2119,senado,Senador Ataídes Oliveira ,PSDB,TO,senador,5164
-129778,2119,senado,Senador Benedito de Lira ,PP,AL,senador,3823
-129778,2119,senado,Senador Cristovam Buarque ,CIDADANIA,DF,senador,3398
-129778,2119,senado,Senador Elmano Férrer ,MDB,PI,senador,5531
-129778,2119,senado,Senador Garibaldi Alves Filho ,MDB,RN,senador,87
-129778,2119,senado,Senador João Capiberibe ,PSB,AP,senador,3394
-129778,2119,senado,Senador Jorge Viana ,PT,AC,senador,4990
-129778,2119,senado,Senador José Maranhão ,MDB,PB,senador,3361
-129778,2119,senado,Senador José Pimentel ,PT,CE,senador,615
-129778,2119,senado,Senador Lasier Martins ,PSD,RS,senador,5533
-129778,2119,senado,Senador Lindbergh Farias ,PT,RJ,senador,3695
-129778,2119,senado,Senadora Lúcia Vânia ,PSB,GO,senador,643
-129778,2119,senado,Senadora Maria do Carmo Alves ,DEM,SE,senador,1023
-129778,2119,senado,Senador Paulo Bauer ,PSDB,SC,senador,3741
-129778,2119,senado,Senador Paulo Paim ,PT,RS,senador,825
-129778,2119,senado,Senador Paulo Rocha ,PT,PA,senador,374
-129778,2119,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
-129778,2119,senado,Senadora Regina Sousa ,PT,PI,senador,5182
-129778,2119,senado,Senador Roberto Muniz ,PP,BA,senador,5052
-129778,2119,senado,Senador Roberto Requião ,MDB,PR,senador,72
-129778,2119,senado,Senador Romário ,PSB,RJ,senador,5322
-129778,2119,senado,Senador Telmário Mota ,PTB,RR,senador,5535
-129778,2119,senado,Senador Vicentinho Alves ,PR,TO,senador,4763
-129778,2120,senado,Senadora Fátima Bezerra ,PT,RN,senador,3713
-129778,2124,senado,Senador Jean Paul Prates ,PT,RN,senador,5627
-129778,2124,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
-129778,2124,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
-129778,2124,senado,Senador Angelo Coronel ,PSD,BA,senador,5967
-129778,2124,senado,Senador Antonio Anastasia ,PSDB,MG,senador,5529
-129778,2124,senado,Senador Cid Gomes ,PDT,CE,senador,5973
-129778,2124,senado,Senador Davi Alcolumbre ,DEM,AP,senador,3830
-129778,2124,senado,Senador Eduardo Braga ,MDB,AM,senador,4994
-129778,2124,senado,Senador Eduardo Girão ,PODE,CE,senador,5976
-129778,2124,senado,Senador Elmano Férrer ,PODE,PI,senador,5531
-129778,2124,senado,Senador Esperidião Amin ,PP,SC,senador,22
-129778,2124,senado,Senador Humberto Costa ,PT,PE,senador,5008
-129778,2124,senado,Senador Jayme Campos ,DEM,MT,senador,4531
-129778,2124,senado,Senador Jorginho Mello ,PR,SC,senador,5350
-129778,2124,senado,Senador José Maranhão ,MDB,PB,senador,3361
-129778,2124,senado,Senadora Kátia Abreu ,PDT,TO,senador,1249
-129778,2124,senado,Senador Lasier Martins ,PODE,RS,senador,5533
-129778,2124,senado,Senadora Leila Barros ,PSB,DF,senador,5979
-129778,2124,senado,Senador Luis Carlos Heinze ,PP,RS,senador,1186
-129778,2124,senado,Senador Marcelo Castro ,MDB,PI,senador,742
-129778,2124,senado,Senador Omar Aziz ,PSD,AM,senador,5525
-129778,2124,senado,Senador Paulo Paim ,PT,RS,senador,825
-129778,2124,senado,Senador Paulo Rocha ,PT,PA,senador,374
-129778,2124,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
-129778,2124,senado,Senador Reguffe ,,DF,senador,5236
-129778,2124,senado,Senador Renan Calheiros ,MDB,AL,senador,70
-129778,2124,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
-129778,2124,senado,Senadora Rose de Freitas ,PODE,ES,senador,2331
-129778,2124,senado,Senadora Simone Tebet ,MDB,MS,senador,5527
-129778,2124,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
-129778,2124,senado,Senador Veneziano Vital do Rêgo ,PSB,PB,senador,5748
-129778,2124,senado,Senadora Zenaide Maia ,PROS,RN,senador,5783
-136531,2144,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
+131429,2115,senado,Senador Paulo Rocha ,PT,PA,senador,374
+131429,2115,senado,Senadora Zenaide Maia ,PROS,RN,senador,5783
+131429,2115,senado,Senador Jaques Wagner ,PT,BA,senador,581
+131429,2115,senado,Senador Elmano Férrer ,PODEMOS,PI,senador,5531
+131429,2115,senado,Senador Jean Paul Prates ,PT,RN,senador,5627
+131429,2115,senado,Senador Paulo Paim ,PT,RS,senador,825
+131429,2115,senado,Senador Irajá ,PSD,TO,senador,5385
+131429,2115,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+131429,2116,senado,Senador Humberto Costa ,PT,PE,senador,5008
+131429,2117,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+129778,2120,senado,Senadora Lídice da Mata ,PSB,BA,senador,4575
+129778,2120,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
+129778,2120,senado,Senador Alvaro Dias ,PV,PR,senador,945
+129778,2120,senado,Senador Antonio Carlos Valadares ,PSB,SE,senador,3
+129778,2120,senado,Senador Ataídes Oliveira ,PSDB,TO,senador,5164
+129778,2120,senado,Senador Benedito de Lira ,PP,AL,senador,3823
+129778,2120,senado,Senador Cristovam Buarque ,CIDADANIA,DF,senador,3398
+129778,2120,senado,Senador Elmano Férrer ,MDB,PI,senador,5531
+129778,2120,senado,Senador Garibaldi Alves Filho ,MDB,RN,senador,87
+129778,2120,senado,Senador João Capiberibe ,PSB,AP,senador,3394
+129778,2120,senado,Senador Jorge Viana ,PT,AC,senador,4990
+129778,2120,senado,Senador José Maranhão ,MDB,PB,senador,3361
+129778,2120,senado,Senador José Pimentel ,PT,CE,senador,615
+129778,2120,senado,Senador Lasier Martins ,PSD,RS,senador,5533
+129778,2120,senado,Senador Lindbergh Farias ,PT,RJ,senador,3695
+129778,2120,senado,Senadora Lúcia Vânia ,PSB,GO,senador,643
+129778,2120,senado,Senadora Maria do Carmo Alves ,DEM,SE,senador,1023
+129778,2120,senado,Senador Paulo Bauer ,PSDB,SC,senador,3741
+129778,2120,senado,Senador Paulo Paim ,PT,RS,senador,825
+129778,2120,senado,Senador Paulo Rocha ,PT,PA,senador,374
+129778,2120,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+129778,2120,senado,Senadora Regina Sousa ,PT,PI,senador,5182
+129778,2120,senado,Senador Roberto Muniz ,PP,BA,senador,5052
+129778,2120,senado,Senador Roberto Requião ,MDB,PR,senador,72
+129778,2120,senado,Senador Romário ,PSB,RJ,senador,5322
+129778,2120,senado,Senador Telmário Mota ,PTB,RR,senador,5535
+129778,2120,senado,Senador Vicentinho Alves ,PR,TO,senador,4763
+129778,2121,senado,Senadora Fátima Bezerra ,PT,RN,senador,3713
+129778,2125,senado,Senador Jean Paul Prates ,PT,RN,senador,5627
+129778,2125,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
+129778,2125,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+129778,2125,senado,Senador Angelo Coronel ,PSD,BA,senador,5967
+129778,2125,senado,Senador Antonio Anastasia ,PSDB,MG,senador,5529
+129778,2125,senado,Senador Cid Gomes ,PDT,CE,senador,5973
+129778,2125,senado,Senador Davi Alcolumbre ,DEM,AP,senador,3830
+129778,2125,senado,Senador Eduardo Braga ,MDB,AM,senador,4994
+129778,2125,senado,Senador Eduardo Girão ,PODE,CE,senador,5976
+129778,2125,senado,Senador Elmano Férrer ,PODE,PI,senador,5531
+129778,2125,senado,Senador Esperidião Amin ,PP,SC,senador,22
+129778,2125,senado,Senador Humberto Costa ,PT,PE,senador,5008
+129778,2125,senado,Senador Jayme Campos ,DEM,MT,senador,4531
+129778,2125,senado,Senador Jorginho Mello ,PR,SC,senador,5350
+129778,2125,senado,Senador José Maranhão ,MDB,PB,senador,3361
+129778,2125,senado,Senadora Kátia Abreu ,PDT,TO,senador,1249
+129778,2125,senado,Senador Lasier Martins ,PODE,RS,senador,5533
+129778,2125,senado,Senadora Leila Barros ,PSB,DF,senador,5979
+129778,2125,senado,Senador Luis Carlos Heinze ,PP,RS,senador,1186
+129778,2125,senado,Senador Marcelo Castro ,MDB,PI,senador,742
+129778,2125,senado,Senador Omar Aziz ,PSD,AM,senador,5525
+129778,2125,senado,Senador Paulo Paim ,PT,RS,senador,825
+129778,2125,senado,Senador Paulo Rocha ,PT,PA,senador,374
+129778,2125,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+129778,2125,senado,Senador Reguffe ,,DF,senador,5236
+129778,2125,senado,Senador Renan Calheiros ,MDB,AL,senador,70
+129778,2125,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+129778,2125,senado,Senadora Rose de Freitas ,PODE,ES,senador,2331
+129778,2125,senado,Senadora Simone Tebet ,MDB,MS,senador,5527
+129778,2125,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
+129778,2125,senado,Senador Veneziano Vital do Rêgo ,PSB,PB,senador,5748
+129778,2125,senado,Senadora Zenaide Maia ,PROS,RN,senador,5783
 136531,2145,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
-136531,2147,senado,Senador Davi Alcolumbre ,DEM,AP,senador,3830
-136531,2156,senado,Senador Humberto Costa ,PT,PE,senador,5008
+136531,2146,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
+136531,2148,senado,Senador Davi Alcolumbre ,DEM,AP,senador,3830
 136531,2157,senado,Senador Humberto Costa ,PT,PE,senador,5008
-136531,2159,senado,Senador Zequinha Marinho ,PSC,PA,senador,3806
+136531,2158,senado,Senador Humberto Costa ,PT,PE,senador,5008
 136531,2160,senado,Senador Zequinha Marinho ,PSC,PA,senador,3806
-136531,2174,senado,Senador Weverton ,PDT,MA,senador,5411
+136531,2161,senado,Senador Zequinha Marinho ,PSC,PA,senador,3806
 136531,2175,senado,Senador Weverton ,PDT,MA,senador,5411
 136531,2176,senado,Senador Weverton ,PDT,MA,senador,5411
-136531,2183,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
+136531,2177,senado,Senador Weverton ,PDT,MA,senador,5411
 136531,2184,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
 136531,2185,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
-136531,2191,senado,Senador Plínio Valério ,PSDB,AM,senador,5502
-136531,2204,senado,Senador José Serra ,PSDB,SP,senador,90
-136531,2223,senado,Senadora Kátia Abreu ,PDT,TO,senador,1249
-136531,2232,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+136531,2186,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
+136531,2192,senado,Senador Plínio Valério ,PSDB,AM,senador,5502
+136531,2205,senado,Senador José Serra ,PSDB,SP,senador,90
+136531,2224,senado,Senadora Kátia Abreu ,PDT,TO,senador,1249
 136531,2233,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 136531,2234,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 136531,2235,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 136531,2236,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
-136531,2261,senado,Senador Jayme Campos ,DEM,MT,senador,4531
+136531,2237,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 136531,2262,senado,Senador Jayme Campos ,DEM,MT,senador,4531
-136531,2281,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
+136531,2263,senado,Senador Jayme Campos ,DEM,MT,senador,4531
 136531,2282,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
 136531,2283,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
-136531,2284,senado,Senador Antonio Anastasia ,PSDB,MG,senador,5529
+136531,2284,senado,Senadora Soraya Thronicke ,PSL,MS,senador,5988
 136531,2285,senado,Senador Antonio Anastasia ,PSDB,MG,senador,5529
 136531,2286,senado,Senador Antonio Anastasia ,PSDB,MG,senador,5529
-136531,2292,senado,Senador Rodrigo Pacheco ,DEM,MG,senador,5732
+136531,2287,senado,Senador Antonio Anastasia ,PSDB,MG,senador,5529
 136531,2293,senado,Senador Rodrigo Pacheco ,DEM,MG,senador,5732
 136531,2294,senado,Senador Rodrigo Pacheco ,DEM,MG,senador,5732
 136531,2295,senado,Senador Rodrigo Pacheco ,DEM,MG,senador,5732
@@ -896,7 +896,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136531,2299,senado,Senador Rodrigo Pacheco ,DEM,MG,senador,5732
 136531,2300,senado,Senador Rodrigo Pacheco ,DEM,MG,senador,5732
 136531,2301,senado,Senador Rodrigo Pacheco ,DEM,MG,senador,5732
-136531,2302,senado,Senador Dário Berger ,MDB,SC,senador,5537
+136531,2302,senado,Senador Rodrigo Pacheco ,DEM,MG,senador,5732
 136531,2303,senado,Senador Dário Berger ,MDB,SC,senador,5537
 136531,2304,senado,Senador Dário Berger ,MDB,SC,senador,5537
 136531,2305,senado,Senador Dário Berger ,MDB,SC,senador,5537
@@ -907,17 +907,17 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136531,2310,senado,Senador Dário Berger ,MDB,SC,senador,5537
 136531,2311,senado,Senador Dário Berger ,MDB,SC,senador,5537
 136531,2312,senado,Senador Dário Berger ,MDB,SC,senador,5537
-136531,2313,senado,Senadora Leila Barros ,PSB,DF,senador,5979
+136531,2313,senado,Senador Dário Berger ,MDB,SC,senador,5537
 136531,2314,senado,Senadora Leila Barros ,PSB,DF,senador,5979
 136531,2315,senado,Senadora Leila Barros ,PSB,DF,senador,5979
-136531,2316,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+136531,2316,senado,Senadora Leila Barros ,PSB,DF,senador,5979
 136531,2317,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 136531,2318,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
-136531,2319,senado,Senadora Zenaide Maia ,PROS,RN,senador,5783
+136531,2319,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
 136531,2320,senado,Senadora Zenaide Maia ,PROS,RN,senador,5783
 136531,2321,senado,Senadora Zenaide Maia ,PROS,RN,senador,5783
-136531,2322,senado,Senador Rodrigo Cunha ,PSDB,AL,senador,5905
-136531,2323,senado,Senador Jean Paul Prates ,PT,RN,senador,5627
+136531,2322,senado,Senadora Zenaide Maia ,PROS,RN,senador,5783
+136531,2323,senado,Senador Rodrigo Cunha ,PSDB,AL,senador,5905
 136531,2324,senado,Senador Jean Paul Prates ,PT,RN,senador,5627
 136531,2325,senado,Senador Jean Paul Prates ,PT,RN,senador,5627
 136531,2326,senado,Senador Jean Paul Prates ,PT,RN,senador,5627
@@ -926,7 +926,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136531,2329,senado,Senador Jean Paul Prates ,PT,RN,senador,5627
 136531,2330,senado,Senador Jean Paul Prates ,PT,RN,senador,5627
 136531,2331,senado,Senador Jean Paul Prates ,PT,RN,senador,5627
-136531,2347,senado,Senador Jaques Wagner ,PT,BA,senador,581
+136531,2332,senado,Senador Jean Paul Prates ,PT,RN,senador,5627
 136531,2348,senado,Senador Jaques Wagner ,PT,BA,senador,581
 136531,2349,senado,Senador Jaques Wagner ,PT,BA,senador,581
 136531,2350,senado,Senador Jaques Wagner ,PT,BA,senador,581
@@ -938,27 +938,28 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136531,2356,senado,Senador Jaques Wagner ,PT,BA,senador,581
 136531,2357,senado,Senador Jaques Wagner ,PT,BA,senador,581
 136531,2358,senado,Senador Jaques Wagner ,PT,BA,senador,581
-136531,2360,senado,Senadora Daniella Ribeiro ,PP,PB,senador,5998
+136531,2359,senado,Senador Jaques Wagner ,PT,BA,senador,581
 136531,2361,senado,Senadora Daniella Ribeiro ,PP,PB,senador,5998
-136531,2403,senado,Senador Rodrigo Cunha ,PSDB,AL,senador,5905
-136531,2407,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
+136531,2362,senado,Senadora Daniella Ribeiro ,PP,PB,senador,5998
+136531,2404,senado,Senador Rodrigo Cunha ,PSDB,AL,senador,5905
 136531,2408,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
 136531,2409,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
-136531,2411,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
+136531,2410,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
 136531,2412,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
-136531,2426,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
+136531,2413,senado,Senador Izalci Lucas ,PSDB,DF,senador,4770
 136531,2427,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
-136531,2435,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
-136531,2437,senado,Senador Dário Berger ,MDB,SC,senador,5537
-136531,2443,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
-126049,2451,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
-126049,2453,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
-126049,2454,senado,Senador Fernando Bezerra Coelho ,MDB,PE,senador,5540
-126049,2457,senado,Senador Marcos Rogério ,DEM,RO,senador,5422
-126049,2459,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
+136531,2428,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
+136531,2436,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+136531,2438,senado,Senador Dário Berger ,MDB,SC,senador,5537
+136531,2444,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+126049,2452,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
+126049,2454,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
+126049,2455,senado,Senador Fernando Bezerra Coelho ,MDB,PE,senador,5540
+126049,2458,senado,Senador Marcos Rogério ,DEM,RO,senador,5422
 126049,2460,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
 126049,2461,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
 126049,2462,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
+126049,2463,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
 135064,576,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 135064,577,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 135064,578,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
@@ -1384,46 +1385,45 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135064,1153,senado,Deputada Federal Policial Katia Sastre ,PL,SP,deputado,204529
 135064,1155,senado,Deputado Federal Subtenente Gonzaga ,PDT,MG,deputado,177282
 135064,1156,senado,Deputado Federal Rodrigo Agostinho ,PSB,SP,deputado,204530
-135061,1206,senado,Deputada Federal Jandira Feghali ,PCdoB,RJ,deputado,74848
 135061,1207,senado,Deputada Federal Jandira Feghali ,PCdoB,RJ,deputado,74848
 135061,1208,senado,Deputada Federal Jandira Feghali ,PCdoB,RJ,deputado,74848
 135061,1209,senado,Deputada Federal Jandira Feghali ,PCdoB,RJ,deputado,74848
 135061,1210,senado,Deputada Federal Jandira Feghali ,PCdoB,RJ,deputado,74848
-135061,1211,senado,Deputado Federal Rubens Pereira Júnior ,PCdoB,MA,deputado,178887
+135061,1211,senado,Deputada Federal Jandira Feghali ,PCdoB,RJ,deputado,74848
 135061,1212,senado,Deputado Federal Rubens Pereira Júnior ,PCdoB,MA,deputado,178887
 135061,1213,senado,Deputado Federal Rubens Pereira Júnior ,PCdoB,MA,deputado,178887
 135061,1214,senado,Deputado Federal Rubens Pereira Júnior ,PCdoB,MA,deputado,178887
 135061,1215,senado,Deputado Federal Rubens Pereira Júnior ,PCdoB,MA,deputado,178887
-135061,1216,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
+135061,1216,senado,Deputado Federal Rubens Pereira Júnior ,PCdoB,MA,deputado,178887
 135061,1217,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
 135061,1218,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
-135061,1219,senado,Deputada Federal Alice Portugal ,PCdoB,BA,deputado,74057
+135061,1219,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
 135061,1220,senado,Deputada Federal Alice Portugal ,PCdoB,BA,deputado,74057
 135061,1221,senado,Deputada Federal Alice Portugal ,PCdoB,BA,deputado,74057
 135061,1222,senado,Deputada Federal Alice Portugal ,PCdoB,BA,deputado,74057
 135061,1223,senado,Deputada Federal Alice Portugal ,PCdoB,BA,deputado,74057
-135061,1224,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
+135061,1224,senado,Deputada Federal Alice Portugal ,PCdoB,BA,deputado,74057
 135061,1225,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
 135061,1226,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
 135061,1227,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
 135061,1228,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
 135061,1229,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
 135061,1230,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
-135061,1231,senado,Deputado Federal Benes Leocádio ,PTC,RN,deputado,109429
+135061,1231,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
 135061,1232,senado,Deputado Federal Benes Leocádio ,PTC,RN,deputado,109429
 135061,1233,senado,Deputado Federal Benes Leocádio ,PTC,RN,deputado,109429
 135061,1234,senado,Deputado Federal Benes Leocádio ,PTC,RN,deputado,109429
 135061,1235,senado,Deputado Federal Benes Leocádio ,PTC,RN,deputado,109429
 135061,1236,senado,Deputado Federal Benes Leocádio ,PTC,RN,deputado,109429
-135061,1237,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
+135061,1237,senado,Deputado Federal Benes Leocádio ,PTC,RN,deputado,109429
 135061,1238,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135061,1239,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135061,1240,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
-135061,1241,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
+135061,1241,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135061,1242,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
 135061,1243,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
 135061,1244,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
-135061,1245,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
+135061,1245,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
 135061,1246,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
 135061,1247,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
 135061,1248,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
@@ -1460,7 +1460,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1279,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
 135061,1280,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
 135061,1281,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
-135061,1282,senado,Deputado Federal Glauber Braga ,PSOL,RJ,deputado,152605
+135061,1282,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
 135061,1283,senado,Deputado Federal Glauber Braga ,PSOL,RJ,deputado,152605
 135061,1284,senado,Deputado Federal Glauber Braga ,PSOL,RJ,deputado,152605
 135061,1285,senado,Deputado Federal Glauber Braga ,PSOL,RJ,deputado,152605
@@ -1473,7 +1473,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1292,senado,Deputado Federal Glauber Braga ,PSOL,RJ,deputado,152605
 135061,1293,senado,Deputado Federal Glauber Braga ,PSOL,RJ,deputado,152605
 135061,1294,senado,Deputado Federal Glauber Braga ,PSOL,RJ,deputado,152605
-135061,1295,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
+135061,1295,senado,Deputado Federal Glauber Braga ,PSOL,RJ,deputado,152605
 135061,1296,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
 135061,1297,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
 135061,1298,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
@@ -1486,15 +1486,15 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1305,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
 135061,1306,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
 135061,1307,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
-135061,1308,senado,Deputado Federal Márcio Jerry ,PCdoB,MA,deputado,81055
+135061,1308,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
 135061,1309,senado,Deputado Federal Márcio Jerry ,PCdoB,MA,deputado,81055
 135061,1310,senado,Deputado Federal Márcio Jerry ,PCdoB,MA,deputado,81055
 135061,1311,senado,Deputado Federal Márcio Jerry ,PCdoB,MA,deputado,81055
 135061,1312,senado,Deputado Federal Márcio Jerry ,PCdoB,MA,deputado,81055
-135061,1319,senado,Deputado Federal Gustavo Fruet ,PDT,PR,deputado,73460
+135061,1313,senado,Deputado Federal Márcio Jerry ,PCdoB,MA,deputado,81055
 135061,1320,senado,Deputado Federal Gustavo Fruet ,PDT,PR,deputado,73460
-135061,1321,senado,Deputado Federal Glauber Braga ,PSOL,RJ,deputado,152605
-135061,1322,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
+135061,1321,senado,Deputado Federal Gustavo Fruet ,PDT,PR,deputado,73460
+135061,1322,senado,Deputado Federal Glauber Braga ,PSOL,RJ,deputado,152605
 135061,1323,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
 135061,1324,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
 135061,1325,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
@@ -1502,8 +1502,8 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1327,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
 135061,1328,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
 135061,1329,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
-135061,1330,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
-135061,1331,senado,Deputado Federal João Daniel ,PT,SE,deputado,178970
+135061,1330,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
+135061,1331,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
 135061,1332,senado,Deputado Federal João Daniel ,PT,SE,deputado,178970
 135061,1333,senado,Deputado Federal João Daniel ,PT,SE,deputado,178970
 135061,1334,senado,Deputado Federal João Daniel ,PT,SE,deputado,178970
@@ -1512,14 +1512,14 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1337,senado,Deputado Federal João Daniel ,PT,SE,deputado,178970
 135061,1338,senado,Deputado Federal João Daniel ,PT,SE,deputado,178970
 135061,1339,senado,Deputado Federal João Daniel ,PT,SE,deputado,178970
-135061,1340,senado,Deputada Federal Perpétua Almeida ,PCdoB,AC,deputado,73943
+135061,1340,senado,Deputado Federal João Daniel ,PT,SE,deputado,178970
 135061,1341,senado,Deputada Federal Perpétua Almeida ,PCdoB,AC,deputado,73943
 135061,1342,senado,Deputada Federal Perpétua Almeida ,PCdoB,AC,deputado,73943
 135061,1343,senado,Deputada Federal Perpétua Almeida ,PCdoB,AC,deputado,73943
 135061,1344,senado,Deputada Federal Perpétua Almeida ,PCdoB,AC,deputado,73943
 135061,1345,senado,Deputada Federal Perpétua Almeida ,PCdoB,AC,deputado,73943
 135061,1346,senado,Deputada Federal Perpétua Almeida ,PCdoB,AC,deputado,73943
-135061,1355,senado,Deputado Federal Edmilson Rodrigues ,PSOL,PA,deputado,134812
+135061,1347,senado,Deputada Federal Perpétua Almeida ,PCdoB,AC,deputado,73943
 135061,1356,senado,Deputado Federal Edmilson Rodrigues ,PSOL,PA,deputado,134812
 135061,1357,senado,Deputado Federal Edmilson Rodrigues ,PSOL,PA,deputado,134812
 135061,1358,senado,Deputado Federal Edmilson Rodrigues ,PSOL,PA,deputado,134812
@@ -1531,7 +1531,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1364,senado,Deputado Federal Edmilson Rodrigues ,PSOL,PA,deputado,134812
 135061,1365,senado,Deputado Federal Edmilson Rodrigues ,PSOL,PA,deputado,134812
 135061,1366,senado,Deputado Federal Edmilson Rodrigues ,PSOL,PA,deputado,134812
-135061,1367,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
+135061,1367,senado,Deputado Federal Edmilson Rodrigues ,PSOL,PA,deputado,134812
 135061,1368,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
 135061,1369,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
 135061,1370,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
@@ -1582,16 +1582,16 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1415,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
 135061,1416,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
 135061,1417,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
-135061,1418,senado,Deputada Federal Margarida Salomão ,PT,MG,deputado,171619
+135061,1418,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
 135061,1419,senado,Deputada Federal Margarida Salomão ,PT,MG,deputado,171619
 135061,1420,senado,Deputada Federal Margarida Salomão ,PT,MG,deputado,171619
 135061,1421,senado,Deputada Federal Margarida Salomão ,PT,MG,deputado,171619
 135061,1422,senado,Deputada Federal Margarida Salomão ,PT,MG,deputado,171619
 135061,1423,senado,Deputada Federal Margarida Salomão ,PT,MG,deputado,171619
 135061,1424,senado,Deputada Federal Margarida Salomão ,PT,MG,deputado,171619
-135061,1427,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
+135061,1425,senado,Deputada Federal Margarida Salomão ,PT,MG,deputado,171619
 135061,1428,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
-135061,1430,senado,Deputado Federal Eduardo Costa ,PTB,PA,deputado,204500
+135061,1429,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
 135061,1431,senado,Deputado Federal Eduardo Costa ,PTB,PA,deputado,204500
 135061,1432,senado,Deputado Federal Eduardo Costa ,PTB,PA,deputado,204500
 135061,1433,senado,Deputado Federal Eduardo Costa ,PTB,PA,deputado,204500
@@ -1616,10 +1616,10 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1452,senado,Deputado Federal Eduardo Costa ,PTB,PA,deputado,204500
 135061,1453,senado,Deputado Federal Eduardo Costa ,PTB,PA,deputado,204500
 135061,1454,senado,Deputado Federal Eduardo Costa ,PTB,PA,deputado,204500
-135061,1455,senado,Deputado Federal Gil Cutrim ,PDT,MA,deputado,204575
+135061,1455,senado,Deputado Federal Eduardo Costa ,PTB,PA,deputado,204500
 135061,1456,senado,Deputado Federal Gil Cutrim ,PDT,MA,deputado,204575
 135061,1457,senado,Deputado Federal Gil Cutrim ,PDT,MA,deputado,204575
-135061,1458,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
+135061,1458,senado,Deputado Federal Gil Cutrim ,PDT,MA,deputado,204575
 135061,1459,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
 135061,1460,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
 135061,1461,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
@@ -1640,15 +1640,15 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1476,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
 135061,1477,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
 135061,1478,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
-135061,1479,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
+135061,1479,senado,Deputado Federal Hildo Rocha ,MDB,MA,deputado,178884
 135061,1480,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
-135061,1481,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
+135061,1481,senado,Deputado Federal Bohn Gass ,PT,RS,deputado,160538
 135061,1482,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
 135061,1483,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
 135061,1484,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
 135061,1485,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
 135061,1486,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
-135061,1487,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
+135061,1487,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
 135061,1488,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 135061,1489,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 135061,1490,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
@@ -1684,11 +1684,11 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1520,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 135061,1521,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 135061,1522,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
-135061,1523,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
+135061,1523,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 135061,1524,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
 135061,1525,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
 135061,1526,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
-135061,1527,senado,Deputado Federal Samuel Moreira ,PSDB,SP,deputado,178990
+135061,1527,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
 135061,1528,senado,Deputado Federal Samuel Moreira ,PSDB,SP,deputado,178990
 135061,1529,senado,Deputado Federal Samuel Moreira ,PSDB,SP,deputado,178990
 135061,1530,senado,Deputado Federal Samuel Moreira ,PSDB,SP,deputado,178990
@@ -1702,17 +1702,17 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1538,senado,Deputado Federal Samuel Moreira ,PSDB,SP,deputado,178990
 135061,1539,senado,Deputado Federal Samuel Moreira ,PSDB,SP,deputado,178990
 135061,1540,senado,Deputado Federal Samuel Moreira ,PSDB,SP,deputado,178990
-135061,1551,senado,Deputado Federal José Nelto ,PODEMOS,GO,deputado,204391
+135061,1541,senado,Deputado Federal Samuel Moreira ,PSDB,SP,deputado,178990
 135061,1552,senado,Deputado Federal José Nelto ,PODEMOS,GO,deputado,204391
 135061,1553,senado,Deputado Federal José Nelto ,PODEMOS,GO,deputado,204391
-135061,1554,senado,Deputado Federal Gilson Marques ,NOVO,SC,deputado,204365
+135061,1554,senado,Deputado Federal José Nelto ,PODEMOS,GO,deputado,204391
 135061,1555,senado,Deputado Federal Gilson Marques ,NOVO,SC,deputado,204365
-135061,1556,senado,Deputado Federal Glaustin Fokus ,PSC,GO,deputado,204419
+135061,1556,senado,Deputado Federal Gilson Marques ,NOVO,SC,deputado,204365
 135061,1557,senado,Deputado Federal Glaustin Fokus ,PSC,GO,deputado,204419
-135061,1558,senado,Deputada Federal Natália Bonavides ,PT,RN,deputado,204453
+135061,1558,senado,Deputado Federal Glaustin Fokus ,PSC,GO,deputado,204419
 135061,1559,senado,Deputada Federal Natália Bonavides ,PT,RN,deputado,204453
 135061,1560,senado,Deputada Federal Natália Bonavides ,PT,RN,deputado,204453
-135061,1613,senado,Deputado Federal José Ricardo ,PT,AM,deputado,204555
+135061,1561,senado,Deputada Federal Natália Bonavides ,PT,RN,deputado,204453
 135061,1614,senado,Deputado Federal José Ricardo ,PT,AM,deputado,204555
 135061,1615,senado,Deputado Federal José Ricardo ,PT,AM,deputado,204555
 135061,1616,senado,Deputado Federal José Ricardo ,PT,AM,deputado,204555
@@ -1748,7 +1748,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1646,senado,Deputado Federal José Ricardo ,PT,AM,deputado,204555
 135061,1647,senado,Deputado Federal José Ricardo ,PT,AM,deputado,204555
 135061,1648,senado,Deputado Federal José Ricardo ,PT,AM,deputado,204555
-135061,1649,senado,Deputado Federal Danilo Cabral ,PSB,PE,deputado,160528
+135061,1649,senado,Deputado Federal José Ricardo ,PT,AM,deputado,204555
 135061,1650,senado,Deputado Federal Danilo Cabral ,PSB,PE,deputado,160528
 135061,1651,senado,Deputado Federal Danilo Cabral ,PSB,PE,deputado,160528
 135061,1652,senado,Deputado Federal Danilo Cabral ,PSB,PE,deputado,160528
@@ -1760,9 +1760,9 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1658,senado,Deputado Federal Danilo Cabral ,PSB,PE,deputado,160528
 135061,1659,senado,Deputado Federal Danilo Cabral ,PSB,PE,deputado,160528
 135061,1660,senado,Deputado Federal Danilo Cabral ,PSB,PE,deputado,160528
-135061,1661,senado,Deputado Federal Gervásio Maia ,PSB,PB,deputado,204394
+135061,1661,senado,Deputado Federal Danilo Cabral ,PSB,PE,deputado,160528
 135061,1662,senado,Deputado Federal Gervásio Maia ,PSB,PB,deputado,204394
-135061,1663,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
+135061,1663,senado,Deputado Federal Gervásio Maia ,PSB,PB,deputado,204394
 135061,1664,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
 135061,1665,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
 135061,1666,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
@@ -1782,7 +1782,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1680,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
 135061,1681,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
 135061,1682,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
-135061,1683,senado,Deputado Federal Padre João ,PT,MG,deputado,160556
+135061,1683,senado,Deputado Federal Sóstenes Cavalcante ,DEM,RJ,deputado,178947
 135061,1684,senado,Deputado Federal Padre João ,PT,MG,deputado,160556
 135061,1685,senado,Deputado Federal Padre João ,PT,MG,deputado,160556
 135061,1686,senado,Deputado Federal Padre João ,PT,MG,deputado,160556
@@ -1806,28 +1806,28 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,1704,senado,Deputado Federal Padre João ,PT,MG,deputado,160556
 135061,1705,senado,Deputado Federal Padre João ,PT,MG,deputado,160556
 135061,1706,senado,Deputado Federal Padre João ,PT,MG,deputado,160556
-135061,1708,senado,Deputado Federal Glauber Braga ,PSOL,RJ,deputado,152605
-135061,1710,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
-135061,1712,senado,Deputado Federal Afonso Florence ,PT,BA,deputado,160508
-135061,1713,senado,Deputado Federal Edmilson Rodrigues ,PSOL,PA,deputado,134812
+135061,1707,senado,Deputado Federal Padre João ,PT,MG,deputado,160556
+135061,1709,senado,Deputado Federal Glauber Braga ,PSOL,RJ,deputado,152605
+135061,1711,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
+135061,1713,senado,Deputado Federal Afonso Florence ,PT,BA,deputado,160508
 135061,1714,senado,Deputado Federal Edmilson Rodrigues ,PSOL,PA,deputado,134812
-135061,1716,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
-135061,1717,senado,Deputado Federal Cezinha de Madureira ,PSD,SP,deputado,204504
-135061,1719,senado,Deputado Federal Igor Timo ,PODEMOS,MG,deputado,204508
-135061,1727,senado,Deputado Federal Igor Timo ,PODEMOS,MG,deputado,204508
-135061,1728,senado,Deputado Federal Afonso Florence ,PT,BA,deputado,160508
-135061,1730,senado,Deputado Federal Igor Timo ,PODEMOS,MG,deputado,204508
-135061,1735,senado,Deputado,NA,NA,deputado,NA
-135061,1740,senado,Deputado Federal Pedro Uczai ,PT,SC,deputado,160604
-135060,1743,senado,Deputado Federal Pedro Lupion ,DEM,PR,deputado,204395
+135061,1715,senado,Deputado Federal Edmilson Rodrigues ,PSOL,PA,deputado,134812
+135061,1717,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
+135061,1718,senado,Deputado Federal Cezinha de Madureira ,PSD,SP,deputado,204504
+135061,1720,senado,Deputado Federal Igor Timo ,PODEMOS,MG,deputado,204508
+135061,1728,senado,Deputado Federal Igor Timo ,PODEMOS,MG,deputado,204508
+135061,1729,senado,Deputado Federal Afonso Florence ,PT,BA,deputado,160508
+135061,1731,senado,Deputado Federal Igor Timo ,PODEMOS,MG,deputado,204508
+135061,1736,senado,Deputado,NA,NA,deputado,NA
+135061,1741,senado,Deputado Federal Pedro Uczai ,PT,SC,deputado,160604
 135060,1744,senado,Deputado Federal Pedro Lupion ,DEM,PR,deputado,204395
 135060,1745,senado,Deputado Federal Pedro Lupion ,DEM,PR,deputado,204395
 135060,1746,senado,Deputado Federal Pedro Lupion ,DEM,PR,deputado,204395
-135060,1747,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
+135060,1747,senado,Deputado Federal Pedro Lupion ,DEM,PR,deputado,204395
 135060,1748,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
 135060,1749,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
-135060,1750,senado,Deputado Federal Covatti Filho ,PP,RS,deputado,178963
-135060,1751,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
+135060,1750,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
+135060,1751,senado,Deputado Federal Covatti Filho ,PP,RS,deputado,178963
 135060,1752,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
 135060,1753,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
 135060,1754,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
@@ -1842,39 +1842,39 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135060,1763,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
 135060,1764,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
 135060,1765,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
-135060,1766,senado,Deputado Federal Evair Vieira de Melo ,PP,ES,deputado,178871
+135060,1766,senado,Deputado Federal Nelson Barbudo ,PSL,MT,deputado,204449
 135060,1767,senado,Deputado Federal Evair Vieira de Melo ,PP,ES,deputado,178871
-135060,1768,senado,Deputado Federal Jose Mario Schreiner ,DEM,GO,deputado,204386
+135060,1768,senado,Deputado Federal Evair Vieira de Melo ,PP,ES,deputado,178871
 135060,1769,senado,Deputado Federal Jose Mario Schreiner ,DEM,GO,deputado,204386
-135060,1770,senado,Deputado Federal Alceu Moreira ,MDB,RS,deputado,160559
-135060,1774,senado,Deputado Federal Evair Vieira de Melo ,PP,ES,deputado,178871
+135060,1770,senado,Deputado Federal Jose Mario Schreiner ,DEM,GO,deputado,204386
+135060,1771,senado,Deputado Federal Alceu Moreira ,MDB,RS,deputado,160559
 135060,1775,senado,Deputado Federal Evair Vieira de Melo ,PP,ES,deputado,178871
-135060,1781,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
-135060,1783,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
-135060,1784,senado,Deputado Federal Sergio Souza ,MDB,PR,deputado,178933
+135060,1776,senado,Deputado Federal Evair Vieira de Melo ,PP,ES,deputado,178871
+135060,1782,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
+135060,1784,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
 135060,1785,senado,Deputado Federal Sergio Souza ,MDB,PR,deputado,178933
-135060,1786,senado,Deputado Federal Rodrigo Agostinho ,PSB,SP,deputado,204530
-135060,1789,senado,Deputado Federal Sergio Souza ,MDB,PR,deputado,178933
-135060,1792,senado,Deputado Federal Sergio Souza ,MDB,PR,deputado,178933
-135060,1793,senado,Deputado Federal Rodrigo Agostinho ,PSB,SP,deputado,204530
-135060,1794,senado,Deputado Federal Sergio Souza ,MDB,PR,deputado,178933
-135060,1795,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
-135060,1796,senado,Deputado Federal Sergio Souza ,MDB,PR,deputado,178933
-135060,1798,senado,Deputado Federal Sergio Souza ,MDB,PR,deputado,178933
-135060,1801,senado,Deputado,NA,NA,deputado,NA
-135062,1897,senado,Deputado Federal Rodrigo de Castro ,PSDB,MG,deputado,141531
+135060,1786,senado,Deputado Federal Sergio Souza ,MDB,PR,deputado,178933
+135060,1787,senado,Deputado Federal Rodrigo Agostinho ,PSB,SP,deputado,204530
+135060,1790,senado,Deputado Federal Sergio Souza ,MDB,PR,deputado,178933
+135060,1793,senado,Deputado Federal Sergio Souza ,MDB,PR,deputado,178933
+135060,1794,senado,Deputado Federal Rodrigo Agostinho ,PSB,SP,deputado,204530
+135060,1795,senado,Deputado Federal Sergio Souza ,MDB,PR,deputado,178933
+135060,1796,senado,Deputado Federal Nilto Tatto ,PT,SP,deputado,178986
+135060,1797,senado,Deputado Federal Sergio Souza ,MDB,PR,deputado,178933
+135060,1799,senado,Deputado Federal Sergio Souza ,MDB,PR,deputado,178933
+135060,1802,senado,Deputado,NA,NA,deputado,NA
 135062,1898,senado,Deputado Federal Rodrigo de Castro ,PSDB,MG,deputado,141531
 135062,1899,senado,Deputado Federal Rodrigo de Castro ,PSDB,MG,deputado,141531
-135062,1900,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
+135062,1900,senado,Deputado Federal Rodrigo de Castro ,PSDB,MG,deputado,141531
 135062,1901,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
 135062,1902,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
 135062,1903,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
 135062,1904,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
 135062,1905,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
-135062,1906,senado,Deputado Federal Heitor Freire ,PSL,CE,deputado,204548
+135062,1906,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
 135062,1907,senado,Deputado Federal Heitor Freire ,PSL,CE,deputado,204548
 135062,1908,senado,Deputado Federal Heitor Freire ,PSL,CE,deputado,204548
-135062,1909,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
+135062,1909,senado,Deputado Federal Heitor Freire ,PSL,CE,deputado,204548
 135062,1910,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135062,1911,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135062,1912,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
@@ -1888,25 +1888,25 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135062,1920,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135062,1921,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135062,1922,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
-135062,1923,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
+135062,1923,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135062,1924,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
 135062,1925,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
-135062,1926,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
-135062,1927,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
+135062,1926,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
+135062,1927,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
 135062,1928,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
 135062,1929,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
-135062,1930,senado,Deputado Federal Vinicius Carvalho ,PRB,SP,deputado,141555
+135062,1930,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
 135062,1931,senado,Deputado Federal Vinicius Carvalho ,PRB,SP,deputado,141555
-135062,1932,senado,Deputado Federal Pedro Westphalen ,PP,RS,deputado,204406
-135062,1934,senado,Deputado Federal Celso Russomanno ,PRB,SP,deputado,73441
+135062,1932,senado,Deputado Federal Vinicius Carvalho ,PRB,SP,deputado,141555
+135062,1933,senado,Deputado Federal Pedro Westphalen ,PP,RS,deputado,204406
 135062,1935,senado,Deputado Federal Celso Russomanno ,PRB,SP,deputado,73441
 135062,1936,senado,Deputado Federal Celso Russomanno ,PRB,SP,deputado,73441
-135062,1937,senado,Deputado Federal Luis Miranda ,DEM,DF,deputado,204381
+135062,1937,senado,Deputado Federal Celso Russomanno ,PRB,SP,deputado,73441
 135062,1938,senado,Deputado Federal Luis Miranda ,DEM,DF,deputado,204381
-135062,1939,senado,Deputado Federal Celso Russomanno ,PRB,SP,deputado,73441
-135062,1940,senado,Deputado Federal Eli Corrêa Filho ,DEM,SP,deputado,160532
+135062,1939,senado,Deputado Federal Luis Miranda ,DEM,DF,deputado,204381
+135062,1940,senado,Deputado Federal Celso Russomanno ,PRB,SP,deputado,73441
 135062,1941,senado,Deputado Federal Eli Corrêa Filho ,DEM,SP,deputado,160532
-135062,1942,senado,Deputado Federal Ivan Valente ,PSOL,SP,deputado,73531
+135062,1942,senado,Deputado Federal Eli Corrêa Filho ,DEM,SP,deputado,160532
 135062,1943,senado,Deputado Federal Ivan Valente ,PSOL,SP,deputado,73531
 135062,1944,senado,Deputado Federal Ivan Valente ,PSOL,SP,deputado,73531
 135062,1945,senado,Deputado Federal Ivan Valente ,PSOL,SP,deputado,73531
@@ -1915,26 +1915,26 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135062,1948,senado,Deputado Federal Ivan Valente ,PSOL,SP,deputado,73531
 135062,1949,senado,Deputado Federal Ivan Valente ,PSOL,SP,deputado,73531
 135062,1950,senado,Deputado Federal Ivan Valente ,PSOL,SP,deputado,73531
-135062,1953,senado,Deputado Federal Sergio Vidigal ,PDT,ES,deputado,178874
+135062,1951,senado,Deputado Federal Ivan Valente ,PSOL,SP,deputado,73531
 135062,1954,senado,Deputado Federal Sergio Vidigal ,PDT,ES,deputado,178874
-135062,1958,senado,Deputado Federal Vinicius Carvalho ,PRB,SP,deputado,141555
-135062,1969,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
+135062,1955,senado,Deputado Federal Sergio Vidigal ,PDT,ES,deputado,178874
+135062,1959,senado,Deputado Federal Vinicius Carvalho ,PRB,SP,deputado,141555
 135062,1970,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
 135062,1971,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
 135062,1972,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
 135062,1973,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
-135062,1974,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
+135062,1974,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
 135062,1975,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135062,1976,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135062,1977,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
-135062,1978,senado,Deputado Federal Gustavo Fruet ,PDT,PR,deputado,73460
-135062,1979,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
+135062,1978,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
+135062,1979,senado,Deputado Federal Gustavo Fruet ,PDT,PR,deputado,73460
 135062,1980,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 135062,1981,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 135062,1982,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 135062,1983,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 135062,1984,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
-135062,1998,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
+135062,1985,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 135062,1999,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
 135062,2000,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
 135062,2001,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
@@ -1943,23 +1943,23 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135062,2004,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
 135062,2005,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
 135062,2006,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
-135062,2008,senado,Deputado Federal Eduardo Barbosa ,PSDB,MG,deputado,74655
-135062,2009,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
-135062,2012,senado,Deputado Federal Bilac Pinto ,DEM,MG,deputado,141513
-135062,2013,senado,Deputada Federal Bia Kicis ,,DF,deputado,204374
+135062,2007,senado,Deputada Federal Talíria Petrone ,PSOL,RJ,deputado,204464
+135062,2009,senado,Deputado Federal Eduardo Barbosa ,PSDB,MG,deputado,74655
+135062,2010,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
+135062,2013,senado,Deputado Federal Bilac Pinto ,DEM,MG,deputado,141513
 135062,2014,senado,Deputada Federal Bia Kicis ,,DF,deputado,204374
-135062,2015,senado,Deputado Federal Cezinha de Madureira ,PSD,SP,deputado,204504
-135062,2016,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
+135062,2015,senado,Deputada Federal Bia Kicis ,,DF,deputado,204374
+135062,2016,senado,Deputado Federal Cezinha de Madureira ,PSD,SP,deputado,204504
 135062,2017,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
-135062,2018,senado,Deputado Federal Túlio Gadêlha ,PDT,PE,deputado,157130
+135062,2018,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
 135062,2019,senado,Deputado Federal Túlio Gadêlha ,PDT,PE,deputado,157130
-135062,2020,senado,Deputado Federal Daniel Coelho ,CIDADANIA,PE,deputado,178916
-135062,2028,senado,Deputado Federal José Nelto ,PODEMOS,GO,deputado,204391
-135062,2030,senado,Deputado Federal Jhc ,PSB,AL,deputado,178842
-135062,2031,senado,Deputado Federal Gilson Marques ,NOVO,SC,deputado,204365
+135062,2020,senado,Deputado Federal Túlio Gadêlha ,PDT,PE,deputado,157130
+135062,2021,senado,Deputado Federal Daniel Coelho ,CIDADANIA,PE,deputado,178916
+135062,2029,senado,Deputado Federal José Nelto ,PODEMOS,GO,deputado,204391
+135062,2031,senado,Deputado Federal Jhc ,PSB,AL,deputado,178842
 135062,2032,senado,Deputado Federal Gilson Marques ,NOVO,SC,deputado,204365
 135062,2033,senado,Deputado Federal Gilson Marques ,NOVO,SC,deputado,204365
-135062,2034,senado,Deputada Federal Sâmia Bomfim ,PSOL,SP,deputado,204535
+135062,2034,senado,Deputado Federal Gilson Marques ,NOVO,SC,deputado,204365
 135062,2035,senado,Deputada Federal Sâmia Bomfim ,PSOL,SP,deputado,204535
 135062,2036,senado,Deputada Federal Sâmia Bomfim ,PSOL,SP,deputado,204535
 135062,2037,senado,Deputada Federal Sâmia Bomfim ,PSOL,SP,deputado,204535
@@ -1968,7 +1968,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135062,2040,senado,Deputada Federal Sâmia Bomfim ,PSOL,SP,deputado,204535
 135062,2041,senado,Deputada Federal Sâmia Bomfim ,PSOL,SP,deputado,204535
 135062,2042,senado,Deputada Federal Sâmia Bomfim ,PSOL,SP,deputado,204535
-135062,2043,senado,Deputado Federal Marcelo Freixo ,PSOL,RJ,deputado,76874
+135062,2043,senado,Deputada Federal Sâmia Bomfim ,PSOL,SP,deputado,204535
 135062,2044,senado,Deputado Federal Marcelo Freixo ,PSOL,RJ,deputado,76874
 135062,2045,senado,Deputado Federal Marcelo Freixo ,PSOL,RJ,deputado,76874
 135062,2046,senado,Deputado Federal Marcelo Freixo ,PSOL,RJ,deputado,76874
@@ -1977,39 +1977,39 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135062,2049,senado,Deputado Federal Marcelo Freixo ,PSOL,RJ,deputado,76874
 135062,2050,senado,Deputado Federal Marcelo Freixo ,PSOL,RJ,deputado,76874
 135062,2051,senado,Deputado Federal Marcelo Freixo ,PSOL,RJ,deputado,76874
-135062,2052,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
+135062,2052,senado,Deputado Federal Marcelo Freixo ,PSOL,RJ,deputado,76874
 135062,2053,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 135062,2054,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 135062,2055,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 135062,2056,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
-135062,2059,senado,Deputada Federal Natália Bonavides ,PT,RN,deputado,204453
+135062,2057,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 135062,2060,senado,Deputada Federal Natália Bonavides ,PT,RN,deputado,204453
 135062,2061,senado,Deputada Federal Natália Bonavides ,PT,RN,deputado,204453
 135062,2062,senado,Deputada Federal Natália Bonavides ,PT,RN,deputado,204453
 135062,2063,senado,Deputada Federal Natália Bonavides ,PT,RN,deputado,204453
-135062,2067,senado,Deputado Federal Danilo Cabral ,PSB,PE,deputado,160528
+135062,2064,senado,Deputada Federal Natália Bonavides ,PT,RN,deputado,204453
 135062,2068,senado,Deputado Federal Danilo Cabral ,PSB,PE,deputado,160528
-135062,2069,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
+135062,2069,senado,Deputado Federal Danilo Cabral ,PSB,PE,deputado,160528
 135062,2070,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
-135062,2071,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
+135062,2071,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 135062,2072,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
-135062,2076,senado,Deputada Federal Margarida Salomão ,PT,MG,deputado,171619
-135062,2077,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
+135062,2073,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
+135062,2077,senado,Deputada Federal Margarida Salomão ,PT,MG,deputado,171619
 135062,2078,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135062,2079,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135062,2080,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135062,2081,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 135062,2082,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
-135062,2083,senado,Deputado Federal Vinicius Poit ,NOVO,SP,deputado,204532
-135062,2084,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
-135062,2086,senado,Deputado Federal Vinicius Poit ,NOVO,SP,deputado,204532
-135062,2090,senado,Deputado Federal Celso Russomanno ,PRB,SP,deputado,73441
-135062,2093,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
+135062,2083,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
+135062,2084,senado,Deputado Federal Vinicius Poit ,NOVO,SP,deputado,204532
+135062,2085,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
+135062,2087,senado,Deputado Federal Vinicius Poit ,NOVO,SP,deputado,204532
+135062,2091,senado,Deputado Federal Celso Russomanno ,PRB,SP,deputado,73441
 135062,2094,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
-135062,2097,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
-136531,2127,senado,Deputado Federal Luiz Carlos Motta ,PL,SP,deputado,204485
+135062,2095,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
+135062,2098,senado,Deputado Federal Orlando Silva ,PCdoB,SP,deputado,178987
 136531,2128,senado,Deputado Federal Luiz Carlos Motta ,PL,SP,deputado,204485
-136531,2129,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
+136531,2129,senado,Deputado Federal Luiz Carlos Motta ,PL,SP,deputado,204485
 136531,2130,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
 136531,2131,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
 136531,2132,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
@@ -2024,86 +2024,86 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136531,2141,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
 136531,2142,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
 136531,2143,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
-136531,2146,senado,Deputado Federal Heitor Freire ,PSL,CE,deputado,204548
-136531,2148,senado,Deputado Federal Bacelar ,PODEMOS,BA,deputado,69871
-136531,2149,senado,Deputado Federal Gonzaga Patriota ,PSB,PE,deputado,74419
-136531,2150,senado,Deputado Federal Lincoln Portela ,PL,MG,deputado,74585
+136531,2144,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
+136531,2147,senado,Deputado Federal Heitor Freire ,PSL,CE,deputado,204548
+136531,2149,senado,Deputado Federal Bacelar ,PODEMOS,BA,deputado,69871
+136531,2150,senado,Deputado Federal Gonzaga Patriota ,PSB,PE,deputado,74419
 136531,2151,senado,Deputado Federal Lincoln Portela ,PL,MG,deputado,74585
 136531,2152,senado,Deputado Federal Lincoln Portela ,PL,MG,deputado,74585
-136531,2153,senado,Deputado Federal Eduardo Costa ,PTB,PA,deputado,204500
-136531,2154,senado,Deputada Federal Jandira Feghali ,PCdoB,RJ,deputado,74848
-136531,2155,senado,Deputado Federal Hélio Leite ,DEM,PA,deputado,178909
-136531,2158,senado,Deputado Federal Bilac Pinto ,DEM,MG,deputado,141513
-136531,2161,senado,Deputado Federal Cezinha de Madureira ,PSD,SP,deputado,204504
-136531,2162,senado,Deputado Federal Pompeo de Mattos ,PDT,RS,deputado,73486
+136531,2153,senado,Deputado Federal Lincoln Portela ,PL,MG,deputado,74585
+136531,2154,senado,Deputado Federal Eduardo Costa ,PTB,PA,deputado,204500
+136531,2155,senado,Deputada Federal Jandira Feghali ,PCdoB,RJ,deputado,74848
+136531,2156,senado,Deputado Federal Hélio Leite ,DEM,PA,deputado,178909
+136531,2159,senado,Deputado Federal Bilac Pinto ,DEM,MG,deputado,141513
+136531,2162,senado,Deputado Federal Cezinha de Madureira ,PSD,SP,deputado,204504
 136531,2163,senado,Deputado Federal Pompeo de Mattos ,PDT,RS,deputado,73486
 136531,2164,senado,Deputado Federal Pompeo de Mattos ,PDT,RS,deputado,73486
-136531,2165,senado,Deputado Federal Felício Laterça ,PSL,RJ,deputado,204477
+136531,2165,senado,Deputado Federal Pompeo de Mattos ,PDT,RS,deputado,73486
 136531,2166,senado,Deputado Federal Felício Laterça ,PSL,RJ,deputado,204477
 136531,2167,senado,Deputado Federal Felício Laterça ,PSL,RJ,deputado,204477
 136531,2168,senado,Deputado Federal Felício Laterça ,PSL,RJ,deputado,204477
-136531,2169,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
+136531,2169,senado,Deputado Federal Felício Laterça ,PSL,RJ,deputado,204477
 136531,2170,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
 136531,2171,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
 136531,2172,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
 136531,2173,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
-136531,2177,senado,Deputado Federal Dagoberto Nogueira ,PDT,MS,deputado,141411
-136531,2178,senado,Deputado Federal Arnaldo Jardim ,CIDADANIA,SP,deputado,141391
-136531,2179,senado,Deputado Federal João Daniel ,PT,SE,deputado,178970
+136531,2174,senado,Deputado Federal José Guimarães ,PT,CE,deputado,141470
+136531,2178,senado,Deputado Federal Dagoberto Nogueira ,PDT,MS,deputado,141411
+136531,2179,senado,Deputado Federal Arnaldo Jardim ,CIDADANIA,SP,deputado,141391
 136531,2180,senado,Deputado Federal João Daniel ,PT,SE,deputado,178970
-136531,2181,senado,Deputada Federal Celina Leão ,PP,DF,deputado,204380
+136531,2181,senado,Deputado Federal João Daniel ,PT,SE,deputado,178970
 136531,2182,senado,Deputada Federal Celina Leão ,PP,DF,deputado,204380
-136531,2186,senado,Deputado Federal Jose Mario Schreiner ,DEM,GO,deputado,204386
+136531,2183,senado,Deputada Federal Celina Leão ,PP,DF,deputado,204380
 136531,2187,senado,Deputado Federal Jose Mario Schreiner ,DEM,GO,deputado,204386
-136531,2188,senado,Deputado Federal Alan Rick ,DEM,AC,deputado,178836
+136531,2188,senado,Deputado Federal Jose Mario Schreiner ,DEM,GO,deputado,204386
 136531,2189,senado,Deputado Federal Alan Rick ,DEM,AC,deputado,178836
-136531,2190,senado,Deputada Federal Perpétua Almeida ,PCdoB,AC,deputado,73943
-136531,2192,senado,Deputado Federal Zé Silva ,SD,MG,deputado,160632
+136531,2190,senado,Deputado Federal Alan Rick ,DEM,AC,deputado,178836
+136531,2191,senado,Deputada Federal Perpétua Almeida ,PCdoB,AC,deputado,73943
 136531,2193,senado,Deputado Federal Zé Silva ,SD,MG,deputado,160632
 136531,2194,senado,Deputado Federal Zé Silva ,SD,MG,deputado,160632
-136531,2195,senado,Deputada Federal Alice Portugal ,PCdoB,BA,deputado,74057
+136531,2195,senado,Deputado Federal Zé Silva ,SD,MG,deputado,160632
 136531,2196,senado,Deputada Federal Alice Portugal ,PCdoB,BA,deputado,74057
 136531,2197,senado,Deputada Federal Alice Portugal ,PCdoB,BA,deputado,74057
 136531,2198,senado,Deputada Federal Alice Portugal ,PCdoB,BA,deputado,74057
 136531,2199,senado,Deputada Federal Alice Portugal ,PCdoB,BA,deputado,74057
-136531,2200,senado,Deputado Federal Ivan Valente ,PSOL,SP,deputado,73531
+136531,2200,senado,Deputada Federal Alice Portugal ,PCdoB,BA,deputado,74057
 136531,2201,senado,Deputado Federal Ivan Valente ,PSOL,SP,deputado,73531
 136531,2202,senado,Deputado Federal Ivan Valente ,PSOL,SP,deputado,73531
 136531,2203,senado,Deputado Federal Ivan Valente ,PSOL,SP,deputado,73531
-136531,2205,senado,Deputado Federal Márcio Jerry ,PCdoB,MA,deputado,81055
+136531,2204,senado,Deputado Federal Ivan Valente ,PSOL,SP,deputado,73531
 136531,2206,senado,Deputado Federal Márcio Jerry ,PCdoB,MA,deputado,81055
 136531,2207,senado,Deputado Federal Márcio Jerry ,PCdoB,MA,deputado,81055
 136531,2208,senado,Deputado Federal Márcio Jerry ,PCdoB,MA,deputado,81055
-136531,2209,senado,Deputado Federal Daniel Almeida ,PCdoB,BA,deputado,74060
+136531,2209,senado,Deputado Federal Márcio Jerry ,PCdoB,MA,deputado,81055
 136531,2210,senado,Deputado Federal Daniel Almeida ,PCdoB,BA,deputado,74060
 136531,2211,senado,Deputado Federal Daniel Almeida ,PCdoB,BA,deputado,74060
 136531,2212,senado,Deputado Federal Daniel Almeida ,PCdoB,BA,deputado,74060
 136531,2213,senado,Deputado Federal Daniel Almeida ,PCdoB,BA,deputado,74060
-136531,2214,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
+136531,2214,senado,Deputado Federal Daniel Almeida ,PCdoB,BA,deputado,74060
 136531,2215,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
 136531,2216,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
-136531,2217,senado,Deputado Federal Kim Kataguiri ,DEM,SP,deputado,204536
+136531,2217,senado,Deputado Federal André Figueiredo ,PDT,CE,deputado,133439
 136531,2218,senado,Deputado Federal Kim Kataguiri ,DEM,SP,deputado,204536
-136531,2219,senado,Deputado Federal Elias Vaz ,PSB,GO,deputado,204389
+136531,2219,senado,Deputado Federal Kim Kataguiri ,DEM,SP,deputado,204536
 136531,2220,senado,Deputado Federal Elias Vaz ,PSB,GO,deputado,204389
 136531,2221,senado,Deputado Federal Elias Vaz ,PSB,GO,deputado,204389
 136531,2222,senado,Deputado Federal Elias Vaz ,PSB,GO,deputado,204389
-136531,2224,senado,Deputado Federal Evair Vieira de Melo ,PP,ES,deputado,178871
+136531,2223,senado,Deputado Federal Elias Vaz ,PSB,GO,deputado,204389
 136531,2225,senado,Deputado Federal Evair Vieira de Melo ,PP,ES,deputado,178871
-136531,2226,senado,Deputado Federal Heitor Freire ,PSL,CE,deputado,204548
+136531,2226,senado,Deputado Federal Evair Vieira de Melo ,PP,ES,deputado,178871
 136531,2227,senado,Deputado Federal Heitor Freire ,PSL,CE,deputado,204548
-136531,2228,senado,Deputado Federal Renildo Calheiros ,PCdoB,PE,deputado,73801
+136531,2228,senado,Deputado Federal Heitor Freire ,PSL,CE,deputado,204548
 136531,2229,senado,Deputado Federal Renildo Calheiros ,PCdoB,PE,deputado,73801
 136531,2230,senado,Deputado Federal Renildo Calheiros ,PCdoB,PE,deputado,73801
 136531,2231,senado,Deputado Federal Renildo Calheiros ,PCdoB,PE,deputado,73801
-136531,2237,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
-136531,2238,senado,Deputado Federal João Roma ,PRB,BA,deputado,204576
-136531,2239,senado,Deputado Federal José Medeiros ,PODEMOS,MT,deputado,204472
-136531,2240,senado,Deputada Federal Jaqueline Cassol ,PP,RO,deputado,108338
-136531,2241,senado,Deputado Federal Sergio Vidigal ,PDT,ES,deputado,178874
-136531,2242,senado,Deputada Federal Shéridan ,PSDB,RR,deputado,178961
+136531,2232,senado,Deputado Federal Renildo Calheiros ,PCdoB,PE,deputado,73801
+136531,2238,senado,Deputado Federal Silvio Costa Filho ,PRB,PE,deputado,204425
+136531,2239,senado,Deputado Federal João Roma ,PRB,BA,deputado,204576
+136531,2240,senado,Deputado Federal José Medeiros ,PODEMOS,MT,deputado,204472
+136531,2241,senado,Deputada Federal Jaqueline Cassol ,PP,RO,deputado,108338
+136531,2242,senado,Deputado Federal Sergio Vidigal ,PDT,ES,deputado,178874
 136531,2243,senado,Deputada Federal Shéridan ,PSDB,RR,deputado,178961
-136531,2244,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
+136531,2244,senado,Deputada Federal Shéridan ,PSDB,RR,deputado,178961
 136531,2245,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
 136531,2246,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
 136531,2247,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
@@ -2120,7 +2120,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136531,2258,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
 136531,2259,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
 136531,2260,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
-136531,2263,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
+136531,2261,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
 136531,2264,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 136531,2265,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 136531,2266,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
@@ -2138,16 +2138,16 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136531,2278,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 136531,2279,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 136531,2280,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
-136531,2287,senado,Deputado Federal Fábio Henrique ,PDT,SE,deputado,68720
+136531,2281,senado,Deputado Federal Paulo Pimenta ,PT,RS,deputado,74400
 136531,2288,senado,Deputado Federal Fábio Henrique ,PDT,SE,deputado,68720
 136531,2289,senado,Deputado Federal Fábio Henrique ,PDT,SE,deputado,68720
 136531,2290,senado,Deputado Federal Fábio Henrique ,PDT,SE,deputado,68720
 136531,2291,senado,Deputado Federal Fábio Henrique ,PDT,SE,deputado,68720
-136531,2332,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
+136531,2292,senado,Deputado Federal Fábio Henrique ,PDT,SE,deputado,68720
 136531,2333,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 136531,2334,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 136531,2335,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
-136531,2336,senado,Deputado Federal Vinicius Poit ,NOVO,SP,deputado,204532
+136531,2336,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 136531,2337,senado,Deputado Federal Vinicius Poit ,NOVO,SP,deputado,204532
 136531,2338,senado,Deputado Federal Vinicius Poit ,NOVO,SP,deputado,204532
 136531,2339,senado,Deputado Federal Vinicius Poit ,NOVO,SP,deputado,204532
@@ -2158,12 +2158,12 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136531,2344,senado,Deputado Federal Vinicius Poit ,NOVO,SP,deputado,204532
 136531,2345,senado,Deputado Federal Vinicius Poit ,NOVO,SP,deputado,204532
 136531,2346,senado,Deputado Federal Vinicius Poit ,NOVO,SP,deputado,204532
-136531,2359,senado,Deputado Federal Marcelo Ramos ,PL,AM,deputado,204556
-136531,2362,senado,Deputado Federal Pedro Lupion ,DEM,PR,deputado,204395
+136531,2347,senado,Deputado Federal Vinicius Poit ,NOVO,SP,deputado,204532
+136531,2360,senado,Deputado Federal Marcelo Ramos ,PL,AM,deputado,204556
 136531,2363,senado,Deputado Federal Pedro Lupion ,DEM,PR,deputado,204395
 136531,2364,senado,Deputado Federal Pedro Lupion ,DEM,PR,deputado,204395
 136531,2365,senado,Deputado Federal Pedro Lupion ,DEM,PR,deputado,204395
-136531,2366,senado,Deputado Federal João H. Campos ,PSB,PE,deputado,204429
+136531,2366,senado,Deputado Federal Pedro Lupion ,DEM,PR,deputado,204395
 136531,2367,senado,Deputado Federal João H. Campos ,PSB,PE,deputado,204429
 136531,2368,senado,Deputado Federal João H. Campos ,PSB,PE,deputado,204429
 136531,2369,senado,Deputado Federal João H. Campos ,PSB,PE,deputado,204429
@@ -2172,7 +2172,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136531,2372,senado,Deputado Federal João H. Campos ,PSB,PE,deputado,204429
 136531,2373,senado,Deputado Federal João H. Campos ,PSB,PE,deputado,204429
 136531,2374,senado,Deputado Federal João H. Campos ,PSB,PE,deputado,204429
-136531,2375,senado,Deputado Federal Alexis Fonteyne ,NOVO,SP,deputado,204516
+136531,2375,senado,Deputado Federal João H. Campos ,PSB,PE,deputado,204429
 136531,2376,senado,Deputado Federal Alexis Fonteyne ,NOVO,SP,deputado,204516
 136531,2377,senado,Deputado Federal Alexis Fonteyne ,NOVO,SP,deputado,204516
 136531,2378,senado,Deputado Federal Alexis Fonteyne ,NOVO,SP,deputado,204516
@@ -2188,7 +2188,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136531,2388,senado,Deputado Federal Alexis Fonteyne ,NOVO,SP,deputado,204516
 136531,2389,senado,Deputado Federal Alexis Fonteyne ,NOVO,SP,deputado,204516
 136531,2390,senado,Deputado Federal Alexis Fonteyne ,NOVO,SP,deputado,204516
-136531,2391,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
+136531,2391,senado,Deputado Federal Alexis Fonteyne ,NOVO,SP,deputado,204516
 136531,2392,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
 136531,2393,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
 136531,2394,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
@@ -2200,32 +2200,33 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136531,2400,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
 136531,2401,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
 136531,2402,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
-136531,2404,senado,Deputado Federal Paulo Teixeira ,PT,SP,deputado,141488
+136531,2403,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
 136531,2405,senado,Deputado Federal Paulo Teixeira ,PT,SP,deputado,141488
 136531,2406,senado,Deputado Federal Paulo Teixeira ,PT,SP,deputado,141488
-136531,2410,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
-136531,2413,senado,Deputada Federal Jandira Feghali ,PCdoB,RJ,deputado,74848
+136531,2407,senado,Deputado Federal Paulo Teixeira ,PT,SP,deputado,141488
+136531,2411,senado,Deputado Federal Felipe Rigoni ,PSB,ES,deputado,204371
 136531,2414,senado,Deputada Federal Jandira Feghali ,PCdoB,RJ,deputado,74848
 136531,2415,senado,Deputada Federal Jandira Feghali ,PCdoB,RJ,deputado,74848
 136531,2416,senado,Deputada Federal Jandira Feghali ,PCdoB,RJ,deputado,74848
-136531,2417,senado,Deputada Federal Maria do Rosário ,PT,RS,deputado,74398
+136531,2417,senado,Deputada Federal Jandira Feghali ,PCdoB,RJ,deputado,74848
 136531,2418,senado,Deputada Federal Maria do Rosário ,PT,RS,deputado,74398
 136531,2419,senado,Deputada Federal Maria do Rosário ,PT,RS,deputado,74398
 136531,2420,senado,Deputada Federal Maria do Rosário ,PT,RS,deputado,74398
 136531,2421,senado,Deputada Federal Maria do Rosário ,PT,RS,deputado,74398
 136531,2422,senado,Deputada Federal Maria do Rosário ,PT,RS,deputado,74398
-136531,2423,senado,Deputada Federal Luisa Canziani ,PTB,PR,deputado,204410
-136531,2424,senado,Deputado Federal Luciano Bivar ,PSL,PE,deputado,74478
+136531,2423,senado,Deputada Federal Maria do Rosário ,PT,RS,deputado,74398
+136531,2424,senado,Deputada Federal Luisa Canziani ,PTB,PR,deputado,204410
 136531,2425,senado,Deputado Federal Luciano Bivar ,PSL,PE,deputado,74478
-136531,2429,senado,Deputado Federal Pedro Lupion ,DEM,PR,deputado,204395
-136531,2430,senado,Deputado Federal Alan Rick ,DEM,AC,deputado,178836
-136531,2433,senado,Deputada Federal Margarida Salomão ,PT,MG,deputado,171619
-136531,2434,senado,Deputado Federal Jerônimo Goergen ,PP,RS,deputado,160570
-136531,2438,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
-136531,2440,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
-136531,2441,senado,Deputado Federal Jerônimo Goergen ,PP,RS,deputado,160570
+136531,2426,senado,Deputado Federal Luciano Bivar ,PSL,PE,deputado,74478
+136531,2430,senado,Deputado Federal Pedro Lupion ,DEM,PR,deputado,204395
+136531,2431,senado,Deputado Federal Alan Rick ,DEM,AC,deputado,178836
+136531,2434,senado,Deputada Federal Margarida Salomão ,PT,MG,deputado,171619
+136531,2435,senado,Deputado Federal Jerônimo Goergen ,PP,RS,deputado,160570
+136531,2439,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
+136531,2441,senado,Deputado Federal Eduardo Cury ,PSDB,SP,deputado,178977
 136531,2442,senado,Deputado Federal Jerônimo Goergen ,PP,RS,deputado,160570
-136531,2446,senado,Deputado Federal Jerônimo Goergen ,PP,RS,deputado,160570
+136531,2443,senado,Deputado Federal Jerônimo Goergen ,PP,RS,deputado,160570
+136531,2447,senado,Deputado Federal Jerônimo Goergen ,PP,RS,deputado,160570
 128634,1,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
 128634,14,senado,Comissão Diretora do Senado Federal,NA,NA,nao_parlamentar,NA
 128634,56,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
@@ -2312,116 +2313,116 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135064,1191,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 135064,1192,senado,Câmara Municipal de Chapecó,NA,NA,nao_parlamentar,NA
 135064,1193,senado,Assembleia Legislativa do Estado de Santa Catarina,NA,NA,nao_parlamentar,NA
-120152,1197,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 120152,1198,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 120152,1199,senado,Senado Federal,NA,NA,nao_parlamentar,NA
-135061,1203,senado,Presidência da República,NA,NA,nao_parlamentar,NA
-135061,1204,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-135061,1205,senado,Senado Federal,NA,NA,nao_parlamentar,NA
-135061,1707,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-135061,1709,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135061,1711,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135061,1720,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
+120152,1200,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+135061,1204,senado,Presidência da República,NA,NA,nao_parlamentar,NA
+135061,1205,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
+135061,1206,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+135061,1708,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
+135061,1710,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135061,1712,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135061,1721,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135061,1722,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135061,1723,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135061,1726,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135061,1731,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135061,1732,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
+135061,1724,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135061,1727,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135061,1732,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135061,1733,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
 135061,1734,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
-135061,1736,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-135061,1737,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135061,1738,senado,Ente Jurídico,NA,NA,nao_parlamentar,NA
+135061,1735,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
+135061,1737,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
+135061,1738,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135061,1739,senado,Ente Jurídico,NA,NA,nao_parlamentar,NA
-135060,1741,senado,Presidência da República,NA,NA,nao_parlamentar,NA
-135060,1742,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-135060,1778,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
-135060,1779,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-135060,1780,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135060,1782,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135060,1788,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135060,1790,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135061,1740,senado,Ente Jurídico,NA,NA,nao_parlamentar,NA
+135060,1742,senado,Presidência da República,NA,NA,nao_parlamentar,NA
+135060,1743,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
+135060,1779,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
+135060,1780,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
+135060,1781,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135060,1783,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135060,1789,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135060,1791,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135060,1797,senado,Ente Jurídico,NA,NA,nao_parlamentar,NA
-135060,1799,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
+135060,1792,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135060,1798,senado,Ente Jurídico,NA,NA,nao_parlamentar,NA
 135060,1800,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
-135060,1802,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135060,1803,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
-135060,1804,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-135060,1805,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135060,1806,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
-135060,1807,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-135060,1808,senado,Primeiro-Secretário do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135060,1809,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135060,1801,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
+135060,1803,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135060,1804,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
+135060,1805,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
+135060,1806,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135060,1807,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
+135060,1808,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
+135060,1809,senado,Primeiro-Secretário do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135060,1810,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
-136173,1848,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
-136173,1849,senado,Senado Federal,NA,NA,nao_parlamentar,NA
-136173,1856,senado,Senado Federal,NA,NA,nao_parlamentar,NA
-136173,1863,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+135060,1811,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
+136173,1849,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
+136173,1850,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+136173,1857,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 136173,1864,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
-136173,1865,senado,Senado Federal,NA,NA,nao_parlamentar,NA
-136173,1870,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+136173,1865,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+136173,1866,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 136173,1871,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 136173,1872,senado,Senado Federal,NA,NA,nao_parlamentar,NA
-136173,1873,senado,Comissão Diretora do Senado Federal,NA,NA,nao_parlamentar,NA
-136173,1874,senado,Primeiro-Secretário do Senado Federal,NA,NA,nao_parlamentar,NA
-136173,1875,senado,Senado Federal,NA,NA,nao_parlamentar,NA
-136173,1876,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
-136173,1877,senado,Presidência da República,NA,NA,nao_parlamentar,NA
-136173,1878,senado,Primeiro-Secretário do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135799,1883,senado,Presidente do Senado Federal,NA,NA,nao_parlamentar,NA
+136173,1873,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+136173,1874,senado,Comissão Diretora do Senado Federal,NA,NA,nao_parlamentar,NA
+136173,1875,senado,Primeiro-Secretário do Senado Federal,NA,NA,nao_parlamentar,NA
+136173,1876,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+136173,1877,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
+136173,1878,senado,Presidência da República,NA,NA,nao_parlamentar,NA
+136173,1879,senado,Primeiro-Secretário do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135799,1884,senado,Presidente do Senado Federal,NA,NA,nao_parlamentar,NA
-135799,1885,senado,Senado Federal,NA,NA,nao_parlamentar,NA
-135505,1891,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+135799,1885,senado,Presidente do Senado Federal,NA,NA,nao_parlamentar,NA
+135799,1886,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 135505,1892,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
 135505,1893,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
-135505,1894,senado,Cidadão Cidadão,NA,NA,nao_parlamentar,NA
-135062,1895,senado,Presidência da República,NA,NA,nao_parlamentar,NA
-135062,1896,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-135062,2073,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
-135062,2074,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-135062,2075,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135062,2087,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135505,1894,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+135505,1895,senado,Cidadão Cidadão,NA,NA,nao_parlamentar,NA
+135062,1896,senado,Presidência da República,NA,NA,nao_parlamentar,NA
+135062,1897,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
+135062,2074,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
+135062,2075,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
+135062,2076,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135062,2088,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135062,2091,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135062,2089,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135062,2092,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135062,2095,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
-135062,2096,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135062,2098,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
-135062,2099,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-135062,2100,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135062,2093,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135062,2096,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
+135062,2097,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135062,2099,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
+135062,2100,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
 135062,2101,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
-135062,2102,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
-135062,2103,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-135062,2104,senado,Senado Federal,NA,NA,nao_parlamentar,NA
-135062,2105,senado,Presidente do Senado Federal,NA,NA,nao_parlamentar,NA
-135062,2106,senado,Primeiro-Secretário do Senado Federal,NA,NA,nao_parlamentar,NA
-135062,2107,senado,Presidente do Senado Federal,NA,NA,nao_parlamentar,NA
-135062,2108,senado,Senado Federal,NA,NA,nao_parlamentar,NA
-131429,2111,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+135062,2102,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135062,2103,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
+135062,2104,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
+135062,2105,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+135062,2106,senado,Presidente do Senado Federal,NA,NA,nao_parlamentar,NA
+135062,2107,senado,Primeiro-Secretário do Senado Federal,NA,NA,nao_parlamentar,NA
+135062,2108,senado,Presidente do Senado Federal,NA,NA,nao_parlamentar,NA
+135062,2109,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 131429,2112,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
 131429,2113,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
-131429,2117,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+131429,2114,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
 131429,2118,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
-129778,2121,senado,Cidadão Cidadão,NA,NA,nao_parlamentar,NA
+131429,2119,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
 129778,2122,senado,Cidadão Cidadão,NA,NA,nao_parlamentar,NA
 129778,2123,senado,Cidadão Cidadão,NA,NA,nao_parlamentar,NA
-136531,2125,senado,Presidência da República,NA,NA,nao_parlamentar,NA
-136531,2126,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-136531,2428,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-136531,2431,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
-136531,2432,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
-136531,2436,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
-136531,2439,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-136531,2444,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
-136531,2445,senado,Comissão,NA,NA,nao_parlamentar,NA
-136531,2447,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
-136531,2448,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
-136531,2449,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
-136531,2450,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
-126049,2452,senado,Comissão de Assuntos Econômicos,NA,NA,nao_parlamentar,NA
+129778,2124,senado,Cidadão Cidadão,NA,NA,nao_parlamentar,NA
+136531,2126,senado,Presidência da República,NA,NA,nao_parlamentar,NA
+136531,2127,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
+136531,2429,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
+136531,2432,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
+136531,2433,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
+136531,2437,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
+136531,2440,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
+136531,2445,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
+136531,2446,senado,Comissão,NA,NA,nao_parlamentar,NA
+136531,2448,senado,Comissão do Congresso Nacional,NA,NA,nao_parlamentar,NA
+136531,2449,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
+136531,2450,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
+136531,2451,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
 126049,2453,senado,Comissão de Assuntos Econômicos,NA,NA,nao_parlamentar,NA
-126049,2455,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+126049,2454,senado,Comissão de Assuntos Econômicos,NA,NA,nao_parlamentar,NA
 126049,2456,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
-126049,2458,senado,Comissão de Serviços de Infraestrutura,NA,NA,nao_parlamentar,NA
+126049,2457,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+126049,2459,senado,Comissão de Serviços de Infraestrutura,NA,NA,nao_parlamentar,NA
