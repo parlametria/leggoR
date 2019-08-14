@@ -3,10 +3,9 @@
 #' as tabelas para uma proposição
 #' @param id Id da proposição
 #' @param casa senado ou camara
-#' @param agenda dataframe com a agenda
 #' @return list com os dataframes: proposicao, fases_eventos,
 #' hist_temperatura
-process_etapa <- function(id, casa, agenda, pautas) {
+process_etapa <- function(id, casa, pautas) {
   prop <- agoradigital::fetch_proposicao(id, casa)
   if (tolower(prop$sigla_tipo) == 'mpv') {
     tram <- agoradigital::fetch_tramitacao(id, casa, TRUE)
@@ -144,17 +143,16 @@ adiciona_status <- function(tramitacao_df) {
 #' @param id_senado Id da proposição no senado
 #' @param apelido Apelido da proposição
 #' @param tema_pl Tema da proposição
-#' @param agenda Agenda
 #' @param total_rows número de linhas da tabela com os ids das proposições
 #' @return Dataframe
-process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, total_rows, pautas) {
+process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_rows, pautas) {
    cat(paste(
      "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
      "\nsenado", id_senado, "\n"))
 
   etapas <- list()
   if (!is.na(id_camara)) {
-    etapa_processada <- safe_process_etapa(id_camara, "camara", agenda, pautas = pautas)
+    etapa_processada <- safe_process_etapa(id_camara, "camara", pautas = pautas)
     etapas %<>% append(list(etapa_processada$result))
     if (!is.null(etapa_processada$error)) {
       print(etapa_processada$error)  
@@ -162,7 +160,7 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, agenda, 
     }
   }
   if (!is.na(id_senado)) {
-    etapa_processada <- safe_process_etapa(id_senado, "senado", agenda, pautas = pautas)
+    etapa_processada <- safe_process_etapa(id_senado, "senado", pautas = pautas)
     etapas %<>% append(list(etapa_processada$result))
     if (!is.null(etapa_processada$error)) {
       print(etapa_processada$error)  
@@ -223,8 +221,6 @@ converte_tabela_geral_ids_casa <- function(pls) {
 #' @param export_path pasta para onde exportar dados.
 #' @export
 export_data <- function(pls, export_path) {
-  # agenda <- fetch_agenda_geral(as.Date(cut(Sys.Date(), "week")), as.Date(cut(Sys.Date(), "week")) + 4)
-  agenda <- tibble::as_tibble()
   pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
   
   tryCatch({
@@ -242,7 +238,7 @@ export_data <- function(pls, export_path) {
   
   while (count < 5 ) {
     cat(paste("\n--- Tentativa ", count + 1,"\n"))
-    res <- append(res, proposicoes_que_nao_baixaram %>% purrr::pmap(process_pl, agenda, nrow(proposicoes_que_nao_baixaram), pautas = pautas)) 
+    res <- append(res, proposicoes_que_nao_baixaram %>% purrr::pmap(process_pl, nrow(proposicoes_que_nao_baixaram), pautas = pautas)) 
 
     proposicoes <-
       purrr::map_df(res, ~ .$proposicao) %>%
@@ -287,9 +283,6 @@ export_data <- function(pls, export_path) {
     purrr::map_df(res, ~ .$progresso) %>%
     dplyr::rename(id_ext = prop_id) %>% 
     unique()
-  comissoes <-
-    agoradigital::fetch_all_composicao_comissao() %>% 
-    dplyr::rename(id_parlamentar = id)
 
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
@@ -297,5 +290,5 @@ export_data <- function(pls, export_path) {
   readr::write_csv(
     hists_temperatura, paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
-  readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
+
 }
