@@ -220,7 +220,7 @@ converte_tabela_geral_ids_casa <- function(pls) {
 #' @param pls dataframe com proposições.
 #' @param export_path pasta para onde exportar dados.
 #' @export
-export_data <- function(pls, export_path) {
+fetch_props <- function(pls, export_path) {
   pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
   
   tryCatch({

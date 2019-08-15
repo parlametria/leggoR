@@ -51,11 +51,11 @@ flag <- args$flag
 #' @param pls_ids_filepath Tabela com os ids das proposições
 #' @param export_path pasta para onde exportar dados.
 #' @export
-export_write_props <- function(pls_ids_filepath, export_path) {
+export_props <- function(pls_ids_filepath, export_path) {
   readr::read_csv(pls_ids_filepath) %>%
     dplyr::mutate(row_num = 1:nrow(.)) %>%
     dplyr::select(row_num,id_camara,id_senado,apelido,tema) %>%
-    agoradigital::export_data(export_path) 
+    agoradigital::fetch_props(export_path) 
 }
 
 #' @title Exporta dados de Emendas
@@ -63,16 +63,16 @@ export_write_props <- function(pls_ids_filepath, export_path) {
 #' @param pls_ids_filepath Tabela com os ids das proposições
 #' @param export_path pasta para onde exportar dados.
 #' @export
-export_write_emendas <- function(pls_ids_filepath, export_path) {
+export_emendas <- function(pls_ids_filepath, export_path) {
   readr::read_csv(pls_ids_filepath) %>%
-    agoradigital::export_emendas(export_path)
+    agoradigital::fetch_emendas(export_path)
 }
 
 #' @title Exporta dados de Comissões
 #' @description Captura e escreve as comissões
 #' @param export_path pasta para onde exportar dados.
 #' @export
-export_write_comissoes <- function(export_path) {
+export_comissoes <- function(export_path) {
   comissoes <-
     agoradigital::fetch_all_composicao_comissao() %>% 
     dplyr::rename(id_parlamentar = id)
@@ -82,8 +82,7 @@ export_write_comissoes <- function(export_path) {
 #' @title Chama as funções corretas
 #' @description Recebe uma flag e chama as funções correspondetes
 #' @param flag Inteiro que representa qual função o usuário desejar chamar
-#' @export
-chama_funcoes_de_escrita <- function(flag) {
+export_dados<- function(flag) {
   if (!(flag %in% c(1, 2, 3, 4))) {
     stop(paste("Wrong flag!", .HELP, sep = "\n"))
   }else {
@@ -91,22 +90,22 @@ chama_funcoes_de_escrita <- function(flag) {
     devtools::install()
     if (flag == 1) {
       print("Atualizando tudo!")
-      export_write_props(pls_ids_filepath, export_path)
-      export_write_emendas(pls_ids_filepath, export_path)
-      export_write_comissoes(export_path)
+      export_props(pls_ids_filepath, export_path)
+      export_emendas(pls_ids_filepath, export_path)
+      export_comissoes(export_path)
     } else if (flag == 2) {
       print("Atualizando as proposições!")
-      export_write_props(pls_ids_filepath, export_path)
+      export_props(pls_ids_filepath, export_path)
     } else if (flag == 3) {
       print("Atualizando emendas!")
-      export_write_emendas(pls_ids_filepath, export_path)
+      export_emendas(pls_ids_filepath, export_path)
     } else {
       print("Atualizando comissões!")
-      export_write_comissoes(export_path)
+      export_comissoes(export_path)
     } 
   } 
 }
 
-chama_funcoes_de_escrita(flag)
+export_dados(flag)
 
 
