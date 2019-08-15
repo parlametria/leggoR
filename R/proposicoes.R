@@ -284,7 +284,7 @@ fetch_all_documents <- function(id_documento) {
 }
 
 
-safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores_camara,otherwise = tibble::tibble())
+safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores,otherwise = tibble::tibble())
 
 #' @title Realiza busca dos autores de um documento
 #' @description Retorna autores de um documento caso a requisição seja bem-sucedida,
