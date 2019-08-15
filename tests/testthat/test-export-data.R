@@ -16,7 +16,6 @@ test_that("get_ementas_in_camara() don't return empty", {
   expect_true(nrow(proposicao) != 0)
   expect_true(nrow(tram) != 0)
   expect_true(nrow(temperatura) != 0)
-  #expect_true(nrow(emendas) != 0)
 })
 
 test_that('process_etapa() is list', {
