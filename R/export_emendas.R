@@ -57,8 +57,6 @@ fetch_emendas <- function(pls, export_path) {
   res <- list()
   tabela_geral <- agoradigital::converte_tabela_geral_ids_casa(pls)
   res <- append(res, purrr::map2(tabela_geral$id_casa, tabela_geral$casa, safe_get_emendas)) 
-  #if (!is.null(etapa_processada$error)) { print(etapa_processada$error) print(etapa_processada$error) return(etapas)	return(etapas) }	}
-  if(!is.null(res$e))
   
   emendas <-
     purrr::map_df(res, ~ .$result) %>%
