@@ -52,8 +52,23 @@ current_docs_ids <- current_docs %>%
 relacionadas_257161 <- rcongresso::fetch_relacionadas("camara",257161)
 relacionadas_2088990 <- rcongresso::fetch_relacionadas("camara",2088990)
 
-senadores <<- agoradigital::read_senadores('../../data/senado/parlamentares.csv')
-deputados <<- agoradigital::read_deputados('../../data/camara/parlamentares.csv')
+senadores <<- tibble::tibble(nome_eleitoral = c("Randolfe Rodrigues",
+                                                "Simone Tebet",
+                                                "Davi Alcolumbre",
+                                                "Alvaro Dias"),
+                             id_parlamentar = c(5012,
+                                            5527,
+                                            3830,
+                                            945))
+
+deputados <<- tibble::tibble(ultimo_status_nome_eleitoral = c("Alessandro Molon",
+                                                "Bia Kicis",
+                                                "Marcel Van Hattem",
+                                                "Gleisi Hoffmann"),
+                             id = c(160511,
+                                          204374,
+                                          156190,
+                                          107283))
 
 
 autores_senado_scrapped_deputados <- tibble::tibble(nome_autor = c("Deputado Federal Alessandro Molon",
