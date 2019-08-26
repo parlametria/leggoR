@@ -52,7 +52,8 @@ devtools::install()
 
 current_docs <- tibble::tibble()
 current_autores <- tibble::tibble()
-parlamentares <- tibble::tibble()
+deputados <- tibble::tibble()
+senadores <- tibble::tibble()
 
 # Read current data csvs
 print("Lendo csvs com dados atuais...")
@@ -60,15 +61,18 @@ pls_ids <- agoradigital::read_pls_ids(pls_ids_filepath)
 
 docs_filepath <- paste0(export_path, '/', casa, '/documentos.csv')
 autores_filepath <- paste0(export_path, '/', casa, '/autores.csv')
-parlamentares_filepath <- paste0(export_path, '/', casa, '/parlamentares.csv')
+deputados_filepath <- paste0(export_path, '/camara/parlamentares.csv')
+senadores_filepath <- paste0(export_path, '/senado/parlamentares.csv')
+
+deputados <- agoradigital::read_deputados(deputados_filepath)
 
 if (casa == 'camara') {
-  parlamentares <- agoradigital::read_deputados(parlamentares_filepath)
   current_docs <- agoradigital::read_current_docs_camara(docs_filepath)
   current_autores <- agoradigital::read_current_autores_camara(autores_filepath)
 }
 
 if (casa == 'senado') {
+  senadores <- agoradigital::read_senadores(senadores_filepath)
   current_docs <- agoradigital::read_current_docs_senado(docs_filepath)
   current_autores <- agoradigital::read_current_autores_senado(autores_filepath)
 }
@@ -125,8 +129,8 @@ if (nrow(new_docs_ids) > 0) {
 
   print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
   if (casa == 'camara') {
-    new_autores_data <- merge(new_autores_data, parlamentares, by.x = "id_autor", by.y = "id") %>%
-      dplyr::select(id_autor,nome,tipo_autor,uri_autor,id_documento,casa,partido,uf,dplyr::everything())
+    new_autores_data <- merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id") %>%
+      dplyr::select(id_autor,nome,tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor)
   }
   updated_autores_docs <- rbind(current_autores, new_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
   readr::write_csv(updated_autores_docs, autores_filepath)
@@ -137,7 +141,10 @@ if (casa == 'senado') {
   pls_senado <- all_pls_ids %>%  dplyr::filter(casa == 'senado')
   senado_docs_scrap <- agoradigital::fetch_documentos_relacionados_senado(pls_senado)
   senado_autores_scrap <- agoradigital::fetch_autores_relacionadas_senado(senado_docs_scrap)
+  
+  senado_autores_scrap_com_id_autor <- agoradigital::match_autores_senado_scrap_to_parlamentares(senado_autores_scrap, senadores, deputados)
+  
   readr::write_csv(senado_docs_scrap, paste0(export_path, "/senado/documentos_scrap.csv"))
-  readr::write_csv(senado_autores_scrap, paste0(export_path, "/senado/autores_scrap.csv"))
+  readr::write_csv(senado_autores_scrap_com_id_autor, paste0(export_path, "/senado/autores_scrap.csv"))
 }
 

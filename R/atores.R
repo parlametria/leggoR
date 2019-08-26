@@ -27,11 +27,13 @@ create_tabela_atores_camara <- function(documentos_df, autores_df) {
                   descricao_tipo_documento)
 
   atores_df <- autores_docs %>%
+    dplyr::mutate(tipo_autor = 'deputado') %>% 
     agoradigital::add_tipo_evento_documento() %>%
     dplyr::rename(tipo_generico = tipo) %>%
     dplyr::group_by(id_ext = id_principal,
                     casa,
                     id_autor,
+                    tipo_autor,
                     nome_autor,
                     partido,
                     uf,
@@ -71,11 +73,13 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
                   sigla_local)
 
   atores_df <- autores_docs %>%
+    dplyr::mutate(tipo_autor = 'senador') %>% 
     agoradigital::add_tipo_evento_documento() %>%
     dplyr::rename(tipo_generico = tipo) %>%
     dplyr::group_by(id_ext = id_principal,
                     casa,
                     id_autor,
+                    tipo_autor,
                     nome_autor,
                     partido,
                     uf,
@@ -107,7 +111,7 @@ create_tabela_atores_senado_scrap <- function(documentos_df, autores_df) {
   }
   
   autores_docs <- 
-    merge(documentos_df, autores_df, by = c("id_principal", "id_documento", "casa")) %>% 
+    merge(documentos_df, autores_df %>% dplyr::filter(!is.na(id_autor)), by = c("id_principal", "id_documento", "casa")) %>% 
     dplyr::mutate(identificacao = stringr::str_trim(identificacao)) 
   
   senado_comissoes <-
@@ -127,15 +131,13 @@ create_tabela_atores_senado_scrap <- function(documentos_df, autores_df) {
     autores_docs %>%
     dplyr::mutate(nome_autor = 
                     stringr::str_replace(nome_autor,
-                                         "(\\()(.*?)(\\))|^Deputad(o|a) Federal|
-                                         ^Deputad(o|a)|
-                                         ^Senador(a)*|
-                                         Líder do ((.*?)(\\s))|
-                                         Presidente do Senado Federal: Senador ", "")) %>%
+                                         "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", "")) %>%
     agoradigital::add_tipo_evento_documento(T) %>% 
     dplyr::rename(tipo_generico = tipo) %>%
     dplyr::group_by(id_ext = id_principal,
                     casa,
+                    id_autor,
+                    tipo_autor,
                     nome_autor,
                     partido,
                     uf,
@@ -146,9 +148,7 @@ create_tabela_atores_senado_scrap <- function(documentos_df, autores_df) {
     dplyr::ungroup()
   
   atores_df <- 
-    .detect_sigla_local(atores_df, senado_env) %>% 
-    dplyr::mutate(id_autor = NA) %>% 
-    dplyr::select(id_ext, casa, id_autor, dplyr::everything())
+    .detect_sigla_local(atores_df, senado_env)
   
   return(atores_df)
 }

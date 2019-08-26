@@ -52,6 +52,102 @@ current_docs_ids <- current_docs %>%
 relacionadas_257161 <- rcongresso::fetch_relacionadas("camara",257161)
 relacionadas_2088990 <- rcongresso::fetch_relacionadas("camara",2088990)
 
+senadores <<- tibble::tibble(nome_eleitoral = c("Randolfe Rodrigues",
+                                                "Simone Tebet",
+                                                "Davi Alcolumbre",
+                                                "Alvaro Dias"),
+                             id_parlamentar = c(5012,
+                                            5527,
+                                            3830,
+                                            945))
+
+deputados <<- tibble::tibble(ultimo_status_nome_eleitoral = c("Alessandro Molon",
+                                                "Bia Kicis",
+                                                "Marcel Van Hattem",
+                                                "Gleisi Hoffmann"),
+                             id = c(160511,
+                                          204374,
+                                          156190,
+                                          107283))
+
+
+autores_senado_scrapped_deputados <- tibble::tibble(nome_autor = c("Deputado Federal Alessandro Molon",
+                                                                   "Deputada Federal Bia Kicis",
+                                                                   "Deputado Marcel Van Hattem",
+                                                                   "Deputada Gleisi Hoffmann",
+                                                                   "Deputado ABC",
+                                                                   "Deputada 123",
+                                                                   "Deputado Federal"))
+
+autores_senado_scrapped_deputados_nome_clean <- tibble::tibble(nome_autor_clean = tolower(c("Alessandro Molon",
+                                                                              "Bia Kicis",
+                                                                              "Marcel Van Hattem",
+                                                                              "Gleisi Hoffmann",
+                                                                              "ABC",
+                                                                              "123",
+                                                                              "")))
+
+
+gabarito_autores_senado_scrapped_deputados <- tibble::tibble(tipo_autor = rep("deputado",7),
+                                                             id_autor= c(160511,
+                                                                         204374,
+                                                                         156190,
+                                                                         107283,
+                                                                         NA,
+                                                                         NA,
+                                                                         NA))
+
+autores_senado_scrapped_senadores <- tibble::tibble(nome_autor = c("Senador Randolfe Rodrigues",
+                                                                   "Senadora Simone Tebet",
+                                                                   "Presidente do Senado Federal: Senador Davi Alcolumbre",
+                                                                   "Líder do PODEMOS Alvaro Dias",
+                                                                   "Senador 123",
+                                                                   "Senadora ABC",
+                                                                   "Presidente do Senado Federal: Senador "))
+
+autores_senado_scrapped_senadores_nome_clean <- tibble::tibble(nome_autor_clean = tolower(c("Randolfe Rodrigues",
+                                                                              "Simone Tebet",
+                                                                              "Davi Alcolumbre",
+                                                                              "Alvaro Dias",
+                                                                              "123",
+                                                                              "ABC",
+                                                                              "")))
+
+gabarito_autores_senado_scrapped_senadores <- tibble::tibble(tipo_autor = rep("senador",7),
+                                                             id_autor= c(5012,
+                                                                         5527,
+                                                                         3830,
+                                                                         945,
+                                                                         NA,
+                                                                         NA,
+                                                                         NA))
+
+autores_senado_scrapped_outros <- tibble::tibble(nome_autor = c("Câmara dos Deputados",
+                                                                "Cidadão",
+                                                                ""))
+
+gabarito_autores_senado_scrapped_outros <- tibble::tibble(tipo_autor = rep("nao_parlamentar",3),
+                                                          id_autor = rep(NA,3))
+
+autores_senado_scrapped = dplyr::bind_rows(autores_senado_scrapped_senadores,autores_senado_scrapped_deputados,autores_senado_scrapped_outros)
+
+gabarito_autores_senado_scrapped = dplyr::bind_cols(dplyr::bind_rows(autores_senado_scrapped_senadores,
+                                                                     autores_senado_scrapped_deputados,
+                                                                     autores_senado_scrapped_outros),
+                                                    dplyr::bind_rows(gabarito_autores_senado_scrapped_senadores,
+                                                                     gabarito_autores_senado_scrapped_deputados,
+                                                                     gabarito_autores_senado_scrapped_outros))
+
+gabarito_autores_senado_scrapped_matched_deputados = dplyr::bind_cols(autores_senado_scrapped_deputados_nome_clean,
+                                                                      gabarito_autores_senado_scrapped_deputados %>% 
+                                                                        dplyr::select(-tipo_autor))
+
+gabarito_autores_senado_scrapped_matched_senadores = dplyr::bind_cols(autores_senado_scrapped_senadores_nome_clean,
+                                                                      gabarito_autores_senado_scrapped_senadores %>% 
+                                                                        dplyr::select(-tipo_autor))
+                                                    
+
+
 check_api <- function(){
   tryCatch(setup(), error = function(e){return(FALSE)})
 }
@@ -127,7 +223,67 @@ test <- function(){
       fetch_autores_relacionadas_senado(doc_example), gabarito_fetch_autor)
   })
   
-
+  test_that('match_autores_senado_scrap_to_parlamentares() works with empty/null input', {
+    expect_warning(
+      match_autores_senado_scrap_to_parlamentares(tibble::tibble(), tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+    expect_warning(
+      match_autores_senado_scrap_to_parlamentares(NULL, NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+    expect_equal(
+      match_autores_senado_scrap_to_parlamentares(tibble::tibble(), tibble::tibble(), tibble::tibble()), tibble::tibble())
+    expect_equal(
+      match_autores_senado_scrap_to_parlamentares(NULL, NULL, NULL), tibble::tibble())
+  })
+  
+  test_that('match_autores_senado_scrap_to_parlamentares() returns the correct output', {
+    expect_true(
+      is.data.frame(match_autores_senado_scrap_to_parlamentares(autores_senado_scrapped, senadores, deputados)))
+    expect_true(
+      nrow(match_autores_senado_scrap_to_parlamentares(autores_senado_scrapped, senadores, deputados)) > 0)
+    expect_equal(
+      match_autores_senado_scrap_to_parlamentares(autores_senado_scrapped, senadores, deputados), gabarito_autores_senado_scrapped)
+  })
+  
+  test_that('match_autores_senado_scrap_to_deputados() returns the correct output', {
+    expect_warning(
+      match_autores_senado_scrap_to_deputados(tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+    expect_warning(
+      match_autores_senado_scrap_to_deputados(NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+    expect_equal(
+      match_autores_senado_scrap_to_deputados(tibble::tibble()), tibble::tibble())
+    expect_equal(
+      match_autores_senado_scrap_to_deputados(NULL, NUL), tibble::tibble())
+  })
+  
+  test_that('match_autores_senado_scrap_to_deputados() returns the correct output', {
+    expect_true(
+      is.data.frame(match_autores_senado_scrap_to_deputados(autores_senado_scrapped_deputados_nome_clean, deputados)))
+    expect_true(
+      nrow(match_autores_senado_scrap_to_deputados(autores_senado_scrapped_deputados_nome_clean, deputados)) > 0)
+    expect_equal(
+      match_autores_senado_scrap_to_deputados(autores_senado_scrapped_deputados_nome_clean, deputados), gabarito_autores_senado_scrapped_matched_deputados)
+  })
+  
+  test_that('match_autores_senado_scrap_to_senadores() returns the correct output', {
+    expect_warning(
+      match_autores_senado_scrap_to_senadores(tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+    expect_warning(
+      match_autores_senado_scrap_to_senadores(NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+    expect_equal(
+      match_autores_senado_scrap_to_senadores(tibble::tibble()), tibble::tibble())
+    expect_equal(
+      match_autores_senado_scrap_to_senadores(NULL, NUL), tibble::tibble())
+  })
+  
+  test_that('match_autores_senado_scrap_to_senadores() returns the correct output', {
+    expect_true(
+      is.data.frame(match_autores_senado_scrap_to_senadores(autores_senado_scrapped_senadores_nome_clean, senadores)))
+    expect_true(
+      nrow(match_autores_senado_scrap_to_senadores(autores_senado_scrapped_senadores_nome_clean, senadores)) > 0)
+    expect_equal(
+      match_autores_senado_scrap_to_senadores(autores_senado_scrapped_senadores_nome_clean, senadores), gabarito_autores_senado_scrapped_matched_senadores)
+  })
+  
+  
 }
 
 if(check_api()){
