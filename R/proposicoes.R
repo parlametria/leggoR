@@ -271,7 +271,7 @@ fetch_documentos_data <- function(docs_ids) {
 #' @export
 fetch_documentos_relacionados_senado <- function(pls_ids) {
   docs <- 
-    purrr::map2_df(pls_ids$id_principal, pls_ids$casa, ~ rcongresso::scrap_senado_congresso_documentos(.x, .y, T)) %>% 
+    purrr::map_df(pls_ids$id_principal, ~ rcongresso::fetch_textos_proposicao_senado(.x, T)) %>% 
   dplyr::mutate(id_documento = dplyr::row_number())
   return(docs)
 }
@@ -286,7 +286,7 @@ extract_autor_relacionadas_senado <- function(autor_raw, id_doc) {
   stringr::str_split(autor_raw,",") %>% 
   purrr::pluck(1) %>% 
   purrr::map_df(.aux_extract_autor_relacionadas_senado) %>% 
-  dplyr::mutate(id_documento = id_doc) %>% 
+  dplyr::mutate(codigo_texto = id_doc) %>% 
   dplyr::distinct()
 }
 
@@ -312,8 +312,8 @@ extract_autor_relacionadas_senado <- function(autor_raw, id_doc) {
 fetch_autores_relacionadas_senado <- function(relacionadas_docs) {
   autores_raw <- 
     relacionadas_docs %>%
-    dplyr::rename(autor_raw = autor) %>% 
-    dplyr::filter(!is.na(autor_raw)) %>%
+    dplyr::rename(autor_raw = autoria_texto) %>% 
+    dplyr::filter(autor_raw != "Autoria não registrada.") %>%
     dplyr::mutate(autor_raw =
         dplyr::if_else(stringr::str_detect(autor_raw,"Comissão de Constituição, Justiça e Cidadania"),
                        stringr::str_replace_all(autor_raw, "Comissão de Constituição, Justiça e Cidadania",
@@ -322,17 +322,18 @@ fetch_autores_relacionadas_senado <- function(relacionadas_docs) {
         dplyr::if_else(stringr::str_detect(autor_raw, "Comissão Mista da Medida Provisória .*"),
                                    stringr::str_replace_all(autor_raw, "Comissão Mista da Medida Provisória .*",
                                                             "Comissão Mista"), autor_raw)) %>% 
-    dplyr::select(id_principal, id_documento, casa, autor_raw)
+    dplyr::select(codigo_materia, codigo_texto, casa, autor_raw)
   
   autores_metadata <- 
     purrr::map2_df(autores_raw$autor_raw, 
-                                     autores_raw$id_documento,
+                                     autores_raw$codigo_texto,
                                      ~extract_autor_relacionadas_senado(.x, .y))
   
   autores <- 
     autores_raw %>% 
-    dplyr::inner_join(autores_metadata, by="id_documento") %>% 
-    dplyr::select(-autor_raw)
+    dplyr::inner_join(autores_metadata, by="codigo_texto") %>% 
+    dplyr::select(-autor_raw) %>% 
+    unique()
 }
 
 #' @title Agrupa os tipos dos documentos
