@@ -111,7 +111,8 @@ create_tabela_atores_senado_scrap <- function(documentos_df, autores_df) {
   }
   
   autores_docs <- 
-    merge(documentos_df, autores_df %>% dplyr::filter(!is.na(id_autor)), by = c("id_principal", "id_documento", "casa")) %>% 
+    merge(documentos_df, autores_df %>% dplyr::filter(!is.na(id_autor)), by = c("codigo_materia", "codigo_texto", "casa")) %>% 
+    dplyr::mutate(identificacao = descricao_texto) %>% 
     dplyr::mutate(identificacao = stringr::str_trim(identificacao)) 
   
   senado_comissoes <-
@@ -123,18 +124,19 @@ create_tabela_atores_senado_scrap <- function(documentos_df, autores_df) {
     rbind(list("Comissão Especial", "Especial"))
   
   autores_docs <-
-    fuzzyjoin::regex_left_join(autores_docs, senado_comissoes, by=c("local" = "comissoes_permanentes")) %>% 
-    dplyr::select(-c(local, comissoes_permanentes)) %>% 
+    fuzzyjoin::regex_left_join(autores_docs, senado_comissoes, by=c("identificacao_comissao_nome_comissao" = "comissoes_permanentes")) %>% 
+    dplyr::select(-c(identificacao_comissao_nome_comissao, comissoes_permanentes)) %>% 
     dplyr::rename(sigla_local = siglas_comissoes)
   
   atores_df <- 
     autores_docs %>%
     dplyr::mutate(nome_autor = 
                     stringr::str_replace(nome_autor,
-                                         "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", "")) %>%
+                                         "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", ""),
+                  codigo_materia = as.numeric(codigo_materia)) %>%
     agoradigital::add_tipo_evento_documento(T) %>% 
     dplyr::rename(tipo_generico = tipo) %>%
-    dplyr::group_by(id_ext = id_principal,
+    dplyr::group_by(id_ext = codigo_materia,
                     casa,
                     id_autor,
                     tipo_autor,

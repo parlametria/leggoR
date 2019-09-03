@@ -142,7 +142,7 @@ if (casa == 'senado') {
   
   senado_autores_scrap_com_id_autor <- agoradigital::match_autores_senado_scrap_to_parlamentares(senado_autores_scrap, senadores, deputados)
   
-  readr::write_csv(senado_docs_scrap, paste0(export_path, "/senado/documentos_scrap.csv"))
-  readr::write_csv(senado_autores_scrap_com_id_autor, paste0(export_path, "/senado/autores_scrap.csv"))
+  readr::write_csv(senado_docs_scrap, paste0(export_path, "/senado/documentos.csv"))
+  readr::write_csv(senado_autores_scrap_com_id_autor, paste0(export_path, "/senado/autores.csv"))
 }
 
