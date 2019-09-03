@@ -22,21 +22,21 @@ gabarito_extract_autor <-
   tibble::tibble(nome_autor = c("Comissão de Constituição Justiça e Cidadania", "Senador Cidinho Santos "), 
                  partido = c(NA, "PL"),
                  uf = c(NA, "MT"),
-                 id_documento = c(1, 1))
+                 codigo_texto = c(1, 1))
 
 doc_example <-
   tibble::tibble(acao_legislativa = "  Apresentada, nesta data, emendas de autoria do Senador Eduardo Gomes. Devolvido ao relator, Senador Marco Rogério, para manifestação sobre as emendas apresentas.",
-                 autor = "Senador Eduardo Gomes (MDB/TO)",
+                 autoria_texto = "Senador Eduardo Gomes (MDB/TO)",
                  casa = "senado",
                  data = "09/07/2019",
                  descricao_ementa = NA, 
                  identificacao = "EMENDA 5 - PLS 232/2016",
-                 id_principal = 126049,
+                 codigo_materia = 126049,
                  local = "Comissão de Serviços de Infraestrutura",
-                 id_documento = 2135)
+                 codigo_texto = 2135)
 gabarito_fetch_autor <- 
-  tibble::tibble(id_principal = 126049,
-                 id_documento = 2135,
+  tibble::tibble(codigo_materia = 126049,
+                 codigo_texto = 2135,
                  casa = "senado",
                  nome_autor = "Senador Eduardo Gomes ",
                  partido = "MDB",
@@ -243,24 +243,24 @@ test <- function(){
       match_autores_senado_to_parlamentares(autores_senado_scrapped, senadores, deputados), gabarito_autores_senado_scrapped)
   })
   
-  test_that('match_autores_senado_to_parlamentares() returns the correct output', {
+  test_that('match_autores_senado_scrap_to_deputados() returns the correct output', {
     expect_warning(
-      match_autores_senado_to_parlamentares(tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+      match_autores_senado_scrap_to_deputados(tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
     expect_warning(
-      match_autores_senado_to_parlamentares(NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+      match_autores_senado_scrap_to_deputados(NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
     expect_equal(
-      match_autores_senado_to_parlamentares(tibble::tibble()), tibble::tibble())
+      match_autores_senado_scrap_to_deputados(tibble::tibble()), tibble::tibble())
     expect_equal(
-      match_autores_senado_to_parlamentares(NULL, NUL), tibble::tibble())
+      match_autores_senado_scrap_to_deputados(NULL, NUL), tibble::tibble())
   })
   
-  test_that('match_autores_senado_to_parlamentares() returns the correct output', {
+  test_that('match_autores_senado_scrap_to_deputados() returns the correct output', {
     expect_true(
-      is.data.frame(match_autores_senado_to_parlamentares(autores_senado_scrapped_deputados_nome_clean, deputados)))
+      is.data.frame(match_autores_senado_scrap_to_deputados(autores_senado_scrapped_deputados_nome_clean, deputados)))
     expect_true(
-      nrow(match_autores_senado_to_parlamentares(autores_senado_scrapped_deputados_nome_clean, deputados)) > 0)
+      nrow(match_autores_senado_scrap_to_deputados(autores_senado_scrapped_deputados_nome_clean, deputados)) > 0)
     expect_equal(
-      match_autores_senado_to_parlamentares(autores_senado_scrapped_deputados_nome_clean, deputados), gabarito_autores_senado_scrapped_matched_deputados)
+      match_autores_senado_scrap_to_deputados(autores_senado_scrapped_deputados_nome_clean, deputados), gabarito_autores_senado_scrapped_matched_deputados)
   })
   
   test_that('match_autores_senado_scrap_to_senadores() returns the correct output', {
