@@ -27,14 +27,11 @@ camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camar
 camara_autores <- agoradigital::read_current_autores_camara(paste0(input_path, "/camara/autores.csv"))
 senado_docs <- agoradigital::read_current_docs_senado(paste0(input_path, "/senado/documentos.csv"))
 senado_autores <- agoradigital::read_current_autores_senado(paste0(input_path, "/senado/autores.csv"))
-# senado_docs_scrap <- agoradigital::read_current_docs_senado_scrap(paste0(input_path, "/senado/documentos_scrap.csv"))
-# senado_autores_scrap <- agoradigital::read_current_autores_senado_scrap(paste0(input_path, "/senado/autores_scrap.csv"))
 
 print(paste("Gerando tabela de atores a partir de dados atualizados de documentos e autores..."))
 
 atores_camara <- agoradigital::create_tabela_atores_camara(camara_docs, camara_autores)
-#atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores)
-atores_senado_scrap <- agoradigital::create_tabela_atores_senado_scrap(senado_docs, senado_autores)
+atores_senado_scrap <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores)
 
 atores_df <- dplyr::bind_rows(atores_camara, atores_senado_scrap)
 

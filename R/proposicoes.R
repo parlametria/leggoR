@@ -453,7 +453,7 @@ fetch_autores_documento <- function(id_documento, casa, sigla_tipo) {
 #' @param deputados_df dataframe com dados dos deputados das últimas legislaturas
 #' @return Dataframe contendo dados dos autores com seus respectivos ids em suas respectivas casas
 #' @export
-match_autores_senado_scrap_to_parlamentares <- function(autores_senado_scrap, senadores_df, deputados_df) {
+match_autores_senado_to_parlamentares <- function(autores_senado_scrap, senadores_df, deputados_df) {
   
   if (!agoradigital::check_dataframe(autores_senado_scrap)) return(tibble::tibble())
   if (!agoradigital::check_dataframe(senadores_df)) return(tibble::tibble())

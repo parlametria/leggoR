@@ -223,44 +223,44 @@ test <- function(){
       fetch_autores_relacionadas_senado(doc_example), gabarito_fetch_autor)
   })
   
-  test_that('match_autores_senado_scrap_to_parlamentares() works with empty/null input', {
+  test_that('match_autores_senado_to_parlamentares() works with empty/null input', {
     expect_warning(
-      match_autores_senado_scrap_to_parlamentares(tibble::tibble(), tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+      match_autores_senado_to_parlamentares(tibble::tibble(), tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
     expect_warning(
-      match_autores_senado_scrap_to_parlamentares(NULL, NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+      match_autores_senado_to_parlamentares(NULL, NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
     expect_equal(
-      match_autores_senado_scrap_to_parlamentares(tibble::tibble(), tibble::tibble(), tibble::tibble()), tibble::tibble())
+      match_autores_senado_to_parlamentares(tibble::tibble(), tibble::tibble(), tibble::tibble()), tibble::tibble())
     expect_equal(
-      match_autores_senado_scrap_to_parlamentares(NULL, NULL, NULL), tibble::tibble())
+      match_autores_senado_to_parlamentares(NULL, NULL, NULL), tibble::tibble())
   })
   
-  test_that('match_autores_senado_scrap_to_parlamentares() returns the correct output', {
+  test_that('match_autores_senado_to_parlamentares() returns the correct output', {
     expect_true(
-      is.data.frame(match_autores_senado_scrap_to_parlamentares(autores_senado_scrapped, senadores, deputados)))
+      is.data.frame(match_autores_senado_to_parlamentares(autores_senado_scrapped, senadores, deputados)))
     expect_true(
-      nrow(match_autores_senado_scrap_to_parlamentares(autores_senado_scrapped, senadores, deputados)) > 0)
+      nrow(match_autores_senado_to_parlamentares(autores_senado_scrapped, senadores, deputados)) > 0)
     expect_equal(
-      match_autores_senado_scrap_to_parlamentares(autores_senado_scrapped, senadores, deputados), gabarito_autores_senado_scrapped)
+      match_autores_senado_to_parlamentares(autores_senado_scrapped, senadores, deputados), gabarito_autores_senado_scrapped)
   })
   
-  test_that('match_autores_senado_scrap_to_deputados() returns the correct output', {
+  test_that('match_autores_senado_to_parlamentares() returns the correct output', {
     expect_warning(
-      match_autores_senado_scrap_to_deputados(tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+      match_autores_senado_to_parlamentares(tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
     expect_warning(
-      match_autores_senado_scrap_to_deputados(NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+      match_autores_senado_to_parlamentares(NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
     expect_equal(
-      match_autores_senado_scrap_to_deputados(tibble::tibble()), tibble::tibble())
+      match_autores_senado_to_parlamentares(tibble::tibble()), tibble::tibble())
     expect_equal(
-      match_autores_senado_scrap_to_deputados(NULL, NUL), tibble::tibble())
+      match_autores_senado_to_parlamentares(NULL, NUL), tibble::tibble())
   })
   
-  test_that('match_autores_senado_scrap_to_deputados() returns the correct output', {
+  test_that('match_autores_senado_to_parlamentares() returns the correct output', {
     expect_true(
-      is.data.frame(match_autores_senado_scrap_to_deputados(autores_senado_scrapped_deputados_nome_clean, deputados)))
+      is.data.frame(match_autores_senado_to_parlamentares(autores_senado_scrapped_deputados_nome_clean, deputados)))
     expect_true(
-      nrow(match_autores_senado_scrap_to_deputados(autores_senado_scrapped_deputados_nome_clean, deputados)) > 0)
+      nrow(match_autores_senado_to_parlamentares(autores_senado_scrapped_deputados_nome_clean, deputados)) > 0)
     expect_equal(
-      match_autores_senado_scrap_to_deputados(autores_senado_scrapped_deputados_nome_clean, deputados), gabarito_autores_senado_scrapped_matched_deputados)
+      match_autores_senado_to_parlamentares(autores_senado_scrapped_deputados_nome_clean, deputados), gabarito_autores_senado_scrapped_matched_deputados)
   })
   
   test_that('match_autores_senado_scrap_to_senadores() returns the correct output', {
