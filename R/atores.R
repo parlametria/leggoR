@@ -62,7 +62,7 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
   }
   
   autores_docs <- 
-    merge(documentos_df, autores_df %>% dplyr::filter(!is.na(id_autor)), by = c("codigo_materia", "codigo_texto", "casa")) %>% 
+    merge(documentos_df, autores_df %>% dplyr::filter(!is.na(id_autor)), by = c("id_principal", "id_documento", "casa")) %>% 
     dplyr::mutate(identificacao = descricao_texto) %>% 
     dplyr::mutate(identificacao = stringr::str_trim(identificacao)) 
   
@@ -84,10 +84,10 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
     dplyr::mutate(nome_autor = 
                     stringr::str_replace(nome_autor,
                                          "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", ""),
-                  codigo_materia = as.numeric(codigo_materia)) %>%
+                  id_principal = as.numeric(id_principal)) %>%
     agoradigital::add_tipo_evento_documento(T) %>% 
     dplyr::rename(tipo_generico = tipo) %>%
-    dplyr::group_by(id_ext = codigo_materia,
+    dplyr::group_by(id_ext = id_principal,
                     casa,
                     id_autor,
                     tipo_autor,

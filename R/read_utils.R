@@ -72,20 +72,31 @@ read_current_docs_senado <- function(file_path) {
   current_docs <- readr::read_csv(file_path,
                                   col_types = list(
                                     .default = readr::col_character(),
-                                    id_documento = readr::col_double(),
+                                    ano_materia = readr::col_double(),
+                                    autoria_texto = readr::col_character(),
+                                    casa = readr::col_character(),
                                     id_principal = readr::col_double(),
-                                    ano = readr::col_double(),
-                                    data_apresentacao = readr::col_date(format = ""),
-                                    codigo_assunto_especifico = readr::col_double(),
-                                    codigo_assunto_geral = readr::col_double(),
-                                    codigo_natureza = readr::col_double(),
-                                    data_leitura = readr::col_date(format = ""),
-                                    proposicoes_apensadas = readr::col_logical(),
-                                    codigo_local = readr::col_double(),
-                                    codigo_situacao = readr::col_double(),
-                                    data_apresentacao = readr::col_date(format = ""),
-                                    data_local = readr::col_date(format = ""),
-                                    data_situacao = readr::col_date(format = "")
+                                    id_documento = readr::col_double(),
+                                    data_texto = readr::col_date(format = ""),
+                                    descricao_identificacao_materia = readr::col_character(),
+                                    descricao_objetivo_processo = readr::col_character(),
+                                    descricao_subtipo_materia = readr::col_character(),
+                                    descricao_texto = readr::col_character(),
+                                    descricao_tipo_texto = readr::col_character(),
+                                    formato_texto = readr::col_character(),
+                                    identificacao_comissao_codigo_comissao = readr::col_double(),
+                                    identificacao_comissao_nome_casa_comissao = readr::col_character(),
+                                    identificacao_comissao_nome_comissao = readr::col_character(),
+                                    identificacao_comissao_sigla_casa_comissao = readr::col_character(),
+                                    identificacao_comissao_sigla_comissao = readr::col_character(),
+                                    indicador_tramitando = readr::col_character(),
+                                    nome_casa_identificacao_materia = readr::col_character(),
+                                    numero_emenda = readr::col_character(),
+                                    numero_materia = readr::col_character(),
+                                    sigla_casa_identificacao_materia = readr::col_character(),
+                                    sigla_subtipo_materia = readr::col_character(),
+                                    tipo_documento = readr::col_character(),
+                                    url_texto = readr::col_character()
                                   ))
 
 }
@@ -97,8 +108,14 @@ read_current_autores_senado <- function(file_path) {
   current_autores <- readr::read_csv(file_path,
                                      col_types = list(
                                        .default = readr::col_character(),
-                                       id_autor = readr::col_double(),
-                                       id_documento = readr::col_double()
+                                       id_principal = readr::col_double(),
+                                       id_documento = readr::col_double(),
+                                       casa = readr::col_character(),
+                                       nome_autor = readr::col_character(),
+                                       partido = readr::col_character(),
+                                       uf = readr::col_character(),
+                                       tipo_autor = readr::col_character(),
+                                       id_autor = readr::col_double()
                                      ))
 
 }

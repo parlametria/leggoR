@@ -1,4 +1,4 @@
-codigo_materia,codigo_texto,casa,nome_autor,partido,uf,tipo_autor,id_autor
+id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 128634,5222039,senado,Senador Ataídes Oliveira ,PSDB,TO,senador,5164
 128634,5225712,senado,Senador Ataídes Oliveira ,PSDB,TO,senador,5164
 128634,5233047,senado,Senador Lasier Martins ,PSD,RS,senador,5533
@@ -371,6 +371,7 @@ codigo_materia,codigo_texto,casa,nome_autor,partido,uf,tipo_autor,id_autor
 120768,7885802,senado,Senadora Marta Suplicy ,MDB,SP,senador,5000
 120768,7888027,senado,Senadora Marta Suplicy ,MDB,SP,senador,5000
 120768,7892362,senado,Senador Paulo Rocha ,PT,PA,senador,374
+120768,8001018,senado,Senadora Leila Barros ,PSB,DF,senador,5979
 121572,4522689,senado,Senador José Pimentel ,PT,CE,senador,615
 121572,4522707,senado,Senadora Simone Tebet ,PMDB,MS,senador,5527
 121572,4522723,senado,Senadora Simone Tebet ,PMDB,MS,senador,5527
@@ -773,8 +774,120 @@ codigo_materia,codigo_texto,casa,nome_autor,partido,uf,tipo_autor,id_autor
 137999,8000313,senado,Senador Renan Calheiros ,MDB,AL,senador,70
 137999,8000365,senado,Senador Paulo Rocha ,PT,PA,senador,374
 137999,8000390,senado,Senador Wellington Fagundes ,PL,MT,senador,1173
+137999,8001028,senado,Senador Veneziano Vital do Rêgo ,PSB,PB,senador,5748
 137999,8000872,senado,Senador Ciro Nogueira ,PP,PI,senador,739
 137999,8000888,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
+137999,8001020,senado,Senador Jorge Kajuru ,PATRIOTA,GO,senador,5895
+137999,8001056,senado,Senador Major Olimpio ,PSL,SP,senador,5666
+137999,8001059,senado,Senador Major Olimpio ,PSL,SP,senador,5666
+137999,8001062,senado,Senador Major Olimpio ,PSL,SP,senador,5666
+137999,8001115,senado,Senadora Rose de Freitas ,PODEMOS,ES,senador,2331
+137999,8001127,senado,Senadora Rose de Freitas ,PODEMOS,ES,senador,2331
+137999,8001124,senado,Senadora Rose de Freitas ,PODEMOS,ES,senador,2331
+137999,8001121,senado,Senadora Rose de Freitas ,PODEMOS,ES,senador,2331
+137999,8001118,senado,Senadora Rose de Freitas ,PODEMOS,ES,senador,2331
+137999,8001130,senado,Senador Cid Gomes ,PDT,CE,senador,5973
+137999,8001176,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+137999,8001182,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+137999,8001179,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+137999,8001268,senado,Senador Humberto Costa ,PT,PE,senador,5008
+137999,8001271,senado,Senador Humberto Costa ,PT,PE,senador,5008
+137999,8001274,senado,Senador Humberto Costa ,PT,PE,senador,5008
+137999,8001283,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+137999,8001288,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+137999,8001291,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+137999,8001294,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+137999,8001297,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+137999,8001300,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+137999,8001304,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+137999,8001307,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+137999,8001320,senado,Senador Veneziano Vital do Rêgo ,PSB,PB,senador,5748
+137999,8001332,senado,Senador Veneziano Vital do Rêgo ,PSB,PB,senador,5748
+137999,8001329,senado,Senador Veneziano Vital do Rêgo ,PSB,PB,senador,5748
+137999,8001326,senado,Senador Veneziano Vital do Rêgo ,PSB,PB,senador,5748
+137999,8001323,senado,Senador Veneziano Vital do Rêgo ,PSB,PB,senador,5748
+137999,8001341,senado,Senador Marcos do Val ,PODEMOS,ES,senador,5942
+137999,8001347,senado,Senador Marcos do Val ,PODEMOS,ES,senador,5942
+137999,8001344,senado,Senador Marcos do Val ,PODEMOS,ES,senador,5942
+137999,8001353,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
+137999,8001373,senado,Senador Jorginho Mello ,PL,SC,senador,5350
+137999,8001376,senado,Senador Jorginho Mello ,PL,SC,senador,5350
+137999,8001379,senado,Senador Jorginho Mello ,PL,SC,senador,5350
+137999,8001384,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8001387,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8001390,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8001393,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8001396,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8001399,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8001402,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8001405,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8001411,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8001414,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8001417,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8001420,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8001423,senado,Senador Major Olimpio ,PSL,SP,senador,5666
+137999,8001429,senado,Senadora Rose de Freitas ,PODEMOS,ES,senador,2331
+137999,8001432,senado,Senadora Rose de Freitas ,PODEMOS,ES,senador,2331
+137999,8001435,senado,Senadora Rose de Freitas ,PODEMOS,ES,senador,2331
+137999,8001438,senado,Senadora Rose de Freitas ,PODEMOS,ES,senador,2331
+137999,8001441,senado,Senadora Rose de Freitas ,PODEMOS,ES,senador,2331
+137999,8001477,senado,Senador Rodrigo Pacheco ,DEM,MG,senador,5732
+137999,8001493,senado,Senador Cid Gomes ,PDT,CE,senador,5973
+137999,8001502,senado,Senador Nelsinho Trad ,PSD,MS,senador,5985
+137999,8001505,senado,Senador Esperidião Amin ,PP,SC,senador,22
+137999,8001508,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+137999,8001534,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+137999,8001537,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+137999,8001542,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+137999,8001546,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+137999,8001549,senado,Senador Rogério Carvalho ,PT,SE,senador,5352
+137999,8001552,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+137999,8001559,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+137999,8001642,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001647,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001657,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001660,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001669,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001672,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001678,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001684,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001689,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001692,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001695,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001698,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001703,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001706,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001709,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8001711,senado,Senador Dário Berger ,MDB,SC,senador,5537
+137999,8001728,senado,Senadora Rose de Freitas ,PODEMOS,ES,senador,2331
+137999,8001780,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8001816,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8001813,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8001810,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8001807,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8001804,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8001801,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8001798,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8001795,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8001792,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8001789,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8001786,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8001783,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8002128,senado,Senador Paulo Rocha ,PT,PA,senador,374
+137999,8002176,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8002185,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8002182,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8002179,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8002239,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
+137999,8002245,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
+137999,8002242,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
+137999,8002261,senado,Senador Eduardo Braga ,MDB,AM,senador,4994
+137999,8002443,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+137999,8002477,senado,Senador Humberto Costa ,PT,PE,senador,5008
+137999,8002480,senado,Senador Humberto Costa ,PT,PE,senador,5008
+137999,8002617,senado,Senador Rodrigo Cunha ,PSDB,AL,senador,5905
+137999,8002620,senado,Senador Rodrigo Cunha ,PSDB,AL,senador,5905
+137999,8002623,senado,Senador Rodrigo Cunha ,PSDB,AL,senador,5905
 135064,7910213,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
 135064,7910216,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
 135064,7910558,senado,Senador Humberto Costa ,PT,PE,senador,5008

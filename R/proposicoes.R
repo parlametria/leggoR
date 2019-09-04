@@ -271,8 +271,7 @@ fetch_documentos_data <- function(docs_ids) {
 #' @export
 fetch_documentos_relacionados_senado <- function(pls_ids) {
   docs <- 
-    purrr::map_df(pls_ids$id_principal, ~ rcongresso::fetch_textos_proposicao_senado(.x, T)) %>% 
-  dplyr::mutate(id_documento = dplyr::row_number())
+    purrr::map_df(pls_ids$id_principal, ~ rcongresso::fetch_textos_proposicao_senado(.x, T))
   return(docs)
 }
 
