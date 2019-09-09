@@ -444,23 +444,23 @@ fetch_autores_documento <- function(id_documento, casa, sigla_tipo) {
   return(autores_result)
 }
 
-#' @title Realiza o pareamento dos dados dos autores dos documentos do Senado obtidos via scrapping da página com parlamentares de ambas as casas
+#' @title Realiza o pareamento dos dados dos autores dos documentos do Senado obtidos via endpoint com parlamentares de ambas as casas
 #' @description Retorna os autores pareados com seus respectivos ids (em suas respectivas casas),
 #' caso não seja possível parear retorna um Dataframe vazio
-#' @param autores_senado_scrap dataframe com autores dos documentos
+#' @param autores_senado dataframe com autores dos documentos
 #' @param senadores_df dataframe com dados dos senadores das últimas legislaturas
 #' @param deputados_df dataframe com dados dos deputados das últimas legislaturas
 #' @return Dataframe contendo dados dos autores com seus respectivos ids em suas respectivas casas
 #' @export
-match_autores_senado_to_parlamentares <- function(autores_senado_scrap, senadores_df, deputados_df) {
+match_autores_senado_to_parlamentares <- function(autores_senado, senadores_df, deputados_df) {
   
-  if (!agoradigital::check_dataframe(autores_senado_scrap)) return(tibble::tibble())
+  if (!agoradigital::check_dataframe(autores_senado)) return(tibble::tibble())
   if (!agoradigital::check_dataframe(senadores_df)) return(tibble::tibble())
   if (!agoradigital::check_dataframe(deputados_df)) return(tibble::tibble())
   
   tipos_autores_scrap <- senado_env$tipos_autores_scrap
   
-  autores_senado_tipo <- autores_senado_scrap %>% 
+  autores_senado_tipo <- autores_senado %>% 
     fuzzyjoin::regex_left_join(tipos_autores_scrap, by=c("nome_autor" = "regex")) %>% 
     dplyr::select(-regex) %>% 
     dplyr::mutate(tipo_autor = dplyr::if_else(is.na(tipo_autor),"nao_parlamentar",tipo_autor)) %>% 
