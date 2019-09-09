@@ -7,6 +7,36 @@ setup <- function(){
   return(TRUE)
 }
 
+senado_autores <-
+  tibble::tibble(id_principal = c(1,1,2),
+                 id_documento = c(3, 4, 9),
+                 id_autor = c(31, 31, 31),
+                 casa = c("senado", "senado", "senado"),
+                 nome_autor = c("Jair", "Guedes", "Romario"),
+                 partido = c("p1", "p2", "p3"),
+                 uf = c("PB", "PB", "PB"),
+                 tipo_autor = c("Deputado", "Deputado", "Deputado"))
+
+senado_docs <- 
+  tibble::tibble(id_principal = c(1,1,2),
+                 id_documento = c(3, 4, 9),
+                 casa = c("senado", "senado", "senado"),
+                 descricao_texto = c("EMENDA 1 - PLC 27/2017", "EMENDA 2 - PLC 27/2017", "EMENDA 3 - PLC 27/2017"),
+                 identificacao_comissao_nome_comissao = c("Comissão de Constituição, Justiça e Cidadania", "Comissão de Constituição, Justiça e Cidadania", "Comissão de Constituição, Justiça e Cidadania"))
+
+senado_atores_gabarito <-
+  tibble::tibble(id_ext = c(1, 1, 2),
+                 casa = c("senado", "senado", "senado"),
+                 id_autor = c(31, 31, 31),
+                 tipo_autor = c("Deputado", "Deputado", "Deputado"),
+                 nome_autor = c("Jair", "Guedes", "Romario"),
+                 partido = c("p1", "p2", "p3"),
+                 uf = c("PB", "PB", "PB"),
+                 tipo_generico = c("Emenda", "Emenda", "Emenda"),
+                 sigla_local = c("CCJ", "CCJ", "CCJ"),
+                 qtd_de_documentos = c(1, 1, 1),
+                 is_important = c(TRUE, TRUE, TRUE))
+
 pls_ids <- tibble::tibble(id_camara = c(257161,2088990),
                           id_senado = c(NA,91341),
                           apelido = c('Lei do Licenciamento Ambiental',
@@ -129,7 +159,7 @@ autores_senado_scrapped_outros <- tibble::tibble(nome_autor = c("Câmara dos Dep
 gabarito_autores_senado_scrapped_outros <- tibble::tibble(tipo_autor = rep("nao_parlamentar",3),
                                                           id_autor = rep(NA,3))
 
-autores_senado_scrapped = dplyr::bind_rows(autores_senado_scrapped_senadores,autores_senado_scrapped_deputados,autores_senado_scrapped_outros)
+autores_senado_endpoint = dplyr::bind_rows(autores_senado_scrapped_senadores,autores_senado_scrapped_deputados,autores_senado_scrapped_outros)
 
 gabarito_autores_senado_scrapped = dplyr::bind_cols(dplyr::bind_rows(autores_senado_scrapped_senadores,
                                                                      autores_senado_scrapped_deputados,
@@ -227,6 +257,10 @@ test <- function(){
     expect_warning(
       match_autores_senado_to_parlamentares(tibble::tibble(), tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
     expect_warning(
+      match_autores_senado_to_parlamentares(autores_senado_endpoint, tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+    expect_warning(
+      match_autores_senado_to_parlamentares(autores_senado_endpoint, senadores, tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+    expect_warning(
       match_autores_senado_to_parlamentares(NULL, NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
     expect_equal(
       match_autores_senado_to_parlamentares(tibble::tibble(), tibble::tibble(), tibble::tibble()), tibble::tibble())
@@ -236,11 +270,11 @@ test <- function(){
   
   test_that('match_autores_senado_to_parlamentares() returns the correct output', {
     expect_true(
-      is.data.frame(match_autores_senado_to_parlamentares(autores_senado_scrapped, senadores, deputados)))
+      is.data.frame(match_autores_senado_to_parlamentares(autores_senado_endpoint, senadores, deputados)))
     expect_true(
-      nrow(match_autores_senado_to_parlamentares(autores_senado_scrapped, senadores, deputados)) > 0)
+      nrow(match_autores_senado_to_parlamentares(autores_senado_endpoint, senadores, deputados)) > 0)
     expect_equal(
-      match_autores_senado_to_parlamentares(autores_senado_scrapped, senadores, deputados), gabarito_autores_senado_scrapped)
+      match_autores_senado_to_parlamentares(autores_senado_endpoint, senadores, deputados), gabarito_autores_senado_scrapped)
   })
   
   test_that('match_autores_senado_scrap_to_deputados() returns the correct output', {
@@ -283,6 +317,28 @@ test <- function(){
       match_autores_senado_scrap_to_senadores(autores_senado_scrapped_senadores_nome_clean, senadores), gabarito_autores_senado_scrapped_matched_senadores)
   })
   
+  test_that('create_tabela_atores_senado() works with empty/null input', {
+    expect_warning(
+      create_tabela_atores_senado(tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+    expect_warning(
+      create_tabela_atores_senado(senado_docs, tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+    expect_warning(
+      create_tabela_atores_senado(NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+    expect_equal(
+      create_tabela_atores_senado(tibble::tibble(), tibble::tibble()), tibble::tibble())
+    expect_equal(
+      create_tabela_atores_senado(NULL, NULL), tibble::tibble())
+  })
+  
+  test_that('create_tabela_atores_senado() returns the correct output', {
+    expect_true(
+      is.data.frame(create_tabela_atores_senado(senado_docs, senado_autores)))
+    expect_true(
+      nrow(create_tabela_atores_senado(senado_docs, senado_autores)) > 0)
+    expect_equal(
+      create_tabela_atores_senado(senado_docs, senado_autores) %>% 
+        dplyr::mutate(qtd_de_documentos = as.numeric(qtd_de_documentos)), senado_atores_gabarito)
+  })
   
 }
 
