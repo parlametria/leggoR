@@ -55,55 +55,6 @@ create_tabela_atores_camara <- function(documentos_df, autores_df) {
 #' @return Dataframe
 #' @export
 create_tabela_atores_senado <- function(documentos_df, autores_df) {
-
-  if (!(agoradigital::check_dataframe(documentos_df)) ||
-      (!agoradigital::check_dataframe(autores_df))) {
-    return(tibble::tibble())
-  }
-
-  autores_docs <- merge(documentos_df, autores_df, by = c("id_documento", "casa")) %>%
-    dplyr::select(id_principal,
-                  casa,
-                  id_documento,
-                  id_autor,
-                  nome_autor = nome,
-                  sigla_tipo,
-                  partido,
-                  uf,
-                  sigla_local)
-
-  atores_df <- autores_docs %>%
-    dplyr::mutate(tipo_autor = 'senador') %>% 
-    agoradigital::add_tipo_evento_documento() %>%
-    dplyr::rename(tipo_generico = tipo) %>%
-    dplyr::group_by(id_ext = id_principal,
-                    casa,
-                    id_autor,
-                    tipo_autor,
-                    nome_autor,
-                    partido,
-                    uf,
-                    tipo_generico,
-                    sigla_local) %>%
-    dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
-    dplyr::arrange(id_ext, -qtd_de_documentos) %>%
-    dplyr::ungroup() %>% 
-    dplyr::filter(!is.na(id_autor)) %>% 
-    dplyr::mutate(sigla_local = NA,
-                  is_important = FALSE)
-
-  atores_df <- .detect_sigla_local(atores_df, senado_env)
-
-  return(atores_df)
-}
-
-#' @title Cria tabela com atores de documentos com seus respectivos tipos de documentos
-#' @description Retorna um dataframe contendo informações com os autores dos documentos e seus tipos
-#' @param documentos_df Dataframe dos documentos
-#' @param autores_df Dataframe com autores dos documentos
-#' @return Dataframe
-#' @export
-create_tabela_atores_senado_scrap <- function(documentos_df, autores_df) {
   
   if (!(agoradigital::check_dataframe(documentos_df)) ||
       (!agoradigital::check_dataframe(autores_df))) {
@@ -112,6 +63,7 @@ create_tabela_atores_senado_scrap <- function(documentos_df, autores_df) {
   
   autores_docs <- 
     merge(documentos_df, autores_df %>% dplyr::filter(!is.na(id_autor)), by = c("id_principal", "id_documento", "casa")) %>% 
+    dplyr::mutate(identificacao = descricao_texto) %>% 
     dplyr::mutate(identificacao = stringr::str_trim(identificacao)) 
   
   senado_comissoes <-
@@ -123,15 +75,16 @@ create_tabela_atores_senado_scrap <- function(documentos_df, autores_df) {
     rbind(list("Comissão Especial", "Especial"))
   
   autores_docs <-
-    fuzzyjoin::regex_left_join(autores_docs, senado_comissoes, by=c("local" = "comissoes_permanentes")) %>% 
-    dplyr::select(-c(local, comissoes_permanentes)) %>% 
+    fuzzyjoin::regex_left_join(autores_docs, senado_comissoes, by=c("identificacao_comissao_nome_comissao" = "comissoes_permanentes")) %>% 
+    dplyr::select(-c(identificacao_comissao_nome_comissao, comissoes_permanentes)) %>% 
     dplyr::rename(sigla_local = siglas_comissoes)
   
   atores_df <- 
     autores_docs %>%
     dplyr::mutate(nome_autor = 
                     stringr::str_replace(nome_autor,
-                                         "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", "")) %>%
+                                         "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", ""),
+                  id_principal = as.numeric(id_principal)) %>%
     agoradigital::add_tipo_evento_documento(T) %>% 
     dplyr::rename(tipo_generico = tipo) %>%
     dplyr::group_by(id_ext = id_principal,

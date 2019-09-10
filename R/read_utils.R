@@ -72,22 +72,11 @@ read_current_docs_senado <- function(file_path) {
   current_docs <- readr::read_csv(file_path,
                                   col_types = list(
                                     .default = readr::col_character(),
-                                    id_documento = readr::col_double(),
-                                    id_principal = readr::col_double(),
-                                    ano = readr::col_double(),
-                                    data_apresentacao = readr::col_date(format = ""),
-                                    codigo_assunto_especifico = readr::col_double(),
-                                    codigo_assunto_geral = readr::col_double(),
-                                    codigo_natureza = readr::col_double(),
-                                    data_leitura = readr::col_date(format = ""),
-                                    proposicoes_apensadas = readr::col_logical(),
-                                    codigo_local = readr::col_double(),
-                                    codigo_situacao = readr::col_double(),
-                                    data_apresentacao = readr::col_date(format = ""),
-                                    data_local = readr::col_date(format = ""),
-                                    data_situacao = readr::col_date(format = "")
+                                    autoria_texto = readr::col_character(),
+                                    casa = readr::col_character(),
+                                    data_texto = readr::col_date(format = ""),
+                                    identificacao_comissao_codigo_comissao = readr::col_double()
                                   ))
-
 }
 
 #' @title Ler arquivos de autores do senado 
@@ -97,10 +86,10 @@ read_current_autores_senado <- function(file_path) {
   current_autores <- readr::read_csv(file_path,
                                      col_types = list(
                                        .default = readr::col_character(),
-                                       id_autor = readr::col_double(),
-                                       id_documento = readr::col_double()
+                                       id_principal = readr::col_double(),
+                                       id_documento = readr::col_double(),
+                                       id_autor = readr::col_double()
                                      ))
-
 }
 
 #' @title Ler arquivos de senadores
