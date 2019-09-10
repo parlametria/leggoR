@@ -1,0 +1,119 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2199763,camara,2019-04-30T00:00:00Z,2,"Prazo para Emendas: 30/04/2019 a 06/05/2019. Comissão Mista: *Câmara dos Deputados: até 27/05/2019. Senado Federal: 28/05/2019 a 10/06/2019. Retorno à Câmara dos Deputados (se houver): 11/06/2019 a 13/06/2019. Sobrestar Pauta: a partir de 14/06/2019. Congresso Nacional: 30/04/2019 a 28/06/2019. Prorrogação pelo Congresso Nacional: 27/08/2019 (Retificado em virtude da não interrupção da sessão legislativa, nos termos do § 2º do art. 57 da Constituição Federal, em 18/07/2019).*Declaração incidental de inconstitucionalidade do art. 5º, caput, art. 6º, §§ 1º e 2º, da Resolução do Congresso Nacional nº 1/2002, com eficácia ex nunc - Ação Direta de Inconstitucionalidade nº 4.029 (DOU de 16/3/12).",CN,350,NA,NA,2199763
+2199763,camara,2019-04-30T10:51:00Z,1,Publicação da Medida Provisória no Diário Oficial da União.,EXEC,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1782899,2199763
+2199763,camara,2019-05-02T10:53:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2199763
+2199763,camara,2019-05-03T00:00:00Z,4,"Retificação publicada no DOU de 03/05/2019, Seção 1, Página 2.",MESA,604,Aguardando Sanção,NA,2199763
+2199763,camara,2019-05-16T00:00:00Z,5,"Ofício n. 173-CN, de 16/05/19, comunica a constituição da Comissão Mista incumbida de emitir parecer sobre a matéria e informa o calendário para sua tramitação.",MESA,1002,Aguardando Sanção,NA,2199763
+2199763,camara,2019-06-18T00:00:00Z,6,"Instalada a Comissão, são eleitos Presidente e Vice-Presidente, respectivamente, o Senador Dário Berger e o Deputado Marco Bertaiolli, e designados Relator e Relatora-Revisora, respectivamente, o Deputado Jerônimo Goergen e a Senadora Soraya Thronicke.",MESA,1002,Aguardando Sanção,NA,2199763
+2199763,camara,2019-06-25T00:00:00Z,7,"Ato Declaratório n. 40, de 24/04/19, do Presidente da Mesa do Congresso Nacional, prorroga a vigência da Medida Provisória nº 881, de 30/04/19, pelo período de sessenta dias. DOU de 25/06/19, Seção 1, Página 1.",MESA,352,Aguardando Sanção,NA,2199763
+2199763,camara,2019-07-11T00:00:00Z,8,"Aprovado o Parecer n. 1/2019, da Comissão Mista, que concluiu pela aprovação da Medida Provisória nos termos do Projeto de Lei de Conversão n. 17/2019.",MESA,322,Aguardando Sanção,NA,2199763
+2199763,camara,2019-07-19T00:00:00Z,11,"Recebido o Ofício nº 357/2019, do Congresso Nacional, que encaminha o processado da Medida Provisória nº 881/2019. Informa, ainda, que à Medida foram oferecidas 301 (trezentas e uma) emendas e que a Comissão Mista emitiu o Parecer nº 1, de 2019-CN, que conclui pelo PLV nº 17, de 2019.",MESA,500,Aguardando Sanção,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1781429,2199763
+2199763,camara,2019-07-19T00:00:00Z,14,"Recebido o PLV nº 17, de 2019, da Comissão Mista da MPV 881/2019, que Institui a Declaração de Direitos de Liberdade Econômica, estabelece garantias de livre mercado, análise de impacto regulatório, e dá outras providências..",MESA,100,Aguardando Sanção,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1782159,2199763
+2199763,camara,2019-07-19T00:00:00Z,13,"Recebido o Parecer nº 1, de 2019-CN, da Comissão Mista destinada a apreciar a MPV 881/2019, que conclui pelo PLV nº 17, de 2019.",MESA,500,Aguardando Sanção,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1781734,2199763
+2199763,camara,2019-07-19T18:32:00Z,9,Recebimento pela SEPRO -  - Paulo Campos.,SEPRO,500,NA,NA,2199763
+2199763,camara,2019-07-19T18:34:00Z,11,"Recebida a Mensagem nº 164/2019, do Poder Executivo, que submete à apreciação do Congresso Nacional o texto da Medida Provisória nº 881/2019.",MESA,100,Aguardando Sanção,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1781430,2199763
+2199763,camara,2019-07-22T09:22:00Z,15,Encaminhado à(ao) COAPP(SGM) através da guia de Remessa (GR/SEPRO) nº 1052/2019.,SEPRO,180,NA,NA,2199763
+2199763,camara,2019-07-25T00:00:00Z,16,Despacho a Confirmar.,MESA,110,Aguardando Sanção,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1782330,2199763
+2199763,camara,2019-07-29T12:22:00Z,17,Despacho Chancelado,PLEN,180,NA,NA,2199763
+2199763,camara,2019-07-29T12:22:00Z,18,Notificação à Sinopse de Despacho Chancelado,PLEN,1005,NA,NA,2199763
+2199763,camara,2019-07-29T12:23:00Z,19,"Ao Plenário, para leitura. Publique-se.",MESA,110,Aguardando Sanção,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1782330,2199763
+2199763,camara,2019-07-29T12:23:00Z,20,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Aguardando Sanção,NA,2199763
+2199763,camara,2019-07-29T12:25:00Z,21,Recebimento pela COAPP(SGM) -  - David Chaves Simões de Oliveira.,COAPP(SGM),500,NA,NA,2199763
+2199763,camara,2019-07-29T12:25:00Z,22,Encaminhado à(ao) CCP através da guia de Remessa (GR/COAPP(SGM)) nº 38/2019.,COAPP(SGM),180,NA,NA,2199763
+2199763,camara,2019-07-29T14:53:00Z,23,Recebimento pela CCP.,CCP,500,NA,NA,2199763
+2199763,camara,2019-07-30T12:42:00Z,24,Encaminhado à(ao) NATEC(SGM) através da guia de Remessa (GR/CCP) nº 3859/2019.,CCP,180,NA,NA,2199763
+2199763,camara,2019-07-31T00:00:00Z,26,Realizar o Encaminhamento para COAPP(SGM),NATEC(SGM),910,NA,NA,2199763
+2199763,camara,2019-07-31T00:00:00Z,29,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 01/08/2019.,CCP,604,NA,NA,2199763
+2199763,camara,2019-07-31T11:53:00Z,25,Recebimento pelo NATEC(SGM) -  - Maria Ivania Amorim.,NATEC(SGM),500,NA,NA,2199763
+2199763,camara,2019-07-31T11:54:00Z,27,Encaminhado à(ao) COAPP(SGM) através da guia de Remessa (GR/NATEC(SGM)) nº 16/2019.,NATEC(SGM),180,NA,NA,2199763
+2199763,camara,2019-07-31T11:59:00Z,28,Recebimento pela COAPP(SGM) -  - André Yuji Pinheiro Uema.,COAPP(SGM),500,NA,NA,2199763
+2199763,camara,2019-08-07T18:11:00Z,30,"Apresentação do Requerimento n. 2065/2019, pelo Deputado Paulo Pimenta (PT/RS), que ""Requer sejam declarados como não escritos os artigos 3º (incisos XIV, XVI, XVII e § 3º), 9º, 16, 19 e 28 do Projeto de Lei de Conversão nº 17/2019, adotado pela Comissão Mista criada para proferir parecer à Medida Provisória nº 881/2019"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1786386,2199763
+2199763,camara,2019-08-13T00:00:00Z,31,"Leitura do recebimento do Ofício nº 357/2019, do Congresso Nacional (CN), que encaminha o processado da Medida Provisória nº 881/2019 (Sessão Deliberativa Ordinária de 13/08/2019 - 14h - 215ª Sessão).",PLEN,1005,NA,NA,2199763
+2199763,camara,2019-08-13T14:00:00Z,33,"Votação do Requerimento da Bancada do PSOL, que solicita votação nominal para o Requerimento de retirada de pauta desta Medida Provisória.",PLEN,223,NA,NA,2199763
+2199763,camara,2019-08-13T14:00:00Z,34,Encaminhou a Votação o Dep. Ivan Valente (PSOL-SP).,PLEN,219,NA,NA,2199763
+2199763,camara,2019-08-13T14:00:00Z,35,"Verificação da votação, solicitada pelo Deputado Enio Verri, na qualidade de Líder do PT, em razão do resultado proclamado pela Mesa: ""Rejeitado o Requerimento"", passando-se à votação pelo processo nominal.",PLEN,1239,NA,NA,2199763
+2199763,camara,2019-08-13T14:00:00Z,36,Rejeitado o Requerimento. Sim: 29; não: 340; total: 369.,PLEN,1236,NA,NA,2199763
+2199763,camara,2019-08-13T14:00:00Z,37,Adiada a discussão em face do encerramento da Sessão.,PLEN,1244,NA,NA,2199763
+2199763,camara,2019-08-13T14:00:00Z,32,Discussão em turno único (EXTRAPAUTA).,PLEN,222,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,38,Discussão em turno único.,PLEN,222,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,40,"Votação do Requerimento da bancada do PSOL, que solicita a retirada de pauta desta Medida Provisória.",PLEN,223,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,41,Encaminharam a Votação: Dep. Ivan Valente (PSOL-SP) e Dep. Marcel Van Hattem (NOVO-RS).,PLEN,219,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,42,"Verificação da votação, solicitada pelo Deputado Airton Faleiro, na qualidade de Líder do PT, em razão do resultado proclamado pela Mesa: ""Rejeitado o Requerimento"", passando-se à votação pelo processo nominal.",PLEN,1239,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,43,Rejeitado o Requerimento. Sim: 28; não: 333; total: 361.,PLEN,1236,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,44,"Discutiram a Matéria: Dep. Marcel Van Hattem (NOVO-RS), Dep. Glauber Braga (PSOL-RJ), Dep. Dra. Soraya Manato (PSL-ES), Dep. Perpétua Almeida (PCdoB-AC), Dep. Gilson Marques (NOVO-SC), Dep. Henrique Fontana (PT-RS), Dep. Paulo Ganime (NOVO-RJ), Dep. Ivan Valente (PSOL-SP) e Dep. Alexis Fonteyne (NOVO-SP).",PLEN,242,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,39,"Na esteira do entendimento externado pelo Supremo Tribunal Federal no julgamento da Ação Direta de Inconstitucionalidade n. 5.127, ocorrido em 15 de outubro de 2015, e nos termos do artigo 7º, II, da Lei Complementar n. 95/1998 e dos artigos 55, parágrafo único, e 125 do Regimento Interno do Câmara dos Deputados, o Presidente da Câmara dos Deputados considera como não escritos os arts. 20 (na parte que altera o art. 4º-A da Lei n. 12.682/2012), 22, na parte que altera o art. 213, § 17, da Lei n. 6.015/1973), 25, 26, 27, 28 (na parte que altera os arts. 2º, 161, 163, 227, 386-A, 444, 626, 627, 627-A, 628-A, 629 a 632, 634 a 637, 637-A, 638 e 640 a 642 do Decreto-Lei n. 5.452/1943 (Consolidação das Leis de Trabalho), 29, 31, 32, 33, 34, 35, 36, 37, 38, 39, 45, 49, 50 e 51 do Projeto de Lei de Conversão n. 17/2019, por não guardarem relação temática com esta Medida Provisória.",PLEN,1245,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,45,Votação do Requerimento dos Srs. Líderes que solicita o encerramento da discussão e do encaminhamento da votação.,PLEN,223,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,46,Encaminhou a Votação a Dep. Margarida Salomão (PT-MG).,PLEN,219,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,47,Aprovado o Requerimento. Sim: 285; não: 41; total: 326.,PLEN,1235,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,48,Encerrada a discussão e o encaminhamento da votação.,PLEN,227,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,49,Votação preliminar em turno único.,PLEN,1231,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,50,Encaminharam a Votação: Dep. Fernanda Melchionna (PSOL-RS) e Dep. Jerônimo Goergen (PP-RS).,PLEN,219,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,51,"Aprovado, em apreciação preliminar, o Parecer da Comissão Mista, na parte em que manifesta opinião favorável quanto ao atendimento dos pressupostos constitucionais de relevância e urgência e à adequação financeira e orçamentária, nos termos do artigo 8º da Resolução nº 01, de 2002-CN. Sim: 355; não: 86; total: 441.",PLEN,1235,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,55,"Votação, quanto ao mérito, em turno único.",PLEN,1231,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,52,Votação do DTQ 32: Bloco PP/MDB/PTB: Preferência para votação da Emenda Aglutinativa nº 1.,PLEN,1233,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,54,Aprovada a preferência.,PLEN,1235,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,53,Encaminhou a Votação o Dep. Jerônimo Goergen (PP-RS).,PLEN,219,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,56,"Aprovada a Medida Provisória nº 881 de 2019, na forma da Emenda Aglutinativa Substitutiva Global 1, ressalvados os destaques. Sim: 345; não: 76; abstenção: 1; total: 422.",PLEN,1235,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,57,"Em consequência, fica prejudicada a apreciação da proposição inicial e das Emendas apresentadas, ressalvados os destaques.",PLEN,1240,NA,NA,2199763
+2199763,camara,2019-08-13T19:54:00Z,58,Adiada a continuação da votação em face do encerramento da Sessão.,PLEN,1244,NA,NA,2199763
+2199763,camara,2019-08-14T00:00:00Z,59,"Encaminhada à publicação as Emendas Aglutinativas de Plenário de nº 1, 2, 3 e 4.  Publicado em avulso e no DCD de 14/08/19, PÁG 618, Letra A.",CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1797705,2199763
+2199763,camara,2019-08-14T00:00:00Z,115,"A matéria vai ao Senado Federal, incluindo o processado (MPV 881-B/2019) - PLV 21/2019.",PLEN,1243,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,60,Continuação da votação em turno único.,PLEN,1231,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,61,"Votação do Requerimento da Bancada do PSOL, que solicita a retirada de pauta desta Medida Provisória.",PLEN,1232,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,62,Encaminhou a Votação a Dep. Luiza Erundina (PSOL-SP).,PLEN,219,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,63,Rejeitado o Requerimento. Sim: 49; não: 210; total: 259.,PLEN,1236,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,64,"Votação do DTQ 29: NOVO: ART. 16 DO PLV 17/19 COM VISTAS À SUA INCLUSÃO ONDE COUBER (ART. 161, I).",PLEN,1233,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,67,"Votação do DTQ 9: PT: §4º, ARTIGO 50 DA LEI 10.406/2002, COM REDAÇÃO DADA AO ARTIGO 7º DA EMENDA AGLUTINATIVA APRESENTADA À MP 881/2019 - ART 161, I.",PLEN,1233,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,66,Rejeitado o Destaque nº 29.,PLEN,1236,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,68,Encaminhou a Votação o Dep. Enio Verri (PT-PR).,PLEN,219,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,69,Mantido o texto. Sim: 282; não: 102; total: 384.,PLEN,1237,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,70,"Votação do DTQ 27: PSOL: ART. 67 CONSTANTE DO ART. 28 DO PLV 17/19 OFERECIDO À MPV 881/19, COM VISTAS À SUA SUPRESSÃO - (ART. 161, I).",PLEN,1233,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,71,Encaminhou a Votação a Dep. Fernanda Melchionna (PSOL-RS).,PLEN,219,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,72,Mantido o texto. Sim: 233; não: 99; total: 332.,PLEN,1237,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,73,"Votação do DTQ 20: PCDOB: ART. 68 CONTIDO NO ARTIGO 28 DO PLV APRESENTADO À MP 881/19 , COM VISTAS A SUA SUPRESSÃO- ART 161, I.",PLEN,1233,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,74,Encaminhou a Votação a Dep. Alice Portugal (PCdoB-BA).,PLEN,219,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,75,Mantido o texto. Sim: 244; não: 120; abstenção: 1; total: 365.,PLEN,1237,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,76,Votação da EMA 4: : Emenda Aglutinativa nº 4,PLEN,1233,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,77,Rejeitada a Emenda Aglutinativa nº 4. Sim: 134; não: 291; abstenção: 1; total: 426.,PLEN,1236,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,78,"Votação do DTQ 10: PT: ARTIGO 70 DO DECRETO DE LEI 5.452/1943, COM REDAÇÃO ALTERADA PELO ARTIGO 15 DA EMENDA AGLUTINATIVA APRESENTADA À MP 881/2019 - ART 161, I.",PLEN,1233,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,79,Encaminhou a Votação o Dep. Bohn Gass (PT-RS).,PLEN,219,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,65,Encaminharam a Votação: Dep. Alencar Santana Braga (PT-SP) e Dep. Alexis Fonteyne (NOVO-SP).,PLEN,219,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,80,Mantido o texto. Sim: 274; não: 153; abstenção: 2; total: 429.,PLEN,1237,NA,NA,2199763
+2199763,camara,2019-08-14T13:55:00Z,81,Adiada a continuação da votação em face do encerramento da Sessão.,PLEN,1244,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,84,"Votação do DTQ 8: PT: § 3º, ARTIGO 74 DO DECRETO DE LEI 5.452/1943, COM REDAÇÃO ALTERADA PELO ARTIGO 15 DA EMENDA AGLUTINATIVA APRESENTADA À MP 881/2019 - ART 161, I.",PLEN,1233,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,84,Encaminhou a Votação a Dep. Erika Kokay (PT-DF).,PLEN,219,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,85,Mantido o texto. Sim: 304; não: 128; total: 432.,PLEN,1237,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,86,"Votação do DTQ 5: PSC: ARTIGO 18 DO PROJETO DE LEI DE CONVERSÃO À MP 881/19, QUE INCLUI ARTIGO 82-A À LEI 11.101/2005, COM FIM DE REESTABELECÊ-LO NA EMENDA AGLUTINATIVA - ART 161, I.",PLEN,1233,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,87,Encaminhou a Votação o Dep. Otoni de Paula (PSC-RJ).,PLEN,219,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,88,Rejeitado o DTQ 5. Sim: 4; não: 439; total: 443.,PLEN,1236,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,111,Votação da Emenda de Redação nº 1.,PLEN,1231,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,112,Aprovada a Emenda de Redação nº 1.,PLEN,1235,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,113,Votação da Redação Final.,PLEN,1231,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,114,"Aprovada a Redação Final assinada pelo Relator, Dep. Jerônimo Goergen (PP-RS).",PLEN,1235,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1790851,2199763
+2199763,camara,2019-08-14T18:57:00Z,82,Continuação da votação em turno único.,PLEN,1231,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,89,Retirado os Destaques Simples.,PLEN,1241,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,90,"Inadmitido o DTQ 1: PSD: ARTIGO 37 DO PROJETO DE LEI DE CONVERSÃO Nº 17/2019 (PARA FINS DE SUPRESSÃO) - ART 161, V",PLEN,1242,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,91,"Inadmitido o DTQ 2: PSD: § 4º DO ARTIGO 4º-A DA LEI Nº 12.682/2012, INTRODUZIDO PELO ARTIGO 20 DO PLV Nº 17/2019 - ART 161, V.",PLEN,1242,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,92,"Retirado o DTQ 3: SD: ARTIGO 47-A, DA LEI Nº 8.935/1994, CONSTANTE DO ARTIGO 30 DO PROJETO DE LEI DE CONVERSÃO Nº 17/2019 - ART 161, IV.",PLEN,1241,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,93,"Retirado o DTQ 4: DEM: EMENDA 32 - ART 161, II.",PLEN,1241,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,94,"Retirado o DTQ 6: PDT: ARTIGO 28 DO PLV (COM OBJETIVO DE SUPRIMI-LO) - ART 161, I.",PLEN,1241,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,95,"Retirado o DTQ 7: PDT: VOTAÇÃO EM SEPARADO DA EXPRESSÃO ""OU DEMAIS ARRANJOS DE COMERCIALIZAÇÃO"", DO PARÁGRAFO 3º, DO ARTIGO 5º, DA LEI 11.116/05, ALTERADO PELO ARTIGO 35 DO PLV - ART 161, I.",PLEN,1241,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,96,"Inadmitido o DTQ 18: PROS: VOTAÇÃO EM SEPARADO DO ARTIGO 627 DO DECRETO- LEI Nº 5.452/1943, COM REDAÇÃO DADA PELO ARTIGO 28 DO PLV Nº 17/2019, PARA QUE SEJA ACRESCIDO, ONDE COUBER, AO TEXTO DA EMENDA AGLUTINATIVA - ART 161, I.",PLEN,1242,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,97,"Prejudicado o DTQ 19: DEM: VOTAÇÃO EM SEPARADO DO ARTIGO 20-F DA LEI 10.522/2002, COM REDAÇÃO DADA PELO ARTIGO 24 DO PLV APRESENTADO À MPV 881/2019, OU DO DISPOSITIVO CORRESPONDENTE NO TEXTO DE EVENTUAL EMENDA AGLUTINATIVA SUBSTITUTIVA GLOBAL APRESENTADA EM PLENÁRIO - ART 161, I.",PLEN,1240,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,98,"Retirado o DTQ 24: BLOCO PP/MDB/PTB: EMENDA Nº 297 - ART 161, II.",PLEN,1241,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,99,"Inadmitido o DTQ 25: Bloco PP/MDB/PTB: ART. 3º-A DA LEI 13021/14 COM REDAÇÃO DADA PELO ART. 25 DO PLV 17/19 OFERECIDO À MPV 881/19 - (ART. 161, I).",PLEN,1242,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,100,"Inadmitido o DTQ 26: Bloco PP/MDB/PTB: §1º E §2º DO ART. 50 DA LEI 6360/76 COM REDAÇÃO DADA PELO ART. 26 DO PLV 17/19 OFERECIDO À MPV 881/19 - (ART. 161, I).",PLEN,1242,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,101,"Inadmitido o DTQ 28: PSL: EMENDA 41 (ART. 161, II).",PLEN,1242,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,102,"Inadmitido o DTQ 30: PSL: EMENDA 40 (ART. 161, II).",PLEN,1242,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,103,"Inadmitido o DTQ 31: PSL: EMENDA 299 (ART. 161, II).",PLEN,1242,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,104,"Prejudicado o DTQ 33: PDT : CAPUT DO ART 68 DO DECRETO LEI 5452/43 ALTERADO PELO ART. 28 DO PLV OFERECIDO À MPV 881/19 (ART. 161, I) - SUPORTE.",PLEN,1240,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,105,"Retirado o DTQ 34: PDT : EXPRESSÃO ""CONVENÇÃO COLETIVA OU ACORDO COLETIVO DE TRABALHO"" CONSTANTE DO PARÁGRAFO 3º DO ART. 74 DECRETO LEI 5452/43 ALTERADO PELO ART. 28 DO PLV OFERECIDO À MPV 881/19 (ART. 161, I) - SUPORTE.",PLEN,1241,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,106,"Prejudicado o DTQ 35: PSB: EMENDA 134(ART. 161, II).",PLEN,1240,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,107,"Prejudicado o DTQ 36: PSB: DESTAQUE DO ART. 68 DO DECRETO-LEI Nº 5452, DE 1943, NA REDAÇÃO CONFERIDA PELO ART. 15 DA EMENDA AGLUTINATIVA APRESENTADA AO PLV 17, DE 2019 (161,I).",PLEN,1240,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,108,"Prejudicado o DTQ 37: PDT: EMENDA 24, COMO SUPORTE PARA A EMENDA AGLUTINATIVA.",PLEN,1240,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,109,Retirado a EMA 2: Emenda Aglutinativa nº 2.,PLEN,1241,NA,NA,2199763
+2199763,camara,2019-08-14T18:57:00Z,110,Inadmitida a EMA 3: Emenda Aglutinativa nº 3.,PLEN,1242,NA,NA,2199763
+2199763,camara,2019-08-15T00:00:00Z,116,Remessa ao Senado Federal por meio do Of.nº 743/19/SGM-P.,MESA,128,Aguardando Sanção,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1790872,2199763
+2199763,camara,2019-08-23T00:00:00Z,117,"Despacho exarado no REQ 2065/2019, conforme o seguine teor: ""Declaro prejudicado o Requerimento n. 2.065/2019, com fundamento no art. 164, I, do Regimento Interno da Câmara dos Deputados, porque a Medida Provisória n. 881/2019 já foi apreciada pela Câmara dos Deputados e será remetida ao Senado Federal para deliberação. Publique-se"".",MESA,203,Aguardando Sanção,NA,2199763
+2199763,camara,2019-08-23T00:00:00Z,118,Recebimento do Ofício nº 379/2019 (CN) comunicando remessa à sanção.,MESA,500,Aguardando Sanção,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1796709,2199763
+2199763,camara,2019-09-04T00:00:00Z,119,Recebimento do Ofício nº 383/2019 (CN) comunicando erro material.,MESA,500,Aguardando Sanção,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1803858,2199763

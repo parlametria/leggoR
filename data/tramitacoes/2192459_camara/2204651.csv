@@ -20,4 +20,5 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 2204651,camara,2019-06-04T11:00:00Z,19,"Ratificado o parecer ""ad referendum""",MESA,1040,NA,NA,2204651
 2204651,camara,2019-06-07T00:00:00Z,20,"Remessa por meio do Ofício 1ªSec/RI/E nº 550/2019, ao Ministro da Defesa e o Ofício 1ªSec/RI/E nº 559/2019, ao Ministro da Economia.",1SECM,138,Aguardando Providências Internas,NA,2204651
 2204651,camara,2019-06-07T00:00:00Z,21,Prazo para Resposta Externas (de 08/06/2019 a 08/07/2019),1SECM,350,Aguardando Providências Internas,NA,2204651
-2204651,camara,2019-07-02T00:00:00Z,22,"Recebimento de resposta conforme Ofício nº  315/2019/GME-ME, de 01 de julho de 2019, do Ministério da Economia.",1SECM,162,Aguardando Providências Internas,NA,2204651
+2204651,camara,2019-07-02T00:00:00Z,22,"Recebimento de resposta conforme Ofício nº  315/2019/GME-ME, de 01 de julho de 2019, do Ministério da Economia.",1SECM,162,Aguardando Providências Internas,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1784513,2204651
+2204651,camara,2019-08-02T00:00:00Z,23,Encaminhamento de resposta por meio do sistema Infoleg.,1SECM,1005,Aguardando Providências Internas,NA,2204651

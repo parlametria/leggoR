@@ -1,177 +1,177 @@
 prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
-56230,camara,2002-06-11T17:34:00Z,1,Apresentação do Projeto de Lei pela Deputada Vanessa Grazziotin (PCdoB-AM).,PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=49393,56230
+56230,camara,2002-06-11T17:34:00Z,1,Apresentação do Projeto de Lei pela Deputada Vanessa Grazziotin (PCdoB-AM).,PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=49393,56230
 56230,camara,2002-06-25T00:00:00Z,2,Despacho à CCJR.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1216236,56230
 56230,camara,2002-06-25T00:00:00Z,3,Encaminhado à CCP,MESA,180,NA,NA,56230
 56230,camara,2002-06-25T00:00:00Z,4,Recebimento pela CCP.,CCP,500,NA,NA,56230
 56230,camara,2002-06-25T00:00:00Z,5,Publicação Inicial no DCD 29 06 02 PAG 33971 COL 02.,CCP,605,NA,NA,56230
 56230,camara,2002-06-28T00:00:00Z,7,Encaminhada à publicação.,CCP,604,NA,NA,56230
 56230,camara,2002-06-28T00:00:00Z,6,Encaminhado à CCJR,CCP,180,NA,NA,56230
-56230,camara,2002-07-02T00:00:00Z,8,Recebimento pela CCJR.,CCJC,500,NA,NA,56230
+56230,camara,2002-07-02T00:00:00Z,8,Recebimento pela CCJR.,CCJC,500,Aguardando Designação de Relator,NA,56230
 56230,camara,2003-01-31T00:00:00Z,9,Arquivado nos termos do Artigo 105 do Regimento InternoDCDS 01 02 03 PÁG 0546 COL 01.,MESA,502,NA,NA,56230
 56230,camara,2003-03-19T00:00:00Z,10,Reentrada na comissão por motivo de desarquivamento,CCP,630,NA,NA,56230
 56230,camara,2003-03-19T00:00:00Z,11,Desarquivado nos termos do Artigo 105 do R.I,MESA,135,NA,NA,56230
-56230,camara,2003-03-20T16:52:00Z,12,Recebimento pela CCJR.,CCJC,500,NA,NA,56230
-56230,camara,2003-04-10T00:00:00Z,13,"Designado Relator, Dep. Patrus Ananias",CCJC,320,NA,NA,56230
+56230,camara,2003-03-20T16:52:00Z,12,Recebimento pela CCJR.,CCJC,500,Aguardando Designação de Relator,NA,56230
+56230,camara,2003-04-10T00:00:00Z,13,"Designado Relator, Dep. Patrus Ananias",CCJC,320,Aguardando Designação de Relator,NA,56230
 56230,camara,2003-04-22T11:58:00Z,14,Apense-se a este o PL-689/2003.,MESA,504,NA,NA,56230
-56230,camara,2003-04-24T00:00:00Z,15,Apensação do PL-689/2003 a esta.,CCJC,504,NA,NA,56230
+56230,camara,2003-04-24T00:00:00Z,15,Apensação do PL-689/2003 a esta.,CCJC,504,Aguardando Designação de Relator,NA,56230
 56230,camara,2003-05-13T16:29:00Z,16,Apense-se a este o PL-758/2003.,MESA,504,NA,NA,56230
-56230,camara,2003-05-19T00:00:00Z,17,Apensação do PL-758/2003 a esta,CCJC,504,NA,NA,56230
-56230,camara,2004-01-27T11:23:00Z,18,Devolvida sem Manifestação.,CCJC,507,NA,NA,56230
-56230,camara,2004-07-14T00:00:00Z,19,"Designado Relator, Dep. Roberto Freire (PPS-PE)",CCJC,320,NA,NA,56230
+56230,camara,2003-05-19T00:00:00Z,17,Apensação do PL-758/2003 a esta,CCJC,504,Aguardando Designação de Relator,NA,56230
+56230,camara,2004-01-27T11:23:00Z,18,Devolvida sem Manifestação.,CCJC,507,Aguardando Designação de Relator,NA,56230
+56230,camara,2004-07-14T00:00:00Z,19,"Designado Relator, Dep. Roberto Freire (PPS-PE)",CCJC,320,Aguardando Designação de Relator,NA,56230
 56230,camara,2005-02-04T14:57:00Z,20,Apense-se a este o PL-4718/2004.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=262661,56230
-56230,camara,2005-02-24T00:00:00Z,21,Apensação do PL 4718/2004 a esta proposição.,CCJC,504,NA,NA,56230
-56230,camara,2005-05-05T00:00:00Z,22,"Apresentação do PRL 1 CCJC, pelo Dep. Roberto Freire",CCJC,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=304263,56230
-56230,camara,2005-05-05T12:55:00Z,23,"Parecer do Relator, Dep. Roberto Freire (PPS-PE), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003 e do PL 4718/2004, apensados, com substitutivo.",CCJC,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=304263,56230
-56230,camara,2006-05-09T15:00:00Z,24,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-05-10T10:00:00Z,25,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-05-11T10:00:00Z,26,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-05-16T15:00:00Z,27,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-05-17T10:00:00Z,28,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-05-18T10:00:00Z,29,Não Deliberado.,CCJC,1008,NA,NA,56230
+56230,camara,2005-02-24T00:00:00Z,21,Apensação do PL 4718/2004 a esta proposição.,CCJC,504,Aguardando Designação de Relator,NA,56230
+56230,camara,2005-05-05T00:00:00Z,22,"Apresentação do PRL 1 CCJC, pelo Dep. Roberto Freire",CCJC,501,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=304263,56230
+56230,camara,2005-05-05T12:55:00Z,23,"Parecer do Relator, Dep. Roberto Freire (PPS-PE), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003 e do PL 4718/2004, apensados, com substitutivo.",CCJC,322,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=304263,56230
+56230,camara,2006-05-09T15:00:00Z,24,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-05-10T10:00:00Z,25,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-05-11T10:00:00Z,26,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-05-16T15:00:00Z,27,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-05-17T10:00:00Z,28,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-05-18T10:00:00Z,29,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
 56230,camara,2006-05-23T11:26:00Z,30,Apense-se a este o PL-7004/2006.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=396849,56230
-56230,camara,2006-05-23T15:00:00Z,31,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-05-24T10:00:00Z,32,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-05-25T10:00:00Z,33,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-05-30T15:00:00Z,34,"Retirado de pauta de Ofício, em virtude da apensação do PL 7004/2006, após a apresentação do parecer do relator.",CCJC,250,NA,NA,56230
-56230,camara,2006-05-31T00:00:00Z,35,"Devolvido ao Relator, Dep. Roberto Freire (PPS-PE)",CCJC,170,NA,NA,56230
-56230,camara,2006-08-16T00:00:00Z,37,"Parecer do Relator, Dep. Roberto Freire (PPS-PE), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006 e do PL 4718/2004, apensados, com substitutivo.",CCJC,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=414503,56230
-56230,camara,2006-08-16T14:13:00Z,36,"Apresentação do Parecer do Relator, PRL 2 CCJC, pelo Dep. Roberto Freire",CCJC,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=414503,56230
-56230,camara,2006-09-28T00:00:00Z,38,Apensação do PL 7004/2006 a esta proposição.,CCJC,504,NA,NA,56230
-56230,camara,2006-10-09T17:00:00Z,39,Não Deliberado,CCJC,1008,NA,NA,56230
-56230,camara,2006-11-07T15:00:00Z,40,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-11-08T10:00:00Z,41,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-11-09T10:00:00Z,42,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-11-21T15:00:00Z,43,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-11-22T10:00:00Z,44,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-11-28T15:00:00Z,45,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-11-29T10:00:00Z,46,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-12-05T15:00:00Z,47,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-12-06T10:00:00Z,48,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-12-12T15:00:00Z,49,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-12-13T10:00:00Z,50,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-12-14T10:00:00Z,51,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-12-20T10:00:00Z,52,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2006-12-21T10:00:00Z,53,Não Deliberado.,CCJC,1008,NA,NA,56230
+56230,camara,2006-05-23T15:00:00Z,31,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-05-24T10:00:00Z,32,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-05-25T10:00:00Z,33,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-05-30T15:00:00Z,34,"Retirado de pauta de Ofício, em virtude da apensação do PL 7004/2006, após a apresentação do parecer do relator.",CCJC,250,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-05-31T00:00:00Z,35,"Devolvido ao Relator, Dep. Roberto Freire (PPS-PE)",CCJC,170,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-08-16T00:00:00Z,37,"Parecer do Relator, Dep. Roberto Freire (PPS-PE), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006 e do PL 4718/2004, apensados, com substitutivo.",CCJC,322,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=414503,56230
+56230,camara,2006-08-16T14:13:00Z,36,"Apresentação do Parecer do Relator, PRL 2 CCJC, pelo Dep. Roberto Freire",CCJC,501,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=414503,56230
+56230,camara,2006-09-28T00:00:00Z,38,Apensação do PL 7004/2006 a esta proposição.,CCJC,504,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-10-09T17:00:00Z,39,Não Deliberado,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-11-07T15:00:00Z,40,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-11-08T10:00:00Z,41,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-11-09T10:00:00Z,42,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-11-21T15:00:00Z,43,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-11-22T10:00:00Z,44,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-11-28T15:00:00Z,45,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-11-29T10:00:00Z,46,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-12-05T15:00:00Z,47,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-12-06T10:00:00Z,48,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-12-12T15:00:00Z,49,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-12-13T10:00:00Z,50,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-12-14T10:00:00Z,51,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-12-20T10:00:00Z,52,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2006-12-21T10:00:00Z,53,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
 56230,camara,2007-01-31T00:00:00Z,54,Arquivado nos termos do Artigo 105 do Regimento Interno. DCD 01 02 07 PAG 141 COL 01 SUPLEMENTO 01 AO Nº  21.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=498942,56230
 56230,camara,2007-02-06T16:27:00Z,55,"Apresentação do REQUERIMENTO N.º 38, DE 2007, pelo Deputado(a) Vanessa Grazziotin, que solicita o desarquivamento de proposição.",MESA,640,NA,NA,56230
-56230,camara,2007-02-06T16:27:00Z,56,Apresentação do Requerimento pela Deputada Vanessa Grazziotin (PCdoB-AM).,PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=433954,56230
+56230,camara,2007-02-06T16:27:00Z,56,Apresentação do Requerimento pela Deputada Vanessa Grazziotin (PCdoB-AM).,PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=433954,56230
 56230,camara,2007-03-09T00:00:00Z,57,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-38/2007 => PEC-181/1999.DCD de 13 03 07 PÁG 9554 COL 01.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=437705,56230
 56230,camara,2007-03-09T09:32:00Z,58,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,56230
 56230,camara,2007-03-13T15:57:00Z,59,"Apresentação do REQUERIMENTO N.º 497, DE 2007, pelo Deputado(a) Comissão de Legislação Participativa, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=441669,56230
 56230,camara,2007-04-30T00:00:00Z,60,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-497/2007.DCD 01 05 07 PAG 20070 COL 01",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=451242,56230
-56230,camara,2008-08-05T00:00:00Z,61,"Designado Relator, Dep. Leonardo Picciani (PMDB-RJ)",CCJC,320,NA,NA,56230
+56230,camara,2008-08-05T00:00:00Z,61,"Designado Relator, Dep. Leonardo Picciani (PMDB-RJ)",CCJC,320,Aguardando Designação de Relator,NA,56230
 56230,camara,2008-11-13T12:22:00Z,62,Apense-se a este o PL-4219/2008.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=613226,56230
-56230,camara,2008-12-16T11:57:00Z,63,Devolvida sem Manifestação.,CCJC,507,NA,NA,56230
-56230,camara,2008-12-17T00:00:00Z,64,"Designado Relator, Dep. Geraldo Pudim (PMDB-RJ)",CCJC,320,NA,NA,56230
-56230,camara,2009-03-03T10:11:00Z,65,Apensação do PL 4219/2008 a esta proposição.,CCJC,504,NA,NA,56230
-56230,camara,2009-03-04T18:05:00Z,66,"Apresentação do Parecer do Relator, PRL 2 CCJC, pelo Dep. Geraldo Pudim",CCJC,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=635606,56230
-56230,camara,2009-03-04T18:05:00Z,67,"Parecer do Relator, Dep. Geraldo Pudim (PMDB-RJ), pela constitucionalidade, juridicidade e técnica legislativa; e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 1846/2007, e do PL 4718/2004, apensados, com substitutivo.",CCJC,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=635606,56230
-56230,camara,2009-03-05T00:00:00Z,68,"Devolvido ao Relator, Dep. Geraldo Pudim (PMDB-RJ)",CCJC,170,NA,NA,56230
+56230,camara,2008-12-16T11:57:00Z,63,Devolvida sem Manifestação.,CCJC,507,Aguardando Designação de Relator,NA,56230
+56230,camara,2008-12-17T00:00:00Z,64,"Designado Relator, Dep. Geraldo Pudim (PMDB-RJ)",CCJC,320,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-03-03T10:11:00Z,65,Apensação do PL 4219/2008 a esta proposição.,CCJC,504,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-03-04T18:05:00Z,66,"Apresentação do Parecer do Relator, PRL 2 CCJC, pelo Dep. Geraldo Pudim",CCJC,501,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=635606,56230
+56230,camara,2009-03-04T18:05:00Z,67,"Parecer do Relator, Dep. Geraldo Pudim (PMDB-RJ), pela constitucionalidade, juridicidade e técnica legislativa; e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 1846/2007, e do PL 4718/2004, apensados, com substitutivo.",CCJC,322,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=635606,56230
+56230,camara,2009-03-05T00:00:00Z,68,"Devolvido ao Relator, Dep. Geraldo Pudim (PMDB-RJ)",CCJC,170,Aguardando Designação de Relator,NA,56230
 56230,camara,2009-03-12T10:15:00Z,69,Apense-se a este o PL-4764/2009.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=637021,56230
 56230,camara,2009-03-12T10:16:00Z,70,Apense-se a este o PL-4805/2009.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=637023,56230
-56230,camara,2009-03-16T10:27:00Z,71,Apensação do PL 4805/2009 a esta proposição.,CCJC,504,NA,NA,56230
-56230,camara,2009-03-16T10:43:00Z,72,Apensação do PL 4764/2009 a esta proposição.,CCJC,504,NA,NA,56230
-56230,camara,2009-04-08T11:17:00Z,73,"Apresentação do Parecer do Relator, PRL 3 CCJC, pelo Dep. Geraldo Pudim",CCJC,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=645232,56230
-56230,camara,2009-04-08T11:17:00Z,74,"Parecer do Relator, Dep. Geraldo Pudim (PMDB-RJ), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 1846/2007 e do PL 4718/2004, apensados, com substitutivo.",CCJC,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=645232,56230
-56230,camara,2009-04-28T00:00:00Z,75,"Devolvido ao Relator, Dep. Geraldo Pudim (PMDB-RJ)",CCJC,170,NA,NA,56230
-56230,camara,2009-05-12T15:27:00Z,76,"Apresentação do Parecer do Relator, PRL 4 CCJC, pelo Dep. Geraldo Pudim",CCJC,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=655283,56230
-56230,camara,2009-05-12T15:27:00Z,77,"Parecer do Relator, Dep. Geraldo Pudim (PMDB-RJ), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 1846/2007 e do PL 4718/2004, apensados, com substitutivo.",CCJC,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=655283,56230
-56230,camara,2009-06-30T14:30:00Z,78,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2009-07-01T10:00:00Z,79,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2009-07-07T14:30:00Z,80,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2009-07-08T10:00:00Z,81,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2009-07-09T10:00:00Z,82,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2009-07-14T14:30:00Z,83,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2009-07-15T10:00:00Z,84,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2009-08-04T14:30:00Z,85,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2009-08-05T10:00:00Z,86,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2009-08-11T14:30:00Z,87,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2009-08-12T00:00:00Z,88,Retirado de pauta pelo Relator para reexame da matéria.,CCJC,250,NA,NA,56230
-56230,camara,2009-08-12T00:00:00Z,89,"Devolvido ao Relator, Dep. Geraldo Pudim (PMDB-RJ)",CCJC,170,NA,NA,56230
-56230,camara,2009-10-01T10:42:00Z,90,"Apresentação do Parecer do Relator, PRL 5 CCJC, pelo Dep. Geraldo Pudim",CCJC,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=697834,56230
-56230,camara,2009-10-01T10:42:00Z,91,"Parecer do Relator, Dep. Geraldo Pudim (PR-RJ), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 1846/2007 e do PL 4718/2004, apensados, com substitutivo.",CCJC,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=697834,56230
-56230,camara,2010-04-06T00:00:00Z,92,"Devolvido ao Relator, Dep. Geraldo Pudim (PR-RJ)",CCJC,170,NA,NA,56230
-56230,camara,2010-05-04T16:10:00Z,93,"Apresentação do Parecer do Relator n. 6 CCJC, pelo Deputado Geraldo Pudim (PR-RJ).",CCJC,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=763576,56230
-56230,camara,2010-05-04T16:10:00Z,94,"Parecer do Relator, Dep. Geraldo Pudim (PR-RJ), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 1846/2007, do PL 4718/2004 e do PL 7003/2010, apensados, com substitutivo.",CCJC,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=763576,56230
-56230,camara,2010-05-25T14:30:00Z,95,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-05-26T10:00:00Z,96,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-05-26T15:10:00Z,97,"Apresentação do Parecer do Relator n. 7 CCJC, pelo Deputado Geraldo Pudim (PR-RJ).",CCJC,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=773496,56230
-56230,camara,2010-05-26T15:10:00Z,98,"Parecer do Relator, Dep. Geraldo Pudim (PR-RJ), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 1846/2007, do PL 4718/2004 e do PL 7003/2010, apensados, com substitutivo.",CCJC,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=773496,56230
-56230,camara,2010-05-26T17:42:00Z,99,"Apresentação do Requerimento de Redistribuição n. 6953/2010, pelo Deputado Zenaldo Coutinho (PSDB-PA), que: ""Requer a revisão do despacho dado ao PL 6.928/2002, da Senhora Vanessa Grazziotin"".",PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=773772,56230
-56230,camara,2010-06-01T14:30:00Z,100,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-06-08T14:30:00Z,101,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-06-09T10:00:00Z,102,Não Deliberado.,CCJC,1008,NA,NA,56230
+56230,camara,2009-03-16T10:27:00Z,71,Apensação do PL 4805/2009 a esta proposição.,CCJC,504,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-03-16T10:43:00Z,72,Apensação do PL 4764/2009 a esta proposição.,CCJC,504,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-04-08T11:17:00Z,73,"Apresentação do Parecer do Relator, PRL 3 CCJC, pelo Dep. Geraldo Pudim",CCJC,501,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=645232,56230
+56230,camara,2009-04-08T11:17:00Z,74,"Parecer do Relator, Dep. Geraldo Pudim (PMDB-RJ), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 1846/2007 e do PL 4718/2004, apensados, com substitutivo.",CCJC,322,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=645232,56230
+56230,camara,2009-04-28T00:00:00Z,75,"Devolvido ao Relator, Dep. Geraldo Pudim (PMDB-RJ)",CCJC,170,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-05-12T15:27:00Z,76,"Apresentação do Parecer do Relator, PRL 4 CCJC, pelo Dep. Geraldo Pudim",CCJC,501,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=655283,56230
+56230,camara,2009-05-12T15:27:00Z,77,"Parecer do Relator, Dep. Geraldo Pudim (PMDB-RJ), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 1846/2007 e do PL 4718/2004, apensados, com substitutivo.",CCJC,322,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=655283,56230
+56230,camara,2009-06-30T14:30:00Z,78,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-07-01T10:00:00Z,79,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-07-07T14:30:00Z,80,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-07-08T10:00:00Z,81,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-07-09T10:00:00Z,82,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-07-14T14:30:00Z,83,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-07-15T10:00:00Z,84,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-08-04T14:30:00Z,85,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-08-05T10:00:00Z,86,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-08-11T14:30:00Z,87,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-08-12T00:00:00Z,88,Retirado de pauta pelo Relator para reexame da matéria.,CCJC,250,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-08-12T00:00:00Z,89,"Devolvido ao Relator, Dep. Geraldo Pudim (PMDB-RJ)",CCJC,170,Aguardando Designação de Relator,NA,56230
+56230,camara,2009-10-01T10:42:00Z,90,"Apresentação do Parecer do Relator, PRL 5 CCJC, pelo Dep. Geraldo Pudim",CCJC,501,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=697834,56230
+56230,camara,2009-10-01T10:42:00Z,91,"Parecer do Relator, Dep. Geraldo Pudim (PR-RJ), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 1846/2007 e do PL 4718/2004, apensados, com substitutivo.",CCJC,322,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=697834,56230
+56230,camara,2010-04-06T00:00:00Z,92,"Devolvido ao Relator, Dep. Geraldo Pudim (PR-RJ)",CCJC,170,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-05-04T16:10:00Z,93,"Apresentação do Parecer do Relator n. 6 CCJC, pelo Deputado Geraldo Pudim (PR-RJ).",CCJC,501,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=763576,56230
+56230,camara,2010-05-04T16:10:00Z,94,"Parecer do Relator, Dep. Geraldo Pudim (PR-RJ), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 1846/2007, do PL 4718/2004 e do PL 7003/2010, apensados, com substitutivo.",CCJC,322,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=763576,56230
+56230,camara,2010-05-25T14:30:00Z,95,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-05-26T10:00:00Z,96,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-05-26T15:10:00Z,97,"Apresentação do Parecer do Relator n. 7 CCJC, pelo Deputado Geraldo Pudim (PR-RJ).",CCJC,501,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=773496,56230
+56230,camara,2010-05-26T15:10:00Z,98,"Parecer do Relator, Dep. Geraldo Pudim (PR-RJ), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 1846/2007, do PL 4718/2004 e do PL 7003/2010, apensados, com substitutivo.",CCJC,322,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=773496,56230
+56230,camara,2010-05-26T17:42:00Z,99,"Apresentação do Requerimento de Redistribuição n. 6953/2010, pelo Deputado Zenaldo Coutinho (PSDB-PA), que: ""Requer a revisão do despacho dado ao PL 6.928/2002, da Senhora Vanessa Grazziotin"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=773772,56230
+56230,camara,2010-06-01T14:30:00Z,100,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-06-08T14:30:00Z,101,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-06-09T10:00:00Z,102,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
 56230,camara,2010-06-11T00:00:00Z,103,"Indeferido o REQ 6953/10, conforme despacho do seguinte teor: Indefiro, nos termos do artigo 141 do RICD, o pedido contido no Requerimento n. 6.953, de 2010, tendo em vista a distribuição haver sido feita nos termos regimentais, não restando comprovado o mérito da Comissão de Desenvolvimento Urbano.Publique-se. Oficie-se.DCD de 15/06/10 PÁG 28021 COL 01.",MESA,203,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=820027,56230
-56230,camara,2010-06-16T10:00:00Z,104,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-06-22T14:30:00Z,105,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-06-30T10:00:00Z,106,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-07-06T14:30:00Z,107,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-07-07T10:00:00Z,108,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-07-14T10:00:00Z,109,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-11-09T14:30:00Z,110,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-11-10T10:00:00Z,111,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-11-16T14:30:00Z,112,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-11-17T10:00:00Z,113,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-11-23T14:30:00Z,114,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-11-24T10:00:00Z,115,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-11-30T14:30:00Z,116,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-12-01T10:00:00Z,117,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-12-07T14:30:00Z,118,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-12-08T10:00:00Z,119,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-12-14T14:30:00Z,120,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2010-12-15T10:00:00Z,121,Não Deliberado.,CCJC,1008,NA,NA,56230
+56230,camara,2010-06-16T10:00:00Z,104,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-06-22T14:30:00Z,105,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-06-30T10:00:00Z,106,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-07-06T14:30:00Z,107,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-07-07T10:00:00Z,108,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-07-14T10:00:00Z,109,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-11-09T14:30:00Z,110,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-11-10T10:00:00Z,111,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-11-16T14:30:00Z,112,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-11-17T10:00:00Z,113,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-11-23T14:30:00Z,114,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-11-24T10:00:00Z,115,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-11-30T14:30:00Z,116,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-12-01T10:00:00Z,117,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-12-07T14:30:00Z,118,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-12-08T10:00:00Z,119,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-12-14T14:30:00Z,120,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2010-12-15T10:00:00Z,121,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
 56230,camara,2011-01-31T00:00:00Z,122,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados. Publicação no DCD do dia 01/02/2011 - Suplemento ao nº 14.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=850547,56230
 56230,camara,2011-02-15T10:10:00Z,123,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-40/2011.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=839709,56230
 56230,camara,2011-02-15T10:10:00Z,124,Reentrada na comissão por motivo de desarquivamento,SECAP(SGM),630,NA,NA,56230
 56230,camara,2011-02-15T10:10:00Z,125,Reentrada na comissão por motivo de desarquivamento,SECAP(SGM),630,NA,NA,56230
-56230,camara,2011-05-06T00:00:00Z,126,"Designado Relator, Dep. Gabriel Chalita (PSB-SP)",CCJC,320,NA,NA,56230
-56230,camara,2011-07-04T10:33:00Z,127,"Apresentação do Parecer do Relator n. 8 CCJC, pelo Deputado Gabriel Chalita (PMDB-SP).",CCJC,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=895447,56230
-56230,camara,2011-07-04T10:33:00Z,128,"Parecer do Relator, Dep. Gabriel Chalita (PMDB-SP), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 1846/2007, do PL 4718/2004 e do PL 7003/2010, apensados, com substitutivo.",CCJC,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=895447,56230
-56230,camara,2011-09-08T00:00:00Z,129,"Devolvido ao Relator, Dep. Gabriel Chalita (PMDB-SP)",CCJC,170,NA,NA,56230
+56230,camara,2011-05-06T00:00:00Z,126,"Designado Relator, Dep. Gabriel Chalita (PSB-SP)",CCJC,320,Aguardando Designação de Relator,NA,56230
+56230,camara,2011-07-04T10:33:00Z,127,"Apresentação do Parecer do Relator n. 8 CCJC, pelo Deputado Gabriel Chalita (PMDB-SP).",CCJC,501,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=895447,56230
+56230,camara,2011-07-04T10:33:00Z,128,"Parecer do Relator, Dep. Gabriel Chalita (PMDB-SP), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 1846/2007, do PL 4718/2004 e do PL 7003/2010, apensados, com substitutivo.",CCJC,322,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=895447,56230
+56230,camara,2011-09-08T00:00:00Z,129,"Devolvido ao Relator, Dep. Gabriel Chalita (PMDB-SP)",CCJC,170,Aguardando Designação de Relator,NA,56230
 56230,camara,2012-03-15T16:41:00Z,130,Apense-se a este(a) o(a) PL-3310/2012.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=970885,56230
-56230,camara,2012-03-20T16:03:00Z,131,Apensação do PL 3310/2012 a esta proposição.,CCJC,504,NA,NA,56230
-56230,camara,2012-03-20T16:04:00Z,132,Devolvida sem Manifestação.,CCJC,507,NA,NA,56230
-56230,camara,2012-03-21T00:00:00Z,133,"Designado Relator, Dep. Luis Tibé (PTdoB-MG)",CCJC,320,NA,NA,56230
-56230,camara,2012-05-22T15:25:00Z,134,"Apresentação do Requerimento n. 80/2012, pelo Deputado Zenaldo Coutinho, que: ""Requeiro a Vossa Excelência a designação de outro relator para o PL  6928/2002Designação de Relator"".",CCJC,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=993908,56230
-56230,camara,2012-05-23T00:00:00Z,135,"Decisão da Presidência da Comissão: designar novo relator, nos termos do art. 52, § 3º do Regimento Interno.",CCJC,507,NA,NA,56230
-56230,camara,2012-05-23T00:00:00Z,136,"Designado Relator nos termos do art. 52, §3º, Dep. Paulo Teixeira (PT-SP)",CCJC,320,NA,NA,56230
-56230,camara,2012-05-30T10:00:00Z,137,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2012-05-31T10:00:00Z,138,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2012-06-06T10:00:00Z,139,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2012-06-06T16:45:00Z,140,"Apresentação do Relatório do Relator n. 1 CCJC, pelo Deputado Paulo Teixeira (PT-SP).",CCJC,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=999686,56230
-56230,camara,2012-06-06T16:45:00Z,141,"Parecer do Relator, Dep. Paulo Teixeira (PT-SP), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 3310/2012, do PL 1846/2007, do PL 4718/2004, do PL 7003/2010 e do PL 2024/2011, apensados, com substitutivo; e pela inconstitucionalidade do PL 3453/2012.",CCJC,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=999686,56230
-56230,camara,2012-06-12T14:30:00Z,142,"Durante a verificação da votação do requerimento de retirada de pauta apresentado pelo Deputado Felix Mendonça, a sessão foi encerrada por falta de ""quorum"".",CCJC,221,NA,NA,56230
-56230,camara,2012-06-13T10:00:00Z,143,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2012-06-14T10:00:00Z,144,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2012-06-19T14:30:00Z,145,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2012-06-21T15:38:00Z,146,"Apresentação do Requerimento n. 85/2012, pelo Deputado Marcos Rogério (PDT-RO), que: ""Requer que esta Comissão realize Audiência Pública para debater o PL nº 6.928/2002, que cria o Estatuto para o exercício da Democracia Participativa, regulamentando a execução do disposto nos incisos I, II e III do art. 14 da Constituição Federal"".",CCJC,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1005176,56230
-56230,camara,2012-06-26T14:30:00Z,147,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2012-06-27T10:00:00Z,148,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2012-07-03T14:30:00Z,149,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2012-07-04T10:00:00Z,150,Não Deliberado.,CCJC,1008,NA,NA,56230
-56230,camara,2012-07-11T10:00:00Z,151,Não Deliberado,CCJC,1008,NA,NA,56230
-56230,camara,2013-06-13T09:51:00Z,152,"Apresentação do Requerimento de Reconstituição de proposição n. 7970/2013, pela Comissão de Constituição e Justiça e de Cidadania, que: ""Requerimento de reconstituição de proposições"".",PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1099696,56230
+56230,camara,2012-03-20T16:03:00Z,131,Apensação do PL 3310/2012 a esta proposição.,CCJC,504,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-03-20T16:04:00Z,132,Devolvida sem Manifestação.,CCJC,507,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-03-21T00:00:00Z,133,"Designado Relator, Dep. Luis Tibé (PTdoB-MG)",CCJC,320,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-05-22T15:25:00Z,134,"Apresentação do Requerimento n. 80/2012, pelo Deputado Zenaldo Coutinho, que: ""Requeiro a Vossa Excelência a designação de outro relator para o PL  6928/2002Designação de Relator"".",CCJC,194,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=993908,56230
+56230,camara,2012-05-23T00:00:00Z,135,"Decisão da Presidência da Comissão: designar novo relator, nos termos do art. 52, § 3º do Regimento Interno.",CCJC,507,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-05-23T00:00:00Z,136,"Designado Relator nos termos do art. 52, §3º, Dep. Paulo Teixeira (PT-SP)",CCJC,320,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-05-30T10:00:00Z,137,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-05-31T10:00:00Z,138,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-06-06T10:00:00Z,139,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-06-06T16:45:00Z,140,"Apresentação do Relatório do Relator n. 1 CCJC, pelo Deputado Paulo Teixeira (PT-SP).",CCJC,501,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=999686,56230
+56230,camara,2012-06-06T16:45:00Z,141,"Parecer do Relator, Dep. Paulo Teixeira (PT-SP), pela constitucionalidade, juridicidade, técnica legislativa e, no mérito, pela aprovação deste, do PL 689/2003, do PL 758/2003, do PL 7004/2006, do PL 4219/2008, do PL 4764/2009, do PL 4805/2009, do PL 3310/2012, do PL 1846/2007, do PL 4718/2004, do PL 7003/2010 e do PL 2024/2011, apensados, com substitutivo; e pela inconstitucionalidade do PL 3453/2012.",CCJC,322,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=999686,56230
+56230,camara,2012-06-12T14:30:00Z,142,"Durante a verificação da votação do requerimento de retirada de pauta apresentado pelo Deputado Felix Mendonça, a sessão foi encerrada por falta de ""quorum"".",CCJC,221,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-06-13T10:00:00Z,143,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-06-14T10:00:00Z,144,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-06-19T14:30:00Z,145,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-06-21T15:38:00Z,146,"Apresentação do Requerimento n. 85/2012, pelo Deputado Marcos Rogério (PDT-RO), que: ""Requer que esta Comissão realize Audiência Pública para debater o PL nº 6.928/2002, que cria o Estatuto para o exercício da Democracia Participativa, regulamentando a execução do disposto nos incisos I, II e III do art. 14 da Constituição Federal"".",CCJC,194,Aguardando Designação de Relator,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1005176,56230
+56230,camara,2012-06-26T14:30:00Z,147,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-06-27T10:00:00Z,148,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-07-03T14:30:00Z,149,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-07-04T10:00:00Z,150,Não Deliberado.,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2012-07-11T10:00:00Z,151,Não Deliberado,CCJC,1008,Aguardando Designação de Relator,NA,56230
+56230,camara,2013-06-13T09:51:00Z,152,"Apresentação do Requerimento de Reconstituição de proposição n. 7970/2013, pela Comissão de Constituição e Justiça e de Cidadania, que: ""Requerimento de reconstituição de proposições"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1099696,56230
 56230,camara,2013-06-24T00:00:00Z,153,"Deferido o Requerimento n. 7.970/2013, conforme despacho de seguinte teor: ""Defiro as reconstituições dos Projetos de Lei n. 2.522/1989, n. 823/1991, n. 887/1991, n. 1.919/1991, n. 3.339/1992, n. 2.433/1996, n. 2.925/1997, n. 63/1999, n. 544/1999, n. 2.548/2000, n. 3.028/2000, n. 3.723/2000, n. 3.984/2000, n. 4.135/2001, n. 4.448/2001, n. 4.637/2001, n. 5.077/2001, n. 5.246/2001, n. 6.763/2002, n. 6.928/2002, n. 536/2003, n. 990/2003, n. 1.059/2003, n. 1.222/2003, n. 1.280/2003, n. 1.393/2003, n. 2.443/2003, n. 3.041/2004, n. 3.369/2004, n. 3.730/2004, n. 4.589/2004, n. 5.428/2005, n. 5.583/2005, n. 5.844/2005, n. 6.504/2006, n. 6.583/2006, n. 7.076/2006, n. 7.368/2006, n. 256/2007, n. 586/2007, n. 2.257/2007, n. 3.377/2008, n. 4.142/2008, n. 4.186/2008, n. 608/2011, n. 2.301/2011. Reconstituições dos Projetos de Lei Complementar n. 276/1990, n. 149/2004 e do Projeto de Resolução. 52/2003, nos termos do art. 106 do Regimento Interno da Câmara dos Deputados. Publique-se.""",MESA,203,NA,NA,56230
 56230,camara,2013-07-02T00:00:00Z,154,"À CCJC, o projeto reconstituído.",CCP,1005,NA,NA,56230
-56230,camara,2013-07-11T00:00:00Z,155,"Devolvido ao Relator, Dep. Paulo Teixeira (PT-SP)",CCJC,170,NA,NA,56230
-56230,camara,2013-07-16T17:29:00Z,156,"Apresentação do Requerimento de Desapensação n. 8239/2013, pelo Deputado Felipe Maia (DEM-RN), que: ""Requer que o PL nº 2.024/2011 seja desapensado do PL nº 6.928/2002"".",PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1110231,56230
+56230,camara,2013-07-11T00:00:00Z,155,"Devolvido ao Relator, Dep. Paulo Teixeira (PT-SP)",CCJC,170,Aguardando Designação de Relator,NA,56230
+56230,camara,2013-07-16T17:29:00Z,156,"Apresentação do Requerimento de Desapensação n. 8239/2013, pelo Deputado Felipe Maia (DEM-RN), que: ""Requer que o PL nº 2.024/2011 seja desapensado do PL nº 6.928/2002"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1110231,56230
 56230,camara,2013-07-29T00:00:00Z,157,"Indeferido o Requerimento n. 8.239/2013, conforme despacho do seguinte teor: ""Indefiro o Requerimento n. 8.239/2013, nos termos do art. 142 do Regimento Interno da Câmara dos Deputados, porque os Projetos de Lei n. 2.024/2011 e n. 6.928/2002 tratam de matérias correlatas. Publique-se. Oficie-se.""",MESA,203,NA,NA,56230
 56230,camara,2013-08-21T18:17:00Z,158,Apense-se a este(a) o(a) PL-6056/2013.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1116159,56230
-56230,camara,2013-08-26T17:38:00Z,159,Apensação do PL 6056/2013 a esta proposição.,CCJC,504,NA,NA,56230
+56230,camara,2013-08-26T17:38:00Z,159,Apensação do PL 6056/2013 a esta proposição.,CCJC,504,Aguardando Designação de Relator,NA,56230
 56230,camara,2013-08-27T00:00:00Z,160,"Revisão do despacho exarado no Requerimento n. 8239/2013, de seguinte teor: “Revejo o despacho que indeferiu o pedido contido no Requerimento n. 8.239/2013, para determinar a desapensação do Projeto de Lei n. 2.024/2011 do Projeto de Lei n. 4.219/2008, que se encontra apensado ao Projeto de Lei n. 6.928/2002. Publique-se. Oficie-se.[ATUALIZAÇÃO DO DESPACHO DO PL N. 2.024/2011: À CCJC (mérito e art. 54, RICD) - Proposição sujeita à apreciação do Plenário. Regime de tramitação: Ordinário.]”",MESA,203,NA,NA,56230
 56230,camara,2013-08-28T00:00:00Z,161,À CCJC o Memorando nº 149/13 - COPER solicitando desapensar o PL 2024/11 do de nº 4219/08 (apensado ao 6928/02).,CCP,1005,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1122379,56230
 56230,camara,2013-12-03T10:28:00Z,162,Apense-se a este(a) o(a) PL-6827/2013.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1200663,56230
-56230,camara,2013-12-04T18:34:00Z,163,Apensação do PL 6827/2013 a esta proposição.,CCJC,504,NA,NA,56230
+56230,camara,2013-12-04T18:34:00Z,163,Apensação do PL 6827/2013 a esta proposição.,CCJC,504,Aguardando Designação de Relator,NA,56230
 56230,camara,2014-01-08T00:00:00Z,166,Apense-se este ao PL-7005/2013.,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1216236,56230
 56230,camara,2014-01-08T14:15:00Z,164,Despacho Chancelado,SECAP(SGM),180,NA,NA,56230
 56230,camara,2014-01-08T14:15:00Z,165,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,56230
 56230,camara,2014-01-08T14:31:00Z,167,"Recebimento pela CCP, apensado ao PL-7005/2013",CCP,500,NA,NA,56230
-56230,camara,2014-02-10T00:00:00Z,168,"Recebimento pela CCJC, apensado ao PL-7005/2013",CCJC,500,NA,NA,56230
+56230,camara,2014-02-10T00:00:00Z,168,"Recebimento pela CCJC, apensado ao PL-7005/2013",CCJC,500,Aguardando Designação de Relator,NA,56230
 56230,camara,2014-06-18T11:31:00Z,169,Apense-se a este(a) o(a) PL-7682/2014.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1260554,56230
 56230,camara,2014-06-18T11:38:00Z,170,Apense-se a este(a) o(a) PL-7682/2014.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1260554,56230
-56230,camara,2014-07-07T13:16:00Z,171,Apensação do PL 7682/2014 a esta proposição.,CCJC,504,NA,NA,56230
+56230,camara,2014-07-07T13:16:00Z,171,Apensação do PL 7682/2014 a esta proposição.,CCJC,504,Aguardando Designação de Relator,NA,56230
 56230,camara,2017-05-24T12:52:00Z,172,Apense-se a este(a) o(a) PL-7574/2017.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1558431,56230
-56230,camara,2017-05-29T12:17:00Z,173,Apensação do PL 7574/2017 a esta proposição.,CCJC,504,NA,NA,56230
+56230,camara,2017-05-29T12:17:00Z,173,Apensação do PL 7574/2017 a esta proposição.,CCJC,504,Aguardando Designação de Relator,NA,56230
 56230,camara,2018-04-09T11:29:00Z,174,"Recebimento pela CCP, apensado ao PL-7005/2013",CCP,500,NA,NA,56230
 56230,camara,2018-04-09T11:36:00Z,175,Apensação desta proposição ao PL 7005/2013.,CCP,106,NA,NA,56230
 56230,camara,2018-04-09T17:54:00Z,176,Apensação do PL 4718/2004 a esta proposição.,CCP,504,NA,NA,56230
@@ -180,3 +180,5 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 56230,camara,2019-06-24T14:34:00Z,179,Despacho Chancelado,MESA,180,NA,NA,56230
 56230,camara,2019-06-24T14:34:00Z,180,"Despacho exarados nos Projetos de Lei n. 6.928/2002, n. 689/2003, n. 758/2003, n. 4.718/2004, n. 7.004/2006, n. 1.846/2007, n. 3.310/2012, n. 3.453/2012, n. 6.056/2013, n. 2.115/2015, n. 7.574/2017, n. 8.648/2017, n. 11.119/2018, n. 67/2019, n. 2.262/2019 e n. 2.660/2019 do bloco encabeçado pelo Projeto de Lei n. 7.005/2013, conforme o seguinte teor: Desapensem-se os Projetos de Lei n. 6.928/2002, n. 689/2003, n. 758/2003, n. 4.718/2004, n. 7.004/2006, n. 1.846/2007, n. 3.310/2012, n. 3.453/2012, n. 6.056/2013, n. 2.115/2015, n. 7.574/2017, n. 8.648/2017, n. 11.119/2018, n. 67/2019, n. 2.262/2019 e n. 2.660/2019 do bloco encabeçado pelo Projeto de Lei n. 7.005/2013.Por conseguinte, determino a criação de um novo bloco de proposições a ser encabeçado pelo PL n. 6.928/2002, ao qual deverão ser apensados os PLs n. 689/2003 (e a este, os PLs n. 1.846/2007 e n. 3.453/2012), n. 758/2003, n. 4.718/2004 (e a este, os PLs n. 2.115/2015 e n. 8.648/2017), n. 7.004/2006, n. 3.310/2012, n. 6.056/2013, n. 7.574/2017 (e a este, o PL n. 2.262/2019) e n. 11.119/2018 (e a este, os PLs n. 2.660/2019 e n. 67/2019). Distribua-se o bloco à Comissão de Constituição e Justiça e de Cidadania (mérito e art. 54 do RICD), para que seja apreciado pelo Plenário, em regime de urgência (art. 155 do RICD). Ao PL n. 7005/2013, apensem-se os PLs n. 4.219/2008 (e a este, o PL n. 7.003/2010), n. 4.764/2009 (e a este, o PL n. 5.121/2013), n. 4.805/2009, n. 6.827/2013 e n. 7.682/2014. Publique-se. [ATUALIZAÇÃO DO DESPACHO DO PROJETO DE LEI N. 6.928/2002: à CCJC (mérito e art. 54 do RICD). Proposição sujeita à apreciação do Plenário. . Regime de Tramitação: Urgência (art. 155 do RICD)].",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1768074,56230
 56230,camara,2019-06-24T14:34:00Z,181,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,56230
+56230,camara,2019-07-17T16:36:00Z,182,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 3850/2019.,CCP,180,NA,NA,56230
+56230,camara,2019-07-18T16:14:00Z,183,"Recebimento pela CCJC, com as proposições PL-689/2003, PL-758/2003, PL-4718/2004, PL-7004/2006, PL-1846/2007, PL-3310/2012, PL-3453/2012, PL-6056/2013, PL-2115/2015, PL-7574/2017, PL-8648/2017, PL-11119/2018, PL-67/2019, PL-2262/2019, PL-2660/2019 apensadas.",CCJC,500,Aguardando Designação de Relator,NA,56230

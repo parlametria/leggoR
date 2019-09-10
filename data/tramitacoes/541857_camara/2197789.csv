@@ -13,4 +13,4 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 2197789,camara,2019-05-09T14:24:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 141/2019.,SECAP(SGM),180,NA,NA,2197789
 2197789,camara,2019-05-09T14:42:00Z,13,Recebimento pela CCP.,CCP,500,NA,NA,2197789
 2197789,camara,2019-05-09T14:44:00Z,14,Apensação desta proposição ao PL 1920/2015.,CCP,106,NA,NA,2197789
-2197789,camara,2019-05-10T00:00:00Z,15,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 11/05/2019.,CCP,604,NA,NA,2197789
+2197789,camara,2019-05-10T00:00:00Z,15,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 11/05/19 PÁG 81.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1784966,2197789

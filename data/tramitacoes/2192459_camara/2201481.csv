@@ -1,4 +1,6 @@
 prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
-2201481,camara,2019-05-09T14:20:00Z,1,"Apresentação do Requerimento n. 154/2019, pela Deputada Perpétua Almeida (PCdoB-AC), que: ""Solicita informações ao Excelentíssimo Ministro da Economia, Sr. Paulo Guedes, sobre as despesas e as receitas da seguridade social nos últimos 10 anos de acordo com a previsão da Constituição Federal. "".",PEC00619,100,Aguardando Providências Internas,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1744501,2201481
-2201481,camara,2019-05-14T14:30:00Z,2,Aprovado,PEC00619,241,Aguardando Providências Internas,NA,2201481
-2201481,camara,2019-05-16T00:00:00Z,3,Apresentado o Requerimento de Informação nº 590/2019 à Mesa da Câmara dos Deputados.,PEC00619,1005,Aguardando Providências Internas,NA,2201481
+2201481,camara,2019-05-09T14:20:00Z,1,"Apresentação do Requerimento n. 154/2019, pela Deputada Perpétua Almeida (PCdoB-AC), que: ""Solicita informações ao Excelentíssimo Ministro da Economia, Sr. Paulo Guedes, sobre as despesas e as receitas da seguridade social nos últimos 10 anos de acordo com a previsão da Constituição Federal. "".",PEC00619,100,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1744501,2201481
+2201481,camara,2019-05-14T14:30:00Z,2,Aprovado,PEC00619,241,Arquivada,NA,2201481
+2201481,camara,2019-05-16T00:00:00Z,3,Apresentado o Requerimento de Informação nº 590/2019 à Mesa da Câmara dos Deputados.,PEC00619,1005,Arquivada,NA,2201481
+2201481,camara,2019-07-02T00:00:00Z,4,"Recebimento de resposta conforme Ofício nº 319/2019/GME-ME, de 01 de julho de 2019, do Ministério da Economia.",PEC00619,1005,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1782453,2201481
+2201481,camara,2019-07-02T00:00:00Z,5,Arquivada,PEC00619,502,Arquivada,NA,2201481

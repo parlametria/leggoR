@@ -12,4 +12,4 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 2200103,camara,2019-05-24T16:13:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 175/2019.,SECAP(SGM),180,NA,NA,2200103
 2200103,camara,2019-05-24T16:32:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2200103
 2200103,camara,2019-05-24T17:33:00Z,13,Apensação desta proposição ao PL 6042/2016.,CCP,106,NA,NA,2200103
-2200103,camara,2019-05-28T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 29/05/2019.,CCP,604,NA,NA,2200103
+2200103,camara,2019-05-28T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 29/05/19 PÁG 544.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1793155,2200103

@@ -1,0 +1,6 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2213771,camara,2019-07-12T19:36:00Z,1,"Apresentação do Requerimento n. 200/2019, pelo Deputado Elmar Nascimento (DEM-BA), que: ""Requer, nos termos do Parágrafo único do Art. 150 RICD, a quebra do interstício de 5 sessões, previsto no Art. 202, parágrafo 6º, para inclusão na Ordem do Dia da PEC 6/2019, que 'modifica o Sistema de Previdência Social, estabelece regras de transição e disposições transitórias, e dá outras providências'"".",PLEN,100,NA,NA,2213771
+2213771,camara,2019-07-12T19:36:00Z,2,Realizar o Encaminhamento para SGMGAB,SEPRO,910,NA,NA,2213771
+2213771,camara,2019-08-06T15:54:00Z,3,"Votação do Requerimento que solicita a quebra de interstício de 5 sessões, para votação do segundo turno da PEC nº 6, de 2019.",PLEN,1234,NA,NA,2213771
+2213771,camara,2019-08-06T15:54:00Z,4,Encaminharam a Votação: Dep. Delegado Marcelo Freitas (PSL-MG) e Dep. Henrique Fontana (PT-RS).,PLEN,219,NA,NA,2213771
+2213771,camara,2019-08-06T15:54:00Z,5,"Aprovado o Requerimento que solicita a quebra de interstício de 5 sessões, para votação do segundo turno da PEC nº 6, de 2019.",PLEN,1235,NA,NA,2213771

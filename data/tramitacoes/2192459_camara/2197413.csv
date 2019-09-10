@@ -15,4 +15,4 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 2197413,camara,2019-04-15T16:11:00Z,14,Recebimento pela CCP.,CCP,500,NA,NA,2197413
 2197413,camara,2019-04-15T16:19:00Z,15,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 1580/2019.,CCP,180,NA,NA,2197413
 2197413,camara,2019-04-15T16:29:00Z,16,Recebimento pela CCJC.,CCJC,500,Aguardando Designação de Relator,NA,2197413
-2197413,camara,2019-04-16T00:00:00Z,17,Encaminhada à publicação. Publicação Inicial no DCD de 17/04/2019.,CCP,604,NA,NA,2197413
+2197413,camara,2019-04-16T00:00:00Z,17,Encaminhada à publicação. Publicação Inicial no DCD de 17/04/19 PÁG 403.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1781268,2197413

@@ -72,3 +72,6 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 1738598,camara,2018-10-31T10:00:00Z,71,"Retirado de pauta, de ofício.",CMADS,250,NA,NA,1738598
 1738598,camara,2018-11-07T00:00:00Z,72,"Devolvido ao Relator, Dep. Ricardo Izar (PP-SP)",CMADS,170,NA,NA,1738598
 1738598,camara,2019-01-31T00:00:00Z,73,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,Arquivada,NA,1738598
+1738598,camara,2019-08-26T00:00:00Z,74,Devolução à CCP,CMADS,1010,NA,NA,1738598
+1738598,camara,2019-08-27T15:08:00Z,75,Encaminhado à(ao) CCP através da guia de Remessa (GR/CMADS) nº 28/2019.,CMADS,180,NA,NA,1738598
+1738598,camara,2019-08-27T15:22:00Z,76,Recebimento pela CCP.,CCP,500,NA,NA,1738598

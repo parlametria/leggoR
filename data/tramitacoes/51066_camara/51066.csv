@@ -21,10 +21,10 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 51066,camara,2004-05-05T10:00:00Z,20,Aprovado por Unanimidade o Parecer,CFT,240,NA,NA,51066
 51066,camara,2004-05-05T16:26:00Z,21,Encaminhado à CCJC.,CFT,180,NA,NA,51066
 51066,camara,2004-05-05T16:26:00Z,22,Encaminhamento de parecer à CCP para publicação.,CFT,604,NA,NA,51066
-51066,camara,2004-05-05T16:44:00Z,23,"Recebimento pela CCJC, com a proposição PLP-95/2003 apensada.",CCJC,500,Aguardando Parecer,NA,51066
+51066,camara,2004-05-05T16:44:00Z,23,"Recebimento pela CCJC, com a proposição PLP-95/2003 apensada.",CCJC,500,Pronta para Pauta,NA,51066
 51066,camara,2004-05-05T16:49:00Z,24,Proposição recebida para publicação.,CCP,604,NA,NA,51066
-51066,camara,2004-06-17T00:00:00Z,25,"Designado Relator, Dep. Sigmaringa Seixas (PT-DF)",CCJC,320,Aguardando Parecer,NA,51066
-51066,camara,2006-12-29T12:35:00Z,26,Devolvida sem Manifestação.,CCJC,507,Aguardando Parecer,NA,51066
+51066,camara,2004-06-17T00:00:00Z,25,"Designado Relator, Dep. Sigmaringa Seixas (PT-DF)",CCJC,320,Pronta para Pauta,NA,51066
+51066,camara,2006-12-29T12:35:00Z,26,Devolvida sem Manifestação.,CCJC,507,Pronta para Pauta,NA,51066
 51066,camara,2007-01-31T00:00:00Z,27,Arquivado nos termos do Artigo 105 do Regimento Interno.DCD de 01 02 07 PÁG 354 COL 01. Suplemento A ao Nº 21.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=482343,51066
 51066,camara,2007-02-06T17:07:00Z,28,"Apresentação do REQUERIMENTO N.º 47, DE 2007, pelo Deputado(a) Carlos Abicalil, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=433996,51066
 51066,camara,2007-03-05T00:00:00Z,29,"Apresentação do REQUERIMENTO N.º 424, DE 2007, pelo Deputado(a) Luiz Sérgio, que solicita o desarquivamento de proposição.",MESA,194,NA,NA,51066
@@ -33,52 +33,52 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 51066,camara,2007-03-12T12:27:00Z,32,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,51066
 51066,camara,2007-04-26T00:00:00Z,33,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-424/2007. DCD 27 04 07 PAG 19454 COL 01.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=449722,51066
 51066,camara,2007-05-31T09:05:00Z,34,Apense-se a este o PLP-63/2007.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=463737,51066
-51066,camara,2007-08-07T14:16:00Z,35,Apensação do PLP 63/2007 a esta proposição.,CCJC,504,Aguardando Parecer,NA,51066
+51066,camara,2007-08-07T14:16:00Z,35,Apensação do PLP 63/2007 a esta proposição.,CCJC,504,Pronta para Pauta,NA,51066
 51066,camara,2007-10-29T11:12:00Z,36,Apense-se a este o PLP-121/2007.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=517448,51066
-51066,camara,2007-10-31T18:23:00Z,37,Apensação do PLP 121/2007 a esta proposição.,CCJC,504,Aguardando Parecer,NA,51066
-51066,camara,2010-03-04T00:00:00Z,38,"Designado Relator, Dep. Carlos Abicalil (PT-MT)",CCJC,320,Aguardando Parecer,NA,51066
-51066,camara,2010-05-05T17:36:00Z,39,Devolvida sem Manifestação.,CCJC,507,Aguardando Parecer,NA,51066
+51066,camara,2007-10-31T18:23:00Z,37,Apensação do PLP 121/2007 a esta proposição.,CCJC,504,Pronta para Pauta,NA,51066
+51066,camara,2010-03-04T00:00:00Z,38,"Designado Relator, Dep. Carlos Abicalil (PT-MT)",CCJC,320,Pronta para Pauta,NA,51066
+51066,camara,2010-05-05T17:36:00Z,39,Devolvida sem Manifestação.,CCJC,507,Pronta para Pauta,NA,51066
 51066,camara,2011-01-31T00:00:00Z,40,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados. Publicação no DCD do dia 01/02/2011 - Suplemento ao nº 14.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=850547,51066
 51066,camara,2011-02-17T15:00:00Z,41,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-283/2011.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=840745,51066
 51066,camara,2011-02-17T15:00:00Z,42,Reentrada na comissão por motivo de desarquivamento,SECAP(SGM),630,NA,NA,51066
 51066,camara,2011-02-17T15:00:00Z,43,Reentrada na comissão por motivo de desarquivamento,SECAP(SGM),630,NA,NA,51066
 51066,camara,2011-06-15T00:00:00Z,44,Apense-se a este(a) o(a) PLP-63/2011.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=888292,51066
-51066,camara,2011-06-17T09:39:00Z,45,Apensação do PLP 63/2011 a esta proposição.,CCJC,504,Aguardando Parecer,NA,51066
+51066,camara,2011-06-17T09:39:00Z,45,Apensação do PLP 63/2011 a esta proposição.,CCJC,504,Pronta para Pauta,NA,51066
 51066,camara,2011-08-10T00:00:00Z,46,Apense-se a este(a) o(a) PLP-75/2011.DCD do dia 11/08/11 PÁG 40620 COL 02.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=905601,51066
-51066,camara,2011-08-15T10:04:00Z,47,Apensação do PLP 75/2011 a esta proposição.,CCJC,504,Aguardando Parecer,NA,51066
+51066,camara,2011-08-15T10:04:00Z,47,Apensação do PLP 75/2011 a esta proposição.,CCJC,504,Pronta para Pauta,NA,51066
 51066,camara,2011-11-16T00:00:00Z,48,Apense-se a este(a) o(a) PLP-98/2011.DCD de 17/11/11 PÁG 61898 COL 02.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=934994,51066
-51066,camara,2011-11-22T16:48:00Z,49,Apensação do PLP 98/2011 a esta proposição.,CCJC,504,Aguardando Parecer,NA,51066
+51066,camara,2011-11-22T16:48:00Z,49,Apensação do PLP 98/2011 a esta proposição.,CCJC,504,Pronta para Pauta,NA,51066
 51066,camara,2012-03-15T15:36:00Z,50,Apense-se a este(a) o(a) PLP-145/2012.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=970586,51066
-51066,camara,2012-03-20T16:28:00Z,51,Apensação do PLP 145/2012 a esta proposição.,CCJC,504,Aguardando Parecer,NA,51066
+51066,camara,2012-03-20T16:28:00Z,51,Apensação do PLP 145/2012 a esta proposição.,CCJC,504,Pronta para Pauta,NA,51066
 51066,camara,2012-04-02T10:21:00Z,52,Apense-se a este(a) o(a) PLP-150/2012.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=975451,51066
-51066,camara,2012-04-17T15:20:00Z,53,Apensação do PLP 150/2012 a esta proposição.,CCJC,504,Aguardando Parecer,NA,51066
+51066,camara,2012-04-17T15:20:00Z,53,Apensação do PLP 150/2012 a esta proposição.,CCJC,504,Pronta para Pauta,NA,51066
 51066,camara,2013-07-16T16:06:00Z,54,Apense-se a este(a) o(a) PLP-296/2013.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1109221,51066
-51066,camara,2013-08-06T16:49:00Z,55,Apensação do PLP 296/2013 a esta proposição.,CCJC,504,Aguardando Parecer,NA,51066
-51066,camara,2013-11-12T00:00:00Z,56,"Designado Relator, Dep. Paulo Magalhães (PSD-BA)",CCJC,320,Aguardando Parecer,NA,51066
+51066,camara,2013-08-06T16:49:00Z,55,Apensação do PLP 296/2013 a esta proposição.,CCJC,504,Pronta para Pauta,NA,51066
+51066,camara,2013-11-12T00:00:00Z,56,"Designado Relator, Dep. Paulo Magalhães (PSD-BA)",CCJC,320,Pronta para Pauta,NA,51066
 51066,camara,2013-12-06T10:33:00Z,57,Apense-se a este(a) o(a) PLP-360/2013.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1204290,51066
 51066,camara,2013-12-06T10:40:00Z,58,Apense-se a este(a) o(a) PLP-360/2013.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1204290,51066
-51066,camara,2013-12-11T17:59:00Z,59,Apensação do PLP 360/2013 a esta proposição.,CCJC,504,Aguardando Parecer,NA,51066
+51066,camara,2013-12-11T17:59:00Z,59,Apensação do PLP 360/2013 a esta proposição.,CCJC,504,Pronta para Pauta,NA,51066
 51066,camara,2014-05-26T15:20:00Z,60,Apense-se a este(a) o(a) PLP-398/2014.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1255939,51066
-51066,camara,2014-05-29T00:00:00Z,61,Apensação do PLP 398/2014 a esta proposição.,CCJC,504,Aguardando Parecer,NA,51066
+51066,camara,2014-05-29T00:00:00Z,61,Apensação do PLP 398/2014 a esta proposição.,CCJC,504,Pronta para Pauta,NA,51066
 51066,camara,2014-10-16T00:00:00Z,62,"Encaminhada à publicação. Parecer da Comissão de Finanças e Tributação Publicado no DCD de 17/10/2014, PÁG 735 COL 01, Letra A.",CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1293646,51066
 51066,camara,2015-01-31T00:00:00Z,63,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,51066
 51066,camara,2015-02-04T09:26:00Z,64,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-11/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1297397,51066
 51066,camara,2015-02-04T09:26:00Z,65,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,51066
 51066,camara,2015-02-04T09:26:00Z,66,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,51066
 51066,camara,2015-03-04T09:31:00Z,67,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-726/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1305001,51066
-51066,camara,2015-10-14T10:41:00Z,68,"Apresentação do Parecer do Relator n. 1 CCJC, pelo Deputado Paulo Magalhães (PSD-BA).",CCJC,501,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1399333,51066
-51066,camara,2015-10-14T10:41:00Z,69,"Parecer do Relator, Dep. Paulo Magalhães (PSD-BA), pela constitucionalidade, juridicidade e técnica legislativa deste, do PLP 95/2003, do PLP 63/2007, do PLP 121/2007, do PLP 63/2011, do PLP 75/2011, do PLP 98/2011, do PLP 145/2012, do PLP 150/2012, do PLP 296/2013, do PLP 360/2013, do PLP 398/2014, do PLP 388/2008, do PLP 136/2012, do PLP 423/2014 e do PLP 429/2014, apensados.",CCJC,322,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1399333,51066
+51066,camara,2015-10-14T10:41:00Z,68,"Apresentação do Parecer do Relator n. 1 CCJC, pelo Deputado Paulo Magalhães (PSD-BA).",CCJC,501,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1399333,51066
+51066,camara,2015-10-14T10:41:00Z,69,"Parecer do Relator, Dep. Paulo Magalhães (PSD-BA), pela constitucionalidade, juridicidade e técnica legislativa deste, do PLP 95/2003, do PLP 63/2007, do PLP 121/2007, do PLP 63/2011, do PLP 75/2011, do PLP 98/2011, do PLP 145/2012, do PLP 150/2012, do PLP 296/2013, do PLP 360/2013, do PLP 398/2014, do PLP 388/2008, do PLP 136/2012, do PLP 423/2014 e do PLP 429/2014, apensados.",CCJC,322,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1399333,51066
 51066,camara,2017-07-14T14:35:00Z,70,Apense-se a este(a) o(a) PLP-396/2017.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1578679,51066
-51066,camara,2017-07-31T00:00:00Z,72,"Devolvido ao Relator, Dep. Paulo Magalhães (PSD-BA), para reexame em razão da apensação do PLP nº 396/2017.",CCJC,170,Aguardando Parecer,NA,51066
-51066,camara,2017-07-31T11:40:00Z,71,Apensação do PLP 396/2017 a esta proposição.,CCJC,504,Aguardando Parecer,NA,51066
-51066,camara,2017-08-16T14:37:00Z,73,"Apresentação do Parecer do Relator n. 2 CCJC, pelo Deputado Paulo Magalhães (PSD-BA).",CCJC,501,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1587147,51066
-51066,camara,2017-08-16T14:37:00Z,74,"Parecer do Relator, Dep. Paulo Magalhães (PSD-BA), pela constitucionalidade, juridicidade e técnica legislativa deste e dos Projetos de Lei Complementar nºs 95/2003, 63/2007,  121/2007, 388/2008, 63/2011, 75/2011, 98/2011, 136/2012, 145/2012, 150/2012, 296/2013, 360/2013, 398/2014, 423/2014, 429/2014 e 396/2017, apensados.",CCJC,322,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1587147,51066
-51066,camara,2018-04-05T00:00:00Z,75,"Devolvido ao Relator, Dep. Paulo Magalhães (PSD-BA), para reexame em razão da apensação do PLP 458/2017.",CCJC,170,Aguardando Parecer,NA,51066
+51066,camara,2017-07-31T00:00:00Z,72,"Devolvido ao Relator, Dep. Paulo Magalhães (PSD-BA), para reexame em razão da apensação do PLP nº 396/2017.",CCJC,170,Pronta para Pauta,NA,51066
+51066,camara,2017-07-31T11:40:00Z,71,Apensação do PLP 396/2017 a esta proposição.,CCJC,504,Pronta para Pauta,NA,51066
+51066,camara,2017-08-16T14:37:00Z,73,"Apresentação do Parecer do Relator n. 2 CCJC, pelo Deputado Paulo Magalhães (PSD-BA).",CCJC,501,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1587147,51066
+51066,camara,2017-08-16T14:37:00Z,74,"Parecer do Relator, Dep. Paulo Magalhães (PSD-BA), pela constitucionalidade, juridicidade e técnica legislativa deste e dos Projetos de Lei Complementar nºs 95/2003, 63/2007,  121/2007, 388/2008, 63/2011, 75/2011, 98/2011, 136/2012, 145/2012, 150/2012, 296/2013, 360/2013, 398/2014, 423/2014, 429/2014 e 396/2017, apensados.",CCJC,322,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1587147,51066
+51066,camara,2018-04-05T00:00:00Z,75,"Devolvido ao Relator, Dep. Paulo Magalhães (PSD-BA), para reexame em razão da apensação do PLP 458/2017.",CCJC,170,Pronta para Pauta,NA,51066
 51066,camara,2018-06-07T11:41:00Z,76,Apense-se a este(a) o(a) PLP-501/2018.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1657163,51066
-51066,camara,2018-06-11T12:13:00Z,77,Apensação do PLP 501/2018 a esta proposição.,CCJC,504,Aguardando Parecer,NA,51066
+51066,camara,2018-06-11T12:13:00Z,77,Apensação do PLP 501/2018 a esta proposição.,CCJC,504,Pronta para Pauta,NA,51066
 51066,camara,2018-07-13T11:35:00Z,78,Apense-se a este(a) o(a) PLP-530/2018.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1676722,51066
-51066,camara,2018-07-30T15:55:00Z,79,Apensação do PLP 530/2018 a esta proposição.,CCJC,504,Aguardando Parecer,NA,51066
-51066,camara,2018-12-21T15:17:00Z,80,Devolvida pelo Relator sem Manifestação.,CCJC,507,Aguardando Parecer,NA,51066
+51066,camara,2018-07-30T15:55:00Z,79,Apensação do PLP 530/2018 a esta proposição.,CCJC,504,Pronta para Pauta,NA,51066
+51066,camara,2018-12-21T15:17:00Z,80,Devolvida pelo Relator sem Manifestação.,CCJC,507,Pronta para Pauta,NA,51066
 51066,camara,2019-01-31T00:00:00Z,81,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,51066
 51066,camara,2019-02-19T19:46:00Z,82,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-40/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711769,51066
 51066,camara,2019-02-19T19:46:00Z,83,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,51066
@@ -89,4 +89,8 @@ prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descri
 51066,camara,2019-02-20T21:05:00Z,88,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-306/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712448,51066
 51066,camara,2019-02-21T17:50:00Z,89,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-187/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712941,51066
 51066,camara,2019-02-26T20:18:00Z,90,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-588/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1715022,51066
-51066,camara,2019-05-20T00:00:00Z,91,"Designado Relator, Dep. Enrico Misasi (PV-SP)",CCJC,320,Aguardando Parecer,NA,51066
+51066,camara,2019-05-20T00:00:00Z,91,"Designado Relator, Dep. Enrico Misasi (PV-SP)",CCJC,320,Pronta para Pauta,NA,51066
+51066,camara,2019-07-18T10:13:00Z,92,"Apresentação do Parecer do Relator n. 3 CCJC, pelo Deputado Enrico Misasi (PV-SP).",CCJC,501,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1781041,51066
+51066,camara,2019-07-18T10:13:00Z,93,"Parecer do Relator, Dep. Enrico Misasi (PV-SP), pela constitucionalidade, juridicidade e técnica legislativa dos Projetos de Lei Complementar nºs 63/2007, 98/2011, 150/2012, 501/2018, 458/2017 e 8/2019, apensados; pela inconstitucionalidade do Projeto de Lei nº 307/2002 e dos Projetos de Lei Complementar nºs 95/2003, 63/2011, 121/2007, 75/2011, 145/2012,  296/2013, 360/2013, 398/2014, 396/2017, 530/2018, 388/2008, 136/2012, 423/2014 e 429/2014, apensados.",CCJC,322,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1781041,51066
+51066,camara,2019-08-13T14:00:00Z,94,"Retirada de pauta, de ofício, por acordo.",CCJC,221,Pronta para Pauta,NA,51066
+51066,camara,2019-08-13T14:00:00Z,95,"Prejudicados os Requerimentos de Retirada de Pauta, de autoria do Deputado Gilson Marques e dos Deputados José Guimarães e Patrus Ananias.",CCJC,1005,Pronta para Pauta,NA,51066
