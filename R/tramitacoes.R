@@ -5,9 +5,9 @@
 #' @return Dataframe normalizado com as informações sobre a movimentação de uma proposição no Senado
 #' @examples
 #' fetch_tramitacao_senado(91341)
-fetch_tramitacao_senado <- function(prop_id, isMPV = FALSE) {
+fetch_tramitacao_senado <- function(prop_id, data_ref = NA, isMPV = FALSE) {
     tramitacao <- 
-      rcongresso::fetch_tramitacao_senado(prop_id) %>%
+      rcongresso::fetch_tramitacao_senado(prop_id, data_ref) %>%
       dplyr::mutate(data_hora = lubridate::ymd_hm(paste(data_hora, "00:00")),
                     prop_id = as.integer(codigo_materia),
                     sequencia = as.integer(sequencia),
