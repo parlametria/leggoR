@@ -370,6 +370,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 16526,camara,204365,deputado,Gilson Marques,NOVO,SC,Emenda,PLEN,1,TRUE
 16526,camara,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,PLEN,1,TRUE
 16526,camara,204389,deputado,Elias Vaz,PSB,GO,Emenda,PLEN,1,TRUE
+16526,camara,204418,deputado,Luizão Goulart,PRB,PR,Requerimento,PLEN,1,TRUE
 16526,camara,204427,deputado,Fernando Rodolfo,PL,PE,Proposição Apensada,CCP,1,FALSE
 16526,camara,204429,deputado,João H. Campos,PSB,PE,Emenda,PLEN,1,TRUE
 16526,camara,204452,deputado,Márcio Labre,PSL,,Proposição Apensada,CCP,1,FALSE
@@ -469,8 +470,10 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 46249,camara,178832,deputado,Leandre,PV,PR,Requerimento,PLEN,1,TRUE
 46249,camara,178857,deputado,Jorge Solla,PT,BA,Proposição Apensada,PL629902,1,TRUE
 46249,camara,178857,deputado,Jorge Solla,PT,BA,Requerimento,CSSF,1,TRUE
+46249,camara,178858,deputado,Mário Negromonte Jr.,PP,BA,Proposição Apensada,CCP,1,FALSE
 46249,camara,178890,deputado,Adelmo Carneiro Leão,PT,MG,Parecer,CSSF,1,TRUE
 46249,camara,178890,deputado,Adelmo Carneiro Leão,PT,MG,Voto em Separado,CSSF,1,TRUE
+46249,camara,178930,deputado,Evandro Roman,PSD,PR,Proposição Apensada,CCP,1,FALSE
 46249,camara,178930,deputado,Evandro Roman,PSD,PR,Requerimento,PL629902,1,TRUE
 46249,camara,178933,deputado,Sergio Souza,MDB,PR,Requerimento,PL629902,1,TRUE
 46249,camara,178963,deputado,Covatti Filho,PP,,Proposição Apensada,MESA,1,FALSE
@@ -802,6 +805,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 541857,camara,73943,deputado,Perpétua Almeida,PCdoB,AC,Proposição Apensada,MESA,1,FALSE
 541857,camara,74040,deputado,Benjamin Maranhão,MDB,PB,Proposição Apensada,MESA,1,FALSE
 541857,camara,74041,deputado,Luiz Couto,PT,PB,Voto em Separado,PL372212,1,TRUE
+541857,camara,74044,deputado,Wilson Santiago,PTB,PB,Proposição Apensada,CCP,1,FALSE
 541857,camara,74048,deputado,Raul Jungmann,PPS,PE,Proposição Apensada,MESA,1,FALSE
 541857,camara,74156,deputado,Leonardo Monteiro,PT,MG,Requerimento,PLEN,1,TRUE
 541857,camara,74161,deputado,Reginaldo Lopes,PT,MG,Proposição Apensada,MESA,1,FALSE
@@ -897,10 +901,12 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 541857,camara,185500,deputado,Deoclides Macedo,PDT,MA,Proposição Apensada,MESA,1,FALSE
 541857,camara,194260,deputado,Nivaldo Albuquerque,PTB,AL,Proposição Apensada,CCP,1,FALSE
 541857,camara,195826,deputado,Marcelo Delaroli,PR,RJ,Proposição Apensada,MESA,1,FALSE
+541857,camara,204355,deputado,Da Vitoria,CIDADANIA,ES,Proposição Apensada,CCP,1,FALSE
 541857,camara,204356,deputado,Amaro Neto,PRB,ES,Proposição Apensada,CCP,1,FALSE
 541857,camara,204359,deputado,Léo Moraes,PODE,RO,Requerimento,PLEN,1,TRUE
 541857,camara,204368,deputado,Fabio Schiochet,PSL,SC,Proposição Apensada,MESA,1,FALSE
 541857,camara,204388,deputado,Bibo Nunes,PSL,RS,Proposição Apensada,CCP,1,FALSE
+541857,camara,204388,deputado,Bibo Nunes,PSL,RS,Requerimento,PLEN,1,TRUE
 541857,camara,204391,deputado,José Nelto,PODE,GO,Proposição Apensada,CCP,1,FALSE
 541857,camara,204416,deputado,Sanderson,PSL,RS,Proposição Apensada,CCP,1,FALSE
 541857,camara,204416,deputado,Sanderson,PSL,RS,Proposição Apensada,MESA,1,FALSE
@@ -909,6 +915,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 541857,camara,204421,deputado,Edna Henrique,PSDB,PB,Proposição Apensada,CCP,1,FALSE
 541857,camara,204441,deputado,Otoni De Paula,PSC,RJ,Proposição Apensada,CCP,1,FALSE
 541857,camara,204472,deputado,José Medeiros,PODE,MT,Proposição Apensada,CCP,1,FALSE
+541857,camara,204511,deputado,David Soares,DEM,SP,Proposição Apensada,CCP,1,FALSE
 541857,camara,204512,deputado,Delegado Marcelo Freitas,PSL,MG,Proposição Apensada,CCP,1,FALSE
 541857,camara,204529,deputado,Policial Katia Sastre,PL,SP,Proposição Apensada,CCP,1,FALSE
 541857,camara,204531,deputado,Guilherme Derrite,PP,,Proposição Apensada,CCP,1,FALSE
@@ -923,6 +930,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 546383,camara,160628,deputado,Luciana Santos,PCdoB,,Proposição Apensada,MESA,1,FALSE
 546383,camara,160672,deputado,Jean Wyllys,PSOL,,Proposição Apensada,MESA,1,FALSE
 546383,camara,160672,deputado,Jean Wyllys,PSOL,,Requerimento,PLEN,1,TRUE
+546383,camara,204425,deputado,Silvio Costa Filho,PRB,PE,Requerimento,PLEN,1,TRUE
 604557,camara,160511,deputado,Alessandro Molon,PSB,RJ,Parecer,CMADS,4,TRUE
 604557,camara,160511,deputado,Alessandro Molon,PSB,RJ,Parecer,CCJC,2,TRUE
 604557,camara,160511,deputado,Alessandro Molon,PSB,RJ,Requerimento,PLEN,2,TRUE
@@ -982,6 +990,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 604888,camara,167722,deputado,Marcos Rogério,DEM,,Voto em Separado,CCJC,1,TRUE
 604888,camara,178881,deputado,Aluisio Mendes,PODE,MA,Emenda,PLEN,1,TRUE
 604888,camara,178883,deputado,Eliziane Gama,PPS,MA,Proposição Apensada,CCP,1,FALSE
+604888,camara,204377,deputado,Paula Belmonte,CIDADANIA,DF,Proposição Apensada,CCP,1,FALSE
 604888,camara,204488,deputado,Célio Studart,PV,CE,Proposição Apensada,CCP,1,FALSE
 604888,camara,204526,deputado,Luiz Philippe de Orleans e Bragança,PSL,SP,Proposição Apensada,MESA,1,FALSE
 604888,camara,204526,deputado,Luiz Philippe De Orleans e Bragança,PSL,SP,Proposição Apensada,MESA,1,FALSE
@@ -1098,7 +1107,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 944279,camara,74210,deputado,Sarney Filho,PV,MA,Proposição Apensada,MESA,1,FALSE
 944279,camara,160511,deputado,Alessandro Molon,PSB,RJ,Requerimento,CMADS,1,TRUE
 944279,camara,178993,deputado,Carlos Henrique Gaguim,DEM,TO,Voto em Separado,CAPADR,1,TRUE
-1198512,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Requerimento,PEC01515,22,TRUE
+1198512,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Requerimento,PEC01515,23,TRUE
 1198512,camara,178998,deputado,Raquel Muniz,PSD,MG,Requerimento,PEC01515,3,TRUE
 1198512,camara,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,PEC01515,3,TRUE
 1198512,camara,160617,deputado,Thiago Peixoto,PSD,GO,Requerimento,PEC01515,2,TRUE
@@ -1600,6 +1609,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 2121442,camara,151208,deputado,Laercio Oliveira,PP,SE,Emenda,MESA,1,FALSE
 2121442,camara,160426,deputado,Rogério Rosso,PSD,DF,Requerimento,PL672616,1,TRUE
 2121442,camara,160508,deputado,Afonso Florence,PT,BA,Emenda,PLEN,1,TRUE
+2121442,camara,160531,deputado,Jhonatan de Jesus,PRB,RR,Requerimento,MESA,1,FALSE
 2121442,camara,160543,deputado,Andre Moura,PSC,,Requerimento,PL672616,1,TRUE
 2121442,camara,160613,deputado,Sibá Machado,PT,AC,Emenda,PLEN,1,TRUE
 2121442,camara,160646,deputado,Fernando Francischini,PSL,,Emenda,PLEN,1,TRUE
@@ -2248,33 +2258,74 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 2193540,camara,178854,deputado,Elmar Nascimento,DEM,BA,Proposição Apensada,MESA,1,FALSE
 2193540,camara,178854,deputado,Elmar Nascimento,DEM,BA,Requerimento,PLEN,1,TRUE
 2193540,camara,204358,deputado,Beto Pereira,PSDB,MS,Emenda,PLEN,1,TRUE
+2196833,camara,76874,deputado,Marcelo Freixo,PSOL,RJ,Requerimento,PEC04519,9,TRUE
+2196833,camara,204407,deputado,Fernanda Melchionna,PSOL,RS,Requerimento,PEC04519,9,TRUE
+2196833,camara,74161,deputado,Reginaldo Lopes,PT,MG,Requerimento,PEC04519,6,TRUE
+2196833,camara,178992,deputado,Vitor Lippi,PSDB,SP,Requerimento,PEC04519,5,TRUE
+2196833,camara,204516,deputado,Alexis Fonteyne,NOVO,SP,Requerimento,PEC04519,5,TRUE
+2196833,camara,74317,deputado,Júlio Cesar,PSD,PI,Emenda,PEC04519,3,TRUE
 2196833,camara,141488,deputado,Paulo Teixeira,PT,SP,Requerimento,PEC04519,3,TRUE
 2196833,camara,178989,deputado,Renata Abreu,PODE,SP,Requerimento,PEC04519,3,TRUE
+2196833,camara,204413,deputado,Alcides Rodrigues,PATRIOTA,GO,Requerimento,PEC04519,3,TRUE
+2196833,camara,204496,deputado,Celso Sabino,PSDB,PA,Emenda,PEC04519,3,TRUE
+2196833,camara,204496,deputado,Celso Sabino,PSDB,PA,Requerimento,PEC04519,3,TRUE
+2196833,camara,204500,deputado,Eduardo Costa,PTB,PA,Emenda,PEC04519,3,TRUE
+2196833,camara,204556,deputado,Marcelo Ramos,PL,AM,Requerimento,PEC04519,3,TRUE
 2196833,camara,204559,deputado,Zé Neto,PT,BA,Requerimento,PEC04519,3,TRUE
+2196833,camara,74317,deputado,Júlio Cesar,PSD,PI,Requerimento,PEC04519,2,TRUE
 2196833,camara,74478,deputado,Luciano Bivar,PSL,PE,Emenda,PEC04519,2,TRUE
 2196833,camara,116379,deputado,Darci de Matos,PSD,SC,Requerimento,PEC04519,2,TRUE
 2196833,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,CCJC,2,TRUE
+2196833,camara,178884,deputado,Hildo Rocha,MDB,MA,Requerimento,PEC04519,2,TRUE
+2196833,camara,178977,deputado,Eduardo Cury,PSDB,SP,Requerimento,PEC04519,2,TRUE
+2196833,camara,204359,deputado,Léo Moraes,PODE,RO,Requerimento,PEC04519,2,TRUE
 2196833,camara,204464,deputado,Talíria Petrone,PSOL,RJ,Requerimento,CCJC,2,TRUE
 2196833,camara,204501,deputado,Alencar Santana Braga,PT,SP,Requerimento,CCJC,2,TRUE
+2196833,camara,204504,deputado,Cezinha de Madureira,PSD,SP,Requerimento,PEC04519,2,TRUE
+2196833,camara,204518,deputado,Dr. Frederico,PATRIOTA,MG,Requerimento,PEC04519,2,TRUE
+2196833,camara,204551,deputado,Bosco Saraiva,SOLIDARIEDADE,AM,Requerimento,PEC04519,2,TRUE
+2196833,camara,204557,deputado,Sidney Leite,PSD,AM,Requerimento,PEC04519,2,TRUE
+2196833,camara,204570,deputado,Pastor Gildenemyr,PMN,MA,Requerimento,PEC04519,2,TRUE
 2196833,camara,73486,deputado,Pompeo De Mattos,PDT,RS,Requerimento,CCJC,1,TRUE
+2196833,camara,74043,deputado,Wellington Roberto,PL,PB,Requerimento,PEC04519,1,TRUE
+2196833,camara,74366,deputado,João Campos,PRB,GO,Emenda,PEC04519,1,TRUE
 2196833,camara,98057,deputado,Lafayette De Andrada,PRB,MG,Requerimento,CCJC,1,TRUE
+2196833,camara,122158,deputado,Pedro Paulo,DEM,RJ,Requerimento,PEC04519,1,TRUE
 2196833,camara,141427,deputado,Fábio Ramalho,MDB,MG,Requerimento,PLEN,1,TRUE
 2196833,camara,141488,deputado,Paulo Teixeira,PT,SP,Requerimento,CCJC,1,TRUE
 2196833,camara,141513,deputado,Bilac Pinto,DEM,MG,Requerimento,CCJC,1,TRUE
+2196833,camara,151208,deputado,Laercio Oliveira,PP,SE,Emenda,PEC04519,1,TRUE
+2196833,camara,160527,deputado,Aguinaldo Ribeiro,PP,PB,Requerimento,PEC04519,1,TRUE
+2196833,camara,160570,deputado,Jerônimo Goergen,PP,RS,Emenda,PEC04519,1,TRUE
 2196833,camara,178829,deputado,Capitão Augusto,PL,SP,Requerimento,PLEN,1,TRUE
 2196833,camara,178835,deputado,Afonso Motta,PDT,RS,Requerimento,PLEN,1,TRUE
-2196833,camara,178884,deputado,Hildo Rocha,MDB,MA,Requerimento,PEC04519,1,TRUE
+2196833,camara,178933,deputado,Sergio Souza,MDB,PR,Emenda,PEC04519,1,TRUE
 2196833,camara,178939,deputado,Clarissa Garotinho,PROS,RJ,Requerimento,CCJC,1,TRUE
 2196833,camara,178975,deputado,Baleia Rossi,MDB,SP,Proposição Apensada,PLEN,1,TRUE
-2196833,camara,178977,deputado,Eduardo Cury,PSDB,SP,Requerimento,PEC04519,1,TRUE
+2196833,camara,178994,deputado,Dulce Miranda,MDB,TO,Requerimento,PEC04519,1,TRUE
+2196833,camara,204355,deputado,Da Vitoria,CIDADANIA,ES,Requerimento,PEC04519,1,TRUE
+2196833,camara,204381,deputado,Luis Miranda,DEM,DF,Emenda,PEC04519,1,TRUE
+2196833,camara,204383,deputado,Professor Israel Batista,PV,DF,Emenda,PEC04519,1,TRUE
+2196833,camara,204389,deputado,Elias Vaz,PSB,GO,Requerimento,PEC04519,1,TRUE
+2196833,camara,204396,deputado,Vermelho,PSD,PR,Requerimento,PEC04519,1,TRUE
 2196833,camara,204403,deputado,Marlon Santos,PDT,RS,Requerimento,PEC04519,1,TRUE
 2196833,camara,204419,deputado,Glaustin Fokus,PSC,GO,Requerimento,MESA,1,FALSE
 2196833,camara,204419,deputado,Glaustin Fokus,PSC,GO,Requerimento,PEC04519,1,TRUE
+2196833,camara,204431,deputado,Marcos Aurélio Sampaio,MDB,PI,Requerimento,PEC04519,1,TRUE
+2196833,camara,204433,deputado,Marcelo Calero,CIDADANIA,RJ,Requerimento,PEC04519,1,TRUE
+2196833,camara,204460,deputado,Carlos Jordy,PSL,RJ,Emenda,PEC04519,1,TRUE
+2196833,camara,204461,deputado,Paulo Ganime,NOVO,RJ,Requerimento,PEC04519,1,TRUE
 2196833,camara,204464,deputado,Talíria Petrone,PSOL,RJ,Voto em Separado,CCJC,1,TRUE
+2196833,camara,204506,deputado,Marcos Pereira,PRB,SP,Parecer,MESA,1,FALSE
+2196833,camara,204526,deputado,Luiz Philippe de Orleans e Bragança,PSL,SP,Requerimento,PEC04519,1,TRUE
+2196833,camara,204537,deputado,Enrico Misasi,PV,SP,Emenda,PEC04519,1,TRUE
 2196833,camara,204541,deputado,Eduardo Bismarck,PDT,CE,Requerimento,CCJC,1,TRUE
 2196833,camara,204552,deputado,Eduardo Braide,PMN,MA,Requerimento,PEC04519,1,TRUE
+2196833,camara,204555,deputado,José Ricardo,PT,AM,Requerimento,PEC04519,1,TRUE
 2196833,camara,204572,deputado,Capitão Alberto Neto,PRB,AM,Emenda,PEC04519,1,TRUE
+2196833,camara,204572,deputado,Capitão Alberto Neto,PRB,AM,Requerimento,PEC04519,1,TRUE
 2196833,camara,204576,deputado,João Roma,PRB,BA,Parecer,CCJC,1,TRUE
+2196833,camara,207309,deputado,Enéias Reis,PSL,MG,Requerimento,PEC04519,1,TRUE
 2199763,camara,74400,deputado,Paulo Pimenta,PT,RS,Emenda,MPV88119,18,TRUE
 2199763,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,MPV88119,18,TRUE
 2199763,camara,178977,deputado,Eduardo Cury,PSDB,SP,Emenda,MPV88119,17,TRUE
@@ -2307,6 +2358,8 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 2199763,camara,73933,deputado,Zequinha Marinho,PSC,,Emenda,MPV88119,2,TRUE
 2199763,camara,73945,deputado,Eduardo Gomes,SD,TO,Emenda,MPV88119,2,TRUE
 2199763,camara,74478,deputado,Luciano Bivar,PSL,PE,Emenda,MPV88119,2,TRUE
+2199763,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,PLEN,2,TRUE
+2199763,camara,160570,deputado,Jerônimo Goergen,PP,RS,Emenda,PLEN,2,TRUE
 2199763,camara,178836,deputado,Alan Rick,DEM,AC,Emenda,MPV88119,2,TRUE
 2199763,camara,178871,deputado,Evair Vieira de Melo,PP,ES,Emenda,MPV88119,2,TRUE
 2199763,camara,178961,deputado,Shéridan,PSDB,RR,Emenda,MPV88119,2,TRUE
@@ -2324,52 +2377,55 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 2199763,camara,108338,deputado,Jaqueline Cassol,PP,RO,Emenda,MPV88119,1,TRUE
 2199763,camara,141391,deputado,Arnaldo Jardim,CIDADANIA,SP,Emenda,MPV88119,1,TRUE
 2199763,camara,141411,deputado,Dagoberto Nogueira,PDT,MS,Emenda,MPV88119,1,TRUE
+2199763,camara,160570,deputado,Jerônimo Goergen,PP,RS,Parecer,PLEN,1,TRUE
 2199763,camara,172711,deputado,Plínio Valério,PSDB,AM,Emenda,MPV88119,1,TRUE
 2199763,camara,178874,deputado,Sergio Vidigal,PDT,ES,Emenda,MPV88119,1,TRUE
 2199763,camara,178909,deputado,Hélio Leite,DEM,PA,Emenda,MPV88119,1,TRUE
 2199763,camara,204410,deputado,Luisa Canziani,PTB,PR,Emenda,MPV88119,1,TRUE
 2199763,camara,204425,deputado,Silvio Costa Filho,PRB,PE,Emenda,MPV88119,1,TRUE
 2199763,camara,204472,deputado,José Medeiros,PODE,MT,Emenda,MPV88119,1,TRUE
+2199763,camara,204477,deputado,Felício Laterça,PSL,RJ,Emenda,PLEN,1,TRUE
 2199763,camara,204500,deputado,Eduardo Costa,PTB,PA,Emenda,MPV88119,1,TRUE
 2199763,camara,204504,deputado,Cezinha de Madureira,PSD,SP,Emenda,MPV88119,1,TRUE
 2199763,camara,204556,deputado,Marcelo Ramos,PL,AM,Emenda,MPV88119,1,TRUE
 91341,senado,551,senador,Arthur Virgílio,PSDB,AM,Parecer,CCJ,2,TRUE
-91341,senado,635,senador,Ricardo Ferraço,MDB,ES,Parecer,CAE,2,TRUE
+91341,senado,635,senador,Ricardo Ferraço,PMDB,ES,Parecer,CAE,2,TRUE
 91341,senado,635,senador,Ricardo Ferraço,PSDB,ES,Parecer,CAE,2,TRUE
 91341,senado,765,senador,Francisco Dornelles,PP,RJ,Parecer,CAE,2,TRUE
 91341,senado,1487,senador,Arthur Virgílio,PSDB,AM,Parecer,CCJ,2,TRUE
-96813,senado,3372,senador,Valdir Raupp,MDB,RO,Parecer,CCT,1,TRUE
+96813,senado,3372,senador,Valdir Raupp,PMDB,RO,Parecer,CCT,1,TRUE
 96813,senado,4560,senador,Sérgio Petecão,PSD,AC,Parecer,CCJ,1,TRUE
 102721,senado,952,senador,Mozarildo Cavalcanti,PTB,RR,Parecer,CDR,2,TRUE
 102721,senado,952,senador,Mozarildo Cavalcanti,PTB,RR,Parecer,CRA,2,TRUE
-102721,senado,3372,senador,Valdir Raupp,MDB,RO,Parecer,CAE,2,TRUE
-102721,senado,4990,senador,Jorge Viana,PT,AC,Requerimento,Plenário,2,TRUE
+102721,senado,3372,senador,Valdir Raupp,PMDB,RO,Parecer,CAE,2,TRUE
+102721,senado,4990,senador,Jorge Viana,PT,AC,Requerimento,,2,FALSE
 102721,senado,5004,senador,Ivo Cassol,PP,RO,Parecer,CCT,2,TRUE
-102721,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Requerimento,Plenário,2,TRUE
-102721,senado,3372,senador,Valdir Raupp,MDB,RO,Parecer,CDR,1,TRUE
-102721,senado,3372,senador,Valdir Raupp,MDB,RO,Parecer,CMA,1,TRUE
-102721,senado,3372,senador,Valdir Raupp,MDB,RO,Parecer,CRA,1,TRUE
-102721,senado,3394,senador,João Capiberibe,PSB,AP,Requerimento,Plenário,1,TRUE
-102721,senado,3398,senador,Cristovam Buarque,CIDADANIA,DF,Emenda,Plenário,1,TRUE
+102721,senado,3372,senador,Valdir Raupp,PMDB,RO,Parecer,CDR,1,TRUE
+102721,senado,3372,senador,Valdir Raupp,PMDB,RO,Parecer,CMA,1,TRUE
+102721,senado,3372,senador,Valdir Raupp,PMDB,RO,Parecer,CRA,1,TRUE
+102721,senado,3394,senador,João Capiberibe,PSB,AP,Requerimento,,1,FALSE
+102721,senado,3398,senador,Cristovam Buarque,PPS,DF,Emenda,Plenário,1,TRUE
 102721,senado,4593,senador,Rodrigo Rollemberg,PSB,DF,Parecer,CAE,1,TRUE
 102721,senado,4981,senador,Acir Gurgacz,PDT,RO,Parecer,CMA,1,TRUE
+102721,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Requerimento,Plenário,1,TRUE
+102721,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Requerimento,,1,FALSE
+103831,senado,453,senador,Pedro Chaves,PSC,MS,Parecer,CAE,4,TRUE
+103831,senado,5116,senador,Pedro Chaves,PSC,MS,Parecer,CAE,4,TRUE
 103831,senado,453,senador,Pedro Chaves,PRB,MS,Parecer,CMA,3,TRUE
-103831,senado,453,senador,Pedro Chaves,PSC,MS,Parecer,CAE,3,TRUE
-103831,senado,5108,senador,Cidinho Santos,PL,MT,Parecer,CCJ,3,TRUE
+103831,senado,5108,senador,Cidinho Santos,PR,MT,Parecer,CCJ,3,TRUE
 103831,senado,5116,senador,Pedro Chaves,PRB,MS,Parecer,CMA,3,TRUE
-103831,senado,5116,senador,Pedro Chaves,PSC,MS,Parecer,CAE,3,TRUE
 103831,senado,453,senador,Pedro Chaves,PRB,MS,Requerimento,CMA,1,TRUE
 103831,senado,4767,senador,Eduardo Lopes,PRB,RJ,Parecer,CCJ,1,TRUE
-103831,senado,5108,senador,Cidinho Santos,PL,MT,Requerimento,Plenário,1,TRUE
+103831,senado,5108,senador,Cidinho Santos,PR,MT,Requerimento,Plenário,1,TRUE
 103831,senado,5116,senador,Pedro Chaves,PRB,MS,Requerimento,CMA,1,TRUE
-106330,senado,635,senador,Ricardo Ferraço,MDB,ES,Parecer,CCJ,4,TRUE
+106330,senado,635,senador,Ricardo Ferraço,PMDB,ES,Parecer,CCJ,4,TRUE
 106330,senado,456,senador,Ronaldo Caiado,DEM,GO,Voto em Separado,CCJ,1,TRUE
 106330,senado,635,senador,Ricardo Ferraço,PSDB,ES,Parecer,CCJ,1,TRUE
 106330,senado,3695,senador,Lindbergh Farias,PT,RJ,Voto em Separado,CCJ,1,TRUE
 111048,senado,5052,senador,Roberto Muniz,PP,BA,Emenda,Comissão Especial,7,TRUE
 111048,senado,3695,senador,Lindbergh Farias,PT,RJ,Emenda,Comissão Especial,6,TRUE
 111048,senado,604,senador,Walter Pinheiro,PT,BA,Parecer,CCJ,3,TRUE
-111048,senado,5527,senador,Simone Tebet,MDB,MS,Parecer,Comissão Especial,3,TRUE
+111048,senado,5527,senador,Simone Tebet,PMDB,MS,Parecer,Comissão Especial,3,TRUE
 111048,senado,604,senador,Walter Pinheiro,,BA,Parecer,Comissão Especial,1,TRUE
 111048,senado,5006,senador,Gleisi Hoffmann,PT,PR,Emenda,Comissão Especial,1,TRUE
 115926,senado,5052,senador,Roberto Muniz,PP,BA,Emenda,Comissão Especial,14,TRUE
@@ -2379,7 +2435,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 115926,senado,5529,senador,Antonio Anastasia,PSDB,MG,Emenda,Plenário,9,TRUE
 115926,senado,5540,senador,Fernando Bezerra Coelho,PSB,PE,Parecer,Comissão Especial,8,TRUE
 115926,senado,3741,senador,Paulo Bauer,PSDB,SC,Emenda,Comissão Especial,7,TRUE
-115926,senado,5100,senador,Hélio José,MDB,DF,Emenda,Plenário,7,TRUE
+115926,senado,5100,senador,Hélio José,PMDB,DF,Emenda,Plenário,7,TRUE
 115926,senado,715,senador,Armando Monteiro,PTB,PE,Emenda,Comissão Especial,4,TRUE
 115926,senado,5006,senador,Gleisi Hoffmann,PT,PR,Emenda,CAE,4,TRUE
 115926,senado,5006,senador,Gleisi Hoffmann,PT,PR,Emenda,CCJ,4,TRUE
@@ -2390,10 +2446,10 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 115926,senado,453,senador,Pedro Chaves,PSC,MS,Emenda,Comissão Especial,1,TRUE
 115926,senado,765,senador,Francisco Dornelles,PP,RJ,Parecer,CI,1,TRUE
 115926,senado,878,senador,José Aníbal,PSDB,SP,Emenda,Plenário,1,TRUE
-115926,senado,1249,senador,Kátia Abreu,MDB,TO,Emenda,Plenário,1,TRUE
-115926,senado,2331,senador,Rose de Freitas,MDB,ES,Emenda,Comissão Especial,1,TRUE
+115926,senado,1249,senador,Kátia Abreu,PMDB,TO,Emenda,Plenário,1,TRUE
+115926,senado,2331,senador,Rose de Freitas,PMDB,ES,Emenda,Comissão Especial,1,TRUE
 115926,senado,5116,senador,Pedro Chaves,PSC,MS,Emenda,Comissão Especial,1,TRUE
-115926,senado,5527,senador,Simone Tebet,MDB,MS,Emenda,Comissão Especial,1,TRUE
+115926,senado,5527,senador,Simone Tebet,PMDB,MS,Emenda,Comissão Especial,1,TRUE
 115926,senado,5533,senador,Lasier Martins,PDT,RS,Emenda,CI,1,TRUE
 115926,senado,5540,senador,Fernando Bezerra Coelho,PSB,PE,Emenda,Plenário,1,TRUE
 120152,senado,677,senador,Roberto Rocha,PSDB,MA,Requerimento,Plenário,1,TRUE
@@ -2419,53 +2475,53 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 120152,senado,5905,senador,Rodrigo Cunha,PSDB,AL,Requerimento,Plenário,1,TRUE
 120152,senado,5926,senador,Lucas Barreto,PSD,AP,Requerimento,Plenário,1,TRUE
 120152,senado,5929,senador,Juíza Selma,PSL,MT,Parecer,CCJ,1,TRUE
-120152,senado,5929,senador,Juíza Selma,PSL,MT,Requerimento,Plenário,1,TRUE
-120152,senado,5942,senador,Marcos do Val,CIDADANIA,ES,Requerimento,Plenário,1,TRUE
+120152,senado,5942,senador,Marcos do Val,PPS,ES,Requerimento,Plenário,1,TRUE
 120152,senado,5953,senador,Fabiano Contarato,REDE,ES,Emenda,CCJ,1,TRUE
 120152,senado,5959,senador,Styvenson Valentim,PODE,RN,Requerimento,Plenário,1,TRUE
 120152,senado,5967,senador,Angelo Coronel,PSD,BA,Requerimento,Plenário,1,TRUE
 120152,senado,5976,senador,Eduardo Girão,PODE,CE,Requerimento,Plenário,1,TRUE
 120152,senado,5982,senador,Alessandro Vieira,CIDADANIA,SE,Emenda,CCJ,1,TRUE
-120152,senado,5982,senador,Alessandro Vieira,CIDADANIA,SE,Requerimento,Plenário,1,TRUE
-120768,senado,5000,senador,Marta Suplicy,MDB,SP,Parecer,CDH,5,TRUE
+120152,senado,5982,senador,Alessandro Vieira,PPS,SE,Requerimento,Plenário,1,TRUE
 120768,senado,4988,senador,Ana Amélia,PP,RS,Parecer,CE,3,TRUE
+120768,senado,5000,senador,Marta Suplicy,MDB,SP,Parecer,CDH,3,TRUE
+120768,senado,5000,senador,Marta Suplicy,PMDB,SP,Parecer,CDH,2,TRUE
 120768,senado,374,senador,Paulo Rocha,PT,PA,Requerimento,Plenário,1,TRUE
 120768,senado,5000,senador,Marta Suplicy,MDB,SP,Requerimento,CDH,1,TRUE
+120768,senado,5979,senador,Leila Barros,PSB,DF,Parecer,CDH,1,TRUE
 121572,senado,846,senador,Aloysio Nunes Ferreira,PSDB,SP,Emenda,Plenário,5,TRUE
-121572,senado,5527,senador,Simone Tebet,MDB,MS,Emenda,Plenário,4,TRUE
-121572,senado,4575,senador,Lídice da Mata,PSB,BA,Emenda,Plenário,3,TRUE
-121572,senado,3,senador,Antonio Carlos Valadares,PSB,SE,Emenda,Plenário,2,TRUE
+121572,senado,5527,senador,Simone Tebet,PMDB,MS,Emenda,Plenário,4,TRUE
 121572,senado,90,senador,José Serra,PSDB,SP,Emenda,Plenário,1,TRUE
-121572,senado,558,senador,Vanessa Grazziotin,PCdoB,AM,Emenda,Plenário,1,TRUE
-121572,senado,615,senador,José Pimentel,PT,CE,Emenda,Plenário,1,TRUE
 121572,senado,615,senador,José Pimentel,PT,CE,Parecer,CCJ,1,TRUE
 121572,senado,5000,senador,Marta Suplicy,,SP,Emenda,Plenário,1,TRUE
-126049,senado,3777,senador,Eduardo Gomes,MDB,TO,Emenda,CI,4,TRUE
+126049,senado,3777,senador,Eduardo Gomes,MDB,TO,Emenda,CI,5,TRUE
 126049,senado,3396,senador,Tasso Jereissati,PSDB,CE,Parecer,CAE,2,TRUE
+126049,senado,3777,senador,Eduardo Gomes,MDB,TO,Requerimento,CI,1,TRUE
 126049,senado,5422,senador,Marcos Rogério,DEM,RO,Requerimento,CI,1,TRUE
 126049,senado,5540,senador,Fernando Bezerra Coelho,MDB,PE,Parecer,CCJ,1,TRUE
-126364,senado,631,senador,Magno Malta,PL,ES,Parecer,CCJ,3,TRUE
+126049,senado,5990,senador,Carlos Viana,PSD,MG,Requerimento,CI,1,TRUE
+126364,senado,631,senador,Magno Malta,PR,ES,Parecer,CCJ,3,TRUE
 126364,senado,558,senador,Vanessa Grazziotin,PCdoB,AM,Requerimento,Plenário,1,TRUE
 126364,senado,3695,senador,Lindbergh Farias,PT,RJ,Requerimento,CCJ,1,TRUE
 126364,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Voto em Separado,CCJ,1,TRUE
 127753,senado,878,senador,José Aníbal,PSDB,SP,Emenda,Plenário,2,TRUE
-127753,senado,5100,senador,Hélio José,MDB,DF,Emenda,Plenário,1,TRUE
-127753,senado,5108,senador,Cidinho Santos,PL,MT,Emenda,Plenário,1,TRUE
+127753,senado,5100,senador,Hélio José,PMDB,DF,Emenda,Plenário,1,TRUE
+127753,senado,5108,senador,Cidinho Santos,PR,MT,Emenda,Plenário,1,TRUE
+128634,senado,5732,senador,Rodrigo Pacheco,DEM,MG,Parecer,CCJ,14,TRUE
 128634,senado,5533,senador,Lasier Martins,PSD,RS,Emenda,CCJ,10,TRUE
 128634,senado,5982,senador,Alessandro Vieira,CIDADANIA,SE,Emenda,CCJ,7,TRUE
 128634,senado,5929,senador,Juíza Selma,PSL,MT,Emenda,Plenário,6,TRUE
 128634,senado,5411,senador,Weverton,PDT,MA,Emenda,CCJ,5,TRUE
 128634,senado,5666,senador,Major Olimpio,PSL,SP,Emenda,CCJ,4,TRUE
 128634,senado,5666,senador,Major Olimpio,PSL,SP,Emenda,Plenário,4,TRUE
-128634,senado,5732,senador,Rodrigo Pacheco,DEM,MG,Parecer,CCJ,4,TRUE
 128634,senado,751,senador,Arolde de Oliveira,PSD,RJ,Emenda,CCJ,3,TRUE
 128634,senado,5967,senador,Angelo Coronel,PSD,BA,Emenda,CCJ,3,TRUE
 128634,senado,285,senador,Marcio Bittar,MDB,AC,Emenda,CCJ,2,TRUE
 128634,senado,945,senador,Alvaro Dias,PODEMOS,PR,Emenda,Plenário,2,TRUE
-128634,senado,5164,senador,Ataídes Oliveira,PSDB,TO,Requerimento,Plenário,2,TRUE
 128634,senado,5929,senador,Juíza Selma,PSL,MT,Emenda,CCJ,2,TRUE
 128634,senado,945,senador,Alvaro Dias,PODEMOS,PR,Requerimento,Plenário,1,TRUE
 128634,senado,5008,senador,Humberto Costa,PT,PE,Emenda,CCJ,1,TRUE
+128634,senado,5164,senador,Ataídes Oliveira,PSDB,TO,Requerimento,Plenário,1,TRUE
+128634,senado,5164,senador,Ataídes Oliveira,PSDB,TO,Requerimento,,1,FALSE
 128634,senado,5533,senador,Lasier Martins,PODEMOS,RS,Emenda,Plenário,1,TRUE
 128634,senado,5535,senador,Telmário Mota,PROS,RR,Emenda,Plenário,1,TRUE
 128634,senado,5585,senador,Luiz do Carmo,MDB,GO,Emenda,Plenário,1,TRUE
@@ -2475,57 +2531,57 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 128634,senado,5895,senador,Jorge Kajuru,PSB,GO,Requerimento,Plenário,1,TRUE
 128634,senado,5929,senador,Juíza Selma,PSL,MT,Requerimento,CCJ,1,TRUE
 128634,senado,5953,senador,Fabiano Contarato,REDE,ES,Emenda,CCJ,1,TRUE
-129778,senado,3,senador,Antonio Carlos Valadares,PSB,SE,Outros,Plenário,1,TRUE
+129778,senado,3,senador,Antonio Carlos Valadares,PSB,SE,Outros,,1,FALSE
 129778,senado,22,senador,Esperidião Amin,PP,SC,Requerimento,Plenário,1,TRUE
 129778,senado,70,senador,Renan Calheiros,MDB,AL,Requerimento,Plenário,1,TRUE
-129778,senado,72,senador,Roberto Requião,MDB,PR,Outros,Plenário,1,TRUE
-129778,senado,87,senador,Garibaldi Alves Filho,MDB,RN,Outros,Plenário,1,TRUE
-129778,senado,374,senador,Paulo Rocha,PT,PA,Outros,Plenário,1,TRUE
+129778,senado,72,senador,Roberto Requião,PMDB,PR,Outros,,1,FALSE
+129778,senado,87,senador,Garibaldi Alves Filho,PMDB,RN,Outros,,1,FALSE
+129778,senado,374,senador,Paulo Rocha,PT,PA,Outros,,1,FALSE
 129778,senado,374,senador,Paulo Rocha,PT,PA,Requerimento,Plenário,1,TRUE
-129778,senado,615,senador,José Pimentel,PT,CE,Outros,Plenário,1,TRUE
-129778,senado,643,senador,Lúcia Vânia,PSB,GO,Outros,Plenário,1,TRUE
+129778,senado,615,senador,José Pimentel,PT,CE,Outros,,1,FALSE
+129778,senado,643,senador,Lúcia Vânia,PSB,GO,Outros,,1,FALSE
 129778,senado,742,senador,Marcelo Castro,MDB,PI,Requerimento,Plenário,1,TRUE
-129778,senado,825,senador,Paulo Paim,PT,RS,Outros,Plenário,1,TRUE
+129778,senado,825,senador,Paulo Paim,PT,RS,Outros,,1,FALSE
 129778,senado,825,senador,Paulo Paim,PT,RS,Requerimento,Plenário,1,TRUE
-129778,senado,945,senador,Alvaro Dias,PV,PR,Outros,Plenário,1,TRUE
-129778,senado,1023,senador,Maria do Carmo Alves,DEM,SE,Outros,Plenário,1,TRUE
+129778,senado,945,senador,Alvaro Dias,PV,PR,Outros,,1,FALSE
+129778,senado,1023,senador,Maria do Carmo Alves,DEM,SE,Outros,,1,FALSE
 129778,senado,1186,senador,Luis Carlos Heinze,PP,RS,Requerimento,Plenário,1,TRUE
 129778,senado,1249,senador,Kátia Abreu,PDT,TO,Requerimento,Plenário,1,TRUE
 129778,senado,2331,senador,Rose de Freitas,PODE,ES,Requerimento,Plenário,1,TRUE
-129778,senado,3361,senador,José Maranhão,MDB,PB,Outros,Plenário,1,TRUE
 129778,senado,3361,senador,José Maranhão,MDB,PB,Requerimento,Plenário,1,TRUE
-129778,senado,3394,senador,João Capiberibe,PSB,AP,Outros,Plenário,1,TRUE
-129778,senado,3398,senador,Cristovam Buarque,CIDADANIA,DF,Outros,Plenário,1,TRUE
-129778,senado,3695,senador,Lindbergh Farias,PT,RJ,Outros,Plenário,1,TRUE
+129778,senado,3361,senador,José Maranhão,PMDB,PB,Outros,,1,FALSE
+129778,senado,3394,senador,João Capiberibe,PSB,AP,Outros,,1,FALSE
+129778,senado,3398,senador,Cristovam Buarque,PPS,DF,Outros,,1,FALSE
+129778,senado,3695,senador,Lindbergh Farias,PT,RJ,Outros,,1,FALSE
 129778,senado,3713,senador,Fátima Bezerra,PT,RN,Parecer,CCJ,1,TRUE
-129778,senado,3741,senador,Paulo Bauer,PSDB,SC,Outros,Plenário,1,TRUE
-129778,senado,3823,senador,Benedito de Lira,PP,AL,Outros,Plenário,1,TRUE
+129778,senado,3741,senador,Paulo Bauer,PSDB,SC,Outros,,1,FALSE
+129778,senado,3823,senador,Benedito de Lira,PP,AL,Outros,,1,FALSE
 129778,senado,3830,senador,Davi Alcolumbre,DEM,AP,Requerimento,Plenário,1,TRUE
 129778,senado,4531,senador,Jayme Campos,DEM,MT,Requerimento,Plenário,1,TRUE
-129778,senado,4575,senador,Lídice da Mata,PSB,BA,Outros,Plenário,1,TRUE
-129778,senado,4763,senador,Vicentinho Alves,PR,TO,Outros,Plenário,1,TRUE
-129778,senado,4981,senador,Acir Gurgacz,PDT,RO,Outros,Plenário,1,TRUE
+129778,senado,4575,senador,Lídice da Mata,PSB,BA,Outros,,1,FALSE
+129778,senado,4763,senador,Vicentinho Alves,PR,TO,Outros,,1,FALSE
+129778,senado,4981,senador,Acir Gurgacz,PDT,RO,Outros,,1,FALSE
 129778,senado,4981,senador,Acir Gurgacz,PDT,RO,Requerimento,Plenário,1,TRUE
-129778,senado,4990,senador,Jorge Viana,PT,AC,Outros,Plenário,1,TRUE
+129778,senado,4990,senador,Jorge Viana,PT,AC,Outros,,1,FALSE
 129778,senado,4994,senador,Eduardo Braga,MDB,AM,Requerimento,Plenário,1,TRUE
 129778,senado,5008,senador,Humberto Costa,PT,PE,Requerimento,Plenário,1,TRUE
-129778,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Outros,Plenário,1,TRUE
+129778,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Outros,,1,FALSE
 129778,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Requerimento,Plenário,1,TRUE
-129778,senado,5052,senador,Roberto Muniz,PP,BA,Outros,Plenário,1,TRUE
-129778,senado,5164,senador,Ataídes Oliveira,PSDB,TO,Outros,Plenário,1,TRUE
-129778,senado,5182,senador,Regina Sousa,PT,PI,Outros,Plenário,1,TRUE
+129778,senado,5052,senador,Roberto Muniz,PP,BA,Outros,,1,FALSE
+129778,senado,5164,senador,Ataídes Oliveira,PSDB,TO,Outros,,1,FALSE
+129778,senado,5182,senador,Regina Sousa,PT,PI,Outros,,1,FALSE
 129778,senado,5236,senador,Reguffe,,DF,Requerimento,Plenário,1,TRUE
-129778,senado,5322,senador,Romário,PSB,RJ,Outros,Plenário,1,TRUE
+129778,senado,5322,senador,Romário,PSB,RJ,Outros,,1,FALSE
 129778,senado,5350,senador,Jorginho Mello,PR,SC,Requerimento,Plenário,1,TRUE
 129778,senado,5352,senador,Rogério Carvalho,PT,SE,Requerimento,Plenário,1,TRUE
 129778,senado,5525,senador,Omar Aziz,PSD,AM,Requerimento,Plenário,1,TRUE
 129778,senado,5527,senador,Simone Tebet,MDB,MS,Requerimento,Plenário,1,TRUE
 129778,senado,5529,senador,Antonio Anastasia,PSDB,MG,Requerimento,Plenário,1,TRUE
-129778,senado,5531,senador,Elmano Férrer,MDB,PI,Outros,Plenário,1,TRUE
+129778,senado,5531,senador,Elmano Férrer,PMDB,PI,Outros,,1,FALSE
 129778,senado,5531,senador,Elmano Férrer,PODE,PI,Requerimento,Plenário,1,TRUE
 129778,senado,5533,senador,Lasier Martins,PODE,RS,Requerimento,Plenário,1,TRUE
-129778,senado,5533,senador,Lasier Martins,PSD,RS,Outros,Plenário,1,TRUE
-129778,senado,5535,senador,Telmário Mota,PTB,RR,Outros,Plenário,1,TRUE
+129778,senado,5533,senador,Lasier Martins,PSD,RS,Outros,,1,FALSE
+129778,senado,5535,senador,Telmário Mota,PTB,RR,Outros,,1,FALSE
 129778,senado,5627,senador,Jean Paul Prates,PT,RN,Requerimento,Plenário,1,TRUE
 129778,senado,5748,senador,Veneziano Vital do Rêgo,PSB,PB,Requerimento,Plenário,1,TRUE
 129778,senado,5783,senador,Zenaide Maia,PROS,RN,Requerimento,Plenário,1,TRUE
@@ -2533,7 +2589,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 129778,senado,5973,senador,Cid Gomes,PDT,CE,Requerimento,Plenário,1,TRUE
 129778,senado,5976,senador,Eduardo Girão,PODE,CE,Requerimento,Plenário,1,TRUE
 129778,senado,5979,senador,Leila Barros,PSB,DF,Requerimento,Plenário,1,TRUE
-129778,senado,5982,senador,Alessandro Vieira,CIDADANIA,SE,Requerimento,Plenário,1,TRUE
+129778,senado,5982,senador,Alessandro Vieira,PPS,SE,Requerimento,Plenário,1,TRUE
 129778,senado,5988,senador,Soraya Thronicke,PSL,MS,Requerimento,Plenário,1,TRUE
 131429,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Parecer,CCJ,2,TRUE
 131429,senado,374,senador,Paulo Rocha,PT,PA,Outros,Plenário,1,TRUE
@@ -2543,32 +2599,32 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 131429,senado,5008,senador,Humberto Costa,PT,PE,Outros,Plenário,1,TRUE
 131429,senado,5352,senador,Rogério Carvalho,PT,SE,Outros,Plenário,1,TRUE
 131429,senado,5385,senador,Irajá,PSD,TO,Outros,Plenário,1,TRUE
-131429,senado,5529,senador,Antonio Anastasia,PSDB,MG,Outros,Plenário,1,TRUE
-131429,senado,5531,senador,Elmano Férrer,PODEMOS,PI,Outros,Plenário,1,TRUE
+131429,senado,5529,senador,Antonio Anastasia,PSDB,MG,Outros,,1,FALSE
+131429,senado,5531,senador,Elmano Férrer,PODE,PI,Outros,Plenário,1,TRUE
 131429,senado,5627,senador,Jean Paul Prates,PT,RN,Outros,Plenário,1,TRUE
 131429,senado,5783,senador,Zenaide Maia,PROS,RN,Outros,Plenário,1,TRUE
-131906,senado,3396,senador,Tasso Jereissati,PSDB,CE,Outros,Plenário,1,TRUE
+131906,senado,3396,senador,Tasso Jereissati,PSDB,CE,Outros,,1,FALSE
 131906,senado,5531,senador,Elmano Férrer,PODEMOS,PI,Parecer,CCJ,1,TRUE
 132865,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Emenda,CCJ,42,TRUE
-132865,senado,1173,senador,Wellington Fagundes,PL,MT,Emenda,CCJ,24,TRUE
+132865,senado,1173,senador,Wellington Fagundes,PR,MT,Emenda,CCJ,24,TRUE
 132865,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Requerimento,Plenário,3,TRUE
-132865,senado,4981,senador,Acir Gurgacz,PDT,RO,Outros,Plenário,1,TRUE
+132865,senado,4981,senador,Acir Gurgacz,PDT,RO,Outros,,1,FALSE
 133943,senado,3695,senador,Lindbergh Farias,PT,RJ,Emenda,Plenário,7,TRUE
 133943,senado,90,senador,José Serra,PSDB,SP,Emenda,Plenário,3,TRUE
 133943,senado,391,senador,Aécio Neves,PSDB,MG,Emenda,Plenário,3,TRUE
 133943,senado,1173,senador,Wellington Fagundes,PR,MT,Emenda,Plenário,3,TRUE
-133943,senado,73,senador,Romero Jucá,MDB,RR,Requerimento,Plenário,1,TRUE
-133943,senado,456,senador,Ronaldo Caiado,DEM,GO,Requerimento,Plenário,1,TRUE
+133943,senado,73,senador,Romero Jucá,MDB,RR,Requerimento,,1,FALSE
+133943,senado,456,senador,Ronaldo Caiado,DEM,GO,Requerimento,,1,FALSE
 133943,senado,635,senador,Ricardo Ferraço,PSDB,ES,Emenda,Plenário,1,TRUE
-133943,senado,715,senador,Armando Monteiro,PTB,PE,Requerimento,Plenário,1,TRUE
-133943,senado,739,senador,Ciro Nogueira,PP,PI,Requerimento,Plenário,1,TRUE
+133943,senado,715,senador,Armando Monteiro,PTB,PE,Requerimento,,1,FALSE
+133943,senado,739,senador,Ciro Nogueira,PP,PI,Requerimento,,1,FALSE
 133943,senado,3713,senador,Fátima Bezerra,PT,RN,Requerimento,Plenário,1,TRUE
-133943,senado,3741,senador,Paulo Bauer,PSDB,SC,Requerimento,Plenário,1,TRUE
+133943,senado,3741,senador,Paulo Bauer,PSDB,SC,Requerimento,,1,FALSE
 133943,senado,4575,senador,Lídice da Mata,PSB,BA,Emenda,Plenário,1,TRUE
-133943,senado,4763,senador,Vicentinho Alves,PR,TO,Requerimento,Plenário,1,TRUE
-133943,senado,4767,senador,Eduardo Lopes,PRB,RJ,Requerimento,Plenário,1,TRUE
+133943,senado,4763,senador,Vicentinho Alves,PR,TO,Requerimento,,1,FALSE
+133943,senado,4767,senador,Eduardo Lopes,PRB,RJ,Requerimento,,1,FALSE
 133943,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Emenda,Plenário,1,TRUE
-133943,senado,5527,senador,Simone Tebet,MDB,MS,Requerimento,Plenário,1,TRUE
+133943,senado,5527,senador,Simone Tebet,MDB,MS,Requerimento,,1,FALSE
 133943,senado,5639,senador,Guaracy Silveira,DC,TO,Emenda,Plenário,1,TRUE
 135060,senado,204449,deputado,Nelson Barbudo,PSL,MT,Emenda,CMMPV,15,TRUE
 135060,senado,1186,senador,Luis Carlos Heinze,PP,RS,Emenda,CMMPV,5,TRUE
@@ -2616,7 +2672,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 135061,senado,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,CMMPV,4,TRUE
 135061,senado,5411,senador,Weverton,PDT,MA,Emenda,CMMPV,3,TRUE
 135061,senado,141470,deputado,José Guimarães,PT,CE,Emenda,CMMPV,3,TRUE
-135061,senado,204391,deputado,José Nelto,PODEMOS,GO,Emenda,CMMPV,3,TRUE
+135061,senado,204391,deputado,José Nelto,PODE,GO,Emenda,CMMPV,3,TRUE
 135061,senado,204453,deputado,Natália Bonavides,PT,RN,Emenda,CMMPV,3,TRUE
 135061,senado,204575,deputado,Gil Cutrim,PDT,MA,Emenda,CMMPV,3,TRUE
 135061,senado,3396,senador,Tasso Jereissati,PSDB,CE,Parecer,CMMPV,2,TRUE
@@ -2625,7 +2681,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 135061,senado,204365,deputado,Gilson Marques,NOVO,SC,Emenda,CMMPV,2,TRUE
 135061,senado,204394,deputado,Gervásio Maia,PSB,PB,Emenda,CMMPV,2,TRUE
 135061,senado,204419,deputado,Glaustin Fokus,PSC,GO,Emenda,CMMPV,2,TRUE
-135061,senado,204508,deputado,Igor Timo,PODEMOS,MG,Requerimento,CMMPV,2,TRUE
+135061,senado,204508,deputado,Igor Timo,PODE,MG,Requerimento,CMMPV,2,TRUE
 135061,senado,3396,senador,Tasso Jereissati,PSDB,CE,Requerimento,CMMPV,1,TRUE
 135061,senado,5666,senador,Major Olimpio,PSL,SP,Requerimento,CMMPV,1,TRUE
 135061,senado,152605,deputado,Glauber Braga,PSOL,RJ,Requerimento,CMMPV,1,TRUE
@@ -2635,7 +2691,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 135061,senado,178977,deputado,Eduardo Cury,PSDB,SP,Requerimento,CMMPV,1,TRUE
 135061,senado,204371,deputado,Felipe Rigoni,PSB,ES,Requerimento,CMMPV,1,TRUE
 135061,senado,204504,deputado,Cezinha de Madureira,PSD,SP,Requerimento,CMMPV,1,TRUE
-135061,senado,204508,deputado,Igor Timo,PODEMOS,MG,Voto em Separado,CMMPV,1,TRUE
+135061,senado,204508,deputado,Igor Timo,PODE,MG,Voto em Separado,CMMPV,1,TRUE
 135062,senado,178987,deputado,Orlando Silva,PCdoB,SP,Emenda,CMMPV,18,TRUE
 135062,senado,4770,senador,Izalci Lucas,PSDB,DF,Emenda,CMMPV,15,TRUE
 135062,senado,5008,senador,Humberto Costa,PT,PE,Emenda,CMMPV,9,TRUE
@@ -2652,7 +2708,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 135062,senado,204453,deputado,Natália Bonavides,PT,RN,Emenda,CMMPV,5,TRUE
 135062,senado,73441,deputado,Celso Russomanno,PRB,SP,Emenda,CMMPV,4,TRUE
 135062,senado,133439,deputado,André Figueiredo,PDT,CE,Emenda,CMMPV,4,TRUE
-135062,senado,5924,senador,Oriovisto Guimarães,PODEMOS,PR,Emenda,CMMPV,3,TRUE
+135062,senado,5924,senador,Oriovisto Guimarães,PODE,PR,Emenda,CMMPV,3,TRUE
 135062,senado,141531,deputado,Rodrigo de Castro,PSDB,MG,Emenda,CMMPV,3,TRUE
 135062,senado,141555,deputado,Vinicius Carvalho,PRB,SP,Emenda,CMMPV,3,TRUE
 135062,senado,178977,deputado,Eduardo Cury,PSDB,SP,Emenda,CMMPV,3,TRUE
@@ -2672,7 +2728,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 135062,senado,204532,deputado,Vinicius Poit,NOVO,SP,Requerimento,CMMPV,2,TRUE
 135062,senado,3777,senador,Eduardo Gomes,MDB,TO,Requerimento,CMMPV,1,TRUE
 135062,senado,4770,senador,Izalci Lucas,PSDB,DF,Requerimento,CMMPV,1,TRUE
-135062,senado,5350,senador,Jorginho Mello,PL,SC,Emenda,CMMPV,1,TRUE
+135062,senado,5350,senador,Jorginho Mello,PR,SC,Emenda,CMMPV,1,TRUE
 135062,senado,5385,senador,Irajá,PSD,TO,Emenda,CMMPV,1,TRUE
 135062,senado,5523,senador,Otto Alencar,PSD,BA,Emenda,CMMPV,1,TRUE
 135062,senado,5732,senador,Rodrigo Pacheco,DEM,MG,Emenda,CMMPV,1,TRUE
@@ -2683,8 +2739,8 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 135062,senado,141513,deputado,Bilac Pinto,DEM,MG,Emenda,CMMPV,1,TRUE
 135062,senado,171619,deputado,Margarida Salomão,PT,MG,Requerimento,CMMPV,1,TRUE
 135062,senado,178842,deputado,Jhc,PSB,AL,Emenda,CMMPV,1,TRUE
-135062,senado,178916,deputado,Daniel Coelho,CIDADANIA,PE,Emenda,CMMPV,1,TRUE
-135062,senado,204391,deputado,José Nelto,PODEMOS,GO,Emenda,CMMPV,1,TRUE
+135062,senado,178916,deputado,Daniel Coelho,PPS,PE,Emenda,CMMPV,1,TRUE
+135062,senado,204391,deputado,José Nelto,PODE,GO,Emenda,CMMPV,1,TRUE
 135062,senado,204406,deputado,Pedro Westphalen,PP,RS,Emenda,CMMPV,1,TRUE
 135062,senado,204504,deputado,Cezinha de Madureira,PSD,SP,Emenda,CMMPV,1,TRUE
 135064,senado,204464,deputado,Talíria Petrone,PSOL,RJ,Emenda,CMMPV,22,TRUE
@@ -2727,7 +2783,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 135064,senado,204561,deputado,Bira do Pindaré,PSB,MA,Emenda,CMMPV,5,TRUE
 135064,senado,5422,senador,Marcos Rogério,DEM,RO,Emenda,CMMPV,4,TRUE
 135064,senado,5666,senador,Major Olimpio,PSL,SP,Emenda,CMMPV,4,TRUE
-135064,senado,5718,senador,Eliziane Gama,CIDADANIA,MA,Emenda,CMMPV,4,TRUE
+135064,senado,5718,senador,Eliziane Gama,PPS,MA,Emenda,CMMPV,4,TRUE
 135064,senado,74270,deputado,Gilberto Nascimento,PSC,SP,Emenda,CMMPV,4,TRUE
 135064,senado,178987,deputado,Orlando Silva,PCdoB,SP,Emenda,CMMPV,4,TRUE
 135064,senado,204374,deputado,Bia Kicis,,DF,Emenda,CMMPV,4,TRUE
@@ -2738,7 +2794,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 135064,senado,133439,deputado,André Figueiredo,PDT,CE,Emenda,CMMPV,3,TRUE
 135064,senado,141470,deputado,José Guimarães,PT,CE,Emenda,CMMPV,3,TRUE
 135064,senado,160508,deputado,Afonso Florence,PT,BA,Requerimento,CMMPV,3,TRUE
-135064,senado,178829,deputado,Capitão Augusto,PL,SP,Emenda,CMMPV,3,TRUE
+135064,senado,178829,deputado,Capitão Augusto,PR,SP,Emenda,CMMPV,3,TRUE
 135064,senado,4770,senador,Izalci Lucas,PSDB,DF,Emenda,CMMPV,2,TRUE
 135064,senado,4981,senador,Acir Gurgacz,PDT,RO,Emenda,CMMPV,2,TRUE
 135064,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Emenda,Plenário,2,TRUE
@@ -2747,25 +2803,25 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 135064,senado,74366,deputado,João Campos,PRB,GO,Emenda,CMMPV,2,TRUE
 135064,senado,74376,deputado,Vander Loubet,PT,MS,Emenda,CMMPV,2,TRUE
 135064,senado,74784,deputado,Luiza Erundina,PSOL,SP,Emenda,CMMPV,2,TRUE
-135064,senado,137070,deputado,Vicentinho Júnior,PL,TO,Emenda,CMMPV,2,TRUE
+135064,senado,137070,deputado,Vicentinho Júnior,PR,TO,Emenda,CMMPV,2,TRUE
 135064,senado,141488,deputado,Paulo Teixeira,PT,SP,Emenda,CMMPV,2,TRUE
 135064,senado,141508,deputado,Mauro Nazif,PSB,RO,Emenda,CMMPV,2,TRUE
 135064,senado,141518,deputado,Paulo Pereira da Silva,SD,SP,Emenda,CMMPV,2,TRUE
-135064,senado,160558,deputado,Paulo Freire Costa,PL,SP,Emenda,CMMPV,2,TRUE
+135064,senado,160558,deputado,Paulo Freire Costa,PR,SP,Emenda,CMMPV,2,TRUE
 135064,senado,160604,deputado,Pedro Uczai,PT,SC,Emenda,CMMPV,2,TRUE
 135064,senado,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Emenda,CMMPV,2,TRUE
-135064,senado,160653,deputado,Roberto de Lucena,PODEMOS,SP,Emenda,CMMPV,2,TRUE
+135064,senado,160653,deputado,Roberto de Lucena,PODE,SP,Emenda,CMMPV,2,TRUE
 135064,senado,171619,deputado,Margarida Salomão,PT,MG,Emenda,CMMPV,2,TRUE
 135064,senado,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,CMMPV,2,TRUE
 135064,senado,178857,deputado,Jorge Solla,PT,BA,Emenda,CMMPV,2,TRUE
-135064,senado,178916,deputado,Daniel Coelho,CIDADANIA,PE,Emenda,CMMPV,2,TRUE
+135064,senado,178916,deputado,Daniel Coelho,PPS,PE,Emenda,CMMPV,2,TRUE
 135064,senado,204352,deputado,Camilo Capiberibe,PSB,AP,Emenda,CMMPV,2,TRUE
 135064,senado,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,CMMPV,2,TRUE
 135064,senado,204466,deputado,Tereza Nelma,PSDB,AL,Emenda,CMMPV,2,TRUE
 135064,senado,204480,deputado,Rogério Correia,PT,MG,Emenda,CMMPV,2,TRUE
 135064,senado,204503,deputado,Alexandre Padilha,PT,SP,Emenda,CMMPV,2,TRUE
 135064,senado,345,senador,Flávio Arns,REDE,PR,Requerimento,Plenário,1,TRUE
-135064,senado,945,senador,Alvaro Dias,PODEMOS,PR,Requerimento,Plenário,1,TRUE
+135064,senado,945,senador,Alvaro Dias,PODE,PR,Requerimento,Plenário,1,TRUE
 135064,senado,1249,senador,Kátia Abreu,PDT,TO,Emenda,CMMPV,1,TRUE
 135064,senado,5008,senador,Humberto Costa,PT,PE,Requerimento,Plenário,1,TRUE
 135064,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Requerimento,Plenário,1,TRUE
@@ -2783,61 +2839,61 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 135064,senado,74655,deputado,Eduardo Barbosa,PSDB,MG,Emenda,CMMPV,1,TRUE
 135064,senado,92346,deputado,Eduardo Bolsonaro,PSL,SP,Emenda,CMMPV,1,TRUE
 135064,senado,157130,deputado,Túlio Gadêlha,PDT,PE,Requerimento,CMMPV,1,TRUE
-135064,senado,178829,deputado,Capitão Augusto,PL,SP,Requerimento,CMMPV,1,TRUE
+135064,senado,178829,deputado,Capitão Augusto,PR,SP,Requerimento,CMMPV,1,TRUE
 135064,senado,178874,deputado,Sergio Vidigal,PDT,ES,Emenda,CMMPV,1,TRUE
 135064,senado,204369,deputado,Caroline de Toni,PSL,SC,Emenda,CMMPV,1,TRUE
 135064,senado,204369,deputado,Caroline de Toni,PSL,SC,Requerimento,CMMPV,1,TRUE
-135064,senado,204529,deputado,Policial Katia Sastre,PL,SP,Emenda,CMMPV,1,TRUE
-135064,senado,204529,deputado,Policial Katia Sastre,PL,SP,Requerimento,CMMPV,1,TRUE
+135064,senado,204529,deputado,Policial Katia Sastre,PR,SP,Emenda,CMMPV,1,TRUE
+135064,senado,204529,deputado,Policial Katia Sastre,PR,SP,Requerimento,CMMPV,1,TRUE
 135064,senado,204530,deputado,Rodrigo Agostinho,PSB,SP,Voto em Separado,CMMPV,1,TRUE
-135064,senado,204556,deputado,Marcelo Ramos,PL,AM,Emenda,CMMPV,1,TRUE
+135064,senado,204556,deputado,Marcelo Ramos,PR,AM,Emenda,CMMPV,1,TRUE
 135505,senado,5953,senador,Fabiano Contarato,REDE,ES,Parecer,CCJ,2,TRUE
 135505,senado,5895,senador,Jorge Kajuru,PSB,GO,Outros,Plenário,1,TRUE
 135505,senado,5967,senador,Angelo Coronel,PSD,BA,Emenda,CCJ,1,TRUE
-135505,senado,5967,senador,Angelo Coronel,PSD,BA,Outros,Plenário,1,TRUE
-135799,senado,285,senador,Marcio Bittar,MDB,AC,Outros,Plenário,1,TRUE
+135505,senado,5967,senador,Angelo Coronel,PSD,BA,Outros,,1,FALSE
+135799,senado,285,senador,Marcio Bittar,MDB,AC,Outros,,1,FALSE
 135799,senado,285,senador,Marcio Bittar,MDB,AC,Requerimento,Plenário,1,TRUE
 135799,senado,4560,senador,Sérgio Petecão,PSD,AC,Outros,Plenário,1,TRUE
 135799,senado,5953,senador,Fabiano Contarato,REDE,ES,Requerimento,Plenário,1,TRUE
 136033,senado,751,senador,Arolde de Oliveira,PSD,RJ,Emenda,CCJ,7,TRUE
 136033,senado,5523,senador,Otto Alencar,PSD,BA,Emenda,CCJ,5,TRUE
 136033,senado,5988,senador,Soraya Thronicke,PSL,MS,Emenda,CCJ,5,TRUE
+136033,senado,4770,senador,Izalci Lucas,PSDB,DF,Outros,Plenário,4,TRUE
 136033,senado,285,senador,Marcio Bittar,MDB,AC,Emenda,CCJ,3,TRUE
 136033,senado,5352,senador,Rogério Carvalho,PT,SE,Requerimento,Plenário,3,TRUE
-136033,senado,5531,senador,Elmano Férrer,PODEMOS,PI,Emenda,CCJ,2,TRUE
+136033,senado,5531,senador,Elmano Férrer,PODE,PI,Emenda,CCJ,2,TRUE
 136033,senado,5666,senador,Major Olimpio,PSL,SP,Emenda,CCJ,2,TRUE
-136033,senado,5718,senador,Eliziane Gama,CIDADANIA,MA,Emenda,CCJ,2,TRUE
-136033,senado,945,senador,Alvaro Dias,PODEMOS,PR,Outros,Plenário,1,TRUE
-136033,senado,945,senador,Alvaro Dias,PODEMOS,PR,Requerimento,Plenário,1,TRUE
-136033,senado,2331,senador,Rose de Freitas,PODEMOS,ES,Emenda,CCJ,1,TRUE
-136033,senado,4770,senador,Izalci Lucas,PSDB,DF,Outros,Plenário,1,TRUE
+136033,senado,5718,senador,Eliziane Gama,PPS,MA,Emenda,CCJ,2,TRUE
+136033,senado,945,senador,Alvaro Dias,PODE,PR,Outros,,1,FALSE
+136033,senado,945,senador,Alvaro Dias,PODE,PR,Requerimento,Plenário,1,TRUE
+136033,senado,2331,senador,Rose de Freitas,PODE,ES,Emenda,CCJ,1,TRUE
 136033,senado,4994,senador,Eduardo Braga,MDB,AM,Requerimento,CCJ,1,TRUE
-136033,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Outros,Plenário,1,TRUE
-136033,senado,5531,senador,Elmano Férrer,PODEMOS,PI,Outros,Plenário,1,TRUE
-136033,senado,5533,senador,Lasier Martins,PODEMOS,RS,Outros,Plenário,1,TRUE
-136033,senado,5666,senador,Major Olimpio,PSL,SP,Outros,Plenário,1,TRUE
-136033,senado,5718,senador,Eliziane Gama,CIDADANIA,MA,Outros,Plenário,1,TRUE
-136033,senado,5895,senador,Jorge Kajuru,PSB,GO,Outros,Plenário,1,TRUE
-136033,senado,5905,senador,Rodrigo Cunha,PSDB,AL,Outros,Plenário,1,TRUE
+136033,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Outros,,1,FALSE
+136033,senado,5531,senador,Elmano Férrer,PODE,PI,Outros,,1,FALSE
+136033,senado,5533,senador,Lasier Martins,PODE,RS,Outros,,1,FALSE
+136033,senado,5666,senador,Major Olimpio,PSL,SP,Outros,,1,FALSE
+136033,senado,5718,senador,Eliziane Gama,PPS,MA,Outros,,1,FALSE
+136033,senado,5895,senador,Jorge Kajuru,PSB,GO,Outros,,1,FALSE
+136033,senado,5905,senador,Rodrigo Cunha,PSDB,AL,Outros,,1,FALSE
 136033,senado,5942,senador,Marcos do Val,CIDADANIA,ES,Parecer,CCJ,1,TRUE
 136033,senado,5942,senador,Marcos do Val,CIDADANIA,ES,Requerimento,Plenário,1,TRUE
-136033,senado,5953,senador,Fabiano Contarato,REDE,ES,Outros,Plenário,1,TRUE
-136033,senado,5959,senador,Styvenson Valentim,PODEMOS,RN,Outros,Plenário,1,TRUE
-136033,senado,5976,senador,Eduardo Girão,PODEMOS,CE,Outros,Plenário,1,TRUE
+136033,senado,5953,senador,Fabiano Contarato,REDE,ES,Outros,,1,FALSE
+136033,senado,5959,senador,Styvenson Valentim,PODE,RN,Outros,,1,FALSE
+136033,senado,5976,senador,Eduardo Girão,PODE,CE,Outros,,1,FALSE
 136033,senado,5982,senador,Alessandro Vieira,CIDADANIA,SE,Emenda,CCJ,1,TRUE
-136033,senado,5982,senador,Alessandro Vieira,CIDADANIA,SE,Outros,Plenário,1,TRUE
-136033,senado,5988,senador,Soraya Thronicke,PSL,MS,Outros,Plenário,1,TRUE
-136173,senado,5533,senador,Lasier Martins,PODEMOS,RS,Emenda,Plenário,3,TRUE
+136033,senado,5982,senador,Alessandro Vieira,PPS,SE,Outros,,1,FALSE
+136033,senado,5988,senador,Soraya Thronicke,PSL,MS,Outros,,1,FALSE
+136173,senado,5533,senador,Lasier Martins,PODE,RS,Emenda,Plenário,3,TRUE
 136173,senado,739,senador,Ciro Nogueira,PP,PI,Emenda,Plenário,2,TRUE
-136173,senado,5924,senador,Oriovisto Guimarães,PODEMOS,PR,Emenda,CCJ,2,TRUE
+136173,senado,5924,senador,Oriovisto Guimarães,PODE,PR,Emenda,CCJ,2,TRUE
 136173,senado,739,senador,Ciro Nogueira,PP,PI,Requerimento,Plenário,1,TRUE
-136173,senado,1173,senador,Wellington Fagundes,PL,MT,Emenda,Plenário,1,TRUE
+136173,senado,1173,senador,Wellington Fagundes,PR,MT,Emenda,Plenário,1,TRUE
 136173,senado,5422,senador,Marcos Rogério,DEM,RO,Parecer,CCJ,1,TRUE
 136173,senado,5422,senador,Marcos Rogério,DEM,RO,Parecer,Plenário,1,TRUE
-136173,senado,5533,senador,Lasier Martins,PODEMOS,RS,Emenda,CCJ,1,TRUE
+136173,senado,5533,senador,Lasier Martins,PODE,RS,Emenda,CCJ,1,TRUE
 136173,senado,5718,senador,Eliziane Gama,CIDADANIA,MA,Emenda,Plenário,1,TRUE
 136173,senado,5953,senador,Fabiano Contarato,REDE,ES,Emenda,CCJ,1,TRUE
-136173,senado,5959,senador,Styvenson Valentim,PODEMOS,RN,Emenda,Plenário,1,TRUE
+136173,senado,5959,senador,Styvenson Valentim,PODE,RN,Emenda,Plenário,1,TRUE
 136173,senado,5982,senador,Alessandro Vieira,CIDADANIA,SE,Emenda,CCJ,1,TRUE
 136531,senado,74400,deputado,Paulo Pimenta,PT,RS,Emenda,CMMPV,18,TRUE
 136531,senado,133439,deputado,André Figueiredo,PDT,CE,Emenda,CMMPV,18,TRUE
@@ -2858,6 +2914,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 136531,senado,74060,deputado,Daniel Almeida,PCdoB,BA,Emenda,CMMPV,5,TRUE
 136531,senado,74848,deputado,Jandira Feghali,PCdoB,RJ,Emenda,CMMPV,5,TRUE
 136531,senado,141470,deputado,José Guimarães,PT,CE,Emenda,CMMPV,5,TRUE
+136531,senado,5783,senador,Zenaide Maia,PROS,RN,Requerimento,Plenário,4,TRUE
 136531,senado,73531,deputado,Ivan Valente,PSOL,SP,Emenda,CMMPV,4,TRUE
 136531,senado,73801,deputado,Renildo Calheiros,PCdoB,PE,Emenda,CMMPV,4,TRUE
 136531,senado,81055,deputado,Márcio Jerry,PCdoB,MA,Emenda,CMMPV,4,TRUE
@@ -2866,13 +2923,16 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 136531,senado,204395,deputado,Pedro Lupion,DEM,PR,Emenda,CMMPV,4,TRUE
 136531,senado,204477,deputado,Felício Laterça,PSL,RJ,Emenda,CMMPV,4,TRUE
 136531,senado,3396,senador,Tasso Jereissati,PSDB,CE,Emenda,CMMPV,3,TRUE
+136531,senado,5008,senador,Humberto Costa,PT,PE,Requerimento,Plenário,3,TRUE
+136531,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Requerimento,Plenário,3,TRUE
 136531,senado,5411,senador,Weverton,PDT,MA,Emenda,CMMPV,3,TRUE
 136531,senado,5529,senador,Antonio Anastasia,PSDB,MG,Emenda,CMMPV,3,TRUE
+136531,senado,5718,senador,Eliziane Gama,CIDADANIA,MA,Requerimento,Plenário,3,TRUE
 136531,senado,5783,senador,Zenaide Maia,PROS,RN,Emenda,CMMPV,3,TRUE
 136531,senado,5979,senador,Leila Barros,PSB,DF,Emenda,CMMPV,3,TRUE
 136531,senado,5988,senador,Soraya Thronicke,PSL,MS,Emenda,CMMPV,3,TRUE
 136531,senado,73486,deputado,Pompeo de Mattos,PDT,RS,Emenda,CMMPV,3,TRUE
-136531,senado,74585,deputado,Lincoln Portela,PL,MG,Emenda,CMMPV,3,TRUE
+136531,senado,74585,deputado,Lincoln Portela,PR,MG,Emenda,CMMPV,3,TRUE
 136531,senado,141488,deputado,Paulo Teixeira,PT,SP,Emenda,CMMPV,3,TRUE
 136531,senado,160570,deputado,Jerônimo Goergen,PP,RS,Parecer,CMMPV,3,TRUE
 136531,senado,160632,deputado,Zé Silva,SD,MG,Emenda,CMMPV,3,TRUE
@@ -2881,8 +2941,11 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 136531,senado,3806,senador,Zequinha Marinho,PSC,PA,Emenda,CMMPV,2,TRUE
 136531,senado,4531,senador,Jayme Campos,DEM,MT,Emenda,CMMPV,2,TRUE
 136531,senado,4770,senador,Izalci Lucas,PSDB,DF,Emenda,CMMPV,2,TRUE
+136531,senado,4770,senador,Izalci Lucas,PSDB,DF,Requerimento,Plenário,2,TRUE
 136531,senado,5008,senador,Humberto Costa,PT,PE,Emenda,CMMPV,2,TRUE
+136531,senado,5523,senador,Otto Alencar,PSD,BA,Requerimento,Plenário,2,TRUE
 136531,senado,5905,senador,Rodrigo Cunha,PSDB,AL,Emenda,CMMPV,2,TRUE
+136531,senado,5953,senador,Fabiano Contarato,REDE,ES,Requerimento,Plenário,2,TRUE
 136531,senado,5998,senador,Daniella Ribeiro,PP,PB,Emenda,CMMPV,2,TRUE
 136531,senado,74478,deputado,Luciano Bivar,PSL,PE,Emenda,CMMPV,2,TRUE
 136531,senado,178836,deputado,Alan Rick,DEM,AC,Emenda,CMMPV,2,TRUE
@@ -2891,7 +2954,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 136531,senado,178970,deputado,João Daniel,PT,SE,Emenda,CMMPV,2,TRUE
 136531,senado,204380,deputado,Celina Leão,PP,DF,Emenda,CMMPV,2,TRUE
 136531,senado,204386,deputado,Jose Mario Schreiner,DEM,GO,Emenda,CMMPV,2,TRUE
-136531,senado,204485,deputado,Luiz Carlos Motta,PL,SP,Emenda,CMMPV,2,TRUE
+136531,senado,204485,deputado,Luiz Carlos Motta,PR,SP,Emenda,CMMPV,2,TRUE
 136531,senado,204536,deputado,Kim Kataguiri,DEM,SP,Emenda,CMMPV,2,TRUE
 136531,senado,90,senador,José Serra,PSDB,SP,Emenda,CMMPV,1,TRUE
 136531,senado,1249,senador,Kátia Abreu,PDT,TO,Emenda,CMMPV,1,TRUE
@@ -2900,7 +2963,7 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 136531,senado,5352,senador,Rogério Carvalho,PT,SE,Voto em Separado,CMMPV,1,TRUE
 136531,senado,5502,senador,Plínio Valério,PSDB,AM,Emenda,CMMPV,1,TRUE
 136531,senado,5537,senador,Dário Berger,MDB,SC,Outros,CMMPV,1,TRUE
-136531,senado,69871,deputado,Bacelar,PODEMOS,BA,Emenda,CMMPV,1,TRUE
+136531,senado,69871,deputado,Bacelar,PODE,BA,Emenda,CMMPV,1,TRUE
 136531,senado,73943,deputado,Perpétua Almeida,PCdoB,AC,Emenda,CMMPV,1,TRUE
 136531,senado,74419,deputado,Gonzaga Patriota,PSB,PE,Emenda,CMMPV,1,TRUE
 136531,senado,108338,deputado,Jaqueline Cassol,PP,RO,Emenda,CMMPV,1,TRUE
@@ -2917,8 +2980,60 @@ id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,
 136531,senado,204395,deputado,Pedro Lupion,DEM,PR,Requerimento,CMMPV,1,TRUE
 136531,senado,204410,deputado,Luisa Canziani,PTB,PR,Emenda,CMMPV,1,TRUE
 136531,senado,204425,deputado,Silvio Costa Filho,PRB,PE,Emenda,CMMPV,1,TRUE
-136531,senado,204472,deputado,José Medeiros,PODEMOS,MT,Emenda,CMMPV,1,TRUE
+136531,senado,204472,deputado,José Medeiros,PODE,MT,Emenda,CMMPV,1,TRUE
 136531,senado,204500,deputado,Eduardo Costa,PTB,PA,Emenda,CMMPV,1,TRUE
 136531,senado,204504,deputado,Cezinha de Madureira,PSD,SP,Emenda,CMMPV,1,TRUE
-136531,senado,204556,deputado,Marcelo Ramos,PL,AM,Emenda,CMMPV,1,TRUE
+136531,senado,204556,deputado,Marcelo Ramos,PR,AM,Emenda,CMMPV,1,TRUE
 136531,senado,204576,deputado,João Roma,PRB,BA,Emenda,CMMPV,1,TRUE
+137999,senado,5973,senador,Cid Gomes,PDT,CE,Emenda,CCJ,52,TRUE
+137999,senado,5008,senador,Humberto Costa,PT,PE,Emenda,CCJ,46,TRUE
+137999,senado,374,senador,Paulo Rocha,PT,PA,Emenda,CCJ,38,TRUE
+137999,senado,5411,senador,Weverton,PDT,MA,Emenda,CCJ,38,TRUE
+137999,senado,5352,senador,Rogério Carvalho,PT,SE,Emenda,CCJ,34,TRUE
+137999,senado,5537,senador,Dário Berger,MDB,SC,Emenda,CCJ,30,TRUE
+137999,senado,825,senador,Paulo Paim,PT,RS,Emenda,CCJ,26,TRUE
+137999,senado,5748,senador,Veneziano Vital do Rêgo,PSB,PB,Emenda,CCJ,23,TRUE
+137999,senado,581,senador,Jaques Wagner,PT,BA,Emenda,CCJ,22,TRUE
+137999,senado,5502,senador,Plínio Valério,PSDB,AM,Emenda,CCJ,21,TRUE
+137999,senado,5942,senador,Marcos do Val,PODEMOS,ES,Emenda,CCJ,18,TRUE
+137999,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Emenda,CCJ,15,TRUE
+137999,senado,2331,senador,Rose de Freitas,PODEMOS,ES,Emenda,CCJ,11,TRUE
+137999,senado,5953,senador,Fabiano Contarato,REDE,ES,Emenda,CCJ,9,TRUE
+137999,senado,5982,senador,Alessandro Vieira,CIDADANIA,SE,Emenda,CCJ,8,TRUE
+137999,senado,5529,senador,Antonio Anastasia,PSDB,MG,Emenda,CCJ,7,TRUE
+137999,senado,5895,senador,Jorge Kajuru,PATRIOTA,GO,Emenda,CCJ,6,TRUE
+137999,senado,6005,senador,Siqueira Campos,DEM,TO,Emenda,CCJ,6,TRUE
+137999,senado,825,senador,Paulo Paim,PT,RS,Requerimento,,5,FALSE
+137999,senado,5535,senador,Telmário Mota,PROS,RR,Emenda,CCJ,5,TRUE
+137999,senado,5718,senador,Eliziane Gama,CIDADANIA,MA,Emenda,CCJ,5,TRUE
+137999,senado,5979,senador,Leila Barros,PSB,DF,Emenda,CCJ,5,TRUE
+137999,senado,5990,senador,Carlos Viana,PSD,MG,Emenda,CCJ,5,TRUE
+137999,senado,3361,senador,José Maranhão,MDB,PB,Emenda,CCJ,4,TRUE
+137999,senado,5533,senador,Lasier Martins,PODEMOS,RS,Emenda,CCJ,4,TRUE
+137999,senado,5666,senador,Major Olimpio,PSL,SP,Emenda,CCJ,4,TRUE
+137999,senado,5905,senador,Rodrigo Cunha,PSDB,AL,Emenda,CCJ,4,TRUE
+137999,senado,5350,senador,Jorginho Mello,PL,SC,Emenda,CCJ,3,TRUE
+137999,senado,5523,senador,Otto Alencar,PSD,BA,Emenda,CCJ,3,TRUE
+137999,senado,5929,senador,Juíza Selma,PSL,MT,Emenda,CCJ,3,TRUE
+137999,senado,5967,senador,Angelo Coronel,PSD,BA,Emenda,CCJ,3,TRUE
+137999,senado,90,senador,José Serra,PSDB,SP,Emenda,CCJ,2,TRUE
+137999,senado,4981,senador,Acir Gurgacz,PDT,RO,Emenda,CCJ,2,TRUE
+137999,senado,5008,senador,Humberto Costa,PT,PE,Requerimento,,2,FALSE
+137999,senado,22,senador,Esperidião Amin,PP,SC,Emenda,CCJ,1,TRUE
+137999,senado,35,senador,Jader Barbalho,MDB,PA,Emenda,CCJ,1,TRUE
+137999,senado,70,senador,Renan Calheiros,MDB,AL,Emenda,CCJ,1,TRUE
+137999,senado,739,senador,Ciro Nogueira,PP,PI,Emenda,CCJ,1,TRUE
+137999,senado,945,senador,Alvaro Dias,PODEMOS,PR,Requerimento,,1,FALSE
+137999,senado,1173,senador,Wellington Fagundes,PL,MT,Emenda,CCJ,1,TRUE
+137999,senado,1186,senador,Luis Carlos Heinze,PP,RS,Emenda,CCJ,1,TRUE
+137999,senado,3396,senador,Tasso Jereissati,PSDB,CE,Parecer,CCJ,1,TRUE
+137999,senado,5012,senador,Randolfe Rodrigues,REDE,AP,Requerimento,,1,FALSE
+137999,senado,5411,senador,Weverton,PDT,MA,Voto em Separado,CCJ,1,TRUE
+137999,senado,5422,senador,Marcos Rogério,DEM,RO,Emenda,CCJ,1,TRUE
+137999,senado,5540,senador,Fernando Bezerra Coelho,MDB,PE,Emenda,CCJ,1,TRUE
+137999,senado,5666,senador,Major Olimpio,PSL,SP,Requerimento,,1,FALSE
+137999,senado,5732,senador,Rodrigo Pacheco,DEM,MG,Emenda,CCJ,1,TRUE
+137999,senado,5748,senador,Veneziano Vital do Rêgo,PSB,PB,Outros,CCJ,1,TRUE
+137999,senado,5979,senador,Leila Barros,PSB,DF,Requerimento,CCJ,1,TRUE
+137999,senado,5985,senador,Nelsinho Trad,PSD,MS,Emenda,CCJ,1,TRUE
+137999,senado,6027,senador,Mecias de Jesus,PRB,RR,Emenda,CCJ,1,TRUE
