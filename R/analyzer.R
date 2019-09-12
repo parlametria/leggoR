@@ -174,7 +174,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 
   temperatura_periodo <-
     temperatura_periodo %>%
-    dplyr::summarize(periodo = dplyr::first(data),
+    dplyr::summarize(periodo = dplyr::first(data) - as.difftime(1, unit="days"),
                      temperatura_periodo = sum(peso_final, na.rm = T)) %>%
     dplyr::ungroup()
   temperatura_periodo <-
