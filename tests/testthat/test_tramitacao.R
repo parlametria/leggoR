@@ -55,7 +55,7 @@ test <- function(){
   })
   
   test_that('fetch_tramitacao_camara() return bigger dataframe whithout date', {
-    expect_true(nrow(tramitacao_2196833) >= nrow(tramitacao_2121442_com_data))
+    expect_true(nrow(tramitacao_2196833) >= nrow(tramitacao_2196833_com_data))
   })
   
 }
