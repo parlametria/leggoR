@@ -63,19 +63,25 @@ fetch_tramitacao <- function(id, casa, isMPV = FALSE) {
 #' @examples
 #' fetch_tramitacao_camara(2121442)
 fetch_tramitacao_camara <- function(bill_id, data_inicio = NA, data_fim = NA) {
-  rcongresso::fetch_tramitacao_camara(bill_id, data_inicio, data_fim) %>%
-    dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,"T"," ")),
-                  casa = "camara",
-                  id_situacao = as.integer(cod_tipo_tramitacao)) %>%
-    dplyr::select(prop_id = id_prop,
-                  casa,
-                  data_hora,
-                  sequencia,
-                  texto_tramitacao = despacho,
-                  sigla_local = sigla_orgao,
-                  id_situacao,
-                  descricao_situacao,
-                  link_inteiro_teor = url)
+  tramitacao <- rcongresso::fetch_tramitacao_camara(bill_id, data_inicio, data_fim) 
+  if (nrow(tramitacao) == 0) {
+    tibble::tribble(~prop_id, ~casa, ~data_hora, ~sequencia, ~texto_tramitacao, ~sigla_local,
+                   ~id_situacao, ~descricao_situacao, ~link_inteiro_teor)
+  }else {
+    tramitacao %>% 
+      dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,"T"," ")),
+                    casa = "camara",
+                    id_situacao = as.integer(cod_tipo_tramitacao)) %>%
+      dplyr::select(prop_id = id_prop,
+                    casa,
+                    data_hora,
+                    sequencia,
+                    texto_tramitacao = despacho,
+                    sigla_local = sigla_orgao,
+                    id_situacao,
+                    descricao_situacao,
+                    link_inteiro_teor = url)
+  }
 }
 
 #' @title Baixa dados das tramitações das proposições
