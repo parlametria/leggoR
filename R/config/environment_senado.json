@@ -45,7 +45,7 @@
     {"fase": "encaminhamento", "code": [89, 159]},
     {"fase": "recebimento_comissao", "regex": "recebido na|nesta comissao"}
   ],
-  
+
   "evento_emendas": {
     "regex_detect": "prazo(.*) emenda(s)*|abertura do prazo",
     "regex_extract": "\\d{1,2}/\\d{1,2}/\\d{4}|\\d{1,2}.\\d{2}.\\d{4}",
@@ -71,20 +71,21 @@
     {"evento": "aprovacao_parecer", "regex": "a comissão aprova o relatório|aprovado o relatório", "tipo":"votacao"},
     {"evento": "pedido_de_vista", "regex": "concedida vista", "tipo":"votacao"},
     {"evento": "designado_relator",
-      "regex": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))|avocada a relatoria", 
+      "regex": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))|avocada a relatoria",
       "tipo":"despacho"},
     {"evento": "arquivamento", "regex": "processo arquivado(.)*|a proposição é arquivada|o projeto vai ao arquivo", "tipo":"despacho"},
     {"evento": "desarquivamento", "regex": "a mat.ria foi desarquivada", "tipo":"despacho"},
     {"evento": "desarquivamento", "id_situacao": 149, "tipo":"despacho"},
     {"evento": "aprovacao_substitutivo", "regex": "aprovado o substitutivo", "tipo":"votacao"},
     {"evento": "aprovacao_projeto", "regex": "aprovado o projeto", "tipo":"votacao"},
-    {"evento": "rejeicao_projeto", "regex": "(plc*|pec|mpv) rejeitad(o|a)", "tipo":"votacao"},
+    {"evento": "rejeicao_projeto", "regex": "(plc*|pec|mpv) rejeitad(o|a)|comunicando a rejei.(ã|a)o da medida provis(ó|o)ria|rejeitado os pressupostos constitucionais", "tipo":"votacao"},
     {"evento": "remetida_a_sancao", "regex": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
     {"evento": "transformada_lei", "regex": "sancionada", "tipo":"votacao"},
     {"evento": "vetada_totalmente", "regex": "vetada integralmente|vetado(,)* totalmente", "tipo":"votacao"},
-    {"evento": "virada_de_casa", "regex": "primeiro(-| )secret(a|á)rio.*da.*c(a|â)mara.*dos.*deputados.*encaminhando.*revis(a|ã)o", "tipo":"votacao"}
+    {"evento": "virada_de_casa", "regex": "primeiro(-| )secret(a|á)rio.*da.*c(a|â)mara.*dos.*deputados.*encaminhando.*revis(a|ã)o", "tipo":"votacao"},
+    {"evento": "perda_da_eficacia", "regex": "t(é|e)rmino do prazo de vig(ê|e)ncia", "tipo":"votacao"}
   ],
-  
+
  "locais": [
     {"local": "CCJ", "tipo":"decisivo"},
     {"local": "Plenário", "tipo":"decisivo"},
@@ -130,7 +131,8 @@
       "CMCVM",
       "CMMC",
       "CMO",
-      "FIPA"
+      "FIPA",
+      "CMMPV"
     ],
     "comissoes_permanentes": [
       "de Assuntos Econômicos",
@@ -153,7 +155,8 @@
       "Permanente Mista de Combate à Violência contra a Mulher",
       "Mista Permanente sobre Mudanças Climáticas",
       "Mista de Planos, Orçamentos Públicos e Fiscalização",
-      "Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas"
+      "Mista Representativa do Congresso Nacional no Fórum Interparlamentar das Américas",
+      "Mista da Medida Provisória"
     ],
     "comissoes_temporarias": [
       "Especial"
@@ -179,7 +182,7 @@
   "fase_global_plenario":{
     "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)|(à slsf, a pedido.)"
   },
-  
+
   "fase_global_sancao":{
     "situacao_sancao": "remetida_à_sanção",
     "situacao_norma_juridica": "transformada_em_norma_jurídica"
@@ -195,7 +198,7 @@
     {"local": "Presidência da República", "fase_global": "Sanção/Veto"},
     {"local": "Presidência da República", "fase_global": "Avaliação dos Vetos"}
   ],
-  
+
   "requerimento": {
     "regex_detect": {
       "autoria": "autoria do | iniciativa do"
@@ -204,8 +207,29 @@
       "senado": "senador[^,]+ | sen[^,]+"
     }
   },
-  
+
   "versoes_texto_proposicao":{
     "tipos_texto_regex" : "(^projeto de lei .*)|(proposta de emenda .*)|(medida provisória .*)|(avulso de redação final)|(avulso inicial da matéria)|(^parecer nº.*)|(^emenda(s|).*)|(^medida provisória)"
-  }
+  },
+
+  "tipos_documentos": [
+    {"tipo": "Proposição Apensada", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de convers.o|proposta de emenda . constitui..o|mpv|plc|pls|pl"},
+    {"tipo": "Emenda", "regex": "^emenda|^subemenda"},
+    {"tipo": "Parecer", "regex": "^parecer|^complementa..o de voto|^reda..o final|^substitutivo"},
+    {"tipo": "Requerimento", "regex": "^requerimento|rqe|rqs|rqj|rra"}, 
+    {"tipo": "Voto em Separado", "regex": "^voto em separado"}
+    ],
+    
+  "tipos_documentos_scrap": [
+    {"tipo": "Emenda", "regex": "emenda|subemenda"},
+    {"tipo": "Parecer", "regex": "parecer|^complementa..o de voto|^reda..o final|^substitutivo|p\\.s|^relat(ó|o)rio|^par"},
+    {"tipo": "Requerimento", "regex": "requerimento|rqe|rqs|rqj|rra|req|rdh|rma"}, 
+    {"tipo": "Voto em Separado", "regex": "voto em separado"}
+    ],
+    
+  "tipos_autores_scrap": [
+    {"tipo_autor": "senador", "regex": "^Senador(a)*|^Líder do ((.*?)(\\s))|^Presidente do Senado Federal: Senador"},
+    {"tipo_autor": "deputado", "regex": "^Deputad(o|a)|^Deputad(o|a) Federal"}
+  ]
+
 }

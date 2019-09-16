@@ -8,6 +8,7 @@ Rscript process_leggo_data.R <input_path> <output_path>
 
 #Functions
 
+
 ## Process args
 args <- commandArgs(trailingOnly = TRUE)
 min_num_args <- 2
@@ -22,37 +23,16 @@ devtools::install()
 library(magrittr)
 
 # Read current data csvs
-
-## Read PLs list
-documentos <- readr::read_csv(paste0(input_path,'/documentos.csv'),
-                                        col_types = list(
-                                            .default = readr::col_character(),
-                                            id_documento = readr::col_double(),
-                                            id_principal = readr::col_double(),
-                                            numero = readr::col_integer(),
-                                            ano = readr::col_integer(),
-                                            data_apresentacao = readr::col_datetime(format = ""),
-                                            codTipo = readr::col_integer(),
-                                            statusProposicao.codSituacao = readr::col_integer(),
-                                            statusProposicao.codTipoTramitacao = readr::col_integer(),
-                                            statusProposicao.dataHora = readr::col_datetime(format = ""),
-                                            statusProposicao.sequencia = readr::col_integer()
-                                        ))
-
-autores <- readr::read_csv(paste0(input_path, '/autores.csv'),
-                                   col_types = list(
-                                     .default = readr::col_character(),
-                                     id_autor = readr::col_character(),
-                                     nome = readr::col_character(),
-                                     cod_tipo = readr::col_integer(),
-                                     tipo = readr::col_character(),
-                                     uri = readr::col_character(),
-                                     id_documento = readr::col_character(),
-                                     casa = readr::col_character()
-                                   ))
+camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv"))
+camara_autores <- agoradigital::read_current_autores_camara(paste0(input_path, "/camara/autores.csv"))
+senado_docs <- agoradigital::read_current_docs_senado(paste0(input_path, "/senado/documentos.csv"))
+senado_autores <- agoradigital::read_current_autores_senado(paste0(input_path, "/senado/autores.csv"))
 
 print(paste("Gerando tabela de atores a partir de dados atualizados de documentos e autores..."))
 
-atores_df <- agoradigital::create_tabela_atores(documentos, autores)
+atores_camara <- agoradigital::create_tabela_atores_camara(camara_docs, camara_autores)
+atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores)
 
-readr::write_csv(atores_df, paste0(output_path, '/atores.csv'))
+atores_df <- dplyr::bind_rows(atores_camara, atores_senado)
+
+readr::write_csv(atores_df, paste0(output_path, '/atores.csv'), na = "")

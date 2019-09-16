@@ -2,7 +2,7 @@ context("Tipo de Documento")
 
 # Setup
 setup <- function(){
-  tipos_documentos <- c("Emenda","Proposição","Parecer","Requerimento","Voto em Separado","Outros")
+  tipos_documentos <- c("Emenda","Proposição Apensada","Parecer","Requerimento","Voto em Separado","Outros")
   regex_documento_emenda <<- tipos_documentos[1]
   regex_documento_proposicao <<- tipos_documentos[2]
   regex_documento_parecer <<- tipos_documentos[3]
@@ -10,7 +10,7 @@ setup <- function(){
   regex_documento_voto_em_separado <<- tipos_documentos[5]
   regex_documento_outros <<- tipos_documentos[6]
   
-  docs_emendas <<- tibble::tibble(descricaoTipo = c("Emenda",
+  docs_emendas <<- tibble::tibble(descricao_tipo_documento = c("Emenda",
                                                    "Emenda adotada pela comissão",
                                                    "Emenda adotada pela comissao",
                                                    "Emenda ao substitutivo",
@@ -23,22 +23,24 @@ setup <- function(){
                                                    "Emenda/substitutivo do senado",
                                                    "Subemenda de relator",
                                                    "Subemenda substitutiva de plenário",
-                                                   "Subemenda substitutiva de plenario"))
+                                                   "Subemenda substitutiva de plenario"),
+                                  casa = rep('camara',14))
   
   docs_emendas_gt <<- dplyr::mutate(docs_emendas, tipo = rep(regex_documento_emenda,14))
   
-  docs_proposicoes <<- tibble::tibble(descricaoTipo = c("Medida provisoria",
+  docs_proposicoes <<- tibble::tibble(descricao_tipo_documento = c("Medida provisoria",
                                                           "Medida provisória",
                                                           "Projeto de lei",
                                                           "Projeto de lei complementar",
                                                           "Projeto de lei de conversão",
                                                           "Projeto de lei de conversao",
                                                           "Proposta de Emenda a constituicao",
-                                                          "Proposta de Emenda à constituição"))
+                                                          "Proposta de Emenda à constituição"),
+                                      casa = rep('camara',8))
   
   docs_proposicoes_gt <<- dplyr::mutate(docs_proposicoes, tipo = rep(regex_documento_proposicao,8))
   
-  docs_pareceres <<- tibble::tibble(descricaoTipo = c("Parecer às Emendas apresentadas ao substitutivo do relator",
+  docs_pareceres <<- tibble::tibble(descricao_tipo_documento = c("Parecer às Emendas apresentadas ao substitutivo do relator",
                                                      "Parecer às Emendas de plenário",
                                                      "Parecer às Emendas ou ao substitutivo do senado",
                                                      "Parecer de comissão",
@@ -54,11 +56,12 @@ setup <- function(){
                                                      "Redacao Final",
                                                      "Substitutivo",
                                                      "Substitutivo adotado pela Comissão",
-                                                     "Substitutivo adotado pela comissao"))
+                                                     "Substitutivo adotado pela comissao"),
+                                    casa = rep('camara',17))
   
   docs_pareceres_gt <<- dplyr::mutate(docs_pareceres, tipo = rep(regex_documento_parecer,17))
   
-  docs_requerimentos <<- tibble::tibble(descricaoTipo = c("Requerimento",
+  docs_requerimentos <<- tibble::tibble(descricao_tipo_documento = c("Requerimento",
                                                          "Requerimento de apensação",
                                                          "Requerimento de audiência pública",
                                                          "Requerimento de constituição de comissão especial de pec",
@@ -81,19 +84,21 @@ setup <- function(){
                                                          "Requerimento de retirada de proposição de iniciativa individual",
                                                          "Requerimento de transformação de sessão plenaria em comissão geral",
                                                          "Requerimento de urgência (art. 154 do ricd)",
-                                                         "Requerimento de urgência (art. 155 do ricd)"))
+                                                         "Requerimento de urgência (art. 155 do ricd)"),
+                                        casa = rep('camara',24))
   
   docs_requerimentos_gt <<- dplyr::mutate(docs_requerimentos, tipo = rep(regex_documento_requerimento,24))
   
-  docs_voto_em_separado <<- tibble::tibble(descricaoTipo = c("Voto em Separado"))
+  docs_voto_em_separado <<- tibble::tibble(descricao_tipo_documento = c("Voto em Separado"), casa = c('camara'))
   
   docs_voto_em_separado_gt <<- dplyr::mutate(docs_voto_em_separado, tipo = c(regex_documento_voto_em_separado))
   
-  docs_outros <<- tibble::tibble(descricaoTipo = c("Ata",
+  docs_outros <<- tibble::tibble(descricao_tipo_documento = c("Ata",
                                                   "Autógrafo",
                                                   "Mensagem",
                                                   "Reclamação",
-                                                  "Recurso"))
+                                                  "Recurso"),
+                                 casa = rep('camara',5))
   
   docs_outros_gt <<- dplyr::mutate(docs_outros, tipo = rep(regex_documento_outros,5))
   
