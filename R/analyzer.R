@@ -187,6 +187,47 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
   return(historico_temperatura)
 }
 
+#' @title Extrai a temperatura das duas casas
+#' @description Obtém a temperatura das proposições
+#' considerando a tramitação das duas casas, se houver, caso não
+#' considera a tramitação da casa de origem
+#' @param tram Dataframe da tramitação do PL.
+#' @param id_leggo ID geral da proposição
+#' @param pautas Dataframe das pautas
+#' @return Dataframe com o valor da temperatura recente para cada dia útil da tramitação de uma proposição.
+#' @export
+get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, pautas) {
+  eventos_por_leggo_id <-
+    tram %>%
+    dplyr::mutate(id_leggo = id_leggo)
+  
+  temperatura_por_id_leggo <- 
+    eventos_por_leggo_id %>%
+    split(.$id_leggo) %>%
+    purrr::map_dfr(
+      ~ agoradigital::get_historico_temperatura_recente(
+        .x,
+        granularidade = 's',
+        decaimento = 0.25,
+        max_date = lubridate::now(),
+        pautas = pautas
+      ),
+      .id = "id_leggo"
+    ) %>%
+    dplyr::mutate(id_leggo = as.integer(id_leggo))
+  
+  if(nrow(temperatura_por_id_leggo) == 0) {
+    temperatura_por_id_leggo <- tibble::tribble(
+      ~ id_leggo,
+      ~ periodo,
+      ~ temperatura_periodo,
+      ~ temperatura_recente
+    )
+  }
+  
+  return(temperatura_por_id_leggo) 
+}
+
 #' @title Extrai o regime de tramitação de um PL
 #' @description Obtém o regime de tramitação de um PL
 #' @param tram_df Dataframe da tramitação do PL.

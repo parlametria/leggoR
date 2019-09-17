@@ -12,21 +12,18 @@ leggo_ids <- dplyr::bind_rows(dplyr::select(pls_ids, id_leggo, id_ext = id_camar
   dplyr::arrange(id_leggo) %>%
   dplyr::distinct()
 
-leggo_ids_temas <- leggo_ids %>%
-  dplyr::select(-id_ext) %>%
-  dplyr::distinct()
-
-eventos_por_leggo_id <- readr::read_csv('data/trams.csv',
-                                        col_types = list(
-                                          .default = readr::col_character(),
-                                          id_ext = readr::col_double(),
-                                          data = readr::col_datetime(format = ""),
-                                          sequencia = readr::col_double(),
-                                          id_situacao = readr::col_double(),
-                                          nivel = readr::col_double(),
-                                          data_audiencia = readr::col_datetime(format = "")
-                                        )) %>%
-  dplyr::inner_join(leggo_ids %>% dplyr::select(id_leggo,id_ext)) %>%
+eventos_por_leggo_id <-
+  readr::read_csv('data/trams.csv',
+                  col_types = list(
+                    .default = readr::col_character(),
+                    id_ext = readr::col_double(),
+                    data = readr::col_datetime(format = ""),
+                    sequencia = readr::col_double(),
+                    id_situacao = readr::col_double(),
+                    nivel = readr::col_double(),
+                    data_audiencia = readr::col_datetime(format = "")
+                  )) %>%
+  dplyr::inner_join(leggo_ids %>% dplyr::select(id_leggo,id_ext), by = "id_ext") %>%
   dplyr::select(id_leggo, dplyr::everything()) %>%
   dplyr::rename(prop_id = id_ext, data_hora = data)
 
