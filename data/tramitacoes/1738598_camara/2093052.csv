@@ -1,0 +1,16 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2093052,camara,2016-08-05T00:00:00Z,2,Realizar o Encaminhamento para NAJUR(SGM),SEPRO,910,NA,NA,2093052
+2093052,camara,2016-08-05T11:15:00Z,1,"Apresentação do Requerimento de Redistribuição n. 4998/2016, pela Comissão de Direitos Humanos e Minorias, que: ""Requeiro, nos termos regimentais, com base nos artigos nos arts. 32, inciso VIII, 41, inciso XX, 53, inciso I, 139, inciso II, alínea a e 141 do RICD, a inclusão da Comissão de Direitos Humanos e Minorias no despacho inicial aposto ao PL Nº 3.068/2015, que dispõe sobre a criação da Área de Proteção Ambiental de Canavieiras, localizada nos Municípios de Canavieiras, Belmonte e Una, no Estado da Bahia"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1480481,2093052
+2093052,camara,2016-08-05T16:34:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 3169/2016.,SEPRO,180,NA,NA,2093052
+2093052,camara,2016-08-05T17:17:00Z,4,Recebimento pelo NAJUR(SGM) -  - Teresinha Passos Silva.,NAJUR(SGM),500,NA,NA,2093052
+2093052,camara,2016-08-31T00:00:00Z,6,Publicação inicial no DCD do dia 01/09/2016,PLEN,605,NA,NA,2093052
+2093052,camara,2016-08-31T14:52:00Z,5,"Indefiro o pedido contido no Requerimento n. 4.998/2016, porque a matéria versada no Projeto de Lei n. 3.068/2015 não se enquadra no campo temático da Comissão de Direitos Humanos e Minorias, delimitado no inciso VIII do art. 32 do RICD. Publique-se. Oficie-se.",MESA,110,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1489274,2093052
+2093052,camara,2016-09-02T00:00:00Z,9,Despacho a Confirmar.,MESA,110,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1489274,2093052
+2093052,camara,2016-09-02T00:00:00Z,7,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,2093052
+2093052,camara,2016-09-02T00:00:00Z,13,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,2093052
+2093052,camara,2016-09-02T00:00:00Z,11,Realizar o Encaminhamento para CCP,SGMGAB,910,Aguardando Recebimento,NA,2093052
+2093052,camara,2016-09-02T14:49:00Z,8,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 468/2016.,NAJUR(SGM),180,NA,NA,2093052
+2093052,camara,2016-09-02T14:52:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,2093052
+2093052,camara,2016-09-02T15:00:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SGMGAB) nº 988/2016.,SGMGAB,180,Aguardando Recebimento,NA,2093052
+2093052,camara,2016-09-02T16:04:00Z,14,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 469/2016.,NAJUR(SGM),180,NA,NA,2093052
+2093052,camara,2016-09-05T12:18:00Z,15,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2093052

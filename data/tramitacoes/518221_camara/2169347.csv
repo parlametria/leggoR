@@ -1,0 +1,27 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2169347,camara,2018-03-14T16:57:00Z,1,"Apresentação da Proposta de Emenda à Constituição n. 402/2018, pelo Deputado Moisés Diniz (PCdoB-AC), que: ""'Altera a redação do § 1º, do Art. 211 da Constituição Federal'"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1644102,2169347
+2169347,camara,2018-03-14T16:57:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2169347
+2169347,camara,2018-03-14T17:14:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2169347
+2169347,camara,2018-03-15T00:00:00Z,6,Encaminhada à publicação. Publicação Inicial no DCD de 16/03/18 PÁG 102 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1669007,2169347
+2169347,camara,2018-03-15T00:00:00Z,7,Relatório de Conferência de Assinaturas.,MESA,1042,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1645770,2169347
+2169347,camara,2018-03-15T09:39:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 5568/2018.,SEPRO,180,NA,NA,2169347
+2169347,camara,2018-03-15T10:06:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2169347
+2169347,camara,2018-04-03T00:00:00Z,8,Despacho a Confirmar.,MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1648386,2169347
+2169347,camara,2018-04-04T10:23:00Z,9,Despacho Chancelado,SECAP(SGM),180,NA,NA,2169347
+2169347,camara,2018-04-04T10:23:00Z,10,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2169347
+2169347,camara,2018-04-04T10:23:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Arquivada,NA,2169347
+2169347,camara,2018-04-04T10:53:00Z,13,Retirada a Chancela do Despacho.,SECAP(SGM),180,NA,NA,2169347
+2169347,camara,2018-06-08T00:00:00Z,14,Despacho a Confirmar.,MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1667117,2169347
+2169347,camara,2018-06-14T17:27:00Z,15,Despacho Chancelado,SECAP(SGM),180,NA,NA,2169347
+2169347,camara,2018-06-14T17:27:00Z,16,"Apense-se à(ao) PEC-76/2011. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Especial (Art. 202 c/c 191, I, RICD)",MESA,129,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1667117,2169347
+2169347,camara,2018-06-14T17:28:00Z,17,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Arquivada,NA,2169347
+2169347,camara,2018-06-15T00:00:00Z,21,Encaminhada à publicação. Despacho inicial no DCD de 16/06/2018.,CCP,604,NA,NA,2169347
+2169347,camara,2018-06-15T00:00:00Z,22,Encaminhada à publicação. Avulso Inicial,CCP,604,NA,NA,2169347
+2169347,camara,2018-06-15T08:56:00Z,18,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1528/2018.,SECAP(SGM),180,NA,NA,2169347
+2169347,camara,2018-06-15T09:31:00Z,19,Recebimento pela CCP.,CCP,500,NA,NA,2169347
+2169347,camara,2018-06-15T14:48:00Z,20,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 14168/2018.,CCP,180,NA,NA,2169347
+2169347,camara,2018-06-15T16:57:00Z,23,Recebimento pela CCJC.,CCJC,500,NA,NA,2169347
+2169347,camara,2018-06-18T00:00:00Z,25,"Devolvido ao Relator, Dep. Rubens Pereira Júnior (PCdoB-MA), em virtude da apensação da PEC 402/2018.",CCJC,170,NA,NA,2169347
+2169347,camara,2018-06-18T10:11:00Z,24,Apensação desta proposição à PEC 76/2011.,CCJC,106,NA,NA,2169347
+2169347,camara,2019-01-31T00:00:00Z,26,Arquivada nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,Arquivada,NA,2169347
+2169347,camara,2019-08-23T16:11:00Z,27,"Recebimento pela CCP, apensada à PEC-76/2011",CCP,500,NA,NA,2169347

@@ -1,0 +1,15 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2192672,camara,2019-02-21T10:57:00Z,1,"Apresentação do Projeto de Lei n. 1019/2019, pela Deputadoa Alexandre Leite DEM, que:""Cria o Estatuto dos CACs, para dispor sobre o exercício das atividades de colecionamento, de tiro desportivo e de caça, em todo o território nacional"".",SEPRO,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713175,2192672
+2192672,camara,2019-02-21T10:57:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2192672
+2192672,camara,2019-02-21T10:57:00Z,3,Realizar o Encaminhamento para CEDI,CEDI,910,NA,NA,2192672
+2192672,camara,2019-02-21T12:57:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 124/2019.,SEPRO,180,NA,NA,2192672
+2192672,camara,2019-02-21T13:29:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2192672
+2192672,camara,2019-02-26T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1714763,2192672
+2192672,camara,2019-05-10T14:45:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2192672
+2192672,camara,2019-05-10T14:45:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2192672
+2192672,camara,2019-05-10T14:46:00Z,9,"Apense-se à(ao) PL-986/2015. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Ordinária (Art. 151, III, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1714763,2192672
+2192672,camara,2019-05-10T14:46:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2192672
+2192672,camara,2019-05-10T15:15:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 146/2019.,SECAP(SGM),180,NA,NA,2192672
+2192672,camara,2019-05-10T16:38:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2192672
+2192672,camara,2019-05-10T16:52:00Z,13,Apensação desta proposição ao PL 986/2015.,CCP,106,NA,NA,2192672
+2192672,camara,2019-05-14T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 15/05/19 PÁG 305.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1768497,2192672

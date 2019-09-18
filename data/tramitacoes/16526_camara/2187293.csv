@@ -1,0 +1,22 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2187293,camara,2018-11-26T18:08:00Z,1,"Apresentação do Requerimento de Apensação n. 9289/2018, pelo Deputado Darcísio Perondi (MDB-RS), que: ""matéria correlata / identidade de objetos, art. 142, caput, RICD- PL nº 7552 de 2017)"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1695007,2187293
+2187293,camara,2018-11-26T18:08:00Z,2,Realizar o Encaminhamento para NAJUR(SGM),SEPRO,910,NA,NA,2187293
+2187293,camara,2018-11-26T18:56:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 6464/2018.,SEPRO,180,NA,NA,2187293
+2187293,camara,2018-11-27T00:00:00Z,5,Realizar o Encaminhamento para SECAP(SGM),NAJUR(SGM),910,NA,NA,2187293
+2187293,camara,2018-11-27T13:06:00Z,4,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2187293
+2187293,camara,2018-11-27T13:17:00Z,6,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/NAJUR(SGM)) nº 1303/2018.,NAJUR(SGM),180,NA,NA,2187293
+2187293,camara,2018-11-27T13:25:00Z,7,Recebimento pela SECAP(SGM) -  - Paula Regina dos Santos.,SECAP(SGM),500,NA,NA,2187293
+2187293,camara,2018-11-29T14:04:00Z,8,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SECAP(SGM)) nº 1658/2018.,SECAP(SGM),180,NA,NA,2187293
+2187293,camara,2018-11-29T16:50:00Z,9,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2187293
+2187293,camara,2019-06-26T00:00:00Z,10,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,2187293
+2187293,camara,2019-06-26T21:55:00Z,11,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 129/2019.,NAJUR(SGM),180,NA,NA,2187293
+2187293,camara,2019-07-01T00:00:00Z,12,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1772115,2187293
+2187293,camara,2019-07-01T00:00:00Z,18,Realizar o Encaminhamento para CCP,MESA,910,NA,NA,2187293
+2187293,camara,2019-07-01T00:00:00Z,20,Publicação inicial no DCD do dia 02/07/2019,PLEN,605,NA,NA,2187293
+2187293,camara,2019-07-01T18:20:00Z,15,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2187293
+2187293,camara,2019-07-01T18:20:00Z,16,"Dou por prejudicado o Requerimento em epígrafe, nos termos do art. 164, I, do Regimento Interno da Câmara dos Deputados, tendo em vista que a discussão do Projeto de Lei n. 1.292/1995 foi encerrada em 14 de maio de 2019. Publique-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1772115,2187293
+2187293,camara,2019-07-01T18:20:00Z,13,Despacho Chancelado,SGMGAB,180,Aguardando Recebimento,NA,2187293
+2187293,camara,2019-07-01T18:20:00Z,14,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2187293
+2187293,camara,2019-07-01T18:21:00Z,17,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2187293
+2187293,camara,2019-07-01T18:24:00Z,19,Encaminhado à(ao) CCP através da guia de Remessa (GR/MESA) nº 552/2019.,MESA,180,NA,NA,2187293
+2187293,camara,2019-07-02T08:57:00Z,21,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2187293

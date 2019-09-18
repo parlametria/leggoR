@@ -1,0 +1,27 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+1214955,camara,2015-04-22T15:35:00Z,1,"Apresentação do Projeto de Lei n. 1216/2015, pelo Deputado Covatti Filho (PP-RS), que: """"Regulamenta o artigo 231 da Constituição Federal, dispõe sobre o procedimento de demarcação de terras indígena e revoga o Decreto nº 1.775/1996."""".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1323361,1214955
+1214955,camara,2015-04-22T15:56:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,1214955
+1214955,camara,2015-04-22T15:56:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,1214955
+1214955,camara,2015-04-22T18:24:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 590/2015.,SEPRO,180,NA,NA,1214955
+1214955,camara,2015-04-22T19:15:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,1214955
+1214955,camara,2015-04-29T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1326291,1214955
+1214955,camara,2015-05-12T09:25:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,1214955
+1214955,camara,2015-05-12T09:26:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,1214955
+1214955,camara,2015-05-12T09:28:00Z,9,Apense-se à(ao) PL-6818/2013. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Ordinária,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1326291,1214955
+1214955,camara,2015-05-12T09:28:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,1214955
+1214955,camara,2015-05-12T10:17:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 131/2015.,SECAP(SGM),180,NA,NA,1214955
+1214955,camara,2015-05-12T11:24:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,1214955
+1214955,camara,2015-05-13T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 14/05/15 PÁG 542 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1363892,1214955
+1214955,camara,2015-05-13T15:25:00Z,13,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 1509/2015.,CCP,180,NA,NA,1214955
+1214955,camara,2015-05-13T17:08:00Z,15,Recebimento pela CCJC.,CCJC,500,Tramitando em Conjunto,NA,1214955
+1214955,camara,2015-05-18T00:00:00Z,17,"Designado Relator, Dep. Bonifácio de Andrada (PSDB-MG)",CCJC,320,Tramitando em Conjunto,NA,1214955
+1214955,camara,2015-05-18T15:40:00Z,16,Apensação desta proposição ao PL 6818/2013.,CCJC,106,Tramitando em Conjunto,NA,1214955
+1214955,camara,2019-01-31T00:00:00Z,18,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,1214955
+1214955,camara,2019-02-07T12:23:00Z,19,"Apresentação do Requerimento de Desarquivamento de Proposições n. 269/2019, pelo Deputado Covatti Filho (PP-RS), que: ""Requer o desarquivamento das proposições que menciona"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1708448,1214955
+1214955,camara,2019-02-19T20:26:00Z,20,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-114/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711860,1214955
+1214955,camara,2019-02-19T20:26:00Z,21,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,1214955
+1214955,camara,2019-02-19T20:26:00Z,22,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,1214955
+1214955,camara,2019-02-21T11:46:00Z,23,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-332/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713037,1214955
+1214955,camara,2019-02-22T18:27:00Z,25,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-269/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713670,1214955
+1214955,camara,2019-02-22T18:30:00Z,24,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-269/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713670,1214955
+1214955,camara,2019-02-22T19:05:00Z,26,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-269/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1714081,1214955

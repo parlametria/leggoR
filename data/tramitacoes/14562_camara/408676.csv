@@ -1,0 +1,30 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+408676,camara,2008-09-03T09:12:00Z,1,Apresentação da Proposta de Emenda à Constituição  pelo Deputado Ernandes Amorim (PTB-RO).,PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=595902,408676
+408676,camara,2008-09-03T10:41:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,408676
+408676,camara,2008-09-03T10:42:00Z,3,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,408676
+408676,camara,2008-09-03T10:42:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,408676
+408676,camara,2008-09-04T09:24:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 2469/2008.,SEPRO,180,NA,NA,408676
+408676,camara,2008-09-04T10:09:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,408676
+408676,camara,2008-09-08T00:00:00Z,7,Relatório de Conferência de Assinaturas da PEC 291/08.,MESA,1042,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=597057,408676
+408676,camara,2008-09-10T00:00:00Z,8,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=597541,408676
+408676,camara,2008-09-11T00:00:00Z,11,Realizar o Encaminhamento para CCP,SECAP(SGM),910,NA,NA,408676
+408676,camara,2008-09-11T11:07:00Z,9,Despacho Chancelado,SECAP(SGM),180,NA,NA,408676
+408676,camara,2008-09-11T11:08:00Z,10,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,408676
+408676,camara,2008-09-11T11:12:00Z,14,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 776/2008.,SECAP(SGM),180,NA,NA,408676
+408676,camara,2008-09-11T11:12:00Z,13,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,408676
+408676,camara,2008-09-11T11:12:00Z,12,Apense-se à(ao) PEC-161/2007.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Especial,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=597541,408676
+408676,camara,2008-09-11T11:47:00Z,15,Recebimento pela CCP.,CCP,500,NA,NA,408676
+408676,camara,2008-09-12T10:48:00Z,16,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 5740/2008.,CCP,180,NA,NA,408676
+408676,camara,2008-09-15T00:00:00Z,17,Encaminhada à publicação. Publicação Inicial no DCD 16 09 08 PAG 41704 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=631273,408676
+408676,camara,2008-09-15T16:27:00Z,18,Recebimento pela CCJC.,CCJC,500,NA,NA,408676
+408676,camara,2008-09-16T10:30:00Z,19,Apensação desta proposição à PEC 161/2007.,CCJC,106,NA,NA,408676
+408676,camara,2011-01-31T00:00:00Z,20,Arquivada nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados. Publicação no DCD do dia 01/02/2011 - Suplemento ao nº 14.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=850547,408676
+408676,camara,2011-02-16T17:08:00Z,21,"Desarquivada nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-238/2011.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=840322,408676
+408676,camara,2011-02-16T17:08:00Z,22,Reentrada na comissão por motivo de desarquivamento,SECAP(SGM),630,NA,NA,408676
+408676,camara,2012-03-27T18:43:00Z,23,"Recebimento pela CCP, apensada à PEC-161/2007",CCP,500,NA,NA,408676
+408676,camara,2013-12-11T17:16:00Z,24,"Recebimento pela PEC21500, apensada à PEC-161/2007",PEC21500,500,NA,NA,408676
+408676,camara,2015-01-31T00:00:00Z,25,Arquivada nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,408676
+408676,camara,2015-02-06T10:54:00Z,26,"Desarquivada nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-153/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298367,408676
+408676,camara,2015-02-06T10:54:00Z,27,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,408676
+408676,camara,2015-03-17T19:10:00Z,28,"Recebimento pela PEC21500, apensada à PEC-161/2007",PEC21500,500,NA,NA,408676
+408676,camara,2015-10-28T18:30:00Z,29,"Recebimento pela CCP, apensada à PEC-161/2007",CCP,500,NA,NA,408676

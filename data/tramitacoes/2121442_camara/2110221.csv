@@ -1,0 +1,6 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2110221,camara,2016-08-30T14:40:00Z,1,"Apresentação do Requerimento n. 5152/2016, pela Deputada Laura Carneiro (PMDB-RJ), que: ""Requer o imediato deferimento da Reclamação nº 2, de 2016, de autoria do Deputado Arnaldo Faria de Sá"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1487917,2110221
+2110221,camara,2016-08-30T14:40:00Z,2,Realizar o Encaminhamento para,SEPRO,910,NA,NA,2110221
+2110221,camara,2016-08-30T16:13:00Z,3,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/SEPRO) nº 3294/2016.,SEPRO,180,NA,NA,2110221
+2110221,camara,2019-08-29T00:00:00Z,4,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,2110221
+2110221,camara,2019-08-29T19:15:00Z,5,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 179/2019.,NAJUR(SGM),180,NA,NA,2110221

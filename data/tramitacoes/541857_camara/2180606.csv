@@ -1,0 +1,22 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2180606,camara,2018-07-03T16:48:00Z,1,"Apresentação do Requerimento de Apensação n. 8987/2018, pelo Deputado Capitão Fábio Abreu (PR-PI), que: ""Requer a apensação do Projeto de Lei nº 8.929, de 2017, ao Projeto de Lei nº 3.722, de 2012"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1673802,2180606
+2180606,camara,2018-07-03T16:48:00Z,2,Realizar o Encaminhamento para NAJUR(SGM),SEPRO,910,NA,NA,2180606
+2180606,camara,2018-07-03T22:01:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 6096/2018.,SEPRO,180,NA,NA,2180606
+2180606,camara,2018-07-04T00:00:00Z,5,Realizar o Encaminhamento para SECAP(SGM),NAJUR(SGM),910,NA,NA,2180606
+2180606,camara,2018-07-04T12:49:00Z,4,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2180606
+2180606,camara,2018-07-04T14:00:00Z,6,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/NAJUR(SGM)) nº 1226/2018.,NAJUR(SGM),180,NA,NA,2180606
+2180606,camara,2018-07-04T14:10:00Z,7,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2180606
+2180606,camara,2018-07-09T16:28:00Z,8,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SECAP(SGM)) nº 1560/2018.,SECAP(SGM),180,NA,NA,2180606
+2180606,camara,2018-07-09T16:31:00Z,9,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2180606
+2180606,camara,2018-07-11T00:00:00Z,10,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,2180606
+2180606,camara,2018-07-11T21:58:00Z,11,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 1236/2018.,NAJUR(SGM),180,NA,NA,2180606
+2180606,camara,2018-07-13T00:00:00Z,12,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1677006,2180606
+2180606,camara,2018-07-13T00:00:00Z,18,Realizar o Encaminhamento para CCP,MESA,910,NA,NA,2180606
+2180606,camara,2018-07-13T15:50:00Z,13,Despacho Chancelado,SGMGAB,180,Aguardando Recebimento,NA,2180606
+2180606,camara,2018-07-13T15:50:00Z,15,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2180606
+2180606,camara,2018-07-13T15:50:00Z,16,"Defiro o Requerimento n. 8.987/2018, nos termos dos arts. 142 e 143, II, “b”, do Regimento Interno da Câmara dos Deputados. Apense-se o Projeto de Lei n. 8.929/2017, com seus apensos, ao Projeto de Lei n. 2.393/2015, que integra o bloco encabeçado pelo Projeto de Lei n. 3.722/2012. Publique-se. Oficie-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1677006,2180606
+2180606,camara,2018-07-13T15:50:00Z,14,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2180606
+2180606,camara,2018-07-13T15:50:00Z,17,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2180606
+2180606,camara,2018-07-13T16:13:00Z,19,Encaminhado à(ao) CCP através da guia de Remessa (GR/MESA) nº 1501/2018.,MESA,180,NA,NA,2180606
+2180606,camara,2018-07-13T17:26:00Z,20,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2180606
+2180606,camara,2018-08-01T00:00:00Z,21,Publicação inicial no DCD do dia 14/07/2018,PLEN,605,NA,NA,2180606

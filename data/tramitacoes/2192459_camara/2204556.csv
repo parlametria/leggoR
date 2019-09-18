@@ -1,0 +1,5 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2204556,camara,2019-05-23T11:51:00Z,1,"Apresentação do Requerimento n. 172/2019, pelo Deputado André Figueiredo (PDT-CE), que: ""Requer a convocação do Ministro de Estado Chefe da Casa Civil da Presidência da República, Senhor Onyx Dornelles Lorenzoni, para comparecer ao Plenário desta Comissão Especial a fim de prestar esclarecimentos sobre nova proposta a ser encaminhada pela Presidência da República ao Congresso Nacional, cujo potencial de arrecadação alega-se maior que o da PEC 6/2019"".",PEC00619,100,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1751876,2204556
+2204556,camara,2019-05-28T00:00:00Z,2,Não Deliberado,PEC00619,1008,Pronta para Pauta,NA,2204556
+2204556,camara,2019-05-29T00:00:00Z,3,Não Deliberado,PEC00619,1008,Pronta para Pauta,NA,2204556
+2204556,camara,2019-05-30T00:00:00Z,4,Não Deliberado,PEC00619,1008,Pronta para Pauta,NA,2204556

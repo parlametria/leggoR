@@ -1,0 +1,37 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+437223,camara,2009-06-03T16:23:00Z,1,Apresentação do Projeto de Lei pelo Deputado Luiz Carlos Busato (PTB-RS).,PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=661844,437223
+437223,camara,2009-06-03T19:38:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,437223
+437223,camara,2009-06-03T19:38:00Z,3,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,437223
+437223,camara,2009-06-03T19:38:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,437223
+437223,camara,2009-06-04T10:18:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 3484/2009.,SEPRO,180,NA,NA,437223
+437223,camara,2009-06-04T11:02:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,437223
+437223,camara,2009-06-18T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=665886,437223
+437223,camara,2009-06-19T00:00:00Z,10,Apense-se à(ao) PL-6957/2002.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=665886,437223
+437223,camara,2009-06-19T15:33:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,437223
+437223,camara,2009-06-19T15:33:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,437223
+437223,camara,2009-06-19T15:43:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1092/2009.,SECAP(SGM),180,NA,NA,437223
+437223,camara,2009-06-19T15:44:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,437223
+437223,camara,2009-06-19T16:55:00Z,13,Recebimento pela CCP.,CCP,500,NA,NA,437223
+437223,camara,2009-06-23T16:35:00Z,14,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 7744/2009.,CCP,180,NA,NA,437223
+437223,camara,2009-06-24T00:00:00Z,15,Encaminhada à publicação. Publicação Inicial no DCD de 25/6/09 PÁG 31805 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=691198,437223
+437223,camara,2009-06-24T17:06:00Z,16,Recebimento pela CCJC.,CCJC,500,NA,NA,437223
+437223,camara,2009-07-07T00:00:00Z,18,"Designado Relator, Dep. José Eduardo Cardozo (PT-SP)",CCJC,320,NA,NA,437223
+437223,camara,2009-07-07T10:48:00Z,17,Apensação desta proposição ao PL 6957/2002.,CCJC,106,NA,NA,437223
+437223,camara,2011-02-14T15:48:00Z,19,Indeferido o pedido de desarquivamento desta proposição constante do REQ-1/2011 => PL-7404/2010por não se tratar de matéria sujeita ao arquivamento previsto no artigo 105 do RICD.,MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=837853,437223
+437223,camara,2014-08-27T15:32:00Z,20,Apense-se a este(a) o(a) PL-7894/2014.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1275381,437223
+437223,camara,2014-08-27T15:39:00Z,21,Apense-se a este(a) o(a) PL-7894/2014.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1275381,437223
+437223,camara,2014-08-27T15:39:00Z,22,Apense-se a este(a) o(a) PL-7894/2014.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1275381,437223
+437223,camara,2014-09-04T11:21:00Z,23,"Apensação do PL 7894/2014 a esta proposição, que determina a mudança do regime de tramitação da matéria para  e da forma de apreciação da matéria para Sujeita à Apreciação do Plenário.",CCJC,504,NA,NA,437223
+437223,camara,2015-04-08T09:08:00Z,24,Apense-se a este(a) o(a) PL-977/2015.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1317559,437223
+437223,camara,2015-04-13T11:07:00Z,25,Apensação do PL 977/2015 a esta proposição.,CCJC,504,NA,NA,437223
+437223,camara,2015-12-18T16:25:00Z,26,Apense-se a este(a) o(a) PL-3850/2015.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1422439,437223
+437223,camara,2016-03-07T10:13:00Z,27,Apensação do PL 3850/2015 a esta proposição.,CCJC,504,NA,NA,437223
+437223,camara,2016-03-09T10:32:00Z,28,Apense-se a este(a) o(a) PL-4575/2016.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1439093,437223
+437223,camara,2016-03-11T12:09:00Z,29,Apensação do PL 4575/2016 a esta proposição.,CCJC,504,NA,NA,437223
+437223,camara,2016-11-30T16:44:00Z,30,Apense-se a este(a) o(a) PL-6530/2016.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1510876,437223
+437223,camara,2016-12-06T17:23:00Z,31,Apensação do PL 6530/2016 a esta proposição.,CCJC,504,NA,NA,437223
+437223,camara,2018-03-23T10:29:00Z,32,"Recebimento pela CCP, apensado ao PL-6957/2002",CCP,500,NA,NA,437223
+437223,camara,2018-03-23T10:43:00Z,33,"Recebimento pela PL129295, apensado ao PL-6957/2002",PL129295,500,NA,NA,437223
+437223,camara,2018-12-05T18:01:00Z,34,"Recebimento pela CCP, apensado ao PL-6957/2002",CCP,500,NA,NA,437223
+437223,camara,2019-02-14T10:47:00Z,35,Apense-se a este(a) o(a) PL-264/2019.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1709999,437223
+437223,camara,2019-02-14T15:21:00Z,36,Apensação do PL 264/2019 a esta proposição.,CCP,504,NA,NA,437223

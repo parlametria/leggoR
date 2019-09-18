@@ -1,0 +1,23 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+542947,camara,2012-04-26T00:00:00Z,2,Publicação inicial no DCD do dia 27/04/12 PÁG 14474 COL 02,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1013334,542947
+542947,camara,2012-04-26T00:00:00Z,3,Recebimento pelo SEPRO.,SEPRO,500,NA,NA,542947
+542947,camara,2012-04-26T00:00:00Z,6,Recebimento pelo SECAP(SGM).,SECAP(SGM),500,NA,NA,542947
+542947,camara,2012-04-26T10:06:00Z,1,"Apresentação do Projeto de Lei n. 3774/2012, pelo Deputado Rogério Peninha Mendonça (PMDB-SC), que: ""Altera a redação de dispositivos da Lei nº 8.666, de 21 de junho de 1993, para suprimir exigências impostas à adoção de licitações do tipo ""melhor técnica"" ou ""técnica e preço"", e para restringir as hipóteses de subcontratação"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=986561,542947
+542947,camara,2012-04-26T16:44:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,542947
+542947,camara,2012-04-26T16:45:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 2248/2012.,SEPRO,180,NA,NA,542947
+542947,camara,2012-05-15T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=991780,542947
+542947,camara,2012-05-21T00:00:00Z,14,Publicação do despacho no DCD do dia 22/05/2012,CCP,605,NA,NA,542947
+542947,camara,2012-05-21T11:27:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,542947
+542947,camara,2012-05-21T11:27:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,542947
+542947,camara,2012-05-21T11:33:00Z,10,Apense-se ao PL-1292/1995.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=991780,542947
+542947,camara,2012-05-21T11:33:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 686/2012.,SECAP(SGM),180,NA,NA,542947
+542947,camara,2012-05-21T11:34:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,542947
+542947,camara,2012-05-21T14:34:00Z,13,Recebimento pel a CCP.,CCP,500,NA,NA,542947
+542947,camara,2012-05-25T00:00:00Z,16,Encaminhada à publicação. Avulso Inicial,CCP,604,NA,NA,542947
+542947,camara,2012-05-25T10:23:00Z,15,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 4315/2012.,CCP,180,NA,NA,542947
+542947,camara,2012-05-25T17:20:00Z,17,Recebimento pel a CCJC.,CCJC,500,NA,NA,542947
+542947,camara,2012-05-28T00:00:00Z,19,"Designado Relator, Dep. Fabio Trad (PMDB-MS)",CCJC,320,NA,NA,542947
+542947,camara,2012-05-28T10:21:00Z,18,Apensação desta proposição ao PL 1292/1995.,CCJC,106,NA,NA,542947
+542947,camara,2018-03-23T10:29:00Z,20,"Recebimento pela CCP, apensado ao PL-1292/1995",CCP,500,NA,NA,542947
+542947,camara,2018-03-23T10:43:00Z,21,"Recebimento pela PL129295, apensado ao PL-1292/1995",PL129295,500,NA,NA,542947
+542947,camara,2018-12-05T18:01:00Z,22,"Recebimento pela CCP, apensado ao PL-1292/1995",CCP,500,NA,NA,542947

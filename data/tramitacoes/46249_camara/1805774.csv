@@ -1,0 +1,22 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+1805774,camara,2015-09-29T19:16:00Z,1,"Apresentação do Requerimento de Desapensação n. 3145/2015, pelo Deputado Luis Carlos Heinze (PP-RS), que: ""Requer a desapensação do Projeto de Lei n° 2.954, de 2015, ao Projeto de Lei n° 3.125, de 2000 e de seus apensados"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1392896,1805774
+1805774,camara,2015-09-29T22:03:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,1805774
+1805774,camara,2015-09-29T22:13:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 1611/2015.,SEPRO,180,NA,NA,1805774
+1805774,camara,2015-09-30T09:39:00Z,4,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,1805774
+1805774,camara,2016-01-05T00:00:00Z,5,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,1805774
+1805774,camara,2016-01-05T10:58:00Z,6,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 322/2016.,NAJUR(SGM),180,NA,NA,1805774
+1805774,camara,2016-01-07T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1428150,1805774
+1805774,camara,2016-01-07T11:46:00Z,9,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,1805774
+1805774,camara,2016-01-07T11:46:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,1805774
+1805774,camara,2016-01-07T11:47:00Z,10,Notificação à Sinopse de Despacho Chancelado,SGMGAB,1005,Aguardando Recebimento,NA,1805774
+1805774,camara,2016-01-07T11:47:00Z,8,Despacho Chancelado,SGMGAB,180,Aguardando Recebimento,NA,1805774
+1805774,camara,2016-01-07T11:56:00Z,13,Encaminhado à(ao) CCP através da guia de Remessa (GR/SGMGAB) nº 464/2016.,SGMGAB,180,Aguardando Recebimento,NA,1805774
+1805774,camara,2016-01-07T14:31:00Z,13,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,1805774
+1805774,camara,2016-01-12T00:00:00Z,14,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1428763,1805774
+1805774,camara,2016-01-12T00:00:00Z,19,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,1805774
+1805774,camara,2016-01-12T00:00:00Z,21,Publicação inicial no DCD do dia 13/01/2016,PLEN,605,NA,NA,1805774
+1805774,camara,2016-01-12T10:21:00Z,16,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,1805774
+1805774,camara,2016-01-12T10:21:00Z,18,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,1805774
+1805774,camara,2016-01-12T10:22:00Z,17,"Declaro prejudicado o Requerimento n. 3.145/2015, nos termos do art. 164, I, do Regimento Interno da Câmara dos Deputados. Publique-se. Oficie-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1428763,1805774
+1805774,camara,2016-01-12T10:22:00Z,15,Despacho Chancelado,SGMGAB,180,Aguardando Recebimento,NA,1805774
+1805774,camara,2016-01-12T10:56:00Z,20,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 323/2016.,NAJUR(SGM),180,NA,NA,1805774

@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2083808,camara,2016-05-10T14:29:00Z,1,"Apresentação do Projeto de Lei n. 5218/2016, pelo Deputado Rômulo Gouveia (PSD-PB), que: ""Altera a Lei nº 7.802, de 11 de julho de 1989, para proibir o registro de agrotóxicos que contenham clotianidina, tiametoxam ou imidacloprido em sua composição"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1456274,2083808
+2083808,camara,2016-05-10T15:54:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,2083808
+2083808,camara,2016-05-10T15:54:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2083808
+2083808,camara,2016-05-10T16:00:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 2723/2016.,SEPRO,180,NA,NA,2083808
+2083808,camara,2016-05-10T16:39:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2083808
+2083808,camara,2016-05-12T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1457327,2083808
+2083808,camara,2016-05-18T13:57:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2083808
+2083808,camara,2016-05-18T13:58:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2083808
+2083808,camara,2016-05-18T14:00:00Z,9,Apense-se à(ao) PL-713/1999. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Ordinária,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1457327,2083808
+2083808,camara,2016-05-18T14:01:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2083808
+2083808,camara,2016-05-18T14:04:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 567/2016.,SECAP(SGM),180,NA,NA,2083808
+2083808,camara,2016-05-18T14:42:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2083808
+2083808,camara,2016-05-19T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 20/05/16 PÁG 290 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1476133,2083808
+2083808,camara,2016-05-19T11:51:00Z,13,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 6399/2016.,CCP,180,NA,NA,2083808
+2083808,camara,2016-05-20T17:05:00Z,15,Recebimento pela CCJC.,CCJC,500,NA,NA,2083808
+2083808,camara,2016-05-24T14:28:00Z,16,Apensação desta proposição ao PL 713/1999.,CCJC,106,NA,NA,2083808
+2083808,camara,2017-08-30T16:55:00Z,17,"Recebimento pela PL629902, apensado ao PL-713/1999",PL629902,500,NA,NA,2083808
+2083808,camara,2018-06-26T15:07:00Z,18,"Recebimento pela CCP, apensado ao PL-713/1999",CCP,500,NA,NA,2083808
+2083808,camara,2019-07-12T12:13:00Z,19,Apense-se a este(a) o(a) PL-3745/2019.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1777587,2083808
+2083808,camara,2019-07-12T18:31:00Z,20,Apensação do PL 3745/2019 a esta proposição.,CCP,504,NA,NA,2083808

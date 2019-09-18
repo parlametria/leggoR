@@ -1,0 +1,9 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2139214,camara,2017-05-25T16:08:00Z,1,"Apresentação do Requerimento de Urgência (Art. 155 do RICD) n. 6542/2017, pelo Deputado Vicente Candido (PT-SP), que: ""Requer regime de urgência na apreciação do Projeto de Lei nº 7.574/2017, que 'institui novo marco legal para o exercício da soberania popular direta, nos termos referidos no Artigo 14, incisos I a III, da Constituição Federal'"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1563009,2139214
+2139214,camara,2017-05-25T16:08:00Z,2,Realizar o Encaminhamento para,SEPRO,910,NA,NA,2139214
+2139214,camara,2017-05-25T16:14:00Z,3,Encaminhado à(ao) COAPP(SGM) através da guia de Remessa (GR/SEPRO) nº 4384/2017.,SEPRO,180,NA,NA,2139214
+2139214,camara,2017-12-11T18:00:00Z,4,Matéria não apreciada em face do encerramento da Ordem do Dia.,PLEN,5,NA,NA,2139214
+2139214,camara,2017-12-12T09:31:00Z,5,Matéria não apreciada em face do encerramento da Sessão.,PLEN,5,NA,NA,2139214
+2139214,camara,2017-12-12T15:22:00Z,6,Matéria não apreciada em face do encerramento da Sessão.,PLEN,5,NA,NA,2139214
+2139214,camara,2017-12-13T21:03:00Z,7,Matéria sobre a mesa.,PLEN,5,NA,NA,2139214
+2139214,camara,2017-12-13T21:03:00Z,8,Aprovado o Requerimento de Urgência (Art. 155 do RICD). Sim: 323; não: 12; abstenção: 1; total: 336.,PLEN,244,NA,NA,2139214

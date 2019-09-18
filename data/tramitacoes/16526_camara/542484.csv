@@ -1,0 +1,28 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+542484,camara,2012-04-25T00:00:00Z,6,Publicação inicial no DCD do dia 26/04/12 PAG 14104 COL 02.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1013442,542484
+542484,camara,2012-04-25T12:24:00Z,1,"Apresentação do Projeto de Lei n. 3750/2012, pelo Deputado Zeca Dirceu (PT-PR), que: ""Obriga a transmissão ao vivo, por meio da Internet, no Portal da Transparência, do áudio e vídeo das licitações públicas"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=985556,542484
+542484,camara,2012-04-25T13:54:00Z,2,Recebimento pel a SEPRO.,SEPRO,500,NA,NA,542484
+542484,camara,2012-04-25T13:54:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,542484
+542484,camara,2012-04-25T13:55:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 2224/2012.,SEPRO,180,NA,NA,542484
+542484,camara,2012-04-25T14:24:00Z,5,Recebimento pel a SECAP(SGM).,SECAP(SGM),500,NA,NA,542484
+542484,camara,2012-05-11T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=991116,542484
+542484,camara,2012-05-14T00:00:00Z,14,Publicação do despacho no DCD do dia 15/05/2012,CCP,605,NA,NA,542484
+542484,camara,2012-05-14T11:24:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,542484
+542484,camara,2012-05-14T11:24:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,542484
+542484,camara,2012-05-14T11:26:00Z,10,Apense-se à(ao) PL-5073/2009.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=991116,542484
+542484,camara,2012-05-14T11:26:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 678/2012.,SECAP(SGM),180,NA,NA,542484
+542484,camara,2012-05-14T11:28:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,542484
+542484,camara,2012-05-14T15:08:00Z,13,Recebimento pel a CCP.,CCP,500,NA,NA,542484
+542484,camara,2012-05-15T00:00:00Z,15,Realizar o Encaminhamento para CCJC,CCP,910,NA,NA,542484
+542484,camara,2012-05-16T18:26:00Z,16,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 4236/2012.,CCP,180,NA,NA,542484
+542484,camara,2012-05-17T00:00:00Z,17,Encaminhada à publicação. Avulso Inicial,CCP,604,NA,NA,542484
+542484,camara,2012-05-17T17:29:00Z,18,Recebimento pel a CCJC.,CCJC,500,NA,NA,542484
+542484,camara,2012-05-18T00:00:00Z,20,"Designado Relator, Dep. Fabio Trad (PMDB-MS)",CCJC,320,NA,NA,542484
+542484,camara,2012-05-18T10:21:00Z,19,Apensação desta proposição ao PL 5073/2009.,CCJC,106,NA,NA,542484
+542484,camara,2015-04-10T16:18:00Z,21,Apense-se a este(a) o(a) PL-983/2015.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1317536,542484
+542484,camara,2015-04-16T17:04:00Z,22,Apensação do PL 983/2015 a esta proposição.,CCJC,504,NA,NA,542484
+542484,camara,2017-10-11T17:23:00Z,23,Apense-se a este(a) o(a) PL-8684/2017.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1606998,542484
+542484,camara,2017-10-25T12:55:00Z,24,Apensação do PL 8684/2017 a esta proposição.,CCJC,504,NA,NA,542484
+542484,camara,2018-03-23T10:29:00Z,25,"Recebimento pela CCP, apensado ao PL-5073/2009",CCP,500,NA,NA,542484
+542484,camara,2018-03-23T10:43:00Z,26,"Recebimento pela PL129295, apensado ao PL-5073/2009",PL129295,500,NA,NA,542484
+542484,camara,2018-12-05T18:01:00Z,27,"Recebimento pela CCP, apensado ao PL-5073/2009",CCP,500,NA,NA,542484

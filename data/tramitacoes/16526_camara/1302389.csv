@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+1302389,camara,2015-06-09T16:13:00Z,1,"Apresentação do Projeto de Lei n. 1821/2015, pelo Deputado Valdir Colatto (PMDB-SC), que: ""Determina a aplicação do Regime Diferenciado de Contratações Públicas - RDC, previsto na Lei nº 12.462, de 4 de agosto de 2011, para a realização de licitações públicas, qualquer que seja o objeto a ser contratado, e dá outras providências"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1345684,1302389
+1302389,camara,2015-06-09T16:58:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,1302389
+1302389,camara,2015-06-09T16:58:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,1302389
+1302389,camara,2015-06-09T17:25:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 891/2015.,SEPRO,180,NA,NA,1302389
+1302389,camara,2015-06-10T11:33:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,1302389
+1302389,camara,2015-06-12T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1347959,1302389
+1302389,camara,2015-06-17T08:57:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,1302389
+1302389,camara,2015-06-17T08:58:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,1302389
+1302389,camara,2015-06-17T08:59:00Z,9,Apense-se à(ao) PL-1758/2015. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1347959,1302389
+1302389,camara,2015-06-17T09:00:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,1302389
+1302389,camara,2015-06-17T09:26:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 183/2015.,SECAP(SGM),180,NA,NA,1302389
+1302389,camara,2015-06-17T10:10:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,1302389
+1302389,camara,2015-06-18T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 19/06/2015 PÁG 136 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1372126,1302389
+1302389,camara,2015-06-18T10:07:00Z,13,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 2154/2015.,CCP,180,NA,NA,1302389
+1302389,camara,2015-06-18T16:06:00Z,15,Recebimento pela CCJC.,CCJC,500,NA,NA,1302389
+1302389,camara,2015-06-19T00:00:00Z,17,"Designado Relator, Dep. Evandro Gussi (PV-SP)",CCJC,320,NA,NA,1302389
+1302389,camara,2015-06-19T11:42:00Z,16,Apensação desta proposição ao PL 1758/2015.,CCJC,106,NA,NA,1302389
+1302389,camara,2018-03-23T10:29:00Z,18,"Recebimento pela CCP, apensado ao PL-1758/2015",CCP,500,NA,NA,1302389
+1302389,camara,2018-03-23T10:43:00Z,19,"Recebimento pela PL129295, apensado ao PL-1758/2015",PL129295,500,NA,NA,1302389
+1302389,camara,2018-12-05T18:01:00Z,20,"Recebimento pela CCP, apensado ao PL-1758/2015",CCP,500,NA,NA,1302389

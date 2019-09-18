@@ -1,0 +1,14 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2192466,camara,2019-02-20T11:24:00Z,1,"Apresentação do Projeto de Lei n. 924/2019, pela Deputadoa Heitor Freire PSL, que:""Altera a Lei nº 10.826, de 22 de dezembro de 2003 - Estatuto do Desarmamento, para permitir a aquisição de arma de fogo por policiais que respondem a inquéritos"".",SEPRO,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712485,2192466
+2192466,camara,2019-02-20T11:24:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2192466
+2192466,camara,2019-02-20T11:24:00Z,3,Realizar o Encaminhamento para CEDI,CEDI,910,NA,NA,2192466
+2192466,camara,2019-02-21T08:34:00Z,4,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2192466
+2192466,camara,2019-03-14T00:00:00Z,5,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1718790,2192466
+2192466,camara,2019-03-14T15:14:00Z,6,Despacho Chancelado,SECAP(SGM),180,NA,NA,2192466
+2192466,camara,2019-03-14T15:15:00Z,7,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2192466
+2192466,camara,2019-03-14T15:16:00Z,8,"Apense-se à(ao) PL-3722/2012. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Ordinária (Art. 151, III, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1718790,2192466
+2192466,camara,2019-03-14T15:17:00Z,9,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2192466
+2192466,camara,2019-03-14T15:47:00Z,10,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 42/2019.,SECAP(SGM),180,NA,NA,2192466
+2192466,camara,2019-03-14T16:05:00Z,11,Recebimento pela CCP.,CCP,500,NA,NA,2192466
+2192466,camara,2019-03-14T16:09:00Z,12,Apensação desta proposição ao PL 3722/2012.,CCP,106,NA,NA,2192466
+2192466,camara,2019-03-20T00:00:00Z,13,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 21/03/19 PÁG 597.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1740623,2192466

@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2077691,camara,2016-02-23T16:02:00Z,1,"Apresentação do Requerimento de Urgência (Art. 155 do RICD) n. 3986/2016, pelo Deputado Carlos Zarattini (PT-SP), e outros Líderes que: ""Requer regime de urgência na apreciação do Projeto de Lei nº 1202/2007, que Disciplina a atividade de ""lobby"" e a atuação dos grupos de pressão ou de interesse e assemelhados no âmbito dos órgãos e entidades da Administração Pública Federal, e dá outras providências"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1435377,2077691
+2077691,camara,2016-02-23T16:13:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,2077691
+2077691,camara,2016-02-23T16:32:00Z,3,Encaminhado à(ao) COAPP(SGM) através da guia de Remessa (GR/SEPRO) nº 2247/2016.,SEPRO,180,NA,NA,2077691
+2077691,camara,2016-03-30T15:13:00Z,4,Recebimento pela COAPP(SGM) -  - Guilherme Toshio Nantes Nagaya.,COAPP(SGM),500,NA,NA,2077691
+2077691,camara,2017-07-04T14:00:00Z,5,Matéria não apreciada em face do encerramento da Sessão.,PLEN,5,NA,NA,2077691
+2077691,camara,2017-07-05T13:55:00Z,6,Matéria não apreciada em face do encerramento da Sessão.,PLEN,5,NA,NA,2077691
+2077691,camara,2017-07-10T18:30:00Z,7,Matéria não apreciada em face do cancelamento da Ordem do Dia.,PLEN,5,NA,NA,2077691
+2077691,camara,2017-07-11T14:00:00Z,8,Matéria não apreciada em face do encerramento da Sessão.,PLEN,5,NA,NA,2077691
+2077691,camara,2017-08-01T14:00:00Z,9,Matéria não apreciada em face do encerramento da Sessão.,PLEN,5,NA,NA,2077691
+2077691,camara,2017-08-08T14:00:00Z,10,Matéria não apreciada em face do encerramento da Sessão.,PLEN,5,NA,NA,2077691
+2077691,camara,2017-10-09T17:02:00Z,11,Matéria não apreciada em face do encerramento da Sessão.,PLEN,5,NA,NA,2077691
+2077691,camara,2017-10-17T09:40:00Z,12,Matéria não apreciada em face do encerramento da Sessão.,PLEN,5,NA,NA,2077691
+2077691,camara,2017-10-24T14:00:00Z,13,Matéria não apreciada em face do encerramento da Sessão.,PLEN,5,NA,NA,2077691
+2077691,camara,2017-12-11T18:00:00Z,14,"Retirado de pauta, de ofício.",PLEN,250,NA,NA,2077691
+2077691,camara,2017-12-12T09:31:00Z,15,Matéria não apreciada em face do encerramento da Sessão.,PLEN,5,NA,NA,2077691
+2077691,camara,2017-12-12T15:22:00Z,16,Matéria não apreciada em face do encerramento da Sessão.,PLEN,5,NA,NA,2077691
+2077691,camara,2017-12-18T18:00:00Z,17,"Retirado de pauta, de ofício.",PLEN,250,NA,NA,2077691
+2077691,camara,2017-12-19T13:00:00Z,18,Matéria não apreciada em face do encerramento da Sessão.,PLEN,5,NA,NA,2077691
+2077691,camara,2017-12-19T18:01:00Z,19,Matéria sobre a Mesa.,PLEN,5,NA,NA,2077691
+2077691,camara,2017-12-19T18:01:00Z,20,Aprovado o Requerimento de Urgência (Art. 155 do RICD). Sim: 273; não: 9; abstenção: 1; total: 283.,PLEN,244,NA,NA,2077691

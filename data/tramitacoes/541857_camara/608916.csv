@@ -1,0 +1,58 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+608916,camara,2014-03-19T19:12:00Z,1,"Apresentação do Projeto de Lei n. 7282/2014, pelo Deputado Jair Bolsonaro (PP-RJ), que: ""Altera a redação do art. 6º, da Lei 10.826, de 22 de dezembro de 2003, para disciplinara a concessão de porte de armas aos integrantes dos órgãos de segurança pública e demais cidadãos em decorrência de sua atividade"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1237466,608916
+608916,camara,2014-03-20T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1237854,608916
+608916,camara,2014-03-20T08:55:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,608916
+608916,camara,2014-03-20T08:55:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,608916
+608916,camara,2014-03-20T09:16:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 5282/2014.,SEPRO,180,NA,NA,608916
+608916,camara,2014-03-20T09:50:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,608916
+608916,camara,2014-03-21T10:22:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,608916
+608916,camara,2014-03-21T10:22:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,608916
+608916,camara,2014-03-21T10:52:00Z,9,Às Comissões de Relações Exteriores e de Defesa Nacional; Segurança Pública e Combate ao Crime Organizado e Constituição e Justiça e de Cidadania (Art. 54 RICD).Proposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 IIRegime de Tramitação: Ordinária,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1237854,608916
+608916,camara,2014-03-21T10:52:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1521/2014.,SECAP(SGM),180,NA,NA,608916
+608916,camara,2014-03-21T10:54:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,608916
+608916,camara,2014-03-21T11:09:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,608916
+608916,camara,2014-03-24T15:35:00Z,13,Encaminhado à(ao) CREDN através da guia de Remessa (GR/CCP) nº 8858/2014.,CCP,180,NA,NA,608916
+608916,camara,2014-03-25T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 26/03/14 PÁG 383 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1269314,608916
+608916,camara,2014-03-25T17:25:00Z,15,Recebimento pela CREDN.,CREDN,500,NA,NA,608916
+608916,camara,2014-03-27T00:00:00Z,16,"Designado Relator, Dep. Roberto de Lucena (PV-SP)",CREDN,320,NA,NA,608916
+608916,camara,2014-03-28T00:00:00Z,17,Prazo para Emendas ao Projeto (5 sessões ordinárias a partir de 31/03/2014),CREDN,350,NA,NA,608916
+608916,camara,2014-04-15T00:00:00Z,18,Encerrado o prazo para emendas ao projeto. Não foram apresentadas emendas.,CREDN,600,NA,NA,608916
+608916,camara,2014-11-19T16:04:00Z,19,Devolvida sem Manifestação.,CREDN,507,NA,NA,608916
+608916,camara,2014-11-26T09:53:00Z,20,Apense-se a este(a) o(a) PL-8126/2014.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1288692,608916
+608916,camara,2014-12-03T17:32:00Z,21,Apensação do PL 8126/2014 a esta proposição.,CREDN,504,NA,NA,608916
+608916,camara,2015-01-31T00:00:00Z,22,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,608916
+608916,camara,2015-02-05T12:53:00Z,23,"Apresentação do Requerimento de Desarquivamento de Proposições n. 291/2015, pelo Deputado Jair Bolsonaro (PP-RJ), que: ""Requer desarquivamento de proposições"".",PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298165,608916
+608916,camara,2015-02-11T09:30:00Z,24,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-291/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1299248,608916
+608916,camara,2015-02-11T09:30:00Z,25,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,608916
+608916,camara,2015-02-11T09:30:00Z,26,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,608916
+608916,camara,2015-02-11T09:30:00Z,27,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,608916
+608916,camara,2015-02-11T16:16:00Z,28,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-291/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1301645,608916
+608916,camara,2015-02-19T16:22:00Z,29,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-291/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1301659,608916
+608916,camara,2015-02-19T17:08:00Z,30,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-291/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1301682,608916
+608916,camara,2015-03-12T00:00:00Z,31,"Designado Relator, Dep. Henrique Fontana (PT-RS)",CREDN,320,NA,NA,608916
+608916,camara,2015-05-26T18:20:00Z,32,"Apresentação do Requerimento de Apensação n. 1964/2015, pelo Deputado Jair Bolsonaro (PP-RJ), que: ""Requer apensação do PL nº 7282/2014 ao PL 3722/2012"".",PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1339892,608916
+608916,camara,2015-06-01T00:00:00Z,33,"Deferido o Requerimento n. 1.964/2015, conforme despacho do seguinte teor: “Defiro o Requerimento n. 1.964/2015, nos termos dos arts. 142 e 143 do RICD, e determino a apensação do Projeto de Lei n. 7.282/2014 ao Projeto de Lei n. 6.970/2013, integrante do bloco encabeçado pelo Projeto de Lei n. 3.722/2012. Publique-se. Oficie-se.”",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1343304,608916
+608916,camara,2015-06-02T00:00:00Z,39,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1343304,608916
+608916,camara,2015-06-02T00:00:00Z,34,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1343288,608916
+608916,camara,2015-06-02T11:02:00Z,35,Despacho Chancelado,SGMGAB,180,NA,NA,608916
+608916,camara,2015-06-02T11:03:00Z,36,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,608916
+608916,camara,2015-06-02T11:13:00Z,38,Retirada a Chancela do Despacho.,SGMGAB,180,NA,NA,608916
+608916,camara,2015-06-02T11:14:00Z,40,Despacho Chancelado,SGMGAB,180,NA,NA,608916
+608916,camara,2015-06-02T11:14:00Z,41,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,608916
+608916,camara,2015-06-10T00:00:00Z,43,"Devolução à CCP, em atendimento à solicitação constante do Memorando nº 115/2015-COPER.",CREDN,1010,NA,NA,608916
+608916,camara,2015-06-10T17:46:00Z,42,Devolvida sem Manifestação.,CREDN,507,NA,NA,608916
+608916,camara,2015-06-10T20:14:00Z,44,Encaminhado à(ao) CCP através da guia de Remessa (GR/CREDN) nº 43/2015.,CREDN,180,NA,NA,608916
+608916,camara,2015-06-10T20:25:00Z,45,"Recebimento pela CCP, com a proposição PL-8126/2014 apensada.",CCP,500,NA,NA,608916
+608916,camara,2015-06-10T20:26:00Z,46,Encaminhado à(ao) PL372212 através da guia de Remessa (GR/CCP) nº 2013/2015.,CCP,180,NA,NA,608916
+608916,camara,2015-06-15T17:20:00Z,47,"Recebimento pela PL372212, com a proposição PL-8126/2014 apensada.",PL372212,500,NA,NA,608916
+608916,camara,2019-02-20T14:43:00Z,48,Apense-se a este(a) o(a) PL-343/2019.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712505,608916
+608916,camara,2019-02-20T16:41:00Z,49,Apensação do PL 343/2019 a esta proposição.,CCP,504,NA,NA,608916
+608916,camara,2019-02-20T19:30:00Z,50,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-39/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712510,608916
+608916,camara,2019-02-21T17:50:00Z,51,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-121/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713274,608916
+608916,camara,2019-02-22T18:20:00Z,52,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,608916
+608916,camara,2019-02-22T18:27:00Z,54,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,608916
+608916,camara,2019-02-22T18:30:00Z,53,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,608916
+608916,camara,2019-05-24T15:08:00Z,55,Apense-se a este(a) o(a) PL-2678/2019.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1751582,608916
+608916,camara,2019-05-24T17:33:00Z,56,Apensação do PL 2678/2019 a esta proposição.,CCP,504,NA,NA,608916
+608916,camara,2019-07-15T15:16:00Z,57,Apense-se a este(a) o(a) PL-3928/2019.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1779378,608916
+608916,camara,2019-07-15T16:21:00Z,58,Apensação do PL 3928/2019 a esta proposição.,CCP,504,NA,NA,608916

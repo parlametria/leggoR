@@ -1,0 +1,5 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2115914,camara,2016-10-31T00:00:00Z,4,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1503507,2115914
+2115914,camara,2016-10-31T17:05:00Z,1,"Apresentação do Requerimento de Prorrogação de prazo de Comissão Temporária n. 5447/2016, pela Comissão Especial destinada a proferir parecer ao Projeto de Lei nº 4850, de 2016, do Sr. Antonio Carlos Mendes Thame e outros, que ""estabelece medidas contra a corrupção e demais crimes contra o patrimônio público e combate o enriquecimento ilícito de agentes públicos"", que: ""Requer a prorrogação do prazo da Comissão Especial 'PL 4850/16 - Estabelece Medidas Contra a Corrupção' por dez sessões"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1503504,2115914
+2115914,camara,2016-10-31T17:05:00Z,2,Realizar o Encaminhamento para SERCO(SGM),SEPRO,910,NA,NA,2115914
+2115914,camara,2016-10-31T17:08:00Z,3,Encaminhado à(ao) SERCO(SGM) através da guia de Remessa (GR/SEPRO) nº 3525/2016.,SEPRO,180,NA,NA,2115914

@@ -1,0 +1,19 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2080966,camara,2016-03-30T20:03:00Z,1,"Apresentação do Requerimento de Apensação n. 4252/2016, pelo Deputado João Campos (PRB-GO), que: ""Requer a apensação ao Projeto de Lei nº 8.045, de 2010, de outras proposições que tratam de matéria correlata"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1447105,2080966
+2080966,camara,2016-03-31T10:44:00Z,2,Recebimento pela SEPRO -  - Maristela Araújo Medeiros Portela.,SEPRO,500,NA,NA,2080966
+2080966,camara,2016-03-31T10:46:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 2491/2016.,SEPRO,180,NA,NA,2080966
+2080966,camara,2016-04-12T14:51:00Z,4,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2080966
+2080966,camara,2016-05-30T00:00:00Z,5,Despacho a Confirmar.,MESA,110,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1462325,2080966
+2080966,camara,2016-05-30T16:03:00Z,6,Despacho Chancelado,SGMGAB,180,NA,NA,2080966
+2080966,camara,2016-05-30T16:03:00Z,7,"Com fundamento no art. 142, caput, do Regimento Interno da Câmara dos Deputados, defiro parcialmente o Requerimento n. 4.252/2016, para determinar a apensação dos Projetos de Lei n. 2.887/2015 e apensado (Projeto de Lei n. 3.005/2015), 3.976/2012 e apensado (Projeto de Lei n. 3.704/2015), 8.001/2014, 6.672/2013 e 4.120/2012 ao Projeto de Lei n. 8.045/2010. Publique-se. Oficie-se.",MESA,110,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1462325,2080966
+2080966,camara,2016-05-31T00:00:00Z,15,Publicação inicial no DCD do dia 31/05/2016,PLEN,605,NA,NA,2080966
+2080966,camara,2016-05-31T00:00:00Z,16,Realizar o Encaminhamento para CCP,SGMGAB,910,NA,NA,2080966
+2080966,camara,2016-05-31T00:00:00Z,8,Despacho a Confirmar.,MESA,110,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1462280,2080966
+2080966,camara,2016-05-31T15:47:00Z,9,Despacho Chancelado,SGMGAB,180,NA,NA,2080966
+2080966,camara,2016-05-31T15:48:00Z,11,Notificação à Sinopse de Despacho Chancelado,SGMGAB,1005,NA,NA,2080966
+2080966,camara,2016-05-31T15:48:00Z,10,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,2080966
+2080966,camara,2016-05-31T15:48:00Z,12,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,2080966
+2080966,camara,2016-05-31T16:03:00Z,13,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,2080966
+2080966,camara,2016-05-31T16:03:00Z,14,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,2080966
+2080966,camara,2016-05-31T16:37:00Z,17,Encaminhado à(ao) CCP através da guia de Remessa (GR/SGMGAB) nº 696/2016.,SGMGAB,180,NA,NA,2080966
+2080966,camara,2016-06-01T09:29:00Z,18,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2080966

@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2148576,camara,2017-08-22T00:00:00Z,5,Realizar o Encaminhamento para SECAP(SGM),NAJUR(SGM),910,NA,NA,2148576
+2148576,camara,2017-08-22T15:57:00Z,1,"Apresentação do Requerimento de Apensação n. 7058/2017, pela Deputada Leandre (PV-PR), que: ""Solicita a apensação do Projeto de Lei nº 2.163 de 2011 ao Projeto de Lei nº 3.729 de 2004"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1589820,2148576
+2148576,camara,2017-08-22T15:57:00Z,2,Realizar o Encaminhamento para NAJUR(SGM),SEPRO,910,NA,NA,2148576
+2148576,camara,2017-08-22T17:53:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 4715/2017.,SEPRO,180,NA,NA,2148576
+2148576,camara,2017-08-22T20:13:00Z,4,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2148576
+2148576,camara,2017-08-22T21:20:00Z,6,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/NAJUR(SGM)) nº 880/2017.,NAJUR(SGM),180,NA,NA,2148576
+2148576,camara,2017-08-23T10:03:00Z,7,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2148576
+2148576,camara,2017-08-28T19:32:00Z,8,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SECAP(SGM)) nº 1188/2017.,SECAP(SGM),180,NA,NA,2148576
+2148576,camara,2017-08-28T19:52:00Z,9,Recebimento pelo NAJUR(SGM) -  - Teresinha Passos Silva.,NAJUR(SGM),500,NA,NA,2148576
+2148576,camara,2017-09-04T13:14:00Z,10,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 903/2017.,NAJUR(SGM),180,NA,NA,2148576
+2148576,camara,2017-09-11T00:00:00Z,11,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1595724,2148576
+2148576,camara,2017-09-11T00:00:00Z,17,Realizar o Encaminhamento para CCP,MESA,910,NA,NA,2148576
+2148576,camara,2017-09-11T15:40:00Z,12,Despacho Chancelado,SGMGAB,180,Aguardando Recebimento,NA,2148576
+2148576,camara,2017-09-11T15:40:00Z,14,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2148576
+2148576,camara,2017-09-11T15:40:00Z,15,"Defiro o Requerimento n. 7.058/2017, nos termos dos arts. 142, caput, e 143, II, b, do RICD. Apense-se o Projeto de Lei n. 2.163/2011 ao Projeto de Lei n. 3.729/2004. Publique-se. Oficie-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1595724,2148576
+2148576,camara,2017-09-11T15:40:00Z,13,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2148576
+2148576,camara,2017-09-11T15:40:00Z,16,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2148576
+2148576,camara,2017-09-11T15:43:00Z,18,Encaminhado à(ao) CCP através da guia de Remessa (GR/MESA) nº 891/2017.,MESA,180,NA,NA,2148576
+2148576,camara,2017-09-11T17:44:00Z,19,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2148576
+2148576,camara,2017-09-12T00:00:00Z,20,Publicação inicial no DCD do dia 12/09/2017,PLEN,605,NA,NA,2148576

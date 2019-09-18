@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2148833,camara,2017-08-23T12:45:00Z,1,"Apresentação do Requerimento de Desapensação n. 7078/2017, pelo Deputado Lucio Mosquini (PMDB-RO), que: ""Requer a desapensação do Projeto de Lei  8157/2017 que 'Altera a Lei n° 10.826, de 22 de dezembro de 2003 - Estatuto do Desarmamento, para estabelecer o porte de arma para produtores rurais' do PL  8153/2017 e apense-se ao PL 6717/2016"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1590384,2148833
+2148833,camara,2017-08-23T12:45:00Z,2,Realizar o Encaminhamento para NAJUR(SGM),SEPRO,910,NA,NA,2148833
+2148833,camara,2017-08-24T00:00:00Z,5,Realizar o Encaminhamento para SECAP(SGM),NAJUR(SGM),910,NA,NA,2148833
+2148833,camara,2017-08-24T09:32:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 4734/2017.,SEPRO,180,NA,NA,2148833
+2148833,camara,2017-08-24T11:16:00Z,4,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2148833
+2148833,camara,2017-08-24T12:04:00Z,6,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/NAJUR(SGM)) nº 883/2017.,NAJUR(SGM),180,NA,NA,2148833
+2148833,camara,2017-08-24T12:19:00Z,7,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2148833
+2148833,camara,2017-08-25T15:07:00Z,8,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SECAP(SGM)) nº 1179/2017.,SECAP(SGM),180,NA,NA,2148833
+2148833,camara,2017-08-25T15:24:00Z,9,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2148833
+2148833,camara,2017-09-12T11:57:00Z,10,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 910/2017.,NAJUR(SGM),180,NA,NA,2148833
+2148833,camara,2017-09-13T00:00:00Z,11,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1597311,2148833
+2148833,camara,2017-09-13T00:00:00Z,17,Realizar o Encaminhamento para CCP,MESA,910,NA,NA,2148833
+2148833,camara,2017-09-13T00:00:00Z,19,Publicação inicial no DCD do dia 14/09/2017,PLEN,605,NA,NA,2148833
+2148833,camara,2017-09-13T16:59:00Z,14,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2148833
+2148833,camara,2017-09-13T16:59:00Z,15,"Indefiro o Requerimento n. 7.078/2017, nos termos do art. 142, caput, do Regimento Interno da Câmara dos Deputados, porque os Projetos de Lei n. 8.157/2017 e 8.153/2017 tratam de matérias correlatas. Publique-se. Oficie-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1597311,2148833
+2148833,camara,2017-09-13T16:59:00Z,12,Despacho Chancelado,SGMGAB,180,Aguardando Recebimento,NA,2148833
+2148833,camara,2017-09-13T16:59:00Z,13,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2148833
+2148833,camara,2017-09-13T16:59:00Z,16,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2148833
+2148833,camara,2017-09-13T17:00:00Z,18,Encaminhado à(ao) CCP através da guia de Remessa (GR/MESA) nº 908/2017.,MESA,180,NA,NA,2148833
+2148833,camara,2017-09-14T10:27:00Z,20,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2148833

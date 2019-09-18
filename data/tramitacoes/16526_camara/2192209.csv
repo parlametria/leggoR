@@ -1,0 +1,15 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2192209,camara,2019-02-14T14:56:00Z,1,"Apresentação do Projeto de Lei n. 821/2019, pelo Deputado Eduardo Bismarck (PDT-CE), que: ""Altera os incisos I e II do §2ª do art. 21 da Lei nº 8.666, de 21 de junho de 1993, para alterar os prazos mínimos de publicação da modalidades de licitação 'concorrência'"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1710882,2192209
+2192209,camara,2019-02-14T14:56:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2192209
+2192209,camara,2019-02-14T14:57:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2192209
+2192209,camara,2019-02-14T18:49:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 73/2019.,SEPRO,180,NA,NA,2192209
+2192209,camara,2019-02-15T10:01:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2192209
+2192209,camara,2019-02-19T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712089,2192209
+2192209,camara,2019-02-20T14:59:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2192209
+2192209,camara,2019-02-20T15:00:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2192209
+2192209,camara,2019-02-20T15:01:00Z,9,"Apense-se à(ao) PL-6926/2013. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Prioridade (Art. 151, II, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712089,2192209
+2192209,camara,2019-02-20T15:01:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2192209
+2192209,camara,2019-02-20T15:34:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 19/2019.,SECAP(SGM),180,NA,NA,2192209
+2192209,camara,2019-02-20T16:38:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2192209
+2192209,camara,2019-02-20T16:40:00Z,13,Apensação desta proposição ao PL 6926/2013.,CCP,106,NA,NA,2192209
+2192209,camara,2019-03-07T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 08/03/19 PÁG 84.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1726688,2192209

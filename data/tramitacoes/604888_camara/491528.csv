@@ -1,0 +1,24 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+491528,camara,2011-02-08T00:00:00Z,2,Publicação inicial no DCD do dia 09/02/2011,SEPUB(SGM),604,NA,NA,491528
+491528,camara,2011-02-08T19:45:00Z,1,"Apresentação do Requerimento de Desarquivamento de Proposições n. 229/2011, pelo Deputado Dr. Rosinha (PT-PR), que: ""Requer o desarquivamento de proposições"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=838229,491528
+491528,camara,2011-02-09T13:02:00Z,3,Recebimento pela SEPRO.,SEPRO,500,NA,NA,491528
+491528,camara,2011-02-09T13:47:00Z,4,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 48/2011.,SEPRO,180,NA,NA,491528
+491528,camara,2011-02-14T00:00:00Z,5,Despacho a Confirmar.,MESA,110,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=839686,491528
+491528,camara,2011-02-14T16:15:00Z,6,Despacho Chancelado,SGMGAB,180,NA,NA,491528
+491528,camara,2011-02-14T16:16:00Z,12,Despacho Chancelado,SGMGAB,180,NA,NA,491528
+491528,camara,2011-02-14T16:16:00Z,8,Notificação à Sinopse de Despacho Chancelado,SGMGAB,1005,NA,NA,491528
+491528,camara,2011-02-14T16:16:00Z,7,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,491528
+491528,camara,2011-02-14T16:16:00Z,9,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,491528
+491528,camara,2011-02-14T16:17:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,491528
+491528,camara,2011-02-14T16:17:00Z,12,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,491528
+491528,camara,2011-02-15T00:00:00Z,13,Despacho a Confirmar.,MESA,110,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=840291,491528
+491528,camara,2011-02-16T00:00:00Z,17,Realizar o Encaminhamento para CCP,SECAP(SGM),910,NA,NA,491528
+491528,camara,2011-02-16T00:00:00Z,18,"Nos termos do parágrafo único do art. 105 do RICD, DEFIRO o pedido de desarquivamento das seguintes proposições: PL 713/1999, PL 1388/1999, PL 7564/2006, PEC 510/2002, PL 6814/2002, PL 4845/2001, PL 6975/2002, PL 7110/2002, PL 740/2003, PL 1544/2003, PEC 488/2002, PEC 269/2004, PEC 304/2004, PEC 374/2005, PL 5681/2005, PL 5741/2005, PL 21/2007, PL 22/2007, PL 24/2007, PL 318/2007, PL 959/2007, PDC 1743/2009, PL 1162/2007, PL 1752/2007, PL 3927/2008, PL 6502/2009, PL 7414/2010, PL 7423/2010, PL 7424/2010 e PL 7772/2010. DECLARO PREJUDICADO o pedido de desarquivamento das seguintes proposições: PL 1739/1999, PL 3513/2000, PL 6875/2002, PL 125/2007, PL 7003/2010 e PL 7488/2010, haja vista a(s) proposição(ões) já se encontrar(em) desarquivada(s). Publique-se.",MESA,640,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=840291,491528
+491528,camara,2011-02-16T00:00:00Z,22,Publicação do despacho no DCD do dia 17/02/2011,SEPUB(SGM),605,NA,NA,491528
+491528,camara,2011-02-16T00:00:00Z,23,Publicação do despacho no DCD do dia 17/02/11 PÁG 7141 COL 01.,SEPUB(SGM),605,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=937424,491528
+491528,camara,2011-02-16T15:29:00Z,14,Novo Despacho,SECAP(SGM),171,NA,NA,491528
+491528,camara,2011-02-16T15:31:00Z,15,Despacho Chancelado,SGMGAB,180,NA,NA,491528
+491528,camara,2011-02-16T15:31:00Z,16,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,491528
+491528,camara,2011-02-16T15:32:00Z,20,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 47/2011.,SECAP(SGM),180,NA,NA,491528
+491528,camara,2011-02-16T15:32:00Z,19,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,491528
+491528,camara,2011-02-16T17:17:00Z,21,Recebimento pela CCP.,CCP,500,NA,NA,491528
