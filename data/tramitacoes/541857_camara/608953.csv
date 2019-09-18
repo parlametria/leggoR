@@ -1,0 +1,46 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+608953,camara,2014-03-19T20:18:00Z,1,"Apresentação do Projeto de Lei n. 7283/2014, pelo Deputado Onyx Lorenzoni (DEM-RS), que: ""Altera a Lei n° 10.826, de 22 de dezembro de 2003, que dispõe sobre registro, posse e comercialização de armas de fogo e munição, sobre o Sistema Nacional de Armas - Sinarm define crimes e dá outras providências.    "".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1238702,608953
+608953,camara,2014-03-20T08:55:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,608953
+608953,camara,2014-03-20T08:55:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,608953
+608953,camara,2014-03-20T09:16:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 5282/2014.,SEPRO,180,NA,NA,608953
+608953,camara,2014-03-20T09:50:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,608953
+608953,camara,2014-03-21T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1237965,608953
+608953,camara,2014-03-25T00:00:00Z,7,Substituição de versão do inteiro teor da proposição,MESA,1052,NA,NA,608953
+608953,camara,2014-03-26T15:06:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,608953
+608953,camara,2014-03-26T15:06:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,608953
+608953,camara,2014-03-26T15:30:00Z,10,Apense-se à(ao) PL-3941/2004.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Ordinária,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1237965,608953
+608953,camara,2014-03-26T15:30:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1528/2014.,SECAP(SGM),180,NA,NA,608953
+608953,camara,2014-03-26T15:30:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,608953
+608953,camara,2014-03-26T15:56:00Z,13,Recebimento pela CCP.,CCP,500,NA,NA,608953
+608953,camara,2014-03-27T00:00:00Z,14,Realizar o Encaminhamento para CSPCCO,CCP,910,NA,NA,608953
+608953,camara,2014-03-27T15:44:00Z,15,Encaminhado à(ao) CSPCCO através da guia de Remessa (GR/CCP) nº 8889/2014.,CCP,180,NA,NA,608953
+608953,camara,2014-03-28T00:00:00Z,17,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 29/03/14 PÁG 71 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1268605,608953
+608953,camara,2014-03-31T16:29:00Z,16,Recebimento pela CSPCCO.,CSPCCO,500,NA,NA,608953
+608953,camara,2014-04-01T00:00:00Z,19,"Designado Relator, Dep. João Campos (PSDB-GO)",CSPCCO,320,NA,NA,608953
+608953,camara,2014-04-01T11:00:00Z,18,Apensação desta proposição ao PL 3941/2004.,CSPCCO,106,NA,NA,608953
+608953,camara,2015-01-31T00:00:00Z,20,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,608953
+608953,camara,2015-02-06T09:27:00Z,21,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-104/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298041,608953
+608953,camara,2015-02-06T09:27:00Z,22,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,608953
+608953,camara,2015-02-06T09:27:00Z,23,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,608953
+608953,camara,2015-02-06T09:27:00Z,24,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,608953
+608953,camara,2015-02-06T09:27:00Z,25,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,608953
+608953,camara,2015-02-09T19:51:00Z,26,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-163/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298629,608953
+608953,camara,2015-03-02T14:58:00Z,27,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-163/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1304666,608953
+608953,camara,2015-03-05T10:32:00Z,28,Apense-se a este(a) o(a) PL-506/2015.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1305075,608953
+608953,camara,2015-03-13T15:36:00Z,29,Apensação do PL 506/2015 a esta proposição.,CSPCCO,504,NA,NA,608953
+608953,camara,2015-08-11T00:00:00Z,30,"Apresentação do Requerimento de Desapensação n. 2667/2015, pelo Deputado Laudivio Carvalho (PMDB-MG), que: ""Requer  desapensação do projeto de lei 3.941 de 2004, apensado ao Projeto de Lei nº 3.722/2012"".",MESA,194,NA,NA,608953
+608953,camara,2015-08-12T00:00:00Z,35,Realizar o Encaminhamento para PL372212,CCP,910,NA,NA,608953
+608953,camara,2015-08-12T00:00:00Z,33,"Deferido o Requerimento n. 2667/2015, conforme despacho do seguinte teor: “Defiro o pedido contido no Requerimento n. 2.667/2015, com base no art. 142, caput, combinado com o art. 143, II, b, do Regimento Interno da Câmara dos Deputados, nos seguintes termos:1) desapensem-se do Projeto de Lei n. 3.941/2004 os Projetos de Lei n. 1.009/2015, 1.102/2015, 1.103/2015 e seu apensado, 1.206/2015, 1.257/2015 e seu apensado, 1.263/2015, 1.391/2015, 1.401/2015, 1.493/2015, 3.722/2012 e seus apensados, 439/2015, 4.444/2012 e seus apensados, 5.343/2013, 633/2015, 693/2015, 7.283/2014 e seu apensado, 771/2015 e 805/2015;2) apensem-se ao Projeto de Lei n. 3.722/2012 os Projetos de Lei n. 1.009/2015, 1.102/2015, 1.103/2015 e seu apensado, 1.206/2015, 1.257/2015 e seu apensado, 1.263/2015, 1.391/2015, 1.401/2015, 1.493/2015, 439/2015, 4.444/2012 e seus apensados, 5.343/2013, 633/2015, 693/2015, 7.283/2014 e seu apensado, 771/2015 e 805/2015;Por conseguinte, revejo o despacho inicial aposto ao Projeto de Lei n. 3.941/2004, para determinar sua distribuição para as Comissões de Segurança Pública e Combate ao Crime Organizado e de Constituição e Justiça e de Cidadania (mérito e art. 54), bem como para determinar a alteração da denominação da Comissão Especial destinada a proferir parecer ao Projeto de Lei n. 3.941/2004 para Comissão Especial destinada a emitir parecer sobre o Projeto de Lei n. 3.722/2012 e seus apensos.Publique-se. Oficie-se”.[ATUALIZAÇÃO DO DESPACHO DO PL N. 3.722/2012: À CESPO, à CDEIC, à CREDN, à CSPCCO, à CFT (mérito e art. 54 do RICD) e à CCJC (mérito e art. 54 do RICD). Proposição sujeita à apreciação do Plenário. Regime de tramitação: Ordinário.]",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1370573,608953
+608953,camara,2015-08-12T00:00:00Z,31,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1370573,608953
+608953,camara,2015-08-12T20:59:00Z,32,Despacho Chancelado,SGMGAB,180,NA,NA,608953
+608953,camara,2015-08-12T21:00:00Z,34,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,608953
+608953,camara,2015-08-12T23:37:00Z,36,Encaminhado à(ao) PL372212 através da guia de Remessa (GR/CCP) nº 2946/2015.,CCP,180,NA,NA,608953
+608953,camara,2015-08-17T00:00:00Z,39,"Designado Relator, Dep. Laudivio Carvalho (PMDB-MG)",PL372212,320,NA,NA,608953
+608953,camara,2015-08-17T17:31:00Z,37,"Recebimento pela PL372212, com a proposição PL-506/2015 apensada.",PL372212,500,NA,NA,608953
+608953,camara,2015-08-17T17:32:00Z,38,Apensação desta proposição ao PL 3722/2012.,PL372212,106,NA,NA,608953
+608953,camara,2019-02-07T09:46:00Z,40,"Apresentação do Requerimento de Desarquivamento de Proposições n. 249/2019, pelo Deputado Onyx Lorenzoni (DEM-RS), que: ""Requer o desarquivamento de proposições, nos termos do art. 105 do RICD"".",PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1708352,608953
+608953,camara,2019-02-20T19:30:00Z,41,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-39/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712510,608953
+608953,camara,2019-02-21T17:50:00Z,42,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-121/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713274,608953
+608953,camara,2019-02-22T18:20:00Z,43,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,608953
+608953,camara,2019-02-22T18:27:00Z,45,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,608953
+608953,camara,2019-02-22T18:30:00Z,44,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,608953

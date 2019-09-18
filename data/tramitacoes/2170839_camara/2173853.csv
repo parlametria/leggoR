@@ -1,0 +1,22 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2173853,camara,2018-05-03T00:00:00Z,5,Despacho a Confirmar.,MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1656672,2173853
+2173853,camara,2018-05-03T15:23:00Z,1,"Apresentação do Recurso contra devolução de proposição (Art. 137, § 2º, RICD) n. 304/2018, pelo Deputado Alessandro Molon (PSB-RJ), que: ""Recurso ao Plenário contra decisão do Presidente da Câmara dos Deputados, nos termos do art. 137, §2°, do Regimento Interno da Câmara dos Deputados"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1656660,2173853
+2173853,camara,2018-05-03T15:23:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2173853
+2173853,camara,2018-05-03T15:31:00Z,3,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 5780/2018.,SEPRO,180,NA,NA,2173853
+2173853,camara,2018-05-03T15:49:00Z,4,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2173853
+2173853,camara,2018-05-07T10:27:00Z,6,Despacho Chancelado,SECAP(SGM),180,NA,NA,2173853
+2173853,camara,2018-05-07T10:29:00Z,7,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2173853
+2173853,camara,2018-05-08T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial no DCD de 09/05/18 PÁG 461 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1688826,2173853
+2173853,camara,2018-05-08T09:18:00Z,8,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1471/2018.,SECAP(SGM),180,NA,NA,2173853
+2173853,camara,2018-05-08T10:28:00Z,9,"Submeta-se ao Plenário, após ter sido ouvida a Comissão de Constituição e Justiça e de Cidadania, nos termos do art. 137, § 2º, do Regimento Interno. Publique-se.",MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1656672,2173853
+2173853,camara,2018-05-08T10:28:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Arquivada,NA,2173853
+2173853,camara,2018-05-08T12:41:00Z,11,Recebimento pela CCP.,CCP,500,NA,NA,2173853
+2173853,camara,2018-05-08T12:42:00Z,12,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 13739/2018.,CCP,180,NA,NA,2173853
+2173853,camara,2018-05-08T14:35:00Z,13,Recebimento pela CCJC.,CCJC,500,NA,NA,2173853
+2173853,camara,2018-06-26T00:00:00Z,15,Despacho a Confirmar.,MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1672556,2173853
+2173853,camara,2018-06-26T15:40:00Z,16,Despacho Chancelado,MESA,180,Arquivada,NA,2173853
+2173853,camara,2018-06-26T15:42:00Z,17,"Declaro prejudicados os Recursos n. 295, 296, 297, 299, 300, 304, 305, 307, 308, 309, 310, 311, 312 e 313, todos de 2018, na forma do art. 164, I, do RICD, em razão de os atos de devolução de proposições contra os quais interpostos os Recursos haverem sido tornados sem efeito, por decisão desta Presidência de 23 de maio de 2018. Publique-se. Arquivem-se os Recursos.",MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1672556,2173853
+2173853,camara,2018-06-26T15:42:00Z,18,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Arquivada,NA,2173853
+2173853,camara,2018-07-02T00:00:00Z,19,Devolução à CCP.,CCJC,1010,NA,NA,2173853
+2173853,camara,2018-07-02T15:32:00Z,20,Encaminhado à(ao) CCP através da guia de Remessa (GR/CCJC) nº 975/2018.,CCJC,180,NA,NA,2173853
+2173853,camara,2018-07-02T15:39:00Z,21,Recebimento pela CCP.,CCP,500,NA,NA,2173853

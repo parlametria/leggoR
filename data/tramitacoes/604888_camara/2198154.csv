@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2198154,camara,2019-04-15T19:20:00Z,1,"Apresentação do Requerimento de Apensação n. 1192/2019, pelo Deputado Luiz Philippe de Orleans e Bragança (PSL-SP), que: ""Requer que o PL 2.262/2019 seja apensado ao PL 7.574/2017"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1733239,2198154
+2198154,camara,2019-04-15T19:20:00Z,2,Realizar o Encaminhamento para NAJUR(SGM),SEPRO,910,NA,NA,2198154
+2198154,camara,2019-04-15T21:44:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 450/2019.,SEPRO,180,NA,NA,2198154
+2198154,camara,2019-04-16T15:04:00Z,4,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2198154
+2198154,camara,2019-04-16T15:06:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/NAJUR(SGM)) nº 50/2019.,NAJUR(SGM),180,NA,NA,2198154
+2198154,camara,2019-04-16T15:07:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2198154
+2198154,camara,2019-04-17T10:09:00Z,7,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SECAP(SGM)) nº 108/2019.,SECAP(SGM),180,NA,NA,2198154
+2198154,camara,2019-04-17T14:37:00Z,8,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2198154
+2198154,camara,2019-04-29T00:00:00Z,9,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,2198154
+2198154,camara,2019-04-29T00:00:00Z,11,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1740134,2198154
+2198154,camara,2019-04-29T00:00:00Z,14,Publicação inicial no DCD do dia 30/04/2019,PLEN,605,NA,NA,2198154
+2198154,camara,2019-04-29T00:00:00Z,15,Realizar o Encaminhamento para CCP,MESA,910,NA,NA,2198154
+2198154,camara,2019-04-29T16:30:00Z,12,Despacho Chancelado,SGMGAB,180,Aguardando Recebimento,NA,2198154
+2198154,camara,2019-04-29T16:31:00Z,13,"Declaro a prejudicialidade do Requerimento n. 1.192/2019, nos termos do art. 164, I, do RICD, porquanto o pleito nele veiculado foi contemplado no despacho de distribuição do Projeto de Lei n. 2.262/2019. Publique-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1740134,2198154
+2198154,camara,2019-04-29T20:15:00Z,10,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 61/2019.,NAJUR(SGM),180,NA,NA,2198154
+2198154,camara,2019-05-02T16:30:00Z,17,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2198154
+2198154,camara,2019-05-02T16:30:00Z,16,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2198154
+2198154,camara,2019-05-02T16:31:00Z,18,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2198154
+2198154,camara,2019-05-02T16:50:00Z,19,Encaminhado à(ao) CCP através da guia de Remessa (GR/MESA) nº 317/2019.,MESA,180,NA,NA,2198154
+2198154,camara,2019-05-02T17:32:00Z,20,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2198154

@@ -1,0 +1,14 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+1228681,camara,2015-05-05T14:22:00Z,1,"Apresentação do Requerimento de Envio de proposições pendentes de parecer à Comissão seguinte ou ao Plenário n. 1656/2015, pelo Deputado Nelson Marchezan Junior (PSDB-RS), que: ""Requer que o Projeto de Lei nº 3.020, de 2011 seja encaminhado para a Comissão seguinte ou Plenário por falta do cumprimento do prazo regimental de apresentação do parecer do Relator designado"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1328340,1228681
+1228681,camara,2015-05-05T15:00:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,1228681
+1228681,camara,2015-05-05T17:09:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 670/2015.,SEPRO,180,NA,NA,1228681
+1228681,camara,2015-05-05T17:19:00Z,4,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,1228681
+1228681,camara,2015-05-13T00:00:00Z,5,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1333591,1228681
+1228681,camara,2015-05-13T00:00:00Z,11,Realizar o Encaminhamento para CCP,SGMGAB,910,NA,NA,1228681
+1228681,camara,2015-05-13T00:00:00Z,12,Publicação inicial no DCD do dia 14/05/2015,PLEN,605,NA,NA,1228681
+1228681,camara,2015-05-13T15:23:00Z,8,Notificação à Sinopse de Despacho Chancelado,SGMGAB,1005,NA,NA,1228681
+1228681,camara,2015-05-13T15:23:00Z,9,"Expirado o prazo adicional de dez sessões concedido em despacho proferido no dia 24 de março do corrente ano por esta Presidência, determino, com base no art. 52, §6º, do RICD o envio do Projeto de Lei n. 3.020/2011 à Comissão de Constituição e Justiça e de Cidadania, transferindo-se ao Plenário, em consequência, a competência para apreciá-lo. Publique-se. Oficie-se.[ATUALIZAÇÃO DO DESPACHO DO PL n. 3.020/2011: à CE, à CFT (art. 54 do RICD) e à CCJC (art. 54 do RICD). Proposição sujeita à apreciação do Plenário. Regime de tramitação: ordinário]",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1333591,1228681
+1228681,camara,2015-05-13T15:23:00Z,6,Despacho Chancelado,SGMGAB,180,NA,NA,1228681
+1228681,camara,2015-05-13T15:23:00Z,7,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,1228681
+1228681,camara,2015-05-13T15:23:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,1228681
+1228681,camara,2015-05-13T16:04:00Z,13,Encaminhado à(ao) CCP através da guia de Remessa (GR/SGMGAB) nº 20/2015.,SGMGAB,180,NA,NA,1228681

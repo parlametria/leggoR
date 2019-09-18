@@ -1,0 +1,16 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+104362,camara,2003-02-18T14:47:00Z,1,Apresentação do Desarquivamento de Proposições pelo Dep. José Janene,PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=113754,104362
+104362,camara,2003-02-26T15:00:00Z,2,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,104362
+104362,camara,2003-02-26T15:00:00Z,3,"Encaminhado à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SECAP(SGM),180,NA,NA,104362
+104362,camara,2003-02-26T15:00:00Z,4,Encaminhado à CeDi (Legislação Citada),SECAP(SGM),180,NA,NA,104362
+104362,camara,2003-02-26T15:01:00Z,5,Aguardando despacho do presidente,SECAP(SGM),203,NA,NA,104362
+104362,camara,2003-02-27T10:28:00Z,6,Despacho a confirmar,SECAP(SGM),110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=115161,104362
+104362,camara,2003-02-27T11:05:00Z,7,Encaminhamento à Chefia de Gabinete da SGM,SECAP(SGM),180,NA,NA,104362
+104362,camara,2003-02-28T12:34:00Z,8,Recebimento pela SGMGab.,SGMGAB,500,NA,NA,104362
+104362,camara,2003-02-28T12:36:00Z,9,Encaminhamento ao Gabinete do Secretário-Geral da Mesa,SGMGAB,180,NA,NA,104362
+104362,camara,2003-03-10T00:00:00Z,10,Autorização Despacho,SGM,180,NA,NA,104362
+104362,camara,2003-03-10T00:00:00Z,11,Despacho Chancelado,SECAD(SGM),180,NA,NA,104362
+104362,camara,2003-03-12T00:00:00Z,14,Recebimento pela CCP.,CCP,500,NA,NA,104362
+104362,camara,2003-03-12T15:36:00Z,12,"Defiro o desarquivamento (RICD, art. 105, parágrafo único). Publique-se.REQ 58/2003.",MESA,110,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=115161,104362
+104362,camara,2003-03-12T15:36:00Z,13,Encaminhado à CCP.,MESA,180,Tramitação do Requerimento Finalizada,NA,104362
+104362,camara,2007-04-16T00:00:00Z,15,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-314/2007.",MESA,135,Tramitação do Requerimento Finalizada,NA,104362

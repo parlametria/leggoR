@@ -1,0 +1,16 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2190752,camara,2019-02-04T18:38:00Z,1,"Apresentação do Projeto de Lei n. 246/2019, pelas Deputadaas Bia Kicis (PSL-DF) e outros, que: ""Institui o 'Programa Escola sem Partido'"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1707037,2190752
+2190752,camara,2019-02-04T18:39:00Z,2,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2190752
+2190752,camara,2019-02-07T00:00:00Z,3,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2190752
+2190752,camara,2019-02-07T13:05:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 15/2019.,SEPRO,180,NA,NA,2190752
+2190752,camara,2019-02-07T13:45:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2190752
+2190752,camara,2019-02-21T00:00:00Z,6,Despacho a Confirmar.,MESA,110,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713065,2190752
+2190752,camara,2019-02-21T09:21:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2190752
+2190752,camara,2019-02-21T09:21:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2190752
+2190752,camara,2019-02-21T09:21:00Z,9,"Apense-se à(ao) PL-867/2015. Proposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 II. Regime de Tramitação: Ordinária (Art. 151, III, RICD)",MESA,129,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713065,2190752
+2190752,camara,2019-02-21T09:21:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Tramitando em Conjunto,NA,2190752
+2190752,camara,2019-02-21T15:36:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 20/2019.,SECAP(SGM),180,NA,NA,2190752
+2190752,camara,2019-02-21T16:16:00Z,12,Recebimento pela CCP.,CCP,500,Tramitando em Conjunto,NA,2190752
+2190752,camara,2019-02-26T17:13:00Z,13,"Apresentação do Requerimento n. 636/2019, pela Deputada Bia Kicis (PSL-DF), que: ""Requeiro, nos termos regimentais, assinatura de apoiamento aposto ao Projeto de Lei nº 246, de 2019, de minha autoria, que Institui o 'Programa Escola sem Partido'"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1715039,2190752
+2190752,camara,2019-02-27T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 28/02/19 PÁG 333.,CCP,604,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1739029,2190752
+2190752,camara,2019-03-13T00:00:00Z,15,"Deferido o Requerimento n. 636/2019, conforme despacho do seguinte teor: ""Defiro o Requerimento n. 636/2019. Registrem-se os nomes dos parlamentares listados na ementa como coautores do Projeto de Lei n. 246/2019. Publique-se. Arquive-se."".",MESA,203,Tramitando em Conjunto,NA,2190752

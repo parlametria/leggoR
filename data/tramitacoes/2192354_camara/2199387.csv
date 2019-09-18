@@ -1,0 +1,18 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2199387,camara,2019-04-25T11:47:00Z,1,"Apresentação do Projeto de Lei Complementar n. 119/2019, pelo Deputado Roberto de Lucena (PODE-SP), que: ""Altera a Lei nº 4.737, de 15 de julho de 1965, que institui o Código Eleitoral; e o Decreto-Lei nº 3.689, de 3 de outubro de 1947, que institui o Código de Processo Penal, para estabelecer a competência da Justiça Federal e da Justiça Estadual para processar e julgar os crimes contra a administração pública e os de lavagem ou ocultação de bens, direitos e valores no âmbito de campanhas eleitorais"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1737484,2199387
+2199387,camara,2019-04-25T11:47:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2199387
+2199387,camara,2019-04-25T11:49:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2199387
+2199387,camara,2019-04-25T13:25:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 505/2019.,SEPRO,180,NA,NA,2199387
+2199387,camara,2019-04-25T14:20:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2199387
+2199387,camara,2019-04-30T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1739647,2199387
+2199387,camara,2019-05-06T11:33:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2199387
+2199387,camara,2019-05-06T11:34:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2199387
+2199387,camara,2019-05-06T11:34:00Z,9,"Apense-se à(ao) PLP-38/2019. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Prioridade (Art. 151, II, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1739647,2199387
+2199387,camara,2019-05-06T11:35:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2199387
+2199387,camara,2019-05-06T11:46:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 133/2019.,SECAP(SGM),180,NA,NA,2199387
+2199387,camara,2019-05-06T15:10:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2199387
+2199387,camara,2019-05-07T00:00:00Z,14,Recebimento pela CCJC.,CCJC,500,Tramitando em Conjunto,NA,2199387
+2199387,camara,2019-05-07T00:00:00Z,15,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 08/05/19 PÁG 486.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1782625,2199387
+2199387,camara,2019-05-07T00:00:00Z,17,"Designada Relatora, Dep. Bia Kicis (PSL-DF)",CCJC,320,Tramitando em Conjunto,NA,2199387
+2199387,camara,2019-05-07T14:32:00Z,13,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 2152/2019.,CCP,180,NA,NA,2199387
+2199387,camara,2019-05-07T20:09:00Z,16,Apensação desta proposição ao PLP 38/2019.,CCJC,106,Tramitando em Conjunto,NA,2199387

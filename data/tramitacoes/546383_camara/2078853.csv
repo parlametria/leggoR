@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2078853,camara,2016-03-08T14:59:00Z,1,"Apresentação do Projeto de Lei n. 4635/2016, pelo Deputado Alberto Fraga (DEM-DF), que: ""Dá nova redação ao art. 60 da Lei nº 8.069, de 13 de julho de 1990 - Estatuto da Criança e do Adolescente, e dá outras providências"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1440328,2078853
+2078853,camara,2016-03-08T15:36:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,2078853
+2078853,camara,2016-03-08T15:36:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2078853
+2078853,camara,2016-03-08T17:36:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 2346/2016.,SEPRO,180,NA,NA,2078853
+2078853,camara,2016-03-08T17:39:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2078853
+2078853,camara,2016-03-10T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1442341,2078853
+2078853,camara,2016-03-15T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 16/03/16 PÁG 238 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1457138,2078853
+2078853,camara,2016-03-15T09:48:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2078853
+2078853,camara,2016-03-15T09:48:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2078853
+2078853,camara,2016-03-15T09:48:00Z,9,Apense-se à(ao) PL-4968/2013. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Ordinária,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1442341,2078853
+2078853,camara,2016-03-15T09:48:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2078853
+2078853,camara,2016-03-15T09:51:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 503/2016.,SECAP(SGM),180,NA,NA,2078853
+2078853,camara,2016-03-15T10:43:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2078853
+2078853,camara,2016-03-15T15:57:00Z,13,Encaminhado à(ao) CSSF através da guia de Remessa (GR/CCP) nº 5696/2016.,CCP,180,NA,NA,2078853
+2078853,camara,2016-03-15T17:34:00Z,15,Recebimento pela CSSF.,CSSF,500,Tramitando em Conjunto,NA,2078853
+2078853,camara,2016-05-03T00:00:00Z,17,"Devolvida à Relatora, Dep. Benedita da Silva (PT-RJ)",CSSF,170,Tramitando em Conjunto,NA,2078853
+2078853,camara,2016-05-03T17:41:00Z,16,Apensação desta proposição ao PL 4968/2013.,CSSF,106,Tramitando em Conjunto,NA,2078853
+2078853,camara,2019-01-31T00:00:00Z,18,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,2078853
+2078853,camara,2019-02-19T00:00:00Z,19,"Decisão da Presidência: ""... Determino o desarquivamento de todas as proposições de autoria de Comissões Parlamentares de Inquérito que tenham sido arquivadas em 31 de janeiro de 2019 nos termos do art. 105, caput, do Regimento Interno da Câmara dos Deputados. Publique-se"".",MESA,1001,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1717150,2078853
+2078853,camara,2019-02-19T01:00:00Z,20,Desarquivado conforme Decisão da Presidência.,MESA,503,NA,NA,2078853

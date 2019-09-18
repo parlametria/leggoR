@@ -1,0 +1,5 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2150041,camara,2017-08-31T14:09:00Z,1,"Apresentação do Requerimento de Constituição de Comissão Especial de Projeto n. 7157/2017, pelo Deputado Rodrigo Martins (PSB-PI), que: ""Requer instalação da Comissão Especial destinada a apreciar o PL nº 6670/2016, que 'Institui a Política Nacional de Redução de Agrotóxicos - PNARA'"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1593624,2150041
+2150041,camara,2017-08-31T14:09:00Z,2,Realizar o Encaminhamento para SERCO(SGM),SEPRO,910,NA,NA,2150041
+2150041,camara,2017-08-31T15:05:00Z,3,Encaminhado à(ao) SERCO(SGM) através da guia de Remessa (GR/SEPRO) nº 4779/2017.,SEPRO,180,NA,NA,2150041
+2150041,camara,2019-01-31T00:00:00Z,4,Arquivado nos termos da Decisão da Presidência em 31/01/2019.,MESA,502,NA,NA,2150041

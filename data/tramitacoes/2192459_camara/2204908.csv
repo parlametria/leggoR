@@ -1,0 +1,5 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2204908,camara,2019-05-27T17:06:00Z,1,"Apresentação do Requerimento n. 174/2019, pelo Deputado Darcísio Perondi (MDB-RS), que: ""Requer realização de audiência pública em conjunto com a Comissão de Finanças e Tributação, para debater sobre a PEC 06/19 - Nova Reforma da Previdência, com a presença do Ministro da Economia"".",CSSF,100,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1753309,2204908
+2204908,camara,2019-05-29T09:30:00Z,2,Não Deliberado,CSSF,1008,Pronta para Pauta,NA,2204908
+2204908,camara,2019-06-05T09:30:00Z,3,Não Deliberado,CSSF,1008,Pronta para Pauta,NA,2204908
+2204908,camara,2019-06-12T09:30:00Z,4,Retirado de pauta por acordo com o Autor,CSSF,221,Pronta para Pauta,NA,2204908

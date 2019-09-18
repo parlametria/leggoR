@@ -1,0 +1,16 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2192943,camara,2019-02-25T00:00:00Z,2,Proposição fora da numeração sequencial em razão da implantação eletrônica no Sistema em 25/02/2019 (revisão do Sileg).,PLEN,5,Tramitando em Conjunto,NA,2192943
+2192943,camara,2019-02-25T15:35:00Z,3,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2192943
+2192943,camara,2019-02-25T15:35:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2192943
+2192943,camara,2019-02-25T15:35:00Z,1,"Apresentação do Projeto de Lei n. 1086/2019, pelo Deputado Júnior Mano (PATRI-CE), que: ""Dispõe sobre sistemas de monitoramento em tempo real destinados à recepção automática de ocorrências com usuários de arma de fogo"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1714332,2192943
+2192943,camara,2019-02-26T10:52:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 144/2019.,SEPRO,180,NA,NA,2192943
+2192943,camara,2019-02-26T11:42:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2192943
+2192943,camara,2019-03-20T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1721895,2192943
+2192943,camara,2019-03-22T10:42:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,2192943
+2192943,camara,2019-03-22T10:43:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2192943
+2192943,camara,2019-03-22T10:46:00Z,10,"Apense-se à(ao) PL-3722/2012. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Ordinária (Art. 151, III, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1721895,2192943
+2192943,camara,2019-03-22T10:47:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2192943
+2192943,camara,2019-03-22T11:14:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 57/2019.,SECAP(SGM),180,NA,NA,2192943
+2192943,camara,2019-03-22T11:28:00Z,13,Recebimento pela CCP.,CCP,500,NA,NA,2192943
+2192943,camara,2019-03-22T11:34:00Z,14,Apensação desta proposição ao PL 3722/2012.,CCP,106,NA,NA,2192943
+2192943,camara,2019-03-26T00:00:00Z,15,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 27/03/19 PÁG 634.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1737363,2192943

@@ -1,0 +1,58 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+292591,camara,2005-06-30T15:26:00Z,1,Apresentação do Projeto de Lei pelo Deputado Jorge Pinheiro (PL-DF).,PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=320538,292591
+292591,camara,2005-07-01T10:30:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,292591
+292591,camara,2005-07-01T10:31:00Z,3,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,292591
+292591,camara,2005-07-01T10:31:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,292591
+292591,camara,2005-07-01T10:33:00Z,5,Encaminhado à SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 883/2005.,SEPRO,180,NA,NA,292591
+292591,camara,2005-07-01T15:07:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,292591
+292591,camara,2005-07-05T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=321564,292591
+292591,camara,2005-07-07T00:00:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,292591
+292591,camara,2005-07-07T00:00:00Z,10,Apense-se ao PL-3729/2004.,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=321564,292591
+292591,camara,2005-07-07T00:00:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,292591
+292591,camara,2005-07-07T16:29:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,292591
+292591,camara,2005-07-07T17:10:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 613/2005.,MESA,180,NA,NA,292591
+292591,camara,2005-07-07T17:56:00Z,13,Recebimento pela CCP.,CCP,500,NA,NA,292591
+292591,camara,2005-07-11T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial no DCD 12/07/05 PAG 33086 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=344562,292591
+292591,camara,2005-07-13T00:00:00Z,15,Realizar o Encaminhamento para CMADS,CCP,910,NA,NA,292591
+292591,camara,2005-07-13T11:18:00Z,16,Encaminhado à(ao) CMADS através da guia de Remessa (GR/CCP) nº 615/2005.,CCP,180,NA,NA,292591
+292591,camara,2005-07-14T00:00:00Z,17,Recebimento pela CMADS.,CMADS,500,NA,NA,292591
+292591,camara,2006-02-08T00:00:00Z,19,"Designado Relator, Dep. César Medeiros (PT-MG)",CMADS,320,NA,NA,292591
+292591,camara,2006-02-08T12:03:00Z,18,Apensação desta proposição ao PL 3729/2004.,CMADS,106,NA,NA,292591
+292591,camara,2007-01-31T00:00:00Z,20,Arquivado nos termos do Artigo 105 do Regimento Interno.DCD de 01 02 07 PÁG 284 COL 01. Suplemento A ao Nº 21.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=476600,292591
+292591,camara,2007-03-01T16:36:00Z,21,"Apresentação do REQUERIMENTO N.º 408, DE 2007, pelo Deputado(a) Walter Pinheiro, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=438624,292591
+292591,camara,2007-04-25T00:00:00Z,22,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-408/2007.DCD 26 04 07 PAG 19120 COL 01",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=449541,292591
+292591,camara,2007-04-25T18:33:00Z,23,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,292591
+292591,camara,2007-04-25T18:33:00Z,24,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,292591
+292591,camara,2011-01-31T00:00:00Z,25,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados. Publicação no DCD do dia 01/02/2011 - Suplemento ao nº 14.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=850547,292591
+292591,camara,2011-02-14T00:00:00Z,27,Reentrada na comissão por motivo de desarquivamento,SECAP(SGM),630,NA,NA,292591
+292591,camara,2011-02-14T16:12:00Z,26,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-15/2011 => PL-5690/2005.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=838820,292591
+292591,camara,2011-03-01T18:15:00Z,28,"Apresentação do REQ 605/2011, pelo Dep. Jorge Pinheiro, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=845682,292591
+292591,camara,2011-03-04T00:00:00Z,29,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-605/2011.DCD de 05/03/11 PÁG 10811 COL 01.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=846001,292591
+292591,camara,2012-01-31T00:00:00Z,30,Apense-se a este(a) o(a) PL-2941/2011.DCD do dia 04/02/12 PÁG 00423 COL 01.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=957803,292591
+292591,camara,2012-03-13T15:06:00Z,31,Apensação do PL 2941/2011 a esta proposição.,CMADS,504,NA,NA,292591
+292591,camara,2014-01-06T15:11:00Z,32,"Recebimento pela CCP, apensado ao PL-3729/2004",CCP,500,NA,NA,292591
+292591,camara,2014-02-10T15:23:00Z,33,"Recebimento pela CAPADR, apensado ao PL-3729/2004",CAPADR,500,NA,NA,292591
+292591,camara,2014-05-16T10:16:00Z,34,"Recebimento pela CMADS, apensado ao PL-3729/2004",CMADS,500,NA,NA,292591
+292591,camara,2015-01-31T00:00:00Z,35,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,292591
+292591,camara,2015-02-04T09:06:00Z,36,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-5/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1297255,292591
+292591,camara,2015-02-04T09:06:00Z,37,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,292591
+292591,camara,2015-02-04T09:08:00Z,38,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-5/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1297255,292591
+292591,camara,2015-10-20T14:44:00Z,39,"Recebimento pela CFT, apensado ao PL-3729/2004",CFT,500,Tramitando em Conjunto,NA,292591
+292591,camara,2016-05-09T16:04:00Z,40,"Recebimento pela CCJC, apensado ao PL-3729/2004",CCJC,500,NA,NA,292591
+292591,camara,2019-01-31T00:00:00Z,41,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,292591
+292591,camara,2019-02-19T20:19:00Z,42,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-105/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711849,292591
+292591,camara,2019-02-19T20:19:00Z,43,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,292591
+292591,camara,2019-02-19T20:21:00Z,44,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-106/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711853,292591
+292591,camara,2019-02-19T20:23:00Z,45,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-107/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711854,292591
+292591,camara,2019-02-19T20:26:00Z,46,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-114/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711860,292591
+292591,camara,2019-02-20T20:15:00Z,47,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-225/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711978,292591
+292591,camara,2019-02-21T11:35:00Z,48,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-108/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712628,292591
+292591,camara,2019-02-21T11:42:00Z,49,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-295/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713027,292591
+292591,camara,2019-02-22T18:20:00Z,50,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-211/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713645,292591
+292591,camara,2019-02-22T18:27:00Z,52,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-211/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713645,292591
+292591,camara,2019-02-22T18:30:00Z,51,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-211/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713645,292591
+292591,camara,2019-02-26T20:18:00Z,53,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-588/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1715022,292591
+292591,camara,2019-06-11T08:28:00Z,54,"Recebimento pela CCP, apensado ao PL-3729/2004",CCP,500,NA,NA,292591
+292591,camara,2019-06-11T14:54:00Z,55,"Recebimento pela CCP, apensado ao PL-3729/2004",CCP,500,NA,NA,292591
+292591,camara,2019-06-12T16:45:00Z,56,"Recebimento pela CCJC, apensado ao PL-3729/2004",CCJC,500,NA,NA,292591
+292591,camara,2019-06-24T11:41:00Z,57,"Recebimento pela CFT, apensado ao PL-3729/2004",CFT,500,Tramitando em Conjunto,NA,292591

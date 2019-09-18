@@ -1,0 +1,27 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+589649,camara,2013-08-28T17:27:00Z,1,"Apresentação do Projeto de Lei n. 6210/2013, pelo Deputado Major Fábio (DEM-PB), que: ""Altera a Lei nº 8.666, de 21 de junho de 1993, para dispor sobre o valor pago na contratação com inexigibilidade de licitação de profissional do setor artístico"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1122733,589649
+589649,camara,2013-08-28T17:46:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,589649
+589649,camara,2013-08-28T17:46:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,589649
+589649,camara,2013-08-28T18:02:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 4376/2013.,SEPRO,180,NA,NA,589649
+589649,camara,2013-08-29T11:03:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,589649
+589649,camara,2013-09-06T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1127036,589649
+589649,camara,2013-09-09T13:11:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,589649
+589649,camara,2013-09-09T13:11:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,589649
+589649,camara,2013-09-09T13:30:00Z,9,Apense-se ao PL-7069/2010.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1127036,589649
+589649,camara,2013-09-09T13:30:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1260/2013.,SECAP(SGM),180,NA,NA,589649
+589649,camara,2013-09-09T13:30:00Z,12,Apense-se ao PL-7069/2010.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1127036,589649
+589649,camara,2013-09-09T13:30:00Z,14,Encaminhado à(ao) MESA através da guia de Remessa (GR/SECAP(SGM)) nº 1261/2013.,SECAP(SGM),180,NA,NA,589649
+589649,camara,2013-09-09T13:30:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,589649
+589649,camara,2013-09-09T13:32:00Z,13,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,589649
+589649,camara,2013-09-09T13:34:00Z,15,Apense-se ao PL-7069/2010.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1127036,589649
+589649,camara,2013-09-09T13:34:00Z,17,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1262/2013.,SECAP(SGM),180,NA,NA,589649
+589649,camara,2013-09-09T13:35:00Z,16,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,589649
+589649,camara,2013-09-09T14:38:00Z,18,Recebimento pela CCP.,CCP,500,NA,NA,589649
+589649,camara,2013-09-10T00:00:00Z,19,Realizar o Encaminhamento para CCJC,CCP,910,NA,NA,589649
+589649,camara,2013-09-11T00:00:00Z,20,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 12/09/13 PÁG 40185 COL 02.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1194549,589649
+589649,camara,2013-09-16T16:47:00Z,21,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 7465/2013.,CCP,180,NA,NA,589649
+589649,camara,2013-09-16T16:47:00Z,22,Recebimento pela CCJC.,CCJC,500,NA,NA,589649
+589649,camara,2013-09-16T17:02:00Z,23,Apensação desta proposição ao PL 7069/2010.,CCJC,106,NA,NA,589649
+589649,camara,2018-03-23T10:29:00Z,24,"Recebimento pela CCP, apensado ao PL-7069/2010",CCP,500,NA,NA,589649
+589649,camara,2018-03-23T10:43:00Z,25,"Recebimento pela PL129295, apensado ao PL-7069/2010",PL129295,500,NA,NA,589649
+589649,camara,2018-12-05T18:01:00Z,26,"Recebimento pela CCP, apensado ao PL-7069/2010",CCP,500,NA,NA,589649

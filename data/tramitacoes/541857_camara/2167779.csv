@@ -1,0 +1,19 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2167779,camara,2018-02-07T11:33:00Z,1,"Apresentação do Projeto de Lei n. 9513/2018, pelo Deputado Dagoberto Nogueira (PDT-MS), que: ""Altera a Lei n.º 10.826, de 22 de dezembro de 2003 - Estatuto do Desarmamento"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1639464,2167779
+2167779,camara,2018-02-07T11:33:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2167779
+2167779,camara,2018-02-07T11:34:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2167779
+2167779,camara,2018-02-07T16:07:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 5421/2018.,SEPRO,180,NA,NA,2167779
+2167779,camara,2018-02-07T16:19:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2167779
+2167779,camara,2018-02-22T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1641119,2167779
+2167779,camara,2018-02-23T08:42:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2167779
+2167779,camara,2018-02-23T08:42:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2167779
+2167779,camara,2018-02-23T08:43:00Z,9,"Apense-se à(ao) PL-3722/2012. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Ordinária (Art. 151, III, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1641119,2167779
+2167779,camara,2018-02-23T08:43:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2167779
+2167779,camara,2018-02-23T14:02:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1371/2018.,SECAP(SGM),180,NA,NA,2167779
+2167779,camara,2018-02-23T15:06:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2167779
+2167779,camara,2018-02-26T00:00:00Z,13,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 27/02/18 PÁG 50 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1654827,2167779
+2167779,camara,2018-02-26T15:06:00Z,14,Apensação desta proposição ao PL 3722/2012.,CCP,106,NA,NA,2167779
+2167779,camara,2019-02-21T17:50:00Z,15,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-121/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713274,2167779
+2167779,camara,2019-02-22T18:20:00Z,16,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,2167779
+2167779,camara,2019-02-22T18:27:00Z,18,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,2167779
+2167779,camara,2019-02-22T18:30:00Z,17,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,2167779

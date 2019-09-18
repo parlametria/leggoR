@@ -1,0 +1,33 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+602021,camara,2013-11-25T15:35:00Z,1,"Apresentação do Projeto de Lei n. 6818/2013, pelo Deputado Geraldo Simões (PT-BA), que: ""Dispõe sobre a demarcação das terras tradicionalmente ocupadas pelos indígenas"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1199272,602021
+602021,camara,2013-11-25T18:23:00Z,2,Recebimento pela SEPRO -  - Maristela Araújo Medeiros Portela.,SEPRO,500,NA,NA,602021
+602021,camara,2013-11-25T18:23:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,602021
+602021,camara,2013-11-26T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1199799,602021
+602021,camara,2013-11-26T09:06:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 4910/2013.,SEPRO,180,NA,NA,602021
+602021,camara,2013-11-26T11:00:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,602021
+602021,camara,2013-12-03T10:25:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,602021
+602021,camara,2013-12-03T10:26:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,602021
+602021,camara,2013-12-03T10:28:00Z,9,Apense-se à(ao) PL-490/2007.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Ordinária,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1199799,602021
+602021,camara,2013-12-03T10:28:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1404/2013.,SECAP(SGM),180,NA,NA,602021
+602021,camara,2013-12-03T10:30:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,602021
+602021,camara,2013-12-03T14:42:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,602021
+602021,camara,2013-12-04T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 05/12/13 PÁG 57792 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1265311,602021
+602021,camara,2013-12-04T00:00:00Z,17,"Designado Relator, Dep. Bonifácio de Andrada (PSDB-MG)",CCJC,320,Tramitando em Conjunto,NA,602021
+602021,camara,2013-12-04T10:18:00Z,13,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 8246/2013.,CCP,180,NA,NA,602021
+602021,camara,2013-12-04T17:05:00Z,15,Recebimento pela CCJC.,CCJC,500,Tramitando em Conjunto,NA,602021
+602021,camara,2013-12-04T18:54:00Z,16,Apensação desta proposição ao PL 490/2007.,CCJC,106,Tramitando em Conjunto,NA,602021
+602021,camara,2015-01-31T00:00:00Z,18,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,602021
+602021,camara,2015-02-10T09:40:00Z,19,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-205/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298894,602021
+602021,camara,2015-02-10T09:40:00Z,20,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,602021
+602021,camara,2015-02-10T09:40:00Z,21,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,602021
+602021,camara,2015-04-30T09:26:00Z,22,Apense-se a este(a) o(a) PL-1218/2015.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1325734,602021
+602021,camara,2015-05-05T10:26:00Z,23,Apensação do PL 1218/2015 a esta proposição.,CCJC,504,Tramitando em Conjunto,NA,602021
+602021,camara,2015-05-12T09:28:00Z,24,Apense-se a este(a) o(a) PL-1216/2015.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1326291,602021
+602021,camara,2015-05-18T15:40:00Z,25,Apensação do PL 1216/2015 a esta proposição.,CCJC,504,Tramitando em Conjunto,NA,602021
+602021,camara,2019-01-31T00:00:00Z,26,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,602021
+602021,camara,2019-02-19T20:26:00Z,27,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-114/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711860,602021
+602021,camara,2019-02-19T20:26:00Z,28,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,602021
+602021,camara,2019-02-21T11:46:00Z,29,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-332/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713037,602021
+602021,camara,2019-02-22T18:27:00Z,31,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-269/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713670,602021
+602021,camara,2019-02-22T18:30:00Z,30,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-269/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713670,602021
+602021,camara,2019-02-22T19:05:00Z,32,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-269/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1714081,602021

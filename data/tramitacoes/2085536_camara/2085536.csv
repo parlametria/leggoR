@@ -1,0 +1,54 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2085536,camara,2016-05-24T13:38:00Z,1,"Apresentação do Projeto de Lei n. 5370/2016, pelo Deputado Toninho Pinheiro (PP-MG), que: ""Dispõe sobre a zona de amortecimento das unidades de conservação; altera a Lei nº 9.985, de 18 de julho de 2000"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1460867,2085536
+2085536,camara,2016-05-24T15:34:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,2085536
+2085536,camara,2016-05-24T15:34:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2085536
+2085536,camara,2016-05-24T17:03:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 2819/2016.,SEPRO,180,NA,NA,2085536
+2085536,camara,2016-05-24T17:10:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2085536
+2085536,camara,2016-05-31T00:00:00Z,6,Despacho a Confirmar.,MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1462242,2085536
+2085536,camara,2016-06-06T16:28:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2085536
+2085536,camara,2016-06-06T16:28:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2085536
+2085536,camara,2016-06-06T16:28:00Z,9,Às Comissões de Desenvolvimento Urbano; Meio Ambiente e Desenvolvimento Sustentável e Constituição e Justiça e de Cidadania (Art. 54 RICD) Proposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 II. Regime de Tramitação: Ordinária,MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1462242,2085536
+2085536,camara,2016-06-06T16:29:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Arquivada,NA,2085536
+2085536,camara,2016-06-06T16:50:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 592/2016.,SECAP(SGM),180,NA,NA,2085536
+2085536,camara,2016-06-06T17:08:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2085536
+2085536,camara,2016-06-08T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 09/06/16 PÁG 304 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1499277,2085536
+2085536,camara,2016-06-08T10:28:00Z,13,Encaminhado à(ao) CDU através da guia de Remessa (GR/CCP) nº 6639/2016.,CCP,180,NA,NA,2085536
+2085536,camara,2016-06-08T17:02:00Z,15,Recebimento pela CDU.,CDU,500,NA,NA,2085536
+2085536,camara,2016-06-09T00:00:00Z,16,"Designado Relator, Dep. Cacá Leão (PP-BA)",CDU,320,NA,NA,2085536
+2085536,camara,2016-06-10T00:00:00Z,17,Prazo para Emendas ao Projeto (5 sessões a partir de 13/06/2016),CDU,350,NA,NA,2085536
+2085536,camara,2016-06-21T00:00:00Z,18,Encerrado o prazo para emendas ao projeto. Não foram apresentadas emendas.,CDU,600,NA,NA,2085536
+2085536,camara,2016-08-10T14:21:00Z,19,"Apresentação do Parecer do Relator n. 1 CDU, pelo Deputado Cacá Leão (PP-BA).",CDU,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1481872,2085536
+2085536,camara,2016-08-10T14:21:00Z,20,"Parecer do Relator, Dep. Cacá Leão (PP-BA), pela aprovação.",CDU,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1481872,2085536
+2085536,camara,2016-08-23T09:30:00Z,21,"Retirado de pauta, de ofício.",CDU,250,NA,NA,2085536
+2085536,camara,2016-09-13T10:00:00Z,22,"Retirado de pauta, de ofício.",CDU,250,NA,NA,2085536
+2085536,camara,2016-09-20T10:00:00Z,23,"Retirado de pauta, de ofício.",CDU,250,NA,NA,2085536
+2085536,camara,2016-10-05T10:00:00Z,24,Aprovado unanimemente o Parecer.,CDU,240,NA,NA,2085536
+2085536,camara,2016-10-11T11:52:00Z,25,Encaminhado à(ao) CMADS através da guia de Remessa (GR/CDU) nº 105/2016.,CDU,180,NA,NA,2085536
+2085536,camara,2016-10-11T11:52:00Z,26,Encaminhamento de Parecer à CCP para publicação.,CDU,604,NA,NA,2085536
+2085536,camara,2016-10-11T14:38:00Z,27,Recebimento pela CMADS.,CMADS,500,NA,NA,2085536
+2085536,camara,2016-10-11T14:46:00Z,28,Parecer recebido para publicação.,CCP,604,NA,NA,2085536
+2085536,camara,2016-10-24T00:00:00Z,29,"Encaminhada à publicação. Parecer da Comissão de Desenvolvimento Urbano Publicado em avulso e no DCD de 25/10/2016, Letra A.",CCP,604,NA,NA,2085536
+2085536,camara,2016-11-03T00:00:00Z,30,"Designado Relator, Dep. Roberto Balestra (PP-GO)",CMADS,320,NA,NA,2085536
+2085536,camara,2016-11-04T00:00:00Z,31,Prazo para Emendas ao Projeto (5 sessões a partir de 07/11/2016),CMADS,350,NA,NA,2085536
+2085536,camara,2016-11-17T00:00:00Z,32,Encerrado o prazo para emendas ao projeto. Não foram apresentadas emendas.,CMADS,600,NA,NA,2085536
+2085536,camara,2016-12-14T14:30:00Z,33,"Apresentação do Parecer do Relator n. 1 CMADS, pelo Deputado Roberto Balestra (PP-GO).",CMADS,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1517413,2085536
+2085536,camara,2016-12-14T14:30:00Z,34,"Parecer do Relator, Dep. Roberto Balestra (PP-GO), pela aprovação, com emendas.",CMADS,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1517413,2085536
+2085536,camara,2017-03-29T00:00:00Z,35,"Devolvido ao Relator, Dep. Roberto Balestra (PP-GO), para alterar parecer.",CMADS,170,NA,NA,2085536
+2085536,camara,2017-05-10T14:49:00Z,36,"Apresentação do Parecer do Relator n. 2 CMADS, pelo Deputado Roberto Balestra (PP-GO).",CMADS,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1556806,2085536
+2085536,camara,2017-05-10T14:49:00Z,37,"Parecer do Relator, Dep. Roberto Balestra (PP-GO), pela aprovação.",CMADS,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1556806,2085536
+2085536,camara,2018-04-25T10:00:00Z,38,Não Deliberado.,CMADS,1008,NA,NA,2085536
+2085536,camara,2018-05-09T10:00:00Z,39,Não Deliberado.,CMADS,1008,NA,NA,2085536
+2085536,camara,2018-05-16T10:00:00Z,40,Aprovado Requerimento de Retirada de Pauta do Deputado Valdir Colatto.,CMADS,250,NA,NA,2085536
+2085536,camara,2018-05-23T10:00:00Z,41,NÃO DELIBERADO.,CMADS,1008,NA,NA,2085536
+2085536,camara,2018-06-06T10:00:00Z,42,Não Deliberado.,CMADS,1008,NA,NA,2085536
+2085536,camara,2018-06-13T10:00:00Z,43,Retirado de pauta a requerimento de Deputado Ricardo Tripoli.,CMADS,250,NA,NA,2085536
+2085536,camara,2018-06-20T10:00:00Z,44,"Retirado de pauta, de ofício.",CMADS,250,NA,NA,2085536
+2085536,camara,2018-07-11T10:00:00Z,45,"RETIRADO DE PAUTA, DE OFÍCIO.",CMADS,250,NA,NA,2085536
+2085536,camara,2018-08-08T10:00:00Z,46,"Retirado de pauta, de ofício.",CMADS,250,NA,NA,2085536
+2085536,camara,2018-11-21T10:00:00Z,47,Vista ao Deputado Nilto Tatto.,CMADS,420,NA,NA,2085536
+2085536,camara,2018-11-28T17:16:00Z,48,Prazo de Vista Encerrado,CMADS,600,NA,NA,2085536
+2085536,camara,2018-12-05T10:00:00Z,49,"Retirado de pauta, de ofício.",CMADS,250,NA,NA,2085536
+2085536,camara,2019-01-31T00:00:00Z,50,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,Arquivada,NA,2085536
+2085536,camara,2019-08-26T00:00:00Z,51,Devolução à CCP,CMADS,1010,NA,NA,2085536
+2085536,camara,2019-08-27T15:08:00Z,52,Encaminhado à(ao) CCP através da guia de Remessa (GR/CMADS) nº 28/2019.,CMADS,180,NA,NA,2085536
+2085536,camara,2019-08-27T15:22:00Z,53,Recebimento pela CCP.,CCP,500,NA,NA,2085536

@@ -1,0 +1,25 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+349273,camara,2007-04-25T09:22:00Z,1,Apresentação do Projeto de Lei pelo Deputado Léo Alcântara (PR-CE).,PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=454467,349273
+349273,camara,2007-04-25T15:12:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,349273
+349273,camara,2007-04-25T15:12:00Z,3,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,349273
+349273,camara,2007-04-25T15:12:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,349273
+349273,camara,2007-04-26T13:46:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 375/2007.,SEPRO,180,NA,NA,349273
+349273,camara,2007-04-26T14:56:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,349273
+349273,camara,2007-05-10T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=458779,349273
+349273,camara,2007-05-11T14:38:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,349273
+349273,camara,2007-05-11T14:38:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,349273
+349273,camara,2007-05-11T15:58:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 153/2007.,SECAP(SGM),180,NA,NA,349273
+349273,camara,2007-05-11T15:59:00Z,10,Apense-se à(ao) PL-1292/1995.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=458779,349273
+349273,camara,2007-05-11T15:59:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,349273
+349273,camara,2007-05-11T16:26:00Z,13,Recebimento pela CCP.,CCP,500,NA,NA,349273
+349273,camara,2007-05-14T15:58:00Z,14,"Apresentação do REQUERIMENTO N.º 945, DE 2007, pelo Deputado(a) Augusto Carvalho, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=459480,349273
+349273,camara,2007-05-15T17:50:00Z,15,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 1079/2007.,CCP,180,NA,NA,349273
+349273,camara,2007-05-16T00:00:00Z,16,Encaminhada à publicação. Publicação Inicial no  DCD 17 05 07 PAG 23623 COL 02,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=548514,349273
+349273,camara,2007-05-17T11:02:00Z,17,Recebimento pela CCJC.,CCJC,500,NA,NA,349273
+349273,camara,2007-05-18T00:00:00Z,19,"Designado Relator, Dep. José Eduardo Cardozo (PT-SP)",CCJC,320,NA,NA,349273
+349273,camara,2007-05-18T10:01:00Z,18,Apensação desta proposição ao PL 1292/1995.,CCJC,106,NA,NA,349273
+349273,camara,2007-05-22T00:00:00Z,20,Indeferido o pedido de desarquivamento desta proposição constante do REQ-945/07 porquanto a proposição não foi arquivada.DCD de 24 05 07 PÁG 25998 COL 01.,MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=459939,349273
+349273,camara,2011-02-14T15:48:00Z,21,Indeferido o pedido de desarquivamento desta proposição constante do REQ-1/2011 => PL-7404/2010por não se tratar de matéria sujeita ao arquivamento previsto no artigo 105 do RICD.,MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=837853,349273
+349273,camara,2018-03-23T10:29:00Z,22,"Recebimento pela CCP, apensado ao PL-1292/1995",CCP,500,NA,NA,349273
+349273,camara,2018-03-23T10:43:00Z,23,"Recebimento pela PL129295, apensado ao PL-1292/1995",PL129295,500,NA,NA,349273
+349273,camara,2018-12-05T18:01:00Z,24,"Recebimento pela CCP, apensado ao PL-1292/1995",CCP,500,NA,NA,349273

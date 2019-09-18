@@ -1,0 +1,25 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+996772,camara,2015-03-12T13:14:00Z,1,"Apresentação do Projeto de Lei n. 695/2015, pelo Deputado Laerte Bessa (PR-DF), que: ""Insere o § 8º no art. 6º da Lei 10.826, de 22 de dezembro de 2003, que dispõe sobre o Estatuto do Desarmamento"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1308790,996772
+996772,camara,2015-03-12T15:10:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,996772
+996772,camara,2015-03-12T15:10:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,996772
+996772,camara,2015-03-12T15:22:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 308/2015.,SEPRO,180,NA,NA,996772
+996772,camara,2015-03-12T17:49:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,996772
+996772,camara,2015-03-17T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1310007,996772
+996772,camara,2015-03-20T09:46:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,996772
+996772,camara,2015-03-20T09:48:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,996772
+996772,camara,2015-03-20T10:04:00Z,9,Apense-se à(ao) PL-591/2015. Proposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 II. Regime de Tramitação: Ordinária,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1310007,996772
+996772,camara,2015-03-20T10:04:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,996772
+996772,camara,2015-03-20T10:47:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 59/2015.,SECAP(SGM),180,NA,NA,996772
+996772,camara,2015-03-20T11:33:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,996772
+996772,camara,2015-03-23T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 24 03 15 PAG 133 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1339130,996772
+996772,camara,2015-03-23T14:44:00Z,13,Encaminhado à(ao) CREDN através da guia de Remessa (GR/CCP) nº 662/2015.,CCP,180,NA,NA,996772
+996772,camara,2015-03-24T17:55:00Z,15,"Recebimento pela CREDN, apensado ao PL-591/2015",CREDN,500,NA,NA,996772
+996772,camara,2015-03-24T17:57:00Z,16,Recebimento pela CREDN.,CREDN,500,NA,NA,996772
+996772,camara,2015-03-25T00:00:00Z,18,"Designado Relator, Dep. Carlos Zarattini (PT-SP)",CREDN,320,NA,NA,996772
+996772,camara,2015-03-25T17:28:00Z,17,Apensação desta proposição ao PL 591/2015.,CREDN,106,NA,NA,996772
+996772,camara,2015-05-22T11:20:00Z,19,"Recebimento pela CCP, apensado ao PL-591/2015",CCP,500,NA,NA,996772
+996772,camara,2015-05-26T16:15:00Z,20,"Recebimento pela PL372212, apensado ao PL-591/2015",PL372212,500,NA,NA,996772
+996772,camara,2019-02-21T17:50:00Z,21,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-121/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713274,996772
+996772,camara,2019-02-22T18:20:00Z,22,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,996772
+996772,camara,2019-02-22T18:27:00Z,24,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,996772
+996772,camara,2019-02-22T18:30:00Z,23,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,996772

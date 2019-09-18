@@ -1,0 +1,40 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2123209,camara,2017-02-09T15:01:00Z,1,"Apresentação do Projeto de Lei n. 6877/2017, pelo Deputado Jaime Martins (PSD-MG), que: ""Altera a Lei nº 6.938, de 31 de agosto de 1981, que dispõe sobre a Política Nacional do Meio Ambiente, para incluir a análise de risco de desastre no âmbito do licenciamento ambiental"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1524223,2123209
+2123209,camara,2017-02-09T15:01:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2123209
+2123209,camara,2017-02-09T15:02:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2123209
+2123209,camara,2017-02-09T16:32:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 3863/2017.,SEPRO,180,NA,NA,2123209
+2123209,camara,2017-02-09T16:46:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2123209
+2123209,camara,2017-02-16T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1526358,2123209
+2123209,camara,2017-03-02T17:08:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2123209
+2123209,camara,2017-03-02T17:08:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2123209
+2123209,camara,2017-03-02T17:08:00Z,9,"Apense-se à(ao) PL-3729/2004. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Urgência (Art. 155, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1526358,2123209
+2123209,camara,2017-03-02T17:08:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2123209
+2123209,camara,2017-03-02T17:28:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 905/2017.,SECAP(SGM),180,NA,NA,2123209
+2123209,camara,2017-03-02T18:00:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2123209
+2123209,camara,2017-03-03T00:00:00Z,17,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 04/03/17 PÁG 35 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1554936,2123209
+2123209,camara,2017-03-03T11:18:00Z,13,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 9041/2017.,CCP,180,NA,NA,2123209
+2123209,camara,2017-03-03T11:18:00Z,14,Encaminhado à(ao) CFT através da guia de Remessa (GR/CCP) nº 9042/2017.,CCP,180,NA,NA,2123209
+2123209,camara,2017-03-03T15:18:00Z,15,Recebimento pela CCJC.,CCJC,500,NA,NA,2123209
+2123209,camara,2017-03-03T15:29:00Z,16,Recebimento pela CFT.,CFT,500,Tramitando em Conjunto,NA,2123209
+2123209,camara,2017-03-06T13:39:00Z,18,Apensação desta proposição ao PL 3729/2004.,CFT,106,Tramitando em Conjunto,NA,2123209
+2123209,camara,2017-03-27T00:00:00Z,20,"Designado Relator, Dep. Marcos Rogério (DEM-RO)",CCJC,320,NA,NA,2123209
+2123209,camara,2017-03-27T16:51:00Z,19,Apensação desta proposição ao PL 3729/2004.,CCJC,106,NA,NA,2123209
+2123209,camara,2019-01-31T00:00:00Z,21,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,2123209
+2123209,camara,2019-02-19T20:19:00Z,22,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-105/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711849,2123209
+2123209,camara,2019-02-19T20:19:00Z,23,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,2123209
+2123209,camara,2019-02-19T20:19:00Z,24,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,2123209
+2123209,camara,2019-02-19T20:19:00Z,25,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,2123209
+2123209,camara,2019-02-19T20:21:00Z,26,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-106/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711853,2123209
+2123209,camara,2019-02-19T20:23:00Z,27,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-107/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711854,2123209
+2123209,camara,2019-02-19T20:26:00Z,28,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-114/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711860,2123209
+2123209,camara,2019-02-20T20:15:00Z,29,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-225/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711978,2123209
+2123209,camara,2019-02-21T11:35:00Z,30,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-108/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712628,2123209
+2123209,camara,2019-02-21T11:42:00Z,31,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-295/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713027,2123209
+2123209,camara,2019-02-22T18:20:00Z,32,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-211/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713645,2123209
+2123209,camara,2019-02-22T18:27:00Z,34,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-211/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713645,2123209
+2123209,camara,2019-02-22T18:30:00Z,33,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-211/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713645,2123209
+2123209,camara,2019-02-26T20:18:00Z,35,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-588/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1715022,2123209
+2123209,camara,2019-06-11T08:28:00Z,36,"Recebimento pela CCP, apensado ao PL-3729/2004",CCP,500,NA,NA,2123209
+2123209,camara,2019-06-11T14:54:00Z,37,"Recebimento pela CCP, apensado ao PL-3729/2004",CCP,500,NA,NA,2123209
+2123209,camara,2019-06-12T16:45:00Z,38,"Recebimento pela CCJC, apensado ao PL-3729/2004",CCJC,500,NA,NA,2123209
+2123209,camara,2019-06-24T11:41:00Z,39,"Recebimento pela CFT, apensado ao PL-3729/2004",CFT,500,Tramitando em Conjunto,NA,2123209

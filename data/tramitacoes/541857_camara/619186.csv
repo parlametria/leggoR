@@ -1,0 +1,62 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+619186,camara,2014-06-25T15:21:00Z,1,"Apresentação do Projeto de Lei n. 7737/2014, pelo Deputado Arnaldo Faria de Sá (PTB-SP), que: """"Altera a Lei nº 10.826, de 22 de dezembro de 2003, para conceder porte de arma funcional"""".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1262699,619186
+619186,camara,2014-06-25T16:16:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,619186
+619186,camara,2014-06-25T16:16:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,619186
+619186,camara,2014-06-25T16:37:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 5782/2014.,SEPRO,180,NA,NA,619186
+619186,camara,2014-06-25T16:44:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,619186
+619186,camara,2014-07-03T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1264148,619186
+619186,camara,2014-07-03T16:47:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,619186
+619186,camara,2014-07-03T16:47:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,619186
+619186,camara,2014-07-03T16:48:00Z,9,"Às Comissões de Segurança Pública e Combate ao Crime Organizado e Constituição e Justiça e de Cidadania (Art. 54 RICD) - Art. 24, IIProposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 IIRegime de Tramitação: Ordinária",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1264148,619186
+619186,camara,2014-07-03T16:48:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,619186
+619186,camara,2014-07-03T17:12:00Z,11,"Às Comissões de Segurança Pública e Combate ao Crime Organizado e Constituição e Justiça e de Cidadania (Art. 54 RICD) - Art. 24, IIProposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 IIRegime de Tramitação: Ordinária",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1264148,619186
+619186,camara,2014-07-03T17:12:00Z,13,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1616/2014.,SECAP(SGM),180,NA,NA,619186
+619186,camara,2014-07-03T17:13:00Z,12,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,619186
+619186,camara,2014-07-03T17:29:00Z,14,Recebimento pela CCP.,CCP,500,NA,NA,619186
+619186,camara,2014-07-07T15:40:00Z,15,Encaminhado à(ao) CSPCCO através da guia de Remessa (GR/CCP) nº 9516/2014.,CCP,180,NA,NA,619186
+619186,camara,2014-07-09T00:00:00Z,16,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 10/07/14 PAG 109 COL 01 .,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1278486,619186
+619186,camara,2014-07-09T17:15:00Z,17,Recebimento pela CSPCCO.,CSPCCO,500,NA,NA,619186
+619186,camara,2014-11-18T00:00:00Z,18,"Designado Relator, Dep. Alexandre Leite (DEM-SP)",CSPCCO,320,NA,NA,619186
+619186,camara,2014-11-19T00:00:00Z,19,Prazo para Emendas ao Projeto (5 sessões ordinárias a partir de 20/11/2014),CSPCCO,350,NA,NA,619186
+619186,camara,2014-12-11T00:00:00Z,20,Encerrado o prazo para emendas ao projeto. Não foram apresentadas emendas.,CSPCCO,600,NA,NA,619186
+619186,camara,2015-01-31T00:00:00Z,21,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,619186
+619186,camara,2015-02-09T16:54:00Z,22,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-176/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298405,619186
+619186,camara,2015-02-09T16:54:00Z,23,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,619186
+619186,camara,2015-02-09T16:54:00Z,24,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,619186
+619186,camara,2015-02-09T16:54:00Z,25,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,619186
+619186,camara,2015-03-18T14:57:00Z,26,"Apresentação do Parecer do Relator n. 1 CSPCCO, pelo Deputado Alexandre Leite (DEM-SP).",CSPCCO,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1310719,619186
+619186,camara,2015-03-18T14:57:00Z,27,"Parecer do Relator, Dep. Alexandre Leite (DEM-SP), pela aprovação.",CSPCCO,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1310719,619186
+619186,camara,2015-03-25T14:00:00Z,28,Retirado de pauta a requerimento do Relator.,CSPCCO,250,NA,NA,619186
+619186,camara,2015-05-27T14:00:00Z,29,Vista ao Deputado Laudivio Carvalho.,CSPCCO,420,NA,NA,619186
+619186,camara,2015-06-01T00:00:00Z,30,Prazo de Vista Encerrado,CSPCCO,600,NA,NA,619186
+619186,camara,2015-06-02T14:39:00Z,31,"Apresentação do Requerimento de Apensação n. 2042/2015, pelo Deputado Laudivio Carvalho (PMDB-MG), que: ""Requer apensação do PL n. 7737/2014 ao PL 3722/2012"".",PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1343598,619186
+619186,camara,2015-06-02T17:33:00Z,32,"Apresentação do Requerimento de Redistribuição n. 2048/2015, pelo Deputado Leonardo Monteiro (PT-MG), que: ""Requer a revisão do despacho aposto ao PL nº 7737/2014, do Sr. Arnaldo Faria de Sá, para que se inclua a Comissão de Trabalho, de Administração e Serviço Público."".",PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1343919,619186
+619186,camara,2015-06-10T14:00:00Z,33,Não Deliberado,CSPCCO,1008,NA,NA,619186
+619186,camara,2015-06-16T00:00:00Z,34,"Indeferido o Requerimento n. 2.048/2015, conforme despacho do seguinte teor: ""Indefiro o pedido contido no Requerimento n. 2.048/2015, porque a matéria versada no Projeto de Lei n. 7.737/2014 não se enquadra no campo temático da Comissão de Trabalho, de Administração e Serviço Público, delimitado no art. 32, XVIII, do Regimento Interno da Câmara dos Deputados. Publique-se. Oficie-se.""",MESA,203,NA,NA,619186
+619186,camara,2015-07-08T00:00:00Z,36,"Apresentação do Requerimento de Apensação n. 2449/2015, pelo Deputado Laudivio Carvalho (PMDB-MG), que: ""Requer apensação das proposições da mesma espécie e matéria idêntica ou correlata que dispõe sobre posse, porte e circulação de armas de fogo e munições"".",MESA,100,NA,NA,619186
+619186,camara,2015-07-08T14:00:00Z,35,Não Deliberado.,CSPCCO,1008,NA,NA,619186
+619186,camara,2015-07-15T14:00:00Z,37,Aprovado o Parecer.,CSPCCO,240,NA,NA,619186
+619186,camara,2015-07-15T17:05:00Z,39,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CSPCCO) nº 24/2015.,CSPCCO,180,NA,NA,619186
+619186,camara,2015-07-15T17:05:00Z,39,Encaminhamento de Parecer à CCP para publicação.,CSPCCO,604,NA,NA,619186
+619186,camara,2015-07-15T17:07:00Z,40,Recebimento pela CCJC.,CCJC,500,NA,NA,619186
+619186,camara,2015-07-15T17:10:00Z,41,Parecer recebido para publicação.,CCP,604,NA,NA,619186
+619186,camara,2015-07-16T00:00:00Z,42,"Encaminhada à publicação. Parecer da Comissão de Segurança Pública e Combate ao Crime Organizado Publicado em avulso e no DCD do dia 17/07/15 PÁG 385 COL 01, Letra A.",CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1393450,619186
+619186,camara,2015-07-23T00:00:00Z,43,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1364360,619186
+619186,camara,2015-07-23T18:10:00Z,44,Despacho Chancelado,SGMGAB,180,NA,NA,619186
+619186,camara,2015-07-23T18:10:00Z,45,"Deferido o Requerimento n. 2.499/2015, conforme despacho do seguinte teor: “Defiro o Requerimento n. 2.499/2015, nos termos dos arts. 142 e 143, II, “b”, do RICD, para determinar a apensação do Projeto de Lei n. 7.737/2014 ao Projeto de Lei n. 3.722/2012. Publique-se. Oficie-se.”",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1364360,619186
+619186,camara,2015-07-23T18:11:00Z,46,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,619186
+619186,camara,2015-07-24T00:00:00Z,47,À CCJC o Memorando nº 195/2015 - COPER solicitando a devolução deste.,CCP,1005,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1364376,619186
+619186,camara,2015-07-27T00:00:00Z,48,Devolução à CCP,CCJC,1010,NA,NA,619186
+619186,camara,2015-07-27T11:10:00Z,49,Encaminhado à(ao) CCP através da guia de Remessa (GR/CCJC) nº 184/2015.,CCJC,180,NA,NA,619186
+619186,camara,2015-07-27T11:18:00Z,50,Recebimento pela CCP.,CCP,500,NA,NA,619186
+619186,camara,2015-08-03T00:00:00Z,51,Realizar o Encaminhamento para PL372212,CCP,910,NA,NA,619186
+619186,camara,2015-08-03T16:26:00Z,53,Encaminhado à(ao) PL372212 através da guia de Remessa (GR/CCP) nº 2832/2015.,CCP,180,NA,NA,619186
+619186,camara,2015-08-03T16:27:00Z,53,Recebimento pela PL372212.,PL372212,500,NA,NA,619186
+619186,camara,2015-08-10T00:00:00Z,54,"Deferido  o  Requerimento n. 2.449/2015, conforme despacho do seguinte teor: Defiro o pedido contido no Requerimento n. 2.449/2015 nos seguintes termos: apensem-se os Projetos de Lei n. 6.162/2005, n. 6.601/2009 e seus apensos, n. 3.722/2012 e seus apensos, n. 4.444/2012 e seus apensos, n. 5.343/2013, n. 439/2015, n. 633/2015, n. 693/2015, n. 771/2015, n. 805/2015, n. 1.009/2015, n. 1.102/2015, n. 1.103/2015 e seu apenso, n. 1.206/2015, n. 1.257/2015, n. 1.263/2015, n. 1.391/2015, n. 1.401/2015 e n. 1.493/2015 ao Projeto de Lei n. 3.941/2004, nos termos do art. 142, caput, combinado com o art. 143, II, b, do Regimento Interno da Câmara dos Deputados.Por conseguinte, revejo o despacho inicial aposto ao Projeto de Lei n. 3.941/2004 para incluir as Comissões do Esporte, de Desenvolvimento Econômico, Indústria e Comércio, de Relações Exteriores e de Defesa Nacional e de Finanças e Tributação (mérito e art. 54 do RICD), bem como para determinar a alteração da denominação da Comissão Especial destinada a proferir parecer ao Projeto de Lei nº 3.722/2012 para Comissão Especial destinada a emitir parecer sobre o Projeto de Lei n. 3.941/2004 e seus apensos.Publique-se. Oficie-se. [ATUALIZAÇÃO DO DESPACHO DO PL N. 3.941/2004: Às CESPO, CDEIC, CREDN, CSPCCO, CFT (mérito e art. 54 do RICD) e CCJC (mérito e art. 54 do RICD). Proposição sujeita à apreciação do Plenário. Regime de tramitação: Ordinária.]",MESA,203,NA,NA,619186
+619186,camara,2015-08-17T00:00:00Z,56,"Designado Relator, Dep. Laudivio Carvalho (PMDB-MG)",PL372212,320,NA,NA,619186
+619186,camara,2015-08-17T17:32:00Z,55,Apensação desta proposição ao PL 3722/2012.,PL372212,106,NA,NA,619186
+619186,camara,2019-02-20T19:30:00Z,57,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-39/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712510,619186
+619186,camara,2019-02-21T17:50:00Z,58,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-121/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713274,619186
+619186,camara,2019-02-22T18:20:00Z,59,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,619186
+619186,camara,2019-02-22T18:27:00Z,61,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,619186
+619186,camara,2019-02-22T18:30:00Z,60,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,619186

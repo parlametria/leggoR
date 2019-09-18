@@ -1,0 +1,147 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2193540,camara,2019-03-12T00:00:00Z,8,Despacho a Confirmar.,MESA,110,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1717911,2193540
+2193540,camara,2019-03-12T00:00:00Z,2,Proposição fora da numeração sequencial em razão da implantação eletrônica no Sistema em 12/03/2019 (revisão do Sileg).,PLEN,5,NA,NA,2193540
+2193540,camara,2019-03-12T14:00:00Z,7,Alteração do Regime de Tramitação desta proposição em virtude da Aprovação do REQ 701/2019 => PL 1321/2019.,PLEN,196,NA,NA,2193540
+2193540,camara,2019-03-12T14:00:00Z,6,"Aprovado requerimento do Sr. Elmar Nascimento que requer, nos termos do art. 155, seja incluído automaticamente na Ordem do Dia o Projeto de Lei nº _1.321 de 2019.",PLEN,196,NA,NA,2193540
+2193540,camara,2019-03-12T15:52:00Z,3,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2193540
+2193540,camara,2019-03-12T15:52:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2193540
+2193540,camara,2019-03-12T15:52:00Z,1,"Apresentação do Projeto de Lei n. 1321/2019, pelo Deputado Elmar Nascimento (DEM-BA), que: ""Altera a Lei nº 9.096, de 19 de setembro de 1995, que dispõe sobre partidos políticos, regulamenta os arts. 17 e 14, § 3º, inciso V, da Constituição Federal, a fim de dispor sobre a autonomia dos partidos políticos para definir o prazo de duração dos mandatos dos membros dos seus órgãos partidários permanentes ou provisórios.NOVA EMENTA: Altera a Lei nº 9.096, de 19 de setembro de 1995 (Lei dos Partidos Políticos), a fim de assegurar autonomia aos partidos políticos para definir o prazo de duração dos mandatos dos membros dos seus órgãos partidários permanentes ou provisórios; e dá outras providências"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1717746,2193540
+2193540,camara,2019-03-12T16:02:00Z,5,"Apresentação do Requerimento de Urgência (Art. 155 do RICD) n. 701/2019, pelo Deputado Elmar Nascimento (DEM-BA), que: ""Requer, nos termos do art. 155, seja incluído automaticamente na Ordem do Dia o Projeto de Lei nº _1.321 de 2019"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1717761,2193540
+2193540,camara,2019-03-12T17:54:00Z,9,Despacho Chancelado,SECAP(SGM),180,NA,NA,2193540
+2193540,camara,2019-03-12T17:54:00Z,10,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2193540
+2193540,camara,2019-03-12T17:54:00Z,11,"À Comissão de Constituição e Justiça e de Cidadania (Mérito e Art. 54, RICD)Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Urgência (Art. 155, RICD)",MESA,110,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1736344,2193540
+2193540,camara,2019-03-12T17:54:00Z,12,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Transformado em Norma Jurídica,NA,2193540
+2193540,camara,2019-03-12T21:20:00Z,13,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 209/2019.,SEPRO,180,NA,NA,2193540
+2193540,camara,2019-03-13T00:00:00Z,17,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 14/03/19 PÁG 386.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1739935,2193540
+2193540,camara,2019-03-13T10:00:00Z,14,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2193540
+2193540,camara,2019-03-13T10:24:00Z,15,Recebimento pela CCP.,CCP,500,NA,NA,2193540
+2193540,camara,2019-03-13T10:29:00Z,16,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 623/2019.,CCP,180,NA,NA,2193540
+2193540,camara,2019-03-13T14:00:00Z,18,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,NA,NA,2193540
+2193540,camara,2019-03-18T16:12:00Z,19,Recebimento pela CCJC.,CCJC,500,NA,NA,2193540
+2193540,camara,2019-03-19T14:00:00Z,20,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,NA,NA,2193540
+2193540,camara,2019-03-20T14:00:00Z,21,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,NA,NA,2193540
+2193540,camara,2019-03-20T19:50:00Z,22,Matéria não apreciada em face do encerramento da Sessão.,PLEN,1244,NA,NA,2193540
+2193540,camara,2019-03-26T14:00:00Z,23,"Retirado de pauta, de ofício.",PLEN,1241,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,25,"Votação do Requerimento do Dep. Ivan Valente (PSOL-SP), que solicita a retirada de pauta deste Projeto de Lei.",PLEN,223,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,24,Discussão em turno único.,PLEN,222,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,26,Encaminhou a Votação o Dep. Ivan Valente (PSOL-SP).,PLEN,219,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,27,Rejeitado o Requerimento.,PLEN,1236,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,28,"Designado Relator, Dep. Paulo Pereira da Silva (SOLIDARI-SP), para proferir Parecer em Plenário pela Comissão de Constituição e Justiça e de Cidadania.",PLEN,320,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,29,"Parecer proferido em Plenário pelo Relator, Dep. Paulo Pereira da Silva (SOLIDARI-SP), pela Comissão de Constituição e Justiça e de Cidadania, que conclui pela constitucionalidade, juridicidade e técnica legislativa; e, no mérito, pela aprovação da matéria, na forma do Substitutivo apresentado.",PLEN,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1724762,2193540
+2193540,camara,2019-03-27T14:00:00Z,30,"Discutiram a Matéria: Dep. Henrique Fontana (PT-RS), Dep. Bibo Nunes (PSL-RS), Dep. Pompeo de Mattos (PDT-RS), Dep. Alexandre Frota (PSL-SP), Dep. Felipe Rigoni (PSB-ES) e Dep. Dra. Soraya Manato (PSL-ES).",PLEN,242,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,31,Votação do Requerimento dos Srs. Líderes que solicita o encerramento da discussão e do encaminhamento da votação.,PLEN,223,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,32,Aprovado o Requerimento.,PLEN,1235,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,33,Encerrada a discussão.,PLEN,227,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,34,O Projeto foi emendado. Foram apresentadas as Emendas de Plenário de nºs 1 a 17.,PLEN,1245,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,35,"Designado Relator, Dep. Paulo Pereira da Silva (SOLIDARI-SP), para proferir Parecer às Emendas de Plenário pela Comissão de Constituição e Justiça e de Cidadania.",PLEN,320,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,36,"Parecer às Emendas de Plenário proferido pelo Relator, Dep. Paulo Pereira da Silva (SOLIDARI-SP), pela Comissão de Constituição e Justiça e de Cidadania, que conclui pela constitucionalidade, juridicidade e técnica legislativa das Emendas de Plenário de nºs 1 a 5 e 7 a 17; pela inconstitucionalidade, ilegalidade, injuridicidade da Emenda de Plenário nº 6; e, no mérito, pela aprovação parcial das Emendas de Plenário de nºs  5, 7 e 8, na forma da Subemenda Substitutiva Global de Plenário apresentada, e pela rejeição das demais.",PLEN,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1725015,2193540
+2193540,camara,2019-03-27T14:00:00Z,38,"Votação do Requerimento da Bancada do Novo, que solicita votação nominal para o Recurso contra a declaração de inconstitucionalidade da Emenda de Plenário nº 6/2019.",PLEN,1232,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,39,Rejeitado o Requerimento.,PLEN,1236,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,40,"Votação do Recurso contra a declaração de inconstitucionalidade da emenda nº 6, apresentado pela Bancada do Novo.",PLEN,1232,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,41,Rejeitado o Recurso.,PLEN,1236,NA,NA,2193540
+2193540,camara,2019-03-27T14:00:00Z,42,Adiada a votação em face do encerramento da Sessão.,PLEN,1244,NA,NA,2193540
+2193540,camara,2019-03-27T19:10:00Z,37,"Parecer Reformulado de Plenário, Dep. Paulo Pereira da Silva (SOLIDARI-SP), pela Comissão de Constituição e Justiça e de Cidadania, que conclui pela Subemenda Substitutiva Global de Plenário reformulada.",CCJC,322,NA,NA,2193540
+2193540,camara,2019-03-27T19:53:00Z,47,"Aprovada a Subemenda Substitutiva Global Reformulada de Plenário ao PL 1.321/19, adotada pelo Relator da Comissão de Constituição e Justiça e de Cidadania, ressalvados os Destaques.",PLEN,1235,NA,NA,2193540
+2193540,camara,2019-03-27T19:53:00Z,48,"Em consequência, fica prejudicada a apreciação da Proposição inicial; do Substitutivo apresentado pela Comissão; e das Emendas apresentadas, ressalvados os destaques.",PLEN,1240,NA,NA,2193540
+2193540,camara,2019-03-27T19:53:00Z,49,Adiada a continuação da votação em face do encerramento da Sessão.,PLEN,1244,NA,NA,2193540
+2193540,camara,2019-03-27T19:53:00Z,43,Votação em turno único.,PLEN,1231,NA,NA,2193540
+2193540,camara,2019-03-27T19:53:00Z,44,"Votação do destaque da bancada do PSOL, que solicita preferência para o texto original do PL 1.321/19 - DTQ 11.",PLEN,1233,NA,NA,2193540
+2193540,camara,2019-03-27T19:53:00Z,45,Encaminhou a Votação a Dep. Fernanda Melchionna (PSOL-RS).,PLEN,219,NA,NA,2193540
+2193540,camara,2019-03-27T19:53:00Z,46,Rejeitado o Destaque nº 11.,PLEN,1236,NA,NA,2193540
+2193540,camara,2019-03-28T00:00:00Z,50,Devolução à CCP,CCJC,1010,NA,NA,2193540
+2193540,camara,2019-03-28T00:00:00Z,52,Devolvido à CCP,CCJC,910,NA,NA,2193540
+2193540,camara,2019-03-28T00:00:00Z,54,"Encaminhada à publicação. Parecer proferido em Plenário pela Comissão de Constituição e Justiça e de Cidadania; Emendas de Plenário; Parecer proferido em Plenário, pela Comissão de Constituição e Justiça e de Cidadania, às Emendas de Plenário; e Parecer Reformulado, proferido em Plenário, pela Comissão de Constituição e Justiça e de Cidadania, publicados em avulso e no DCD de 29/03/19 PÁG 451., Letra A.",CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1750206,2193540
+2193540,camara,2019-03-28T14:16:00Z,52,Encaminhado à(ao) CCP através da guia de Remessa (GR/CCJC) nº 16/2019.,CCJC,180,NA,NA,2193540
+2193540,camara,2019-03-28T14:17:00Z,53,Recebimento pela CCP.,CCP,500,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,55,Continuação da votação em turno único.,PLEN,1231,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,56,"Votação do Requerimento do Dep. Ivan Valente (PSOL-SP), que solicita a retirada de pauta deste Projeto de Lei.",PLEN,223,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,57,Rejeitado o Requerimento.,PLEN,1236,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,58,"Votação da expressão ""ou provisórios"" contido no §2º do art. 3º da Lei 9.096/95, na redação proposta pelo Substitutivo ao PL 1.321/19, objeto do destaque para votação em separado da bancada do PT - DTQ 8.",PLEN,1233,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,59,Encaminhou a Votação o Dep. Henrique Fontana (PT-RS).,PLEN,219,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,60,Mantido o texto.,PLEN,1237,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,61,"Votação da Emenda nº 13, objeto do destaque para votação em separado da bancada do PT - DTQ 17.",PLEN,1233,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,62,Encaminhou a Votação o Dep. Rui Falcão (PT-SP).,PLEN,219,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,63,Rejeitada a Emenda nº 13.,PLEN,1236,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,64,"Votação da Emenda nº 17, objeto do destaque para votação em separado da bancada do PCdoB - DTQ 21.",PLEN,1233,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,65,Encaminhou a Votação a Dep. Alice Portugal (PCdoB-BA).,PLEN,219,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,66,Rejeitada a Emenda nº 17.,PLEN,1236,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,67,"Votação do § 5º do art. 32 da Lei 9.096/95, incluído pelo art. 1º do Substitutivo apresentado ao PL 1.321/19, objeto do destaque para votação em separado da bancada do PSB - DTQ 19.",PLEN,1233,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,68,Suprimido o texto.,PLEN,1238,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,69,"Votação da Emenda nº 5, objeto do destaque para votação em separado do Bloco Parlamentar PSL, PR, PP, PSD, MDB, PSDB, DEM, PTB, PSC, PMN - DTQ 4.",PLEN,1233,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,70,"Retirado o destaque do Bloco Parlamentar PSL, PR, PP, PSD, MDB, PSDB, DEM, PTB, PSC, PMN, para a votação em separado da Emenda nº 5 - DTQ 4.",PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,72,"Retirado o destaque da bancada do PRB, para a votação em separado da Emenda nº 2 - DTQ 16.",PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,73,"Votação da Emenda nº 4, objeto do destaque para votação em separado da bancada do NOVO - DTQ 5.",PLEN,1233,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,74,"Verificação da votação, solicitada pelos Deputados Marcel Van Hattem, Líder do NOVO; Hildo Rocha, na qualidade de Líder do Bloco Parlamentar PP, PR, PSD, MDB, DEM, PTB, PSC, PMN; e Marcelo Nilo, na qualidade de Líder do PSB, em razão do resultado proclamado pela Mesa: ""Rejeitada a Emenda nº 4"", passando-se à votação pelo processo nominal.",PLEN,1239,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,71,"Votação da Emenda nº 2, objeto do destaque para votação em separado da bancada do PRB - DTQ 16.",PLEN,1233,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,75,Rejeitada a Emenda nº 4. Sim: 144; não: 294; abstenção: 3; total: 441.,PLEN,1236,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,76,"Votação do Requerimento da Dep. Erika Kokay, na qualidade de Líder do PT, que solicita quebra do interstício de uma hora, para verificação da votação do DTQ 18 - nos termos do §4º do artigo 185 do RICD.",PLEN,1234,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,77,Encaminhou a Votação a Dep. Maria do Rosário (PT-RS).,PLEN,219,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,78,Retirado pelo autor.,PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,79,"Votação do art. 55-A, da Lei nº 9.096/95, acrescido pelo art. 2º do substitutivo oferecido ao PL 1.321/19, objeto do destaque para votação em separado da bancada do PT - DTQ 18.",PLEN,1233,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,80,Encaminharam a Votação: Dep. Fernanda Melchionna (PSOL-RS) e Dep. Erika Kokay (PT-DF).,PLEN,219,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,81,Mantido o texto.,PLEN,1237,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,82,Votação da Emenda de Redação nº 1.,PLEN,1231,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,85,"Retirado o destaque da bancada do PT, para a votação em separado do §2º, do art. 3º, da Lei 9.096/95, acrescido pelo inciso II, do art. 2º do PL 1.321/19 - DTQ 1.",PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,86,"Retirado o destaque do Bloco Parlamentar, para a votação em separado da Emenda nº 1 - DTQ 2.",PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,87,"Retirado o destaque da bancada do PT, para a votação em separado da expressão ""ou provisórios"" constante do §2º do art. 3º da Lei 9.096/95, acrescido pelo inc. II do art. 2º do PL 1.321/19 - DTQ 3.",PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,88,"Prejudicado o destaque da bancada do PPS, para a votação em separado da Emenda nº 6 - DTQ 6.",PLEN,1240,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,89,"Retirado o destaque da bancada do PT, para a votação em separado do art. 2º do PL 1.321/19 - DTQ 7.",PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,90,"Retirado o destaque da bancada do PT, para a votação em separado do §4º do art. 3º da Lei 9.096/95, na redação proposta pelo art. 1º do Substitutivo ao PL 1.321/19 - DTQ 9.",PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,91,"Retirado o destaque da bancada do PCdoB, para a votação em separado do §8º, contido no art. 44, inserido no art. 1º do PL 1.321/19 - DTQ 10.",PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,92,Retirado o destaque simples do Dep. Paulo Pimenta (PT-RS) - DTQ 12.,PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,93,Retirado o destaque simples do Dep. Paulo Pimenta (PT-RS) - DTQ 13.,PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,94,"Retirado o destaque da bancada do PT, para a votação em separado do §7º do art. 32 da Lei 9.096/95, na redação proposta pelo substitutivo ao PL 1.321/19, em seu art. 1º - DTQ 14.",PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,95,"Retirado o destaque da bancada do PT, para a votação em separado do art. 55-C, da Lei nº 9.096/95, acrescido pelo art. 2º do Substitutivo apresentado ao PL 1.321/19 - DTQ 15.",PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,96,"Retirado o destaque da bancada do PSDB, para a votação em separado da Emenda nº 16 - DTQ 20.",PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,84,Fica cancelada a votação nominal.,PLEN,1245,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,83,"Retirada, pelo autor, a Emenda de Redação nº 1.",PLEN,1241,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,97,Votação da Redação Final.,PLEN,1231,NA,NA,2193540
+2193540,camara,2019-04-02T14:00:00Z,98,"Aprovada a Redação Final assinada pelo Relator, Dep. Paulo Pereira da Silva (SD-SP).",PLEN,1235,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1727555,2193540
+2193540,camara,2019-04-02T14:00:00Z,99,A Matéria vai ao Senado Federal. (PL 1.321-B/2019).,PLEN,1243,NA,NA,2193540
+2193540,camara,2019-04-03T00:00:00Z,100,Autos à Seção de Autógrafos.,CCP,1005,NA,NA,2193540
+2193540,camara,2019-04-03T00:00:00Z,101,Remessa ao Senado Federal por meio do Of. nº 202/19/SGM-P.,MESA,128,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1727591,2193540
+2193540,camara,2019-04-22T00:00:00Z,102,"Recebido o Ofício nº 176/2019, do SF, que comunica que aprovou, em revisão e com emendas, o Projeto de Lei n° 1.321, de 2019, que ""Altera a Lei n° 9.096, de 19 de setembro de 1995 (Lei dos Partidos Políticos), a fim de assegurar autonomia aos partidos políticos para definir o prazo de duração dos mandatos dos membros dos seus órgãos partidários permanentes ou provisórios; e dá outras providências""",MESA,500,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1736605,2193540
+2193540,camara,2019-04-22T17:48:00Z,103,"Apresentação da Emenda/Substitutivo do Senado n. 1321/2019, pelo Senado Federal, que: ""Emendas do Senado ao Projeto de Lei nº 1.321, de 2019, que 'Altera a Lei nº 9.096, de 19 de setembro de 1995 (Lei dos Partidos Políticos), a fim de assegurar autonomia aos partidos políticos para definir o prazo de duração dos mandatos dos membros dos seus órgãos partidários permanentes ou provisórios; e dá outras providências'.Altera a Lei nº 9.096, de 19 de setembro de 1995 (Lei dos Partidos Políticos), a fim de assegurar autonomia aos partidos políticos para definir o prazo de duração dos mandatos dos membros dos seus órgãos partidários permanentes ou provisórios; e dá outras providências"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1736231,2193540
+2193540,camara,2019-04-23T00:00:00Z,105,Despacho a Confirmar.,MESA,110,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1736346,2193540
+2193540,camara,2019-04-23T00:00:00Z,107,"EMENDAS DO SENADO FEDERAL Às Comissões de Finanças e Tributação (Mérito e Art. 54, RICD) e Constituição e Justiça e de Cidadania (Mérito e Art. 54, RICD)Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Urgência (Art. 155, RICD)",MESA,110,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1736346,2193540
+2193540,camara,2019-04-23T19:41:00Z,104,Novo Despacho,SECAP(SGM),171,NA,NA,2193540
+2193540,camara,2019-04-23T19:46:00Z,106,Despacho Chancelado,SECAP(SGM),180,NA,NA,2193540
+2193540,camara,2019-04-23T19:47:00Z,108,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Transformado em Norma Jurídica,NA,2193540
+2193540,camara,2019-04-24T00:00:00Z,111,"Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 25/04/19, Letra C, PÁG 312.",CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1774336,2193540
+2193540,camara,2019-04-24T00:00:00Z,126,"Rejeitadas as Emendas do Senado Federal nºs 1, 2, 3 e 5.",PLEN,1236,NA,NA,2193540
+2193540,camara,2019-04-24T09:45:00Z,109,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 119/2019.,SECAP(SGM),180,NA,NA,2193540
+2193540,camara,2019-04-24T09:50:00Z,110,Recebimento pela CCP.,CCP,500,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,128,Encaminharam a Votação: Dep. Bohn Gass (PT-RS) e Dep. Paulo Pereira da Silva (SOLIDARI-SP).,PLEN,219,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,122,Votação em turno único.,PLEN,1231,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,129,"Verificação da votação, solicitada pelos Deputados Alexandre Leite, Líder do DEM; e João Roma, na qualidade de Líder do PRB, em razão do resultado proclamado pela Mesa: ""Rejeitada a Emenda"", passando-se à votação pelo processo nominal.",PLEN,1239,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,131,"Votação da Emenda do Senado Federal nº 5, objeto do destaque para votação em separado da bancada do NOVO - DTQ 1.",PLEN,1233,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,130,Rejeitada a Emenda do Senado Federal nº 1. Sim: 68; não: 281: abstenção: 4; total: 353.,PLEN,1236,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,132,Encaminhou a Votação o Dep. Tiago Mitraud (NOVO-MG).,PLEN,219,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,133,Rejeitada a Emenda do Senado Federal nº 5.,PLEN,1236,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,136,Votação da Redação Final.,PLEN,1231,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,137,"Aprovada a Redação Final assinada pelo Relator, Dep. Paulo Pereira da Silva (SOLIDARIEDADE-SP).",PLEN,1235,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1738642,2193540
+2193540,camara,2019-04-24T14:00:00Z,138,A matéria vai à sanção (PL 1.321-D/2019).,PLEN,1243,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,134,"Prejudicado o destaque da bancada do PT, para a votação em separado da Emenda do Senado Federal nº 5 - DTQ 2.",PLEN,1240,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,135,"Prejudicado o destaque da bancada do PSOL, para a votação em separado da Emenda do Senado Federal nº 5 - DTQ 4.",PLEN,1240,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,114,"Votação do Requerimento da Bancada do PSOL, que solicita a retirada de pauta deste Projeto de Lei.",PLEN,223,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,113,"Discussão, em turno único, das Emendas do Senado Federal ao Projeto de Lei nº 1.321-B, de 2019.",PLEN,222,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,112,"Aprovado o Requerimento do Dep. Augusto Coutinho (SOLIDARIEDADE-PE), que solicita inversão de pauta, a fim de que o Projeto de Lei nº 1.321/2019 seja apreciado como o item 1 da pauta.",PLEN,1235,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,115,Rejeitado o Requerimento.,PLEN,1236,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,116,"Designado Relator, Dep. Paulo Pereira da Silva (SOLIDARI-SP), para proferir Parecer em Plenário às Emendas do Senado Federal pela Comissão de Finanças e Tributação.",PLEN,320,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,118,"Designado Relator, Dep. Paulo Pereira da Silva (SOLIDARI-SP), para proferir Parecer em Plenário às Emendas do Senado Federal pela Comissão de Constituição e Justiça e de Cidadania.",PLEN,320,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,120,Discutiram a Matéria: Dep. Glauber Braga (PSOL-RJ) e Dep. Erika Kokay (PT-DF).,PLEN,242,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,117,"Parecer às Emendas do Senado proferido pelo Relator, Dep. Paulo Pereira da Silva (SOLIDARI-SP), pela Comissão de Finanças e Tributação, que conclui pela adequação financeira e orçamentária; e, no mérito, pela aprovação da Emenda do Senado nº 4, e pela rejeição das demais Emendas.",PLEN,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1737133,2193540
+2193540,camara,2019-04-24T14:00:00Z,121,Encerrada a discussão.,PLEN,227,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,123,"Votação da Emenda do Senado Federal nº 4, com parecer pela aprovação, ressalvados os destaques.",PLEN,1231,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,119,"Parecer às Emendas do Senado proferido pelo Relator, Dep. Paulo Pereira da Silva (SOLIDARI-SP), pela Comissão de Constituição e Justiça e de Cidadania, que conclui pela constitucionalidade, juridicidade e técnica legislativa; e, no mérito, pela aprovação da Emenda do Senado nº 4, e pela rejeição das Emendas do Senado nºs 1, 2, 3 e 5.",PLEN,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1737134,2193540
+2193540,camara,2019-04-24T14:00:00Z,124,Aprovada a Emenda do Senado Federal nº 4.,PLEN,1235,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,125,"Votação das Emendas do Senado Federal nºs 1, 2, 3 e 5, com parecer pela rejeição, ressalvados os destaques.",PLEN,1231,NA,NA,2193540
+2193540,camara,2019-04-24T14:00:00Z,127,"Votação da Emenda do Senado Federal nº 1, objeto do destaque para votação em separado da bancada do PT - DTQ 3.",PLEN,1231,NA,NA,2193540
+2193540,camara,2019-04-25T00:00:00Z,139,Autos à Seção de Autógrafos.,CCP,1005,NA,NA,2193540
+2193540,camara,2019-04-26T00:00:00Z,140,Remessa dos Autógrafos à sanção por meio da Mensagem nº 6/2019.,MESA,609,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1738649,2193540
+2193540,camara,2019-04-26T00:00:00Z,141,"Ofício nº 67/2019/PS-GSE ao Senado Federal, comunicando envio à sanção.",MESA,128,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1738650,2193540
+2193540,camara,2019-05-17T00:00:00Z,142,Transformado na Lei Ordinária 13831/2019. DOU 20/05/19 PÁG 02 COL 01. Vetado parcialmente. (MSC 190/19-PE). Razões do veto: DOU 20/05/19 PÁG 20 COL 01.Rejeitado o veto presidencial em 19/06/19: DOU 21/06/19 PÁG 02 COL 01. Promulgação da parte vetada: MSC 262/19-PE. DOU 21/06/19 PÁG 02 COL 02.,MESA,1012,Transformado em Norma Jurídica,NA,2193540
+2193540,camara,2019-05-17T00:00:00Z,143,Encaminhar ao Arquivo,SEXPE(SGM),910,NA,NA,2193540
+2193540,camara,2019-06-18T00:00:00Z,144,Recebimento do Ofício nº 276/2019 (CN) comunicando veto parcial e encaminhando cópia da Mensagem e autógrafo do PL 1.321/2019).,MESA,500,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1767835,2193540
+2193540,camara,2019-06-18T00:00:00Z,145,Recebimento do Ofício nº 280/2019 (CN) comunicando resultado da apreciação do veto do PL 1.321/2019. Resultado: rejeitado o veto parcial.,MESA,500,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1767839,2193540
+2193540,camara,2019-06-26T00:00:00Z,146,Recebimento do Ofício nº 300/2019 (CN) encaminhando autógrafo de partes vetadas de Projeto de Lei promulgado.,MESA,500,Transformado em Norma Jurídica,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1772927,2193540

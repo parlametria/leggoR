@@ -1,0 +1,15 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2195445,camara,2019-03-26T00:00:00Z,1,"Apresentação do Projeto de Lei n. 1761/2019, pelo Deputado Aluisio Mendes PODE, que:""Faculta aos Órgãos de Segurança Pública a aquisição de armamentos, munições e equipamentos, de indústrias nacionais ou estrangeiras"".",SEPRO,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1724064,2195445
+2195445,camara,2019-03-26T18:00:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2195445
+2195445,camara,2019-03-26T18:00:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2195445
+2195445,camara,2019-03-27T10:48:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 331/2019.,SEPRO,180,NA,NA,2195445
+2195445,camara,2019-03-27T11:23:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2195445
+2195445,camara,2019-04-25T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1738084,2195445
+2195445,camara,2019-04-26T09:59:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2195445
+2195445,camara,2019-04-26T10:00:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2195445
+2195445,camara,2019-04-26T10:00:00Z,9,"Apense-se à(ao) PL-9770/2018. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Ordinária (Art. 151, III, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1738084,2195445
+2195445,camara,2019-04-26T10:00:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2195445
+2195445,camara,2019-04-26T10:24:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 128/2019.,SECAP(SGM),180,NA,NA,2195445
+2195445,camara,2019-04-26T10:55:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2195445
+2195445,camara,2019-04-26T10:55:00Z,13,Apensação desta proposição ao PL 9770/2018.,CCP,106,NA,NA,2195445
+2195445,camara,2019-04-30T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 01/05/19 PÁG 130.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1758718,2195445

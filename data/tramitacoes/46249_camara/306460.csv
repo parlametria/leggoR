@@ -1,0 +1,31 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+306460,camara,2005-11-16T18:15:00Z,1,Apresentação do Projeto de Lei pela Deputada Kátia Abreu (PFL-TO).,PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=355797,306460
+306460,camara,2005-11-16T21:14:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,306460
+306460,camara,2005-11-16T21:14:00Z,3,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,306460
+306460,camara,2005-11-16T21:14:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,306460
+306460,camara,2005-11-17T09:09:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 1347/2005.,SEPRO,180,NA,NA,306460
+306460,camara,2005-11-17T14:26:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,306460
+306460,camara,2005-11-22T00:00:00Z,7,"Apresentação da REQ 3444/2005, pela Dep. Kátia Abreu e outros, que ""requer Urgência para a apreciação do Projeto de Lei nº 6.189/2005""",PLEN,194,Tramitando em Conjunto,NA,306460
+306460,camara,2005-12-01T00:00:00Z,8,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=360809,306460
+306460,camara,2005-12-01T00:00:00Z,11,Apense-se à(ao) PL-3125/2000.Proposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 IIRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=360809,306460
+306460,camara,2005-12-01T00:00:00Z,12,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,306460
+306460,camara,2005-12-01T18:13:00Z,9,Despacho Chancelado,SECAP(SGM),180,NA,NA,306460
+306460,camara,2005-12-01T18:13:00Z,10,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,306460
+306460,camara,2005-12-01T18:22:00Z,13,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 825/2005.,SECAP(SGM),180,NA,NA,306460
+306460,camara,2005-12-02T11:01:00Z,14,Recebimento pela CCP.,CCP,500,NA,NA,306460
+306460,camara,2005-12-06T16:54:00Z,15,Encaminhado à(ao) CMADS através da guia de Remessa (GR/CCP) nº 1456/2005.,CCP,180,NA,NA,306460
+306460,camara,2005-12-07T00:00:00Z,17,Recebimento pela CMADS.,CMADS,500,NA,NA,306460
+306460,camara,2005-12-07T00:00:00Z,16,Encaminhada à publicação. Publicação Inicial no DCD de 08/12/05 PÁG 59409 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=375269,306460
+306460,camara,2006-02-08T00:00:00Z,18,Apensação desta proposição ao PL 3125/2000.,CMADS,106,NA,NA,306460
+306460,camara,2006-05-05T10:51:00Z,19,"Recebimento pela CSSF, apensado ao PL-3125/2000",CSSF,500,NA,NA,306460
+306460,camara,2006-12-21T10:23:00Z,20,"Recebimento pela CAPADR, apensado ao PL-3125/2000",CAPADR,500,NA,NA,306460
+306460,camara,2007-02-07T16:31:00Z,21,"Apresentação do REQUERIMENTO N.º 98, DE 2007, pelo Deputado(a) Fernando Coruja, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=434174,306460
+306460,camara,2007-02-14T17:26:00Z,22,"Apresentação do REQUERIMENTO N.º 267, DE 2007, pelo Deputado(a) Fernando Coruja, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=435195,306460
+306460,camara,2007-03-21T00:00:00Z,23,"INDEFIRO a solicitação de desarquivamento desta proposição, conforme despacho exarado no REQ-98/2007.DCD de 22 03 07 PÁG 11392 COL 01.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=440464,306460
+306460,camara,2007-04-11T00:00:00Z,24,"INDEFIRO a solicitação de desarquivamento desta proposição, conforme despacho exarado no REQ-267/2007.DCD de 12 04 07 PÁG 15830 COL 01.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=445440,306460
+306460,camara,2007-08-09T11:26:00Z,25,"Recebimento pela CCJC, apensado ao PL-3125/2000",CCJC,500,NA,NA,306460
+306460,camara,2016-04-20T10:20:00Z,26,Apense-se a este(a) o(a) PL-4933/2016.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1449763,306460
+306460,camara,2016-04-25T17:03:00Z,27,Apensação do PL 4933/2016 a esta proposição.,CCJC,504,NA,NA,306460
+306460,camara,2016-06-22T09:44:00Z,28,"Recebimento pela CCP, apensado ao PL-3125/2000",CCP,500,NA,NA,306460
+306460,camara,2016-06-22T11:16:00Z,29,"Recebimento pela PL629902, apensado ao PL-3125/2000",PL629902,500,NA,NA,306460
+306460,camara,2018-06-26T15:07:00Z,30,"Recebimento pela CCP, apensado ao PL-3125/2000",CCP,500,NA,NA,306460

@@ -1,0 +1,24 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+549552,camara,2012-06-27T00:00:00Z,2,Publicação inicial no DCD do dia 28/06/12 PÁG 23536 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1027409,549552
+549552,camara,2012-06-27T10:32:00Z,1,"Apresentação do Projeto de Lei n. 4114/2012, pelo Deputado Toninho Pinheiro (PP-MG), que: ""Altera a Lei nº 8.666, de 21 de junho de 1993, para permitir a publicação dos atos relativos ao processo licitatório por meio da internet"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1006751,549552
+549552,camara,2012-06-28T10:08:00Z,3,Recebimento pel a SEPRO.,SEPRO,500,NA,NA,549552
+549552,camara,2012-06-28T10:08:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,549552
+549552,camara,2012-06-28T10:14:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 2551/2012.,SEPRO,180,NA,NA,549552
+549552,camara,2012-06-28T10:42:00Z,6,Recebimento pel a SECAP(SGM).,SECAP(SGM),500,NA,NA,549552
+549552,camara,2012-07-04T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1009477,549552
+549552,camara,2012-07-10T00:00:00Z,14,Publicação do despacho no DCD do dia 11/07/2012,CCP,605,NA,NA,549552
+549552,camara,2012-07-10T15:56:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,549552
+549552,camara,2012-07-10T15:56:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,549552
+549552,camara,2012-07-10T15:58:00Z,10,Apense-se à(ao) PL-5073/2009.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1009477,549552
+549552,camara,2012-07-10T15:58:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 756/2012.,SECAP(SGM),180,NA,NA,549552
+549552,camara,2012-07-10T15:59:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,549552
+549552,camara,2012-07-10T17:56:00Z,13,Recebimento pel a CCP.,CCP,500,NA,NA,549552
+549552,camara,2012-07-18T12:06:00Z,15,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 4718/2012.,CCP,180,NA,NA,549552
+549552,camara,2012-08-01T00:00:00Z,16,Encaminhada à publicação. Avulso Inicial,CCP,604,NA,NA,549552
+549552,camara,2012-08-01T00:00:00Z,19,"Designado Relator, Dep. Fabio Trad (PMDB-MS)",CCJC,320,NA,NA,549552
+549552,camara,2012-08-01T16:15:00Z,17,Recebimento pel a CCJC.,CCJC,500,NA,NA,549552
+549552,camara,2012-08-01T16:28:00Z,18,Apensação desta proposição ao PL 5073/2009.,CCJC,106,NA,NA,549552
+549552,camara,2017-05-16T17:16:00Z,20,"Apresentação do Requerimento de Desapensação n. 6457/2017, pelo Deputado Toninho Pinheiro (PP-MG), que: ""Requer a desapensação da Projeto de Lei nº 4.114, de 2012, do Projeto de Lei 1.292, de 1995"".",PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1559047,549552
+549552,camara,2018-03-23T10:29:00Z,21,"Recebimento pela CCP, apensado ao PL-5073/2009",CCP,500,NA,NA,549552
+549552,camara,2018-03-23T10:43:00Z,22,"Recebimento pela PL129295, apensado ao PL-5073/2009",PL129295,500,NA,NA,549552
+549552,camara,2018-12-05T18:01:00Z,23,"Recebimento pela CCP, apensado ao PL-5073/2009",CCP,500,NA,NA,549552

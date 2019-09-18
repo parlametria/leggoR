@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2169113,camara,2018-03-12T17:58:00Z,1,"Apresentação do Requerimento de Apensação n. 8222/2018, pelo Deputado Felipe Maia (DEM-RN), que: ""Requer que o PL 2.024/2011 seja apensado ao PL 7.005/2013"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1643572,2169113
+2169113,camara,2018-03-12T17:58:00Z,2,Realizar o Encaminhamento para NAJUR(SGM),SEPRO,910,NA,NA,2169113
+2169113,camara,2018-03-12T18:01:00Z,3,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 5541/2018.,SEPRO,180,NA,NA,2169113
+2169113,camara,2018-03-13T00:00:00Z,9,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1643727,2169113
+2169113,camara,2018-03-13T00:00:00Z,15,Realizar o Encaminhamento para CCP,MESA,910,NA,NA,2169113
+2169113,camara,2018-03-13T00:00:00Z,17,Publicação inicial no DCD do dia 14/03/2018,PLEN,605,NA,NA,2169113
+2169113,camara,2018-03-13T00:00:00Z,19,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,2169113
+2169113,camara,2018-03-13T11:29:00Z,4,Recebimento pelo NAJUR(SGM) -  - Thais Pinto Leal de Carvalho.,NAJUR(SGM),500,NA,NA,2169113
+2169113,camara,2018-03-13T11:30:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/NAJUR(SGM)) nº 1089/2018.,NAJUR(SGM),180,NA,NA,2169113
+2169113,camara,2018-03-13T11:53:00Z,6,Recebimento pela SECAP(SGM) -  - Paula Regina dos Santos.,SECAP(SGM),500,NA,NA,2169113
+2169113,camara,2018-03-13T12:07:00Z,7,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SECAP(SGM)) nº 1396/2018.,SECAP(SGM),180,NA,NA,2169113
+2169113,camara,2018-03-13T12:26:00Z,8,Recebimento pelo NAJUR(SGM) -  - Teresinha Passos Silva.,NAJUR(SGM),500,NA,NA,2169113
+2169113,camara,2018-03-13T15:31:00Z,10,Despacho Chancelado,SGMGAB,180,Aguardando Recebimento,NA,2169113
+2169113,camara,2018-03-13T15:31:00Z,12,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2169113
+2169113,camara,2018-03-13T15:31:00Z,13,"Defiro o Requerimento n. 8.222/2018, nos termos dos arts. 142, caput, e 143, II, “a”, do RICD. Apense-se o Projeto de Lei n. 2.024/2011 ao Projeto de Lei n. 7.005/2013. Publique-se. Oficie-se. .",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1643727,2169113
+2169113,camara,2018-03-13T15:31:00Z,11,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2169113
+2169113,camara,2018-03-13T15:31:00Z,14,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2169113
+2169113,camara,2018-03-13T15:40:00Z,16,Encaminhado à(ao) CCP através da guia de Remessa (GR/MESA) nº 1247/2018.,MESA,180,NA,NA,2169113
+2169113,camara,2018-03-13T16:16:00Z,18,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2169113
+2169113,camara,2018-03-14T13:00:00Z,20,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 1091/2018.,NAJUR(SGM),180,NA,NA,2169113

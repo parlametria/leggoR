@@ -1,0 +1,20 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+1594911,camara,2015-08-05T00:00:00Z,1,"Recebido o Ofício nº 963/215, do Senado Federal, que encaminha, a fim de ser submetido à revisão da Câmara dos Deputados, nos termos do art. 65 da Constituição Federal, o Projeto de Lei do Senado nº 333, de 2015, de autoria do Senador José Serra, constante dos autógrafos em anexo, que ""Altera o Decreto-Lei nº 2.848, de 7 de dezembro de 1940 (Código Penal), a Lei nº 8.069, de 13 de julho de 1990 (Estatuto da Criança e do Adolescente), a Lei nº 11.343, de 23 de agosto de 2006 (Lei de Drogas), a Lei nº 12.462, de 4 de agosto de 2011, a Lei nº 12.594, de 18 de janeiro de 2012, que 'institui o Sistema Nacional de Atendimento Socioeducativo (Sinase)', e a Lei nº 12.850, de 2 de agosto de 2013 (Lei de Organização Criminosa)"".",MESA,500,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1367029,1594911
+1594911,camara,2015-08-05T11:01:00Z,2,"Apresentação do Projeto de Lei n. 2517/2015, pelo Senado Federal, que: ""Altera o Decreto-Lei nº 2.848, de 7 de dezembro de 1940 (Código Penal), a Lei nº 8.069, de 13 de julho de 1990 (Estatuto da Criança e do Adolescente), a Lei nº 11.343, de 23 de agosto de 2006 (Lei de Drogas), a Lei nº 12.462, de 4 de agosto de 2011, a Lei nº 12.594, de 18 de janeiro de 2012, que “institui o Sistema Nacional de Atendimento Socioeducativo (Sinase)”, e a Lei nº 12.850, de 2 de agosto de 2013 (Lei de Organização Criminosa)"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1366742,1594911
+1594911,camara,2015-08-05T11:01:00Z,3,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,1594911
+1594911,camara,2015-08-05T11:02:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,1594911
+1594911,camara,2015-08-05T11:24:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 1227/2015.,SEPRO,180,NA,NA,1594911
+1594911,camara,2015-08-05T11:29:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,1594911
+1594911,camara,2015-08-06T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1368041,1594911
+1594911,camara,2015-08-11T10:42:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,1594911
+1594911,camara,2015-08-11T10:42:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,1594911
+1594911,camara,2015-08-11T10:42:00Z,10,Apense-se à(ao) PL-7197/2002. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1368041,1594911
+1594911,camara,2015-08-11T10:42:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,1594911
+1594911,camara,2015-08-11T10:53:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 270/2015.,SECAP(SGM),180,NA,NA,1594911
+1594911,camara,2015-08-11T11:38:00Z,13,Recebimento pela CCP.,CCP,500,Tramitando em Conjunto,NA,1594911
+1594911,camara,2015-08-12T00:00:00Z,15,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 13/08/15 PÁG 363 COL 01.,CCP,604,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1395000,1594911
+1594911,camara,2015-08-12T10:54:00Z,14,Encaminhado à(ao) PL719702 através da guia de Remessa (GR/CCP) nº 2940/2015.,CCP,180,Tramitando em Conjunto,NA,1594911
+1594911,camara,2015-12-08T10:50:00Z,16,Apense-se a este(a) o(a) PL-3771/2015.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1419190,1594911
+1594911,camara,2015-12-08T15:09:00Z,17,Apensação do PL 3771/2015 a esta proposição.,CCP,504,Tramitando em Conjunto,NA,1594911
+1594911,camara,2016-11-10T17:58:00Z,18,"Recebimento pela PL719702, apensado ao PL-7197/2002",PL719702,500,NA,NA,1594911
+1594911,camara,2019-02-04T09:12:00Z,19,"Recebimento pela CCP, apensado ao PL-7197/2002",CCP,500,Tramitando em Conjunto,NA,1594911

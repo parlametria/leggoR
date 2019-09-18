@@ -1,0 +1,15 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+945865,camara,2015-02-04T17:13:00Z,1,"Apresentação do Requerimento de Desarquivamento de Proposições n. 241/2015, pelo Deputado Paulo Teixeira (PT-SP), que: ""Requer, nos termos do art. 105, parágrafo único, do Regimento Interno da Câmara dos Deputados, o desarquivamento dos projetos de lei, a seguir relacionados, que são de minha autoria"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1297842,945865
+945865,camara,2015-02-05T00:00:00Z,3,Realizar o Encaminhamento para NAJUR(SGM),SEPRO,910,NA,NA,945865
+945865,camara,2015-02-05T10:00:00Z,2,Recebimento pela SEPRO -  - Maristela Araújo Medeiros Portela.,SEPRO,500,NA,NA,945865
+945865,camara,2015-02-05T11:12:00Z,4,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 55/2015.,SEPRO,180,NA,NA,945865
+945865,camara,2015-02-05T13:58:00Z,5,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,945865
+945865,camara,2015-02-09T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298914,945865
+945865,camara,2015-02-10T00:00:00Z,13,Publicação inicial no DCD do dia 11/02/2015,PLEN,605,NA,NA,945865
+945865,camara,2015-02-10T10:08:00Z,7,Despacho Chancelado,SGMGAB,180,NA,NA,945865
+945865,camara,2015-02-10T10:08:00Z,9,Notificação à Sinopse de Despacho Chancelado,NAJUR(SGM),1005,NA,NA,945865
+945865,camara,2015-02-10T10:08:00Z,10,"Nos termos do parágrafo único do art. 105 do RICD, DEFIRO o pedido de desarquivamento das seguintes proposições: PL 7863/2014, PL 8058/2014, PL 6370/2013, PL 713/1999, PL 1388/1999, PL 7564/2006, PL 4412/2012, PL 1513/2011, PL 6342/2009, PL 2470/2007, PEC 10/2011, PEC 52/2011 e PRC 239/2014, . DECLARO PREJUDICADO o pedido de desarquivamento das seguintes proposições: PL 4685/2012, PL 3070/2008, PL 3995/2008 e PL 1739/2007, haja vista a(s) proposição(ões) já se encontrar(em) desarquivada(s).Publique-se.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298914,945865
+945865,camara,2015-02-10T10:08:00Z,8,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,945865
+945865,camara,2015-02-10T10:08:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,945865
+945865,camara,2015-02-10T11:08:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/NAJUR(SGM)) nº 9/2015.,NAJUR(SGM),180,NA,NA,945865
+945865,camara,2015-02-11T09:42:00Z,14,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,945865

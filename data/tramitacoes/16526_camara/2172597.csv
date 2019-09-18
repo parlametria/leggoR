@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2172597,camara,2018-04-18T00:00:00Z,1,"Recebido o Ofício nº 472/18, do Senado Federal, que submete à revisão da Câmara dos Deputados, nos termos do art. 65 da Constituição Federal, o Projeto de Lei do Senado n° 171, de 2012, de autoria do Senador Ivo Cassol, constante dos autógrafos em anexo, que ""Estabelece procedimento licitatório simplificado para a aquisição de material de consumo médico-hospitalar mediante fornecimento direto dos fabricantes"".",MESA,500,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1653373,2172597
+2172597,camara,2018-04-18T17:31:00Z,2,"Apresentação do Projeto de Lei n. 10072/2018, pelo Senado Federal, que: ""Estabelece procedimento licitatório simplificado para a aquisição de material de consumo médico-hospitalar mediante fornecimento direto dos fabricantes."".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1653250,2172597
+2172597,camara,2018-04-18T17:31:00Z,4,Realizar o Encaminhamento para SEPRO,SEPRO,910,NA,NA,2172597
+2172597,camara,2018-04-18T17:34:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2172597
+2172597,camara,2018-04-18T20:47:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 5713/2018.,SEPRO,180,NA,NA,2172597
+2172597,camara,2018-04-19T09:34:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2172597
+2172597,camara,2018-04-25T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1655229,2172597
+2172597,camara,2018-04-27T00:00:00Z,12,Realizar o Encaminhamento para CCP,SECAP(SGM),910,NA,NA,2172597
+2172597,camara,2018-04-27T14:24:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,2172597
+2172597,camara,2018-04-27T14:24:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2172597
+2172597,camara,2018-04-27T14:24:00Z,10,"Apense-se à(ao) PL-1292/1995. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Prioridade (Art. 151, II, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1655229,2172597
+2172597,camara,2018-04-27T14:24:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2172597
+2172597,camara,2018-04-27T15:36:00Z,13,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1467/2018.,SECAP(SGM),180,NA,NA,2172597
+2172597,camara,2018-04-27T16:48:00Z,14,Recebimento pela CCP.,CCP,500,NA,NA,2172597
+2172597,camara,2018-04-30T00:00:00Z,16,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 01/05/18 PÁG 132 COL 01,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1687900,2172597
+2172597,camara,2018-04-30T00:00:00Z,19,"Designado Relator, Dep. João Arruda (PMDB-PR)",PL129295,320,NA,NA,2172597
+2172597,camara,2018-04-30T12:16:00Z,15,Encaminhado à(ao) PL129295 através da guia de Remessa (GR/CCP) nº 13661/2018.,CCP,180,NA,NA,2172597
+2172597,camara,2018-04-30T16:42:00Z,17,Recebimento pela PL129295.,PL129295,500,NA,NA,2172597
+2172597,camara,2018-04-30T16:45:00Z,18,Apensação desta proposição ao PL 1292/1995.,PL129295,106,NA,NA,2172597
+2172597,camara,2018-12-05T18:01:00Z,20,"Recebimento pela CCP, apensado ao PL-1292/1995",CCP,500,NA,NA,2172597

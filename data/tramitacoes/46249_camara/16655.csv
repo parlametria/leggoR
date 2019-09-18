@@ -1,0 +1,24 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+16655,camara,1999-08-04T00:00:00Z,1,APRESENTAÇÃO DO PROJETO PELO DEP JOSE JANENE.,PLEN,100,Tramitando em Conjunto,NA,16655
+16655,camara,1999-09-16T00:00:00Z,2,LEITURA E PUBLICAÇÃO DA MATERIA.DCD 05 08 99 PÁG 32371 COL 02.,PLEN,105,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=287399,16655
+16655,camara,1999-09-16T00:00:00Z,3,APENSE-SE AO PL. 713/99.(DESPACHO INICIAL),MESA,129,NA,NA,16655
+16655,camara,1999-09-16T00:00:00Z,4,Recebimento pela CSSF apensado ao PL 713/1999,CSSF,500,NA,NA,16655
+16655,camara,2003-01-31T00:00:00Z,5,Arquivado nos termos do Artigo 105 do Regimento Interno,MESA,502,NA,NA,16655
+16655,camara,2003-02-18T14:47:00Z,6,"Apresentação do Requerimento de Desarquivamento de Proposições, REQ 58/2003, pelo Dep. José Janene",PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=113754,16655
+16655,camara,2003-03-10T00:00:00Z,7,Desarquivado nos termos do Artigo 105 do R.I,MESA,135,NA,NA,16655
+16655,camara,2007-01-31T00:00:00Z,8,Arquivado nos termos do Artigo 105 do Regimento Interno.  DCD 01 02 07 PAG 85 COL 01 SUPLEMENTO 01 AO Nº 21.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=486295,16655
+16655,camara,2007-02-15T18:18:00Z,9,"Apresentação do REQUERIMENTO N.º 314, DE 2007, pelo Deputado(a) Dr. Rosinha, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=435609,16655
+16655,camara,2007-04-16T00:00:00Z,10,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-314/2007. DCD 17 04 07 PAG 16681 COL 01.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=447218,16655
+16655,camara,2007-04-16T18:57:00Z,11,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,16655
+16655,camara,2007-04-16T18:57:00Z,12,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,16655
+16655,camara,2007-12-20T16:36:00Z,13,"Recebimento pela CAPADR, apensado ao PL-713/1999",CAPADR,500,NA,NA,16655
+16655,camara,2008-10-31T11:55:00Z,14,"Recebimento pela CMADS, apensado ao PL-713/1999",CMADS,500,NA,NA,16655
+16655,camara,2009-09-18T16:29:00Z,15,"Recebimento pela CCJC, apensado ao PL-713/1999",CCJC,500,NA,NA,16655
+16655,camara,2011-01-31T00:00:00Z,16,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados. Publicação no DCD do dia 01/02/2011 - Suplemento ao nº 14.,MESA,502,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=850547,16655
+16655,camara,2011-02-16T15:32:00Z,17,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-229/2011.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=840291,16655
+16655,camara,2011-02-16T15:32:00Z,18,Reentrada na comissão por motivo de desarquivamento,SECAP(SGM),630,NA,NA,16655
+16655,camara,2015-01-31T00:00:00Z,19,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,16655
+16655,camara,2015-02-10T10:08:00Z,20,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-241/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298914,16655
+16655,camara,2015-02-10T10:08:00Z,21,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,16655
+16655,camara,2017-08-30T16:55:00Z,22,"Recebimento pela PL629902, apensado ao PL-713/1999",PL629902,500,NA,NA,16655
+16655,camara,2018-06-26T15:07:00Z,23,"Recebimento pela CCP, apensado ao PL-713/1999",CCP,500,NA,NA,16655

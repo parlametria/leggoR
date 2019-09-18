@@ -1,0 +1,13 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2199096,camara,2019-04-23T23:03:00Z,1,"Apresentação do Recurso contra devolução de proposição (Art. 137, § 2º, RICD) n. 18/2019, pela Deputada Jandira Feghali (PCdoB-RJ), que: ""Recorre do despacho do Presidente, nos termos do do artigo 137, §1º, inciso I e §2º do Regimento Interno da Câmara dos Deputados"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1736418,2199096
+2199096,camara,2019-04-24T09:04:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2199096
+2199096,camara,2019-05-07T00:00:00Z,3,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1742099,2199096
+2199096,camara,2019-05-07T00:00:00Z,9,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,2199096
+2199096,camara,2019-05-07T17:45:00Z,4,Despacho Chancelado,MESA,180,NA,NA,2199096
+2199096,camara,2019-05-07T17:46:00Z,5,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2199096
+2199096,camara,2019-05-07T17:46:00Z,6,"Declaro prejudicado o Recurso n. 18/2019, nos termos do art. 164, I, do Regimento Interno da Câmara dos Deputados, tendo em vista a substituição do despacho referido em epígrafe pela decisão proferida em 25 de abril de 2019, na qual se admitiu que o não reconhecimento de parte das subscrições do Requerimento n. 1.292/2019 foi suprido pela presença dos subscritores à Secretaria-Geral da Mesa. Publique-se. Oficie-se. Arquive-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1742099,2199096
+2199096,camara,2019-05-07T17:46:00Z,7,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2199096
+2199096,camara,2019-05-07T17:58:00Z,8,Encaminhado à(ao) CCP através da guia de Remessa (GR/MESA) nº 349/2019.,MESA,180,NA,NA,2199096
+2199096,camara,2019-05-07T20:10:00Z,10,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 67/2019.,NAJUR(SGM),180,NA,NA,2199096
+2199096,camara,2019-05-08T00:00:00Z,12,Encaminhada à publicação. Publicação Inicial no DCD de 09/05/19 PÁG 494.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1784382,2199096
+2199096,camara,2019-05-08T10:31:00Z,11,Recebimento pela CCP.,CCP,500,NA,NA,2199096
