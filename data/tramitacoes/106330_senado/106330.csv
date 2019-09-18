@@ -1,0 +1,256 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,origem_tramitacao_local_nome_casa_local,destino_tramitacao_local_nome_casa_local,id_principal
+106330,senado,2018-12-21T00:00:00Z,2,"A proposição é arquivada ao final da legislatura, nos termos do § 1º do art. 332  do Regimento Interno.",PLEN,28,ARQUIVADA AO FINAL DA LEGISLATURA,,Senado Federal,Senado Federal,106330
+106330,senado,2018-12-21T00:00:00Z,1,Encaminhada à SGM para providências relativas ao final de legislatura.,CCJ,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2017-10-24T00:00:00Z,1,"Na 45ª Reunião Extraordinária, realizada nesta data, é realizada Audiência Pública destinada à instrução das matérias, conforme Requerimento nº 82, de 2017-CCJ, de iniciativa do Senador Lindbergh Farias e da Senadora Vanessa Grazziotin, com a presença dos seguintes convidados: Sra. ANA CLAUDIA CIFALI, Advogada do Programa Interdepartamental de Práticas com Adolescentes e Jovens em Conflito com a Lei (PIPA) da UFRGS; Sr. FERNANDO HENRIQUE DE FREITAS SIMÕES, Promotor de Justiça no Estado de São Paulo; MAIRA CORACI DINIZ, Defensora Pública Assessora do Estado de São Paulo, representante do Sr. SAMUEL FRIEDMAN, Defensor Público do Estado de São Paulo; MARIA LAURA CANINEU, Diretora da Human Rights Watch no Brasil e Advogada, representante da Sra. ZAMA NEFF, Diretora-Executiva da Divisão de Direitos das Crianças e Adolescentes da Human Rights Watch; Justificou ausência a Sra. CARMEM MARIA CRAIDY, Pedagoga e Professora da Universidade Federal do Rio Grande do Sul e o Sr. LEOBERTO BRANCHER, Juiz da Vara Regional da Infância e da Juventude do Estado do Rio Grande do Sul. Usam da palavra o Senador João Capiberibe, as Senadoras Vanessa Grazziotin, Lídice da Mata, Fátima Bezerra e o Senador Edison Lobão, Presidente da CCJ.
+      
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013 e 115, de 2015.)",CCJ,110,AUDIÊNCIA PÚBLICA,,Senado Federal,Senado Federal,106330
+106330,senado,2017-10-18T00:00:00Z,1,"Na 43ª Reunião Ordinária, realizada nesta data, a Comissão aprova o Requerimento nº 82, de 2017-CCJ, de iniciativa da Senadora Vanessa Grazziotin, para a realização de Audiência Pública em data oportuna para instruir a matéria.
+      
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013, e 115, de 2015.)",CCJ,110,AUDIÊNCIA PÚBLICA,,Senado Federal,Senado Federal,106330
+106330,senado,2017-09-27T00:00:00Z,1,"Na 40ª Reunião Ordinária, a matéria é retirada de Pauta em virtude da aprovação do RQJ nº 77/2017, de iniciativa da Senadora Gleisi Hoffmann, que requer o adiamento da votação a fim de ser realizada no dia 1º de novembro de 2017.
+      
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013, e 115, de 2015.)",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2017-09-26T00:00:00Z,1,"Recebido, às 19h, o Voto em Separado de autoria do Senador Lindbergh Farias, pela inconstitucionalidade, antijuridicidade e, no mérito, contrário às PECs n°s 74, de 2011; 33, de 2012; 21, de 2013; e 115, de 2015.
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013, e 115, de 2015.)",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2017-09-20T00:00:00Z,1,"Recebido, às 13h15min, o Voto em Separado de autoria do Senador Ronaldo Caiado, favorável à PEC n° 115, de 2015, e contrário às PECs n°s 74, de 2011; 33, de 2012; e 21, de 2013.
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013, e 115, de 2015.)",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2017-09-01T00:00:00Z,1,Matéria incluída na Pauta da Comissão.,CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2017-03-15T00:00:00Z,1,"Matéria pronta para a Pauta na Comissão, com voto do Senador Ricardo Ferraço, favorável à PEC n° 33, de 2012, nos termos do Substitutivo que apresenta e contrário às PECs n°s 74, de 2011; 21, de 2013 e 115, de 2015.
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013, e 115, de 2015.)",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2017-02-23T00:00:00Z,1,"O Presidente da Comissão de Constituição, Justiça e Cidadania, Senador Edison Lobão, designa Relator da matéria o Senador Ricardo Ferraço. 
+      
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013 e 115, de 2015).",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,106330
+106330,senado,2017-02-13T00:00:00Z,1,Matéria aguardando redistribuição em virtude de o Senador Ricardo Ferraço ter deixado de compor esta Comissão em 09/02/2017.,CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,106330
+106330,senado,2016-10-19T00:00:00Z,1,"Juntei, de ordem da Presidência do Senado Federal, o Ofício nº 7495/2016/SEI/MNPCT/CNPCT/DDDH/SNPDDH, de 29/6/2016, do Ministério das Mulheres, da Igualdade Racial, da Juventude e dos Direitos Humanos, à Proposta de Emenda à Constituição nº 33, de 2012, com manifestação sobre a matéria (fls. 175 a 180 da PEC nº 33, de 2012).
+      Matéria aguardando realização de Audiência Pública em data oportuna.
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013, e 115, de 2015.)
+      ************* Retificado em 20/10/2016*************
+      Juntei, de ordem da Presidência do Senado Federal, o Ofício nº 7495/2016/SEI/MNPCT/CNPCT/DDDH/SNPDDH, de 29/6/2016, do Ministério das Mulheres, da Igualdade Racial, da Juventude e dos Direitos Humanos, à Proposta de Emenda à Constituição nº 33, de 2012, com manifestação sobre a matéria (fls. 175 a 180 da PEC nº 33, de 2012).
+      Matéria pronta para a Pauta na Comissão com voto do Senador Ricardo Ferraço favorável à PEC n° 33, de 2012, nos termos do Substitutivo que apresenta e contrário às PECs n°s 74, de 2011; 21, de 2013 e 115, de 2015.
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013, e 115, de 2015.)",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2016-08-11T00:00:00Z,1,"Na 30ª Reunião Extraordinária, realizada nesta data, é realizada Audiência Pública destinada à instrução das matérias, conforme Requerimento nº 23, de 2016-CCJ, de iniciativa dos Senadores Telmário Mota, Randolfe Rodrigues e da Senadora Fátima Bezerra, e Requerimento nº 24, de 2016-CCJ, de iniciativa do Senador Jorge Viana, com a presença dos seguintes convidados: LAERTE BESSA, Deputado Federal; FÁBIO JOSÉ GARCIA PAES, Presidente do Conselho Nacional dos Direitos da Criança e do Adolescente – CONANDA; ALEXANDRE KARAZAWA TAKASCHIMA, Juiz de Direito, representante do senhor JOÃO RICARDO DOS SANTOS COSTA, Presidente da Associação dos Magistrados Brasileiros – AMB; OLYMPIO DE SÁ SOTTO MAIOR NETO, Procurador de Justiça do Ministério Público do Paraná, representante da senhora NORMA ANGÉLICA REIS CARDOSO CAVALCANTI, Presidente da Associação Nacional dos Membros do Ministério Público – CONAMP;  BRUNO MOURA, Defensor Público do Estado da Bahia, representante do senhor JOAQUIM GONZAGA DE ARAÚJO NETO, Diretor Presidente da Associação Nacional dos Defensores Públicos – ANADEP; WLADIMIR SÉRGIO REALE, Vice-Presidente Jurídico da ADEPOL/BR e Presidente da ADEPOL/RJ, representante do senhor CARLOS EDUARDO BENITO JORGE, Presidente da Associação dos Delegados de Polícia do Brasil – ADEPOL/BR; RAQUEL DA CRUZ LIMA, Coordenadora do Programa Justiça Sem Muros do Instituto Terra, Trabalho e Cidadania (ITTC), representante da senhora JANAÍNA HOMERIN, Secretária-Executiva da Rede de Justiça Criminal; HELOISA HELENA SILVA DE OLIVEIRA, Administradora Executiva da Fundação Abrinq, representante do senhor CARLOS ANTONIO TILKIAN, Presidente da Fundação Abrinq; DOM LEONARDO ULRICH STEINER, Secretário-Geral da CNBB, representante de Dom SERGIO DA ROCHA, Presidente da Conferência Nacional dos Bispos do Brasil (CNBB) e Arcebispo de Brasília; ERIK FRANKLIN BEZERRA, Conselheiro Seccional da OAB/Distrito Federal, representante do senhor CLAUDIO PACHECO PRATES LAMACHIA, Presidente da Ordem dos Advogados do Brasil – OAB; FLÁVIA PIOVESAN, Secretária Especial de Direitos Humanos do Ministério da Justiça e Cidadania; MARIANA CHIES SANTIAGO SANTOS, Coordenadora-Adjunta da Comissão de Infância e Juventude do IBCCRIM, representante do senhor ANDRÉ PIRES DE ANDRADE KEHDI, Presidente do Instituto Brasileiro de Ciências Criminais – IBCCRIM; VINÍCIUS VALENTIN RADUAN MIGUEL, Coordenador da Associação Nacional dos Centros de Defesa da Criança e do Adolescente – ANCED/CEDECA; WELINTON PEREIRA, Gerente de Relações Institucionais da ONG Visão Mundial;  MARCOS ROBERTO FUCHS, Vice-Presidente do Conselho Nacional de Política Criminal e Penitenciária (CNPCP), representante do senhor ALAMIRO VELLUDO SALVADOR NETTO, Presidente do CNPCP. Justificou ausência a senhora MARIZA MONTEIRO BORGES, Presidente do Conselho Federal de Psicologia. Usam da palavra as Senadoras Fátima Bezerra e Gleisi Hoffmann e o Senador José Pimentel, Presidente em exercício da CCJ.
+      
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013 e 115, de 2015.)",CCJ,110,AUDIÊNCIA PÚBLICA,,Senado Federal,Senado Federal,106330
+106330,senado,2016-08-03T00:00:00Z,1,Retirada de Pauta em virtude do agendamento de Audiência Pública para o dia 11/08/2016 destinada a instruir a matéria.,CCJ,110,AUDIÊNCIA PÚBLICA,,Senado Federal,Senado Federal,106330
+106330,senado,2016-07-01T00:00:00Z,1,"Matéria incluída na Pauta da Comissão.
+      
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013 e 115, de 2015.)",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2016-06-01T00:00:00Z,1,"Na 17ª Reunião Ordinária, realizada nesta data, a Comissão aprova o Requerimento nº 23, de 2016-CCJ, de iniciativa dos Senadores Telmário Mota e Randolfe Rodrigues e da Senadora Fátima Bezerra, e o Requerimento nº 24, de 2016-CCJ, de iniciativa do Senador Jorge Viana, ambos para a realização de Audiência Pública em data oportuna para instruir a matéria.",CCJ,110,AUDIÊNCIA PÚBLICA,,Senado Federal,Senado Federal,106330
+106330,senado,2016-05-18T00:00:00Z,1,"Na 16ª Reunião Ordinária, realizada nesta data, a Presidência concede vista aos Senadores Aloysio Nunes Ferreira, Randolfe Rodrigues e à Senadora Marta Suplicy, nos termos regimentais. 
+      Encaminhada cópia do Relatório do Senador Ricardo Ferraço e do avulso da matéria aos Senhores Senadores e à Senhora Senadora.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,106330
+106330,senado,2016-04-15T00:00:00Z,1,"Matéria incluída na Pauta da Comissão.
+      
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013 e 115, de 2015).",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2016-04-12T00:00:00Z,1,"Recebido, às 10h13min, o Relatório do Senador Ricardo Ferraço, com voto favorável à PEC n° 33, de 2012, nos termos do Substitutivo que apresenta e contrário às PECs n°s 74, de 2011; 21, de 2013 e 115, de 2015.
+      
+      Matéria pronta para a Pauta na Comissão.
+      
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013 e 115, de 2015.)",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2016-03-22T00:00:00Z,1,"Juntei, de ordem da Presidência do Senado Federal, o Ofício PMDB Afro nº 024/2016, de 22/2/2016, do PMDB Afrobrasileiro do Rio de Janeiro, à Proposta de Emenda à Constituição nº 115, de 2015, com manifestação sobre a matéria (fls. 178 e 179 da PEC nº 115, de 2015).
+      Matéria com a Relatoria. 
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013, e 115, de 2015.)",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,106330
+106330,senado,2016-03-18T00:00:00Z,1,"Juntei, de ordem da Presidência do Senado Federal, o Ofício Circular nº 010/2016/CP/PR/CNAS/MDS, de 1º/2/2016, do Conselho Nacional de Assistência Social, à Proposta de Emenda à Constituição nº 115, de 2015, com manifestação sobre a matéria (fls. 152 a 177 da PEC nº 115, de 2015).
+      Matéria com a Relatoria. 
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013, e 115, de 2015.)",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,106330
+106330,senado,2016-03-17T00:00:00Z,1,"Juntei, de ordem da Presidência do Senado Federal, o Ofício SGP nº 6375/2015, de 25/11/2015, da Assembleia Legislativa do Estado de São Paulo, à Proposta de Emenda à Constituição nº 115, de 2015, com manifestação sobre a matéria (fls. 149 a 151 da PEC nº 115, de 2015).
+      Matéria com a Relatoria. 
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013, e 115, de 2015.)",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,106330
+106330,senado,2015-11-06T00:00:00Z,1,"O Presidente da Comissão, Senador José Maranhão, designa Relator da matéria o Senador Ricardo Ferraço. 
+      
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012; 21, de 2013 e 115, de 2015).",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,106330
+106330,senado,2015-11-05T00:00:00Z,2,"Aprovado o Requerimento nº 1.109, de 2015./
+      Passam a tramitar em conjunto as PEC nºs 74/2011, 33/2012, 21/2013 e 115/2015.
+      Ao exame da CCJ.",ATA-PLEN,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2015-11-05T00:00:00Z,1,Encaminhado ao Plenário.,SSCLSF,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2015-09-29T00:00:00Z,2,"Aguardando inclusão em Ordem do Dia do Requerimento nº 1109, de 2015, do Senador Ricardo Ferraço, solicitando a tramitação em conjunto da PEC nº 115/2015 com as PECs nºs 74/2011; 33/2012; e 21/2013.",SSCLSF,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,,Senado Federal,Senado Federal,106330
+106330,senado,2015-09-29T00:00:00Z,1,"Encaminhado à publicação o Requerimento nº 1109, de 2015, de autoria do Senador Ricardo Ferraço, solicitando que a Proposta de Emenda à Constituição nº 115, de 2015 passe a tramitar em conjunto com as Propostas de Emenda à Constituição nºs 33, de 2012, 74, de 2011 e 21, de 2013, por disporem sobre a mesma matéria.
+      O Requerimento será incluído em Ordem do Dia oportunamente.",ATA-PLEN,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,,Senado Federal,Senado Federal,106330
+106330,senado,2015-09-25T00:00:00Z,2,"Aguardando leitura de requerimento de tramitação conjunta, do Senador Ricardo Ferraço, que se dará quando todas as matérias referidas no requerimento, (PEC nºs 115, de 2015; 33, de 2012; 74, de 2011; e 21, de 2013), estiverem sobre a mesa, nos termos do art. 266 do RISF.
+      ",SSCLSF,118,AGUARDANDO LEITURA DE REQUERIMENTO,,Senado Federal,Senado Federal,106330
+106330,senado,2015-09-25T00:00:00Z,1,"Encaminhado à Secretaria-Geral da Mesa para atender a solicitação constante do OF. SF/1354/2015, da Presidência do Senado Federal, referente a requerimento, formulado pelo Senador Ricardo Ferraço, para tramitação em conjunto das Propostas de Emenda à Constituição nºs 115, de 2015, e 33, de 2012, que tramita em conjunto com as Propostas de Emenda à Constituição nºs 74, de 2011, e 21, de 2013 (fls. 146 e 147). 
+      
+      À SCLSF.
+      
+      (Tramitam em conjunto as PECs nºs 74, de 2011; 33, de 2012, e 21, de 2013.)
+      ",CCJ,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2015-08-20T00:00:00Z,1,"Recebido às 15h04min o relatório do Senador Ricardo Ferraço, com voto favorável à PEC nº 33, de 2012, nos termos do Substitutivo que apresenta, e contrário às PEC's nºs 74, de 2011 e 21, de 2013.
+      Matéria pronta para a Pauta na Comissão.
+      
+      (Tramitam em conjunto: PEC's nºs 74, de 2011; 33, de 2012 e 21, de 2013.)
+      ",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2015-07-10T00:00:00Z,1,"Distribuído ao Senador Ricardo Ferraço , para emitir relatório.
+      
+      (Matéria em REEXAME na CCJ; Tramitam em conjunto as PECs nº 74, de 2011, 33, de 2012, e 21, de 2013)
+      
+      ",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,106330
+106330,senado,2015-07-08T00:00:00Z,1,"Retorna à CCJ. Matéria aguardando distribuição.
+      
+      (Matéria em REEXAME na CCJ; Tramitam em conjunto as PECs nº 74, de 2011, 33, de 2012, e 21, de 2013)
+      ",CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,106330
+106330,senado,2015-07-07T00:00:00Z,2,"Lido e aprovado o Requerimento nº 780, de 2015, tendo como primeiro signatário o Senador Cásssio Cunha Lima, que solicita o reexame da matéria pela Comissão de Constituição, Justiça e Cidadania.
+      
+      À Comissão de Constituição, Justiça e Cidadania.
+      (Tramitam em conjunto as Propostas de Emenda à Constituição nº 33/2012 e nº 21/2013)
+      
+      ************* Retificado em 08/07/2015*************
+      Lido e aprovado o Requerimento nº 780, de 2015, tendo como primeiro signatário o Senador Cásssio Cunha Lima, que solicita o reexame da matéria pela Comissão de Constituição, Justiça e Cidadania.
+      
+      À Comissão de Constituição, Justiça e Cidadania.
+      (Tramitam em conjunto as Propostas de Emenda à Constituição nº 74/2011, nº 33/2012 e nº 21/2013)",ATA-PLEN,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2015-07-07T00:00:00Z,1,Encaminhada ao Plenário.,SSCLSF,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2015-06-15T00:00:00Z,1,"Aguardando inclusão em Ordem do Dia.
+      Primeira sessão de discussão, em primeiro turno.",SSCLSF,8,PRONTO PARA DELIBERAÇÃO DO PLENÁRIO,,Senado Federal,Senado Federal,106330
+106330,senado,2015-06-09T00:00:00Z,2,"Juntado originais de manifestações do Ofício Nº 178/2015/PFDC/MPF (fls. 107-113), Ofício n° 016/2015/CMDCA do Conselho Municipal dos Direitos da Criança e do Adolescente de Governador Valadares - CMDCA/DV (fls. 114-118) e Ofício/CEEd/Nº 192 do Conselho Estadual de Educação do Rio Grande do Sul (fls. 119-123). 
+      
+      À SSCLSF.",SGM,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2015-06-09T00:00:00Z,1,Encaminhado à Secretaria Geral da Mesa.,SSCLSF,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2015-06-08T00:00:00Z,1,"Aguardando inclusão em Ordem do Dia.
+      Primeira sessão de discussão, em primeiro turno.",SSCLSF,8,PRONTO PARA DELIBERAÇÃO DO PLENÁRIO,,Senado Federal,Senado Federal,106330
+106330,senado,2015-05-18T00:00:00Z,1,"Juntado originais de manifestações dos cidadãos Adelina D. Pinheiro e Silva, Noeli Maria Massoni, Sara Holz Ferreira, Silvino Filgueiras Neto, Wanda Morbeck e Roberto Tomé da Silva, encaminhado pela Ouvidoria do Senado Federal. (Fls 101-106).
+      
+      À SSCLSF.",SSCLSF,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2015-01-19T00:00:00Z,1,"A matéria continua a tramitar, nos termos do art. 332 do Regimento Interno e do Ato da Mesa nº 2, de 2014.
+      
+      Aguardando inclusão em Ordem do Dia.
+      Primeira sessão de discussão, em primeiro turno.
+      
+      ************* Retificado em 08/07/2015*************
+      Nos termos do art. 332 do Regimento Interno, e do Ato da Mesa nº 2, de 2014, as Propostas de Emenda à Constituição nºs 74, de 2011; 33, de 2012 e 21, de 2013, continuam tramitando em conjunto e aguardarão inclusão em Ordem do Dia oportunamente.
+      As Propostas de Emendas à Constituição nºs 20, de 1999; 90, de 2003 e 83, de 2011, foram arquivadas ao final da legislatura.
+      ",SSCLSF,8,PRONTO PARA DELIBERAÇÃO DO PLENÁRIO,,Senado Federal,Senado Federal,106330
+106330,senado,2014-08-01T00:00:00Z,1,"A partir de 1º de agosto de 2014 os boletins de ação legislativa não mais serão impressos, nos termos da Instrução Normativa nº 1, de 2014, do Secretário-Geral da Mesa. As consultas sobre a tramitação da matéria devem ser realizadas diretamente no sistema eletrônico próprio.",SSCLSF,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2014-07-22T00:00:00Z,2,"Juntado originais de manifestação da Câmara Municipal de Frutal - MG e Câmara Municipal de Guarujá - SP (fls. 91 à 100).
+      
+      
+      SSCLSF",SGM,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2014-07-22T00:00:00Z,1,"Encaminhado à SGM, por solicitação.",SSCLSF,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2014-07-16T00:00:00Z,2,"Juntado o Ofício n° 00614/2014/AL da Assembleia Legislativa do Estado do Ceará (fls. 87/90).
+      
+      SSCLSF",SGM,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2014-07-16T00:00:00Z,1,"Encaminhado à SGM, por solicitação.",SSCLSF,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2014-05-09T00:00:00Z,1,"Juntado o Ofício n° 214/2014/GP,  da Câmara Municipal de Botucatu ( Fls 68 a 72),
+      Ofício 0393/2014, da Câmara Municipal de Frutal ( Fls 73 a 80) e
+      Ofício n° 121/14GAB.PRES, da Câmara Municipal de Campo Bom ( Fls 81 a 86).
+      Devolvido à SSCLSF.",SGM,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2014-05-08T00:00:00Z,1,"Encaminhado à SGM, por solicitação.",SSCLSF,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2014-03-06T00:00:00Z,1,"Aguardando inclusão em Ordem do Dia.
+      
+      Primeira sessão de discussão, em primeiro turno.
+      
+      (Tramitam em conjunto as Propostas de Emenda à Constituição nº s 20, de 1999; 90, de 2003; 74 e 83, de 2011; 33, de 2012; e 21, de 2013)
+      ",SSCLSF,8,PRONTO PARA DELIBERAÇÃO DO PLENÁRIO,,Senado Federal,Senado Federal,106330
+106330,senado,2014-02-28T00:00:00Z,2,"A Presidência comunica ao Plenário que recebeu o Recurso nº 2, de 2014, interposto no prazo regimental, no sentido de que continue a tramitação da Proposta de Emenda à Constituição nºs 20, de 1999 (tramita em conjunto com as Propostas de Emenda à Constituição nºs  90, de 2003; 74 e 83, de 2011; 33, de 2012; e 21, de 2013).
+      As matérias serão incluídas em Ordem do Dia oportunamente,  para discussão em primeiro turno, quando poderão ser oferecidas emendas, nos termos do art. 358, § 2º, do Regimento Interno.",ATA-PLEN,8,PRONTO PARA DELIBERAÇÃO DO PLENÁRIO,,Senado Federal,Senado Federal,106330
+106330,senado,2014-02-28T00:00:00Z,1,Encaminhado ao Plenário para comunicação do término de prazo para interposição de recurso.,SSCLSF,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2014-02-26T00:00:00Z,1,Prazo para interposição de recurso: 26/02/2014 a 27/02/2014. (Tramitam em conjunto as PEC nºs 20/1999; 90/2003; 74 e 83/2011; 33/2012; e 21/2013).,SSCLSF,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2014-02-25T00:00:00Z,2,"Leitura do Parecer nº 71, de 2014 - CCJ, Relator Senador Randolfe Rodrigues, pela rejeição das Propostas de Emenda à Constituição nºs 20, de 1999;  90, de 2003; 74 e 83, de 2011; 33, de 2012; e 21, de 2013, que tramitam em conjunto. 
+      A Presidência comunica ao Plenário que, nos termos do art. 254, combinado com o art. 372 do Regimento Interno, será aberto o prazo de dois dias úteis para interposição de recurso, assinado por no mínimo um décimo da composição do Senado, no sentido da continuação da tramitação das matérias.",ATA-PLEN,12,AGUARDANDO INTERPOSIÇÃO DE RECURSO,,Senado Federal,Senado Federal,106330
+106330,senado,2014-02-25T00:00:00Z,1,Aguardando leitura de Parecer da CCJ.,SSCLSF,14,AGUARDANDO LEITURA PARECER (ES),,Senado Federal,Senado Federal,106330
+106330,senado,2014-02-20T00:00:00Z,2,"Recebido neste Órgão, às 19h50.",SSCLSF,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2014-02-20T00:00:00Z,1,"À SSCLSF, para prosseguimento da tramitação.",CCJ,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2014-02-19T00:00:00Z,1,"Na 3ª Reunião Ordinária, realizada nesta data, a Comissão rejeita o Relatório do Senador Ricardo Ferraço.
+      
+      A Presidência designa Relator do Vencido o Senador Randolfe Rodrigues, autor do Voto em Separado, que passa a constituir o Parecer da CCJ, contrário às Propostas (art. 128, do RISF).
+      
+      Votam vencidos os Senadores Ricardo Ferraço, Pedro Taques, Romero Jucá, Cássio Cunha Lima, Armando Monteiro, Magno Malta, Cícero Lucena e Cyro Miranda.
+      
+      (Tramitam em conjunto as Propostas de Emenda à Constituição nºs 20, de 1999; 90, de 2003; 74 e 83, de 2011; 33, de 2012; e 21, de 2013.)",CCJ,89,APROVADO PARECER NA COMISSÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2014-02-14T00:00:00Z,1,"Matéria incluída na Pauta da Comissão.
+      
+      (Tramitam em conjunto as Propostas de Emenda à Constituição nºs 20, de 1999; 90, de 2003; 74 e 83, de 2011; 33, de 2012; e 21, de 2013.)",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2014-02-05T00:00:00Z,1,"Retirado de Pauta.
+      
+      Matéria pronta para a Pauta com voto do Senador Ricardo Ferraço favorável à Proposta de Emenda à Constituição nº 33, de 2012 e contrário às Propostas de Emenda à Constituição nºs 20, de 1999, 90, de 2003, 74 e 83, de 2011, e 21, de 2013.
+      
+      (Tramitam em conjunto as Propostas de Emenda à Constituição nºs 20, de 1999; 90, de 2003; 74 e 83, de 2011; 33, de 2012; e 21, de 2013).",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2013-11-12T00:00:00Z,1,"Em Reunião Ordinária realizada nesta data, a Presidência concede vista coletiva aos Senadores, nos termos regimentais. 
+      
+      Encaminhada cópia do Relatório do Senador Ricardo Ferraço e do avulso da matéria aos Senadores.
+      
+      (Tramitam em conjunto as PECs nº 20, de 1999, 90, de 2003, 74 e 83, de 2011, 33, de 2012, e 21, de 2013)",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,106330
+106330,senado,2013-11-11T00:00:00Z,1,"Juntei Voto em Separado do Senador Randolfe Rodrigues, contrário às Propostas.
+      
+      (Tramitam em conjunto as PECs nº 20, de 1999, 90, de 2003, 74 e 83, de 2011, 33, de 2012, e 21, de 2013)",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2013-10-16T00:00:00Z,1,"Recebido nesta Comissão, às 16 horas e 40 minutos, o relatório do Senador Ricardo Ferraço, com voto favorável à Proposta de Emenda à Constituição nº 33, de 2012 e pela rejeição das Propostas de Emenda à Constituição nºs 20, de 1999, 90, de 2003, 74 e 83, de 2011, e 21, de 2013.
+      
+      Matéria pronta para a pauta na Comissão.
+      
+      (Tramitam em conjunto as Propostas de Emenda à Constituição nºs 20, de 1999; 90, de 2003; 74 e 83, de 2011; 33, de 2012; e 21, de 2013)",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2013-09-09T00:00:00Z,1,"Juntei, de ordem da Presidência da CCJ, Ofício do Senador Aécio Neves que traz a conhecimento da Comissão correspondência do cidadão Hermano Roberto Santamaria, com manifestação sobre a matéria.
+      
+      (Tramitam em conjunto as Propostas de Emenda à Constituição nºs 20, de 1999; 90, de 2003; 74 e 83, de 2011; 33, de 2012; e 21, de 2013)",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,106330
+106330,senado,2013-07-16T00:00:00Z,1,"Juntei, de ordem da Presidência do Senado Federal, nos termos do despacho de juntada à PEC nº 21, de 2013 (fls. 29), o Ofício nº 792, de 03/07/2013, da Procuradoria Federal dos Direitos do Cidadão do Ministério Público Federal, que encaminha nota técnica em que se manifesta contra a redução da maioridade penal (fls. 29 a 36).
+      
+      Matéria com a Relatoria.
+      
+      (Tramitam em conjunto as Propostas de Emenda à Constituição nºs 20, de 1999; 90, de 2003; 74 e 83, de 2011; 33, de 2012; e 21, de 2013).",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,106330
+106330,senado,2013-07-10T00:00:00Z,1,"Distribuído ao Senador Ricardo Ferraço, para emitir relatório.
+      
+      (Tramitam em conjunto as Propostas de Emenda à Constituição nºs 20, de 1999; 90, de 2003; 74 e 83, de 2011; 33, de 2012; e 21, de 2013).",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,106330
+106330,senado,2013-07-05T00:00:00Z,2,"Recebido nesta Comissão às 16 horas e 48 minutos. 
+      
+      Matéria aguardando distribuição.
+      
+      (Tramitam em conjunto as Propostas de Emenda à Constituição nºs 20, de 1999; 90, de 2003; 74 e 83, de 2011; 33, de 2012; e 21, de 2013).",CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,106330
+106330,senado,2013-07-05T00:00:00Z,1,"Aprovado o Requerimento nº 712, de 2013, as Propostas de Emenda à Constituição nºs 20, de 1999; 90, de 2003; 74 e 83, de 2011; 33, de 2012; e 21, de 2013.
+      À Comissão de Constituição, Justiça e Cidadania.",ATA-PLEN,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2013-06-27T00:00:00Z,1,"Incluído em Ordem do Dia da sessão deliberativa ordinária do dia 02/07/2013. 
+      Votação, em turno único, do Requerimento nº 712, de 2013, de tramitação conjunta.
+      
+      Matéria não apreciada na sessão de 3.7.2013, tranferida para a sessão deliberativa ordinária de 4.7.2013.
+      
+      Matéria não apreciada na sessão do dia 4/7/2013 e transferida para a sessão deliberativa ordinária de 5/7/2013.",SSCLSF,114,INCLUÍDO REQUERIMENTO EM ORDEM DO DIA DA SESSÃO DELIBERATIVA,,Senado Federal,Senado Federal,106330
+106330,senado,2013-06-26T00:00:00Z,1,"Encaminhado ao Plenário.
+      
+      ************* Retificado em 27/06/2013*************
+      Agendado para a Ordem do Dia da sessão deliberativa ordinária de 02.07.2013 o Requerimento nº 712, de 2013, de tramitação conjunta.",SSCLSF,126,AGENDADO REQUERIMENTO PARA A ORDEM DO DIA,,Senado Federal,Senado Federal,106330
+106330,senado,2013-06-25T00:00:00Z,1,"Leitura do Requerimento nº 712, de 2013, de autoria do Senador Ricardo Ferraço, solicitando, nos termos do § 1º do art. 48, do Regimento Interno do Senado Federal, a tramitação conjunta das Propostas de Emenda à Constituição nºs 20, de 1999; 90, de 2003; e 21, de 2013, com as 74 e 83, de 2011; e 33, de 2012 (já tramitando em conjunto).
+      O requerimento lido será incluído em Ordem do Dia oportunamente.
+      À SCLSF.",ATA-PLEN,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,,Senado Federal,Senado Federal,106330
+106330,senado,2013-06-04T00:00:00Z,3,"Recebido neste Órgão, às 17h06.
+      
+      Aguardando leitura de requerimento de tramitação conjunta de autoria do Senador Ricardo Ferraço, que se dará quando todas as matérias referidas no requerimento, PECs nº 90, de 2003, 74 e 83, de 2011, e 33, de 2012, estiverem sobre a mesa, nos termos do art. 266 do RISF.
+      
+      ",SSCLSF,118,AGUARDANDO LEITURA DE REQUERIMENTO,,Senado Federal,Senado Federal,106330
+106330,senado,2013-06-04T00:00:00Z,2,"Devolvido pelo Senador Ricardo Ferraço para atender a solicitação constante do Oficio nº 1286/2013, da Presidência do Senado Federal, referente a requerimento, por ele próprio formulado, de tramitação em conjunto das PECs nº 90, de 2003, 74 e 83, de 2011, e 33, de 2012. À SSCLSF.
+      
+      (Tramitam em conjunto as PECs nº 74, de 2011, 83, de 2011, e 33, de 2012)",CCJ,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2013-06-04T00:00:00Z,1,"Encaminhado ao gabinete do relator, Senador Ricardo Ferraço, para reexame do relatório.
+      
+      (Tramitam em conjunto as PECs nº 74 e 83, de 2011 e 33, de 2012.)",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,106330
+106330,senado,2013-04-17T00:00:00Z,1,"Recebido nesta Comissão, às 13 horas e 10 minutos, o relatório do Senador Ricardo Ferraço, com voto pela aprovação da Proposta de Emenda à Constituição nº 33, de 2012, e pela rejeição das Propostas de Emenda à Constituição nºs 74 e 83, de 2011.
+      Matéria pronta para a Pauta na Comissão.
+      
+      (Tramitam em conjunto as PEC's nº 74 e 83, de 2011 e 33, de 2012.)",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2013-04-11T00:00:00Z,1,"Distribuído ao Senador Ricardo Ferraço, para emitir relatório.
+      
+      (Tramitam em conjunto as PEC's nº 74 e 83, de 2011 e 33, de 2012.)",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,106330
+106330,senado,2013-04-04T00:00:00Z,2,"Recebido nesta Comissão às 17h10. Matéria aguardando distribuição.
+      
+      (Tramitam em conjunto as PEC's nº 74 e 83, de 2011; e 33 , de 2012.)",CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,106330
+106330,senado,2013-04-04T00:00:00Z,1,"A Presidência comunica que a Mesa do Senado Federal, em sua 1º Reunião, realizada em 31 de janeiro do corrente, deliberou pela aprovação do Requerimento nº 1.175, de 2012, de tramitação conjunta.
+      As Propostas de Emenda à Constituição nºs 74 e 83, de 2011; e 33 , de 2012, passam a tramitar em conjunto e vão à Comissão de Constituição, Justiça e Cidadania.
+      Será cumprida a determinação da Mesa.",ATA-PLEN,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2013-01-31T00:00:00Z,1,"Em sua 1ª Reunião, realizada no dia 31.01.2013, a Mesa do Senado Federal aprovou o Requerimento nº 1.175, de 2012, do Senador Benedito de Lira, que solicita a tramitação conjunta das Propostas de Emenda à Constituição nºs 74 e 83, de 2011, e nº 33, de 2012.
+      Ao Plenário.
+      ",SGM,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2012-12-19T00:00:00Z,1,Recebido neste órgão às 18h40min.,SGM,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2012-12-18T00:00:00Z,4,"Leitura do Requerimento nº 1.175, de 2012, de autoria do Senador Benedito de Lira, solicitando a tramitação conjunta das Propostas de Emenda à Constituição nº 74 e 83, de 2011, e nº 33, de 2012, por versarem sobre a mesma matéria.
+      O requerimento lido vai à Mesa, para decisão.",ATA-PLEN,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2012-12-18T00:00:00Z,3,"Aguardando leitura de requerimento de tramitação conjunta, de autoria do Senador Benedito de Lira, que se dará quando todas as matérias referidas no requerimento (PECs 74 e 83, de 2011, e 33, de 2012) estiverem sobre a mesa, nos termos do art. 266 do RISF.",SSCLSF,118,AGUARDANDO LEITURA DE REQUERIMENTO,,Senado Federal,Senado Federal,106330
+106330,senado,2012-12-18T00:00:00Z,2,"Recebido neste Órgão, às 16h.",SSCLSF,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2012-12-18T00:00:00Z,1,"Retirado de Pauta para atender a solicitação constante do Oficio nº 1828/2012, da Presidência do Senado Federal, referente a requerimento, por ele formulado, de tramitação em conjunto das Propostas de Emenda à Constituição nº 74 e 83, de 2011, e 33, de 2012.
+      
+      À SSCLSF.",CCJ,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2012-12-07T00:00:00Z,1,"Matéria constante da Pauta da 49ª Reunião da Comissão de Constituição, Justiça e Cidadania, agendada para o dia 12/12/2012.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2012-11-30T00:00:00Z,1,"Matéria constante da Pauta da 47ª Reunião da Comissão de Constituição, Justiça e Cidadania, agendada para o dia 05/12/2012.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2012-11-14T00:00:00Z,1,"Recebido nesta Comissão, às 15 horas e 46 minutos, o relatório do Senador Ricardo Ferraço, com voto favorável à Proposta.
+      Matéria pronta para a Pauta na Comissão.",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,106330
+106330,senado,2012-10-23T00:00:00Z,1,"Distribuído ao Senador Ricardo Ferraço, para emitir relatório.
+      
+      Matéria com a Relatoria.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,106330
+106330,senado,2012-07-04T00:00:00Z,1,"Recebido nesta Comissão às 10 horas e 52 minutos. 
+      Matéria aguardando distribuição.",CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,106330
+106330,senado,2012-07-03T00:00:00Z,2,"Leitura.
+      À Comissão de Constituição, Justiça e Cidadania.",ATA-PLEN,NA,NA,,Senado Federal,Senado Federal,106330
+106330,senado,2012-07-03T00:00:00Z,1,Este processo contém 13 (treze) folhas numeradas e rubricadas.,PLEG,NA,NA,,Senado Federal,Senado Federal,106330

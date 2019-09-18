@@ -1,0 +1,357 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,origem_tramitacao_local_nome_casa_local,destino_tramitacao_local_nome_casa_local,id_principal
+137999,senado,2019-09-16T00:00:00Z,5,"Distribuído ao Senador Tasso Jereissati, para emitir relatório.
+      Ao relator, Senador Tasso Jereissati, para análise das Emendas de Plenário (art. 126, § 1º, do RISF).",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-16T00:00:00Z,4,Recebido nesta Comissão. Matéria aguardando distribuição.,CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-16T00:00:00Z,3,"Encaminhadas à publicação as Emendas nºs  572 a 580 – PLEN.
+      Transcorrida a quinta e última sessão de discussão, em primeiro turno.
+      A matéria retorna à CCJ para análise das emendas apresentadas.",SEADI,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-16T00:00:00Z,2,Encaminhado ao Plenário.,SLSF,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-16T00:00:00Z,1,"Recebida, na Secretaria-Geral da Mesa, a Emenda nº 580, primeiro signatário Senador Jayme Campos.",SLSF,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-13T00:00:00Z,7,"Recebidas, na Secretaria-Geral da Mesa, as Emendas nsº 578 e 579, primeiro signatário Senador Lasier Martins.",SLSF,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-13T00:00:00Z,6,"Recebida, na Secretaria-Geral da Mesa, a Emenda nº 577, primeira signatária Senadora Mara Gabrilli.",SLSF,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-13T00:00:00Z,5,"Incluída na Ordem do Dia da sessão deliberativa de 16.09.2019.
+      Quinta e última sessão de discussão, em primeiro turno.",SLSF,78,INCLUÍDA EM ORDEM DO DIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-13T00:00:00Z,4,"Recebidas, na Secretaria-Geral da Mesa, as Emendas nºs 572 a 576, com seu primeiro signatário Senador Jaques Wagner.",PLEN,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-13T00:00:00Z,3,"Encaminhada à publicação a Emenda nº 571 - PLEN.
+      Transcorrida a quarta sessão de discussão, em primeiro turno.
+      A matéria constará da Ordem do Dia da próxima sessão deliberativa, para prosseguimento da discussão.
+      ************* Retificado em 13/09/2019*************
+      Encaminhadas à publicação as Emenda nºs 560 a 571 - PLEN.
+      Transcorrida a quarta sessão de discussão, em primeiro turno.
+      A matéria constará da Ordem do Dia da próxima sessão deliberativa, para prosseguimento da discussão.",PLEN,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-13T00:00:00Z,2,"Incluída na Ordem do Dia da sessão deliberativa de 13/09/2019.
+      Quarta sessão de discussão, em primeiro turno.",SLSF,78,INCLUÍDA EM ORDEM DO DIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-13T00:00:00Z,1,"Recebida, na Secretaria-Geral da Mesa, a Emenda nº 571, com seu primeiro signatário Senador Reguffe.",SLSF,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-12T00:00:00Z,6,"Incluída na Ordem do Dia da sessão deliberativa de 13/09/2019.
+      Quarta sessão de discussão, em primeiro turno.",SLSF,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-12T00:00:00Z,5,"Recebidas, na Secretaria-Geral da Mesa, as seguintes emendas com seus primeiros signatários:
+      - 560 e 561, Senador Randolfe Rodrigues;
+      - 562 e 563, Senador Jean Paul Prates;
+      - 564, Senador Major Olimpio; e
+      - 565 a 570, Senador Reguffe.",SLSF,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-12T00:00:00Z,4,"Retirada a Emenda nº 535, por não se referir à matéria.",PLEN,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-12T00:00:00Z,3,"Encaminhadas à publicação as Emendas nºs 510 a 534 e 536 a 559 – PLEN.
+      Transcorrida a terceira sessão de discussão, em primeiro turno.
+      A matéria constará da Ordem do Dia da próxima sessão deliberativa, para prosseguimento da discussão.",PLEN,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-12T00:00:00Z,2,"Incluída na Ordem do Dia da sessão deliberativa de 12/09/2019.
+      Terceira sessão de discussão, em primeiro turno.",SLSF,78,INCLUÍDA EM ORDEM DO DIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-12T00:00:00Z,1,"Recebidas, na Secretaria-Geral da Mesa, as seguintes emendas com seus primeiros signatários: 
+      - 510 e 511, Senador Fabiano Contarato; 
+      - 512, Senador Weverton; 
+      - 513 e 514, Senador Jorge Kajuru; 
+      - 515, Senador Vanderlan Cardoso; 
+      - 516 a 519, Senador Veneziano Vital do Rêgo; 
+      - 520 a 526, Senador Paulo Paim; 
+      - 527 a 530, Senador José Maranhão; 
+      - 531 a 539, Senador Romário; 
+      - 540, Senador Rodrigo Pacheco; 
+      - 541 a 559, Senador Weverton.",PLEN,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-11T00:00:00Z,2,"Encaminhadas à publicação as Emendas nºs 503 a 509 – PLEN.
+      Transcorrida a segunda sessão de discussão, em primeiro turno.
+      A matéria constará da Ordem do Dia da próxima sessão deliberativa, para prosseguimento da discussão.",SEADI,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-11T00:00:00Z,1,"Recebidas, nesta data, na Secretaria-Geral da Mesa as Emendas nºs:
+      503-Plen, do Senador Lucas Barreto;
+      504-Plen, da Senadora Leila Barros; 
+      505-Plen, do Senador Plínio Valério;
+      506-Plen, do Senador Randolfe Rodrigues;
+      507-Plen, do Senador Plínio Valério; 
+      508-Plen, do Senador Paulo Rocha;
+      509-Plen, do Senador Lucas Barreto.",SLSF,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-10T00:00:00Z,2,"Incluída na Ordem do Dia da sessão deliberativa de 11/09/2019.
+      Segunda sessão de discussão, em primeiro turno.",PLEN,78,INCLUÍDA EM ORDEM DO DIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-10T00:00:00Z,1,"Transcorrida a primeira sessão de discussão, em primeiro turno, tendo a Presidência transformado a sessão deliberativa ordinária em Sessão de Debate Temático.
+      A matéria constará da próxima sessão deliberativa, para prosseguimento da discussão, em primeiro turno.",PLEN,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-09T00:00:00Z,1,"Incluída na Ordem do Dia da sessão deliberativa de 10/09/2019.
+      Primeira sessão de discussão, em primeiro turno.",PLEN,78,INCLUÍDA EM ORDEM DO DIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-04T00:00:00Z,13,"Concluída a instrução da matéria, que será incluída na Ordem do Dia.",PLEN,8,PRONTO PARA DELIBERAÇÃO DO PLENÁRIO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-04T00:00:00Z,12,Encaminhado ao Plenário.,PLEN,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-04T00:00:00Z,11,"Encerrada a relatoria do Senador Tasso Jereissati por deliberação da matéria.
+      À SLSF, para prosseguimento da tramitação.",CCJ,NA,NA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-04T00:00:00Z,10,"Na 52ª Reunião Extraordinária, realizada nesta data, são apresentados os seguintes requerimentos de destaque, os quais deixam de ser submetidos à votação em virtude de acordo:
+      - REQ nº 72, de 2019-CCJ, da Bancada do PSD, para votação em separado da Emenda nº 3;
+      - REQ  nº 73, de 2019-CCJ, da Bancada do PDT, para votação em separado da Emenda nº 168;
+      - REQ  nº 74, de 2019-CCJ, da Bancada do PROS, para votação em separado da Emenda nº 281;
+      - REQ nºs 75, 77 e 78, de 2019-CCJ, da Bancada do PT, para votação em separado das Emendas nºs 323, 485 e 491, respectivamente; 
+      - REQ  nº 76, de 2019-CCJ, da Bancada da REDE, para votação em separado da Emenda nº 391;
+      - REQ  nº 131, de 2019-CCJ, da Bancada do PSL, para votação em separado da Emenda nº 483.
+      
+      São apresentados, ainda, os seguintes Requerimentos de destaque de iniciativa individual:
+      - REQ nºs 80 a 91, de 2019-CCJ, do Senador Weverton para votação em separado das Emendas nºs 9, 15, 159, 160, 161, 166, 173, 416, 422, 423, 425 e 427, respectivamente;
+      - REQ nºs 92 a 94, de 2019-CCJ, do Senador Marcos do Val para votação em separado das Emendas nºs 181, 182 e 410, respectivamente;
+      - REQ nºs 95 a 99, de 2019-CCJ, do Senador Humberto Costa para votação em separado das Emendas nºs 28, 29, 299, 319 e 328, respectivamente;
+      - REQ nºs 100 a 129, de 2019-CCJ, do Senador Rogério Carvalho para votação em separado das Emendas nºs 192, 193, 194, 196, 198, 199, 201, 202, 203, 204, 205, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 438, 439, 440, 441, 442 e 443, respectivamente; 
+      - REQ nº 130, do Senador Ciro Nogueira para votação em separado da Emenda Nº 377.
+      
+      Aprovado o REQ nº 79, do Senador Fernando Bezerra Coelho para votação em globo, dos Requerimentos de Destaque. Votam vencidos os Senadores Veneziano Vital do Rêgo, Paulo Paim, Humberto Costa, Weverton e Zenaide Maia.
+      
+      Colocados em votação em globo, são rejeitados os Requerimentos de Destaque de iniciativa individual.
+      
+      Submetido à votação nominal, ressalvados os destaques de bancada, o Relatório do Senador Tasso Jereissati é aprovado, com o seguinte resultado: Sim 18, Não 7, Presidente 1, Total 26.
+      
+      Submetida à votação simbólica, é aprovada a Emenda nº 483. Votam vencidos os Senadores Ciro Nogueira, Fernando Bezerra Coelho, Mecias de Jesus, Zequinha Marinho, Major Olimpio, Oriovisto Guimarães, Juíza Selma e Marcos do Val. 
+      
+      Submetidas à votação nominal são rejeitadas as seguintes Emendas:
+      - Emenda nº 3, com o seguinte resultado: Sim 9, Não 16, Presidente 1, Total 26.
+      - Emenda nº 168, com o seguinte resultado: Sim 12, Não 13, Total 25.
+      - Emenda nº 281, com o seguinte resultado: Sim 12, Não 13, Presidente 1, Total 26.
+      - Emenda nº 323, com o seguinte resultado: Sim 10, Não 15, Presidente 1, Total 26.
+      - Emenda nº 391, com o seguinte resultado: Sim 8, Não 16, Presidente 1, Total 25.
+      - Emenda nº 485, com o seguinte resultado: Sim 8, Não 16, Presidente 1, Total 25.
+      - Emenda nº 491, com o seguinte resultado: Sim 8, Não 16, Presidente 1, Total 25.
+      
+      A Comissão aprova o Relatório do Senador Tasso Jereissati, que passa a constituir o Parecer da CCJ, favorável à PEC 6/2019 com as Emendas nºs 52-CCJ; 82-CCJ; 197, nos termos da Subemenda nº 1-CCJ; 326-CCJ; 374-CCJ; 483-CCJ; 493-CCJ; com as Emendas de Relator nºs 494-CCJ a 502-CCJ; e contrário às demais Emendas. 
+      
+      Aprovada, por unanimidade, a sugestão de Proposta de Emenda à Constituição anexa, oferecida como conclusão do Parecer.",CCJ,89,APROVADO PARECER NA COMISSÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-04T00:00:00Z,9,"Recebido, nesta Comissão, Complementação de Voto do Senador Tasso Jereissati, com alterações no Anexo apresentado no Relatório.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-04T00:00:00Z,8,"Juntei, às 13h, a Emenda nº 493, de autoria do Senador Eduardo Braga.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-04T00:00:00Z,7,"Juntei, às 12h10, a Emenda nº 492, de autoria do Senador Paulo Paim.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-04T00:00:00Z,6,"Juntei, às 10h43, a Emenda nº 491, de autoria do Senador Randolfe Rodrigues.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-04T00:00:00Z,5,"Juntei, às 10h30, Voto em Separado do Senador Fabiano Contarato favorável à Proposta e às Emendas nºs 7, 8, 21, 31,40, 51, 52, 62, 66, 71, 73, 75, 76, 79, 82, 86, 89, 92, 98, 116, 120, 121, 127, 135 a 137,139, 152, 156, 159, 160, 168, 185, 186, 187, 189, 190, 196, 198, 199, 200, 208, 214, 215, 226, 228, 231, 235, 240, 248, 250, 252, 253, 262, 273, 280, 282 a 285, 287, 290, 293, 295, 300, 302 a 304, 307, 308, 311, 313, 315 a 317, 322 a 324, 338, 344, 355, 358, 361, 371, 381, 390, 391 e 445, com as respectivas subemendas que apresenta; favorável parcialmente às emendas 211, 218, 281 e 314, com cinco emendas que apresenta, e contrário às demais emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-04T00:00:00Z,4,"Juntei, às 10h26, a Emenda nº 490, de autoria do Senador Oriovisto Guimarães.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-04T00:00:00Z,3,"Juntei, às 09h54min, o Voto em Separado do Senador Paulo Paim, pela inconstitucionalidade e, no mérito, contrário à Proposta.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-04T00:00:00Z,2,"Recebido, nesta Comissão, Complementação de Voto do Senador Tasso Jereissati, favorável à Proposta, às emendas supressivas nºs 52; 82; 197, na forma de subemenda apresentada; e 483, e às emendas de redação nºs 326 e 374; com nove emendas que apresenta, e pela rejeição das demais emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-04T00:00:00Z,1,"Juntei, às 08h40, as Emendas nºs 487 a 489, de autoria do Senador Rodrigo Cunha.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,25,"Juntei, às 19h46min, as Emendas nºs 485 e 486, de autoria do Senador Humberto Costa.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,24,"Juntei, às 19h37, a Emenda nº 484, de autoria do Senador Randolfe Rodrigues.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,23,"Juntei, às 17h55, a Emenda nº 483, de autoria do Senador Eduardo Braga.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,22,"Juntei, às 17h51min, as Emendas nºs 480 a 482, de autoria da Senadora Eliziane Gama.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,21,"Juntei, às 17h25min, as Emendas nºs 476 a 478, de autoria do Senador Paulo Paim, e 479, de autoria dos Senadores Paulo Paim e Esperidião Amin. 
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,20,"Juntei, às 17h, a Emenda nº 475, de autoria do Senador Paulo Rocha.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,19,"Juntei, às 15h15min, as Emendas nºs 462 a 474, de autoria do Senador Paulo Paim.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,18,"Juntei, às 14h35min, a Emenda nº 461, de autoria da Senadora Rose de Freitas.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,17,"Juntei, às 13h32min, as Emendas nºs 446 a 460, de autoria do Senador Dário Berger.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,16,"Juntei, às 12h56min, as Emendas nºs 444 e 445, de autoria do Senador Randolfe Rodrigues.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,15,"Juntei, às 12h42min, as Emendas nºs 438 a 443, de autoria do Senador Rogério Carvalho.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,14,"Juntei, às 12h10min, a Emenda nº 437, de autoria do Senador Esperidião Amin.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,13,"Juntei, às 12h07min, a Emenda nº 436, de autoria do Senador Nelsinho Trad.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,12,"Recebido, às 12h, o voto em separado do Senador Weverton contrário à Proposta.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,11,"Juntei, às 11h56, a Emenda nº 435, de autoria do Senador Cid Gomes.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,10,"Juntei, às 11h56, a Emenda nº 434, de autoria do Senador Rodrigo Pacheco.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,9,"Juntei, às 11h55, as Emendas nºs 429 a 433, de autoria da Senadora Rose de Freitas.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,8,"Juntei, às 11h50min, a Emenda nº 428, de autoria do Senador Major Olímpio.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,7,"Juntei, às 11h40, as Emendas nºs 416 a 427, de autoria do Senador Weverton.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,6,"Juntei, às 11h40min, as Emendas nºs 413 a 415, de autoria do Senador Jorginho Mello.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,5,"Juntei, às 10h53min a Emenda nº 411, de autoria do Senador Acir Gurgacz.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,4,"Juntei, às 10h43, as Emendas nºs 408 a 410, de autoria do Senador Marcos do Val.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,3,"Juntei, às 10h32, as Emendas nºs 403 a 407, de autoria do Senador Veneziano Vital do Rêgo.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,2,"Juntei, às 10h15, as Emendas nºs 395 a 402, de autoria do Senador Alessandro Vieira.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-03T00:00:00Z,1,"Juntei, às 9h37min, as Emendas nºs 392 a 394, de autoria do Senador Humberto Costa.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-02T00:00:00Z,8,"Juntei, às 18h17, as Emendas nºs 389 a 391, de autoria do Senador Randolfe Rodrigues.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-02T00:00:00Z,7,"Juntei, às 17h40min a Emenda nº 388, de autoria do Senador Cid Gomes.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-02T00:00:00Z,6,"Juntei, às 17h35, as Emendas nºs 383 a 387, de autoria da Senadora Rose de Freitas.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-02T00:00:00Z,5,"Juntei, às 17h12, as Emendas nºs 380 a 382, de autoria do Senador Major Olímpio.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-02T00:00:00Z,4,"Juntei, às 16h30, a Emenda nº 379, de autoria do Senador Jorge Kajuru.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-02T00:00:00Z,3,"Recebido, nesta Comissão, às 16h25min, o Ofício nº 77/2019, do Senador Veneziano Vital do Rêgo, solicitando a retirada da emenda nº 176, de sua autoria.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-02T00:00:00Z,2,"Juntei, às 14h, a Emenda nº 378, de autoria da Senadora Eliziane Gama.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-09-02T00:00:00Z,1,"Juntei, às 12h25, a Emenda nº 377, de autoria do Senador Ciro Nogueira.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-30T00:00:00Z,4,"Juntei, às 14h20, a Emenda nº 376, de autoria do Senador Wellington Fagundes.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-30T00:00:00Z,3,"Juntei, às 12h45, a Emenda nº 375, de autoria do Senador Paulo Rocha.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-30T00:00:00Z,2,"Juntei, às 11h20, a Emenda nº 374, de autoria do Senador Renan Calheiros.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-30T00:00:00Z,1,"Juntei, às 08h50, a Emenda nº 373, de autoria do Senador Marcos do Val.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-29T00:00:00Z,11,"Juntei, às 18h15, a Emenda nº 372, de autoria do Senador Paulo Rocha.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-29T00:00:00Z,10,"Juntei, às 17h30, as Emendas nºs 364 a 371, de autoria do Senador Marcos do Val.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-29T00:00:00Z,9,"Juntei, às 16h45, as Emendas nºs 362 e 363, de autoria do Senador José Serra.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-29T00:00:00Z,8,"Juntei, às 16h35, as Emendas nºs 347 a 361, de autoria do Senador Dário Berger.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-29T00:00:00Z,7,"Juntei, às 16h18, a Emenda nº 346, de autoria do Senador Fernando Bezerra Coelho.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-29T00:00:00Z,6,"Juntei, às 16h, as Emendas nºs 330 a 345, de autoria do Senador Veneziano Vital do Rêgo.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-29T00:00:00Z,5,"Juntei, às 13h20, a Emenda nº 329, de autoria do Senador Antonio Anastasia.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-29T00:00:00Z,4,"Juntei, às 13h15, a Emenda nº 328, de autoria do Senador Humberto Costa.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-29T00:00:00Z,3,"Juntei, às 11h53, as Emendas nºs 326 e 327, de autoria do Senador Paulo Rocha.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-29T00:00:00Z,2,"Juntei, às 10h35, as Emendas nºs 320 a 325, de autoria do Senador Humberto Costa.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-29T00:00:00Z,1,"Juntei, às 10h, a Emenda nº 319, de autoria do Senador Humberto Costa.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-28T00:00:00Z,11,"Juntei, às 19h38, as Emendas nºs 302 a 318, de autoria do Senador Humberto Costa.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-28T00:00:00Z,10,"Juntei, às 19h30, as Emendas nºs 300 e 301, de autoria do Senador Lasier Martins.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-28T00:00:00Z,9,"Juntei, às 18h40, as Emendas nºs 297 a 299, de autoria do Senador Humberto Costa.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-28T00:00:00Z,8,"Juntei, às 17h50min, as Emendas nºs 295 e 296, de autoria do Senador Fabiano Contarato.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-28T00:00:00Z,7,"Juntei, às 16h52, as Emendas nºs 290 a 294, de autoria do Senador Telmário Mota.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-28T00:00:00Z,6,"Juntei, às 15h30, as Emendas nºs 288 e 289, de autoria do Senador Paulo Rocha.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-28T00:00:00Z,5,"Na 49ª Reunião Ordinária, realizada nesta data, a Presidência concede vista coletiva aos Senadores nos termos regimentais. 
+      Encaminhada cópia do Relatório do Senador Tasso Jereissati e do avulso da matéria aos Senadores membros da Comissão.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-28T00:00:00Z,4,"Juntei, às 11h10min, as Emendas nºs 280 a 287, de autoria do Senador Paulo Rocha.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-28T00:00:00Z,3,"Juntei, às 10h22min, as Emendas nºs 277 a 279, de autoria da Senadora Juíza Selma.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-28T00:00:00Z,2,"Juntei, às 10h07min, a Emenda nº 276, de autoria do Senador Jorge Kajuru.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-28T00:00:00Z,1,"Juntei, às 10h, as Emendas nºs 270 a 275, de autoria do Senador Antonio Anastasia.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,16,"Juntei, às 19h21min, as Emendas nº 220 a 269, de autoria do Senador Cid Gomes.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,15,"Juntei, às 19h21min, as Emendas nº 213 a 219, de autoria do Senador Rogério Carvalho.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,14,"Juntei, às 18h45min, as Emendas nº 192 a 212, de autoria do Senador Rogério Carvalho.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,13,"Juntei, às 18h35min, as Emendas nº 185 a 191, de autoria do Senador Fabiano Contarato.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,12,Matéria incluída na Pauta da Comissão.,CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,11,"Juntei as Emendas nº 179 a 184, de autoria do Senador Marcos do Val.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,10,"Juntei, às 18h20min, a Emenda nº 178, de autoria do Senador Luis Carlos Heinze.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,9,"Juntei, às 16h25min, as Emendas nºs 176 e 177, de autoria do Senador Veneziano Vital do Rêgo.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,8,"Juntei, às 16h25min, as Emendas nºs 159 e 175, de autoria do Senador Weverton Rocha.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,7,"Juntei, às 14h50min, as Emendas nºs 157 e 158, de autoria do Senador Carlos Viana.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,6,"Recebido nesta Comissão relatório do Senador Tasso Jereissati, com voto favorável à Proposta e às emendas nºs 52 e 82, com nove emendas que apresenta, e pela rejeição das demais emendas apresentadas.
+      Matéria pronta para pauta na Comissão.",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,5,"Juntei, às 13h30, a Emenda nº 156, de autoria da Senadora Eliziane Gama.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,4,"Juntei, às 12h, a Emenda nº 155, de autoria do Senador Rodrigo Cunha.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,3,"Juntei, às 11h20min, as Emendas nºs 146 a 154, de autoria do Senador Paulo Rocha.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,2,"Juntei, às 10h50, as Emendas nºs 143 a 145, de autoria do Senador Rodrigo Cunha.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-27T00:00:00Z,1,"Juntei, às 09h55, a Emenda nº 142, de autoria do Senador Paulo Rocha.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-26T00:00:00Z,2,"Juntei, às 19h03min, as Emendas nºs 129 a 141, de autoria do Senador Paulo Paim.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-26T00:00:00Z,1,"Juntei, às 16h24min, a Emenda nº 128, de autoria do Senador Marcos Rogério.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-23T00:00:00Z,4,"Juntei, às 14h40min, as Emendas nºs 126 e 127, de autoria do Senador Humberto Costa.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-23T00:00:00Z,3,"Juntei, às 14h30min, as Emendas nºs 122 a 125, de autoria do Senador Jorge Kajuru.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-23T00:00:00Z,2,"Juntei, às 14h30min, as Emendas nºs 108 a 121, de autoria do Senador Paulo Rocha.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-23T00:00:00Z,1,"Juntei, às 12h20min, as Emendas nºs 104 a 107, de autoria do Senador Humberto Costa.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-22T00:00:00Z,3,"Juntei, às 17h50min, a Emenda nº 103, de autoria do Senador Lasier Martins.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-22T00:00:00Z,2,"Juntei, às 17h10min, as Emendas nº 82 a 102, de autoria do Senador Jaques Wagner.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-22T00:00:00Z,1,"Juntei, às 10h20, as Emendas nº 78 a 81, de autoria do Senador José Maranhão.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-21T00:00:00Z,7,"Juntei, às 19h40, as Emendas nº 68 a 77, de autoria do Senador Randolfe Rodrigues.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-21T00:00:00Z,6,"Juntei, às 19h30, as Emendas nº 65 a 67, de autoria do Senador Angelo Coronel.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-21T00:00:00Z,5,"Juntei, às 18h58min, a Emenda nº 64, de autoria do Senador Jaques Wagner.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-21T00:00:00Z,4,"Juntei, às 17h15min, as Emendas nº 59 a 63, de autoria da Senadora Leila Barros .
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-21T00:00:00Z,3,"No dia 22/08/2019, respectivamente às 9 horas e às 14 horas, são realizadas a 46ª Reunião Extraordinária e a 47ª Reunião Extraordinária, nas quais a Comissão realiza Audiência Públicas destinadas à instrução da matéria, conforme os Requerimentos nºs REQ 54/2019 - CCJ, Senador Tasso Jereissati, REQ 55/2019 - CCJ, Senador Major Olimpio, REQ 56/2019 - CCJ, Senadora Leila Barros, REQ 57/2019 - CCJ, Senador Esperidião Amin, REQ 64/2019 - CCJ, Senador Oriovisto Guimarães, REQ 65/2019 - CCJ, Senador Randolfe Rodrigues e REQ 66/2019 - CCJ, Senador Rogério Carvalho, com a presença dos seguintes convidados:
+      
+      
+      Às 9 horas: Sr. DJONATAN MAFEI ELIAS, Presidente do Sindicato dos Mineiros de Criciúma e Regiões de Santa Catarina; Sr. GENOIR JOSÉ DOS SANTOS, Presidente da Federação Interestadual dos Trabalhadores na Indústria da Extração do Carvão do Sul; Sr. MAURO SILVA, Presidente da Associação dos Auditores Fiscais da Receita Federal do Brasil - UNAFISCO NACIONAL; Sr. LEONARDO JOSÉ ROLIM GUIMARÃES, Secretário de Previdência do Ministério da Economia; Sr. PAULO KLIASS, Pós-doutor em economia pela Université de Paris 13 e especialista em Políticas Públicas e Gestão Governamental do Ministério do Planejamento, Orçamento e Gestão; Sra. NOEMIA GARCIA PORTO, Presidente da Associação Nacional de Magistrados da Justiça do Trabalho - (Anamatra); Sr. EDUARDO BUERMANN FERREIRA, Assessor Jurídico da Confederação Nacional dos Trabalhadores em Educação (CNTE), representante do senhor HELENO MANOEL GOMES ARAÚJO FILHO, Presidente da Confederação Nacional dos Trabalhadores em Educação - CNTE; Sra. MARIA LÚCIA FATTORELLI, Coordenadora da Auditoria Cidadã; Sr. ADOLFO SACHSIDA, Secretário de Política Econômica do Ministério da Economia; Sr. ROBERTO DE GÓES ELLERY JÚNIOR, Professor do Departamento de Economia da UnB.
+      
+      Às 14 horas: Sra. SUZANI ANDRADE FERRARO, Presidente da Comissão Especial de Estudo da Previdência Complementar do Conselho da Ordem dos  Advogados do Brasil, representante do senhor FELIPE SANTA CRUZ, Presidente da Ordem dos Advogados do Brasil; Sr. PAULO RABELLO DE CASTRO, Economista; Sr. ADRIANE BRAMANTE DE CASTRO LADENTHIN, Presidente do Instituto Brasileiro de Direito Previdenciário - IBDP; Sr. MAURO LUCIANO HAUSCHILD, Advogado e Ex-presidente do INSS; Sr. LUIS ANTÔNIO DE ARAÚJO BOUDENS, Presidente da Federação Nacional dos Policiais Federais – FENAPEF; Sr. GEORGE ALEX LIMA DE SOUZA, Diretor de Assuntos Parlamentares do Sindicato Nacional dos Auditores Fiscais da Receita Federal do Brasil (SINDIFISCO Nacional), representante do senhor KLEBER CABRAL, Presidente do Sindicato Nacional dos Auditores Fiscais da Receita Federal do Brasil – Sindifisco; Sr. BRUNO BIANCO LEAL, Secretário Especial Adjunto de Previdência e Trabalho do Ministério da Economia; Sr. MIGUEL CABRERA KAUAM, Diretor de Programa da Secretaria de Trabalho e Previdência do Ministério da Economia; Sr. FELIPE SALTO, Diretor-Executivo da Instituição Fiscal Independente; Sr. TIAGO DUTRA, Secretário de Controle Externo da Gestão Tributária, da Previdência e Assistência Social do Tribunal de Contas da União; Sr. MAURO SILVA, Presidente da Associação dos Auditores Fiscais da Receita Federal do Brasil (UNAFISCO NACIONAL); Sr. LUIZ HENRIQUE PAIVA, Pesquisador do Instituto de Pesquisa Econômica Aplicada (IPEA); Sr. LUIZ ROBERTO DOMINGUES JUNIOR; Mestre em Economia. 
+      
+      Usam da palavra os Senadores Flávio Arns, Paulo Paim, Tasso Jereissati, Esperidião Amin, Major Olímpio, a Senadora Zenaide Maia e os Senadores Randolfe Rodrigues e Marcos do Val, respectivamente, Presidentes em exercício da CCJ.",CCJ,110,AUDIÊNCIA PÚBLICA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-21T00:00:00Z,2,"Na 44ª Reunião Extraordinária, nesta data, é realizada Audiência Pública destinada à instrução da matéria, conforme os Requerimentos nºs 58/2019 - CCJ, de autoria do Senador Humberto Costa; 59, 60, 61, 62 e 63/2019 - CCJ, de autoria do Senador Paulo Paim; 66/2019 - CCJ, de autoria do Senador Rogério Carvalho; e 55/2019 - CCJ, de autoria do Senador Major Olímpio, com a presença dos seguintes convidados: MIGUEL SOLDATELLI ROSSETTO, Ex–Ministro do Trabalho e Previdência Social do Brasil; PAULO PENTEADO TEIXEIRA JUNIOR, Assessor Jurídico e Legislativo da Associação Nacional dos Membros do Ministério Público (Conamp); EDUARDO GUTERRA, Secretário Adjunto de Organização e Política Sindical, representante da Central Única dos Trabalhadores; DÉCIO BRUNO LOPES, Presidente da Associação Nacional dos Auditores Fiscais da Receita Federal do Brasil; CLÓVIS SCHERER, Especialista em previdência do Departamento Intersindical de Estatística e Estudos Socioeconômicos (DIEESE), representante do senhor CLEMENTE GANZ LÚCIO; e DIEGO CHERULLI, Diretor do Instituto Brasileiro de Direito Previdenciário.
+      
+      Usam da palavra os Senadores Major Olímpio, Flávio Arns, Zenaide Maia, Rogério Carvalho, Veneziano Vital do Rêgo, Jaques Wagner, Tasso Jereissati, Paulo Rocha, Paulo Paim e Humberto Costa, Presidente em exercício da CCJ.
+      ************* Retificado em 26/08/2019*************
+      Nesta data, respectivamente às 9 horas e às 14 horas, são realizadas a 44ª Reunião Extraordinária e a 45ª Reunião Extraordinária, nas quais a Comissão realiza Audiência Públicas destinadas à instrução da matéria, conforme os Requerimentos nºs 58/2019 - CCJ, de autoria do Senador Humberto Costa; 59, 60, 61, 62 e 63/2019 - CCJ, de autoria do Senador Paulo Paim; 66/2019 - CCJ, de autoria do Senador Rogério Carvalho; e 55/2019 - CCJ, de autoria do Senador Major Olímpio, com a presença dos seguintes convidados: 
+      
+      9 horas: MIGUEL SOLDATELLI ROSSETTO, Ex–Ministro do Trabalho e Previdência Social do Brasil; PAULO PENTEADO TEIXEIRA JUNIOR, Assessor Jurídico e Legislativo da Associação Nacional dos Membros do Ministério Público (Conamp); EDUARDO GUTERRA, Secretário Adjunto de Organização e Política Sindical, representante da Central Única dos Trabalhadores; DÉCIO BRUNO LOPES, Presidente da Associação Nacional dos Auditores Fiscais da Receita Federal do Brasil; CLÓVIS SCHERER, Especialista em previdência do Departamento Intersindical de Estatística e Estudos Socioeconômicos (DIEESE), representante do senhor CLEMENTE GANZ LÚCIO; e DIEGO CHERULLI, Diretor do Instituto Brasileiro de Direito Previdenciário
+      
+      14 horas: Sra. LUCIANA DE BARROS JACCOUD, Especialista em Assistência Social e Pobreza; Sra. THAIS MARIA RIEDEL DE RESENDE ZUBA, Diretora Adjunta de Previdência do Servidor Público do Instituto Brasileiro de Direito Previdenciário - IBDP; Sra. ROSANGELA PIOVIZANI CORDEIRO, Coordenadora Nacional do Movimento de Mulheres Camponesas - MMC; Sr. EDSON CARNEIRO DA SILVA, Secretário-Geral da Classe Trabalhadora - Intersindical; Sr. JOSÉ PINTO DE MOTA FILHO, Presidente da Sociedade Brasileira de Previdência Social – SBPS; Sr. CARLOS SILVA, Presidente do Sindicato Nacional dos Auditores Fiscais do Trabalho - SINAIT; Sr. JOSÉ CELSO PEREIRA CARDOSO JÚNIOR, Presidente da Associação dos Funcionários do Instituto de Pesquisa Econômica Aplicada - Ipea; Sr. LUIZ ALBERTO DOS SANTOS, Consultor Legislativo do Senado Federal; Sra. SILVIA HELENA DE ALENCAR FELISMINO, representante da Central dos Servidores Públicos – PÚBLICA; Sr. MOACIR ROBERTO TESCH AUERFVALD, Secretário Geral da Nova Central Sindical dos Trabalhadores - NCST; Sra. SÔNIA MEIRE SANTOS AZEVEDO DE JESUS, Representante da CONLUTAS - Central Sindical e Popular - CSP; Sr. UBIRACI DANTAS DE OLIVEIRA, Presidente da Central Geral dos Trabalhadores do Brasil - CGTB; Sr. LEANDRO ALLAN VIEIRA, Vice-Presidente da Central dos Sindicatos Brasileiros (CSB), representante do senhor ANTONIO FERNANDES DOS SANTOS NETO, Presidente da Central dos Sindicatos Brasileiros - CSB); Sr. MÁRIO TEIXEIRA, Secretário de Assuntos Jurídicos da Central dos Trabalhadores e Trabalhadoras do Brasil (CTB), representante do senhor ADILSON GONÇALVES DE ARAÚJO, Presidente da Central dos Trabalhadores e das Trabalhadoras do Brasil - CTB). 
+      
+      Usam da palavra os Senadores Major Olímpio, Flávio Arns, Zenaide Maia, Rogério Carvalho, Veneziano Vital do Rêgo, Tasso Jereissati, Paulo Rocha, Humberto Costa e os Senadores Paulo Paim e Jaques Wagner, respectivamente Presidentes em exercício da CCJ.",CCJ,110,AUDIÊNCIA PÚBLICA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-21T00:00:00Z,1,"Juntei, às 12h20, as Emendas nº 54 a 58, de autoria do Senador Humberto Costa.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-20T00:00:00Z,6,"Na 43ª Reunião Extraordinária, nesta data, é realizada Audiência Pública destinada à instrução da matéria, conforme o Requerimento nº 55/2019 - CCJ, de autoria do Senador Major Olímpio, com a presença dos seguintes convidados:  RODOLFO QUEIROZ LATERZA, 1º Vice-Presidente Parlamentar da Associação dos Delegados de Polícia do Brasil - ADEPOL representante do senhor Carlos Alberto Benito Jorge; JOSÉ GUILHERME KLIEMANN, Presidente do Instituto de Previdência do Rio Grande do Sul; CORONEL ELIAS MILER DA SILVA, Representante da Federação Nacional de Entidades de Oficiais Militares Estaduais - FENEME,  representante do senhor Marlon Jorge Teza; ZÉLIA LUIZA PIERDONÁ, Procuradora Regional da República; FERNANDO FERREIRA DE ANUNCIAÇÃO, Presidente da Federação Nacional Sindical dos Servidores Penitenciários - FENASPEN; MARCELO AZEVEDO, Diretor Jurídico da Federação Nacional dos Policiais Rodoviários Federais - FENAPRF, representante do senhor Deolindo Paulo Carniel; LEANDRO CERQUEIRA LIMA, Presidente da Associação Brasileira de Criminalística - ABC; OSÉIAS FRANCISCO DA SILVA, Presidente da Conferência Nacional das Guardas Municipais do Brasil - CONGM; ANDRÉ LUIZ GUTIERREZ, Presidente da Confederação Brasileira de Trabalhadores Policiais Civis - COBRAPOL; NARLON GUTIERRE NOGUEIRA, Secretário-Adjunto de Previdência do Ministério da Economia.
+      
+      Usam da palavra os Senadores Tasso Jereissati, Paulo Paim, Flávio Arns, Styvenson Valentin e o Senador Major Olímpio, Presidente em exercício da CCJ.",CCJ,110,AUDIÊNCIA PÚBLICA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-20T00:00:00Z,5,"Na 42ª Reunião Extraordinária, nesta data, é realizada Audiência Pública destinada à instrução da matéria, conforme os Requerimentos nºs  54/2019 - CCJ, Senador Tasso Jereissati, 56/2019 - CCJ, Senadora Leila Barros, 65/2019 - CCJ, Senador Randolfe Rodrigues, 60/2019 - CCJ, Senador Paulo Paim, com a presença dos seguintes convidados: Sr. ROGÉRIO SIMONETTI MARINHO, Secretário Especial de Trabalho e Previdência do Ministério da Economia; Sr. RAFAEL TAJRA FONTELES, Presidente do Comitê dos Secretários de Fazenda dos Estados e do Distrito Federal (Comsefaz) e Secretário de Fazenda do Piauí; Sr. JAYME MARTINS DE OLIVEIRA NETO, Presidente da Associação dos Magistrados Brasileiros (AMB); Sr. NELSON HENRIQUE BARBOSA FILHO, Ex-Ministro da Fazenda e Professor da Universidade de Brasília (UnB); Sr. ÂNGELO FABIANO FARIAS DA COSTA, Coordenador da Frente Associativa da Magistratura e do Ministério Público (FRENTAS); Sr. RUDINEI MARQUES, Presidente do Fórum Nacional Permanente de Carreiras Típicas de Estado (FONACATE); Sr. EMERSON GARCIA, Promotor de Justiça do Ministério Público do Estado do Rio de Janeiro; Sr. JOSÉ MÁRCIO CAMARGO,Professor da Pontifícia Universidade Católica do Estado do Rio de Janeiro. 
+      
+      Usam da palavra os Senadores Fernando Bezerra Coelho, Paulo Paim, Marcelo Castro, Jorge Kajuru, Luis Carlos Heinze, Major Olímpio, Cid Gomes, Izalci Lucas, Renan Calheiros e a Senadora Simone Tebet, Presidente da CCJ.",CCJ,110,AUDIÊNCIA PÚBLICA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-20T00:00:00Z,4,"Juntei, às 12h43min, as Emendas nº 51 a 53, de autoria da Senadora Eliziane Gama.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,110,AUDIÊNCIA PÚBLICA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-20T00:00:00Z,3,"Juntei, às 12h27min, as Emendas nº 49 e 50, de autoria do Senador Carlos Viana.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,110,AUDIÊNCIA PÚBLICA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-20T00:00:00Z,2,"Juntei, às 11h56min, a Emenda nº 48, de autoria do Senador Lasier Martins.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,110,AUDIÊNCIA PÚBLICA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-20T00:00:00Z,1,"Juntei, às 9h, as Emendas nº 34 a 47, de autoria do Senador Plínio Valério.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-19T00:00:00Z,1,"Juntei, às 11h50min, a Emenda nº 33, de autoria do Senador Mecias de Jesus.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-16T00:00:00Z,1,"Juntei, às 11h, as Emendas nº 31 e 32, de autoria do Senador Humberto Costa.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-15T00:00:00Z,4,"Juntei, às 16h30min, a Emenda nº 30, de autoria do Senador Acir Gurgacz.
+      Encaminhada ao relator, Senador Tasso Jereissati, para análise da Emenda",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-15T00:00:00Z,3,"Juntei, às 16h15min, as Emendas nº 28 e 29, de autoria do Senador Humberto Costa.
+      Encaminhadas ao relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-15T00:00:00Z,2,"Juntei, às 10h13, a Emenda nº 27, de autoria do Senador Siqueira Campos.
+      Encaminhada ao Relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-15T00:00:00Z,1,"Juntei, às 09h35, as Emendas nºs 20 e 26, de autoria do Senador Plínio Valério.
+      Encaminhadas ao Relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-14T00:00:00Z,7,"Juntei, às 20h20min, as Emendas nºs 18 e 19, de autoria do Senador Siqueira Campos.
+      Encaminhadas ao Relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-14T00:00:00Z,6,"Juntei, às 20h, as Emendas nºs 9 a 17, de autoria do Senador Weverton.
+      Encaminhadas ao Relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-14T00:00:00Z,5,"Na 40ª Reunião Ordinária, realizada nesta data, a Comissão aprova os Requerimentos nºs 54, de 2019-CCJ a 66, de 2019-CCJ, para a realização de Audiências Públicas em datas oportunas para instruir a matéria.",CCJ,110,AUDIÊNCIA PÚBLICA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-14T00:00:00Z,4,"Juntei, às 19h, as Emendas nºs 6 a 8, de autoria do Senador Siqueira Campos.
+      Encaminhadas ao Relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-14T00:00:00Z,3,"Juntei, às 16h15min, a Emenda nº 5, de autoria do Senador Carlos Viana.
+      Encaminhado ao Relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-14T00:00:00Z,2,"Juntei, às 15h15min, a Emenda nº 4, de autoria do Senador Jader Barbalho.
+      Encaminhado ao Relator, Senador Tasso Jereissati, para análise da Emenda.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-14T00:00:00Z,1,"Juntei, às 11h, as Emendas nºs 1 a 3, de autoria do Senador Otto Alencar.
+      Encaminhado ao Relator, Senador Tasso Jereissati, para análise das Emendas.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-08T00:00:00Z,4,"Distribuído ao Senador Tasso Jereissati, para emitir relatório.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-08T00:00:00Z,3,Recebido nesta Comissão às 19 horas e 48 minutos. Matéria aguardando distribuição.,CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-08T00:00:00Z,2,"Encaminhado à publicação.
+      À CCJ.",SEADI,147,MATÉRIA LIDA EM PLENÁRIO.,,Senado Federal,Senado Federal,137999
+137999,senado,2019-08-08T00:00:00Z,1,"Aguardando leitura.
+      Este processado contém 2.003 (duas mil e três) folhas.",SLSF,13,AGUARDANDO LEITURA,,Senado Federal,Senado Federal,137999

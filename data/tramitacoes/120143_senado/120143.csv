@@ -1,0 +1,9 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,origem_tramitacao_local_nome_casa_local,destino_tramitacao_local_nome_casa_local,id_principal
+120143,senado,2018-12-21T00:00:00Z,2,"A proposição é arquivada ao final da legislatura, nos termos do caput do art. 332  do Regimento Interno.",PLEN,28,ARQUIVADA AO FINAL DA LEGISLATURA,,Senado Federal,Senado Federal,120143
+120143,senado,2018-12-21T00:00:00Z,1,Encaminhada à SGM para providências relativas ao final de legislatura.,CCJ,NA,NA,,Senado Federal,Senado Federal,120143
+120143,senado,2015-03-18T00:00:00Z,3,"Recebido nesta Comissão às 17 horas.
+      
+      Matéria aguardando distribuição.",CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,120143
+120143,senado,2015-03-18T00:00:00Z,2,"Encaminhado à publicação.
+      À Comissão de Constituição, Justiça e Cidadania.",ATA-PLEN,NA,NA,,Senado Federal,Senado Federal,120143
+120143,senado,2015-03-18T00:00:00Z,1,Este processo contém 10 (dez)  folhas numeradas e rubricadas.,PLEG,NA,NA,,Senado Federal,Senado Federal,120143

@@ -1,0 +1,42 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,origem_tramitacao_local_nome_casa_local,destino_tramitacao_local_nome_casa_local,id_principal
+120152,senado,2019-05-08T00:00:00Z,1,"Na 12ª Reunião Ordinária, realizada nesta data, a matéria é retirada de Pauta e devolvida à Relatora, Senadora Juíza Selma, para reexame do Relatório.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,120152
+120152,senado,2019-04-24T00:00:00Z,3,"Na 11ª Reunião Ordinária, realizada nesta data, a Presidência concede vista coletiva, nos termos regimentais.
+      Encaminhada cópia do Relatório da Senadora Juíza Selma e do avulso da matéria, aos senhores Senadores.",CCJ,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,120152
+120152,senado,2019-04-24T00:00:00Z,2,"Juntei, às 11h57min, a Emenda nº 2, de autoria do Senador Alessandro Vieira.
+      Encaminhado à Relatora, Senadora Juíza Selma, para análise da Emenda.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,120152
+120152,senado,2019-04-24T00:00:00Z,1,"Juntei, às 11h20min, a Emenda nº 1, de autoria do Senador Fabiano Contarato.
+      Encaminhado à Relatora, Senadora Juíza Selma, para análise da Emenda.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,120152
+120152,senado,2019-04-17T00:00:00Z,1,Matéria incluída na Pauta da Comissão.,CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,120152
+120152,senado,2019-04-10T00:00:00Z,1,"Recebido, às 17h55min, o relatório da Senadora Juíza Selma, com voto favorável à Proposta, com uma emenda que apresenta.
+      Matéria pronta para a Pauta na Comissão.",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,120152
+120152,senado,2019-02-14T00:00:00Z,1,"Redistribuído à Senadora Selma Arruda, para emitir relatório.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,120152
+120152,senado,2019-02-13T00:00:00Z,1,Matéria aguardando distribuição.,CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,120152
+120152,senado,2019-02-12T00:00:00Z,1,"Encaminhado à publicação e rejeitado o Requerimento nº 17, de 2019, subscrito pelo Senador Humberto Costa, solicitando a retirada de pauta do Requerimento nº 9, de 2019, com o seguinte resultado: Sim 8, Não 61, Presidente 1, Total 70. (Verificação de votação solicita pela Senadora Simone Tebet, com apoiamento regimental)
+      Aprovado o Requerimento nº 9, de 2019, com os votos contrários dos Senadores Humberto Costa e Paulo Rocha.
+      A presente matéria, desarquivada, retorna ao exame da CCJ.",PLEN,NA,NA,,Senado Federal,Senado Federal,120152
+120152,senado,2019-02-11T00:00:00Z,3,"Incluído em ordem do dia da sessão deliberativa de 12/02/2019, requerimento de desarquivamento.
+      Votação em turno único.",SLSF,78,INCLUÍDA EM ORDEM DO DIA,,Senado Federal,Senado Federal,120152
+120152,senado,2019-02-11T00:00:00Z,2,"A matéria foi desarquivada devido á publicação do Requerimento nº 9, de 2019, de desarquivamento.
+      ************* Retificado em 12/02/2019*************
+      Matéria recebida para aguardar inclusão em Ordem do Dia do Requerimento nº 9, de 2019, de desarquivamento.",PLEN,NA,NA,,Senado Federal,Senado Federal,120152
+120152,senado,2019-02-11T00:00:00Z,1,"Encaminhado à publicação o Requerimento nº 9, de 2019, tendo como primeiro signatário o Senador Eduardo Girão, solicitando o desarquivamento da presente matéria.",PLEN,NA,NA,,Senado Federal,Senado Federal,120152
+120152,senado,2019-02-07T00:00:00Z,2,Encaminhado ao Plenário.,PLEN,NA,NA,,Senado Federal,Senado Federal,120152
+120152,senado,2019-02-07T00:00:00Z,1,Encaminhado por solicitação.,COARQ,NA,NA,,Senado Federal,Senado Federal,120152
+120152,senado,2018-12-21T00:00:00Z,2,"A proposição é arquivada ao final da legislatura, nos termos do caput do art. 332  do Regimento Interno.",PLEN,28,ARQUIVADA AO FINAL DA LEGISLATURA,,Senado Federal,Senado Federal,120152
+120152,senado,2018-12-21T00:00:00Z,1,Encaminhada à SGM para providências relativas ao final de legislatura.,CCJ,NA,NA,,Senado Federal,Senado Federal,120152
+120152,senado,2017-12-11T00:00:00Z,1,"Devolvido, às 12h33min, pelo Senador Eduardo Amorim. 
+      Matéria aguardando distribuição.",CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,120152
+120152,senado,2017-12-05T00:00:00Z,1,"Matéria com o Relator, Senador Eduardo Amorim, para reexame do Relatório.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,120152
+120152,senado,2017-05-16T00:00:00Z,1,"Recebido, às 11h25min, o relatório do Senador Eduardo Amorim, com voto favorável à Proposta.
+      Matéria pronta para a Pauta na Comissão.",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,120152
+120152,senado,2017-04-06T00:00:00Z,1,"O Presidente da Comissão de Constituição, Justiça e Cidadania, Senador Edison Lobão, designa Relator da matéria o Senador Eduardo Amorim.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,120152
+120152,senado,2015-12-15T00:00:00Z,1,"Devolvido, às 12h46min, pelo Senador Eduardo Amorim. 
+      Matéria aguardando distribuição.
+      ",CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,120152
+120152,senado,2015-10-28T00:00:00Z,1,"O Presidente da Comissão, Senador José Maranhão, designa Relator da matéria o Senador Eduardo Amorim.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,120152
+120152,senado,2015-03-18T00:00:00Z,3,"Recebido nesta Comissão às 19 horas.
+      
+      Matéria aguardando distribuição.",CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,120152
+120152,senado,2015-03-18T00:00:00Z,2,"Encaminhada à publicação.
+      À Comissão de Constituição, Justiça e Cidadania.",ATA-PLEN,NA,NA,,Senado Federal,Senado Federal,120152
+120152,senado,2015-03-18T00:00:00Z,1,Este processo contém 06 (seis)  folhas numeradas e rubricadas.,PLEG,NA,NA,,Senado Federal,Senado Federal,120152

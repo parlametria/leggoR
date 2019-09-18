@@ -1,0 +1,56 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,origem_tramitacao_local_nome_casa_local,destino_tramitacao_local_nome_casa_local,id_principal
+133943,senado,2019-03-07T00:00:00Z,1,"Juntei, de ordem da Presidência do Senado Federal, o Ofício FNP nº 594/2018, de  04/12/2018, da Frente Nacional de Prefeitos, com manifestação sobre a matéria (fls. 102 a 105).
+      Matéria encaminhada ao Gabinete do Relator, Senador Tasso Jereissati.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,133943
+133943,senado,2019-02-21T00:00:00Z,2,"Matéria encaminhada ao Gabinete do Relator, Senador Tasso Jereissati.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,133943
+133943,senado,2019-02-21T00:00:00Z,1,"Distribuído ao Senador Tasso Jereissati, para emitir relatório.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-21T00:00:00Z,1,"A proposição continua a tramitar, nos termos do art. 332 do Regimento Interno.",CCJ,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-20T00:00:00Z,3,Matéria aguardando distribuição.,CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-20T00:00:00Z,2,"A presente matéria deixa de tramitar em regime de urgência, devido ao término da sessão legislativa.
+      Às CCJ, CAE e CI.",PLEN,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-20T00:00:00Z,1,"Devido ao fim da legislatura, a matéria deixa de tramitar em regime de urgência.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-18T00:00:00Z,5,Aguardando inclusão em Ordem do Dia.,SLSF,8,PRONTO PARA DELIBERAÇÃO DO PLENÁRIO,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-18T00:00:00Z,4,"Matéria não apreciada na sessão de 18/12/2018, transferida para a sessão deliberativa de 19/12/2018.",SLSF,78,INCLUÍDA EM ORDEM DO DIA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-18T00:00:00Z,3,"Matéria não apreciada na sessão de 13/12/2018, transferida para a sessão deliberativa de 18/12/2018.",PLEN,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-18T00:00:00Z,2,"À SLSF, devolução.",ATRSGM,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-18T00:00:00Z,1,"À Assessoria técnica, à pedido.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-12T00:00:00Z,1,"Matéria não apreciada na sessão de 12/12/2018, transferida para a sessão deliberativa de 13/12/2018.
+      Matéria não apreciada na sessão de 13/12/2018, transferida para a sessão deliberativa de 18/12/2018.",SLSF,78,INCLUÍDA EM ORDEM DO DIA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-06T00:00:00Z,1,"Matéria não apreciada na sessão de 06/12/2018, transferida para a sessão deliberativa de 11/12/2018.
+      Matéria não apreciada na sessão de 11/12/2018, transferida para a sessão deliberativa de 12/12/2018.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-05T00:00:00Z,1,"Matéria não apreciada na sessão de 05/12/2018, transferida para a sessão deliberativa de 06/12/2018.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-04T00:00:00Z,2,"Matéria não apreciada na sessão de 4/12/2018, transferida para a sessão deliberativa de 5/12/2018.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-12-04T00:00:00Z,1,"Recebida, na Secretaria-Geral da Mesa, a Emenda nº 20, de 2018, do Senador José Serra.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-29T00:00:00Z,1,"Matéria não apreciada na sessão de 28/11/2018, transferida para a sessão deliberativa de 4/12/2018.",SLSF,78,INCLUÍDA EM ORDEM DO DIA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-28T00:00:00Z,2,"Recebidas, na Secretaria-Geral da Mesa, as Emendas nºs 18 e 19-PLEN, do Senador José Serra.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-28T00:00:00Z,1,"Recebida, na Secretaria-Geral da Mesa, a Emenda nº 17-PLEN, do Senador Randolfe Rodrigues.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-27T00:00:00Z,2,"Matéria não apreciada na sessão de 27/11/2018, transferida para a sessão deliberativa de 28/11/2018.",SLSF,78,INCLUÍDA EM ORDEM DO DIA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-27T00:00:00Z,1,"Recebida, na Secretaria-Geral da Mesa, a Emenda nº 15-PLEN, do Senador Guaracy Silveira.
+      ************* Retificado em 28/11/2018*************
+      Recebida, na Secretaria-Geral da Mesa, a Emenda nº 16-PLEN, do Senador Guaracy Silveira.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-20T00:00:00Z,9,"Incluído em ordem do dia da sessão deliberativa de 21/11/2018, nos termos do Requerimento nº 496, de 2018, de urgência.
+      Matéria não apreciada na sessão de 21/11/2018, transferida para a sessão deliberativa de 22/11/2018.
+      Matéria não apreciada na sessão de 22/11/2018, transferida para a sessão deliberativa de 27/11/2018.",SLSF,78,INCLUÍDA EM ORDEM DO DIA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-20T00:00:00Z,8,"Recebida, na Secretaria-Geral da Mesa, a Emenda nº 15-PLEN, da Senadora Lídice da Mata.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-20T00:00:00Z,7,"Recebida, na Secretaria-Geral da Mesa, a Emenda nº 14-PLEN, do Senador Ricardo Ferraço.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-20T00:00:00Z,6,"Recebida, na Secretaria-Geral da Mesa, a Emenda nº 13-PLEN, em substituição a Emenda nº 9-PLEN, do Senador Aécio Neves.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-20T00:00:00Z,5,"Recebidas, na Secretaria-Geral da Mesa, as Emendas nºs 10 a 12-PLEN, do Senador Wellington Fagundes.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-20T00:00:00Z,4,"Recebida, na Secretaria-Geral da Mesa, a Emenda nº 9-PLEN, em substituição a Emenda nº 1-PLEN, do Senador Aécio Neves.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-20T00:00:00Z,3,"Recebidas, na Secretaria-Geral da Mesa, as Emendas nºs 2 a 8-PLEN, do Senador Lindbergh Farias.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-20T00:00:00Z,2,"Recebida, na Secretaria-Geral da Mesa, a Emenda nº 1-PLEN, do Senador Aécio Neves.",SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-20T00:00:00Z,1,"Incluído em Ordem do Dia da sessão deliberativa de 20/11/2018, nos termos do Requerimento nº 496, de 2018.",PLEN,78,INCLUÍDA EM ORDEM DO DIA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-07T00:00:00Z,1,"Aprovado o Requerimento nº 496, de 2018.",PLEN,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-11-06T00:00:00Z,1,"Incluído em ordem do dia da sessão deliberativa de 6/11/2018.
+      Votação, em turno único, do Requerimento nº 496, de 2018, de urgência.",PLEN,78,INCLUÍDA EM ORDEM DO DIA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-10-30T00:00:00Z,2,"Encaminhado à publicação o Requerimento nº 496, de 2018, das Lideranças, que solicita, nos termos dos arts. 336, II, e 338, II, do RISF, urgência para o presente projeto.",SEADI,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-10-30T00:00:00Z,1,Encaminhado ao Plenário.,SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-09-11T00:00:00Z,1,"Aguardando inclusão em Ordem do Dia do Requerimento n° 425, de 2018, de audiência da CDR, da Senadora Fátima Bezerra",PLEN,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,,Senado Federal,Senado Federal,133943
+133943,senado,2018-09-10T00:00:00Z,2,"Juntados aos autos do processo o original de manifestação do Ofício Circular nº 0097/2018, do Conselho Federal de Economia - COFECON, e a cópia da carta-resposta encaminhada pelo Secretário-Geral da Mesa, Luiz Fernando Bandeira de Mello. (fls. 40/44)",ATRSGM,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-09-10T00:00:00Z,1,Encaminhado à Assessoria Técnica para juntada de manifestação externa.,SLSF,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-08-08T00:00:00Z,1,"Aguardando inclusão em Ordem do Dia do Requerimento n° 425, de 2018, de audiência da CDR, da Senadora Fátima Bezerra.",PLEN,95,AGUARDANDO INCLUSÃO ORDEM DO DIA DE REQUERIMENTO,,Senado Federal,Senado Federal,133943
+133943,senado,2018-08-07T00:00:00Z,1,"A Presidência comunica ao Plenário que deixa de dar seguimento a requerimento de urgência, lido em sessão anterior, por ter sido constatado que o referido documento não possui número suficiente de assinaturas.
+      Encaminhado à publicação o Requerimento nº 425, de 2018, de autoria da Senadora Fátima Bezerra, solicitando que sobre o projeto seja ouvida, também, a CDR.",PLEN,NA,NA,,Senado Federal,Senado Federal,133943
+133943,senado,2018-07-11T00:00:00Z,2,"Encaminhado à publicação.
+      Às CCJ, CAE e CI.",SEADI,147,MATÉRIA LIDA EM PLENÁRIO.,,Senado Federal,Senado Federal,133943
+133943,senado,2018-07-11T00:00:00Z,1,"Este processado contém 36 (trinta e seis) páginas numeradas. 
+      
+      Aguardando leitura.",SLSF,13,AGUARDANDO LEITURA,,Senado Federal,Senado Federal,133943

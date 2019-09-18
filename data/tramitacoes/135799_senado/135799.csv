@@ -1,0 +1,17 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,origem_tramitacao_local_nome_casa_local,destino_tramitacao_local_nome_casa_local,id_principal
+135799,senado,2019-04-23T00:00:00Z,3,"Encaminhado à publicação e deferido o Requerimento nº 325/2019, de autoria do Senador Marcio Bittar, solicitando a retirada, em caráter definitivo, do presente projeto.
+      Ao Arquivo.
+      (Este processado contém oito folhas numeradas)",PLEN,60,RETIRADA PELO AUTOR,,Senado Federal,Senado Federal,135799
+135799,senado,2019-04-23T00:00:00Z,2,"Aguardando leitura de Requerimento, do Senador Marcio Bittar, que solicita retirada da matéria.",PLEN,118,AGUARDANDO LEITURA DE REQUERIMENTO,,Senado Federal,Senado Federal,135799
+135799,senado,2019-04-23T00:00:00Z,1,"Encaminhado à Secretaria-Geral da Mesa para atender a solicitação constante do OF. SF/174/2019, da Presidência do Senado Federal, referente a requerimento do autor, Senador Marcio Bittar, para retirada definitiva da matéria (fls. 6 e 7). 
+      À SLSF.",CCJ,NA,NA,,Senado Federal,Senado Federal,135799
+135799,senado,2019-04-03T00:00:00Z,1,"Distribuído ao Senador Fabiano Contarato, para emitir relatório.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,135799
+135799,senado,2019-03-28T00:00:00Z,1,"Não foram oferecidas emendas no prazo regimental.
+      Matéria aguardando distribuição.",CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,135799
+135799,senado,2019-03-21T00:00:00Z,1,Matéria sobre a Mesa desta Comissão aguardando recebimento de emendas.,CCJ,20,AGUARDANDO RECEBIMENTO DE EMENDAS,,Senado Federal,Senado Federal,135799
+135799,senado,2019-03-19T00:00:00Z,4,Matéria sobre a Mesa desta Comissão aguardando abertura de prazo para apresentação de emendas e posterior distribuição.,CCJ,NA,NA,,Senado Federal,Senado Federal,135799
+135799,senado,2019-03-19T00:00:00Z,3,"Encaminhado à publicação.
+      Às CCJ e CMA, cabendo à última a decisão terminativa.",PLEN,20,AGUARDANDO RECEBIMENTO DE EMENDAS,,Senado Federal,Senado Federal,135799
+135799,senado,2019-03-19T00:00:00Z,2,"Prazo: Apresentação de Emendas a projeto terminativo em Comissão (Art. 122, II, ""c"", do RISF). De 21/03/2019 a 27/03/2019. Perante a CCJ.",PLEN,NA,NA,,Senado Federal,Senado Federal,135799
+135799,senado,2019-03-19T00:00:00Z,1,"Leitura da matéria na sessão do SF nº28, em 19/03/2019.
+      (Este processado contém cinco folhas numeradas)",PLEN,NA,NA,,Senado Federal,Senado Federal,135799

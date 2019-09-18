@@ -1,0 +1,84 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,origem_tramitacao_local_nome_casa_local,destino_tramitacao_local_nome_casa_local,id_principal
+96813,senado,2018-10-25T00:00:00Z,1,Á COARQ.,SEXPE,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2014-08-01T00:00:00Z,1,"A partir de 1º de agosto de 2014 os boletins de ação legislativa não mais serão impressos, nos termos da Instrução Normativa nº 1, de 2014, do Secretário-Geral da Mesa. As consultas sobre a tramitação da matéria devem ser realizadas diretamente no sistema eletrônico próprio.",SEXPE,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2013-12-18T00:00:00Z,1,"Remessa Ofício SF nº 2.781 de 17/12/13, ao Primeiro-Secretário da Câmara dos Deputados encaminhando o projeto para revisão, nos termos do art. 65 da Constituição Federal (fls. 23 a 24).
+      ************* Retificado em 15/10/2018*************
+      Onde se lê ""fls.23 a 24""
+      Leia-se ""fl. 24 e 25""",SEXPE,52,REMETIDA À CÂMARA DOS DEPUTADOS,,Senado Federal,Senado Federal,96813
+96813,senado,2013-12-16T00:00:00Z,1,"Anexado o texto revisado (fls.22).
+      ************* Retificado em 15/10/2018*************
+      Onde se lê ""fls.22""
+      Leia-se ""fl. 23""",SEXPE,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2013-12-13T00:00:00Z,3,Recebido neste órgão às 17:46 hs.,SEXPE,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2013-12-13T00:00:00Z,2,"A Presidência comunica que encerrou-se ontem o prazo previsto no art. 91, §§ 3º ao 5º, do RISF, sem que tenha sido interposto recurso no sentido da apreciação pelo Plenário da presente matéria.
+      Tendo sido aprovada terminativamente pelas Comissões competentes, a matéria vai à Câmara dos Deputados.",ATA-PLEN,25,APROVADA,,Senado Federal,Senado Federal,96813
+96813,senado,2013-12-13T00:00:00Z,1,Encaminhado ao Plenário para comunicação do término do prazo para interposição de recurso.,SSCLSF,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2013-12-12T00:00:00Z,1,Juntados quadro comparativo (fl. 20) e texto final revisado (fl. 21).,SSCLSF,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2013-12-05T00:00:00Z,1,Prazo para interposição de recurso: 06/12/2013 a 12/12/2013.,SSCLSF,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2013-12-04T00:00:00Z,1,"Leitura dos seguintes Pareceres:
+      - nº 1.390, de 2013-CCT, relator Senador Valdir Raupp, pela aprovação da matéria; e
+      - nº 1.391, de 2013-CCJ, relator Senador Sérgio Petecão, pela aprovação da matéria.
+      Anunciado o recebimento do Ofício nº 412/2013, do Presidente da CCJ, comunicando a aprovação, em caráter terminativo, da presente matéria.
+      Fica aberto o prazo de cinco dias úteis para interposição de recurso, por um décimo da composição da Casa, para que a matéria seja apreciada pelo Plenário, nos termos do art. 91, §§ 3º a 5º, do Regimento Interno.
+      À SGCLSF.",ATA-PLEN,12,AGUARDANDO INTERPOSIÇÃO DE RECURSO,,Senado Federal,Senado Federal,96813
+96813,senado,2013-11-27T00:00:00Z,3,"Aguardando leitura de Pareceres da CCT e CCJ. 
+      
+      Juntada, às fls. 17 e 18, legislação citada nos pareceres.",SSCLSF,14,AGUARDANDO LEITURA PARECER (ES),,Senado Federal,Senado Federal,96813
+96813,senado,2013-11-27T00:00:00Z,2,"Recebido neste Órgão, às 19h.",SSCLSF,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2013-11-27T00:00:00Z,1,"Na 71ª Reunião Ordinária, realizada nesta data, a Comissão aprova o Projeto, relatado pelo Senador Sérgio Petecão.
+      
+      Anexei o Ofício nº 412/2013- PRESIDÊNCIA/CCJ, que comunica a decisão da Comissão em caráter terminativo, para ciência do Plenário e publicação no Diário do Senado Federal, art. 91, § 2º c/c art. 92 do RISF.
+      
+      À SSCLSF.
+      ",CCJ,146,APRECIADA EM DECISÃO TERMINATIVA PELAS COMISSÕES,,Senado Federal,Senado Federal,96813
+96813,senado,2013-11-25T00:00:00Z,1,"Matéria incluída na Pauta da Comissão.
+      ",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,96813
+96813,senado,2013-08-13T00:00:00Z,1,"Recebido às 14h15 relatório do Senador Sérgio Petecão, com voto pela constitucionalidade, juridicidade, regimentalidade e, quanto ao mérito, pela aprovação do Projeto.
+      
+      Matéria pronta para a Pauta na Comissão.",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,96813
+96813,senado,2013-08-08T00:00:00Z,1,"Distribuído ao Senador Sérgio Petecão, para emitir relatório.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,96813
+96813,senado,2013-07-09T00:00:00Z,1,"Devolvido, às 14 horas e 45 minutos, pelo Senador Antonio Carlos Rodrigues.
+      Matéria aguardando redistribuição.",CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,96813
+96813,senado,2013-07-04T00:00:00Z,1,"Redistribuído ao Senador Antonio Carlos Rodrigues, para emitir relatório.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,96813
+96813,senado,2013-04-09T00:00:00Z,1,"Devolvido às 17h50 pelo Senador Alfredo Nascimento, para redistribuição.",CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,96813
+96813,senado,2013-04-08T00:00:00Z,1,"Distribuído ao Senador Alfredo Nascimento, para emitir relatório.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,96813
+96813,senado,2012-06-13T00:00:00Z,2,"Recebido nesta Comissão às 16 horas e 21 minutos. 
+      Matéria aguardando distribuição.",CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,96813
+96813,senado,2012-06-13T00:00:00Z,1,"A Comissão, reunida nesta data, aprova o parecer favorável, de autoria do Senador Valdir Raupp.
+      À CCJ.",CCT,89,APROVADO PARECER NA COMISSÃO,,Senado Federal,Senado Federal,96813
+96813,senado,2012-06-11T00:00:00Z,1,"Matéria incluída na Pauta da Comissão, na reunião do dia 13/06/2012.",CCT,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,96813
+96813,senado,2012-04-26T00:00:00Z,1,"Devolvido pelo relator, Senador Valdir Raupp, com relatório favorável, estando em condições de ser incluído em pauta.",CCT,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,96813
+96813,senado,2011-03-23T00:00:00Z,1,"Distribuído ao Senador Valdir Raupp, para relatar.",CCT,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,96813
+96813,senado,2011-01-06T00:00:00Z,1,"Recebido nesta Comissão nesta data.
+      Aguardando distribuição.
+      ",CCT,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,96813
+96813,senado,2011-01-05T00:00:00Z,2,"A presente proposição continua a tramitar, nos termos dos incisos do art. 332 do Regimento Interno e do Ato nº 4, de 2010, da Mesa do Senado Federal.
+      
+      A matéria volta à CCT.",CCT,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2011-01-05T00:00:00Z,1,"A presente proposição continua a tramitar, nos termos dos incisos do art. 332 do Regimento Interno e do Ato nº 4, de 2010, da Mesa do Senado Federal.
+      
+      A matéria volta à CCT.",SSCLSF,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2010-12-21T00:00:00Z,1,"À SCLSF, em cumprimento ao disposto no art. 332 do Regimento Interno do Senado Federal.",CCT,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2010-12-14T00:00:00Z,1,"Devolvido pelo Senador Alfredo Nascimento, para redistribuição.",CCT,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,96813
+96813,senado,2010-05-20T00:00:00Z,1,"Distribuído ao Senador Alfredo Nascimento, para relatar.",CCT,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,96813
+96813,senado,2010-05-19T00:00:00Z,1,"Não foram oferecidas emendas no prazo regimental. 
+      Aguardando distribuição.",CCT,20,AGUARDANDO RECEBIMENTO DE EMENDAS,,Senado Federal,Senado Federal,96813
+96813,senado,2010-05-13T00:00:00Z,5,Prazo para recebimento de emendas - Primeiro dia: 13.05.2010; 19.05.2010.,CCT,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2010-05-13T00:00:00Z,4,"Recebido nesta Comissão em 13/05/2010.
+      Aguardando recebimento de emendas.
+      
+      ",CCT,20,AGUARDANDO RECEBIMENTO DE EMENDAS,,Senado Federal,Senado Federal,96813
+96813,senado,2010-05-13T00:00:00Z,3,Devolvido à CCT.,SSCLSF,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2010-05-13T00:00:00Z,2,Recebido neste órgão nesta data.,SSCLSF,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2010-05-13T00:00:00Z,1,"Encaminhado à SSCLSF, atendendo solicitação.",CCT,NA,NA,,Senado Federal,Senado Federal,96813
+96813,senado,2010-05-12T00:00:00Z,1,"Recebido nesta Comissão em 12/05/2010.
+      Aguardando recebimento de emendas.
+      
+      ",CCT,20,AGUARDANDO RECEBIMENTO DE EMENDAS,,Senado Federal,Senado Federal,96813
+96813,senado,2010-05-11T00:00:00Z,2,"Leitura.
+      Às Comissões de Ciência, Tecnologia; e de Constituição, Justiça e Cidadania, cabendo à última a decisão terminativa.
+      A matéria poderá receber emendas por um período de cinco dias úteis, perante a primeira Comissão, após sua publicação e distribuição em avulsos.
+      À CCT.
+      
+      ",ATA-PLEN,20,AGUARDANDO RECEBIMENTO DE EMENDAS,,Senado Federal,Senado Federal,96813
+96813,senado,2010-05-11T00:00:00Z,1,Este processo contém 03 (três)  folhas numeradas e rubricadas.,PLEG,NA,NA,,Senado Federal,Senado Federal,96813

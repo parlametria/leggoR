@@ -1,0 +1,35 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,origem_tramitacao_local_nome_casa_local,destino_tramitacao_local_nome_casa_local,id_principal
+135505,senado,2019-05-13T00:00:00Z,2,"Juntados aos autos do processo o original de manifestação do Ofício nº 72/2019, da Câmara Municipal de Gaspar - SC, e a cópia da carta-resposta encaminhada pelo Secretário-Geral da Mesa, Luiz Fernando Bandeira de Mello. (fls. 25/27)",ATRSGM,NA,NA,,Senado Federal,Senado Federal,135505
+135505,senado,2019-05-13T00:00:00Z,1,Encaminhado por solicitação.,COARQ,NA,NA,,Senado Federal,Senado Federal,135505
+135505,senado,2019-05-06T00:00:00Z,2,"Encerrou-se em 3 de maio o prazo para interposição de recurso no sentido da apreciação pelo Plenário.
+      Não houve interposição de recurso.
+      Tendo sido rejeitado terminativamente pela CCJ, o projeto vai ao Arquivo.
+      (Este processado contém vinte e três folhas numeradas)",PLEN,49,REJEITADA,,Senado Federal,Senado Federal,135505
+135505,senado,2019-05-06T00:00:00Z,1,Encaminhado ao Plenário para comunicação do término do prazo para apresentação de recurso.,PLEN,NA,NA,,Senado Federal,Senado Federal,135505
+135505,senado,2019-05-03T00:00:00Z,1,PL rejeitado.,PLEN,NA,NA,,Senado Federal,Senado Federal,135505
+135505,senado,2019-04-29T00:00:00Z,1,À CORELE.,PLEN,NA,NA,,Senado Federal,Senado Federal,135505
+135505,senado,2019-04-24T00:00:00Z,5,"Recebido o Ofício nº 23, de 2019, da CCJ, comunicando a apreciação da matéria, em caráter terminativo.
+      Concluída a instrução da matéria, fica aberto o prazo de cinco dias úteis para interposição de recurso, por um décimo dos membros da Casa, para que a matéria seja apreciada pelo Plenário.",PLEN,12,AGUARDANDO INTERPOSIÇÃO DE RECURSO,,Senado Federal,Senado Federal,135505
+135505,senado,2019-04-24T00:00:00Z,4,"Prazo: Interposição de Recurso a decisão terminativa de Comissão (Art. 91, §§ 3º ao 5º, do RISF). De 26/04/2019 a 03/05/2019. Perante a Mesa.",PLEN,NA,NA,,Senado Federal,Senado Federal,135505
+135505,senado,2019-04-24T00:00:00Z,3,"Encaminhado ao Plenário para comunicação da conclusão da instrução da matéria e abertura de prazo para recurso, nos termos do art. 91, §§ 3º a 5º, do Regimento Interno.",PLEN,14,AGUARDANDO LEITURA PARECER (ES),,Senado Federal,Senado Federal,135505
+135505,senado,2019-04-24T00:00:00Z,2,"Encerrada a relatoria do Senador Fabiano Contarato por deliberação da matéria.
+      À SLSF, para prosseguimento da tramitação.",CCJ,NA,NA,,Senado Federal,Senado Federal,135505
+135505,senado,2019-04-24T00:00:00Z,1,"Na 11ª Reunião Ordinária, realizada nesta data, a Comissão rejeita o Projeto relatado pelo Senador Fabiano Contarato, restando prejudicada a Emenda n° 1.
+      
+      Anexei o Ofício nº 023/2019- PRESIDÊNCIA/CCJ, que comunica a decisão da Comissão em caráter terminativo, para ciência do Plenário e publicação no Diário do Senado Federal, art. 91, § 2º c/c art. 92 do RISF (fl. 20).",CCJ,146,APRECIADA EM DECISÃO TERMINATIVA PELAS COMISSÕES,,Senado Federal,Senado Federal,135505
+135505,senado,2019-04-03T00:00:00Z,1,"Na 8ª Reunião Ordinária, realizada nesta data, o Senador Fabiano Contarato faz a leitura do relatório e a Presidência adia a discussão da matéria.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,135505
+135505,senado,2019-03-29T00:00:00Z,1,Matéria incluída na Pauta da Comissão.,CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,135505
+135505,senado,2019-03-28T00:00:00Z,1,"Recebido, às 16h52, complementação de voto do Senador Fabiano Contarato pela rejeição da Emenda nº 1 (Substitutivo).
+      Matéria pronta para a Pauta na Comissão.",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,135505
+135505,senado,2019-03-14T00:00:00Z,2,"Recebido, às 17h14, relatório do Senador Fabiano Contarato com voto pela rejeição do Projeto.",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,135505
+135505,senado,2019-03-14T00:00:00Z,1,"Juntei às 16hs e 21 min a Emenda nº 1 (Substitutivo), de iniciativa do Senador Angelo Coronel.
+      Encaminhada ao Relator, Senador Fabiano Contarato, para análise da Emenda.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,135505
+135505,senado,2019-03-13T00:00:00Z,1,Não foram oferecidas emendas no prazo regimental.,CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,135505
+135505,senado,2019-03-01T00:00:00Z,1,"Distribuído ao Senador Fabiano Contarato, para emitir relatório.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,135505
+135505,senado,2019-02-28T00:00:00Z,2,Matéria sobre a Mesa desta Comissão aguardando recebimento de emendas.,CCJ,20,AGUARDANDO RECEBIMENTO DE EMENDAS,,Senado Federal,Senado Federal,135505
+135505,senado,2019-02-28T00:00:00Z,1,Matéria sobre a Mesa desta Comissão aguardando abertura de prazo para apresentação de emendas e posterior distribuição.,CCJ,NA,NA,,Senado Federal,Senado Federal,135505
+135505,senado,2019-02-27T00:00:00Z,3,"Encaminhado à publicação.
+      À CCJ, em decisão terminativa.",PLEN,20,AGUARDANDO RECEBIMENTO DE EMENDAS,,Senado Federal,Senado Federal,135505
+135505,senado,2019-02-27T00:00:00Z,2,"Prazo: Apresentação de Emendas a projeto terminativo em Comissão (Art. 122, II, ""c"", do RISF). De 01/03/2019 a 12/03/2019. Perante a CCJ.",PLEN,NA,NA,,Senado Federal,Senado Federal,135505
+135505,senado,2019-02-27T00:00:00Z,1,"Leitura da matéria na sessão do SF nº16, em 27/02/2019.
+      (Este processado contém 2 (duas) folhas numeradas)",PLEN,NA,NA,,Senado Federal,Senado Federal,135505

@@ -1,0 +1,112 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,origem_tramitacao_local_nome_casa_local,destino_tramitacao_local_nome_casa_local,id_principal
+111048,senado,2019-06-26T00:00:00Z,2,"(PR) PRESIDÊNCIA DA REPÚBLICA.
+      SANCIONADA. LEI 13.848 DE 2019. (vetada parcialmente: vide MSG 266 de 2019 pág. 15 e 16).
+      DOU (Diário Oficial da União) - 26/06/2019 - Seção I - págs. 1 e 6.
+      Sancionada em 25/06/2019.
+      
+      À COARQ.",SEXPE,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2019-06-26T00:00:00Z,1,Encaminhado por solicitação.,COARQ,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2019-04-04T00:00:00Z,2,Encaminhado ao Arquivo.,PLEN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2019-04-04T00:00:00Z,1,Encaminhado por solicitação.,COARQ,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2018-11-13T00:00:00Z,1,À COARQ.,SEXPE,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-12-06T00:00:00Z,1,"Remetido Ofício SF nº 1.371, de 06/12/2016, ao Senhor Primeiro-Secretário da Câmara dos Deputados encaminhando autógrafos do projeto para revisão, nos termos do art. 65 da Constituição Federal. (fls. 633 a 656).",SEXPE,52,REMETIDA À CÂMARA DOS DEPUTADOS,,Senado Federal,Senado Federal,111048
+111048,senado,2016-12-05T00:00:00Z,1,Anexado o texto revisado (fls. 610 a 632).,SEXPE,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-12-02T00:00:00Z,2,"Anunciado o término, no dia 30 de novembro de 2016, do prazo previsto no art. 91, §§ 3º ao 5º, do Regimento Interno, sem que tenha sido interposto recurso no sentido da apreciação da matéria pelo Plenário.
+      Tendo sido aprovada terminativamente pela Comissão competente, a matéria vai à Câmara dos Deputados.",PLEN,25,APROVADA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-12-02T00:00:00Z,1,Encaminhado ao Plenário.,PLEN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-12-01T00:00:00Z,1,Juntado texto final revisado (fls. 587 a 608).,SGM,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-11-25T00:00:00Z,1,À Corele.,PLEN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-11-24T00:00:00Z,1,"Prazo: Interposição de recurso perante a Mesa (Art. 91, §§ 3º ao 5º, do RISF)
+      
+      De 24/11/2016 a 30/11/2016",PLEN,12,AGUARDANDO INTERPOSIÇÃO DE RECURSO,,Senado Federal,Senado Federal,111048
+111048,senado,2016-11-23T00:00:00Z,3,"Encaminhados à publicação os seguintes pareceres:
+      - Parecer nº 907, de 2016-CCJ, relator Senador Walter Pinheiro, favorável nos termos do Substitutivo que apresenta - Emenda nº 1-CCJ; e
+      - Parecer nº 908, de 2016-CEDN, relatora Senadora Simone Tebet, favorável ao projeto nos termos do Substitutivo que apresenta. (Consolidado no Texto Final)
+      Encaminhado à publicação o Memo. nº 3/2016, do Presidente da CEDN, comunicando a aprovação, em caráter terminativo, do Substitutivo (Emenda nº 10-CEDN) com a Emenda nº 14-CEDN, apresentada em turno suplementar. 
+      Abertura do prazo de cinco dias úteis para interposição de recurso, por um décimo da composição da Casa, para que a matéria seja apreciada pelo Plenário, nos termos do art. 91, §§ 3º a 5º, do Regimento Interno.",PLEN,12,AGUARDANDO INTERPOSIÇÃO DE RECURSO,,Senado Federal,Senado Federal,111048
+111048,senado,2016-11-23T00:00:00Z,2,Aguardando leitura de pareceres da CCJ e da CEDN.,PLEN,14,AGUARDANDO LEITURA PARECER (ES),,Senado Federal,Senado Federal,111048
+111048,senado,2016-11-23T00:00:00Z,1,"Nesta data, ocorreu a 9ª reunião da Comissão Especial do Desenvolvimento Nacional, oportunidade em que foram aprovados, em turno suplementar e em caráter terminativo, o Substitutivo ao Projeto e a Emenda nº 14.
+      Juntados:
+      1. Lista de presença da 9ª reunião da Comissão Especial do Desenvolvimento Nacional (fls. 561);
+      2. Listas de votação nominal do Substitutivo (fls.562/564);
+      3. Texto final do Substitutivo ao Projeto (fls. 565/585);
+      4. Memorando nº 3/2016 - CEDN, que comunica a aprovação do Projeto em caráter terminativo (fls. 586);
+      - Encaminhado à SLSF.",CEDN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-11-21T00:00:00Z,1,Juntada manifestação da Associação da Indústria Farmacêutica de Pesquisa. (fls. 558/560),CEDN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-11-16T00:00:00Z,1,"Substitutivo à matéria constante da Pauta da 9ª Reunião da Comissão Especial do Desenvolvimento Nacional, agendada para o dia 23/11/2016.",CEDN,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2016-11-10T00:00:00Z,1,Matéria não apreciada na 8ª reunião em virtude da falta de quórum.,CEDN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-11-09T00:00:00Z,1,"Juntados: Emenda n°16/2016 CEDN e Requerimentos de destaque n° 1, 2 e 3 /2016-CEDN, de autoria do Senador Lindbergh Farias ao turno suplementar. (fls. 551/557)",CEDN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-11-07T00:00:00Z,1,"Substitutivo à matéria constante da Pauta da 8ª Reunião da Comissão Especial do Desenvolvimento Nacional, agendada para o dia 09/11/2016.",CEDN,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2016-10-19T00:00:00Z,1,Matéria não apreciada nesta data em virtude do cancelamento da reunião da Comissão Especial do Desenvolvimento Nacional.,CEDN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-10-18T00:00:00Z,1,"Juntado Relatório de autoria da Senadora Simone Tebet, referente às emendas apresentadas em turno suplementar. (fls. 547/550)",CEDN,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2016-10-17T00:00:00Z,1,"Substitutivo à matéria constante da Pauta da 8ª Reunião da Comissão Especial do Desenvolvimento Nacional, agendada para o dia 19/10/2016.",CEDN,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2016-10-06T00:00:00Z,1,Relatoria com a Sen. Simone Tebet,CEDN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-10-05T00:00:00Z,3,"Juntadas emendas do Senador Lindbergh Farias ao turno suplementar nºs 11/S, 12/S, 13/S, 14/S e 15/S (fls. 542 a 546)",CEDN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-10-05T00:00:00Z,2,"Substitutivo à matéria constante da Pauta da 7ª Reunião da Comissão Especial do Desenvolvimento Nacional, agendada para o dia 05/10/2016.",CEDN,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2016-10-05T00:00:00Z,1,"Matéria constante da Pauta da 7ª Reunião da Comissão Especial do Desenvolvimento Nacional, agendada para o dia 05/10/2016.",CEDN,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2016-08-17T00:00:00Z,6,"Encaminhado á publicação o Memorando nº 002/2016-CEDN, da Presidência da Comissão Especial do Desenvolvimento Nacional, comunicando que a referida Comissão deliberou, em caráter terminativo, pela aprovação de Substitutivo à matéria.
+      Abertura do prazo, até o encerramento da discussão, em turno suplementar, perante a CEDN, para oferecimento de emendas ao Substitutivo.",SEADI,20,AGUARDANDO RECEBIMENTO DE EMENDAS,,Senado Federal,Senado Federal,111048
+111048,senado,2016-08-17T00:00:00Z,5,Encaminhado ao Plenário.,SLSF,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-08-17T00:00:00Z,4,À SLSF.,CEDN,121,AGUARDANDO TURNO SUPLEMENTAR EM APRECIAÇÃO TERMINATIVA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-08-17T00:00:00Z,3,"Na presente data, ocorreu a 3ª reunião da Comissão Especial do Desenvolvimento Nacional, oportunidade em que foi aprovado o relatório da Sen. Simone Tebet, pela aprovação do Projeto, nos termos do Substitutivo que apresenta. A matéria será incluída na pauta da próxima reunião, para apreciação em turno suplementar.
+      Juntados:
+      1.	Lista de presença da 3ª reunião da Comissão Especial do Desenvolvimento Nacional (fls. 487 e 488);
+      2.	Relatório da Sen. Simone Tebet, aprovado na Comissão Especial do Desenvolvimento Nacional (fls. 489 a 538);
+      3.	Lista de votação nominal do Substitutivo aprovado (fls. 539);
+      4.	Memorando nº 2/2016 – CEDN, que comunica a aprovação do substitutivo na Comissão Especial do Desenvolvimento Nacional (fls. 540).",CEDN,121,AGUARDANDO TURNO SUPLEMENTAR EM APRECIAÇÃO TERMINATIVA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-08-17T00:00:00Z,2,"Juntada, nesta data, a Emenda nº 9, de autoria da Sen. Gleisi Hoffmann (fls. 485 e 486).",CEDN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-08-17T00:00:00Z,1,"Juntada, nesta data, a Emenda nº 8, de autoria do Sen. Roberto Muniz (fls. 481 e 482).",CEDN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-08-16T00:00:00Z,3,"Juntadas, nesta data, as Emendas nºs 6 e 7, de autoria do Sen. Roberto Muniz (fls. 476 a 480).",CEDN,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2016-08-16T00:00:00Z,2,"Matéria constante da Pauta da 3ª Reunião da Comissão Especial do Desenvolvimento Nacional, agendada para o dia 17/08/2016.",CEDN,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2016-08-16T00:00:00Z,1,Juntado Relatório de autoria da Senadora Simone Tebet. (fls.428/475),CEDN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-08-15T00:00:00Z,1,"Matéria constante da Pauta da 3ª Reunião da Comissão Especial do Desenvolvimento Nacional, agendada para o dia 17/08/2016.",CEDN,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2016-07-13T00:00:00Z,3,"Na presente data, foi realizada a 2ª reunião da Comissão, oportunidade em que foi concedida vista coletiva ao PLS 52/2013.",CEDN,90,PEDIDO DE VISTA CONCEDIDO,,Senado Federal,Senado Federal,111048
+111048,senado,2016-07-13T00:00:00Z,2,"Matéria constante da Pauta da 2ª Reunião da Comissão Especial do Desenvolvimento Nacional, agendada para o dia 13/07/2016.",CEDN,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2016-07-13T00:00:00Z,1,"Juntados:
+      - 04 emendas do Senador Roberto Muniz; (fls. 370/383)
+      - Relatório da Senadora Simone Tebet. (fls. 384/427)",CEDN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2016-06-01T00:00:00Z,1,Juntado Relatório do Senador Walter Pinheiro. (fls. 282/369),CEDN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2015-10-06T00:00:00Z,1,Matéria com o Relator.,CEDN,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,111048
+111048,senado,2015-09-30T00:00:00Z,5,"À Comissão Especial do Desenvolvimento Nacional, em decisão terminativa, em atenção ao Ofício nº 1, de 2015, do presidente daquela comissão.",ATA-PLEN,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2015-09-30T00:00:00Z,4,Encaminhado ao Plenário.,SSCLSF,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2015-09-30T00:00:00Z,3,"Encaminhado à Secretaria-Geral da Mesa para atender a solicitação constante do Of. nº 1316/2015-SF, da Presidência do Senado Federal, referente ao Ofício nº 001/2015-CDEN, formulado pelo Senador Otto Alencar, para o envio da matéria à Comissão do Desenvolvimento Nacional (fls. 279 e 280).
+      À SCLSF.
+      ",CCJ,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2015-09-30T00:00:00Z,2,"Na 28ª Reunião Ordinária, realizada nesta data, a Comissão aprova o Relatório do Senador Walter Pinheiro, que passa a constituir o Parecer da CCJ, favorável ao Projeto, nos termos da Emenda nº 1-CCJ (Substitutivo).
+      ",CCJ,89,APROVADO PARECER NA COMISSÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2015-09-30T00:00:00Z,1,"Recebido, às 8h31min, o Relatório reformulado pelo Senador Walter Pinheiro, com voto pela constitucionalidade, juridicidade e boa técnica legislativa e, quanto ao mérito, favorável ao Projeto, nos termos do Substitutivo que apresenta.
+      
+      Matéria incluída na Pauta na Comissão.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2015-09-28T00:00:00Z,1,"Matéria constante da Pauta da 28ª Reunião da Comissão de Constituição, Justiça e Cidadania, agendada para o dia 30/09/2015.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2015-09-18T00:00:00Z,1,"Matéria constante da Pauta da 28ª Reunião da Comissão de Constituição, Justiça e Cidadania, agendada para o dia 23/09/2015.",CCJ,138,INCLUÍDA NA PAUTA DA REUNIÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2015-09-03T00:00:00Z,1,"Recebido, às 13h50min, o Relatório do Senador Walter Pinheiro, com voto pela constitucionalidade, juridicidade e boa técnica legislativa e, quanto ao mérito, favorável ao Projeto, nos termos do Substitutivo que apresenta.
+      Matéria pronta para a Pauta na Comissão.
+      ",CCJ,42,PRONTA PARA A PAUTA NA COMISSÃO,,Senado Federal,Senado Federal,111048
+111048,senado,2015-09-01T00:00:00Z,1,"Matéria encaminhada ao gabinete do Relator, Senador Walter Pinheiro, para relatar.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,111048
+111048,senado,2015-08-31T00:00:00Z,1,"Em atendimento à conclusão do Parecer da CMA ao Aviso nº 14, de 2015, foram juntadas às fls. 82 a 108, cópia do referido Parecer, bem como  do Acórdão n° 240/2015-TCU-Plenário, assim como do Relatório e do Voto que o acompanham.
+      
+      A matéria retorna à CCJ.",SSCLSF,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2015-08-28T00:00:00Z,1,"Devolvido pelo Senador Walter Pinheiro, a fim de a matéria ser encaminhada à Secretaria-Geral da Mesa, para juntada de cópia do Parecer aprovado na Comissão de Meio Ambiente, Defesa do Consumidor e Fiscalização e Controle sobre o Aviso n° 14, de 2015, e do Acórdão n° 240/2015-TCU-Plenário, assim como do Relatório e do Voto que o acompanham.
+      
+      À SCLSF.",CCJ,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2015-04-08T00:00:00Z,1,"Distribuído ao Senador Walter Pinheiro, para emitir relatório.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,111048
+111048,senado,2015-03-10T00:00:00Z,1,Matéria aguardando distribuição.,CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,111048
+111048,senado,2014-12-15T00:00:00Z,1,"Devolvido pelo Senador Walter Pinheiro, em atendimento ao art. 89, § 2º, do Regimento Interno do Senado Federal.
+      
+      A presente proposição continua a tramitar, nos termos dos incisos do art. 332 do Regimento Interno e do Ato da Mesa nº 2 de 2014.",CCJ,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2014-08-01T00:00:00Z,1,"A partir de 1º de agosto de 2014 os boletins de ação legislativa não mais serão impressos, nos termos da Instrução Normativa nº 1, de 2014, do Secretário-Geral da Mesa. As consultas sobre a tramitação da matéria devem ser realizadas diretamente no sistema eletrônico próprio.",CCJ,NA,NA,,Senado Federal,Senado Federal,111048
+111048,senado,2013-03-25T00:00:00Z,1,"Distribuído ao Senador Walter Pinheiro, para emitir relatório.",CCJ,91,MATÉRIA COM A RELATORIA,,Senado Federal,Senado Federal,111048
+111048,senado,2013-03-06T00:00:00Z,1,"Não foram oferecidas emendas no prazo regimental.
+      Matéria aguardando distribuição.
+      ",CCJ,87,AGUARDANDO DESIGNAÇÃO DO RELATOR,,Senado Federal,Senado Federal,111048
+111048,senado,2013-02-28T00:00:00Z,1,"Prazo para apresentação de emendas:
+      Primeiro dia: 28/02/2013.
+      Último dia: 06/03/2013.
+      ",CCJ,20,AGUARDANDO RECEBIMENTO DE EMENDAS,,Senado Federal,Senado Federal,111048
+111048,senado,2013-02-27T00:00:00Z,1,"Recebido na CCJ às 15 horas e 11 minutos.
+      Matéria sobre a Mesa desta Comissão aguardando abertura de prazo para apresentação de emendas e posterior distribuição.
+      ",CCJ,20,AGUARDANDO RECEBIMENTO DE EMENDAS,,Senado Federal,Senado Federal,111048
+111048,senado,2013-02-26T00:00:00Z,2,"Leitura.
+      Às Comissões de Constituição, Justiça e Cidadania; e de Meio Ambiente, Defesa do Consumidor e Fiscalização e Controle, cabendo à última a decisão terminativa.
+      O projeto poderá receber emendas perante a primeira comissão, pelo prazo de cinco dias úteis, após publicado e distribuído em avulsos.",ATA-PLEN,20,AGUARDANDO RECEBIMENTO DE EMENDAS,,Senado Federal,Senado Federal,111048
+111048,senado,2013-02-26T00:00:00Z,1,Este processo contém 81 (oitenta e uma)  folhas numeradas e rubricadas.,PLEG,NA,NA,,Senado Federal,Senado Federal,111048
