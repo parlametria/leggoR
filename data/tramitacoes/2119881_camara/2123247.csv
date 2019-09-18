@@ -1,0 +1,7 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2123247,camara,2017-02-09T17:06:00Z,1,"Apresentação do Requerimento de Audiência Pública n. 3/2017, pelos Deputados Pepe Vargas (PT-RS) e outros, que: ""Requerem a realização de audiência pública na Comissão Especial PEC 287/16 com os representantes do Poder Executivo"".",PEC28716,100,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1524273,2123247
+2123247,camara,2017-02-14T14:00:00Z,2,Aprovado,PEC28716,241,Arquivada,NA,2123247
+2123247,camara,2017-02-16T00:00:00Z,3,Realizada Audiência Pública em 16/02/2017.,PEC28716,1005,Arquivada,NA,2123247
+2123247,camara,2017-03-15T00:00:00Z,4,Realizada Audiência Pública em 15/03/2017.,PEC28716,1005,Arquivada,NA,2123247
+2123247,camara,2017-03-30T00:00:00Z,5,Realizada Audiência Pública em 30/03/2017.,PEC28716,1005,Arquivada,NA,2123247
+2123247,camara,2017-05-09T00:00:00Z,6,Arquivada,PEC28716,502,Arquivada,NA,2123247

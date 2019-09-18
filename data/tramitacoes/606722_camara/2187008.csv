@@ -1,0 +1,23 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2187008,camara,2018-11-21T00:00:00Z,3,Realizar o Encaminhamento para NAJUR(SGM),SEPRO,910,NA,NA,2187008
+2187008,camara,2018-11-21T00:00:00Z,6,Realizar o Encaminhamento para SECAP(SGM),NAJUR(SGM),910,NA,NA,2187008
+2187008,camara,2018-11-21T14:59:00Z,1,"Apresentação do Requerimento de Redistribuição n. 9274/2018, pelo Deputado Luiz Couto (PT-PB), que: ""Requer a exclusão da Comissão de Direitos Humanos e Minorias no despacho inicial aposto ao PL 7180/2014 por não se tratar de tema de sua competência"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1694006,2187008
+2187008,camara,2018-11-21T16:54:00Z,2,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/SEPRO) nº 6446/2018.,SEPRO,180,NA,NA,2187008
+2187008,camara,2018-11-21T19:54:00Z,4,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 6450/2018.,SEPRO,180,NA,NA,2187008
+2187008,camara,2018-11-21T20:13:00Z,5,Recebimento pelo NAJUR(SGM).,NAJUR(SGM),500,NA,NA,2187008
+2187008,camara,2018-11-21T20:55:00Z,7,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/NAJUR(SGM)) nº 1300/2018.,NAJUR(SGM),180,NA,NA,2187008
+2187008,camara,2018-11-22T10:56:00Z,8,Recebimento pela SECAP(SGM) -  - Paula Regina dos Santos.,SECAP(SGM),500,NA,NA,2187008
+2187008,camara,2018-11-22T11:21:00Z,9,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SECAP(SGM)) nº 1648/2018.,SECAP(SGM),180,NA,NA,2187008
+2187008,camara,2018-11-22T16:15:00Z,10,Recebimento pelo NAJUR(SGM) -  - Teresinha Passos Silva.,NAJUR(SGM),500,NA,NA,2187008
+2187008,camara,2018-11-27T00:00:00Z,11,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,2187008
+2187008,camara,2018-11-27T00:00:00Z,13,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1695463,2187008
+2187008,camara,2018-11-27T00:00:00Z,19,Publicação inicial no DCD do dia 28/11/2018,PLEN,605,NA,NA,2187008
+2187008,camara,2018-11-27T19:55:00Z,12,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 1305/2018.,NAJUR(SGM),180,NA,NA,2187008
+2187008,camara,2018-11-27T20:57:00Z,14,Despacho Chancelado,SGMGAB,180,Aguardando Recebimento,NA,2187008
+2187008,camara,2018-11-27T20:57:00Z,16,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2187008
+2187008,camara,2018-11-27T20:57:00Z,17,"Indefiro o Requerimento n. 9.274/2018, porque a matéria versada no Projeto de Lei n. 7.180/2014 se enquadra no campo temático da Comissão de Direitos Humanos e Minorias, delimitado no inciso VIII do art. 32 do Regimento Interno da Câmara dos Deputados - RICD. Publique-se. Oficie-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1695463,2187008
+2187008,camara,2018-11-27T20:57:00Z,15,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2187008
+2187008,camara,2018-11-27T20:57:00Z,18,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2187008
+2187008,camara,2018-11-28T00:00:00Z,20,Realizar o Encaminhamento para CCP,MESA,910,NA,NA,2187008
+2187008,camara,2018-11-28T16:14:00Z,21,Encaminhado à(ao) CCP através da guia de Remessa (GR/MESA) nº 1622/2018.,MESA,180,NA,NA,2187008
+2187008,camara,2018-11-28T16:49:00Z,22,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2187008

@@ -1,0 +1,23 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+949292,camara,2015-02-26T20:04:00Z,1,"Apresentação do Projeto de Lei n. 506/2015, pelo Deputado Major Olimpio Gomes (PDT-SP), que: ""Altera dispositivos da Lei nº 10.826, de 22 de dezembro de 2003, que dispõe sobre registro, posse e comercialização de armas de fogo e munição, sobre o Sistema Nacional de Armas - Sinarm, define crimes e dá outras providências."".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1304062,949292
+949292,camara,2015-02-26T21:00:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,949292
+949292,camara,2015-02-26T21:00:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,949292
+949292,camara,2015-02-26T21:05:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 188/2015.,SEPRO,180,NA,NA,949292
+949292,camara,2015-02-27T10:00:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,949292
+949292,camara,2015-03-03T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1305075,949292
+949292,camara,2015-03-05T10:32:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,949292
+949292,camara,2015-03-05T10:32:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,949292
+949292,camara,2015-03-05T10:32:00Z,9,Apense-se à(ao) PL-7283/2014. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Ordinária,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1305075,949292
+949292,camara,2015-03-05T10:32:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,949292
+949292,camara,2015-03-05T10:57:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 35/2015.,SECAP(SGM),180,NA,NA,949292
+949292,camara,2015-03-05T11:22:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,949292
+949292,camara,2015-03-09T18:13:00Z,13,Encaminhado à(ao) CSPCCO através da guia de Remessa (GR/CCP) nº 443/2015.,CCP,180,NA,NA,949292
+949292,camara,2015-03-10T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 11/03/15 PÁG 368 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1333144,949292
+949292,camara,2015-03-10T16:27:00Z,15,Recebimento pela CSPCCO.,CSPCCO,500,NA,NA,949292
+949292,camara,2015-03-13T00:00:00Z,17,"Designado Relator, Dep. João Campos (PSDB-GO)",CSPCCO,320,NA,NA,949292
+949292,camara,2015-03-13T15:36:00Z,16,Apensação desta proposição ao PL 7283/2014.,CSPCCO,106,NA,NA,949292
+949292,camara,2015-08-17T17:31:00Z,18,"Recebimento pela PL372212, apensado ao PL-7283/2014",PL372212,500,NA,NA,949292
+949292,camara,2019-02-21T17:50:00Z,19,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-121/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713274,949292
+949292,camara,2019-02-22T18:20:00Z,20,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,949292
+949292,camara,2019-02-22T18:27:00Z,22,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,949292
+949292,camara,2019-02-22T18:30:00Z,21,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,949292

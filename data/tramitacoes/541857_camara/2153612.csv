@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2153612,camara,2017-10-03T14:17:00Z,1,"Apresentação do Projeto de Lei n. 8738/2017, pelo Deputado Fausto Pinato (PP-SP), que: ""Institui o Sistema Brasileiro de Cadastro, Identificação e Correlação Balística"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1603898,2153612
+2153612,camara,2017-10-03T14:17:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2153612
+2153612,camara,2017-10-03T14:18:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2153612
+2153612,camara,2017-10-03T20:23:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 4938/2017.,SEPRO,180,NA,NA,2153612
+2153612,camara,2017-10-04T09:14:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2153612
+2153612,camara,2017-10-13T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1608813,2153612
+2153612,camara,2017-10-16T13:42:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2153612
+2153612,camara,2017-10-16T13:42:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2153612
+2153612,camara,2017-10-16T13:44:00Z,9,"Apense-se à(ao) PL-6574/2016. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Ordinária (Art. 151, III, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1608813,2153612
+2153612,camara,2017-10-16T13:44:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2153612
+2153612,camara,2017-10-16T14:53:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1248/2017.,SECAP(SGM),180,NA,NA,2153612
+2153612,camara,2017-10-16T15:10:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2153612
+2153612,camara,2017-10-16T15:39:00Z,13,Apensação desta proposição ao PL 6574/2016.,CCP,106,NA,NA,2153612
+2153612,camara,2017-10-17T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 18/10/17 PÁG 250 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1625062,2153612
+2153612,camara,2017-12-06T16:53:00Z,15,"Apresentação do Requerimento de Desapensação n. 7859/2017, pelo Deputado Fausto Pinato (PP-SP), que: ""Requer a desapensação do Projeto de Lei nº 8.738, de 2017, que tramita em conjunto com o Projeto de Lei nº 6.574, de 2016"".",PLEN,194,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1629838,2153612
+2153612,camara,2017-12-19T00:00:00Z,16,"Indeferido o Requerimento n. 7.859/2017, conforme despacho do seguinte teor: ""Indefiro, nos termos do art. 142 do Regimento Interno da Câmara dos Deputados, o pedido de desapensação contido no Requerimento n. 7.859/2017, porquanto os Projetos de Lei n. 8.738/2017 e n. 6.574/2016 tratam de matérias correlatas. Publique-se. Oficie-se"".",MESA,203,NA,NA,2153612
+2153612,camara,2019-02-21T17:50:00Z,17,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-121/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713274,2153612
+2153612,camara,2019-02-22T18:20:00Z,18,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,2153612
+2153612,camara,2019-02-22T18:27:00Z,20,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,2153612
+2153612,camara,2019-02-22T18:30:00Z,19,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-249/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713653,2153612

@@ -1,0 +1,36 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+343259,camara,2007-03-01T18:03:00Z,1,Apresentação do Projeto de Lei pelo Deputado Barbosa Neto (PDT-PR).,PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=438698,343259
+343259,camara,2007-03-02T11:43:00Z,2,Recebimento pela SEPRO -  - Sueli de Souza.,SEPRO,500,NA,NA,343259
+343259,camara,2007-03-02T11:43:00Z,3,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,343259
+343259,camara,2007-03-02T11:43:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,343259
+343259,camara,2007-03-02T14:00:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 100/2007.,SEPRO,180,NA,NA,343259
+343259,camara,2007-03-02T15:09:00Z,6,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,343259
+343259,camara,2007-03-15T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=442556,343259
+343259,camara,2007-03-15T00:00:00Z,13,Apense-se à(ao) PL-2237/1996.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=442556,343259
+343259,camara,2007-03-15T00:00:00Z,14,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,343259
+343259,camara,2007-03-15T00:00:00Z,17,Apense-se à(ao) PL-2237/1996.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=442556,343259
+343259,camara,2007-03-15T00:00:00Z,18,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,343259
+343259,camara,2007-03-15T00:00:00Z,21,Apense-se à(ao) PL-2237/1996.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=442556,343259
+343259,camara,2007-03-15T00:00:00Z,22,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,343259
+343259,camara,2007-03-15T16:38:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,343259
+343259,camara,2007-03-15T16:38:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,343259
+343259,camara,2007-03-15T16:57:00Z,15,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 71/2007.,SECAP(SGM),180,NA,NA,343259
+343259,camara,2007-03-15T16:57:00Z,16,Encaminhamento de Parecer à CCP para publicação.,SECAP(SGM),604,NA,NA,343259
+343259,camara,2007-03-15T16:57:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 70/2007.,SECAP(SGM),180,NA,NA,343259
+343259,camara,2007-03-15T16:58:00Z,10,Apense-se à(ao) PL-2237/1996.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=442556,343259
+343259,camara,2007-03-15T16:58:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,343259
+343259,camara,2007-03-15T17:00:00Z,19,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 72/2007.,SECAP(SGM),180,NA,NA,343259
+343259,camara,2007-03-15T17:00:00Z,20,Encaminhamento de Parecer à CCP para publicação.,SECAP(SGM),604,NA,NA,343259
+343259,camara,2007-03-15T17:02:00Z,23,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 73/2007.,SECAP(SGM),180,NA,NA,343259
+343259,camara,2007-03-15T17:02:00Z,24,Encaminhamento de Parecer à CCP para publicação.,SECAP(SGM),604,NA,NA,343259
+343259,camara,2007-03-15T19:22:00Z,25,Recebimento pela CCP.,CCP,500,NA,NA,343259
+343259,camara,2007-03-19T00:00:00Z,28,Encaminhada à publicação. Publicação Inicial no DCD de 20/03/07 PÁG 10830 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=510581,343259
+343259,camara,2007-03-19T11:55:00Z,26,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 300/2007.,CCP,180,NA,NA,343259
+343259,camara,2007-03-19T14:13:00Z,27,Recebimento pela CCJC.,CCJC,500,NA,NA,343259
+343259,camara,2007-04-03T00:00:00Z,29,"INDEFIRO a solicitação de desarquivamento desta proposição, conforme despacho exarado no REQ-209/2007. DCD 04 O4 07 PAG 14387 COL 01.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=444691,343259
+343259,camara,2007-05-14T15:58:00Z,30,"Apresentação do REQUERIMENTO N.º 945, DE 2007, pelo Deputado(a) Augusto Carvalho, que solicita o desarquivamento de proposição.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=459480,343259
+343259,camara,2007-05-22T00:00:00Z,31,Indeferido o pedido de desarquivamento desta proposição constante do REQ-945/07 porquanto a proposição não foi arquivada.DCD de 24 05 07 PÁG 25998 COL 01.,MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=459939,343259
+343259,camara,2011-02-14T15:48:00Z,32,Indeferido o pedido de desarquivamento desta proposição constante do REQ-1/2011 => PL-7404/2010por não se tratar de matéria sujeita ao arquivamento previsto no artigo 105 do RICD.,MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=837853,343259
+343259,camara,2018-03-23T10:29:00Z,33,"Recebimento pela CCP, apensado ao PL-2237/1996",CCP,500,NA,NA,343259
+343259,camara,2018-03-23T10:43:00Z,34,"Recebimento pela PL129295, apensado ao PL-2237/1996",PL129295,500,NA,NA,343259
+343259,camara,2018-12-05T18:01:00Z,35,"Recebimento pela CCP, apensado ao PL-2237/1996",CCP,500,NA,NA,343259

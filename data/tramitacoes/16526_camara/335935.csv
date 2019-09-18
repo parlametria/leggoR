@@ -1,0 +1,12 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+335935,camara,2006-11-16T16:00:00Z,1,Apresentação do Requerimento pelo Deputado Moacir Micheletto (PMDB-PR).,PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=424780,335935
+335935,camara,2006-11-16T16:36:00Z,2,Recebimento pela SEPRO -  - João Bosco Vieira Toledo.,SEPRO,500,NA,NA,335935
+335935,camara,2006-11-17T09:34:00Z,3,Encaminhado à(ao) SECAD(SGM) através da guia de Remessa (GR/SEPRO) nº 2274/2006.,SEPRO,180,NA,NA,335935
+335935,camara,2006-12-11T00:00:00Z,4,Despacho a Confirmar.,MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=429833,335935
+335935,camara,2006-12-11T00:00:00Z,8,Realizar o Encaminhamento para CCP,SECAD(SGM),910,NA,NA,335935
+335935,camara,2006-12-11T00:00:00Z,9,"INDEFIRO a solicitação de desapensação, tendo em vista que a apensação obedeceu ao disposto no artigo 139, inciso I, do RICD (matéria análoga ou conexa). Oficie-se ao Requerente e, após, publique-se.DCD 12 12 06 PÁG 54757 COL 02.",MESA,1023,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=429833,335935
+335935,camara,2006-12-11T00:00:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Arquivada,NA,335935
+335935,camara,2006-12-11T00:00:00Z,6,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,Arquivada,NA,335935
+335935,camara,2006-12-11T16:30:00Z,7,Notificação à Sinopse de Despacho Chancelado,SECAD(SGM),1005,NA,NA,335935
+335935,camara,2006-12-11T16:30:00Z,5,Despacho Chancelado,SECAD(SGM),180,NA,NA,335935
+335935,camara,2006-12-11T16:33:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAD(SGM)) nº 283/2006.,SECAD(SGM),180,NA,NA,335935

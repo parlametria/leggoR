@@ -1,0 +1,21 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2091493,camara,2016-07-12T20:55:00Z,1,"Apresentação do Projeto de Lei n. 5810/2016, pela Deputada Iracema Portella (PP-PI), que: ""Altera a Lei nº 8.666, de 30 de junho de 1993, que 'Regulamenta o art. 37, inciso XXI, da Constituição Federal, institui normas para licitações e contratos da Administração Pública e dá outras providências', para assegurar preferência, nas licitações, às empresas que empregam jovens"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1476572,2091493
+2091493,camara,2016-07-12T20:55:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2091493
+2091493,camara,2016-07-12T20:56:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2091493
+2091493,camara,2016-07-13T08:32:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 3101/2016.,SEPRO,180,NA,NA,2091493
+2091493,camara,2016-07-13T10:36:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2091493
+2091493,camara,2016-08-02T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1479689,2091493
+2091493,camara,2016-08-05T00:00:00Z,15,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 06/08/16 PÁG 62 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1493995,2091493
+2091493,camara,2016-08-05T10:11:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2091493
+2091493,camara,2016-08-05T10:13:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2091493
+2091493,camara,2016-08-05T10:13:00Z,9,Apense-se à(ao) PL-2464/2003. Proposição Sujeita à Apreciação do Plenário. Regime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1479689,2091493
+2091493,camara,2016-08-05T10:15:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2091493
+2091493,camara,2016-08-05T10:41:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 642/2016.,SECAP(SGM),180,NA,NA,2091493
+2091493,camara,2016-08-05T11:04:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,2091493
+2091493,camara,2016-08-05T15:29:00Z,13,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 7280/2016.,CCP,180,NA,NA,2091493
+2091493,camara,2016-08-05T16:52:00Z,14,Recebimento pela CCJC.,CCJC,500,NA,NA,2091493
+2091493,camara,2016-08-08T00:00:00Z,17,"Designado Relator, Dep. Evandro Gussi (PV-SP)",CCJC,320,NA,NA,2091493
+2091493,camara,2016-08-08T15:32:00Z,16,Apensação desta proposição ao PL 2464/2003.,CCJC,106,NA,NA,2091493
+2091493,camara,2018-03-23T10:29:00Z,18,"Recebimento pela CCP, apensado ao PL-2464/2003",CCP,500,NA,NA,2091493
+2091493,camara,2018-03-23T10:43:00Z,19,"Recebimento pela PL129295, apensado ao PL-2464/2003",PL129295,500,NA,NA,2091493
+2091493,camara,2018-12-05T18:01:00Z,20,"Recebimento pela CCP, apensado ao PL-2464/2003",CCP,500,NA,NA,2091493

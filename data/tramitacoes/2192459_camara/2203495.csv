@@ -1,0 +1,22 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2203495,camara,2019-05-15T00:00:00Z,5,"Designado Relator, Dep. Marcos Pereira (PRB-SP)",MESA,320,Aguardando Definição Encaminhamento,NA,2203495
+2203495,camara,2019-05-15T16:58:00Z,1,"Apresentação do Requerimento de Informação n. 580/2019, pelo Deputado Sargento Fahur (PSD-PR), que: ""Solicita ao Ministério da Economia e no âmbito da Secretaria Especial de Previdência e Trabalho informações acerca do regime de capitalização proposto na PEC nº6/2019"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1748093,2203495
+2203495,camara,2019-05-15T16:58:00Z,2,Realizar o Encaminhamento para,SEPRO,910,NA,NA,2203495
+2203495,camara,2019-05-15T17:01:00Z,3,Encaminhado à(ao) MESA através da guia de Remessa (GR/SEPRO) nº 603/2019.,SEPRO,180,NA,NA,2203495
+2203495,camara,2019-05-15T17:26:00Z,4,Recebimento pela MESA.,MESA,500,Aguardando Definição Encaminhamento,NA,2203495
+2203495,camara,2019-05-24T15:03:00Z,6,"Apresentação do Parecer do Relator n. 1 MESA, pelo Deputado Marcos Pereira (PRB-SP).",MESA,501,Aguardando Definição Encaminhamento,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1752578,2203495
+2203495,camara,2019-05-24T15:03:00Z,7,"Parecer do Relator, Dep. Marcos Pereira (PRB-SP), pela aprovação.",MESA,322,Aguardando Definição Encaminhamento,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1752578,2203495
+2203495,camara,2019-05-27T00:00:00Z,8,Despacho a Confirmar.,MESA,110,Aguardando Definição Encaminhamento,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1753219,2203495
+2203495,camara,2019-05-27T00:00:00Z,16,Publicação inicial no DCD do dia 28/05/19 PÁG 403.,PLEN,605,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1800096,2203495
+2203495,camara,2019-05-27T15:26:00Z,9,Despacho Chancelado,MESA,180,Aguardando Definição Encaminhamento,NA,2203495
+2203495,camara,2019-05-27T15:28:00Z,11,Notificação à Sinopse de Despacho Chancelado,MESA,1005,Aguardando Definição Encaminhamento,NA,2203495
+2203495,camara,2019-05-27T15:28:00Z,12,"Aprovação pelo Presidente, Dep. Rodrigo Maia, ""ad referendum"" da Mesa, do parecer do senhor Deputado Marcos Pereira, Primeiro Vice-Presidente, pelo encaminhamento.",MESA,110,Aguardando Definição Encaminhamento,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1753219,2203495
+2203495,camara,2019-05-27T15:28:00Z,10,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,Aguardando Definição Encaminhamento,NA,2203495
+2203495,camara,2019-05-27T15:29:00Z,13,Encaminhamento de Despacho de Distribuição à SEPUB(SGM) para publicação.,MESA,604,Aguardando Definição Encaminhamento,NA,2203495
+2203495,camara,2019-05-27T15:45:00Z,14,Encaminhado à(ao) 1SECM através da guia de Remessa (GR/MESA) nº 423/2019.,MESA,180,Aguardando Definição Encaminhamento,NA,2203495
+2203495,camara,2019-05-27T18:26:00Z,15,Recebimento pela 1SECM.,1SECM,500,Aguardando Remessa ao Arquivo,NA,2203495
+2203495,camara,2019-05-31T00:00:00Z,17,"Remessa por meio do Ofício 1ªSec/RI/E nº 531/2019, ao Ministro da Economia.",1SECM,138,Aguardando Remessa ao Arquivo,NA,2203495
+2203495,camara,2019-05-31T00:00:00Z,18,Prazo para Resposta Externas (de 01/06/2019 a 01/07/2019),1SECM,350,Aguardando Remessa ao Arquivo,NA,2203495
+2203495,camara,2019-06-04T11:00:00Z,19,"Ratificado o parecer ""ad referendum""",MESA,1040,Aguardando Definição Encaminhamento,NA,2203495
+2203495,camara,2019-07-02T00:00:00Z,20,"Recebimento de resposta conforme Ofício nº 318/2019/GME-ME, de 01 de julho de 2019, do Ministério da Economia.",1SECM,162,Aguardando Remessa ao Arquivo,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1774021,2203495
+2203495,camara,2019-07-03T00:00:00Z,21,Encaminhamento de resposta por meio do sistema Infoleg.,1SECM,1056,Aguardando Remessa ao Arquivo,NA,2203495

@@ -1,0 +1,5 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2200269,camara,2019-05-07T16:14:00Z,1,"Apresentação do Requerimento n. 136/2019, pelo Deputado Fábio Henrique (PDT-SE), que: ""Requer a realização de Seminário no Estado do Rio Grande do Sul destinado a discutir a Proposta de Emenda Constitucional n.º6, de 2019, que trata da Reforma da Previdência Social. "".",PEC00619,100,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1741928,2200269
+2200269,camara,2019-05-14T00:00:00Z,2,"Deferido Requerimento do autor, Deputado Fábio Henrique, que solicita a retirada de tramitação da proposição.",PEC00619,1005,Arquivada,NA,2200269
+2200269,camara,2019-05-14T00:00:00Z,3,Retirado de tramitação pelo autor.,PEC00619,200,Arquivada,NA,2200269
+2200269,camara,2019-05-14T00:00:00Z,4,Arquivada,PEC00619,502,Arquivada,NA,2200269

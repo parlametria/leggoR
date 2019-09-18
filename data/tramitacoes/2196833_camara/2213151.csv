@@ -1,0 +1,20 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2213151,camara,2019-07-30T18:22:00Z,1,"Apresentação do Requerimento de Informação n. 926/2019, pelo Primeiro Signatário Glaustin Fokus (PSC-GO), que: ""Solicita informações ao Sr. Ministro de Estado da Fazenda sobre os impactos da Reforma Tributária proposta pela PEC nº 45/2019"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1785456,2213151
+2213151,camara,2019-07-30T18:22:00Z,2,Realizar o Encaminhamento para MESA,SEPRO,910,NA,NA,2213151
+2213151,camara,2019-07-30T18:31:00Z,3,Encaminhado à(ao) MESA através da guia de Remessa (GR/SEPRO) nº 1066/2019.,SEPRO,180,NA,NA,2213151
+2213151,camara,2019-08-06T00:00:00Z,4,Substituição de versão do inteiro teor da proposição,MESA,1052,NA,NA,2213151
+2213151,camara,2019-08-06T00:00:00Z,6,"Designado Relator, Dep. Marcos Pereira (PRB-SP)",MESA,320,NA,NA,2213151
+2213151,camara,2019-08-06T18:06:00Z,5,Recebimento pela MESA.,MESA,500,NA,NA,2213151
+2213151,camara,2019-08-15T00:00:00Z,9,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1790541,2213151
+2213151,camara,2019-08-15T00:00:00Z,15,Publicação inicial no DCD do dia 16/08/19 PÁG 550.,PLEN,605,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1802475,2213151
+2213151,camara,2019-08-15T11:57:00Z,7,"Apresentação do Parecer do Relator n. 1 MESA, pelo Deputado Marcos Pereira (PRB-SP).",MESA,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1790328,2213151
+2213151,camara,2019-08-15T11:57:00Z,8,"Parecer do Relator, Dep. Marcos Pereira (PRB-SP), pela aprovação.",MESA,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1790328,2213151
+2213151,camara,2019-08-15T14:29:00Z,10,Despacho Chancelado,MESA,180,NA,NA,2213151
+2213151,camara,2019-08-15T14:29:00Z,12,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2213151
+2213151,camara,2019-08-15T14:29:00Z,11,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2213151
+2213151,camara,2019-08-15T14:30:00Z,13,"Aprovação pelo Presidente, Dep. Rodrigo Maia, ""ad referendum"" da Mesa, do parecer do senhor Deputado Marcos Pereira, Primeiro Vice-Presidente, pelo encaminhamento.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1790541,2213151
+2213151,camara,2019-08-15T14:30:00Z,14,Encaminhamento de Despacho de Distribuição à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2213151
+2213151,camara,2019-08-15T16:34:00Z,16,Encaminhado à(ao) 1SECM através da guia de Remessa (GR/MESA) nº 627/2019.,MESA,180,NA,NA,2213151
+2213151,camara,2019-08-16T12:07:00Z,17,Recebimento pela 1SECM.,1SECM,500,Aguardando Resposta ,NA,2213151
+2213151,camara,2019-08-26T00:00:00Z,18,"Remessa por meio do Ofício 1ªSec/RI/E nº  696/2019, ao Ministro de Estado da Economia.",1SECM,138,Aguardando Resposta ,NA,2213151
+2213151,camara,2019-08-26T00:00:00Z,19,Prazo para Resposta Externas (de 27/08/2019 a 25/09/2019),1SECM,350,Aguardando Resposta ,NA,2213151

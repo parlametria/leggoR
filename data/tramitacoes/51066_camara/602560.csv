@@ -1,0 +1,41 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+602560,camara,2013-11-27T00:00:00Z,3,Recebimento pela SEPRO.,SEPRO,500,NA,NA,602560
+602560,camara,2013-11-27T19:54:00Z,1,"Apresentação do Projeto de Lei Complementar n. 360/2013, pelo Deputado Ronaldo Benedet (PMDB-SC), que: ""Altera a redação do art. 18 da Lei Complementar nº 101, de 4 de maio de 2000, para o fim de excluir do cálculo de despesa total com pessoal da União, Estados e Municípios, os vencimentos e vantagens, fixas e variáveis, inclusive adicionais, gratificações, horas extras e vantagens pessoais de qualquer natureza concedidas aos profissionais do magistério, bem como, os encargos sociais e as contribuições recolhidas pelo ente às entidades de previdência, quando referente aos professores"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1200357,602560
+602560,camara,2013-11-27T20:38:00Z,2,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,602560
+602560,camara,2013-11-28T08:33:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 4923/2013.,SEPRO,180,NA,NA,602560
+602560,camara,2013-11-28T09:57:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,602560
+602560,camara,2013-12-04T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1204290,602560
+602560,camara,2013-12-06T09:46:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,602560
+602560,camara,2013-12-06T09:47:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,602560
+602560,camara,2013-12-06T10:33:00Z,9,Apense-se ao PLP-307/2002.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1204290,602560
+602560,camara,2013-12-06T10:33:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,602560
+602560,camara,2013-12-06T10:40:00Z,11,Apense-se ao PLP-307/2002.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1204290,602560
+602560,camara,2013-12-06T10:40:00Z,13,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1411/2013.,SECAP(SGM),180,NA,NA,602560
+602560,camara,2013-12-06T10:41:00Z,12,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,602560
+602560,camara,2013-12-06T11:03:00Z,14,Recebimento pela CCP.,CCP,500,NA,NA,602560
+602560,camara,2013-12-09T18:12:00Z,15,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 8296/2013.,CCP,180,NA,NA,602560
+602560,camara,2013-12-11T00:00:00Z,16,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 12/12/13 PÁG 59210 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1265404,602560
+602560,camara,2013-12-11T00:00:00Z,19,"Designado Relator, Dep. Paulo Magalhães (PSD-BA)",CCJC,320,Tramitando em Conjunto,NA,602560
+602560,camara,2013-12-11T17:32:00Z,17,Recebimento pela CCJC.,CCJC,500,Tramitando em Conjunto,NA,602560
+602560,camara,2013-12-11T17:59:00Z,18,Apensação desta proposição ao PLP 307/2002.,CCJC,106,Tramitando em Conjunto,NA,602560
+602560,camara,2014-10-24T11:37:00Z,20,Apense-se a este(a) o(a) PLP-423/2014.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1282287,602560
+602560,camara,2014-10-28T10:38:00Z,21,Apense-se a este(a) o(a) PLP-423/2014.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1282287,602560
+602560,camara,2014-10-29T14:44:00Z,22,Apensação do PLP 423/2014 a esta proposição.,CCJC,504,Tramitando em Conjunto,NA,602560
+602560,camara,2014-11-21T15:14:00Z,23,Apense-se a este(a) o(a) PLP-429/2014.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1288045,602560
+602560,camara,2014-11-21T15:45:00Z,24,Apense-se a este(a) o(a) PLP-429/2014.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1288045,602560
+602560,camara,2014-12-01T10:32:00Z,25,"Apensação do PLP 429/2014 a esta proposição, que determina a mudança do regime de tramitação da matéria para  e da forma de apreciação da matéria para Sujeita à Apreciação do Plenário.",CCJC,504,Tramitando em Conjunto,NA,602560
+602560,camara,2015-01-31T00:00:00Z,26,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,602560
+602560,camara,2015-02-04T09:26:00Z,27,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-11/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1297397,602560
+602560,camara,2015-02-04T09:26:00Z,28,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,602560
+602560,camara,2015-02-04T09:26:00Z,29,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,602560
+602560,camara,2015-02-04T18:44:00Z,30,"Apresentação do Requerimento de Desarquivamento de Proposições n. 261/2015, pelo Deputado Ronaldo Benedet (PMDB-SC), que: ""Requer o desarquivamento de proposições"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1297961,602560
+602560,camara,2015-02-11T09:15:00Z,31,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-261/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1299184,602560
+602560,camara,2019-01-31T00:00:00Z,32,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,602560
+602560,camara,2019-02-19T19:46:00Z,33,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-40/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711769,602560
+602560,camara,2019-02-19T19:46:00Z,34,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,602560
+602560,camara,2019-02-19T20:00:00Z,35,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-56/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711773,602560
+602560,camara,2019-02-19T20:04:00Z,36,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-63/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711809,602560
+602560,camara,2019-02-19T20:52:00Z,37,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-160/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711896,602560
+602560,camara,2019-02-20T21:05:00Z,38,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-306/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712448,602560
+602560,camara,2019-02-21T17:50:00Z,39,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-187/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712941,602560
+602560,camara,2019-02-26T20:18:00Z,40,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-588/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1715022,602560

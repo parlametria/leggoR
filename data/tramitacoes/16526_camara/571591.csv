@@ -1,0 +1,22 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+571591,camara,2013-04-11T10:08:00Z,1,"Apresentação do Projeto de Lei n. 5365/2013, pelo Deputado Major Fábio (DEM-PB), que: ""Altera a Lei nº 8.666, de 21 de junho de 1993, que institui normas gerais para licitações e contratos da Administração Pública"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1075676,571591
+571591,camara,2013-04-11T14:00:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,571591
+571591,camara,2013-04-11T14:00:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,571591
+571591,camara,2013-04-11T14:59:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 3610/2013.,SEPRO,180,NA,NA,571591
+571591,camara,2013-04-11T15:49:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,571591
+571591,camara,2013-04-29T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1083340,571591
+571591,camara,2013-04-29T11:24:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,571591
+571591,camara,2013-04-29T11:24:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,571591
+571591,camara,2013-04-29T11:25:00Z,9,Apense-se à(ao) PL-1292/1995.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1083340,571591
+571591,camara,2013-04-29T11:25:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1052/2013.,SECAP(SGM),180,NA,NA,571591
+571591,camara,2013-04-29T11:25:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,571591
+571591,camara,2013-04-29T14:11:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,571591
+571591,camara,2013-04-29T17:25:00Z,13,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 6278/2013.,CCP,180,NA,NA,571591
+571591,camara,2013-04-30T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 01/05/13 PÁG 14708 COL 02.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1113441,571591
+571591,camara,2013-04-30T17:17:00Z,15,Recebimento pela CCJC.,CCJC,500,NA,NA,571591
+571591,camara,2013-05-02T09:47:00Z,16,Apensação desta proposição ao PL 1292/1995.,CCJC,106,NA,NA,571591
+571591,camara,2016-01-11T16:11:00Z,17,Apense-se a este(a) o(a) PL-4225/2015.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1428253,571591
+571591,camara,2016-03-07T10:13:00Z,18,Apensação do PL 4225/2015 a esta proposição.,CCJC,504,NA,NA,571591
+571591,camara,2018-03-23T10:29:00Z,19,"Recebimento pela CCP, apensado ao PL-1292/1995",CCP,500,NA,NA,571591
+571591,camara,2018-03-23T10:43:00Z,20,"Recebimento pela PL129295, apensado ao PL-1292/1995",PL129295,500,NA,NA,571591
+571591,camara,2018-12-05T18:01:00Z,21,"Recebimento pela CCP, apensado ao PL-1292/1995",CCP,500,NA,NA,571591

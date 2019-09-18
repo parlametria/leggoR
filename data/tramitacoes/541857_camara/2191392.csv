@@ -1,0 +1,17 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2191392,camara,2019-02-06T17:06:00Z,1,"Apresentação do Projeto de Lei n. 532/2019, pelo Deputado Gonzaga Patriota (PSB-PE), que: ""Inclui dispositivos na Lei nº 8.906, 04 de julho de 1994, e dá outras providencias."".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1708223,2191392
+2191392,camara,2019-02-06T17:06:00Z,2,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2191392
+2191392,camara,2019-02-06T17:06:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2191392
+2191392,camara,2019-02-07T13:41:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 18/2019.,SEPRO,180,NA,NA,2191392
+2191392,camara,2019-02-07T13:45:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2191392
+2191392,camara,2019-02-19T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712391,2191392
+2191392,camara,2019-02-20T14:53:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,2191392
+2191392,camara,2019-02-20T14:53:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,2191392
+2191392,camara,2019-02-20T14:54:00Z,9,"Apense-se à(ao) PL-343/2019. Proposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 II. Regime de Tramitação: Ordinária (Art. 151, III, RICD)",MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712391,2191392
+2191392,camara,2019-02-20T14:54:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2191392
+2191392,camara,2019-02-20T15:34:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 19/2019.,SECAP(SGM),180,NA,NA,2191392
+2191392,camara,2019-02-20T16:31:00Z,12,"Recebimento pela CCP, apensado ao PL-343/2019",CCP,500,Tramitando em Conjunto,NA,2191392
+2191392,camara,2019-02-20T16:38:00Z,13,Recebimento pela CCP.,CCP,500,Tramitando em Conjunto,NA,2191392
+2191392,camara,2019-02-20T16:41:00Z,14,Apensação desta proposição ao PL-343/2019.,CCP,106,Tramitando em Conjunto,NA,2191392
+2191392,camara,2019-02-21T17:50:00Z,15,Indeferido o pedido de desarquivamento desta proposição constante do REQ-121/2019porquanto a(s) proposição(ões) não foi(ram) arquivada(s).,MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1713274,2191392
+2191392,camara,2019-02-25T00:00:00Z,16,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 26/02/19 PÁG 252.,CCP,604,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1738013,2191392

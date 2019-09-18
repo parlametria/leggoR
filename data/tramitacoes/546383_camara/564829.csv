@@ -1,0 +1,36 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+564829,camara,2013-02-07T16:14:00Z,1,"Apresentação do Projeto de Lei n. 4968/2013, pelo Deputado Jean Wyllys (PSOL-RJ), que: ""Altera o artigo 60 da Lei n. 8.069, de 13 de julho de 1990, revoga o parágrafo único do artigo 402, os §§ 2º e 4º do artigo 405 e o artigo 406 da Consolidação das Leis do Trabalho e dá outras disposições protetivas dos direitos da Criança e do Adolescente"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1057741,564829
+564829,camara,2013-02-07T19:24:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,564829
+564829,camara,2013-02-07T19:24:00Z,3,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,564829
+564829,camara,2013-02-08T09:22:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 3291/2013.,SEPRO,180,NA,NA,564829
+564829,camara,2013-02-08T09:56:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,564829
+564829,camara,2013-02-21T00:00:00Z,6,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1059686,564829
+564829,camara,2013-03-06T11:38:00Z,7,Despacho Chancelado,SECAP(SGM),180,NA,NA,564829
+564829,camara,2013-03-06T11:39:00Z,8,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,564829
+564829,camara,2013-03-06T11:47:00Z,9,Apense-se à(ao) PL-3974/2012.Proposição Sujeita à Apreciação Conclusiva pelas Comissões - Art. 24 IIRegime de Tramitação: Ordinária,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1059686,564829
+564829,camara,2013-03-06T11:47:00Z,11,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 934/2013.,SECAP(SGM),180,NA,NA,564829
+564829,camara,2013-03-06T11:48:00Z,10,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,564829
+564829,camara,2013-03-06T14:43:00Z,12,Recebimento pela CCP.,CCP,500,NA,NA,564829
+564829,camara,2013-03-08T00:00:00Z,14,Encaminhada à publicação. Publicação Inicial em avulso e no DCD de 09/03/13 PÁG 4138 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1081534,564829
+564829,camara,2013-03-08T11:13:00Z,13,Encaminhado à(ao) CSSF através da guia de Remessa (GR/CCP) nº 5786/2013.,CCP,180,NA,NA,564829
+564829,camara,2013-03-11T00:00:00Z,17,"Designada Relatora, Dep. Benedita da Silva (PT-RJ)",CSSF,320,Tramitando em Conjunto,NA,564829
+564829,camara,2013-03-11T09:47:00Z,15,Recebimento pela CSSF.,CSSF,500,Tramitando em Conjunto,NA,564829
+564829,camara,2013-03-11T11:07:00Z,16,Apensação desta proposição ao PL 3974/2012.,CSSF,106,Tramitando em Conjunto,NA,564829
+564829,camara,2015-01-31T00:00:00Z,18,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,564829
+564829,camara,2015-02-03T16:54:00Z,19,"Apresentação do Requerimento de Desarquivamento de Proposições n. 124/2015, pelo Deputado Jean Wyllys (PSOL-RJ), que: ""Requer o desarquivamento das proposições legislativas que menciona"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1297311,564829
+564829,camara,2015-02-06T09:47:00Z,20,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-124/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298212,564829
+564829,camara,2015-02-06T09:47:00Z,21,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,564829
+564829,camara,2015-02-06T09:47:00Z,22,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,564829
+564829,camara,2015-02-06T09:47:00Z,23,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,564829
+564829,camara,2015-02-06T09:47:00Z,24,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,564829
+564829,camara,2015-02-06T09:47:00Z,25,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,564829
+564829,camara,2015-12-01T14:27:00Z,26,Apense-se a este(a) o(a) PL-3629/2015.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1415309,564829
+564829,camara,2015-12-03T09:56:00Z,27,Apensação do PL 3629/2015 a esta proposição.,CSSF,504,Tramitando em Conjunto,NA,564829
+564829,camara,2015-12-18T16:29:00Z,28,Apense-se a este(a) o(a) PL-3867/2015.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1423818,564829
+564829,camara,2015-12-23T17:27:00Z,29,Apensação do PL 3867/2015 a esta proposição.,CSSF,504,Tramitando em Conjunto,NA,564829
+564829,camara,2016-03-15T09:48:00Z,30,Apense-se a este(a) o(a) PL-4635/2016.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1442341,564829
+564829,camara,2016-05-03T17:41:00Z,31,Apensação do PL 4635/2016 a esta proposição.,CSSF,504,Tramitando em Conjunto,NA,564829
+564829,camara,2019-01-31T00:00:00Z,32,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,564829
+564829,camara,2019-02-19T00:00:00Z,33,"Decisão da Presidência: ""... Determino o desarquivamento de todas as proposições de autoria de Comissões Parlamentares de Inquérito que tenham sido arquivadas em 31 de janeiro de 2019 nos termos do art. 105, caput, do Regimento Interno da Câmara dos Deputados. Publique-se"".",MESA,1001,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1717150,564829
+564829,camara,2019-02-19T01:00:00Z,34,Desarquivado conforme Decisão da Presidência.,MESA,503,NA,NA,564829
+564829,camara,2019-08-15T15:01:00Z,35,"Apresentação do Requerimento n. 2170/2019, pelo Deputado Silvio Costa Filho (PRB/PE), que ""Requer, nos termos regimentais, a tramitação conjunta do Projeto de Lei nº 2385/2019 com o Projeto de Lei nº. 4968/2013"".",PLEN,194,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1790607,564829

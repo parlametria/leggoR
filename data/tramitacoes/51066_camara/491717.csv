@@ -1,0 +1,18 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+491717,camara,2011-02-09T00:00:00Z,5,Publicação inicial no DCD do dia 10/02/2011,SEPUB(SGM),604,NA,NA,491717
+491717,camara,2011-02-09T18:46:00Z,1,"Apresentação do Requerimento de Desarquivamento de Proposições n. 283/2011, pelo Deputado Arnaldo Jardim (PPS-SP), que: ""Requer o desarquivamento de proposições que menciona"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=838781,491717
+491717,camara,2011-02-09T19:59:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,491717
+491717,camara,2011-02-09T20:00:00Z,3,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/SEPRO) nº 68/2011.,SEPRO,180,NA,NA,491717
+491717,camara,2011-02-09T20:00:00Z,4,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SEPRO) nº 69/2011.,SEPRO,180,NA,NA,491717
+491717,camara,2011-02-16T00:00:00Z,7,Despacho a Confirmar.,MESA,110,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=840745,491717
+491717,camara,2011-02-16T13:57:00Z,6,Recebimento pela NAJUR(SGM).,NAJUR(SGM),500,NA,NA,491717
+491717,camara,2011-02-17T00:00:00Z,16,Publicação do despacho no DCD do dia 18/02/11 PÁG 8319 COL 01.,SEPUB(SGM),605,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=938115,491717
+491717,camara,2011-02-17T00:00:00Z,12,Realizar o Encaminhamento para CCP,SECAP(SGM),910,NA,NA,491717
+491717,camara,2011-02-17T00:00:00Z,13,"Nos termos do parágrafo único do art. 105 do RICD, DEFIRO o pedido de desarquivamento das seguintes proposições: PLP 307/2002, PLP 95/2003, PLP 63/2007, PLP 121/2007, PLP 388/2008, PL 1715/2007, PL 3898/2008, PL 3899/2008, PL 4035/2008 e PDC 2349/2009.DECLARO PREJUDICADO o pedido de desarquivamento da seguinte proposição: PEC 41/2007, haja vista a(s) proposição(ões) já se encontrar(em) desarquivada(s). Publique-se.",MESA,640,Tramitação do Requerimento Finalizada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=840745,491717
+491717,camara,2011-02-17T11:39:00Z,8,Novo Despacho,SECAP(SGM),171,NA,NA,491717
+491717,camara,2011-02-17T14:52:00Z,9,Despacho Chancelado,SGMGAB,180,NA,NA,491717
+491717,camara,2011-02-17T14:52:00Z,11,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,491717
+491717,camara,2011-02-17T14:52:00Z,10,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,491717
+491717,camara,2011-02-17T15:00:00Z,15,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 55/2011.,SECAP(SGM),180,NA,NA,491717
+491717,camara,2011-02-17T15:01:00Z,14,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Tramitação do Requerimento Finalizada,NA,491717
+491717,camara,2011-02-18T16:05:00Z,17,Recebimento pela CCP.,CCP,500,NA,NA,491717

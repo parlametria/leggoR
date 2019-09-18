@@ -1,0 +1,35 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+505194,camara,2011-06-01T00:00:00Z,5,Publicação inicial no DCD do dia 02/06/11 PÁG 27980 COL 01.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=957697,505194
+505194,camara,2011-06-01T18:29:00Z,1,"Apresentação do Projeto de Lei Complementar n. 63/2011, pelo Deputado Washington Reis (PMDB-RJ), que: ""Altera a Lei Complementar nº 101, de 4 de maio de 2000, de forma a considerar os gastos com pessoal com os profissionais do magistério em efetivo exercício, financiados com o Fundo de Manutenção e Desenvolvimento da Educação Básica e de Valorização dos Profissionais da Educação -  FUNDEB, como excluídos do limite de gasto de pessoal"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=880766,505194
+505194,camara,2011-06-01T18:48:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,505194
+505194,camara,2011-06-01T18:48:00Z,3,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,505194
+505194,camara,2011-06-01T18:48:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,505194
+505194,camara,2011-06-02T09:41:00Z,6,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 670/2011.,SEPRO,180,NA,NA,505194
+505194,camara,2011-06-02T11:11:00Z,7,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,505194
+505194,camara,2011-06-14T00:00:00Z,8,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=888292,505194
+505194,camara,2011-06-15T00:00:00Z,11,Apense-se à(ao) PLP-307/2002.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: PrioridadeDCD 16/06/11 PAG 31033 COL 02.,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=888292,505194
+505194,camara,2011-06-15T00:00:00Z,15,Publicação do despacho no DCD do dia 16/06/2011,CCP,605,NA,NA,505194
+505194,camara,2011-06-15T14:26:00Z,9,Despacho Chancelado,SECAP(SGM),180,NA,NA,505194
+505194,camara,2011-06-15T14:27:00Z,10,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,505194
+505194,camara,2011-06-15T14:45:00Z,13,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 292/2011.,SECAP(SGM),180,NA,NA,505194
+505194,camara,2011-06-15T14:47:00Z,12,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,505194
+505194,camara,2011-06-15T15:12:00Z,14,Recebimento pela CCP.,CCP,500,NA,NA,505194
+505194,camara,2011-06-16T00:00:00Z,17,Encaminhada à publicação. Avulso Inicial,CCP,604,NA,NA,505194
+505194,camara,2011-06-16T16:33:00Z,19,Recebimento pela CCJC.,CCJC,500,Tramitando em Conjunto,NA,505194
+505194,camara,2011-06-16T16:33:00Z,16,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 1649/2011.,CCP,180,NA,NA,505194
+505194,camara,2011-06-17T09:39:00Z,20,Apensação desta proposição ao PLP 307/2002.,CCJC,106,Tramitando em Conjunto,NA,505194
+505194,camara,2015-01-31T00:00:00Z,21,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,505194
+505194,camara,2015-02-04T09:26:00Z,22,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-11/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1297397,505194
+505194,camara,2015-02-04T09:26:00Z,23,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,505194
+505194,camara,2015-02-04T09:26:00Z,24,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,505194
+505194,camara,2015-02-04T09:26:00Z,25,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,505194
+505194,camara,2015-02-10T10:11:00Z,26,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-251/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1298932,505194
+505194,camara,2019-01-31T00:00:00Z,27,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,505194
+505194,camara,2019-02-19T19:46:00Z,28,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-40/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711769,505194
+505194,camara,2019-02-19T19:46:00Z,29,Reentrada na comissão por motivo de desarquivamento,SECAD(SGM),630,NA,NA,505194
+505194,camara,2019-02-19T20:00:00Z,30,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-56/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711773,505194
+505194,camara,2019-02-19T20:04:00Z,31,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-63/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711809,505194
+505194,camara,2019-02-19T20:52:00Z,32,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-160/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711896,505194
+505194,camara,2019-02-20T21:05:00Z,33,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-306/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712448,505194
+505194,camara,2019-02-21T17:50:00Z,34,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-187/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712941,505194
+505194,camara,2019-02-26T20:18:00Z,35,"Devido a desarquivamento desta proposição em requerimento anterior, foi declarada prejudicada a solicitação de desarquivamento constante do REQ-588/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1715022,505194

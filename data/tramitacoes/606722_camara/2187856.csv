@@ -1,0 +1,5 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2187856,camara,2018-11-28T16:52:00Z,1,"Apresentação do Requerimento de Transformação de Sessão Plenaria em Comissão Geral n. 9304/2018, pelo Deputado Bacelar (PODE-BA), que: ""Requer a realização de Comissão Geral, para debater o Projeto de Lei 7.180/2014, que «altera o art. 31 da Lei n° 9.394, de 20 de dezembro de 1996'"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1696102,2187856
+2187856,camara,2018-11-28T16:52:00Z,2,Realizar o Encaminhamento para NATEC(SGM),SEPRO,910,NA,NA,2187856
+2187856,camara,2018-11-28T19:26:00Z,3,Encaminhado à(ao) NATEC(SGM) através da guia de Remessa (GR/SEPRO) nº 6477/2018.,SEPRO,180,NA,NA,2187856
+2187856,camara,2018-12-19T12:32:00Z,4,Recebimento pelo NATEC(SGM) -  - Christiane Satiê Moritsugu Bisinoto.,NATEC(SGM),500,Aguardando Despacho do Presidente da Câmara dos Deputados,NA,2187856

@@ -1,0 +1,6 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2128233,camara,2017-04-04T00:00:00Z,4,Relatório de conferência de assinaturas.,PLEN,1042,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1637519,2128233
+2128233,camara,2017-04-04T18:10:00Z,1,"Apresentação do Requerimento de Urgência (Art. 155 do RICD) n. 6212/2017, pelo Deputado Lúcio Vale (PR-PA), que: ""Requer regime de urgência na apreciação do Projeto de Lei nº 3.729, de 2004, e seus apensos"".",PLEN,100,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1542180,2128233
+2128233,camara,2017-04-04T18:10:00Z,2,Realizar o Encaminhamento para COAPP(SGM),SEPRO,910,NA,NA,2128233
+2128233,camara,2017-04-04T18:22:00Z,3,Encaminhado à(ao) COAPP(SGM) através da guia de Remessa (GR/SEPRO) nº 4132/2017.,SEPRO,180,NA,NA,2128233
+2128233,camara,2017-04-17T12:33:00Z,5,Recebimento pela COAPP(SGM).,COAPP(SGM),500,Aguardando Encaminhamento,NA,2128233

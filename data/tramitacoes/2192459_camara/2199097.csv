@@ -1,0 +1,15 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2199097,camara,2019-04-23T23:14:00Z,1,"Apresentação do Requerimento n. 1294/2019, pelo Deputado Tadeu Alencar (PSB-PE), que: ""Pedido de reconsideração de despacho que determinou a devolução de requimento"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1736419,2199097
+2199097,camara,2019-04-23T23:14:00Z,2,Realizar o Encaminhamento para SGMGAB,SEPRO,910,NA,NA,2199097
+2199097,camara,2019-04-24T00:00:00Z,3,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1737325,2199097
+2199097,camara,2019-04-24T00:00:00Z,9,Realizar o Encaminhamento para CCP,MESA,910,NA,NA,2199097
+2199097,camara,2019-04-24T00:00:00Z,11,Publicação inicial no DCD do dia 25/04/2019,PLEN,605,NA,NA,2199097
+2199097,camara,2019-04-24T00:00:00Z,12,Realizar o Encaminhamento para SGMGAB,NAJUR(SGM),910,NA,NA,2199097
+2199097,camara,2019-04-24T21:07:00Z,6,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2199097
+2199097,camara,2019-04-24T21:07:00Z,7,"Primeiramente, impende salientar que a conferência de assinaturas apostas ao Requerimento n. 1.292/2019 foi realizada com base nos cartões de autógrafo dos parlamentares. Ressalta-se, ainda, que os documentos oficiais do processo legislativo, notadamente os de iniciativa coletiva obrigatória, devem ser subscritos com uma das assinaturas constantes dos referidos cartões, para a segurança do processo e dos próprios parlamentares.Consigno, entretanto, que a Senhora Deputada Professora Rosa Neide e os Senhores Deputados Afonso Motta, Idilvan Alencar, Marcelo Freixo, Rafael Motta e Vilson da Fetaemg, em 23 de abril de 2019, durante o período noturno, compareceram à Secretaria-Geral da Mesa e afirmaram que haviam assinado o Requerimento n. 1.292/2019; que o Senhor Deputado Joseildo Ramos compareceu à Secretaria-Geral da Mesa no dia de hoje, pela manhã, e também afirmou haver assinado o Requerimento n. 1.292/2019; e que o Senhor Deputado Ted Conti, em 23 de abril de 2019, por meio de contato telefônico com o Secretário-Geral da Mesa, também afirmou ter assinado o Requerimento n. 1.292/2019. Publique-se.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1737325,2199097
+2199097,camara,2019-04-24T21:07:00Z,4,Despacho Chancelado,SGMGAB,180,Aguardando Recebimento,NA,2199097
+2199097,camara,2019-04-24T21:07:00Z,5,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2199097
+2199097,camara,2019-04-24T21:07:00Z,8,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,2199097
+2199097,camara,2019-04-24T21:30:00Z,10,Encaminhado à(ao) CCP através da guia de Remessa (GR/MESA) nº 298/2019.,MESA,180,NA,NA,2199097
+2199097,camara,2019-04-24T22:36:00Z,13,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/NAJUR(SGM)) nº 58/2019.,NAJUR(SGM),180,NA,NA,2199097
+2199097,camara,2019-04-25T10:34:00Z,14,Recebimento pela CCP.,CCP,500,Tramitação do Requerimento Finalizada,NA,2199097

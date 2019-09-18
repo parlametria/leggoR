@@ -1,0 +1,23 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+318155,camara,2006-03-22T17:52:00Z,1,"Apresentação do REQ 3786/2006, pelo Dep. Dr. Benedito Dias-Pres. da CSSF, que ""requer encaminhamento do PL 6.299/02 à Comissão de Seguridade Social e Família.""",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=382652,318155
+318155,camara,2006-03-22T23:06:00Z,2,Recebimento pela SEPRO -  - Sueli de Souza.,SEPRO,500,NA,NA,318155
+318155,camara,2006-03-23T12:59:00Z,3,Encaminhado à(ao) SGMGAB através da guia de Remessa (GR/SEPRO) nº 1674/2006.,SEPRO,180,NA,NA,318155
+318155,camara,2006-03-24T00:00:00Z,5,Realizar o Encaminhamento para SECAD(SGM),SGMGAB,910,NA,NA,318155
+318155,camara,2006-03-24T00:00:00Z,8,Realizar o Encaminhamento para NAJUR(SGM),SECAD(SGM),910,NA,NA,318155
+318155,camara,2006-03-24T14:30:00Z,4,Recebimento pela SGMGAB.,SGMGAB,500,NA,NA,318155
+318155,camara,2006-03-24T14:33:00Z,6,Encaminhado à(ao) SECAD(SGM) através da guia de Remessa (GR/SGMGAB) nº 6/2006.,SGMGAB,180,NA,NA,318155
+318155,camara,2006-03-24T16:38:00Z,7,Recebimento pela SECAD(SGM).,SECAD(SGM),500,NA,NA,318155
+318155,camara,2006-03-24T16:42:00Z,9,Encaminhado à(ao) NAJUR(SGM) através da guia de Remessa (GR/SECAD(SGM)) nº 97/2006.,SECAD(SGM),180,NA,NA,318155
+318155,camara,2006-04-04T00:00:00Z,11,Realizar o Encaminhamento para SECAD(SGM),NAJUR(SGM),910,NA,NA,318155
+318155,camara,2006-04-04T00:00:00Z,13,Despacho a Confirmar.,MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=385043,318155
+318155,camara,2006-04-04T00:00:00Z,17,"Defiro. Encaminhe-se, nos termos do art. 52, § 6º, do Regimento Interno, o Projeto de Lei n. 6.299/02 ao exame da Comissão de Seguridade Social e Família, esclarecendo que a matéria passa a ser da competência do Plenário, por força do disposto no mesmo dispositivo regimental, in fine. Publique-se. Oficie-se. DCD 05 04 06 PAG 16929 COL 01.",MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=385043,318155
+318155,camara,2006-04-04T00:00:00Z,18,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Arquivada,NA,318155
+318155,camara,2006-04-04T00:00:00Z,19,,MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=385043,318155
+318155,camara,2006-04-04T00:00:00Z,20,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,Arquivada,NA,318155
+318155,camara,2006-04-04T00:00:00Z,15,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,Arquivada,NA,318155
+318155,camara,2006-04-04T09:34:00Z,10,Recebimento pela NAJUR(SGM).,NAJUR(SGM),500,NA,NA,318155
+318155,camara,2006-04-04T09:35:00Z,12,Encaminhado à(ao) SECAD(SGM) através da guia de Remessa (GR/NAJUR(SGM)) nº 170/2006.,NAJUR(SGM),180,NA,NA,318155
+318155,camara,2006-04-04T10:29:00Z,14,Despacho Chancelado,SECAD(SGM),180,NA,NA,318155
+318155,camara,2006-04-04T10:29:00Z,16,Notificação à Sinopse de Despacho Chancelado,SECAD(SGM),1005,NA,NA,318155
+318155,camara,2006-04-04T10:33:00Z,21,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAD(SGM)) nº 107/2006.,SECAD(SGM),180,NA,NA,318155
+318155,camara,2006-05-23T11:04:00Z,22,Recebimento pela CCP.,CCP,500,NA,NA,318155

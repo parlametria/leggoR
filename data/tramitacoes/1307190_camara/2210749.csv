@@ -1,0 +1,4 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2210749,camara,2019-07-03T17:48:00Z,1,"Apresentação do Requerimento n. 1880/2019, pelo Deputado Cleber Verde (PRB/MA), que ""Requer a criação de Comissão Especial para analisar o Projeto de Lei nº 1.917/2015 e seus apensados"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1773667,2210749
+2210749,camara,2019-07-03T17:48:00Z,2,Realizar o Encaminhamento para SERCO(SGM),SEPRO,910,NA,NA,2210749
+2210749,camara,2019-07-03T19:22:00Z,3,Encaminhado à(ao) SERCO(SGM) através da guia de Remessa (GR/SEPRO) nº 940/2019.,SEPRO,180,NA,NA,2210749

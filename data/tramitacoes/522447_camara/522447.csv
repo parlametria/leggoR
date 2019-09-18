@@ -1,0 +1,57 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+522447,camara,2011-10-03T00:00:00Z,2,Publicação inicial no DCD do dia 04/10/11 PAG 54696 COL 01,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=988608,522447
+522447,camara,2011-10-03T17:48:00Z,1,"Apresentação do Projeto de Lei n. 2443/2011, pelo Deputado Roberto de Lucena (PV-SP), que: ""Proíbe a concessão de visto e determina a expulsão de estrangeiro condenado ou acusado em outro país da prática, participação ou financiamento de atos terroristas, alterando dispositivos da Lei nº 6.815, de 1980, que ""Define a situação jurídica do estrangeiro no Brasil e cria o Conselho Nacional de Imigração"""".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=926553,522447
+522447,camara,2011-10-04T08:24:00Z,3,Recebimento pela SEPRO.,SEPRO,500,NA,NA,522447
+522447,camara,2011-10-04T08:24:00Z,4,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,522447
+522447,camara,2011-10-04T08:24:00Z,5,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,522447
+522447,camara,2011-10-04T09:27:00Z,6,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 1252/2011.,SEPRO,180,NA,NA,522447
+522447,camara,2011-10-04T10:12:00Z,7,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,522447
+522447,camara,2011-10-20T00:00:00Z,8,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=931818,522447
+522447,camara,2011-10-24T00:00:00Z,15,Publicação do despacho no DCD do dia 25/10/2011,CCP,605,NA,NA,522447
+522447,camara,2011-10-24T10:34:00Z,9,Despacho Chancelado,SECAP(SGM),180,NA,NA,522447
+522447,camara,2011-10-24T10:34:00Z,10,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,522447
+522447,camara,2011-10-24T10:42:00Z,11,"Às Comissões de Relações Exteriores e de Defesa Nacional; Segurança Pública e Combate ao Crime Organizado e Constituição e Justiça e de Cidadania (Mérito e Art. 54, RICD)Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Ordinária",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=931818,522447
+522447,camara,2011-10-24T10:42:00Z,13,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 483/2011.,SECAP(SGM),180,NA,NA,522447
+522447,camara,2011-10-24T10:42:00Z,12,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,522447
+522447,camara,2011-10-24T11:02:00Z,14,Recebimento pel a CCP.,CCP,500,NA,NA,522447
+522447,camara,2011-10-25T19:55:00Z,16,Encaminhado à(ao) CREDN através da guia de Remessa (GR/CCP) nº 2771/2011.,CCP,180,NA,NA,522447
+522447,camara,2011-10-26T00:00:00Z,17,Encaminhada à publicação. Avulso Inicial,CCP,604,NA,NA,522447
+522447,camara,2011-10-26T17:27:00Z,18,Recebimento pel a CREDN.,CREDN,500,NA,NA,522447
+522447,camara,2011-11-16T00:00:00Z,19,"Designada Relatora, Dep. Jaqueline Roriz (PMN-DF)",CREDN,320,NA,NA,522447
+522447,camara,2013-08-14T14:00:00Z,23,Retirado de pauta.,CREDN,250,NA,NA,522447
+522447,camara,2013-10-23T17:32:00Z,24,Devolvida sem Manifestação.,CREDN,507,NA,NA,522447
+522447,camara,2013-11-12T00:00:00Z,24,"Designado Relator, Dep. Marco Maia (PT-RS)",CREDN,320,NA,NA,522447
+522447,camara,2015-01-31T00:00:00Z,25,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,522447
+522447,camara,2015-02-06T08:46:00Z,24,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-53/2015.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1297674,522447
+522447,camara,2015-02-06T08:46:00Z,24,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,522447
+522447,camara,2015-02-06T08:46:00Z,26,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,522447
+522447,camara,2015-02-06T08:46:00Z,27,Reentrada na comissão por motivo de desarquivamento,NAJUR(SGM),630,NA,NA,522447
+522447,camara,2015-02-11T15:50:00Z,28,Devolvida sem Manifestação.,CREDN,507,NA,NA,522447
+522447,camara,2015-03-12T00:00:00Z,29,"Designada Relatora, Dep. Jô Moraes (PCdoB-MG)",CREDN,320,NA,NA,522447
+522447,camara,2015-05-05T00:00:00Z,30,"Às CCJC, CREDN, CFT E CSPCCO cópia do Ofício SCI/PGR/GAB Nº 456/2015.",CCP,1005,NA,NA,522447
+522447,camara,2016-08-23T15:41:00Z,31,Devolvida pelo Relator sem Manifestação.,CREDN,507,NA,NA,522447
+522447,camara,2017-10-23T00:00:00Z,32,"Designada Relatora, Dep. Bruna Furlan (PSDB-SP)",CREDN,320,NA,NA,522447
+522447,camara,2018-10-25T10:48:00Z,33,Devolvida pelo Relator sem Manifestação.,CREDN,507,NA,NA,522447
+522447,camara,2018-11-01T00:00:00Z,34,"Designado Relator, Dep. Rubens Bueno (PPS-PR)",CREDN,320,NA,NA,522447
+522447,camara,2018-12-11T13:07:00Z,35,"Apresentação do Parecer do Relator n. 1 CREDN, pelo Deputado Rubens Bueno (PPS-PR).",CREDN,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1699296,522447
+522447,camara,2018-12-11T13:07:00Z,36,"Parecer do Relator, Dep. Rubens Bueno (PPS/PR), pela aprovação, com Substitutivo.",CREDN,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1699296,522447
+522447,camara,2018-12-12T00:00:00Z,37,Aprovado o Parecer.,CREDN,240,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1701837,522447
+522447,camara,2018-12-13T17:30:00Z,38,Encaminhado à(ao) CSPCCO através da guia de Remessa (GR/CREDN) nº 264/2018.,CREDN,180,NA,NA,522447
+522447,camara,2018-12-13T17:47:00Z,39,Recebimento pela CSPCCO.,CSPCCO,500,NA,NA,522447
+522447,camara,2018-12-18T00:00:00Z,40,Encaminhada à publicação. Parecer da Comissão de Relações Exteriores e de Defesa Nacional Publicado no DCD de 19/12/18 PÁG 180 COL 01 Letra A.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1723107,522447
+522447,camara,2019-01-31T00:00:00Z,41,Arquivado nos termos do Artigo 105 do Regimento Interno da Câmara dos Deputados.,MESA,502,NA,NA,522447
+522447,camara,2019-02-21T17:50:00Z,42,"Desarquivado nos termos do Artigo 105 do RICD, em conformidade com o despacho exarado no REQ-156/2019.",MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1712886,522447
+522447,camara,2019-02-21T17:50:00Z,43,Reentrada na comissão por motivo de desarquivamento,MESA,630,NA,NA,522447
+522447,camara,2019-02-21T17:50:00Z,44,Reentrada na comissão por motivo de desarquivamento,MESA,630,NA,NA,522447
+522447,camara,2019-02-21T17:50:00Z,45,Reentrada na comissão por motivo de desarquivamento,MESA,630,NA,NA,522447
+522447,camara,2019-03-27T00:00:00Z,46,"Designado Relator, Dep. Aluisio Mendes (PODE-MA)",CSPCCO,320,NA,NA,522447
+522447,camara,2019-04-02T00:00:00Z,48,"Devolvido ao Relator, Dep. Aluisio Mendes (PODE-MA)",CSPCCO,170,NA,NA,522447
+522447,camara,2019-04-02T15:48:00Z,47,"Apresentação do Parecer do Relator n. 1 CSPCCO, pelo Deputado Aluisio Mendes (PODE-MA).",CSPCCO,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1726937,522447
+522447,camara,2019-04-09T16:42:00Z,49,"Apresentação do Parecer do Relator n. 2 CSPCCO, pelo Deputado Aluisio Mendes (PODE-MA).",CSPCCO,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1730354,522447
+522447,camara,2019-04-09T16:42:00Z,50,"Parecer do Relator, Dep. Aluisio Mendes (PODE-MA), pela aprovação deste, nos termos do Substitutivo adotado pela  CREDN.",CSPCCO,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1730354,522447
+522447,camara,2019-04-16T00:00:00Z,51,Aprovado o Parecer.,CSPCCO,240,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1735575,522447
+522447,camara,2019-04-17T11:15:00Z,52,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CSPCCO) nº 4/2019.,CSPCCO,180,NA,NA,522447
+522447,camara,2019-04-17T11:32:00Z,53,Recebimento pela CCJC.,CCJC,500,Aguardando Parecer,NA,522447
+522447,camara,2019-04-23T00:00:00Z,54,"Encaminhada à publicação. Parecer da Comissão de Segurança Pública e Combate ao Crime Organizado Publicado no DCD de 24/04/19, Letra B, PÁG 609.",CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1790786,522447
+522447,camara,2019-04-29T00:00:00Z,55,"Designado Relator, Dep. Orlando Silva (PCdoB-SP)",CCJC,320,Aguardando Parecer,NA,522447
+522447,camara,2019-06-24T11:39:00Z,56,"Apresentação do Requerimento de Audiência Pública n. 69/2019, pelo Deputado Orlando Silva (PCdoB-SP), que: ""Requer a realização de audiência pública no âmbito da Comissão de Constituição e Justiça e de Cidadania para discutir o Projeto de Lei 2.443 de 2011."".",CCJC,194,Aguardando Parecer,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1767990,522447

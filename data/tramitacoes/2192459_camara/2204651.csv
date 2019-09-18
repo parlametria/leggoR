@@ -1,0 +1,24 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+2204651,camara,2019-05-23T17:05:00Z,1,"Apresentação do Requerimento de Informação n. 634/2019, pelo Deputado Chiquinho Brazão AVANTE, que:""Solicita ao Ministro da Economia informações mais detalhadas sobre a estimativa de impacto financeiro da Proposta de Emenda Constitucional n° 6, de 2019"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1752124,2204651
+2204651,camara,2019-05-23T17:05:00Z,2,Realizar o Encaminhamento para MESA,SEPRO,910,NA,NA,2204651
+2204651,camara,2019-05-23T17:39:00Z,3,Encaminhado à(ao) MESA através da guia de Remessa (GR/SEPRO) nº 658/2019.,SEPRO,180,NA,NA,2204651
+2204651,camara,2019-05-24T00:00:00Z,5,"Designado Relator, Dep. Marcos Pereira (PRB-SP)",MESA,320,NA,NA,2204651
+2204651,camara,2019-05-24T10:03:00Z,4,Recebimento pela MESA.,MESA,500,NA,NA,2204651
+2204651,camara,2019-05-31T12:42:00Z,6,"Apresentação do Parecer do Relator n. 1 MESA, pelo Deputado Marcos Pereira (PRB-SP).",MESA,501,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1758409,2204651
+2204651,camara,2019-05-31T12:42:00Z,7,"Parecer do Relator, Dep. Marcos Pereira (PRB-SP), pela aprovação.",MESA,322,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1758409,2204651
+2204651,camara,2019-06-03T00:00:00Z,8,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1758979,2204651
+2204651,camara,2019-06-03T00:00:00Z,17,Publicação inicial no DCD do dia 04/06/19 PÁG 112.,PLEN,605,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1771107,2204651
+2204651,camara,2019-06-03T00:00:00Z,10,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1758986,2204651
+2204651,camara,2019-06-03T17:57:00Z,9,Encaminhamento de Despacho de Distribuição à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2204651
+2204651,camara,2019-06-03T18:00:00Z,13,Notificação à Sinopse de Despacho Chancelado,MESA,1005,NA,NA,2204651
+2204651,camara,2019-06-03T18:00:00Z,14,"Aprovação pelo Presidente, Dep. Rodrigo Maia, ""ad referendum"" da Mesa, do parecer do senhor Deputado Marcos Pereira, Primeiro Vice-Presidente, pelo encaminhamento.",MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1758986,2204651
+2204651,camara,2019-06-03T18:00:00Z,11,Despacho Chancelado,MESA,180,NA,NA,2204651
+2204651,camara,2019-06-03T18:00:00Z,12,Encaminhamento de Chancela de Requerimento de Informações à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2204651
+2204651,camara,2019-06-03T18:00:00Z,15,Encaminhamento de Despacho de Distribuição à SEPUB(SGM) para publicação.,MESA,604,NA,NA,2204651
+2204651,camara,2019-06-03T18:03:00Z,16,Encaminhado à(ao) 1SECM através da guia de Remessa (GR/MESA) nº 435/2019.,MESA,180,NA,NA,2204651
+2204651,camara,2019-06-03T19:01:00Z,18,Recebimento pela 1SECM.,1SECM,500,Aguardando Providências Internas,NA,2204651
+2204651,camara,2019-06-04T11:00:00Z,19,"Ratificado o parecer ""ad referendum""",MESA,1040,NA,NA,2204651
+2204651,camara,2019-06-07T00:00:00Z,20,"Remessa por meio do Ofício 1ªSec/RI/E nº 550/2019, ao Ministro da Defesa e o Ofício 1ªSec/RI/E nº 559/2019, ao Ministro da Economia.",1SECM,138,Aguardando Providências Internas,NA,2204651
+2204651,camara,2019-06-07T00:00:00Z,21,Prazo para Resposta Externas (de 08/06/2019 a 08/07/2019),1SECM,350,Aguardando Providências Internas,NA,2204651
+2204651,camara,2019-07-02T00:00:00Z,22,"Recebimento de resposta conforme Ofício nº  315/2019/GME-ME, de 01 de julho de 2019, do Ministério da Economia.",1SECM,162,Aguardando Providências Internas,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1784513,2204651
+2204651,camara,2019-08-02T00:00:00Z,23,Encaminhamento de resposta por meio do sistema Infoleg.,1SECM,1005,Aguardando Providências Internas,NA,2204651

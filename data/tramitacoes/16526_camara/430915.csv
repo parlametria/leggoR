@@ -1,0 +1,48 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+430915,camara,2009-04-15T00:00:00Z,1,"Recebido o Of. 343/2009 (SF) que encaminha à Camara dos Deputados para revisão o Projeto de Lei do Senado nº 359, de 2004, de autoria do Senador Augusto Botelho, constante dos autógrafos em anexo, que autoriza o Poder Executivo a instituir o Conselho de Defesa Comercial, órgão vinculado ao Ministério do Desenvolvimento, Indústria e Comércio Exterior, com poderes judicantes para aplicar direitos antidumping, medidas compensatórias, provisórias ou definitivas, e salvaguardas.",MESA,500,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=647569,430915
+430915,camara,2009-04-15T09:53:00Z,2,"Apresentação do PL 5073/2009, do Senado Federal - Augusto Botelho, que ""altera Lei nº 8.666, de 21 de junho de 1993, para o fim de determinar aos órgãos e entidades da Administração Pública o uso da Rede Mundial de Computadores nos procedimentos licitatórios e atos subsequentes.""",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=647558,430915
+430915,camara,2009-04-16T09:53:00Z,3,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,430915
+430915,camara,2009-04-16T09:55:00Z,4,"Encaminhado  à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SINOPSE,1003,NA,NA,430915
+430915,camara,2009-04-16T09:55:00Z,5,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,430915
+430915,camara,2009-04-16T10:30:00Z,6,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 3235/2009.,SEPRO,180,NA,NA,430915
+430915,camara,2009-04-16T10:42:00Z,7,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,430915
+430915,camara,2009-04-16T10:42:00Z,8,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,430915
+430915,camara,2009-04-23T00:00:00Z,9,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=649417,430915
+430915,camara,2009-04-24T00:00:00Z,12,Apense-se à(ao) PL-1292/1995.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=649417,430915
+430915,camara,2009-04-24T15:16:00Z,10,Despacho Chancelado,SECAP(SGM),180,NA,NA,430915
+430915,camara,2009-04-24T15:17:00Z,11,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,430915
+430915,camara,2009-04-24T15:34:00Z,14,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 1019/2009.,SECAP(SGM),180,NA,NA,430915
+430915,camara,2009-04-24T15:36:00Z,13,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,430915
+430915,camara,2009-04-24T15:52:00Z,15,Recebimento pela CCP.,CCP,500,NA,NA,430915
+430915,camara,2009-04-28T00:00:00Z,16,Realizar o Encaminhamento para CCJC,CCP,910,NA,NA,430915
+430915,camara,2009-04-28T00:00:00Z,18,Encaminhada à publicação. Publicação Inicial no DCD de 29/04/09 PÁG 15318 COL 01,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=679425,430915
+430915,camara,2009-04-28T00:00:00Z,21,"Designado Relator, Dep. José Eduardo Cardozo (PT-SP)",CCJC,320,NA,NA,430915
+430915,camara,2009-04-28T15:51:00Z,17,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 7274/2009.,CCP,180,NA,NA,430915
+430915,camara,2009-04-28T18:03:00Z,19,Recebimento pela CCJC.,CCJC,500,NA,NA,430915
+430915,camara,2009-04-28T18:05:00Z,20,Apensação desta proposição ao PL 1292/1995.,CCJC,106,NA,NA,430915
+430915,camara,2009-05-21T19:14:00Z,22,Apense-se a este o PL-5195/2009.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=657766,430915
+430915,camara,2009-05-26T14:39:00Z,23,Apensação do PL 5195/2009 a esta proposição.,CCJC,504,NA,NA,430915
+430915,camara,2009-10-21T11:04:00Z,24,Apense-se a este o PL-6218/2009.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=704643,430915
+430915,camara,2009-10-21T11:05:00Z,25,Apense-se a este o PL-6242/2009.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=704518,430915
+430915,camara,2009-10-27T17:12:00Z,26,Apensação do PL 6218/2009 a esta proposição.,CCJC,504,NA,NA,430915
+430915,camara,2009-10-27T17:12:00Z,27,Apensação do PL 6242/2009 a esta proposição.,CCJC,504,NA,NA,430915
+430915,camara,2011-02-14T15:48:00Z,28,Indeferido o pedido de desarquivamento desta proposição constante do REQ-1/2011 => PL-7404/2010por não se tratar de matéria sujeita ao arquivamento previsto no artigo 105 do RICD.,MESA,640,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=837853,430915
+430915,camara,2011-10-19T00:00:00Z,29,Apense-se a este(a) o(a) PL-2444/2011.DCD do dia 20/10/11 PÁG 57430 COL 02.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=929506,430915
+430915,camara,2011-10-24T17:12:00Z,30,Apensação do PL 2444/2011 a esta proposição.,CCJC,504,NA,NA,430915
+430915,camara,2012-04-16T10:21:00Z,31,Apense-se a este(a) o(a) PL-3576/2012.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=980274,430915
+430915,camara,2012-04-23T10:18:00Z,32,Apensação do PL 3576/2012 a esta proposição.,CCJC,504,NA,NA,430915
+430915,camara,2012-05-14T11:26:00Z,33,Apense-se a este(a) o(a) PL-3750/2012.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=991116,430915
+430915,camara,2012-05-18T10:21:00Z,34,Apensação do PL 3750/2012 a esta proposição.,CCJC,504,NA,NA,430915
+430915,camara,2012-07-10T15:58:00Z,35,Apense-se a este(a) o(a) PL-4114/2012.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1009477,430915
+430915,camara,2012-08-01T16:28:00Z,36,Apensação do PL 4114/2012 a esta proposição.,CCJC,504,NA,NA,430915
+430915,camara,2014-12-08T14:20:00Z,37,Apense-se a este(a) o(a) PL-8179/2014.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1291201,430915
+430915,camara,2014-12-11T16:56:00Z,38,Apensação do PL 8179/2014 a esta proposição.,CCJC,504,NA,NA,430915
+430915,camara,2017-03-02T16:53:00Z,39,Apense-se a este(a) o(a) PL-6820/2017.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1525643,430915
+430915,camara,2017-03-27T16:02:00Z,40,Apensação do PL 6820/2017 a esta proposição.,CCJC,504,NA,NA,430915
+430915,camara,2018-03-23T10:29:00Z,41,"Recebimento pela CCP, apensado ao PL-1292/1995",CCP,500,NA,NA,430915
+430915,camara,2018-03-23T10:43:00Z,42,"Recebimento pela PL129295, apensado ao PL-1292/1995",PL129295,500,NA,NA,430915
+430915,camara,2018-12-05T18:01:00Z,43,"Recebimento pela CCP, apensado ao PL-1292/1995",CCP,500,NA,NA,430915
+430915,camara,2019-02-04T12:33:00Z,44,Apense-se a este(a) o(a) PL-11274/2018.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1704656,430915
+430915,camara,2019-02-04T16:27:00Z,45,Apensação do PL 11274/2018 a esta proposição.,CCP,504,NA,NA,430915
+430915,camara,2019-02-14T10:55:00Z,46,Apense-se a este(a) o(a) PL-514/2019.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1710203,430915
+430915,camara,2019-02-14T15:21:00Z,47,Apensação do PL 514/2019 a esta proposição.,CCP,504,NA,NA,430915

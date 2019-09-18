@@ -1,0 +1,24 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+104421,camara,2003-02-18T15:17:00Z,1,Apresentação do Desarquivamento de Proposições pelo Dep. Pedro Fernandes,PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=113812,104421
+104421,camara,2003-03-26T16:08:00Z,2,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,104421
+104421,camara,2003-03-26T16:08:00Z,3,"Encaminhado à SINOPSE (Revisão da Ementa, Explicação da Ementa e Indexação)",SECAP(SGM),180,NA,NA,104421
+104421,camara,2003-04-01T21:12:00Z,4,Encaminhamento à Chefia de Gabinete da SGM,SECAP(SGM),180,NA,NA,104421
+104421,camara,2003-04-02T20:09:00Z,5,Recebimento pela SGMGab.,SGMGAB,500,NA,NA,104421
+104421,camara,2003-04-02T20:10:00Z,6,Encaminhamento ao Gabinete do Secretário-Geral da Mesa,SGMGAB,180,NA,NA,104421
+104421,camara,2003-04-03T21:20:00Z,7,Autorização Despacho,SGM,180,NA,NA,104421
+104421,camara,2003-04-03T21:20:00Z,8,Despacho Chancelado,SECAD(SGM),180,NA,NA,104421
+104421,camara,2003-04-14T16:38:00Z,9,Retirar Chancela do Despacho dado a Proposição,SGM,180,NA,NA,104421
+104421,camara,2003-04-14T16:40:00Z,10,Encaminhamento à Chefia de Gabinete da SGM para Revisão do Despacho,SGM,180,NA,NA,104421
+104421,camara,2003-04-14T16:43:00Z,11,Encaminhamento à SECAP para revisão do Despacho,SGMGAB,180,NA,NA,104421
+104421,camara,2003-04-23T16:29:00Z,12,Encaminhamento à Chefia de Gabinete da SGM,SECAP(SGM),180,NA,NA,104421
+104421,camara,2003-05-05T21:38:00Z,13,Recebimento pela SGMGab.,SGMGAB,500,NA,NA,104421
+104421,camara,2003-05-05T21:38:00Z,14,Encaminhamento à SECAP para revisão do Despacho,SGMGAB,180,NA,NA,104421
+104421,camara,2003-05-06T17:19:00Z,15,Despacho a confirmar,SECAP(SGM),110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=130419,104421
+104421,camara,2003-05-06T17:21:00Z,16,Encaminhamento à Chefia de Gabinete da SGM,SECAP(SGM),180,NA,NA,104421
+104421,camara,2003-05-08T21:12:00Z,17,Recebimento pela SGMGab.,SGMGAB,500,NA,NA,104421
+104421,camara,2003-05-08T21:23:00Z,18,Encaminhamento ao Gabinete do Secretário-Geral da Mesa,SGMGAB,180,NA,NA,104421
+104421,camara,2003-05-09T15:43:00Z,19,Autorização Despacho,SGM,180,NA,NA,104421
+104421,camara,2003-05-09T15:43:00Z,20,Despacho Chancelado,SECAD(SGM),180,NA,NA,104421
+104421,camara,2003-05-13T00:00:00Z,21,"DEFIRO, nos termos do art. 105, parágrafo único, do RICD,  Oficie-se e, após, publique-se.",MESA,110,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=130419,104421
+104421,camara,2003-05-13T00:00:00Z,22,Encaminhado à CCP.,MESA,180,Arquivada,NA,104421
+104421,camara,2003-05-14T00:00:00Z,23,Recebimento pela CCP.,CCP,500,NA,NA,104421

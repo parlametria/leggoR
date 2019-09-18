@@ -1,0 +1,4 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+605811,camara,2014-02-07T16:04:00Z,1,"Apresentação do Requerimento n. 18/2014, pelo Deputado Raimundo Gomes de Matos (PSDB-CE), que: ""Solicita que seja realizado encontro, na cidade de Fortaleza - CE para debater a PEC 215/2000"".",PEC21500,100,Arquivada,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1225033,605811
+605811,camara,2014-02-26T17:00:00Z,2,Prejudicado em virtude da aprovação do Requerimento nº 23/14.,PEC21500,198,Arquivada,NA,605811
+605811,camara,2014-11-05T00:00:00Z,3,Arquivada,PEC21500,502,Arquivada,NA,605811

@@ -1,0 +1,30 @@
+prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
+545300,camara,2012-05-22T00:00:00Z,2,Publicação inicial no DCD do dia 23/05/12 PÁG 18273 COL 02.,CCP,604,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1018613,545300
+545300,camara,2012-05-22T17:24:00Z,1,"Apresentação do Projeto de Lei n. 3898/2012, pelo Deputado Ângelo Agnolin (PDT-TO), que: ""Altera o Decreto-Lei nº 2.848, de 7 de dezembro de 1940 - Código Penal, a Lei nº 8.429, de 2 de junho de 1992, e a Lei nº 8.666, de 21 de junho de 1993, para estabelecer sanções mais severas para aqueles que fraudarem licitações públicas"".",PLEN,100,Tramitando em Conjunto,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=994073,545300
+545300,camara,2012-05-23T00:00:00Z,3,Recebimento pel a SEPRO.,SEPRO,500,NA,NA,545300
+545300,camara,2012-05-23T00:00:00Z,6,Recebimento pel a SECAP(SGM).,SECAP(SGM),500,NA,NA,545300
+545300,camara,2012-05-23T09:54:00Z,4,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,545300
+545300,camara,2012-05-23T10:06:00Z,5,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 2380/2012.,SEPRO,180,NA,NA,545300
+545300,camara,2012-05-30T00:00:00Z,7,Despacho a Confirmar.,MESA,110,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=997031,545300
+545300,camara,2012-05-31T00:00:00Z,8,Despacho Chancelado,SECAP(SGM),180,NA,NA,545300
+545300,camara,2012-05-31T00:00:00Z,10,Apense-se ao PL-1525/1999.Proposição Sujeita à Apreciação do PlenárioRegime de Tramitação: Prioridade,MESA,129,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=997031,545300
+545300,camara,2012-05-31T00:00:00Z,13,Publicação do despacho no DCD do dia 01/06/2012,CCP,605,NA,NA,545300
+545300,camara,2012-05-31T11:49:00Z,9,Notificação à Sinopse de Despacho Chancelado,SECAP(SGM),1005,NA,NA,545300
+545300,camara,2012-05-31T11:51:00Z,12,Encaminhado à(ao) CCP através da guia de Remessa (GR/SECAP(SGM)) nº 706/2012.,SECAP(SGM),180,NA,NA,545300
+545300,camara,2012-05-31T11:52:00Z,11,Encaminhamento de Despacho de Distribuição à CCP para publicação.,MESA,604,NA,NA,545300
+545300,camara,2012-05-31T17:08:00Z,14,Recebimento pel a CCP.,CCP,500,NA,NA,545300
+545300,camara,2012-06-08T00:00:00Z,15,Realizar o Encaminhamento para CCJC,CCP,910,NA,NA,545300
+545300,camara,2012-06-08T10:05:00Z,16,Encaminhado à(ao) CCJC através da guia de Remessa (GR/CCP) nº 4448/2012.,CCP,180,NA,NA,545300
+545300,camara,2012-06-11T00:00:00Z,17,Encaminhada à publicação. Avulso Inicial,CCP,604,NA,NA,545300
+545300,camara,2012-06-11T00:00:00Z,20,"Designado Relator, Dep. Fabio Trad (PMDB-MS)",CCJC,320,NA,NA,545300
+545300,camara,2012-06-11T16:50:00Z,18,Recebimento pel a CCJC.,CCJC,500,NA,NA,545300
+545300,camara,2012-06-11T17:01:00Z,19,Apensação desta proposição ao PL 1525/1999.,CCJC,106,NA,NA,545300
+545300,camara,2016-01-11T16:06:00Z,21,Apense-se a este(a) o(a) PL-4190/2015.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1428290,545300
+545300,camara,2016-03-07T10:13:00Z,22,Apensação do PL 4190/2015 a esta proposição.,CCJC,504,NA,NA,545300
+545300,camara,2018-03-23T10:29:00Z,23,"Recebimento pela CCP, apensado ao PL-1525/1999",CCP,500,NA,NA,545300
+545300,camara,2018-03-23T10:43:00Z,24,"Recebimento pela PL129295, apensado ao PL-1525/1999",PL129295,500,NA,NA,545300
+545300,camara,2018-12-05T18:01:00Z,25,"Recebimento pela CCP, apensado ao PL-1525/1999",CCP,500,NA,NA,545300
+545300,camara,2019-02-19T09:42:00Z,26,Apense-se a este(a) o(a) PL-411/2019.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711750,545300
+545300,camara,2019-02-19T09:42:00Z,27,Apense-se a este(a) o(a) PL-412/2019.,MESA,504,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1711707,545300
+545300,camara,2019-02-19T10:49:00Z,28,Apensação do PL 411/2019 a esta proposição.,CCP,504,NA,NA,545300
+545300,camara,2019-02-19T10:49:00Z,29,Apensação do PL 412/2019 a esta proposição.,CCP,504,NA,NA,545300
