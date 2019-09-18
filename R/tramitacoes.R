@@ -81,9 +81,12 @@ fetch_tramitacao_camara <- function(bill_id, data_inicio = NA, data_fim = NA) {
 
 #' @title Baixa dados das tramitações das proposições
 #' @description Escreve as tramitações dos ids passados
+#' @param casa senado ou camara
 #' @param export_path Path para ser escritos as tramitações
 #' @param id_documento Id do documento para ser baixado
 #' @param id_principal Id da proposição principal
+#' @param dias_atras Quantos dias serão diminuidos da data de hoje para
+#' retornar a tramitação
 write_docs <- function(casa, export_path, id_documento, id_principal, dias_atras) {
   path <- paste0(export_path, "/", id_principal, "_", casa)
   ifelse(!dir.exists(file.path(path)), dir.create(file.path(path)), FALSE)
@@ -94,41 +97,63 @@ write_docs <- function(casa, export_path, id_documento, id_principal, dias_atras
   }
   
   if(file.exists(destfile)){
-    tram_antigo <-
-      readr::read_csv(destfile, col_types = readr::cols(
-        .default = readr::col_character(),
-        prop_id = readr::col_double(),
-        data_hora = readr::col_datetime(format = ""),
-        sequencia = readr::col_double(),
-        id_situacao = readr::col_double(),
-        id_principal = readr::col_double()
-      ))
-    
-    if (casa == 'camara') {
-      tram_novo <-
-        fetch_tramitacao_camara(id_documento, lubridate::today() - dias_atras, lubridate::today()) %>%
-        dplyr::mutate(id_principal = id_documento)
-    } else {
-      tram_novo <- 
-        fetch_tramitacao_senado(id_documento, format(lubridate::today() - dias_atras, "%Y%m%d")) %>% 
-        dplyr::mutate(id_principal = id_documento,
-                      link_inteiro_teor = dplyr::if_else(link_inteiro_teor == NA, '', link_inteiro_teor))
-    }
-    tram <-
-      dplyr::bind_rows(tram_antigo, tram_novo) %>%
-      unique() 
+    tram <- aux_write_docs_tram_antiga(destfile, casa, id_documento, dias_atras)
   } else {
-    if (casa == 'camara') {
-      tram <- 
-        fetch_tramitacao_camara(id_documento) %>% 
-        dplyr::mutate(id_principal = id_documento)
-    } else {
-      tram <- 
-        fetch_tramitacao_senado(id_principal) %>% 
-        dplyr::mutate(id_principal = id_principal)
-    }
+    tram <- aux_write_docs_tram_nova(casa, id_documento)
   }
+  
   readr::write_csv(tram, destfile)
+}
+
+#' @title Baixa dados das tramitações novas das proposições
+#' @description Escreve as tramitações dos ids passados
+#' @param casa senado ou camara
+#' @param id_documento Id do documento para ser baixado
+aux_write_docs_tram_nova <- function(casa, id_documento) {
+  if (casa == 'camara') {
+    tram <- 
+      fetch_tramitacao_camara(id_documento)
+  } else {
+    tram <- 
+      fetch_tramitacao_senado(id_documento) 
+  }
+  
+  tram %>% 
+    dplyr::mutate(id_principal = id_documento)
+}
+
+#' @title Baixa dados das tramitações antigas das proposições
+#' @description Escreve as tramitações dos ids passados, fazendo
+#' um join das proposições antigas com as novas
+#' @param casa senado ou camara
+#' @param destfile Path onde está a tramitação antiga
+#' @param id_documento Id do documento para ser baixado
+#' @param dias_atras Quantos dias serão diminuidos da data de hoje para
+#' retornar a tramitação
+aux_write_docs_tram_antiga <- function(destfile, casa, id_documento, dias_atras) {
+  tram_antigo <-
+    readr::read_csv(destfile, col_types = readr::cols(
+      .default = readr::col_character(),
+      prop_id = readr::col_double(),
+      data_hora = readr::col_datetime(format = ""),
+      sequencia = readr::col_double(),
+      id_situacao = readr::col_double(),
+      id_principal = readr::col_double()
+    ))
+  
+  if (casa == 'camara') {
+    tram_novo <-
+      fetch_tramitacao_camara(id_documento, lubridate::today() - dias_atras, lubridate::today()) %>%
+      dplyr::mutate(id_principal = id_documento)
+  } else {
+    tram_novo <- 
+      fetch_tramitacao_senado(id_documento, format(lubridate::today() - dias_atras, "%Y%m%d")) %>% 
+      dplyr::mutate(id_principal = id_documento,
+                    link_inteiro_teor = dplyr::if_else(link_inteiro_teor == NA, '', link_inteiro_teor))
+  }
+  
+  dplyr::bind_rows(tram_antigo, tram_novo) %>%
+    unique() 
 }
 
 #' @title Write_docs seguro
@@ -138,8 +163,11 @@ safe_write_docs <- purrr::safely(
 
 #' @title Baixa dados das tramitações das proposições
 #' @description Escreve as tramitações dos ids passados
+#' @param casa senado ou camara
 #' @param export_path Path para ser escritos as tramitações
 #' @param docs_ids Dataframe com os IDs dos documentos a serem baixados
+#' @param dias_atras Quantos dias serão diminuidos da data de hoje para
+#' retornar a tramitação
 #' @export
 fetch_tramitacao_data <- function(casa, export_path, docs_ids, dias_atras) {
   if (casa == 'senado') {
