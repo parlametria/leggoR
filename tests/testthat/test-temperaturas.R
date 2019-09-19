@@ -174,7 +174,7 @@ test_that('get_historico_temperatura_recente() quando arquiva', {
   expect_true(all(energy_df$temperatura_periodo == result))
 })
 
-test_that('get_historico_temperatura_recente_id_leggo()', {
+test_that('get_historico_temperatura_recente_id_leggo() has correct function passing the parameter week', {
   data <- data.frame(prop_id = c(rep(1111,10), rep(2222, 7)),
                      casa = c(rep('camara',10), rep('senado', 7)),
                      data_hora = c(lubridate::ymd_hms("2018-09-03 12:00:00"), 
@@ -228,4 +228,18 @@ test_that('get_historico_temperatura_recente_id_leggo()', {
       data, 1, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"), pautas)
   
   expect_true(all(energy_df$temperatura_recente == result))
+})
+
+test_that('get_historico_temperatura_recente_id_leggo() return empty df when the input is empty', {
+  energy_df <- 
+    get_historico_temperatura_recente_id_leggo(
+      tibble::tibble(), 1, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"), pautas)
+  temperatura_por_id_leggo <- tibble::tribble(
+    ~ id_leggo,
+    ~ periodo,
+    ~ temperatura_periodo,
+    ~ temperatura_recente
+  )
+  
+  expect_equal(energy_df, temperatura_por_id_leggo)
 })
