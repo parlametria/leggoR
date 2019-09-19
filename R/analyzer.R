@@ -83,6 +83,7 @@ get_temperatura <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate:
 #' @param granularidade Granularidade do dado histórico da temperatura desejada ('d' = dia, 's' = semana, 'm' = mês)
 #' @param decaimento A porcentagem de redução do valor da temperatura por dia. Valor deve estar entre 0 e 1.
 #' @param max_date Último dia a ser considerado no cálculo da temperatura. Padrão: dia atual.
+#' @param pautas Dataframe das pautas
 #' @return Dataframe com o valor da temperatura recente para cada dia útil da tramitação de uma proposição.
 #' @importFrom magrittr '%>%'
 #' @export
@@ -193,10 +194,13 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 #' considera a tramitação da casa de origem
 #' @param tram Dataframe da tramitação do PL.
 #' @param id_leggo ID geral da proposição
+#' @param granularidade Granularidade do dado histórico da temperatura desejada ('d' = dia, 's' = semana, 'm' = mês)
+#' @param decaimento A porcentagem de redução do valor da temperatura por dia. Valor deve estar entre 0 e 1.
+#' @param max_date Último dia a ser considerado no cálculo da temperatura. Padrão: dia atual.
 #' @param pautas Dataframe das pautas
 #' @return Dataframe com o valor da temperatura recente para cada dia útil da tramitação de uma proposição.
 #' @export
-get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, pautas) {
+get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granularidade = 's', decaimento = 0.25, max_date = lubridate::now(), pautas) {
   eventos_por_leggo_id <-
     tram %>%
     dplyr::mutate(id_leggo = id_leggo)
@@ -207,9 +211,9 @@ get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, pautas) {
     purrr::map_dfr(
       ~ agoradigital::get_historico_temperatura_recente(
         .x,
-        granularidade = 's',
-        decaimento = 0.25,
-        max_date = lubridate::now(),
+        granularidade = granularidade,
+        decaimento = decaimento,
+        max_date = max_date,
         pautas = pautas
       ),
       .id = "id_leggo"

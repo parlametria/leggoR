@@ -164,7 +164,7 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_ro
         adiciona_locais_faltantes_progresso()
     } 
     etapas[["hist_temperatura"]] <-
-      get_historico_temperatura_recente_id_leggo(etapas$fases_eventos, row_num, pautas)
+      agoradigital::get_historico_temperatura_recente_id_leggo(etapas$fases_eventos, row_num, pautas)
   }
   etapas$proposicao %<>%
     dplyr::mutate(apelido_materia = apelido, tema = tema_pl, id_leggo = row_num)
