@@ -147,5 +147,7 @@ COMISSOES_CAMARA <-
     "descricao_situacao",
     "evento",
     "data_audiencia",
-    "link_inteiro_teor"
+    "link_inteiro_teor",
+    "origem_tramitacao_local_nome_casa_local",
+    "destino_tramitacao_local_nome_casa_local"
   )
