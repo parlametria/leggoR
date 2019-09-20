@@ -170,7 +170,11 @@ safe_write_docs <- purrr::safely(
 #' retornar a tramitação
 #' @export
 fetch_tramitacao_data <- function(casa, export_path, docs_ids, dias_atras) {
-  purrr::pmap(list(casa, export_path, docs_ids$id_documento, docs_ids$id_principal, dias_atras), function(a, b, c, d, e) safe_write_docs(a, b, c, d, e))
+  if (!(tolower(casa) %in% c("camara", "senado"))) {
+    warning("Casa deve ser senado ou camara.")
+  }else {
+    purrr::pmap(list(casa, export_path, docs_ids$id_documento, docs_ids$id_principal, dias_atras), function(a, b, c, d, e) safe_write_docs(a, b, c, d, e)) 
+  }
 }
 
 #' @title Baixa os dados da tramitação de vários Projetos de Lei

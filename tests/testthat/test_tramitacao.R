@@ -58,6 +58,10 @@ test <- function(){
     expect_true(nrow(tramitacao_2196833) >= nrow(tramitacao_2196833_com_data))
   })
   
+  test_that('fetch_tramitacao_data() return warning', {
+    expect_warning(fetch_tramitacao_data('casa', 'export_path', tibble::tibble(), 1))
+  })
+  
 }
 
 if(check_api()){
