@@ -130,7 +130,7 @@ adiciona_status <- function(tramitacao_df) {
                                             evento == "desarquivamento" ~ "Ativa",
                                             evento == "perda_da_eficacia" ~ "Caducou",
                                             evento == "rejeicao_projeto" ~ "Rejeitada",
-                                            evento == "transformada_lei" ~ "Lei")) %>%
+                                            evento %in% c("transformada_lei", "remetida_a_sancao") ~ "Lei")) %>%
     tidyr::fill(status, .direction = "up") %>%
     dplyr::mutate(status = dplyr::case_when(is.na(status) ~ "Ativa",
                   T ~ status))
