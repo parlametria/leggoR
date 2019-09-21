@@ -118,7 +118,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 
   eventos_sem_horario <- eventos_df %>%
       dplyr::mutate(data = lubridate::floor_date(data_hora, unit="day"))
-  
+
   #Adiciona linhas para os dias úteis nos quais não houve movimentações na tramitação
   #Remove linhas referentes a dias de recesso parlamentar
   full_dates <- data.frame(data = seq(min(eventos_sem_horario$data), max_date, by = "1 day"))
@@ -159,7 +159,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     temperatura_periodo <- eventos_extendidos %>%
       dplyr::mutate(periodo = lubridate::floor_date(data, "months"))
   }
-  
+
   data_arquivamento <-
     temperatura_periodo %>%
     get_arquivamento(c("periodo"))
@@ -169,7 +169,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     dplyr::group_by(periodo) %>%
     dplyr::summarize(temperatura_periodo = sum(peso_final, na.rm = T)) %>%
     dplyr::ungroup()
-  
+
   temperatura_periodo <-
     suppressMessages(dplyr::left_join(temperatura_periodo, data_arquivamento)) %>%
     dplyr::mutate(temperatura_periodo = dplyr::if_else(!is.na(dummy), 0, temperatura_periodo)) %>%
@@ -200,12 +200,12 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 #' @param pautas Dataframe das pautas
 #' @return Dataframe com o valor da temperatura recente para cada dia útil da tramitação de uma proposição.
 #' @export
-get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granularidade = 's', decaimento = 0.25, max_date = lubridate::now(), pautas) {
+get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granularidade = 's', decaimento = 0.25, max_date = lubridate::now(), pautas = tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)) {
   eventos_por_leggo_id <-
     tram %>%
     dplyr::mutate(id_leggo = id_leggo)
-  
-  temperatura_por_id_leggo <- 
+
+  temperatura_por_id_leggo <-
     eventos_por_leggo_id %>%
     split(.$id_leggo) %>%
     purrr::map_dfr(
@@ -219,7 +219,7 @@ get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granulari
       .id = "id_leggo"
     ) %>%
     dplyr::mutate(id_leggo = as.integer(id_leggo))
-  
+
   if(nrow(temperatura_por_id_leggo) == 0) {
     temperatura_por_id_leggo <- tibble::tribble(
       ~ id_leggo,
@@ -228,8 +228,8 @@ get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granulari
       ~ temperatura_recente
     )
   }
-  
-  return(temperatura_por_id_leggo) 
+
+  return(temperatura_por_id_leggo)
 }
 
 #' @title Extrai o regime de tramitação de um PL
