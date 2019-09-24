@@ -24,7 +24,8 @@ create_tabela_atores_camara <- function(documentos_df, autores_df) {
                   partido,
                   uf,
                   sigla_local = status_proposicao_sigla_orgao,
-                  descricao_tipo_documento)
+                  descricao_tipo_documento,
+                  data = data_apresentacao)
 
   atores_df <- autores_docs %>%
     dplyr::mutate(tipo_autor = 'deputado') %>% 
@@ -38,7 +39,8 @@ create_tabela_atores_camara <- function(documentos_df, autores_df) {
                     partido,
                     uf,
                     tipo_generico,
-                    sigla_local) %>%
+                    sigla_local,
+                    data) %>%
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -qtd_de_documentos) %>%
     dplyr::ungroup()
@@ -95,7 +97,8 @@ create_tabela_atores_senado <- function(documentos_df, autores_df) {
                     partido,
                     uf,
                     tipo_generico,
-                    sigla_local) %>%
+                    sigla_local,
+                    data = data_texto) %>%
     dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -qtd_de_documentos) %>%
     dplyr::ungroup()
