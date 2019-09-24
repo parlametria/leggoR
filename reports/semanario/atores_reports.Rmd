@@ -1,9 +1,11 @@
 ---
 title: "Relatório de atividade parlamentar na semana 16/09 a 20/09"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
-```{r message=FALSE}
+```{r echo=FALSE, message=FALSE, paged.print=TRUE}
 library(tidyverse)
 atores_geral <- readr::read_csv("../../data/atores.csv")
 props <- 
@@ -68,6 +70,8 @@ qntd_pl5029 <-
   filter(nome_formal == 'PL 5029/2018') 
 
 ```
+
+
 No caso da reforma da previdência foi apresentada uma emenda supressiva pelo Senador Jayme Campos do (DEM/MT), com a assinatura de mais 26 senadores para suprimir o inciso X do § 22 do art.40 e os §§ 1-A a 1-C do art. 149 e o § 8 do art.9.
 Foi apresentado também dois pareceres um dia 18/09 e outro dia 19/09 pelo relator o senador Tasso Jereissati (PSDB/CE)
 
