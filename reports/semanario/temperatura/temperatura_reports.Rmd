@@ -1,0 +1,39 @@
+---
+title: "Relatório de temperatura na semana 16/09 a 20/09"
+author: "Equipe Leg.go"
+date: "26/09/2019"
+output:
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
+---
+
+```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, paged.print=FALSE, results="asis"}
+library(tidyverse)
+library(here)
+
+```
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+temperatura <- read_csv("../../../data/hists_temperatura.csv")
+```
+
+Primeiro passo: Verificar temperatura das proposições que tiveram na pauta da semana
+- PEC 6/2019 - Nova previdência
+- PL 1292/1995 - PL das compras públicas
+- PL 5029/2018 - Uso do fundo partidário para remunerar funcionários de partido político
+- MPV 884/2019 - Retira prazo para inscrição de propriedades no CAR
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+ids_props_pauta <- c("137999", "16526", "2187087", "2208200")
+
+temperatura_pauta <- temperatura %>% 
+  filter(id_ext %in% ids_props_pauta)
+```
+
+Segundo passo: Verificar as proposições que tiveram aumento de temperatura
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+
+```
+
