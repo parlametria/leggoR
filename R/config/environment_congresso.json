@@ -49,7 +49,7 @@
   ],
 
   "tipos_locais":[
-    {"tipo":"decisivo", "label":"Decisivo", "peso":0.68}
+    {"tipo":"decisivo", "label":"Decisivo", "peso": 0.68}
   ],
 
   "eventos": [
