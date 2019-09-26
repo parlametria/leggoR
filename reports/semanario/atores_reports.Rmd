@@ -1,0 +1,94 @@
+---
+title: "Relatório de atividade parlamentar na semana 16/09 a 20/09"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r echo=FALSE, message=FALSE, paged.print=TRUE}
+library(tidyverse)
+atores_geral <- readr::read_csv("../../data/atores.csv")
+props <- 
+  readr::read_csv("../../data/proposicoes.csv") %>% 
+  select(id_ext, sigla_tipo, numero, apelido, data_apresentacao) %>% 
+  mutate(ano = format(data_apresentacao, "%Y"))
+
+atores_ultima_semana <-
+  atores_geral %>%  
+  filter(data >= "2019-09-15") %>% 
+  filter(data < "2019-09-23")
+
+atores_apelidos <-
+  atores_ultima_semana %>% 
+  left_join(props, by = 'id_ext') %>% 
+  mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', ano)) 
+
+qntd_partidos <-
+  atores_apelidos %>% 
+  filter(!is.na(partido)) %>% 
+  group_by(partido, nome_formal) %>% 
+  summarise(total_docs = sum(qtd_de_documentos))
+
+qntd_lei <-
+  atores_apelidos %>% 
+  group_by(tipo_generico, nome_formal) %>% 
+  summarise(total_docs = n())
+
+p2 <- 
+  ggplot(qntd_lei, aes(x = tipo_generico, y = total_docs, fill = tipo_generico)) +
+  geom_col() + 
+  facet_wrap( ~ nome_formal) + 
+  xlab("Tipo Documento") +
+  ylab("Quantidade de documentos")
+
+p2
+
+p3 <-
+  ggplot(qntd_partidos, aes(x = partido, y = total_docs)) + 
+  geom_col() + 
+  facet_wrap( ~ nome_formal) + 
+  coord_flip() + 
+  xlab("Partido") +
+  ylab("Quantidade de documentos")
+
+p3
+
+qntd_pec6 <-
+  atores_apelidos %>% 
+  filter(nome_formal == 'PEC 6/2019')
+
+qntd_pec45 <-
+  atores_apelidos %>% 
+  filter(nome_formal == 'PEC 45/2019') 
+
+qntd_pl1292 <-
+  atores_apelidos %>% 
+  filter(nome_formal == 'PL 1292/1995') 
+
+qntd_pl5029 <-
+  atores_apelidos %>% 
+  filter(nome_formal == 'PL 5029/2018') 
+
+```
+
+
+No caso da reforma da previdência foi apresentada uma emenda supressiva pelo Senador Jayme Campos do (DEM/MT), com a assinatura de mais 26 senadores para suprimir o inciso X do § 22 do art.40 e os §§ 1-A a 1-C do art. 149 e o § 8 do art.9.
+Foi apresentado também dois pareceres um dia 18/09 e outro dia 19/09 pelo relator o senador Tasso Jereissati (PSDB/CE)
+
+No caso da pec 45/2019 foram apresentadas 10 emendas, 
+sendo 4 modificativas por Daniel Almeida (PCdoB/BA) o autor principal e mais 7 deputados, todos do PCdoB;
+ 3 de Efraim Filho (DEM/PB), sendo 2 aditivas ao artigo 152-A, as duas com o texto muito semelhante e uma que 
+“Altera os artigos 62, 145, 146, 149, 150, 153, 154, 155,
+156, 159, 195 e 239 da Constituição Federal e acresce os
+artigos 115 e 116 ao Ato das Disposições Constitucionais
+Transitórias.”; 
+2 aditivas do Subtenente Gonzaga (PDT/MG) e 1 modificativa do Laercio Oliveira (PP/SE)
+Ainda foram apresentados 8 Requerimentos,
+ 2 de Marcelo Freixo (PSOL/RJ) e Fernanda Melchionna (PSOL/RS) um requerindo a convocação do Ministro de Estado da Economia, Sr. Paulo Roberto Nunes Guedes e outro requerindo que seja convidado o Sr. Marcos Cintra, Ex-Secretário da Receita Federal; 
+2 de Newton Cardoso Jr (MDB/MG) um que requerindo a inclusão de participantes no Seminário no Estado de Minas Gerais e o outro requerindo que o Seminário no Estado de Minas Gerais, destinado a discutir a Proposta de Emenda Constitucional n. 45-A, de 2019, que trata da Reforma Tributária, seja realizado na Assembleia Legislativa do Estado de Minas Gerais - ALMG, no dia 30/09/2019, às 10h; 
+1 de Aguinaldo Ribeiro (PP/PB) 	Requerimento de Audiência Pública
+1 de Alexis Fonteyne (NOVO/SP) Requer seja realizado convite para participação na Audiência Pública a ser designada para debater a matéria objeto da PEC nº 45-A/2019, que "altera o Sistema Tributário Nacional e dá outras providências".
+
+No caso da PL 1292/1995 o deputado Augusto Coutinho (SOLIDARIEDADE/PE) apresentou uma emenda de redação editando o artigo 28
+
+No caso da PL 5029/2018 o deputado Wilson Santiago (PTB/PB) apresentou um parecer que conclui pela manutenção do texto aprovado pela Câmara dos Deputados
