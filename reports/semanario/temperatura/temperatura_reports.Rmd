@@ -11,18 +11,28 @@ output:
 ```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, paged.print=FALSE, results="asis"}
 library(tidyverse)
 library(here)
-
+library(lubridate)
+library(ggplot2)
 ```
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 temperatura <- read_csv("../../../data/hists_temperatura.csv")
 ```
 
+
+Base de dados de pressão que tiveram em pauta
+```{r}
+pressao_137999 <- read_csv("../../../../leggo-backend/data/pops/pop_137999.csv")
+pressao_16526 <- read_csv("../../../../leggo-backend/data/pops/pop_16526.csv")
+
+pressao <- bind_rows(pressao_137999, pressao_16526)
+```
+
 Primeiro passo: Verificar temperatura das proposições que tiveram na pauta da semana
 - PEC 6/2019 - Nova previdência
 - PL 1292/1995 - PL das compras públicas
-- PL 5029/2018 - Uso do fundo partidário para remunerar funcionários de partido político
-- MPV 884/2019 - Retira prazo para inscrição de propriedades no CAR
+- PL 5029/2018 - Uso do fundo partidário para remunerar funcionários de partido político -- sem dados de pressao
+- MPV 884/2019 - Retira prazo para inscrição de propriedades no CAR -- sem dados de pressao
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 ids_props_pauta <- c("137999", "16526", "2187087", "2208200")
@@ -31,9 +41,57 @@ temperatura_pauta <- temperatura %>%
   filter(id_ext %in% ids_props_pauta)
 ```
 
-Segundo passo: Verificar as proposições que tiveram aumento de temperatura
+```{r}
+temperatura_ <- temperatura_pauta %>% 
+  select(-temperatura_periodo)
 
-```{r, message=FALSE, warning=FALSE, include=FALSE}
+temperatura_$periodo <- date(temperatura_$periodo)
+
+pressao_ <- pressao %>% 
+  select(id_ext,
+         periodo = date,
+         casa,
+         pressao = maximo_geral) 
+
+pauta <- inner_join(temperatura_, pressao_)
 
 ```
+
+
+```{r}
+pauta_137999 <- pauta %>% 
+  filter(id_ext == "137999") 
+
+pauta_137999 %>% 
+  ggplot(aes(x = epiweek(periodo), y = temperatura_recente)) +
+  geom_area(aes(fill="#69b3a2"))  +
+  geom_col(aes(x = epiweek(periodo), y = -pressao), fill= "#404080")
+
+
+  geom_label(aes(x=4.5, y=.1, label="Temperatura"), color="#69b3a2") +
+  xlab("Dia") +
+  ylab("Temperatura recente") +
+  geom_histogram(aes(x = epiweek(periodo), y = -..density..), fill= "#404080") +
+  geom_label(aes(x=4.5, y=-.01, label="Pressão"), color="#404080")
+  
+```
+
+Segundo passo: Verificar as proposições que tiveram aumento de temperatura
+- PL 1292/1995 - PL das compras públicas
+- PEC 15/2015 - Tornar o Fundeb permanente
+- PL 7180/2014 - Escola sem partido
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+temperatura_aumento <- temperatura %>% 
+  filter(year(periodo) == "2019") %>% 
+  mutate(semana = week(periodo)) %>% 
+  filter(semana >= week("2019-09-08"))
+
+```
+
+
+```{r}
+
+```
+
 
