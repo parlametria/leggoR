@@ -24,8 +24,8 @@ Base de dados de pressão que tiveram em pauta
 ```{r}
 pressao_137999 <- read_csv("../../../../leggo-backend/data/pops/pop_137999.csv")
 pressao_16526 <- read_csv("../../../../leggo-backend/data/pops/pop_16526.csv")
-
-pressao <- bind_rows(pressao_137999, pressao_16526)
+pressao_2192459 <- read_csv("../../../../leggo-backend/data/pops/pop_2192459.csv")
+pressao <- bind_rows(pressao_137999, pressao_16526, pressao_2192459)
 ```
 
 Primeiro passo: Verificar temperatura das proposições que tiveram na pauta da semana
@@ -35,7 +35,7 @@ Primeiro passo: Verificar temperatura das proposições que tiveram na pauta da 
 - MPV 884/2019 - Retira prazo para inscrição de propriedades no CAR -- sem dados de pressao
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
-ids_props_pauta <- c("137999", "16526", "2187087", "2208200")
+ids_props_pauta <- c("137999", "16526", "2187087", "2208200", "2192459")
 
 temperatura_pauta <- temperatura %>% 
   filter(id_ext %in% ids_props_pauta)
@@ -60,21 +60,24 @@ pauta <- inner_join(temperatura_, pressao_)
 
 ```{r}
 pauta_137999 <- pauta %>% 
-  filter(id_ext == "137999") 
+  filter(id_ext %in% c("137999","2192459"))
 
 pauta_137999 %>% 
-  ggplot(aes(x = epiweek(periodo), y = temperatura_recente)) +
-  geom_area(aes(fill="#69b3a2"))  +
-  geom_col(aes(x = epiweek(periodo), y = -pressao), fill= "#404080")
-
-
-  geom_label(aes(x=4.5, y=.1, label="Temperatura"), color="#69b3a2") +
-  xlab("Dia") +
-  ylab("Temperatura recente") +
-  geom_histogram(aes(x = epiweek(periodo), y = -..density..), fill= "#404080") +
-  geom_label(aes(x=4.5, y=-.01, label="Pressão"), color="#404080")
+  ggplot(aes(x = epiweek(periodo), y = log(temperatura_recente))) +
+  geom_area(fill="#69b3a2", width=0.1)  +
+  geom_col(aes(x = epiweek(periodo), y = -log(pressao)), fill= "#404080", width = 0.95) +
+  xlab("Semana") +
+  ylab("Temperatura recente") 
   
 ```
+
+```{r}
+pauta_137999 %>% 
+  ggplot(aes(x = epiweek(periodo), y = temperatura_recente)) +
+  geom_area(fill="#69b3a2", width=0.1)  +
+  geom_area(aes(x = epiweek(periodo), y = -pressao), fill= "#404080", size = .3) 
+```
+
 
 Segundo passo: Verificar as proposições que tiveram aumento de temperatura
 - PL 1292/1995 - PL das compras públicas
