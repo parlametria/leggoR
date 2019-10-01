@@ -16,22 +16,12 @@ process_etapa <- function(id, casa, pautas) {
     agoradigital::process_proposicao(prop, tram, casa) %>%
     dplyr::mutate(data_hora = as.POSIXct(data_hora))
   status <- agoradigital::extract_status_tramitacao(id, casa, prop, tram)
-  historico_temperatura <-
-    agoradigital::get_historico_temperatura_recente(eventos_df = proc_tram, pautas = pautas) %>%
-    dplyr::mutate(id_ext = prop$prop_id, casa = prop$casa) %>%
-    dplyr::select(id_ext, casa, periodo, temperatura_periodo, temperatura_recente)
-  temperatura_value <-
-    historico_temperatura %>%
-    dplyr::slice(dplyr::n()) %>%
-    .$temperatura_recente
   extended_prop <-
-    merge(prop, status, by = "prop_id") %>%
-    dplyr::mutate(temperatura = temperatura_value)
+    merge(prop, status, by = "prop_id")
  
   list(
     proposicao = extended_prop,
-    fases_eventos = proc_tram,
-    hist_temperatura = historico_temperatura
+    fases_eventos = proc_tram
     )
 }
 
@@ -77,13 +67,6 @@ safe_process_etapa <- purrr::safely(
           ~ nivel,
           ~
             titulo_evento
-        ),
-        hist_temperatura = tibble::tribble(
-          ~ id_ext,
-          ~ casa,
-          ~ periodo,
-          ~ temperatura_periodo,
-          ~ temperatura_recente
         )
       )
 )
@@ -180,9 +163,11 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_ro
         adiciona_coluna_pulou() %>%
         adiciona_locais_faltantes_progresso()
     } 
+    etapas[["hist_temperatura"]] <-
+      agoradigital::get_historico_temperatura_recente_id_leggo(tram = etapas$fases_eventos, id_leggo = row_num, pautas = pautas)
   }
   etapas$proposicao %<>%
-    dplyr::mutate(apelido_materia = apelido, tema = tema_pl)
+    dplyr::mutate(apelido_materia = apelido, tema = tema_pl, id_leggo = row_num)
   Sys.sleep(5*stats::runif(1))
   return(etapas)
 }
@@ -193,19 +178,24 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_ro
 #' @param pls dataframe com proposições.
 #' @export
 converte_tabela_geral_ids_casa <- function(pls) {
+  pls_ids <- pls %>%
+    dplyr::mutate(id_leggo = dplyr::row_number())
+  
   proposicoes_individuais_a_baixar_camara <- 
-    pls %>%
+    pls_ids %>%
     dplyr::mutate(casa = "camara") %>%
-    dplyr::select(casa,
+    dplyr::select(id_leggo,
+                  casa,
                   id_casa = id_camara,
                   apelido,
                   tema) %>%
     dplyr::filter(!is.na(id_casa))
   
   proposicoes_individuais_a_baixar_senado <-
-    pls %>%
+    pls_ids %>%
     dplyr::mutate(casa = "senado") %>%
-    dplyr::select(casa,
+    dplyr::select(id_leggo,
+                  casa,
                   id_casa = id_senado,
                   apelido,
                   tema) %>%
