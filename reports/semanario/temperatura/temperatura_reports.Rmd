@@ -13,19 +13,21 @@ library(tidyverse)
 library(here)
 library(lubridate)
 library(ggplot2)
+library(plotly)
+library(hrbrthemes)
+library(grid)
+library(gridExtra)
 ```
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 temperatura <- read_csv("../../../data/hists_temperatura.csv")
 ```
 
-
 Base de dados de pressão que tiveram em pauta
 ```{r}
 pressao_137999 <- read_csv("../../../../leggo-backend/data/pops/pop_137999.csv")
-pressao_16526 <- read_csv("../../../../leggo-backend/data/pops/pop_16526.csv")
 pressao_2192459 <- read_csv("../../../../leggo-backend/data/pops/pop_2192459.csv")
-pressao <- bind_rows(pressao_137999, pressao_16526, pressao_2192459)
+pressao <- bind_rows(pressao_137999, pressao_2192459)
 ```
 
 Primeiro passo: Verificar temperatura das proposições que tiveram na pauta da semana
@@ -35,10 +37,11 @@ Primeiro passo: Verificar temperatura das proposições que tiveram na pauta da 
 - MPV 884/2019 - Retira prazo para inscrição de propriedades no CAR -- sem dados de pressao
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
-ids_props_pauta <- c("137999", "16526", "2187087", "2208200", "2192459")
+#ids_props_pauta <- c("137999", "16526", "2187087", "2208200", "2192459")
 
+# id leggo nova previdência
 temperatura_pauta <- temperatura %>% 
-  filter(id_ext %in% ids_props_pauta)
+  filter(id_leggo == "34")
 ```
 
 ```{r}
@@ -60,41 +63,170 @@ pauta <- inner_join(temperatura_, pressao_)
 
 ```{r}
 pauta_137999 <- pauta %>% 
-  filter(id_ext %in% c("137999","2192459"))
-
-pauta_137999 %>% 
-  ggplot(aes(x = epiweek(periodo), y = log(temperatura_recente))) +
-  geom_area(fill="#69b3a2", width=0.1)  +
-  geom_col(aes(x = epiweek(periodo), y = -log(pressao)), fill= "#404080", width = 0.95) +
-  xlab("Semana") +
-  ylab("Temperatura recente") 
-  
+  group_by(periodo) %>% 
+  summarise(media_temperatura = mean(temperatura_recente),
+            max_pressao = max(pressao)) 
 ```
 
 ```{r}
-pauta_137999 %>% 
-  ggplot(aes(x = epiweek(periodo), y = temperatura_recente)) +
-  geom_area(fill="#69b3a2", width=0.1)  +
-  geom_area(aes(x = epiweek(periodo), y = -pressao), fill= "#404080", size = .3) 
+datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
+
+p <- pauta_137999 %>% 
+  ggplot(aes(x = periodo, y = log(media_temperatura))) +
+  geom_point(color="#EF476F", width=0.5) +
+  geom_line(color="#EF476F") +
+  geom_col(aes(x = periodo, y = -log(max_pressao)), fill= "#FFD166", width = 4) +
+  labs(x = "Semana", 
+       y = "",
+       title = "Temperatura e pressão ao longo das semanas") +
+  scale_x_date(date_labels = "%d de %b", breaks = datas) +
+  theme_ipsum_rc(grid = FALSE) +
+  theme(axis.text.y = element_blank(), 
+        axis.text.x = element_text(angle = 0, vjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "gray60", size = 8))
+  
+grob <- grobTree(textGrob("Temperatura", x=0.1,  y=0.95, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+p  + annotation_custom(grob) + annotation_custom(grob2)
+
+```
+
+```{r}
+datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
+
+p2 <- pauta_137999 %>% 
+  ggplot(aes(x = periodo, y = log(media_temperatura))) +
+  geom_area(fill="#EF476F", width=0.7, alpha = 0.4) +
+  geom_line(color="#EF476F") +
+  geom_col(aes(x = periodo, y = -log(max_pressao)), fill= "#FFD166", width = 4) +
+  labs(x = "Semana", 
+       y = "",
+       title = "Temperatura e pressão ao longo das semanas") +
+  scale_x_date(date_labels = "%d de %b", breaks = datas) +
+  theme_ipsum_rc(grid = FALSE) +
+  theme(axis.text.y = element_blank(), 
+        axis.text.x = element_text(angle = 0, vjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "gray60", size = 8))
+  
+grob <- grobTree(textGrob("Temperatura", x=0.1,  y=0.95, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+p2  + annotation_custom(grob) + annotation_custom(grob2)
+
+```
+
+```{r}
+datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
+
+p3 <- pauta_137999 %>% 
+  ggplot(aes(x = periodo, y = log(max_pressao))) +
+  geom_area(fill="#FFD166", width=0.7, alpha = 0.6) +
+  geom_line(color="#FFD166") +
+  geom_col(aes(x = periodo, y = -log(media_temperatura)), fill= "#EF476F", width = 4, alpha = 0.5) +
+  labs(x = "Semana", 
+       y = "",
+       title = "Temperatura e pressão ao longo das semanas") +
+  scale_x_date(date_labels = "%d de %b", breaks = datas) +
+  theme_ipsum_rc(grid = FALSE) +
+  theme(axis.text.y = element_blank(), 
+        axis.text.x = element_text(angle = 0, vjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "gray60", size = 8))
+  
+grob <- grobTree(textGrob("Pressão", x=0.1,  y=0.95, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+grob2 <- grobTree(textGrob("Temperatura", x=0.1,  y=.1, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+p3 + annotation_custom(grob) + annotation_custom(grob2)
+```
+
+```{r}
+datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
+
+p4 <- pauta_137999 %>% 
+  ggplot(aes(x = periodo, y = log(media_temperatura))) +
+  geom_col(fill="#EF476F", alpha = 0.4) +
+  geom_area(aes(x = periodo, y = -log(max_pressao)), fill= "#FFD166", width = 0.9) +
+  labs(x = "Semana", 
+       y = "",
+       title = "Temperatura e pressão ao longo das semanas") +
+  scale_x_date(date_labels = "%d de %b", breaks = datas) +
+  theme_ipsum_rc(grid = FALSE) +
+  theme(axis.text.y = element_blank(), 
+        axis.text.x = element_text(angle = 0, vjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "gray60", size = 8))
+  
+grob <- grobTree(textGrob("Temperatura", x=0.1,  y=0.95, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+p4 + annotation_custom(grob) + annotation_custom(grob2)
 ```
 
 
+```{r}
+datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
+
+p5 <- pauta_137999 %>% 
+  ggplot(aes(x = periodo, y = log(media_temperatura))) +
+  geom_line(color="#EF476F") +
+  geom_col(aes(x = periodo, y = log(max_pressao)), fill= "#FFD166") +
+  labs(x = "Semana", 
+       y = "",
+       title = "Temperatura e pressão ao longo das semanas") +
+  scale_x_date(date_labels = "%d de %b", breaks = datas) +
+  theme_ipsum_rc(grid = FALSE) +
+  theme(axis.text.y = element_blank(), 
+        axis.text.x = element_text(angle = 0, vjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "gray60", size = 8))
+  
+grob <- grobTree(textGrob("Temperatura", x=0.1,  y=0.95, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.4, fontfamily = "Roboto", fontface = "bold")))
+
+p5 + annotation_custom(grob) + annotation_custom(grob2)
+```
+
+
+```{r}
+datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
+
+p6 <- pauta_137999 %>% 
+  ggplot(aes(x = periodo, y = log(max_pressao))) +
+  geom_col(aes(x = periodo, y = log(media_temperatura)), fill= "#FFD166") +
+  geom_line(color="#EF476F") +
+  labs(x = "Semana", 
+       y = "",
+       title = "Temperatura e pressão ao longo das semanas") +
+  scale_x_date(date_labels = "%d de %b", breaks = datas) +
+  theme_ipsum_rc(grid = FALSE) +
+  theme(axis.text.y = element_blank(), 
+        axis.text.x = element_text(angle = 0, vjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "gray60", size = 8))
+  
+grob <- grobTree(textGrob("Temperatura", x=0.1,  y=0.95, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.4, fontfamily = "Roboto", fontface = "bold")))
+
+grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.4, fontfamily = "Roboto", fontface = "bold")))
+
+p6 + annotation_custom(grob) + annotation_custom(grob2)
+```
 Segundo passo: Verificar as proposições que tiveram aumento de temperatura
 - PL 1292/1995 - PL das compras públicas
 - PEC 15/2015 - Tornar o Fundeb permanente
 - PL 7180/2014 - Escola sem partido
-
-```{r, message=FALSE, warning=FALSE, include=FALSE}
-temperatura_aumento <- temperatura %>% 
-  filter(year(periodo) == "2019") %>% 
-  mutate(semana = week(periodo)) %>% 
-  filter(semana >= week("2019-09-08"))
-
-```
-
-
-```{r}
-
-```
 
 
