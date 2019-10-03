@@ -17,6 +17,7 @@ library(plotly)
 library(hrbrthemes)
 library(grid)
 library(gridExtra)
+library(tibble)
 ```
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
@@ -24,53 +25,95 @@ temperatura <- read_csv("../../../data/hists_temperatura.csv")
 ```
 
 Base de dados de pressão que tiveram em pauta
-```{r}
+```{r, message=FALSE, warning=FALSE, include=FALSE}
 pressao_137999 <- read_csv("../../../../leggo-backend/data/pops/pop_137999.csv")
 pressao_2192459 <- read_csv("../../../../leggo-backend/data/pops/pop_2192459.csv")
-pressao <- bind_rows(pressao_137999, pressao_2192459)
+pressao_prev <- bind_rows(pressao_137999, pressao_2192459)
+
+pressao_cp <- read_csv("../../../../leggo-backend/data/pops/pop_16526.csv")
+
 ```
 
 Primeiro passo: Verificar temperatura das proposições que tiveram na pauta da semana
-- PEC 6/2019 - Nova previdência
-- PL 1292/1995 - PL das compras públicas
-- PL 5029/2018 - Uso do fundo partidário para remunerar funcionários de partido político -- sem dados de pressao
-- MPV 884/2019 - Retira prazo para inscrição de propriedades no CAR -- sem dados de pressao
+- PEC 6/2019 - Nova previdência - 34
+- PL 1292/1995 - PL das compras públicas - 55
+- PL 5029/2018 - Uso do fundo partidário para remunerar funcionários de partido político -- sem dados de pressao -- falta id no leggo
+- MPV 884/2019 - Retira prazo para inscrição de propriedades no CAR -- sem dados de pressao -- falta id no leggo
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 #ids_props_pauta <- c("137999", "16526", "2187087", "2208200", "2192459")
 
-# id leggo nova previdência
-temperatura_pauta <- temperatura %>% 
+temperatura_pauta_prev <- temperatura %>% 
   filter(id_leggo == "34")
+
+temperatura_pauta_cp <- temperatura %>% 
+  filter(id_leggo == "55")
+
+temperatura_pauta_fp <- temperatura %>% 
+  filter(id_leggo == "61")
+
+temperatura_pauta_car <- temperatura %>% 
+  filter(id_leggo == "62")
 ```
 
 ```{r}
-temperatura_ <- temperatura_pauta %>% 
+temperatura_ <- temperatura_pauta_prev %>% 
   select(-temperatura_periodo)
 
 temperatura_$periodo <- date(temperatura_$periodo)
 
-pressao_ <- pressao %>% 
+pressao_ <- pressao_prev %>% 
   select(id_ext,
          periodo = date,
          casa,
          pressao = maximo_geral) 
 
-pauta <- inner_join(temperatura_, pressao_)
+pauta_prev <- inner_join(temperatura_, pressao_)
 
+```
+```{r}
+temperatura_ <- temperatura_pauta_cp %>% 
+  select(-temperatura_periodo)
+
+temperatura_$periodo <- date(temperatura_$periodo)
+
+pressao_ <- pressao_cp %>% 
+  select(id_ext,
+         periodo = date,
+         casa,
+         pressao = maximo_geral) 
+
+pauta_cp <- inner_join(temperatura_, pressao_)
 ```
 
 
+
 ```{r}
-pauta_137999 <- pauta %>% 
+pauta_137999 <- pauta_prev %>% 
   group_by(periodo) %>% 
   summarise(media_temperatura = mean(temperatura_recente),
             max_pressao = max(pressao)) 
 ```
 
 ```{r}
-datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
+pauta_cp <- pauta_cp %>% 
+  group_by(periodo) %>% 
+  summarise(media_temperatura = mean(temperatura_recente),
+            max_pressao = max(pressao)) 
+```
 
+
+```{r}
+datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
+```
+
+
+```{r}
+pauta_137999 <- pauta_137999 %>% 
+  mutate(max_pressao = if_else(max_pressao == 0, 2, max_pressao))
+```
+
+```{r}
 p <- pauta_137999 %>% 
   ggplot(aes(x = periodo, y = log(media_temperatura))) +
   geom_point(color="#EF476F", width=0.5) +
@@ -78,7 +121,8 @@ p <- pauta_137999 %>%
   geom_col(aes(x = periodo, y = -log(max_pressao)), fill= "#FFD166", width = 4) +
   labs(x = "Semana", 
        y = "",
-       title = "Temperatura e pressão ao longo das semanas") +
+       title = "Temperatura e pressão ao longo das semanas",
+       subtitle = "PEC 6/2019 - Nova previdência") +
   scale_x_date(date_labels = "%d de %b", breaks = datas) +
   theme_ipsum_rc(grid = FALSE) +
   theme(axis.text.y = element_blank(), 
@@ -95,9 +139,39 @@ p  + annotation_custom(grob) + annotation_custom(grob2)
 
 ```
 
-```{r}
-datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
 
+```{r}
+pauta_cp <- pauta_cp %>% 
+  mutate(max_pressao = if_else(max_pressao == 0, 2, max_pressao))
+```
+
+
+```{r}
+p_cp <- pauta_cp %>% 
+  ggplot(aes(x = periodo, y = (media_temperatura))) +
+  geom_point(color="#EF476F", width=0.5) +
+  geom_line(color="#EF476F") +
+  geom_col(aes(x = periodo, y = -(max_pressao)), fill= "#FFD166", width = 4) +
+  labs(x = "Semana", 
+       y = "",
+       title = "Temperatura e pressão ao longo das semanas",
+       subtitle = "PL 1292/1995 - PL das compras públicas") +
+  scale_x_date(date_labels = "%d de %b", breaks = datas) +
+  theme_ipsum_rc(grid = FALSE) +
+  theme(axis.text.y = element_blank(), 
+        axis.text.x = element_text(angle = 0, vjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "gray60", size = 8))
+  
+grob <- grobTree(textGrob("Temperatura", x=0.1,  y=0.95, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+p_cp  + annotation_custom(grob) + annotation_custom(grob2)
+```
+
+```{r}
 p2 <- pauta_137999 %>% 
   ggplot(aes(x = periodo, y = log(media_temperatura))) +
   geom_area(fill="#EF476F", width=0.7, alpha = 0.4) +
@@ -123,8 +197,6 @@ p2  + annotation_custom(grob) + annotation_custom(grob2)
 ```
 
 ```{r}
-datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
-
 p3 <- pauta_137999 %>% 
   ggplot(aes(x = periodo, y = log(max_pressao))) +
   geom_area(fill="#FFD166", width=0.7, alpha = 0.6) +
@@ -149,8 +221,6 @@ p3 + annotation_custom(grob) + annotation_custom(grob2)
 ```
 
 ```{r}
-datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
-
 p4 <- pauta_137999 %>% 
   ggplot(aes(x = periodo, y = log(media_temperatura))) +
   geom_col(fill="#EF476F", alpha = 0.4) +
@@ -175,8 +245,6 @@ p4 + annotation_custom(grob) + annotation_custom(grob2)
 
 
 ```{r}
-datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
-
 p5 <- pauta_137999 %>% 
   ggplot(aes(x = periodo, y = log(media_temperatura))) +
   geom_line(color="#EF476F") +
@@ -201,8 +269,6 @@ p5 + annotation_custom(grob) + annotation_custom(grob2)
 
 
 ```{r}
-datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
-
 p6 <- pauta_137999 %>% 
   ggplot(aes(x = periodo, y = log(max_pressao))) +
   geom_col(aes(x = periodo, y = log(media_temperatura)), fill= "#FFD166") +
@@ -224,9 +290,9 @@ grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
 
 p6 + annotation_custom(grob) + annotation_custom(grob2)
 ```
-Segundo passo: Verificar as proposições que tiveram aumento de temperatura
-- PL 1292/1995 - PL das compras públicas
-- PEC 15/2015 - Tornar o Fundeb permanente
-- PL 7180/2014 - Escola sem partido
+
+
+
+
 
 
