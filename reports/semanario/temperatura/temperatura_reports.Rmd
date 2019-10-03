@@ -116,9 +116,9 @@ pauta_137999 <- pauta_137999 %>%
 ```{r}
 p <- pauta_137999 %>% 
   ggplot(aes(x = periodo, y = log(media_temperatura))) +
-  geom_point(color="#EF476F", width=0.5) +
-  geom_line(color="#EF476F") +
-  geom_col(aes(x = periodo, y = -log(max_pressao)), fill= "#FFD166", width = 4) +
+  geom_point(color=factor(ifelse(pauta_137999$periodo>="2019-09-02","#EF476F","#DDDDDD")), width=0.5) +
+  geom_line(color=factor(ifelse(pauta_137999$periodo>="2019-09-02","#EF476F","#DDDDDD"))) +
+  geom_col(aes(x = periodo, y = -log(max_pressao), width = 4), fill=factor(ifelse(pauta_137999$periodo>="2019-09-02","#FFD166","#DDDDDD")), show.legend = FALSE )+
   labs(x = "Semana", 
        y = "",
        title = "Temperatura e pressão ao longo das semanas",
