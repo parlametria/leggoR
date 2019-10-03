@@ -18,7 +18,7 @@ mpv_aprovada_870 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tra
 test_that('get_pesos_eventos() returns all events from both houses', {
   eventos_camara <- camara_env$eventos
   eventos_senado <- senado_env$eventos
-  eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
+  eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%	
     dplyr::select(evento = constant, tipo)
   
   pesos_eventos <- get_pesos_eventos()
@@ -34,7 +34,6 @@ test_that('get_pesos_eventos() returns all events with their correct weights for
   eventos_senado <- senado_env$eventos %>% dplyr::left_join(tipos_eventos, by="tipo")
   eventos_extra_senado <- purrr::map_df(senado_env$evento, ~ dplyr::bind_rows(.x)) %>%
     dplyr::select(evento = constant, tipo) %>% dplyr::left_join(tipos_eventos, by="tipo")
-  
   
   pesos_eventos <- get_pesos_eventos()
   

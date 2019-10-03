@@ -151,7 +151,7 @@ extract_evento_Senado <- function(tramitacao_df) {
     dplyr::mutate(texto_lower = tolower(stringr::str_trim(
     stringr::str_replace_all(texto_tramitacao,'[\r\n]', '')))) %>% 
     fuzzyjoin::regex_left_join(eventos_senado, by = c(texto_lower = "regex")) %>%
-    dplyr::select(-texto_lower, -regex)
+    dplyr::select(-texto_lower, -regex) 
   
   #Remove eventos de apresentação duplicados
   eventos_apresentacao <- df %>% dplyr::filter(evento %in% 'apresentacao_pl') %>%

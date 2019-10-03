@@ -52,7 +52,7 @@
     "evento_abertura": "inicio_prazo_emendas",
     "evento_fim": "fim_prazo_emendas"
   },
-
+  
   "evento": {
     "realizacao_audiencia_publica": {
       "regex": "realizada(,)* (.)*audiência pública",
@@ -73,6 +73,7 @@
     {"evento": "designado_relator",
       "regex": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))|avocada a relatoria",
       "tipo":"despacho"},
+    {"evento": "designado_presidente_comissao", "regex": "eleit(a|o)(s)* .* presidente", "tipo": "despacho"},
     {"evento": "arquivamento", "regex": "processo arquivado(.)*|a proposição é arquivada|o projeto vai ao arquivo", "tipo":"despacho"},
     {"evento": "desarquivamento", "regex": "a mat.ria foi desarquivada", "tipo":"despacho"},
     {"evento": "desarquivamento", "id_situacao": 149, "tipo":"despacho"},
