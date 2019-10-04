@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:3.4.4
+FROM rocker/tidyverse:3.6.1
 
 RUN mkdir /agora-digital
 WORKDIR /agora-digital
