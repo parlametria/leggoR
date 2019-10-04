@@ -6,18 +6,33 @@ output:
     highlight: github
 ---
 
+
+```{r}
+library(tidyverse)
+library(here)
+library(lubridate)
+library(ggplot2)
+library(plotly)
+library(hrbrthemes)
+library(grid)
+library(gridExtra)
+library(tibble)
+```
+
+
 ```{r echo=FALSE, message=FALSE, paged.print=TRUE}
 library(tidyverse)
 library(hrbrthemes)
 library(ggchicklet)
+
 atores_geral <- readr::read_csv("../../data/atores.csv") %>% 
   mutate(partido = if_else(is.na(partido), "-", partido), 
          uf = if_else(is.na(uf), "-", uf),
          nome_completo = paste0(nome_autor, " (",partido,"/",uf,")"))
-props <- 
-  readr::read_csv("../../data/proposicoes.csv") %>% 
+
+props <- readr::read_csv("../../data/proposicoes.csv") %>% 
   select(id_ext, sigla_tipo, numero, apelido, data_apresentacao, tema) %>% 
-  mutate(ano = format(data_apresentacao, "%Y"))
+  mutate(ano = format(as.Date(data_apresentacao), "%Y"), id_ext = as.numeric(id_ext))
 
 atores_ultima_semana <-
   atores_geral %>%  
@@ -27,7 +42,7 @@ atores_ultima_semana <-
 atores_apelidos <-
   atores_ultima_semana %>% 
   left_join(props, by = 'id_ext') %>% 
-  mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', ano)) 
+  mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano))) 
 
 oposicao <- c("PT", "PSOL", "PSB", "PCdoP", "PDT", "REDE")
 

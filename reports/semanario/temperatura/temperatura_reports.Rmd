@@ -116,8 +116,11 @@ pauta_137999 <- pauta_137999 %>%
 ```{r}
 p <- pauta_137999 %>% 
   ggplot(aes(x = periodo, y = log(media_temperatura))) +
-  geom_point(color=factor(ifelse(pauta_137999$periodo>="2019-09-02","#EF476F","#DDDDDD")), width=0.5) +
+  #geom_rect(aes(xmin=as.Date("2019-08-29"), xmax=as.Date("2019-09-06"), ymin=-6, ymax=7), color="#999999", alpha=0, size = 0.3) +
   geom_line(color=factor(ifelse(pauta_137999$periodo>="2019-09-02","#EF476F","#DDDDDD"))) +
+  geom_point(color=factor(ifelse(pauta_137999$periodo>="2019-09-02","#EF476F","#DDDDDD")),
+           size = ifelse(pauta_137999$periodo>="2019-09-02",3,1),
+           width=0.5) +
   geom_col(aes(x = periodo, y = -log(max_pressao), width = 4), fill=factor(ifelse(pauta_137999$periodo>="2019-09-02","#FFD166","#DDDDDD")), show.legend = FALSE )+
   labs(x = "Semana", 
        y = "",
@@ -135,10 +138,10 @@ grob <- grobTree(textGrob("Temperatura", x=0.1,  y=0.95, hjust=0,
 grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
  gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
 
-p  + annotation_custom(grob) + annotation_custom(grob2)
+p  + annotation_custom(grob) + annotation_custom(grob2) 
+
 
 ```
-
 
 ```{r}
 pauta_cp <- pauta_cp %>% 
@@ -174,9 +177,11 @@ p_cp  + annotation_custom(grob) + annotation_custom(grob2)
 ```{r}
 p2 <- pauta_137999 %>% 
   ggplot(aes(x = periodo, y = log(media_temperatura))) +
-  geom_area(fill="#EF476F", width=0.7, alpha = 0.4) +
-  geom_line(color="#EF476F") +
-  geom_col(aes(x = periodo, y = -log(max_pressao)), fill= "#FFD166", width = 4) +
+  geom_area(fill="#BBBBBB", width=0.7, alpha = 0.4) +
+  geom_point(color=factor(ifelse(pauta_137999$periodo>="2019-09-02","#EF476F","#DDDDDD")), size = ifelse(pauta_137999$periodo>="2019-09-02",3,1))+
+  #geom_rect(aes(xmin=as.Date("2019-08-29"), xmax=as.Date("2019-09-06"), ymin=-6, ymax=7), color="#999999", alpha=0, size = 0.3) +
+  geom_line(color=factor(ifelse(pauta_137999$periodo>="2019-09-02","#EF476F","#DDDDDD"))) +
+  geom_col(aes(x = periodo, y = -log(max_pressao)), fill= factor(ifelse(pauta_137999$periodo>="2019-09-02","#FFD166","#DDDDDD")), width = 4) +
   labs(x = "Semana", 
        y = "",
        title = "Temperatura e pressão ao longo das semanas") +

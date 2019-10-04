@@ -1,0 +1,298 @@
+---
+title: "Semanário Leg.go"
+author: "Equipe Leg.go"
+date: "04/10/2019"
+output:
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
+---
+
+```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, paged.print=FALSE, results="asis"}
+library(magrittr)
+knitr::opts_chunk$set(echo = FALSE,
+	             cache = FALSE,
+               prompt = FALSE,
+               tidy = FALSE,
+               comment = NA,
+               message = FALSE,
+               warning = FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(here)
+library(lubridate)
+library(ggplot2)
+library(plotly)
+library(hrbrthemes)
+library(grid)
+library(gridExtra)
+library(tibble)
+library(ggchicklet)
+```
+
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+#Base de dados de temperatura
+temperatura <- read_csv("../../data/hists_temperatura.csv")
+```
+
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+#Base de dados de pressão que tiveram em pauta
+pressao_137999 <- read_csv("../../../leggo-backend/data/pops/pop_137999.csv")
+pressao_2192459 <- read_csv("../../../leggo-backend/data/pops/pop_2192459.csv")
+pressao_prev <- bind_rows(pressao_137999, pressao_2192459)
+pressao_cp <- read_csv("../../../leggo-backend/data/pops/pop_16526.csv")
+temperatura_pauta_prev <- temperatura %>% 
+  filter(id_leggo == "34")
+
+temperatura_pauta_cp <- temperatura %>% 
+  filter(id_leggo == "55")
+
+```
+
+```{r}
+#Base de dados de atuações e filtros por data
+atores_geral <- readr::read_csv("../../data/atores.csv") %>% 
+  mutate(partido = if_else(is.na(partido), "-", partido), 
+         uf = if_else(is.na(uf), "-", uf),
+         nome_completo = paste0(nome_autor, " (",partido,"/",uf,")"))
+
+props <- readr::read_csv("../../data/proposicoes.csv") %>% 
+  select(id_ext, sigla_tipo, numero, apelido, data_apresentacao, tema) %>% 
+  mutate(ano = format(as.Date(data_apresentacao), "%Y"), id_ext = as.numeric(id_ext))
+
+atores_ultima_semana <-
+  atores_geral %>%  
+  filter(data >= "2019-09-15") %>% 
+  filter(data < "2019-09-23")
+
+atores_apelidos <-
+  atores_ultima_semana %>% 
+  left_join(props, by = 'id_ext') %>% 
+  mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano))) 
+
+oposicao <- c("PT", "PSOL", "PSB", "PCdoP", "PDT", "REDE")
+
+atores_apelidos <-
+  atores_apelidos %>% 
+  mutate(bancada = if_else(partido %in% oposicao, "Oposição", "Governo"))
+
+atores_pls <- atores_apelidos %>% 
+  group_by(id_ext, nome_autor, casa, id_autor, tipo_autor, partido, nome_completo,
+           uf, tipo_generico, sigla_local, is_important, bancada, nome_formal, sigla_tipo, tema) %>% 
+  summarise(qtd_de_documentos = sum(qtd_de_documentos))
+
+atuacao_temas <- atores_pls %>% 
+  group_by(bancada, tema) %>% 
+  summarise(qtd_de_documentos = sum(qtd_de_documentos))
+
+atuacao_bancadas <- atores_pls %>% 
+  group_by(casa, bancada, nome_formal, sigla_tipo) %>% 
+  summarise(qtd_de_documentos = sum(qtd_de_documentos))
+
+qntd_pec6 <-
+  atores_pls %>% 
+  filter(nome_formal == 'PEC 6/2019')
+```
+
+```{r}
+temperatura_ <- temperatura_pauta_prev %>% 
+  select(-temperatura_periodo)
+
+temperatura_$periodo <- date(temperatura_$periodo)
+
+pressao_ <- pressao_prev %>% 
+  select(id_ext,
+         periodo = date,
+         casa,
+         pressao = maximo_geral) 
+
+pauta_prev <- inner_join(temperatura_, pressao_)
+
+```
+```{r}
+temperatura_ <- temperatura_pauta_cp %>% 
+  select(-temperatura_periodo)
+
+temperatura_$periodo <- date(temperatura_$periodo)
+
+pressao_ <- pressao_cp %>% 
+  select(id_ext,
+         periodo = date,
+         casa,
+         pressao = maximo_geral) 
+
+pauta_cp <- inner_join(temperatura_, pressao_)
+```
+
+```{r}
+pauta_137999 <- pauta_prev %>% 
+  group_by(periodo) %>% 
+  summarise(media_temperatura = mean(temperatura_recente),
+            max_pressao = max(pressao)) 
+```
+
+```{r}
+pauta_cp <- pauta_cp %>% 
+  group_by(periodo) %>% 
+  summarise(media_temperatura = mean(temperatura_recente),
+            max_pressao = max(pressao)) 
+```
+
+
+```{r}
+datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
+```
+
+
+```{r}
+pauta_137999 <- pauta_137999 %>% 
+  mutate(max_pressao = if_else(max_pressao == 0, 2, max_pressao))
+```
+
+##Pressão e Temperatura
+
+```{r, fig.height=7, fig.width=10}
+p <- pauta_137999 %>% 
+  ggplot(aes(x = periodo, y = log(media_temperatura))) +
+  #geom_rect(aes(xmin=as.Date("2019-08-29"), xmax=as.Date("2019-09-06"), ymin=-6, ymax=7), color="#999999", alpha=0, size = 0.3) +
+  geom_line(color=factor(ifelse(pauta_137999$periodo>="2019-09-02","#EF476F","#DDDDDD"))) +
+  geom_point(color=factor(ifelse(pauta_137999$periodo>="2019-09-02","#EF476F","#DDDDDD")),
+           size = ifelse(pauta_137999$periodo>="2019-09-02",3,1),
+           width=0.5) +
+  geom_col(aes(x = periodo, y = -log(max_pressao), width = 4), fill=factor(ifelse(pauta_137999$periodo>="2019-09-02","#FFD166","#DDDDDD")), show.legend = FALSE )+
+  labs(x = "Semana", 
+       y = "",
+       title = "Temperatura e pressão ao longo das semanas",
+       subtitle = "PEC 6/2019 - Nova previdência") +
+  scale_x_date(date_labels = "%d de %b", breaks = datas) +
+  theme_ipsum_rc(grid = FALSE) +
+  theme(axis.text.y = element_blank(), 
+        axis.text.x = element_text(angle = 0, vjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "gray60", size = 8))
+  
+grob <- grobTree(textGrob("Temperatura", x=0.1,  y=0.95, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+p  + annotation_custom(grob) + annotation_custom(grob2) 
+
+
+```
+
+```{r}
+pauta_cp <- pauta_cp %>% 
+  mutate(max_pressao = if_else(max_pressao == 0, 1.2, max_pressao))
+```
+
+
+```{r, fig.height=7, fig.width=10}
+p_cp <- pauta_cp %>% 
+  ggplot(aes(x = periodo, y = log(media_temperatura))) +
+  geom_line(color=factor(ifelse(pauta_137999$periodo>="2019-09-02","#EF476F","#DDDDDD"))) +
+  geom_point(color=factor(ifelse(pauta_137999$periodo>="2019-09-02","#EF476F","#DDDDDD")),
+           size = ifelse(pauta_137999$periodo>="2019-09-02",3,1),
+           width=0.5) +
+  geom_col(aes(x = periodo, y = -log(max_pressao), width = 4), fill=factor(ifelse(pauta_137999$periodo>="2019-09-02","#FFD166","#DDDDDD")), show.legend = FALSE )+
+  labs(x = "Semana", 
+       y = "",
+       title = "Temperatura e pressão ao longo das semanas",
+       subtitle = "PL 1292/1995 - PL das compras públicas") +
+  scale_x_date(date_labels = "%d de %b", breaks = datas) +
+  theme_ipsum_rc(grid = FALSE) +
+  theme(axis.text.y = element_blank(), 
+        axis.text.x = element_text(angle = 0, vjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "gray60", size = 8))
+  
+grob <- grobTree(textGrob("Temperatura", x=0.1,  y=0.95, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
+ gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+
+p_cp  + annotation_custom(grob) + annotation_custom(grob2)
+```
+
+##Atores da semana
+
+```{r, fig.height=6, fig.width=10}
+p <- atuacao_temas %>% ggplot(aes(x = reorder(tema, qtd_de_documentos), y = qtd_de_documentos, group = bancada, fill = bancada)) + 
+    geom_chicklet(width = 0.75) +
+     theme_ipsum_rc(grid=FALSE) +
+     theme(legend.position = "bottom") +
+     labs(
+      x = NULL, y = "Quantidade de documentos", fill = NULL,
+      title = "Atuações das bancadas por tema",
+      subtitle = "Documentos autorados pelos parlamentares \nna última semana",
+      caption = ""
+     ) + 
+     scale_fill_manual(
+     name = NULL,
+     values = c(
+      "Governo" = "#436f82",
+      "Oposição" = "#ae4544"
+     )) +
+     coord_flip()
+p <- p + theme_ipsum_rc(grid=FALSE)
+p <- p + theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) +theme(axis.text.x = element_text(color = "gray60", size = 10)) +
+  theme(legend.position = "top")
+p
+```
+
+
+```{r, fig.height=6, fig.width=10}
+p <- atuacao_bancadas %>% ggplot(aes(x = reorder(nome_formal, qtd_de_documentos), y = qtd_de_documentos, group = bancada, fill = bancada)) + 
+    geom_chicklet(width = 0.75) +
+     theme_ipsum_rc(grid=FALSE) +
+     theme(legend.position = "bottom") +
+     labs(
+      x = NULL, y = "Quantidade de documentos", fill = NULL,
+      title = "Atuações das bancadas por proposição",
+      subtitle = "Documentos autorados pelos parlamentares \nna última semana",
+      caption = ""
+     ) +
+     scale_fill_manual(
+     name = NULL,
+     values = c(
+      "Governo" = "#436f82",
+      "Oposição" = "#ae4544"
+     )) +
+     coord_flip()
+p <- p + theme_ipsum_rc(grid=FALSE)
+p <- p + theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) +theme(axis.text.x = element_text(color = "gray60", size = 10)) +
+  theme(legend.position = "top")
+p
+```
+
+```{r, fig.height=8, fig.width=10}
+p <- qntd_pec6 %>% ggplot(aes(x = reorder(nome_completo, qtd_de_documentos), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
+    geom_chicklet(width = 0.8) +
+     theme(legend.position = "bottom") +
+     labs(
+      x = NULL, y = "Quantidade de documentos", fill = NULL,
+      title = "Atuações dos parlamentares por proposição",
+      subtitle = "Documentos autorados pelos parlamentares \nna última semana",
+      caption = ""
+     ) +
+     scale_fill_manual(
+     name = NULL,
+     values = c(
+        'Emenda' =  '#80B1D3',
+        'Parecer'= '#FB9A99',
+        'Voto em Separado' ='#855D7C',
+        'Requerimento' = '#B2DF8A',
+        'Proposição Apensada' ='#F9EE9D',
+        'Outros' = '#587B7A'
+     )) +
+     coord_flip() +
+     theme(aspect.ratio = 0.9)
+p <- p + theme_ipsum_rc(grid=FALSE)
+p <- p + theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) +theme(axis.text.x = element_text(color = "gray60", size = 10)) +
+  theme(legend.position = "top")
+p
+```
