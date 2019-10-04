@@ -1,48 +1,48 @@
-variables:
-  _R_CHECK_CRAN_INCOMING_: "false"
-  _R_CHECK_FORCE_SUGGESTS_: "true"
-  APT_PKGS: "libcurl4-openssl-dev libssh2-1-dev libssl-dev libxml2-dev zlib1g-dev git"
-  DOCKER_TLS_CERTDIR: ""
+	variables:
+	  _R_CHECK_CRAN_INCOMING_: "false"
+	  _R_CHECK_FORCE_SUGGESTS_: "true"
+	  APT_PKGS: "libcurl4-openssl-dev libssh2-1-dev libssl-dev libxml2-dev zlib1g-dev git"
+	  DOCKER_TLS_CERTDIR: ""
 
-#cache:
-#  paths:
-#    - cache/
+	#cache:
+	#  paths:
+	#    - cache/
 
-before_script:
-#  - mkdir -p cache
-#  - echo cache >>.Rbuildignore
-  - apt-get update
-  - apt-get install -y --no-install-recommends ${APT_PKGS}
-  - apt-get install -y --no-install-recommends qpdf pandoc pandoc-citeproc
-  - export PATH="/usr/local/lib/R/site-library/littler/examples/:${PATH}"
-  - echo "options(Ncpus = $(nproc --all))" >> /usr/local/lib/R/etc/Rprofile.site
-#  - echo ".libPaths(\"$PWD/cache\")" >> /usr/local/lib/R/etc/Rprofile.site
-  - install2.r devtools
-  - r -e 'devtools::install_dev_deps()'
+	before_script:
+	#  - mkdir -p cache
+	#  - echo cache >>.Rbuildignore
+	  - apt-get update
+	  - apt-get install -y --no-install-recommends ${APT_PKGS}
+	  - apt-get install -y --no-install-recommends qpdf pandoc pandoc-citeproc
+	  - export PATH="/usr/local/lib/R/site-library/littler/examples/:${PATH}"
+	  - echo "options(Ncpus = $(nproc --all))" >> /usr/local/lib/R/etc/Rprofile.site
+	#  - echo ".libPaths(\"$PWD/cache\")" >> /usr/local/lib/R/etc/Rprofile.site
+	  - install2.r devtools
+	  - r -e 'devtools::install_dev_deps()'
 
-r-release:
-  stage: test
-  tags:
-    - docker
-  image: rocker/tidyverse:3.5.1
-  script:
-    - Rscript -e 'devtools::install_github("r-lib/rlang")'
-    - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
-    - Rscript -e 'packageVersion("rcongresso")'
-    - Rscript -e 'tryCatch(stopifnot(length(devtools::check(check_dir = ".", args = c("--no-examples", "--as-cran", "--no-manual", "--no-tests"))$errors) == 0),error = function(error_message) {print(paste("Exception when checking code:",error_message))})'
-    - Rscript -e 'res=devtools::test(reporter="summary");df=as.data.frame(res);if(sum(df$failed) > 0 || any(df$error)) {q(status=1)}'
-    - Rscript -e 'library(covr);codecov()'
-  artifacts:
-    paths:
-      - "*.Rcheck"
-    name: logs
-  when: always
+	r-release:
+	  stage: test
+	  tags:
+	    - docker
+	  image: rocker/tidyverse:3.4.4
+	  script:
+	    - Rscript -e 'devtools::install_github("r-lib/rlang")'
+	    - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
+	    - Rscript -e 'packageVersion("rcongresso")'
+	    - Rscript -e 'tryCatch(stopifnot(length(devtools::check(check_dir = ".", args = c("--no-examples", "--as-cran", "--no-manual", "--no-tests"))$errors) == 0),error = function(error_message) {print(paste("Exception when checking code:",error_message))})'
+	    - Rscript -e 'res=devtools::test(reporter="summary");df=as.data.frame(res);if(sum(df$failed) > 0 || any(df$error)) {q(status=1)}'
+	    - Rscript -e 'library(covr);codecov()'
+	  artifacts:
+	    paths:
+	      - "*.Rcheck"
+	    name: logs
+	  when: always
 
-pages:
-  stage: deploy
-  tags:
-    - docker
-  image: rocker/tidyverse:3.5.1
+	pages:
+	  stage: deploy
+	  tags:
+	    - docker
+  image: rocker/tidyverse:3.4.4
   script:
     - install2.r pkgdown
     - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
