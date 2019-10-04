@@ -1,16 +1,22 @@
 ---
 title: "Relatório de atividade parlamentar na semana 16/09 a 20/09"
 output:
-  html_document:
-    df_print: paged
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
 ---
 
 ```{r echo=FALSE, message=FALSE, paged.print=TRUE}
 library(tidyverse)
-atores_geral <- readr::read_csv("../../data/atores.csv")
+library(hrbrthemes)
+library(ggchicklet)
+atores_geral <- readr::read_csv("../../data/atores.csv") %>% 
+  mutate(partido = if_else(is.na(partido), "-", partido), 
+         uf = if_else(is.na(uf), "-", uf),
+         nome_completo = paste0(nome_autor, " (",partido,"/",uf,")"))
 props <- 
   readr::read_csv("../../data/proposicoes.csv") %>% 
-  select(id_ext, sigla_tipo, numero, apelido, data_apresentacao) %>% 
+  select(id_ext, sigla_tipo, numero, apelido, data_apresentacao, tema) %>% 
   mutate(ano = format(data_apresentacao, "%Y"))
 
 atores_ultima_semana <-
@@ -23,14 +29,33 @@ atores_apelidos <-
   left_join(props, by = 'id_ext') %>% 
   mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', ano)) 
 
-qntd_partidos <-
+oposicao <- c("PT", "PSOL", "PSB", "PCdoP", "PDT", "REDE")
+
+atores_apelidos <-
   atores_apelidos %>% 
+  mutate(bancada = if_else(partido %in% oposicao, "Oposição", "Governo"))
+
+atores_pls <- atores_apelidos %>% 
+  group_by(id_ext, nome_autor, casa, id_autor, tipo_autor, partido, nome_completo,
+           uf, tipo_generico, sigla_local, is_important, bancada, nome_formal, sigla_tipo, tema) %>% 
+  summarise(qtd_de_documentos = sum(qtd_de_documentos))
+
+atuacao_temas <- atores_pls %>% 
+  group_by(bancada, tema) %>% 
+  summarise(qtd_de_documentos = sum(qtd_de_documentos))
+
+atuacao_bancadas <- atores_pls %>% 
+  group_by(casa, bancada, nome_formal, sigla_tipo) %>% 
+  summarise(qtd_de_documentos = sum(qtd_de_documentos))
+
+qntd_partidos <-
+  atores_pls %>% 
   filter(!is.na(partido)) %>% 
   group_by(partido, nome_formal) %>% 
   summarise(total_docs = sum(qtd_de_documentos))
 
 qntd_lei <-
-  atores_apelidos %>% 
+  atores_pls %>% 
   group_by(tipo_generico, nome_formal) %>% 
   summarise(total_docs = n())
 
@@ -41,8 +66,6 @@ p2 <-
   xlab("Tipo Documento") +
   ylab("Quantidade de documentos")
 
-p2
-
 p3 <-
   ggplot(qntd_partidos, aes(x = partido, y = total_docs)) + 
   geom_col() + 
@@ -51,26 +74,23 @@ p3 <-
   xlab("Partido") +
   ylab("Quantidade de documentos")
 
-p3
-
 qntd_pec6 <-
-  atores_apelidos %>% 
+  atores_pls %>% 
   filter(nome_formal == 'PEC 6/2019')
 
 qntd_pec45 <-
-  atores_apelidos %>% 
+  atores_pls %>% 
   filter(nome_formal == 'PEC 45/2019') 
 
 qntd_pl1292 <-
-  atores_apelidos %>% 
+  atores_pls %>% 
   filter(nome_formal == 'PL 1292/1995') 
 
 qntd_pl5029 <-
-  atores_apelidos %>% 
+  atores_pls %>% 
   filter(nome_formal == 'PL 5029/2018') 
 
 ```
-
 
 No caso da reforma da previdência foi apresentada uma emenda supressiva pelo Senador Jayme Campos do (DEM/MT), com a assinatura de mais 26 senadores para suprimir o inciso X do § 22 do art.40 e os §§ 1-A a 1-C do art. 149 e o § 8 do art.9.
 Foi apresentado também dois pareceres um dia 18/09 e outro dia 19/09 pelo relator o senador Tasso Jereissati (PSDB/CE)
@@ -92,3 +112,81 @@ Ainda foram apresentados 8 Requerimentos,
 No caso da PL 1292/1995 o deputado Augusto Coutinho (SOLIDARIEDADE/PE) apresentou uma emenda de redação editando o artigo 28
 
 No caso da PL 5029/2018 o deputado Wilson Santiago (PTB/PB) apresentou um parecer que conclui pela manutenção do texto aprovado pela Câmara dos Deputados
+
+```{r}
+p <- atuacao_temas %>% ggplot(aes(x = reorder(tema, qtd_de_documentos), y = qtd_de_documentos, group = bancada, fill = bancada)) + 
+    geom_chicklet(width = 0.75) +
+     theme_ipsum_rc(grid="X") +
+     theme(legend.position = "bottom") +
+     labs(
+      x = NULL, y = "Quantidade de documentos", fill = NULL,
+      title = "Atuações das bancadas por tema",
+      subtitle = "Documentos autorados pelos parlamentares \nna última semana",
+      caption = ""
+     ) + 
+     scale_fill_manual(
+     name = NULL,
+     values = c(
+      "Governo" = "#436f82",
+      "Oposição" = "#ae4544"
+     )) +
+     coord_flip()
+p <- p + theme_ipsum_rc(grid="X")
+p <- p + theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) +theme(axis.text.x = element_text(color = "gray60", size = 10)) +
+  theme(legend.position = "top")
+p
+```
+
+
+```{r}
+p <- atuacao_bancadas %>% ggplot(aes(x = reorder(nome_formal, qtd_de_documentos), y = qtd_de_documentos, group = bancada, fill = bancada)) + 
+    geom_chicklet(width = 0.75) +
+     theme_ipsum_rc(grid="X") +
+     theme(legend.position = "bottom") +
+     labs(
+      x = NULL, y = "Quantidade de documentos", fill = NULL,
+      title = "Atuações das bancadas por proposição",
+      subtitle = "Documentos autorados pelos parlamentares \nna última semana",
+      caption = ""
+     ) +
+     scale_fill_manual(
+     name = NULL,
+     values = c(
+      "Governo" = "#436f82",
+      "Oposição" = "#ae4544"
+     )) +
+     coord_flip()
+p <- p + theme_ipsum_rc(grid="X")
+p <- p + theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) +theme(axis.text.x = element_text(color = "gray60", size = 10)) +
+  theme(legend.position = "top")
+p
+```
+
+```{r, fig.height=7}
+p <- qntd_pec6 %>% ggplot(aes(x = reorder(nome_completo, qtd_de_documentos), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
+    geom_chicklet(width = 0.8) +
+     theme(legend.position = "bottom") +
+     labs(
+      x = NULL, y = "Quantidade de documentos", fill = NULL,
+      title = "Atuações dos parlamentares por proposição",
+      subtitle = "Documentos autorados pelos parlamentares \nna última semana",
+      caption = ""
+     ) +
+     scale_fill_manual(
+     name = NULL,
+     values = c(
+        'Emenda' =  '#FB9A99',
+        'Parecer'= '#F9EE9D',
+        'Voto em Separado' ='#855D7C',
+        'Requerimento' = '#80B1D3',
+        'Proposição Apensada' ='#B2DF8A',
+        'Outros' = '#587B7A'
+     )) +
+     coord_flip() +
+     theme(aspect.ratio = 0.9)
+p <- p + theme_ipsum_rc(grid="X")
+p <- p + theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) +theme(axis.text.x = element_text(color = "gray60", size = 10)) +
+  theme(legend.position = "top")
+p
+```
+
