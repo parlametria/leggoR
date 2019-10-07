@@ -4,19 +4,19 @@ variables:
   APT_PKGS: "libcurl4-openssl-dev libssh2-1-dev libssl-dev libxml2-dev zlib1g-dev git"
   DOCKER_TLS_CERTDIR: ""
 
-cache:
-  paths:
-    - cache/
+#cache:
+#  paths:
+#    - cache/
 
 before_script:
-  - mkdir -p cache
-  - echo cache >>.Rbuildignore
+#  - mkdir -p cache
+#  - echo cache >>.Rbuildignore
   - apt-get update
   - apt-get install -y --no-install-recommends ${APT_PKGS}
   - apt-get install -y --no-install-recommends qpdf pandoc pandoc-citeproc
   - export PATH="/usr/local/lib/R/site-library/littler/examples/:${PATH}"
   - echo "options(Ncpus = $(nproc --all))" >> /usr/local/lib/R/etc/Rprofile.site
-  - echo ".libPaths(\"$PWD/cache\")" >> /usr/local/lib/R/etc/Rprofile.site
+#  - echo ".libPaths(\"$PWD/cache\")" >> /usr/local/lib/R/etc/Rprofile.site
   - install2.r devtools
   - r -e 'devtools::install_dev_deps()'
 
@@ -24,7 +24,7 @@ r-release:
   stage: test
   tags:
     - docker
-  image: rocker/r-ver:latest
+  image: rocker/tidyverse:3.6.1
   script:
     - Rscript -e 'devtools::install_github("r-lib/rlang")'
     - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
@@ -42,7 +42,7 @@ pages:
   stage: deploy
   tags:
     - docker
-  image: rocker/tidyverse:latest
+  image: rocker/tidyverse:3.6.1
   script:
     - install2.r pkgdown
     - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
