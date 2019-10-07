@@ -187,9 +187,36 @@ p  + annotation_custom(grob) + annotation_custom(grob2)
 ```
 
 ```{r}
-est_prev <- pauta_137999[c(length(pauta_137999) - 1, length(pauta_137999)),]
+est_prev <- tail(pauta_137999, 2)
+temp_atual <- est_prev$media_temperatura[length(est_prev$media_temperatura)]
+ultima_temp <- est_prev$media_temperatura[length(est_prev$media_temperatura) - 1]
+variacao_temp <- round(((temp_atual - ultima_temp) / ultima_temp) * 100, digits = 2)
+press_atual <- est_prev$max_pressao[length(est_prev$max_pressao)]
+ultima_press <- est_prev$max_pressao[length(est_prev$max_pressao) - 1]
+variacao_press <- press_atual - ultima_press
+cresceu_temp <- variacao_temp > 0
+cresceu_press <- variacao_press > 0
+variacao_temp <- abs(variacao_temp)
+variacao_press <- abs(variacao_press)
 ```
 
+
+Foi observad`r if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}` `r variacao_temp`% na temperatura e um`r if(cresceu_press){" crescimento de "}else{"a diminuição de "}` `r variacao_press`% na pressão.
+
+
+```{r}
+est_cp <- tail(pauta_cp, 2)
+temp_atual <- est_cp$media_temperatura[length(est_cp$media_temperatura)]
+ultima_temp <- est_cp$media_temperatura[length(est_cp$media_temperatura) - 1]
+variacao_temp <- round(((temp_atual - ultima_temp) / ultima_temp) * 100, digits = 2)
+press_atual <- est_cp$max_pressao[length(est_cp$max_pressao)]
+ultima_press <- est_cp$max_pressao[length(est_cp$max_pressao) - 1]
+variacao_press <- press_atual - ultima_press
+cresceu_temp <- variacao_temp > 0 
+cresceu_press <- variacao_press > 0
+variacao_temp <- abs(variacao_temp)
+variacao_press <- abs(variacao_press)
+```
 
 ```{r}
 pauta_cp <- pauta_cp %>% 
@@ -222,12 +249,13 @@ grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
  gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
 
 p_cp  + annotation_custom(grob) + annotation_custom(grob2)
+
 ```
 
-```{r}
-est_cp <- pauta_cp[c(length(pauta_cp) - 1, length(pauta_cp)),]
-```
+`r if(variacao_temp == 0){"Não foi observada nenhuma mudança na temperatura"}`
+`r if(variacao_press == 0){"Não foi observada nenhuma mudança na pressão"}`
 
+Foi observad`r if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}` `r variacao_temp`% na temperatura e `r if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}` `r if(variacao_press != 0){variacao_press}`% na pressão.
 
 ##Atores da semana
 
