@@ -144,7 +144,7 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
 #' @param casa_prop Casa de origem dos documentos
 #' @return Dataframe
 #' @export
-find_new_documentos <- function(all_pls_ids, current_docs_ids, casa_prop) {
+find_new_documentos <- function(all_pls_ids, current_docs_ids = tibble::tibble(), casa_prop) {
 
   pls_principais_ids <- all_pls_ids %>%
     dplyr::filter(casa == casa_prop) %>%
@@ -161,10 +161,12 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids, casa_prop) {
                   id_documento = as.double(id_documento)) %>%
     dplyr::bind_rows(pls_principais_ids)
 
-  new_docs_ids <- all_docs_ids %>%
-    dplyr::anti_join(current_docs_ids, by=c("id_documento","id_principal","casa"))
-
-  return(new_docs_ids)
+  if(nrow(current_docs_ids) != 0) {
+    all_docs_ids <- all_docs_ids %>%
+      dplyr::anti_join(current_docs_ids, by=c("id_documento","id_principal","casa"))
+  }
+  
+  return(all_docs_ids)
 }
 
 #' @title Baixa autores de documentos, adequando as colunas ao padrão desejado
