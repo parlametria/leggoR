@@ -1,7 +1,7 @@
 ---
 title: "Semanário Leg.go"
 author: "Equipe Leg.go"
-date: "04/10/2019"
+date: "06/10/2019"
 output:
   prettydoc::html_pretty:
     theme: leonids
@@ -149,7 +149,7 @@ pauta_cp <- pauta_cp %>%
 
 
 ```{r}
-datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02"))
+datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02", "2019-10-05"))
 ```
 
 
@@ -168,7 +168,7 @@ p <- pauta_137999 %>%
   geom_point(color=factor(ifelse(pauta_137999$periodo>="2019-09-30","#EF476F","#DDDDDD")),
            size = ifelse(pauta_137999$periodo>="2019-09-30",3,1),
            width=0.5) +
-  geom_col(aes(x = periodo, y = -max_pressao, width = 4), fill=factor(ifelse(pauta_137999$periodo>="2019-09-30","#FFD166","#DDDDDD")), show.legend = FALSE ) +
+  geom_col(aes(x = periodo, y = -sqrt(max_pressao), width = 4), fill=factor(ifelse(pauta_137999$periodo>="2019-09-30","#FFD166","#DDDDDD")), show.legend = FALSE ) +
   labs(x = "Semana", 
        y = "",
        title = "Temperatura e pressão ao longo das semanas",
@@ -207,6 +207,7 @@ variacao_press <- abs(variacao_press)
 
 Foi observad`r if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}` `r variacao_temp`% na temperatura e `r if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}` `r if(variacao_press != 0){variacao_press}``r if(variacao_press != 0){"%"}` na pressão.
 
+Para a última semana a PEC 06/2019 tivemos a aprovação de parecer.
 
 ```{r}
 est_cp <- tail(pauta_cp, 2)
@@ -258,6 +259,8 @@ p_cp  + annotation_custom(grob) + annotation_custom(grob2)
 
 Foi observad`r if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}` `r variacao_temp`% na temperatura e `r if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}` `r if(variacao_press != 0){variacao_press}``r if(variacao_press != 0){"%"}` na pressão.
 
+Para a última semana, a PL 1292/1995 não tivemos nenhum evento.
+
 ##Atores da semana
 
 ```{r, fig.height=6, fig.width=10}
@@ -284,29 +287,13 @@ p <- p + theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) +theme(axis.t
 p
 ```
 
-No caso da reforma da previdência foi apresentada uma emenda supressiva pelo Senador Jayme Campos do (DEM/MT), com a assinatura de mais 26 senadores para suprimir o inciso X do § 22 do art.40 e os §§ 1-A a 1-C do art. 149 e o § 8 do art.9.
-Foi apresentado também dois pareceres um dia 18/09 e outro dia 19/09 pelo relator o senador Tasso Jereissati (PSDB/CE)
 
-No caso da pec 45/2019 foram apresentadas 10 emendas, 
-sendo 4 modificativas por Daniel Almeida (PCdoB/BA) o autor principal e mais 7 deputados, todos do PCdoB;
- 3 de Efraim Filho (DEM/PB), sendo 2 aditivas ao artigo 152-A, as duas com o texto muito semelhante e uma que 
-“Altera os artigos 62, 145, 146, 149, 150, 153, 154, 155,
-156, 159, 195 e 239 da Constituição Federal e acresce os
-artigos 115 e 116 ao Ato das Disposições Constitucionais
-Transitórias.”; 
-2 aditivas do Subtenente Gonzaga (PDT/MG) e 1 modificativa do Laercio Oliveira (PP/SE)
-Ainda foram apresentados 8 Requerimentos,
- 2 de Marcelo Freixo (PSOL/RJ) e Fernanda Melchionna (PSOL/RS) um requerindo a convocação do Ministro de Estado da Economia, Sr. Paulo Roberto Nunes Guedes e outro requerindo que seja convidado o Sr. Marcos Cintra, Ex-Secretário da Receita Federal; 
-2 de Newton Cardoso Jr (MDB/MG) um que requerindo a inclusão de participantes no Seminário no Estado de Minas Gerais e o outro requerindo que o Seminário no Estado de Minas Gerais, destinado a discutir a Proposta de Emenda Constitucional n. 45-A, de 2019, que trata da Reforma Tributária, seja realizado na Assembleia Legislativa do Estado de Minas Gerais - ALMG, no dia 30/09/2019, às 10h; 
-1 de Aguinaldo Ribeiro (PP/PB) 	Requerimento de Audiência Pública
-1 de Alexis Fonteyne (NOVO/SP) Requer seja realizado convite para participação na Audiência Pública a ser designada para debater a matéria objeto da PEC nº 45-A/2019, que "altera o Sistema Tributário Nacional e dá outras providências".
+Na última semana o tema Agenda Nacional teve destaque nas atuações parlamentares, sendo 92% dos documentos autorados para esse tema. Outro destaque é que foram apresentados 34 documentos pela bancada do governo e 14 pela oposição.
 
-No caso da PL 1292/1995 o deputado Augusto Coutinho (SOLIDARIEDADE/PE) apresentou uma emenda de redação editando o artigo 28
-
-No caso da PL 5029/2018 o deputado Wilson Santiago (PTB/PB) apresentou um parecer que conclui pela manutenção do texto aprovado pela Câmara dos Deputados
+Ao clicar no tema Agenda Nacional, temos as seguintes proposições tiveram destaque
 
 ```{r, fig.height=6, fig.width=10}
-p <- atuacao_bancadas %>% ggplot(aes(x = reorder(nome_formal, qtd_de_documentos), y = qtd_de_documentos, group = bancada, fill = bancada)) + 
+p <- atuacao_bancadas %>% filter(nome_formal %in% c("PEC 45/2019", "PEC 6/2019")) %>%  ggplot(aes(x = reorder(nome_formal, qtd_de_documentos), y = qtd_de_documentos, group = bancada, fill = bancada)) + 
     geom_chicklet(width = 0.75) +
      theme_ipsum_rc(grid=FALSE) +
      theme(legend.position = "bottom") +
@@ -328,6 +315,10 @@ p <- p + theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) +theme(axis.t
   theme(legend.position = "top")
 p
 ```
+
+A PEC 6/2019 teve maior número de atuações, com apresentação de 30 documentos, sendo 22 apresentados pelo governo e 8 pela oposição. Já a PEC 45/2019 foram apresentados 18 documentos, sendo apresentados 12 pelo governo e 6 pela oposição.
+
+Ao clicar na proposição PEC 6/2019 temos mais detalhes sobre os atores e os respectivos documentos apresentados.
 
 ```{r, fig.height=8, fig.width=10}
 p <- qntd_pec6 %>% ggplot(aes(x = reorder(nome_completo, qtd_de_documentos), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
@@ -356,3 +347,6 @@ p <- p + theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) +theme(axis.t
   theme(legend.position = "top")
 p
 ```
+
+A maioria dos parlamentares apresentaram emendas, no entanto o senador Tasso Jereissati do PSDB apresentou 3 documentos do tipo parecer. 
+
