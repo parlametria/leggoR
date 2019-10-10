@@ -392,9 +392,14 @@ extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
 #' get_progresso(etapas$proposicao, etapas$fases_eventos)
 #' @export
 get_progresso <- function(full_proposicao_df, full_tramitacao_df) {
+  sigla <- 
+    full_proposicao_df %>% 
+    dplyr::select(sigla_tipo) %>% 
+    head(1)
+  
   progresso_data <-
     extract_casas(full_proposicao_df, full_tramitacao_df) %>%
-    generate_progresso_df() %>%
+    generate_progresso_df(sigla[[1]]) %>%
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
     tidyr::fill(prop_id, casa) %>%
     tidyr::fill(prop_id, casa, .direction = "up")

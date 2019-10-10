@@ -84,7 +84,7 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df){
 #' @return Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
 #' @examples
 #'  generate_progresso_df(fetch_tramitacao(2121442, 'camara', T))
-generate_progresso_df <- function(tramitacao_df){
+generate_progresso_df <- function(tramitacao_df, sigla){
   df <-
     tramitacao_df %>%
     dplyr::arrange(data_hora, fase_global)  %>%
@@ -116,6 +116,12 @@ generate_progresso_df <- function(tramitacao_df){
   df %<>%
     dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global")) %>%
     dplyr::ungroup()
+  
+  if (sigla == "PEC") {
+    df <-
+      df %>% 
+      dplyr::mutate(fase_global = dplyr::if_else(fase_global == "Sanção/Veto", "Promulgação/Veto", fase_global))
+  }
 
   if (sum(is.na(df$casa)) == nrow(df)) {
     tramitacao_df <-
