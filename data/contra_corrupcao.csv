@@ -1,0 +1,993 @@
+id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,qtd_de_documentos,is_important,id_senado,apelido,tema
+14562,camara,160556,deputado,Padre João,PT,MG,Requerimento,PEC21500,17,TRUE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,141405,deputado,Celso Maldaner,MDB,SC,Requerimento,PEC21500,2,TRUE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,160559,deputado,Alceu Moreira,MDB,NA,Requerimento,PEC21500,2,TRUE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,74160,deputado,Patrus Ananias,PT,MG,Outros,CCP,1,FALSE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,74270,deputado,Gilberto Nascimento,PSC,SP,Requerimento,PLEN,1,TRUE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,74366,deputado,João Campos,PRB,GO,Requerimento,MESA,1,FALSE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,74585,deputado,Lincoln Portela,PL,MG,Requerimento,CLP,1,TRUE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Requerimento,PEC21500,1,TRUE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Voto em Separado,PEC21500,1,TRUE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,141405,deputado,Celso Maldaner,MDB,SC,Proposição Apensada,PEC21500,1,TRUE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,141405,deputado,Celso Maldaner,MDB,SC,Requerimento,SEPUB(SGM),1,FALSE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,141411,deputado,Dagoberto,PDT,MS,Requerimento,PEC21500,1,TRUE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,141417,deputado,Edio Lopes,PL,RR,Proposição Apensada,PEC21500,1,TRUE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,160541,deputado,Arthur Lira,PP,AL,Requerimento,MESA,1,FALSE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,160610,deputado,Valmir Assunção,PT,BA,Outros,CCP,1,FALSE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,178961,deputado,Shéridan,PSDB,RR,Requerimento,PEC21500,1,TRUE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+14562,camara,178986,deputado,Nilto Tatto,PT,SP,Outros,CCP,1,FALSE,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+16526,camara,74043,deputado,Wellington Roberto,PL,PB,Emenda,PLEN,17,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,151208,deputado,Laercio Oliveira,PP,SE,Emenda,PLEN,6,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Emenda,PLEN,6,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141391,deputado,Arnaldo Jardim,CIDADANIA,SP,Emenda,PLEN,5,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178910,deputado,Joaquim Passarinho,PSD,PA,Requerimento,PL129295,5,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74060,deputado,Daniel Almeida,PCdoB,BA,Emenda,PLEN,4,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74158,deputado,Mário Heringer,PDT,MG,Emenda,PLEN,4,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,PLEN,4,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160587,deputado,Fábio Trad,PSD,MS,Parecer,CCJC,4,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,73486,deputado,Pompeo De Mattos,PDT,RS,Proposição Apensada,PL129295,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74283,deputado,Vicentinho,PT,SP,Requerimento,PLEN,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141405,deputado,Celso Maldaner,MDB,SC,Requerimento,PL129295,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,159237,deputado,Assis Carvalho,PT,PI,Requerimento,PL129295,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160587,deputado,Fabio Trad,PSD,MS,Parecer,CCJC,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160587,deputado,Fábio Trad,PSD,MS,Emenda,PLEN,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Proposição Apensada,CCP,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74366,deputado,João Campos,PRB,GO,Emenda,PLEN,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74371,deputado,Rubens Otoni,PT,GO,Proposição Apensada,MESA,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74655,deputado,Eduardo Barbosa,PSDB,MG,Proposição Apensada,PL129295,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141488,deputado,Paulo Teixeira,PT,SP,Proposição Apensada,MESA,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,151208,deputado,Laercio Oliveira,PP,SE,Requerimento,PL129295,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160587,deputado,Fabio Trad,PSD,MS,Requerimento,CCJC,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160665,deputado,Augusto Coutinho,SOLIDARIEDADE,PE,Emenda,PLEN,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160665,deputado,Augusto Coutinho,SOLIDARIEDADE,PE,Requerimento,PL129295,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Proposição Apensada,MESA,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178829,deputado,Capitão Augusto,PL,SP,Proposição Apensada,MESA,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178884,deputado,Hildo Rocha,MDB,MA,Requerimento,PL129295,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178910,deputado,Joaquim Passarinho,PSD,PA,Emenda,PLEN,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178992,deputado,Vitor Lippi,PSDB,SP,Proposição Apensada,MESA,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178992,deputado,Vitor Lippi,PSDB,SP,Requerimento,PL129295,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204398,deputado,Felipe Francischini,PSL,PR,Emenda,PLEN,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204530,deputado,Rodrigo Agostinho,PSB,SP,Proposição Apensada,CCP,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,66828,deputado,Fausto Pinato,PP,SP,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,67138,deputado,Iracema Portella,PP,PI,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,69871,deputado,Bacelar,PODE,BA,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,73441,deputado,Celso Russomanno,PRB,SP,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74057,deputado,Alice Portugal,PCdoB,BA,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74057,deputado,Alice Portugal,PCdoB,BA,Requerimento,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74158,deputado,Mário Heringer,PDT,MG,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74160,deputado,Patrus Ananias,PT,MG,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74161,deputado,Reginaldo Lopes,PT,MG,Proposição Apensada,MESA,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74283,deputado,Vicentinho,PT,SP,Proposição Apensada,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74366,deputado,João Campos,PRB,GO,Proposição Apensada,MESA,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,92699,deputado,Fernando Monteiro,PP,PE,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141398,deputado,Carlos Zarattini,PT,SP,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141398,deputado,Carlos Zarattini,PT,SP,Requerimento,MESA,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141405,deputado,Celso Maldaner,MDB,SC,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141405,deputado,Celso Maldaner,MDB,SC,Requerimento,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141450,deputado,Hugo Leal,PSD,RJ,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141450,deputado,Hugo Leal,PSD,RJ,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141508,deputado,Mauro Nazif,PSB,RO,Requerimento,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141555,deputado,Vinicius Carvalho,PRB,SP,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141555,deputado,Vinicius Carvalho,PRB,SP,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,151208,deputado,Laercio Oliveira,PP,SE,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,151208,deputado,Laercio Oliveira,PP,SE,Requerimento,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160518,deputado,Weliton Prado,PROS,MG,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160531,deputado,Jhonatan De Jesus,PRB,RR,Proposição Apensada,MESA,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160592,deputado,Zeca Dirceu,PT,PR,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160632,deputado,Zé Silva,SOLIDARIEDADE,MG,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160635,deputado,Ruy Carneiro,PSDB,PB,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160651,deputado,Rogério Peninha Mendonça,MDB,SC,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160653,deputado,Roberto De Lucena,PODE,SP,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160655,deputado,Ricardo Izar,PP,SP,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160665,deputado,Augusto Coutinho,SOLIDARIEDADE,PE,Parecer,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160665,deputado,Augusto Coutinho,SOLIDARIEDADE,PE,Parecer,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160674,deputado,Hugo Motta,PRB,PB,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178842,deputado,Jhc,PSB,AL,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178863,deputado,Uldurico Junior,PROS,BA,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178871,deputado,Evair Vieira De Melo,PP,ES,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178871,deputado,Evair Vieira De Melo,PP,ES,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178873,deputado,Helder Salomão,PT,ES,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178874,deputado,Sergio Vidigal,PDT,ES,Proposição Apensada,MESA,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178874,deputado,Sergio Vidigal,PDT,ES,Requerimento,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178884,deputado,Hildo Rocha,MDB,MA,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178884,deputado,Hildo Rocha,MDB,MA,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178916,deputado,Daniel Coelho,CIDADANIA,PE,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178927,deputado,Aliel Machado,PSB,PR,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178930,deputado,Evandro Roman,PSD,PR,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178930,deputado,Evandro Roman,PSD,PR,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178930,deputado,Evandro Roman,PSD,PR,Voto em Separado,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178945,deputado,Rosangela Gomes,PRB,RJ,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178992,deputado,Vitor Lippi,PSDB,SP,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178993,deputado,Carlos Henrique Gaguim,DEM,TO,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,194260,deputado,Nivaldo Albuquerque,PTB,AL,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204358,deputado,Beto Pereira,PSDB,MS,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204364,deputado,Eli Borges,SOLIDARIEDADE,TO,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204365,deputado,Gilson Marques,NOVO,SC,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204427,deputado,Fernando Rodolfo,PL,PE,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204452,deputado,Márcio Labre,PSL,NA,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204513,deputado,Guiga Peixoto,PSL,SP,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204524,deputado,Pinheirinho,PP,MG,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204536,deputado,Kim Kataguiri,DEM,SP,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204543,deputado,Luiz Flávio Gomes,PSB,SP,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+46249,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Emenda,CCJC,27,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178901,deputado,Tereza Cristina,DEM,NA,Requerimento,PLEN,9,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Parecer,CCJC,6,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,160538,deputado,Bohn Gass,PT,RS,Requerimento,PL629902,5,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178901,deputado,Tereza Cristina,DEM,NA,Requerimento,PL629902,4,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178986,deputado,Nilto Tatto,PT,SP,Requerimento,PL629902,3,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Voto em Separado,PL629902,2,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,141488,deputado,Paulo Teixeira,PT,SP,Requerimento,PLEN,2,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,141488,deputado,Paulo Teixeira,PT,SP,Voto em Separado,PL629902,2,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,160538,deputado,Bohn Gass,PT,RS,Voto em Separado,PL629902,2,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,160556,deputado,Padre João,PT,MG,Proposição Apensada,MESA,2,FALSE,41703,PL do Veneno,Meio Ambiente
+46249,camara,160556,deputado,Padre João,PT,MG,Requerimento,PL629902,2,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,160556,deputado,Padre João,PT,MG,Requerimento,PLEN,2,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,160556,deputado,Padre João,PT,MG,Voto em Separado,PL629902,2,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178843,deputado,Marx Beltrão,PSD,AL,Parecer,CSSF,2,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178986,deputado,Nilto Tatto,PT,SP,Voto em Separado,PL629902,2,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,72442,deputado,Felipe Carreras,PSB,PE,Proposição Apensada,CCP,1,FALSE,41703,PL do Veneno,Meio Ambiente
+46249,camara,72442,deputado,Felipe Carreras,PSB,PE,Proposição Apensada,MESA,1,FALSE,41703,PL do Veneno,Meio Ambiente
+46249,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Proposição Apensada,PL629902,1,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Requerimento,MESA,1,FALSE,41703,PL do Veneno,Meio Ambiente
+46249,camara,74160,deputado,Patrus Ananias,PT,MG,Requerimento,PL629902,1,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,74160,deputado,Patrus Ananias,PT,MG,Voto em Separado,PL629902,1,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,74693,deputado,Rodrigo Maia,DEM,RJ,Requerimento,MESA,1,FALSE,41703,PL do Veneno,Meio Ambiente
+46249,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Voto em Separado,PL629902,1,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,141488,deputado,Paulo Teixeira,PT,SP,Proposição Apensada,MESA,1,FALSE,41703,PL do Veneno,Meio Ambiente
+46249,camara,160538,deputado,Bohn Gass,PT,RS,Outros,.,1,FALSE,41703,PL do Veneno,Meio Ambiente
+46249,camara,160556,deputado,Padre João,PT,MG,Outros,.,1,FALSE,41703,PL do Veneno,Meio Ambiente
+46249,camara,160651,deputado,Rogério Peninha Mendonça,MDB,SC,Requerimento,PL629902,1,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178832,deputado,Leandre,PV,PR,Requerimento,PLEN,1,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178857,deputado,Jorge Solla,PT,BA,Proposição Apensada,PL629902,1,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178857,deputado,Jorge Solla,PT,BA,Requerimento,CSSF,1,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178858,deputado,Mário Negromonte Jr.,PP,BA,Proposição Apensada,CCP,1,FALSE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178930,deputado,Evandro Roman,PSD,PR,Requerimento,PL629902,1,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178933,deputado,Sergio Souza,MDB,PR,Requerimento,PL629902,1,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178964,deputado,Heitor Schuch,PSB,RS,Requerimento,PL629902,1,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178986,deputado,Nilto Tatto,PT,SP,Emenda,CMADS,1,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178986,deputado,Nilto Tatto,PT,SP,Parecer,CMADS,1,TRUE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178986,deputado,Nilto Tatto,PT,SP,Proposição Apensada,CCP,1,FALSE,41703,PL do Veneno,Meio Ambiente
+46249,camara,178993,deputado,Carlos Henrique Gaguim,DEM,TO,Proposição Apensada,MESA,1,FALSE,41703,PL do Veneno,Meio Ambiente
+51066,camara,204537,deputado,Enrico Misasi,PV,SP,Parecer,CCJC,2,TRUE,NA,Deixa de incluir FUNDEF no limite de gastos com pessoal,Educação
+51066,camara,74439,deputado,Wolney Queiroz,PDT,PE,Proposição Apensada,MESA,1,FALSE,NA,Deixa de incluir FUNDEF no limite de gastos com pessoal,Educação
+51066,camara,74655,deputado,Eduardo Barbosa,PSDB,MG,Proposição Apensada,MESA,1,FALSE,NA,Deixa de incluir FUNDEF no limite de gastos com pessoal,Educação
+51066,camara,141391,deputado,Arnaldo Jardim,CIDADANIA,SP,Proposição Apensada,MESA,1,FALSE,NA,Deixa de incluir FUNDEF no limite de gastos com pessoal,Educação
+51066,camara,141391,deputado,Arnaldo Jardim,CIDADANIA,SP,Requerimento,SEPUB(SGM),1,FALSE,NA,Deixa de incluir FUNDEF no limite de gastos com pessoal,Educação
+51066,camara,160528,deputado,Danilo Cabral,PSB,PE,Proposição Apensada,MESA,1,FALSE,NA,Deixa de incluir FUNDEF no limite de gastos com pessoal,Educação
+257161,camara,141516,deputado,Paulo Abi-Ackel,PSDB,MG,Requerimento,PLEN,3,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,178832,deputado,Leandre,PV,PR,Requerimento,PLEN,3,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,74471,deputado,André De Paula,PSD,PE,Parecer,CMADS,2,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,178954,deputado,Lucio Mosquini,MDB,RO,Requerimento,PLEN,2,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,204536,deputado,Kim Kataguiri,DEM,SP,Requerimento,PLEN,2,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,74439,deputado,Wolney Queiroz,PDT,PE,Proposição Apensada,CCJC,1,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,74439,deputado,Wolney Queiroz,PDT,PE,Requerimento,PLEN,1,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Requerimento,PLEN,1,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,141421,deputado,Eduardo Da Fonte,PP,PE,Requerimento,PLEN,1,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,141431,deputado,Fernando Coelho Filho,DEM,PE,Requerimento,PLEN,1,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,141516,deputado,Paulo Abi-Ackel,PSDB,MG,Proposição Apensada,CCJC,1,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,160559,deputado,Alceu Moreira,MDB,NA,Proposição Apensada,CCJC,1,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,178896,deputado,Newton Cardoso Jr,MDB,MG,Proposição Apensada,CCJC,1,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,178896,deputado,Newton Cardoso Jr,MDB,MG,Requerimento,PLEN,1,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+257161,camara,178954,deputado,Lucio Mosquini,MDB,RO,Proposição Apensada,CCJC,1,TRUE,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+345311,camara,160570,deputado,Jerônimo Goergen,PP,RS,Parecer,CCJC,6,TRUE,NA,Estatuto do Índio,Meio Ambiente
+345311,camara,141417,deputado,Edio Lopes,PL,RR,Proposição Apensada,MESA,2,FALSE,NA,Estatuto do Índio,Meio Ambiente
+345311,camara,141417,deputado,Edio Lopes,PL,RR,Requerimento,PLEN,2,TRUE,NA,Estatuto do Índio,Meio Ambiente
+345311,camara,141417,deputado,Edio Lopes,PL,RR,Requerimento,SEPUB(SGM),1,FALSE,NA,Estatuto do Índio,Meio Ambiente
+345311,camara,160559,deputado,Alceu Moreira,MDB,NA,Proposição Apensada,MESA,1,FALSE,NA,Estatuto do Índio,Meio Ambiente
+345311,camara,160559,deputado,Alceu Moreira,MDB,NA,Requerimento,PLEN,1,TRUE,NA,Estatuto do Índio,Meio Ambiente
+345311,camara,160559,deputado,Alceu Moreira,MDB,NA,Requerimento,SEPUB(SGM),1,FALSE,NA,Estatuto do Índio,Meio Ambiente
+345311,camara,160600,deputado,Arthur Oliveira Maia,DEM,BA,Requerimento,PLEN,1,TRUE,NA,Estatuto do Índio,Meio Ambiente
+353631,camara,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,PLEN,3,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,204534,deputado,Tabata Amaral,PDT,SP,Emenda,PLEN,3,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,69871,deputado,Bacelar,PODE,BA,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,74060,deputado,Daniel Almeida,PCdoB,BA,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,141398,deputado,Carlos Zarattini,PT,SP,Proposição Apensada,PLEN,1,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,141398,deputado,Carlos Zarattini,PT,SP,Requerimento,SEPUB(SGM),1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,141398,deputado,Carlos Zarattini,PT,SP,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,143632,deputado,Domingos Neto,PSD,CE,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,150418,deputado,Márcio Marinho,PRB,BA,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,178829,deputado,Capitão Augusto,PL,SP,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,178882,deputado,André Fufuca,PP,MA,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,178922,deputado,Tadeu Alencar,PSB,PE,Emenda,PLEN,1,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,204544,deputado,Alexandre Frota,PSL,SP,Emenda,PLEN,1,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+500183,camara,73441,deputado,Celso Russomanno,PRB,SP,Proposição Apensada,MESA,1,FALSE,NA,Autoriza trabalho a partir dos quatorze anos,Direitos Humanos
+500183,camara,160655,deputado,Ricardo Izar,PP,SP,Proposição Apensada,MESA,1,FALSE,NA,Autoriza trabalho a partir dos quatorze anos,Direitos Humanos
+500183,camara,178922,deputado,Tadeu Alencar,PSB,PE,Voto em Separado,CCJC,1,TRUE,NA,Autoriza trabalho a partir dos quatorze anos,Direitos Humanos
+500183,camara,178931,deputado,Luciano Ducci,PSB,PR,Voto em Separado,CCJC,1,TRUE,NA,Autoriza trabalho a partir dos quatorze anos,Direitos Humanos
+522447,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Parecer,CREDN,2,TRUE,NA,Situação Jurídica do Estrangeiro no Brasil,Direitos Humanos
+522447,camara,160653,deputado,Roberto De Lucena,PODE,SP,Proposição Apensada,CCJC,1,TRUE,NA,Situação Jurídica do Estrangeiro no Brasil,Direitos Humanos
+532814,camara,141516,deputado,Paulo Abi-Ackel,PSDB,MG,Emenda,CCJC,1,TRUE,NA,Piso salarial do magistério público da educação básica - Marchezan,Educação
+532814,camara,141516,deputado,Paulo Abi-Ackel,PSDB,MG,Parecer,CCJC,1,TRUE,NA,Piso salarial do magistério público da educação básica - Marchezan,Educação
+532814,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Proposição Apensada,MESA,1,FALSE,NA,Piso salarial do magistério público da educação básica - Marchezan,Educação
+532814,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Requerimento,PLEN,1,TRUE,NA,Piso salarial do magistério público da educação básica - Marchezan,Educação
+532814,camara,178884,deputado,Hildo Rocha,MDB,MA,Voto em Separado,CFT,1,TRUE,NA,Piso salarial do magistério público da educação básica - Marchezan,Educação
+532814,camara,178912,deputado,Pedro Cunha Lima,PSDB,PB,Emenda,CCJC,1,TRUE,NA,Piso salarial do magistério público da educação básica - Marchezan,Educação
+532814,camara,178912,deputado,Pedro Cunha Lima,PSDB,PB,Parecer,CCJC,1,TRUE,NA,Piso salarial do magistério público da educação básica - Marchezan,Educação
+541857,camara,92346,deputado,Eduardo Bolsonaro,PSL,SP,Proposição Apensada,MESA,5,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,74585,deputado,Lincoln Portela,PL,MG,Proposição Apensada,MESA,4,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,160651,deputado,Rogério Peninha Mendonça,MDB,SC,Requerimento,PLEN,4,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,160651,deputado,Rogério Peninha Mendonça,MDB,SC,Requerimento,PL372212,3,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178954,deputado,Lucio Mosquini,MDB,RO,Requerimento,PLEN,3,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,73486,deputado,Pompeo De Mattos,PDT,RS,Proposição Apensada,MESA,2,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,74057,deputado,Alice Portugal,PCdoB,BA,Requerimento,PL372212,2,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Parecer,CSPCCO,2,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,141417,deputado,Edio Lopes,PL,RR,Requerimento,PL372212,2,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,141516,deputado,Paulo Abi-Ackel,PSDB,MG,Requerimento,PLEN,2,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,160545,deputado,Alexandre Leite,DEM,SP,Proposição Apensada,CCP,2,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,160651,deputado,Rogério Peninha Mendonça,MDB,SC,Proposição Apensada,MESA,2,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,PL372212,2,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,PLEN,2,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178829,deputado,Capitão Augusto,PL,SP,Proposição Apensada,MESA,2,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,179587,deputado,Major Vitor Hugo,PSL,GO,Requerimento,PLEN,2,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204416,deputado,Ubiratan Sanderson,PSL,RS,Requerimento,PLEN,2,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,66179,deputado,Norma Ayub,DEM,ES,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,66828,deputado,Fausto Pinato,PP,SP,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,66828,deputado,Fausto Pinato,PP,SP,Requerimento,PLEN,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,74156,deputado,Leonardo Monteiro,PT,MG,Requerimento,PLEN,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,74161,deputado,Reginaldo Lopes,PT,MG,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,74366,deputado,João Campos,PRB,GO,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,74585,deputado,Lincoln Portela,PL,MG,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,92346,deputado,Eduardo Bolsonaro,PSL,SP,Requerimento,PL372212,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,116379,deputado,Darci De Matos,PSD,SC,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,137070,deputado,Vicentinho Júnior,PL,TO,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,141411,deputado,Dagoberto Nogueira,PDT,MS,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,141417,deputado,Edio Lopes,PL,RR,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,141417,deputado,Edio Lopes,PL,RR,Requerimento,PLEN,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,141488,deputado,Paulo Teixeira,PT,SP,Requerimento,PL372212,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,141516,deputado,Paulo Abi-Ackel,PSDB,MG,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,141555,deputado,Vinicius Carvalho,PRB,SP,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,151208,deputado,Laercio Oliveira,PP,SE,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,160518,deputado,Weliton Prado,PROS,MG,Requerimento,PLEN,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,160545,deputado,Alexandre Leite,DEM,SP,Parecer,CSPCCO,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,160545,deputado,Alexandre Leite,DEM,SP,Requerimento,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,160559,deputado,Alceu Moreira,MDB,NA,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,160559,deputado,Alceu Moreira,MDB,NA,Requerimento,PL372212,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,160651,deputado,Rogério Peninha Mendonça,MDB,SC,Proposição Apensada,PLEN,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,160667,deputado,Guilherme Mussi,PP,SP,Requerimento,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,160667,deputado,Guilherme Mussi,PP,SP,Voto em Separado,PL372212,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,166402,deputado,Magda Mofatto,PL,GO,Requerimento,PL372212,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Voto em Separado,PL372212,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178829,deputado,Capitão Augusto,PL,SP,Requerimento,PL372212,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178829,deputado,Capitão Augusto,PL,SP,Requerimento,PLEN,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178829,deputado,Capitão Augusto,PL,SP,Voto em Separado,PL372212,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178908,deputado,Delegado Éder Mauro,PSD,PA,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178908,deputado,Delegado Éder Mauro,PSD,PA,Requerimento,PLEN,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178948,deputado,Beto Rosado,PP,RN,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178948,deputado,Beto Rosado,PP,RN,Requerimento,PLEN,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178953,deputado,Expedito Netto,PSD,RO,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178953,deputado,Expedito Netto,PSD,RO,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178954,deputado,Lucio Mosquini,MDB,RO,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178964,deputado,Heitor Schuch,PSB,RS,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178964,deputado,Heitor Schuch,PSB,RS,Requerimento,PLEN,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,178993,deputado,Carlos Henrique Gaguim,DEM,TO,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,179587,deputado,Major Vitor Hugo,PSL,GO,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,194260,deputado,Nivaldo Albuquerque,PTB,AL,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204355,deputado,Da Vitoria,CIDADANIA,ES,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204356,deputado,Amaro Neto,PRB,ES,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204359,deputado,Léo Moraes,PODE,RO,Requerimento,PLEN,1,TRUE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204391,deputado,José Nelto,PODE,GO,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204416,deputado,Sanderson,PSL,RS,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204416,deputado,Sanderson,PSL,RS,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204416,deputado,Ubiratan Sanderson,PSL,RS,Requerimento,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204420,deputado,Julian Lemos,PSL,PB,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204421,deputado,Edna Henrique,PSDB,PB,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204441,deputado,Otoni De Paula,PSC,RJ,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204472,deputado,José Medeiros,PODE,MT,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204511,deputado,David Soares,DEM,SP,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204512,deputado,Delegado Marcelo Freitas,PSL,MG,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204529,deputado,Policial Katia Sastre,PL,SP,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204531,deputado,Guilherme Derrite,PP,NA,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204550,deputado,Júnior Mano,PL,CE,Proposição Apensada,CCP,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+541857,camara,204576,deputado,João Roma,PRB,BA,Proposição Apensada,MESA,1,FALSE,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+546383,camara,204425,deputado,Silvio Costa Filho,PRB,PE,Requerimento,PLEN,1,TRUE,NA,Trabalho infantil artístico,Direitos Humanos
+604557,camara,74459,deputado,Átila Lira,PSB,PI,Requerimento,CMADS,1,TRUE,NA,PNCMar,Meio Ambiente
+604557,camara,178871,deputado,Evair De Melo,PP,ES,Requerimento,CAPADR,1,TRUE,NA,PNCMar,Meio Ambiente
+604557,camara,178871,deputado,Evair De Melo,PP,ES,Voto em Separado,CAPADR,1,TRUE,NA,PNCMar,Meio Ambiente
+604888,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Requerimento,SEPUB(SGM),2,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,141488,deputado,Paulo Teixeira,PT,SP,Parecer,CCJC,2,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,204526,deputado,Luiz Philippe De Orleans e Bragança,PSL,SP,Requerimento,PLEN,2,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Proposição Apensada,MESA,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Requerimento,PLEN,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,74585,deputado,Lincoln Portela,PL,MG,Proposição Apensada,PLEN,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,74585,deputado,Lincoln Portela,PL,MG,Requerimento,SEPUB(SGM),1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,141450,deputado,Hugo Leal,PSD,RJ,Proposição Apensada,CCP,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,160512,deputado,Aureo,SOLIDARIEDADE,RJ,Proposição Apensada,CCP,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,160653,deputado,Roberto De Lucena,PODE,SP,Requerimento,PLEN,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,160655,deputado,Ricardo Izar,PP,SP,Proposição Apensada,CCJC,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,204377,deputado,Paula Belmonte,CIDADANIA,DF,Proposição Apensada,CCP,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,204526,deputado,Luiz Philippe de Orleans e Bragança,PSL,SP,Proposição Apensada,MESA,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,204526,deputado,Luiz Philippe De Orleans e Bragança,PSL,SP,Proposição Apensada,MESA,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,204530,deputado,Rodrigo Agostinho,PSB,SP,Proposição Apensada,CCP,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+606722,camara,178947,deputado,Sóstenes Cavalcante,DEM,RJ,Emenda,PL718014,14,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,74366,deputado,João Campos,PRB,GO,Emenda,PL718014,13,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,178947,deputado,Sóstenes Cavalcante,DEM,RJ,Requerimento,PL718014,7,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,69871,deputado,Bacelar,PODE,BA,Requerimento,PL718014,5,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,73486,deputado,Pompeo De Mattos,PDT,RS,Emenda,PL718014,2,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,73486,deputado,Pompeo De Mattos,PDT,RS,Requerimento,PL718014,2,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,74366,deputado,João Campos,PRB,GO,Requerimento,PLEN,2,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,74585,deputado,Lincoln Portela,PL,MG,Requerimento,PL718014,2,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,92346,deputado,Eduardo Bolsonaro,PSL,SP,Requerimento,PL718014,2,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,160558,deputado,Paulo Freire,PL,SP,Requerimento,PL718014,2,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,178836,deputado,Alan Rick,DEM,AC,Proposição Apensada,MESA,2,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,178929,deputado,Diego Garcia,PODE,PR,Parecer,CE,2,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,69871,deputado,Bacelar,PODE,BA,Emenda,PL718014,1,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,69871,deputado,Bacelar,PODE,BA,Requerimento,PLEN,1,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,69871,deputado,Bacelar,PODE,BA,Voto em Separado,PL718014,1,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,73441,deputado,Celso Russomanno,PRB,SP,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,74057,deputado,Alice Portugal,PCdoB,BA,Requerimento,PL718014,1,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,74057,deputado,Alice Portugal,PCdoB,BA,Voto em Separado,PL718014,1,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,74366,deputado,João Campos,PRB,GO,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,74366,deputado,João Campos,PRB,GO,Requerimento,PL718014,1,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,92776,deputado,Stefano Aguiar,PSD,MG,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Voto em Separado,PL718014,1,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,141411,deputado,Dagoberto Nogueira,PDT,MS,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,160531,deputado,Jhonatan De Jesus,PRB,RR,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,160531,deputado,Jhonatan De Jesus,PRB,RR,Requerimento,PLEN,1,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,160640,deputado,Eros Biondini,PROS,MG,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,160641,deputado,Professora Marcivania,PCdoB,AP,Voto em Separado,PL718014,1,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,178884,deputado,Hildo Rocha,MDB,MA,Requerimento,PL718014,1,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,178910,deputado,Joaquim Passarinho,PSD,PA,Requerimento,PL718014,1,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,178929,deputado,Diego Garcia,PODE,PR,Requerimento,PLEN,1,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,178945,deputado,Rosangela Gomes,PRB,RJ,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,178947,deputado,Sóstenes Cavalcante,DEM,RJ,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,193726,deputado,Paulo Eduardo Martins,PSC,PR,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204369,deputado,Caroline De Toni,PSL,SC,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204374,deputado,Bia Kicis,PSL,DF,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204374,deputado,Bia Kicis,PSL,DF,Requerimento,PLEN,1,TRUE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204376,deputado,Coronel Armando,PSL,SC,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204400,deputado,Aline Sleutjes,PSL,PR,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204411,deputado,Filipe Barros,PSL,PR,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204420,deputado,Julian Lemos,PSL,PB,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204441,deputado,Otoni De Paula,PSC,RJ,Proposição Apensada,CCP,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204442,deputado,Gurgel,PSL,RJ,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204444,deputado,Helio Lopes,PSL,RJ,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204449,deputado,Nelson Barbudo,PSL,MT,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204453,deputado,Natália Bonavides,PT,RN,Proposição Apensada,CCP,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204460,deputado,Carlos Jordy,PSL,RJ,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204507,deputado,Carla Zambelli,PSL,SP,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204516,deputado,Alexis Fonteyne,NOVO,SP,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204526,deputado,Luiz Philippe De Orleans e Bragança,PSL,SP,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204536,deputado,Kim Kataguiri,DEM,SP,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,204546,deputado,Joice Hasselmann,PSL,SP,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+606722,camara,207309,deputado,Enéias Reis,PSL,MG,Proposição Apensada,MESA,1,FALSE,NA,Escola Sem Partido,Agenda Nacional
+944279,camara,178993,deputado,Carlos Henrique Gaguim,DEM,TO,Emenda,CAPADR,3,TRUE,NA,Lei do Cerrado,Meio Ambiente
+944279,camara,178993,deputado,Carlos Henrique Gaguim,DEM,TO,Voto em Separado,CAPADR,1,TRUE,NA,Lei do Cerrado,Meio Ambiente
+1198512,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Requerimento,PEC01515,22,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,PEC01515,3,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,204519,deputado,Tiago Mitraud,NOVO,MG,Emenda,PEC01515,2,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,204534,deputado,Tabata Amaral,PDT,SP,Emenda,PEC01515,2,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,69871,deputado,Bacelar,PODE,BA,Requerimento,9,1,FALSE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,69871,deputado,Bacelar,PODE,BA,Requerimento,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,74057,deputado,Alice Portugal,PCdoB,BA,Requerimento,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,74156,deputado,Leonardo Monteiro,PT,MG,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,74159,deputado,Odair Cunha,PT,MG,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,74160,deputado,Patrus Ananias,PT,MG,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,74161,deputado,Reginaldo Lopes,PT,MG,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,74283,deputado,Vicentinho,PT,SP,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,74371,deputado,Rubens Otoni,PT,GO,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,74376,deputado,Vander Loubet,PT,MS,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,74459,deputado,Átila Lira,PSB,PI,Requerimento,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,74571,deputado,Nelson Pellegrino,PT,BA,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,141398,deputado,Carlos Zarattini,PT,SP,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,141488,deputado,Paulo Teixeira,PT,SP,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,141523,deputado,Raul Henry,MDB,PE,Requerimento,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,160538,deputado,Bohn Gass,PT,RS,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,160556,deputado,Padre João,PT,MG,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,160569,deputado,Waldenor Pereira,PT,BA,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,160592,deputado,Zeca Dirceu,PT,PR,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,160610,deputado,Valmir Assunção,PT,BA,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Outros,Arquivamento,1,FALSE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Requerimento,9,1,FALSE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Requerimento,PLEN,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,178842,deputado,Jhc,PSB,AL,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,178857,deputado,Jorge Solla,PT,BA,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,178873,deputado,Helder Salomão,PT,ES,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,178889,deputado,Zé Carlos,PT,MA,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,178986,deputado,Nilto Tatto,PT,SP,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,198783,deputado,Emanuel Pinheiro Neto,PTB,MT,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,204370,deputado,Célio Moura,PT,TO,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,204371,deputado,Felipe Rigoni,PSB,ES,Requerimento,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,204433,deputado,Marcelo Calero,CIDADANIA,RJ,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,204453,deputado,Natália Bonavides,PT,RN,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,204492,deputado,Paulo Guedes,PT,MG,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,204519,deputado,Tiago Mitraud,NOVO,MG,Requerimento,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,204528,deputado,Adriana Ventura,NOVO,SP,Emenda,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1198512,camara,204534,deputado,Tabata Amaral,PDT,SP,Requerimento,PEC01515,1,TRUE,NA,Tornar o FUNDEB permanente (Câmara),Educação
+1307190,camara,178986,deputado,Nilto Tatto,PT,SP,Requerimento,PL191715,28,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,74299,deputado,Leônidas Cristino,PDT,CE,Emenda,PL191715,20,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,141391,deputado,Arnaldo Jardim,CIDADANIA,SP,Emenda,PL191715,14,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,141398,deputado,Carlos Zarattini,PT,SP,Emenda,PL191715,4,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Emenda,PL191715,4,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,PL191715,2,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,137070,deputado,Vicentinho Júnior,PL,TO,Requerimento,CME,2,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,141450,deputado,Hugo Leal,PSD,RJ,Requerimento,CME,2,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,178910,deputado,Joaquim Passarinho,PSD,PA,Emenda,PL191715,2,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,178934,deputado,Toninho Wandscheer,PROS,PR,Emenda,PL191715,2,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,178937,deputado,Altineu Côrtes,PL,RJ,Requerimento,CME,2,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,178948,deputado,Beto Rosado,PP,RN,Requerimento,CME,2,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,178954,deputado,Lucio Mosquini,MDB,RO,Requerimento,CME,2,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,141531,deputado,Rodrigo de Castro,PSDB,MG,Proposição Apensada,PLEN,1,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1307190,camara,141531,deputado,Rodrigo De Castro,PSDB,MG,Proposição Apensada,PLEN,1,TRUE,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+1594911,camara,74366,deputado,João Campos,PRB,GO,Requerimento,PLEN,1,TRUE,121572,Aumento do tempo de internação,Direitos Humanos
+1594911,camara,152610,deputado,Roberto Alves,PRB,SP,Proposição Apensada,PL719702,1,TRUE,121572,Aumento do tempo de internação,Direitos Humanos
+1738598,camara,160655,deputado,Ricardo Izar,PP,SP,Parecer,CMADS,2,TRUE,NA,Criação da Área de Proteção Ambiental de Canavieiras,Meio Ambiente
+1738598,camara,178930,deputado,Evandro Roman,PSD,PR,Emenda,CAPADR,1,TRUE,NA,Criação da Área de Proteção Ambiental de Canavieiras,Meio Ambiente
+1738598,camara,178930,deputado,Evandro Roman,PSD,PR,Parecer,CAPADR,1,TRUE,NA,Criação da Área de Proteção Ambiental de Canavieiras,Meio Ambiente
+2056568,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Voto em Separado,CFT,1,TRUE,NA,Indenização Propriedades Privadas em Unidades de Conservação,Meio Ambiente
+2056568,camara,178986,deputado,Nilto Tatto,PT,SP,Voto em Separado,CMADS,1,TRUE,NA,Indenização Propriedades Privadas em Unidades de Conservação,Meio Ambiente
+2080604,camara,141488,deputado,Paulo Teixeira,PT,SP,Requerimento,PL485016,22,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Requerimento,PL485016,7,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178874,deputado,Sergio Vidigal,PDT,ES,Requerimento,PL485016,5,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178929,deputado,Diego Garcia,PODE,PR,Requerimento,PL485016,4,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,141553,deputado,Vanderlei Macris,PSDB,SP,Requerimento,PL485016,3,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,66828,deputado,Fausto Pinato,PP,SP,Voto em Separado,PL485016,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Requerimento,PLEN,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,74060,deputado,Daniel Almeida,PCdoB,BA,Emenda,PLEN,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,74156,deputado,Leonardo Monteiro,PT,MG,Requerimento,PL485016,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Requerimento,PL485016,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178884,deputado,Hildo Rocha,MDB,MA,Emenda,PLEN,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178910,deputado,Joaquim Passarinho,PSD,PA,Requerimento,PL485016,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,73441,deputado,Celso Russomanno,PRB,SP,Requerimento,PLEN,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Emenda,PLEN,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Requerimento,MESA,1,FALSE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,73486,deputado,Pompeo de Mattos,PDT,RS,Emenda,PLEN,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,74693,deputado,Rodrigo Maia,DEM,RJ,Outros,MESA,1,FALSE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,92776,deputado,Stefano Aguiar,PSD,MG,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,141405,deputado,Celso Maldaner,MDB,SC,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,146788,deputado,Marcelo Aro,PP,MG,Requerimento,MESA,1,FALSE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,146788,deputado,Marcelo Aro,PP,MG,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160518,deputado,Weliton Prado,PROS,MG,Requerimento,PLEN,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160527,deputado,Aguinaldo Ribeiro,PP,PB,Emenda,PLEN,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160640,deputado,Eros Biondini,PROS,MG,Requerimento,MESA,1,FALSE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160655,deputado,Ricardo Izar,PP,SP,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160655,deputado,Ricardo Izar,PP,SP,Requerimento,PLEN,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Voto em Separado,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160758,deputado,Domingos Sávio,PSDB,MG,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178833,deputado,Alexandre Serfiotis,PSD,RJ,Requerimento,MESA,1,FALSE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178874,deputado,Sergio Vidigal,PDT,ES,Voto em Separado,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178912,deputado,Pedro Cunha Lima,PSDB,PB,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178927,deputado,Aliel Machado,PSB,PR,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2081681,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,PLEN,2,TRUE,NA,Controle das OSCs,Integridade e Transparência
+2081681,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Proposição Apensada,CTASP,1,TRUE,NA,Controle das OSCs,Integridade e Transparência
+2085536,camara,93083,deputado,Cacá Leão,PP,BA,Parecer,CDU,1,TRUE,NA,Lei para Acabar Zona de Amortecimento,Meio Ambiente
+2088990,camara,204523,deputado,Lucas Gonzalez,NOVO,MG,Requerimento,PLEN,1,TRUE,91341,Lei da Qualidade Fiscal,Agenda Nacional
+2119881,camara,141398,deputado,Carlos Zarattini,PT,SP,Emenda,PEC28716,15,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74161,deputado,Reginaldo Lopes,PT,MG,Requerimento,PEC28716,10,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160653,deputado,Roberto De Lucena,PODE,SP,Emenda,PEC28716,9,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74585,deputado,Lincoln Portela,PL,MG,Emenda,PEC28716,8,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Requerimento,PEC28716,8,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,141398,deputado,Carlos Zarattini,PT,SP,Requerimento,PEC28716,7,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,159237,deputado,Assis Carvalho,PT,PI,Requerimento,PEC28716,7,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,178964,deputado,Heitor Schuch,PSB,RS,Requerimento,PEC28716,6,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160600,deputado,Arthur Oliveira Maia,DEM,BA,Parecer,PEC28716,5,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160653,deputado,Roberto De Lucena,PODE,SP,Requerimento,PEC28716,5,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74366,deputado,João Campos,PRB,GO,Emenda,PEC28716,4,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160528,deputado,Danilo Cabral,PSB,PE,Emenda,PEC28716,4,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,69871,deputado,Bacelar,PODE,BA,Emenda,PEC28716,3,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Requerimento,PEC28716,3,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,141555,deputado,Vinicius Carvalho,PRB,SP,Requerimento,PEC28716,3,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160570,deputado,Jerônimo Goergen,PP,RS,Emenda,PEC28716,3,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Emenda,PEC28716,3,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,73486,deputado,Pompeo De Mattos,PDT,RS,Emenda,PEC28716,2,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Emenda,PEC28716,2,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,133439,deputado,André Figueiredo,PDT,CE,Requerimento,PEC28716,2,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,141421,deputado,Eduardo Da Fonte,PP,PE,Emenda,PEC28716,2,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,141513,deputado,Bilac Pinto,DEM,MG,Emenda,PEC28716,2,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160600,deputado,Arthur Oliveira Maia,DEM,BA,Requerimento,PEC28716,2,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,178829,deputado,Capitão Augusto,PL,SP,Requerimento,PEC28716,2,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,178931,deputado,Luciano Ducci,PSB,PR,Emenda,PEC28716,2,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74057,deputado,Alice Portugal,PCdoB,BA,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74160,deputado,Patrus Ananias,PT,MG,Voto em Separado,CCJC,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74161,deputado,Reginaldo Lopes,PT,MG,Voto em Separado,CCJC,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74161,deputado,Reginaldo Lopes,PT,MG,Voto em Separado,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74283,deputado,Vicentinho,PT,SP,Voto em Separado,CCJC,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74366,deputado,João Campos,PRB,GO,Requerimento,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74371,deputado,Rubens Otoni,PT,GO,Voto em Separado,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74471,deputado,André De Paula,PSD,PE,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74585,deputado,Lincoln Portela,PL,MG,Voto em Separado,CCJC,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74655,deputado,Eduardo Barbosa,PSDB,MG,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74655,deputado,Eduardo Barbosa,PSDB,MG,Requerimento,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Voto em Separado,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Voto em Separado,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,141421,deputado,Eduardo Da Fonte,PP,PE,Requerimento,PLEN,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,141450,deputado,Hugo Leal,PSD,RJ,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,141488,deputado,Paulo Teixeira,PT,SP,Voto em Separado,CCJC,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,141518,deputado,Paulo Pereira Da Silva,SOLIDARIEDADE,SP,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,141518,deputado,Paulo Pereira Da Silva,SOLIDARIEDADE,SP,Requerimento,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,143632,deputado,Domingos Neto,PSD,CE,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,159237,deputado,Assis Carvalho,PT,PI,Voto em Separado,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160538,deputado,Bohn Gass,PT,RS,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160559,deputado,Alceu Moreira,MDB,NA,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160559,deputado,Alceu Moreira,MDB,NA,Parecer,CCJC,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160632,deputado,Zé Silva,SOLIDARIEDADE,MG,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Requerimento,PLEN,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160640,deputado,Eros Biondini,PROS,MG,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,PLEN,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,178829,deputado,Capitão Augusto,PL,SP,Voto em Separado,CCJC,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,178836,deputado,Alan Rick,DEM,AC,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,178858,deputado,Mário Negromonte Jr.,PP,BA,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,178901,deputado,Tereza Cristina,DEM,NA,Requerimento,PLEN,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,178930,deputado,Evandro Roman,PSD,PR,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,178945,deputado,Rosangela Gomes,PRB,RJ,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,178964,deputado,Heitor Schuch,PSB,RS,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2119881,camara,178966,deputado,Geovania De Sá,PSDB,SC,Emenda,PEC28716,1,TRUE,NA,Reforma da Previdência Temer,Agenda Nacional
+2120019,camara,178874,deputado,Sergio Vidigal,PDT,ES,Emenda,PL662116,5,TRUE,111048,Lei das Agências Reguladoras,Agenda Nacional
+2120019,camara,178947,deputado,Sóstenes Cavalcante,DEM,RJ,Emenda,PL662116,4,TRUE,111048,Lei das Agências Reguladoras,Agenda Nacional
+2120019,camara,160653,deputado,Roberto De Lucena,PODE,SP,Emenda,PL662116,3,TRUE,111048,Lei das Agências Reguladoras,Agenda Nacional
+2120019,camara,141450,deputado,Hugo Leal,PSD,RJ,Requerimento,PL662116,2,TRUE,111048,Lei das Agências Reguladoras,Agenda Nacional
+2120019,camara,73441,deputado,Celso Russomanno,PRB,SP,Emenda,PL662116,1,TRUE,111048,Lei das Agências Reguladoras,Agenda Nacional
+2120019,camara,160512,deputado,Aureo,SOLIDARIEDADE,RJ,Voto em Separado,PL662116,1,TRUE,111048,Lei das Agências Reguladoras,Agenda Nacional
+2120019,camara,160541,deputado,Arthur Lira,PP,AL,Emenda,PL662116,1,TRUE,111048,Lei das Agências Reguladoras,Agenda Nacional
+2120019,camara,160587,deputado,Fábio Trad,PSD,MS,Outros,MESA,1,FALSE,111048,Lei das Agências Reguladoras,Agenda Nacional
+2120019,camara,160653,deputado,Roberto De Lucena,PODE,SP,Requerimento,PL662116,1,TRUE,111048,Lei das Agências Reguladoras,Agenda Nacional
+2120019,camara,178874,deputado,Sergio Vidigal,PDT,ES,Requerimento,PL662116,1,TRUE,111048,Lei das Agências Reguladoras,Agenda Nacional
+2120019,camara,178937,deputado,Altineu Côrtes,PL,RJ,Emenda,PL662116,1,TRUE,111048,Lei das Agências Reguladoras,Agenda Nacional
+2120775,camara,178986,deputado,Nilto Tatto,PT,SP,Requerimento,PL667016,9,TRUE,NA,Política Governo de Redução de Agrotóxico,Meio Ambiente
+2120775,camara,160556,deputado,Padre João,PT,MG,Requerimento,PL667016,3,TRUE,NA,Política Governo de Redução de Agrotóxico,Meio Ambiente
+2120775,camara,178901,deputado,Tereza Cristina,DEM,NA,Requerimento,PLEN,2,TRUE,NA,Política Governo de Redução de Agrotóxico,Meio Ambiente
+2120775,camara,178986,deputado,Nilto Tatto,PT,SP,Parecer,PL667016,2,TRUE,NA,Política Governo de Redução de Agrotóxico,Meio Ambiente
+2120775,camara,74160,deputado,Patrus Ananias,PT,MG,Requerimento,PL667016,1,TRUE,NA,Política Governo de Redução de Agrotóxico,Meio Ambiente
+2120775,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Requerimento,PL667016,1,TRUE,NA,Política Governo de Redução de Agrotóxico,Meio Ambiente
+2120775,camara,178901,deputado,Tereza Cristina,DEM,NA,Requerimento,PL667016,1,TRUE,NA,Política Governo de Redução de Agrotóxico,Meio Ambiente
+2120775,camara,178986,deputado,Nilto Tatto,PT,SP,Requerimento,PLEN,1,TRUE,NA,Política Governo de Redução de Agrotóxico,Meio Ambiente
+2121442,camara,74057,deputado,Alice Portugal,PCdoB,BA,Requerimento,PL672616,8,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,178879,deputado,Lucas Vergilio,SOLIDARIEDADE,GO,Parecer,CTASP,6,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Requerimento,PL672616,5,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Emenda,PLEN,4,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Parecer,PL672616,4,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Emenda,PLEN,3,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,141431,deputado,Fernando Coelho Filho,DEM,PE,Emenda,PLEN,3,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,73441,deputado,Celso Russomanno,PRB,SP,Emenda,PLEN,2,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Emenda,PL672616,2,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Requerimento,PLEN,2,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Emenda,MESA,1,FALSE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,74043,deputado,Wellington Roberto,PL,PB,Emenda,PLEN,1,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,74585,deputado,Lincoln Portela,PL,MG,Requerimento,PL672616,1,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,151208,deputado,Laercio Oliveira,PP,SE,Emenda,MESA,1,FALSE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,160531,deputado,Jhonatan de Jesus,PRB,RR,Requerimento,MESA,1,FALSE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,PLEN,1,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,178829,deputado,Capitão Augusto,PL,SP,Voto em Separado,PL672616,1,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,178871,deputado,Evair Vieira De Melo,PP,ES,Requerimento,PL672616,1,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,178874,deputado,Sergio Vidigal,PDT,ES,Requerimento,PL672616,1,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,178879,deputado,Lucas Vergilio,SOLIDARIEDADE,GO,Emenda,PLEN,1,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,178882,deputado,André Fufuca,PP,MA,Emenda,MESA,1,FALSE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,178882,deputado,André Fufuca,PP,MA,Emenda,PLEN,1,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,178882,deputado,André Fufuca,PP,MA,Parecer,CCJC,1,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,178882,deputado,André Fufuca,PP,MA,Requerimento,PLEN,1,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,178910,deputado,Joaquim Passarinho,PSD,PA,Emenda,PLEN,1,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,178916,deputado,Daniel Coelho,CIDADANIA,PE,Emenda,MESA,1,FALSE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,178916,deputado,Daniel Coelho,CIDADANIA,PE,Requerimento,PLEN,1,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,178993,deputado,Carlos Henrique Gaguim,DEM,TO,Requerimento,PL672616,1,TRUE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2121442,camara,204544,deputado,Alexandre Frota,PSL,SP,Proposição Apensada,CCP,1,FALSE,127753,Lei do Teto Remuneratório,Agenda Nacional
+2122766,camara,74371,deputado,Rubens Otoni,PT,GO,Proposição Apensada,MESA,2,FALSE,115926,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+2122766,camara,74655,deputado,Eduardo Barbosa,PSDB,MG,Proposição Apensada,PL129295,2,TRUE,115926,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+2122766,camara,141405,deputado,Celso Maldaner,MDB,SC,Requerimento,PL129295,2,TRUE,115926,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+2122766,camara,141488,deputado,Paulo Teixeira,PT,SP,Proposição Apensada,MESA,2,FALSE,115926,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+2122766,camara,151208,deputado,Laercio Oliveira,PP,SE,Requerimento,PL129295,2,TRUE,115926,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+2122766,camara,159237,deputado,Assis Carvalho,PT,PI,Requerimento,PL129295,2,TRUE,115926,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+2122766,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Proposição Apensada,MESA,2,FALSE,115926,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+2122766,camara,178829,deputado,Capitão Augusto,PL,SP,Proposição Apensada,MESA,2,FALSE,115926,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+2122766,camara,178884,deputado,Hildo Rocha,MDB,MA,Requerimento,PL129295,2,TRUE,115926,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+2122766,camara,178910,deputado,Joaquim Passarinho,PSD,PA,Requerimento,PL129295,2,TRUE,115926,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+2122766,camara,178992,deputado,Vitor Lippi,PSDB,SP,Proposição Apensada,MESA,2,FALSE,115926,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+2158425,camara,141411,deputado,Dagoberto Nogueira,PDT,MS,Emenda,PLEN,5,TRUE,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Nacional
+2158425,camara,141431,deputado,Fernando Coelho Filho,DEM,PE,Parecer,PLEN,5,TRUE,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Nacional
+2158425,camara,141398,deputado,Carlos Zarattini,PT,SP,Emenda,PLEN,2,TRUE,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Nacional
+2158425,camara,178922,deputado,Tadeu Alencar,PSB,PE,Emenda,PLEN,2,TRUE,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Nacional
+2158425,camara,74693,deputado,Rodrigo Maia,DEM,RJ,Outros,MESA,1,FALSE,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Nacional
+2158425,camara,141431,deputado,Fernando Coelho Filho,DEM,PE,Emenda,PLEN,1,TRUE,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Nacional
+2158425,camara,141431,deputado,Fernando Coelho Filho,DEM,PE,Parecer,CCJC,1,TRUE,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Nacional
+2158425,camara,141431,deputado,Fernando Coelho Filho,DEM,PE,Parecer,CDEICS,1,TRUE,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Nacional
+2158425,camara,141431,deputado,Fernando Coelho Filho,DEM,PE,Parecer,CME,1,TRUE,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Nacional
+2158425,camara,178972,deputado,Alex Manente,CIDADANIA,SP,Emenda,PLEN,1,TRUE,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Nacional
+2158425,camara,178987,deputado,Orlando Silva,PCdoB,SP,Emenda,PLEN,1,TRUE,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Nacional
+2170839,camara,178986,deputado,Nilto Tatto,PT,SP,Emenda,CMADS,42,TRUE,NA,Lei do Pantanal - Molon,Meio Ambiente
+2170839,camara,178986,deputado,Nilto Tatto,PT,SP,Parecer,CMADS,3,TRUE,NA,Lei do Pantanal - Molon,Meio Ambiente
+2170839,camara,204386,deputado,Jose Mario Schreiner,DEM,GO,Requerimento,PLEN,2,TRUE,NA,Lei do Pantanal - Molon,Meio Ambiente
+2178170,camara,73441,deputado,Celso Russomanno,PRB,SP,Proposição Apensada,MESA,2,FALSE,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional;Integridade e Transparência
+2178170,camara,143632,deputado,Domingos Neto,PSD,CE,Proposição Apensada,MESA,2,FALSE,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional;Integridade e Transparência
+2178170,camara,146788,deputado,Marcelo Aro,PP,MG,Proposição Apensada,MESA,2,FALSE,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional;Integridade e Transparência
+2178170,camara,178832,deputado,Leandre,PV,PR,Requerimento,PLEN,2,TRUE,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional;Integridade e Transparência
+2178170,camara,204366,deputado,Rodrigo Coelho,PSB,SC,Requerimento,PLEN,2,TRUE,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional;Integridade e Transparência
+2178170,camara,204497,deputado,Júnior Ferrari,PSD,PA,Requerimento,PLEN,2,TRUE,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional;Integridade e Transparência
+2178170,camara,160512,deputado,Aureo,SOLIDARIEDADE,RJ,Proposição Apensada,MESA,1,FALSE,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional;Integridade e Transparência
+2178170,camara,160512,deputado,Aureo Ribeiro,SOLIDARIEDADE,RJ,Requerimento,PLEN,1,TRUE,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional;Integridade e Transparência
+2178170,camara,160587,deputado,Fábio Trad,PSD,MS,Requerimento,PLEN,1,TRUE,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional;Integridade e Transparência
+2178170,camara,178832,deputado,Leandre,PV,PR,Proposição Apensada,MESA,1,FALSE,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional;Integridade e Transparência
+2178170,camara,204527,deputado,Geninho Zuliani,DEM,SP,Requerimento,PLEN,1,TRUE,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional;Integridade e Transparência
+2190237,camara,204449,deputado,Nelson Barbudo,PSL,MT,Emenda,MPV86718,15,TRUE,135060,Programa de Regularização Ambiental,Agenda Nacional;Meio Ambiente
+2190237,camara,178871,deputado,Evair Vieira De Melo,PP,ES,Emenda,MPV86718,4,TRUE,135060,Programa de Regularização Ambiental,Agenda Nacional;Meio Ambiente
+2190237,camara,204386,deputado,Jose Mario Schreiner,DEM,GO,Emenda,MPV86718,2,TRUE,135060,Programa de Regularização Ambiental,Agenda Nacional;Meio Ambiente
+2190237,camara,160559,deputado,Alceu Moreira,MDB,NA,Emenda,MPV86718,1,TRUE,135060,Programa de Regularização Ambiental,Agenda Nacional;Meio Ambiente
+2190237,camara,178933,deputado,Sergio Souza,MDB,PR,Parecer,PLEN,1,TRUE,135060,Programa de Regularização Ambiental,Agenda Nacional;Meio Ambiente
+2190282,camara,204449,deputado,Nelson Barbudo,PSL,MT,Emenda,MPV86818,51,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,178986,deputado,Nilto Tatto,PT,SP,Emenda,MPV86818,37,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,178884,deputado,Hildo Rocha,MDB,MA,Emenda,MPV86818,29,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,178947,deputado,Sóstenes Cavalcante,DEM,RJ,Emenda,MPV86818,26,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,160556,deputado,Padre João,PT,MG,Emenda,MPV86818,24,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Emenda,MPV86818,12,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,160528,deputado,Danilo Cabral,PSB,PE,Emenda,MPV86818,12,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,160538,deputado,Bohn Gass,PT,RS,Emenda,MPV86818,11,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,74057,deputado,Alice Portugal,PCdoB,BA,Emenda,MPV86818,5,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Emenda,MPV86818,5,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,MPV86818,4,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,178987,deputado,Orlando Silva,PCdoB,SP,Emenda,MPV86818,4,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,MPV86818,4,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,204391,deputado,José Nelto,PODE,GO,Emenda,MPV86818,3,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,204453,deputado,Natália Bonavides,PT,RN,Emenda,MPV86818,3,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190282,camara,204365,deputado,Gilson Marques,NOVO,SC,Emenda,MPV86818,2,TRUE,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente
+2190288,camara,178884,deputado,Hildo Rocha,MDB,MA,Emenda,MPV87019,21,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Emenda,MPV87019,20,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,74060,deputado,Daniel Almeida,PCdoB,BA,Emenda,MPV87019,15,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,74057,deputado,Alice Portugal,PCdoB,BA,Emenda,MPV87019,13,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,160610,deputado,Valmir Assunção,PT,BA,Emenda,MPV87019,13,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,74160,deputado,Patrus Ananias,PT,MG,Emenda,MPV87019,12,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Emenda,MPV87019,9,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,178889,deputado,Zé Carlos,PT,MA,Emenda,MPV87019,8,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,178986,deputado,Nilto Tatto,PT,SP,Emenda,MPV87019,8,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,160538,deputado,Bohn Gass,PT,RS,Emenda,MPV87019,6,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,160556,deputado,Padre João,PT,MG,Emenda,MPV87019,6,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Emenda,MPV87019,5,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,204561,deputado,Bira Do Pindaré,PSB,MA,Emenda,MPV87019,5,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,74270,deputado,Gilberto Nascimento,PSC,SP,Emenda,MPV87019,4,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,178987,deputado,Orlando Silva,PCdoB,SP,Emenda,MPV87019,4,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,204374,deputado,Bia Kicis,PSL,DF,Emenda,MPV87019,4,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,204453,deputado,Natália Bonavides,PT,RN,Emenda,MPV87019,4,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Emenda,MPV87019,3,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,MPV87019,3,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,178829,deputado,Capitão Augusto,PL,SP,Emenda,MPV87019,3,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,72442,deputado,Felipe Carreras,PSB,PE,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,74366,deputado,João Campos,PRB,GO,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,74376,deputado,Vander Loubet,PT,MS,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,137070,deputado,Vicentinho Júnior,PL,TO,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,141488,deputado,Paulo Teixeira,PT,SP,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,141508,deputado,Mauro Nazif,PSB,RO,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,141518,deputado,Paulo Pereira Da Silva,SOLIDARIEDADE,SP,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,160558,deputado,Paulo Freire Costa,PL,SP,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,160653,deputado,Roberto De Lucena,PODE,SP,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,178857,deputado,Jorge Solla,PT,BA,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,178916,deputado,Daniel Coelho,CIDADANIA,PE,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,204352,deputado,Camilo Capiberibe,PSB,AP,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,MPV87019,2,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,74655,deputado,Eduardo Barbosa,PSDB,MG,Emenda,MPV87019,1,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,92346,deputado,Eduardo Bolsonaro,PSL,SP,Emenda,MPV87019,1,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,160541,deputado,Arthur Lira,PP,AL,Emenda,PLEN,1,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,178874,deputado,Sergio Vidigal,PDT,ES,Emenda,MPV87019,1,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,204369,deputado,Caroline De Toni,PSL,SC,Emenda,MPV87019,1,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,204529,deputado,Policial Katia Sastre,PL,SP,Emenda,MPV87019,1,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,204556,deputado,Marcelo Ramos,PL,AM,Emenda,MPV87019,1,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2190288,camara,204576,deputado,João Roma,PRB,BA,Parecer,PLEN,1,TRUE,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
+2192352,camara,178884,deputado,Hildo Rocha,MDB,MA,Proposição Apensada,CCP,1,FALSE,NA,Pacote Moro Caixa 2,Agenda Nacional;Integridade e Transparência
+2192352,camara,204366,deputado,Rodrigo Coelho,PSB,SC,Requerimento,PLEN,1,TRUE,NA,Pacote Moro Caixa 2,Agenda Nacional;Integridade e Transparência
+2192353,camara,204366,deputado,Rodrigo Coelho,PSB,SC,Requerimento,PLEN,2,TRUE,NA,Pacote Moro Crime Organizado (Apensado),Agenda Nacional;Integridade e Transparência
+2192353,camara,204497,deputado,Júnior Ferrari,PSD,PA,Requerimento,PLEN,2,TRUE,NA,Pacote Moro Crime Organizado (Apensado),Agenda Nacional;Integridade e Transparência
+2192354,camara,160570,deputado,Jerônimo Goergen,PP,RS,Proposição Apensada,CCP,1,FALSE,NA,Pacote Moro Anticorrupção,Agenda Nacional;Integridade e Transparência
+2192354,camara,160653,deputado,Roberto De Lucena,PODE,SP,Proposição Apensada,CCP,1,FALSE,NA,Pacote Moro Anticorrupção,Agenda Nacional;Integridade e Transparência
+2192354,camara,178989,deputado,Renata Abreu,PODE,SP,Proposição Apensada,CCP,1,FALSE,NA,Pacote Moro Anticorrupção,Agenda Nacional;Integridade e Transparência
+2192354,camara,204366,deputado,Rodrigo Coelho,PSB,SC,Requerimento,PLEN,1,TRUE,NA,Pacote Moro Anticorrupção,Agenda Nacional;Integridade e Transparência
+2192354,camara,204391,deputado,José Nelto,PODE,GO,Proposição Apensada,CCP,1,FALSE,NA,Pacote Moro Anticorrupção,Agenda Nacional;Integridade e Transparência
+2192354,camara,204526,deputado,Luiz Philippe De Orleans e Bragança,PSL,SP,Proposição Apensada,CCP,1,FALSE,NA,Pacote Moro Anticorrupção,Agenda Nacional;Integridade e Transparência
+2192354,camara,204536,deputado,Kim Kataguiri,DEM,SP,Proposição Apensada,CCP,1,FALSE,NA,Pacote Moro Anticorrupção,Agenda Nacional;Integridade e Transparência
+2192354,camara,204543,deputado,Luiz Flávio Gomes,PSB,SP,Requerimento,PLEN,1,TRUE,NA,Pacote Moro Anticorrupção,Agenda Nacional;Integridade e Transparência
+2192459,camara,178857,deputado,Jorge Solla,PT,BA,Requerimento,PEC00619,38,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141488,deputado,Paulo Teixeira,PT,SP,Requerimento,PEC00619,20,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204383,deputado,Professor Israel Batista,PV,DF,Emenda,PEC00619,12,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74057,deputado,Alice Portugal,PCdoB,BA,Requerimento,PEC00619,11,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160556,deputado,Padre João,PT,MG,Emenda,PEC00619,11,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178857,deputado,Jorge Solla,PT,BA,Emenda,PEC00619,11,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74156,deputado,Leonardo Monteiro,PT,MG,Emenda,PEC00619,10,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74571,deputado,Nelson Pellegrino,PT,BA,Emenda,PEC00619,10,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141488,deputado,Paulo Teixeira,PT,SP,Emenda,PEC00619,10,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,PEC00619,10,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204534,deputado,Tabata Amaral,PDT,SP,Emenda,PEC00619,10,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74159,deputado,Odair Cunha,PT,MG,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74160,deputado,Patrus Ananias,PT,MG,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74161,deputado,Reginaldo Lopes,PT,MG,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74283,deputado,Vicentinho,PT,SP,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74366,deputado,João Campos,PRB,GO,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74371,deputado,Rubens Otoni,PT,GO,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74376,deputado,Vander Loubet,PT,MS,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141398,deputado,Carlos Zarattini,PT,SP,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,159237,deputado,Assis Carvalho,PT,PI,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160538,deputado,Bohn Gass,PT,RS,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160569,deputado,Waldenor Pereira,PT,BA,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160592,deputado,Zeca Dirceu,PT,PR,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160610,deputado,Valmir Assunção,PT,BA,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178873,deputado,Helder Salomão,PT,ES,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178889,deputado,Zé Carlos,PT,MA,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178986,deputado,Nilto Tatto,PT,SP,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204370,deputado,Célio Moura,PT,TO,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204453,deputado,Natália Bonavides,PT,RN,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204492,deputado,Paulo Guedes,PT,MG,Emenda,PEC00619,9,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178922,deputado,Tadeu Alencar,PSB,PE,Emenda,PEC00619,8,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,68720,deputado,Fábio Henrique,PDT,SE,Requerimento,PEC00619,6,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74060,deputado,Daniel Almeida,PCdoB,BA,Emenda,PEC00619,6,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160570,deputado,Jerônimo Goergen,PP,RS,Emenda,PEC00619,6,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178946,deputado,Soraya Santos,PL,RJ,Emenda,PEC00619,6,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178987,deputado,Orlando Silva,PCdoB,SP,Emenda,PEC00619,6,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,73801,deputado,Renildo Calheiros,PCdoB,PE,Emenda,PEC00619,5,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74057,deputado,Alice Portugal,PCdoB,BA,Emenda,PEC00619,5,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Emenda,PEC00619,5,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,133439,deputado,André Figueiredo,PDT,CE,Requerimento,PEC00619,5,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141488,deputado,Paulo Teixeira,PT,SP,Requerimento,CCJC,5,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Emenda,PEC00619,5,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160641,deputado,Professora Marcivania,PCdoB,AP,Emenda,PEC00619,5,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178929,deputado,Diego Garcia,PODE,PR,Requerimento,PEC00619,5,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178931,deputado,Luciano Ducci,PSB,PR,Emenda,PEC00619,5,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204359,deputado,Léo Moraes,PODE,RO,Emenda,PEC00619,5,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204366,deputado,Rodrigo Coelho,PSB,SC,Emenda,PEC00619,5,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204383,deputado,Professor Israel Batista,PV,DF,Requerimento,PEC00619,5,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74161,deputado,Reginaldo Lopes,PT,MG,Requerimento,CCJC,4,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,134812,deputado,Edmilson Rodrigues,PSOL,PA,Emenda,PEC00619,4,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141411,deputado,Dagoberto Nogueira,PDT,MS,Emenda,PEC00619,4,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Emenda,PEC00619,4,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178927,deputado,Aliel Machado,PSB,PR,Emenda,PEC00619,4,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,198783,deputado,Emanuel Pinheiro Neto,PTB,MT,Emenda,PEC00619,4,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204359,deputado,Léo Moraes,PODE,RO,Requerimento,PEC00619,4,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204427,deputado,Fernando Rodolfo,PL,PE,Emenda,PEC00619,4,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204487,deputado,Capitão Wagner,PROS,CE,Emenda,PEC00619,4,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204494,deputado,Fred Costa,PATRIOTA,MG,Emenda,PEC00619,4,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204512,deputado,Delegado Marcelo Freitas,PSL,MG,Emenda,PEC00619,4,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204518,deputado,Dr. Frederico,PATRIOTA,MG,Requerimento,PEC00619,4,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204569,deputado,Delegado Pablo,PSL,AM,Emenda,PEC00619,4,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,73486,deputado,Pompeo De Mattos,PDT,RS,Requerimento,CCJC,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74043,deputado,Wellington Roberto,PL,PB,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74585,deputado,Lincoln Portela,PL,MG,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141518,deputado,Paulo Pereira Da Silva,SOLIDARIEDADE,SP,Requerimento,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141555,deputado,Vinicius Carvalho,PRB,SP,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,143084,deputado,Tiago Dimas,SOLIDARIEDADE,TO,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160528,deputado,Danilo Cabral,PSB,PE,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178829,deputado,Capitão Augusto,PL,SP,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178860,deputado,Paulo Azi,DEM,NA,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178989,deputado,Renata Abreu,PODE,SP,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204416,deputado,Sanderson,PSL,RS,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204439,deputado,Dr. Leonardo,SOLIDARIEDADE,MT,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204512,deputado,Delegado Marcelo Freitas,PSL,MG,Parecer,CCJC,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204518,deputado,Dr. Frederico,PATRIOTA,MG,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204519,deputado,Tiago Mitraud,NOVO,MG,Requerimento,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204531,deputado,Guilherme Derrite,PP,NA,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204561,deputado,Bira Do Pindaré,PSB,MA,Requerimento,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204566,deputado,Marreca Filho,PATRIOTA,MA,Emenda,PEC00619,3,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,67138,deputado,Iracema Portella,PP,PI,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,73486,deputado,Pompeo De Mattos,PDT,RS,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74159,deputado,Odair Cunha,PT,MG,Requerimento,CCJC,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74366,deputado,João Campos,PRB,GO,Requerimento,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74371,deputado,Rubens Otoni,PT,GO,Voto em Separado,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74655,deputado,Eduardo Barbosa,PSDB,MG,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,116379,deputado,Darci De Matos,PSD,SC,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,PLEN,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141421,deputado,Eduardo Da Fonte,PP,PE,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141488,deputado,Paulo Teixeira,PT,SP,Voto em Separado,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,143632,deputado,Domingos Neto,PSD,CE,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,146788,deputado,Marcelo Aro,PP,MG,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,156190,deputado,Marcel Van Hattem,NOVO,RS,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,156190,deputado,Marcel Van Hattem,NOVO,RS,Emenda,PLEN,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160512,deputado,Aureo Ribeiro,SOLIDARIEDADE,RJ,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160570,deputado,Jerônimo Goergen,PP,RS,Requerimento,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160632,deputado,Zé Silva,SOLIDARIEDADE,MG,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,CCJC,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178836,deputado,Alan Rick,DEM,AC,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178857,deputado,Jorge Solla,PT,BA,Voto em Separado,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178884,deputado,Hildo Rocha,MDB,MA,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178916,deputado,Daniel Coelho,CIDADANIA,PE,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178922,deputado,Tadeu Alencar,PSB,PE,Requerimento,CCJC,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178964,deputado,Heitor Schuch,PSB,RS,Requerimento,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204365,deputado,Gilson Marques,NOVO,SC,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204372,deputado,Julio Cesar Ribeiro,PRB,DF,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204381,deputado,Luis Miranda,DEM,DF,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204434,deputado,Dra. Vanda Milani,SOLIDARIEDADE,AC,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204436,deputado,Isnaldo Bulhões Jr.,MDB,AL,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204461,deputado,Paulo Ganime,NOVO,RJ,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204463,deputado,Wladimir Garotinho,PSD,RJ,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204514,deputado,Coronel Tadeu,PSL,SP,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204516,deputado,Alexis Fonteyne,NOVO,SP,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204519,deputado,Tiago Mitraud,NOVO,MG,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204523,deputado,Lucas Gonzalez,NOVO,MG,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204528,deputado,Adriana Ventura,NOVO,SP,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204532,deputado,Vinicius Poit,NOVO,SP,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204542,deputado,Denis Bezerra,PSB,CE,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204543,deputado,Luiz Flávio Gomes,PSB,SP,Requerimento,CCJC,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204553,deputado,Pastor Sargento Isidório,AVANTE,BA,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204572,deputado,Capitão Alberto Neto,PRB,AM,Requerimento,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204574,deputado,Junior Lourenço,PL,NA,Emenda,PEC00619,2,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,69871,deputado,Bacelar,PODE,BA,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,73486,deputado,Pompeo De Mattos,PDT,RS,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,73801,deputado,Renildo Calheiros,PCdoB,PE,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74057,deputado,Alice Portugal,PCdoB,BA,Outros,MESA,1,FALSE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74060,deputado,Daniel Almeida,PCdoB,BA,Requerimento,MESA,1,FALSE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74158,deputado,Mário Heringer,PDT,MG,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74159,deputado,Odair Cunha,PT,MG,Requerimento,MESA,1,FALSE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74159,deputado,Odair Cunha,PT,MG,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74160,deputado,Patrus Ananias,PT,MG,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74161,deputado,Reginaldo Lopes,PT,MG,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74317,deputado,Júlio Cesar,PSD,PI,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74371,deputado,Rubens Otoni,PT,GO,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74371,deputado,Rubens Otoni,PT,GO,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74571,deputado,Nelson Pellegrino,PT,BA,Requerimento,PLEN,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74571,deputado,Nelson Pellegrino,PT,BA,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Outros,CCP,1,FALSE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Requerimento,MESA,1,FALSE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,90201,deputado,Pedro Augusto Bezerra,PTB,CE,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,108338,deputado,Jaqueline Cassol,PP,RO,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,122158,deputado,Pedro Paulo,DEM,RJ,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,122158,deputado,Pedro Paulo,DEM,RJ,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,122974,deputado,Pedro Lucas Fernandes,PTB,MA,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,133439,deputado,André Figueiredo,PDT,CE,Outros,2,1,FALSE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,133439,deputado,André Figueiredo,PDT,CE,Requerimento,MESA,1,FALSE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141405,deputado,Celso Maldaner,MDB,SC,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141450,deputado,Hugo Leal,PSD,RJ,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141488,deputado,Paulo Teixeira,PT,SP,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141513,deputado,Bilac Pinto,DEM,MG,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141516,deputado,Paulo Abi-Ackel,PSDB,MG,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141518,deputado,Paulo Pereira Da Silva,SOLIDARIEDADE,SP,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,141555,deputado,Vinicius Carvalho,PRB,SP,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160518,deputado,Weliton Prado,PROS,MG,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160527,deputado,Aguinaldo Ribeiro,PP,PB,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160528,deputado,Danilo Cabral,PSB,PE,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160588,deputado,Diego Andrade,PSD,MG,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160592,deputado,Zeca Dirceu,PT,PR,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160653,deputado,Roberto De Lucena,PODE,SP,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160655,deputado,Ricardo Izar,PP,SP,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160665,deputado,Augusto Coutinho,SOLIDARIEDADE,PE,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160669,deputado,Genecias Noronha,SOLIDARIEDADE,CE,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,160758,deputado,Domingos Sávio,PSDB,MG,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178832,deputado,Leandre,PV,PR,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178836,deputado,Alan Rick,DEM,AC,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178842,deputado,Jhc,PSB,AL,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178882,deputado,André Fufuca,PP,MA,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178922,deputado,Tadeu Alencar,PSB,PE,Requerimento,MESA,1,FALSE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178922,deputado,Tadeu Alencar,PSB,PE,Requerimento,PLEN,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178922,deputado,Tadeu Alencar,PSB,PE,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178927,deputado,Aliel Machado,PSB,PR,Requerimento,MESA,1,FALSE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178927,deputado,Aliel Machado,PSB,PR,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178927,deputado,Aliel Machado,PSB,PR,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178929,deputado,Diego Garcia,PODE,PR,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178953,deputado,Expedito Netto,PSD,RO,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178964,deputado,Heitor Schuch,PSB,RS,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178966,deputado,Geovania De Sá,PSDB,SC,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178981,deputado,Herculano Passos,MDB,SP,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178987,deputado,Orlando Silva,PCdoB,SP,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178992,deputado,Vitor Lippi,PSDB,SP,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,178994,deputado,Dulce Miranda,MDB,TO,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,179001,deputado,Márcio Biolchi,MDB,RS,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,191923,deputado,Flavio Nogueira,PDT,PI,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,194260,deputado,Nivaldo Albuquerque,PTB,AL,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,198197,deputado,Greyce Elias,AVANTE,MG,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204357,deputado,Rose Modesto,PSDB,MS,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204358,deputado,Beto Pereira,PSDB,MS,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204364,deputado,Eli Borges,SOLIDARIEDADE,TO,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204377,deputado,Paula Belmonte,CIDADANIA,DF,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204387,deputado,Sargento Fahur,PSD,NA,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204387,deputado,Sargento Fahur,PSD,NA,Requerimento,MESA,1,FALSE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204392,deputado,Francisco Jr.,PSD,GO,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204398,deputado,Felipe Francischini,PSL,PR,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204398,deputado,Felipe Francischini,PSL,PR,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204410,deputado,Luisa Canziani,PTB,PR,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204421,deputado,Edna Henrique,PSDB,PB,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204425,deputado,Silvio Costa Filho,PRB,PE,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204441,deputado,Otoni De Paula,PSC,RJ,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204442,deputado,Gurgel,PSL,RJ,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204451,deputado,Delegado Antônio Furtado,PSL,RJ,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204454,deputado,Daniel Silveira,PSL,RJ,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204461,deputado,Paulo Ganime,NOVO,RJ,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204471,deputado,Mara Rocha,PSDB,AC,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204472,deputado,José Medeiros,PODE,MT,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204475,deputado,Otaci Nascimento,SOLIDARIEDADE,RR,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204482,deputado,Euclydes Pettersen,PSC,MG,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204487,deputado,Capitão Wagner,PROS,CE,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204490,deputado,Charlles Evangelista,PSL,MG,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204496,deputado,Celso Sabino,PSDB,PA,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204507,deputado,Carla Zambelli,PSL,SP,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204514,deputado,Coronel Tadeu,PSL,SP,Requerimento,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204520,deputado,Cabo Junio Amaral,PSL,MG,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204527,deputado,Geninho Zuliani,DEM,SP,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204528,deputado,Adriana Ventura,NOVO,SP,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204532,deputado,Vinicius Poit,NOVO,SP,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204536,deputado,Kim Kataguiri,DEM,SP,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204537,deputado,Enrico Misasi,PV,SP,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204538,deputado,Paulo Bengtson,PTB,PA,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204543,deputado,Luiz Flávio Gomes,PSB,SP,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204551,deputado,Bosco Saraiva,SOLIDARIEDADE,AM,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204556,deputado,Marcelo Ramos,PL,AM,Requerimento,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204556,deputado,Marcelo Ramos,PL,AM,Voto em Separado,CCJC,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204572,deputado,Capitão Alberto Neto,PRB,AM,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2192459,camara,204576,deputado,João Roma,PRB,BA,Emenda,PEC00619,1,TRUE,137999,Nova Previdência,Agenda Nacional
+2193540,camara,141518,deputado,Paulo Pereira Da Silva,SOLIDARIEDADE,SP,Parecer,PLEN,7,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,122974,deputado,Pedro Lucas Fernandes,PTB,MA,Emenda,PLEN,2,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,141518,deputado,Paulo Pereira Da Silva,SOLIDARIEDADE,SP,Emenda,PLEN,2,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,141518,deputado,Paulo Pereira Da Silva,SOLIDARIEDADE,SP,Parecer,CCJC,2,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,156190,deputado,Marcel Van Hattem,NOVO,RS,Emenda,PLEN,2,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,73486,deputado,Pompeo De Mattos,PDT,RS,Emenda,PLEN,1,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,74693,deputado,Rodrigo Maia,DEM,RJ,Outros,PLEN,1,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,PLEN,1,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,204358,deputado,Beto Pereira,PSDB,MS,Emenda,PLEN,1,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2196833,camara,74161,deputado,Reginaldo Lopes,PT,MG,Requerimento,PEC04519,6,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,178992,deputado,Vitor Lippi,PSDB,SP,Requerimento,PEC04519,5,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204516,deputado,Alexis Fonteyne,NOVO,SP,Requerimento,PEC04519,5,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,74317,deputado,Júlio Cesar,PSD,PI,Emenda,PEC04519,3,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,141488,deputado,Paulo Teixeira,PT,SP,Requerimento,PEC04519,3,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,178989,deputado,Renata Abreu,PODE,SP,Requerimento,PEC04519,3,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204496,deputado,Celso Sabino,PSDB,PA,Requerimento,PEC04519,3,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,74317,deputado,Júlio Cesar,PSD,PI,Requerimento,PEC04519,2,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,116379,deputado,Darci de Matos,PSD,SC,Requerimento,PEC04519,2,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,CCJC,2,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,178884,deputado,Hildo Rocha,MDB,MA,Requerimento,PEC04519,2,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204359,deputado,Léo Moraes,PODE,RO,Requerimento,PEC04519,2,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204496,deputado,Celso Sabino,PSDB,PA,Emenda,PEC04519,2,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204518,deputado,Dr. Frederico,PATRIOTA,MG,Requerimento,PEC04519,2,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204556,deputado,Marcelo Ramos,PL,AM,Requerimento,PEC04519,2,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204570,deputado,Pastor Gildenemyr,PMN,MA,Requerimento,PEC04519,2,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,73486,deputado,Pompeo De Mattos,PDT,RS,Requerimento,CCJC,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,74366,deputado,João Campos,PRB,GO,Emenda,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,98057,deputado,Lafayette De Andrada,PRB,MG,Requerimento,CCJC,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,122158,deputado,Pedro Paulo,DEM,RJ,Requerimento,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,141488,deputado,Paulo Teixeira,PT,SP,Requerimento,CCJC,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,141513,deputado,Bilac Pinto,DEM,MG,Requerimento,CCJC,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,160527,deputado,Aguinaldo Ribeiro,PP,PB,Requerimento,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,160570,deputado,Jerônimo Goergen,PP,RS,Emenda,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,178829,deputado,Capitão Augusto,PL,SP,Requerimento,PLEN,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,178933,deputado,Sergio Souza,MDB,PR,Emenda,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,178994,deputado,Dulce Miranda,MDB,TO,Requerimento,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204355,deputado,Da Vitoria,CIDADANIA,ES,Requerimento,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204381,deputado,Luis Miranda,DEM,DF,Emenda,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204383,deputado,Professor Israel Batista,PV,DF,Emenda,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204431,deputado,Marcos Aurélio Sampaio,MDB,PI,Requerimento,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204433,deputado,Marcelo Calero,CIDADANIA,RJ,Requerimento,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204461,deputado,Paulo Ganime,NOVO,RJ,Requerimento,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204526,deputado,Luiz Philippe de Orleans e Bragança,PSL,SP,Requerimento,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204537,deputado,Enrico Misasi,PV,SP,Emenda,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204551,deputado,Bosco Saraiva,SOLIDARIEDADE,AM,Requerimento,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204572,deputado,Capitão Alberto Neto,PRB,AM,Emenda,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204572,deputado,Capitão Alberto Neto,PRB,AM,Requerimento,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,204576,deputado,João Roma,PRB,BA,Parecer,CCJC,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2196833,camara,207309,deputado,Enéias Reis,PSL,MG,Requerimento,PEC04519,1,TRUE,NA,Reforma tributária,Agenda Nacional
+2199763,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,MPV88119,18,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,204516,deputado,Alexis Fonteyne,NOVO,SP,Emenda,MPV88119,16,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,MPV88119,13,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,204532,deputado,Vinicius Poit,NOVO,SP,Emenda,MPV88119,11,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,68720,deputado,Fábio Henrique,PDT,SE,Emenda,MPV88119,5,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,74057,deputado,Alice Portugal,PCdoB,BA,Emenda,MPV88119,5,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,74060,deputado,Daniel Almeida,PCdoB,BA,Emenda,MPV88119,5,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Emenda,MPV88119,5,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,73801,deputado,Renildo Calheiros,PCdoB,PE,Emenda,MPV88119,4,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,73486,deputado,Pompeo de Mattos,PDT,RS,Emenda,MPV88119,3,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,74585,deputado,Lincoln Portela,PL,MG,Emenda,MPV88119,3,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,141488,deputado,Paulo Teixeira,PT,SP,Emenda,MPV88119,3,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,160632,deputado,Zé Silva,SOLIDARIEDADE,MG,Emenda,MPV88119,3,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,PLEN,2,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,160570,deputado,Jerônimo Goergen,PP,RS,Emenda,PLEN,2,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,178836,deputado,Alan Rick,DEM,AC,Emenda,MPV88119,2,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,178871,deputado,Evair Vieira de Melo,PP,ES,Emenda,MPV88119,2,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,178961,deputado,Shéridan,PSDB,RR,Emenda,MPV88119,2,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,204386,deputado,Jose Mario Schreiner,DEM,GO,Emenda,MPV88119,2,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,204485,deputado,Luiz Carlos Motta,PL,SP,Emenda,MPV88119,2,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,204536,deputado,Kim Kataguiri,DEM,SP,Emenda,MPV88119,2,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,69871,deputado,Bacelar,PODE,BA,Emenda,MPV88119,1,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Emenda,MPV88119,1,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,108338,deputado,Jaqueline Cassol,PP,RO,Emenda,MPV88119,1,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,141391,deputado,Arnaldo Jardim,CIDADANIA,SP,Emenda,MPV88119,1,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,141411,deputado,Dagoberto Nogueira,PDT,MS,Emenda,MPV88119,1,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,160570,deputado,Jerônimo Goergen,PP,RS,Parecer,PLEN,1,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,178874,deputado,Sergio Vidigal,PDT,ES,Emenda,MPV88119,1,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,178909,deputado,Hélio Leite,DEM,PA,Emenda,MPV88119,1,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,204410,deputado,Luisa Canziani,PTB,PR,Emenda,MPV88119,1,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,204425,deputado,Silvio Costa Filho,PRB,PE,Emenda,MPV88119,1,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,204472,deputado,José Medeiros,PODE,MT,Emenda,MPV88119,1,TRUE,136531,Liberdade Econômica,Agenda Nacional
+2199763,camara,204556,deputado,Marcelo Ramos,PL,AM,Emenda,MPV88119,1,TRUE,136531,Liberdade Econômica,Agenda Nacional

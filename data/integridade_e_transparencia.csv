@@ -1,0 +1,243 @@
+id_ext,casa,id_autor,tipo_autor,nome_autor,partido,uf,tipo_generico,sigla_local,qtd_de_documentos,is_important,id_senado,apelido,tema
+16526,camara,74043,deputado,Wellington Roberto,PL,PB,Emenda,PLEN,17,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204396,deputado,Vermelho,PSD,PR,Emenda,PLEN,11,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160508,deputado,Afonso Florence,PT,BA,Emenda,PLEN,9,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,151208,deputado,Laercio Oliveira,PP,SE,Emenda,PLEN,6,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Emenda,PLEN,6,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204388,deputado,Bibo Nunes,PSL,RS,Emenda,PLEN,6,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141391,deputado,Arnaldo Jardim,CIDADANIA,SP,Emenda,PLEN,5,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141470,deputado,José Guimarães,PT,CE,Requerimento,PLEN,5,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160575,deputado,Erika Kokay,PT,DF,Proposição Apensada,PL129295,5,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178910,deputado,Joaquim Passarinho,PSD,PA,Requerimento,PL129295,5,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204477,deputado,Felício Laterça,PSL,RJ,Emenda,PLEN,5,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204541,deputado,Eduardo Bismarck,PDT,CE,Proposição Apensada,CCP,5,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74060,deputado,Daniel Almeida,PCdoB,BA,Emenda,PLEN,4,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74158,deputado,Mário Heringer,PDT,MG,Emenda,PLEN,4,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,PLEN,4,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160587,deputado,Fábio Trad,PSD,MS,Parecer,CCJC,4,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,73486,deputado,Pompeo De Mattos,PDT,RS,Proposição Apensada,PL129295,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74283,deputado,Vicentinho,PT,SP,Requerimento,PLEN,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,81055,deputado,Márcio Jerry,PCdoB,MA,Emenda,PLEN,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141405,deputado,Celso Maldaner,MDB,SC,Requerimento,PL129295,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141408,deputado,Cleber Verde,PRB,MA,Proposição Apensada,PL129295,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141458,deputado,João Carlos Bacelar,PL,BA,Requerimento,PL129295,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,159237,deputado,Assis Carvalho,PT,PI,Requerimento,PL129295,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160587,deputado,Fabio Trad,PSD,MS,Parecer,CCJC,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160587,deputado,Fábio Trad,PSD,MS,Emenda,PLEN,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,164359,deputado,Delegado Waldir,PSL,GO,Emenda,PLEN,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,205865,deputado,Reinhold Stephanes Junior,PSD,PR,Emenda,PLEN,3,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Proposição Apensada,CCP,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,73531,deputado,Ivan Valente,PSOL,SP,Requerimento,PL129295,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74366,deputado,João Campos,PRB,GO,Emenda,PLEN,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74371,deputado,Rubens Otoni,PT,GO,Proposição Apensada,MESA,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74655,deputado,Eduardo Barbosa,PSDB,MG,Proposição Apensada,PL129295,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141464,deputado,José Airton Cirilo,PT,CE,Proposição Apensada,PL129295,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141470,deputado,José Guimarães,PT,CE,Proposição Apensada,PL129295,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141488,deputado,Paulo Teixeira,PT,SP,Proposição Apensada,MESA,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,151208,deputado,Laercio Oliveira,PP,SE,Requerimento,PL129295,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160575,deputado,Erika Kokay,PT,DF,Requerimento,PLEN,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160587,deputado,Fabio Trad,PSD,MS,Requerimento,CCJC,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160665,deputado,Augusto Coutinho,SOLIDARIEDADE,PE,Emenda,PLEN,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160665,deputado,Augusto Coutinho,SOLIDARIEDADE,PE,Requerimento,PL129295,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Proposição Apensada,MESA,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178829,deputado,Capitão Augusto,PL,SP,Proposição Apensada,MESA,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178854,deputado,Elmar Nascimento,DEM,BA,Emenda,PLEN,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178884,deputado,Hildo Rocha,MDB,MA,Requerimento,PL129295,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178910,deputado,Joaquim Passarinho,PSD,PA,Emenda,PLEN,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178992,deputado,Vitor Lippi,PSDB,SP,Proposição Apensada,MESA,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178992,deputado,Vitor Lippi,PSDB,SP,Requerimento,PL129295,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204398,deputado,Felipe Francischini,PSL,PR,Emenda,PLEN,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204418,deputado,Luizão Goulart,PRB,PR,Emenda,PLEN,2,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204530,deputado,Rodrigo Agostinho,PSB,SP,Proposição Apensada,CCP,2,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,66828,deputado,Fausto Pinato,PP,SP,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,67138,deputado,Iracema Portella,PP,PI,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,69871,deputado,Bacelar,PODE,BA,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,73441,deputado,Celso Russomanno,PRB,SP,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,73701,deputado,Benedita Da Silva,PT,RJ,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,73891,deputado,Darcísio Perondi,MDB,RS,Requerimento,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,73943,deputado,Perpétua Almeida,PCdoB,AC,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,73943,deputado,Perpétua Almeida,PCdoB,AC,Requerimento,SEPUB(SGM),1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74057,deputado,Alice Portugal,PCdoB,BA,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74057,deputado,Alice Portugal,PCdoB,BA,Requerimento,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74158,deputado,Mário Heringer,PDT,MG,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74160,deputado,Patrus Ananias,PT,MG,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74161,deputado,Reginaldo Lopes,PT,MG,Proposição Apensada,MESA,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74262,deputado,Carlos Sampaio,PSDB,SP,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74283,deputado,Vicentinho,PT,SP,Proposição Apensada,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74366,deputado,João Campos,PRB,GO,Proposição Apensada,MESA,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,74848,deputado,Jandira Feghali,PCdoB,RJ,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,92699,deputado,Fernando Monteiro,PP,PE,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,133810,deputado,Marcelo Moraes,PTB,RS,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141398,deputado,Carlos Zarattini,PT,SP,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141398,deputado,Carlos Zarattini,PT,SP,Requerimento,MESA,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141405,deputado,Celso Maldaner,MDB,SC,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141405,deputado,Celso Maldaner,MDB,SC,Requerimento,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141450,deputado,Hugo Leal,PSD,RJ,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141450,deputado,Hugo Leal,PSD,RJ,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141464,deputado,José Airton,PT,CE,Requerimento,SEPUB(SGM),1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141508,deputado,Mauro Nazif,PSB,RO,Requerimento,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141555,deputado,Vinicius Carvalho,PRB,SP,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,141555,deputado,Vinicius Carvalho,PRB,SP,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,151208,deputado,Laercio Oliveira,PP,SE,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,151208,deputado,Laercio Oliveira,PP,SE,Requerimento,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160508,deputado,Afonso Florence,PT,BA,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160511,deputado,Alessandro Molon,PSB,RJ,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160518,deputado,Weliton Prado,PROS,MG,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160531,deputado,Jhonatan De Jesus,PRB,RR,Proposição Apensada,MESA,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160532,deputado,Eli Correa Filho,DEM,SP,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160591,deputado,Vinicius Gurgel,PL,AP,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160592,deputado,Zeca Dirceu,PT,PR,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160598,deputado,Flávia Morais,PDT,GO,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160632,deputado,Zé Silva,SOLIDARIEDADE,MG,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160635,deputado,Ruy Carneiro,PSDB,PB,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160639,deputado,Professora Dorinha Seabra Rezende,DEM,TO,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160651,deputado,Rogério Peninha Mendonça,MDB,SC,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160653,deputado,Roberto De Lucena,PODE,SP,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160655,deputado,Ricardo Izar,PP,SP,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160665,deputado,Augusto Coutinho,SOLIDARIEDADE,PE,Parecer,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160665,deputado,Augusto Coutinho,SOLIDARIEDADE,PE,Parecer,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,160674,deputado,Hugo Motta,PRB,PB,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178842,deputado,Jhc,PSB,AL,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178863,deputado,Uldurico Junior,PROS,BA,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178871,deputado,Evair Vieira De Melo,PP,ES,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178871,deputado,Evair Vieira De Melo,PP,ES,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178873,deputado,Helder Salomão,PT,ES,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178874,deputado,Sergio Vidigal,PDT,ES,Proposição Apensada,MESA,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178874,deputado,Sergio Vidigal,PDT,ES,Requerimento,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178884,deputado,Hildo Rocha,MDB,MA,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178884,deputado,Hildo Rocha,MDB,MA,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178916,deputado,Daniel Coelho,CIDADANIA,PE,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178927,deputado,Aliel Machado,PSB,PR,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178930,deputado,Evandro Roman,PSD,PR,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178930,deputado,Evandro Roman,PSD,PR,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178930,deputado,Evandro Roman,PSD,PR,Voto em Separado,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178945,deputado,Rosangela Gomes,PRB,RJ,Proposição Apensada,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178977,deputado,Eduardo Cury,PSDB,SP,Requerimento,PL129295,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178992,deputado,Vitor Lippi,PSDB,SP,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,178993,deputado,Carlos Henrique Gaguim,DEM,TO,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,194260,deputado,Nivaldo Albuquerque,PTB,AL,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204358,deputado,Beto Pereira,PSDB,MS,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204364,deputado,Eli Borges,SOLIDARIEDADE,TO,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204365,deputado,Gilson Marques,NOVO,SC,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204389,deputado,Elias Vaz,PSB,GO,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204418,deputado,Luizão Goulart,PRB,PR,Requerimento,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204427,deputado,Fernando Rodolfo,PL,PE,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204429,deputado,João H. Campos,PSB,PE,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204452,deputado,Márcio Labre,PSL,NA,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204504,deputado,Cezinha De Madureira,PSD,SP,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204506,deputado,Marcos Pereira,PRB,SP,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204506,deputado,Marcos Pereira,PRB,SP,Proposição Apensada,CCP,1,FALSE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204513,deputado,Guiga Peixoto,PSL,SP,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204524,deputado,Pinheirinho,PP,MG,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204536,deputado,Kim Kataguiri,DEM,SP,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+16526,camara,204543,deputado,Luiz Flávio Gomes,PSB,SP,Emenda,PLEN,1,TRUE,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+353631,camara,132504,deputado,Enio Verri,PT,NA,Emenda,PLEN,3,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,204371,deputado,Felipe Rigoni,PSB,ES,Emenda,PLEN,3,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,204534,deputado,Tabata Amaral,PDT,SP,Emenda,PLEN,3,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,69871,deputado,Bacelar,PODE,BA,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,74060,deputado,Daniel Almeida,PCdoB,BA,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,141398,deputado,Carlos Zarattini,PT,SP,Proposição Apensada,PLEN,1,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,141398,deputado,Carlos Zarattini,PT,SP,Requerimento,SEPUB(SGM),1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,141398,deputado,Carlos Zarattini,PT,SP,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,141422,deputado,Efraim Filho,DEM,NA,Emenda,PLEN,1,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,143632,deputado,Domingos Neto,PSD,CE,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,150418,deputado,Márcio Marinho,PRB,BA,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,160508,deputado,Afonso Florence,PT,BA,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,178829,deputado,Capitão Augusto,PL,SP,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,178882,deputado,André Fufuca,PP,MA,Requerimento,total: 283.,1,FALSE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,178922,deputado,Tadeu Alencar,PSB,PE,Emenda,PLEN,1,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,178975,deputado,Baleia Rossi,MDB,SP,Emenda,PLEN,1,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,204388,deputado,Bibo Nunes,PSL,RS,Emenda,PLEN,1,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,204429,deputado,João H. Campos,PSB,PE,Emenda,PLEN,1,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+353631,camara,204544,deputado,Alexandre Frota,PSL,SP,Emenda,PLEN,1,TRUE,NA,Disciplina a atividade de lobby,Integridade e Transparência
+604888,camara,74400,deputado,Paulo Pimenta,PT,RS,Requerimento,SEPUB(SGM),2,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Requerimento,SEPUB(SGM),2,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,141488,deputado,Paulo Teixeira,PT,SP,Parecer,CCJC,2,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,204526,deputado,Luiz Philippe De Orleans e Bragança,PSL,SP,Requerimento,PLEN,2,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,74400,deputado,Paulo Pimenta,PT,RS,Proposição Apensada,MESA,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,74400,deputado,Paulo Pimenta,PT,RS,Requerimento,PLEN,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Proposição Apensada,MESA,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,74419,deputado,Gonzaga Patriota,PSB,PE,Requerimento,PLEN,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,74585,deputado,Lincoln Portela,PL,MG,Proposição Apensada,PLEN,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,74585,deputado,Lincoln Portela,PL,MG,Requerimento,SEPUB(SGM),1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,74784,deputado,Luiza Erundina,PSOL,SP,Proposição Apensada,CCJC,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,141450,deputado,Hugo Leal,PSD,RJ,Proposição Apensada,CCP,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,141470,deputado,José Guimarães,PT,CE,Proposição Apensada,MESA,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,152605,deputado,Glauber Braga,PSOL,RJ,Proposição Apensada,CCP,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,160511,deputado,Alessandro Molon,PSB,RJ,Emenda,CCJC,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,160511,deputado,Alessandro Molon,PSB,RJ,Parecer,CCJC,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,160511,deputado,Alessandro Molon,PSB,RJ,Requerimento,MESA,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,160512,deputado,Aureo,SOLIDARIEDADE,RJ,Proposição Apensada,CCP,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,160598,deputado,Flávia Morais,PDT,GO,Emenda,PLEN,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,160653,deputado,Roberto De Lucena,PODE,SP,Requerimento,PLEN,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,160655,deputado,Ricardo Izar,PP,SP,Proposição Apensada,CCJC,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,178881,deputado,Aluisio Mendes,PODE,MA,Emenda,PLEN,1,TRUE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,204377,deputado,Paula Belmonte,CIDADANIA,DF,Proposição Apensada,CCP,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,204488,deputado,Célio Studart,PV,CE,Proposição Apensada,CCP,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,204526,deputado,Luiz Philippe de Orleans e Bragança,PSL,SP,Proposição Apensada,MESA,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,204526,deputado,Luiz Philippe De Orleans e Bragança,PSL,SP,Proposição Apensada,MESA,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+604888,camara,204530,deputado,Rodrigo Agostinho,PSB,SP,Proposição Apensada,CCP,1,FALSE,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+2080604,camara,141488,deputado,Paulo Teixeira,PT,SP,Requerimento,PL485016,22,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Requerimento,PL485016,7,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178874,deputado,Sergio Vidigal,PDT,ES,Requerimento,PL485016,5,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178929,deputado,Diego Garcia,PODE,PR,Requerimento,PL485016,4,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,73531,deputado,Ivan Valente,PSOL,SP,Emenda,PLEN,3,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,74400,deputado,Paulo Pimenta,PT,RS,Emenda,PLEN,3,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,141553,deputado,Vanderlei Macris,PSDB,SP,Requerimento,PL485016,3,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,66828,deputado,Fausto Pinato,PP,SP,Voto em Separado,PL485016,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Requerimento,PLEN,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,74060,deputado,Daniel Almeida,PCdoB,BA,Emenda,PLEN,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,74156,deputado,Leonardo Monteiro,PT,MG,Requerimento,PL485016,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160508,deputado,Afonso Florence,PT,BA,Emenda,PLEN,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Requerimento,PL485016,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178835,deputado,Afonso Motta,PDT,RS,Emenda,PLEN,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178884,deputado,Hildo Rocha,MDB,MA,Emenda,PLEN,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178910,deputado,Joaquim Passarinho,PSD,PA,Requerimento,PL485016,2,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,73441,deputado,Celso Russomanno,PRB,SP,Requerimento,PLEN,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Emenda,PLEN,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,73466,deputado,Rubens Bueno,CIDADANIA,PR,Requerimento,MESA,1,FALSE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,73486,deputado,Pompeo de Mattos,PDT,RS,Emenda,PLEN,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,74319,deputado,Paes Landim,PTB,PI,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,74693,deputado,Rodrigo Maia,DEM,RJ,Outros,MESA,1,FALSE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,92776,deputado,Stefano Aguiar,PSD,MG,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,141405,deputado,Celso Maldaner,MDB,SC,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,146788,deputado,Marcelo Aro,PP,MG,Requerimento,MESA,1,FALSE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,146788,deputado,Marcelo Aro,PP,MG,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160518,deputado,Weliton Prado,PROS,MG,Requerimento,PLEN,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160527,deputado,Aguinaldo Ribeiro,PP,PB,Emenda,PLEN,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160640,deputado,Eros Biondini,PROS,MG,Requerimento,MESA,1,FALSE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160655,deputado,Ricardo Izar,PP,SP,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160655,deputado,Ricardo Izar,PP,SP,Requerimento,PLEN,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160666,deputado,Félix Mendonça Júnior,PDT,BA,Voto em Separado,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,160758,deputado,Domingos Sávio,PSDB,MG,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178833,deputado,Alexandre Serfiotis,PSD,RJ,Requerimento,MESA,1,FALSE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178874,deputado,Sergio Vidigal,PDT,ES,Voto em Separado,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178881,deputado,Aluisio Mendes,PODE,MA,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178912,deputado,Pedro Cunha Lima,PSDB,PB,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178927,deputado,Aliel Machado,PSB,PR,Requerimento,PL485016,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2080604,camara,178975,deputado,Baleia Rossi,MDB,SP,Emenda,PLEN,1,TRUE,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+2081681,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Requerimento,PLEN,2,TRUE,NA,Controle das OSCs,Integridade e Transparência
+2081681,camara,177282,deputado,Subtenente Gonzaga,PDT,MG,Proposição Apensada,CTASP,1,TRUE,NA,Controle das OSCs,Integridade e Transparência
+2193540,camara,141518,deputado,Paulo Pereira Da Silva,SOLIDARIEDADE,SP,Parecer,PLEN,7,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,74400,deputado,Paulo Pimenta,PT,RS,Emenda,PLEN,2,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,122974,deputado,Pedro Lucas Fernandes,PTB,MA,Emenda,PLEN,2,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,132504,deputado,Enio Verri,PT,NA,Emenda,PLEN,2,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,141518,deputado,Paulo Pereira Da Silva,SOLIDARIEDADE,SP,Emenda,PLEN,2,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,141518,deputado,Paulo Pereira Da Silva,SOLIDARIEDADE,SP,Parecer,CCJC,2,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,156190,deputado,Marcel Van Hattem,NOVO,RS,Emenda,PLEN,2,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,204503,deputado,Alexandre Padilha,PT,SP,Emenda,PLEN,2,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,73482,deputado,Henrique Fontana,PT,RS,Emenda,PLEN,1,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,73486,deputado,Pompeo De Mattos,PDT,RS,Emenda,PLEN,1,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,74478,deputado,Luciano Bivar,PSL,PE,Emenda,PLEN,1,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,74693,deputado,Rodrigo Maia,DEM,RJ,Outros,PLEN,1,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,133439,deputado,André Figueiredo,PDT,CE,Emenda,PLEN,1,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,160510,deputado,Luis Tibé,AVANTE,MG,Emenda,PLEN,1,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,164359,deputado,Delegado Waldir,PSL,GO,Emenda,PLEN,1,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,178854,deputado,Elmar Nascimento,DEM,BA,Proposição Apensada,MESA,1,FALSE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,178854,deputado,Elmar Nascimento,DEM,BA,Requerimento,PLEN,1,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
+2193540,camara,204358,deputado,Beto Pereira,PSDB,MS,Emenda,PLEN,1,TRUE,136173,Anistia Tributária para Partidos,Integridade e Transparência
