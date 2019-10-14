@@ -6,6 +6,13 @@ output:
   prettydoc::html_pretty:
     theme: leonids
     highlight: github
+params:
+  date_init: 2019-09-15
+  date_end: 2019-09-19
+  temperaturas: 
+    label: "Input dataset:"
+    value: ../../data/hists_temperatura.csv
+    input: file
 ---
 
 ```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, paged.print=FALSE, results="asis"}
@@ -29,6 +36,7 @@ library(hrbrthemes)
 library(grid)
 library(gridExtra)
 library(tibble)
+# install.packages("ggchicklet", repos = "https://cinc.rud.is")
 library(ggchicklet)
 ```
 
@@ -39,7 +47,7 @@ text-align: justify}
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 #Base de dados de temperatura
-temperatura <- read_csv("../../data/hists_temperatura.csv")
+temperatura <- read_csv(params$temperaturas)
 ```
 
 
@@ -48,7 +56,7 @@ temperatura <- read_csv("../../data/hists_temperatura.csv")
 pressao_137999 <- read_csv("./data/pop_137999.csv")
 pressao_2192459 <- read_csv("./data/pop_2192459.csv")
 pressao_prev <- bind_rows(pressao_137999, pressao_2192459)
-pressao_cp <- read_csv("./data/pop_16526.csv")
+pressao_cp <- read_csv("./data/pop_16526.csv") 
 
 temperatura_pauta_prev <- temperatura %>% 
   filter(id_leggo == "34")
@@ -71,8 +79,8 @@ props <- readr::read_csv("../../data/proposicoes.csv") %>%
 
 atores_ultima_semana <-
   atores_geral %>%  
-  filter(data >= "2019-09-15") %>% 
-  filter(data < "2019-09-23")
+  filter(data >= params$date_init) %>% 
+  filter(data < params$date_end)
 
 atores_apelidos <-
   atores_ultima_semana %>% 
