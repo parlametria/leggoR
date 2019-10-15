@@ -26,7 +26,7 @@ library(shiny)
 library(hrbrthemes)
 library(rcongresso)
 theme_set(theme_minimal())
-source(here::here('scripts/prepare_coautorias_data.R'))
+source(here::here('reports/rede-de-atuacao/scripts/prepare_coautorias_data.R'))
 
 
 env <- "dev"
@@ -57,8 +57,8 @@ parlamentares_senado <- autores_senado %>% dplyr::select(id_autor, nome = nome_a
 senadores <- agoradigital::read_senadores('data/parlamentares.csv')
 props <- 
   read_csv('data/proposicoes.csv') %>% 
-  mutate(nome_formal = paste0(apelido, "- ", sigla_tipo, " ", numero, "/", format(data_apresentacao, "%Y"), " - ", casa)) %>% 
-  select(id_principal = id_ext, nome_formal) %>% 
+  mutate(descricao_lei = paste0(apelido, "- ", sigla_tipo, " ", numero, "/", format(data_apresentacao, "%Y"), " - ", casa)) %>% 
+  select(id_principal = id_ext, descricao_lei) %>% 
   mutate(id_principal = as.character(id_principal))
 
 coautorias_camara <- get_coautorias(peso_autorias_docs_camara, autorias_camara, parlamentares_camara)
@@ -117,12 +117,12 @@ Este são todos os agrupamentos da proposição.
 ```{r echo=FALSE, fig.width = 4, fig.height = 4}
 choices_ids <- 
   props %>% 
-  select(nome_formal) %>%
+  select(descricao_lei) %>%
   as.list() 
 
-choices_ids <- choices_ids$nome_formal
+choices_ids <- choices_ids$descricao_lei
 
-selectInput("nome_formal", "Nome Formal",
+selectInput("descricao_lei", "Descrição da Lei",
              choices_ids,
             selected = choices_ids[1])
 br()
@@ -162,8 +162,6 @@ generate_graph_by_group <- function(df, id_group) {
   return(list(nodes, edges))
 }
 
-
-
 generate_graph <- function(nodes, edges) {
   fn <- forceNetwork(
     Links = edges, 
@@ -171,33 +169,67 @@ generate_graph <- function(nodes, edges) {
     Source = "source", 
     Target = "target",
     Value = "value", 
+    linkDistance = 150,
     NodeID = "nome_eleitoral",
+    Nodesize = "node_size",
     Group ="partido", 
     zoom = T,
     linkColour = "#bfbdbd",
     fontFamily = "roboto",
     fontSize = 16,
+    charge = -50,
     opacity = 0.8)
   
+  fn <- 
+        htmlwidgets::onRender(fn, 
+                                '
+          function(el,x) {
+            var tooltip = d3.select("body")
+          	  .append("div")
+          	  .style("position", "absolute")
+          	  .style("z-index", "10")
+          	  .style("visibility", "hidden")
+          	  .style("background-color", "#ffffff")
+          	  .style("padding", "5px")
+          	  .style("border", "solid 2px #000")
+          	  .style("border-radius", "6px")
+          	  .style("font-size", "1.2rem")
+
+            d3.selectAll(".node")
+              .on("mouseover", null)
+              .style("opacity", 1)
+              .style("cursor", "pointer");
+
+            d3.selectAll("circle")
+              .on("mouseover", function(d) { 
+                  return tooltip.html(d.name )
+                    .style("visibility", "visible")
+                    .style("top",(event.pageY-10)+"px")
+                    .style("left",(event.pageX+10)+"px");})
+        	    .on("mouseout", function(d) {
+                  return tooltip.html(d.name)
+                    .style("visibility", "hidden");});
+            }
+              '
+        )
+  
   return(fn)
-
-
 }
 
 getCoautorias <- reactive({
   nodes_edges <- 
     generate_nodes_and_edges(
       coautorias %>% 
-      filter(nome_formal == input$nome_formal)) 
+      filter(descricao_lei == input$descricao_lei)) 
   return(nodes_edges)
 })
 
 ```
 
 ```{r echo=FALSE, context="server"}
-getPesosProp <- function(nome_formal) {
+getPesosProp <- function(descricao_lei) {
   coautorias %>% 
-    filter(nome_formal == nome_formal) %>% 
+    filter(descricao_lei == descricao_lei) %>% 
     select(peso_arestas) %>% 
     as.list() %>% 
     purrr::pluck("peso_arestas")
@@ -207,7 +239,7 @@ output$hist <- renderPlot({
   if(nrow(coautorias) > 0) {
     coautorias_hist <- 
       coautorias %>%
-      filter(nome_formal == input$nome_formal)
+      filter(descricao_lei == input$descricao_lei)
     
     if(nrow(coautorias_hist) != 0) {
       coautorias_hist %>% 
@@ -224,9 +256,9 @@ output$hist <- renderPlot({
 output$dt <- 
   DT::renderDataTable(
     coautorias %>% 
-      select(id_principal, nome.x, nome.y, peso_arestas, num_coautorias, nome_formal, data.x) %>% 
+      select(id_principal, nome.x, nome.y, peso_arestas, num_coautorias, descricao_lei, data) %>% 
       distinct() %>% 
-      filter(nome_formal == input$nome_formal) %>% 
+      filter(descricao_lei == input$descricao_lei) %>% 
       rename(peso_relacao = peso_arestas, 
              nome_deputado_a = nome.x,
              nome_deputado_b = nome.y,
@@ -263,13 +295,62 @@ output$hist_grafo <- renderPlot({
   }
 })
 
-output$grafo_grupo2 <-
-    networkD3::renderForceNetwork({
-    graph <- generate_graph_by_group(getCoautorias(), 2)
+```
 
+Para a lei do Licenciamento Ambiental (PL 3729/2004) houve 4 grandes grupos,
+Um composto por 13 deputados do PT e 2 deputados do PSOL
+Outro composto por 8 do PMDB na época que requeria o desapensamento do PL 1546/2015 que estava apensado ao PL 3729/2004
+Outro composto por deputados de vários partidos (PTB, PP , PSDB, PSB, DEM, PDT, PT, PSD)
+Outro composto por 4 do PV, 2 do PSOL, 2 do Solidariedade e PR, PT, PRB e PSDB que foi a PL 1147/2007 que foi apensada
+E um do PSDB e PP que apresentaram a PL 358/2011 que foi apensada
+
+```{r echo=FALSE, fig.width = 4, fig.height = 4}
+br()
+
+coautorias_lei_licenciamento <-
+  coautorias %>%
+  filter(descricao_lei == "Lei do Licenciamento Ambiental- PL 3729/2004 - camara")
+  
+  networkD3::renderForceNetwork({
+      graph <- generate_nodes_and_edges(coautorias_lei_licenciamento)
     if(nrow(graph[[1]]) > 0 & nrow(graph[[2]]) > 0) {
-      generate_graph(nodes, edges)
-    
-      }
-})
+      generate_graph(graph[[1]], graph[[2]])
+    } else {
+      NA
+    }
+  })
+  
+br()
+```
+
+Tiago Mitraud - NOVO/MG apresentou uma emenda aditiva com Marcelo Calero - CIDADANIA/RJ
+Tabata Amaral - PDT/SP apresentou com Felipe Rigoni - PSB/ES uma emenda aditiva e um requerimento de audiência pública 
+Felipe Rigoni - PSB/ES
+Adriana Ventura - NOVO/SP
+João H. Campos - PSB/PE
+Emanuel Pinheiro Neto - PTB/MT
+Tiago Mitraud - NOVO/MG
+Jhc - PSB/AL apresentaram uma emenda aditiva
+E os deputados do pt apresentaram uma emenda
+Podemos ver também, que Felipe Rigoni foi o parlamentar que mais teve peso nos documentos no segundo grupo
+```{r echo=FALSE, fig.width = 4, fig.height = 4}
+coautorias_2019 <-
+  coautorias %>% 
+  filter(data > "2019-01-01")
+
+coautorias_pec_aborto <-
+  coautorias_2019 %>% 
+  filter(descricao_lei == "Tornar o FUNDEB permanente (Câmara)- PEC 15/2015 - camara")
+
+  networkD3::renderForceNetwork({
+      graph <- generate_nodes_and_edges(coautorias_pec_aborto)
+    if(nrow(graph[[1]]) > 0 & nrow(graph[[2]]) > 0) {
+      generate_graph(graph[[1]], graph[[2]])
+    } else {
+      NA
+    }
+  })
+
+  
+br()
 ```
