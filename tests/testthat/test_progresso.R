@@ -7,15 +7,22 @@ setup <- function(){
   etapas %<>% append(list(process_etapa(126084, "senado", as.data.frame())))
   etapas %<>% purrr::pmap(dplyr::bind_rows)
   progresso <<- get_progresso(etapas$proposicao, etapas$fases_eventos)
+  
+  etapas_pec <<- list()
+  etapas_pec %<>% append(list(process_etapa(1198512, "camara", as.data.frame())))
+  etapas_pec %<>% purrr::pmap(dplyr::bind_rows)
+  progresso_pec <<- get_progresso(etapas_pec$proposicao, etapas_pec$fases_eventos)
   return(TRUE)
 }
 
 test <- function() {
   test_that("get_progresso() returns dataframe", {
     expect_true(is.data.frame(progresso))
+    expect_true(is.data.frame(progresso_pec))
   })
   test_that("get_progresso() is not empty", {
     expect_true(nrow(progresso) != 0)
+    expect_true(nrow(progresso_pec) != 0)
   })
   
   test_that('progresso mpv', {
@@ -61,6 +68,27 @@ test <- function() {
       dplyr::mutate(prop_id = as.integer(prop_id))
     
     expect_true(nrow(dplyr::anti_join(progresso_mpv_em_tramitacao, progresso_135061)) == 0)
+    
+    progresso_135061 <- 
+      tibble::tribble(
+        ~ casa, ~ prop_id, ~ fase_global,      ~ local,                     ~ data_inicio,        ~ data_fim,     ~ local_casa,
+      "camara", 1198512, "Pré-Construção",      "",                         NA,                    NA,                  NA,        
+      "camara", 1198512, "Construção",          "Comissões",                "2015-04-23 17:14:00", NA,                  "camara",    
+      "camara", 1198512, "Construção",          "Plenário",                 NA,                    NA,                  NA,        
+      "camara", 1198512, "Pré-Revisão I",       "",                         NA,                    NA,                  NA,        
+      "camara", 1198512, "Revisão I",           "Comissões",                NA,                    NA,                  NA,        
+      "camara", 1198512, "Revisão I",           "Plenário",                 NA,                    NA,                  NA,        
+      "camara", 1198512, "Pré-Revisão II",      "",                         NA,                    NA,                  NA,        
+      "camara", 1198512, "Revisão II",          "Comissões",                NA,                    NA,                  NA,        
+      "camara", 1198512, "Revisão II",          "Plenário",                 NA,                    NA,                  NA,        
+      "camara", 1198512, "Promulgação/Veto",    "Presidência da República", NA,                    NA,                  NA,        
+      "camara", 1198512, "Avaliação dos Vetos", "Congresso",                NA,                    NA,                  "congresso" )
+    
+    progresso_135061 <-
+      progresso_135061 %>% dplyr::mutate(prop_id = as.integer(prop_id),
+                                         data_fim = as.POSIXct(data_fim))
+    
+    expect_equal(progresso_pec %>% dplyr::mutate(data_inicio = as.character(data_inicio)), progresso_135061)
     
     
   })
