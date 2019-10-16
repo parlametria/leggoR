@@ -39,44 +39,32 @@ generate_nodes_and_edges <- function(coautorias, edges_weight = 100, smoothing =
     coautorias %>% dplyr::select(id_autor = id_autor.x, nome = nome.x, partido = partido.x, uf = uf.x),
     coautorias %>% dplyr::select(id_autor = id_autor.y, nome = nome.y, partido = partido.y, uf = uf.y)) %>% 
     distinct() %>% 
-    dplyr::select(index = id_autor, dplyr::everything())
+    tibble::rowid_to_column("index") %>% 
+    mutate(index = index -1)
+  
+  coautorias_index <- coautorias %>% 
+    left_join(graph_nodes %>% select(index.x = index, id_autor), by=c("id_autor.x"="id_autor")) %>% 
+    left_join(graph_nodes %>% select(index.y = index, id_autor), by=c("id_autor.y"="id_autor"))
     
-  graph_edges <- coautorias %>%
+  graph_edges <- coautorias_index %>%
     dplyr::select(
-      source = id_autor.x,
-      target = id_autor.y,
+      source = index.x,
+      target = index.y,
       value = peso_arestas) %>% 
     dplyr::mutate(source = as.factor(source),
                   target = as.factor(target))
   
   graph <- tbl_graph(nodes = graph_nodes,
                      edges = graph_edges,
-                     directed = F)
+                     directed = F) %>% as.data.frame()
   
-  final_nodes <- graph %>%
-    mutate(group = as.factor(group_edge_betweenness())) %>%
+  final_nodes <- graph_nodes %>%
     as.data.frame() %>%
-    group_by(group) %>%
-    filter(n() > 1) %>%
-    ungroup() %>%
-    rename(old_index = index) %>%
-    tibble::rowid_to_column("index") %>% 
-    mutate(index = index -1) %>% 
     mutate(nome_eleitoral = paste0(nome, " (", partido, "/", uf, ")")) %>% 
     as.data.frame()
   
   final_edges <- graph_edges %>% 
-    mutate(source = as.numeric(as.character(source)),
-           target = as.numeric(as.character(target))) %>% 
-    inner_join(final_nodes %>% select(old_index,index), by = c("source" = "old_index")) %>% 
-    inner_join(final_nodes %>% select(old_index,index), by = c("target" = "old_index")) %>% 
-    select(source = index.x, target = index.y, value) %>%
-    mutate(source = as.factor(source), target = as.factor(target)) %>% 
-    arrange(target) %>% 
-    as.data.frame()
-  
-  final_edges <- 
-    final_edges %>% 
+    as.data.frame() %>% 
     mutate(value = value*edges_weight) 
   
   final_nodes <-
@@ -164,9 +152,35 @@ prepare_autorias_df_camara <- function(docs_camara, autores_camara) {
         dplyr::select(id_principal,
                       casa,
                       id_documento,
+                      descricao_tipo_documento,
                       id_autor,
-                      data) %>% 
+                      data,
+                      url_inteiro_teor) %>% 
     dplyr::distinct()
+}
+
+join_documentos <- function(documentos_camara, documentos_senado) {
+  documentos_camara <- 
+    documentos_camara %>% 
+    dplyr::select(id_principal,
+                  casa,
+                  id_documento,
+                  data,
+                  descricao_tipo_documento,
+                  url_inteiro_teor)
+  
+  documentos_senado <-
+    documentos_senado %>% 
+    dplyr::select(id_principal,
+                  casa,
+                  id_documento,
+                  descricao_tipo_documento = descricao_texto,
+                  url_inteiro_teor = url_texto,
+                  data = data_texto) %>% 
+    dplyr::mutate(id_principal = as.numeric(id_principal),
+                  id_documento = as.numeric(id_documento))
+  
+  bind_rows(documentos_camara, documentos_senado)
 }
 
 #' @title Cria o dataframe de autorias da senado
@@ -180,9 +194,12 @@ prepare_autorias_df_senado <- function(docs_senado, autores_senado) {
     dplyr::select(id_principal,
                   casa,
                   id_documento,
+                  descricao_tipo_documento = descricao_texto,
                   id_autor,
+                  url_inteiro_teor = url_texto,
                   data = data_texto) %>% 
     dplyr::distinct()
+  
 }
 
 #' @title Cria o dataframe com os pesos das autorias

@@ -5,8 +5,8 @@ account: leggo
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1301750
-bundleId: 2485188
+bundleId: 2504991
 url: https://leggo.shinyapps.io/rede-de-atuacao-por-prop/
-when: 1570651644.81208
+when: 1571227535.97792
 asMultiple: FALSE
 asStatic: FALSE

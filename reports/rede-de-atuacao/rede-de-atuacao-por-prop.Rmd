@@ -1,5 +1,7 @@
 ---
 title: "Relatório de coautoria"
+resource_files:
+- scripts/prepare_coautorias_data.R
 runtime: shiny
 output:
   html_document:
@@ -26,7 +28,7 @@ library(shiny)
 library(hrbrthemes)
 library(rcongresso)
 theme_set(theme_minimal())
-source(here::here('reports/rede-de-atuacao/scripts/prepare_coautorias_data.R'))
+source('prepare_coautorias_data.R')
 
 
 env <- "dev"
@@ -46,7 +48,13 @@ autores_senado <- agoradigital::read_current_autores_senado("data/autores_senado
 
 # Gerando dado de autorias de documentos para ambas as casas
 autorias_camara <- prepare_autorias_df_camara(documentos_camara, autores_camara)
-autorias_senado <- prepare_autorias_df_senado(documentos_senado, autores_senado)
+autorias_senado <- 
+  prepare_autorias_df_senado(documentos_senado, autores_senado) %>% 
+  dplyr::mutate(id_principal = as.numeric(id_principal),
+                id_documento = as.numeric(id_documento))
+
+
+autorias_geral <- bind_rows(autorias_camara, autorias_senado)
 
 peso_autorias_docs_camara <- compute_peso_autoria_doc(autorias_camara)
 peso_autorias_docs_senado <- compute_peso_autoria_doc(autorias_senado)
@@ -115,6 +123,8 @@ plotOutput("hist")
 Este são todos os agrupamentos da proposição.
 
 ```{r echo=FALSE, fig.width = 4, fig.height = 4}
+br()
+
 choices_ids <- 
   props %>% 
   select(descricao_lei) %>%
@@ -122,7 +132,7 @@ choices_ids <-
 
 choices_ids <- choices_ids$descricao_lei
 
-selectInput("descricao_lei", "Descrição da Lei",
+selectizeInput("descricao_lei", "Descrição da Lei",
              choices_ids,
             selected = choices_ids[1])
 br()
@@ -136,32 +146,7 @@ Observando a rede acima, não dá pra saber quais são os partidos predominantes
 plotOutput("hist_grafo")
 ```
 
-
-```{r echo=FALSE, fig.width = 4, fig.height = 4}
-# forceNetworkOutput("grafo_grupo2")
-```
-
 ```{r echo=FALSE}
-
-# generate_graph_by_group <- function(df, id_group) {
-#   nodes <- df[[1]] %>%
-#   filter(group == id_group)
-# 
-#   return(list(nodes, df[[2]]))
-# }
-
-generate_graph_by_group <- function(df, id_group) {
-  nodes <- df[[1]] %>%
-  filter(group == id_group) %>% 
-    select(-index) %>% 
-    rowid_to_column("index") %>% 
-    mutate(index = index - 1)
-  
-  edges <- generate_edges(coautorias, nodes)
-  
-  return(list(nodes, edges))
-}
-
 generate_graph <- function(nodes, edges) {
   fn <- forceNetwork(
     Links = edges, 
@@ -220,7 +205,9 @@ getCoautorias <- reactive({
   nodes_edges <- 
     generate_nodes_and_edges(
       coautorias %>% 
-      filter(descricao_lei == input$descricao_lei)) 
+      filter(descricao_lei == input$descricao_lei)  %>% 
+        filter(peso_arestas > 0.1)
+      ) 
   return(nodes_edges)
 })
 
@@ -267,7 +254,7 @@ output$dt <-
     options = list(pageLength = 10,
                    scrollX = TRUE)
     )
-  
+
 output$grafo <- 
   networkD3::renderForceNetwork({
       graph <- getCoautorias()
@@ -297,60 +284,4 @@ output$hist_grafo <- renderPlot({
 
 ```
 
-Para a lei do Licenciamento Ambiental (PL 3729/2004) houve 4 grandes grupos,
-Um composto por 13 deputados do PT e 2 deputados do PSOL
-Outro composto por 8 do PMDB na época que requeria o desapensamento do PL 1546/2015 que estava apensado ao PL 3729/2004
-Outro composto por deputados de vários partidos (PTB, PP , PSDB, PSB, DEM, PDT, PT, PSD)
-Outro composto por 4 do PV, 2 do PSOL, 2 do Solidariedade e PR, PT, PRB e PSDB que foi a PL 1147/2007 que foi apensada
-E um do PSDB e PP que apresentaram a PL 358/2011 que foi apensada
 
-```{r echo=FALSE, fig.width = 4, fig.height = 4}
-br()
-
-coautorias_lei_licenciamento <-
-  coautorias %>%
-  filter(descricao_lei == "Lei do Licenciamento Ambiental- PL 3729/2004 - camara")
-  
-  networkD3::renderForceNetwork({
-      graph <- generate_nodes_and_edges(coautorias_lei_licenciamento)
-    if(nrow(graph[[1]]) > 0 & nrow(graph[[2]]) > 0) {
-      generate_graph(graph[[1]], graph[[2]])
-    } else {
-      NA
-    }
-  })
-  
-br()
-```
-
-Tiago Mitraud - NOVO/MG apresentou uma emenda aditiva com Marcelo Calero - CIDADANIA/RJ
-Tabata Amaral - PDT/SP apresentou com Felipe Rigoni - PSB/ES uma emenda aditiva e um requerimento de audiência pública 
-Felipe Rigoni - PSB/ES
-Adriana Ventura - NOVO/SP
-João H. Campos - PSB/PE
-Emanuel Pinheiro Neto - PTB/MT
-Tiago Mitraud - NOVO/MG
-Jhc - PSB/AL apresentaram uma emenda aditiva
-E os deputados do pt apresentaram uma emenda
-Podemos ver também, que Felipe Rigoni foi o parlamentar que mais teve peso nos documentos no segundo grupo
-```{r echo=FALSE, fig.width = 4, fig.height = 4}
-coautorias_2019 <-
-  coautorias %>% 
-  filter(data > "2019-01-01")
-
-coautorias_pec_aborto <-
-  coautorias_2019 %>% 
-  filter(descricao_lei == "Tornar o FUNDEB permanente (Câmara)- PEC 15/2015 - camara")
-
-  networkD3::renderForceNetwork({
-      graph <- generate_nodes_and_edges(coautorias_pec_aborto)
-    if(nrow(graph[[1]]) > 0 & nrow(graph[[2]]) > 0) {
-      generate_graph(graph[[1]], graph[[2]])
-    } else {
-      NA
-    }
-  })
-
-  
-br()
-```
