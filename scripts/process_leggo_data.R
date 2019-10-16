@@ -20,7 +20,6 @@ output_path <- args[2]
 
 ## Install local repository R package version
 devtools::install()
-library(magrittr)
 
 # Read current data csvs
 camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv"))
@@ -30,7 +29,8 @@ senado_autores <- agoradigital::read_current_autores_senado(paste0(input_path, "
 
 print(paste("Gerando tabela de atores a partir de dados atualizados de documentos e autores..."))
 
-atores_camara <- agoradigital::create_tabela_atores_camara(camara_docs, camara_autores)
+atores_camara <-
+  agoradigital::create_tabela_atores_camara(camara_docs, camara_autores)
 atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores)
 
 atores_df <- dplyr::bind_rows(atores_camara, atores_senado)
