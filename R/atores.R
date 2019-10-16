@@ -14,12 +14,12 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
     return(tibble::tibble())
   }
 
-  if(is.null(data_inicio)) {
+  if(!is.null(data_inicio)) {
     documentos_df <- documentos_df %>% dplyr::filter(data_apresentacao >= data_inicio)
   }
 
-  if(is.null(data_fim)) {
-    documentos_df <- documentos_df %>% dplyr::filter(data_apresentacao < data_inicio)
+  if(!is.null(data_fim)) {
+    documentos_df <- documentos_df %>% dplyr::filter(data_apresentacao < data_fim)
   }
 
   autores_docs <- merge(documentos_df, autores_df, by = c("id_documento", "casa")) %>%
@@ -69,14 +69,13 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
     return(tibble::tibble())
   }
 
-  if(data_inicio != NULL) {
-    documentos_df <- documentos_df %>% dplyr::filter(data_texto >= data_inicio)
+  if(!is.null(data_inicio)) {
+    documentos_df <- documentos_df %>% dplyr::filter(data_apresentacao >= data_inicio)
   }
-
-  if(data_fim != NULL) {
-    documentos_df <- documentos_df %>% dplyr::filter(data_texto < data_inicio)
+  
+  if(!is.null(data_fim)) {
+    documentos_df <- documentos_df %>% dplyr::filter(data_apresentacao < data_fim)
   }
-
 
   autores_docs <-
     merge(documentos_df, autores_df %>% dplyr::filter(!is.na(id_autor)), by = c("id_principal", "id_documento", "casa")) %>%
