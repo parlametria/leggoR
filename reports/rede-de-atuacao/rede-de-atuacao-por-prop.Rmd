@@ -32,7 +32,6 @@ source('prepare_coautorias_data.R')
 
 env <- "dev"
 path <- ''
-peso_minimo = 0.01
 
 if (env == "dev") {
   path = "reports/coautorias-por-prop/"
@@ -149,6 +148,8 @@ forceNetworkOutput("grafo")
 
 Observando a rede acima, não dá pra saber quais são os partidos predominantes, então veremos a distribuição partidária deste grupo no histograma abaixo:
 
+#### Histograma com o número de parlamentares por partido
+
 ```{r echo=FALSE, fig.width = 4, fig.height = 3}
 plotOutput("hist_grafo")
 ```
@@ -163,6 +164,17 @@ DT::DTOutput("dt_documentos")
 
 ```{r echo=FALSE}
 generate_graph <- function(nodes, edges) {
+  nodes_size <- 
+    nodes %>% 
+    head(1) %>% 
+    purrr::pluck("node_size")
+  
+  if (nodes_size == 0) {
+    opacity = 0
+  }else {
+    opacity = 0.8
+  }
+  
   fn <- forceNetwork(
     Links = edges, 
     Nodes = nodes,
@@ -178,7 +190,7 @@ generate_graph <- function(nodes, edges) {
     fontFamily = "roboto",
     fontSize = 16,
     charge = -50,
-    opacity = 0.8)
+    opacity = opacity)
   
   fn <- 
         htmlwidgets::onRender(fn, 
@@ -228,9 +240,8 @@ getCoautorias <- reactive({
   if (nrow(coautorias_filtrado_por_peso) != 0) {
       nodes_edges <- generate_nodes_and_edges(coautorias_filtrado_por_peso)
   } else {
-      nodes <- tribble(~index, ~id_autor, ~nome, ~partido, ~uf, ~nome_eleitoral)
-      edges <- tribble(~node_size, ~source, ~target, ~value)
-      nodes_edges <- list(nodes, edges)
+    nodes_edges <- generate_nodes_and_edges(coautorias_filtrado_por_descricao %>% head(1))
+    nodes_edges[[1]] <- nodes_edges[[1]] %>% mutate(node_size = 0)
   }
   
   return(nodes_edges)
