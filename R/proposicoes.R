@@ -18,17 +18,17 @@ import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL)
   if (!(casa %in% c('camara','senado'))) {
     return('Parâmetro "casa" não identificado.')
   }
-
+  
   prop_df <- fetch_proposicao(prop_id,casa,apelido, tema)
   tram_df <- fetch_tramitacao(prop_id,casa)
   emendas_df <- rcongresso::fetch_emendas(prop_id,casa, prop_df$tipo_materia, prop_df$numero, prop_df$ano)
-
+  
   if (!is.null(out_folderpath)) {
     if (!is.null(prop_df)) readr::write_csv(prop_df, build_data_filepath(out_folderpath,'proposicao',casa,prop_id))
     if (!is.null(tram_df)) readr::write_csv(tram_df, build_data_filepath(out_folderpath,'tramitacao',casa,prop_id))
     if (!is.null(emendas_df)) readr::write_csv(emendas_df, build_data_filepath(out_folderpath,'emendas',casa,prop_id))
   }
-
+  
   return(list(proposicao = prop_df, tramitacao = tram_df))
 }
 #' @title Recupera os detalhes de uma proposição no Senado ou na Câmara
@@ -75,7 +75,7 @@ fetch_proposicoes <- function(pls_ids) {
 #' @examples
 #' fetch_proposicao_senado(91341, 'Cadastro Positivo', 'Agenda Nacional')
 fetch_proposicao_senado <- function(id, apelido, tema) {
-
+  
   proposicao <-
     rcongresso::fetch_proposicao_senado(id) %>%
     dplyr::transmute(
@@ -113,7 +113,7 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
     autor_df %<>%
       dplyr::rename('nome' = 'ultimoStatus.nomeEleitoral')
   }
-
+  
   proposicao <- rcongresso::fetch_proposicao_camara(id) %>%
     rename_df_columns() %>%
     dplyr::transmute(prop_id = as.integer(id),
@@ -145,13 +145,13 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
 #' @return Dataframe
 #' @export
 find_new_documentos <- function(all_pls_ids, current_docs_ids, casa_prop) {
-
+  
   pls_principais_ids <- all_pls_ids %>%
     dplyr::filter(casa == casa_prop) %>%
     dplyr::select(id_principal,
                   casa) %>%
     dplyr::mutate(id_documento = id_principal)
-
+  
   all_docs_ids <- purrr::map2_df(pls_principais_ids$id_principal,
                                  pls_principais_ids$casa,
                                  ~rcongresso::fetch_ids_relacionadas(.x, .y)) %>%
@@ -160,10 +160,10 @@ find_new_documentos <- function(all_pls_ids, current_docs_ids, casa_prop) {
     dplyr::mutate(id_principal = as.double(id_principal),
                   id_documento = as.double(id_documento)) %>%
     dplyr::bind_rows(pls_principais_ids)
-
+  
   new_docs_ids <- all_docs_ids %>%
     dplyr::anti_join(current_docs_ids, by=c("id_documento","id_principal","casa"))
-
+  
   return(new_docs_ids)
 }
 
@@ -176,9 +176,9 @@ fetch_autores_documentos <- function(docs_data_df) {
   casa_prop <- docs_data_df$casa[1]
   autores_docs <- purrr::pmap_df(list(docs_data_df$id_documento, docs_data_df$casa,
                                       docs_data_df$sigla_tipo), function(a,b,c) fetch_autores_documento(a,b,c)) %>%
-  dplyr::mutate(casa = casa_prop) %>%
-  rename_table_to_underscore()
-
+    dplyr::mutate(casa = casa_prop) %>%
+    rename_table_to_underscore()
+  
   formatted_atores_df <- tibble::tibble()
   if (nrow(autores_docs) > 0) {
     if (casa_prop == 'camara') {
@@ -208,7 +208,7 @@ fetch_autores_documentos <- function(docs_data_df) {
       warning('Casa inválida')
     }
   }
-
+  
   formatted_atores_df
 }
 
@@ -254,11 +254,11 @@ fetch_documentos_data <- function(docs_ids) {
                       data_apresentacao,
                       ementa = ementa_materia,
                       dplyr::everything())
-
+      
     } else {
       warning('Casa inválida')
     }
-
+    
   }
   return(formatted_docs_df)
 }
@@ -283,10 +283,10 @@ fetch_documentos_relacionados_senado <- function(pls_ids) {
 #' @return Dataframe
 extract_autor_relacionadas_senado <- function(autor_raw, id_doc) {
   stringr::str_split(autor_raw,",") %>% 
-  purrr::pluck(1) %>% 
-  purrr::map_df(.aux_extract_autor_relacionadas_senado) %>% 
-  dplyr::mutate(codigo_texto = id_doc) %>% 
-  dplyr::distinct()
+    purrr::pluck(1) %>% 
+    purrr::map_df(.aux_extract_autor_relacionadas_senado) %>% 
+    dplyr::mutate(codigo_texto = id_doc) %>% 
+    dplyr::distinct()
 }
 
 #' @title Recebe uma string com o autor e quebra ela em nome, partido e estado
@@ -314,19 +314,19 @@ fetch_autores_relacionadas_senado <- function(relacionadas_docs) {
     dplyr::rename(autor_raw = autoria_texto) %>% 
     dplyr::filter(autor_raw != "Autoria não registrada.") %>%
     dplyr::mutate(autor_raw =
-        dplyr::if_else(stringr::str_detect(autor_raw,"Comissão de Constituição, Justiça e Cidadania"),
-                       stringr::str_replace_all(autor_raw, "Comissão de Constituição, Justiça e Cidadania",
-                                            "Comissão de Constituição Justiça e Cidadania"), autor_raw)) %>% 
+                    dplyr::if_else(stringr::str_detect(autor_raw,"Comissão de Constituição, Justiça e Cidadania"),
+                                   stringr::str_replace_all(autor_raw, "Comissão de Constituição, Justiça e Cidadania",
+                                                            "Comissão de Constituição Justiça e Cidadania"), autor_raw)) %>% 
     dplyr::mutate(autor_raw =
-        dplyr::if_else(stringr::str_detect(autor_raw, "Comissão Mista da Medida Provisória .*"),
+                    dplyr::if_else(stringr::str_detect(autor_raw, "Comissão Mista da Medida Provisória .*"),
                                    stringr::str_replace_all(autor_raw, "Comissão Mista da Medida Provisória .*",
                                                             "Comissão Mista"), autor_raw)) %>% 
     dplyr::select(codigo_materia, codigo_texto, casa, autor_raw)
   
   autores_metadata <- 
     purrr::map2_df(autores_raw$autor_raw, 
-                                     autores_raw$codigo_texto,
-                                     ~extract_autor_relacionadas_senado(.x, .y))
+                   autores_raw$codigo_texto,
+                   ~extract_autor_relacionadas_senado(.x, .y))
   
   autores <- 
     autores_raw %>% 
@@ -366,9 +366,9 @@ add_tipo_evento_documento <- function(docs_data, documentos_scrap = F) {
       warning('Casa inválida')
     } 
   }
-
+  
   return(docs)
-
+  
 }
 
 #' @title Concatena siglas de unidade federativa de cada autor da proposição
@@ -396,12 +396,12 @@ get_all_leggo_props_ids <- function(leggo_props_df) {
     dplyr::mutate(casa = "camara") %>%
     dplyr::select(id_principal = id_camara,casa,apelido,tema) %>%
     dplyr::filter(!is.na(id_principal))
-
+  
   pls_ids_senado <- leggo_props_df %>%
     dplyr::mutate(casa = "senado") %>%
     dplyr::select(id_principal = id_senado,casa,apelido,tema) %>%
     dplyr::filter(!is.na(id_principal))
-
+  
   pls_ids_all <- dplyr::bind_rows(pls_ids_camara,pls_ids_senado)
   return(pls_ids_all)
 }
@@ -465,13 +465,13 @@ match_autores_senado_to_parlamentares <- function(autores_senado, senadores_df, 
     dplyr::select(-regex) %>% 
     dplyr::mutate(tipo_autor = dplyr::if_else(is.na(tipo_autor),"nao_parlamentar",tipo_autor)) %>% 
     dplyr::mutate(nome_autor_clean = tolower(stringr::str_trim(stringr::str_replace(nome_autor,
-    "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", ""))))
+                                                                                    "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", ""))))
   
   autores_senado_tipo_senadores <- match_autores_senado_scrap_to_senadores(autores_senado_tipo %>% dplyr::filter(tipo_autor == 'senador'), 
                                                                            senadores_df)
   autores_senado_tipo_deputados <- match_autores_senado_scrap_to_deputados(autores_senado_tipo %>% dplyr::filter(tipo_autor == 'deputado'), 
                                                                            deputados_df)
-    
+  
   senado_autores_scrap_com_id <- dplyr::bind_rows(autores_senado_tipo_senadores,autores_senado_tipo_deputados) %>% 
     dplyr::bind_rows((autores_senado_tipo %>% dplyr::filter(tipo_autor == "nao_parlamentar") %>% dplyr::mutate(id_autor = NA))) %>% 
     dplyr::select(-nome_autor_clean)

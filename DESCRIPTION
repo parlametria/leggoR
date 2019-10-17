@@ -34,7 +34,9 @@ Imports: magrittr,
     httr,
     XML,
     optparse,
-    DT
+    DT,
+    ellipsis,
+    data.table
 Suggests: testthat,
     knitr,
     vistime,
