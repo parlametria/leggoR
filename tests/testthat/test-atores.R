@@ -9,8 +9,8 @@ setup <- function() {
   atores_camara <<- create_tabela_atores_camara(documentos_camara, autores_camara)
   atores_senado <<- create_tabela_atores_senado(documentos_senado, autores_senado)
 
-  data_inicio <- "2019-08-01"
-  data_fim <- "2019-10-06"
+  data_inicio <<- "2019-08-01"
+  data_fim <<- "2019-10-06"
 
   docs_sample_df <<- tibble::tibble(id_principal = c(1,1,2),
                                     casa = c('camara','camara','camara'),
