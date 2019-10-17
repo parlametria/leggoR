@@ -30,9 +30,9 @@ library(rcongresso)
 theme_set(theme_minimal())
 source('prepare_coautorias_data.R')
 
-
 env <- "dev"
 path <- ''
+peso_minimo = 0.01
 
 if (env == "dev") {
   path = "reports/coautorias-por-prop/"
@@ -48,13 +48,7 @@ autores_senado <- agoradigital::read_current_autores_senado("data/autores_senado
 
 # Gerando dado de autorias de documentos para ambas as casas
 autorias_camara <- prepare_autorias_df_camara(documentos_camara, autores_camara)
-autorias_senado <- 
-  prepare_autorias_df_senado(documentos_senado, autores_senado) %>% 
-  dplyr::mutate(id_principal = as.numeric(id_principal),
-                id_documento = as.numeric(id_documento))
-
-
-autorias_geral <- bind_rows(autorias_camara, autorias_senado)
+autorias_senado <- prepare_autorias_df_senado(documentos_senado, autores_senado)
 
 peso_autorias_docs_camara <- compute_peso_autoria_doc(autorias_camara)
 peso_autorias_docs_senado <- compute_peso_autoria_doc(autorias_senado)
@@ -62,7 +56,6 @@ peso_autorias_docs_senado <- compute_peso_autoria_doc(autorias_senado)
 parlamentares_camara <- autores_camara %>% dplyr::select(id_autor, nome, partido, uf)
 parlamentares_senado <- autores_senado %>% dplyr::select(id_autor, nome = nome_autor, partido, uf)
 
-senadores <- agoradigital::read_senadores('data/parlamentares.csv')
 props <- 
   read_csv('data/proposicoes.csv') %>% 
   mutate(descricao_lei = paste0(apelido, "- ", sigla_tipo, " ", numero, "/", format(data_apresentacao, "%Y"), " - ", casa)) %>% 
@@ -81,6 +74,12 @@ coautorias <-
 props <- props %>% 
   filter(id_principal %in% coautorias$id_principal)
 
+autorias_geral <-
+  get_autorias_geral(autorias_camara, autorias_senado, parlamentares_camara, parlamentares_senado) %>% 
+  mutate(id_principal = as.character(id_principal)) %>% 
+  left_join(props, by = "id_principal") %>% 
+  filter(!is.na(descricao_lei))
+
 ```
 
 
@@ -93,7 +92,6 @@ Para a geração deste relatório, foram utilizadas as proposições da platafor
 ### A detecção dos grupos
 
 A detecção de grupos é feita combinando em pares os autores de todas as proposições e suas respectivas relacionadas. Isso quer dizer que, para uma proposição do tipo requerimento que foi feito por 3 autores, x, y e z, serão criados 3 pares: um contendo x e y, um com x e z e outro com y e z. Desta forma, cada um dos deputados autores de uma proposição terá uma relação com todos os outros coautores. 
-
 <br>
 
 #### Tabela de pares
@@ -107,7 +105,7 @@ DT::DTOutput("dt")
 
 #### Peso das relações 
 
-A fim de deixar os grupos mais refinados e precisos, optamos por adicionar uma penalidade que varia de acordo com o número de pessoas envolvidas: quanto mais coautores em uma proposição, menos precisas estarão as relações entre os deputados e por isso terão pesos menores; de forma análoga, uma proposição que possua apenas dois coautores, terá o peso da relação máximo e estarão muito mais próximos. **Utilizamos o peso mínimo de 0.01 das relações**.
+A fim de deixar os grupos mais refinados e precisos, optamos por adicionar uma penalidade que varia de acordo com o número de pessoas envolvidas: quanto mais coautores em uma proposição, menos precisas estarão as relações entre os deputados e por isso terão pesos menores; de forma análoga, uma proposição que possua apenas dois coautores, terá o peso da relação máximo e estarão muito mais próximos. **Utilizamos o peso mínimo de 0.1 das relações**.
 
 <br>
 
@@ -144,6 +142,14 @@ Observando a rede acima, não dá pra saber quais são os partidos predominantes
 
 ```{r echo=FALSE, fig.width = 4, fig.height = 3}
 plotOutput("hist_grafo")
+```
+
+<br>
+
+#### Tabela com os documentos
+
+```{r echo=FALSE}
+DT::DTOutput("dt_documentos")
 ```
 
 ```{r echo=FALSE}
@@ -205,12 +211,11 @@ getCoautorias <- reactive({
   nodes_edges <- 
     generate_nodes_and_edges(
       coautorias %>% 
-      filter(descricao_lei == input$descricao_lei)  %>% 
-        filter(peso_arestas > 0.1)
+      filter(descricao_lei == input$descricao_lei) %>% 
+      filter(peso_arestas > peso_minimo)
       ) 
   return(nodes_edges)
 })
-
 ```
 
 ```{r echo=FALSE, context="server"}
@@ -226,7 +231,8 @@ output$hist <- renderPlot({
   if(nrow(coautorias) > 0) {
     coautorias_hist <- 
       coautorias %>%
-      filter(descricao_lei == input$descricao_lei)
+      filter(descricao_lei == input$descricao_lei) %>% 
+      filter(peso_arestas > peso_minimo)
     
     if(nrow(coautorias_hist) != 0) {
       coautorias_hist %>% 
@@ -245,12 +251,22 @@ output$dt <-
     coautorias %>% 
       select(id_principal, nome.x, nome.y, peso_arestas, num_coautorias, descricao_lei, data) %>% 
       distinct() %>% 
-      filter(descricao_lei == input$descricao_lei) %>% 
+      filter(descricao_lei == input$descricao_lei) %>%  
+      filter(peso_arestas > peso_minimo) %>% 
       rename(peso_relacao = peso_arestas, 
              nome_deputado_a = nome.x,
              nome_deputado_b = nome.y,
              coautorias_conjuntas = num_coautorias) %>% 
       arrange(desc(peso_relacao)), 
+    options = list(pageLength = 10,
+                   scrollX = TRUE)
+    )
+
+output$dt_documentos <- 
+  DT::renderDataTable(
+    autorias_geral %>% 
+      select(descricao_lei, descricao_tipo_documento, nome_com_partido, url_inteiro_teor, id_principal, casa) %>% 
+      filter(descricao_lei == input$descricao_lei),
     options = list(pageLength = 10,
                    scrollX = TRUE)
     )
