@@ -89,7 +89,7 @@ Para a geração deste relatório, foram utilizadas as proposições da platafor
 
 <br>
 
-### A detecção dos grupos
+### Detecção dos grupos
 
 A detecção de grupos é feita combinando em pares os autores de todas as proposições e suas respectivas relacionadas. Isso quer dizer que, para uma proposição do tipo requerimento que foi feito por 3 autores, x, y e z, serão criados 3 pares: um contendo x e y, um com x e z e outro com y e z. Desta forma, cada um dos deputados autores de uma proposição terá uma relação com todos os outros coautores. 
 <br>
