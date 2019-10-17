@@ -105,7 +105,7 @@ DT::DTOutput("dt")
 
 #### Peso das relações 
 
-A fim de deixar os grupos mais refinados e precisos, optamos por adicionar uma penalidade que varia de acordo com o número de pessoas envolvidas: quanto mais coautores em uma proposição, menos precisas estarão as relações entre os deputados e por isso terão pesos menores; de forma análoga, uma proposição que possua apenas dois coautores, terá o peso da relação máximo e estarão muito mais próximos. **Utilizamos o peso mínimo de 0.1 das relações**.
+A fim de deixar os grupos mais refinados e precisos, optamos por adicionar uma penalidade que varia de acordo com o número de pessoas envolvidas: quanto mais coautores em uma proposição, menos precisas estarão as relações entre os deputados e por isso terão pesos menores, de forma análoga, uma proposição que possua apenas dois coautores, terá o peso da relação máximo e estarão muito mais próximos. É válido ressaltar que utilizamos o **peso mínimo de 0.1** das relações.
 
 <br>
 
