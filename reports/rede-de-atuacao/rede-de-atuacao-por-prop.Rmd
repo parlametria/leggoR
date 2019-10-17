@@ -84,11 +84,11 @@ autorias_geral <-
 
 ### As proposições
 
-Para a geração deste relatório, foram utilizadas as proposições da plataforma [Leggo](https://leggo.org.br). Para cada uma das proposições, existe uma série de outras proposições relacionadas, como emendas, pareceres, requerimentos, etc., que também foram consideradas para a criação dos grupos parlamentares. 
+Para a geração deste relatório, foram utilizadas as proposições da plataforma [Leggo](https://leggo.org.br). Para cada proposição, existe uma série de proposições relacionadas, como emendas, pareceres, requerimentos, etc., que também foram consideradas para a criação dos grupos parlamentares. 
 
 <br>
 
-### A detecção dos grupos
+### Detecção dos grupos
 
 A detecção de grupos é feita combinando em pares os autores de todas as proposições e suas respectivas relacionadas. Isso quer dizer que, para uma proposição do tipo requerimento que foi feito por 3 autores, x, y e z, serão criados 3 pares: um contendo x e y, um com x e z e outro com y e z. Desta forma, cada um dos deputados autores de uma proposição terá uma relação com todos os outros coautores. 
 <br>
@@ -104,7 +104,7 @@ DT::DTOutput("dt")
 
 #### Peso das relações 
 
-A fim de deixar os grupos mais refinados e precisos, optamos por adicionar uma penalidade que varia de acordo com o número de pessoas envolvidas: quanto mais coautores em uma proposição, menos precisas estarão as relações entre os deputados e por isso terão pesos menores; de forma análoga, uma proposição que possua apenas dois coautores, terá o peso da relação máximo e estarão muito mais próximos. **Utilizamos o peso mínimo de 0.1 das relações**.
+A fim de deixar os grupos mais refinados e precisos, optamos por adicionar uma penalidade que varia de acordo com o número de pessoas envolvidas: quanto mais coautores em uma proposição, menos precisas estarão as relações entre os deputados e por isso terão pesos menores, de forma análoga, uma proposição que possua apenas dois coautores, terá o peso da relação máximo e estarão muito mais próximos. É válido ressaltar que utilizamos o **peso mínimo de 0.1** das relações.
 
 <br>
 
@@ -146,7 +146,7 @@ br()
 forceNetworkOutput("grafo")
 ```
 
-Observando a rede acima, não dá pra saber quais são os partidos predominantes, então veremos a distribuição partidária deste grupo no histograma abaixo:
+Ao explorar algumas redes acima, pode-se observar que para algumas proposições há dificuldade em concluir quais são os partidos predominantes. Pensando nisso, veremos a distribuição partidária deste grupo no histograma abaixo:
 
 #### Histograma com o número de parlamentares por partido
 
