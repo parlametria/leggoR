@@ -9,9 +9,9 @@ output:
 params:
   date_init: 2019-09-15
   date_end: 2019-09-19
-  temperaturas: 
+  proposicoes: 
     label: "Input dataset:"
-    value: ../../data/hists_temperatura.csv
+    value: ../../data/tabela_geral_ids_casa.csv
     input: file
 ---
 
