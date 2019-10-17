@@ -147,7 +147,7 @@ br()
 forceNetworkOutput("grafo")
 ```
 
-Observando a rede acima, não dá pra saber quais são os partidos predominantes, então veremos a distribuição partidária deste grupo no histograma abaixo:
+Ao explorar algumas redes acima, pode-se observar que para algumas proposições há dificuldade em concluir quais são os partidos predominantes. Pensando nisso, veremos a distribuição partidária deste grupo no histograma abaixo:
 
 ```{r echo=FALSE, fig.width = 4, fig.height = 3}
 plotOutput("hist_grafo")
