@@ -85,7 +85,7 @@ autorias_geral <-
 
 ### As proposições
 
-Para a geração deste relatório, foram utilizadas as proposições da plataforma [Leggo](https://leggo.org.br). Para cada uma das proposições, existe uma série de outras proposições relacionadas, como emendas, pareceres, requerimentos, etc., que também foram consideradas para a criação dos grupos parlamentares. 
+Para a geração deste relatório, foram utilizadas as proposições da plataforma [Leggo](https://leggo.org.br). Para cada proposição, existe uma série de proposições relacionadas, como emendas, pareceres, requerimentos, etc., que também foram consideradas para a criação dos grupos parlamentares. 
 
 <br>
 
