@@ -5,6 +5,8 @@ senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 #' @description Retorna um dataframe contendo informações com os autores dos documentos e seus tipos
 #' @param documentos_df Dataframe dos documentos
 #' @param autores_df Dataframe com autores dos documentos
+#' @param data_inicio Data limite inferior para documentos de interesse
+#' @param data_fim Data limite superior para documentos de interesse
 #' @return Dataframe
 #' @export
 create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL) {
@@ -60,6 +62,8 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
 #' @description Retorna um dataframe contendo informações com os autores dos documentos e seus tipos
 #' @param documentos_df Dataframe dos documentos
 #' @param autores_df Dataframe com autores dos documentos
+#' @param data_inicio Data limite inferior para documentos de interesse
+#' @param data_fim Data limite superior para documentos de interesse
 #' @return Dataframe
 #' @export
 create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL) {
@@ -70,11 +74,11 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
   }
 
   if(!is.null(data_inicio)) {
-    documentos_df <- documentos_df %>% dplyr::filter(data_apresentacao >= data_inicio)
+    documentos_df <- documentos_df %>% dplyr::filter(data_texto >= data_inicio)
   }
-  
+
   if(!is.null(data_fim)) {
-    documentos_df <- documentos_df %>% dplyr::filter(data_apresentacao < data_fim)
+    documentos_df <- documentos_df %>% dplyr::filter(data_texto < data_fim)
   }
 
   autores_docs <-
