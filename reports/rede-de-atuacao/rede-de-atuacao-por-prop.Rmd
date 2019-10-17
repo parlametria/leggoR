@@ -123,6 +123,15 @@ Este são todos os agrupamentos da proposição.
 ```{r echo=FALSE, fig.width = 4, fig.height = 4}
 br()
 
+choices = seq(min(coautorias$peso_arestas) %>% 
+                  round(2), 
+                max(coautorias$peso_arestas) %>% 
+                  round(2),
+                0.1)
+
+selectInput("min_peso", "Valor mínimo dos pesos:",
+              choices, selected = choices[1])
+
 choices_ids <- 
   props %>% 
   select(descricao_lei) %>%
@@ -208,31 +217,33 @@ generate_graph <- function(nodes, edges) {
 }
 
 getCoautorias <- reactive({
-  nodes_edges <- 
-    generate_nodes_and_edges(
-      coautorias %>% 
-      filter(descricao_lei == input$descricao_lei) %>% 
-      filter(peso_arestas > peso_minimo)
-      ) 
+  coautorias_filtrado_por_descricao <-
+    coautorias %>% 
+      filter(descricao_lei == input$descricao_lei)
+  
+  coautorias_filtrado_por_peso <-
+    coautorias_filtrado_por_descricao %>% 
+      filter(peso_arestas > input$min_peso)
+  
+  if (nrow(coautorias_filtrado_por_peso) != 0) {
+      nodes_edges <- generate_nodes_and_edges(coautorias_filtrado_por_peso)
+  } else {
+      nodes <- tribble(~index, ~id_autor, ~nome, ~partido, ~uf, ~nome_eleitoral)
+      edges <- tribble(~node_size, ~source, ~target, ~value)
+      nodes_edges <- list(nodes, edges)
+  }
+  
   return(nodes_edges)
 })
 ```
 
 ```{r echo=FALSE, context="server"}
-getPesosProp <- function(descricao_lei) {
-  coautorias %>% 
-    filter(descricao_lei == descricao_lei) %>% 
-    select(peso_arestas) %>% 
-    as.list() %>% 
-    purrr::pluck("peso_arestas")
-}
-
 output$hist <- renderPlot({
   if(nrow(coautorias) > 0) {
     coautorias_hist <- 
       coautorias %>%
       filter(descricao_lei == input$descricao_lei) %>% 
-      filter(peso_arestas > peso_minimo)
+      filter(peso_arestas > input$min_peso)
     
     if(nrow(coautorias_hist) != 0) {
       coautorias_hist %>% 
@@ -247,17 +258,26 @@ output$hist <- renderPlot({
 })
 
 output$dt <- 
-  DT::renderDataTable(
-    coautorias %>% 
-      select(id_principal, nome.x, nome.y, peso_arestas, num_coautorias, descricao_lei, data) %>% 
-      distinct() %>% 
-      filter(descricao_lei == input$descricao_lei) %>%  
-      filter(peso_arestas > peso_minimo) %>% 
-      rename(peso_relacao = peso_arestas, 
+
+  DT::renderDataTable({
+      coautorias_dt <-
+    coautorias %>%
+        select(id_principal, nome.x, nome.y, peso_arestas, num_coautorias, descricao_lei, data) %>%
+        distinct() %>%
+        filter(descricao_lei == input$descricao_lei) %>%
+        filter(peso_arestas > input$min_peso)
+
+  if (nrow(coautorias_dt) > 0) {
+    coautorias_dt <-
+      coautorias_dt %>%
+      rename(peso_relacao = peso_arestas,
              nome_deputado_a = nome.x,
              nome_deputado_b = nome.y,
-             coautorias_conjuntas = num_coautorias) %>% 
-      arrange(desc(peso_relacao)), 
+             coautorias_conjuntas = num_coautorias) %>%
+      arrange(desc(peso_relacao))
+  }
+      return(coautorias_dt)
+  }, 
     options = list(pageLength = 10,
                    scrollX = TRUE)
     )
@@ -295,6 +315,8 @@ output$hist_grafo <- renderPlot({
       labs(x = "Partido", y = "Número de deputados") +
       scale_y_continuous(breaks = seq(0, max(nodes$n), 1)) +
       theme_ipsum_rc()
+  } else {
+    NA
   }
 })
 
