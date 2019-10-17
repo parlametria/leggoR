@@ -80,11 +80,11 @@ to_underscore <- function(x) {
 #'   filtra_dias_nao_uteis_congresso(.)
 filtra_dias_nao_uteis_congresso <- function(tramitacao_df) {
   tramitacao_filtrada_df <- tramitacao_df %>%
-    dplyr::filter(!(lubridate::wday(data) %in% c(1,7))) %>%
-    dplyr::filter(lubridate::month(data) != 1) %>%
-    dplyr::filter(!((lubridate::month(data) == 2) & (lubridate::day(data) < 2))) %>%
-    dplyr::filter(!((lubridate::month(data) == 7) & (lubridate::day(data) > 17))) %>%
-    dplyr::filter(!((lubridate::month(data) == 12) & (lubridate::day(data) > 22)))
+    dplyr::filter(!(lubridate::wday(periodo) %in% c(1,7))) %>%
+    dplyr::filter(lubridate::month(periodo) != 1) %>%
+    dplyr::filter(!((lubridate::month(periodo) == 2) & (lubridate::day(periodo) < 2))) %>%
+    dplyr::filter(!((lubridate::month(periodo) == 7) & (lubridate::day(periodo) > 17))) %>%
+    dplyr::filter(!((lubridate::month(periodo) == 12) & (lubridate::day(periodo) > 22)))
 }
 
 fetch_json_try <- function(url) {

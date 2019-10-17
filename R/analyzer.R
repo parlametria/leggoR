@@ -129,15 +129,14 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     get_pesos_locais() %>%
     dplyr::select(-tipo, -label) %>%
     dplyr::rename(peso_local = peso)
-  eventos_extendidos <- merge(full_dates, eventos_sem_horario, by="data", all.x = TRUE) %>%
-    filtra_dias_nao_uteis_congresso() %>%
+  eventos_extendidos <- 
+    merge(full_dates, eventos_sem_horario, by="data", all.x = TRUE) %>% 
     dplyr::mutate(peso_base = dplyr::if_else(is.na(prop_id),0,1)) %>%
     dplyr::left_join(pesos_eventos, by="evento") %>%
     dplyr::left_join(pesos_locais, by="local") %>%
     dplyr::mutate(peso_evento = dplyr::if_else(is.na(peso),0,as.numeric(peso))) %>%
     dplyr::mutate(peso_local = dplyr::if_else(is.na(peso_local),0,as.numeric(peso_local))) %>%
     dplyr::mutate(peso_final = peso_base + peso_evento + peso_local)
-
 
   temperatura_periodo <- data.frame()
 
@@ -159,7 +158,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     temperatura_periodo <- eventos_extendidos %>%
       dplyr::mutate(periodo = lubridate::floor_date(data, "months"))
   }
-
+  
   data_arquivamento <-
     temperatura_periodo %>%
     get_arquivamento(c("periodo"))
@@ -175,15 +174,28 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     dplyr::mutate(temperatura_periodo = dplyr::if_else(!is.na(dummy), 0, temperatura_periodo)) %>%
     dplyr::select(periodo, temperatura_periodo) %>%
     dplyr::arrange(periodo)
+  
+  semanas_uteis <- filtra_dias_nao_uteis_congresso(temperatura_periodo)
+  semanas_nao_uteis <- dplyr::anti_join(temperatura_periodo, semanas_uteis, by = c("periodo", "temperatura_periodo")) 
+  semanas_com_temp <-  semanas_uteis %>% 
+    dplyr::bind_rows(semanas_nao_uteis %>% dplyr::filter(temperatura_periodo > 0)) %>% 
+    dplyr::arrange(periodo)
+  semanas_nao_uteis <-
+    semanas_nao_uteis %>% 
+    dplyr::filter(temperatura_periodo == 0) %>% 
+    dplyr::mutate(temperatura_recente = NA)
 
   #Computa soma deslizante com decaimento exponencial
-  tamanho_janela <- nrow(temperatura_periodo)
+  tamanho_janela <- nrow(semanas_com_temp)
   weights <- (1 - decaimento) ^ ((tamanho_janela - 1):0)
-  temperatura_recente <- data.frame(temperatura_recente = round(roll::roll_sum(data.matrix(temperatura_periodo$temperatura_periodo), tamanho_janela, weights, min_obs = 1), digits=2))
-  historico_temperatura <- dplyr::bind_cols(temperatura_periodo, temperatura_recente) %>%
+  temperatura_recente <- data.frame(temperatura_recente = round(roll::roll_sum(data.matrix(semanas_com_temp$temperatura_periodo), tamanho_janela, weights, min_obs = 1), digits=2))
+  historico_temperatura <- dplyr::bind_cols(semanas_com_temp, temperatura_recente) %>%
     dplyr::select(periodo,
                   temperatura_periodo,
-                  temperatura_recente)
+                  temperatura_recente) %>% 
+    dplyr::bind_rows(semanas_nao_uteis) %>% 
+    dplyr::arrange(periodo) %>% 
+    tidyr::fill(temperatura_recente)
 
   return(historico_temperatura)
 }
