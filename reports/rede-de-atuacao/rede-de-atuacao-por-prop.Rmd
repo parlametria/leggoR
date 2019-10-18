@@ -104,7 +104,7 @@ DT::DTOutput("dt")
 
 #### Peso das relações 
 
-A fim de deixar os grupos mais refinados e precisos, optamos por adicionar uma penalidade que varia de acordo com o número de pessoas envolvidas: quanto mais coautores em uma proposição, menos precisas estarão as relações entre os deputados e por isso terão pesos menores, de forma análoga, uma proposição que possua apenas dois coautores, terá o peso da relação máximo e estarão muito mais próximos. É válido ressaltar que utilizamos o **peso mínimo de 0.1** das relações.
+A fim de deixar os grupos mais refinados e precisos, optamos por adicionar uma penalidade que varia de acordo com o número de pessoas envolvidas: quanto mais coautores em uma proposição, menos precisas estarão as relações entre os deputados e por isso terão pesos menores, de forma análoga, uma proposição que possua apenas dois coautores, terá o peso da relação máximo e estarão muito mais próximos.
 
 <br>
 
@@ -259,9 +259,11 @@ output$hist <- renderPlot({
     if(nrow(coautorias_hist) != 0) {
       coautorias_hist %>% 
         ggplot(aes(x = peso_arestas)) +
-        geom_density(color="black", fill="#1BB5A9", alpha=0.3) +
+        geom_histogram(boundary = 0, fill = "#1BB5A9", color = "#10726B", binwidth = 0.05) +
         scale_x_continuous(limits = c(0, max(coautorias$peso_arestas) + 0.1), 
-                           breaks = seq(0, max(coautorias$peso_arestas) + 0.1, 0.5)) +
+                           breaks = seq(0, max(coautorias$peso_arestas) + 0.1,0.25),
+                           trans="log1p") +
+        scale_y_log10() +
         labs(x = "Peso das relações", y = "Número de relações") +
         theme_ipsum_rc()
     }
@@ -325,6 +327,7 @@ output$hist_grafo <- renderPlot({
       coord_flip() +
       labs(x = "Partido", y = "Número de deputados") +
       scale_y_continuous(breaks = seq(0, max(nodes$n), 1)) +
+      scale_y_log10() +
       theme_ipsum_rc()
   } else {
     NA
