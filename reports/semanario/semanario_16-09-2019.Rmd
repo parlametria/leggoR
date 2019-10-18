@@ -13,6 +13,18 @@ params:
     label: "Input dataset:"
     value: ../../data/tabela_geral_ids_casa.csv
     input: file
+  temperaturas:
+    label: "Input dataset:"
+    value: ../../data/tabela_geral_ids_casa.csv
+    input: file
+  pressoes: 
+    label: "Input dataset:"
+    value: ../../data/tabela_geral_ids_casa.csv
+    input: file
+  atores:
+    label: "Input dataset:"
+    value: ../../data/tabela_geral_ids_casa.csv
+    input: file
 ---
 
 ```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, paged.print=FALSE, results="asis"}
@@ -36,7 +48,7 @@ library(hrbrthemes)
 library(grid)
 library(gridExtra)
 library(tibble)
-# install.packages("ggchicklet", repos = "https://cinc.rud.is")
+install.packages("ggchicklet", repos = "https://cinc.rud.is")
 library(ggchicklet)
 ```
 
@@ -47,44 +59,30 @@ text-align: justify}
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 #Base de dados de temperatura
-temperatura <- read_csv(params$temperaturas)
+temperatura <- params$temperaturas
+pressao <- params$pressoes
+data_inicio <- params$date_init
+data_fim <- params$date_end
+pls <- params$proposicoes
+atores <- params$atores
 ```
 
-
-```{r, message=FALSE, warning=FALSE, include=FALSE}
-#Base de dados de pressão que tiveram em pauta
-pressao_137999 <- read_csv("./data/pop_137999.csv")
-pressao_2192459 <- read_csv("./data/pop_2192459.csv")
-pressao_prev <- bind_rows(pressao_137999, pressao_2192459)
-pressao_cp <- read_csv("./data/pop_16526.csv") 
-
-temperatura_pauta_prev <- temperatura %>% 
-  filter(id_leggo == "34")
-
-temperatura_pauta_cp <- temperatura %>% 
-  filter(id_leggo == "55")
-
-```
 
 ```{r}
 #Base de dados de atuações e filtros por data
-atores_geral <- readr::read_csv("../../data/atores.csv") %>% 
+atores_geral <- atores %>% 
   mutate(partido = if_else(is.na(partido), "-", partido), 
          uf = if_else(is.na(uf), "-", uf),
          nome_completo = paste0(nome_autor, " (",partido,"/",uf,")"))
 
-props <- readr::read_csv("../../data/proposicoes.csv") %>% 
+props <- proposicoes %>% 
   select(id_ext, sigla_tipo, numero, apelido, data_apresentacao, tema) %>% 
   mutate(ano = format(as.Date(data_apresentacao), "%Y"), id_ext = as.numeric(id_ext))
 
-atores_ultima_semana <-
-  atores_geral %>%  
-  filter(data >= params$date_init) %>% 
-  filter(data < params$date_end)
 
 atores_apelidos <-
-  atores_ultima_semana %>% 
-  left_join(props, by = 'id_ext') %>% 
+  atores_geral %>% 
+  dplyr::left_join(props, by = 'id_ext') %>% 
   mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano))) 
 
 oposicao <- c("PT", "PSOL", "PSB", "PCdoP", "PDT", "REDE")
@@ -94,17 +92,17 @@ atores_apelidos <-
   mutate(bancada = if_else(partido %in% oposicao, "Oposição", "Governo"))
 
 atores_pls <- atores_apelidos %>% 
-  group_by(id_ext, nome_autor, casa, id_autor, tipo_autor, partido, nome_completo,
+  dplyr::group_by(id_ext, nome_autor, casa, id_autor, tipo_autor, partido, nome_completo,
            uf, tipo_generico, sigla_local, is_important, bancada, nome_formal, sigla_tipo, tema) %>% 
-  summarise(qtd_de_documentos = sum(qtd_de_documentos))
+  dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
 
 atuacao_temas <- atores_pls %>% 
-  group_by(bancada, tema) %>% 
-  summarise(qtd_de_documentos = sum(qtd_de_documentos))
+  dplyr::group_by(bancada, tema) %>% 
+  dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
 
 atuacao_bancadas <- atores_pls %>% 
-  group_by(casa, bancada, nome_formal, sigla_tipo) %>% 
-  summarise(qtd_de_documentos = sum(qtd_de_documentos))
+  dplyr::group_by(casa, bancada, nome_formal, sigla_tipo) %>% 
+  dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
 
 qntd_pec6 <-
   atores_pls %>% 
@@ -119,27 +117,26 @@ pauta_prop <- function(temperatura_df, pressao_df) {
   temperatura_$periodo <- as.Date(temperatura_$periodo)
 
   pressao_ <- pressao_df %>% 
-    select(id_ext,
+     dplyr::select(id_ext,
           periodo = date,
           casa,
           pressao = maximo_geral) 
 
-  pauta <- inner_join(temperatura_, pressao_, by = "periodo")
+  pauta <- dplyr::inner_join(temperatura_, pressao_, by = "periodo")
   return(pauta)
 }
 ```
 
 
 ```{r}
-pauta_prev <- pauta_prop(temperatura_pauta_prev, pressao_prev)
-pauta_cp <- pauta_prop(temperatura_pauta_cp, pressao_cp)
+pauta<- pauta_prop(temperatura, pressao)
 ```
 
 ```{r}
 sumariza_prop <- function(pauta_df) {
   pauta <- pauta_df %>% 
-  group_by(periodo) %>% 
-  summarise(media_temperatura = mean(temperatura_recente),
+  dplyr::group_by(periodo) %>% 
+  dplyr::summarise(media_temperatura = mean(temperatura_recente),
             max_pressao = max(pressao)) 
   
   return(pauta)
@@ -148,8 +145,8 @@ sumariza_prop <- function(pauta_df) {
 
 
 ```{r}
-pauta_137999 <- sumariza_prop(pauta_prev)
-pauta_16526 <- sumariza_prop(pauta_cp)
+pauta <- sumariza_prop(pauta)
+
 ```
 
 
@@ -159,20 +156,20 @@ datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02", "2019
 
 
 ```{r}
-pauta_137999 <- pauta_137999 %>% 
+pauta <- pauta %>% 
   mutate(max_pressao = if_else(max_pressao == 0, 2, max_pressao))
 ```
 
 ##Pressão e Temperatura
 
 ```{r, fig.height=7, fig.width=10}
-p <- pauta_137999 %>% 
+p <- pauta %>% 
   ggplot(aes(x = periodo, y = sqrt(media_temperatura))) +
-  geom_line(color=factor(ifelse(pauta_137999$periodo>="2019-09-30","#EF476F","#DDDDDD"))) +
-  geom_point(color=factor(ifelse(pauta_137999$periodo>="2019-09-30","#EF476F","#DDDDDD")),
-           size = ifelse(pauta_137999$periodo>="2019-09-30",3,1),
+  geom_line(color="#DDDDDD") +
+  geom_point(color=factor(ifelse(pauta$periodo==data_inicio,"#EF476F","#DDDDDD")),
+           size = ifelse(pauta$periodo==data_inicio,3,1),
            width=0.5) +
-  geom_col(aes(x = periodo, y = -sqrt(max_pressao), width = 4), fill=factor(ifelse(pauta_137999$periodo>="2019-09-30","#FFD166","#DDDDDD")), show.legend = FALSE ) +
+  geom_col(aes(x = periodo, y = -sqrt(max_pressao), width = 4), fill=factor(ifelse(pauta$periodo==data_inicio,"#FFD166","#DDDDDD")), show.legend = FALSE ) +
   labs(x = "Semana", 
        y = "",
        title = "Temperatura e pressão ao longo das semanas",
@@ -195,7 +192,7 @@ p  + annotation_custom(grob) + annotation_custom(grob2)
 ```
 
 ```{r}
-est_prev <- tail(pauta_137999, 2)
+est_prev <- tail(pauta, 2)
 temp_atual <- est_prev$media_temperatura[length(est_prev$media_temperatura)]
 ultima_temp <- est_prev$media_temperatura[length(est_prev$media_temperatura) - 1]
 variacao_temp <- round(((temp_atual - ultima_temp) / ultima_temp) * 100, digits = 2)
@@ -210,60 +207,6 @@ variacao_press <- abs(variacao_press)
 
 
 Foi observad`r if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}` `r variacao_temp`% na temperatura e `r if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}` `r if(variacao_press != 0){variacao_press}``r if(variacao_press != 0){"%"}` na pressão.
-
-Para a última semana a PEC 06/2019 tivemos a aprovação de parecer.
-
-```{r}
-est_cp <- tail(pauta_16526, 2)
-temp_atual <- est_cp$media_temperatura[length(est_cp$media_temperatura)]
-ultima_temp <- est_cp$media_temperatura[length(est_cp$media_temperatura) - 1]
-variacao_temp <- round(((temp_atual - ultima_temp) / ultima_temp) * 100, digits = 2)
-press_atual <- est_cp$max_pressao[length(est_cp$max_pressao)]
-ultima_press <- est_cp$max_pressao[length(est_cp$max_pressao) - 1]
-variacao_press <- press_atual - ultima_press
-cresceu_temp <- variacao_temp > 0 
-cresceu_press <- variacao_press > 0
-variacao_temp <- abs(variacao_temp)
-variacao_press <- abs(variacao_press)
-```
-
-```{r}
-pauta_16526 <- pauta_16526 %>% 
-  mutate(max_pressao = if_else(max_pressao == 0, 1.2, max_pressao))
-```
-
-
-```{r, fig.height=7, fig.width=10}
-p_cp <- pauta_16526 %>% 
-  ggplot(aes(x = periodo, y = (media_temperatura))) +
-  geom_line(color=factor(ifelse(pauta_cp$periodo>="2019-09-30","#EF476F","#DDDDDD"))) +
-  geom_point(color=factor(ifelse(pauta_cp$periodo>="2019-09-30","#EF476F","#DDDDDD")),
-           size = ifelse(pauta_cp$periodo>="2019-09-30",3,1),
-           width=0.5) +
-  geom_col(aes(x = periodo, y = -(max_pressao), width = 4), fill=factor(ifelse(pauta_cp$periodo>="2019-09-30","#FFD166","#DDDDDD")), show.legend = FALSE )+
-  labs(x = "Semana", 
-       y = "",
-       title = "Temperatura e pressão ao longo das semanas",
-       subtitle = "PL 1292/1995 - PL das compras públicas") +
-  scale_x_date(date_labels = "%d de %b", breaks = datas) +
-  theme_ipsum_rc(grid = FALSE) +
-  theme(axis.text.y = element_blank(), 
-        axis.text.x = element_text(angle = 0, vjust = 0.5)) +
-  theme(axis.text.x = element_text(color = "gray60", size = 8))
-  
-grob <- grobTree(textGrob("Temperatura", x=0.1,  y=0.95, hjust=0,
- gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
-
-grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
- gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
-
-p_cp  + annotation_custom(grob) + annotation_custom(grob2)
-
-```
-
-Foi observad`r if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}` `r variacao_temp`% na temperatura e `r if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}` `r if(variacao_press != 0){variacao_press}``r if(variacao_press != 0){"%"}` na pressão.
-
-Para a última semana, a PL 1292/1995 não tivemos evento.
 
 ##Atores da semana
 
@@ -305,6 +248,7 @@ total_docs <- sum(qtd_tema$total)
 total_tema_destaque <- qtd_tema %>% filter(tema == tema_destaque) %>% purrr::pluck("total")
 variacao_temp <- round(((total_tema_destaque * 100) / total_docs), digits = 2)
 atuacao_temas_destaque <- atuacao_temas %>% filter(tema == tema_destaque)
+pls_tema_destaque <- atores_pls %>%  filter(tema == tema_destaque)
 num_docs_governo <- atuacao_temas_destaque %>% filter(bancada == "Governo") %>% purrr::pluck("qtd_de_documentos")
 num_docs_oposicao <- atuacao_temas_destaque %>% filter(bancada == "Oposição") %>% purrr::pluck("qtd_de_documentos")
 ```
@@ -314,7 +258,7 @@ Na última semana o tema `r tema_destaque` teve destaque nas atuações parlamen
 Ao clicar no tema `r tema_destaque`, temos as seguintes proposições tiveram destaque
 
 ```{r, fig.height=6, fig.width=10}
-p <- atuacao_bancadas %>% filter(nome_formal %in% c("PEC 45/2019", "PEC 6/2019")) %>%  ggplot(aes(x = reorder(nome_formal, qtd_de_documentos), y = qtd_de_documentos, group = bancada, fill = bancada)) + 
+p <- atuacao_bancadas %>% filter(nome_formal %in% pls_tema_destaque$nome_formal) %>%  ggplot(aes(x = reorder(nome_formal, qtd_de_documentos), y = qtd_de_documentos, group = bancada, fill = bancada)) + 
     geom_chicklet(width = 0.75) +
      theme_ipsum_rc(grid=FALSE) +
      theme(legend.position = "bottom") +
@@ -358,7 +302,7 @@ A `r prop_destaque` teve maior número de atuações, com apresentação de `r t
 Ao clicar na proposição `r prop_destaque` temos mais detalhes sobre os atores e os respectivos documentos apresentados.
 
 ```{r, fig.height=8, fig.width=10}
-p <- qntd_pec6 %>% ggplot(aes(x = reorder(nome_completo, qtd_de_documentos), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
+p <- atores_apelidos %>% ggplot(aes(x = reorder(nome_completo, qtd_de_documentos), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
     geom_chicklet(width = 0.8) +
      theme(legend.position = "bottom") +
      labs(
@@ -385,7 +329,7 @@ p <- p + theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) +theme(axis.t
 p
 
 tipo_generico_destaque <-
-  qntd_pec6 %>% 
+  atores_apelidos  %>% 
   group_by(tipo_generico) %>% 
   summarise(total = sum(qtd_de_documentos)) %>% 
   arrange(total) %>% 
