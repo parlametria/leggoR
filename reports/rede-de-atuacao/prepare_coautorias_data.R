@@ -6,18 +6,18 @@
 #' @param smoothing Variável para suavizar o tamanho dos nós
 #' @return Dataframe dos nós com a coluna node_size
 set_nodes_size <- function(final_edges, final_nodes, smoothing) {
-  nodes_size_src <-
+  nodes_size_source <-
     final_edges %>%
     group_by(node = source) %>%
     summarise(node_size = sum(value)) %>%
     mutate(node = as.character(node))
-  nodes_size_tgt <-
+  nodes_size_target <-
     final_edges %>%
     group_by(node = target) %>%
     summarise(node_size = sum(value)) %>%
     mutate(node = as.character(node))
   nodes_size <-
-    bind_rows(nodes_size_src,nodes_size_tgt) %>%
+    bind_rows(nodes_size_source,nodes_size_target) %>%
     group_by(node) %>%
     summarise(node_size = sum(node_size)) %>%
     ungroup() %>%
