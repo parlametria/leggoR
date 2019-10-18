@@ -259,9 +259,9 @@ output$hist <- renderPlot({
     if(nrow(coautorias_hist) != 0) {
       coautorias_hist %>% 
         ggplot(aes(x = peso_arestas)) +
-        geom_histogram(boundary = 0, fill = "#1BB5A9", color = "#10726B") +
+        geom_density(color="black", fill="#1BB5A9", alpha=0.3) +
         scale_x_continuous(limits = c(0, max(coautorias$peso_arestas) + 0.1), 
-                           breaks = seq(0, max(coautorias$peso_arestas) + 0.1, 1)) +
+                           breaks = seq(0, max(coautorias$peso_arestas) + 0.1, 0.5)) +
         labs(x = "Peso das relações", y = "Número de relações") +
         theme_ipsum_rc()
     }
