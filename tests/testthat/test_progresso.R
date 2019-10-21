@@ -12,6 +12,12 @@ setup <- function(){
   etapas_pec %<>% append(list(process_etapa(1198512, "camara", as.data.frame())))
   etapas_pec %<>% purrr::pmap(dplyr::bind_rows)
   progresso_pec <<- get_progresso(etapas_pec$proposicao, etapas_pec$fases_eventos)
+  
+  etapas_mpv_881 <<- list()
+  etapas_mpv_881 %<>% append(list(process_etapa(136531, "senado", as.data.frame())))
+  etapas_mpv_881 %<>% append(list(process_etapa(2199763, "camara", as.data.frame())))
+  etapas_mpv_881 %<>% purrr::pmap(dplyr::bind_rows)
+  progresso_mpv_881 <<- generate_progresso_df_mpv(etapas_mpv_881$fases_eventos)
   return(TRUE)
 }
 
@@ -90,7 +96,23 @@ test <- function() {
     
     expect_equal(progresso_pec %>% dplyr::mutate(data_inicio = as.character(data_inicio)), progresso_pec_gabarito)
     
+    progresso_mpv_881_gabarito <- 
+      tibble::tribble(
+        ~ casa, ~ prop_id, ~ fase_global,                    ~ data_inicio,                ~ data_fim,    
+        "senado", 136531, "Comissão Mista",                    "2012-03-16 00:00:00",      "2019-07-19 12:00:00",                       
+        "senado", 136531, "Câmara dos Deputados",              "2019-07-19 12:00:00",      "2019-08-15 12:00:00",                     
+        "senado", 136531, "Senado Federal",                    "2019-08-15 12:00:00",      "2019-09-20 12:00:00",                      
+        "senado", 136531, "Sanção Presidencial/Promulgação",   "2019-09-20 12:00:00",      "2019-09-20 12:00:00",                         
+        "senado", 136531, "Câmara dos Deputados - Revisão",     NA,                        NA)
     
+    progresso_mpv_881_gabarito <-
+      progresso_mpv_881_gabarito %>% dplyr::mutate(prop_id = as.integer(prop_id))
+    
+    progresso_mpv_881 <-
+      progresso_mpv_881 %>% dplyr::mutate(data_fim = as.character(data_fim),
+                                        data_inicio = as.character(data_inicio))
+    
+    expect_equal(progresso_mpv_881, progresso_mpv_881_gabarito)
   })
 }
 check_api <- function(){
