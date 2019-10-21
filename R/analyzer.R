@@ -83,6 +83,7 @@ get_temperatura <- function(tramitacao_df, days_ago = 30, pivot_day = lubridate:
 #' @param granularidade Granularidade do dado histórico da temperatura desejada ('d' = dia, 's' = semana, 'm' = mês)
 #' @param decaimento A porcentagem de redução do valor da temperatura por dia. Valor deve estar entre 0 e 1.
 #' @param max_date Último dia a ser considerado no cálculo da temperatura. Padrão: dia atual.
+#' @param pautas Dataframe das pautas
 #' @return Dataframe com o valor da temperatura recente para cada dia útil da tramitação de uma proposição.
 #' @importFrom magrittr '%>%'
 #' @export
@@ -128,8 +129,8 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     get_pesos_locais() %>%
     dplyr::select(-tipo, -label) %>%
     dplyr::rename(peso_local = peso)
-  eventos_extendidos <- merge(full_dates, eventos_sem_horario, by="data", all.x = TRUE) %>%
-    filtra_dias_nao_uteis_congresso() %>%
+  eventos_extendidos <- 
+    merge(full_dates, eventos_sem_horario, by="data", all.x = TRUE) %>% 
     dplyr::mutate(peso_base = dplyr::if_else(is.na(prop_id),0,1)) %>%
     dplyr::left_join(pesos_eventos, by="evento") %>%
     dplyr::left_join(pesos_locais, by="local") %>%
@@ -137,12 +138,11 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     dplyr::mutate(peso_local = dplyr::if_else(is.na(peso_local),0,as.numeric(peso_local))) %>%
     dplyr::mutate(peso_final = peso_base + peso_evento + peso_local)
 
-
   temperatura_periodo <- data.frame()
 
   get_arquivamento <- function(df, colunas) {
     df %>%
-      dplyr::filter(evento == "arquivamento") %>%
+      dplyr::filter(evento %in% c("arquivamento","transformada_lei")) %>%
       dplyr::select(colunas) %>%
       dplyr::mutate(dummy = "Dummy")
   }
@@ -150,49 +150,98 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
   #Agrupa eventos por período
   if (granularidade == "d") {
     temperatura_periodo <- eventos_extendidos %>%
-      dplyr::group_by(data)
-    data_arquivamento <-
-      temperatura_periodo %>%
-      get_arquivamento(c("data"))
+      dplyr::mutate(periodo = data)
   } else if (granularidade == "s") {
     temperatura_periodo <- eventos_extendidos %>%
-      dplyr::mutate(semana = lubridate::week(data),
-                    ano = lubridate::year(data)) %>%
-      dplyr::group_by(ano, semana)
-    data_arquivamento <-
-      temperatura_periodo %>%
-      get_arquivamento(c("semana", "ano"))
+      dplyr::mutate(periodo = lubridate::floor_date(data, "weeks") + lubridate::days(1))
   } else if (granularidade == "m") {
     temperatura_periodo <- eventos_extendidos %>%
-      dplyr::mutate(mes = lubridate::month(data),
-                    ano = lubridate::year(data)) %>%
-      dplyr::group_by(ano, mes)
-    data_arquivamento <-
-      temperatura_periodo %>%
-      get_arquivamento(c("mes", "ano"))
+      dplyr::mutate(periodo = lubridate::floor_date(data, "months"))
   }
+  
+  data_arquivamento <-
+    temperatura_periodo %>%
+    get_arquivamento(c("periodo"))
 
   temperatura_periodo <-
     temperatura_periodo %>%
-    dplyr::summarize(periodo = dplyr::first(data) - as.difftime(1, unit="days"),
-                     temperatura_periodo = sum(peso_final, na.rm = T)) %>%
+    dplyr::group_by(periodo) %>%
+    dplyr::summarize(temperatura_periodo = sum(peso_final, na.rm = T)) %>%
     dplyr::ungroup()
+
   temperatura_periodo <-
     suppressMessages(dplyr::left_join(temperatura_periodo, data_arquivamento)) %>%
     dplyr::mutate(temperatura_periodo = dplyr::if_else(!is.na(dummy), 0, temperatura_periodo)) %>%
     dplyr::select(periodo, temperatura_periodo) %>%
     dplyr::arrange(periodo)
+  
+  semanas_uteis <- filtra_dias_nao_uteis_congresso(temperatura_periodo)
+  semanas_nao_uteis <- dplyr::anti_join(temperatura_periodo, semanas_uteis, by = c("periodo", "temperatura_periodo")) 
+  semanas_com_temp <-  semanas_uteis %>% 
+    dplyr::bind_rows(semanas_nao_uteis %>% dplyr::filter(temperatura_periodo > 0)) %>% 
+    dplyr::arrange(periodo)
+  semanas_nao_uteis <-
+    semanas_nao_uteis %>% 
+    dplyr::filter(temperatura_periodo == 0) %>% 
+    dplyr::mutate(temperatura_recente = NA)
 
   #Computa soma deslizante com decaimento exponencial
-  tamanho_janela <- nrow(temperatura_periodo)
+  tamanho_janela <- nrow(semanas_com_temp)
   weights <- (1 - decaimento) ^ ((tamanho_janela - 1):0)
-  temperatura_recente <- data.frame(temperatura_recente = round(roll::roll_sum(data.matrix(temperatura_periodo$temperatura_periodo), tamanho_janela, weights, min_obs = 1), digits=2))
-  historico_temperatura <- dplyr::bind_cols(temperatura_periodo, temperatura_recente) %>%
+  temperatura_recente <- data.frame(temperatura_recente = round(roll::roll_sum(data.matrix(semanas_com_temp$temperatura_periodo), tamanho_janela, weights, min_obs = 1), digits=2))
+  historico_temperatura <- dplyr::bind_cols(semanas_com_temp, temperatura_recente) %>%
     dplyr::select(periodo,
                   temperatura_periodo,
-                  temperatura_recente)
+                  temperatura_recente) %>% 
+    dplyr::bind_rows(semanas_nao_uteis) %>% 
+    dplyr::arrange(periodo) %>% 
+    tidyr::fill(temperatura_recente)
 
   return(historico_temperatura)
+}
+
+#' @title Extrai a temperatura das duas casas
+#' @description Obtém a temperatura das proposições
+#' considerando a tramitação das duas casas, se houver, caso não
+#' considera a tramitação da casa de origem
+#' @param tram Dataframe da tramitação do PL.
+#' @param id_leggo ID geral da proposição
+#' @param granularidade Granularidade do dado histórico da temperatura desejada ('d' = dia, 's' = semana, 'm' = mês)
+#' @param decaimento A porcentagem de redução do valor da temperatura por dia. Valor deve estar entre 0 e 1.
+#' @param max_date Último dia a ser considerado no cálculo da temperatura. Padrão: dia atual.
+#' @param pautas Dataframe das pautas
+#' @return Dataframe com o valor da temperatura recente para cada dia útil da tramitação de uma proposição.
+#' @export
+get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granularidade = 's', decaimento = 0.25, max_date = lubridate::now(), pautas = tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)) {
+  eventos_por_leggo_id <-
+    tram %>%
+    dplyr::mutate(id_leggo = id_leggo)
+
+  temperatura_por_id_leggo <-
+    eventos_por_leggo_id %>%
+    split(.$id_leggo) %>%
+    purrr::map_dfr(
+      ~ agoradigital::get_historico_temperatura_recente(
+        .x,
+        granularidade = granularidade,
+        decaimento = decaimento,
+        max_date = max_date,
+        pautas = pautas
+      ),
+      .id = "id_leggo"
+    ) %>%
+    dplyr::mutate(id_leggo = as.integer(id_leggo))
+
+  if(nrow(temperatura_por_id_leggo) == 0) {
+    temperatura_por_id_leggo <- tibble::tribble(
+      ~ id_leggo,
+      ~ periodo,
+      ~ temperatura_periodo,
+      ~ temperatura_recente
+    )
+  }
+
+  return(temperatura_por_id_leggo)
 }
 
 #' @title Extrai o regime de tramitação de um PL
@@ -355,9 +404,14 @@ extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
 #' get_progresso(etapas$proposicao, etapas$fases_eventos)
 #' @export
 get_progresso <- function(full_proposicao_df, full_tramitacao_df) {
+  sigla <- 
+    full_proposicao_df %>% 
+    dplyr::select(sigla_tipo) %>% 
+    head(1)
+  
   progresso_data <-
     extract_casas(full_proposicao_df, full_tramitacao_df) %>%
-    generate_progresso_df() %>%
+    generate_progresso_df(sigla[[1]]) %>%
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
     tidyr::fill(prop_id, casa) %>%
     tidyr::fill(prop_id, casa, .direction = "up")

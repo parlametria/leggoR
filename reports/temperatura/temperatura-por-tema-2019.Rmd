@@ -1,0 +1,658 @@
+---
+title: "Análise da Temperatura por Tema"
+author: "Equipe Leg.go"
+date: "11/07/2019"
+output:
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
+---
+
+Neste relatório, faremos uma análise histórica da Temperatura das proposições agregadas por tema ao longo dos anos.
+
+```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, paged.print=FALSE, results="asis"}
+library(dplyr)
+library(magrittr)
+library(ggplot2)
+library(plotly)
+library(gghighlight)
+library(DT)
+
+knitr::opts_chunk$set(echo = FALSE,
+	             cache = FALSE,
+               prompt = FALSE,
+               tidy = FALSE,
+               comment = NA,
+               message = FALSE,
+               warning = FALSE)
+
+min_date <- lubridate::ymd_hms('2019-01-01 00:00:00')
+max_date <- lubridate::ymd_hms('2019-07-10 23:59:59')
+
+raw_temperatura_props <- readr::read_csv('../../data/novo_historico_temperatura.csv')
+leggo_ids <- readr::read_csv('../../data/leggo_ids.csv')
+proposicoes <- readr::read_csv('../../data/proposicoes.csv')
+
+nomes_pls <- proposicoes %>% 
+  mutate(nome_pl = paste(sigla_tipo, paste(numero, lubridate::year(data_apresentacao),sep='/'))) %>%
+  select(id_ext, nome_pl)
+
+leggo_ids_nomes <- leggo_ids %>%
+  inner_join(nomes_pls) %>%
+  select(id_leggo, id_ext, nome_pl, everything()) %>%
+  group_by(id_leggo) %>%
+  summarise(id_ext = paste0(id_ext, collapse = "|"),
+            nome_pl = paste0(nome_pl, collapse = "|"),
+            apelido = first(apelido),
+            tema = first(tema))
+
+##Filtro para corrigir problema da temperatura que continua após o fim da tramitação
+mpv867 <- raw_temperatura_props %>%
+  dplyr::filter(id_leggo == 43,periodo < lubridate::ymd_hms('2019-05-30 00:00:00'))
+
+mpv868 <- raw_temperatura_props %>%
+  dplyr::filter(id_leggo == 40,periodo < lubridate::ymd_hms('2019-06-06 00:00:00'))
+
+pl1321 <- raw_temperatura_props %>%
+  dplyr::filter(id_leggo == 46,periodo < lubridate::ymd_hms('2019-05-21 00:00:00'))
+
+other_pls <- raw_temperatura_props %>%
+  dplyr::filter(!(id_leggo %in% c(40,43,46)))
+
+temperatura_props <- dplyr::bind_rows(other_pls,mpv867,mpv868,pl1321)
+
+  
+temperatura_props_temas <- temperatura_props %>%
+  filter((periodo >= min_date) & (periodo <= max_date)) %>%
+  inner_join(leggo_ids_nomes,by = "id_leggo") %>%
+  tidyr::separate_rows(tema,sep=';') %>%
+  select(id_leggo, tema, nome_pl, apelido, semana = periodo, temperatura_periodo, temperatura_recente) %>%
+  arrange(semana,tema,desc(temperatura_recente))
+
+evolucao_semanal_temperatura <- temperatura_props_temas %>%
+  group_by(id_leggo) %>%
+  arrange(semana) %>%
+  mutate(evolucao_temp_recente = temperatura_recente - lag(temperatura_recente, default = 0)) %>%
+  ungroup() %>%
+  arrange(id_leggo,semana)
+
+temperatura_temas <- temperatura_props_temas %>%
+  group_by(tema,semana) %>%
+  summarise(num_obs = n(),
+            total_temp = sum(temperatura_recente),
+            min_temp = min(temperatura_recente),
+            max_temp = max(temperatura_recente),
+            mean_temp = mean(temperatura_recente),
+            median_temp = median(temperatura_recente),
+            std_temp = sd(temperatura_recente),
+            var_temp = var(temperatura_recente))
+
+temperatura_geral <- temperatura_props_temas %>% 
+  group_by(semana) %>%
+  summarise(num_obs = n(),
+            total_temp = sum(temperatura_recente),
+            min_temp = min(temperatura_recente),
+            max_temp = max(temperatura_recente),
+            mean_temp = mean(temperatura_recente),
+            median_temp = median(temperatura_recente),
+            std_temp = sd(temperatura_recente),
+            var_temp = var(temperatura_recente))
+
+cor_temperatura = "#a5a5a5"
+cor_agenda_nacional <- "#FB9A99"
+cor_direitos_humanos <- "#C0E49F"
+cor_educacao <-"#F9EE9D"
+cor_integridade_transparencia <- "#80B1D3"
+cor_meio_ambiente <- "#906B87"
+```
+
+## Qual foi o comportamento da temperatura geral das proposições acompanhadas pelo Leggo em 2019?
+
+```{r fig.width=12,fig.align='center'}
+
+temperatura_geral %>%
+  filter((semana >= min_date) && (semana <= max_date)) %>%
+  ggplot(aes(x=as.Date(semana), y=total_temp)) +
+  geom_area(fill=cor_temperatura) +
+  xlab("Tempo") + 
+  ylab("Temperatura") + 
+  scale_y_sqrt() +
+  scale_x_date(date_labels = "%d-%m-%Y") +
+  theme_minimal() + 
+  theme(legend.title = element_blank())
+
+```
+
+Vamos analisar a temperatura por tema para podermos compreender melhor que temas/proposições influenciaram essas subidas de temperatura observadas.
+
+## Qual foi o comportamento da temperatura de cada tema acompanhado pelo Leggo em 2019? 
+
+```{r, fig.width=12,fig.height=8,fig.align='center'}
+temperatura_temas %>% 
+  filter((semana >= min_date) && (semana <= max_date)) %>%
+  ggplot(aes(x=as.Date(semana), y=total_temp, fill=tema)) +
+  geom_area() +
+  xlab("Tempo") + 
+  ylab("Temperatura") +
+  theme_minimal() +
+  facet_wrap(~ tema, ncol = 1) + 
+  scale_y_sqrt() + 
+  scale_x_date(date_labels = "%d-%m-%Y") +
+  scale_fill_manual(values = c(cor_agenda_nacional, cor_direitos_humanos, cor_educacao, cor_integridade_transparencia, cor_meio_ambiente)) +
+  theme(strip.background = element_blank(), 
+                 legend.title = element_blank(),
+                 legend.position = "none")
+
+```
+
+Observando o comportamento da temperatura para cada tema acima, podemos perceber que, no âmbito das proposições acompanhadas pelo Leggo, o tema `Agenda Nacional` tem tido mais atenção por parte do Congresso nos últimos meses, mostrando a força do executivo. Já os outros temas têm tido pouca movimentação, com alguns poucos momentos de crescimento da temperatura.
+
+Podemos verificar alguns picos no histórico da temperatura em cada um dos temas apresentados anteriormente. 
+Vamos analisar os principais picos para cada tema e identificar quais foram as proposições que elevaram a temperatura naquele período.
+
+### Agenda Nacional
+
+```{r, fig.width=12,fig.align='center'}
+# temperatura_temas %>%
+#   filter(tema == "Agenda Nacional") %>%
+#   ggplot(aes(x=semana, y=total_temp, label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp))) +
+#   geom_area(fill=cor_agenda_nacional) +
+#   xlab("Tempo") +
+#   ylab("Temperatura") +
+#   theme_minimal() +
+#   scale_y_sqrt() +
+#   theme(strip.background = element_blank(),
+#                  legend.position = "None") +
+#   #annotate("segment", x = lubridate::ymd_hms('2017-01-01 00:00:00'), xend = lubridate::ymd_hms('2017-02-06 00:00:00'), y = 479, yend = 629, colour = "red", size=3, alpha=0.6, arrow=arrow())
+#   #scale_fill_manual( values = c( "destaque"=cor_temperatura, "normal"=cor_agenda_nacional), guide = FALSE )
+#   geom_point(data=temp_semanas_destaque_an, colour="red", size=3) +
+#   geom_text(data=temp_semanas_destaque_an, aes(x=semana, y=total_temp),vjust="inward",hjust=1.2)
+```
+
+```{r}
+# plot_evol_temp_an <- temperatura_temas %>%
+#   filter(tema=="Agenda Nacional") %>%
+#   ggplot(aes(x=as.Date(semana), y=total_temp)) +
+#   geom_col(fill=cor_agenda_nacional) +
+#   xlab("Tempo") + 
+#   ylab("Temperatura") + 
+#   scale_y_sqrt() +
+#   scale_x_date(date_labels = "%d-%m-%Y") +
+#   theme_minimal() + 
+#   theme(legend.title = element_blank())
+# 
+# ggplotly(plot_evol_temp_an)
+```
+
+
+No gráfico de temperatura por tema acima, podemos identificar, no tema `Agenda Nacional`, dois picos principais na semana do dia 22/04/2019 e outro na semana do dia 06/05/2019, respectivamente. Abaixo mostramos mais de perto esses picos, numa linha do tempo mais resumida.
+
+```{r, fig.width=12,fig.height=4,fig.align='center'}
+semanas_destaque_an <- data.frame(tema = "Agenda Nacional",
+                     semana = lubridate::ymd(c('2019-04-22','2019-05-06')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+
+temp_semanas_destaque_an <- temperatura_temas %>%
+  inner_join(semanas_destaque_an)
+
+temp_pecs_destaque_an <- evolucao_semanal_temperatura %>% 
+  filter((nome_pl == "PEC 6/2019"))
+
+temperatura_temas %>% 
+  filter(tema == "Agenda Nacional") %>%
+  mutate(semana = as.Date(semana)) %>%
+  ggplot(aes(x=as.Date(semana), y=total_temp)) +
+  geom_area(fill=cor_agenda_nacional) +
+  xlab("Tempo") + 
+  ylab("Temperatura") +
+  theme_minimal() +
+  scale_y_sqrt() + 
+  scale_x_date(date_labels = "%d-%m-%Y") +
+  theme(strip.background = element_blank(), 
+                 legend.position = "None") +
+  geom_point(data=temp_semanas_destaque_an, colour="red", size=3) + 
+  geom_text(data=temp_semanas_destaque_an, aes(x=as.Date(semana), y=total_temp, 
+                                               label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp)),
+            vjust="inward",hjust=1.3) +
+  geom_line(data=temp_pecs_destaque_an, size=1, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+  scale_colour_manual(values = c('#A06362')) + 
+  gghighlight(label_key = nome_pl)
+```
+
+Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que a principal foi a PEC da Nova Previdência - **PEC 6/2019**.
+
+#### Temperatura das proposições do Tema Agenda Nacional nas Semanas de Destaque
+
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Agenda Nacional",
+                     semana = lubridate::ymd(c('2019-04-22')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_an_2 <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+datatable(evolucao_semanal_temperatura_an_2)
+```
+
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Agenda Nacional",
+                     semana = lubridate::ymd(c('2019-05-06')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_an_3 <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+datatable(evolucao_semanal_temperatura_an_3)
+```
+
+### Direitos Humanos
+
+```{r, fig.width=12,fig.align='center'}
+# temperatura_temas %>% 
+#   filter(tema == "Direitos Humanos") %>%
+#   ggplot(aes(x=semana, y=total_temp, label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp))) +
+#   geom_area(fill = cor_direitos_humanos) +
+#   xlab("Tempo") + 
+#   ylab("Temperatura") +
+#   theme_minimal() +
+#   scale_y_sqrt() + 
+#   theme(strip.background = element_blank(), 
+#                  legend.position = "None") +
+#   geom_point(data=temp_semanas_destaque_dh, colour="red", size=3) + 
+#   geom_text(data=temp_semanas_destaque_dh, aes(x=semana, y=total_temp),vjust="inward",hjust=1.2)
+```
+
+```{r}
+# plot_evol_temp_an <- temperatura_temas %>%
+#   filter(tema=="Direitos Humanos") %>%
+#   ggplot(aes(x=as.Date(semana), y=total_temp)) +
+#   geom_col(fill=cor_direitos_humanos) +
+#   xlab("Tempo") + 
+#   ylab("Temperatura") + 
+#   scale_y_sqrt() +
+#   scale_x_date(date_labels = "%d-%m-%Y") +
+#   theme_minimal() + 
+#   theme(legend.title = element_blank())
+# 
+# ggplotly(plot_evol_temp_an)
+```
+
+No tema Direitos Humanos, identificamos dois picos: um na semana do dia 12/02/2019 e outro na semana do dia 22/04/2019. Abaixo mostramos mais de perto esses picos, numa linha do tempo mais resumida.
+
+```{r, fig.width=12,fig.height=4,fig.align='center'}
+semanas_destaque_dh <- data.frame(tema = "Direitos Humanos",
+                     semana = lubridate::ymd(c('2019-02-18','2019-04-22')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+
+temp_semanas_destaque_dh <- temperatura_temas %>%
+  inner_join(semanas_destaque_dh)
+
+temp_pecs_destaque_dh <- evolucao_semanal_temperatura %>%
+  filter(nome_pl %in% c("PEC 18/2011","PL 2443/2011","PL 1256/2019","PEC 29/2015"))
+
+temperatura_temas %>% 
+  filter(tema == "Direitos Humanos") %>%
+  ggplot(aes(x=as.Date(semana), y=total_temp)) +
+  geom_area(fill = cor_direitos_humanos) +
+  xlab("Tempo") + 
+  ylab("Temperatura") +
+  theme_minimal() +
+  scale_y_sqrt() + 
+  scale_x_date(date_labels = "%d-%m-%Y") +
+  theme(strip.background = element_blank(), 
+                 legend.position = "None") +
+  geom_point(data=temp_semanas_destaque_dh, colour="red", size=3) + 
+  geom_text(data=temp_semanas_destaque_dh, aes(x=as.Date(semana), y=total_temp, 
+                                               label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp)),
+            vjust="inward", hjust=1.2) +
+  geom_line(data=temp_pecs_destaque_dh, size=1, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+  scale_colour_manual(values = c("#92B771", "#728E58",'#21291A','#415233')) + 
+  gghighlight(label_key = nome_pl)
+```
+
+Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que as principais foram a PEC que Autoriza o Trabalho Infantil a partir dos Quatorze Anos - **PEC 18/2011**, a PL da Situação Jurídica do Estrangeiro no Brasil - **PL 2443/2011**, a PL da Extição das Cotas de Candidaturas Femininas - **PL 1256/2019** e a PEC Antiaborto - **PEC 29/2015**
+
+#### Temperatura das proposições do Tema Direitos Humanos nas Semanas de Destaque
+
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Direitos Humanos",
+                     semana = lubridate::ymd(c('2019-02-18')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_dh_1 <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+datatable(evolucao_semanal_temperatura_dh_1)
+```
+
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Direitos Humanos",
+                     semana = lubridate::ymd(c('2019-04-22')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_dh_2 <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+datatable(evolucao_semanal_temperatura_dh_2)
+```
+
+## Educação
+
+```{r, fig.width=12,fig.align='center'}
+# temperatura_temas %>% 
+#   filter(tema == "Educação") %>%
+#   ggplot(aes(x=semana, y=total_temp, label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp))) +
+#   geom_area(fill = cor_educacao) +
+#   xlab("Tempo") + 
+#   ylab("Temperatura") +
+#   theme_minimal() +
+#   scale_y_sqrt() + 
+#   theme(strip.background = element_blank(), 
+#                  legend.position = "None") +
+#   geom_point(data=temp_semanas_destaque_ed, colour="red", size=3) + 
+#   geom_text(data=temp_semanas_destaque_ed, aes(x=semana, y=total_temp),vjust="inward",hjust=1.2)
+```
+
+```{r}
+# plot_evol_temp_an <- temperatura_temas %>%
+#   filter(tema=="Educação") %>%
+#   ggplot(aes(x=as.Date(semana), y=total_temp)) +
+#   geom_col(fill=cor_educacao) +
+#   xlab("Tempo") + 
+#   ylab("Temperatura") + 
+#   scale_y_sqrt() +
+#   scale_x_date(date_labels = "%d-%m-%Y") +
+#   theme_minimal() + 
+#   theme(legend.title = element_blank())
+# 
+# ggplotly(plot_evol_temp_an)
+```
+
+Observando a temperatura histórica do tema `Educação`, é possível perceber três picos um na semana do dia 18/02/2019, na semana do dia 06/05/2019 e outro na semana do dia 27/05/2019. Abaixo mostramos mais de perto esses picos, numa linha do tempo mais resumida.
+
+```{r, fig.width=12,fig.height=4,fig.align='center'}
+semanas_destaque_ed <- data.frame(tema = "Educação",
+                     semana = lubridate::ymd(c('2019-02-18','2019-05-06','2019-05-27')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+
+temp_semanas_destaque_ed <- temperatura_temas %>%
+  inner_join(semanas_destaque_ed)
+
+temp_pecs_destaque_ed <- evolucao_semanal_temperatura %>%
+  filter(nome_pl %in% c("PEC 15/2015","PLP 307/2002"))
+
+temperatura_temas %>% 
+  filter(tema == "Educação") %>%
+  ggplot(aes(x=as.Date(semana), y=total_temp)) +
+  geom_area(fill = cor_educacao) +
+  xlab("Tempo") + 
+  ylab("Temperatura") +
+  theme_minimal() +
+  scale_y_sqrt() + 
+  scale_x_date(date_labels = "%d-%m-%Y") +
+  theme(strip.background = element_blank(), 
+                 legend.position = "None") +
+  geom_point(data=temp_semanas_destaque_ed, colour="red", size=3) + 
+  geom_text(data=temp_semanas_destaque_ed, aes(x=as.Date(semana), y=total_temp,
+                                               label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp)),
+            vjust="inward",hjust=1.2) +
+  geom_line(data=temp_pecs_destaque_ed, size=1, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+  scale_colour_manual(values = c('#44412B','#9F9864')) + 
+  gghighlight(label_key = nome_pl)
+```
+
+Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que as principais foram a PEC de Tornar o FUNDEB Permanente - **PEC 15/2015** e a **PLP 307/2002** que também trata sobre o FUNDEB.
+
+#### Temperatura das proposições do Tema Educação nas Semanas de Destaque
+
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Educação",
+                     semana = lubridate::ymd(c('2019-02-18')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_ed_1 <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+datatable(evolucao_semanal_temperatura_ed_1)
+```
+
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Educação",
+                     semana = lubridate::ymd(c('2019-05-06')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_ed_2 <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+datatable(evolucao_semanal_temperatura_ed_2)
+```
+
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Educação",
+                     semana = lubridate::ymd(c('2019-05-27')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_ed_3 <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+datatable(evolucao_semanal_temperatura_ed_3)
+```
+
+## Integridade e Transparência
+
+```{r, fig.width=12,fig.align='center'}
+# temperatura_temas %>% 
+#   filter(tema == "Integridade e Transparência") %>%
+#   ggplot(aes(x=semana, y=total_temp, label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp))) +
+#   geom_area(fill=cor_integridade_transparencia) +
+#   xlab("Tempo") + 
+#   ylab("Temperatura") +
+#   theme_minimal() +
+#   scale_y_sqrt() + 
+#   theme(strip.background = element_blank(), 
+#                  legend.position = "None") +
+#   geom_point(data=temp_semanas_destaque_it, colour="red", size=3) + 
+#   geom_text(data=temp_semanas_destaque_it, aes(x=semana, y=total_temp),vjust="inward",hjust=1.2)
+```
+
+```{r}
+# plot_evol_temp_an <- temperatura_temas %>%
+#   filter(tema=="Integridade e Transparência") %>%
+#   ggplot(aes(x=as.Date(semana), y=total_temp)) +
+#   geom_col(fill=cor_integridade_transparencia) +
+#   xlab("Tempo") + 
+#   ylab("Temperatura") + 
+#   scale_y_sqrt() +
+#   scale_x_date(date_labels = "%d-%m-%Y") +
+#   theme_minimal() + 
+#   theme(legend.title = element_blank())
+# 
+# ggplotly(plot_evol_temp_an)
+```
+
+Para o tema `Integridade e Transparência`, observamos um aumento mais expressivo na semana do dia 01/04/2019 e outro na semana do dia 24/06/2019. Abaixo mostramos mais de perto esse comportamento, numa linha do tempo mais resumida.
+
+```{r, fig.width=12,fig.height=4,fig.align='center'}
+semanas_destaque_it <- data.frame(tema = "Integridade e Transparência",
+                     semana = lubridate::ymd(c('2019-04-01', '2019-06-24')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+
+temp_semanas_destaque_it <- temperatura_temas %>%
+  inner_join(semanas_destaque_it)
+
+temp_pecs_destaque_it <- evolucao_semanal_temperatura %>%
+  filter(nome_pl %in% c("PL 1292/1995|PLS 163/1995","PL 1321/2019|PL 1321/2019","PL 7005/2013|PLS 129/2010")) %>%
+  mutate(nome_pl = stringr::str_sub(nome_pl,end=12))
+
+temperatura_temas %>% 
+  filter(tema == "Integridade e Transparência") %>%
+  ggplot(aes(x=as.Date(semana), y=total_temp)) +
+  geom_area(fill=cor_integridade_transparencia) +
+  xlab("Tempo") + 
+  ylab("Temperatura") +
+  theme_minimal() +
+  scale_y_sqrt() + 
+  scale_x_date(date_labels = "%d-%m-%Y") +
+  theme(strip.background = element_blank(), 
+                 legend.position = "None") +
+  geom_point(data=temp_semanas_destaque_it, colour="red", size=3) + 
+  geom_text(data=temp_semanas_destaque_it, aes(x=as.Date(semana), y=total_temp,
+                                               label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp)),
+            vjust="inward",hjust=1.2) +
+  geom_line(data=temp_pecs_destaque_it, size=1, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+  scale_colour_manual(values = c('#3B5160','#182127',"#5E819A")) + 
+  gghighlight(label_key = nome_pl)
+```
+
+Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que as principais foram a da Anistia Tributária para Partidos - **PL 1321/2019**, o PL das Compras Públicas (Nova Lei de Licitações)  - **PL 1292/1995 | PLS 163/1995** e o PL de Assinatura eletrônica em Leis de Iniciativa Popular - **PL 7005/2013 | PLS 129/2010**.
+
+#### Temperatura das proposições do Tema Integridade e Transparência nas Semanas de Destaque
+
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Integridade e Transparência",
+                     semana = lubridate::ymd(c('2019-04-01')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_it <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+datatable(evolucao_semanal_temperatura_it)
+```
+
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Integridade e Transparência",
+                     semana = lubridate::ymd(c('2019-06-24')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_it_2 <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+datatable(evolucao_semanal_temperatura_it_2)
+```
+
+## Meio Ambiente
+
+```{r, fig.width=12,fig.align='center'}
+# temperatura_temas %>% 
+#   filter(tema == "Meio Ambiente") %>%
+#   ggplot(aes(x=semana, y=total_temp, label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp))) +
+#   geom_area(fill=cor_meio_ambiente) +
+#   xlab("Tempo") + 
+#   ylab("Temperatura") +
+#   theme_minimal() +
+#   scale_y_sqrt() + 
+#   theme(strip.background = element_blank(), 
+#                  legend.position = "None") +
+#   geom_point(data=temp_semanas_destaque_ma, colour="red", size=3) + 
+#   geom_text(data=temp_semanas_destaque_ma, aes(x=semana, y=total_temp),vjust="inward",hjust=1.2)
+```
+
+```{r}
+# plot_evol_temp_an <- temperatura_temas %>%
+#   filter(tema=="Meio Ambiente") %>%
+#   ggplot(aes(x=as.Date(semana), y=total_temp)) +
+#   geom_col(fill=cor_meio_ambiente) +
+#   xlab("Tempo") + 
+#   ylab("Temperatura") + 
+#   scale_y_sqrt() +
+#   scale_x_date(date_labels = "%d-%m-%Y") +
+#   theme_minimal() + 
+#   theme(legend.title = element_blank())
+# 
+# ggplotly(plot_evol_temp_an)
+```
+
+Finalmente, observando a evolução histórica da temperatura do tema `Meio Ambiente`, percebemos três pico um na semana do dia 18/02/2019, outro na semana do dia 06/05/2019 e um na semana do dia 27/05/2019. Abaixo mostramos mais de perto esse comportamento, numa linha do tempo mais resumida.
+
+```{r, fig.width=12,fig.height=4,fig.align='center'}
+semanas_destaque_ma <- data.frame(tema = "Meio Ambiente",
+                     semana = lubridate::ymd(c('2019-02-18','2019-05-06','2019-05-27')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+
+temp_semanas_destaque_ma <- temperatura_temas %>%
+  inner_join(semanas_destaque_ma)
+
+temp_pecs_destaque_ma <- evolucao_semanal_temperatura %>%
+  filter(nome_pl %in% c("PL 3729/2004","PL 490/2007", "MPV 867/2018|MPV 867/2018", "MPV 868/2018|MPV 868/2018")) %>% 
+  mutate(nome_pl = stringr::str_sub(nome_pl,end=12))
+
+temperatura_temas %>% 
+  filter(tema == "Meio Ambiente") %>%
+  ggplot(aes(x=as.Date(semana), y=total_temp)) +
+  geom_area(fill=cor_meio_ambiente) +
+  xlab("Tempo") + 
+  ylab("Temperatura") +
+  theme_minimal() +
+  scale_y_sqrt() + 
+  scale_x_date(date_labels = "%d-%m-%Y") +
+  theme(strip.background = element_blank(), 
+                 legend.position = "None") +
+  geom_point(data=temp_semanas_destaque_ma, colour="red", size=3) + 
+  geom_text(data=temp_semanas_destaque_ma, aes(x=as.Date(semana), y=total_temp,
+                                               label=paste0("Semana: ",format(semana,"%d/%m/%y"),"\nTemp. Total: ",total_temp)),
+            vjust="inward",hjust=1.2) +
+  geom_line(data=temp_pecs_destaque_ma, size = 1, aes(x=as.Date(semana), y=temperatura_recente, color=nome_pl)) +
+  scale_colour_manual(values = c('#1B1419','#352732', '#4F3B4A', '#694E63')) + 
+  gghighlight(label_key = nome_pl)
+```
+
+Ao analisarmos os projetos de lei que mais contribuíram para o aumento da temperatura nesses picos observados, percebemos que as principais foram a Lei do Licenciamento Ambiental - **PL 3729/2004**, o Estatuto do Índio - **PL 490/2007**, além de duas Medidas Provisórias: a do Programa de Regularização Ambiental - **MPV 867/2018** e a que Altera o marco legal do Saneamento Básico - **MPV 868/2018**.
+
+#### Temperatura das proposições do Tema Meio Ambiente nas Semanas de Destaque
+
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Meio Ambiente",
+                     semana = lubridate::ymd(c('2019-02-18')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_ma <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+datatable(evolucao_semanal_temperatura_ma)
+```
+
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Meio Ambiente",
+                     semana = lubridate::ymd(c('2019-05-06')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_ma_2 <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(temperatura_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(temperatura_recente))
+
+datatable(evolucao_semanal_temperatura_ma_2)
+```
+
+```{r warning=FALSE, message=FALSE}
+semana <- data.frame(tema = "Meio Ambiente",
+                     semana = lubridate::ymd(c('2019-05-27')
+                                             , tz=lubridate::tz(temperatura_props_temas$semana[1])))
+evolucao_semanal_temperatura_ma_3 <- evolucao_semanal_temperatura %>%
+  inner_join(semana) %>%
+  filter(evolucao_temp_recente > 0) %>%
+  select(semana,nome_pl,apelido,temperatura_periodo,temperatura_recente,evolucao_temp_recente) %>%
+  arrange(desc(evolucao_temp_recente))
+
+datatable(evolucao_semanal_temperatura_ma_3)
+```
