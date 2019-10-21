@@ -16,7 +16,12 @@ get_args <- function() {
                           type="character",
                           default="../data/semanario/tabela_geral_ids_casa.csv",
                           help=.HELP,
-                          metavar="character")
+                          metavar="character"),
+    optparse::make_option(c("-n", "--num_semanas_passadas"),
+                          type="integer",
+                          default="2",
+                          help=.HELP,
+                          metavar="integer")
   );
 
   opt_parser <- optparse::OptionParser(option_list = option_list)
@@ -36,6 +41,7 @@ data_inicio <- "2019-09-30" #TODO transformar emm parâmetros
 data_fim <- "2019-10-04"
 temperaturas <- readr::read_csv("data/hists_temperatura.csv")
 leggo_ids <- readr::read_csv("data/leggo_ids.csv")
+num_semanas_passadas <- args$num_semanas_passadas
 input_path <- "data"
 
 semana_alvo <- lubridate::floor_date(as.Date(data_inicio), unit = "weeks", week_start = 1)
@@ -91,7 +97,8 @@ build_semanario <- function(proposicoes, temperatura_pls_filtradas, pressao_pls_
     pressoes = pressao_pls_filtradas,
     atores = atores_df,
     date_init = data_inicio,
-    date_end = data_fim
+    date_end = data_fim,
+    num_semanas_passadas = num_semanas_passadas
   ))
 }
 
