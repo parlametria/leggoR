@@ -143,7 +143,7 @@ selectizeInput("descricao_lei", "Descrição da Lei",
             selected = choices_ids[1])
 br()
 
-forceNetworkOutput("grafo")
+forceNetworkOutput("grafo", width = "100%", height = "900px")
 ```
 
 Ao explorar algumas redes acima, pode-se observar que para algumas proposições há dificuldade em concluir quais são os partidos predominantes. Pensando nisso, veremos a distribuição partidária deste grupo no histograma abaixo:
