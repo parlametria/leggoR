@@ -48,7 +48,6 @@ library(hrbrthemes)
 library(grid)
 library(gridExtra)
 library(tibble)
-install.packages("ggchicklet", repos = "https://cinc.rud.is")
 library(ggchicklet)
 ```
 
@@ -103,10 +102,6 @@ atuacao_temas <- atores_pls %>%
 atuacao_bancadas <- atores_pls %>% 
   dplyr::group_by(casa, bancada, nome_formal, sigla_tipo) %>% 
   dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
-
-qntd_pec6 <-
-  atores_pls %>% 
-  filter(nome_formal == 'PEC 6/2019')
 ```
 
 ```{r}
@@ -160,7 +155,7 @@ pauta <- pauta %>%
   mutate(max_pressao = if_else(max_pressao == 0, 2, max_pressao))
 ```
 
-##Pressão e Temperatura
+## Pressão e Temperatura
 
 ```{r, fig.height=7, fig.width=10}
 p <- pauta %>% 
@@ -208,7 +203,7 @@ variacao_press <- abs(variacao_press)
 
 Foi observad`r if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}` `r variacao_temp`% na temperatura e `r if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}` `r if(variacao_press != 0){variacao_press}``r if(variacao_press != 0){"%"}` na pressão.
 
-##Atores da semana
+## Atores da semana
 
 ```{r, fig.height=6, fig.width=10}
 p <- atuacao_temas %>% ggplot(aes(x = reorder(tema, qtd_de_documentos), y = qtd_de_documentos, group = bancada, fill = bancada)) + 

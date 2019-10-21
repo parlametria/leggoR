@@ -3,33 +3,43 @@ library(magrittr)
 
 .HELP <- "
 Usage:
-Rscript build_semanario.R -p <pls_ids_filepath>
+Rscript build_semanario.R
 "
 
 #' @title Get arguments from command line option parsing
 #' @description Get arguments from command line option parsing
-get_args <- function() {
-  args = commandArgs(trailingOnly=TRUE)
+# get_args <- function() {
+#   args = commandArgs(trailingOnly=TRUE)
+# 
+#   option_list = list(
+#     optparse::make_option(c("-p", "--pls_ids_filepath"),
+#                           type="character",
+#                           default="../data/semanario/tabela_geral_ids_casa.csv",
+#                           help=.HELP,
+#                           metavar="character")
+#   );
+# 
+#   opt_parser <- optparse::OptionParser(option_list = option_list)
+#   opt <- optparse::parse_args(opt_parser)
+#   return(opt);
+# }
 
-  option_list = list(
-    optparse::make_option(c("-p", "--pls_ids_filepath"),
-                          type="character",
-                          default="../data/semanario/tabela_geral_ids_casa.csv",
-                          help=.HELP,
-                          metavar="character")
-  );
-
-  opt_parser <- optparse::OptionParser(option_list = option_list)
-  opt <- optparse::parse_args(opt_parser)
-  return(opt);
+is_package_installed <- function(pkg_name, rep_url)
+{
+  if (!require(pkg_name,character.only = TRUE))
+  {
+    install.packages(pkg_name,dep=TRUE, repos = rep_url)
+    if(!require(pkg_name,character.only = TRUE)) stop("Package not found")
+  }
 }
 
 ## Process args
-args <- get_args()
-print(args)
+#args <- get_args()
+#print(args)
 
+devtools::install()
 
-pls_ids <- readr::read_csv(args$pls_ids_filepath)
+is_package_installed(pkg_name = "ggchicklet", rep_url = "https://cinc.rud.is")
 
 proposicoes <- readr::read_csv("data/proposicoes.csv")
 data_inicio <- "2019-09-30" #TODO transformar emm parâmetros
@@ -39,7 +49,7 @@ leggo_ids <- readr::read_csv("data/leggo_ids.csv")
 input_path <- "data"
 
 semana_alvo <- lubridate::floor_date(as.Date(data_inicio), unit = "weeks", week_start = 1)
-semana_anterior <- lubridate::floor_date(semana_alvo - 1, unit = "weeks", week_start = 1)
+semana_anterior <- semana_alvo - lubridate::weeks(x=1)
 
 
 #Calcula variacao das temperaturas
@@ -59,7 +69,8 @@ pls_de_interesse <- variacoes_temperatura %>%
 
 #Temperaturas filtradas
 temperatura_pls_filtradas <- temperaturas %>%
-  dplyr::filter(temperaturas$id_leggo %in% pls_de_interesse$id_leggo)
+  dplyr::filter(id_leggo %in% pls_de_interesse$id_leggo) %>% 
+  dplyr::filter(periodo <= semana_alvo)
 
 #Pressões filtradas
 pressao_pls_filtradas <- purrr::map_df(pls_de_interesse$id_ext, ~ readr::read_csv(paste0("../leggo-backend/data/pops/pop_", .x, ".csv")))
@@ -82,17 +93,28 @@ atores_df <- dplyr::bind_rows(atores_camara, atores_senado)
 
 #' @title Exporta dados de Proposições
 #' @description Captura e escreve todos os dados referentes a proposiçoes
-#' @param pls_ids_filepath Tabela com os ids das proposições
+#' @param output_filepath
+#' @param proposicoes
+#' @param temperatura_pls_filtradas
+#' @param pressao_pls_filtradas
+#' @param atores_df
+#' @param data_inicio
+#' @param data_fim
 #' @export
-build_semanario <- function(proposicoes, temperatura_pls_filtradas, pressao_pls_filtradas, atores_df, data_inicio, data_fim) {
-  rmarkdown::render("reports/semanario/semanario_16-09-2019.Rmd", params = list(
-    proposicoes = proposicoes,
-    temperaturas = temperatura_pls_filtradas,
-    pressoes = pressao_pls_filtradas,
-    atores = atores_df,
-    date_init = data_inicio,
-    date_end = data_fim
-  ))
+build_semanario <- function(template_filepath,output_filepath, proposicoes, temperatura_pls_filtradas, pressao_pls_filtradas, atores_df, data_inicio, data_fim) {
+  rmarkdown::render(input = template_filepath, 
+                    output_file = output_filepath,
+                    params = list(
+                              proposicoes = proposicoes,
+                              temperaturas = temperatura_pls_filtradas,
+                              pressoes = pressao_pls_filtradas,
+                              atores = atores_df,
+                              date_init = data_inicio,
+                              date_end = data_fim
+                             ))
 }
 
-build_semanario(proposicoes, temperatura_pls_filtradas, pressao_pls_filtradas, atores_df, data_inicio, data_fim)
+template_filepath <- "reports/semanario/semanario_template.Rmd"
+report_filepath <- paste0("semanario_",semana_alvo,".html")
+
+build_semanario(template_filepath, report_filepath, proposicoes, temperatura_pls_filtradas, pressao_pls_filtradas, atores_df, data_inicio, data_fim)
