@@ -66,32 +66,60 @@ pls <- params$proposicoes
 atores <- params$atores
 ```
 
+```{r}
+#Funções
+
+build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl) {
+  p <- temp_pressao_pl %>% 
+    ggplot(aes(x = periodo, y = sqrt(temperatura))) +
+    geom_line(color="#DDDDDD") +
+    geom_point(color=factor(ifelse(temp_pressao_pl$periodo==data_inicio,"#EF476F","#DDDDDD")),
+             size = ifelse(temp_pressao_pl$periodo==data_inicio,3,1),
+             width=0.5) +
+    geom_col(aes(x = periodo, y = -sqrt(pressao), width = 4), fill=factor(ifelse(temp_pressao_pl$periodo==data_inicio,"#FFD166","#DDDDDD")), show.legend = FALSE ) +
+    labs(x = "Semana", 
+         y = "",
+         title = "Temperatura e pressão ao longo das semanas",
+         subtitle = apelido_pl) +
+    scale_x_date(date_labels = "%d de %b", breaks = datas) +
+    theme_ipsum_rc(grid = FALSE) +
+    theme(axis.text.y = element_blank(), 
+          axis.text.x = element_text(angle = 0, vjust = 0.5)) +
+    theme(axis.text.x = element_text(color = "gray60", size = 8))
+  
+  grob <- grobTree(textGrob("Temperatura", x=0.1,  y=0.95, hjust=0,
+    gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+  
+  grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
+    gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+  
+  p  + annotation_custom(grob) + annotation_custom(grob2)  
+}
+
+
+build_temp_pressao_plot(temp_pressao_periodo, "PLP 38/2019 - Pacote Moro Anticorrupção")
+ 
+```
+
 
 ```{r}
 #Base de dados de atuações e filtros por data
-atores_geral <- atores %>% 
-  mutate(partido = if_else(is.na(partido), "-", partido), 
-         uf = if_else(is.na(uf), "-", uf),
-         nome_completo = paste0(nome_autor, " (",partido,"/",uf,")"))
 
-props <- proposicoes %>% 
-  select(id_ext, sigla_tipo, numero, apelido, data_apresentacao, tema) %>% 
-  mutate(ano = format(as.Date(data_apresentacao), "%Y"), id_ext = as.numeric(id_ext))
-
-
-atores_apelidos <-
-  atores_geral %>% 
-  dplyr::left_join(props, by = 'id_ext') %>% 
-  mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano))) 
+pls_nome_formal <- pls %>% 
+  mutate(ano = format(as.Date(data_apresentacao), "%Y")) %>% 
+  mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano)))
 
 oposicao <- c("PT", "PSOL", "PSB", "PCdoP", "PDT", "REDE")
 
-atores_apelidos <-
-  atores_apelidos %>% 
+atores_geral <- atores %>% 
+  mutate(partido = if_else(is.na(partido), "-", partido), 
+         uf = if_else(is.na(uf), "-", uf),
+         nome_completo = paste0(nome_autor, " (",partido,"/",uf,")")) %>% 
+  left_join(pls_nome_formal %>% select(id_leggo, id_ext, casa, nome_formal), by=c("id_leggo","id_ext","casa")) %>% 
   mutate(bancada = if_else(partido %in% oposicao, "Oposição", "Governo"))
 
-atores_pls <- atores_apelidos %>% 
-  dplyr::group_by(id_ext, nome_autor, casa, id_autor, tipo_autor, partido, nome_completo,
+atores_pls <- atores_geral %>% 
+  dplyr::group_by(id_leggo, id_ext, casa, nome_autor, casa, id_autor, tipo_autor, partido, nome_completo,
            uf, tipo_generico, sigla_local, is_important, bancada, nome_formal, sigla_tipo, tema) %>% 
   dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
 
@@ -105,94 +133,44 @@ atuacao_bancadas <- atores_pls %>%
 ```
 
 ```{r}
-pauta_prop <- function(temperatura_df, pressao_df) {
+join_temp_pressao <- function(temperatura_df, pressao_df) {
   temperatura_ <- temperatura_df %>% 
-  select(-temperatura_periodo)
+    mutate(periodo = as.Date(periodo))
 
-  temperatura_$periodo <- as.Date(temperatura_$periodo)
-
-  pressao_ <- pressao_df %>% 
-     dplyr::select(id_ext,
-          periodo = date,
-          casa,
-          pressao = maximo_geral) 
-
-  pauta <- dplyr::inner_join(temperatura_, pressao_, by = "periodo")
-  return(pauta)
+  temp_pressao <- dplyr::inner_join(temperatura_, pressao_df, by =c("id_leggo","periodo")) %>% 
+    dplyr::select(id_leggo, periodo, temperatura, pressao) %>% 
+    mutate(pressao = if_else(pressao == 0, 2, pressao))
+  return(temp_pressao)
 }
 ```
 
 
 ```{r}
-pauta<- pauta_prop(temperatura, pressao)
+temp_pressao_periodo <- join_temp_pressao(temperatura, pressao)
 ```
-
-```{r}
-sumariza_prop <- function(pauta_df) {
-  pauta <- pauta_df %>% 
-  dplyr::group_by(periodo) %>% 
-  dplyr::summarise(media_temperatura = mean(temperatura_recente),
-            max_pressao = max(pressao)) 
-  
-  return(pauta)
-}
-```
-
-
-```{r}
-pauta <- sumariza_prop(pauta)
-
-```
-
 
 ```{r}
 datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02", "2019-10-05"))
 ```
 
-
-```{r}
-pauta <- pauta %>% 
-  mutate(max_pressao = if_else(max_pressao == 0, 2, max_pressao))
-```
-
 ## Pressão e Temperatura
 
 ```{r, fig.height=7, fig.width=10}
-p <- pauta %>% 
-  ggplot(aes(x = periodo, y = sqrt(media_temperatura))) +
-  geom_line(color="#DDDDDD") +
-  geom_point(color=factor(ifelse(pauta$periodo==data_inicio,"#EF476F","#DDDDDD")),
-           size = ifelse(pauta$periodo==data_inicio,3,1),
-           width=0.5) +
-  geom_col(aes(x = periodo, y = -sqrt(max_pressao), width = 4), fill=factor(ifelse(pauta$periodo==data_inicio,"#FFD166","#DDDDDD")), show.legend = FALSE ) +
-  labs(x = "Semana", 
-       y = "",
-       title = "Temperatura e pressão ao longo das semanas",
-       subtitle = "PEC 6/2019 - Nova previdência") +
-  scale_x_date(date_labels = "%d de %b", breaks = datas) +
-  theme_ipsum_rc(grid = FALSE) +
-  theme(axis.text.y = element_blank(), 
-        axis.text.x = element_text(angle = 0, vjust = 0.5)) +
-  theme(axis.text.x = element_text(color = "gray60", size = 8))
-  
-grob <- grobTree(textGrob("Temperatura", x=0.1,  y=0.95, hjust=0,
- gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+pl_destaque <- pls_nome_formal %>% 
+  filter(id_leggo %in% temp_pressao_periodo$id_leggo)
 
-grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
- gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
-
-p  + annotation_custom(grob) + annotation_custom(grob2) 
+build_temp_pressao_plot(temp_pressao_periodo, paste(pl_destaque$nome_formal,pl_destaque$apelido,sep=" - "))
 
 
 ```
 
 ```{r}
 est_prev <- tail(pauta, 2)
-temp_atual <- est_prev$media_temperatura[length(est_prev$media_temperatura)]
-ultima_temp <- est_prev$media_temperatura[length(est_prev$media_temperatura) - 1]
+temp_atual <- est_prev$temperatura[length(est_prev$temperatura)]
+ultima_temp <- est_prev$temperatura[length(est_prev$temperatura) - 1]
 variacao_temp <- round(((temp_atual - ultima_temp) / ultima_temp) * 100, digits = 2)
-press_atual <- est_prev$max_pressao[length(est_prev$max_pressao)]
-ultima_press <- est_prev$max_pressao[length(est_prev$max_pressao) - 1]
+press_atual <- est_prev$pressao[length(est_prev$pressao)]
+ultima_press <- est_prev$pressao[length(est_prev$pressao) - 1]
 variacao_press <- press_atual - ultima_press
 cresceu_temp <- variacao_temp > 0
 cresceu_press <- variacao_press > 0

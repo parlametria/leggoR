@@ -65,15 +65,23 @@ variacoes_temperatura <- temperaturas %>%
 #TODO tranformar em função, parametrizar valor mínimo do z-score
 pls_de_interesse <- variacoes_temperatura %>%
   dplyr::filter(z_score > 1.5) %>%
-  dplyr::left_join(leggo_ids)
+  dplyr::left_join(leggo_ids, by="id_leggo")
 
 #Temperaturas filtradas
 temperatura_pls_filtradas <- temperaturas %>%
   dplyr::filter(id_leggo %in% pls_de_interesse$id_leggo) %>% 
-  dplyr::filter(periodo <= semana_alvo)
+  dplyr::filter(periodo <= semana_alvo) %>% 
+  dplyr::select(-temperatura_periodo) %>% 
+  dplyr::rename(temperatura = temperatura_recente)
 
 #Pressões filtradas
-pressao_pls_filtradas <- purrr::map_df(pls_de_interesse$id_ext, ~ readr::read_csv(paste0("../leggo-backend/data/pops/pop_", .x, ".csv")))
+pressao_pls_filtradas <- purrr::map_df(pls_de_interesse$id_ext, ~ readr::read_csv(paste0("../leggo-backend/data/pops/pop_", .x, ".csv"))) %>%
+  dplyr::select(-dplyr::starts_with("X")) %>% 
+  dplyr::left_join(leggo_ids, by="id_ext") %>% 
+  dplyr::group_by(id_leggo, id_ext, casa, date) %>% 
+  dplyr::summarise(pressao = max(maximo_geral)) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::select(id_leggo, periodo = date, pressao)
 
 #Documentos e autores
 camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv"))
@@ -88,8 +96,17 @@ atores_camara <-
   agoradigital::create_tabela_atores_camara(camara_docs, camara_autores, data_inicio, data_fim)
 atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores, data_inicio, data_fim)
 
-atores_df <- dplyr::bind_rows(atores_camara, atores_senado)
+atores_df <- dplyr::bind_rows(atores_camara, atores_senado) %>% 
+  dplyr::left_join(leggo_ids, by="id_ext")
 
+
+leggo_ids_selecionados <- dplyr::bind_rows(dplyr::select(temperatura_pls_filtradas, id_leggo),
+                                     dplyr::select(pressao_pls_filtradas, id_leggo),
+                                     dplyr::select(atores_df, id_leggo)) %>% 
+  dplyr::distinct()
+
+proposicoes_filtradas <- proposicoes %>% dplyr::filter(id_leggo %in% leggo_ids_selecionados$id_leggo)
+  
 
 #' @title Exporta dados de Proposições
 #' @description Captura e escreve todos os dados referentes a proposiçoes
@@ -117,4 +134,4 @@ build_semanario <- function(template_filepath,output_filepath, proposicoes, temp
 template_filepath <- "reports/semanario/semanario_template.Rmd"
 report_filepath <- paste0("semanario_",semana_alvo,".html")
 
-build_semanario(template_filepath, report_filepath, proposicoes, temperatura_pls_filtradas, pressao_pls_filtradas, atores_df, data_inicio, data_fim)
+build_semanario(template_filepath, report_filepath, proposicoes_filtradas, temperatura_pls_filtradas, pressao_pls_filtradas, atores_df, data_inicio, data_fim)
