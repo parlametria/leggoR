@@ -69,14 +69,14 @@ atores <- params$atores
 ```{r}
 #Funções
 
-build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl) {
+build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio) {
   p <- temp_pressao_pl %>% 
     ggplot(aes(x = periodo, y = sqrt(temperatura))) +
     geom_line(color="#DDDDDD") +
-    geom_point(color=factor(ifelse(temp_pressao_pl$periodo==data_inicio,"#EF476F","#DDDDDD")),
-             size = ifelse(temp_pressao_pl$periodo==data_inicio,3,1),
+    geom_point(color=factor(ifelse(temp_pressao_pl$periodo==dt_inicio,"#EF476F","#DDDDDD")),
+             size = ifelse(temp_pressao_pl$periodo==dt_inicio,3,1),
              width=0.5) +
-    geom_col(aes(x = periodo, y = -sqrt(pressao), width = 4), fill=factor(ifelse(temp_pressao_pl$periodo==data_inicio,"#FFD166","#DDDDDD")), show.legend = FALSE ) +
+    geom_col(aes(x = periodo, y = -sqrt(pressao), width = 4), fill=factor(ifelse(temp_pressao_pl$periodo==dt_inicio,"#FFD166","#DDDDDD")), show.legend = FALSE ) +
     labs(x = "Semana", 
          y = "",
          title = "Temperatura e pressão ao longo das semanas",
@@ -94,11 +94,8 @@ build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl) {
     gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
   
   p  + annotation_custom(grob) + annotation_custom(grob2)  
+  
 }
-
-
-build_temp_pressao_plot(temp_pressao_periodo, "PLP 38/2019 - Pacote Moro Anticorrupção")
- 
 ```
 
 
@@ -139,7 +136,7 @@ join_temp_pressao <- function(temperatura_df, pressao_df) {
 
   temp_pressao <- dplyr::inner_join(temperatura_, pressao_df, by =c("id_leggo","periodo")) %>% 
     dplyr::select(id_leggo, periodo, temperatura, pressao) %>% 
-    mutate(pressao = if_else(pressao == 0, 2, pressao))
+    mutate(pressao = if_else(pressao == 0, 0.1, pressao))
   return(temp_pressao)
 }
 ```
@@ -150,6 +147,8 @@ temp_pressao_periodo <- join_temp_pressao(temperatura, pressao)
 ```
 
 ```{r}
+time_diff <- lubridate::interval( head(temp_pressao_periodo, 1)$periodo, tail(temp_pressao_periodo, 1)$periodo) / days()
+time_breaks <- time_diff/5 
 datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02", "2019-10-05"))
 ```
 
@@ -159,7 +158,7 @@ datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02", "2019
 pl_destaque <- pls_nome_formal %>% 
   filter(id_leggo %in% temp_pressao_periodo$id_leggo)
 
-build_temp_pressao_plot(temp_pressao_periodo, paste(pl_destaque$nome_formal,pl_destaque$apelido,sep=" - "))
+build_temp_pressao_plot(temp_pressao_periodo, paste(pl_destaque$nome_formal,pl_destaque$apelido,sep=" - "), data_inicio)
 
 
 ```
