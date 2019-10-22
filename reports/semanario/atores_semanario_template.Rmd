@@ -1,0 +1,41 @@
+#### {{curr_prop_destaque}}
+
+```{r, fig.height=8, fig.width=10}
+p <- atores_prop_destaque %>% ggplot(aes(x = reorder(nome_completo, qtd_de_documentos), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
+    geom_chicklet(width = 0.8) +
+     theme(legend.position = "bottom") +
+     labs(
+      x = NULL, y = "Quantidade de documentos", fill = NULL,
+      title = paste0("Atuações dos parlamentares por proposição - ",curr_prop_destaque),
+      subtitle = "Documentos autorados pelos parlamentares \nna última semana",
+      caption = ""
+     ) +
+     scale_fill_manual(
+     name = NULL,
+     values = c(
+        'Emenda' =  '#80B1D3',
+        'Parecer'= '#FB9A99',
+        'Voto em Separado' ='#855D7C',
+        'Requerimento' = '#B2DF8A',
+        'Proposição Apensada' ='#F9EE9D',
+        'Outros' = '#587B7A'
+     )) +
+     coord_flip() +
+     theme(aspect.ratio = 0.9)
+p <- p + theme_ipsum_rc(grid=FALSE)
+p <- p + theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) +theme(axis.text.x = element_text(color = "gray60", size = 10)) +
+  theme(legend.position = "top")
+p
+
+tipo_generico_destaque <-
+  atores_apelidos  %>% 
+  group_by(tipo_generico) %>% 
+  summarise(total = sum(qtd_de_documentos)) %>% 
+  arrange(total) %>% 
+  tail(1) %>% 
+  purrr::pluck("tipo_generico")
+
+```
+
+O documento que os parlamentares mais apresentaram foi: `r tipo_generico_destaque`.
+

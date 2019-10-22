@@ -249,6 +249,11 @@ qtd_atuacao <-
   group_by(nome_formal) %>% 
   summarise(total = sum(qtd_de_documentos)) 
 
+props_destaque <-
+  qtd_atuacao %>% 
+  arrange(total) %>% 
+  filter(total >= 5)
+
 prop_destaque <-
   qtd_atuacao %>% 
   arrange(total) %>% 
@@ -266,12 +271,12 @@ A `r prop_destaque` teve maior número de atuações, com apresentação de `r t
 Ao clicar na proposição `r prop_destaque` temos mais detalhes sobre os atores e os respectivos documentos apresentados.
 
 ```{r, fig.height=8, fig.width=10}
-p <- atores_apelidos %>% ggplot(aes(x = reorder(nome_completo, qtd_de_documentos), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
+p <- atores_pls %>% ggplot(aes(x = reorder(nome_completo, qtd_de_documentos), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
     geom_chicklet(width = 0.8) +
      theme(legend.position = "bottom") +
      labs(
       x = NULL, y = "Quantidade de documentos", fill = NULL,
-      title = "Atuações dos parlamentares por proposição",
+      title = "Atuações dos parlamentares geral",
       subtitle = "Documentos autorados pelos parlamentares \nna última semana",
       caption = ""
      ) +
@@ -304,3 +309,16 @@ tipo_generico_destaque <-
 
 O documento que os parlamentares mais apresentaram foi: `r tipo_generico_destaque`.
 
+```{r atores_prop_destaque, include=FALSE}
+out = NULL
+for (i in nrow(props_destaque)) {
+  print(paste("Rodando iteração ",i))
+  curr_prop_destaque <- (props_destaque %>% slice(i))$nome_formal
+  atores_prop_destaque <- atores_pls %>% 
+    filter(nome_formal %in% curr_prop_destaque)
+  
+  value.to.match <- atores_prop_destaque
+  out = c(out, knitr::knit_expand('atores_semanario_template.Rmd'))
+}
+```
+`r paste(knitr::knit(text = out), collapse = '\n')`
