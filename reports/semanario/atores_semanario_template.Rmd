@@ -1,6 +1,8 @@
-#### {{curr_prop_destaque}}
+#### `r curr_prop_nome_formal_completo`
 
 ```{r, fig.height=8, fig.width=10}
+#curr_prop_destaque <- '{{curr_prop_destaque}}'
+#value.to.match <- '{{value.to.match}}'
 p <- atores_prop_destaque %>% ggplot(aes(x = reorder(nome_completo, qtd_de_documentos), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
     geom_chicklet(width = 0.8) +
      theme(legend.position = "bottom") +
@@ -28,7 +30,7 @@ p <- p + theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) +theme(axis.t
 p
 
 tipo_generico_destaque <-
-  atores_apelidos  %>% 
+  atores_prop_destaque  %>% 
   group_by(tipo_generico) %>% 
   summarise(total = sum(qtd_de_documentos)) %>% 
   arrange(total) %>% 
@@ -37,5 +39,5 @@ tipo_generico_destaque <-
 
 ```
 
-O documento que os parlamentares mais apresentaram foi: `r tipo_generico_destaque`.
+O documento que os parlamentares mais apresentaram na `r curr_prop_destaque` foi: `r tipo_generico_destaque`.
 

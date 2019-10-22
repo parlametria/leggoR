@@ -149,7 +149,8 @@ Foi observad`r if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição 
 #Base de dados de atuações e filtros por data
 pls_nome_formal <- pls %>% 
   mutate(ano = format(as.Date(data_apresentacao), "%Y")) %>% 
-  mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano)))
+  mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano))) %>% 
+  mutate(nome_formal_completo = paste0(nome_formal, ' (', tools::toTitleCase(ifelse(casa == "camara","Câmara",casa)), ')'))
 
 oposicao <- c("PT", "PSOL", "PSB", "PCdoP", "PDT", "REDE")
 
@@ -157,12 +158,12 @@ atores_geral <- atores %>%
   mutate(partido = if_else(is.na(partido), "-", partido), 
          uf = if_else(is.na(uf), "-", uf),
          nome_completo = paste0(nome_autor, " (",partido,"/",uf,")")) %>% 
-  left_join(pls_nome_formal %>% select(id_leggo, id_ext, casa, nome_formal, sigla_tipo), by=c("id_leggo","id_ext","casa")) %>% 
+  left_join(pls_nome_formal %>% select(id_leggo, id_ext, casa, nome_formal, nome_formal_completo, sigla_tipo), by=c("id_leggo","id_ext","casa")) %>% 
   mutate(bancada = if_else(partido %in% oposicao, "Oposição", "Governo"))
 
 atores_pls <- atores_geral %>% 
   dplyr::group_by(id_leggo, id_ext, casa, nome_autor, id_autor, tipo_autor, partido, nome_completo,
-           uf, tipo_generico, sigla_local, is_important, bancada, nome_formal, sigla_tipo, tema) %>% 
+           uf, tipo_generico, sigla_local, is_important, bancada, nome_formal, nome_formal_completo, sigla_tipo, tema) %>% 
   dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
 
 atuacao_temas <- atores_pls %>% 
@@ -170,7 +171,7 @@ atuacao_temas <- atores_pls %>%
   dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
 
 atuacao_bancadas <- atores_pls %>% 
-  dplyr::group_by(casa, bancada, nome_formal, sigla_tipo) %>% 
+  dplyr::group_by(casa, bancada, nome_formal, nome_formal_completo, sigla_tipo) %>% 
   dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
 ```
 
@@ -246,13 +247,14 @@ p
 
 qtd_atuacao <-
   atuacao_bancadas %>% 
-  group_by(nome_formal) %>% 
+  group_by(nome_formal, nome_formal_completo) %>% 
   summarise(total = sum(qtd_de_documentos)) 
 
 props_destaque <-
   qtd_atuacao %>% 
   arrange(total) %>% 
-  filter(total >= 5)
+  filter(total >= 5) %>% 
+  ungroup()
 
 prop_destaque <-
   qtd_atuacao %>% 
@@ -276,7 +278,7 @@ p <- atores_pls %>% ggplot(aes(x = reorder(nome_completo, qtd_de_documentos), y 
      theme(legend.position = "bottom") +
      labs(
       x = NULL, y = "Quantidade de documentos", fill = NULL,
-      title = "Atuações dos parlamentares geral",
+      title = "Atuações dos parlamentares - Geral",
       subtitle = "Documentos autorados pelos parlamentares \nna última semana",
       caption = ""
      ) +
@@ -311,14 +313,15 @@ O documento que os parlamentares mais apresentaram foi: `r tipo_generico_destaqu
 
 ```{r atores_prop_destaque, include=FALSE}
 out = NULL
-for (i in nrow(props_destaque)) {
+for (i in 1:nrow(props_destaque)) {
   print(paste("Rodando iteração ",i))
+  curr_prop_nome_formal_completo <- (props_destaque %>%  slice(i))$nome_formal_completo
   curr_prop_destaque <- (props_destaque %>% slice(i))$nome_formal
   atores_prop_destaque <- atores_pls %>% 
     filter(nome_formal %in% curr_prop_destaque)
   
-  value.to.match <- atores_prop_destaque
-  out = c(out, knitr::knit_expand('atores_semanario_template.Rmd'))
+  out = c(out, knitr::knit_child('atores_semanario_template.Rmd'))
+  #out = c(out, knitr::knit_expand('atores_semanario_template.Rmd', value.to.match = atores_prop_destaque))
 }
 ```
 `r paste(knitr::knit(text = out), collapse = '\n')`
