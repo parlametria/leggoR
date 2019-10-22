@@ -69,7 +69,15 @@ atores <- params$atores
 ```{r}
 #Funções
 
+define_date_breaks <- function(timedata_df) {
+  time_diff <- lubridate::interval( head(timedata_df, 1)$periodo, tail(timedata_df, 1)$periodo) / days()
+  time_breaks <- as.integer(abs(time_diff/5))
+  datas <- seq(ymd(head(timedata_df, 1)$periodo),ymd(tail(timedata_df, 1)$periodo), by = paste(time_breaks,"days"))  
+}
+
 build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio) {
+  datas <- define_date_breaks(temp_pressao_pl)
+  
   p <- temp_pressao_pl %>% 
     ggplot(aes(x = periodo, y = sqrt(temperatura))) +
     geom_line(color="#DDDDDD") +
@@ -96,40 +104,7 @@ build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio) {
   p  + annotation_custom(grob) + annotation_custom(grob2)  
   
 }
-```
 
-
-```{r}
-#Base de dados de atuações e filtros por data
-
-pls_nome_formal <- pls %>% 
-  mutate(ano = format(as.Date(data_apresentacao), "%Y")) %>% 
-  mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano)))
-
-oposicao <- c("PT", "PSOL", "PSB", "PCdoP", "PDT", "REDE")
-
-atores_geral <- atores %>% 
-  mutate(partido = if_else(is.na(partido), "-", partido), 
-         uf = if_else(is.na(uf), "-", uf),
-         nome_completo = paste0(nome_autor, " (",partido,"/",uf,")")) %>% 
-  left_join(pls_nome_formal %>% select(id_leggo, id_ext, casa, nome_formal), by=c("id_leggo","id_ext","casa")) %>% 
-  mutate(bancada = if_else(partido %in% oposicao, "Oposição", "Governo"))
-
-atores_pls <- atores_geral %>% 
-  dplyr::group_by(id_leggo, id_ext, casa, nome_autor, casa, id_autor, tipo_autor, partido, nome_completo,
-           uf, tipo_generico, sigla_local, is_important, bancada, nome_formal, sigla_tipo, tema) %>% 
-  dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
-
-atuacao_temas <- atores_pls %>% 
-  dplyr::group_by(bancada, tema) %>% 
-  dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
-
-atuacao_bancadas <- atores_pls %>% 
-  dplyr::group_by(casa, bancada, nome_formal, sigla_tipo) %>% 
-  dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
-```
-
-```{r}
 join_temp_pressao <- function(temperatura_df, pressao_df) {
   temperatura_ <- temperatura_df %>% 
     mutate(periodo = as.Date(periodo))
@@ -141,30 +116,18 @@ join_temp_pressao <- function(temperatura_df, pressao_df) {
 }
 ```
 
-
-```{r}
-temp_pressao_periodo <- join_temp_pressao(temperatura, pressao)
-```
-
-```{r}
-time_diff <- lubridate::interval( head(temp_pressao_periodo, 1)$periodo, tail(temp_pressao_periodo, 1)$periodo) / days()
-time_breaks <- time_diff/5 
-datas <- as.Date(c("2019-03-04", "2019-05-06", "2019-07-01", "2019-09-02", "2019-10-05"))
-```
-
 ## Pressão e Temperatura
 
 ```{r, fig.height=7, fig.width=10}
+temp_pressao_periodo <- join_temp_pressao(temperatura, pressao)
 pl_destaque <- pls_nome_formal %>% 
   filter(id_leggo %in% temp_pressao_periodo$id_leggo)
 
 build_temp_pressao_plot(temp_pressao_periodo, paste(pl_destaque$nome_formal,pl_destaque$apelido,sep=" - "), data_inicio)
-
-
 ```
 
 ```{r}
-est_prev <- tail(pauta, 2)
+est_prev <- tail(temp_pressao_periodo, 2)
 temp_atual <- est_prev$temperatura[length(est_prev$temperatura)]
 ultima_temp <- est_prev$temperatura[length(est_prev$temperatura) - 1]
 variacao_temp <- round(((temp_atual - ultima_temp) / ultima_temp) * 100, digits = 2)
@@ -181,6 +144,35 @@ variacao_press <- abs(variacao_press)
 Foi observad`r if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}` `r variacao_temp`% na temperatura e `r if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}` `r if(variacao_press != 0){variacao_press}``r if(variacao_press != 0){"%"}` na pressão.
 
 ## Atores da semana
+
+```{r}
+#Base de dados de atuações e filtros por data
+pls_nome_formal <- pls %>% 
+  mutate(ano = format(as.Date(data_apresentacao), "%Y")) %>% 
+  mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano)))
+
+oposicao <- c("PT", "PSOL", "PSB", "PCdoP", "PDT", "REDE")
+
+atores_geral <- atores %>% 
+  mutate(partido = if_else(is.na(partido), "-", partido), 
+         uf = if_else(is.na(uf), "-", uf),
+         nome_completo = paste0(nome_autor, " (",partido,"/",uf,")")) %>% 
+  left_join(pls_nome_formal %>% select(id_leggo, id_ext, casa, nome_formal, sigla_tipo), by=c("id_leggo","id_ext","casa")) %>% 
+  mutate(bancada = if_else(partido %in% oposicao, "Oposição", "Governo"))
+
+atores_pls <- atores_geral %>% 
+  dplyr::group_by(id_leggo, id_ext, casa, nome_autor, id_autor, tipo_autor, partido, nome_completo,
+           uf, tipo_generico, sigla_local, is_important, bancada, nome_formal, sigla_tipo, tema) %>% 
+  dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
+
+atuacao_temas <- atores_pls %>% 
+  dplyr::group_by(bancada, tema) %>% 
+  dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
+
+atuacao_bancadas <- atores_pls %>% 
+  dplyr::group_by(casa, bancada, nome_formal, sigla_tipo) %>% 
+  dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
+```
 
 ```{r, fig.height=6, fig.width=10}
 p <- atuacao_temas %>% ggplot(aes(x = reorder(tema, qtd_de_documentos), y = qtd_de_documentos, group = bancada, fill = bancada)) + 
