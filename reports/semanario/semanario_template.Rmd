@@ -9,6 +9,7 @@ output:
 params:
   date_init: 2019-09-15
   date_end: 2019-09-19
+  num_semanas_passadas: 3
   proposicoes: 
     label: "Input dataset:"
     value: ../../data/tabela_geral_ids_casa.csv
@@ -77,6 +78,8 @@ define_date_breaks <- function(timedata_df) {
 
 build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio) {
   datas <- define_date_breaks(temp_pressao_pl)
+  data_n_semanas_atras <- as.Date(data_fim) - (7 * num_semanas_passadas)
+  temp_pressao_pl_n_semanas <- temp_pressao_pl %>% filter(periodo >= data_n_semanas_atras)
   
   p <- temp_pressao_pl %>% 
     ggplot(aes(x = periodo, y = sqrt(temperatura))) +
@@ -85,6 +88,8 @@ build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio) {
              size = ifelse(temp_pressao_pl$periodo==dt_inicio,3,1),
              width=0.5) +
     geom_col(aes(x = periodo, y = -sqrt(pressao), width = 4), fill=factor(ifelse(temp_pressao_pl$periodo==dt_inicio,"#FFD166","#DDDDDD")), show.legend = FALSE ) +
+    geom_line(data =  temp_pressao_pl_n_semanas, aes(x = periodo, y = sqrt(temperatura)), color="#EF476F") +
+  geom_col(data =  temp_pressao_pl_n_semanas, aes(x = periodo, y = -sqrt(pressao), width = 4), fill=factor("#FFD166"), show.legend = FALSE ) +
     labs(x = "Semana", 
          y = "",
          title = "Temperatura e pressão ao longo das semanas",
@@ -120,10 +125,16 @@ join_temp_pressao <- function(temperatura_df, pressao_df) {
 
 ```{r, fig.height=7, fig.width=10}
 temp_pressao_periodo <- join_temp_pressao(temperatura, pressao)
+
+pls_nome_formal <- pls %>% 
+  mutate(ano = format(as.Date(data_apresentacao), "%Y")) %>% 
+  mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano))) %>% 
+  mutate(nome_formal_completo = paste0(nome_formal, ' (', tools::toTitleCase(ifelse(casa == "camara","Câmara",casa)), ')'))
+
 pl_destaque <- pls_nome_formal %>% 
   filter(id_leggo %in% temp_pressao_periodo$id_leggo)
 
-build_temp_pressao_plot(temp_pressao_periodo, paste(pl_destaque$nome_formal,pl_destaque$apelido,sep=" - "), data_inicio)
+build_temp_pressao_plot(temp_pressao_periodo, paste(pl_destaque$nome_formal,pl_destaque$apelido,sep=" - "), data_fim)
 ```
 
 ```{r}
@@ -147,10 +158,6 @@ Foi observad`r if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição 
 
 ```{r}
 #Base de dados de atuações e filtros por data
-pls_nome_formal <- pls %>% 
-  mutate(ano = format(as.Date(data_apresentacao), "%Y")) %>% 
-  mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano))) %>% 
-  mutate(nome_formal_completo = paste0(nome_formal, ' (', tools::toTitleCase(ifelse(casa == "camara","Câmara",casa)), ')'))
 
 oposicao <- c("PT", "PSOL", "PSB", "PCdoP", "PDT", "REDE")
 
@@ -273,7 +280,8 @@ A `r prop_destaque` teve maior número de atuações, com apresentação de `r t
 Ao clicar na proposição `r prop_destaque` temos mais detalhes sobre os atores e os respectivos documentos apresentados.
 
 ```{r, fig.height=8, fig.width=10}
-p <- atores_pls %>% ggplot(aes(x = reorder(nome_completo, qtd_de_documentos), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
+emoji <- atores_pls %>% ungroup() %>% mutate(nome_completo = if_else(bancada == "Oposição")
+p <- emoji %>% ggplot(aes(x = reorder(nome_completo, qtd_de_documentos), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
     geom_chicklet(width = 0.8) +
      theme(legend.position = "bottom") +
      labs(
@@ -293,14 +301,14 @@ p <- atores_pls %>% ggplot(aes(x = reorder(nome_completo, qtd_de_documentos), y 
         'Outros' = '#587B7A'
      )) +
      coord_flip() +
-     theme(aspect.ratio = 0.9)
+     theme(aspect.ratio = 0.9) 
 p <- p + theme_ipsum_rc(grid=FALSE)
 p <- p + theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) +theme(axis.text.x = element_text(color = "gray60", size = 10)) +
   theme(legend.position = "top")
 p
 
 tipo_generico_destaque <-
-  atores_apelidos  %>% 
+  atores_pls  %>% 
   group_by(tipo_generico) %>% 
   summarise(total = sum(qtd_de_documentos)) %>% 
   arrange(total) %>% 
