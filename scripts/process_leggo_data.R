@@ -6,9 +6,6 @@ Usage:
 Rscript process_leggo_data.R <input_path> <output_path>
 "
 
-#Functions
-
-
 ## Process args
 args <- commandArgs(trailingOnly = TRUE)
 min_num_args <- 2
@@ -36,3 +33,25 @@ atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_a
 atores_df <- dplyr::bind_rows(atores_camara, atores_senado)
 
 readr::write_csv(atores_df, paste0(output_path, '/atores.csv'), na = "")
+
+print("Gerando tabela de nodes e edges...")
+
+camara_docs <- 
+  camara_docs %>% 
+  dplyr::mutate(data = as.Date(format(status_proposicao_data_hora, "%Y-%m-%d")))
+
+# Gerando dado de autorias de documentos para ambas as casas
+coautorias_camara <- agoradigital::get_coautorias(camara_docs, camara_autores, "camara")
+coautorias_senado <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado")
+
+coautorias <- 
+  rbind(coautorias_camara, coautorias_senado) %>% 
+  dplyr::filter(nome.x != nome.y) %>% 
+  dplyr::mutate(partido.x = dplyr::if_else(is.na(partido.x), "", partido.x),
+         partido.y = dplyr::if_else(is.na(partido.y), "", partido.y))
+
+if (nrow(coautorias) != 0) {
+  nodes_edges <- agoradigital::generate_nodes_and_edges(coautorias)
+  readr::write_csv(nodes_edges[[1]], paste0(output_path, '/nodes.csv'), na = "")
+  readr::write_csv(nodes_edges[[2]], paste0(output_path, '/edges.csv'), na = "")
+} 
