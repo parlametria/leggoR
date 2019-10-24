@@ -281,13 +281,22 @@ A `r prop_destaque` teve maior número de atuações, com apresentação de `r t
 Ao clicar na proposição `r prop_destaque` temos mais detalhes sobre os atores e os respectivos documentos apresentados.
 
 ```{r, fig.height=8, fig.width=10}
-atores_pls <- 
+atores_pls_bancada <- 
   atores_pls %>% 
   ungroup() %>% 
   mutate(nome_completo = if_else(bancada == "Oposição", paste("* ", nome_completo), nome_completo))
 
-atores_pls %>% 
-  ggplot(aes(x = reorder(nome_completo), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
+atores_pls_order <- atores_pls_bancada %>% 
+  group_by(nome_completo) %>% 
+  summarise(total_docs = sum(qtd_de_documentos)) %>% 
+  arrange(-total_docs)
+
+atores_pls_plot <- atores_pls_bancada %>% 
+  inner_join(atores_pls_order, by="nome_completo")
+
+
+atores_pls_plot %>% 
+  ggplot(aes(x = reorder(nome_completo, total_docs), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
     geom_chicklet(width = 0.8) +
      theme(legend.position = "bottom") +
      labs(
@@ -307,10 +316,10 @@ atores_pls %>%
         'Outros' = '#587B7A'
      )) +
      coord_flip() +
-     theme(aspect.ratio = 0.9)+ 
+     theme(aspect.ratio = 0.5)+ 
   theme_ipsum_rc(grid=FALSE) +
   theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) + 
-  theme(axis.text.x = element_text(color = "gray60", size = 10))
+  theme(axis.text.x = element_text(color = "gray60", size = 10)) +
   theme(legend.position = "top")
 
 tipo_generico_destaque <-

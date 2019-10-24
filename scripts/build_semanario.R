@@ -135,4 +135,4 @@ build_semanario <- function(template_filepath,output_filepath, proposicoes, temp
 template_filepath <- "reports/semanario/semanario_template.Rmd"
 report_filepath <- paste0("semanario_",semana_alvo,".html")
 
-build_semanario(template_filepath, report_filepath, proposicoes_filtradas, temperatura_pls_filtradas, pressao_pls_filtradas, atores_df, data_inicio, data_fim, num_semanas_passadas)
+build_semanario(template_filepath, report_filepath, proposicoes_filtradas, temperatura_pls_filtradas, pressao_pls_filtradas, atores_df, data_inicio, data_fim)
