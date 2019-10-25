@@ -36,11 +36,21 @@ readr::write_csv(atores_df, paste0(output_path, '/atores.csv'), na = "")
 
 print("Gerando tabela de nodes e edges...")
 
+prop <- 
+  readr::read_csv(paste0(input_path, "/proposicoes.csv")) %>% 
+  dplyr::select(id_leggo, id_principal = id_ext, casa)
+
 camara_docs <- 
   camara_docs %>% 
-  dplyr::mutate(data = as.Date(format(status_proposicao_data_hora, "%Y-%m-%d")))
+  dplyr::mutate(data = as.Date(format(status_proposicao_data_hora, "%Y-%m-%d"))) %>% 
+  dplyr::left_join(prop, by = c("id_principal", "casa"))
 
-# Gerando dado de autorias de documentos para ambas as casas
+senado_docs <-
+  senado_docs %>% 
+  dplyr::mutate(id_principal = as.numeric(id_principal)) %>% 
+  dplyr::left_join(prop, by = c("id_principal", "casa"))
+
+  # Gerando dado de autorias de documentos para ambas as casas
 coautorias_camara <- agoradigital::get_coautorias(camara_docs, camara_autores, "camara")
 coautorias_senado <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado")
 
