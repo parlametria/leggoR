@@ -47,7 +47,7 @@ p <- atores_pls_plot %>%
 p
 
 tipo_generico_destaque <-
-  atores_pls  %>% 
+  atores_pls_plot  %>% 
   group_by(tipo_generico) %>% 
   summarise(total = sum(qtd_de_documentos)) %>% 
   arrange(total) %>% 
