@@ -1,8 +1,7 @@
 #### `r curr_prop_nome_formal_completo`
 
 ```{r, fig.height=8, fig.width=10}
-#curr_prop_destaque <- '{{curr_prop_destaque}}'
-#value.to.match <- '{{value.to.match}}'
+knitr::opts_chunk$set(label = pl_chunk_label)
 atores_pls_bancada <- 
   atores_prop_destaque %>% 
   ungroup() %>% 
@@ -15,7 +14,6 @@ atores_pls_order <- atores_pls_bancada %>%
 
 atores_pls_plot <- atores_pls_bancada %>% 
   inner_join(atores_pls_order, by="nome_completo")
-
 
 p <- atores_pls_plot %>% 
   ggplot(aes(x = reorder(nome_completo, total_docs), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
