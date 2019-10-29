@@ -5,7 +5,8 @@
 #' @param final_nodes Dataframe com os nós
 #' @param smoothing Variável para suavizar o tamanho dos nós
 #' @return Dataframe dos nós com a coluna node_size
-set_nodes_size <- function(final_edges, final_nodes, smoothing) {
+#' @export
+set_nodes_size <- function(final_edges, final_nodes, smoothing = 1) {
   nodes_size_source <-
     final_edges %>%
     dplyr::group_by(node = source) %>%
@@ -23,51 +24,52 @@ set_nodes_size <- function(final_edges, final_nodes, smoothing) {
     dplyr::ungroup() %>%
     dplyr::mutate(node = as.numeric(node))
   final_nodes %>%
-    dplyr::left_join(nodes_size, by=c("index"="node")) %>%
+    dplyr::left_join(nodes_size, by=c("id_autor"="node")) %>%
     dplyr::mutate(node_size = node_size / smoothing)
 }
 
-#' @title Gera os dataframe de nós e arestas
-#' @description Recebe um dataframe com coautorias e gera os dataframes com os nós e
-#' com as arestas
+#' @title Gera os dataframe de nós
+#' @description Recebe um dataframe com coautorias e gera os dataframes com os nós
 #' @param coautorias Dataframe com as coautorias
-#' @param edges_weight Variável para multiplicar com os pesos das arestas
-#' @param smoothing Variável para suavizar o tamanho dos nós
-#' @return Lista com os dataframes de arestas e dos nós
+#' @return Dataframes de nós
 #' @export
-generate_nodes_and_edges <- function(coautorias, edges_weight = 100, smoothing = 1) {
-  graph_nodes <- dplyr::bind_rows(
-    coautorias %>% dplyr::select(id_leggo, id_autor = id_autor.x, nome = nome.x, partido = partido.x, uf = uf.x, bancada = bancada.x),
-    coautorias %>% dplyr::select(id_leggo, id_autor = id_autor.y, nome = nome.y, partido = partido.y, uf = uf.y, bancada = bancada.y)) %>%
-    dplyr::distinct() %>%
-    tibble::rowid_to_column("index") %>%
-    dplyr::mutate(index = index -1)
-
-  coautorias_index <- coautorias %>%
-    dplyr::left_join(graph_nodes %>%  dplyr::select(id_leggo, index.x = index, id_autor), by=c("id_autor.x"="id_autor")) %>%
-    dplyr::left_join(graph_nodes %>%  dplyr::select(id_leggo, index.y = index, id_autor), by=c("id_autor.y"="id_autor"))
-
-  graph_edges <- coautorias_index %>%
-    dplyr::select(
-      source = index.x,
-      target = index.y,
-      id_leggo, 
-      value = peso_arestas) %>%
-    dplyr::mutate(source = as.factor(source),
-                  target = as.factor(target))
+generate_nodes <- function(coautorias) {
+    graph_nodes <-
+      dplyr::bind_rows(
+      coautorias %>% dplyr::select(id_autor = id_autor.x, nome = nome.x, partido = partido.x, uf = uf.x, bancada = bancada.x),
+      coautorias %>% dplyr::select(id_autor = id_autor.y, nome = nome.y, partido = partido.y, uf = uf.y, bancada = bancada.y)) %>%
+      dplyr::distinct()
 
   final_nodes <- graph_nodes %>%
-    as.data.frame() %>%
+    tibble::as_tibble() %>%
     dplyr::mutate(nome_eleitoral = paste0(nome, " (", partido, "/", uf, ")"))
 
+  return(final_nodes)
+}
+
+#' @title Gera os dataframe de arestas
+#' @description Recebe um dataframe com coautorias e gera os dataframes com as arestas
+#' @param coautorias Dataframe com as coautorias
+#' @param graph_nodes Dataframe com os nós
+#' @param edges_weight Variável para multiplicar com os pesos das arestas
+#' @return Dataframes de arestas
+#' @export
+generate_edges <- function(coautorias, graph_nodes, edges_weight = 100) {
+  coautorias_index <- 
+    coautorias %>%
+    dplyr::left_join(graph_nodes %>%  dplyr::select(id_autor), by=c("id_autor.x"="id_autor")) %>%
+    dplyr::left_join(graph_nodes %>%  dplyr::select(id_autor), by=c("id_autor.y"="id_autor"))
+  
+  graph_edges <- coautorias_index %>%
+    dplyr::select(
+      source = id_autor.x,
+      target = id_autor.y,
+      value = peso_arestas) 
+  
   final_edges <- graph_edges %>%
-    as.data.frame() %>%
-    dplyr::mutate(value = value*edges_weight)
-
-  final_nodes <-
-    set_nodes_size(final_edges, final_nodes, smoothing)
-
-  return(list(final_nodes,final_edges))
+    tibble::as_tibble() %>%
+    dplyr::mutate(value = value*edges_weight) %>% 
+    dplyr::distinct()
 }
 
 #' @title Concateca dois elementos com um separador no meio
@@ -95,7 +97,7 @@ remove_duplicated_edges <- function(df) {
              paste_cols_sorted(id_autor.x,
                                id_autor.y,
                                sep = ":")) %>%
-    dplyr::distinct(id_principal, casa, id_documento, data = data.x, col_pairs, id_leggo) %>%
+    dplyr::distinct(id_leggo, id_principal, casa, id_documento, data = data.x, col_pairs) %>%
     tidyr::separate(col = col_pairs,
                     c("id_autor.x",
                       "id_autor.y"),
@@ -113,8 +115,8 @@ remove_duplicated_edges <- function(df) {
 get_coautorias <- function(docs, autores, casa) {
   
   if (casa == 'camara') {
-    autorias <- agoradigital::prepare_autorias_df_camara(docs, autores)
-    peso_autorias <- agoradigital::compute_peso_autoria_doc(autorias)
+    autorias <- prepare_autorias_df_camara(docs, autores)
+    peso_autorias <- compute_peso_autoria_doc(autorias)
     parlamentares <- autores %>% dplyr::select(id_autor, nome, partido, uf)
   } else {
     autorias <- agoradigital::prepare_autorias_df_senado(docs, autores)
@@ -133,10 +135,10 @@ get_coautorias <- function(docs, autores, casa) {
 
   coautorias <-
     autorias %>%
-    dplyr::full_join(autorias, by = c("id_principal", "casa", "id_documento")) %>%
+    dplyr::full_join(autorias, by = c("id_leggo", "id_documento")) %>%
     dplyr::filter(id_autor.x != id_autor.y) %>% 
-    dplyr::rename(id_leggo = id_leggo.x) %>% 
-    dplyr::select(-id_leggo.y)
+    dplyr::select(-casa.y, -id_principal.y) %>% 
+    dplyr::rename(casa = casa.x, id_principal = id_principal.x)
 
   coautorias <- coautorias %>%
     remove_duplicated_edges() %>%
