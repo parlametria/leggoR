@@ -1,7 +1,7 @@
 #### `r curr_prop_nome_formal_completo`
 
 ```{r, fig.height=8, fig.width=10}
-knitr::opts_chunk$set(label = pl_chunk_label)
+#knitr::opts_chunk$set(label = pl_chunk_label)
 atores_pls_bancada <- 
   atores_prop_destaque %>% 
   ungroup() %>% 

@@ -135,29 +135,31 @@ pls_nome_formal <- pls %>%
 pls_destaque <- pls_nome_formal %>%
   filter(id_leggo %in% temp_pressao_periodo$id_leggo)
 
-# build_temp_pressao_plot(temp_pressao_periodo, paste(pl_destaque$nome_formal,pl_destaque$apelido,sep=" - "), data_fim)
+build_temp_pressao_plot(temp_pressao_periodo, paste(pls_destaque$nome_formal,pls_destaque$apelido,sep=" - "), data_inicio, data_fim)
 ```
 
 ```{r temp_pressao_prop_destaque, include=FALSE}
-temp_press = c()
-for (i in 1:nrow(pls_destaque)) {
-  print(paste("Rodando iteração ",i))
+#temp_press = c()
+#for (i in 1:nrow(pls_destaque)) {
+#  print(paste("Rodando iteração ",i))
 
-  pl_destaque <- pls_destaque %>%
-    slice(i)
+  
 
-  apelido_pl <- paste(pl_destaque$nome_formal,pl_destaque$apelido,sep=" - ")
-  dt_inicio <- data_inicio
-  dt_fim <-   data_fim
-  pl_chunk_label <- paste('temp_pressao',pl_destaque$id_ext,pl_destaque$casa,sep='-')
+  #apelido_pl <- paste(pl_destaque$nome_formal,pl_destaque$apelido,sep=" - ")
+  #dt_inicio <- data_inicio
+  #dt_fim <-   data_fim
+  #pl_chunk_label <- paste('temp_pressao',pl_destaque$id_ext,pl_destaque$casa,sep='-')
 
-  temp_pressao_pl <- temp_pressao_periodo %>%
-    filter(id_leggo == pl_destaque$id_leggo)
+  #temp_pressao_pl <- temp_pressao_periodo %>%
+  #  filter(id_leggo == pl_destaque$id_leggo)
 
-  temp_press = c(temp_press, knitr::knit_child('temp_pressao_semanario_template.Rmd'))
-}
+  #temp_press = c(temp_press, knitr::knit_child('temp_pressao_semanario_template.Rmd'))
+  
+  
+  #build_temp_pressao_plot(temp_pressao_pl, paste(pl_destaque$nome_formal,pl_destaque$apelido,sep=" - "), data_inicio, data_fim)
+#}
 ```
-`r paste(knitr::knit(text = temp_press), collapse = '\n')`
+
 
 ```{r}
 est_prev <- tail(temp_pressao_periodo, 2)
@@ -305,13 +307,14 @@ Ao clicar na proposição `r prop_destaque` temos mais detalhes sobre os atores 
 out = NULL
 for (i in 1:nrow(props_destaque)) {
   print(paste("Rodando iteração ",i))
-  curr_prop_nome_formal_completo <- (props_destaque %>%  slice(i))$nome_formal_completo
+  curr_prop <- props_destaque %>%  slice(i)
+  curr_prop_nome_formal_completo <- curr_prop$nome_formal_completo
   curr_prop_destaque <- (props_destaque %>% slice(i))$nome_formal
   atores_prop_destaque <- atores_pls %>%
     filter(nome_formal %in% curr_prop_destaque)
-  pl_chunk_label <- paste('atores',pl_destaque$id_ext,pl_destaque$casa,sep='-')
+  #pl_chunk_label <- paste('atores',curr_prop_destaque$id_ext,curr_prop_destaque$casa,sep='-')
   #knitr::opts_chunk$set(label = pl_chunk_label)
-  out = c(out, knitr::knit_expand('atores_semanario_template.Rmd'))
+  out = c(out, knitr::knit_child('atores_semanario_template.Rmd'))
 }
 ```
 `r paste(knitr::knit(text = out), collapse = '\n')`

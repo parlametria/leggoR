@@ -75,7 +75,7 @@ variacoes_temperatura <- temperaturas %>%
 #Filtra pls de interesse de acordo com a variação da temperatura
 #TODO tranformar em função, parametrizar valor mínimo do z-score
 pls_de_interesse <- variacoes_temperatura %>%
-  dplyr::filter(z_score > 0.8) %>%
+  dplyr::filter(z_score > 1.5) %>%
   dplyr::left_join(leggo_ids, by="id_leggo")
 
 #Temperaturas filtradas
