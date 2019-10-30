@@ -37,7 +37,24 @@ readr::write_csv(atores_df, paste0(output_path, '/atores.csv'), na = "")
 print("Gerando tabela de nodes e edges...")
 
 prop <- 
-  readr::read_csv(paste0(input_path, "/proposicoes.csv")) %>% 
+  readr::read_csv(col_types =  readr::cols(
+    id_ext =  readr::col_double(),
+    sigla_tipo =  readr::col_character(),
+    numero =  readr::col_double(),
+    ementa =  readr::col_character(),
+    data_apresentacao =  readr::col_datetime(format = ""),
+    casa =  readr::col_character(),
+    casa_origem =  readr::col_character(),
+    autor_nome =  readr::col_character(),
+    autor_uf =  readr::col_character(),
+    autor_partido =  readr::col_character(),
+    apelido = readr:: col_character(),
+    tema =  readr::col_character(),
+    regime_tramitacao =  readr::col_character(),
+    forma_apreciacao =  readr::col_character(),
+    relator_nome =  readr::col_character(),
+    id_leggo =  readr::col_double()
+  ), paste0(input_path, "/proposicoes.csv")) %>% 
   dplyr::select(id_leggo, id_principal = id_ext, casa)
 
 camara_docs <- 
@@ -61,7 +78,34 @@ coautorias <-
          partido.y = dplyr::if_else(is.na(partido.y), "", partido.y))
 
 if (nrow(coautorias) != 0) {
-  nodes_edges <- agoradigital::generate_nodes_and_edges(coautorias)
-  readr::write_csv(nodes_edges[[1]], paste0(output_path, '/nodes.csv'), na = "")
-  readr::write_csv(nodes_edges[[2]], paste0(output_path, '/edges.csv'), na = "")
+  nodes <-
+    coautorias %>% 
+    dplyr::group_by(id_leggo) %>% 
+    dplyr::group_modify(~ agoradigital::generate_nodes(.), keep = T) %>% 
+    dplyr::ungroup()
+  
+  unique_nodes <- nodes %>% group_by(id_leggo, id_autor) %>% summarise(nome = first(nome),
+                                                                       partido = first(partido),
+                                                                       uf = first(uf),
+                                                                       bancada = first(bancada),
+                                                                       nome_eleitoral = first(nome_eleitoral))
+  
+  nodes <- nodes %>% inner_join(unique_nodes)
+  
+  edges <-
+    coautorias %>% 
+    dplyr::group_by(id_leggo) %>% 
+    dplyr::group_modify(~ agoradigital::generate_edges(., graph_nodes = nodes, edges_weight = 100), keep = T) %>% 
+    dplyr::distinct()
+  
+  nodes <-
+    agoradigital::set_nodes_size(edges, nodes)
+  
+  readr::write_csv(nodes , paste0(output_path, '/nodes.csv'), na = "")
+  readr::write_csv(edges, paste0(output_path, '/edges.csv'), na = "")
 } 
+
+nodes_60 <- nodes %>% filter(id_leggo == 1) %>% select(id_autor)
+edges_60 <- edges %>% filter(id_leggo == 1)
+
+edges_60 <- rbind(edges_60 %>% select(index = source),edges_60 %>% select(index = target)) %>% distinct()

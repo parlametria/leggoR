@@ -9,22 +9,24 @@
 set_nodes_size <- function(final_edges, final_nodes, smoothing = 1) {
   nodes_size_source <-
     final_edges %>%
-    dplyr::group_by(node = source) %>%
+    dplyr::group_by(node = source, id_leggo) %>%
     dplyr::summarise(node_size = sum(value)) %>%
+    dplyr::ungroup() %>% 
     dplyr::mutate(node = as.character(node))
   nodes_size_target <-
     final_edges %>%
-    dplyr::group_by(node = target) %>%
+    dplyr::group_by(node = target, id_leggo) %>%
     dplyr::summarise(node_size = sum(value)) %>%
+    dplyr::ungroup() %>% 
     dplyr::mutate(node = as.character(node))
   nodes_size <-
     dplyr:: bind_rows(nodes_size_source,nodes_size_target) %>%
-    dplyr::group_by(node) %>%
+    dplyr::group_by(node, id_leggo) %>%
     dplyr::summarise(node_size = sum(node_size)) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(node = as.numeric(node))
   final_nodes %>%
-    dplyr::left_join(nodes_size, by=c("id_autor"="node")) %>%
+    dplyr::left_join(nodes_size, by=c("id_autor"="node", "id_leggo")) %>%
     dplyr::mutate(node_size = node_size / smoothing)
 }
 
@@ -43,7 +45,7 @@ generate_nodes <- function(coautorias) {
   final_nodes <- graph_nodes %>%
     tibble::as_tibble() %>%
     dplyr::mutate(nome_eleitoral = paste0(nome, " (", partido, "/", uf, ")"))
-
+  
   return(final_nodes)
 }
 
