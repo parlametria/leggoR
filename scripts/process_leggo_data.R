@@ -84,13 +84,18 @@ if (nrow(coautorias) != 0) {
     dplyr::group_modify(~ agoradigital::generate_nodes(.), keep = T) %>% 
     dplyr::ungroup()
   
-  unique_nodes <- nodes %>% group_by(id_leggo, id_autor) %>% summarise(nome = first(nome),
-                                                                       partido = first(partido),
-                                                                       uf = first(uf),
-                                                                       bancada = first(bancada),
-                                                                       nome_eleitoral = first(nome_eleitoral))
+  unique_nodes <-
+    nodes %>% 
+    dplyr::group_by(id_leggo, id_autor) %>% 
+    dplyr::summarise(nome = first(nome),
+             partido = first(partido),
+             uf = first(uf),
+             bancada = first(bancada),
+             nome_eleitoral = first(nome_eleitoral))
   
-  nodes <- nodes %>% inner_join(unique_nodes)
+  nodes <-
+    nodes %>% 
+    dplyr::inner_join(unique_nodes)
   
   edges <-
     coautorias %>% 
@@ -104,8 +109,3 @@ if (nrow(coautorias) != 0) {
   readr::write_csv(nodes , paste0(output_path, '/nodes.csv'), na = "")
   readr::write_csv(edges, paste0(output_path, '/edges.csv'), na = "")
 } 
-
-nodes_60 <- nodes %>% filter(id_leggo == 1) %>% select(id_autor)
-edges_60 <- edges %>% filter(id_leggo == 1)
-
-edges_60 <- rbind(edges_60 %>% select(index = source),edges_60 %>% select(index = target)) %>% distinct()
