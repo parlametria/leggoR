@@ -56,8 +56,7 @@ generate_nodes_and_edges <- function(coautorias, edges_weight = 100, smoothing =
 
   final_nodes <- graph_nodes %>%
     as.data.frame() %>%
-    mutate(nome_eleitoral = paste0(nome, " (", partido, "/", uf, ")")) %>%
-    as.data.frame()
+    mutate(nome_eleitoral = paste0(nome, " (", partido, "/", uf, ")"))
 
   final_edges <- graph_edges %>%
     as.data.frame() %>%
