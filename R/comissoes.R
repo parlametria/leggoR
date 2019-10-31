@@ -34,7 +34,7 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao, orgaos_camara) {
       jsonlite::fromJSON() %>%
       magrittr::extract2('orgao') %>%
       magrittr::extract2('membros') %>%
-      tibble::as.tibble() %>%
+      tibble::as_tibble() %>%
       t() %>%
       as.data.frame() %>%
       tibble::rownames_to_column("VALUE")
@@ -50,7 +50,9 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao, orgaos_camara) {
         dplyr::rowwise() %>%
         dplyr::mutate(partido = ifelse(length(partido) == 0, "", partido)) %>%
         dplyr::mutate(uf = ifelse(length(uf) == 0, "", uf)) %>%
-        dplyr::mutate(id = ifelse(length(id) == 0, "", id)) %>%
+        dplyr::mutate(id = ifelse(length(id) == 0, "", id),
+                      nome = as.character(nome),
+                      situacao = as.character(situacao)) %>%
         tidyr::unnest() %>%
         dplyr::arrange(nome) %>% 
         dplyr::mutate(sigla = sigla_comissao, 
