@@ -49,6 +49,32 @@ generate_nodes <- function(coautorias) {
   return(final_nodes)
 }
 
+#' @title Gera os dataframe de nós únicos
+#' @description Remove os nós duplicados (eles estavam duplicados pois os nomes vinham
+#' diferente)
+#' @param coautorias Dataframe com as coautorias
+#' @return Dataframes de nós
+#' @export
+get_unique_nodes <- function(coautorias) {
+  nodes <-
+    coautorias %>% 
+    dplyr::group_by(id_leggo) %>% 
+    dplyr::group_modify(~ agoradigital::generate_nodes(.), keep = T) %>% 
+    dplyr::ungroup()
+  
+  unique_nodes <-
+    nodes %>% 
+    dplyr::group_by(id_leggo, id_autor) %>% 
+    dplyr::summarise(nome = dplyr::first(nome),
+                     partido = dplyr::first(partido),
+                     uf = dplyr::first(uf),
+                     bancada = dplyr::first(bancada),
+                     nome_eleitoral = dplyr::first(nome_eleitoral))
+  
+  nodes %>% 
+    dplyr::inner_join(unique_nodes, by = c("id_leggo", "id_autor", "nome", "partido", "uf", "bancada", "nome_eleitoral"))
+}
+
 #' @title Gera os dataframe de arestas
 #' @description Recebe um dataframe com coautorias e gera os dataframes com as arestas
 #' @param coautorias Dataframe com as coautorias
@@ -109,9 +135,9 @@ remove_duplicated_edges <- function(df) {
 #' @title Cria o dataframe de coautorias
 #' @description  Recebe o dataframe de pesos, autorias e parlamentares e
 #' cria o dataframe de coautorias
-#' @param peso_autorias Dataframe com as pesos das autorias
-#' @param autorias Dataframe com autorias
-#' @param parlamentares Dataframe com todos os dados dos parlamentars
+#' @param docs Dataframe com os documentos
+#' @param autores Dataframe com autores dos documentos
+#' @param casa camara ou senado
 #' @param limiar Peso mínimo das arestas
 #' @return Dataframe
 #' @export

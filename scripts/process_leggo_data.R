@@ -3,26 +3,30 @@ library(magrittr)
 
 help <- "
 Usage:
-Rscript process_leggo_data.R <input_path> <output_path>
+Rscript process_leggo_data.R <input_path> <output_path> <data_inicial_documentos> <peso_minimo_arestas>
 "
 
 ## Process args
 args <- commandArgs(trailingOnly = TRUE)
-min_num_args <- 2
+min_num_args <- 4
 if (length(args) < min_num_args) {
     stop(paste("Wrong number of arguments!", help, sep = "\n"))
 }
 input_path <- args[1]
 output_path <- args[2]
+data_inicial <- args[3]
+peso_minimo <- args[4]
 
 ## Install local repository R package version
 devtools::install()
 
 # Read current data csvs
 camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv"))
-camara_autores <- agoradigital::read_current_autores_camara(paste0(input_path, "/camara/autores.csv")) %>% 
+camara_autores <-
+  agoradigital::read_current_autores_camara(paste0(input_path, "/camara/autores.csv")) %>% 
   dplyr::mutate(id_documento = as.numeric(id_documento))
-senado_docs <- agoradigital::read_current_docs_senado(paste0(input_path, "/senado/documentos.csv")) %>% 
+senado_docs <-
+  agoradigital::read_current_docs_senado(paste0(input_path, "/senado/documentos.csv")) %>% 
   dplyr::mutate(id_documento = as.numeric(id_documento),
                 id_principal = as.numeric(id_principal))
 senado_autores <- agoradigital::read_current_autores_senado(paste0(input_path, "/senado/autores.csv"))
@@ -63,17 +67,17 @@ prop <-
 camara_docs <-
   camara_docs %>%
   dplyr::mutate(data = as.Date(format(status_proposicao_data_hora, "%Y-%m-%d"))) %>%
-  dplyr::filter(data > "2019-01-31") %>%
+  dplyr::filter(data > data_inicial) %>%
   dplyr::left_join(prop, by = c("id_principal", "casa"))
 
 senado_docs <-
   senado_docs %>%
-  dplyr::filter(data_texto > "2019-01-31") %>%
+  dplyr::filter(data_texto > data_inicial) %>%
   dplyr::left_join(prop, by = c("id_principal", "casa"))
 
 # Gerando dado de autorias de documentos para ambas as casas
-coautorias_camara <- agoradigital::get_coautorias(camara_docs, camara_autores, "camara")
-coautorias_senado <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado")
+coautorias_camara <- agoradigital::get_coautorias(camara_docs, camara_autores, "camara", as.numeric(peso_minimo))
+coautorias_senado <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado", as.numeric(peso_minimo))
 
 coautorias <- 
   rbind(coautorias_camara, coautorias_senado) %>% 
@@ -83,23 +87,7 @@ coautorias <-
 
 if (nrow(coautorias) != 0) {
   nodes <-
-    coautorias %>% 
-    dplyr::group_by(id_leggo) %>% 
-    dplyr::group_modify(~ agoradigital::generate_nodes(.), keep = T) %>% 
-    dplyr::ungroup()
-  
-  unique_nodes <-
-    nodes %>% 
-    dplyr::group_by(id_leggo, id_autor) %>% 
-    dplyr::summarise(nome = dplyr::first(nome),
-             partido = dplyr::first(partido),
-             uf = dplyr::first(uf),
-             bancada = dplyr::first(bancada),
-             nome_eleitoral = dplyr::first(nome_eleitoral))
-  
-  nodes <-
-    nodes %>% 
-    dplyr::inner_join(unique_nodes)
+    agoradigital::get_unique_nodes(coautorias)
   
   edges <-
     coautorias %>% 
