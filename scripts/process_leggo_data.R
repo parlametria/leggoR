@@ -20,8 +20,11 @@ devtools::install()
 
 # Read current data csvs
 camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv"))
-camara_autores <- agoradigital::read_current_autores_camara(paste0(input_path, "/camara/autores.csv"))
-senado_docs <- agoradigital::read_current_docs_senado(paste0(input_path, "/senado/documentos.csv"))
+camara_autores <- agoradigital::read_current_autores_camara(paste0(input_path, "/camara/autores.csv")) %>% 
+  dplyr::mutate(id_documento = as.numeric(id_documento))
+senado_docs <- agoradigital::read_current_docs_senado(paste0(input_path, "/senado/documentos.csv")) %>% 
+  dplyr::mutate(id_documento = as.numeric(id_documento),
+                id_principal = as.numeric(id_principal))
 senado_autores <- agoradigital::read_current_autores_senado(paste0(input_path, "/senado/autores.csv"))
 
 print(paste("Gerando tabela de atores a partir de dados atualizados de documentos e autores..."))
@@ -57,17 +60,18 @@ prop <-
   ), paste0(input_path, "/proposicoes.csv")) %>% 
   dplyr::select(id_leggo, id_principal = id_ext, casa)
 
-camara_docs <- 
-  camara_docs %>% 
-  dplyr::mutate(data = as.Date(format(status_proposicao_data_hora, "%Y-%m-%d"))) %>% 
+camara_docs <-
+  camara_docs %>%
+  dplyr::mutate(data = as.Date(format(status_proposicao_data_hora, "%Y-%m-%d"))) %>%
+  dplyr::filter(data > "2019-01-31") %>%
   dplyr::left_join(prop, by = c("id_principal", "casa"))
 
 senado_docs <-
-  senado_docs %>% 
-  dplyr::mutate(id_principal = as.numeric(id_principal)) %>% 
+  senado_docs %>%
+  dplyr::filter(data_texto > "2019-01-31") %>%
   dplyr::left_join(prop, by = c("id_principal", "casa"))
 
-  # Gerando dado de autorias de documentos para ambas as casas
+# Gerando dado de autorias de documentos para ambas as casas
 coautorias_camara <- agoradigital::get_coautorias(camara_docs, camara_autores, "camara")
 coautorias_senado <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado")
 
@@ -87,11 +91,11 @@ if (nrow(coautorias) != 0) {
   unique_nodes <-
     nodes %>% 
     dplyr::group_by(id_leggo, id_autor) %>% 
-    dplyr::summarise(nome = first(nome),
-             partido = first(partido),
-             uf = first(uf),
-             bancada = first(bancada),
-             nome_eleitoral = first(nome_eleitoral))
+    dplyr::summarise(nome = dplyr::first(nome),
+             partido = dplyr::first(partido),
+             uf = dplyr::first(uf),
+             bancada = dplyr::first(bancada),
+             nome_eleitoral = dplyr::first(nome_eleitoral))
   
   nodes <-
     nodes %>% 
@@ -100,7 +104,7 @@ if (nrow(coautorias) != 0) {
   edges <-
     coautorias %>% 
     dplyr::group_by(id_leggo) %>% 
-    dplyr::group_modify(~ agoradigital::generate_edges(., graph_nodes = nodes, edges_weight = 100), keep = T) %>% 
+    dplyr::group_modify(~ agoradigital::generate_edges(., graph_nodes = nodes, edges_weight = 1), keep = T) %>% 
     dplyr::distinct()
   
   nodes <-

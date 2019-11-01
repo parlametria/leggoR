@@ -56,7 +56,7 @@ generate_nodes <- function(coautorias) {
 #' @param edges_weight Variável para multiplicar com os pesos das arestas
 #' @return Dataframes de arestas
 #' @export
-generate_edges <- function(coautorias, graph_nodes, edges_weight = 100) {
+generate_edges <- function(coautorias, graph_nodes, edges_weight = 1) {
   coautorias_index <- 
     coautorias %>%
     dplyr::left_join(graph_nodes %>%  dplyr::select(id_autor), by=c("id_autor.x"="id_autor")) %>%
@@ -99,7 +99,7 @@ remove_duplicated_edges <- function(df) {
              paste_cols_sorted(id_autor.x,
                                id_autor.y,
                                sep = ":")) %>%
-    dplyr::distinct(id_leggo, id_principal, casa, id_documento, data = data.x, col_pairs) %>%
+    dplyr::distinct(id_leggo, id_principal, casa, id_documento, data, col_pairs) %>%
     tidyr::separate(col = col_pairs,
                     c("id_autor.x",
                       "id_autor.y"),
@@ -112,9 +112,10 @@ remove_duplicated_edges <- function(df) {
 #' @param peso_autorias Dataframe com as pesos das autorias
 #' @param autorias Dataframe com autorias
 #' @param parlamentares Dataframe com todos os dados dos parlamentars
+#' @param limiar Peso mínimo das arestas
 #' @return Dataframe
 #' @export
-get_coautorias <- function(docs, autores, casa) {
+get_coautorias <- function(docs, autores, casa, limiar = 0.1) {
   
   if (casa == 'camara') {
     autorias <- prepare_autorias_df_camara(docs, autores)
@@ -126,6 +127,11 @@ get_coautorias <- function(docs, autores, casa) {
     parlamentares <- autores %>% dplyr::select(id_autor, nome = nome_autor, partido, uf)
   }
   
+  num_autorias_por_pl <- autorias %>% 
+    dplyr::group_by(id_leggo, id_documento, casa) %>% 
+    dplyr::summarise(num_autores = dplyr::n()) %>% 
+    dplyr::ungroup()
+  
   parlamentares <-
     parlamentares %>% 
     dplyr::mutate(bancada = dplyr::if_else(partido %in% .PARTIDOS_OPOSICAO, "oposição", "governo"))
@@ -133,14 +139,24 @@ get_coautorias <- function(docs, autores, casa) {
   peso_autorias <-
     peso_autorias %>%
     dplyr::ungroup() %>%
-    dplyr::filter(peso_arestas < 1)
-
-  coautorias <-
-    autorias %>%
-    dplyr::full_join(autorias, by = c("id_leggo", "id_documento")) %>%
-    dplyr::filter(id_autor.x != id_autor.y) %>% 
-    dplyr::select(-casa.y, -id_principal.y) %>% 
-    dplyr::rename(casa = casa.x, id_principal = id_principal.x)
+    dplyr::filter(peso_arestas >= limiar)
+  
+  coautorias_raw <- autorias %>%
+    dplyr::full_join(autorias, by = c("id_leggo", "id_documento")) %>% 
+    dplyr::select(id_leggo, id_principal = id_principal.x, casa = casa.x, id_documento, data = data.x, 
+                  id_autor.x, id_autor.y)
+  
+  coautorias_simples <- coautorias_raw %>% 
+    dplyr::inner_join(num_autorias_por_pl %>% dplyr::filter(num_autores == 1),
+               by=c("id_documento", "id_leggo", "casa"))
+  
+  coautorias_multiplas <- coautorias_raw %>% 
+    dplyr::inner_join(num_autorias_por_pl %>% dplyr::filter(num_autores > 1),
+               by=c("id_documento", "id_leggo", "casa")) %>% 
+    dplyr::filter(id_autor.x != id_autor.y)
+  
+  coautorias <- dplyr::bind_rows(coautorias_simples, coautorias_multiplas) %>% 
+    dplyr::select(-num_autores)
 
   coautorias <- coautorias %>%
     remove_duplicated_edges() %>%
