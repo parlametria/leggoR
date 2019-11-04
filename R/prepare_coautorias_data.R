@@ -6,7 +6,7 @@
 #' @param smoothing Variável para suavizar o tamanho dos nós
 #' @return Dataframe dos nós com a coluna node_size
 #' @export
-set_nodes_size <- function(final_edges, final_nodes, smoothing = 1) {
+compute_nodes_size <- function(final_edges, final_nodes, smoothing = 1) {
   nodes_size_source <-
     final_edges %>%
     dplyr::group_by(node = source, id_leggo) %>%
@@ -133,8 +133,8 @@ remove_duplicated_edges <- function(df) {
 }
 
 #' @title Cria o dataframe de coautorias
-#' @description  Recebe o dataframe de pesos, autorias e parlamentares e
-#' cria o dataframe de coautorias
+#' @description  Recebe o dataframe de documentos, autores a casa e o limiar
+#' e retorna o dataframe de coautorias
 #' @param docs Dataframe com os documentos
 #' @param autores Dataframe com autores dos documentos
 #' @param casa camara ou senado
@@ -144,8 +144,8 @@ remove_duplicated_edges <- function(df) {
 get_coautorias <- function(docs, autores, casa, limiar = 0.1) {
   
   if (casa == 'camara') {
-    autorias <- prepare_autorias_df_camara(docs, autores)
-    peso_autorias <- compute_peso_autoria_doc(autorias)
+    autorias <- agoradigital::prepare_autorias_df_camara(docs, autores)
+    peso_autorias <- agoradigital::compute_peso_autoria_doc(autorias)
     parlamentares <- autores %>% dplyr::select(id_autor, nome, partido, uf)
   } else {
     autorias <- agoradigital::prepare_autorias_df_senado(docs, autores)
@@ -209,7 +209,8 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1) {
 #' @return Dataframe
 #' @export
 prepare_autorias_df_camara <- function(docs_camara, autores_camara) {
-  autores_docs <- merge(docs_camara, autores_camara, by = c("id_documento", "casa")) %>%
+  autores_docs <-
+    merge(docs_camara, autores_camara, by = c("id_documento", "casa")) %>%
         dplyr::select(id_principal,
                       casa,
                       id_documento,
