@@ -78,6 +78,7 @@
     {"evento": "desarquivamento", "regex": "a mat.ria foi desarquivada", "tipo":"despacho"},
     {"evento": "desarquivamento", "id_situacao": 149, "tipo":"despacho"},
     {"evento": "aprovacao_substitutivo", "regex": "aprovado o substitutivo", "tipo":"votacao"},
+    {"evento": "aprovacao_materia", "regex": "aprovada a* reda(ç|c)(ã|a)o final da mat(é|e)ria", "tipo":"votacao"},
     {"evento": "aprovacao_projeto", "regex": "aprovado o projeto", "tipo":"votacao"},
     {"evento": "rejeicao_projeto", "regex": "(plc*|pec|mpv) rejeitad(o|a)|comunicando a rejei.(ã|a)o da medida provis(ó|o)ria|rejeitado os pressupostos constitucionais", "tipo":"votacao"},
     {"evento": "remetida_a_sancao", "regex": "projeto( foi|) encaminhado à sanção presidencial", "tipo":"votacao"},
