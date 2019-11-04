@@ -224,11 +224,8 @@ getCoautorias <- reactive({
     coautorias %>% 
       filter(descricao_lei == input$descricao_lei)
   
-  coautorias_filtrado_por_peso <-
-    coautorias_filtrado_por_descricao 
-  
-  if (nrow(coautorias_filtrado_por_peso) != 0) {
-      nodes_edges <- generate_nodes_and_edges(coautorias_filtrado_por_peso)
+  if (nrow(coautorias_filtrado_por_descricao) != 0) {
+      nodes_edges <- generate_nodes_and_edges(coautorias_filtrado_por_descricao)
   } else {
     nodes_edges <- generate_nodes_and_edges(coautorias_filtrado_por_descricao %>% head(1))
     nodes_edges[[1]] <- nodes_edges[[1]] %>% mutate(node_size = 0)
