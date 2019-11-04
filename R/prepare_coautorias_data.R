@@ -187,7 +187,7 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1) {
   coautorias <- coautorias %>%
     remove_duplicated_edges() %>%
     dplyr::inner_join(peso_autorias, by = c("id_principal", "id_documento")) %>%
-    dplyr::group_by(id_leggo, id_principal, casa, id_autor.x, id_autor.y, data) %>%
+    dplyr::group_by(id_leggo, id_principal, casa, id_autor.x, id_autor.y) %>%
     dplyr::summarise(peso_arestas = sum(peso_arestas),
            num_coautorias = dplyr::n()) %>%
     dplyr::ungroup() %>%
