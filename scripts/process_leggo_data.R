@@ -2,12 +2,31 @@
 library(magrittr)
 
 .HELP <- "
-Usage:
 Rscript process_leggo_data.R <input_path> <output_path> <data_inicial_documentos> <peso_minimo_arestas> <flag>
-flag = 1 Atualiza tudo (Atores, nodes e edges)
-flag = 2 Atualiza tudo referente aos atores
-flag = 3 Atualiza tudo sobre nodes e edges
 "
+
+.FLAG_HELP <- "
+\t   flag = 1 Atualiza tudo (Atores, nodes e edges)
+\t   flag = 2 Atualiza tudo referente aos atores
+\t   flag = 3 Atualiza tudo sobre nodes e edges
+"
+
+.DATE_HELP <- "
+\t   Ex: \"2019-01-01\"
+"
+
+.PESO_HELP <- "
+\t   Ex: 0.1
+"
+
+.INPUT_HELP <- "
+\t   Ex: \"../data/\"
+"
+
+.OUTPUT_HELP <- "
+\t   Ex: \"../leggo-backend/data/\"
+"
+
 
 #' @title Get arguments from command line option parsing
 #' @description Get arguments from command line option parsing
@@ -18,31 +37,31 @@ get_args <- function() {
     optparse::make_option(c("-f", "--flag"), 
                           type="integer", 
                           default=1,
-                          help=.HELP, 
+                          help=.FLAG_HELP, 
                           metavar="integer"),
     optparse::make_option(c("-d", "--data_inicial_documentos"), 
                           type="character", 
                           default="2019-01-01",
-                          help=.HELP, 
+                          help=.DATE_HELP, 
                           metavar="character"),
     optparse::make_option(c("-p", "--peso_minimo_arestas"), 
                           type="character", 
                           default="0.1",
-                          help=.HELP, 
+                          help=.PESO_HELP, 
                           metavar="character"),
     optparse::make_option(c("-i", "--input_path"), 
                           type="character", 
                           default="../data/",
-                          help=.HELP, 
+                          help=.INPUT_HELP, 
                           metavar="character"),
     optparse::make_option(c("-o", "--output_path"), 
                           type="character", 
                           default="../../leggo-backend/data/",
-                          help=.HELP, 
+                          help=.OUTPUT_HELP, 
                           metavar="character")
   );
   
-  opt_parser <- optparse::OptionParser(option_list = option_list) 
+  opt_parser <- optparse::OptionParser(option_list = option_list, usage = .HELP) 
   opt <- optparse::parse_args(opt_parser)
   return(opt);
 }
