@@ -100,20 +100,6 @@ generate_edges <- function(coautorias, graph_nodes, edges_weight = 1) {
     dplyr::distinct()
 }
 
-#' @title Concateca dois elementos com um separador no meio
-#' @description Recebe duas variáveis x e y e retorna a união "x:y".
-#' @param x Primeira variável a ser concatenada
-#' @param y Segunda variável a ser concatenada
-#' @param sep Separador a ser concatenado
-#' @return String concatenada com a primeira variável + separador + segunda variável
-paste_cols_sorted <- function(x, y, sep = ":") {
-  stopifnot(length(x) == length(y))
-  return(lapply(1:length(x), function(i) {
-    paste0(sort(c(x[i], y[i])), collapse = sep)
-  }) %>%
-    unlist())
-}
-
 #' @title Remove arestas duplicadas
 #' @description Recebe um dataframe com autorias e remove as arestas
 #' duplicadas
@@ -130,6 +116,52 @@ remove_duplicated_edges <- function(df) {
                     c("id_autor.x",
                       "id_autor.y"),
                     sep = ":")
+}
+
+#' @title Cria o dataframe de coautorias sem os dados de parlamentares
+#' @description  Recebe o dataframe de autorias, pesos e o limiar e retorna o dataframe 
+#' de coautorias raw
+#' @param autorias Dataframe com as autorias
+#' @param peso_autorias Dataframe com o peso das autorias
+#' @param limiar Peso mínimo das arestas
+#' @return Dataframe
+get_coautorias_raw <- function(autorias, peso_autorias, limiar) {
+  num_autorias_por_pl <- autorias %>% 
+    dplyr::group_by(id_leggo, id_documento, casa) %>% 
+    dplyr::summarise(num_autores = dplyr::n()) %>% 
+    dplyr::ungroup()
+  
+  peso_autorias <-
+    peso_autorias %>%
+    dplyr::ungroup() %>%
+    dplyr::filter(peso_arestas >= limiar)
+  
+  coautorias_raw <- autorias %>%
+    dplyr::full_join(autorias, by = c("id_leggo", "id_documento")) %>% 
+    dplyr::select(id_leggo, id_principal = id_principal.x, casa = casa.x, id_documento, data = data.x, 
+                  id_autor.x, id_autor.y)
+  
+  coautorias_simples <- coautorias_raw %>% 
+    dplyr::inner_join(num_autorias_por_pl %>% dplyr::filter(num_autores == 1),
+                      by=c("id_documento", "id_leggo", "casa"))
+  
+  coautorias_multiplas <- coautorias_raw %>% 
+    dplyr::inner_join(num_autorias_por_pl %>% dplyr::filter(num_autores > 1),
+                      by=c("id_documento", "id_leggo", "casa")) %>% 
+    dplyr::filter(id_autor.x != id_autor.y)
+  
+  coautorias <- dplyr::bind_rows(coautorias_simples, coautorias_multiplas) %>% 
+    dplyr::select(-num_autores)
+  
+  coautorias %>%
+    remove_duplicated_edges() %>%
+    dplyr::inner_join(peso_autorias, by = c("id_principal", "id_documento")) %>%
+    dplyr::group_by(id_leggo, id_principal, casa, id_autor.x, id_autor.y) %>%
+    dplyr::summarise(peso_arestas = sum(peso_arestas),
+                     num_coautorias = dplyr::n()) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(id_autor.x = as.numeric(id_autor.x),
+                  id_autor.y = as.numeric(id_autor.y))
 }
 
 #' @title Cria o dataframe de coautorias
@@ -153,48 +185,14 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1) {
     parlamentares <- autores %>% dplyr::select(id_autor, nome = nome_autor, partido, uf)
   }
   
-  num_autorias_por_pl <- autorias %>% 
-    dplyr::group_by(id_leggo, id_documento, casa) %>% 
-    dplyr::summarise(num_autores = dplyr::n()) %>% 
-    dplyr::ungroup()
+  coautorias <- get_coautorias_raw(autorias, peso_autorias, limiar)
   
   parlamentares <-
     parlamentares %>% 
     dplyr::mutate(bancada = dplyr::if_else(partido %in% .PARTIDOS_OPOSICAO, "oposição", "governo"))
 
-  peso_autorias <-
-    peso_autorias %>%
-    dplyr::ungroup() %>%
-    dplyr::filter(peso_arestas >= limiar)
-  
-  coautorias_raw <- autorias %>%
-    dplyr::full_join(autorias, by = c("id_leggo", "id_documento")) %>% 
-    dplyr::select(id_leggo, id_principal = id_principal.x, casa = casa.x, id_documento, data = data.x, 
-                  id_autor.x, id_autor.y)
-  
-  coautorias_simples <- coautorias_raw %>% 
-    dplyr::inner_join(num_autorias_por_pl %>% dplyr::filter(num_autores == 1),
-               by=c("id_documento", "id_leggo", "casa"))
-  
-  coautorias_multiplas <- coautorias_raw %>% 
-    dplyr::inner_join(num_autorias_por_pl %>% dplyr::filter(num_autores > 1),
-               by=c("id_documento", "id_leggo", "casa")) %>% 
-    dplyr::filter(id_autor.x != id_autor.y)
-  
-  coautorias <- dplyr::bind_rows(coautorias_simples, coautorias_multiplas) %>% 
-    dplyr::select(-num_autores)
-
-  coautorias <- coautorias %>%
-    remove_duplicated_edges() %>%
-    dplyr::inner_join(peso_autorias, by = c("id_principal", "id_documento")) %>%
-    dplyr::group_by(id_leggo, id_principal, casa, id_autor.x, id_autor.y) %>%
-    dplyr::summarise(peso_arestas = sum(peso_arestas),
-           num_coautorias = dplyr::n()) %>%
-    dplyr::ungroup() %>%
-    dplyr::mutate(id_autor.x = as.numeric(id_autor.x),
-           id_autor.y = as.numeric(id_autor.y))
-
-  coautorias <- coautorias %>%
+  coautorias <- 
+    coautorias %>%
     dplyr::inner_join(parlamentares, by = c("id_autor.x" = "id_autor")) %>%
     dplyr::inner_join(parlamentares, by = c("id_autor.y" = "id_autor")) %>%
     dplyr::distinct() 
@@ -240,34 +238,6 @@ prepare_autorias_df_senado <- function(docs_senado, autores_senado) {
                   data = data_texto,
                   id_leggo) %>%
     dplyr::distinct()
-}
-
-#' @title Cria o dataframe com os documentos e seus autores
-#' @description Cria um documento que contém todos os autores e documentos da Camara e do Senado
-#' @param autorias_camara Dataframe com as autorias da Camara
-#' @param autorias_senado Dataframe com as autorias do Senado
-#' @param  parlamentares_camara Dataframe com os deputados
-#' @param parlamentares_senado Dataframe com os senadores
-#' @return Dataframe
-get_autorias_geral <- function(autorias_camara, autorias_senado, parlamentares_camara, parlamentares_senado) {
-
-  get_autorias_completas <- function(autorias, parlamentares) {
-    autorias %>%
-      dplyr::left_join(parlamentares, by = "id_autor") %>%
-      dplyr::distinct() %>%
-      dplyr::mutate(nome_com_partido = paste0(nome, " (", partido, "/", uf, ")")) %>%
-      dplyr::select(-c(nome, partido, uf))
-  }
-
-  autorias_camara_completo <- get_autorias_completas(autorias_camara, parlamentares_camara)
-
-  autorias_senado_completo <-
-    get_autorias_completas(autorias_senado, parlamentares_senado) %>%
-    dplyr::mutate(id_principal = as.numeric(id_principal),
-                  id_documento = as.numeric(id_documento))
-
-  autorias_geral <-
-    dplyr:: bind_rows(autorias_camara_completo, autorias_senado_completo)
 }
 
 #' @title Cria o dataframe com os pesos das autorias
