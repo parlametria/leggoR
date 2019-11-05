@@ -22,10 +22,10 @@ setup <- function() {
                                        nome = c('Dep. A', 'Dep. C', 'Dep. C', 'Dep. C', 'Dep. D'))
   
   coautorias_sample <<-
-    tibble::tribble(~id_leggo, ~ id_principal, ~ casa, ~ id_autor.x, ~ id_autor.y, ~ data, ~ peso_arestas, ~ num_coautorias, ~ nome.x, ~ partido.x, ~ uf.x, ~ bancada.x, ~ nome.y, ~ partido.y, ~ uf.y, ~ bancada.y,
-    1,            1, "camara",          1,          5, "2019-09-21",          0.5,              1, "Dep. A", "Partido A", "SP",    "governo",   "Dep. C", "Partido C", "PB",    "governo",  
-    1,            1, "camara",          5,          5, "2019-09-01",          1,                1, "Dep. C", "Partido C", "PB",    "governo",   "Dep. C", "Partido C", "PB",    "governo",  
-    1,            2, "camara",          5,          6, "2019-10-07",          0.5,              1, "Dep. C", "Partido C", "PB",    "governo",   "Dep. D", "Partido B", "BA",    "governo" ) 
+    tibble::tribble(~id_leggo, ~ id_principal, ~ casa, ~ id_autor.x, ~ id_autor.y, ~ peso_arestas, ~ num_coautorias, ~ nome.x, ~ partido.x, ~ uf.x, ~ bancada.x, ~ nome.y, ~ partido.y, ~ uf.y, ~ bancada.y,
+    1,            1, "camara",          1,          5,          0.5,              1, "Dep. A", "Partido A", "SP",    "governo",   "Dep. C", "Partido C", "PB",    "governo",  
+    1,            1, "camara",          5,          5,          1,                1, "Dep. C", "Partido C", "PB",    "governo",   "Dep. C", "Partido C", "PB",    "governo",  
+    1,            2, "camara",          5,          6,          0.5,              1, "Dep. C", "Partido C", "PB",    "governo",   "Dep. D", "Partido B", "BA",    "governo" ) 
     
   coautorias <<-
     agoradigital::get_coautorias(docs_sample_df, autores_sample_df, "camara", 0.1) %>% 
