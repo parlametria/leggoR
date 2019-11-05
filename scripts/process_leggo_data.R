@@ -128,8 +128,8 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
     nodes <-
       agoradigital::compute_nodes_size(edges, nodes)
     
-    readr::write_csv(nodes , paste0(output_path, '/nodes.csv'), na = "")
-    readr::write_csv(edges, paste0(output_path, '/edges.csv'), na = "")
+    readr::write_csv(nodes , paste0(output_path, '/coautorias_nodes.csv'), na = "")
+    readr::write_csv(edges, paste0(output_path, '/coautorias_edges.csv'), na = "")
   } 
 }
 
