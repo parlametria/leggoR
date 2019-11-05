@@ -2,7 +2,7 @@
 library(magrittr)
 
 .HELP <- "
-Rscript process_leggo_data.R <input_path> <output_path> <data_inicial_documentos> <peso_minimo_arestas> <flag>
+Rscript process_leggo_data.R -i <input_path> -o <output_path> -d <data_inicial_documentos> -p <peso_minimo_arestas> -f <flag>
 "
 
 .FLAG_HELP <- "
