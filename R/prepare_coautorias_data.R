@@ -271,7 +271,7 @@ get_autorias_geral <- function(autorias_camara, autorias_senado, parlamentares_c
 }
 
 #' @title Cria o dataframe com os pesos das autorias
-#' @description  Calcula o peso de cada autoria, onde o peso é menor quanto
+#' @description Calcula o peso de cada autoria e o peso é menor quanto
 #' maior o número de autores
 #' @param autorias Dataframe com as autorias
 #' @return Dataframe
