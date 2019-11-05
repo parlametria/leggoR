@@ -363,7 +363,7 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
   
   data_tramitacao <-
     data_tramitacao %>%
-    dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao", "- Sanção/Veto", global)) %>%
+    dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao_promulgacao", "- Sanção/Veto", global)) %>%
     tidyr::fill(global, .direction = "down")
   
   return(data_tramitacao)
