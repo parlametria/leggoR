@@ -223,7 +223,7 @@ prepare_autorias_df_camara <- function(docs_camara, autores_camara) {
 }
 
 #' @title Cria o dataframe de autorias da senado
-#' @description  Faz um merge do df de documentos com autores
+#' @description Faz um merge do df de documentos com autores
 #' @param docs_senado Dataframe com documentos da senado
 #' @param autores_senado Dataframe com autores da senado
 #' @return Dataframe
