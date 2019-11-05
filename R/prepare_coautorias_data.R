@@ -201,7 +201,7 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1) {
 }
 
 #' @title Cria o dataframe de autorias da camara
-#' @description  Faz um merge do df de documentos com autores
+#' @description Faz um merge do df de documentos com autores
 #' @param docs_camara Dataframe com documentos da camara
 #' @param autores_camara Dataframe com autores da camara
 #' @return Dataframe
@@ -221,7 +221,7 @@ prepare_autorias_df_camara <- function(docs_camara, autores_camara) {
 }
 
 #' @title Cria o dataframe de autorias da senado
-#' @description  Faz um merge do df de documentos com autores
+#' @description Faz um merge do df de documentos com autores
 #' @param docs_senado Dataframe com documentos da senado
 #' @param autores_senado Dataframe com autores da senado
 #' @return Dataframe
@@ -241,7 +241,7 @@ prepare_autorias_df_senado <- function(docs_senado, autores_senado) {
 }
 
 #' @title Cria o dataframe com os pesos das autorias
-#' @description  Calcula o peso de cada autoria, onde o peso é menor quanto
+#' @description Calcula o peso de cada autoria e o peso é menor quanto
 #' maior o número de autores
 #' @param autorias Dataframe com as autorias
 #' @return Dataframe

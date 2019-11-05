@@ -2,12 +2,31 @@
 library(magrittr)
 
 .HELP <- "
-Usage:
-Rscript process_leggo_data.R <input_path> <output_path> <data_inicial_documentos> <peso_minimo_arestas> <flag>
-flag = 1 Atualiza tudo (Atores, nodes e edges)
-flag = 2 Atualiza tudo referente aos atores
-flag = 3 Atualiza tudo sobre nodes e edges
+Rscript process_leggo_data.R -i <input_path> -o <output_path> -d <data_inicial_documentos> -p <peso_minimo_arestas> -f <flag>
 "
+
+.FLAG_HELP <- "
+\t   flag = 1 Atualiza tudo (Atores, nodes e edges)
+\t   flag = 2 Atualiza tudo referente aos atores
+\t   flag = 3 Atualiza tudo sobre nodes e edges
+"
+
+.DATE_HELP <- "
+\t   Ex: \"2019-01-01\"
+"
+
+.PESO_HELP <- "
+\t   Ex: 0.1
+"
+
+.INPUT_HELP <- "
+\t   Ex: \"../data/\"
+"
+
+.OUTPUT_HELP <- "
+\t   Ex: \"../leggo-backend/data/\"
+"
+
 
 #' @title Get arguments from command line option parsing
 #' @description Get arguments from command line option parsing
@@ -18,31 +37,31 @@ get_args <- function() {
     optparse::make_option(c("-f", "--flag"), 
                           type="integer", 
                           default=1,
-                          help=.HELP, 
+                          help=.FLAG_HELP, 
                           metavar="integer"),
     optparse::make_option(c("-d", "--data_inicial_documentos"), 
                           type="character", 
                           default="2019-01-01",
-                          help=.HELP, 
+                          help=.DATE_HELP, 
                           metavar="character"),
     optparse::make_option(c("-p", "--peso_minimo_arestas"), 
                           type="character", 
                           default="0.1",
-                          help=.HELP, 
+                          help=.PESO_HELP, 
                           metavar="character"),
     optparse::make_option(c("-i", "--input_path"), 
                           type="character", 
                           default="../data/",
-                          help=.HELP, 
+                          help=.INPUT_HELP, 
                           metavar="character"),
     optparse::make_option(c("-o", "--output_path"), 
                           type="character", 
                           default="../../leggo-backend/data/",
-                          help=.HELP, 
+                          help=.OUTPUT_HELP, 
                           metavar="character")
   );
   
-  opt_parser <- optparse::OptionParser(option_list = option_list) 
+  opt_parser <- optparse::OptionParser(option_list = option_list, usage = .HELP) 
   opt <- optparse::parse_args(opt_parser)
   return(opt);
 }
@@ -136,7 +155,7 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
 #' @title Chama as funções corretas
 #' @description Recebe uma flag e chama as funções correspondetes
 #' @param flag Inteiro que representa qual função o usuário desejar chamar
-process_leggo_data<- function(flag) {
+process_leggo_data <- function(flag) {
   if (!(flag %in% c(1, 2, 3))) {
     stop(paste("Wrong flag!", .HELP, sep = "\n"))
   }else {
