@@ -203,7 +203,7 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1) {
 }
 
 #' @title Cria o dataframe de autorias da camara
-#' @description  Faz um merge do df de documentos com autores
+#' @description Faz um merge do df de documentos com autores
 #' @param docs_camara Dataframe com documentos da camara
 #' @param autores_camara Dataframe com autores da camara
 #' @return Dataframe
