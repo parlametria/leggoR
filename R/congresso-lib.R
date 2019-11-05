@@ -23,7 +23,7 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df){
   #number delimiting events
   full_ordered_tram <- full_ordered_tram %>%
     dplyr::group_by(evento) %>%
-    dplyr::mutate(evento_num = dplyr::if_else(evento %in% c('apresentacao_pl','virada_de_casa','remetida_a_sancao'),
+    dplyr::mutate(evento_num = dplyr::if_else(evento %in% c('apresentacao_pl','virada_de_casa','remetida_a_sancao_promulgacao'),
                                               paste0(evento,dplyr::row_number()),
                                               '')) %>%
     dplyr::ungroup()

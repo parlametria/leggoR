@@ -11,7 +11,7 @@
     {"evento_num" : "apresentacao_pl2", "fase_global":"Revisão I"},
     {"evento_num" : "virada_de_casa2", "fase_global":"Pré-Revisão II"},
     {"evento_num" : "apresentacao_pl3", "fase_global":"Revisão II"},
-    {"evento_num" : "remetida_a_sancao1", "fase_global":"Sanção/Veto"},
+    {"evento_num" : "remetida_a_sancao_promulgacao1", "fase_global":"Sanção/Veto"},
     {"evento_num" : "apresentacao_pl4", "fase_global":"Avaliação dos Vetos"}
   ],
 
@@ -38,7 +38,7 @@
   ],
 
    "fase_global_sancao":{
-    "situacao_sancao": "remetida_a_sancao",
+    "situacao_sancao": "remetida_a_sancao_promulgacao",
     "situacao_norma_juridica": "transformada_em_norma_jurídica"
   },
 
@@ -82,7 +82,7 @@
     {"evento": "parecer_pela_rejeicao", "titulo_evento": "Parecer pela Rejeição" , "nivel": 1},
     {"evento": "parecer", "titulo_evento": "Parecer" , "nivel": 1},
     {"evento": "virada_de_casa", "titulo_evento": "Virada de Casa" , "nivel": 1},
-    {"evento": "remetida_a_sancao", "titulo_evento": "Remetida à Sanção" , "nivel": 1},
+    {"evento": "remetida_a_sancao_promulgacao", "titulo_evento": "Remetida à Sanção/Promulgação" , "nivel": 1},
     {"evento": "transformada_lei", "titulo_evento": "Transformada em Lei" , "nivel": 1},
     {"evento": "vetada_totalmente", "titulo_evento": "Vetada Totalmente" , "nivel": 1},
     {"evento": "parecer_comissao", "titulo_evento": "Parecer emitido na Comissão" , "nivel": 1},
