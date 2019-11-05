@@ -71,62 +71,6 @@ deputados <- agoradigital::read_deputados(paste0(export_path, '/camara/parlament
 # Check for new data
 all_pls_ids <- agoradigital::get_all_leggo_props_ids(pls_ids)
 
-current_docs_ids <- current_docs %>%
-  dplyr::select(id_documento,
-                id_principal,
-                casa)
-
-
-
-print(paste("Verificando se há novos documentos..."))
-
-new_docs_ids <- agoradigital::find_new_documentos(all_pls_ids, current_docs, casa)
-
-print(paste("Foram encontrados",nrow(new_docs_ids), "novos documentos."))
-
-if (nrow(new_docs_ids) > 0) {
-  new_docs_data <- tibble::tibble()
-  new_autores_data <- tibble::tibble()
-  
-  print("Buscando dados sobre os novos documentos...")
-  new_docs_data <- agoradigital::fetch_documentos_data(new_docs_ids) %>%
-    dplyr::mutate_all(~ as.character(.))
-  
-  if (nrow(new_docs_data) > 0) {
-    print("Buscando os autores dos novos documentos...")
-    new_autores_data <- agoradigital::fetch_autores_documentos(new_docs_data) %>%
-      dplyr::mutate_all(~ as.character(.))
-  }
-  
-  fetch_status <- get_fetch_status(new_docs_ids, new_docs_data, new_autores_data)
-  complete_docs <- fetch_status$complete_docs
-  incomplete_docs <- fetch_status$incomplete_docs
-  
-  if (nrow(incomplete_docs) > 0) {
-    print("Não foi possível baixar dados completos (proposição e autores) para os seguintes documentos:")
-    print(incomplete_docs)
-  }
-  
-  if (nrow(complete_docs) == 0) {
-    print("Não foi possível baixar dados completos (proposição e autores) para nenhum dos novos documentos =(")
-    quit(save = "no", status=1)
-  }
-  
-  print(paste("Adicionando ",nrow(new_docs_data)," novos documentos."))
-  updated_docs <- rbind(current_docs, new_docs_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
-  readr::write_csv(updated_docs, docs_filepath)
-  print("Buscando a tramitação dos documentos")
-  new_tramitacao_data <- agoradigital::fetch_tramitacao_data(paste0(export_path, "/tramitacoes"), updated_docs) 
-  
-  print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
-  if (casa == 'camara') {
-    new_autores_data <- merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id") %>%
-      dplyr::select(id_autor,nome,tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor)
-  }
-  updated_autores_docs <- rbind(current_autores, new_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
-  readr::write_csv(updated_autores_docs, autores_filepath)
-}
-
 if (casa == 'senado') {
   print("Realizando atualização dos dados do Senado")
 
