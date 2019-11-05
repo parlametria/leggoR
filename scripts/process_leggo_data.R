@@ -155,7 +155,7 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
 #' @title Chama as funções corretas
 #' @description Recebe uma flag e chama as funções correspondetes
 #' @param flag Inteiro que representa qual função o usuário desejar chamar
-process_leggo_data<- function(flag) {
+process_leggo_data <- function(flag) {
   if (!(flag %in% c(1, 2, 3))) {
     stop(paste("Wrong flag!", .HELP, sep = "\n"))
   }else {
