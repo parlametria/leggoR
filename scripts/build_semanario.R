@@ -60,6 +60,7 @@ leggo_ids <- readr::read_csv(paste0(input_base_folderpath,'/','leggo_ids.csv'))
 
 #Define semanas a serem analisadas
 semana_alvo <- lubridate::floor_date(as.Date(data_inicio), unit = "weeks", week_start = 1)
+fim_semana_alvo <- semana_alvo + lubridate::days(4)
 semana_anterior <- semana_alvo - lubridate::weeks(x=1)
 
 
@@ -145,7 +146,7 @@ build_semanario <- function(template_filepath,output_filepath, proposicoes, temp
 }
 
 template_filepath <- "reports/semanario/semanario_template.Rmd"
-report_filepath <- paste0("semanario_",semana_alvo,".html")
+report_filepath <- paste0("semanario_",semana_alvo,"_",fim_semana_alvo,".html")
 
 build_semanario(template_filepath, report_filepath, proposicoes_filtradas, temperatura_pls_filtradas, 
                 pressao_pls_filtradas, atores_df, data_inicio, data_fim, num_semanas_passadas)
