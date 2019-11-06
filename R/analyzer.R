@@ -373,7 +373,7 @@ fix_nomes_locais <- function(pautas_df) {
 #' @param tram Dataframe da tramitação do PL.
 #' @return Dataframe contendo id, regime de tramitação e forma de apreciação do PL
 #' @examples
-#' extract_status_tramitacao(91341, 'senado', fetch_proposicao(91341, 'senado'), fetch_tramitacao(91341, 'senado))
+#' extract_status_tramitacao(91341, 'senado', fetch_proposicao(91341, 'senado'), fetch_tramitacao(91341, 'senado'))
 #' @export
 #' @importFrom stats filter
 extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {

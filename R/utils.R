@@ -153,3 +153,17 @@ check_dataframe <- function(df) {
   }
   return(TRUE)
 }
+
+#' @title Concateca dois elementos com um separador no meio
+#' @description Recebe duas variáveis x e y e retorna a união "x:y".
+#' @param x Primeira variável a ser concatenada
+#' @param y Segunda variável a ser concatenada
+#' @param sep Separador a ser concatenado
+#' @return String concatenada com a primeira variável + separador + segunda variável
+paste_cols_sorted <- function(x, y, sep = ":") {
+  stopifnot(length(x) == length(y))
+  return(lapply(1:length(x), function(i) {
+    paste0(sort(c(x[i], y[i])), collapse = sep)
+  }) %>%
+    unlist())
+}

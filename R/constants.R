@@ -149,3 +149,6 @@ COMISSOES_CAMARA <-
     "data_audiencia",
     "link_inteiro_teor"
   )
+
+.PARTIDOS_OPOSICAO <-
+  c("PT", "PSOL", "PSB", "PCdoB", "PDT", "REDE")
