@@ -151,4 +151,4 @@ COMISSOES_CAMARA <-
   )
 
 .PARTIDOS_OPOSICAO <-
-  c("PT", "PSOL", "PSB", "PCdoP", "PDT", "REDE")
+  c("PT", "PSOL", "PSB", "PCdoB", "PDT", "REDE")
