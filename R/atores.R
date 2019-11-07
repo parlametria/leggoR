@@ -1,6 +1,12 @@
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 
+get_peso_documentos <- function(autores_docs) {
+  autores_docs %>% 
+    dplyr::group_by(id_principal, casa, id_documento) %>% 
+    dplyr::summarise(peso_documento = 1/dplyr::n())
+}
+
 #' @title Cria tabela com atores de documentos com seus respectivos tipos de documentos
 #' @description Retorna um dataframe contendo informações com os autores dos documentos e seus tipos
 #' @param documentos_df Dataframe dos documentos
@@ -35,8 +41,14 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
                   uf,
                   sigla_local = status_proposicao_sigla_orgao,
                   descricao_tipo_documento)
-
-  atores_df <- autores_docs %>%
+  
+  peso_documentos <-
+    get_peso_documentos(autores_docs)
+  
+  atores_df <-
+    autores_docs %>%
+    dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>% 
+    dplyr::filter(peso_documento >= 0.1) %>% 
     dplyr::mutate(tipo_autor = 'deputado') %>%
     agoradigital::add_tipo_evento_documento() %>%
     dplyr::rename(tipo_generico = tipo) %>%
@@ -49,8 +61,8 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
                     uf,
                     tipo_generico,
                     sigla_local) %>%
-    dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
-    dplyr::arrange(id_ext, -qtd_de_documentos) %>%
+    dplyr::summarise(peso_total_documentos = sum(peso_documento)) %>%
+    dplyr::arrange(id_ext, -peso_total_documentos) %>%
     dplyr::ungroup()
 
   atores_df <- .detect_sigla_local(atores_df, camara_env)
@@ -98,9 +110,14 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
     fuzzyjoin::regex_left_join(autores_docs, senado_comissoes, by=c("identificacao_comissao_nome_comissao" = "comissoes_permanentes")) %>%
     dplyr::select(-c(identificacao_comissao_nome_comissao, comissoes_permanentes)) %>%
     dplyr::rename(sigla_local = siglas_comissoes)
+  
+  peso_documentos <-
+    get_peso_documentos(autores_docs)
 
   atores_df <-
     autores_docs %>%
+    dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>%
+    dplyr::filter(peso_documento >= 0.1) %>% 
     dplyr::mutate(nome_autor =
                     stringr::str_replace(nome_autor,
                                          "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", ""),
@@ -116,8 +133,8 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
                     uf,
                     tipo_generico,
                     sigla_local) %>%
-    dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
-    dplyr::arrange(id_ext, -qtd_de_documentos) %>%
+    dplyr::summarise(peso_total_documentos = sum(peso_documento)) %>%
+    dplyr::arrange(id_ext, -peso_total_documentos) %>%
     dplyr::ungroup()
 
   atores_df <-

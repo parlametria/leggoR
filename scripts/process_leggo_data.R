@@ -84,12 +84,12 @@ flag <- args$flag
 #' @param camara_autores autores da camara
 #' @param senado_autores autores do senado
 #' @param output_path pasta para onde exportar os dados
-export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autores, output_path) {
+export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicio) {
   print(paste("Gerando tabela de atores a partir de dados atualizados de documentos e autores..."))
   
   atores_camara <-
-    agoradigital::create_tabela_atores_camara(camara_docs, camara_autores)
-  atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores)
+    agoradigital::create_tabela_atores_camara(camara_docs, camara_autores, data_inicio = data_inicio)
+  atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores, data_inicio = data_inicio)
   
   atores_df <- dplyr::bind_rows(atores_camara, atores_senado)
   
@@ -125,12 +125,13 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
     dplyr::left_join(prop, by = c("id_principal", "casa"))
   
   # Gerando dado de autorias de documentos para ambas as casas
-  coautorias_camara <- agoradigital::get_coautorias(camara_docs, camara_autores, "camara", as.numeric(peso_minimo))
+  coautorias_camara <- 
+    agoradigital::get_coautorias(camara_docs, camara_autores, "camara", as.numeric(peso_minimo)) %>% 
+    dplyr::distinct()
   coautorias_senado <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado", as.numeric(peso_minimo))
   
   coautorias <- 
     rbind(coautorias_camara, coautorias_senado) %>% 
-    dplyr::filter(nome.x != nome.y) %>% 
     dplyr::mutate(partido.x = dplyr::if_else(is.na(partido.x), "", partido.x),
                   partido.y = dplyr::if_else(is.na(partido.y), "", partido.y))
   
@@ -175,11 +176,11 @@ process_leggo_data <- function(flag) {
     
     if (flag == 1) {
       print("Atualizando tudo!")
-      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path)
+      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial)
       export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, output_path)
     } else if (flag == 2) {
       print("Atualizando os atores!")
-      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path)
+      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial)
     } else{
       print("Atualizando nodes e edges!")
       export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, output_path)

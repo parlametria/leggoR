@@ -7,6 +7,9 @@
 #' @return Dataframe dos nós com a coluna node_size
 #' @export
 compute_nodes_size <- function(final_edges, final_nodes, smoothing = 1) {
+  final_edges <-
+    final_edges %>% 
+    dplyr::mutate(value = dplyr::if_else(source == target, value/2, value))
   nodes_size_source <-
     final_edges %>%
     dplyr::group_by(node = source, id_leggo) %>%
@@ -153,7 +156,7 @@ get_coautorias_raw <- function(autorias, peso_autorias, limiar) {
   coautorias <- dplyr::bind_rows(coautorias_simples, coautorias_multiplas) %>% 
     dplyr::select(-num_autores)
   
-  coautorias %>%
+  x <- coautorias %>%
     remove_duplicated_edges() %>%
     dplyr::inner_join(peso_autorias, by = c("id_principal", "id_documento")) %>%
     dplyr::group_by(id_leggo, id_principal, casa, id_autor.x, id_autor.y) %>%
