@@ -83,6 +83,7 @@ flag <- args$flag
 #' @param senados_docs documentos do senado
 #' @param camara_autores autores da camara
 #' @param senado_autores autores do senado
+#' @param data_inicial data a partir da qual se considerará os documentos
 #' @param peso_minimo limiar para peso dos documentos
 #' @param output_path pasta para onde exportar os dados
 export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicio, peso_minimo) {
