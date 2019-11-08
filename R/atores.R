@@ -1,6 +1,11 @@
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 
+#' @title Cria tabela com atores os pesos dos documentos
+#' @description Os pesos são calculados através da conta 1/n
+#' onde n é a quantidade de documentos
+#' @param autores_docs Dataframe com autores dos documentos
+#' @return Dataframe
 get_peso_documentos <- function(autores_docs) {
   autores_docs %>% 
     dplyr::group_by(id_principal, casa, id_documento) %>% 
@@ -11,11 +16,12 @@ get_peso_documentos <- function(autores_docs) {
 #' @description Retorna um dataframe contendo informações com os autores dos documentos e seus tipos
 #' @param documentos_df Dataframe dos documentos
 #' @param autores_df Dataframe com autores dos documentos
+#' @param limiar limiar para filtrar os documentos
 #' @param data_inicio Data limite inferior para documentos de interesse
 #' @param data_fim Data limite superior para documentos de interesse
 #' @return Dataframe
 #' @export
-create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL) {
+create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL, limiar = 0.1) {
 
   if (!(agoradigital::check_dataframe(documentos_df)) ||
       (!agoradigital::check_dataframe(autores_df))) {
@@ -48,7 +54,7 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
   atores_df <-
     autores_docs %>%
     dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>% 
-    dplyr::filter(peso_documento >= 0.1) %>% 
+    dplyr::filter(peso_documento >= limiar) %>% 
     dplyr::mutate(tipo_autor = 'deputado') %>%
     agoradigital::add_tipo_evento_documento() %>%
     dplyr::rename(tipo_generico = tipo) %>%
@@ -76,9 +82,10 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
 #' @param autores_df Dataframe com autores dos documentos
 #' @param data_inicio Data limite inferior para documentos de interesse
 #' @param data_fim Data limite superior para documentos de interesse
+#' @param limiar Limiar para filtrar os documentos
 #' @return Dataframe
 #' @export
-create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL) {
+create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL, limiar = 0.1) {
 
   if (!(agoradigital::check_dataframe(documentos_df)) ||
       (!agoradigital::check_dataframe(autores_df))) {
@@ -117,7 +124,7 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
   atores_df <-
     autores_docs %>%
     dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>%
-    dplyr::filter(peso_documento >= 0.1) %>% 
+    dplyr::filter(peso_documento >= limiar) %>% 
     dplyr::mutate(nome_autor =
                     stringr::str_replace(nome_autor,
                                          "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", ""),

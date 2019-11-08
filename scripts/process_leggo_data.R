@@ -74,7 +74,7 @@ print(args)
 input_path <- args$input_path
 output_path <- args$output_path
 data_inicial <- args$data_inicial_documentos
-peso_minimo <- args$peso_minimo_arestas
+peso_minimo <- as.numeric(args$peso_minimo_arestas)
 flag <- args$flag
 
 #' @title Exporta dados atores
@@ -83,13 +83,14 @@ flag <- args$flag
 #' @param senados_docs documentos do senado
 #' @param camara_autores autores da camara
 #' @param senado_autores autores do senado
+#' @param peso_minimo limiar para peso dos documentos
 #' @param output_path pasta para onde exportar os dados
-export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicio) {
+export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicio, peso_minimo) {
   print(paste("Gerando tabela de atores a partir de dados atualizados de documentos e autores..."))
   
   atores_camara <-
-    agoradigital::create_tabela_atores_camara(camara_docs, camara_autores, data_inicio = data_inicio)
-  atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores, data_inicio = data_inicio)
+    agoradigital::create_tabela_atores_camara(camara_docs, camara_autores, data_inicio = data_inicio, limiar = peso_minimo)
+  atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores, data_inicio = data_inicio, limiar = peso_minimo)
   
   atores_df <- dplyr::bind_rows(atores_camara, atores_senado)
   
@@ -126,9 +127,9 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
   
   # Gerando dado de autorias de documentos para ambas as casas
   coautorias_camara <- 
-    agoradigital::get_coautorias(camara_docs, camara_autores, "camara", as.numeric(peso_minimo)) %>% 
+    agoradigital::get_coautorias(camara_docs, camara_autores, "camara", peso_minimo) %>% 
     dplyr::distinct()
-  coautorias_senado <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado", as.numeric(peso_minimo))
+  coautorias_senado <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado", peso_minimo)
   
   coautorias <- 
     rbind(coautorias_camara, coautorias_senado) %>% 
@@ -143,10 +144,14 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
       coautorias %>% 
       dplyr::group_by(id_leggo) %>% 
       dplyr::group_modify(~ agoradigital::generate_edges(., graph_nodes = nodes, edges_weight = 1), keep = T) %>% 
-      dplyr::distinct()
+      dplyr::distinct() 
     
     nodes <-
       agoradigital::compute_nodes_size(edges, nodes)
+    
+    edges <-
+      edges %>%
+      dplyr::filter(source != target)
     
     readr::write_csv(nodes , paste0(output_path, '/coautorias_nodes.csv'), na = "")
     readr::write_csv(edges, paste0(output_path, '/coautorias_edges.csv'), na = "")
@@ -176,11 +181,11 @@ process_leggo_data <- function(flag) {
     
     if (flag == 1) {
       print("Atualizando tudo!")
-      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial)
+      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo)
       export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, output_path)
     } else if (flag == 2) {
       print("Atualizando os atores!")
-      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial)
+      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo)
     } else{
       print("Atualizando nodes e edges!")
       export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, output_path)
