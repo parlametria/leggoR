@@ -1,66 +1,66 @@
-id_camara,id_senado,apelido,tema,
-2080604,128634,10 Medidas Contra a Corrupção,Integridade e Transparência,
-257161,NA,Lei do Licenciamento Ambiental,Meio Ambiente,
-NA,132865,Lei Geral de Licenciamento Ambiental,Meio Ambiente,
-2088990,91341,Lei da Qualidade Fiscal,Agenda Nacional,
-46249,41703,PL do Veneno,Meio Ambiente,
-2121442,127753,Lei do Teto Remuneratório,Agenda Nacional,
-345311,NA,Estatuto do Índio,Meio Ambiente,
-2085536,NA,Lei para Acabar Zona de Amortecimento,Meio Ambiente,
-2120775,NA,Política Governo de Redução de Agrotóxico,Meio Ambiente,
-2122766,115926,Modernização da Lei de Licitações e Contratos,Agenda Nacional,
-NA,126364,Alteração na Lei Antiterrorismo,Agenda Nacional,
-606722,NA,Escola Sem Partido,Agenda Nacional,
-541857,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional,
-2119881,NA,Reforma da Previdência Temer,Agenda Nacional,
-2158425,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Nacional,
-2056568,NA,Indenização Propriedades Privadas em Unidades de Conservação,Meio Ambiente,
-1738598,NA,Criação da Área de Proteção Ambiental de Canavieiras,Meio Ambiente,
-14562,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente,
-2170839,NA,Lei do Pantanal - Molon,Meio Ambiente,
-944279,NA,Lei do Cerrado,Meio Ambiente,
-NA,102721,Cana na Amazônia,Meio Ambiente,
-NA,103831,Lei do Pantanal - Maggi,Meio Ambiente,
-2120019,111048,Lei das Agências Reguladoras,Agenda Nacional,
-51066,NA,Deixa de incluir FUNDEF no limite de gastos com pessoal,Educação,
-518221,NA,Piso salarial do magistério público da educação básica - Moura,Educação,
-532814,NA,Piso salarial do magistério público da educação básica - Marchezan,Educação,
-NA,120143,Educação básica em tempo integral,Educação,
-500183,NA,Autoriza trabalho a partir dos quatorze anos,Direitos Humanos,
-NA,106330,Redução da maioridade penal,Direitos Humanos,
-546383,NA,Trabalho infantil artístico,Direitos Humanos,
-NA,120768,Trabalho infantil artístico e despostivo,Direitos Humanos,
-1594911,121572,Aumento do tempo de internação,Direitos Humanos,
-604888,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência,
-2192459,137999,Nova Previdência,Agenda Nacional,
-2190288,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional,
+id_camara,id_senado,apelido,tema
+2080604,128634,10 Medidas Contra a Corrupção,Integridade e Transparência
+257161,NA,Lei do Licenciamento Ambiental,Meio Ambiente
+NA,132865,Lei Geral de Licenciamento Ambiental,Meio Ambiente
+2088990,91341,Lei da Qualidade Fiscal,Agenda Nacional
+46249,41703,PL do Veneno,Meio Ambiente
+2121442,127753,Lei do Teto Remuneratório,Agenda Nacional
+345311,NA,Estatuto do Índio,Meio Ambiente
+2085536,NA,Lei para Acabar Zona de Amortecimento,Meio Ambiente
+2120775,NA,Política Governo de Redução de Agrotóxico,Meio Ambiente
+2122766,115926,Modernização da Lei de Licitações e Contratos,Agenda Nacional
+NA,126364,Alteração na Lei Antiterrorismo,Agenda Nacional
+606722,NA,Escola Sem Partido,Agenda Nacional
+541857,NA,Revogação do Estatuto do Desarmamento,Agenda Nacional
+2119881,NA,Reforma da Previdência Temer,Agenda Nacional
+2158425,133943,Revisão do contrato da cessão onerosa da Petrobras,Agenda Nacional
+2056568,NA,Indenização Propriedades Privadas em Unidades de Conservação,Meio Ambiente
+1738598,NA,Criação da Área de Proteção Ambiental de Canavieiras,Meio Ambiente
+14562,NA,Demarcações passam a ser competência exclusiva do Congresso,Meio Ambiente
+2170839,NA,Lei do Pantanal - Molon,Meio Ambiente
+944279,NA,Lei do Cerrado,Meio Ambiente
+NA,102721,Cana na Amazônia,Meio Ambiente
+NA,103831,Lei do Pantanal - Maggi,Meio Ambiente
+2120019,111048,Lei das Agências Reguladoras,Agenda Nacional
+51066,NA,Deixa de incluir FUNDEF no limite de gastos com pessoal,Educação
+518221,NA,Piso salarial do magistério público da educação básica - Moura,Educação
+532814,NA,Piso salarial do magistério público da educação básica - Marchezan,Educação
+NA,120143,Educação básica em tempo integral,Educação
+500183,NA,Autoriza trabalho a partir dos quatorze anos,Direitos Humanos
+NA,106330,Redução da maioridade penal,Direitos Humanos
+546383,NA,Trabalho infantil artístico,Direitos Humanos
+NA,120768,Trabalho infantil artístico e despostivo,Direitos Humanos
+1594911,121572,Aumento do tempo de internação,Direitos Humanos
+604888,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência
+2192459,137999,Nova Previdência,Agenda Nacional
+2190288,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional
 2192352,NA,Pacote Moro Caixa 2,Agenda Nacional,Integridade e Transparência
 2192353,NA,Pacote Moro Crime Organizado (Apensado),Agenda Nacional,Integridade e Transparência
 2192354,NA,Pacote Moro Anticorrupção,Agenda Nacional,Integridade e Transparência
-NA,131906,Mercado da água,Meio Ambiente,
-NA,120152,PEC Antiaborto,Direitos Humanos,
+NA,131906,Mercado da água,Meio Ambiente
+NA,120152,PEC Antiaborto,Direitos Humanos
 2190282,135061,Altera o marco legal do saneamento básico,Agenda Nacional,Meio Ambiente
-353631,NA,Disciplina a atividade de lobby,Integridade e Transparência,
+353631,NA,Disciplina a atividade de lobby,Integridade e Transparência
 2178170,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional,Integridade e Transparência
 2190237,135060,Programa de Regularização Ambiental,Agenda Nacional,Meio Ambiente
-604557,NA,PNCMar,Meio Ambiente,
+604557,NA,PNCMar,Meio Ambiente
 NA,136033, Pacote Moro - Crime Organizado,Agenda Nacional,Integridade e Transparência
-2193540,136173,Anistia Tributária para Partidos,Integridade e Transparência,
-NA,135799,Fim da Reserva Legal,Meio Ambiente,
-NA,135505,Extinção das Cotas de Candidaturas Femininas,Direitos Humanos,
-NA,135062,Proteção de Dados Pessoais,Integridade e Transparência,
-NA,131429,Programa de Integridade para Partidos,Integridade e Transparência,
-522447,NA,Situação Jurídica do Estrangeiro no Brasil,Direitos Humanos,
-NA,129778,Tornar o FUNDEB permanente (Senado),Educação,
-1198512,NA,Tornar o FUNDEB permanente (Câmara),Educação,
-16526,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência,
-2199763,136531,Liberdade Econômica,Agenda Nacional,
-NA,126049,Reforma do setor elétrico (Senado),Meio Ambiente,
-1307190,NA,Reforma do setor elétrico (Câmara),Meio Ambiente,
-2081681,NA,Controle das OSCs,Integridade e Transparência,
-2196833,NA,Reforma tributária,Agenda Nacional,
-2187087,138726,Uso do Fundo Partidário para Remunerar funcionários de Partido Político,Integridade e Transparência,
-2208200,137319,Retira prazo para inscrição de propriedades no CAR,Meio Ambiente,
-2218881,NA,Transparência Partidária (Câmara),Integridade e Transparência,
-NA,138551,Transparência partidária (Senado),Integridade e Transparência,
-2209381,NA,PL das Armas,Direitos Humanos,
+2193540,136173,Anistia Tributária para Partidos,Integridade e Transparência
+NA,135799,Fim da Reserva Legal,Meio Ambiente
+NA,135505,Extinção das Cotas de Candidaturas Femininas,Direitos Humanos
+NA,135062,Proteção de Dados Pessoais,Integridade e Transparência
+NA,131429,Programa de Integridade para Partidos,Integridade e Transparência
+522447,NA,Situação Jurídica do Estrangeiro no Brasil,Direitos Humanos
+NA,129778,Tornar o FUNDEB permanente (Senado),Educação
+1198512,NA,Tornar o FUNDEB permanente (Câmara),Educação
+16526,1489,PL das Compras Públicas (Nova Lei de Licitações),Integridade e Transparência
+2199763,136531,Liberdade Econômica,Agenda Nacional
+NA,126049,Reforma do setor elétrico (Senado),Meio Ambiente
+1307190,NA,Reforma do setor elétrico (Câmara),Meio Ambiente
+2081681,NA,Controle das OSCs,Integridade e Transparência
+2196833,NA,Reforma tributária,Agenda Nacional
+2187087,138726,Uso do Fundo Partidário para Remunerar funcionários de Partido Político,Integridade e Transparência
+2208200,137319,Retira prazo para inscrição de propriedades no CAR,Meio Ambiente
+2218881,NA,Transparência Partidária (Câmara),Integridade e Transparência
+NA,138551,Transparência partidária (Senado),Integridade e Transparência
+2209381,NA,PL das Armas,Direitos Humanos
