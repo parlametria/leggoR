@@ -30,28 +30,28 @@ setup <- function() {
 
   atores_sample_df <<- tibble::tibble(id_ext = c(1,1,1,2,2),
                                       casa = c('camara','camara','camara','camara','camara'),
-                                      id_autor = c(1,5,5,5,6),
+                                      id_autor = c(5,1,5,5,6),
                                       tipo_autor = rep("deputado",5),
-                                      nome_autor = c('Dep. A','Dep. C','Dep. C','Dep. C','Dep. D'),
-                                      partido = c('Partido A','Partido C','Partido C','Partido C','Partido B'),
-                                      uf = c("SP","PB", "PB", "PB", "BA"),
+                                      nome_autor = c('Dep. C','Dep. A','Dep. C','Dep. C','Dep. D'),
+                                      partido = c('Partido C','Partido A','Partido C','Partido C','Partido B'),
+                                      uf = c("PB","SP", "PB", "PB", "BA"),
                                       tipo_generico = c('Emenda','Emenda','Emenda',
                                                         'Requerimento','Requerimento'),
-                                      sigla_local = c('PLEN', 'CCJ', 'PLEN', 'CFT', 'CFT'),
-                                      qtd_de_documentos = as.integer(c(1,1,1,1,1)),
-                                      is_important = c(T, F, T, T, T))
+                                      sigla_local = c('CCJ', 'PLEN', 'PLEN', 'CFT', 'CFT'),
+                                      peso_total_documentos = as.numeric(c(1,0.5,0.5,0.5,0.5)),
+                                      is_important = c(F, T, T, T, T))
 
   atores_sample_df_filtered <<- tibble::tibble(id_ext = c(1,1,1),
                                       casa = c('camara','camara','camara'),
-                                      id_autor = c(1,5,5),
+                                      id_autor = c(5,1,5),
                                       tipo_autor = rep("deputado",3),
-                                      nome_autor = c('Dep. A','Dep. C','Dep. C'),
-                                      partido = c('Partido A','Partido C','Partido C'),
-                                      uf = c("SP","PB", "PB"),
+                                      nome_autor = c('Dep. C','Dep. A','Dep. C'),
+                                      partido = c('Partido C','Partido A','Partido C'),
+                                      uf = c("PB","SP", "PB"),
                                       tipo_generico = c('Emenda','Emenda','Emenda'),
-                                      sigla_local = c('PLEN', 'CCJ', 'PLEN'),
-                                      qtd_de_documentos = as.integer(c(1,1,1)),
-                                      is_important = c(T, F, T))
+                                      sigla_local = c('CCJ', 'PLEN', 'PLEN'),
+                                      peso_total_documentos = as.numeric(c(1,0.5,0.5)),
+                                      is_important = c(F, T, T))
 
   return(TRUE)
 }
