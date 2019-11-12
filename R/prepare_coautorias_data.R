@@ -174,9 +174,10 @@ get_coautorias_raw <- function(autorias, peso_autorias, limiar) {
 #' @param autores Dataframe com autores dos documentos
 #' @param casa camara ou senado
 #' @param limiar Peso mínimo das arestas
+#' @param partidos_oposicao lista com os partidos da oposição
 #' @return Dataframe
 #' @export
-get_coautorias <- function(docs, autores, casa, limiar = 0.1) {
+get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao) {
   
   if (casa == 'camara') {
     autorias <- agoradigital::prepare_autorias_df_camara(docs, autores)
@@ -192,7 +193,7 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1) {
   
   parlamentares <-
     parlamentares %>% 
-    dplyr::mutate(bancada = dplyr::if_else(partido %in% .PARTIDOS_OPOSICAO, "oposição", "governo"))
+    dplyr::mutate(bancada = dplyr::if_else(partido %in% partidos_oposicao, "oposição", "governo"))
 
   coautorias <- 
     coautorias %>%

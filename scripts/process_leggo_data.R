@@ -77,6 +77,9 @@ data_inicial <- args$data_inicial_documentos
 peso_minimo <- as.numeric(args$peso_minimo_arestas)
 flag <- args$flag
 
+.PARTIDOS_OPOSICAO <-
+  c("PT", "PSOL", "PSB", "PCdoB", "PDT", "REDE")
+
 #' @title Exporta dados atores
 #' @description Processa e escreve os dados de atores
 #' @param camara_docs documentos da camara
@@ -93,7 +96,9 @@ export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autor
     agoradigital::create_tabela_atores_camara(camara_docs, camara_autores, data_inicio = data_inicio, limiar = peso_minimo)
   atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores, data_inicio = data_inicio, limiar = peso_minimo)
   
-  atores_df <- dplyr::bind_rows(atores_camara, atores_senado)
+  atores_df <-
+    dplyr::bind_rows(atores_camara, atores_senado) %>% 
+    dplyr::mutate(bancada = dplyr::if_else(partido %in% .PARTIDOS_OPOSICAO, "oposição", "governo"))
   
   readr::write_csv(atores_df, paste0(output_path, '/atores.csv'), na = "")
 }
@@ -128,9 +133,9 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
   
   # Gerando dado de autorias de documentos para ambas as casas
   coautorias_camara <- 
-    agoradigital::get_coautorias(camara_docs, camara_autores, "camara", peso_minimo) %>% 
+    agoradigital::get_coautorias(camara_docs, camara_autores, "camara", peso_minimo, .PARTIDOS_OPOSICAO) %>% 
     dplyr::distinct()
-  coautorias_senado <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado", peso_minimo)
+  coautorias_senado <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado", peso_minimo, .PARTIDOS_OPOSICAO)
   
   coautorias <- 
     rbind(coautorias_camara, coautorias_senado) %>% 
