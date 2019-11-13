@@ -191,7 +191,8 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1) {
     autorias %>% 
     dplyr::left_join(parlamentares, by = "id_autor") %>% 
     dplyr::distinct() %>% 
-    dplyr::mutate(nome_eleitoral = agoradigital::formata_nome_eleitoral(nome, partido, uf)) %>% 
+    dplyr::rowwise() %>% 
+    dplyr::mutate(nome_eleitoral = formata_nome_eleitoral(nome, partido, uf)) %>% 
     dplyr::select(-c(nome, partido, uf, id_principal, casa))
   
   parlamentares <-
