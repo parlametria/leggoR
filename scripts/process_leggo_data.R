@@ -89,7 +89,7 @@ flag <- args$flag
 #' @param data_inicial data a partir da qual se considerará os documentos
 #' @param peso_minimo limiar para peso dos documentos
 #' @param output_path pasta para onde exportar os dados
-export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicio, peso_minimo) {
+export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicio, peso_minimo, props_leggo_id) {
   print(paste("Gerando tabela de atores a partir de dados atualizados de documentos e autores..."))
   
   atores_camara <-
@@ -98,7 +98,9 @@ export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autor
   
   atores_df <-
     dplyr::bind_rows(atores_camara, atores_senado) %>% 
-    dplyr::mutate(bancada = dplyr::if_else(partido %in% .PARTIDOS_OPOSICAO, "oposição", "governo"))
+    dplyr::mutate(bancada = dplyr::if_else(partido %in% .PARTIDOS_OPOSICAO, "oposição", "governo")) %>% 
+    dplyr::left_join(props_leggo_id, by = c("id_ext"="id_principal", "casa")) %>% 
+    dplyr::select(id_leggo, dplyr::everything())
   
   readr::write_csv(atores_df, paste0(output_path, '/atores.csv'), na = "")
 }
@@ -113,23 +115,19 @@ export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autor
 #' @param peso_minimo limiar para peso das arestas
 #' @param senado_autores autores do senado
 #' @param output_path pasta para onde exportar os dados
-export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, output_path) {
+export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, props_leggo_id, output_path) {
   print("Gerando tabela de nodes e edges...")
-  
-  prop <- 
-    agoradigital::read_props(paste0(input_path, "/proposicoes.csv")) %>% 
-    dplyr::select(id_leggo, id_principal = id_ext, casa)
   
   camara_docs <-
     camara_docs %>%
     dplyr::mutate(data = as.Date(format(status_proposicao_data_hora, "%Y-%m-%d"))) %>%
     dplyr::filter(data > data_inicial) %>%
-    dplyr::left_join(prop, by = c("id_principal", "casa"))
+    dplyr::left_join(props_leggo_id, by = c("id_principal", "casa"))
   
   senado_docs <-
     senado_docs %>%
     dplyr::filter(data_texto > data_inicial) %>%
-    dplyr::left_join(prop, by = c("id_principal", "casa"))
+    dplyr::left_join(props_leggo_id, by = c("id_principal", "casa"))
   
   # Gerando dado de autorias de documentos para ambas as casas
   coautorias_camara <- 
@@ -185,10 +183,14 @@ process_leggo_data <- function(flag) {
                     id_principal = as.numeric(id_principal))
     senado_autores <- agoradigital::read_current_autores_senado(paste0(input_path, "/senado/autores.csv"))
     
+    props_leggo_id <- 
+      agoradigital::read_props(paste0(input_path, "/proposicoes.csv")) %>% 
+      dplyr::select(id_leggo, id_principal = id_ext, casa)
+    
     if (flag == 1) {
       print("Atualizando tudo!")
-      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo)
-      export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, output_path)
+      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id)
+      export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, props_leggo_id, output_path)
     } else if (flag == 2) {
       print("Atualizando os atores!")
       export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo)
