@@ -129,6 +129,7 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
     autores_docs %>%
     dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>%
     dplyr::filter(peso_documento >= limiar) %>% 
+    dplyr::mutate(tipo_autor = 'senador') %>% 
     dplyr::mutate(nome_autor =
                     stringr::str_replace(nome_autor,
                                          "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", ""),

@@ -28,7 +28,7 @@ senado_atores_gabarito <-
   tibble::tibble(id_ext = c(1, 1, 2),
                  casa = c("senado", "senado", "senado"),
                  id_autor = c(31, 31, 31),
-                 tipo_autor = c("Deputado", "Deputado", "Deputado"),
+                 tipo_autor = c("senador", "senador", "senador"),
                  nome_autor = c("Jair", "Guedes", "Romario"),
                  partido = c("p1", "p2", "p3"),
                  uf = c("PB", "PB", "PB"),
