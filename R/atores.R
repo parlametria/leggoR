@@ -7,6 +7,10 @@ senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 #' @param autores_docs Dataframe com autores dos documentos
 #' @return Dataframe
 get_peso_documentos <- function(autores_docs) {
+  if (!(agoradigital::check_dataframe(autores_docs))) {
+    return(tibble::tibble())
+  }
+  
   autores_docs %>% 
     dplyr::group_by(id_principal, casa, id_documento) %>% 
     dplyr::summarise(peso_documento = 1/dplyr::n())

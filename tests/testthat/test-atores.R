@@ -52,6 +52,16 @@ setup <- function() {
                                       sigla_local = c('CCJ', 'PLEN', 'PLEN'),
                                       peso_total_documentos = as.numeric(c(1,0.5,0.5)),
                                       is_important = c(F, T, T))
+  
+  autores_docs <<- tibble::tibble(id_principal = rep(123,6), 
+                                  casa = c("camara",rep("senado",2),rep("camara",3)), 
+                                  id_documento = c(1,rep(2,2),rep(3,3)))
+  
+  pesos_docs <<- tibble::tibble(id_principal = rep(123,3), 
+                                casa = c("camara","senado","camara"), 
+                                id_documento = c(1,2,3),
+                                peso_documento = c(1,1/2,1/3)
+                                )
 
   return(TRUE)
 }
@@ -90,6 +100,20 @@ test <- function() {
 
   test_that('create_tabela_atores() returns filtered dataframe', {
     expect_equal(create_tabela_atores_camara(docs_sample_df, autores_sample_df, data_inicio, data_fim), atores_sample_df_filtered)
+  })
+  
+  test_that('get_peso_documentos returns correct pesos_docs dataframe', {
+    expect_equal(get_peso_documentos(autores_docs), pesos_docs)
+  })
+  
+  test_that('get_peso_documentos returns warning when autores_docs is NULL', {
+    expect_equal(get_peso_documentos(NULL), tibble::tibble())
+    expect_warning(get_peso_documentos(NULL))
+  })
+  
+  test_that('get_peso_documentos returns warning when autores_docs is empty', {
+    expect_equal(get_peso_documentos(tibble::tibble()), tibble::tibble())
+    expect_warning(get_peso_documentos(tibble::tibble()))
   })
 }
 
