@@ -47,7 +47,7 @@ generate_nodes <- function(coautorias) {
 
   final_nodes <- graph_nodes %>%
     tibble::as_tibble() %>%
-    dplyr::mutate(nome_eleitoral = paste0(nome, " (", partido, "/", uf, ")"))
+    dplyr::mutate(nome_eleitoral = agoradigital::formata_nome_eleitoral(nome, partido, uf))
   
   return(final_nodes)
 }
@@ -191,6 +191,14 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao)
   
   coautorias <- get_coautorias_raw(autorias, peso_autorias, limiar)
   
+  autorias <-
+    autorias %>% 
+    dplyr::left_join(parlamentares, by = "id_autor") %>% 
+    dplyr::distinct() %>% 
+    dplyr::rowwise() %>% 
+    dplyr::mutate(nome_eleitoral = formata_nome_eleitoral(nome, partido, uf)) %>% 
+    dplyr::select(-c(nome, partido, uf, id_principal, casa))
+  
   parlamentares <-
     parlamentares %>% 
     dplyr::mutate(bancada = dplyr::if_else(partido %in% partidos_oposicao, "oposição", "governo"))
@@ -201,7 +209,7 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao)
     dplyr::inner_join(parlamentares, by = c("id_autor.y" = "id_autor")) %>%
     dplyr::distinct() 
 
-  return(coautorias)
+  return(list(coautorias = coautorias, autorias = autorias))
 }
 
 #' @title Cria o dataframe de autorias da camara

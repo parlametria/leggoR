@@ -130,15 +130,20 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
     dplyr::left_join(props_leggo_id, by = c("id_principal", "casa"))
   
   # Gerando dado de autorias de documentos para ambas as casas
-  coautorias_camara <- 
-    agoradigital::get_coautorias(camara_docs, camara_autores, "camara", peso_minimo, .PARTIDOS_OPOSICAO) %>% 
-    dplyr::distinct()
-  coautorias_senado <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado", peso_minimo, .PARTIDOS_OPOSICAO)
+  coautorias_camara_list <- agoradigital::get_coautorias(camara_docs, camara_autores, "camara", as.numeric(peso_minimo))
+  coautorias_camara <- coautorias_camara_list$coautorias
+  autorias_camara <- coautorias_camara_list$autorias
+  coautorias_senado_list <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado", as.numeric(peso_minimo))
+  coautorias_senado <- coautorias_senado_list$coautorias
+  autorias_senado <- coautorias_senado_list$autorias
   
   coautorias <- 
     rbind(coautorias_camara, coautorias_senado) %>% 
     dplyr::mutate(partido.x = dplyr::if_else(is.na(partido.x), "", partido.x),
                   partido.y = dplyr::if_else(is.na(partido.y), "", partido.y))
+  
+  autorias <-
+    rbind(autorias_camara, autorias_senado)
   
   if (nrow(coautorias) != 0) {
     nodes <-
@@ -159,6 +164,7 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
     
     readr::write_csv(nodes , paste0(output_path, '/coautorias_nodes.csv'), na = "")
     readr::write_csv(edges, paste0(output_path, '/coautorias_edges.csv'), na = "")
+    readr::write_csv(autorias, paste0(output_path, '/autorias.csv'))
   } 
 }
 
