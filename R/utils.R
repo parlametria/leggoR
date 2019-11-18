@@ -167,3 +167,22 @@ paste_cols_sorted <- function(x, y, sep = ":") {
   }) %>%
     unlist())
 }
+
+#' @title Formata o nome eleitoral dos parlamentares
+#' @description Recebe o nome, o partido e o uf e concatena-os.
+#' @param nome Nome do parlamentar
+#' @param partido Partido do parlamentar
+#' @param uf Estado do parlamentar
+#' @return String
+#' @export
+formata_nome_eleitoral <- function(nome, partido, uf) {
+  if(is.na(uf)) {
+    uf = '-' 
+  }
+    
+  if(is.na(partido)){
+    partido = '-' 
+  }
+    
+  return(paste0(nome, " (", partido, "/", uf, ")"))
+}
