@@ -7,6 +7,9 @@
 #' @return Dataframe dos nós com a coluna node_size
 #' @export
 compute_nodes_size <- function(final_edges, final_nodes, smoothing = 1) {
+  final_edges <-
+    final_edges %>% 
+    dplyr::mutate(value = dplyr::if_else(source == target, value/2, value))
   nodes_size_source <-
     final_edges %>%
     dplyr::group_by(node = source, id_leggo) %>%
@@ -171,9 +174,10 @@ get_coautorias_raw <- function(autorias, peso_autorias, limiar) {
 #' @param autores Dataframe com autores dos documentos
 #' @param casa camara ou senado
 #' @param limiar Peso mínimo das arestas
+#' @param partidos_oposicao lista com os partidos da oposição
 #' @return Dataframe
 #' @export
-get_coautorias <- function(docs, autores, casa, limiar = 0.1) {
+get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao) {
   
   if (casa == 'camara') {
     autorias <- agoradigital::prepare_autorias_df_camara(docs, autores)
@@ -197,7 +201,7 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1) {
   
   parlamentares <-
     parlamentares %>% 
-    dplyr::mutate(bancada = dplyr::if_else(partido %in% .PARTIDOS_OPOSICAO, "oposição", "governo"))
+    dplyr::mutate(bancada = dplyr::if_else(partido %in% partidos_oposicao, "oposição", "governo"))
 
   coautorias <- 
     coautorias %>%

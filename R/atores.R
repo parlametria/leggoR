@@ -1,15 +1,31 @@
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 
+#' @title Cria tabela com atores os pesos dos documentos
+#' @description Os pesos são calculados através da conta 1/n
+#' onde n é a quantidade de documentos
+#' @param autores_docs Dataframe com autores dos documentos
+#' @return Dataframe
+get_peso_documentos <- function(autores_docs) {
+  if (!(agoradigital::check_dataframe(autores_docs))) {
+    return(tibble::tibble())
+  }
+  
+  autores_docs %>% 
+    dplyr::group_by(id_principal, casa, id_documento) %>% 
+    dplyr::summarise(peso_documento = 1/dplyr::n())
+}
+
 #' @title Cria tabela com atores de documentos com seus respectivos tipos de documentos
 #' @description Retorna um dataframe contendo informações com os autores dos documentos e seus tipos
 #' @param documentos_df Dataframe dos documentos
 #' @param autores_df Dataframe com autores dos documentos
+#' @param limiar limiar para filtrar os documentos
 #' @param data_inicio Data limite inferior para documentos de interesse
 #' @param data_fim Data limite superior para documentos de interesse
 #' @return Dataframe
 #' @export
-create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL) {
+create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL, limiar = 0.1) {
 
   if (!(agoradigital::check_dataframe(documentos_df)) ||
       (!agoradigital::check_dataframe(autores_df))) {
@@ -35,8 +51,14 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
                   uf,
                   sigla_local = status_proposicao_sigla_orgao,
                   descricao_tipo_documento)
-
-  atores_df <- autores_docs %>%
+  
+  peso_documentos <-
+    get_peso_documentos(autores_docs)
+  
+  atores_df <-
+    autores_docs %>%
+    dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>% 
+    dplyr::filter(peso_documento >= limiar) %>% 
     dplyr::mutate(tipo_autor = 'deputado') %>%
     agoradigital::add_tipo_evento_documento() %>%
     dplyr::rename(tipo_generico = tipo) %>%
@@ -49,8 +71,9 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
                     uf,
                     tipo_generico,
                     sigla_local) %>%
-    dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
-    dplyr::arrange(id_ext, -qtd_de_documentos) %>%
+    dplyr::summarise(peso_total_documentos = sum(peso_documento),
+                     num_documentos = dplyr::n()) %>%
+    dplyr::arrange(id_ext, -peso_total_documentos) %>%
     dplyr::ungroup()
 
   atores_df <- .detect_sigla_local(atores_df, camara_env)
@@ -64,9 +87,10 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
 #' @param autores_df Dataframe com autores dos documentos
 #' @param data_inicio Data limite inferior para documentos de interesse
 #' @param data_fim Data limite superior para documentos de interesse
+#' @param limiar Limiar para filtrar os documentos
 #' @return Dataframe
 #' @export
-create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL) {
+create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL, limiar = 0.1) {
 
   if (!(agoradigital::check_dataframe(documentos_df)) ||
       (!agoradigital::check_dataframe(autores_df))) {
@@ -98,9 +122,15 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
     fuzzyjoin::regex_left_join(autores_docs, senado_comissoes, by=c("identificacao_comissao_nome_comissao" = "comissoes_permanentes")) %>%
     dplyr::select(-c(identificacao_comissao_nome_comissao, comissoes_permanentes)) %>%
     dplyr::rename(sigla_local = siglas_comissoes)
+  
+  peso_documentos <-
+    get_peso_documentos(autores_docs)
 
   atores_df <-
     autores_docs %>%
+    dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>%
+    dplyr::filter(peso_documento >= limiar) %>% 
+    dplyr::mutate(tipo_autor = 'senador') %>% 
     dplyr::mutate(nome_autor =
                     stringr::str_replace(nome_autor,
                                          "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", ""),
@@ -116,8 +146,9 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
                     uf,
                     tipo_generico,
                     sigla_local) %>%
-    dplyr::summarise(qtd_de_documentos = dplyr::n()) %>%
-    dplyr::arrange(id_ext, -qtd_de_documentos) %>%
+    dplyr::summarise(peso_total_documentos = sum(peso_documento),
+                     num_documentos = dplyr::n()) %>%
+    dplyr::arrange(id_ext, -peso_total_documentos) %>%
     dplyr::ungroup()
 
   atores_df <-

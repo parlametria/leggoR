@@ -28,13 +28,14 @@ senado_atores_gabarito <-
   tibble::tibble(id_ext = c(1, 1, 2),
                  casa = c("senado", "senado", "senado"),
                  id_autor = c(31, 31, 31),
-                 tipo_autor = c("Deputado", "Deputado", "Deputado"),
+                 tipo_autor = c("senador", "senador", "senador"),
                  nome_autor = c("Jair", "Guedes", "Romario"),
                  partido = c("p1", "p2", "p3"),
                  uf = c("PB", "PB", "PB"),
                  tipo_generico = c("Emenda", "Emenda", "Emenda"),
                  sigla_local = c("CCJ", "CCJ", "CCJ"),
-                 qtd_de_documentos = c(1, 1, 1),
+                 peso_total_documentos = c(1, 1, 1),
+                 num_documentos = as.integer(c(1,1,1)),
                  is_important = c(TRUE, TRUE, TRUE))
 
 pls_ids <- tibble::tibble(id_camara = c(257161,2088990),
@@ -337,7 +338,7 @@ test <- function(){
       nrow(create_tabela_atores_senado(senado_docs, senado_autores)) > 0)
     expect_equal(
       create_tabela_atores_senado(senado_docs, senado_autores) %>% 
-        dplyr::mutate(qtd_de_documentos = as.numeric(qtd_de_documentos)), senado_atores_gabarito)
+        dplyr::mutate(peso_total_documentos = as.numeric(peso_total_documentos)), senado_atores_gabarito)
   })
   
 }
