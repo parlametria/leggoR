@@ -35,6 +35,7 @@ senado_atores_gabarito <-
                  tipo_generico = c("Emenda", "Emenda", "Emenda"),
                  sigla_local = c("CCJ", "CCJ", "CCJ"),
                  peso_total_documentos = c(1, 1, 1),
+                 num_documentos = as.integer(c(1,1,1)),
                  is_important = c(TRUE, TRUE, TRUE))
 
 pls_ids <- tibble::tibble(id_camara = c(257161,2088990),

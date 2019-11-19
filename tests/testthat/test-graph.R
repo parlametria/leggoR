@@ -31,6 +31,7 @@ setup <- function() {
     
   coautorias <<-
     agoradigital::get_coautorias(docs_sample_df, autores_sample_df, "camara", 0.1, partidos_oposicao = .OPOSICAO) %>% 
+    purrr::pluck(1) %>% 
     dplyr::mutate(num_coautorias = as.numeric(num_coautorias))
   
   nodes_sample <<-
