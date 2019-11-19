@@ -41,8 +41,8 @@ compute_nodes_size <- function(final_edges, final_nodes, smoothing = 1) {
 generate_nodes <- function(coautorias) {
     graph_nodes <-
       dplyr::bind_rows(
-      coautorias %>% dplyr::select(id_autor = id_autor.x, nome = nome.x, partido = partido.x, uf = uf.x, bancada = bancada.x),
-      coautorias %>% dplyr::select(id_autor = id_autor.y, nome = nome.y, partido = partido.y, uf = uf.y, bancada = bancada.y)) %>%
+      coautorias %>% dplyr::select(id_autor = id_autor.x, nome = nome.x, partido = partido.x, uf = uf.x, bancada = bancada.x, sigla_local, casa, id_principal),
+      coautorias %>% dplyr::select(id_autor = id_autor.y, nome = nome.y, partido = partido.y, uf = uf.y, bancada = bancada.y, sigla_local, casa, id_principal)) %>%
       dplyr::distinct()
 
   final_nodes <- graph_nodes %>%
@@ -72,10 +72,13 @@ get_unique_nodes <- function(coautorias) {
                      partido = dplyr::first(partido),
                      uf = dplyr::first(uf),
                      bancada = dplyr::first(bancada),
-                     nome_eleitoral = dplyr::first(nome_eleitoral))
+                     nome_eleitoral = dplyr::first(nome_eleitoral),
+                     sigla_local = dplyr::first(sigla_local),
+                     casa = dplyr::first(casa),
+                     id_principal = dplyr::first(id_principal))
   
   nodes %>% 
-    dplyr::inner_join(unique_nodes, by = c("id_leggo", "id_autor", "nome", "partido", "uf", "bancada", "nome_eleitoral"))
+    dplyr::inner_join(unique_nodes, by = c("id_leggo", "id_autor", "nome", "partido", "uf", "bancada", "nome_eleitoral", "sigla_local", "casa", "id_principal"))
 }
 
 #' @title Gera os dataframe de arestas
@@ -114,7 +117,7 @@ remove_duplicated_edges <- function(df) {
              paste_cols_sorted(id_autor.x,
                                id_autor.y,
                                sep = ":")) %>%
-    dplyr::distinct(id_leggo, id_principal, casa, id_documento, data, col_pairs) %>%
+    dplyr::distinct(id_leggo, id_principal, casa, id_documento, data, col_pairs, sigla_local) %>%
     tidyr::separate(col = col_pairs,
                     c("id_autor.x",
                       "id_autor.y"),
@@ -142,7 +145,7 @@ get_coautorias_raw <- function(autorias, peso_autorias, limiar) {
   coautorias_raw <- autorias %>%
     dplyr::full_join(autorias, by = c("id_leggo", "id_documento")) %>% 
     dplyr::select(id_leggo, id_principal = id_principal.x, casa = casa.x, id_documento, data = data.x, 
-                  id_autor.x, id_autor.y)
+                  id_autor.x, id_autor.y, sigla_local = sigla_local.x)
   
   coautorias_simples <- coautorias_raw %>% 
     dplyr::inner_join(num_autorias_por_pl %>% dplyr::filter(num_autores == 1),
@@ -159,7 +162,7 @@ get_coautorias_raw <- function(autorias, peso_autorias, limiar) {
   coautorias %>%
     remove_duplicated_edges() %>%
     dplyr::inner_join(peso_autorias, by = c("id_principal", "id_documento")) %>%
-    dplyr::group_by(id_leggo, id_principal, casa, id_autor.x, id_autor.y) %>%
+    dplyr::group_by(id_leggo, id_principal, casa, id_autor.x, id_autor.y, sigla_local) %>%
     dplyr::summarise(peso_arestas = sum(peso_arestas),
                      num_coautorias = dplyr::n()) %>%
     dplyr::ungroup() %>%
@@ -197,7 +200,7 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao)
     dplyr::distinct() %>% 
     dplyr::rowwise() %>% 
     dplyr::mutate(nome_eleitoral = formata_nome_eleitoral(nome, partido, uf)) %>% 
-    dplyr::select(-c(nome, partido, uf, id_principal, casa))
+    dplyr::select(-c(nome, partido, uf))
   
   parlamentares <-
     parlamentares %>% 
@@ -225,6 +228,7 @@ prepare_autorias_df_camara <- function(docs_camara, autores_camara) {
                       casa,
                       id_documento,
                       descricao_tipo_documento,
+                      sigla_local = status_proposicao_sigla_orgao,
                       id_autor,
                       data,
                       url_inteiro_teor,
@@ -246,6 +250,7 @@ prepare_autorias_df_senado <- function(docs_senado, autores_senado) {
                   id_documento,
                   descricao_tipo_documento = descricao_texto,
                   id_autor,
+                  sigla_local = identificacao_comissao_sigla_comissao,
                   url_inteiro_teor = url_texto,
                   data = data_texto,
                   id_leggo) %>%
