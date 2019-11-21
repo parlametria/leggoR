@@ -41,7 +41,7 @@
     {"evento": "parecer", "id_situacao": 322, "regex": "^(?!.*aprova)(?!.*rejei)(?!.*substitutivo) parecer.*$", "tipo":"votacao"},
     {"evento": "virada_de_casa", "regex": "(^(remessa|remetido) ao senado federal.*)|(recebido o ofício.* do sf, que comunico que o senado federal aprovou, em revisão.*)", "tipo": "votacao"},
     {"evento": "remetida_a_sancao_promulgacao", "regex": "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)|(à promulga..o)", "tipo":"votacao"},
-    {"evento": "transformada_lei", "regex": "transformado na lei ordinária", "tipo": "votacao"},
+    {"evento": "transformada_lei", "regex": "transformado na lei ordinária|promulgada(.)* emenda constitucional", "tipo": "votacao"},
     {"evento": "vetada_totalmente", "regex": "proposição vetada totalmente", "tipo": "votacao"},
     {"evento": "parecer_comissao", "regex": "^encaminhada à publicação. parecer da comissão.*", "tipo": "votacao"},
     {"evento": "req_apresentacao", "regex": "", "tipo": "discussao"},
