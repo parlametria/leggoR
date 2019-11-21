@@ -186,3 +186,14 @@ formata_nome_eleitoral <- function(nome, partido, uf) {
     
   return(paste0(nome, " (", partido, "/", uf, ")"))
 }
+
+#' @title Formata o nome dos senadores
+#' @description Recebe a string do senador retornada pela api do Seando
+#' e retorna Sen. nome.
+#' @param nome_autor Nome do parlamentar
+#' @return String
+#' @export
+formata_nome_senadores <- function(nome_autor) {
+  stringr::str_replace(nome_autor,
+                       "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", "Sen. ")
+}

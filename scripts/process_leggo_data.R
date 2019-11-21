@@ -182,12 +182,16 @@ process_leggo_data <- function(flag) {
     camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv"))
     camara_autores <-
       agoradigital::read_current_autores_camara(paste0(input_path, "/camara/autores.csv")) %>%
-      dplyr::mutate(id_documento = as.numeric(id_documento))
+      dplyr::mutate(id_documento = as.numeric(id_documento),
+                    nome = paste0('Dep. ', nome))
     senado_docs <-
       agoradigital::read_current_docs_senado(paste0(input_path, "/senado/documentos.csv")) %>%
       dplyr::mutate(id_documento = as.numeric(id_documento),
                     id_principal = as.numeric(id_principal))
-    senado_autores <- agoradigital::read_current_autores_senado(paste0(input_path, "/senado/autores.csv"))
+    senado_autores <- 
+      agoradigital::read_current_autores_senado(paste0(input_path, "/senado/autores.csv")) %>% 
+      dplyr::mutate(nome_autor =
+                      agoradigital::formata_nome_senadores(nome_autor))
 
     props_leggo_id <-
       agoradigital::read_props(paste0(input_path, "/proposicoes.csv")) %>%
