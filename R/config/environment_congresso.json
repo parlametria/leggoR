@@ -43,9 +43,9 @@
   },
 
   "tipos_eventos":[
-    {"tipo":"serie_b", "label":"Serie B", "peso":0.25},
-    {"tipo":"serie_c", "label":"Serie C", "peso":0.07},
-    {"tipo":"serie_a", "label":"Serie A", "peso":0.68}
+    {"tipo":"despacho", "label":"Despacho", "peso":0.25},
+    {"tipo":"discussao", "label":"Discussão", "peso":0.07},
+    {"tipo":"votacao", "label":"Votação", "peso":0.68}
   ],
 
   "tipos_locais":[
