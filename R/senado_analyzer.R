@@ -659,7 +659,7 @@ extract_local_global_in_senado <- function(data_tramitacao) {
     dplyr::mutate(	
       local =	
         dplyr::case_when(	
-          situacao_descricao_situacao == fase_global_presidencia$situacao_sancao ~ senado_constants$presidencia,	
+          situacao_descricao_situacao == fase_global_presidencia$situacao_sancao | fase_global == 'Promulgação/Veto' ~ senado_constants$presidencia,	
           (stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) & sigla_local == "PLEN") ~ senado_constants$plenario,	
           sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes & (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~ senado_constants$comissoes))	
 } 
