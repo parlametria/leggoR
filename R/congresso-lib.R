@@ -14,9 +14,14 @@ detect_fase <- function(element, set) {
 #' @description Extrai as casas globais de um PL
 #' @param full_proposicao_df Dataframe da proposição do PL.
 #' @param full_tramitacao_df Dataframe da tramitação do PL.
+#' @param sigla Sigla da proposição
 #' @return Dataframe com uma nova coluna chamada fase_global
-extract_casas <- function(full_proposicao_df, full_tramitacao_df){
-  eventos_fases <- congresso_env$eventos_fases
+extract_casas <- function(full_proposicao_df, full_tramitacao_df, sigla){
+  if (tolower(sigla) == 'pec') {
+    eventos_fases <- congresso_env$eventos_fases_pec
+  }else {
+    eventos_fases <- congresso_env$eventos_fases
+  }
 
   full_ordered_tram <- full_tramitacao_df %>% dplyr::arrange(data_hora)
 
@@ -74,7 +79,7 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df){
   full_ordered_tram_fases <- dplyr::bind_rows(camara_ordered_tram,senado_ordered_tram) %>%
     dplyr::distinct() %>%
     dplyr::arrange(data_hora) %>%
-    dplyr::mutate(local_casa = dplyr::if_else(fase_global == 'Sanção/Veto','presidência da república',
+    dplyr::mutate(local_casa = dplyr::if_else(fase_global == 'Sanção/Veto' | fase_global == 'Promulgação/Veto','presidência da república',
                                               dplyr::if_else(fase_global == 'Avaliação dos Vetos','congresso',casa)))
 }
 
@@ -113,14 +118,14 @@ generate_progresso_df <- function(tramitacao_df, sigla){
 
   df$data_fim[nrow(df)] <- NA
 
-  df %<>%
-    dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global")) %>%
-    dplyr::ungroup()
-  
-  if (sigla == "PEC") {
-    df <-
-      df %>% 
-      dplyr::mutate(fase_global = dplyr::if_else(fase_global == "Sanção/Veto", "Promulgação/Veto", fase_global))
+  if (tolower(sigla) == "pec") {
+    df %<>%
+      dplyr::right_join(congresso_env$fases_global_pec, by = c("local", "fase_global")) %>%
+      dplyr::ungroup()
+  }else {
+    df %<>%
+      dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global")) %>%
+      dplyr::ungroup()
   }
 
   if (sum(is.na(df$casa)) == nrow(df)) {
@@ -136,7 +141,7 @@ generate_progresso_df <- function(tramitacao_df, sigla){
 
   #Adding correct casa column value for phases: Sanção/Veto and Avaliação dos Vetos.
   df <- df %>%
-    dplyr::mutate(local_casa = dplyr::if_else(fase_global %in% c('Sanção/Veto','Avaliação dos Vetos'),
+    dplyr::mutate(local_casa = dplyr::if_else(fase_global %in% c('Sanção/Veto','Avaliação dos Vetos', 'Promulgação/Veto'),
                                              tolower(local),
                                              casa))
 

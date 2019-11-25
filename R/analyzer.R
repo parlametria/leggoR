@@ -410,7 +410,7 @@ get_progresso <- function(full_proposicao_df, full_tramitacao_df) {
     head(1)
   
   progresso_data <-
-    extract_casas(full_proposicao_df, full_tramitacao_df) %>%
+    extract_casas(full_proposicao_df, full_tramitacao_df, sigla[[1]]) %>%
     generate_progresso_df(sigla[[1]]) %>%
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
     tidyr::fill(prop_id, casa) %>%

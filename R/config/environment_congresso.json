@@ -14,6 +14,17 @@
     {"evento_num" : "remetida_a_sancao_promulgacao1", "fase_global":"Sanção/Veto"},
     {"evento_num" : "apresentacao_pl4", "fase_global":"Avaliação dos Vetos"}
   ],
+  
+  "eventos_fases_pec":[
+    {"evento_num" : "primeiro_evento", "fase_global":"Pré-Construção"},
+    {"evento_num" : "apresentacao_pl1", "fase_global":"Construção"},
+    {"evento_num" : "virada_de_casa1", "fase_global":"Pré-Revisão I"},
+    {"evento_num" : "apresentacao_pl2", "fase_global":"Revisão I"},
+    {"evento_num" : "virada_de_casa2", "fase_global":"Pré-Revisão II"},
+    {"evento_num" : "apresentacao_pl3", "fase_global":"Revisão II"},
+    {"evento_num" : "remetida_a_sancao_promulgacao1", "fase_global":"Promulgação/Veto"},
+    {"evento_num" : "apresentacao_pl4", "fase_global":"Avaliação dos Vetos"}
+  ],
 
   "fases_global_mpv":[
     {"fase_global":"Comissão Mista"},
@@ -34,6 +45,20 @@
     {"local": "Comissões", "fase_global": "Revisão II"},
     {"local": "Plenário", "fase_global": "Revisão II"},
     {"local": "Presidência da República", "fase_global": "Sanção/Veto"},
+    {"local": "Congresso", "fase_global": "Avaliação dos Vetos"}
+  ],
+  
+    "fases_global_pec":[
+    {"local": "", "fase_global": "Pré-Construção"},
+    {"local": "Comissões", "fase_global": "Construção"},
+    {"local": "Plenário", "fase_global": "Construção"},
+    {"local": "", "fase_global": "Pré-Revisão I"},
+    {"local": "Comissões", "fase_global": "Revisão I"},
+    {"local": "Plenário", "fase_global": "Revisão I"},
+    {"local": "", "fase_global": "Pré-Revisão II"},
+    {"local": "Comissões", "fase_global": "Revisão II"},
+    {"local": "Plenário", "fase_global": "Revisão II"},
+    {"local": "Presidência da República", "fase_global": "Promulgação/Veto"},
     {"local": "Congresso", "fase_global": "Avaliação dos Vetos"}
   ],
 

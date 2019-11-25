@@ -71,7 +71,8 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
                     uf,
                     tipo_generico,
                     sigla_local) %>%
-    dplyr::summarise(peso_total_documentos = sum(peso_documento)) %>%
+    dplyr::summarise(peso_total_documentos = sum(peso_documento),
+                     num_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -peso_total_documentos) %>%
     dplyr::ungroup()
 
@@ -145,7 +146,8 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
                     uf,
                     tipo_generico,
                     sigla_local) %>%
-    dplyr::summarise(peso_total_documentos = sum(peso_documento)) %>%
+    dplyr::summarise(peso_total_documentos = sum(peso_documento),
+                     num_documentos = dplyr::n()) %>%
     dplyr::arrange(id_ext, -peso_total_documentos) %>%
     dplyr::ungroup()
 
