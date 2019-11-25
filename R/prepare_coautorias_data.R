@@ -68,14 +68,15 @@ get_unique_nodes <- function(coautorias) {
   unique_nodes <-
     nodes %>% 
     dplyr::group_by(id_leggo, id_autor) %>% 
-    dplyr::summarise(nome = dplyr::first(nome),
-                     partido = dplyr::first(partido),
-                     uf = dplyr::first(uf),
-                     bancada = dplyr::first(bancada),
-                     nome_eleitoral = dplyr::first(nome_eleitoral),
-                     sigla_local = dplyr::first(sigla_local),
-                     casa = dplyr::first(casa),
-                     id_principal = dplyr::first(id_principal))
+    dplyr::summarise(
+      sigla_local = dplyr::first(sigla_local),
+      casa = dplyr::first(casa),
+      id_principal = dplyr::first(id_principal),
+      nome = dplyr::first(nome),
+      partido = dplyr::first(partido),
+      uf = dplyr::first(uf),
+      bancada = dplyr::first(bancada),
+      nome_eleitoral = dplyr::first(nome_eleitoral))
   
   nodes %>% 
     dplyr::inner_join(unique_nodes, by = c("id_leggo", "id_autor", "nome", "partido", "uf", "bancada", "nome_eleitoral", "sigla_local", "casa", "id_principal"))
@@ -96,6 +97,9 @@ generate_edges <- function(coautorias, graph_nodes, edges_weight = 1) {
   
   graph_edges <- coautorias_index %>%
     dplyr::select(
+      id_principal,
+      casa,
+      sigla_local,
       source = id_autor.x,
       target = id_autor.y,
       value = peso_arestas) 
