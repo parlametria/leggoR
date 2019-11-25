@@ -191,7 +191,7 @@ process_leggo_data <- function(flag) {
     camara_autores <-
       agoradigital::read_current_autores_camara(paste0(input_path, "/camara/autores.csv")) %>%
       dplyr::mutate(id_documento = as.numeric(id_documento),
-                    nome = paste0('Dep. ', nome))
+                    nome = agoradigital::formata_nome_deputados(nome))
     senado_docs <-
       agoradigital::read_current_docs_senado(paste0(input_path, "/senado/documentos.csv")) %>%
       dplyr::mutate(id_documento = as.numeric(id_documento),
