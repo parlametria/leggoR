@@ -143,7 +143,15 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
                   partido.y = dplyr::if_else(is.na(partido.y), "", partido.y))
 
   autorias <-
-    rbind(autorias_camara, autorias_senado)
+    rbind(autorias_camara, autorias_senado) %>% 
+    dplyr::group_by(id_documento, id_autor) %>% 
+    dplyr::summarise(
+              descricao_tipo_documento = dplyr::first(descricao_tipo_documento),
+              data = dplyr::first(data),
+              url_inteiro_teor = dplyr::first(url_inteiro_teor),
+              id_leggo = dplyr::first(id_leggo),
+              nome_eleitoral = dplyr::first(nome_eleitoral)) %>% 
+    dplyr::mutate(autores = paste0(nome_eleitoral, collapse = ", "))
 
   if (nrow(coautorias) != 0) {
     nodes <-
@@ -182,12 +190,16 @@ process_leggo_data <- function(flag) {
     camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv"))
     camara_autores <-
       agoradigital::read_current_autores_camara(paste0(input_path, "/camara/autores.csv")) %>%
-      dplyr::mutate(id_documento = as.numeric(id_documento))
+      dplyr::mutate(id_documento = as.numeric(id_documento),
+                    nome = agoradigital::formata_nome_deputados(nome))
     senado_docs <-
       agoradigital::read_current_docs_senado(paste0(input_path, "/senado/documentos.csv")) %>%
       dplyr::mutate(id_documento = as.numeric(id_documento),
                     id_principal = as.numeric(id_principal))
-    senado_autores <- agoradigital::read_current_autores_senado(paste0(input_path, "/senado/autores.csv"))
+    senado_autores <- 
+      agoradigital::read_current_autores_senado(paste0(input_path, "/senado/autores.csv")) %>% 
+      dplyr::mutate(nome_autor =
+                      agoradigital::formata_nome_senadores(nome_autor))
 
     props_leggo_id <-
       agoradigital::read_props(paste0(input_path, "/proposicoes.csv")) %>%

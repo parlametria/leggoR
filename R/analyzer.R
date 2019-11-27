@@ -433,7 +433,7 @@ get_pesos_eventos <- function() {
     dplyr::select(evento = constant, tipo)
 
   na_pauta <- tibble::tribble(~evento, ~tipo, ~label, ~peso,
-                              "na_pauta", "votacao", "Votação", 0.68)
+                              "na_pauta", "serie_a", "Serie A", 0.68)
 
   pesos_eventos <- dplyr::bind_rows(eventos_camara, eventos_senado, eventos_extra_senado) %>%
     dplyr::group_by(evento) %>%
