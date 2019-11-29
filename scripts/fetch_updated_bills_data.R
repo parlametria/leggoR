@@ -7,7 +7,7 @@ Rscript fetch_updated_bills_data.R -p <pls_ids_filepath> -e <export_path> -f <fl
 flag = 1 Atualiza tudo (Proposições, emendas e comissões)
 flag = 2 Atualiza tudo referente as proposições
 flag = 3 Atualiza tudo sobre emendas
-flag = 4 Atualiza tuso sobre comissões
+flag = 4 Atualiza tudo sobre comissões
 "
 
 #' @title Get arguments from command line option parsing

@@ -67,9 +67,8 @@ get_unique_nodes <- function(coautorias) {
   
   unique_nodes <-
     nodes %>% 
-    dplyr::group_by(id_leggo, id_autor) %>% 
+    dplyr::group_by(id_leggo, id_autor, sigla_local) %>% 
     dplyr::summarise(
-      sigla_local = dplyr::first(sigla_local),
       casa = dplyr::first(casa),
       id_principal = dplyr::first(id_principal),
       nome = dplyr::first(nome),

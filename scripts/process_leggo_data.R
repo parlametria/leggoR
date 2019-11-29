@@ -146,6 +146,8 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
     rbind(autorias_camara, autorias_senado) %>% 
     dplyr::group_by(id_documento, id_autor) %>% 
     dplyr::summarise(
+              id_principal = dplyr::first(id_principal),
+              casa = dplyr::first(casa),
               descricao_tipo_documento = dplyr::first(descricao_tipo_documento),
               data = dplyr::first(data),
               url_inteiro_teor = dplyr::first(url_inteiro_teor),
