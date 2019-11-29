@@ -80,11 +80,11 @@ to_underscore <- function(x) {
 #'   filtra_dias_nao_uteis_congresso(.)
 filtra_dias_nao_uteis_congresso <- function(tramitacao_df) {
   tramitacao_filtrada_df <- tramitacao_df %>%
-    dplyr::filter(!(lubridate::wday(data) %in% c(1,7))) %>%
-    dplyr::filter(lubridate::month(data) != 1) %>%
-    dplyr::filter(!((lubridate::month(data) == 2) & (lubridate::day(data) < 2))) %>%
-    dplyr::filter(!((lubridate::month(data) == 7) & (lubridate::day(data) > 17))) %>%
-    dplyr::filter(!((lubridate::month(data) == 12) & (lubridate::day(data) > 22)))
+    dplyr::filter(!(lubridate::wday(periodo) %in% c(1,7))) %>%
+    dplyr::filter(lubridate::month(periodo) != 1) %>%
+    dplyr::filter(!((lubridate::month(periodo) == 2) & (lubridate::day(periodo) < 2))) %>%
+    dplyr::filter(!((lubridate::month(periodo) == 7) & (lubridate::day(periodo) > 17))) %>%
+    dplyr::filter(!((lubridate::month(periodo) == 12) & (lubridate::day(periodo) > 22)))
 }
 
 fetch_json_try <- function(url) {
@@ -152,4 +152,58 @@ check_dataframe <- function(df) {
     return(FALSE)
   }
   return(TRUE)
+}
+
+#' @title Concateca dois elementos com um separador no meio
+#' @description Recebe duas variáveis x e y e retorna a união "x:y".
+#' @param x Primeira variável a ser concatenada
+#' @param y Segunda variável a ser concatenada
+#' @param sep Separador a ser concatenado
+#' @return String concatenada com a primeira variável + separador + segunda variável
+paste_cols_sorted <- function(x, y, sep = ":") {
+  stopifnot(length(x) == length(y))
+  return(lapply(1:length(x), function(i) {
+    paste0(sort(c(x[i], y[i])), collapse = sep)
+  }) %>%
+    unlist())
+}
+
+#' @title Formata o nome eleitoral dos parlamentares
+#' @description Recebe o nome, o partido e o uf e concatena-os.
+#' @param nome Nome do parlamentar
+#' @param partido Partido do parlamentar
+#' @param uf Estado do parlamentar
+#' @return String
+#' @export
+formata_nome_eleitoral <- function(nome, partido, uf) {
+  if(is.na(uf)) {
+    uf = '-' 
+  }
+    
+  if(is.na(partido)){
+    partido = '-' 
+  }
+    
+  return(paste0(nome, " (", partido, "/", uf, ")"))
+}
+
+#' @title Formata o nome dos senadores
+#' @description Recebe a string do senador retornada pela api do Seando
+#' e retorna Sen. nome.
+#' @param nome_autor Nome do parlamentar
+#' @return String
+#' @export
+formata_nome_senadores <- function(nome_autor) {
+  stringr::str_replace(nome_autor,
+                       "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", "Sen. ")
+}
+
+#' @title Formata o nome dos deputados
+#' @description Recebe o nome do deputado
+#' e retorna Dep. nome.
+#' @param nome_autor Nome do parlamentar
+#' @return String
+#' @export
+formata_nome_deputados <- function(nome_autor) {
+  paste0('Dep. ', nome_autor)
 }
