@@ -22,10 +22,10 @@ setup <- function() {
                                        nome = c('Dep. A', 'Dep. C', 'Dep. C', 'Dep. C', 'Dep. D'))
   
   coautorias_sample <<-
-    tibble::tribble(~id_leggo, ~ id_principal, ~ casa, ~ id_autor.x, ~ id_autor.y, ~ peso_arestas, ~ num_coautorias, ~ nome.x, ~ partido.x, ~ uf.x, ~ bancada.x, ~ nome.y, ~ partido.y, ~ uf.y, ~ bancada.y,
-    1,            1, "camara",          1,          5,          0.5,              1, "Dep. A", "PSDB", "SP",    "governo",   "Dep. C", "PT", "PB",    "oposição",  
-    1,            1, "camara",          5,          5,          1,                1, "Dep. C", "PT", "PB",    "oposição",   "Dep. C", "PT", "PB",    "oposição",  
-    1,            2, "camara",          5,          6,          0.5,              1, "Dep. C", "PT", "PB",    "oposição",   "Dep. D", "PSL", "BA",    "governo" ) 
+    tibble::tribble(~id_leggo, ~ id_principal, ~ casa, ~ id_autor.x, ~ id_autor.y, ~ sigla_local, ~ peso_arestas, ~ num_coautorias, ~ nome.x, ~ partido.x, ~ uf.x, ~ bancada.x, ~ nome.y, ~ partido.y, ~ uf.y, ~ bancada.y,
+    1,            1, "camara",          1,          5,        "PLEN",  0.5,              1, "Dep. A", "PSDB", "SP",    "governo",   "Dep. C", "PT", "PB",    "oposição",  
+    1,            1, "camara",          5,          5,        "CCJ",  1,                1, "Dep. C", "PT", "PB",    "oposição",   "Dep. C", "PT", "PB",    "oposição",  
+    1,            2, "camara",          5,          6,        "CFT",  0.5,              1, "Dep. C", "PT", "PB",    "oposição",   "Dep. D", "PSL", "BA",    "governo" ) 
   
   .OPOSICAO = c("PT")
     
@@ -35,19 +35,21 @@ setup <- function() {
     dplyr::mutate(num_coautorias = as.numeric(num_coautorias))
   
   nodes_sample <<-
-    tibble::tribble(~id_leggo, ~ id_autor, ~ nome, ~ partido, ~ uf, ~ bancada, ~ nome_eleitoral,        
-                    1,        1, "Dep. A", "PSDB", "SP",    "governo", "Dep. A (PSDB/SP)",
-                    1,        5, "Dep. C", "PT",    "PB",    "oposição", "Dep. C (PT/PB)", 
-                    1,        6, "Dep. D", "PSL",    "BA",    "governo", "Dep. D (PSL/BA)")
+    tibble::tribble(~id_leggo, ~ id_autor, ~ nome, ~ partido, ~ uf, ~ bancada, ~ sigla_local, ~ casa, ~ id_principal, ~ nome_eleitoral,        
+                    1,        1, "Dep. A", "PSDB", "SP",    "governo", "PLEN", "camara", 1, "Dep. A (PSDB/SP)",
+                    1,        5, "Dep. C", "PT",    "PB",    "oposição", "CCJ", "camara", 1, "Dep. C (PT/PB)", 
+                    1,        5, "Dep. C", "PT",    "PB",    "oposição", "CFT", "camara", 2, "Dep. C (PT/PB)", 
+                    1,        5, "Dep. C", "PT",    "PB",    "oposição", "PLEN", "camara", 1, "Dep. C (PT/PB)", 
+                    1,        6, "Dep. D", "PSL",    "BA",    "governo", "CFT", "camara", 2,  "Dep. D (PSL/BA)")
   
   nodes <<-
     agoradigital::get_unique_nodes(coautorias_sample)
   
   edges_sample <<-
-    tibble::tribble(~ id_leggo, ~ source, ~ target, ~ value,
-                      1,      1,      5,   0.5,
-                      1,      5,      5,   1,  
-                      1,      5,      6,   0.5)
+    tibble::tribble(~ id_leggo, ~ id_principal, ~ casa, ~ sigla_local, ~ source, ~ target, ~ value,
+                      1,  1, "camara", "PLEN",    1,      5,   0.5,
+                      1,  1, "camara", "CCJ",    5,      5,   1,  
+                      1,  2, "camara",  "CFT",  5,      6,   0.5)
   edges <<-
     coautorias_sample %>% 
     dplyr::group_by(id_leggo) %>% 
@@ -55,10 +57,12 @@ setup <- function() {
     dplyr::distinct()
   
   nodes_sample_with_size <<-
-    tibble::tribble(~id_leggo, ~ id_autor, ~ nome, ~ partido, ~ uf, ~ bancada, ~ nome_eleitoral, ~ node_size,        
-                    1,        1, "Dep. A", "PSDB", "SP",    "governo", "Dep. A (PSDB/SP)", 0.5,
-                    1,        5, "Dep. C", "PT",    "PB",    "oposição", "Dep. C (PT/PB)", 2,
-                    1,        6, "Dep. D", "PSL",    "BA",    "governo", "Dep. D (PSL/BA)", 0.5)
+    tibble::tribble(~id_leggo, ~ id_autor, ~ nome, ~ partido, ~ uf, ~ bancada, ~ sigla_local, ~ casa, ~ id_principal, ~ nome_eleitoral, ~ node_size,        
+                    1,        1, "Dep. A", "PSDB", "SP",    "governo", "PLEN", "camara", 1, "Dep. A (PSDB/SP)", 0.5,
+                    1,        5, "Dep. C", "PT",    "PB",    "oposição", "CCJ", "camara", 1, "Dep. C (PT/PB)",  2,
+                    1,        5, "Dep. C", "PT",    "PB",    "oposição", "CFT", "camara", 2, "Dep. C (PT/PB)", 2,
+                    1,        5, "Dep. C", "PT",    "PB",    "oposição", "PLEN", "camara", 1, "Dep. C (PT/PB)", 2,
+                    1,        6, "Dep. D", "PSL",    "BA",    "governo", "CFT", "camara", 2,  "Dep. D (PSL/BA)", 0.5) 
   
   nodes_with_size <<-
     agoradigital::compute_nodes_size(edges, nodes)
