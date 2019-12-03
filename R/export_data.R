@@ -127,8 +127,9 @@ adiciona_status <- function(tramitacao_df) {
 #' @param apelido Apelido da proposição
 #' @param tema_pl Tema da proposição
 #' @param total_rows número de linhas da tabela com os ids das proposições
+#' @param advocacy_link link para a pasta no drive com notas técnicas sobre a proposição
 #' @return Dataframe
-process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_rows, pautas) {
+process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_rows, pautas, advocacy_link) {
    cat(paste(
      "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
      "\nsenado", id_senado, "\n"))
@@ -167,7 +168,7 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_ro
       agoradigital::get_historico_temperatura_recente_id_leggo(tram = etapas$fases_eventos, id_leggo = row_num, pautas = pautas)
   }
   etapas$proposicao %<>%
-    dplyr::mutate(apelido_materia = apelido, tema = tema_pl, id_leggo = row_num)
+    dplyr::mutate(apelido_materia = apelido, tema = tema_pl, id_leggo = row_num, advocacy_link = advocacy_link)
   Sys.sleep(5*stats::runif(1))
   return(etapas)
 }
