@@ -27,3 +27,36 @@ Toda matéria submetida à apreciação do senado, câmara ou congresso. Existem
   * Medidas provisórias
   * Decreto legislativo
   * Resolução
+
+Os tipos de proposição seguem uma espécie de hierarquia, a qual pode ser visualizada logo abaixo:
+
+### ![pirâmide de kelsen](https://github.com/analytics-ufcg/leggoR/docs/piramide-kelsen.png)
+
+#### 5. Qual a diferença entre Regime de tramitação (RT) e Regime de apreciação (RA)?
+* **RT:** É o status das proposições no parlamento. Sendo assim, de acordo com a urgência da proposição, será refletido diretamente na velocidade de votação para a aprovação ou não da proposição, sendo classificados da seguinte forma:
+    * Urgência: tramitação com **maior** urgência
+    * Prioridade: tramitação com **alguma** urgência
+    * Ordinário: tramitação padrão, de **menor** urgência
+* **RA:** se a proposição será apreciada apenas pelas comissões (regime conclusivo), ou também pelo plenário da casa.
+
+#### 6. Qual o papel de um relator?
+É o parlamentar designado para examinar determinada proposição legislativa ou documento de acompanhamento e fiscalização da execução orçamentária e financeira e da gestão fiscal, em sua forma e conteúdo, e de elaborar relatório sobre esses aspectos, no qual recomenda sua aprovação ou rejeição.
+* vídeo rápido: [Qual o papel de um relator?](https://www.youtube.com/watch?v=yDIRCb_LWuQ&list=PLysoTmRxzFnVfy1J8qY2VzGi1k3dvzN75&t=0s&index=6)
+
+#### 7. Como funcionam as comissões?
+* **Permanentes:** discutem e votam pareceres técnicos sobre as propostas de leis apresentadas antes de serem levadas ao plenário
+* **Temporárias:** há um prazo fixado para o final da criação ou se é alcançado o objetivo
+    * Comissões Especiais: emitir pareceres sobre proposições em situações especiais (PEC, Códigos...) ou oferecer estudos sobre temas específicos (4 ou mais comissões designadas para um determinado projeto, ex: CPI)
+    * Comissões Externas: acompanham assuntos específicos fora da sede da casa
+    * Comissões Parlamentares de Inquérito: investigar fato determinado
+* vídeo rápido: [As comissões](https://www.youtube.com/watch?v=sX4uWFJnwMQ&list=PLysoTmRxzFnVfy1J8qY2VzGi1k3dvzN75&index=4&t=0s)
+
+#### 8. Qual a diferença entre ementa e emenda?
+* **Ementa:** uma breve apresentação dos pontos relevantes de uma proposição
+* **Emenda:** destina-se a alterar o texto da proposição principal, seja suprimindo ou acrescentando disposições, seja modificando ou substituindo as já existentes. Emendas são também espécies do gênero "proposição", mas têm um caráter acessório, ficando sempre vinculadas a uma proposição de tipo principal
+
+#### 9. Quais os documentos utilizados em atores:
+* **Requerimento:** tem como objetivo solicitar um pedido, necessidade ou interesse em algo.
+* **Parecer:** espécie de proposição legislativa acessória, na qual se expressa uma opinião favorável ou contrária à proposição à qual se refere.
+* **Proposição apensada:** anexação de uma proposição ao processo de outra da mesma espécie que trate de matéria análoga ou conexa, para que sejam apreciadas conjuntamente.
+* **Voto em separado:** espécie de manifestação alternativa à do relator em uma comissão, podendo ser apresentado por qualquer dos demais membros.
