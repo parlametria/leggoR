@@ -134,3 +134,16 @@ read_current_autores_senado_scrap <- function(file_path) {
                                     id_autor = readr::col_double()
                                   ))
 }
+
+#' @title Ler arquivos de proposição
+#' @param file_path caminho do arquivo
+#' @export
+read_props <- function(file_path) {
+  readr::read_csv(col_types =  readr::cols(
+      .default = readr::col_character(),
+      id_ext =  readr::col_double(),
+      numero =  readr::col_double(),
+      data_apresentacao =  readr::col_datetime(format = ""),
+      id_leggo =  readr::col_double()
+    ), file_path) 
+}

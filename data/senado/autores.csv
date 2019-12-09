@@ -135,6 +135,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 132865,7729498,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
 132865,7729507,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
 132865,8005952,senado,Senador Luis Carlos Heinze ,PP,RS,senador,1186
+132865,8049612,senado,Senador Sérgio Petecão ,PSD,AC,senador,4560
 91341,3931768,senado,Senador Arthur Virgílio ,PSDB,AM,senador,551
 91341,3931768,senado,Senador Arthur Virgílio ,PSDB,AM,senador,1487
 91341,3931786,senado,Senador Arthur Virgílio ,PSDB,AM,senador,551
@@ -376,6 +377,8 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 120768,8015336,senado,Senadora Leila Barros ,PSB,DF,senador,5979
 120768,8017525,senado,Senadora Leila Barros ,PSB,DF,senador,5979
 120768,8020379,senado,Senadora Leila Barros ,PSB,DF,senador,5979
+120768,8034660,senado,Senadora Leila Barros ,PSB,DF,senador,5979
+120768,8048090,senado,Senadora Leila Barros ,PSB,DF,senador,5979
 121572,4522689,senado,Senador José Pimentel ,PT,CE,senador,615
 121572,4522707,senado,Senadora Simone Tebet ,PMDB,MS,senador,5527
 121572,4522723,senado,Senadora Simone Tebet ,PMDB,MS,senador,5527
@@ -3606,6 +3609,38 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 137999,8026749,senado,Senador Flávio Bolsonaro ,PSL,RJ,senador,5894
 137999,8026749,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
 137999,8026749,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
+137999,8028131,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
+137999,8027972,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
+137999,8028022,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+137999,8028083,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028086,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028095,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028107,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028104,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028101,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028110,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028098,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028089,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028092,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028113,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028116,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028714,senado,Senador Telmário Mota ,PROS,RR,senador,5535
+137999,8028714,senado,Líder do PROS Zenaide Maia ,PROS,RN,senador,5783
+137999,8028119,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028124,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
+137999,8028129,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028151,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028154,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028160,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028163,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028170,senado,Senador Paulo Paim ,PT,RS,senador,825
+137999,8028215,senado,Senador Weverton ,PDT,MA,senador,5411
+137999,8028224,senado,Senador Otto Alencar ,PSD,BA,senador,5523
+137999,8028717,senado,Senador Humberto Costa ,PT,PE,senador,5008
+137999,8028249,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
+137999,8028720,senado,Líder do PDT Weverton ,PDT,MA,senador,5411
+137999,8028550,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+137999,8028734,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
 135064,7910213,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
 135064,7910216,senado,Senador Acir Gurgacz ,PDT,RO,senador,4981
 135064,7910558,senado,Senador Humberto Costa ,PT,PE,senador,5008
@@ -3930,6 +3965,9 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136033,7950118,senado,Senador Arolde de Oliveira ,PSD,RJ,senador,751
 136033,7974520,senado,Senador Marcos do Val ,CIDADANIA,ES,senador,5942
 136033,7985338,senado,Senador Eduardo Braga ,MDB,AM,senador,4994
+136033,8040809,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
+136033,8041630,senado,Senador Rodrigo Cunha ,PSDB,AL,senador,5905
+136033,8052601,senado,Senador Arolde de Oliveira ,PSD,RJ,senador,751
 136173,7940035,senado,Senador Ciro Nogueira ,PP,PI,senador,739
 136173,7940056,senado,Senador Ciro Nogueira ,PP,PI,senador,739
 136173,7940322,senado,Senador Ciro Nogueira ,PP,PI,senador,739
@@ -4202,6 +4240,56 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 126049,8005483,senado,Senador Lucas Barreto ,PSD,AP,senador,5926
 126049,8015946,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
 126049,8015952,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
+126049,8031281,senado,Senador Marcos Rogério ,DEM,RO,senador,5422
+126049,8040137,senado,Senador Telmário Mota ,PROS,RR,senador,5535
+138726,8007278,senado,Senador Weverton ,PDT,MA,senador,5411
+138726,8008542,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
+138726,8008570,senado,Senador Wellington Fagundes ,PL,MT,senador,1173
+138726,8008576,senado,Senador Wellington Fagundes ,PL,MT,senador,1173
+138726,8008573,senado,Senador Wellington Fagundes ,PL,MT,senador,1173
+138726,8008885,senado,Senador Weverton ,PDT,MA,senador,5411
+138726,8009278,senado,Senadora Juíza Selma ,PSL,MT,senador,5929
+138726,8011470,senado,Senador Weverton ,PDT,MA,senador,5411
+138726,8010236,senado,Senador Oriovisto Guimarães ,PODEMOS,PR,senador,5924
+138726,8011011,senado,Senadora Juíza Selma ,PSL,MT,senador,5929
+138726,8011018,senado,Senador Lasier Martins ,PODEMOS,RS,senador,5533
+138726,8011056,senado,Senadora Simone Tebet ,MDB,MS,senador,5527
+138726,8011059,senado,Senadora Simone Tebet ,MDB,MS,senador,5527
+138726,8011062,senado,Senadora Simone Tebet ,MDB,MS,senador,5527
+138726,8011065,senado,Senadora Simone Tebet ,MDB,MS,senador,5527
+138726,8011302,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
+138726,8011314,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
+138726,8011311,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
+138726,8011308,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
+138726,8011305,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
+138726,8011335,senado,Senador Telmário Mota ,PROS,RR,senador,5535
+138726,8011344,senado,Senador Telmário Mota ,PROS,RR,senador,5535
+138726,8011341,senado,Senador Telmário Mota ,PROS,RR,senador,5535
+138726,8011338,senado,Senador Telmário Mota ,PROS,RR,senador,5535
+138726,8011357,senado,Senador Lasier Martins ,PODEMOS,RS,senador,5533
+138726,8011381,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011441,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011438,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011435,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011432,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011429,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011426,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011423,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011420,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011417,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011414,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011411,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011408,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011405,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011402,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011399,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011396,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011393,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011390,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011387,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011384,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+138726,8011454,senado,Senador Weverton ,PDT,MA,senador,5411
+138726,8011723,senado,Senador Lasier Martins ,PODEMOS,RS,senador,5533
 137319,7966804,senado,Senador Flávio Arns ,REDE,PR,senador,345
 137319,7967828,senado,Senador Styvenson Valentim ,PODEMOS,RN,senador,5959
 137319,7968133,senado,Senador Zequinha Marinho ,PSC,PA,senador,3806
@@ -4223,6 +4311,8 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 137319,8001735,senado,Senador Irajá ,PSD,TO,senador,5385
 137319,8003207,senado,Senador Irajá ,PSD,TO,senador,5385
 137319,8003154,senado,Senador Irajá ,PSD,TO,senador,5385
+138551,8003231,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
+139988,8048914,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
 135064,7909365,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 135064,7909374,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 135064,7909371,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
@@ -5568,6 +5658,20 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 137999,8019562,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 137999,8019530,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 137999,8019696,senado,Comissão Diretora do Senado Federal,NA,NA,nao_parlamentar,NA
+137999,8035010,senado,Cidadão Marcelo Bueno Loiola,NA,NA,nao_parlamentar,NA
+137999,8028131,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+137999,8028807,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+137999,8028838,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+137999,8028126,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+137999,8028835,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+137999,8029294,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+137999,8029422,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+137999,8029982,senado,Primeiro-Secretário do Congresso Nacional,NA,NA,nao_parlamentar,NA
+137999,8029962,senado,Presidente do Senado Federal,NA,NA,nao_parlamentar,NA
+137999,8029996,senado,Presidente do Senado Federal,NA,NA,nao_parlamentar,NA
+137999,8029987,senado,Presidente do Senado Federal,NA,NA,nao_parlamentar,NA
+137999,8047244,senado,Secretaria Geral da Mesa,NA,NA,nao_parlamentar,NA
+137999,8047471,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 135064,7904538,senado,Presidência da República,NA,NA,nao_parlamentar,NA
 135064,7904742,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
 135064,7915879,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
@@ -5612,6 +5716,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135064,7960385,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 135064,7976305,senado,Câmara Municipal de Chapecó,NA,NA,nao_parlamentar,NA
 135064,7976307,senado,Assembleia Legislativa do Estado de Santa Catarina,NA,NA,nao_parlamentar,NA
+135064,7993308,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
 120152,7912874,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 120152,7916365,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 120152,7917876,senado,Senado Federal,NA,NA,nao_parlamentar,NA
@@ -5633,7 +5738,11 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135061,7948666,senado,Comissão Mista,NA,NA,nao_parlamentar,NA
 135061,7949475,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
 135061,7948791,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135061,7961680,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135061,7961619,senado,Primeiro-Secretário do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135061,7961674,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135061,7963537,senado,Ente Jurídico,NA,NA,nao_parlamentar,NA
+135061,7983404,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135060,7904252,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
 135060,7903288,senado,Presidência da República,NA,NA,nao_parlamentar,NA
 135060,7915881,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
@@ -5654,6 +5763,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135060,7961682,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135060,7961617,senado,Primeiro-Secretário do Congresso Nacional,NA,NA,nao_parlamentar,NA
 135060,7961687,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
+135060,7983406,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
 136173,7938374,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
 136173,7939739,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 136173,7940688,senado,Senado Federal,NA,NA,nao_parlamentar,NA
@@ -5696,6 +5806,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 135062,7960515,senado,Presidente do Senado Federal,NA,NA,nao_parlamentar,NA
 135062,7960517,senado,Primeiro-Secretário do Senado Federal,NA,NA,nao_parlamentar,NA
 135062,7966761,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+135062,8005136,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
 131429,7929435,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
 131429,7929433,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
 131429,7978100,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
@@ -5730,10 +5841,21 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136531,8002865,senado,Primeiro-Secretário do Senado Federal,NA,NA,nao_parlamentar,NA
 136531,8007182,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
 136531,8006689,senado,Primeiro-Secretário do Congresso Nacional,NA,NA,nao_parlamentar,NA
+136531,8040007,senado,Presidente do Congresso Nacional,NA,NA,nao_parlamentar,NA
 126049,7887049,senado,Comissão de Assuntos Econômicos,NA,NA,nao_parlamentar,NA
 126049,7886897,senado,Comissão de Assuntos Econômicos,NA,NA,nao_parlamentar,NA
 126049,7888446,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
 126049,7976553,senado,Comissão de Serviços de Infraestrutura,NA,NA,nao_parlamentar,NA
+138726,8004714,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
+138726,8008887,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+138726,8008805,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
+138726,8011468,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+138726,8011470,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+138726,8011754,senado,Primeiro-Secretário do Senado Federal,NA,NA,nao_parlamentar,NA
+138726,8011788,senado,Comissão Diretora do Senado Federal,NA,NA,nao_parlamentar,NA
+138726,8013076,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+138726,8016034,senado,Primeiro-Secretário do Congresso Nacional,NA,NA,nao_parlamentar,NA
+138726,8048501,senado,Cidadão Pedro Luiz Mattos Canhassi Botaro,NA,NA,nao_parlamentar,NA
 137319,7966370,senado,Presidência da República,NA,NA,nao_parlamentar,NA
 137319,7966633,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
 137319,7969334,senado,Senado Federal,NA,NA,nao_parlamentar,NA
@@ -5753,3 +5875,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 137319,8023013,senado,Presidente do Senado Federal,NA,NA,nao_parlamentar,NA
 137319,8022995,senado,Presidente do Senado Federal,NA,NA,nao_parlamentar,NA
 137319,8023355,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+137319,8027666,senado,Presidência da República,NA,NA,nao_parlamentar,NA
+137319,8027668,senado,Presidência da República,NA,NA,nao_parlamentar,NA
+137319,8028930,senado,Primeiro-Secretário do Senado Federal,NA,NA,nao_parlamentar,NA
+140042,8036675,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA

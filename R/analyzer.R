@@ -373,7 +373,7 @@ fix_nomes_locais <- function(pautas_df) {
 #' @param tram Dataframe da tramitação do PL.
 #' @return Dataframe contendo id, regime de tramitação e forma de apreciação do PL
 #' @examples
-#' extract_status_tramitacao(91341, 'senado', fetch_proposicao(91341, 'senado'), fetch_tramitacao(91341, 'senado))
+#' extract_status_tramitacao(91341, 'senado', fetch_proposicao(91341, 'senado'), fetch_tramitacao(91341, 'senado'))
 #' @export
 #' @importFrom stats filter
 extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
@@ -404,9 +404,14 @@ extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
 #' get_progresso(etapas$proposicao, etapas$fases_eventos)
 #' @export
 get_progresso <- function(full_proposicao_df, full_tramitacao_df) {
+  sigla <- 
+    full_proposicao_df %>% 
+    dplyr::select(sigla_tipo) %>% 
+    head(1)
+  
   progresso_data <-
-    extract_casas(full_proposicao_df, full_tramitacao_df) %>%
-    generate_progresso_df() %>%
+    extract_casas(full_proposicao_df, full_tramitacao_df, sigla[[1]]) %>%
+    generate_progresso_df(sigla[[1]]) %>%
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
     tidyr::fill(prop_id, casa) %>%
     tidyr::fill(prop_id, casa, .direction = "up")
@@ -428,7 +433,7 @@ get_pesos_eventos <- function() {
     dplyr::select(evento = constant, tipo)
 
   na_pauta <- tibble::tribble(~evento, ~tipo, ~label, ~peso,
-                              "na_pauta", "votacao", "Votação", 0.68)
+                              "na_pauta", "serie_a", "Serie A", 0.68)
 
   pesos_eventos <- dplyr::bind_rows(eventos_camara, eventos_senado, eventos_extra_senado) %>%
     dplyr::group_by(evento) %>%
