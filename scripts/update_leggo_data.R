@@ -143,8 +143,13 @@ if (casa == 'senado') {
 
     print(paste("Adicionando ",nrow(new_docs_data)," novos documentos."))
 
+    new_docs_data <-
+      new_docs_data %>%
+      dplyr::select(-status_proposicao_ambito) %>%
+      dplyr::filter(id_documento %in% complete_docs$id_documento)
+
     updated_docs <-
-      rbind(current_docs, new_docs_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
+      rbind(current_docs, new_docs_data)
     readr::write_csv(updated_docs, docs_filepath)
 
     print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
