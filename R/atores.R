@@ -94,7 +94,7 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
 
   if (!(agoradigital::check_dataframe(documentos_df)) ||
       (!agoradigital::check_dataframe(autores_df))) {
-    return(tibble::tibble())
+    return(tibble::tribble(~id_ext,~casa,~id_autor,~tipo_autor,~nome_autor,~partido,~uf,~tipo_generico,~sigla_local,~peso_total_documentos,~num_documentos,~is_important))
   }
 
   if(!is.null(data_inicio)) {
@@ -103,6 +103,10 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
 
   if(!is.null(data_fim)) {
     documentos_df <- documentos_df %>% dplyr::filter(data_texto < data_fim)
+  }
+  
+  if(nrow(documentos_df) == 0) {
+    return(tibble::tribble(~id_ext,~casa,~id_autor,~tipo_autor,~nome_autor,~partido,~uf,~tipo_generico,~sigla_local,~peso_total_documentos,~num_documentos,~is_important))
   }
 
   autores_docs <-

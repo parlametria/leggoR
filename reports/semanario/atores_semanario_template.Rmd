@@ -9,14 +9,14 @@ atores_pls_bancada <-
 
 atores_pls_order <- atores_pls_bancada %>% 
   group_by(nome_completo) %>% 
-  summarise(total_docs = sum(qtd_de_documentos)) %>% 
+  summarise(total_docs = sum(peso_total_documentos)) %>% 
   arrange(-total_docs)
 
 atores_pls_plot <- atores_pls_bancada %>% 
   inner_join(atores_pls_order, by="nome_completo")
 
 p <- atores_pls_plot %>% 
-  ggplot(aes(x = reorder(nome_completo, total_docs), y = qtd_de_documentos, group = tipo_generico, fill = tipo_generico)) + 
+  ggplot(aes(x = reorder(nome_completo, total_docs), y = peso_total_documentos, group = tipo_generico, fill = tipo_generico)) + 
     geom_chicklet(width = 0.8) +
      theme(legend.position = "bottom") +
      labs(
@@ -47,7 +47,7 @@ p
 tipo_generico_destaque <-
   atores_pls_plot  %>% 
   group_by(tipo_generico) %>% 
-  summarise(total = sum(qtd_de_documentos)) %>% 
+  summarise(total = sum(peso_total_documentos)) %>% 
   arrange(total) %>% 
   tail(1) %>% 
   purrr::pluck("tipo_generico")

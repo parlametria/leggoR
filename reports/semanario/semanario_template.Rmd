@@ -14,11 +14,7 @@ params:
     label: "Input dataset:"
     value: ../../data/tabela_geral_ids_casa.csv
     input: file
-  temperaturas:
-    label: "Input dataset:"
-    value: ../../data/tabela_geral_ids_casa.csv
-    input: file
-  pressoes: 
+  temp_pressao_periodo:
     label: "Input dataset:"
     value: ../../data/tabela_geral_ids_casa.csv
     input: file
@@ -59,8 +55,7 @@ text-align: justify}
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 #Base de dados de temperatura
-temperatura <- params$temperaturas
-pressao <- params$pressoes
+temp_pressao_periodo <- params$temp_pressao_periodo 
 data_inicio <- params$date_init
 data_fim <- params$date_end
 pls <- params$proposicoes
@@ -111,22 +106,11 @@ build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio, dt_f
   
 }
 
-join_temp_pressao <- function(temperatura_df, pressao_df) {
-  temperatura_ <- temperatura_df %>% 
-    mutate(periodo = as.Date(periodo))
-
-  temp_pressao <- dplyr::inner_join(temperatura_, pressao_df, by =c("id_leggo","periodo")) %>% 
-    dplyr::select(id_leggo, periodo, temperatura, pressao) %>% 
-    mutate(pressao = if_else(pressao == 0, 0.1, pressao))
-  return(temp_pressao)
-}
 ```
 
 ## Pressão e Temperatura
 
 ```{r, fig.height=7, fig.width=10}
-temp_pressao_periodo <- join_temp_pressao(temperatura, pressao)
-
 pls_nome_formal <- pls %>% 
   mutate(ano = format(as.Date(data_apresentacao), "%Y")) %>% 
   mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano))) %>% 
@@ -195,19 +179,19 @@ atores_geral <- atores %>%
 atores_pls <- atores_geral %>% 
   dplyr::group_by(id_leggo, id_ext, casa, nome_autor, id_autor, tipo_autor, partido, nome_completo,
            uf, tipo_generico, sigla_local, is_important, bancada, nome_formal, nome_formal_completo, sigla_tipo, tema) %>% 
-  dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
+  dplyr::summarise(peso_total_documentos = sum(peso_total_documentos))
 
 atuacao_temas <- atores_pls %>% 
   dplyr::group_by(bancada, tema) %>% 
-  dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
+  dplyr::summarise(peso_total_documentos = sum(peso_total_documentos))
 
 atuacao_bancadas <- atores_pls %>% 
   dplyr::group_by(casa, bancada, nome_formal, nome_formal_completo, sigla_tipo) %>% 
-  dplyr::summarise(qtd_de_documentos = sum(qtd_de_documentos))
+  dplyr::summarise(peso_total_documentos = sum(peso_total_documentos))
 ```
 
 ```{r, fig.height=6, fig.width=10}
-p <- atuacao_temas %>% ggplot(aes(x = reorder(tema, qtd_de_documentos), y = qtd_de_documentos, group = bancada, fill = bancada)) + 
+p <- atuacao_temas %>% ggplot(aes(x = reorder(tema,peso_total_documentos), y = peso_total_documentos, group = bancada, fill = bancada)) + 
     geom_chicklet(width = 0.75) +
      theme_ipsum_rc(grid=FALSE) +
      theme(legend.position = "bottom") +
@@ -232,7 +216,7 @@ p
 qtd_tema <-
   atuacao_temas %>% 
   group_by(tema) %>% 
-  summarise(total = sum(qtd_de_documentos)) 
+  summarise(total = sum(peso_total_documentos)) 
 
 tema_destaque <-
   qtd_tema %>% 
@@ -245,8 +229,8 @@ total_tema_destaque <- qtd_tema %>% filter(tema == tema_destaque) %>% purrr::plu
 variacao_temp <- round(((total_tema_destaque * 100) / total_docs), digits = 2)
 atuacao_temas_destaque <- atuacao_temas %>% filter(tema == tema_destaque)
 pls_tema_destaque <- atores_pls %>%  filter(tema == tema_destaque)
-num_docs_governo <- atuacao_temas_destaque %>% filter(bancada == "Governo") %>% purrr::pluck("qtd_de_documentos")
-num_docs_oposicao <- atuacao_temas_destaque %>% filter(bancada == "Oposição") %>% purrr::pluck("qtd_de_documentos")
+num_docs_governo <- atuacao_temas_destaque %>% filter(bancada == "Governo") %>% purrr::pluck("peso_total_documentos")
+num_docs_oposicao <- atuacao_temas_destaque %>% filter(bancada == "Oposição") %>% purrr::pluck("peso_total_documentos")
 ```
 
 Na última semana o tema `r tema_destaque` teve destaque nas atuações parlamentares, sendo `r variacao_temp`% dos documentos autorados para esse tema. Outro destaque é que foram apresentados `r num_docs_governo` documentos pela bancada do governo e `r num_docs_oposicao` pela oposição.
@@ -254,7 +238,7 @@ Na última semana o tema `r tema_destaque` teve destaque nas atuações parlamen
 Ao clicar no tema `r tema_destaque`, temos as seguintes proposições tiveram destaque
 
 ```{r, fig.height=6, fig.width=10}
-p <- atuacao_bancadas %>% filter(nome_formal %in% pls_tema_destaque$nome_formal) %>%  ggplot(aes(x = reorder(nome_formal, qtd_de_documentos), y = qtd_de_documentos, group = bancada, fill = bancada)) + 
+p <- atuacao_bancadas %>% filter(nome_formal %in% pls_tema_destaque$nome_formal) %>%  ggplot(aes(x = reorder(nome_formal, peso_total_documentos), y = peso_total_documentos, group = bancada, fill = bancada)) + 
     geom_chicklet(width = 0.75) +
      theme_ipsum_rc(grid=FALSE) +
      theme(legend.position = "bottom") +
@@ -279,7 +263,7 @@ p
 qtd_atuacao <-
   atuacao_bancadas %>% 
   group_by(nome_formal, nome_formal_completo) %>% 
-  summarise(total = sum(qtd_de_documentos)) 
+  summarise(total = sum(peso_total_documentos)) 
 
 props_destaque <-
   qtd_atuacao %>% 
@@ -295,8 +279,8 @@ prop_destaque <-
 
 total_prop_destaque <- qtd_atuacao %>% filter(nome_formal == prop_destaque) %>% purrr::pluck("total")
 atuacao_prop_destaque <- atuacao_bancadas %>% filter(nome_formal == prop_destaque)
-num_docs_governo <- atuacao_prop_destaque %>% filter(bancada == "Governo") %>% purrr::pluck("qtd_de_documentos")
-num_docs_oposicao <- atuacao_prop_destaque %>% filter(bancada == "Oposição") %>% purrr::pluck("qtd_de_documentos")
+num_docs_governo <- atuacao_prop_destaque %>% filter(bancada == "Governo") %>% purrr::pluck("peso_total_documentos")
+num_docs_oposicao <- atuacao_prop_destaque %>% filter(bancada == "Oposição") %>% purrr::pluck("peso_total_documentos")
 ```
 
 A `r prop_destaque` teve maior número de atuações, com apresentação de `r total_prop_destaque` documentos, sendo `r num_docs_governo` apresentados pelo governo e `r num_docs_oposicao` pela oposição.
