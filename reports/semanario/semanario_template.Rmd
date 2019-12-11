@@ -72,6 +72,22 @@ define_date_breaks <- function(timedata_df) {
   datas <- seq(ymd(head(timedata_df, 1)$periodo),ymd(tail(timedata_df, 1)$periodo), by = paste(time_breaks,"days"))  
 }
 
+get_texto_temp_pressao <- function(temp_pressao_periodo) {
+  est_prev <- tail(temp_pressao_periodo, 2)
+  temp_atual <- est_prev$temperatura[length(est_prev$temperatura)]
+  ultima_temp <- est_prev$temperatura[length(est_prev$temperatura) - 1]
+  variacao_temp <- round(((temp_atual - ultima_temp) / ultima_temp) * 100, digits = 2)
+  press_atual <- est_prev$pressao[length(est_prev$pressao)]
+  ultima_press <- est_prev$pressao[length(est_prev$pressao) - 1]
+  variacao_press <- press_atual - ultima_press
+  cresceu_temp <- variacao_temp > 0
+  cresceu_press <- variacao_press > 0
+  variacao_temp <- abs(variacao_temp)
+  variacao_press <- abs(variacao_press)
+  
+  return (paste0("Foi observad", if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}, variacao_temp, "% na temperatura e ", if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}, if(variacao_press != 0){variacao_press}, if(variacao_press != 0){"%"}, "na pressão."))
+}
+
 build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio, dt_fim) {
   datas <- define_date_breaks(temp_pressao_pl)
   data_n_semanas_atras <- as.Date(dt_fim) - (7 * num_semanas_passadas)
@@ -102,10 +118,13 @@ build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio, dt_f
   grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
     gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
   
-  p  + annotation_custom(grob) + annotation_custom(grob2)  
+  temp_pressao_plot <- (p  + annotation_custom(grob) + annotation_custom(grob2))
   
+  texto_temp_pressao <- get_texto_temp_pressao(temp_pressao_pl)
+  
+  plot(temp_pressao_plot)
+  cat(texto_temp_pressao)
 }
-
 ```
 
 ## Pressão e Temperatura
@@ -119,7 +138,10 @@ pls_nome_formal <- pls %>%
 pls_destaque <- pls_nome_formal %>%
   filter(id_leggo %in% temp_pressao_periodo$id_leggo)
 
-build_temp_pressao_plot(temp_pressao_periodo, paste(pls_destaque$nome_formal,pls_destaque$apelido,sep=" - "), data_inicio, data_fim)
+res <- temp_pressao_periodo %>% 
+  left_join(pls_destaque %>% select(id_leggo, nome_formal, apelido), by = "id_leggo") %>% 
+  group_by(id_leggo) %>%
+  group_map(~ build_temp_pressao_plot(., paste(.$nome_formal, .$apelido,sep=" - "), data_inicio, data_fim))
 ```
 
 ```{r temp_pressao_prop_destaque, include=FALSE}
@@ -143,24 +165,6 @@ build_temp_pressao_plot(temp_pressao_periodo, paste(pls_destaque$nome_formal,pls
   #build_temp_pressao_plot(temp_pressao_pl, paste(pl_destaque$nome_formal,pl_destaque$apelido,sep=" - "), data_inicio, data_fim)
 #}
 ```
-
-
-```{r}
-est_prev <- tail(temp_pressao_periodo, 2)
-temp_atual <- est_prev$temperatura[length(est_prev$temperatura)]
-ultima_temp <- est_prev$temperatura[length(est_prev$temperatura) - 1]
-variacao_temp <- round(((temp_atual - ultima_temp) / ultima_temp) * 100, digits = 2)
-press_atual <- est_prev$pressao[length(est_prev$pressao)]
-ultima_press <- est_prev$pressao[length(est_prev$pressao) - 1]
-variacao_press <- press_atual - ultima_press
-cresceu_temp <- variacao_temp > 0
-cresceu_press <- variacao_press > 0
-variacao_temp <- abs(variacao_temp)
-variacao_press <- abs(variacao_press)
-```
-
-
-Foi observad`r if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}` `r variacao_temp`% na temperatura e `r if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}` `r if(variacao_press != 0){variacao_press}``r if(variacao_press != 0){"%"}` na pressão.
 
 ## Atores da semana
 

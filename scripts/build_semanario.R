@@ -48,7 +48,7 @@ pops_base_folderpath <- args[4]
 
 is_package_installed(pkg_name = "ggchicklet", rep_url = "https://cinc.rud.is")
 
-num_semanas_passadas <<- 3
+num_semanas_passadas <<- 12
 
 #Lê dados básicos sobre as proposições e temperatura
 proposicoes <- readr::read_csv(paste0(input_base_folderpath,'/','proposicoes.csv'))
@@ -79,7 +79,7 @@ get_pls_interesse <- function(variacoes_temperatura, z_score_lim = 1.5, leggo_id
     dplyr::filter(z_score > z_score_lim)
 }
 
-pls_de_interesse <- get_pls_interesse(variacoes_temperatura, 0.3, leggo_ids)
+pls_de_interesse <- get_pls_interesse(variacoes_temperatura, 0.4, leggo_ids)
 
 #Temperaturas filtradas
 temperatura_pls_filtradas <- temperaturas %>%
