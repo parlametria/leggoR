@@ -10,7 +10,7 @@ Rscript build_semanario.R <data_inicio> <data_fim> <input_base_folderpath> <pops
 #' @description Get arguments from command line option parsing
 # get_args <- function() {
 #   args = commandArgs(trailingOnly=TRUE)
-# 
+#
 #   option_list = list(
 #     optparse::make_option(c("-p", "--pls_ids_filepath"),
 #                           type="character",
@@ -18,7 +18,7 @@ Rscript build_semanario.R <data_inicio> <data_fim> <input_base_folderpath> <pops
 #                           help=.HELP,
 #                           metavar="character")
 #   );
-# 
+#
 #   opt_parser <- optparse::OptionParser(option_list = option_list)
 #   opt <- optparse::parse_args(opt_parser)
 #   return(opt);
@@ -51,7 +51,7 @@ is_package_installed(pkg_name = "ggchicklet", rep_url = "https://cinc.rud.is")
 
 
 
-num_semanas_passadas <<- 3
+num_semanas_passadas <<- 10
 
 #Lê dados básicos sobre as proposições e temperatura
 proposicoes <- readr::read_csv(paste0(input_base_folderpath,'/','proposicoes.csv'))
@@ -81,18 +81,18 @@ pls_de_interesse <- variacoes_temperatura %>%
 
 #Temperaturas filtradas
 temperatura_pls_filtradas <- temperaturas %>%
-  dplyr::filter(id_leggo %in% pls_de_interesse$id_leggo) %>% 
-  dplyr::filter(periodo <= semana_alvo) %>% 
-  dplyr::select(-temperatura_periodo) %>% 
+  dplyr::filter(id_leggo %in% pls_de_interesse$id_leggo) %>%
+  dplyr::filter(periodo <= semana_alvo) %>%
+  dplyr::select(-temperatura_periodo) %>%
   dplyr::rename(temperatura = temperatura_recente)
 
 #Pressões filtradas
 pressao_pls_filtradas <- purrr::map_df(pls_de_interesse$id_ext, ~ readr::read_csv(paste0(pops_base_folderpath,"/pop_", .x, ".csv"))) %>%
-  dplyr::select(-dplyr::starts_with("X")) %>% 
-  dplyr::left_join(leggo_ids, by="id_ext") %>% 
-  dplyr::group_by(id_leggo, id_ext, casa, date) %>% 
-  dplyr::summarise(pressao = max(maximo_geral)) %>% 
-  dplyr::ungroup() %>% 
+  dplyr::select(-dplyr::starts_with("X")) %>%
+  dplyr::left_join(leggo_ids, by="id_ext") %>%
+  dplyr::group_by(id_leggo, id_ext, casa, date) %>%
+  dplyr::summarise(pressao = max(maximo_geral)) %>%
+  dplyr::ungroup() %>%
   dplyr::select(id_leggo, periodo = date, pressao)
 
 #Documentos e autores
@@ -108,17 +108,17 @@ atores_camara <-
   agoradigital::create_tabela_atores_camara(camara_docs, camara_autores, data_inicio, data_fim)
 atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores, data_inicio, data_fim)
 
-atores_df <- dplyr::bind_rows(atores_camara, atores_senado) %>% 
+atores_df <- dplyr::bind_rows(atores_camara, atores_senado) %>%
   dplyr::left_join(leggo_ids, by="id_ext")
 
 
 leggo_ids_selecionados <- dplyr::bind_rows(dplyr::select(temperatura_pls_filtradas, id_leggo),
                                      dplyr::select(pressao_pls_filtradas, id_leggo),
-                                     dplyr::select(atores_df, id_leggo)) %>% 
+                                     dplyr::select(atores_df, id_leggo)) %>%
   dplyr::distinct()
 
 proposicoes_filtradas <- proposicoes %>% dplyr::filter(id_leggo %in% leggo_ids_selecionados$id_leggo)
-  
+
 
 #' @title Exporta dados de Proposições
 #' @description Captura e escreve todos os dados referentes a proposiçoes
@@ -130,9 +130,9 @@ proposicoes_filtradas <- proposicoes %>% dplyr::filter(id_leggo %in% leggo_ids_s
 #' @param data_inicio
 #' @param data_fim
 #' @export
-build_semanario <- function(template_filepath,output_filepath, proposicoes, temperatura_pls_filtradas, 
+build_semanario <- function(template_filepath,output_filepath, proposicoes, temperatura_pls_filtradas,
                             pressao_pls_filtradas, atores_df, data_inicio, data_fim, num_semanas_passadas) {
-  rmarkdown::render(input = template_filepath, 
+  rmarkdown::render(input = template_filepath,
                     output_file = output_filepath,
                     params = list(
                               proposicoes = proposicoes,
@@ -148,5 +148,5 @@ build_semanario <- function(template_filepath,output_filepath, proposicoes, temp
 template_filepath <- "reports/semanario/semanario_template.Rmd"
 report_filepath <- paste0("semanario_",semana_alvo,"_",fim_semana_alvo,".html")
 
-build_semanario(template_filepath, report_filepath, proposicoes_filtradas, temperatura_pls_filtradas, 
+build_semanario(template_filepath, report_filepath, proposicoes_filtradas, temperatura_pls_filtradas,
                 pressao_pls_filtradas, atores_df, data_inicio, data_fim, num_semanas_passadas)

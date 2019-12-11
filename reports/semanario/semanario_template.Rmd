@@ -85,7 +85,7 @@ build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio, dt_f
   p <- temp_pressao_pl %>% 
     ggplot(aes(x = periodo, y = sqrt(temperatura))) +
     geom_line(color="#DDDDDD") +
-    geom_point(color=factor(ifelse(temp_pressao_pl$periodo==dt_inicio,"#EF476F","#DDDDDD")),
+    geom_point(color=factor(ifelse(temp_pressao_pl$periodo>data_n_semanas_atras,"#EF476F","#DDDDDD")),
              size = ifelse(temp_pressao_pl$periodo==dt_inicio,3,1),
              width=0.5) +
     geom_col(aes(x = periodo, y = -sqrt(pressao), width = 4), fill=factor(ifelse(temp_pressao_pl$periodo==dt_inicio,"#FFD166","#DDDDDD")), show.legend = FALSE ) +
@@ -107,7 +107,7 @@ build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio, dt_f
   grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
     gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
   
-  p  + annotation_custom(grob) + annotation_custom(grob2)  
+  p  + annotation_custom(grob) + annotation_custom(grob2)
   
 }
 
@@ -175,8 +175,7 @@ variacao_temp <- abs(variacao_temp)
 variacao_press <- abs(variacao_press)
 ```
 
-
-Foi observad`r if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}` `r variacao_temp`% na temperatura e `r if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}` `r if(variacao_press != 0){variacao_press}``r if(variacao_press != 0){"%"}` na pressão.
+`r if (nrow(temperatura) == 0){"Na última semana não observamos nenhum crescimento expressivo na temperatura de nenhuma proposição."}else{"Foi observad"}``r if(cresceu_temp){"o, na última semana, um crescimento de "}else{"a, na última semana, uma diminuição de "}` `r variacao_temp`% na temperatura e `r if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}` `r if(variacao_press != 0){variacao_press}``r if(variacao_press != 0){"%"}` na pressão.
 
 ## Atores da semana
 
