@@ -63,7 +63,7 @@ periodo_inicial <- semana_alvo - lubridate::weeks(x=24)
 
 #Calcula variacao das temperaturas
 get_variacoes_temperatura <- function(temperaturas) {
-  temperaturas %>%
+  variacoes_temp <- temperaturas %>%
     dplyr::mutate(variacao_absoluta = dplyr::if_else(dplyr::lag(id_leggo) == id_leggo, temperatura_recente - dplyr::lag(temperatura_recente), 0)) %>%
     dplyr::mutate(variacao_percentual = dplyr::if_else((dplyr::lag(id_leggo) == id_leggo & temperatura_recente > 0), ((temperatura_recente - dplyr::lag(temperatura_recente))/temperatura_recente) * 100, 0)) %>%
     dplyr::mutate(variacao_percentual = dplyr::if_else(is.na(variacao_percentual), 0, variacao_percentual)) %>%
@@ -154,10 +154,32 @@ atores_df <- dplyr::bind_rows(atores_camara, atores_senado) %>%
 leggo_ids_selecionados <- 
   dplyr::bind_rows(dplyr::select(temp_pressao_periodo, id_leggo),
                    dplyr::select(atores_df, id_leggo)) %>% 
-   dplyr::distinct()
+  dplyr::distinct()
 
-proposicoes_filtradas <- proposicoes %>% dplyr::filter(id_leggo %in% leggo_ids_selecionados$id_leggo)
-  
+proposicoes_filtradas <-
+  proposicoes %>% 
+  dplyr::filter(id_leggo %in% leggo_ids_selecionados$id_leggo) %>% 
+  dplyr::mutate(ano = format(as.Date(data_apresentacao), "%Y")) %>% 
+  dplyr::mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano))) %>% 
+  dplyr::mutate(nome_formal_completo = paste0(nome_formal, ' (', tools::toTitleCase(ifelse(casa == "camara","Câmara",casa)), ')'))
+
+oposicao <- c("PT", "PSOL", "PSB", "PCdoB", "PDT", "REDE")
+
+#Gerando datasets de atores para temas e bancadas
+atores_geral <-
+  atores_df %>% 
+  dplyr::mutate(partido = dplyr::if_else(is.na(partido), "-", partido), 
+         uf = dplyr::if_else(is.na(uf), "-", uf),
+         nome_completo = paste0(nome_autor, " (",partido,"/",uf,")")) %>% 
+  dplyr::left_join(proposicoes_filtradas %>% 
+                     dplyr::select(id_leggo, id_ext, casa, nome_formal, nome_formal_completo, sigla_tipo), by=c("id_leggo","id_ext","casa")) %>% 
+                     dplyr::mutate(bancada = dplyr::if_else(partido %in% oposicao, "Oposição", "Governo"))
+
+atores_pls <- atores_geral %>% 
+  dplyr::group_by(id_leggo, id_ext, casa, nome_autor, id_autor, tipo_autor, partido, nome_completo,
+                  uf, tipo_generico, sigla_local, is_important, bancada, nome_formal, nome_formal_completo, sigla_tipo, tema) %>% 
+  dplyr::summarise(peso_total_documentos = sum(peso_total_documentos))
+
 #' @title Exporta dados de Proposições
 #' @description Captura e escreve todos os dados referentes a proposiçoes
 #' @param output_filepath
@@ -186,4 +208,4 @@ template_filepath <- "reports/semanario/semanario_template.Rmd"
 report_filepath <- paste0("semanario_",semana_alvo,"_",fim_semana_alvo,".html")
 
 build_semanario(template_filepath, report_filepath, proposicoes_filtradas, temp_pressao_periodo,
-                atores_df, data_inicio, data_fim, num_semanas_passadas)
+                atores_pls, data_inicio, data_fim, num_semanas_passadas)
