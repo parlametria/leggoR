@@ -49,11 +49,12 @@ pops_base_folderpath <- args[4]
 is_package_installed(pkg_name = "ggchicklet", rep_url = "https://cinc.rud.is")
 
 num_semanas_passadas <<- 12
+MIN_NUM_DOCS <<- 5
 
 #Lê dados básicos sobre as proposições e temperatura
 proposicoes <- readr::read_csv(paste0(input_base_folderpath,'/','proposicoes.csv'))
 temperaturas <- readr::read_csv(paste0(input_base_folderpath,'/','hists_temperatura.csv'))
-leggo_ids <- readr::read_csv(paste0(input_base_folderpath,'/','leggo_ids.csv'))
+leggo_ids <- proposicoes %>% dplyr::select(id_leggo, id_ext, apelido, tema)
 
 #Define semanas a serem analisadas
 semana_alvo <- lubridate::floor_date(as.Date(data_inicio), unit = "weeks", week_start = 1)
@@ -74,12 +75,12 @@ get_variacoes_temperatura <- function(temperaturas) {
 variacoes_temperatura <- get_variacoes_temperatura(temperaturas)
 
 #Filtra pls de interesse de acordo com a variação da temperatura
-get_pls_interesse <- function(variacoes_temperatura, z_score_lim = 1.5, leggo_ids) {
+get_pls_interesse <- function(variacoes_temperatura, z_score_lim = 1.5) {
   variacoes_temperatura %>%
     dplyr::filter(z_score > z_score_lim)
 }
 
-pls_de_interesse <- get_pls_interesse(variacoes_temperatura, 0.4, leggo_ids)
+pls_de_interesse <- get_pls_interesse(variacoes_temperatura, 0.4)
 
 #Temperaturas filtradas
 temperatura_pls_filtradas <- temperaturas %>%
@@ -113,13 +114,13 @@ join_temp_pressao_pl <- function(id_leggo_pl, temperatura_df, pressao_df, period
     dplyr::filter(id_leggo == id_leggo_pl,
                   periodo >= periodo_inicial)
   
-  if (nrow(pressao_pl) == 0){
+  temp_pressao_pl <- dplyr::inner_join(temperatura_pl, pressao_pl, by =c("id_leggo","periodo")) %>% 
+    dplyr::select(id_leggo, periodo, temperatura, pressao) %>% 
+    dplyr::mutate(pressao = dplyr::if_else(pressao == 0, 0.1, pressao))
+  
+  if (nrow(temp_pressao_pl) == 0) {
     temp_pressao_pl <- temperatura_pl %>% 
       dplyr::mutate(pressao = 0.1)
-  } else {
-    temp_pressao_pl <- dplyr::inner_join(temperatura_pl, pressao_pl, by =c("id_leggo","periodo")) %>% 
-      dplyr::select(id_leggo, periodo, temperatura, pressao) %>% 
-      dplyr::mutate(pressao = dplyr::if_else(pressao == 0, 0.1, pressao))  
   }
   
   return(temp_pressao_pl)
@@ -151,9 +152,20 @@ atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_a
 atores_df <- dplyr::bind_rows(atores_camara, atores_senado) %>% 
   dplyr::left_join(leggo_ids, by="id_ext")
 
+atores_por_pl <- atores_df %>% 
+  dplyr::group_by(id_leggo) %>% 
+  dplyr::summarise(num_docs = sum(num_documentos)) %>% 
+  dplyr::arrange(desc(num_docs))
+
+pls_de_interesse_atores <- atores_por_pl %>% 
+  dplyr::filter(num_docs >= MIN_NUM_DOCS)
+
+atores_pls_filtradas <- atores_df %>% 
+  dplyr::filter(id_leggo %in% pls_de_interesse_atores$id_leggo)
+
 leggo_ids_selecionados <- 
   dplyr::bind_rows(dplyr::select(temp_pressao_periodo, id_leggo),
-                   dplyr::select(atores_df, id_leggo)) %>% 
+                   dplyr::select(atores_pls_filtradas, id_leggo)) %>% 
   dplyr::distinct()
 
 proposicoes_filtradas <-
@@ -167,7 +179,7 @@ oposicao <- c("PT", "PSOL", "PSB", "PCdoB", "PDT", "REDE")
 
 #Gerando datasets de atores para temas e bancadas
 atores_geral <-
-  atores_df %>% 
+  atores_pls_filtradas %>% 
   dplyr::mutate(partido = dplyr::if_else(is.na(partido), "-", partido), 
          uf = dplyr::if_else(is.na(uf), "-", uf),
          nome_completo = paste0(nome_autor, " (",partido,"/",uf,")")) %>% 
@@ -191,13 +203,13 @@ atores_pls <- atores_geral %>%
 #' @param data_fim
 #' @export
 build_semanario <- function(template_filepath,output_filepath, proposicoes, temp_pressao_periodo,
-                            atores_df, data_inicio, data_fim, num_semanas_passadas) {
+                            atores_periodo, data_inicio, data_fim, num_semanas_passadas) {
   rmarkdown::render(input = template_filepath, 
                     output_file = output_filepath,
                     params = list(
                               proposicoes = proposicoes,
                               temp_pressao_periodo = temp_pressao_periodo,
-                              atores = atores_df,
+                              atores = atores_periodo,
                               date_init = data_inicio,
                               date_end = data_fim,
                               num_semanas_passadas = num_semanas_passadas

@@ -74,16 +74,16 @@ define_date_breaks <- function(timedata_df) {
 
 get_texto_temp_pressao <- function(temp_pressao_periodo) {
   est_prev <- tail(temp_pressao_periodo, 2)
-  temp_atual <- est_prev$temperatura[length(est_prev$temperatura)]
-  ultima_temp <- est_prev$temperatura[length(est_prev$temperatura) - 1]
+  temp_atual <- est_prev %>% tail(1) %>% purrr::pluck('temperatura')
+  ultima_temp <- est_prev %>% head(1) %>% purrr::pluck('temperatura')
   variacao_temp <- round(((temp_atual - ultima_temp) / ultima_temp) * 100, digits = 2)
   press_atual <- est_prev$pressao[length(est_prev$pressao)]
   ultima_press <- est_prev$pressao[length(est_prev$pressao) - 1]
   variacao_press <- press_atual - ultima_press
-  cresceu_temp <- variacao_temp > 0
-  cresceu_press <- variacao_press > 0
-  variacao_temp <- abs(variacao_temp)
-  variacao_press <- abs(variacao_press)
+  cresceu_temp <- variacao_temp > 1
+  cresceu_press <- variacao_press > 1
+  variacao_temp <- round(abs(variacao_temp),0)
+  variacao_press <- round(abs(variacao_press),0)
   
   return (paste0("Foi observad", if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}, variacao_temp, "% na temperatura e ", if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}, if(variacao_press != 0){variacao_press}, if(variacao_press != 0){"%"}, " na pressão."))
 }
@@ -144,7 +144,7 @@ build_atores_plot_bancadas_por_temas <- function(atuacao_temas) {
      theme(legend.position = "bottom") +
      labs(
       x = NULL, y = "Quantidade de documentos", fill = NULL,
-      title = "Atuações das bancadas por tema",
+      title = paste0("Atuações das bancadas por tema"),
       subtitle = "Documentos autorados pelos parlamentares \nna última semana",
       caption = ""
      ) + 
@@ -166,18 +166,18 @@ build_atores_plot_bancadas_por_temas <- function(atuacao_temas) {
     summarise(total = sum(peso_total_documentos)) 
   
   tema_destaque <-
-    qtd_tema %>% 
-    arrange(total) %>% 
-    tail(1) %>% 
+    qtd_tema %>%
+    arrange(total) %>%
+    tail(1) %>%
     purrr::pluck("tema")
   
   descricao_plot_atores <- get_texto_atores_plot_bancadas_por_temas(qtd_tema, atuacao_temas, atores, tema_destaque)
   
   plot(p)
   cat(descricao_plot_atores)
-  cat("\nAo clicar no tema ", tema_destaque, ", temos as seguintes proposições tiveram destaque")
+  # cat("\nAo clicar no tema ", tema_destaque, ", temos as seguintes proposições tiveram destaque")
 
-  return (atores %>%  filter(tema == tema_destaque))
+  return(NULL)
 }
 
 get_texto_atores_plot_bancadas_por_proposicao <- function(qtd_atuacao, atuacao_bancadas, prop_destaque) {
@@ -189,14 +189,15 @@ get_texto_atores_plot_bancadas_por_proposicao <- function(qtd_atuacao, atuacao_b
   return (descricao_plot_atores <- paste0("A ", prop_destaque, " teve maior número de atuações, com apresentação de ", total_prop_destaque, " documentos, sendo ", num_docs_governo, " apresentados pelo governo e ",num_docs_oposicao, " pela oposição."))
 }
 
-build_atores_plot_bancadas_por_proposicao <- function(atuacao_bancadas, pls_tema_destaque) {
-  p <- atuacao_bancadas %>% filter(nome_formal %in% pls_tema_destaque$nome_formal) %>%  ggplot(aes(x = reorder(nome_formal, peso_total_documentos), y = peso_total_documentos, group = bancada, fill = bancada)) + 
+build_atores_plot_bancadas_por_proposicao_tema <- function(atuacao_bancadas, tema) {
+  p <- atuacao_bancadas %>% 
+    ggplot(aes(x = reorder(nome_formal, peso_total_documentos), y = peso_total_documentos, group = bancada, fill = bancada)) + 
     geom_chicklet(width = 0.75) +
      theme_ipsum_rc(grid=FALSE) +
      theme(legend.position = "bottom") +
      labs(
       x = NULL, y = "Quantidade de documentos", fill = NULL,
-      title = "Atuações das bancadas por proposição",
+      title = paste0("Atuações das bancadas por proposição - ", tema),
       subtitle = "Documentos autorados pelos parlamentares \nna última semana",
       caption = ""
      ) +
@@ -236,8 +237,8 @@ build_atores_plot_bancadas_por_proposicao <- function(atuacao_bancadas, pls_tema
   return(list(props_destaque = props_destaque, prop_destaque = prop_destaque))
 }
 
-build_atores_plot_por_proposicao <- function(atores_prop_destaque, prop_destaque) {
-  cat(paste0("\nAo clicar na proposição ", prop_destaque, " temos mais detalhes sobre os atores e os respectivos documentos apresentados."))
+build_atores_plot_por_proposicao <- function(atores_prop_destaque) {
+  cat(paste0("\nAbaixo, temos mais detalhes sobre os atores e os respectivos documentos apresentados."))
   atores_pls_bancada <- 
     atores_prop_destaque %>% 
     ungroup() %>% 
@@ -287,9 +288,9 @@ build_atores_plot_por_proposicao <- function(atores_prop_destaque, prop_destaque
     purrr::pluck("tipo_generico")
   
   descricao_plot_atores <- paste0("O documento que os parlamentares mais apresentaram na ",
-                                  atores_pls_plot$nome_formal_completo,
+                                  atores_pls_plot %>% tail(1) %>% purrr::pluck("nome_formal_completo"),
                                   " foi: ",
-                                  tipo_generico_destaque)
+                                  tolower(tipo_generico_destaque),".")
   
   plot(p)
   cat(descricao_plot_atores)
@@ -300,7 +301,10 @@ build_atores_plot_por_proposicao <- function(atores_prop_destaque, prop_destaque
 
 ```{r, fig.height=7, fig.width=10}
 pls_destaque <- pls %>%
-  filter(id_leggo %in% temp_pressao_periodo$id_leggo)
+  filter(id_leggo %in% temp_pressao_periodo$id_leggo) %>% 
+  group_by(id_leggo) %>% 
+  arrange(data_apresentacao) %>% 
+  slice(n())
 
 if (nrow(pls_destaque) == 0) {
   cat("Nesta semana não houve alterações significativas nas proposições acompanhadas pelo Leg.go.")
@@ -315,27 +319,29 @@ if (nrow(pls_destaque) == 0) {
 ## Atores da semana
 
 ```{r atores_prop_destaque, fig.height=6, fig.width=10}
-if (nrow(atores) < 5) {
+if (nrow(atores) == 0) {
   cat("Nesta semana não houve mais de 5 documentos apresentados nas proposições acompanhadas pelo Leg.go.")
 }else {
   #Base de dados de atuações e filtros por data
-  atuacao_temas <- atores %>% 
+  atuacao_bancadas_por_tema <- atores %>% 
     dplyr::group_by(bancada, tema) %>% 
     dplyr::summarise(peso_total_documentos = sum(peso_total_documentos))
   
-  atuacao_bancadas <- atores %>% 
-    dplyr::group_by(id_leggo, casa, bancada, nome_formal, nome_formal_completo, sigla_tipo) %>% 
+  atuacao_bancadas_por_pl_tema <- atores %>% 
+    dplyr::group_by(tema, id_leggo, casa, bancada, nome_formal, nome_formal_completo, sigla_tipo) %>% 
     dplyr::summarise(peso_total_documentos = sum(peso_total_documentos))
   
-  pls_tema_destaque <- build_atores_plot_bancadas_por_temas(atuacao_temas)
+  build_atores_plot_bancadas_por_temas(atuacao_bancadas_por_tema)
   
-  props_list <- build_atores_plot_bancadas_por_proposicao(atuacao_bancadas, pls_tema_destaque)
+  props_list <- atuacao_bancadas_por_pl_tema %>% 
+    group_by(tema, id_leggo) %>% 
+    group_map(~ build_atores_plot_bancadas_por_proposicao_tema(., .$tema), keep = TRUE)
   props_destaque <- props_list$props_destaque
   prop_destaque <- props_list$prop_destaque
 
   cat(prop_destaque)
   res <- atores %>% 
   group_by(id_leggo) %>%
-    group_map(~ build_atores_plot_por_proposicao(., prop_destaque))
+    group_map(~ build_atores_plot_por_proposicao(.))
 }
 ```
