@@ -197,7 +197,7 @@ build_atores_plot_bancadas_por_proposicao_tema <- function(atuacao_bancadas, tem
      theme(legend.position = "bottom") +
      labs(
       x = NULL, y = "Quantidade de documentos", fill = NULL,
-      title = paste0("Atuações das bancadas por proposição - ", tema),
+      title = paste0("Atuações das bancadas por proposição - \n", tema),
       subtitle = "Documentos autorados pelos parlamentares \nna última semana",
       caption = ""
      ) +
@@ -258,7 +258,7 @@ build_atores_plot_por_proposicao <- function(atores_prop_destaque) {
        theme(legend.position = "bottom") +
        labs(
         x = NULL, y = "Quantidade de documentos", fill = NULL,
-        title = paste0("Atuações por proposição - ",atores_pls_plot$nome_formal_completo),
+        title = paste0("Atuações por proposição - \n",atores_pls_plot$nome_formal_completo),
         subtitle = "Documentos autorados pelos parlamentares \nna última semana",
         caption = ""
        ) +
@@ -278,19 +278,6 @@ build_atores_plot_por_proposicao <- function(atores_prop_destaque) {
     theme(axis.text.x = element_text(angle = 0, vjust = 0.5)) + 
     theme(axis.text.x = element_text(color = "gray60", size = 10)) +
     theme(legend.position = "top")
-  
-  tipo_generico_destaque <-
-    atores_pls_plot  %>% 
-    group_by(tipo_generico) %>% 
-    summarise(total = sum(peso_total_documentos)) %>% 
-    arrange(total) %>% 
-    tail(1) %>% 
-    purrr::pluck("tipo_generico")
-  
-  descricao_plot_atores <- paste0("O documento que os parlamentares mais apresentaram na ",
-                                  atores_pls_plot %>% tail(1) %>% purrr::pluck("nome_formal_completo"),
-                                  " foi: ",
-                                  tolower(tipo_generico_destaque),".")
   
   plot(p)
   cat(descricao_plot_atores)
