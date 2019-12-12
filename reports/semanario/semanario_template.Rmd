@@ -1,11 +1,8 @@
 ---
 title: "Semanário Leg.go"
-author: "Equipe Leg.go"
-date: "06/10/2019"
 output:
-  prettydoc::html_pretty:
-    theme: leonids
-    highlight: github
+  html_document:
+    css: style.css
 params:
   date_init: 2019-09-30
   date_end: 2019-10-04
@@ -104,8 +101,7 @@ build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio, dt_f
   geom_col(data =  temp_pressao_pl_n_semanas, aes(x = periodo, y = -sqrt(pressao), width = 4), fill=factor("#FFD166"), show.legend = FALSE ) +
     labs(x = "Semana", 
          y = "",
-         title = "Temperatura e pressão ao longo das semanas",
-         subtitle = apelido_pl) +
+         title = apelido_pl) +
     scale_x_date(date_labels = "%d de %b", breaks = datas) +
     theme_ipsum_rc(grid = FALSE) +
     theme(axis.text.y = element_blank(), 
@@ -113,10 +109,10 @@ build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio, dt_f
     theme(axis.text.x = element_text(color = "gray60", size = 8))
   
   grob <- grobTree(textGrob("Temperatura", x=0.1,  y=0.95, hjust=0,
-    gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+    gp=gpar(col="black", fontsize=15, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
   
-  grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.1, hjust=0,
-    gp=gpar(col="black", fontsize=10, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
+  grob2 <- grobTree(textGrob("Pressão", x=0.1,  y=.15, hjust=0,
+    gp=gpar(col="black", fontsize=15, alpha = 0.3, fontfamily = "Roboto", fontface = "bold")))
   
   temp_pressao_plot <- (p  + annotation_custom(grob) + annotation_custom(grob2))
   
@@ -134,7 +130,7 @@ get_texto_atores_plot_bancadas_por_temas <- function(qtd_tema, atuacao_temas, at
   num_docs_governo <- atuacao_temas_destaque %>% filter(bancada == "Governo") %>% purrr::pluck("peso_total_documentos")
   num_docs_oposicao <- atuacao_temas_destaque %>% filter(bancada == "Oposição") %>% purrr::pluck("peso_total_documentos")
   
-    return (paste0("Na última semana o tema ", tema_destaque, " teve destaque nas atuações parlamentares, sendo ", variacao_temp, "% dos documentos autorados para esse tema. Outro destaque é que foram apresentados ", num_docs_governo, " documentos pela bancada do governo e ", num_docs_oposicao, " pela oposição."))
+    return (paste0("Na última semana o tema ", tema_destaque, " teve destaque na atuação dos parlamentares, sendo ", variacao_temp, "% dos documentos autorados para esse tema. Outro destaque é que foram apresentados ", num_docs_governo, " documentos pela bancada do governo e ", num_docs_oposicao, " pela oposição."))
 }
 
 build_atores_plot_bancadas_por_temas <- function(atuacao_temas) {
@@ -144,8 +140,7 @@ build_atores_plot_bancadas_por_temas <- function(atuacao_temas) {
      theme(legend.position = "bottom") +
      labs(
       x = NULL, y = "Quantidade de documentos", fill = NULL,
-      title = paste0("Atuações das bancadas por tema"),
-      subtitle = "Documentos autorados pelos parlamentares \nna última semana",
+      title = paste0("Atuação das Bancadas por Tema"),
       caption = ""
      ) + 
      scale_fill_manual(
@@ -186,7 +181,7 @@ get_texto_atores_plot_bancadas_por_proposicao <- function(qtd_atuacao, atuacao_b
   num_docs_governo <- atuacao_prop_destaque %>% filter(bancada == "Governo") %>% purrr::pluck("peso_total_documentos")
   num_docs_oposicao <- atuacao_prop_destaque %>% filter(bancada == "Oposição") %>% purrr::pluck("peso_total_documentos")
   
-  return (descricao_plot_atores <- paste0("A ", prop_destaque, " teve maior número de atuações, com apresentação de ", total_prop_destaque, " documentos, sendo ", num_docs_governo, " apresentados pelo governo e ",num_docs_oposicao, " pela oposição."))
+  return (paste0("A ", prop_destaque, " teve maior número de atuações, com apresentação de ", total_prop_destaque, " documentos, sendo ", num_docs_governo, " apresentados pelo governo e ",num_docs_oposicao, " pela oposição."))
 }
 
 build_atores_plot_bancadas_por_proposicao_tema <- function(atuacao_bancadas, tema) {
@@ -197,8 +192,8 @@ build_atores_plot_bancadas_por_proposicao_tema <- function(atuacao_bancadas, tem
      theme(legend.position = "bottom") +
      labs(
       x = NULL, y = "Quantidade de documentos", fill = NULL,
-      title = paste0("Atuações das bancadas por proposição - \n", tema),
-      subtitle = "Documentos autorados pelos parlamentares \nna última semana",
+      title = "Atuação das bancadas por proposição",
+      subtitle = tema,
       caption = ""
      ) +
      scale_fill_manual(
@@ -258,19 +253,19 @@ build_atores_plot_por_proposicao <- function(atores_prop_destaque) {
        theme(legend.position = "bottom") +
        labs(
         x = NULL, y = "Quantidade de documentos", fill = NULL,
-        title = paste0("Atuações por proposição - \n",atores_pls_plot$nome_formal_completo),
-        subtitle = "Documentos autorados pelos parlamentares \nna última semana",
+        title = "Atuação por proposição",
+        subtitle = atores_pls_plot$nome_formal_completo,
         caption = ""
        ) +
        scale_fill_manual(
        name = NULL,
        values = c(
-          'Emenda' =  '#80B1D3',
-          'Parecer'= '#FB9A99',
-          'Voto em Separado' ='#855D7C',
-          'Requerimento' = '#B2DF8A',
-          'Proposição Apensada' ='#F9EE9D',
-          'Outros' = '#587B7A'
+          'Emenda' =  '#8BD08D',
+          'Parecer'= '#69DBC4',
+          'Voto em Separado' ='#F6AE2D',
+          'Requerimento' = '#8E5B64',
+          'Proposição Apensada' ='#2E3532',
+          'Outros' = '#CCCCCC'
        )) +
        coord_flip() +
        theme(aspect.ratio = 0.5)+ 
@@ -280,13 +275,13 @@ build_atores_plot_por_proposicao <- function(atores_prop_destaque) {
     theme(legend.position = "top")
   
   plot(p)
-  cat(descricao_plot_atores)
 }
 ```
 
 ## Pressão e Temperatura
+#### Evolução da Pressão e Temperatura ao longo das semanas
 
-```{r, fig.height=7, fig.width=10}
+```{r, fig.height=7, fig.width=10, results='asis'}
 pls_destaque <- pls %>%
   filter(id_leggo %in% temp_pressao_periodo$id_leggo) %>% 
   group_by(id_leggo) %>% 
@@ -303,13 +298,14 @@ if (nrow(pls_destaque) == 0) {
 }
 ```
 
-## Atores da semana
+## Atores
+#### Documentos autorados pelos parlamentares \nna última semana
 
-```{r atores_prop_destaque, fig.height=6, fig.width=10}
+```{r atores_prop_destaque, fig.height=6, fig.width=10, results='asis'}
 if (nrow(atores) == 0) {
   cat("Nesta semana não houve mais de 5 documentos apresentados nas proposições acompanhadas pelo Leg.go.")
 }else {
-  #Base de dados de atuações e filtros por data
+  #Base de dados de Atuação e filtros por data
   atuacao_bancadas_por_tema <- atores %>% 
     dplyr::group_by(bancada, tema) %>% 
     dplyr::summarise(peso_total_documentos = sum(peso_total_documentos))

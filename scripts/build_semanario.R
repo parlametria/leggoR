@@ -190,7 +190,9 @@ atores_geral <-
 atores_pls <- atores_geral %>% 
   dplyr::group_by(id_leggo, id_ext, casa, nome_autor, id_autor, tipo_autor, partido, nome_completo,
                   uf, tipo_generico, sigla_local, is_important, bancada, nome_formal, nome_formal_completo, sigla_tipo, tema) %>% 
-  dplyr::summarise(peso_total_documentos = sum(peso_total_documentos))
+  dplyr::summarise(peso_total_documentos = sum(peso_total_documentos)) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::mutate(tema = stringr::str_replace_all(tema, ';',' &\n'))
 
 #' @title Exporta dados de Proposições
 #' @description Captura e escreve todos os dados referentes a proposiçoes
