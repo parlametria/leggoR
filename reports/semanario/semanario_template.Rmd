@@ -284,7 +284,15 @@ build_atores_plot_por_proposicao <- function(atores_prop_destaque) {
     theme(axis.text.x = element_text(color = "gray60", size = 10)) +
     theme(legend.position = "top")
   
+  id_leggo <- 
+    atores_prop_destaque %>% 
+    head(1) %>% 
+    purrr::pluck("id_leggo")
+  
+  link_para_leggo <- paste("https://leggo.org.br/#/proposicao/", id_leggo)
+    
   plot(p)
+  cat(paste0("Para mais informações sobre a proposição, como o progresso, a rede de influência e uma análise sobre as emendas, [clique aqui](", link_para_leggo, ")."))
 }
 ```
 
@@ -335,6 +343,6 @@ if (nrow(atores) == 0) {
   cat(prop_destaque)
   res <- atores %>% 
   group_by(id_leggo) %>%
-    group_map(~ build_atores_plot_por_proposicao(.))
+    group_map(~ build_atores_plot_por_proposicao(.), keep = T)
 }
 ```
