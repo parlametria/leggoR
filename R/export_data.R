@@ -169,6 +169,8 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_ro
   }
   etapas$proposicao %<>%
     dplyr::mutate(apelido_materia = apelido, tema = tema_pl, id_leggo = row_num, advocacy_link = advocacy_link)
+  etapas$fases_eventos %<>%
+    dplyr::mutate(id_leggo = row_num)
   Sys.sleep(5*stats::runif(1))
   return(etapas)
 }
