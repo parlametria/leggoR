@@ -53,6 +53,7 @@ MIN_NUM_DOCS <<- 5
 
 #Lê dados básicos sobre as proposições e temperatura
 proposicoes <- readr::read_csv(paste0(input_base_folderpath,'/','proposicoes.csv'))
+trams <- readr::read_csv(paste0(input_base_folderpath, '/', 'trams.csv')) 
 temperaturas <- readr::read_csv(paste0(input_base_folderpath,'/','hists_temperatura.csv'))
 leggo_ids <- proposicoes %>% dplyr::select(id_leggo, id_ext, apelido, tema)
 
@@ -81,6 +82,14 @@ get_pls_interesse <- function(variacoes_temperatura, z_score_lim = 1.5) {
 }
 
 pls_de_interesse <- get_pls_interesse(variacoes_temperatura, 0.4)
+
+eventos <-
+  trams %>% 
+  dplyr::filter(data >= lubridate::ymd(data_inicio), 
+         data <= lubridate::ymd(data_fim), 
+         id_leggo %in% pls_de_interesse$id_leggo,
+         !is.na(titulo_evento)) %>% 
+  dplyr::select(id_leggo, data, titulo_evento, texto_tramitacao, sigla_local)
 
 #Temperaturas filtradas
 temperatura_pls_filtradas <- temperaturas %>%
@@ -205,12 +214,13 @@ atores_pls <- atores_geral %>%
 #' @param data_fim
 #' @export
 build_semanario <- function(template_filepath,output_filepath, proposicoes, temp_pressao_periodo,
-                            atores_periodo, data_inicio, data_fim, num_semanas_passadas) {
+                            eventos, atores_periodo, data_inicio, data_fim, num_semanas_passadas) {
   rmarkdown::render(input = template_filepath, 
                     output_file = output_filepath,
                     params = list(
                               proposicoes = proposicoes,
                               temp_pressao_periodo = temp_pressao_periodo,
+                              eventos = eventos,
                               atores = atores_periodo,
                               date_init = data_inicio,
                               date_end = data_fim,
@@ -222,4 +232,4 @@ template_filepath <- "reports/semanario/semanario_template.Rmd"
 report_filepath <- paste0("semanario_",semana_alvo,"_",fim_semana_alvo,".html")
 
 build_semanario(template_filepath, report_filepath, proposicoes_filtradas, temp_pressao_periodo,
-                atores_pls, data_inicio, data_fim, num_semanas_passadas)
+                eventos, atores_pls, data_inicio, data_fim, num_semanas_passadas)

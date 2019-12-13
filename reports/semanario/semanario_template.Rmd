@@ -7,18 +7,10 @@ params:
   date_init: 2019-09-30
   date_end: 2019-10-04
   num_semanas_passadas: 3
-  proposicoes: 
-    label: "Input dataset:"
-    value: ../../data/tabela_geral_ids_casa.csv
-    input: file
-  temp_pressao_periodo:
-    label: "Input dataset:"
-    value: ../../data/tabela_geral_ids_casa.csv
-    input: file
-  atores:
-    label: "Input dataset:"
-    value: ../../data/tabela_geral_ids_casa.csv
-    input: file
+  proposicoes: !r tibble::tibble() 
+  temp_pressao_periodo: !r tibble::tibble()
+  atores: !r tibble::tibble()
+  eventos: !r tibble::tibble()
 ---
 
 ```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, paged.print=FALSE, results="asis"}
@@ -32,7 +24,7 @@ knitr::opts_chunk$set(echo = FALSE,
                warning = FALSE)
 ```
 
-```{r}
+```{r ,results='asis'}
 library(tidyverse)
 library(here)
 library(lubridate)
@@ -43,6 +35,8 @@ library(grid)
 library(gridExtra)
 library(tibble)
 library(ggchicklet)
+library(DT)
+library(knitr)
 ```
 
 <style>
@@ -57,6 +51,7 @@ data_inicio <- params$date_init
 data_fim <- params$date_end
 pls <- params$proposicoes
 atores <- params$atores
+eventos <- params$eventos
 num_semanas_passadas <- params$num_semanas_passadas
 ```
 
@@ -69,7 +64,7 @@ define_date_breaks <- function(timedata_df) {
   datas <- seq(ymd(head(timedata_df, 1)$periodo),ymd(tail(timedata_df, 1)$periodo), by = paste(time_breaks,"days"))  
 }
 
-get_texto_temp_pressao <- function(temp_pressao_periodo) {
+get_texto_temp_pressao <- function(temp_pressao_periodo, eventos_pl) {
   est_prev <- tail(temp_pressao_periodo, 2)
   temp_atual <- est_prev %>% tail(1) %>% purrr::pluck('temperatura')
   ultima_temp <- est_prev %>% head(1) %>% purrr::pluck('temperatura')
@@ -82,10 +77,10 @@ get_texto_temp_pressao <- function(temp_pressao_periodo) {
   variacao_temp <- round(abs(variacao_temp),0)
   variacao_press <- round(abs(variacao_press),0)
   
-  return (paste0("Foi observad", if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}, variacao_temp, "% na temperatura e ", if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}, if(variacao_press != 0){variacao_press}, if(variacao_press != 0){"%"}, " na pressão."))
+  return (paste0("Foi observad", if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}, variacao_temp, "% na temperatura e ", if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}, if(variacao_press != 0){variacao_press}, if(variacao_press != 0){"%"}, " na pressão.", if(nrow(eventos_pl) > 0){" Os eventos que influenciaram a Temperatura estão na tabela abaixo."}))
 }
 
-build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio, dt_fim) {
+build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio, dt_fim, eventos) {
   datas <- define_date_breaks(temp_pressao_pl)
   data_n_semanas_atras <- as.Date(dt_fim) - (7 * num_semanas_passadas)
   temp_pressao_pl_n_semanas <- temp_pressao_pl %>% filter(periodo >= data_n_semanas_atras)
@@ -94,8 +89,7 @@ build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio, dt_f
     ggplot(aes(x = periodo, y = sqrt(temperatura))) +
     geom_line(color="#DDDDDD") +
     geom_point(color=factor(ifelse(temp_pressao_pl$periodo==dt_inicio,"#EF476F","#DDDDDD")),
-             size = ifelse(temp_pressao_pl$periodo==dt_inicio,3,1),
-             width=0.5) +
+             size = ifelse(temp_pressao_pl$periodo==dt_inicio,3,1)) +
     geom_col(aes(x = periodo, y = -sqrt(pressao), width = 4), fill=factor(ifelse(temp_pressao_pl$periodo==dt_inicio,"#FFD166","#DDDDDD")), show.legend = FALSE ) +
     geom_line(data =  temp_pressao_pl_n_semanas, aes(x = periodo, y = sqrt(temperatura)), color="#EF476F") +
   geom_col(data =  temp_pressao_pl_n_semanas, aes(x = periodo, y = -sqrt(pressao), width = 4), fill=factor("#FFD166"), show.legend = FALSE ) +
@@ -116,10 +110,26 @@ build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio, dt_f
   
   temp_pressao_plot <- (p  + annotation_custom(grob) + annotation_custom(grob2))
   
-  texto_temp_pressao <- get_texto_temp_pressao(temp_pressao_pl)
+  eventos_pl <- eventos %>% 
+    filter(id_leggo %in% temp_pressao_pl$id_leggo) %>% 
+    select("Data-Hora" = data, 
+           Local = sigla_local, 
+           Evento = titulo_evento,
+           Detalhamento = texto_tramitacao)
+  
+  texto_temp_pressao <- get_texto_temp_pressao(temp_pressao_pl, eventos_pl)
   
   plot(temp_pressao_plot)
   cat(texto_temp_pressao)
+  cat("\n\n")
+  if (nrow(eventos_pl) == 0) {
+    cat("Os eventos que fizeram a temperatura subir ainda não são reconhecidos pelo Leggo ou não são importantes.")    
+  } else {
+    cat("\n\n")
+    cat("#### ")
+    print(knitr::kable(eventos_pl))
+  }
+  cat("\n\n")
 }
 
 get_texto_atores_plot_bancadas_por_temas <- function(qtd_tema, atuacao_temas, atores, tema_destaque) {
@@ -294,7 +304,7 @@ if (nrow(pls_destaque) == 0) {
   res <- temp_pressao_periodo %>% 
    left_join(pls_destaque %>% select(id_leggo, nome_formal, apelido), by = "id_leggo") %>% 
     group_by(id_leggo) %>%
-    group_map(~ build_temp_pressao_plot(., paste(.$nome_formal, .$apelido,sep=" - "), data_inicio, data_fim))
+    group_map(~ build_temp_pressao_plot(., paste(.$nome_formal, .$apelido,sep=" - "), data_inicio, data_fim, eventos), keep = TRUE)
 }
 ```
 
