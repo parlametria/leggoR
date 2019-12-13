@@ -319,6 +319,8 @@ test <- function(){
   })
   
   test_that('create_tabela_atores_senado() works with empty/null input', {
+    atores_vazio <- 
+      tibble::tribble(~id_ext,~casa,~id_autor,~tipo_autor,~nome_autor,~partido,~uf,~tipo_generico,~sigla_local,~peso_total_documentos,~num_documentos,~is_important)
     expect_warning(
       create_tabela_atores_senado(tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
     expect_warning(
@@ -326,9 +328,9 @@ test <- function(){
     expect_warning(
       create_tabela_atores_senado(NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
     expect_equal(
-      create_tabela_atores_senado(tibble::tibble(), tibble::tibble()), tibble::tibble())
+      agoradigital::create_tabela_atores_senado(tibble::tibble(), tibble::tibble()), atores_vazio)
     expect_equal(
-      create_tabela_atores_senado(NULL, NULL), tibble::tibble())
+      create_tabela_atores_senado(NULL, NULL), atores_vazio)
   })
   
   test_that('create_tabela_atores_senado() returns the correct output', {
