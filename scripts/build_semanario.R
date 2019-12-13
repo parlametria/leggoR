@@ -6,24 +6,6 @@ Usage:
 Rscript build_semanario.R <data_inicio> <data_fim> <input_base_folderpath> <pops_base_folderpath>
 "
 
-#' @title Get arguments from command line option parsing
-#' @description Get arguments from command line option parsing
-# get_args <- function() {
-#   args = commandArgs(trailingOnly=TRUE)
-# 
-#   option_list = list(
-#     optparse::make_option(c("-p", "--pls_ids_filepath"),
-#                           type="character",
-#                           default="../data/semanario/tabela_geral_ids_casa.csv",
-#                           help=.HELP,
-#                           metavar="character")
-#   );
-# 
-#   opt_parser <- optparse::OptionParser(option_list = option_list)
-#   opt <- optparse::parse_args(opt_parser)
-#   return(opt);
-# }
-
 is_package_installed <- function(pkg_name, rep_url)
 {
   if (!require(pkg_name,character.only = TRUE))
