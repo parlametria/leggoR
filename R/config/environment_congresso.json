@@ -11,7 +11,18 @@
     {"evento_num" : "apresentacao_pl2", "fase_global":"Revisão I"},
     {"evento_num" : "virada_de_casa2", "fase_global":"Pré-Revisão II"},
     {"evento_num" : "apresentacao_pl3", "fase_global":"Revisão II"},
-    {"evento_num" : "remetida_a_sancao1", "fase_global":"Sanção/Veto"},
+    {"evento_num" : "remetida_a_sancao_promulgacao1", "fase_global":"Sanção/Veto"},
+    {"evento_num" : "apresentacao_pl4", "fase_global":"Avaliação dos Vetos"}
+  ],
+  
+  "eventos_fases_pec":[
+    {"evento_num" : "primeiro_evento", "fase_global":"Pré-Construção"},
+    {"evento_num" : "apresentacao_pl1", "fase_global":"Construção"},
+    {"evento_num" : "virada_de_casa1", "fase_global":"Pré-Revisão I"},
+    {"evento_num" : "apresentacao_pl2", "fase_global":"Revisão I"},
+    {"evento_num" : "virada_de_casa2", "fase_global":"Pré-Revisão II"},
+    {"evento_num" : "apresentacao_pl3", "fase_global":"Revisão II"},
+    {"evento_num" : "remetida_a_sancao_promulgacao1", "fase_global":"Promulgação/Veto"},
     {"evento_num" : "apresentacao_pl4", "fase_global":"Avaliação dos Vetos"}
   ],
 
@@ -36,16 +47,30 @@
     {"local": "Presidência da República", "fase_global": "Sanção/Veto"},
     {"local": "Congresso", "fase_global": "Avaliação dos Vetos"}
   ],
+  
+    "fases_global_pec":[
+    {"local": "", "fase_global": "Pré-Construção"},
+    {"local": "Comissões", "fase_global": "Construção"},
+    {"local": "Plenário", "fase_global": "Construção"},
+    {"local": "", "fase_global": "Pré-Revisão I"},
+    {"local": "Comissões", "fase_global": "Revisão I"},
+    {"local": "Plenário", "fase_global": "Revisão I"},
+    {"local": "", "fase_global": "Pré-Revisão II"},
+    {"local": "Comissões", "fase_global": "Revisão II"},
+    {"local": "Plenário", "fase_global": "Revisão II"},
+    {"local": "Presidência da República", "fase_global": "Promulgação/Veto"},
+    {"local": "Congresso", "fase_global": "Avaliação dos Vetos"}
+  ],
 
    "fase_global_sancao":{
-    "situacao_sancao": "remetida_a_sancao",
+    "situacao_sancao": "remetida_a_sancao_promulgacao",
     "situacao_norma_juridica": "transformada_em_norma_jurídica"
   },
 
   "tipos_eventos":[
-    {"tipo":"despacho", "label":"Despacho", "peso":0.25},
-    {"tipo":"discussao", "label":"Discussão", "peso":0.07},
-    {"tipo":"votacao", "label":"Votação", "peso":0.68}
+    {"tipo":"serie_b", "label":"Serie B", "peso":0.25},
+    {"tipo":"serie_c", "label":"Serie C", "peso":0.07},
+    {"tipo":"serie_a", "label":"Serie A", "peso":0.68}
   ],
 
   "tipos_locais":[
@@ -82,7 +107,7 @@
     {"evento": "parecer_pela_rejeicao", "titulo_evento": "Parecer pela Rejeição" , "nivel": 1},
     {"evento": "parecer", "titulo_evento": "Parecer" , "nivel": 1},
     {"evento": "virada_de_casa", "titulo_evento": "Virada de Casa" , "nivel": 1},
-    {"evento": "remetida_a_sancao", "titulo_evento": "Remetida à Sanção" , "nivel": 1},
+    {"evento": "remetida_a_sancao_promulgacao", "titulo_evento": "Remetida à Sanção/Promulgação" , "nivel": 1},
     {"evento": "transformada_lei", "titulo_evento": "Transformada em Lei" , "nivel": 1},
     {"evento": "vetada_totalmente", "titulo_evento": "Vetada Totalmente" , "nivel": 1},
     {"evento": "parecer_comissao", "titulo_evento": "Parecer emitido na Comissão" , "nivel": 1},
@@ -96,6 +121,7 @@
     {"evento": "devolvido", "titulo_evento": "Devolução do Projeto pelo Relator" , "nivel": 1},
     {"evento": "recebimento_comissao", "titulo_evento": "Recebimento na Comissão" , "nivel": 2},
     {"evento": "aprovacao_projeto", "titulo_evento": "Aprovação do Projeto" , "nivel": 1},
-    {"evento": "rejeicao_projeto", "titulo_evento": "Rejeição do Projeto" , "nivel": 1}
+    {"evento": "rejeicao_projeto", "titulo_evento": "Rejeição do Projeto" , "nivel": 1},
+    {"evento": "aprovacao_materia", "titulo_evento": "Aprovação da Matéria" , "nivel": 1}
   ]
 }

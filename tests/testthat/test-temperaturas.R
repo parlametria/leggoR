@@ -24,23 +24,23 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   decaimento = 0.1
   r <- 1 - decaimento
   
-  peso_despacho <- congresso_env$tipos_eventos$peso[1]
-  peso_discussao <- congresso_env$tipos_eventos$peso[2]
-  peso_votacao <- congresso_env$tipos_eventos$peso[3]
+  peso_serie_b <- congresso_env$tipos_eventos$peso[1]
+  peso_serie_c <- congresso_env$tipos_eventos$peso[2]
+  peso_serie_a <- congresso_env$tipos_eventos$peso[3]
   peso_locais <- congresso_env$tipos_locais$peso[1]
   
   # 2018-09-10
-  p_dia1 <- 6 + (3 * peso_despacho) + (2 * peso_votacao) + (4 * peso_locais)
+  p_dia1 <- 6 + (2 * peso_serie_c) + (3 * peso_serie_a) + (4 * peso_locais)
   # 2018-09-11
-  p_dia2 <- 2 + peso_discussao + peso_votacao + (2 * peso_locais)
+  p_dia2 <- 2 + (2 * peso_serie_c) + (2 * peso_locais)
   # 2018-09-12
   p_dia3 <- 1 + (peso_locais)
   # 2018-09-13
-  p_dia4 <- 5 + peso_despacho + (3 * peso_votacao) + (5 * peso_locais)
+  p_dia4 <- 5 + peso_serie_c + (3 * peso_serie_a) + (5 * peso_locais)
   # 2018-09-14
-  p_dia5 <- 3 + peso_despacho +  (2 * peso_votacao) + (3 * peso_locais)
+  p_dia5 <- 3 + peso_serie_c +  (2 * peso_serie_a) + (3 * peso_locais)
   # 2018-09-17
-  p_dia6 <- 4 + peso_despacho + (2 * peso_votacao) + (3 * peso_locais)
+  p_dia6 <- 4 + (3 * peso_serie_a) + (3 * peso_locais)
   # 2018-09-18
   p_dia7 <- 0
   
@@ -67,7 +67,7 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   
   energy_df <- get_historico_temperatura_recente(data, granularidade = 'd', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-18 12:00:00"), pautas)
   
-  expect_true(all(energy_df$temperatura_recente == result))
+  expect_equal(energy_df$temperatura_recente, result)
 })
 
 test_that('get_historico_temperatura_recente() has correct function passing the parameter week', {
@@ -96,15 +96,15 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   decaimento = 0.1
   r <- 1 - decaimento
   
-  peso_despacho <- congresso_env$tipos_eventos$peso[1]
-  peso_discussao <- congresso_env$tipos_eventos$peso[2]
-  peso_votacao <- congresso_env$tipos_eventos$peso[3]
+  peso_serie_b <- congresso_env$tipos_eventos$peso[1]
+  peso_serie_c <- congresso_env$tipos_eventos$peso[2]
+  peso_serie_a <- congresso_env$tipos_eventos$peso[3]
   peso_locais <- congresso_env$tipos_locais$peso[1]
   
-  p_week1 <- 4 + peso_despacho + peso_locais + (2 * peso_votacao)
-  p_week2 <- 5 + (2 * peso_despacho) + peso_votacao + (3 * peso_locais)
-  p_week3 <- 6 + peso_despacho + (2 * peso_discussao) + (3 * peso_locais) + peso_votacao
-  p_week4 <- 5 + peso_despacho + peso_votacao + (2 * peso_locais)
+  p_week1 <- 4 + peso_serie_c + peso_locais + (2 * peso_serie_a)
+  p_week2 <- 5 + (2 * peso_serie_c) + peso_serie_a + (3 * peso_locais)
+  p_week3 <- 6 + peso_serie_a + (2 * peso_serie_c) + (3 * peso_locais) + peso_serie_a
+  p_week4 <- 5 + peso_serie_c + peso_serie_a + (2 * peso_locais)
   result <- c(
     # semana 1
     sum(p_week1 * r^0),
@@ -121,7 +121,7 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   energy_df <- 
     get_historico_temperatura_recente(data, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"), pautas)
   
-  expect_true(all(energy_df$temperatura_recente == result))
+  expect_equal(energy_df$temperatura_recente, result)
 })
 
 test_that('get_historico_temperatura_recente() quando arquiva', {
@@ -149,14 +149,14 @@ test_that('get_historico_temperatura_recente() quando arquiva', {
   decaimento = 0.1
   r <- 1 - decaimento
   
-  peso_despacho <- congresso_env$tipos_eventos$peso[1]
-  peso_discussao <- congresso_env$tipos_eventos$peso[2]
-  peso_votacao <- congresso_env$tipos_eventos$peso[3]
+  peso_serie_b <- congresso_env$tipos_eventos$peso[1]
+  peso_serie_c <- congresso_env$tipos_eventos$peso[2]
+  peso_serie_a <- congresso_env$tipos_eventos$peso[3]
   peso_locais <- congresso_env$tipos_locais$peso[1]
   
   p_week1 <- 0
-  p_week2 <- 5 + (2 * peso_despacho) + peso_votacao + (3 * peso_locais)
-  p_week3 <- 6 + peso_despacho + (2 * peso_discussao) + (3 * peso_locais) + peso_votacao
+  p_week2 <- 5 + (2 * peso_serie_c) + peso_serie_a + (3 * peso_locais)
+  p_week3 <- 6 + (2 * peso_serie_c) + (3 * peso_locais) + (2 * peso_serie_a)
   p_week4 <- 0
   result <- c(
     # semana 1
@@ -171,9 +171,9 @@ test_that('get_historico_temperatura_recente() quando arquiva', {
   
   result <- round(result, digits = 2)
   
-  energy_df <- get_historico_temperatura_recente(data, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"), pautas)
+  energy_df <- agoradigital::get_historico_temperatura_recente(data, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"), pautas)
   
-  expect_true(all(energy_df$temperatura_periodo == result))
+  expect_equal(energy_df$temperatura_periodo, result)
 })
 
 test_that('get_historico_temperatura_recente_id_leggo() has correct function passing the parameter week', {
@@ -203,15 +203,15 @@ test_that('get_historico_temperatura_recente_id_leggo() has correct function pas
   decaimento = 0.1
   r <- 1 - decaimento
   
-  peso_despacho <- congresso_env$tipos_eventos$peso[1]
-  peso_discussao <- congresso_env$tipos_eventos$peso[2]
-  peso_votacao <- congresso_env$tipos_eventos$peso[3]
+  peso_serie_b <- congresso_env$tipos_eventos$peso[1]
+  peso_serie_c <- congresso_env$tipos_eventos$peso[2]
+  peso_serie_a <- congresso_env$tipos_eventos$peso[3]
   peso_locais <- congresso_env$tipos_locais$peso[1]
   
-  p_week1 <- 4 + peso_despacho + peso_locais + (2 * peso_votacao)
-  p_week2 <- 5 + (2 * peso_despacho) + peso_votacao + (3 * peso_locais)
-  p_week3 <- 6 + peso_despacho + (2 * peso_discussao) + (3 * peso_locais) + peso_votacao
-  p_week4 <- 5 + peso_despacho + peso_votacao + (2 * peso_locais)
+  p_week1 <- 4 + peso_serie_c + peso_locais + (2 * peso_serie_a)
+  p_week2 <- 5 + (2 * peso_serie_c) + peso_serie_a + (3 * peso_locais)
+  p_week3 <- 6 + (2 * peso_serie_c) + (3 * peso_locais) + (2 * peso_serie_a)
+  p_week4 <- 5 + peso_serie_c + peso_serie_a + (2 * peso_locais)
   result <- c(
     # semana 1
     sum(p_week1 * r^0),
@@ -229,7 +229,7 @@ test_that('get_historico_temperatura_recente_id_leggo() has correct function pas
     get_historico_temperatura_recente_id_leggo(
       data, 1, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"), pautas)
   
-  expect_true(all(energy_df$temperatura_recente == result))
+  expect_equal(energy_df$temperatura_recente, result)
 })
 
 test_that('get_historico_temperatura_recente_id_leggo() return empty df when the input is empty', {
