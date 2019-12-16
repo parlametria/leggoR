@@ -90,8 +90,9 @@ temperatura_pls_filtradas <- temperaturas %>%
 get_pressao_pls_interesse <- function(id_leggo, pops_folderpath) {
   pop <- readr::read_csv(paste0(pops_folderpath,"/pop_", id_leggo, ".csv"))
   pressao_pl_interesse <- pop %>%
+    dplyr::mutate(id_leggo = as.numeric(id_leggo)) %>% 
     dplyr::group_by(id_leggo, id_ext, casa, date) %>% 
-    dplyr::summarise(pressao = max(maximo_geral)) %>% 
+    dplyr::summarise(pressao = as.numeric(max(maximo_geral))) %>% 
     dplyr::ungroup() %>% 
     dplyr::select(id_leggo, periodo = date, pressao) %>% 
     dplyr::mutate(periodo = as.Date(periodo))
