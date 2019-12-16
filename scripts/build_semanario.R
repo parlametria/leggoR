@@ -65,6 +65,12 @@ get_pls_interesse <- function(variacoes_temperatura, z_score_lim = 1.5) {
 
 pls_de_interesse <- get_pls_interesse(variacoes_temperatura, 0.4)
 
+if (!('id_leggo' %in% names(trams))) {
+  trams <- trams %>% 
+    dplyr::inner_join(leggo_ids %>% dplyr::select(id_leggo, id_ext), by='id_ext') %>% 
+    dplyr::select(id_leggo, dplyr::everything())
+}
+
 eventos <-
   trams %>% 
   dplyr::filter(data >= lubridate::ymd(data_inicio), 
