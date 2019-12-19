@@ -23,11 +23,23 @@ if (ano < 2001 | ano > ano_atual) {
   stop(paste0("Ano inválido: ",ano,". Deve estar entre 2001 e ",ano_atual))
 }
 
-bancada <- readr::read_csv(bancada_ids_filepath)
+bancada <- readr::read_csv(bancada_ids_filepath,
+                           col_types = list(
+                             .default = readr::col_character(),
+                             id_deputado = readr::col_double()
+                           ))
 bancada_ids <- bancada %>% dplyr::select(id_deputado) %>% dplyr::distinct()
 
 props_autorias <- readr::read_csv2(
-  paste0('http://dadosabertos.camara.leg.br/arquivos/proposicoesAutores/csv/proposicoesAutores-',ano,'.csv')) %>% 
+  paste0('http://dadosabertos.camara.leg.br/arquivos/proposicoesAutores/csv/proposicoesAutores-',ano,'.csv'),
+  col_types = list(
+    .default = readr::col_character(),
+    idProposicao = readr::col_double(),
+    idDeputadoAutor = readr::col_double(),
+    codTipoAutor = readr::col_double(),
+    ordemAssinatura = readr::col_double(),
+    proponente = readr::col_double()
+  )) %>% 
   dplyr::filter(!is.na(idDeputadoAutor),
                 proponente == 1)
 
@@ -37,7 +49,20 @@ props_bancada <- props_autorias %>%
                 partido = siglaPartidoAutor, uf = siglaUFAutor, ordem_assinatura = ordemAssinatura)
 
 props_2019 <- readr::read_csv2(
-  paste0('http://dadosabertos.camara.leg.br/arquivos/proposicoes/csv/proposicoes-',ano,'.csv')) %>%
+  paste0('http://dadosabertos.camara.leg.br/arquivos/proposicoes/csv/proposicoes-',ano,'.csv'),
+  col_types = list(
+    .default = readr::col_character(),
+    id = readr::col_double(),
+    numero = readr::col_double(),
+    ano = readr::col_double(),
+    codTipo = readr::col_double(),
+    dataApresentacao = readr::col_datetime(format = ""),
+    ultimoStatus_dataHora = readr::col_datetime(format = ""),
+    ultimoStatus_sequencia = readr::col_double(),
+    ultimoStatus_idOrgao = readr::col_double(),
+    ultimoStatus_idTipoTramitacao = readr::col_double(),
+    ultimoStatus_idSituacao = readr::col_double()
+  )) %>%
   agoradigital::rename_df_columns() %>% 
   dplyr::select(id_documento = id, sigla_tipo, numero, ano, data_apresentacao, ementa, 
                 ementa_detalhada, keywords, link_documento = url_inteiro_teor) %>% 
