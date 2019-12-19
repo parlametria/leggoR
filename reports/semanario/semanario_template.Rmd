@@ -196,7 +196,7 @@ get_texto_atores_plot_bancadas_por_proposicao <- function(qtd_atuacao, atuacao_b
 
 build_atores_plot_bancadas_por_proposicao_tema <- function(atuacao_bancadas, tema) {
   p <- atuacao_bancadas %>% 
-    ggplot(aes(x = reorder(nome_formal, peso_total_documentos), y = peso_total_documentos, group = bancada, fill = bancada)) + 
+    ggplot(aes(x = reorder(apelido, peso_total_documentos), y = peso_total_documentos, group = bancada, fill = bancada)) + 
     geom_chicklet(width = 0.75) +
      theme_ipsum_rc(grid=FALSE) +
      theme(legend.position = "bottom") +
@@ -264,7 +264,7 @@ build_atores_plot_por_proposicao <- function(atores_prop_destaque) {
        labs(
         x = NULL, y = "Quantidade de documentos", fill = NULL,
         title = "Atuação por proposição",
-        subtitle = atores_pls_plot$nome_formal_completo,
+        subtitle = atores_pls_plot$apelido,
         caption = ""
        ) +
        scale_fill_manual(
@@ -293,6 +293,8 @@ build_atores_plot_por_proposicao <- function(atores_prop_destaque) {
     
   plot(p)
   cat(paste0("Para mais informações sobre a proposição, como o progresso, a rede de influência e uma análise sobre as emendas, [clique aqui](", link_para_leggo, ")."))
+  cat("  ")
+  cat(" \n ")
 }
 ```
 
@@ -329,7 +331,7 @@ if (nrow(atores) == 0) {
     dplyr::summarise(peso_total_documentos = sum(peso_total_documentos))
   
   atuacao_bancadas_por_pl_tema <- atores %>% 
-    dplyr::group_by(tema, id_leggo, casa, bancada, nome_formal, nome_formal_completo, sigla_tipo) %>% 
+    dplyr::group_by(tema, id_leggo, casa, bancada, nome_formal, nome_formal_completo, sigla_tipo, apelido) %>% 
     dplyr::summarise(peso_total_documentos = sum(peso_total_documentos))
   
   build_atores_plot_bancadas_por_temas(atuacao_bancadas_por_tema)
@@ -346,3 +348,6 @@ if (nrow(atores) == 0) {
     group_map(~ build_atores_plot_por_proposicao(.), keep = T)
 }
 ```
+
+<br>
+<br>

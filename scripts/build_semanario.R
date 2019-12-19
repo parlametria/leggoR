@@ -171,7 +171,8 @@ proposicoes_filtradas <-
   dplyr::filter(id_leggo %in% leggo_ids_selecionados$id_leggo) %>% 
   dplyr::mutate(ano = format(as.Date(data_apresentacao), "%Y")) %>% 
   dplyr::mutate(nome_formal = paste0(sigla_tipo, ' ', numero, '/', as.character(ano))) %>% 
-  dplyr::mutate(nome_formal_completo = paste0(nome_formal, ' (', tools::toTitleCase(ifelse(casa == "camara","Câmara",casa)), ')'))
+  dplyr::mutate(nome_formal_completo = paste0(nome_formal, ' (', tools::toTitleCase(ifelse(casa == "camara","Câmara",casa)), ')')) %>% 
+  dplyr::mutate(apelido = paste0(apelido, ' (', tools::toTitleCase(ifelse(casa == "camara","Câmara",casa)), ')'))
 
 oposicao <- c("PT", "PSOL", "PSB", "PCdoB", "PDT", "REDE")
 
@@ -187,7 +188,7 @@ atores_geral <-
 
 atores_pls <- atores_geral %>% 
   dplyr::group_by(id_leggo, id_ext, casa, nome_autor, id_autor, tipo_autor, partido, nome_completo,
-                  uf, tipo_generico, sigla_local, is_important, bancada, nome_formal, nome_formal_completo, sigla_tipo, tema) %>% 
+                  uf, tipo_generico, sigla_local, is_important, bancada, nome_formal, nome_formal_completo, sigla_tipo, tema, apelido) %>% 
   dplyr::summarise(peso_total_documentos = sum(peso_total_documentos)) %>% 
   dplyr::ungroup() %>% 
   dplyr::mutate(tema = stringr::str_replace_all(tema, ';',' &\n'))

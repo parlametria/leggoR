@@ -3968,6 +3968,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 136033,8040809,senado,Senador Fabiano Contarato ,REDE,ES,senador,5953
 136033,8041630,senado,Senador Rodrigo Cunha ,PSDB,AL,senador,5905
 136033,8052601,senado,Senador Arolde de Oliveira ,PSD,RJ,senador,751
+136033,8054546,senado,Senadora Eliziane Gama ,CIDADANIA,MA,senador,5718
 136173,7940035,senado,Senador Ciro Nogueira ,PP,PI,senador,739
 136173,7940056,senado,Senador Ciro Nogueira ,PP,PI,senador,739
 136173,7940322,senado,Senador Ciro Nogueira ,PP,PI,senador,739
@@ -4242,6 +4243,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 126049,8015952,senado,Senador Eduardo Gomes ,MDB,TO,senador,3777
 126049,8031281,senado,Senador Marcos Rogério ,DEM,RO,senador,5422
 126049,8040137,senado,Senador Telmário Mota ,PROS,RR,senador,5535
+126049,8053646,senado,Senador Marcos Rogério ,DEM,RO,senador,5422
 138726,8007278,senado,Senador Weverton ,PDT,MA,senador,5411
 138726,8008542,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
 138726,8008570,senado,Senador Wellington Fagundes ,PL,MT,senador,1173
@@ -4313,6 +4315,25 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 137319,8003154,senado,Senador Irajá ,PSD,TO,senador,5385
 138551,8003231,senado,Senador Alessandro Vieira ,CIDADANIA,SE,senador,5982
 139988,8048914,senado,Senador Randolfe Rodrigues ,REDE,AP,senador,5012
+137118,7960880,senado,Senador Tasso Jereissati ,PSDB,CE,senador,3396
+137118,7961501,senado,Líder do bloco Bloco Eduardo Girão ,PODE,CE,senador,NA
+137118,7961501,senado,Líder do PROS Telmário Mota ,PROS,RR,senador,5535
+137118,7961501,senado,Líder do DEM Rodrigo Pacheco ,DEM,MG,senador,5732
+137118,7961501,senado,Líder do bloco Bloco Esperidião Amin ,PP,SC,senador,NA
+137118,7961501,senado,Líder do PSB Jorge Kajuru ,PSB,GO,senador,5895
+137118,7961501,senado,Líder do PL Jorginho Mello ,PL,SC,senador,5350
+137118,7961613,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
+137118,7961632,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
+137118,7962155,senado,Senador Jaques Wagner ,PT,BA,senador,581
+137118,7962979,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
+137118,7962964,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
+137118,7962976,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
+137118,7962973,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
+137118,7962967,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
+137118,7962612,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
+137118,7962957,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
+137118,7962970,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
+137118,7963442,senado,Senador Roberto Rocha ,PSDB,MA,senador,677
 135064,7909365,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 135064,7909374,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
 135064,7909371,senado,Deputado Federal Alessandro Molon ,PSB,RJ,deputado,160511
@@ -5644,9 +5665,19 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 137999,8022928,senado,Cidadão Unidade de Mobilização Nacional pela Anistia,NA,NA,nao_parlamentar,NA
 137999,8024289,senado,Cidadão Associação dos Funcionários do Tribunal de Contas do Estado de São Paulo,NA,NA,nao_parlamentar,NA
 137999,8024291,senado,Cidadão Confederação Nacional dos Trabalhadores em Turismo e Hospitalidade,NA,NA,nao_parlamentar,NA
+137999,8052729,senado,Cidadão Soraya de Paula Garcia de Campos - Presidente CMAS,NA,NA,nao_parlamentar,NA
 137999,8003668,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
 137999,8003672,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
 137999,8003670,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
+137999,8052733,senado,Cidadão José Calixto Ramos,NA,NA,nao_parlamentar,NA
+137999,8052735,senado,Cidadão Daniel Carvalho,NA,NA,nao_parlamentar,NA
+137999,8052737,senado,Ente Jurídico,NA,NA,nao_parlamentar,NA
+137999,8052741,senado,Câmara Municipal de Americana-SP,NA,NA,nao_parlamentar,NA
+137999,8052731,senado,Cidadão Eduardo Kappel - Presidente da Câmara Municipal de Venâncio Aires-RS.,NA,NA,nao_parlamentar,NA
+137999,8052739,senado,Cidadão Rui Sergio Gomes de Rosis - Presidente da Câmara Municipal de Santos-SP,NA,NA,nao_parlamentar,NA
+137999,8052743,senado,Cidadão Hugo do Prado Santos - Presidente da Câmara Municipal da Estância Turística de Embu das Artes.,NA,NA,nao_parlamentar,NA
+137999,8052745,senado,Cidadão Lúcio Matins de Freitas - Presidente da Câmara Municipal de Sertãozinho - SP,NA,NA,nao_parlamentar,NA
+137999,8052747,senado,Cidadão Gesimo Daniel Bernardy-Presidente da Câmara Municipal de Candelárias-RS.,NA,NA,nao_parlamentar,NA
 137999,8018899,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 137999,8018214,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
 137999,8018895,senado,Senado Federal,NA,NA,nao_parlamentar,NA
@@ -5658,6 +5689,7 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 137999,8019562,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 137999,8019530,senado,Senado Federal,NA,NA,nao_parlamentar,NA
 137999,8019696,senado,Comissão Diretora do Senado Federal,NA,NA,nao_parlamentar,NA
+137999,8052749,senado,Cidadão Walton Assis Pereira - Presidente da  Câmara Municipal de Monte Mor - SP,NA,NA,nao_parlamentar,NA
 137999,8035010,senado,Cidadão Marcelo Bueno Loiola,NA,NA,nao_parlamentar,NA
 137999,8028131,senado,Comissão de Constituição Justiça e Cidadania,NA,NA,nao_parlamentar,NA
 137999,8028807,senado,Senado Federal,NA,NA,nao_parlamentar,NA
@@ -5854,8 +5886,11 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 138726,8011754,senado,Primeiro-Secretário do Senado Federal,NA,NA,nao_parlamentar,NA
 138726,8011788,senado,Comissão Diretora do Senado Federal,NA,NA,nao_parlamentar,NA
 138726,8013076,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+138726,8052682,senado,Cidadão Hélio Alves Ribeiro,NA,NA,nao_parlamentar,NA
 138726,8016034,senado,Primeiro-Secretário do Congresso Nacional,NA,NA,nao_parlamentar,NA
 138726,8048501,senado,Cidadão Pedro Luiz Mattos Canhassi Botaro,NA,NA,nao_parlamentar,NA
+138726,8056170,senado,Presidência da República,NA,NA,nao_parlamentar,NA
+138726,8056176,senado,Presidência da República,NA,NA,nao_parlamentar,NA
 137319,7966370,senado,Presidência da República,NA,NA,nao_parlamentar,NA
 137319,7966633,senado,Congresso Nacional,NA,NA,nao_parlamentar,NA
 137319,7969334,senado,Senado Federal,NA,NA,nao_parlamentar,NA
@@ -5879,3 +5914,9 @@ id_principal,id_documento,casa,nome_autor,partido,uf,tipo_autor,id_autor
 137319,8027668,senado,Presidência da República,NA,NA,nao_parlamentar,NA
 137319,8028930,senado,Primeiro-Secretário do Senado Federal,NA,NA,nao_parlamentar,NA
 140042,8036675,senado,Câmara dos Deputados,NA,NA,nao_parlamentar,NA
+137118,7961528,senado,Senado Federal,NA,NA,nao_parlamentar,NA
+137118,7961649,senado,Comissão de Serviços de Infraestrutura,NA,NA,nao_parlamentar,NA
+137118,7961632,senado,Comissão de Serviços de Infraestrutura,NA,NA,nao_parlamentar,NA
+137118,7963445,senado,Comissão Diretora do Senado Federal,NA,NA,nao_parlamentar,NA
+137118,7963454,senado,Primeiro-Secretário do Senado Federal,NA,NA,nao_parlamentar,NA
+137118,7964499,senado,Senado Federal,NA,NA,nao_parlamentar,NA
