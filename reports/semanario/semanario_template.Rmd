@@ -1,5 +1,5 @@
 ---
-title: "Semanário Leg.go"
+title: "Destaques da Semana - Leg.go"
 output:
   html_document:
     css: style.css
@@ -76,8 +76,9 @@ get_texto_temp_pressao <- function(temp_pressao_periodo, eventos_pl) {
   cresceu_press <- variacao_press > 1
   variacao_temp <- round(abs(variacao_temp),0)
   variacao_press <- round(abs(variacao_press),0)
+  nivel_subida_temp <- if_else(variacao_temp > 100, "considerável", "")
   
-  return (paste0("Foi observad", if(cresceu_temp){"o um crescimento de "}else{"a uma diminuição de "}, variacao_temp, "% na temperatura e ", if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}, if(variacao_press != 0){variacao_press}, if(variacao_press != 0){"%"}, " na pressão.", if(nrow(eventos_pl) > 0){" Os eventos que influenciaram a Temperatura estão na tabela abaixo."}))
+  return (paste0("Foi observad", if(cresceu_temp){"o um crescimento "}else{"a uma diminuição "}, nivel_subida_temp, " na temperatura e ", if(cresceu_press){"um crescimento de "}else{ if(variacao_press == 0){"não foi observada nenhuma mudança"}else{"uma diminuição de "}}, if(variacao_press != 0){variacao_press}, if(variacao_press != 0){"%"}, " na pressão.", if(nrow(eventos_pl) > 0){paste0(" Os ", nrow(eventos_pl), " eventos que influenciaram a Temperatura estão na tabela abaixo.")}))
 }
 
 build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio, dt_fim, eventos) {
@@ -117,17 +118,26 @@ build_temp_pressao_plot <- function(temp_pressao_pl, apelido_pl, dt_inicio, dt_f
            Evento = titulo_evento,
            Detalhamento = texto_tramitacao)
   
+  id_leggo <- 
+    eventos %>% 
+    head(1) %>% 
+    purrr::pluck("id_leggo")
+  
+  link_para_leggo <- paste("https://leggo.org.br/#/proposicao/", id_leggo)
+  
   texto_temp_pressao <- get_texto_temp_pressao(temp_pressao_pl, eventos_pl)
   
   plot(temp_pressao_plot)
   cat(texto_temp_pressao)
   cat("\n\n")
   if (nrow(eventos_pl) == 0) {
-    cat("Os eventos que fizeram a temperatura subir ainda não são reconhecidos pelo Leggo ou não são importantes.")    
+    cat("Os eventos que fizeram a temperatura subir ainda não são reconhecidos pelo Leggo.")    
   } else {
     cat("\n\n")
     cat("#### ")
     print(knitr::kable(eventos_pl))
+    cat("\n\n")
+    cat(paste0("Para mais informações sobre os eventos e sobre a proposição, como o progresso, a rede de influência e uma análise sobre as emendas, [clique aqui](", link_para_leggo, ")."))
   }
   cat("\n\n")
 }
@@ -293,8 +303,6 @@ build_atores_plot_por_proposicao <- function(atores_prop_destaque) {
     
   plot(p)
   cat(paste0("Para mais informações sobre a proposição, como o progresso, a rede de influência e uma análise sobre as emendas, [clique aqui](", link_para_leggo, ")."))
-  cat("  ")
-  cat(" \n ")
 }
 ```
 
