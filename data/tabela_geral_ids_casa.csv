@@ -34,17 +34,17 @@ NA,120768,Trabalho infantil artístico e despostivo,Direitos Humanos,
 604888,96813,Assinatura eletrônica em Leis de Iniciativa Popular,Integridade e Transparência,
 2192459,137999,Nova Previdência,Agenda Nacional,
 2190288,135064,Monitoramento e Acompanhamento de ONGs,Agenda Nacional,
-2192352,NA,Pacote Moro Caixa 2,Agenda Nacional;Integridade e Transparência,
-2192353,NA,Pacote Moro Crime Organizado (Apensado),Agenda Nacional;Integridade e Transparência,
-2192354,NA,Pacote Moro Anticorrupção,Agenda Nacional;Integridade e Transparência,
+2192352,NA,Pacote Moro Caixa 2,Agenda Nacional,Integridade e Transparência
+2192353,NA,Pacote Moro Crime Organizado (Apensado),Agenda Nacional,Integridade e Transparência
+2192354,NA,Pacote Moro Anticorrupção,Agenda Nacional,Integridade e Transparência
 NA,131906,Mercado da água,Meio Ambiente,
 NA,120152,PEC Antiaborto,Direitos Humanos,
-2190282,135061,Altera o marco legal do saneamento básico,Agenda Nacional;Meio Ambiente,
+2190282,135061,Altera o marco legal do saneamento básico,Agenda Nacional,Meio Ambiente
 353631,NA,Disciplina a atividade de lobby,Integridade e Transparência,
-2178170,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional;Integridade e Transparência,
-2190237,135060,Programa de Regularização Ambiental,Agenda Nacional;Meio Ambiente,
+2178170,NA,Pacote Moro Crime Organizado (Principal),Agenda Nacional,Integridade e Transparência
+2190237,135060,Programa de Regularização Ambiental,Agenda Nacional,Meio Ambiente
 604557,NA,PNCMar,Meio Ambiente,
-NA,136033, Pacote Moro - Crime Organizado,Agenda Nacional;Integridade e Transparência,
+NA,136033, Pacote Moro - Crime Organizado,Agenda Nacional,Integridade e Transparência
 2193540,136173,Anistia Tributária para Partidos,Integridade e Transparência,
 NA,135799,Fim da Reserva Legal,Meio Ambiente,
 NA,135505,Extinção das Cotas de Candidaturas Femininas,Direitos Humanos,
@@ -63,5 +63,7 @@ NA,126049,Reforma do setor elétrico (Senado),Meio Ambiente,
 2208200,137319,Retira prazo para inscrição de propriedades no CAR,Meio Ambiente,
 2218881,NA,Transparência Partidária (Câmara),Integridade e Transparência,
 NA,138551,Transparência partidária (Senado),Integridade e Transparência,
-2209381,140042,PL das Armas,Direitos Humanos,https://drive.google.com/drive/folders/1T_oUL4xCeFCII9Piy0v6-rYRWliI09dq,
+2209381,140042,PL das Armas,Direitos Humanos,https://drive.google.com/drive/folders/1T_oUL4xCeFCII9Piy0v6-rYRWliI09dq
 NA,139988,Controle do Desmatamento,Meio Ambiente,
+NA,135216,Pena Menores de 21,Direitos Humanos,
+2207613,137118,Marco Legal Saneamento Básico,Agenda Nacional,
