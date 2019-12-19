@@ -46,7 +46,7 @@ text-align: justify}
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 #Base de dados de temperatura
-temp_pressao_periodo <- params$temp_pressao_periodo 
+temp_pressao_periodo <- params$temp_pressao_periodo
 data_inicio <- params$date_init
 data_fim <- params$date_end
 pls <- params$proposicoes
@@ -301,7 +301,7 @@ build_atores_plot_por_proposicao <- function(atores_prop_destaque) {
 
 ```{r, fig.height=7, fig.width=10, results='asis'}
 pls_destaque <- pls %>%
-  filter(id_leggo %in% temp_pressao_periodo$id_leggo) %>% 
+  dplyr::filter(id_leggo %in% temp_pressao_periodo$id_leggo) %>% 
   group_by(id_leggo) %>% 
   arrange(data_apresentacao) %>% 
   slice(n())

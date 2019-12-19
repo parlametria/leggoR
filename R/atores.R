@@ -39,6 +39,10 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
   if(!is.null(data_fim)) {
     documentos_df <- documentos_df %>% dplyr::filter(data_apresentacao < data_fim)
   }
+  
+  if(nrow(documentos_df) == 0) {
+    return(tibble::tibble())
+  }
 
   autores_docs <- merge(documentos_df, autores_df, by = c("id_documento", "casa")) %>%
     dplyr::select(id_principal,
