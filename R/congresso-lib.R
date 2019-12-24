@@ -75,6 +75,26 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df, sigla){
       tidyr::fill(local) %>%
       dplyr::ungroup()
   }
+  
+  virada_de_casa <-
+    full_ordered_tram %>% 
+    dplyr::mutate(titulo_evento == 'Virada de Casa')
+  
+  if(nrow(virada_de_casa) != 0) {
+    if (nrow(camara_ordered_tram) == 0) {
+      camara_ordered_tram <- 
+        senado_ordered_tram %>% 
+        tail(1) %>% 
+        dplyr::mutate(casa = 'camara', fase_global = 'Revisão I', data_hora = data_hora + 86400, local = "Comissões")
+    }
+    
+    if (nrow(senado_ordered_tram) == 0) {
+      senado_ordered_tram <- 
+        camara_ordered_tram %>% 
+        tail(1) %>% 
+        dplyr::mutate(casa = 'senado', fase_global = 'Revisão I', data_hora = data_hora + 86400, local = "Comissões")
+    }
+  }
 
   full_ordered_tram_fases <- dplyr::bind_rows(camara_ordered_tram,senado_ordered_tram) %>%
     dplyr::distinct() %>%
