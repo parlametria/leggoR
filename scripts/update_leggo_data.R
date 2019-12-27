@@ -144,7 +144,7 @@ if (casa == 'senado') {
     print(paste("Adicionando ",nrow(new_docs_data)," novos documentos."))
 
     updated_docs <-
-      rbind(current_docs, new_docs_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
+      plyr::rbind.fill(current_docs, new_docs_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
     readr::write_csv(updated_docs, docs_filepath)
 
     print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
@@ -153,7 +153,7 @@ if (casa == 'senado') {
       merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id") %>%
       dplyr::select(id_autor,nome,tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor)
     updated_autores_docs <-
-      rbind(current_autores, new_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
+      plyr::rbind.fill(current_autores, new_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
     readr::write_csv(updated_autores_docs, autores_filepath)
   }
 }
