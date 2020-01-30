@@ -44,7 +44,11 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
   reqs_tipos <- reqs %>%
     dplyr::select(id_req, tipo_documento = descricaoTipo)
 
-  eventos_reqs <- purrr::map_df(reqs$id_req, ~rcongresso::fetch_events_requerimento_camara(.x))
+  cat("\n--- Fetch Events Requerimentos - Câmara")
+  start_time <- Sys.time()
+  eventos_reqs <- purrr::map_df(reqs$id_req, ~ rcongresso::run_function_with_delay(0.2,rcongresso::fetch_events_requerimento_camara(.x)))
+  end_time <- Sys.time()
+  cat(" - Time Elapsed: ", end_time - start_time, "mins")
 
   if(nrow(eventos_reqs) != 0) {
     eventos_reqs <-
