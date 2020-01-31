@@ -6,16 +6,12 @@
 #' @return list com os dataframes: proposicao, fases_eventos,
 #' hist_temperatura
 process_etapa <- function(id, casa, pautas) {
-  cat("\n--- Processando etapa:", id, casa)
-  cat("\n--- Fetch Proposição")
   prop <- agoradigital::fetch_proposicao(id, casa)
-  cat("\n--- Fetch Tramitação")
   if (tolower(prop$sigla_tipo) == 'mpv') {
     tram <- agoradigital::fetch_tramitacao(id, casa, TRUE)
   } else {
     tram <- agoradigital::fetch_tramitacao(id, casa)
   }
-  cat("\n--- Process Proposição")
   proc_tram <-
     agoradigital::process_proposicao(prop, tram, casa) %>%
     dplyr::mutate(data_hora = as.POSIXct(data_hora))
@@ -233,7 +229,6 @@ fetch_props <- function(pls, export_path) {
   while (count < 5 ) {
     cat(paste("\n--- Tentativa ", count + 1,"\n"))
     sleep_time = .DEF_REQ_SLEEP_TIME_IN_SECS^(count+1)
-    cat(paste("Sleep Time:",sleep_time))
     res <- append(res, proposicoes_que_nao_baixaram %>% purrr::pmap(process_pl, nrow(proposicoes_que_nao_baixaram), pautas = pautas, 
                                                                     sleep_time = sleep_time))
 
