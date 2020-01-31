@@ -129,7 +129,8 @@ adiciona_status <- function(tramitacao_df) {
 #' @param total_rows número de linhas da tabela com os ids das proposições
 #' @param advocacy_link link para a pasta no drive com notas técnicas sobre a proposição
 #' @return Dataframe
-process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_rows, pautas, advocacy_link, sleep_time) {
+process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_rows, pautas, advocacy_link, 
+                       sleep_time=.DEF_REQ_SLEEP_TIME_IN_SECS) {
   Sys.sleep(sleep_time)
    cat(paste(
      "\n\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
