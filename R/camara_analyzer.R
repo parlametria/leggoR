@@ -99,7 +99,8 @@ extract_locais_in_camara <- function(df) {
             'Presidência da República',
           (tolower(texto_tramitacao) %in% descricoes_plenario |
              stringr::str_detect(tolower(texto_tramitacao), '^votação') |
-             stringr::str_detect(tolower(texto_tramitacao), 'urgência.*poder executivo')
+             stringr::str_detect(tolower(texto_tramitacao), 'urgência.*poder executivo') |
+             stringr::str_detect(tolower(texto_tramitacao), 'mat.ria n.o apreciada')
              ) & sigla_local == 'PLEN' ~ 'Plenário',
           (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') |
              tolower(texto_tramitacao) %in% descricoes_comissoes |
@@ -296,7 +297,8 @@ extract_local_global_in_camara <- function(tramitacao_com_fases) {
       local =
         dplyr::case_when(
           (stringr::str_detect(tolower(texto_tramitacao), "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)")) ~ 'Presidência da República',
-          (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario) & sigla_local == "PLEN") ~ "Plenário",
+          (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario) & sigla_local == "PLEN" |
+             (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario_definitivo))) ~ "Plenário",
           sigla_local != "PLEN" & (sigla_local %in% camara_env$comissoes$siglas_comissoes_antigas | sigla_local %in% camara_env$comissoes$siglas_comissoes | stringr::str_detect(tolower(sigla_local), "^pl"))  ~ "Comissões"))
 }
 
