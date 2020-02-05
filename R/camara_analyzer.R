@@ -87,13 +87,16 @@ extract_locais_in_camara <- function(df) {
     c('votação', 'pronta para pauta', 'apresentação de proposição',
       'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
-
+  
   df %<>%
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(
       local =
         dplyr::case_when(
-          (stringr::str_detect(tolower(texto_tramitacao), '(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)')) ~ 'Presidência da República',
+          (stringr::str_detect(
+            tolower(texto_tramitacao), 
+            '(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)')) ~ 
+            'Presidência da República',
           (tolower(texto_tramitacao) %in% descricoes_plenario |
              stringr::str_detect(tolower(texto_tramitacao), '^votação') |
              stringr::str_detect(tolower(texto_tramitacao), 'urgência.*poder executivo')
@@ -216,14 +219,14 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
 
   eventos_reqs <- fetch_eventos_reqs_prop(proposicao_df$prop_id, proposicao_df$casa)
 
-  proc_tram_df <-
+  proc_tram_final <-
     proc_tram_df %>%
     extract_locais_in_camara() %>%
     dplyr::bind_rows(eventos_reqs) %>%
     refact_date() %>%
     sort_by_date()
 
-  return(proc_tram_df)
+  return(proc_tram_final)
 }
 
 #Fetch a bill with renamed columns
