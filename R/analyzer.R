@@ -351,15 +351,18 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path, pautas_df)
 #' @examples
 #' fix_nomes_locais(pauta_df)
 fix_nomes_locais <- function(pautas_df) {
-  pautas_locais_clean <-
-    pautas_df %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(local_clean = stringr::str_split(local, ' - ')[[1]][1]) %>%
-    dplyr::mutate(local_clean = dplyr::if_else(local_clean == 'Plenário da Câmara dos Deputados' || local_clean == 'PLEN', 'Plenário', local_clean)) %>%
-    dplyr::mutate(local_clean = dplyr::if_else(grepl("\\d",local_clean),'Comissão Especial', local_clean)) %>%
-    dplyr::mutate(local = local_clean) %>%
-    dplyr::ungroup() %>%
-    dplyr::select(-local_clean)
+  pautas_locais_clean <- pautas_df
+  if (nrow(pautas_df) > 0) {
+    pautas_locais_clean <-
+      pautas_df %>%
+      dplyr::rowwise() %>%
+      dplyr::mutate(local_clean = stringr::str_split(local, ' - ')[[1]][1]) %>%
+      dplyr::mutate(local_clean = dplyr::if_else(local_clean == 'Plenário da Câmara dos Deputados' || local_clean == 'PLEN', 'Plenário', local_clean)) %>%
+      dplyr::mutate(local_clean = dplyr::if_else(grepl("\\d",local_clean),'Comissão Especial', local_clean)) %>%
+      dplyr::mutate(local = local_clean) %>%
+      dplyr::ungroup() %>%
+      dplyr::select(-local_clean)
+  }
 
   return(pautas_locais_clean)
 
