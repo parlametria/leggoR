@@ -108,8 +108,10 @@ fetch_agenda <- function(initial_date, end_date, house, orgao) {
 #' @export
 fetch_agenda_geral <- function(initial_date, end_date) {
   try(if(as.Date(end_date) < as.Date(initial_date)) stop("A data inicial é depois da final!"))
-  print(initial_date)
-  print(end_date)
+  cat("\nObtendo pautas para a semana: ", 
+      strftime(initial_date, "%d/%m/%Y"), "-", 
+      strftime(end_date, "%d/%m/%Y"),
+      "\n")
   
   agenda_plenario_senado <-
     normalize_agendas(rcongresso::fetch_agenda_senado(initial_date), "senado") %>%
