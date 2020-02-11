@@ -129,9 +129,11 @@ adiciona_status <- function(tramitacao_df) {
 #' @param total_rows número de linhas da tabela com os ids das proposições
 #' @param advocacy_link link para a pasta no drive com notas técnicas sobre a proposição
 #' @return Dataframe
-process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_rows, pautas, advocacy_link) {
+process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_rows, pautas, advocacy_link, 
+                       sleep_time=.DEF_REQ_SLEEP_TIME_IN_SECS) {
+  Sys.sleep(sleep_time)
    cat(paste(
-     "\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
+     "\n\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
      "\nsenado", id_senado, "\n"))
 
   etapas <- list()
@@ -223,13 +225,13 @@ fetch_props <- function(pls, export_path) {
   res <- list()
   count <- 0
   proposicoes_que_nao_baixaram <- pls
-
-  
   proposicoes_individuais_a_baixar <- converte_tabela_geral_ids_casa(pls)
   
   while (count < 5 ) {
     cat(paste("\n--- Tentativa ", count + 1,"\n"))
-    res <- append(res, proposicoes_que_nao_baixaram %>% purrr::pmap(process_pl, nrow(proposicoes_que_nao_baixaram), pautas = pautas)) 
+    sleep_time = .DEF_REQ_SLEEP_TIME_IN_SECS^(count+1)
+    res <- append(res, proposicoes_que_nao_baixaram %>% purrr::pmap(process_pl, nrow(proposicoes_que_nao_baixaram), pautas = pautas, 
+                                                                    sleep_time = sleep_time))
 
     proposicoes <-
       purrr::map_df(res, ~ .$proposicao) %>%
@@ -238,17 +240,17 @@ fetch_props <- function(pls, export_path) {
       unique()
     
     proposicoes_baixadas <- proposicoes %>%
-      dplyr::select(casa,
-             id_casa = id_ext,
-             apelido,
-             tema)
+      dplyr::select(id_leggo, 
+                    casa,
+                    id_casa = id_ext,
+                    apelido,
+                    tema)
     
     
     proposicoes_que_nao_baixaram_temp <- dplyr::anti_join(proposicoes_individuais_a_baixar, proposicoes_baixadas)
     proposicoes_que_nao_baixaram <- proposicoes_que_nao_baixaram %>%
       dplyr::filter((id_camara %in% proposicoes_que_nao_baixaram_temp$id_casa) |
-                      (id_senado %in% proposicoes_que_nao_baixaram_temp$id_casa)) %>%
-      dplyr::mutate(row_num = dplyr::row_number())
+                      (id_senado %in% proposicoes_que_nao_baixaram_temp$id_casa))
 
     if(nrow(proposicoes_que_nao_baixaram) == 0) {
       print("Downloaded all propositions! =)")
