@@ -151,7 +151,7 @@ if (casa == 'senado') {
 
     new_autores_data <-
       merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id") %>%
-      dplyr::select(id_autor,nome,tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor)
+      dplyr::select(id_autor, nome = ultimo_status_nome_eleitoral, tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor)
     updated_autores_docs <-
       plyr::rbind.fill(current_autores, new_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
     readr::write_csv(updated_autores_docs, autores_filepath)
