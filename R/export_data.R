@@ -133,7 +133,7 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_ro
                        sleep_time=.DEF_REQ_SLEEP_TIME_IN_SECS) {
   Sys.sleep(sleep_time)
    cat(paste(
-     "\n\n--- Processando",row_num,"/",total_rows,":", apelido, "\ncamara:", id_camara,
+     "\n\n--- Processando", row_num, "/", total_rows, ":", apelido, "\ncamara:", id_camara,
      "\nsenado", id_senado, "\n"))
 
   etapas <- list()

@@ -11,13 +11,7 @@ get_emendas <- function(id, casa) {
   emendas <- 
     rcongresso::fetch_emendas(id, casa, prop$sigla_tipo, prop$numero, prop$ano)
   
-  if (casa == 'camara') {
-      emendas %>% 
-      dplyr::mutate(inteiro_teor = agoradigital::get_emendas_links(codigo_emenda))
-  }
-  
   emendas
-  
 }
 
 #' @title Safe get Emendas
