@@ -1,10 +1,59 @@
 #!/usr/bin/env Rscript
 library(magrittr)
 
-help <- "
+.HELP <- "
 Usage:
 Rscript update_leggo_data.R <pls_ids_filepath> <export_path> <casa>
 "
+
+.FILEPATH_HELP <- "
+\t   Ex: \"../data/tabela_geral_ids_casa.csv\"
+\t   PS: Deve conter a pasta referente a casa a ser atualizada no mesmo nível 
+\t   desse arquivo. Ex: \"../data/camara\"
+"
+
+.EXPORT_PATH_HELP <- "
+\t   Ex: \"../data/\"
+"
+
+.CASA_HELP <- "
+\t   Ex: \"camara\"
+"
+
+
+#' @title Get arguments from command line option parsing
+#' @description Get arguments from command line option parsing
+get_args <- function() {
+  args = commandArgs(trailingOnly=TRUE)
+  
+  option_list = list(
+    optparse::make_option(c("-p", "--pls_ids_filepath"),
+                          type="character",
+                          default="../data/tabela_geral_ids_casa.csv",
+                          help=.FILEPATH_HELP,
+                          metavar="character"),
+    optparse::make_option(c("-e", "--export_path"),
+                          type="character",
+                          default="../data/",
+                          help=.EXPORT_PATH_HELP,
+                          metavar="character"),
+    optparse::make_option(c("-c", "--casa"),
+                          type="character",
+                          default="camara",
+                          help=.CASA_HELP,
+                          metavar="character")
+  );
+  
+  opt_parser <- optparse::OptionParser(option_list = option_list, usage = .HELP)
+  opt <- optparse::parse_args(opt_parser)
+  return(opt);
+}
+
+## Process args
+## Process args
+args <- get_args()
+print(args)
+
 
 #Functions
 
@@ -38,14 +87,13 @@ get_fetch_status <- function(docs_ids, docs_data, authors_data) {
 }
 
 ## Process args
-args <- commandArgs(trailingOnly = TRUE)
 min_num_args <- 3
 if (length(args) < min_num_args) {
     stop(paste("Wrong number of arguments!", help, sep = "\n"))
 }
-pls_ids_filepath <- args[1]
-export_path <- args[2]
-casa <- tolower(args[3])
+pls_ids_filepath <- args$pls_ids_filepath
+export_path <- args$export_path
+casa <- tolower(args$casa)
 
 if (!(casa %in% c("camara", "senado"))) {
   stop("Casa deve ser ou camara ou senado!")
@@ -149,9 +197,14 @@ if (casa == 'senado') {
 
     print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
 
+    simpleCap <- function(x) {
+       s <- strsplit(x, " ")[[1]]
+       paste(toupper(substring(s, 1,1)), substring(s, 2),
+                     sep="", collapse=" ")
+    }
     new_autores_data <-
       merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id") %>%
-      dplyr::select(id_autor,nome,tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor)
+      dplyr::select(id_autor, nome = simpleCap(ultimo_status_nome_eleitoral), tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor)
     updated_autores_docs <-
       plyr::rbind.fill(current_autores, new_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
     readr::write_csv(updated_autores_docs, autores_filepath)
