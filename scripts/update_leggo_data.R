@@ -111,6 +111,8 @@ senadores <- tibble::tibble()
 print("Lendo csvs com dados atuais...")
 pls_ids <- agoradigital::read_pls_ids(pls_ids_filepath)
 
+dir.create(paste0(export_path, '/', casa), showWarnings = FALSE)
+
 docs_filepath <- paste0(export_path, '/', casa, '/documentos.csv')
 autores_filepath <- paste0(export_path, '/', casa, '/autores.csv')
 senadores <- agoradigital::read_senadores(paste0(export_path, '/senado/parlamentares.csv'))

@@ -2,7 +2,7 @@ FROM rocker/tidyverse:3.6.1
 
 WORKDIR /agora-digital
 RUN apt-get update
-RUN apt-get install libssl-dev libxml2-dev libcurl4-openssl-dev -y
+RUN apt-get install libssl-dev libxml2-dev libcurl4-openssl-dev vim less -y
 COPY DESCRIPTION .
 RUN Rscript -e 'update.packages(checkBuilt=TRUE, ask=FALSE)'
 RUN Rscript -e 'install.packages("devtools"); devtools::install_deps()'
