@@ -22,5 +22,11 @@ current_pautas_filepath <- args[5]
 ## Install local repository R package version
 devtools::install()
 
+if (!file.exists(current_pautas_filepath)) {
+    current_pautas <- tibble::tribble( ~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
+} else {
+    current_pautas <- readr::read_csv(current_pautas_filepath)
+}
+
 ## Read PLs list and export their data
-agoradigital::extract_pauta(agoradigital::junta_agendas(initial_date, end_date), readr::read_csv(ids), export_folder_path, readr::read_csv(current_pautas_filepath))
+agoradigital::extract_pauta(agoradigital::junta_agendas(initial_date, end_date), readr::read_csv(ids), export_folder_path, current_pautas)
