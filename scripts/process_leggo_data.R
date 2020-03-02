@@ -116,6 +116,11 @@ export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autor
 #' @param senado_autores autores do senado
 #' @param output_path pasta para onde exportar os dados
 export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, props_leggo_id, output_path) {
+  coautorias_camara <- tibble::tibble()
+  autorias_camara <- tibble::tibble()
+  coautorias_senado <- tibble::tibble()
+  autorias_senado <- tibble::tibble()
+
   print("Gerando tabela de nodes e edges...")
 
   camara_docs <-
@@ -130,12 +135,17 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
     dplyr::left_join(props_leggo_id, by = c("id_principal", "casa"))
 
   # Gerando dado de autorias de documentos para ambas as casas
-  coautorias_camara_list <- agoradigital::get_coautorias(camara_docs, camara_autores, "camara", as.numeric(peso_minimo), .PARTIDOS_OPOSICAO)
-  coautorias_camara <- coautorias_camara_list$coautorias
-  autorias_camara <- coautorias_camara_list$autorias
-  coautorias_senado_list <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado", as.numeric(peso_minimo), .PARTIDOS_OPOSICAO)
-  coautorias_senado <- coautorias_senado_list$coautorias
-  autorias_senado <- coautorias_senado_list$autorias
+  if (nrow(camara_docs) > 0) {
+    coautorias_camara_list <- agoradigital::get_coautorias(camara_docs, camara_autores, "camara", as.numeric(peso_minimo), .PARTIDOS_OPOSICAO)
+    coautorias_camara <- coautorias_camara_list$coautorias
+    autorias_camara <- coautorias_camara_list$autorias
+  }
+
+  if (nrow(senado_docs) > 0) {
+    coautorias_senado_list <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado", as.numeric(peso_minimo), .PARTIDOS_OPOSICAO)
+    coautorias_senado <- coautorias_senado_list$coautorias
+    autorias_senado <- coautorias_senado_list$autorias
+  }
 
   coautorias <-
     rbind(coautorias_camara, coautorias_senado) %>%
@@ -195,7 +205,8 @@ process_leggo_data <- function(flag) {
     senado_docs <-
       agoradigital::read_current_docs_senado(paste0(input_path, "/senado/documentos.csv")) %>%
       dplyr::mutate(id_documento = as.numeric(id_documento),
-                    id_principal = as.numeric(id_principal))
+                    id_principal = as.numeric(id_principal),
+                    casa = as.character(casa))
     senado_autores <- 
       agoradigital::read_current_autores_senado(paste0(input_path, "/senado/autores.csv")) %>% 
       dplyr::mutate(nome_autor =
