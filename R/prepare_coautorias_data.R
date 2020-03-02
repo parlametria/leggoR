@@ -109,16 +109,20 @@ generate_edges <- function(coautorias, graph_nodes, edges_weight = 1) {
 #' @param df Dataframe com as arestas duplicadas
 #' @return Dataframe sem as duplicadas
 remove_duplicated_edges <- function(df) {
-  df %>%
-    dplyr::mutate(col_pairs =
-             paste_cols_sorted(id_autor.x,
-                               id_autor.y,
-                               sep = ":")) %>%
-    dplyr::distinct(id_leggo, id_principal, casa, id_documento, data, col_pairs) %>%
-    tidyr::separate(col = col_pairs,
-                    c("id_autor.x",
-                      "id_autor.y"),
-                    sep = ":")
+  deduplicated_df <- df
+  if(nrow(df) > 0) {
+    deduplicated_df <- df %>%
+      dplyr::mutate(col_pairs =
+                      paste_cols_sorted(id_autor.x,
+                                        id_autor.y,
+                                        sep = ":")) %>%
+      dplyr::distinct(id_leggo, id_principal, casa, id_documento, data, col_pairs) %>%
+      tidyr::separate(col = col_pairs,
+                      c("id_autor.x",
+                        "id_autor.y"),
+                      sep = ":")  
+  }
+  return(deduplicated_df)
 }
 
 #' @title Cria o dataframe de coautorias sem os dados de parlamentares
@@ -178,6 +182,8 @@ get_coautorias_raw <- function(autorias, peso_autorias, limiar) {
 #' @return Dataframe
 #' @export
 get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao) {
+  autorias <- tibble::tibble()
+  coautorias <- tibble::tibble()
   
   if (casa == 'camara') {
     autorias <- agoradigital::prepare_autorias_df_camara(docs, autores)
@@ -191,23 +197,25 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao)
   
   coautorias <- get_coautorias_raw(autorias, peso_autorias, limiar)
   
-  autorias <-
-    autorias %>% 
-    dplyr::left_join(parlamentares, by = "id_autor") %>% 
-    dplyr::distinct() %>% 
-    dplyr::rowwise() %>% 
-    dplyr::mutate(nome_eleitoral = formata_nome_eleitoral(nome, partido, uf)) %>% 
-    dplyr::select(-c(nome, partido, uf, id_principal, casa))
+  if (nrow(coautorias) > 0) {
+    autorias <-
+      autorias %>% 
+      dplyr::left_join(parlamentares, by = "id_autor") %>% 
+      dplyr::distinct() %>% 
+      dplyr::rowwise() %>% 
+      dplyr::mutate(nome_eleitoral = formata_nome_eleitoral(nome, partido, uf)) %>% 
+      dplyr::select(-c(nome, partido, uf, id_principal, casa))
+    
+    parlamentares <-
+      parlamentares %>% 
+      dplyr::mutate(bancada = dplyr::if_else(partido %in% partidos_oposicao, "oposição", "governo"))
   
-  parlamentares <-
-    parlamentares %>% 
-    dplyr::mutate(bancada = dplyr::if_else(partido %in% partidos_oposicao, "oposição", "governo"))
-
-  coautorias <- 
-    coautorias %>%
-    dplyr::inner_join(parlamentares, by = c("id_autor.x" = "id_autor")) %>%
-    dplyr::inner_join(parlamentares, by = c("id_autor.y" = "id_autor")) %>%
-    dplyr::distinct() 
+    coautorias <- 
+      coautorias %>%
+      dplyr::inner_join(parlamentares, by = c("id_autor.x" = "id_autor")) %>%
+      dplyr::inner_join(parlamentares, by = c("id_autor.y" = "id_autor")) %>%
+      dplyr::distinct() 
+  }
 
   return(list(coautorias = coautorias, autorias = autorias))
 }

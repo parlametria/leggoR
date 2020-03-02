@@ -91,7 +91,8 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
 #' @return Dataframe
 #' @export
 create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL, limiar = 0.1) {
-
+  atores_df <- tibble::tibble()
+  
   if (!(agoradigital::check_dataframe(documentos_df)) ||
       (!agoradigital::check_dataframe(autores_df))) {
     return(tibble::tibble())
@@ -126,30 +127,32 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
   peso_documentos <-
     get_peso_documentos(autores_docs)
 
-  atores_df <-
-    autores_docs %>%
-    dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>%
-    dplyr::filter(peso_documento >= limiar) %>% 
-    dplyr::mutate(tipo_autor = 'senador') %>% 
-    dplyr::mutate(id_principal = as.numeric(id_principal)) %>%
-    agoradigital::add_tipo_evento_documento(T) %>%
-    dplyr::rename(tipo_generico = tipo) %>%
-    dplyr::group_by(id_ext = id_principal,
-                    casa,
-                    id_autor,
-                    tipo_autor,
-                    nome_autor,
-                    partido,
-                    uf,
-                    tipo_generico,
-                    sigla_local) %>%
-    dplyr::summarise(peso_total_documentos = sum(peso_documento),
-                     num_documentos = dplyr::n()) %>%
-    dplyr::arrange(id_ext, -peso_total_documentos) %>%
-    dplyr::ungroup()
-
-  atores_df <-
-    .detect_sigla_local(atores_df, senado_env)
+  if (nrow(autores_docs) != 0) {
+    atores_df <-
+      autores_docs %>%
+      dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>%
+      dplyr::filter(peso_documento >= limiar) %>% 
+      dplyr::mutate(tipo_autor = 'senador') %>% 
+      dplyr::mutate(id_principal = as.numeric(id_principal)) %>%
+      agoradigital::add_tipo_evento_documento(T) %>%
+      dplyr::rename(tipo_generico = tipo) %>%
+      dplyr::group_by(id_ext = id_principal,
+                      casa,
+                      id_autor,
+                      tipo_autor,
+                      nome_autor,
+                      partido,
+                      uf,
+                      tipo_generico,
+                      sigla_local) %>%
+      dplyr::summarise(peso_total_documentos = sum(peso_documento),
+                       num_documentos = dplyr::n()) %>%
+      dplyr::arrange(id_ext, -peso_total_documentos) %>%
+      dplyr::ungroup()
+  
+    atores_df <-
+      .detect_sigla_local(atores_df, senado_env)
+  }
 
   return(atores_df)
 }
