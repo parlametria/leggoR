@@ -229,7 +229,7 @@ if (casa == 'senado') {
     print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
 
     simpleCap <- function(x) {
-       s <- strsplit(x, " ")[[1]]
+       s <- strsplit(tolower(x), " ")[[1]]
        paste(toupper(substring(s, 1,1)), substring(s, 2),
                      sep="", collapse=" ")
     }
