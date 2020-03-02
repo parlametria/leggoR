@@ -198,13 +198,14 @@ if (casa == 'senado') {
     print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
 
     simpleCap <- function(x) {
-       s <- strsplit(x, " ")[[1]]
+       s <- strsplit(tolower(x), " ")[[1]]
        paste(toupper(substring(s, 1,1)), substring(s, 2),
                      sep="", collapse=" ")
     }
     new_autores_data <-
       merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id") %>%
-      dplyr::select(id_autor, nome = simpleCap(ultimo_status_nome_eleitoral), tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor)
+      dplyr::select(id_autor, nome = ultimo_status_nome_eleitoral, tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor) %>% 
+      dplyr::mutate(nome = purrr::map(nome, ~ simpleCap(.x)))
     updated_autores_docs <-
       plyr::rbind.fill(current_autores, new_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
     readr::write_csv(updated_autores_docs, autores_filepath)
