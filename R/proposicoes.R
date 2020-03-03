@@ -146,23 +146,27 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
 #' @export
 find_new_documentos <- function(all_pls_ids, current_docs_ids, casa_prop) {
   
+  new_docs_ids <- tibble::tibble()
+  
   pls_principais_ids <- all_pls_ids %>%
     dplyr::filter(casa == casa_prop) %>%
     dplyr::select(id_principal,
                   casa) %>%
     dplyr::mutate(id_documento = id_principal)
   
-  all_docs_ids <- purrr::map2_df(pls_principais_ids$id_principal,
-                                 pls_principais_ids$casa,
-                                 ~rcongresso::fetch_ids_relacionadas(.x, .y)) %>%
-    dplyr::rename(id_principal = id_prop,
-                  id_documento = id_relacionada)  %>%
-    dplyr::mutate(id_principal = as.double(id_principal),
-                  id_documento = as.double(id_documento)) %>%
-    dplyr::bind_rows(pls_principais_ids)
-  
-  new_docs_ids <- all_docs_ids %>%
-    dplyr::anti_join(current_docs_ids, by=c("id_documento","id_principal","casa"))
+  if (nrow(pls_principais_ids) > 0) {
+    all_docs_ids <- purrr::map2_df(pls_principais_ids$id_principal,
+                                   pls_principais_ids$casa,
+                                   ~rcongresso::fetch_ids_relacionadas(.x, .y)) %>%
+      dplyr::rename(id_principal = id_prop,
+                    id_documento = id_relacionada)  %>%
+      dplyr::mutate(id_principal = as.double(id_principal),
+                    id_documento = as.double(id_documento)) %>%
+      dplyr::bind_rows(pls_principais_ids)
+    
+    new_docs_ids <- all_docs_ids %>%
+      dplyr::anti_join(current_docs_ids, by=c("id_documento","id_principal","casa"))
+  }
   
   return(new_docs_ids)
 }

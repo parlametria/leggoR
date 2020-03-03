@@ -96,11 +96,16 @@ export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autor
     agoradigital::create_tabela_atores_camara(camara_docs, camara_autores, data_inicio = data_inicio, limiar = peso_minimo)
   atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores, data_inicio = data_inicio, limiar = peso_minimo)
 
-  atores_df <-
-    dplyr::bind_rows(atores_camara, atores_senado) %>%
-    dplyr::mutate(bancada = dplyr::if_else(partido %in% .PARTIDOS_OPOSICAO, "oposição", "governo")) %>%
-    dplyr::left_join(props_leggo_id, by = c("id_ext"="id_principal", "casa")) %>%
-    dplyr::select(id_leggo, dplyr::everything())
+  if ((nrow(atores_camara) > 0) | (nrow(atores_senado) > 0)) {
+    atores_df <-
+      dplyr::bind_rows(atores_camara, atores_senado) %>%
+      dplyr::mutate(bancada = dplyr::if_else(partido %in% .PARTIDOS_OPOSICAO, "oposição", "governo")) %>%
+      dplyr::left_join(props_leggo_id, by = c("id_ext"="id_principal", "casa")) %>%
+      dplyr::select(id_leggo, dplyr::everything())
+  } else {
+    atores_df <- tibble::tribble(~id_leggo, ~id_ext, ~casa, ~id_autor, ~tipo_autor, ~tipo_generico, ~sigla_local,
+                                 ~peso_total_documentos, ~num_documentos, ~partido, ~uf, ~nome_autor, ~is_important, ~bancada)
+  }
 
   readr::write_csv(atores_df, paste0(output_path, '/atores.csv'), na = "")
 }
@@ -125,7 +130,7 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
 
   camara_docs <-
     camara_docs %>%
-    dplyr::mutate(data = as.Date(format(status_proposicao_data_hora, "%Y-%m-%d"))) %>%
+    dplyr::mutate(data = lubridate::ymd(status_proposicao_data_hora)) %>%
     dplyr::filter(data > data_inicial) %>%
     dplyr::left_join(props_leggo_id, by = c("id_principal", "casa"))
 
@@ -146,24 +151,24 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
     coautorias_senado <- coautorias_senado_list$coautorias
     autorias_senado <- coautorias_senado_list$autorias
   }
+  
+  if ((nrow(coautorias_camara) > 0) | (nrow(coautorias_senado) > 0)) {
+    coautorias <-
+      rbind(coautorias_camara, coautorias_senado) %>%
+      dplyr::mutate(partido.x = dplyr::if_else(is.na(partido.x), "", partido.x),
+                    partido.y = dplyr::if_else(is.na(partido.y), "", partido.y))
+  
+    autorias <-
+      rbind(autorias_camara, autorias_senado) %>% 
+      dplyr::group_by(id_documento, id_autor) %>% 
+      dplyr::summarise(
+                descricao_tipo_documento = dplyr::first(descricao_tipo_documento),
+                data = dplyr::first(data),
+                url_inteiro_teor = dplyr::first(url_inteiro_teor),
+                id_leggo = dplyr::first(id_leggo),
+                nome_eleitoral = dplyr::first(nome_eleitoral)) %>% 
+      dplyr::mutate(autores = paste0(nome_eleitoral, collapse = ", "))
 
-  coautorias <-
-    rbind(coautorias_camara, coautorias_senado) %>%
-    dplyr::mutate(partido.x = dplyr::if_else(is.na(partido.x), "", partido.x),
-                  partido.y = dplyr::if_else(is.na(partido.y), "", partido.y))
-
-  autorias <-
-    rbind(autorias_camara, autorias_senado) %>% 
-    dplyr::group_by(id_documento, id_autor) %>% 
-    dplyr::summarise(
-              descricao_tipo_documento = dplyr::first(descricao_tipo_documento),
-              data = dplyr::first(data),
-              url_inteiro_teor = dplyr::first(url_inteiro_teor),
-              id_leggo = dplyr::first(id_leggo),
-              nome_eleitoral = dplyr::first(nome_eleitoral)) %>% 
-    dplyr::mutate(autores = paste0(nome_eleitoral, collapse = ", "))
-
-  if (nrow(coautorias) != 0) {
     nodes <-
       agoradigital::get_unique_nodes(coautorias)
 
@@ -179,11 +184,15 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
     edges <-
       edges %>%
       dplyr::filter(source != target)
-
-    readr::write_csv(nodes , paste0(output_path, '/coautorias_nodes.csv'), na = "")
-    readr::write_csv(edges, paste0(output_path, '/coautorias_edges.csv'), na = "")
-    readr::write_csv(autorias, paste0(output_path, '/autorias.csv'))
+  } else {
+    nodes <- tibble::tribble(~id_leggo, ~id_autor, ~nome, ~partido, ~uf, ~bancada, ~nome_eleitoral, ~node_size)
+    edges <- tibble::tribble(~id_leggo, ~source, ~target, ~value)
+    autorias <- tibble::tribble(~id_documento, ~id_autor, ~descricao_tipo_documento, ~data, ~url_inteiro_teor, ~id_leggo, ~nome_eleitoral, ~autores)
   }
+  
+  readr::write_csv(nodes , paste0(output_path, '/coautorias_nodes.csv'), na = "")
+  readr::write_csv(edges, paste0(output_path, '/coautorias_edges.csv'), na = "")
+  readr::write_csv(autorias, paste0(output_path, '/autorias.csv'))
 }
 
 #' @title Chama as funções corretas
@@ -197,7 +206,8 @@ process_leggo_data <- function(flag) {
     devtools::install()
 
     # Read current data csvs
-    camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv"))
+    camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv")) %>% 
+      dplyr::mutate(casa = as.character(casa))
     camara_autores <-
       agoradigital::read_current_autores_camara(paste0(input_path, "/camara/autores.csv")) %>%
       dplyr::mutate(id_documento = as.numeric(id_documento),

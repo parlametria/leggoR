@@ -221,5 +221,7 @@ if (casa == 'senado') {
     updated_autores_docs <-
       plyr::rbind.fill(current_autores, matched_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
     readr::write_csv(updated_autores_docs, autores_filepath)
+  } else {
+    print("Não há documentos novos para essa proposição na Câmara.")
   }
 }
