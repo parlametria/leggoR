@@ -216,7 +216,7 @@ if (casa == 'senado') {
     }
     matched_autores_data <-
       merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id") %>%
-      dplyr::mutate(nome = purrr::map(ultimo_status_nome_eleitoral, ~ simpleCap(.x))) %>% 
+      dplyr::mutate(nome = purrr::map_chr(ultimo_status_nome_eleitoral, ~ simpleCap(.x))) %>% 
       dplyr::select(id_autor, nome, tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor)
     updated_autores_docs <-
       plyr::rbind.fill(current_autores, matched_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
