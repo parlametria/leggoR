@@ -225,22 +225,13 @@ fetch_props <- function(pls, export_path) {
   res <- list()
   count <- 0
   proposicoes_que_nao_baixaram <- pls
-<<<<<<< HEAD
-
-
-=======
->>>>>>> aa3604aac582435672b923fabf2dd967decc9bcf
   proposicoes_individuais_a_baixar <- converte_tabela_geral_ids_casa(pls)
 
   while (count < 5 ) {
     cat(paste("\n--- Tentativa ", count + 1,"\n"))
-<<<<<<< HEAD
-    res <- append(res, proposicoes_que_nao_baixaram %>% purrr::pmap(process_pl, nrow(proposicoes_que_nao_baixaram), pautas = pautas))
-=======
     sleep_time = .DEF_REQ_SLEEP_TIME_IN_SECS^(count+1)
     res <- append(res, proposicoes_que_nao_baixaram %>% purrr::pmap(process_pl, nrow(proposicoes_que_nao_baixaram), pautas = pautas, 
                                                                     sleep_time = sleep_time))
->>>>>>> aa3604aac582435672b923fabf2dd967decc9bcf
 
     proposicoes <-
       purrr::map_df(res, ~ .$proposicao) %>%
@@ -249,14 +240,6 @@ fetch_props <- function(pls, export_path) {
       unique()
 
     proposicoes_baixadas <- proposicoes %>%
-<<<<<<< HEAD
-      dplyr::select(casa,
-             id_casa = id_ext,
-             apelido,
-             tema)
-
-
-=======
       dplyr::select(id_leggo, 
                     casa,
                     id_casa = id_ext,
@@ -264,7 +247,6 @@ fetch_props <- function(pls, export_path) {
                     tema)
     
     
->>>>>>> aa3604aac582435672b923fabf2dd967decc9bcf
     proposicoes_que_nao_baixaram_temp <- dplyr::anti_join(proposicoes_individuais_a_baixar, proposicoes_baixadas)
     proposicoes_que_nao_baixaram <- proposicoes_que_nao_baixaram %>%
       dplyr::filter((id_camara %in% proposicoes_que_nao_baixaram_temp$id_casa) |
