@@ -44,7 +44,7 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
   reqs_tipos <- reqs %>%
     dplyr::select(id_req, tipo_documento = descricaoTipo)
 
-  eventos_reqs <- purrr::map_df(reqs$id_req, ~rcongresso::fetch_events_requerimento_camara(.x))
+  eventos_reqs <- purrr::map_df(reqs$id_req, ~ rcongresso::fetch_events_requerimento_camara(.x))
 
   if(nrow(eventos_reqs) != 0) {
     eventos_reqs <-

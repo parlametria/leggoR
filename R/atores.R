@@ -66,13 +66,13 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
                     casa,
                     id_autor,
                     tipo_autor,
-                    nome_autor,
-                    partido,
-                    uf,
                     tipo_generico,
                     sigla_local) %>%
     dplyr::summarise(peso_total_documentos = sum(peso_documento),
-                     num_documentos = dplyr::n()) %>%
+                     num_documentos = dplyr::n(),
+                     partido = dplyr::first(partido),
+                     uf = dplyr::first(uf),
+                     nome_autor = dplyr::first(nome_autor)) %>%
     dplyr::arrange(id_ext, -peso_total_documentos) %>%
     dplyr::ungroup()
 
