@@ -24,7 +24,7 @@ r-release:
   stage: test
   tags:
     - docker
-  image: rocker/tidyverse:3.6.1
+  image: rocker/tidyverse:3.6.2
   script:
     - Rscript -e 'devtools::install_github("r-lib/rlang")'
     - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
@@ -42,7 +42,7 @@ pages:
   stage: deploy
   tags:
     - docker
-  image: rocker/tidyverse:3.6.1
+  image: rocker/tidyverse:3.6.2
   script:
     - install2.r pkgdown
     - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
