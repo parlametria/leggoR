@@ -1,10 +1,10 @@
 context("Atores")
 
 setup <- function() {
-  documentos_camara <- agoradigital::read_current_docs_camara("../../data/camara/documentos.csv")
-  autores_camara <- agoradigital::read_current_autores_camara("../../data/camara/autores.csv")
-  documentos_senado <- agoradigital::read_current_docs_senado("../../data/senado/documentos.csv")
-  autores_senado <- agoradigital::read_current_autores_senado("../../data/senado/autores.csv")
+  documentos_camara <- agoradigital::read_current_docs_camara(here::here("data/camara/documentos.csv"))
+  autores_camara <- agoradigital::read_current_autores_camara(here::here("data/camara/autores.csv"))
+  documentos_senado <- agoradigital::read_current_docs_senado(here::here("data/senado/documentos.csv"))
+  autores_senado <- agoradigital::read_current_autores_senado(here::here("data/senado/autores.csv"))
 
   atores_camara <<- create_tabela_atores_camara(documentos_camara, autores_camara)
   atores_senado <<- create_tabela_atores_senado(documentos_senado, autores_senado)
@@ -13,7 +13,7 @@ setup <- function() {
   data_fim <<- "2019-10-06"
 
   #Atores Câmara
-  
+
   docs_sample_df_camara <<- tibble::tibble(id_principal = c(1,1,2),
                                     casa = c('camara','camara','camara'),
                                     id_documento = c(11,12,21),
@@ -56,7 +56,7 @@ setup <- function() {
                                       peso_total_documentos = as.numeric(c(1,0.5,0.5)),
                                       num_documentos = as.integer(c(1,1,1)),
                                       is_important = c(F, T, T))
-  
+
   atores_sample_df_camara_filtered_limiar <<- tibble::tibble(id_ext = c(1),
                                                       casa = c('camara'),
                                                       id_autor = c(5),
@@ -69,17 +69,17 @@ setup <- function() {
                                                       peso_total_documentos = as.numeric(c(1)),
                                                       num_documentos = as.integer(1),
                                                       is_important = c(F))
-  
-  
+
+
   #Atores Senado
-  
+
   docs_sample_df_senado <<- tibble::tibble(id_principal = c(1,1,2),
                                     casa = c('senado','senado','senado'),
                                     id_documento = c(11,12,21),
                                     data_texto = c("2019-09-21", "2019-09-01", "2019-10-07"),
                                     descricao_texto = c('Emenda na Comissão', 'Emenda na Comissão', 'Requerimento de Audiência Pública'),
                                     identificacao_comissao_nome_comissao = c('Plenário', 'Comissão de Constituição, Justiça e Cidadania', 'Comissão de Assuntos Econômicos'))
-  
+
   autores_sample_df_senado <<- tibble::tibble(id_principal = c(1,1,1,2,2),
                                        id_documento = c(11,11,12,21,21),
                                        casa = c('senado','senado','senado','senado','senado'),
@@ -87,7 +87,7 @@ setup <- function() {
                                        partido = c('PSDB','PT','PT','PT', 'PSL'),
                                        uf = c('SP', "PB", "PB", "PB", "BA"),
                                        nome_autor = c('Sen. A', 'Sen. C', 'Sen. C', 'Sen. C', 'Sen. D'))
-  
+
   atores_sample_df_senado <<- tibble::tibble(id_ext = c(1,1,1,2,2),
                                       casa = c('senado','senado','senado','senado','senado'),
                                       id_autor = c(5,1,5,5,6),
@@ -101,7 +101,7 @@ setup <- function() {
                                       peso_total_documentos = as.numeric(c(1,0.5,0.5,0.5,0.5)),
                                       num_documentos = as.integer(c(1,1,1,1,1)),
                                       is_important = c(T, T, T, T, T))
-  
+
   atores_sample_df_senado_filtered <<- tibble::tibble(id_ext = c(1,1,1),
                                                casa = c('senado','senado','senado'),
                                                id_autor = c(5,1,5),
@@ -114,7 +114,7 @@ setup <- function() {
                                                peso_total_documentos = as.numeric(c(1,0.5,0.5)),
                                                num_documentos = as.integer(c(1,1,1)),
                                                is_important = c(T, T, T))
-  
+
   atores_sample_df_senado_filtered_limiar <<- tibble::tibble(id_ext = c(1),
                                                              casa = c('senado'),
                                                              id_autor = c(5),
@@ -127,13 +127,13 @@ setup <- function() {
                                                              peso_total_documentos = as.numeric(c(1)),
                                                              num_documentos = as.integer(1),
                                                              is_important = c(T))
-  
-  autores_docs <<- tibble::tibble(id_principal = rep(123,6), 
-                                  casa = c("camara",rep("senado",2),rep("camara",3)), 
+
+  autores_docs <<- tibble::tibble(id_principal = rep(123,6),
+                                  casa = c("camara",rep("senado",2),rep("camara",3)),
                                   id_documento = c(1,rep(2,2),rep(3,3)))
-  
-  pesos_docs <<- tibble::tibble(id_principal = rep(123,3), 
-                                casa = c("camara","senado","camara"), 
+
+  pesos_docs <<- tibble::tibble(id_principal = rep(123,3),
+                                casa = c("camara","senado","camara"),
                                 id_documento = c(1,2,3),
                                 peso_documento = c(1,1/2,1/3)
                                 )
@@ -157,7 +157,7 @@ test <- function() {
   })
 
   #Atores - Câmara
-  
+
   test_that('create_tabela_atores() returns dataframe', {
     expect_true(is.data.frame(create_tabela_atores_camara(docs_sample_df_camara, autores_sample_df_camara)))
     expect_true(is.data.frame(create_tabela_atores_camara(docs_sample_df_camara, autores_sample_df_camara, data_inicio, data_fim)))
@@ -178,47 +178,47 @@ test <- function() {
   test_that('create_tabela_atores() returns filtered dataframe', {
     expect_equal(create_tabela_atores_camara(docs_sample_df_camara, autores_sample_df_camara, data_inicio, data_fim), atores_sample_df_camara_filtered)
   })
-  
+
   test_that('create_tabela_atores() returns filtered dataframe', {
     expect_equal(create_tabela_atores_camara(docs_sample_df_camara, autores_sample_df_camara, limiar = 1), atores_sample_df_camara_filtered_limiar)
   })
-  
+
   #Atores - Senado
-  
+
   test_that('create_tabela_atores() returns dataframe', {
     expect_true(is.data.frame(create_tabela_atores_senado(docs_sample_df_senado, autores_sample_df_senado)))
     expect_true(is.data.frame(create_tabela_atores_senado(docs_sample_df_senado, autores_sample_df_senado, data_inicio, data_fim)))
   })
-  
+
   test_that('create_tabela_atores() returns warning with empty docs table', {
     expect_warning(create_tabela_atores_senado(tibble::tibble(), autores_sample_df_senado))
   })
-  
+
   test_that('create_tabela_atores() returns warning with empty authors table', {
     expect_warning(create_tabela_atores_senado(docs_sample_df_senado, tibble::tibble()))
   })
-  
+
   test_that('create_tabela_atores() returns correct atores table', {
     expect_equal(create_tabela_atores_senado(docs_sample_df_senado, autores_sample_df_senado), atores_sample_df_senado)
   })
-  
+
   test_that('create_tabela_atores() returns filtered dataframe', {
     expect_equal(create_tabela_atores_senado(docs_sample_df_senado, autores_sample_df_senado, data_inicio, data_fim), atores_sample_df_senado_filtered)
   })
-  
+
   test_that('create_tabela_atores() returns filtered dataframe', {
     expect_equal(create_tabela_atores_senado(docs_sample_df_senado, autores_sample_df_senado, limiar = 1), atores_sample_df_senado_filtered_limiar)
   })
-  
+
   test_that('get_peso_documentos returns correct pesos_docs dataframe', {
     expect_equal(get_peso_documentos(autores_docs), pesos_docs)
   })
-  
+
   test_that('get_peso_documentos returns warning when autores_docs is NULL', {
     expect_equal(get_peso_documentos(NULL), tibble::tibble())
     expect_warning(get_peso_documentos(NULL))
   })
-  
+
   test_that('get_peso_documentos returns warning when autores_docs is empty', {
     expect_equal(get_peso_documentos(tibble::tibble()), tibble::tibble())
     expect_warning(get_peso_documentos(tibble::tibble()))
