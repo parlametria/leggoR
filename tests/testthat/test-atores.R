@@ -142,30 +142,45 @@ check_api <- function(){
 
 test <- function() {
   test_that("read_current_docs_camara() returns real or empty dataframe", {
-    documentos_camara <<- agoradigital::read_current_docs_camara("../../data/camara/documentos.csv")
-    documentos_camara_empty <<- agoradigital::read_current_docs_camara("../../data/camara/docs.csv")
-    autores_camara <<- agoradigital::read_current_autores_camara("../../data/camara/autores.csv")
-    autores_camara_empty <<- agoradigital::read_current_autores_camara("../../data/camara/auts.csv")
-    documentos_senado <<- agoradigital::read_current_docs_senado("../../data/senado/documentos.csv")
-    documentos_senado_empty <<- agoradigital::read_current_docs_senado("../../data/senado/docs.csv")
-    autores_senado <<- agoradigital::read_current_autores_senado("../../data/senado/autores.csv")
-    autores_senado_empty <<- agoradigital::read_current_autores_senado("../../data/senado/auts.csv")
+    documentos_camara <- agoradigital::read_current_docs_camara("../../data/camara/documentos.csv")
+    documentos_camara_empty <- agoradigital::read_current_docs_camara("../../data/camara/docs.csv")
     
     expect_true(is.data.frame(documentos_camara))
     expect_true(is.data.frame(documentos_camara_empty))
-    expect_true(is.data.frame(autores_camara))
-    expect_true(is.data.frame(autores_camara_empty))
-    expect_true(is.data.frame(documentos_senado))
-    expect_true(is.data.frame(documentos_senado_empty))
-    expect_true(is.data.frame(autores_senado))
-    expect_true(is.data.frame(autores_senado_empty))
     
     expect_true(nrow(documentos_camara) > 0)
     expect_true(nrow(documentos_camara_empty) == 0)
+  })
+  
+  test_that("read_current_autores_camara() returns real or empty dataframe", {
+    autores_camara <- agoradigital::read_current_autores_camara("../../data/camara/autores.csv")
+    autores_camara_empty <- agoradigital::read_current_autores_camara("../../data/camara/auts.csv")
+    
+    expect_true(is.data.frame(autores_camara))
+    expect_true(is.data.frame(autores_camara_empty))
+    
     expect_true(nrow(autores_camara) > 0)
     expect_true(nrow(autores_camara_empty) == 0)
+  })
+  
+  test_that("read_current_docs_senado() returns real or empty dataframe", {
+    documentos_senado <- agoradigital::read_current_docs_senado("../../data/senado/documentos.csv")
+    documentos_senado_empty <- agoradigital::read_current_docs_senado("../../data/senado/docs.csv")
+    
+    expect_true(is.data.frame(documentos_senado))
+    expect_true(is.data.frame(documentos_senado_empty))
+    
     expect_true(nrow(documentos_senado) > 0)
     expect_true(nrow(documentos_senado_empty) == 0)
+  })
+  
+  test_that("read_current_autores_senado() returns real or empty dataframe", {
+    autores_senado <- agoradigital::read_current_autores_senado("../../data/senado/autores.csv")
+    autores_senado_empty <- agoradigital::read_current_autores_senado("../../data/senado/auts.csv")
+    
+    expect_true(is.data.frame(autores_senado))
+    expect_true(is.data.frame(autores_senado_empty))
+    
     expect_true(nrow(autores_senado) > 0)
     expect_true(nrow(autores_senado_empty) == 0)
   })
@@ -229,12 +244,12 @@ test <- function() {
   })
   
   test_that('get_peso_documentos returns warning when autores_docs is NULL', {
-    expect_equal(get_peso_documentos(NULL), tibble::tibble())
+    suppressWarnings(expect_equal(get_peso_documentos(NULL), tibble::tibble()))
     expect_warning(get_peso_documentos(NULL))
   })
   
   test_that('get_peso_documentos returns warning when autores_docs is empty', {
-    expect_equal(get_peso_documentos(tibble::tibble()), tibble::tibble())
+    suppressWarnings(expect_equal(get_peso_documentos(tibble::tibble()), tibble::tibble()))
     expect_warning(get_peso_documentos(tibble::tibble()))
   })
 }
