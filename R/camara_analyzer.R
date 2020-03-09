@@ -98,9 +98,7 @@ extract_locais_in_camara <- function(df) {
             '(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)')) ~ 
             'Presidência da República',
           (tolower(texto_tramitacao) %in% descricoes_plenario |
-             stringr::str_detect(tolower(texto_tramitacao), '^votação') |
-             stringr::str_detect(tolower(texto_tramitacao), 'urgência.*poder executivo') |
-             stringr::str_detect(tolower(texto_tramitacao), 'mat.ria n.o apreciada')
+             stringr::str_detect(tolower(texto_tramitacao), '^votação')
              ) & sigla_local == 'PLEN' ~ 'Plenário',
           (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') |
              tolower(texto_tramitacao) %in% descricoes_comissoes |
