@@ -128,26 +128,26 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
 
   print("Gerando tabela de nodes e edges...")
 
-  camara_docs <-
+  camara_documentos <-
     camara_docs %>%
-    dplyr::mutate(data = lubridate::ymd(status_proposicao_data_hora)) %>%
+    dplyr::mutate(data = lubridate::floor_date(data_apresentacao)) %>%
     dplyr::filter(data > data_inicial) %>%
     dplyr::left_join(props_leggo_id, by = c("id_principal", "casa"))
 
-  senado_docs <-
+  senado_documentos <-
     senado_docs %>%
     dplyr::filter(data_texto > data_inicial) %>%
     dplyr::left_join(props_leggo_id, by = c("id_principal", "casa"))
 
   # Gerando dado de autorias de documentos para ambas as casas
-  if (nrow(camara_docs) > 0) {
-    coautorias_camara_list <- agoradigital::get_coautorias(camara_docs, camara_autores, "camara", as.numeric(peso_minimo), .PARTIDOS_OPOSICAO)
+  if (nrow(camara_documentos) > 0) {
+    coautorias_camara_list <- agoradigital::get_coautorias(camara_documentos, camara_autores, "camara", as.numeric(peso_minimo), .PARTIDOS_OPOSICAO)
     coautorias_camara <- coautorias_camara_list$coautorias
     autorias_camara <- coautorias_camara_list$autorias
   }
 
-  if (nrow(senado_docs) > 0) {
-    coautorias_senado_list <- agoradigital::get_coautorias(senado_docs, senado_autores, "senado", as.numeric(peso_minimo), .PARTIDOS_OPOSICAO)
+  if (nrow(senado_documentos) > 0) {
+    coautorias_senado_list <- agoradigital::get_coautorias(senado_documentos, senado_autores, "senado", as.numeric(peso_minimo), .PARTIDOS_OPOSICAO)
     coautorias_senado <- coautorias_senado_list$coautorias
     autorias_senado <- coautorias_senado_list$autorias
   }
