@@ -178,6 +178,11 @@ test <- function() {
     autores_senado <- agoradigital::read_current_autores_senado("../../data/senado/autores.csv")
     autores_senado_empty <- agoradigital::read_current_autores_senado("../../data/senado/auts.csv")
     
+    print("Autores Senado - Test")
+    print(autores_senado)
+    print("Autores Senado Empty - Test")
+    print(autores_senado_empty)
+    
     expect_true(is.data.frame(autores_senado))
     expect_true(is.data.frame(autores_senado_empty))
     
