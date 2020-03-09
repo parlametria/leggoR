@@ -43,6 +43,8 @@ pages:
     - docker
   image: rocker/tidyverse:3.6.2
   script:
+    - Rscript -e 'update.packages(checkBuilt=TRUE, ask=FALSE)'
+    - Rscript -e 'install.packages("devtools"); devtools::install_deps()'
     - Rscript -e 'install.packages("pkgdown")'
     - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
     - Rscript -e 'devtools::install()'
