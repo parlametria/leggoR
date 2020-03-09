@@ -28,9 +28,9 @@ r-release:
     - Rscript -e 'install.packages("devtools"); devtools::install_deps()'
     - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
     - Rscript -e 'devtools::install()'
-    #- Rscript -e 'tryCatch(stopifnot(length(devtools::check(check_dir = ".", args = c("--no-examples", "--as-cran", "--no-manual", "--no-tests"))$errors) == 0),error = function(error_message) {print(paste("Exception when checking code:",error_message))})'
+    - Rscript -e 'tryCatch(stopifnot(length(devtools::check(check_dir = ".", args = c("--no-examples", "--as-cran", "--no-manual", "--no-tests"))$errors) == 0),error = function(error_message) {print(paste("Exception when checking code:",error_message))})'
     - Rscript -e 'res=devtools::test(reporter="summary");df=as.data.frame(res);if(sum(df$failed) > 0 || any(df$error)) {q(status=1)}'
-    #- Rscript -e 'library(covr);codecov()'
+    - Rscript -e 'library(covr);codecov()'
   artifacts:
     paths:
       - "*.Rcheck"
