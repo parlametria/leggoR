@@ -160,14 +160,8 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
   
     autorias <-
       rbind(autorias_camara, autorias_senado) %>% 
-      dplyr::group_by(id_documento, id_autor) %>% 
-      dplyr::summarise(
-                descricao_tipo_documento = dplyr::first(descricao_tipo_documento),
-                data = dplyr::first(data),
-                url_inteiro_teor = dplyr::first(url_inteiro_teor),
-                id_leggo = dplyr::first(id_leggo),
-                nome_eleitoral = dplyr::first(nome_eleitoral)) %>% 
-      dplyr::mutate(autores = paste0(nome_eleitoral, collapse = ", "))
+      dplyr::mutate(autores = purrr::map_chr(nome_eleitoral, ~ paste(.x, collapse = ", "))) %>% 
+      dplyr::distinct()
 
     nodes <-
       agoradigital::get_unique_nodes(coautorias)
