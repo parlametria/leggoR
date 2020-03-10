@@ -130,7 +130,7 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
 
   camara_documentos <-
     camara_docs %>%
-    dplyr::mutate(data = lubridate::floor_date(data_apresentacao)) %>%
+    dplyr::mutate(data = lubridate::floor_date(data_apresentacao, unit='day')) %>%
     dplyr::filter(data > data_inicial) %>%
     dplyr::left_join(props_leggo_id, by = c("id_principal", "casa"))
 
