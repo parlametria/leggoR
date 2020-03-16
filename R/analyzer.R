@@ -1,3 +1,4 @@
+source(here::here("R/camara_analyzer.R"))
 source(here::here("R/senado_analyzer.R"))
 source(here::here("R/congresso-lib.R"))
 source(here::here("R/relatorias.R"))
