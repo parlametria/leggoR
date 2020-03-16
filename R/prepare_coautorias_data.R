@@ -215,6 +215,8 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao)
       dplyr::inner_join(parlamentares, by = c("id_autor.x" = "id_autor")) %>%
       dplyr::inner_join(parlamentares, by = c("id_autor.y" = "id_autor")) %>%
       dplyr::distinct() 
+  } else {
+    autorias <- tibble::tibble()
   }
 
   return(list(coautorias = coautorias, autorias = autorias))
