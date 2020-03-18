@@ -1,4 +1,4 @@
-context("senado_analyzer")
+context("progresso")
 
 # Setup
 setup <- function(){
@@ -12,6 +12,18 @@ setup <- function(){
   etapas_pec %<>% append(list(process_etapa(1198512, "camara", as.data.frame())))
   etapas_pec %<>% purrr::pmap(dplyr::bind_rows)
   progresso_pec <<- get_progresso(etapas_pec$proposicao, etapas_pec$fases_eventos)
+  
+  
+  etapas_pls_plenario_1 <<- list()
+  etapas_pls_plenario_1 %<>% append(list(process_etapa(2209381, "camara", as.data.frame())))
+  etapas_pls_plenario_1 %<>% purrr::pmap(dplyr::bind_rows)
+  progresso_pls_plenario_1 <<- get_progresso(etapas_pls_plenario_1$proposicao, etapas_pls_plenario_1$fases_eventos)
+  
+  etapas_pls_plenario_2 <<- list()
+  etapas_pls_plenario_2 %<>% append(list(process_etapa(257161, "camara", as.data.frame())))
+  etapas_pls_plenario_2 %<>% purrr::pmap(dplyr::bind_rows)
+  progresso_pls_plenario_2 <<- get_progresso(etapas_pls_plenario_2$proposicao, etapas_pls_plenario_2$fases_eventos)
+  
   return(TRUE)
 }
 
@@ -25,14 +37,24 @@ test <- function() {
     expect_true(nrow(progresso_pec) != 0)
   })
   
+  test_that("PLs which have special Plenário events have their progresso correctly inferred", {
+    etapa_plenario_construcao <- tibble::tibble(fase_global = 'Construção', local = 'Plenário')
+    
+    expect_true(nrow(progresso_pls_plenario_2 %>% 
+                       dplyr::inner_join(etapa_plenario_construcao, by=c("fase_global", "local")) %>% 
+                       dplyr::filter(!is.na(data_inicio))) > 0)
+    expect_true(nrow(progresso_pls_plenario_1 %>% 
+                       dplyr::inner_join(etapa_plenario_construcao, by=c("fase_global", "local")) %>% 
+                       dplyr::filter(!is.na(data_inicio))) > 0)
+  })
+  
   test_that('progresso mpv', {
-    agenda <- tibble::as_tibble()
     pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
     id_mpv_em_tramitacao <- 135061
     id_mpv_tramitacao_encerrada <- 134134
     
     etapas <- list()
-    etapas %<>% append(list(process_etapa(id_mpv_tramitacao_encerrada, "senado", agenda, pautas = pautas)))
+    etapas %<>% append(list(process_etapa(id_mpv_tramitacao_encerrada, "senado", pautas = pautas)))
     etapas %<>% purrr::pmap(dplyr::bind_rows)
     progresso_mpv_tramitacao_encerrada <-
       agoradigital::generate_progresso_df_mpv(etapas$fases_eventos) %>% 
@@ -50,25 +72,6 @@ test <- function() {
     
     expect_true(nrow(dplyr::anti_join(progresso_mpv_tramitacao_encerrada, progresso_134134)) == 0)
     
-    etapas <- list()
-    etapas %<>% append(list(process_etapa(id_mpv_em_tramitacao, "senado", agenda, pautas = pautas)))
-    etapas %<>% purrr::pmap(dplyr::bind_rows)
-    progresso_mpv_em_tramitacao <-
-      agoradigital::generate_progresso_df_mpv(etapas$fases_eventos) %>% 
-      dplyr::mutate(data_inicio = as.character(data_inicio),
-                    data_fim = as.character(data_fim))
-    
-    progresso_135061 <- 
-      tibble::tribble(~ casa, ~ prop_id, ~ fase_global, ~ data_inicio, ~ data_fim,
-                      'senado',135061,'Comissão Mista','2018-12-28 12:00:00',NA,
-                      'senado',135061,'Câmara dos Deputados',NA,NA,
-                      'senado',135061,'Senado Federal',NA,NA,
-                      'senado',135061,'Câmara dos Deputados - Revisão',NA,NA,
-                      'senado',135061,'Sanção Presidencial/Promulgação',NA,NA) %>% 
-      dplyr::mutate(prop_id = as.integer(prop_id))
-    
-    expect_true(nrow(dplyr::anti_join(progresso_mpv_em_tramitacao, progresso_135061)) == 0)
-    
     progresso_pec_gabarito <- 
       tibble::tribble(
         ~ casa, ~ prop_id, ~ fase_global,      ~ local,                     ~ data_inicio,        ~ data_fim,     ~ local_casa,
@@ -81,7 +84,7 @@ test <- function() {
       "camara", 1198512, "Pré-Revisão II",      "",                         NA,                    NA,                  NA,        
       "camara", 1198512, "Revisão II",          "Comissões",                NA,                    NA,                  NA,        
       "camara", 1198512, "Revisão II",          "Plenário",                 NA,                    NA,                  NA,        
-      "camara", 1198512, "Promulgação/Veto",    "Presidência da República", NA,                    NA,                  NA,        
+      "camara", 1198512, "Promulgação/Veto",    "Presidência da República", NA,                    NA,                  "presidência da república",        
       "camara", 1198512, "Avaliação dos Vetos", "Congresso",                NA,                    NA,                  "congresso" )
     
     progresso_pec_gabarito <-
@@ -96,3 +99,7 @@ test <- function() {
 check_api <- function(){
   tryCatch(setup(), error = function(e){return(FALSE)})
 }
+
+if(check_api()){
+  test()
+} else testthat::skip('Erro no setup!')
