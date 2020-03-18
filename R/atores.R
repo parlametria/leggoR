@@ -127,7 +127,7 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
   peso_documentos <-
     get_peso_documentos(autores_docs)
 
-  if (nrow(autores_docs) != 0) {
+  if (nrow(autores_docs) > 0) {
     atores_df <-
       autores_docs %>%
       dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>%
