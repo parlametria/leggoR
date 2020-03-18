@@ -137,7 +137,8 @@
   },
 
    "plen_global":{
-    "plenario": "(sessão deliberativa extraordinária.*)|(matéria não apreciada em face do encerramento.*)|(discussão em turno único.*)"
+    "plenario": "(sessão deliberativa extraordinária.*)|(mat.ria n.o apreciad*)|(discussão em turno único.*)|(urgência.*poder executivo.*)|(proferir parecer em plenário.*)|(reformulada de plenário.*)",
+    "plenario_definitivo": "submeta-se.*aprecia.ao do plen.rio"
   },
 
 "fases_global":[
