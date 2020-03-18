@@ -28,7 +28,7 @@ processa_lista_pls_interesses <- function(url) {
 #' @return Dataframe com o mapeamento entre pls e interesses
 #' contendo id_ext, casa, id_leggo, interesse
 #' @example
-#' tabela_pls <- processa_lista_pls_interesses(url)
+#' interesses <- processa_interesses_leggo(url, proposicoes_filepath)
 processa_interesses_leggo <- function(url, proposicoes_filepath) {
   pls_interesse <- processa_lista_pls_interesses(url) %>%
     dplyr::select(id_camara, id_senado, interesse)
