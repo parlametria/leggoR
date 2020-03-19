@@ -201,7 +201,7 @@
 
   "tipos_documentos": [
     {"tipo": "Emenda", "regex": "^emenda|^subemenda"},
-    {"tipo": "Proposição Apensada", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de conversão|proposta de emenda . constitui..o"},
+    {"tipo": "Prop. Original / Apensada", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de conversão|proposta de emenda . constitui..o"},
     {"tipo": "Parecer", "regex": "^parecer|^complementa..o de voto|^reda..o final|^substitutivo"},
     {"tipo": "Requerimento", "regex": "^requerimento"},
     {"tipo": "Voto em Separado", "regex": "^voto em separado"}

@@ -19,6 +19,7 @@ only_current_legislature_flag <- args[3]
 ## Install local repository R package version
 devtools::install()
 
+dir.create(paste0(export_path, '/', casa), showWarnings = FALSE)
 
 update_deputados <- function(casa = "camara") {
   ids_deputados <- tibble::tibble()

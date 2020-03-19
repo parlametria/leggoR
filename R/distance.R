@@ -48,17 +48,24 @@ format_table_distances_to_emendas <- function(distancias_datapath, write_datapat
 #' add_distances_to_emendas(emendas_df, here::here("data/distancias/"))
 #' @export
 add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::here("data/distancias/")) {
-  distances_df <- read_distances_files(distancias_datapath) %>% 
-    dplyr::group_by(id_emenda) %>% 
-    dplyr::summarise(distancia = min(Distance)) 
+  distances_df <- read_distances_files(distancias_datapath)
+  emendas_with_distances <- tibble::tribble(~id_ext, ~codigo_emenda, ~data_apresentacao, 
+                                            ~numero, ~local, ~autor, ~casa, ~tipo_documento, 
+                                            ~inteiro_teor, ~distancia)
   
-  emendas_with_distances <- 
-    dplyr::left_join(
-      emendas_df,
-      distances_df, 
-      by=c("codigo_emenda"="id_emenda")) %>%
-    dplyr::mutate(distancia = as.numeric(distancia),
-                  distancia = dplyr::if_else(is.na(distancia),-1,distancia))
+  if (nrow(distances_df) > 0) {
+    distances_df <- distances_df %>% 
+      dplyr::group_by(id_emenda) %>% 
+      dplyr::summarise(distancia = min(Distance)) 
+    
+    emendas_with_distances <- 
+      dplyr::left_join(
+        emendas_df,
+        distances_df, 
+        by=c("codigo_emenda"="id_emenda")) %>%
+      dplyr::mutate(distancia = as.numeric(distancia),
+                    distancia = dplyr::if_else(is.na(distancia),-1,distancia))
+  }
   
   return(emendas_with_distances)
 }

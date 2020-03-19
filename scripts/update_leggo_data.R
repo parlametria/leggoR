@@ -8,7 +8,7 @@ Rscript update_leggo_data.R <pls_ids_filepath> <export_path> <casa>
 
 .FILEPATH_HELP <- "
 \t   Ex: \"../data/tabela_geral_ids_casa.csv\"
-\t   PS: Deve conter a pasta referente a casa a ser atualizada no mesmo nível 
+\t   PS: Deve conter a pasta referente a casa a ser atualizada no mesmo nível
 \t   desse arquivo. Ex: \"../data/camara\"
 "
 
@@ -25,7 +25,7 @@ Rscript update_leggo_data.R <pls_ids_filepath> <export_path> <casa>
 #' @description Get arguments from command line option parsing
 get_args <- function() {
   args = commandArgs(trailingOnly=TRUE)
-  
+
   option_list = list(
     optparse::make_option(c("-p", "--pls_ids_filepath"),
                           type="character",
@@ -43,7 +43,7 @@ get_args <- function() {
                           help=.CASA_HELP,
                           metavar="character")
   );
-  
+
   opt_parser <- optparse::OptionParser(option_list = option_list, usage = .HELP)
   opt <- optparse::parse_args(opt_parser)
   return(opt);
@@ -111,6 +111,8 @@ senadores <- tibble::tibble()
 print("Lendo csvs com dados atuais...")
 pls_ids <- agoradigital::read_pls_ids(pls_ids_filepath)
 
+dir.create(paste0(export_path, '/', casa), showWarnings = FALSE)
+
 docs_filepath <- paste0(export_path, '/', casa, '/documentos.csv')
 autores_filepath <- paste0(export_path, '/', casa, '/autores.csv')
 senadores <- agoradigital::read_senadores(paste0(export_path, '/senado/parlamentares.csv'))
@@ -123,6 +125,12 @@ if (casa == 'senado') {
   print("Realizando atualização dos dados do Senado")
 
   pls_senado <- all_pls_ids %>%  dplyr::filter(casa == 'senado')
+
+  if (nrow(pls_senado) == 0) {
+    warning("Não existe ID para a proposição no Senado")
+    quit(save='no')
+  }
+
   senado_docs <- agoradigital::fetch_documentos_relacionados_senado(pls_senado)
   senado_autores <- agoradigital::fetch_autores_relacionadas_senado(senado_docs)
 
@@ -147,15 +155,19 @@ if (casa == 'senado') {
 }else {
   current_docs <- agoradigital::read_current_docs_camara(docs_filepath)
   current_autores <- agoradigital::read_current_autores_camara(autores_filepath)
+
   current_docs_ids <-
     current_docs %>%
     dplyr::select(id_documento,
                   id_principal,
-                  casa)
+                  casa) %>%
+    dplyr::mutate(id_documento = as.numeric(id_documento),
+                  id_principal = as.numeric(id_documento),
+                  casa = as.character(casa))
 
   print(paste("Verificando se há novos documentos..."))
 
-  new_docs_ids <- agoradigital::find_new_documentos(all_pls_ids, current_docs, casa)
+  new_docs_ids <- agoradigital::find_new_documentos(all_pls_ids, current_docs_ids, casa)
 
   print(paste("Foram encontrados",nrow(new_docs_ids), "novos documentos."))
 
@@ -202,12 +214,14 @@ if (casa == 'senado') {
        paste(toupper(substring(s, 1,1)), substring(s, 2),
                      sep="", collapse=" ")
     }
-    new_autores_data <-
+    matched_autores_data <-
       merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id") %>%
-      dplyr::select(id_autor, nome = ultimo_status_nome_eleitoral, tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor) %>% 
-      dplyr::mutate(nome = purrr::map(nome, ~ simpleCap(.x)))
+      dplyr::mutate(nome = purrr::map_chr(ultimo_status_nome_eleitoral, ~ simpleCap(.x))) %>% 
+      dplyr::select(id_autor, nome, tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor)
     updated_autores_docs <-
-      plyr::rbind.fill(current_autores, new_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
+      plyr::rbind.fill(current_autores, matched_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
     readr::write_csv(updated_autores_docs, autores_filepath)
+  } else {
+    print("Não há documentos novos para essa proposição na Câmara.")
   }
 }
