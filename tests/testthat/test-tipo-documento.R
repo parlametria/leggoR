@@ -2,7 +2,7 @@ context("Tipo de Documento")
 
 # Setup
 setup <- function(){
-  tipos_documentos <- c("Emenda","Proposição Apensada","Parecer","Requerimento","Voto em Separado","Outros")
+  tipos_documentos <- c("Emenda","Prop. Original / Apensada","Parecer","Requerimento","Voto em Separado","Outros")
   regex_documento_emenda <<- tipos_documentos[1]
   regex_documento_proposicao <<- tipos_documentos[2]
   regex_documento_parecer <<- tipos_documentos[3]

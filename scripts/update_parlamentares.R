@@ -18,6 +18,7 @@ casa <- args[2]
 ## Install local repository R package version
 devtools::install()
 
+dir.create(paste0(export_path, '/', casa), showWarnings = FALSE)
 
 update_deputados <- function() {
   ids_deputados <- rcongresso::fetch_ids_deputados()
@@ -26,8 +27,7 @@ update_deputados <- function() {
     dplyr::mutate(nome_civil = tolower(nome_civil) %>% tools::toTitleCase()) %>%
     dplyr::mutate(ultimo_status_nome = tolower(ultimo_status_nome) %>% tools::toTitleCase()) %>%
     dplyr::mutate(ultimo_status_nome_eleitoral = tolower(ultimo_status_nome_eleitoral) %>% tools::toTitleCase())
-  readr::write_csv(deputados, paste0(export_path, "/deputados.csv"))
-
+  readr::write_csv(deputados, paste0(export_path, '/', casa, "/deputados.csv"))
 }
 
 if (is.na(casa)) {

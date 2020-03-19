@@ -18,6 +18,8 @@ distances_folderpath <- args[2]
 emendas_raw_filepath <- args[3]
 processed_emendas_filepath <- args[4]
 
+dir.create(distances_folderpath, showWarnings = FALSE)
+
 ## Read emendas csv, add their distances and export the new emendas csv file
 files <- list.files(path = unformatted_distances_folderpath,pattern = "*.csv",
                     full.names = TRUE,
