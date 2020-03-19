@@ -9,6 +9,11 @@ library(here)
 #' @example
 #' tabela_pls <- processa_lista_pls_interesses(url)
 processa_lista_pls_interesses <- function(url) {
+
+  if (is.null(url) | url == "") {
+    stop("URL para planilha de interesses precisa ser diferente de vazio e não nula.")
+  }
+
   interesses <- readr::read_csv(url)
 
   pls_para_analise <- purrr::pmap_dfr(list(interesses$interesse, interesses$url),
