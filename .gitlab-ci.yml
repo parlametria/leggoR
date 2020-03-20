@@ -24,11 +24,11 @@ cache:
 before_script:
   - mkdir -p cache
   - echo cache >>.Rbuildignore
-  - apt-get update
-  - apt-get install -y --no-install-recommends ${APT_PKGS}
-  - apt-get install -y --no-install-recommends qpdf pandoc pandoc-citeproc
-  - export PATH="/usr/local/lib/R/site-library/littler/examples/:${PATH}"
-  - echo "options(Ncpus = $(nproc --all))" >> /usr/local/lib/R/etc/Rprofile.site
+  #- apt-get update
+  #- apt-get install -y --no-install-recommends ${APT_PKGS}
+  #- apt-get install -y --no-install-recommends qpdf pandoc pandoc-citeproc
+  #- export PATH="/usr/local/lib/R/site-library/littler/examples/:${PATH}"
+  #- echo "options(Ncpus = $(nproc --all))" >> /usr/local/lib/R/etc/Rprofile.site
   - echo ".libPaths(\"$PWD/cache\")" >> /usr/local/lib/R/etc/Rprofile.site
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
   - export PKG_IMAGE_TAG=$CONTAINER_TEST_IMAGE
