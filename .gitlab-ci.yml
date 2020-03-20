@@ -1,4 +1,5 @@
 #image: agoradigital/r-scrapper-cicd:latest
+image: docker:latest
 
 services:
   - docker:dind
@@ -13,6 +14,7 @@ variables:
   _R_CHECK_FORCE_SUGGESTS_: "true"
   APT_PKGS: "libcurl4-openssl-dev libssh2-1-dev libssl-dev libxml2-dev zlib1g-dev git"
   DOCKER_HOST: tcp://docker:2375/
+  DOCKER_DRIVER: overlay2
   CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:gitlab-ci-dev	
   COMPOSE_CMD: docker-compose -f docker-compose.yml
   
