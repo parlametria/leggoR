@@ -19,13 +19,13 @@ variables:
   COMPOSE_CMD: docker-compose -f docker-compose.yml
   
 
-cache:
-  paths:
-    - cache/
+#cache:
+#  paths:
+#    - cache/
 
 before_script:
-  - mkdir -p cache
-  - echo cache >>.Rbuildignore
+#  - mkdir -p cache
+#  - echo cache >>.Rbuildignore
   #- apt-get update
   #- apt-get install -y --no-install-recommends ${APT_PKGS}
   #- apt-get install -y --no-install-recommends qpdf pandoc pandoc-citeproc
