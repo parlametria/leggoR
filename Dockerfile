@@ -11,7 +11,8 @@ RUN Rscript -e 'install.packages("devtools"); devtools::install_deps()'
 COPY . .
 
 #Install rcongresso from local branch
-RUN Rscript -e 'devtools::install("rcongresso/")'
+ARG clone_rcongresso=true
+RUN if [ "$clone_rcongresso" = "false" ] ; then Rscript -e 'devtools::install("rcongresso/")'; else Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'; fi
 
 #Remove rcongresso files to avoid including in leggoR package
 RUN rm -rf rcongresso
