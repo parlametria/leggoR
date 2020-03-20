@@ -1,4 +1,4 @@
-image: agoradigital/agoradigital/r-scrapper:latest
+image: agoradigital/r-scrapper-cicd:latest
 
 services:
   - docker:dind
