@@ -8,8 +8,8 @@ services:
       context: ${SCRAPPER_PATH:-.}
       dockerfile: ./Dockerfile
       cache_from:
-        - agoradigital/r-scrapper
-    image: agoradigital/r-scrapper
+        - ${PKG_IMAGE_TAG}agoradigital/r-scrapper
+    image: ${PKG_IMAGE_TAG}agoradigital/r-scrapper
     container_name: rmod
     volumes:
       - leggo_data:/agora-digital/leggo_data
