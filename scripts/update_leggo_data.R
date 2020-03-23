@@ -198,7 +198,7 @@ if (casa == 'senado') {
 
     if (nrow(complete_docs) == 0) {
       print("Não foi possível baixar dados completos (proposição e autores) para nenhum dos novos documentos =(")
-      quit(save = "no", status=1)
+      quit(save = "no", status=0)
     }
 
     print(paste("Adicionando ",nrow(new_docs_data)," novos documentos."))
