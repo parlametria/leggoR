@@ -39,21 +39,22 @@ processa_interesses_leggo <- function(url, proposicoes_filepath) {
     dplyr::select(id_camara, id_senado, interesse)
 
   pls_interesse_camara <- pls_interesse %>%
-    mutate(id_ext = id_camara) %>%
-    filter(!is.na(id_ext)) %>%
-    select(id_ext, interesse)
+    dplyr::mutate(id_ext = id_camara) %>%
+    dplyr::filter(!is.na(id_ext)) %>%
+    dplyr::select(id_ext, interesse)
 
   pls_interesse_senado <- pls_interesse %>%
-    mutate(id_ext = id_senado) %>%
-    filter(!is.na(id_ext)) %>%
-    select(id_ext, interesse)
+    dplyr::mutate(id_ext = id_senado) %>%
+    dplyr::filter(!is.na(id_ext)) %>%
+    dplyr::select(id_ext, interesse)
 
   pls_interesse_processed <- pls_interesse_camara %>%
     dplyr::bind_rows(pls_interesse_senado)
 
   proposicoes_capturadas <- read_csv(proposicoes_filepath) %>%
     dplyr::inner_join(pls_interesse_processed, by = "id_ext") %>%
-    select(id_ext, casa, id_leggo, interesse)
+    dplyr::select(id_ext, casa, id_leggo, interesse) %>%
+    dplyr::distinct(id_leggo, interesse)
 
   return(proposicoes_capturadas)
 }
