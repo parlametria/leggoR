@@ -162,7 +162,7 @@ if (casa == 'senado') {
                   id_principal,
                   casa) %>%
     dplyr::mutate(id_documento = as.numeric(id_documento),
-                  id_principal = as.numeric(id_documento),
+                  id_principal = as.numeric(id_principal),
                   casa = as.character(casa))
 
   print(paste("Verificando se há novos documentos..."))
