@@ -14,26 +14,26 @@ flag = 4 Atualiza tuso sobre comissões
 #' @description Get arguments from command line option parsing
 get_args <- function() {
   args = commandArgs(trailingOnly=TRUE)
-  
+
   option_list = list(
-    optparse::make_option(c("-f", "--flag"), 
-                          type="integer", 
+    optparse::make_option(c("-f", "--flag"),
+                          type="integer",
                           default=1,
-                          help=.HELP, 
+                          help=.HELP,
                           metavar="character"),
-    optparse::make_option(c("-p", "--pls_ids_filepath"), 
-                          type="character", 
+    optparse::make_option(c("-p", "--pls_ids_filepath"),
+                          type="character",
                           default="../data/tabela_geral_ids_casa.csv",
-                          help=.HELP, 
+                          help=.HELP,
                           metavar="character"),
-    optparse::make_option(c("-e", "--exporth_path"), 
-                          type="character", 
+    optparse::make_option(c("-e", "--exporth_path"),
+                          type="character",
                           default="../../leggo-backend/data/",
-                          help=.HELP, 
+                          help=.HELP,
                           metavar="character")
   );
-  
-  opt_parser <- optparse::OptionParser(option_list = option_list) 
+
+  opt_parser <- optparse::OptionParser(option_list = option_list)
   opt <- optparse::parse_args(opt_parser)
   return(opt);
 }
@@ -54,8 +54,8 @@ flag <- args$flag
 export_props <- function(pls_ids_filepath, export_path) {
   readr::read_csv(pls_ids_filepath) %>%
     dplyr::mutate(row_num = 1:nrow(.)) %>%
-    dplyr::select(row_num,id_camara,id_senado,apelido,tema,advocacy_link) %>%
-    agoradigital::fetch_props(export_path) 
+    dplyr::select(row_num,id_camara,id_senado,apelido,tema,advocacy_link,keywords,tipo_agenda) %>%
+    agoradigital::fetch_props(export_path)
 }
 
 #' @title Exporta dados de Emendas
@@ -74,7 +74,7 @@ export_emendas <- function(pls_ids_filepath, export_path) {
 #' @export
 export_comissoes <- function(export_path) {
   comissoes <-
-    agoradigital::fetch_all_composicao_comissao() %>% 
+    agoradigital::fetch_all_composicao_comissao() %>%
     dplyr::rename(id_parlamentar = id)
   readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
 }
@@ -102,8 +102,8 @@ export_dados<- function(flag) {
     } else {
       print("Atualizando comissões!")
       export_comissoes(export_path)
-    } 
-  } 
+    }
+  }
 }
 
 export_dados(flag)
