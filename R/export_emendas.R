@@ -4,12 +4,18 @@
 #' @param casa senado ou camara
 #' @export
 get_emendas <- function(id, casa) {
-  cat(paste(
-    "\n--- Processando: ", "\nid:", id,
-    "\ncasa", casa, "\n"))
-  prop <- agoradigital::fetch_proposicao(id, casa)
-  emendas <- 
-    rcongresso::fetch_emendas(id, casa, prop$sigla_tipo, prop$numero, prop$ano)
+  emendas <- tibble::tibble()
+  if (casa == 'camara') {
+    emendas_relacionadas <- rcongresso::fetch_relacionadas(casa, id) %>% 
+      dplyr::filter(stringr::str_starts(siglaTipo,'E'))
+  }
+  
+  # cat(paste(
+  #   "\n--- Processando: ", "\nid:", id,
+  #   "\ncasa", casa, "\n"))
+  # prop <- agoradigital::fetch_proposicao(id, casa)
+  # emendas <- 
+  #   rcongresso::fetch_emendas(id, casa, prop$sigla_tipo, prop$numero, prop$ano)
   
   emendas
 }
