@@ -1,20 +1,44 @@
 #!/usr/bin/env Rscript
 library(magrittr)
 
-help <- "
-Usage:
-Rscript update_parlamentares.R <export_path> <casa> <somente_legislatura_atual_flag>
-"
-## Process args
-args <- commandArgs(trailingOnly = TRUE)
-min_num_args <- 1
-if (length(args) < min_num_args) {
-  stop(paste("Wrong number of arguments!", help, sep = "\n"))
+if(!require(optparse)){
+  install.packages("optparse")
+  suppressWarnings(suppressMessages(library(optparse)))
 }
 
-export_path <- args[1]
-casa <- args[2]
-only_current_legislature_flag <- args[3]
+args = commandArgs(trailingOnly=TRUE)
+
+message("Use --help para mais informações\n")
+option_list = list(
+  make_option(
+    c("-o", "--out"),
+    type = "character",
+    default = here::here("data/"),
+    help = "Caminho do diretório que terão os arquivos de saída [default= %default]",
+    metavar = "character"
+  ),
+  make_option(
+    c("-c", "--casa"),
+    type = "character",
+    default = NA,
+    help = "Casa que se deseja atualizar os parlamentares. O default é baixar câmara e senado",
+    metavar = "character"
+  ),
+  make_option(
+    c("-f", "--flag"),
+    type = "character",
+    default = 1,
+    help = "Flag para baixar somente os dados da legislatura atual. [default= %default]",
+    metavar = "character"
+  )
+) 
+
+opt_parser = OptionParser(option_list=option_list)
+opt = parse_args(opt_parser)
+
+export_path <- opt$out
+casa <- opt$casa
+only_current_legislature_flag <- opt$flag
 
 ## Install local repository R package version
 devtools::install()
