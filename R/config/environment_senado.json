@@ -232,6 +232,14 @@
   "tipos_autores_scrap": [
     {"tipo_autor": "senador", "regex": "^Senador(a)*|^Líder do ((.*?)(\\s))|^Presidente do Senado Federal: Senador"},
     {"tipo_autor": "deputado", "regex": "^Deputad(o|a)|^Deputad(o|a) Federal"}
+  ],
+  
+  "tipos_emendas": [
+    {"descricao_tipo_texto": "Emenda"},
+    {"descricao_tipo_texto": "Subemenda"},
+    {"descricao_tipo_texto": "Emenda Parcial"},
+    {"descricao_tipo_texto": "Emenda Total"},
+    {"descricao_tipo_texto": "Avulso de emendas"}
   ]
 
 }
