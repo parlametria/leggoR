@@ -6,9 +6,10 @@ Rscript process_leggo_data.R -i <input_path> -o <output_path> -d <data_inicial_d
 "
 
 .FLAG_HELP <- "
-\t   flag = 1 Atualiza tudo (Atores, nodes e edges)
+\t   flag = 1 Atualiza tudo (Atores, nodes e edges, emendas)
 \t   flag = 2 Atualiza tudo referente aos atores
 \t   flag = 3 Atualiza tudo sobre nodes e edges
+\t   flag = 4 Atualiza tudo sobre emendas
 "
 
 .DATE_HELP <- "
@@ -79,6 +80,84 @@ flag <- args$flag
 
 .PARTIDOS_OPOSICAO <-
   c("PT", "PSOL", "PSB", "PCdoB", "PDT", "REDE")
+
+#' @title Exporta dados de emendas para análise
+#' @description Processa e escreve os dados de emendas
+#' @param camara_docs documentos da camara
+#' @param senados_docs documentos do senado
+#' @param camara_autores autores da camara
+#' @param senado_autores autores do senado
+#' @param output_path pasta para onde exportar os dados
+export_emendas <- function(camara_docs, camara_autores, senado_docs, senado_autores, output_path) {
+  print(paste("Gerando tabela de emendas para análise a partir de dados atualizados de documentos e autores..."))
+  
+  emendas_camara <- camara_docs %>% dplyr::filter(sigla_tipo %in% agoradigital::get_envvars_camara()$tipos_emendas$sigla) %>% 
+    dplyr::inner_join(camara_autores, by=c('id_documento','casa')) %>% 
+    dplyr::mutate(nome_partido_uf = paste0(nome, ' ', partido, '/', uf),
+                  data_apresentacao = as.Date(data_apresentacao, unit="days")) %>% 
+    dplyr::group_by(codigo_emenda = id_documento, 
+                    data_apresentacao, 
+                    numero, 
+                    local = status_proposicao_sigla_orgao, 
+                    casa, 
+                    tipo_documento = sigla_tipo,
+                    inteiro_teor = url_inteiro_teor) %>% 
+    dplyr::summarise(autor = paste(nome_partido_uf, collapse = ', ')) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::select(codigo_emenda, data_apresentacao, numero, local, autor, casa, tipo_documento, inteiro_teor)
+  
+  emendas_senado <- senado_docs %>% dplyr::filter(descricao_tipo_texto %in% agoradigital::get_envvars_senado()$tipos_emendas$descricao_tipo_texto) %>% 
+    dplyr::inner_join(senado_autores, by=c('id_documento','casa')) %>% 
+    dplyr::mutate(nome_partido_uf = paste0(nome_autor, ' ', partido, '/', uf),
+                  numero = as.integer(numero_emenda),
+                  data_apresentacao = lubridate::ymd(data_texto)) %>% 
+    dplyr::group_by(codigo_emenda = id_documento, 
+                    data_apresentacao, 
+                    numero, 
+                    local = identificacao_comissao_sigla_comissao, 
+                    casa, 
+                    tipo_documento = descricao_tipo_texto,
+                    inteiro_teor = url_texto) %>% 
+    dplyr::summarise(autor = paste(nome_partido_uf, collapse = ', ')) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::select(codigo_emenda, data_apresentacao, numero, local, autor, casa, tipo_documento, inteiro_teor)
+  
+  emendas <- dplyr::bind_rows(emendas_camara, emendas_senado)
+  
+  agoradigital::write_emendas(emendas, output_path)
+}
+
+#' @title Exporta dados de inteiro teor para análise
+#' @description Processa e escreve os dados de inteiro teor
+#' @param camara_docs documentos da camara
+#' @param senados_docs documentos do senado
+#' @param output_path pasta para onde exportar os dados
+export_inteiro_teor <- function(camara_docs, senado_docs, output_path) {
+  print(paste("Gerando tabela de inteiro teor dos PLs para análise a partir de dados atualizados de documentos..."))
+  
+  #id_proposicao,casa,codigo_texto,data,tipo_texto,descricao,link_inteiro_teor,pagina_inicial
+  
+  int_teor_camara <- camara_docs %>% dplyr::filter(id_documento == id_principal) %>% 
+    dplyr::select(id_proposicao = id_principal,
+                  casa,
+                  codigo_texto = id_documento,
+                  data = data_apresentacao,
+                  tipo_texto = descricao_tipo_documento,
+                  link_inteiro_teor = url_inteiro_teor)
+  
+  int_teor_senado <- senado_docs %>% dplyr::filter(id_documento == id_principal) %>% 
+    dplyr::mutate(data = lubridate::ymd_hms(paste0(data_texto,'T00:00:00'))) %>% 
+    dplyr::select(id_proposicao = id_principal,
+                  casa,
+                  codigo_texto = id_documento,
+                  data,
+                  tipo_texto = descricao_tipo_texto,
+                  link_inteiro_teor = url_texto)
+  
+  int_teores <- dplyr::bind_rows(int_teor_camara, int_teor_senado)
+  
+  readr::write_csv(int_teores, output_path)
+}
 
 #' @title Exporta dados atores
 #' @description Processa e escreve os dados de atores
@@ -227,9 +306,17 @@ process_leggo_data <- function(flag) {
     } else if (flag == 2) {
       print("Atualizando os atores!")
       export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo)
-    } else{
+    } else if (flag == 3) {
       print("Atualizando nodes e edges!")
       export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, output_path)
+    } else if (flag == 4) {
+      print("Atualizando dados de emendas e seus respectivos inteiros teores")
+      export_emendas(camara_docs, camara_autores, senado_docs, senado_autores, output_path)
+      export_inteiro_teor(camara_docs, camara_autores, output_path)
+    } else {
+      print(paste("Flag inexistente:",flag))
+      print(.HELP)
+      quit()
     }
   }
 }
