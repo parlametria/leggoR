@@ -162,7 +162,7 @@ if (casa == 'senado') {
                   id_principal,
                   casa) %>%
     dplyr::mutate(id_documento = as.numeric(id_documento),
-                  id_principal = as.numeric(id_documento),
+                  id_principal = as.numeric(id_principal),
                   casa = as.character(casa))
 
   print(paste("Verificando se há novos documentos..."))
@@ -198,7 +198,7 @@ if (casa == 'senado') {
 
     if (nrow(complete_docs) == 0) {
       print("Não foi possível baixar dados completos (proposição e autores) para nenhum dos novos documentos =(")
-      quit(save = "no", status=1)
+      quit(save = "no", status=0)
     }
 
     print(paste("Adicionando ",nrow(new_docs_data)," novos documentos."))
