@@ -159,3 +159,26 @@ read_props <- function(file_path) {
       id_leggo =  readr::col_double()
     ), file_path)
 }
+
+#' @title Ler arquivo emendas_raw.csv
+#' @param file_path caminho do arquivo
+#' @export
+read_emendas_raw <- function(file_path) {
+  
+  if (file.exists(file_path)) {
+    df <- readr::read_csv(
+      file_path,
+      col_types = list(
+        .default = readr::col_character(),
+        codigo_emenda = readr::col_double(),
+        numero = readr::col_double(),
+        data_apresentacao = readr::col_date(format = "")
+      )
+    )
+  } else {
+    df <- tibble::tribble(~id_ext, ~codigo_emenda, ~data_apresentacao, 
+                          ~numero, ~local, ~autor, ~casa, ~tipo_documento, ~inteiro_teor)
+  }
+  
+  return(df)
+}
