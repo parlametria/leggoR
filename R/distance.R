@@ -38,20 +38,19 @@ format_table_distances_to_emendas <- function(distancias_datapath, write_datapat
 }
 
 #' @title Adiciona a distância às emendas
-#' @description Recebe o dataframe de emendas e o caminho para os arquivos csv das distancias calculadas
-#' @param emendas_df Dataframe das emendas das proposições
+#' @description Recebe o dataframe de novas emendas, o das emendas já analisadas e o caminho para os arquivos csv das distancias calculadas
+#' @param novas_emendas_df Dataframe das novas emendas das proposições
+#' @param emendas_analisadas_df Dataframe das emendas das proposições que já foram analisadas
 #' @param distancias_datapath Caminho da pasta contendo os arquivos
-#' @return Dataframe contendo todas a união de todos os csv's do caminho informado
+#' @return Dataframe contendo a análise (distância calculada) para todas as emendas (antigas e novas)
 #' @importFrom magrittr %>% 
 #' @export
 #' @examples
-#' add_distances_to_emendas(emendas_df, here::here("data/distancias/"))
+#' add_distances_to_emendas(novas_emendas_df, emendas_analisadas_df, here::here("data/distancias/"))
 #' @export
-add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::here("data/distancias/")) {
+add_distances_to_emendas <- function(novas_emendas_df, emendas_analisadas_df, distancias_datapath) {
   distances_df <- read_distances_files(distancias_datapath)
-  emendas_with_distances <- tibble::tribble(~id_ext, ~codigo_emenda, ~data_apresentacao, 
-                                            ~numero, ~local, ~autor, ~casa, ~tipo_documento, 
-                                            ~inteiro_teor, ~distancia)
+  emendas_with_distances <- tibble::tibble()
   
   if (nrow(distances_df) > 0) {
     distances_df <- distances_df %>% 
@@ -60,12 +59,14 @@ add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::her
     
     emendas_with_distances <- 
       dplyr::left_join(
-        emendas_df,
+        novas_emendas_df,
         distances_df, 
         by=c("codigo_emenda"="id_emenda")) %>%
       dplyr::mutate(distancia = as.numeric(distancia),
                     distancia = dplyr::if_else(is.na(distancia),-1,distancia))
   }
   
-  return(emendas_with_distances)
+  new_emendas_analisadas <- dplyr::bind_rows(emendas_analisadas_df, emendas_with_distances)
+  
+  return(new_emendas_analisadas)
 }
