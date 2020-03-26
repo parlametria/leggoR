@@ -94,7 +94,7 @@ export_emendas <- function(camara_docs, camara_autores, senado_docs, senado_auto
   emendas_camara <- camara_docs %>% dplyr::filter(sigla_tipo %in% agoradigital::get_envvars_camara()$tipos_emendas$sigla) %>% 
     dplyr::inner_join(camara_autores, by=c('id_documento','casa')) %>% 
     dplyr::mutate(nome_partido_uf = paste0(nome, ' ', partido, '/', uf),
-                  data_apresentacao = as.Date(data_apresentacao, unit="days")) %>% 
+                  data_apresentacao = as.Date(data_apresentacao)) %>% 
     dplyr::group_by(codigo_emenda = id_documento, 
                     data_apresentacao, 
                     numero, 
@@ -127,36 +127,36 @@ export_emendas <- function(camara_docs, camara_autores, senado_docs, senado_auto
   agoradigital::write_emendas(emendas, output_path)
 }
 
-#' @title Exporta dados de inteiro teor para análise
-#' @description Processa e escreve os dados de inteiro teor
+#' @title Exporta dados de avulsos iniciais para análise
+#' @description Processa e escreve os dados de avulsos iniciais
 #' @param camara_docs documentos da camara
 #' @param senados_docs documentos do senado
 #' @param output_path pasta para onde exportar os dados
-export_inteiro_teor <- function(camara_docs, senado_docs, output_path) {
-  print(paste("Gerando tabela de inteiro teor dos PLs para análise a partir de dados atualizados de documentos..."))
+export_avulsos_iniciais <- function(camara_docs, senado_docs, output_path) {
+  print(paste("Gerando tabela de avulsos iniciais dos PLs para análise a partir de dados atualizados de documentos..."))
   
-  #id_proposicao,casa,codigo_texto,data,tipo_texto,descricao,link_inteiro_teor,pagina_inicial
-  
-  int_teor_camara <- camara_docs %>% dplyr::filter(id_documento == id_principal) %>% 
-    dplyr::select(id_proposicao = id_principal,
-                  casa,
-                  codigo_texto = id_documento,
-                  data = data_apresentacao,
-                  tipo_texto = descricao_tipo_documento,
-                  link_inteiro_teor = url_inteiro_teor)
-  
-  int_teor_senado <- senado_docs %>% dplyr::filter(id_documento == id_principal) %>% 
-    dplyr::mutate(data = lubridate::ymd_hms(paste0(data_texto,'T00:00:00'))) %>% 
+  av_iniciais_camara <- camara_docs %>% dplyr::filter(id_documento == id_principal) %>% 
+    dplyr::mutate(data = as.Date(data_apresentacao)) %>% 
     dplyr::select(id_proposicao = id_principal,
                   casa,
                   codigo_texto = id_documento,
                   data,
+                  tipo_texto = descricao_tipo_documento,
+                  link_inteiro_teor = url_inteiro_teor) %>% 
+    dplyr::distinct()
+  
+  
+  av_iniciais_senado <- senado_docs %>% dplyr::filter(stringr::str_detect(tolower(descricao_texto), 'avulso inicial da mat.ria')) %>% 
+    dplyr::select(id_proposicao = id_principal,
+                  casa,
+                  codigo_texto = id_documento,
+                  data = data_texto,
                   tipo_texto = descricao_tipo_texto,
                   link_inteiro_teor = url_texto)
   
-  int_teores <- dplyr::bind_rows(int_teor_camara, int_teor_senado)
+  av_iniciais <- dplyr::bind_rows(av_iniciais_camara, av_iniciais_senado)
   
-  readr::write_csv(int_teores, output_path)
+  readr::write_csv(av_iniciais, paste0(output_path, '/', 'avulsos_iniciais.csv'))
 }
 
 #' @title Exporta dados atores
@@ -272,7 +272,7 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
 #' @description Recebe uma flag e chama as funções correspondetes
 #' @param flag Inteiro que representa qual função o usuário desejar chamar
 process_leggo_data <- function(flag) {
-  if (!(flag %in% c(1, 2, 3))) {
+  if (!(flag %in% c(1, 2, 3,4))) {
     stop(paste("Wrong flag!", .HELP, sep = "\n"))
   }else {
     ## Install local repository R package version
@@ -312,7 +312,7 @@ process_leggo_data <- function(flag) {
     } else if (flag == 4) {
       print("Atualizando dados de emendas e seus respectivos inteiros teores")
       export_emendas(camara_docs, camara_autores, senado_docs, senado_autores, output_path)
-      export_inteiro_teor(camara_docs, camara_autores, output_path)
+      export_avulsos_iniciais(camara_docs, senado_docs, output_path)
     } else {
       print(paste("Flag inexistente:",flag))
       print(.HELP)
