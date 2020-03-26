@@ -18,9 +18,43 @@ processa_lista_pls_interesses <- function(url) {
 
   pls_para_analise <- purrr::pmap_dfr(list(interesses$interesse, interesses$url),
                   function(interesse, url) {
-                    pls <- readr::read_csv(url)
+                    pls <- readr::read_csv(url) %>%
+                      dplyr::mutate(interesse = interesse)
                     return(pls)
                   })
 
   return(pls_para_analise)
+}
+
+#' @title Mapeia pls e interesses analisados pelo Leggo
+#' @description Realiza o mapeamento entre pls e interesses analisados pelo Leggo
+#' @param url URL para lista de interesses do leggo
+#' @param proposicoes_filepath Caminho para o arquivo de proposições processadas
+#' @return Dataframe com o mapeamento entre pls e interesses
+#' contendo id_ext, casa, id_leggo, interesse
+#' @example
+#' interesses <- processa_interesses_leggo(url, proposicoes_filepath)
+processa_interesses_leggo <- function(url, proposicoes_filepath) {
+  pls_interesse <- processa_lista_pls_interesses(url) %>%
+    dplyr::select(id_camara, id_senado, interesse)
+
+  pls_interesse_camara <- pls_interesse %>%
+    dplyr::mutate(id_ext = id_camara) %>%
+    dplyr::filter(!is.na(id_ext)) %>%
+    dplyr::select(id_ext, interesse)
+
+  pls_interesse_senado <- pls_interesse %>%
+    dplyr::mutate(id_ext = id_senado) %>%
+    dplyr::filter(!is.na(id_ext)) %>%
+    dplyr::select(id_ext, interesse)
+
+  pls_interesse_processed <- pls_interesse_camara %>%
+    dplyr::bind_rows(pls_interesse_senado)
+
+  proposicoes_capturadas <- read_csv(proposicoes_filepath) %>%
+    dplyr::inner_join(pls_interesse_processed, by = "id_ext") %>%
+    dplyr::select(id_ext, casa, id_leggo, interesse) %>%
+    dplyr::distinct(id_leggo, interesse)
+
+  return(proposicoes_capturadas)
 }
