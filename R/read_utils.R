@@ -170,6 +170,7 @@ read_emendas_raw <- function(file_path) {
       file_path,
       col_types = list(
         .default = readr::col_character(),
+        id_ext = readr::col_double(),
         codigo_emenda = readr::col_double(),
         numero = readr::col_double(),
         data_apresentacao = readr::col_date(format = "")
@@ -178,6 +179,56 @@ read_emendas_raw <- function(file_path) {
   } else {
     df <- tibble::tribble(~id_ext, ~codigo_emenda, ~data_apresentacao, 
                           ~numero, ~local, ~autor, ~casa, ~tipo_documento, ~inteiro_teor)
+  }
+  
+  return(df)
+}
+
+#' @title Ler arquivo novas_emendas.csv
+#' @param file_path caminho do arquivo
+#' @export
+read_novas_emendas <- function(file_path) {
+  
+  if (file.exists(file_path)) {
+    df <- readr::read_csv(
+      file_path,
+      col_types = list(
+        .default = readr::col_character(),
+        id_ext = readr::col_double(),
+        codigo_emenda = readr::col_double(),
+        numero = readr::col_double(),
+        data_apresentacao = readr::col_date(format = "")
+      )
+    )
+  } else {
+    df <- tibble::tribble(~id_ext, ~codigo_emenda, ~data_apresentacao, 
+                          ~numero, ~local, ~autor, ~casa, ~tipo_documento, ~inteiro_teor)
+  }
+  
+  return(df)
+}
+
+#' @title Ler arquivo emendas.csv
+#' @param file_path caminho do arquivo
+#' @export
+read_emendas <- function(file_path) {
+  
+  if (file.exists(file_path)) {
+    df <- readr::read_csv(
+      file_path,
+      col_types = list(
+        .default = readr::col_character(),
+        id_ext = readr::col_double(),
+        codigo_emenda = readr::col_double(),
+        numero = readr::col_double(),
+        data_apresentacao = readr::col_date(format = ""),
+        distancia = readr::col_double()
+      )
+    )
+  } else {
+    df <- tibble::tribble(~id_ext, ~codigo_emenda, ~data_apresentacao, 
+                          ~numero, ~local, ~autor, ~casa, ~tipo_documento, 
+                          ~inteiro_teor, ~distancia)
   }
   
   return(df)
