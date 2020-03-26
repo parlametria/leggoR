@@ -18,7 +18,7 @@ processa_lista_pls_interesses <- function(url) {
 
   pls_para_analise <- purrr::pmap_dfr(list(interesses$interesse, interesses$url),
                   function(interesse, url) {
-                    pls <- readr::read_csv(url) %>%
+                    pls <- readr::read_csv(url, col_types = cols(.default = "c")) %>%
                       dplyr::mutate(interesse = interesse)
                     return(pls)
                   })
@@ -36,25 +36,26 @@ processa_lista_pls_interesses <- function(url) {
 #' interesses <- processa_interesses_leggo(url, proposicoes_filepath)
 processa_interesses_leggo <- function(url, proposicoes_filepath) {
   pls_interesse <- processa_lista_pls_interesses(url) %>%
-    dplyr::select(id_camara, id_senado, interesse)
+    dplyr::select(id_camara, id_senado, interesse, apelido, tema, advocacy_link, keywords, tipo_agenda)
 
   pls_interesse_camara <- pls_interesse %>%
     dplyr::mutate(id_ext = id_camara) %>%
     dplyr::filter(!is.na(id_ext)) %>%
-    dplyr::select(id_ext, interesse)
+    dplyr::select(id_ext, interesse, apelido, tema, advocacy_link, keywords, tipo_agenda)
 
   pls_interesse_senado <- pls_interesse %>%
     dplyr::mutate(id_ext = id_senado) %>%
     dplyr::filter(!is.na(id_ext)) %>%
-    dplyr::select(id_ext, interesse)
+    dplyr::select(id_ext, interesse, apelido, tema, advocacy_link, keywords, tipo_agenda)
 
   pls_interesse_processed <- pls_interesse_camara %>%
     dplyr::bind_rows(pls_interesse_senado)
 
-  proposicoes_capturadas <- read_csv(proposicoes_filepath) %>%
+  proposicoes_capturadas <- readr::read_csv(proposicoes_filepath,
+                                            col_types = cols(id_ext = "c")) %>%
     dplyr::inner_join(pls_interesse_processed, by = "id_ext") %>%
-    dplyr::select(id_ext, casa, id_leggo, interesse) %>%
-    dplyr::distinct(id_leggo, interesse)
+    dplyr::select(id_ext, casa, id_leggo, interesse, apelido, tema, advocacy_link, keywords, tipo_agenda) %>%
+    dplyr::distinct(id_leggo, interesse, apelido, keywords, tema, advocacy_link, keywords, tipo_agenda)
 
   return(proposicoes_capturadas)
 }
