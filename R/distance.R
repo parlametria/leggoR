@@ -50,23 +50,31 @@ format_table_distances_to_emendas <- function(distancias_datapath, write_datapat
 #' @export
 add_distances_to_emendas <- function(novas_emendas_df, emendas_analisadas_df, distancias_datapath) {
   distances_df <- read_distances_files(distancias_datapath)
-  emendas_with_distances <- tibble::tibble()
+  novas_emendas_com_distancias <- tibble::tibble()
   
   if (nrow(distances_df) > 0) {
     distances_df <- distances_df %>% 
       dplyr::group_by(id_emenda) %>% 
       dplyr::summarise(distancia = min(Distance)) 
     
-    emendas_with_distances <- 
+    novas_emendas_com_distancias <- 
       dplyr::left_join(
         novas_emendas_df,
         distances_df, 
         by=c("codigo_emenda"="id_emenda")) %>%
       dplyr::mutate(distancia = as.numeric(distancia),
                     distancia = dplyr::if_else(is.na(distancia),-1,distancia))
+  } else {
+    novas_emendas_com_distancias <- novas_emendas_df %>%
+      dplyr::mutate(distancia = -1)
   }
   
-  new_emendas_analisadas <- dplyr::bind_rows(emendas_analisadas_df, emendas_with_distances)
+  emendas_sem_novas_analises <- dplyr::anti_join(emendas_analisadas_df, 
+                                                 novas_emendas_df %>% 
+                                                   dplyr::select(id_ext, codigo_emenda),
+                                                 by = c('id_ext','codigo_emenda'))
+  
+  new_emendas_analisadas <- dplyr::bind_rows(emendas_sem_novas_analises, novas_emendas_com_distancias)
   
   return(new_emendas_analisadas)
 }
