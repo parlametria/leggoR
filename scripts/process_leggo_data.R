@@ -161,10 +161,14 @@ export_avulsos_iniciais <- function(camara_docs, senado_docs, novas_emendas, out
   av_iniciais <- dplyr::bind_rows(av_iniciais_camara, av_iniciais_senado)
   
   av_iniciais_novas_emendas <- av_iniciais %>% 
-    dplyr::inner_join(novas_emendas %>% dplyr::select(id_proposicao = id_ext, casa), by=c('id_proposicao','casa'))
+    dplyr::inner_join(novas_emendas %>% 
+                        dplyr::select(id_proposicao = id_ext, casa) %>% 
+                        dplyr::distinct(), 
+                      by=c('id_proposicao','casa'))
+    
   
-  readr::write_csv(av_iniciais, paste0(output_path, '/', 'all_avulsos_iniciais.csv'))
-  readr::write_csv(av_iniciais_novas_emendas, paste0(output_path, '/', 'avulsos_iniciais.csv'))
+  readr::write_csv(av_iniciais, paste0(output_path, '/', 'avulsos_iniciais.csv'))
+  readr::write_csv(av_iniciais_novas_emendas, paste0(output_path, '/', 'avulsos_iniciais_novas_emendas.csv'))
 }
 
 #' @title Exporta dados atores
