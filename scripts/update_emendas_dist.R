@@ -3,7 +3,7 @@ library(magrittr)
 
 help <- "
 Usage:
-Rscript update_emendas_dist.R <unformatted_distances_folderpath> <distances_folderpath> <emendas_raw_filepath> <processed_emendas_filepath>
+Rscript update_emendas_dist.R <unformatted_distances_folderpath> <distances_folderpath> <novas_emendas_filepath> <processed_emendas_filepath>
 "
 
 ## Process args
