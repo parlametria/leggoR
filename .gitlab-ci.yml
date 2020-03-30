@@ -10,31 +10,14 @@ stages:
   - deploy
 
 variables:
-  _R_CHECK_CRAN_INCOMING_: "false"
-  _R_CHECK_FORCE_SUGGESTS_: "true"
-  APT_PKGS: "libcurl4-openssl-dev libssh2-1-dev libssl-dev libxml2-dev zlib1g-dev git"
   DOCKER_HOST: tcp://docker:2375/
-  DOCKER_DRIVER: overlay2
   CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:gitlab-ci-dev	
   COMPOSE_CMD: docker-compose -f docker-compose.yml
   
-
-#cache:
-#  paths:
-#    - cache/
-
 before_script:
-#  - mkdir -p cache
-#  - echo cache >>.Rbuildignore
-  #- apt-get update
-  #- apt-get install -y --no-install-recommends ${APT_PKGS}
-  #- apt-get install -y --no-install-recommends qpdf pandoc pandoc-citeproc
-  #- export PATH="/usr/local/lib/R/site-library/littler/examples/:${PATH}"
-  #- echo "options(Ncpus = $(nproc --all))" >> /usr/local/lib/R/etc/Rprofile.site
-  #- echo ".libPaths(\"$PWD/cache\")" >> /usr/local/lib/R/etc/Rprofile.site
+  - apk add --no-cache docker-compose
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
   - export PKG_IMAGE_TAG=$CONTAINER_TEST_IMAGE
-  - apk add --no-cache docker-compose
 
 build:
   stage: build
