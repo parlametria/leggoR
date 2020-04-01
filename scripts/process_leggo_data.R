@@ -20,11 +20,11 @@ Rscript process_leggo_data.R -i <input_path> -o <output_path> -d <data_inicial_d
 "
 
 .INPUT_HELP <- "
-\t   Ex: \"../data/\"
+\t   Ex: \"../inst/extdata/\"
 "
 
 .OUTPUT_HELP <- "
-\t   Ex: \"../leggo-backend/data/\"
+\t   Ex: \"../inst/extdata/\"
 "
 
 
@@ -51,12 +51,12 @@ get_args <- function() {
                           metavar="character"),
     optparse::make_option(c("-i", "--input_path"),
                           type="character",
-                          default="../data/",
+                          default="../inst/extdata/",
                           help=.INPUT_HELP,
                           metavar="character"),
     optparse::make_option(c("-o", "--output_path"),
                           type="character",
-                          default="../../leggo-backend/data/",
+                          default="../inst/extdata/",
                           help=.OUTPUT_HELP,
                           metavar="character")
   );
