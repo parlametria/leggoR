@@ -40,3 +40,6 @@ pages:
     - $COMPOSE_CMD pull
     - $COMPOSE_CMD run rmod sh -c 'Rscript -e "install.packages(\"pkgdown\"); devtools::document(); pkgdown::build_site(override = list(destination = \"public\"))"; mv docs public/'
     - $COMPOSE_CMD push
+  artifacts:
+    paths:
+      - public
