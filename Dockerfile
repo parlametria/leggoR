@@ -4,7 +4,7 @@ WORKDIR /agora-digital
 
 #Prepare environment and copy files
 RUN apt-get update
-RUN apt-get install libssl-dev libxml2-dev libcurl4-openssl-dev vim less -y
+RUN apt-get install libssl-dev libxml2-dev libcurl4-openssl-dev vim less git -y
 COPY DESCRIPTION .
 RUN Rscript -e 'update.packages(checkBuilt=TRUE, ask=FALSE)'
 RUN Rscript -e 'install.packages("devtools"); devtools::install_deps()'
