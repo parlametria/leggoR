@@ -1,7 +1,10 @@
 **
 !R/*
-!data/*
+!inst/extdata/*
 !scripts/*
+!tests/*
 !DESCRIPTION
 !NAMESPACE
 !rcongresso
+!.git
+!docs

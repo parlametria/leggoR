@@ -1,5 +1,0 @@
-prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
-558942,camara,2012-11-07T14:08:00Z,1,"Apresentação do Requerimento de Inclusão na Ordem do Dia n. 6288/2012, pelo Deputado Luis Carlos Heinze (PP-RS), que: ""Requer inclusão da Proposta de Emenda a Constituição - PEC - nº 215/2000 na pauta de votações da Câmara dos Deputados"".",PLEN,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1042755,558942
-558942,camara,2012-11-07T17:12:00Z,2,Recebimento pela SEPRO.,SEPRO,500,NA,NA,558942
-558942,camara,2012-11-08T09:35:00Z,3,Encaminhado à(ao) SECOD(SGM) através da guia de Remessa (GR/SEPRO) nº 2980/2012.,SEPRO,180,NA,NA,558942
-558942,camara,2012-11-26T00:00:00Z,4,Original encaminhado à CCP (DECOM),PLEN,1005,NA,NA,558942

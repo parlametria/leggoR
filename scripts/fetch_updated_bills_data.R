@@ -23,12 +23,12 @@ get_args <- function() {
                           metavar="character"),
     optparse::make_option(c("-p", "--pls_ids_filepath"), 
                           type="character", 
-                          default="../data/tabela_geral_ids_casa.csv",
+                          default="../inst/extdata/tabela_geral_ids_casa.csv",
                           help=.HELP, 
                           metavar="character"),
     optparse::make_option(c("-e", "--exporth_path"), 
                           type="character", 
-                          default="../../leggo-backend/data/",
+                          default="../inst/extdata/",
                           help=.HELP, 
                           metavar="character")
   );

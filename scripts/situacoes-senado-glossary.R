@@ -19,4 +19,4 @@ names(situacoes) <- c("codigo", "sigla", "descricao")
 situacoes$codigo <- as.numeric(situacoes$codigo)
 
 #create file
-write_csv(situacoes, "data/Senado/situacoes-glossary-senado.csv")
+write_csv(situacoes, "../inst/extdata/Senado/situacoes-glossary-senado.csv")
