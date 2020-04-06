@@ -18,8 +18,8 @@ test <- function(){
   })
   
   test_that("fetch_orgaos_camara() and fetch_orgaos_senado() are not empty", {
-    expect_true(nrow(COMISSOES_CAMARA) == 0)
-    expect_true(nrow(COMISSOES_SENADO) == 0)
+    expect_true(nrow(COMISSOES_CAMARA) != 0)
+    expect_true(nrow(COMISSOES_SENADO) != 0)
   })
 }
 
