@@ -21,7 +21,7 @@ import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL)
   
   prop_df <- fetch_proposicao(prop_id,casa,apelido, tema)
   tram_df <- fetch_tramitacao(prop_id,casa)
-  emendas_df <- rcongresso::fetch_emendas(prop_id,casa, prop_df$tipo_materia, prop_df$numero, prop_df$ano)
+  emendas_df <- rcongresso::fetch_emendas(prop_id,casa)
   
   if (!is.null(out_folderpath)) {
     if (!is.null(prop_df)) readr::write_csv(prop_df, build_data_filepath(out_folderpath,'proposicao',casa,prop_id))
