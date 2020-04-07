@@ -42,11 +42,8 @@ safe_process_etapa <- purrr::safely(
             autor_nome,
           ~ autor_uf,
           ~ autor_partido,
-          ~ apelido_materia,
-          ~ tema,
           ~ regime_tramitacao,
-          ~
-            forma_apreciacao,
+          ~ forma_apreciacao,
           ~ relator_nome,
           ~ temperatura
         ),
@@ -124,16 +121,13 @@ adiciona_status <- function(tramitacao_df) {
 #' @param row_num Row number da proposição na tabela
 #' @param id_camara Id da proposição na camara
 #' @param id_senado Id da proposição no senado
-#' @param apelido Apelido da proposição
-#' @param tema_pl Tema da proposição
 #' @param total_rows número de linhas da tabela com os ids das proposições
-#' @param advocacy_link link para a pasta no drive com notas técnicas sobre a proposição
 #' @return Dataframe
-process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_rows, pautas, advocacy_link, 
+process_pl <- function(row_num, id_camara, id_senado, total_rows, pautas,
                        sleep_time=.DEF_REQ_SLEEP_TIME_IN_SECS) {
   Sys.sleep(sleep_time)
    cat(paste(
-     "\n\n--- Processando", row_num, "/", total_rows, ":", apelido, "\ncamara:", id_camara,
+     "\n\n--- Processando", row_num, "/", total_rows, "\ncamara:", id_camara,
      "\nsenado", id_senado, "\n"))
 
   etapas <- list()
@@ -170,7 +164,7 @@ process_pl <- function(row_num, id_camara, id_senado, apelido, tema_pl, total_ro
       agoradigital::get_historico_temperatura_recente_id_leggo(tram = etapas$fases_eventos, id_leggo = row_num, pautas = pautas)
   }
   etapas$proposicao %<>%
-    dplyr::mutate(apelido_materia = apelido, tema = tema_pl, id_leggo = row_num, advocacy_link = advocacy_link)
+    dplyr::mutate(id_leggo = row_num)
   Sys.sleep(5*stats::runif(1))
   return(etapas)
 }
@@ -189,9 +183,7 @@ converte_tabela_geral_ids_casa <- function(pls) {
     dplyr::mutate(casa = "camara") %>%
     dplyr::select(id_leggo,
                   casa,
-                  id_casa = id_camara,
-                  apelido,
-                  tema) %>%
+                  id_casa = id_camara) %>%
     dplyr::filter(!is.na(id_casa))
 
   proposicoes_individuais_a_baixar_senado <-
@@ -199,9 +191,7 @@ converte_tabela_geral_ids_casa <- function(pls) {
     dplyr::mutate(casa = "senado") %>%
     dplyr::select(id_leggo,
                   casa,
-                  id_casa = id_senado,
-                  apelido,
-                  tema) %>%
+                  id_casa = id_senado) %>%
     dplyr::filter(!is.na(id_casa))
 
   dplyr::bind_rows(proposicoes_individuais_a_baixar_camara,
@@ -230,23 +220,22 @@ fetch_props <- function(pls, export_path) {
   while (count < 5 ) {
     cat(paste("\n--- Tentativa ", count + 1,"\n"))
     sleep_time = .DEF_REQ_SLEEP_TIME_IN_SECS^(count+1)
-    res <- append(res, proposicoes_que_nao_baixaram %>% purrr::pmap(process_pl, nrow(proposicoes_que_nao_baixaram), pautas = pautas, 
+    res <- append(res, proposicoes_que_nao_baixaram %>% purrr::pmap(process_pl, nrow(proposicoes_que_nao_baixaram), pautas = pautas,
                                                                     sleep_time = sleep_time))
 
     proposicoes <-
       purrr::map_df(res, ~ .$proposicao) %>%
       dplyr::select(-c(ano)) %>%
-      dplyr::rename(id_ext = prop_id, apelido = apelido_materia) %>%
+      dplyr::rename(id_ext = prop_id) %>%
+      dplyr::select(-c(tema, apelido_materia)) %>%
       unique()
 
     proposicoes_baixadas <- proposicoes %>%
-      dplyr::select(id_leggo, 
+      dplyr::select(id_leggo,
                     casa,
-                    id_casa = id_ext,
-                    apelido,
-                    tema)
-    
-    
+                    id_casa = id_ext)
+
+
     proposicoes_que_nao_baixaram_temp <- dplyr::anti_join(proposicoes_individuais_a_baixar, proposicoes_baixadas)
     proposicoes_que_nao_baixaram <- proposicoes_que_nao_baixaram %>%
       dplyr::filter((id_camara %in% proposicoes_que_nao_baixaram_temp$id_casa) |
