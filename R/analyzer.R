@@ -8,6 +8,20 @@ source(here::here("R/proposicoes.R"))
 congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
 congress_constants <- congresso_env$constants
 
+#' @title Retorna variáveis de ambiente da Câmara
+#' @description Retorna json com variáveis de ambiente da Câmara
+#' @export
+get_envvars_camara <- function() {
+  jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+}
+
+#' @title Retorna variáveis de ambiente do Senado
+#' @description Retorna json com variáveis de ambiente do Senado
+#' @export
+get_envvars_senado <- function() {
+  jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
+}
+
 #' @title Processa dados de uma proposição do congresso.
 #' @description Recebido um dataframe a função recupera informações sobre uma proposição
 #' e sua tramitação e as salva em data/<camara/Senado>.

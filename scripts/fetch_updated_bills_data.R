@@ -21,15 +21,15 @@ get_args <- function() {
                           default=1,
                           help=.HELP,
                           metavar="character"),
-    optparse::make_option(c("-p", "--pls_ids_filepath"),
-                          type="character",
-                          default="../data/tabela_geral_ids_casa.csv",
-                          help=.HELP,
+    optparse::make_option(c("-p", "--pls_ids_filepath"), 
+                          type="character", 
+                          default="../inst/extdata/tabela_geral_ids_casa.csv",
+                          help=.HELP, 
                           metavar="character"),
-    optparse::make_option(c("-e", "--exporth_path"),
-                          type="character",
-                          default="../../leggo-backend/data/",
-                          help=.HELP,
+    optparse::make_option(c("-e", "--exporth_path"), 
+                          type="character", 
+                          default="../inst/extdata/",
+                          help=.HELP, 
                           metavar="character")
   );
 

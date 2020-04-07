@@ -7,13 +7,13 @@ Rscript update_leggo_data.R <pls_ids_filepath> <export_path> <casa>
 "
 
 .FILEPATH_HELP <- "
-\t   Ex: \"../data/tabela_geral_ids_casa.csv\"
+\t   Ex: \"../inst/extdata/tabela_geral_ids_casa.csv\"
 \t   PS: Deve conter a pasta referente a casa a ser atualizada no mesmo nível
-\t   desse arquivo. Ex: \"../data/camara\"
+\t   desse arquivo. Ex: \"../inst/extdata/camara\"
 "
 
 .EXPORT_PATH_HELP <- "
-\t   Ex: \"../data/\"
+\t   Ex: \"../inst/extdata/\"
 "
 
 .CASA_HELP <- "
@@ -29,12 +29,12 @@ get_args <- function() {
   option_list = list(
     optparse::make_option(c("-p", "--pls_ids_filepath"),
                           type="character",
-                          default="../data/tabela_geral_ids_casa.csv",
+                          default="../inst/extdata/tabela_geral_ids_casa.csv",
                           help=.FILEPATH_HELP,
                           metavar="character"),
     optparse::make_option(c("-e", "--export_path"),
                           type="character",
-                          default="../data/",
+                          default="../inst/extdata/",
                           help=.EXPORT_PATH_HELP,
                           metavar="character"),
     optparse::make_option(c("-c", "--casa"),

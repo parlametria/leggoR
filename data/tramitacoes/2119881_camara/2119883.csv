@@ -1,7 +1,0 @@
-prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
-2119883,camara,2016-12-06T00:00:00Z,3,Realizar o Encaminhamento para SECAP(SGM),SEPRO,910,NA,NA,2119883
-2119883,camara,2016-12-06T00:00:00Z,6,Encaminhada à publicação. Publicação Inicial no DCD de 7/12/2016.,CCP,604,NA,NA,2119883
-2119883,camara,2016-12-06T13:14:00Z,1,"Apresentação da Mensagem n. 635/2016, pelo Poder Executivo, que: ""Submete à deliberação do Congresso Nacional o texto da proposta de emenda à Constituição que 'Altera os arts. 37, 40, 42, 149, 167, 195, 201 e 203 da Constituição, para dispor sobre a seguridade social, estabelece regras de transição e dá outras providências'"".",MESA,100,NA,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1514758,2119883
-2119883,camara,2016-12-06T13:15:00Z,2,Encaminhado  à CEDI (Legislação Citada),CEDI,1004,NA,NA,2119883
-2119883,camara,2016-12-06T14:10:00Z,4,Encaminhado à(ao) SECAP(SGM) através da guia de Remessa (GR/SEPRO) nº 3691/2016.,SEPRO,180,NA,NA,2119883
-2119883,camara,2016-12-06T16:33:00Z,5,Recebimento pela SECAP(SGM).,SECAP(SGM),500,NA,NA,2119883
