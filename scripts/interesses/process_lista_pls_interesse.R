@@ -36,7 +36,9 @@ processa_lista_pls_interesses <- function(url) {
 #' interesses <- processa_interesses_leggo(url, proposicoes_filepath)
 processa_interesses_leggo <- function(url, proposicoes_filepath) {
   pls_interesse <- processa_lista_pls_interesses(url) %>%
-    dplyr::select(id_camara, id_senado, interesse, apelido, tema, advocacy_link, keywords, tipo_agenda)
+    dplyr::select(id_camara, id_senado, interesse, apelido, tema, advocacy_link, keywords, tipo_agenda) %>% 
+    dplyr::mutate(tema = trimws(tema, which = "both")) %>% 
+    dplyr::mutate(tema = gsub(pattern = "; ", replacement = ";", x = tema))
 
   pls_interesse_camara <- pls_interesse %>%
     dplyr::mutate(id_ext = id_camara) %>%
