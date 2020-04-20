@@ -112,15 +112,14 @@ remove_duplicated_edges <- function(df) {
   deduplicated_df <- df
   if(nrow(df) > 0) {
     deduplicated_df <- df %>%
-      dplyr::mutate(col_pairs =
-                      paste_cols_sorted(id_autor.x,
-                                        id_autor.y,
-                                        sep = ":")) %>%
+      dplyr::mutate(col_pairs = dplyr::if_else(id_autor.x > id_autor.y,
+                                               paste0(id_autor.x, ":", id_autor.y),
+                                               paste0(id_autor.x, ":", id_autor.y))) %>% 
       dplyr::distinct(id_leggo, id_principal, casa, id_documento, data, col_pairs) %>%
       tidyr::separate(col = col_pairs,
                       c("id_autor.x",
                         "id_autor.y"),
-                      sep = ":")  
+                      sep = ":")
   }
   return(deduplicated_df)
 }
