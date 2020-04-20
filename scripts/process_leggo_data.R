@@ -218,13 +218,13 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
   autorias_senado <- tibble::tibble()
 
   print("Gerando tabela de nodes e edges...")
-
+  
   camara_documentos <-
     camara_docs %>%
     dplyr::mutate(data = lubridate::floor_date(data_apresentacao, unit='day')) %>%
     dplyr::filter(data > data_inicial) %>%
     dplyr::left_join(props_leggo_id, by = c("id_principal", "casa"))
-
+  
   senado_documentos <-
     senado_docs %>%
     dplyr::filter(data_texto > data_inicial) %>%
@@ -256,16 +256,16 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
 
     nodes <-
       agoradigital::get_unique_nodes(coautorias)
-
+    
     edges <-
       coautorias %>%
       dplyr::group_by(id_leggo) %>%
       dplyr::group_modify(~ agoradigital::generate_edges(., graph_nodes = nodes, edges_weight = 1), keep = T) %>%
       dplyr::distinct()
-
+    
     nodes <-
       agoradigital::compute_nodes_size(edges, nodes)
-
+    
     edges <-
       edges %>%
       dplyr::filter(source != target)
@@ -319,10 +319,10 @@ process_leggo_data <- function(flag) {
       export_avulsos_iniciais(camara_docs, senado_docs, novas_emendas, output_path)
     } else if (flag == 2) {
       print("Atualizando os atores!")
-      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo)
+      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id)
     } else if (flag == 3) {
       print("Atualizando nodes e edges!")
-      export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, output_path)
+      export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, props_leggo_id, output_path)
     } else if (flag == 4) {
       print("Atualizando dados de emendas e avulsos iniciais")
       novas_emendas = export_emendas(camara_docs, camara_autores, senado_docs, senado_autores, output_path)
