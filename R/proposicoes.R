@@ -108,7 +108,16 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
 #' @examples
 #' fetch_proposicao_camara(2056568, "Lei para acabar zona de amortecimento", "Meio Ambiente")
 fetch_proposicao_camara <- function(id, apelido, tema) {
-  autor_df <- rcongresso::fetch_autor_camara(id)
+  
+  fetch_autor_camara_safely <-
+    purrr::safely(function(id) {
+      rcongresso::fetch_autor_camara(id)
+    },
+    otherwise = tibble::tribble( ~ nome,
+                                 ~ codTipo))
+  
+  autor_df <- fetch_autor_camara_safely(id)$result
+  
   if("ultimoStatus.nomeEleitoral" %in% names(autor_df)) {
     autor_df %<>%
       dplyr::rename('nome' = 'ultimoStatus.nomeEleitoral')
@@ -123,8 +132,17 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
                      ementa = paste(ementa,ementa_detalhada),
                      data_apresentacao = lubridate::ymd_hm(stringr::str_replace(data_apresentacao,'T',' ')),
                      casa = 'camara',
-                     casa_origem = ifelse(autor_df %>% head(1) %>%
-                                            dplyr::select(codTipo) == 40000,"senado","camara"),
+                     casa_origem = 
+                       ifelse(
+                         nrow(autor_df) == 0,
+                         NA,
+                         ifelse(
+                           autor_df %>% head(1) %>%
+                             dplyr::select(codTipo) == 40000,
+                           "senado",
+                           "camara"
+                         )
+                       ), 
                      autor_nome = paste(unlist(t(autor_df$nome)),collapse="+"),
                      autor_uf = ifelse(length(autor_df) > 1 && autor_df$codTipo == 10000,
                                        get_uf_autores(autor_df),
