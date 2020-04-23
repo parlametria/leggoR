@@ -311,11 +311,11 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
   .generate_coautorias_camara(camara_docs, data_inicial, camara_autores, peso_minimo, props_leggo_id, output_path)
   .generate_coautorias_senado(senado_docs, data_inicial, senado_autores, peso_minimo, props_leggo_id, output_path)
 
-  coautorias_camara <- readr::read_csv(paste0(output_path, '/camara/coautorias.csv'))
-  autorias_camara <- readr::read_csv(paste0(output_path, '/camara/autorias.csv'))
+  coautorias_camara <- readr::read_csv(paste0(output_path, '/camara/coautorias.csv'), col_types = cols())
+  autorias_camara <- readr::read_csv(paste0(output_path, '/camara/autorias.csv'), col_types = cols())
   
-  coautorias_senado <- readr::read_csv(paste0(output_path, '/senado/coautorias.csv'))
-  autorias_senado <- readr::read_csv(paste0(output_path, '/senado/autorias.csv'))
+  coautorias_senado <- readr::read_csv(paste0(output_path, '/senado/coautorias.csv'), col_types = cols())
+  autorias_senado <- readr::read_csv(paste0(output_path, '/senado/autorias.csv'), col_types = cols())
 
   if ((nrow(coautorias_camara) > 0) | (nrow(coautorias_senado) > 0)) {
     
