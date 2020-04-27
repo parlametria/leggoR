@@ -112,15 +112,14 @@ remove_duplicated_edges <- function(df) {
   deduplicated_df <- df
   if(nrow(df) > 0) {
     deduplicated_df <- df %>%
-      dplyr::mutate(col_pairs =
-                      paste_cols_sorted(id_autor.x,
-                                        id_autor.y,
-                                        sep = ":")) %>%
-      dplyr::distinct(id_leggo, id_principal, casa, id_documento, data, col_pairs) %>%
+      dplyr::mutate(col_pairs = dplyr::if_else(id_autor.x > id_autor.y,
+                                               paste0(id_autor.y, ":", id_autor.x),
+                                               paste0(id_autor.x, ":", id_autor.y))) %>% 
+      dplyr::distinct(id_leggo, id_principal, casa, id_documento, data, col_pairs, peso_arestas) %>%
       tidyr::separate(col = col_pairs,
                       c("id_autor.x",
                         "id_autor.y"),
-                      sep = ":")  
+                      sep = ":")
   }
   return(deduplicated_df)
 }
@@ -158,11 +157,12 @@ get_coautorias_raw <- function(autorias, peso_autorias, limiar) {
     dplyr::filter(id_autor.x != id_autor.y)
   
   coautorias <- dplyr::bind_rows(coautorias_simples, coautorias_multiplas) %>% 
-    dplyr::select(-num_autores)
+    dplyr::select(-num_autores) %>% 
+    dplyr::inner_join(peso_autorias, by = c("id_principal", "id_documento")) %>% 
+    dplyr::distinct()
   
   coautorias %>%
     remove_duplicated_edges() %>%
-    dplyr::inner_join(peso_autorias, by = c("id_principal", "id_documento")) %>%
     dplyr::group_by(id_leggo, id_principal, casa, id_autor.x, id_autor.y) %>%
     dplyr::summarise(peso_arestas = sum(peso_arestas),
                      num_coautorias = dplyr::n()) %>%
