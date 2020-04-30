@@ -1,10 +1,11 @@
-[![pipeline status](https://gitlab.com/analytics-ufcg/agora-digital/badges/master/pipeline.svg)](https://gitlab.com/analytics-ufcg/agora-digital/commits/master)
-[![codecov](https://codecov.io/gh/analytics-ufcg/leggoR/branch/master/graph/badge.svg)](https://codecov.io/gh/analytics-ufcg/leggoR)
+[![pipeline status](https://gitlab.com/parlametria/leggoR/badges/master/pipeline.svg)](https://gitlab.com/parlametria/leggoR/commits/master)
+[![codecov](https://codecov.io/gh/parlametria/leggoR/branch/master/graph/badge.svg)](https://codecov.io/gh/parlametria/leggoR)
 
 # leggoR
 Acesso, tradução e modelos usando dados do congresso nacional.
  
-- [Site com documentação](https://analytics-ufcg.github.io/agora-digital/public)
+- [Site com documentação](https://parlametria.github.io/leggoR/public/)
+- [Descrição dos dados gerados](docs/dados/Sobre.md) e usados pela aplicação [Leggo](leggo.org.br)
 
 ## Instalação
 
@@ -24,7 +25,7 @@ install.packages("devtools")
 Após isso, você pode instalar o pacote no seu ambiente R de preferência:
 
 ```R 
-devtools::install_github("analytics-ufcg/agora-digital")
+devtools::install_github("parlametria/leggoR")
 ```
 
 Para utilizá-lo:
@@ -64,18 +65,18 @@ há várias formas de capturar esse id, serão mostradas as mais básicas:
     ```
     
 ### Exemplos
-Você pode encontrar mais exemplos de uso do *agoradigital* [aqui](https://github.com/analytics-ufcg/agora-digital/tree/master/vignettes).
+Você pode encontrar mais exemplos de uso do *agoradigital* [aqui](https://github.com/parlametria/leggoR/tree/master/vignettes).
 
 ## Estrutura do projeto
 
-* O Código principal do pacote você pode encontrar em [R/](https://github.com/analytics-ufcg/agora-digital/tree/master/R)
-* Exemplos de csv gerados pode se ver em [data/](https://github.com/analytics-ufcg/agora-digital/tree/master/data)
-* Em [docs/](https://github.com/analytics-ufcg/agora-digital/tree/master/docs) pode se visualizar reports de Pls já
+* O Código principal do pacote você pode encontrar em [R/](https://github.com/parlametria/leggoR/tree/master/R)
+* Exemplos de csv gerados pode se ver em [data/](https://github.com/parlametria/leggoR/tree/master/data)
+* Em [docs/](https://github.com/parlametria/leggoR/tree/master/docs) pode se visualizar reports de Pls já
  testadas.
-* Em [scripts/](https://github.com/analytics-ufcg/agora-digital/tree/master/scripts) pode se ver alguns scripts que facilitam o processo de importar e geração de dados.
-* [tests/](https://github.com/analytics-ufcg/agora-digital/tree/master/tests) contém testes de uso.
-* [view/](https://github.com/analytics-ufcg/agora-digital/tree/master/view) contém alguns exemplos de visualizações que utilizam o agoradigital
-* [vignettes/](https://github.com/analytics-ufcg/agora-digital/tree/master/vignettes) exemplos.
+* Em [scripts/](https://github.com/parlametria/leggoR/tree/master/scripts) pode se ver alguns scripts que facilitam o processo de importar e geração de dados.
+* [tests/](https://github.com/parlametria/leggoR/tree/master/tests) contém testes de uso.
+* [view/](https://github.com/parlametria/leggoR/tree/master/view) contém alguns exemplos de visualizações que utilizam o agoradigital
+* [vignettes/](https://github.com/parlametria/leggoR/tree/master/vignettes) exemplos.
  
 ## Comandos
 
@@ -145,12 +146,12 @@ Para rodar os testes:
   
 3. Instale o pacote a partir da branch que deseja:
 
- > devtools::install_github('analytics-ufcg/agora-digital@nome_da_branch')
+ > devtools::install_github('parlametria/leggoR@nome_da_branch')
  
 Depois faça os testes necessários para garantir que o pacote está funcionando conforme esperado.
   
 ## Como contribuir
 
-  Se encontrou algum problema ou deseja fazer alguma melhoria. Por favor, abra uma [issue](https://github.com/analytics-ufcg/agora-digital/issues) e descreva o problema com clareza, se possível com exemplos que possamos reproduzir.
+  Se encontrou algum problema ou deseja fazer alguma melhoria. Por favor, abra uma [issue](https://github.com/parlametria/leggoR/issues) e descreva o problema com clareza, se possível com exemplos que possamos reproduzir.
   
   Toda ajuda é bem vinda e de grande importância :) sinta-se à vontade.
