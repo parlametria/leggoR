@@ -65,7 +65,7 @@ há várias formas de capturar esse id, serão mostradas as mais básicas:
     ```
     
 ### Exemplos
-Você pode encontrar mais exemplos de uso do *agoradigital* [aqui](https://github.com/parlametria/leggoR/tree/master/vignettes).
+Você pode encontrar mais exemplos de uso do *leggoR* [aqui](https://github.com/parlametria/leggoR/tree/master/vignettes).
 
 ## Estrutura do projeto
 
