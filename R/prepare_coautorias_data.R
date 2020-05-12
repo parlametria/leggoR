@@ -115,7 +115,7 @@ remove_duplicated_edges <- function(df) {
       dplyr::mutate(col_pairs = dplyr::if_else(id_autor.x > id_autor.y,
                                                paste0(id_autor.y, ":", id_autor.x),
                                                paste0(id_autor.x, ":", id_autor.y))) %>% 
-      dplyr::distinct(id_leggo, id_principal, casa, id_documento, data, col_pairs, peso_arestas) %>%
+      dplyr::distinct(id_leggo, id_documento, col_pairs, peso_arestas) %>%
       tidyr::separate(col = col_pairs,
                       c("id_autor.x",
                         "id_autor.y"),
@@ -128,41 +128,63 @@ remove_duplicated_edges <- function(df) {
 #' @description  Recebe o dataframe de autorias, pesos e o limiar e retorna o dataframe 
 #' de coautorias raw
 #' @param autorias Dataframe com as autorias
-#' @param peso_autorias Dataframe com o peso das autorias
 #' @param limiar Peso mínimo das arestas
-#' @return Dataframe
-get_coautorias_raw <- function(autorias, peso_autorias, limiar) {
-  num_autorias_por_pl <- autorias %>% 
-    dplyr::group_by(id_leggo, id_documento, casa) %>% 
-    dplyr::summarise(num_autores = dplyr::n()) %>% 
-    dplyr::ungroup()
+#' @param casa_origem Casa de origem dos documentos de autoria
+#' @return Dataframe de coautorias para documentos de uma casa de origem.
+get_coautorias_raw <- function(autorias, limiar, casa_origem) {
+  # Filtra autorias apenas para casa de origem
+  autorias <- autorias %>% 
+    dplyr::filter(casa == casa_origem)
   
-  peso_autorias <-
-    peso_autorias %>%
-    dplyr::ungroup() %>%
+  # Calcula o número de autores e o peso das arestas (filtra usando um limiar) 
+  num_autorias_por_pl <- autorias %>%
+    dplyr::group_by(id_leggo, id_documento) %>% 
+    dplyr::summarise(num_autores = dplyr::n_distinct(id_autor),
+                     peso_arestas = 1/dplyr::n_distinct(id_autor)) %>% 
+    dplyr::ungroup() %>% 
     dplyr::filter(peso_arestas >= limiar)
+
+  # Obtem informações dos documentos
+  coautorias_raw_info <- autorias %>% 
+    dplyr::distinct(id_leggo, id_principal, casa, id_documento, data)
   
+  # Garbage collection
+  gc()
+  
+  # Gera dataframe de coautorias
   coautorias_raw <- autorias %>%
-    dplyr::full_join(autorias, by = c("id_leggo", "id_documento")) %>% 
-    dplyr::select(id_leggo, id_principal = id_principal.x, casa = casa.x, id_documento, data = data.x, 
-                  id_autor.x, id_autor.y)
-  
+    dplyr::select(id_leggo, id_documento, id_autor) %>% 
+    dplyr::full_join(autorias %>% 
+                       dplyr::select(id_leggo, id_documento, id_autor), 
+                     by = c("id_leggo", "id_documento"))
+  gc()
+
   coautorias_simples <- coautorias_raw %>% 
     dplyr::inner_join(num_autorias_por_pl %>% dplyr::filter(num_autores == 1),
-                      by=c("id_documento", "id_leggo", "casa"))
+                      by=c("id_documento", "id_leggo"))
   
   coautorias_multiplas <- coautorias_raw %>% 
     dplyr::inner_join(num_autorias_por_pl %>% dplyr::filter(num_autores > 1),
-                      by=c("id_documento", "id_leggo", "casa")) %>% 
+                      by=c("id_documento", "id_leggo")) %>% 
     dplyr::filter(id_autor.x != id_autor.y)
   
+  # Remove dataframe não mais usado e chama garbage collector.
+  rm(coautorias_raw)
+  gc()
+  
   coautorias <- dplyr::bind_rows(coautorias_simples, coautorias_multiplas) %>% 
-    dplyr::select(-num_autores) %>% 
-    dplyr::inner_join(peso_autorias, by = c("id_principal", "id_documento")) %>% 
+    dplyr::select(-num_autores) %>%
     dplyr::distinct()
   
+  # Remove dataframe não mais utilizado
+  rm(coautorias_multiplas)
+  gc()
+  
+  # Remove arestas duplicadas, cruza com informações dos documentos e calcula peso final para as arestas
   coautorias %>%
     remove_duplicated_edges() %>%
+    dplyr::left_join(coautorias_raw_info,
+                     by = c("id_leggo", "id_documento")) %>% 
     dplyr::group_by(id_leggo, id_principal, casa, id_autor.x, id_autor.y) %>%
     dplyr::summarise(peso_arestas = sum(peso_arestas),
                      num_coautorias = dplyr::n()) %>%
@@ -187,15 +209,15 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao)
   
   if (casa == 'camara') {
     autorias <- agoradigital::prepare_autorias_df_camara(docs, autores)
-    peso_autorias <- agoradigital::compute_peso_autoria_doc(autorias)
-    parlamentares <- autores %>% dplyr::select(id_autor, nome, partido, uf)
+    parlamentares <- autores %>% dplyr::select(id_autor, nome, partido, uf) %>% 
+      dplyr::distinct()
   } else {
     autorias <- agoradigital::prepare_autorias_df_senado(docs, autores)
-    peso_autorias <- agoradigital::compute_peso_autoria_doc(autorias)
-    parlamentares <- autores %>% dplyr::select(id_autor, nome = nome_autor, partido, uf)
+    parlamentares <- autores %>% dplyr::select(id_autor, nome = nome_autor, partido, uf) %>% 
+      dplyr::distinct()
   }
   
-  coautorias <- get_coautorias_raw(autorias, peso_autorias, limiar)
+  coautorias <- get_coautorias_raw(autorias, limiar, casa)
   
   if (nrow(coautorias) > 0) {
     autorias <-
