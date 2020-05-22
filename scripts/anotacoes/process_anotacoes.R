@@ -87,10 +87,11 @@ processa_anotacoes <- function(url, pls_interesses_datapath, proposicoes_datapat
   
   proposicoes <-
     readr::read_csv(proposicoes_datapath, col_types = cols(.default = "c")) %>%
-    dplyr::select(id_leggo, id_ext, casa)
+    dplyr::select(id_leggo, id_ext)
   
   anotacoes_com_ids_processed <- proposicoes %>%
-    dplyr::inner_join(anotacoes_com_ids, by = "id_ext")
+    dplyr::inner_join(anotacoes_com_ids, by = "id_ext") %>% 
+    dplyr::select(-id_ext)
   
   return(anotacoes_com_ids_processed)
 }
