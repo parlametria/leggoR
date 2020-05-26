@@ -9,7 +9,8 @@
         "incluido_ordem_dia": "incluída_em_ordem_do_dia",
         "regex_comissoes_vector": ["matéria_com_a_relatoria","aguardando_designação_do_relator"],
         "comissoes": "Comissões",
-        "presidencia": "Presidência da República"
+        "presidencia": "Presidência da República",
+        "sigla_slsf": "SLSF"
   },
 
   "apreciacao": {
@@ -84,8 +85,9 @@
     {"evento": "remetida_a_sancao_promulgacao", "regex": "projeto( foi|) encaminhado à sanção presidencial|(à promulga..o)", "tipo":"serie_c"},
     {"evento": "transformada_lei", "regex": "sancionada|promulgada(.)* emenda constitucional", "tipo":"serie_c"},
     {"evento": "vetada_totalmente", "regex": "vetada integralmente|vetado(,)* totalmente", "tipo":"serie_c"},
-    {"evento": "virada_de_casa", "regex": "primeiro(-| )secret(a|á)rio.*da.*c(a|â)mara.*dos.*deputados.*encaminhando.*revis(a|ã)o", "tipo":"serie_c"},
-    {"evento": "perda_da_eficacia", "regex": "t(é|e)rmino do prazo de vig(ê|e)ncia", "tipo":"serie_c"}
+    {"evento": "virada_de_casa", "regex": "primeiro(-| )secret(a|á)rio.*da.*c(a|â)mara.*dos.*deputados.*encaminhando.*revis(a|ã)o|remetido of(í|i)cio .* c(â|a)mara dos deputados.*para revis.o", "tipo":"serie_c"},
+    {"evento": "perda_da_eficacia", "regex": "t(é|e)rmino do prazo de vig(ê|e)ncia", "tipo":"serie_c"},
+    {"evento": "incluida_ordem_dia", "regex": "inclu(í|i)da em ordem do dia", "tipo":"serie_a"}
   ],
 
  "locais": [
@@ -118,7 +120,6 @@
       "CCJ",
       "CCT",
       "CDH",
-      "CDIR",
       "CDR",
       "CE",
       "CI",
@@ -142,7 +143,6 @@
       "de Constituição, Justiça e Cidadania",
       "de Ciência, Tecnologia, Inovação, Comunicação e Informática",
       "de Direitos Humanos e Legislação Participativa",
-      "Diretora",
       "de Desenvolvimento Regional e Turismo",
       "de Educação, Cultura e Esporte",
       "de Serviços de Infraestrutura",
@@ -182,7 +182,7 @@
   },
 
   "fase_global_plenario":{
-    "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)|(à slsf, a pedido.)"
+    "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)|(à slsf, a pedido.)|(recebida, na secretaria-geral da mesa, a emenda.*)"
   },
 
   "fase_global_sancao":{
