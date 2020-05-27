@@ -21,6 +21,7 @@
       "data_ultima_modificacao",
       "proposicao",
       "autor",
+      "categoria",
       "titulo",
       "anotacao",
       "peso",
@@ -91,7 +92,13 @@ processa_anotacoes <- function(url, pls_interesses_datapath, proposicoes_datapat
   
   anotacoes_com_ids_processed <- proposicoes %>%
     dplyr::inner_join(anotacoes_com_ids, by = "id_ext") %>% 
-    dplyr::select(-id_ext)
+    dplyr::select(-id_ext) %>% 
+    dplyr::distinct() %>% 
+    dplyr::mutate(
+      categoria = iconv(categoria, 
+                        from="UTF-8", 
+                        to="ASCII//TRANSLIT") %>% 
+        tolower())
   
   return(anotacoes_com_ids_processed)
 }
