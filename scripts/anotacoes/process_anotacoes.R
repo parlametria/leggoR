@@ -67,10 +67,10 @@ processa_anotacoes <- function(url, pls_interesses_datapath, proposicoes_datapat
   
   pls_interesses <- readr::read_csv(pls_interesses_datapath,
                                     col_types = cols(.default = "c")) %>%
-    dplyr::select(proposicao, id_camara, id_senado, interesse)
+    dplyr::select(proposicao, id_camara, id_senado)
   
   anotacoes_com_ids <- anotacoes %>% 
-    dplyr::left_join(pls_interesses, by = c("proposicao", "interesse")) %>% 
+    dplyr::left_join(pls_interesses, by = c("proposicao")) %>% 
     dplyr::select(-proposicao)
   
   anotacoes_com_ids_camara <- anotacoes_com_ids %>%
