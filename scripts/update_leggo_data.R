@@ -100,7 +100,7 @@ if (!(casa %in% c("camara", "senado"))) {
 }
 
 ## Install local repository R package version
-devtools::install()
+devtools::install(upgrade = "never")
 
 #current_docs <- tibble::tibble()
 current_autores <- tibble::tibble()

@@ -20,7 +20,7 @@ export_folder_path <- args[4]
 current_pautas_filepath <- args[5]
 
 ## Install local repository R package version
-devtools::install()
+devtools::install(upgrade = "never")
 
 if (!file.exists(current_pautas_filepath)) {
     pautas <- tibble::tribble( ~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
