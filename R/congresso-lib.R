@@ -357,17 +357,19 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 #' @examples
 #'  .corrige_data_inicial_camara(df)
 .corrige_data_inicial_camara <- function(df, tramitacao_df) {
-  evento_req_urgencia_verbal <- tramitacao_df %>% 
-    dplyr::filter(casa == "camara") %>% 
-    dplyr::filter(stringr::str_detect(evento, "req_urgencia_unanime_verbal"))
   
-  if (evento_req_urgencia_verbal %>% nrow() > 0) {
-    df <- df %>% 
-      dplyr::mutate(data_inicio = dplyr::if_else(casa == "camara" & local == "Plenário",
-                                            evento_req_urgencia_verbal$data_hora,
-                                            data_inicio))
+  if ("evento" %in% names(tramitacao_df)) {
+    evento_req_urgencia_verbal <- tramitacao_df %>% 
+      dplyr::filter(casa == "camara") %>% 
+      dplyr::filter(stringr::str_detect(evento, "req_urgencia_unanime_verbal"))
+    
+    if (evento_req_urgencia_verbal %>% nrow() > 0) {
+      df <- df %>% 
+        dplyr::mutate(data_inicio = dplyr::if_else(casa == "camara" & local == "Plenário",
+                                              evento_req_urgencia_verbal$data_hora,
+                                              data_inicio))
+    }
   }
-  
   return(df)
 }
 
