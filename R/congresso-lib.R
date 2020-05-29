@@ -211,7 +211,8 @@ generate_progresso_df_mpv <- function(tramitacao_df) {
                       stringr::str_detect(tolower(texto_tramitacao), "encaminhad(.) ao senado federal") ~ "Senado Federal",
                       stringr::str_detect(tolower(texto_tramitacao), "sancionada") ~ "Sanção Presidencial/Promulgação",
                       dplyr::row_number() == 1 ~ "Comissão Mista")) %>%
-    tidyr::fill(fase_global)
+    tidyr::fill(fase_global) %>% 
+    .corrige_eventos_mpv_cong_remoto()
 
   df <-
     tramitacao_df %>%
@@ -244,7 +245,7 @@ generate_progresso_df_mpv <- function(tramitacao_df) {
     dplyr::ungroup()
 
   df %>%
-    tidyr::fill(casa, prop_id) %>%
+    tidyr::fill(casa, prop_id, .direction = "downup") %>%
     unique() %>%
     dplyr::mutate(data_fim =
                     dplyr::if_else(fase_global == "Sanção Presidencial/Promulgação",
@@ -390,5 +391,27 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
     dplyr::filter(!fase_comissoes_remoto) %>% 
     dplyr::select(-data, -fase_comissoes_remoto)
   
+  return(tramitacao_df)
+}
+
+#' @title Corrige o local de tramitação de eventos durante o período do Congresso Remoto (Pandemia Covid-19)
+#' @description Com a não instalação/utilização de comissões permanentes durante o período do Congresso Remoto esta função
+#' corrige o local de tramitação de eventos durante o período do Congresso Remoto (ignorando comissões).
+#' @param tramitacao_df Dataframe da tramitação processada da proposiçao com a coluna fase_global
+#' @return Dataframe da tramitação com a correção dos eventos de comissão na etapa de fase_global
+#' @examples
+#'  .corrige_eventos_mpv_cong_remoto(tramitacao_df)
+.corrige_eventos_mpv_cong_remoto <- function(tramitacao_df) {
+  cong_remoto_inicio <- congresso_env$congresso_remoto$data_inicio
+  
+  tramitacao_df <- tramitacao_df %>% 
+    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>%
+    dplyr::mutate(fase_global = dplyr::if_else(data > cong_remoto_inicio,
+                                                dplyr::if_else(fase_global == "Comissão Mista",
+                                                               "Congresso Nacional",
+                                                               fase_global),
+                                                fase_global)) %>% 
+    dplyr::select(-data)
+    
   return(tramitacao_df)
 }
