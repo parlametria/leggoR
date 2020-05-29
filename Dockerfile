@@ -14,8 +14,10 @@ COPY . .
 ARG clone_rcongresso=true
 RUN if [ "$clone_rcongresso" = "false" ] ;  then Rscript -e 'devtools::install("rcongresso/")'; else Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'; fi
 
+RUN Rscript -e 'devtools::install_version("dplyr", version = "0.8.5", repos = "http://cran.us.r-project.org")'
+
 #Remove rcongresso files to avoid including in leggoR package
 RUN rm -rf rcongresso
 
 #Install leggoR package
-RUN Rscript -e 'devtools::install()'
+RUN Rscript -e 'devtools::install(upgrade = "never")'
