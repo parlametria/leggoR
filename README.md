@@ -109,7 +109,7 @@ Gerar csvs de Comissões, emendas, histórico_temperatura, progresso, proposiç�
     Seta o diretório para a pasta do leggoR (Ex: setwd("~/Documents/leggoR") )
     
     Caso tenha feito alguma alteração no código e queira que esta alteração se reflita nos csvs gerados rode:
-    > devtools::install()
+    > devtools::install(upgrade = "never")
     
     E por fim rodar o script
     $ Rscript fetch_updated_bills_data.R <pls_ids_filepath> <distances_folderpath> <export_path>
@@ -123,7 +123,7 @@ Gerar csvs de pautas:
     Seta o diretório para a pasta do leggoR (Ex: setwd("~/Documents/leggoR") )
     
     Caso tenha feito alguma alteração no código e queira que esta alteração se reflita nos csvs gerados rode:
-    > devtools::install()
+    > devtools::install(upgrade = "never")
     
     E por fim rodar o script
     $ Rscript fetch_agenda.R <pls_ids_filepath> <initial_date> <end_date> <export_path>

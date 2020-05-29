@@ -1,4 +1,4 @@
-devtools::install()
+devtools::install(upgrade = "never")
 library(magrittr)
 
 pautas <- readr::read_csv('../inst/extdata/pautas.csv')
