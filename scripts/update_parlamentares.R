@@ -41,7 +41,7 @@ casa <- opt$casa
 only_current_legislature_flag <- opt$flag
 
 ## Install local repository R package version
-devtools::install()
+devtools::install(upgrade = "never")
 
 dir.create(paste0(export_path, '/', casa), showWarnings = FALSE)
 

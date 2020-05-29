@@ -364,7 +364,7 @@ process_leggo_data <- function(flag) {
     stop(paste("Wrong flag!", .HELP, sep = "\n"))
   }else {
     ## Install local repository R package version
-    devtools::install()
+    devtools::install(upgrade = "never")
 
     # Read current data csvs
     camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv")) %>% 
