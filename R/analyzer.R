@@ -292,7 +292,6 @@ extract_regime_tramitacao <- function(tram_df, prop) {
 #' @examples
 #' extract_forma_apreciacao(fetch_tramitacao(91341, 'senado', TRUE))
 #' @export
-#' @importFrom stats filter
 extract_forma_apreciacao <- function(tram_df) {
   casa <- tram_df[1, "casa"]
   prop_id <- tram_df[1, "prop_id"]
@@ -393,7 +392,6 @@ fix_nomes_locais <- function(pautas_df) {
 #' @examples
 #' extract_status_tramitacao(91341, 'senado', fetch_proposicao(91341, 'senado'), fetch_tramitacao(91341, 'senado'))
 #' @export
-#' @importFrom stats filter
 extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
   regime <- extract_regime_tramitacao(tram, prop)
   apreciacao <- extract_forma_apreciacao(tram)
