@@ -244,7 +244,6 @@ fetch_proposicao_renamed <- function(id) {
 #' @examples
 #' extract_forma_apreciacao_camara(217161)
 #' @export
-#' @importFrom stats filter
 extract_forma_apreciacao_camara <- function(prop_id) {
   regex_apreciacao <-
     tibble::tribble(
