@@ -125,34 +125,8 @@ generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE)
     dplyr::select(-data_fim_anterior, -data_fim_proc, -data_fim_anterior_proc) %>%
     dplyr::arrange(data_inicio)
   
-  plenario_pos_comissao <- df %>%
-    dplyr::filter(casa == "camara",
-           local == "Comissões",
-           !is.na(data_fim))
-
-  if (plenario_pos_comissao %>% nrow() > 0) {
-    eventos_tramitacao_plenario <- tramitacao_df %>% 
-      dplyr::filter(data_hora <= plenario_pos_comissao$data_fim,
-                    casa == "camara",
-                    local == "Plenário") %>% 
-      dplyr::filter(stringr::str_detect(evento, "alteracao_de_regime|designado_relator"))
-    
-    if (eventos_tramitacao_plenario %>% nrow() == 0) {
-      primeiro_evento_plenario_pos_comissao <- tramitacao_df %>% 
-        dplyr::filter(data_hora >= plenario_pos_comissao$data_fim,
-                      casa == "camara",
-                      local == "Plenário") %>% 
-        head(1) %>% 
-        dplyr::pull(data_hora)
-      
-      if (length(primeiro_evento_plenario_pos_comissao)) {
-        df <- df %>% 
-          dplyr::mutate(data_inicio = dplyr::if_else(casa == "camara" & local == "Plenário",
-                                              primeiro_evento_plenario_pos_comissao,
-                                              data_inicio))
-      }
-    }
-  }
+  df <- df %>% 
+    .altera_data_inicio_plenario_pos_comissao(tramitacao_df)
   
   if (nrow(df %>% dplyr::group_by(fase_global, local) %>% dplyr::filter(dplyr::n() > 1)) > 0) {
     df %<>%
@@ -164,16 +138,9 @@ generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE)
 
   df$data_fim[nrow(df)] <- NA
 
-  if (tolower(sigla) == "pec") {
-    df %<>%
-      dplyr::right_join(congresso_env$fases_global_pec, by = c("local", "fase_global")) %>%
-      dplyr::ungroup()
-  }else {
-    df %<>%
-      dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global")) %>%
-      dplyr::ungroup()
-  }
-
+  df <- df %>% 
+    .padroniza_fases_globais_tramitacao(sigla)
+  
   if (sum(is.na(df$casa)) == nrow(df)) {
     tramitacao_df <-
       tramitacao_df %>%
@@ -355,7 +322,7 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 #' @param tramitacao_df Dataframe da tramitação processada da proposiçao
 #' @return Dataframe de progresso com data inicial de plenário da Câmara corrigida
 #' @examples
-#'  .corrige_data_inicial_camara(df)
+#'  .corrige_data_inicial_camara(df, tramitacao_df)
 .corrige_data_inicial_camara <- function(df, tramitacao_df) {
   
   if ("evento" %in% names(tramitacao_df)) {
@@ -416,4 +383,63 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
     dplyr::select(-data)
     
   return(tramitacao_df)
+}
+
+#' @title Corrige data inicial de tramitação no plenário da Câmara após a ocorrência da fase de comissões
+#' @description A partir dos eventos de alteração de regime e designação de relator, altera a data de início 
+#' da tramitação em plenário considerando o primeiro evento após a fase de comissões.
+#' @param df Dataframe com o formato do progresso
+#' @param tramitacao_df Dataframe da tramitação processada da proposiçao
+#' @return Dataframe do progresso com a data inicial de tramitação no plenário da Câmara corrigida
+#' @examples
+#'  .altera_data_inicio_plenario_pos_comissao(df, tramitacao_df)
+.altera_data_inicio_plenario_pos_comissao <- function(df, tramitacao_df) {
+  plenario_pos_comissao <- df %>%
+    dplyr::filter(casa == "camara",
+                  local == "Comissões",
+                  !is.na(data_fim))
+  
+  if (plenario_pos_comissao %>% nrow() > 0) {
+    eventos_tramitacao_plenario <- tramitacao_df %>% 
+      dplyr::filter(data_hora <= plenario_pos_comissao$data_fim,
+                    casa == "camara",
+                    local == "Plenário") %>% 
+      dplyr::filter(stringr::str_detect(evento, "alteracao_de_regime|designado_relator"))
+    
+    if (eventos_tramitacao_plenario %>% nrow() == 0) {
+      primeiro_evento_plenario_pos_comissao <- tramitacao_df %>% 
+        dplyr::filter(data_hora >= plenario_pos_comissao$data_fim,
+                      casa == "camara",
+                      local == "Plenário") %>% 
+        head(1) %>% 
+        dplyr::pull(data_hora)
+      
+      if (length(primeiro_evento_plenario_pos_comissao)) {
+        df <- df %>% 
+          dplyr::mutate(data_inicio = dplyr::if_else(casa == "camara" & local == "Plenário",
+                                                     primeiro_evento_plenario_pos_comissao,
+                                                     data_inicio))
+      }
+    }
+  }
+  return(df)
+}
+
+#' @title Padroniza as fases globais do dataframe de progresso
+#' @description A partir da sigla da proposição, padroniza as fases globais do dataframe de progresso
+#' @param df Dataframe com o formato do progresso
+#' @return Dataframe do progresso com as fases globais padronizadas segundo a sigla da proposição
+#' @examples
+#'  .padroniza_fases_globais_tramitacao(df, sigla)
+.padroniza_fases_globais_tramitacao <- function(df, sigla) {
+  if (tolower(sigla) == "pec") {
+    df %<>%
+      dplyr::right_join(congresso_env$fases_global_pec, by = c("local", "fase_global")) %>%
+      dplyr::ungroup()
+  }else {
+    df %<>%
+      dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global")) %>%
+      dplyr::ungroup()
+  }
+  return(df)
 }
