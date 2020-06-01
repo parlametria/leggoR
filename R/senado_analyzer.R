@@ -520,7 +520,6 @@ extract_approved_requerimentos_in_senado <- function(df) {
 #' @examples
 #' extract_forma_apreciacao_senado(93418)
 #' @export
-#' @importFrom stats filter
 extract_forma_apreciacao_senado <- function(proposicao_id) {
   url <-
     paste0(senado_env$endpoints_api$url_base,
