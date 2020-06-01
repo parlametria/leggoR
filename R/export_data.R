@@ -1,3 +1,5 @@
+congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
+
 #' @title Processa a proposição
 #' @description Realiza todas os processamentos necessários para criar
 #' as tabelas para uma proposição
