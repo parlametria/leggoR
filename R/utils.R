@@ -207,3 +207,17 @@ formata_nome_senadores <- function(nome_autor) {
 formata_nome_deputados <- function(nome_autor) {
   paste0('Dep. ', nome_autor)
 }
+
+#' @title Padroniza um texto
+#' @description Recebe uma string, remove pontuações e 
+#' transforma as letras em minúsculas
+#' @param string String a ser processada
+#' @return String sem acentos e pontuações
+padroniza_string <- function(string) {
+  return(
+    iconv(string, 
+        from="UTF-8", 
+        to="ASCII//TRANSLIT") %>% 
+    tolower())
+  
+}

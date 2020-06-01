@@ -1,7 +1,8 @@
 {
   "constants": {
       "camara_label": "camara",
-      "senado_label": "senado"
+      "senado_label": "senado",
+      "congresso_label": "congresso"
   },
 
   "eventos_fases":[
