@@ -371,31 +371,34 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 #' @examples
 #'  .altera_data_inicio_plenario_pos_comissao(df, tramitacao_df)
 .altera_data_inicio_plenario_pos_comissao <- function(df, tramitacao_df) {
-  plenario_pos_comissao <- df %>%
+  fase_comissoes <- df %>%
     dplyr::filter(casa == "camara",
                   local == "Comissões",
                   !is.na(data_fim))
   
-  if (plenario_pos_comissao %>% nrow() > 0) {
+  if (fase_comissoes %>% nrow() > 0) {
     eventos_tramitacao_plenario <- tramitacao_df %>% 
-      dplyr::filter(data_hora <= plenario_pos_comissao$data_fim,
+      dplyr::filter(data_hora <= fase_comissoes$data_fim,
                     casa == "camara",
                     local == "Plenário") %>% 
       dplyr::filter(stringr::str_detect(evento, "alteracao_de_regime|designado_relator"))
     
     if (eventos_tramitacao_plenario %>% nrow() == 0) {
       primeiro_evento_plenario_pos_comissao <- tramitacao_df %>% 
-        dplyr::filter(data_hora >= plenario_pos_comissao$data_fim,
+        dplyr::filter(data_hora >= fase_comissoes$data_fim,
                       casa == "camara",
                       local == "Plenário") %>% 
         head(1) %>% 
         dplyr::pull(data_hora)
       
-      if (length(primeiro_evento_plenario_pos_comissao)) {
+      if (length(primeiro_evento_plenario_pos_comissao) != 0) {
         df <- df %>% 
           dplyr::mutate(data_inicio = dplyr::if_else(casa == "camara" & local == "Plenário",
                                                      primeiro_evento_plenario_pos_comissao,
                                                      data_inicio))
+      } else {
+        df <- df %>% 
+          .corrige_fase_plenario_pre_comissoes()
       }
     }
   }
@@ -418,5 +421,36 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
       dplyr::right_join(congresso_env$fases_global, by = c("local", "fase_global")) %>%
       dplyr::ungroup()
   }
+  return(df)
+}
+
+#' @title Ignora fase de plenário caso as comissões ainda não tenham sido encerradas/finalizadas
+#' @description Caso haja detecção de eventos de plenário anteriores a fase de comissões (ainda não encerrada), passa
+#' a ignorar as datas de plenário uma vez que efetivamente, em termos de progresso, essa fase ainda não iniciou. E 
+#' só se iniciará após a fase de comissões.
+#' @param df Dataframe com o formato do progresso
+#' @return Dataframe do progresso a data da fase de plenário para a Câmara corrigida
+#' @examples
+#'  .corrige_fase_plenario_pre_comissoes(df)
+.corrige_fase_plenario_pre_comissoes <- function(df) {
+  data_fim_plenario <- df %>% dplyr::filter(local == "Plenário", casa == "camara") %>% dplyr::pull(data_fim)
+  data_fim_comissoes <- df %>% dplyr::filter(local == "Comissões", casa == "camara") %>% dplyr::pull(data_fim)
+  
+  if ((length(data_fim_plenario) != 0) & (length(data_fim_comissoes) != 0)) {
+    if (data_fim_plenario < data_fim_comissoes) {
+      df <- df %>%
+        dplyr::mutate(
+          data_inicio = ifelse(casa == "camara" & local == "Plenário",
+                               NA,
+                               data_inicio),
+          data_fim = ifelse(casa == "camara" & local == "Plenário",
+                            NA,
+                            data_fim)
+        ) %>% 
+        dplyr::mutate(data_inicio = as.POSIXct(data_inicio, origin = "1970-01-01"),
+                      data_fim = as.POSIXct(data_fim, origin = "1970-01-01"))
+    }
+  }
+  
   return(df)
 }
