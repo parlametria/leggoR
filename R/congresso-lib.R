@@ -164,12 +164,16 @@ generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE)
 
 #' @title Retorna um progresso de uma mpv
 #' @description Retorna um dataframe contendo os dados sobre o progresso de uma mpv
-#' @param tramitacao_df Dataframe processessado da tramitação
+#' @param tramitacao_df Dataframe processado da tramitação
+#' @param proposicao_df Dataframe processado da proposição (metadados)
 #' @return Dataframe contendo o progresso
 #' @export
-generate_progresso_df_mpv <- function(tramitacao_df) {
+generate_progresso_df_mpv <- function(tramitacao_df, proposicao_df) {
+  ano_mpv <- proposicao_df %>% head(1) %>% dplyr::pull(ano)
+  
   tramitacao_df <-
     tramitacao_df %>%
+    .remove_eventos_anos_anteriores_mpv(ano_mpv) %>% 
     dplyr::filter(casa == 'senado') %>% 
     dplyr::arrange(data_hora) %>%
     dplyr::mutate(fase_global =
@@ -371,11 +375,11 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 #' @examples
 #'  .corrige_eventos_mpv_cong_remoto(tramitacao_df)
 .corrige_eventos_mpv_cong_remoto <- function(tramitacao_df) {
-  cong_remoto_inicio <- congresso_env$congresso_remoto$data_inicio
+  cong_remoto_inicio <- congresso_env$congresso_remoto$data_mudanca_mpvs
   
   tramitacao_df <- tramitacao_df %>% 
     dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>%
-    dplyr::mutate(fase_global = dplyr::if_else(data > cong_remoto_inicio,
+    dplyr::mutate(fase_global = dplyr::if_else(data >= cong_remoto_inicio,
                                                 dplyr::if_else(fase_global == "Comissão Mista",
                                                                "Congresso Nacional",
                                                                fase_global),
@@ -476,4 +480,20 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
   }
   
   return(df)
+}
+
+#' @title Ignora eventos ocorridos em um ano anterior ao ano de apresentação da MPV
+#' @description Ignora eventos que ocorreram em anos anteriores ao ano de apresentação da MPV
+#' @param tramitacao_df Dataframe da tramitação processada da proposiçao.
+#' @param ano_mpv Ano de apresentação da MPV
+#' @return Dataframe da tramitação com os eventos de anos anteriores ignorados
+#' @examples
+#'  .remove_eventos_anos_anteriores_mpv(tramitacao_df)
+.remove_eventos_anos_anteriores_mpv <- function(tramitacao_df, ano_mpv) {
+  tramitacao_df <- tramitacao_df %>% 
+    dplyr::mutate(ano = format(as.Date(data_hora), "%Y")) %>% 
+    dplyr::filter(ano >= ano_mpv) %>% 
+    dplyr::select(-ano)
+  
+  return(tramitacao_df)
 }
