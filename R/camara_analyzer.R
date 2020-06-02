@@ -205,11 +205,18 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   virada_de_casa <-
     proc_tram_df %>%
     dplyr::filter(evento == 'virada_de_casa')
+  
+  remetida_sancao <- 
+    proc_tram_df %>% 
+    dplyr::filter(evento == 'remetida_a_sancao_promulgacao')
 
-  if(nrow(virada_de_casa) == 1){
+  if(nrow(virada_de_casa) == 1 & nrow(remetida_sancao) != 1){
     proc_tram_df <-
     proc_tram_df[1:get_linha_virada_de_casa(proc_tram_df),]
-  }else {
+  } else if (nrow(remetida_sancao) == 1) {
+    proc_tram_df <-
+      proc_tram_df[1:get_linha_remetida_a_sancao_promulgacao(proc_tram_df),]
+  } else {
     index_of_sancao <-
       get_linha_finalizacao_tramitacao(proc_tram_df)
     proc_tram_df <-
@@ -293,9 +300,11 @@ extract_local_global_in_camara <- function(tramitacao_com_fases) {
     dplyr::mutate(
       local =
         dplyr::case_when(
-          (stringr::str_detect(tolower(texto_tramitacao), "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)")) ~ 'Presidência da República',
+          (stringr::str_detect(tolower(texto_tramitacao), "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)") |
+             stringr::str_detect(tolower(evento), "remetida_a_sancao_promulgacao")) ~ 'Presidência da República',
           (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario) & sigla_local == "PLEN" |
              (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario_definitivo))) ~ "Plenário",
+          (evento == "apresentacao_pl" & sigla_local == "PLEN") ~ "Plenário",
           sigla_local != "PLEN" & (sigla_local %in% camara_env$comissoes$siglas_comissoes_antigas | sigla_local %in% camara_env$comissoes$siglas_comissoes | stringr::str_detect(tolower(sigla_local), "^pl"))  ~ "Comissões"))
 }
 

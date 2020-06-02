@@ -269,7 +269,6 @@ extract_comissoes_Senado <- function(df) {
   CCJ
   CCT
   CDH
-  CDIR
   CDR
   CE
   CI
@@ -293,7 +292,6 @@ extract_comissoes_Senado <- function(df) {
   de Constituição, Justiça e Cidadania
   de Ciência, Tecnologia, Inovação, Comunicação e Informática
   de Direitos Humanos e Legislação Participativa
-  Diretora
   de Desenvolvimento Regional e Turismo
   de Educação, Cultura e Esporte
   de Serviços de Infraestrutura
@@ -608,6 +606,10 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
 
   index_of_final <-
     get_linha_finalizacao_tramitacao(proc_tram_df)
+  
+  evento_sancao_promulgacao <- proc_tram_df %>% 
+    dplyr::count(evento) %>% 
+    dplyr::filter(str_detect(evento, "remetida_a_sancao_promulgacao|transformada_lei"))
 
   if (nrow(virada_de_casa) == 1) {
     index_of_camara <-
@@ -618,8 +620,10 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
         proc_tram_df[1:index_of_final,]
 
     } else {
-      proc_tram_df <-
-        proc_tram_df[1:index_of_camara,]
+      if (evento_sancao_promulgacao %>% nrow() == 0) {
+        proc_tram_df <-
+          proc_tram_df[1:index_of_camara,]
+      }
     }
 
   } else{
@@ -654,11 +658,21 @@ extract_local_global_in_senado <- function(data_tramitacao) {
   fase_global_constants <- senado_env$fase_global_plenario	
   fase_global_presidencia <- senado_env$fase_global_sancao	
   
-  data_tramitacao %>%	
-    dplyr::mutate(	
-      local =	
-        dplyr::case_when(	
-          situacao_descricao_situacao == fase_global_presidencia$situacao_sancao | fase_global == 'Promulgação/Veto' ~ senado_constants$presidencia,	
-          (stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) & sigla_local == "PLEN") ~ senado_constants$plenario,	
-          sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes & (!stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)) ~ senado_constants$comissoes))	
+  data_tramitacao %>%
+    dplyr::mutate(
+      local =
+        dplyr::case_when(
+          situacao_descricao_situacao == fase_global_presidencia$situacao_sancao |
+            fase_global == 'Promulgação/Veto' ~ senado_constants$presidencia,
+          (
+            stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) &
+              (sigla_local == "PLEN" | sigla_local == senado_constants$sigla_slsf)
+          ) ~ senado_constants$plenario,
+          (evento == "apresentacao_pl" & sigla_local == senado_constants$sigla_slsf) ~ senado_constants$plenario,
+          sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes &
+            (
+              !stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)
+            ) ~ senado_constants$comissoes
+        )
+    )	
 } 
