@@ -15,7 +15,7 @@ variables:
   COMPOSE_CMD: docker-compose -f docker-compose.yml
   
 before_script:
-  - apk add --no-cache docker-compose
+  - apk add python3-dev py3-pip docker-cli libffi-dev openssl-dev gcc libc-dev make && pip3 --no-cache install python-dotenv docker-compose
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
   - export PKG_IMAGE_TAG=$CONTAINER_TEST_IMAGE
 
