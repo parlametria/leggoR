@@ -375,11 +375,21 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 #' @examples
 #'  .corrige_eventos_mpv_cong_remoto(tramitacao_df)
 .corrige_eventos_mpv_cong_remoto <- function(tramitacao_df) {
-  cong_remoto_inicio <- congresso_env$congresso_remoto$data_mudanca_mpvs
+  inicio_novo_regime_mpvs <- congresso_env$congresso_remoto$data_mudanca_mpvs
   
+  tem_eventos_pos_mudanca_regime <- tramitacao_df %>% 
+    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>% 
+    dplyr::filter(data >= inicio_novo_regime_mpvs) %>% 
+    nrow()
+  
+  comissao_instalada <- tramitacao_df %>% 
+    dplyr::filter(str_detect(evento, "comissao_instalada")) %>% 
+    nrow()
+
   tramitacao_df <- tramitacao_df %>% 
     dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>%
-    dplyr::mutate(fase_global = dplyr::if_else(data >= cong_remoto_inicio,
+    dplyr::mutate(fase_global = dplyr::if_else(data >= inicio_novo_regime_mpvs | 
+                                                 (tem_eventos_pos_mudanca_regime > 0 & comissao_instalada == 0),
                                                 dplyr::if_else(fase_global == "Comissão Mista",
                                                                "Congresso Nacional",
                                                                fase_global),
