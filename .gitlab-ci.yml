@@ -11,7 +11,7 @@ stages:
 
 variables:
   DOCKER_HOST: tcp://docker:2375/
-  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:gitlab-ci
+  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:gitlab-ci-dev	
   COMPOSE_CMD: docker-compose -f docker-compose.yml
   
 before_script:
