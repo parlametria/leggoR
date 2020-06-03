@@ -32,7 +32,6 @@ library(tidyverse)
                    sigla <- lista_att[1])
   
   lista_att <- str_split(lista_att[length(lista_att)], "/")[[1]]
-  print(lista_att)
   
   if (length(lista_att) == 2) {
     numero = lista_att[1]
@@ -62,57 +61,66 @@ fetch_id_by_nome_formal <- function(nome_formal, casa) {
   print(paste0("Baixando id a partir de nome formal ", nome_formal, " na casa ", casa, "\n..."))
   library(rcongresso)
   
-  constants <-
-    jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))$constants
-  
-  params <- .process_inputs(nome_formal)
-  
-  casa <- .process_casa(casa)
-  id <- NA
-  
-  if (constants$camara_label == casa) {
-    prop <- fetch_proposicao_camara(
-      siglaTipo = params$sigla,
-      numero = params$numero,
-      ano = params$ano
-    )
+  id <- tryCatch({
+    constants <-
+      jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))$constants
     
-    if (nrow(prop) > 0) {
-      id <- prop %>% 
-        pull(id)
-    }
+    params <- .process_inputs(nome_formal)
     
-  } else if (constants$senado_label == casa) {
-    prop <-
-      fetch_proposicao_senado_sigla(params$sigla, params$numero, params$ano)
+    casa <- .process_casa(casa)
+    id <- NA
     
-    if (nrow(prop) > 0) {
-      id <- prop %>% 
-        pull(codigo_materia)
-    }
-    
-  } else if (constants$congresso_label == casa) {
-    prop <-
-      fetch_proposicao_senado_sigla(params$sigla, params$numero, params$ano)
-    
-    if (nrow(prop) == 0) {
-      prop <-
-        fetch_proposicao_camara(
-          siglaTipo = params$sigla,
-          numero = params$numero,
-          ano = params$ano
-        ) 
+    if (constants$camara_label == casa) {
+      prop <- fetch_proposicao_camara(
+        siglaTipo = params$sigla,
+        numero = params$numero,
+        ano = params$ano
+      )
+      
       if (nrow(prop) > 0) {
         id <- prop %>% 
+          head(1) %>% 
           pull(id)
       }
-    } else {
-      id <- prop %>% 
-        pull(codigo_materia)
+      
+    } else if (constants$senado_label == casa) {
+      prop <-
+        fetch_proposicao_senado_sigla(params$sigla, params$numero, params$ano)
+      
+      if (nrow(prop) > 0) {
+        id <- prop %>% 
+          head(1) %>% 
+          pull(codigo_materia)
+      }
+      
+    } else if (constants$congresso_label == casa) {
+      prop <-
+        fetch_proposicao_senado_sigla(params$sigla, params$numero, params$ano)
+      
+      if (nrow(prop) == 0) {
+        prop <-
+          fetch_proposicao_camara(
+            siglaTipo = params$sigla,
+            numero = params$numero,
+            ano = params$ano
+          ) 
+        if (nrow(prop) > 0) {
+          id <- prop %>% 
+            head(1) %>% 
+            pull(id)
+        }
+      } else {
+        id <- prop %>% 
+          head(1) %>% 
+          pull(codigo_materia)
+      }
     }
-  }
-  return(id)
+    return(id)
+  }, error = function(e){
+    return(NA)
+  })
   
+  return(id)
 }
 
 #' @title Extrai o id de uma url de proposição
