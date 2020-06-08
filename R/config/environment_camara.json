@@ -41,14 +41,15 @@
     {"evento": "parecer_pela_rejeicao", "id_situacao": 322, "regex": "^(?!.*aprova)(?!.*substitutivo)(?!.*emenda).*rejei..o.*$", "tipo":"serie_a"},
     {"evento": "parecer", "id_situacao": 322, "regex": "^(?!.*aprova)(?!.*rejei)(?!.*substitutivo) parecer.*$", "tipo":"serie_a"},
     {"evento": "virada_de_casa", "regex": "(^(remessa|remetido) ao senado federal.*)|(recebido o ofício.* do sf, que comunico que o senado federal aprovou, em revisão.*)", "tipo": "serie_c"},
-    {"evento": "remetida_a_sancao_promulgacao", "regex": "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)|(à promulga..o)", "tipo":"serie_c"},
+    {"evento": "remetida_a_sancao_promulgacao", "regex": "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)|(à promulga..o)|(remessa da mat(é|e)ria à sanção.*)", "tipo":"serie_c"},
     {"evento": "transformada_lei", "regex": "transformado na lei ordinária|promulgada(.)* emenda constitucional", "tipo": "serie_c"},
     {"evento": "vetada_totalmente", "regex": "proposição vetada totalmente", "tipo": "serie_c"},
     {"evento": "parecer_comissao", "regex": "^encaminhada à publicação. parecer da comissão.*", "tipo": "serie_a"},
     {"evento": "req_apresentacao", "regex": "", "tipo": "serie_b"},
     {"evento": "req_deferido", "regex": "", "tipo": "serie_b"},
     {"evento": "req_indeferido", "regex": "", "tipo": "serie_b"},
-    {"evento": "req_arquivado", "regex": "", "tipo": "serie_b"}
+    {"evento": "req_arquivado", "regex": "", "tipo": "serie_b"},
+    {"evento": "req_urgencia_unanime_verbal", "regex": "^.*proposta verbal do presidente.* aprovado.* requerimento de urg.ncia.*$", "tipo": "serie_a"}
   ],
 
   "autor_voto_separado": {
@@ -138,7 +139,7 @@
   },
 
    "plen_global":{
-    "plenario": "(sessão deliberativa extraordinária.*)|(mat.ria n.o apreciad*)|(discussão em turno único.*)|(urgência.*poder executivo.*)|(proferir parecer em plenário.*)|(reformulada de plenário.*)",
+    "plenario": "(sessão deliberativa extraordinária.*)|(mat.ria n.o apreciad*)|(discussão em turno único.*)|(urgência.*poder executivo.*)|(proferir parecer em plenário.*)|(reformulada de plenário.*)|(a mat.ria vai ao senado.*)|(discutiram a mat.ria.*)",
     "plenario_definitivo": "submeta-se.*aprecia.ao do plen.rio"
   },
 

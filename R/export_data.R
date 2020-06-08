@@ -128,7 +128,7 @@ process_pl <- function(row_num, id_camara, id_senado, total_rows, pautas,
   Sys.sleep(sleep_time)
    cat(paste(
      "\n\n--- Processando", row_num, "/", total_rows, "\ncamara:", id_camara,
-     "\nsenado", id_senado, "\n"))
+     "\nsenado:", id_senado, "\n"))
 
   etapas <- list()
   if (!is.na(id_camara)) {
@@ -211,7 +211,7 @@ fetch_props <- function(pls, export_path) {
   },
   error = function(msg) {
   })
-
+  
   res <- list()
   count <- 0
   proposicoes_que_nao_baixaram <- pls
@@ -220,8 +220,10 @@ fetch_props <- function(pls, export_path) {
   while (count < 5 ) {
     cat(paste("\n--- Tentativa ", count + 1,"\n"))
     sleep_time = .DEF_REQ_SLEEP_TIME_IN_SECS^(count+1)
-    res <- append(res, proposicoes_que_nao_baixaram %>% purrr::pmap(process_pl, nrow(proposicoes_que_nao_baixaram), pautas = pautas,
-                                                                    sleep_time = sleep_time))
+    res <- append(res, proposicoes_que_nao_baixaram %>% 
+                    purrr::pmap(process_pl, nrow(proposicoes_que_nao_baixaram), 
+                                pautas = pautas,
+                                sleep_time = sleep_time))
 
     proposicoes <-
       purrr::map_df(res, ~ .$proposicao) %>%
