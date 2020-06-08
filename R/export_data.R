@@ -1,3 +1,5 @@
+congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
+
 #' @title Processa a proposição
 #' @description Realiza todas os processamentos necessários para criar
 #' as tabelas para uma proposição
@@ -83,6 +85,39 @@ adiciona_coluna_pulou <- function(progresso_df) {
     dplyr::select(-fases_faltantes_abaixo)
 }
 
+#' @title Adiciona coluna para indicar se a MPV pulou de fase ou não.
+#' @description Uma MPV pode pular a fase de comissões no período de Congresso Remoto.
+#' @param progresso_df DataFrame com o progresso da tramitação da MPV
+#' @return Dataframe
+adiciona_coluna_pulou_mpv <- function(progresso_df) {
+  cong_remoto_inicio <- congresso_env$congresso_remoto$data_mudanca_mpvs
+  
+  data_fase_camara <- progresso_df %>% 
+    dplyr::filter(fase_global == "Câmara dos Deputados") %>% 
+    dplyr::pull(data_inicio)
+  
+  data_inicio_comissao_mista <- progresso_df %>% 
+    dplyr::filter(fase_global == "Comissão Mista") %>% 
+    dplyr::pull(data_inicio)
+  
+  # Uma MPV pula a fase de comissão mista quando a fase de início do Plenário tiver 
+  # ocorrido durante a pandemia
+  if (length(data_fase_camara) > 0) {
+    if (data_fase_camara > cong_remoto_inicio) {
+      progresso_df <- progresso_df %>% 
+        dplyr::mutate(pulou = dplyr::case_when(
+          fase_global == "Comissão Mista" & 
+            (data_fase_camara >= cong_remoto_inicio &
+            data_inicio >= cong_remoto_inicio) ~ TRUE,
+          fase_global == "Comissão Mista" & is.na(data_inicio) ~ TRUE,
+          T ~ FALSE
+        ))
+    }
+  }
+  
+  return(progresso_df)
+}
+
 #' @title Adiciona locais
 #' @description Adiciona locais faltantes ao progresso
 #' @param progresso_df DataFrame com o progresso da tramitação
@@ -152,8 +187,9 @@ process_pl <- function(row_num, id_camara, id_senado, total_rows, pautas,
   if (nrow(etapas$proposicao) != 0) {
     if (tolower(etapas$proposicao$sigla_tipo) == 'mpv') {
       etapas[["progresso"]] <-
-        agoradigital::generate_progresso_df_mpv(etapas$fases_eventos) %>%
-        dplyr::mutate(local = "", local_casa = "", pulou = FALSE)
+        agoradigital::generate_progresso_df_mpv(etapas$fases_eventos, etapas$proposicao) %>%
+        dplyr::mutate(local = "", local_casa = "") %>% 
+        adiciona_coluna_pulou_mpv()
     }else {
       etapas[["progresso"]] <-
         agoradigital::get_progresso(etapas$proposicao, etapas$fases_eventos) %>%

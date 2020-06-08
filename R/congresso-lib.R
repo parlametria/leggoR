@@ -164,12 +164,16 @@ generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE)
 
 #' @title Retorna um progresso de uma mpv
 #' @description Retorna um dataframe contendo os dados sobre o progresso de uma mpv
-#' @param tramitacao_df Dataframe processessado da tramitação
+#' @param tramitacao_df Dataframe processado da tramitação
+#' @param proposicao_df Dataframe processado da proposição (metadados)
 #' @return Dataframe contendo o progresso
 #' @export
-generate_progresso_df_mpv <- function(tramitacao_df) {
+generate_progresso_df_mpv <- function(tramitacao_df, proposicao_df) {
+  ano_mpv <- proposicao_df %>% head(1) %>% dplyr::pull(ano)
+  
   tramitacao_df <-
     tramitacao_df %>%
+    .remove_eventos_anos_anteriores_mpv(ano_mpv) %>% 
     dplyr::filter(casa == 'senado') %>% 
     dplyr::arrange(data_hora) %>%
     dplyr::mutate(fase_global =
@@ -178,7 +182,8 @@ generate_progresso_df_mpv <- function(tramitacao_df) {
                       stringr::str_detect(tolower(texto_tramitacao), "encaminhad(.) ao senado federal") ~ "Senado Federal",
                       stringr::str_detect(tolower(texto_tramitacao), "sancionada") ~ "Sanção Presidencial/Promulgação",
                       dplyr::row_number() == 1 ~ "Comissão Mista")) %>%
-    tidyr::fill(fase_global)
+    tidyr::fill(fase_global) %>% 
+    .corrige_eventos_mpv_cong_remoto()
 
   df <-
     tramitacao_df %>%
@@ -211,7 +216,7 @@ generate_progresso_df_mpv <- function(tramitacao_df) {
     dplyr::ungroup()
 
   df %>%
-    tidyr::fill(casa, prop_id) %>%
+    tidyr::fill(casa, prop_id, .direction = "downup") %>%
     unique() %>%
     dplyr::mutate(data_fim =
                     dplyr::if_else(fase_global == "Sanção Presidencial/Promulgação",
@@ -362,6 +367,38 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
   return(tramitacao_df)
 }
 
+#' @title Corrige o local de tramitação de eventos durante o período do Congresso Remoto (Pandemia Covid-19)
+#' @description Com a não instalação/utilização de comissões permanentes durante o período do Congresso Remoto esta função
+#' corrige o local de tramitação de eventos durante o período do Congresso Remoto (ignorando comissões).
+#' @param tramitacao_df Dataframe da tramitação processada da proposiçao com a coluna fase_global
+#' @return Dataframe da tramitação com a correção dos eventos de comissão na etapa de fase_global
+#' @examples
+#'  .corrige_eventos_mpv_cong_remoto(tramitacao_df)
+.corrige_eventos_mpv_cong_remoto <- function(tramitacao_df) {
+  inicio_novo_regime_mpvs <- congresso_env$congresso_remoto$data_mudanca_mpvs
+  
+  tem_eventos_pos_mudanca_regime <- tramitacao_df %>% 
+    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>% 
+    dplyr::filter(data >= inicio_novo_regime_mpvs) %>% 
+    nrow()
+  
+  comissao_instalada <- tramitacao_df %>% 
+    dplyr::filter(str_detect(evento, "comissao_instalada")) %>% 
+    nrow()
+
+  tramitacao_df <- tramitacao_df %>% 
+    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>%
+    dplyr::mutate(fase_global = dplyr::if_else(data >= inicio_novo_regime_mpvs | 
+                                                 (tem_eventos_pos_mudanca_regime > 0 & comissao_instalada == 0),
+                                                dplyr::if_else(fase_global == "Comissão Mista",
+                                                               "Congresso Nacional",
+                                                               fase_global),
+                                                fase_global)) %>% 
+    dplyr::select(-data)
+    
+  return(tramitacao_df)
+}
+
 #' @title Corrige data inicial de tramitação no plenário da Câmara após a ocorrência da fase de comissões
 #' @description A partir dos eventos de alteração de regime e designação de relator, altera a data de início 
 #' da tramitação em plenário considerando o primeiro evento após a fase de comissões.
@@ -453,4 +490,20 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
   }
   
   return(df)
+}
+
+#' @title Ignora eventos ocorridos em um ano anterior ao ano de apresentação da MPV
+#' @description Ignora eventos que ocorreram em anos anteriores ao ano de apresentação da MPV
+#' @param tramitacao_df Dataframe da tramitação processada da proposiçao.
+#' @param ano_mpv Ano de apresentação da MPV
+#' @return Dataframe da tramitação com os eventos de anos anteriores ignorados
+#' @examples
+#'  .remove_eventos_anos_anteriores_mpv(tramitacao_df)
+.remove_eventos_anos_anteriores_mpv <- function(tramitacao_df, ano_mpv) {
+  tramitacao_df <- tramitacao_df %>% 
+    dplyr::mutate(ano = format(as.Date(data_hora), "%Y")) %>% 
+    dplyr::filter(ano >= ano_mpv) %>% 
+    dplyr::select(-ano)
+  
+  return(tramitacao_df)
 }

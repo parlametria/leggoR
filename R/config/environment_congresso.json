@@ -127,6 +127,7 @@
     {"evento": "aprovacao_materia", "titulo_evento": "Aprovação da Matéria" , "nivel": 1}
   ],
     "congresso_remoto": {
-      "data_inicio": "2020-03-17"
+      "data_inicio": "2020-03-17",
+      "data_mudanca_mpvs": "2020-04-01"
   }
 }

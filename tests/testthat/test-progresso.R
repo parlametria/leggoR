@@ -57,7 +57,7 @@ test <- function() {
     etapas %<>% append(list(process_etapa(id_mpv_tramitacao_encerrada, "senado", pautas = pautas)))
     etapas %<>% purrr::pmap(dplyr::bind_rows)
     progresso_mpv_tramitacao_encerrada <-
-      agoradigital::generate_progresso_df_mpv(etapas$fases_eventos) %>% 
+      agoradigital::generate_progresso_df_mpv(etapas$fases_eventos, etapas$proposicao) %>% 
       dplyr::mutate(data_inicio = as.character(data_inicio),
                     data_fim = as.character(data_fim))
     
