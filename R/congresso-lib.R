@@ -90,11 +90,20 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df, sigla){
 
 #' @title Recupera o progresso de um PL
 #' @description Retorna um dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
-#' @param df Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @param tramitacao_df Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
+#' @param sigla Sigla da proposição (Ex: PL, PEC, etc)
+#' @param flag_cong_remoto TRUE se o filtro do congresso remoto deve estar ativo ou não. O filtro
+#' do congresso remoto remove eventos da tramitação que ocorreram em comissões durante o período em
+#' que todas as deliberações não ocorreram em comissões remotas.
 #' @return Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
 #' @examples
-#'  generate_progresso_df(fetch_tramitacao(2121442, 'camara', T))
-generate_progresso_df <- function(tramitacao_df, sigla){
+#'  generate_progresso_df(tramitacao_df)
+generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE) {
+  
+  if (flag_cong_remoto) {
+    tramitacao_df<- tramitacao_df %>% 
+      .remove_eventos_comissao_cong_remoto()
+  }
   
   df <-
     tramitacao_df %>%
@@ -328,6 +337,29 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
     }
   }
   return(df)
+}
+
+#' @title Ignora eventos ocorridos em Comissões durante o período do Congresso Remoto (Pandemia Covid-19).
+#' @description Com a não instalação/utilização de comissões permanentes durante o período do Congresso Remoto esta função
+#' ignora do dataframe de tramitações os eventos com local classificado como Comissões.
+#' @param tramitacao_df Dataframe da tramitação processada da proposiçao.
+#' @return Dataframe da tramitação com os eventos de comissão ignorados.
+#' @examples
+#'  .remove_eventos_comissao_cong_remoto(tramitacao_df)
+.remove_eventos_comissao_cong_remoto <- function(tramitacao_df) {
+  cong_remoto_inicio <- congresso_env$congresso_remoto$data_inicio
+  
+  tramitacao_df <- tramitacao_df %>% 
+    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>% 
+    dplyr::mutate(fase_comissoes_remoto = dplyr::if_else(data > cong_remoto_inicio,
+                                                         dplyr::if_else(!is.na(local) & local == "Comissões",
+                                                                        TRUE,
+                                                                        FALSE),
+                                                         FALSE)) %>% 
+    dplyr::filter(!fase_comissoes_remoto) %>% 
+    dplyr::select(-data, -fase_comissoes_remoto)
+  
+  return(tramitacao_df)
 }
 
 #' @title Corrige data inicial de tramitação no plenário da Câmara após a ocorrência da fase de comissões
