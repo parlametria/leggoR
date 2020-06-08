@@ -4,7 +4,7 @@ source(here::here("scripts/proposicoes/process_proposicao.R"))
 
 .HELP <- "
 Usage:
-Rscript process_proposicao.R -u <url_lista_novas_proposicoes> -p <url_lista_proposicoes_atuais> -e <export_filepath>
+Rscript export_proposicoes_interesse_congresso_remoto.R -u <url_lista_novas_proposicoes> -p <url_lista_proposicoes_atuais> -e <export_filepath>
 url_lista_novas_proposicoes: Link para o csv com as proposições enviadas pela Pulso
 url_lista_proposicoes_atuais: Link para o csv com as proposições já existentes do Congresso Remoto
 export_filepath: Caminho para exportação das anotação
