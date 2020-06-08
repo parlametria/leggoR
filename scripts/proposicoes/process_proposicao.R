@@ -1,5 +1,20 @@
 library(tidyverse)
 
+
+#' @title Filtra as proposições pelo texto da coluna Urgência
+#' @description Recebe um dataframe e o regime de tramitação de interesse e
+#' retorna as linhas que possuem este regime.
+#' @param df Dataframe a ser filtrado
+#' @return Dataframe filtrado pelo regime de tramitação
+.filter_proposicoes_by_texto_urgencia <- function(df) {
+  urgencia_texto_regex <- "(urgência (– (despacho|requerimento)|urgentíssima)|transformad.* lei.* 14006/2020)"
+  
+  return(
+    df %>%
+      filter(str_detect(tolower(urgencia), urgencia_texto_regex))
+  )
+}
+
 #' @title Filtra as proposições pelo regime de tramitação
 #' @description Recebe um dataframe e o regime de tramitação de interesse e
 #' retorna as linhas que possuem este regime.
@@ -65,19 +80,32 @@ library(tidyverse)
 #' adicionada uma coluna id correspondente
 #' @param url URL do dataframe de proposições. Deve conter as colunas
 #' nome, casa, link_casa
+#' @param filter_by_regime_tramitacao Flag indicando se as proposições devem
+#' ser filtradas pelo regime de tramitação ou não.
 #' @return Mesmo csv de entrada contendo nova coluna id da proposição.
-.mapeia_ids_proposicoes <- function(url) {
+.mapeia_ids_proposicoes <- function(url, filter_by_regime_tramitacao = T) {
   source(here::here("scripts/proposicoes/fetcher_proposicao.R"))
   
   proposicoes <- read_csv(url) %>%
-    agoradigital::rename_table_to_underscore() %>%
-    select(nome,
-           casa,
-           link_casa = `link casa`,
-           regime_tramitacao = `regime de tramitação`,
-           ementa) %>% 
-    .filter_proposicoes_by_regime_tramitacao("URGENTE")
+    agoradigital::rename_table_to_underscore()
   
+  if (filter_by_regime_tramitacao) {
+    proposicoes <- proposicoes %>%
+      select(nome,
+             casa,
+             link_casa = `link casa`,
+             regime_tramitacao = `regime de tramitação`,
+             ementa) %>% 
+      .filter_proposicoes_by_regime_tramitacao("URGENTE")
+  } else {
+    proposicoes <- proposicoes %>%
+      select(nome,
+             casa,
+             link_casa = `link casa`,
+             urgencia = `urgência`,
+             ementa) %>% 
+      .filter_proposicoes_by_texto_urgencia()
+  }
   
   proposicoes_com_id <- proposicoes %>% 
     rowwise(.) %>% 
@@ -94,16 +122,21 @@ library(tidyverse)
 #' @param raw_proposicao_url URL do csv das proposições a serem processadas e 
 #' adicionadas
 #' @param processed_proposicao_url URL do csv das proposições já existentes.
+#' @param filter_by_regime_tramitacao Flag indicando se as proposições devem
+#' ser filtradas pelo regime de tramitação ou não.
 #' @return Um só dataframe contendo todas as proposições, novas e existentes.
-processa_planilha_proposicoes <- function(raw_proposicao_url, processed_proposicao_url) {
+processa_planilha_proposicoes <- function(raw_proposicao_url, 
+                                          processed_proposicao_url,
+                                          filter_by_regime_tramitacao = T) {
   old_proposicoes <-
     read_csv(processed_proposicao_url, col_types = cols(.default = "c"))
   
   new_proposicoes <-
-    .mapeia_ids_proposicoes(raw_proposicao_url) %>%
+    .mapeia_ids_proposicoes(raw_proposicao_url, filter_by_regime_tramitacao) %>%
     .formata_dataframe_proposicoes()
   
-  merged_proposicoes <- bind_rows(old_proposicoes, new_proposicoes)
+  merged_proposicoes <- bind_rows(old_proposicoes, new_proposicoes) %>% 
+    distinct()
   
   return(merged_proposicoes)
 }
