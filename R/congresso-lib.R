@@ -351,7 +351,7 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
   
   tramitacao_df <- tramitacao_df %>% 
     dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>% 
-    dplyr::mutate(fase_comissoes_remoto = dplyr::if_else(data > congresso_env$congresso_remoto$data_inicio,
+    dplyr::mutate(fase_comissoes_remoto = dplyr::if_else(data > cong_remoto_inicio,
                                                          dplyr::if_else(!is.na(local) & local == "Comissões",
                                                                         TRUE,
                                                                         FALSE),
