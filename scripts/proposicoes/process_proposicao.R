@@ -7,7 +7,7 @@ library(tidyverse)
 #' @param df Dataframe a ser filtrado
 #' @return Dataframe filtrado pelo regime de tramitação
 .filter_proposicoes_by_texto_urgencia <- function(df) {
-  urgencia_texto_regex <- "(urgência (– (despacho|requerimento)|urgentíssima)|transformad.* lei.* 14006/2020)"
+  urgencia_texto_regex <- "(urgência (– (despacho|requerimento)|urgentíssima)|transformad.* lei.* 14006/2020|requerimento pendente de aprovação)"
   
   return(
     df %>%
@@ -43,6 +43,31 @@ library(tidyverse)
   }
 }
 
+#' @title Recupera os 3 temas mais relevantes de uma proposição
+#' @description Recebe um id e casa e retorna os 3 temas mais relevantes de
+#' uma proposição separados por ';'.
+#' @param id id da proposição
+#' @param casa camara ou senado
+#' @return Temas da proposição separados por ';'.
+.get_temas <- function(id, casa) {
+  
+  print(paste0("Extraindo temas da proposição ", id, " na casa ", casa, "..."))
+  
+  df <- rcongresso::fetch_temas_proposicao(id, casa)
+  
+  if (nrow(df) > 0) {
+    temas <- df %>% arrange(desc(relevancia)) %>%
+      head(3) %>%
+      pull(tema)
+    
+    temas <- paste(temas, collapse = ";")
+    
+    return(temas)
+  } else {
+    return(NA)
+  }
+}
+
 #' @title Processa dataframe intermediário de proposições em 
 #' formato esperado pelo Leggo
 #' @description Recebe um dataframe de proposições processados pela função
@@ -68,6 +93,8 @@ library(tidyverse)
     bind_rows(proposicoes) %>% 
     mutate(id_camara = if_else(casa == "camara", id, as.character(NA)),
            id_senado = if_else(casa == "senado", id, as.character(NA))) %>% 
+    rowwise(.) %>% 
+    mutate(tema = .get_temas(id, casa)) %>% 
     select(-c(id, casa))
   
   return(new_df)
