@@ -7,12 +7,13 @@ library(tidyverse)
 #' @param df Dataframe a ser filtrado
 #' @return Dataframe filtrado pelo regime de tramitação
 .filter_proposicoes_by_texto_urgencia <- function(df) {
-  urgencia_texto_regex <- "(urgência (– (despacho|requerimento)|urgentíssima)|transformad.* lei.* 14006/2020|requerimento pendente de aprovação)"
+  urgencia_texto_regex <-
+    "(urgência (– (despacho|requerimento)|urgentíssima)|transformad.* lei.* 14006/2020|requerimento pendente de aprovação)"
   
-  return(
-    df %>%
-      filter(str_detect(tolower(urgencia), urgencia_texto_regex))
-  )
+  return(df %>%
+           filter(str_detect(
+             tolower(urgencia), urgencia_texto_regex
+           )))
 }
 
 #' @title Filtra as proposições pelo regime de tramitação
@@ -22,10 +23,8 @@ library(tidyverse)
 #' @param regime Nome do regime de tramitação de interesse
 #' @return Dataframe filtrado pelo regime de tramitação
 .filter_proposicoes_by_regime_tramitacao <- function(df, regime) {
-  return(
-    df %>%
-      filter(regime_tramitacao == regime)
-  )
+  return(df %>%
+           filter(regime_tramitacao == regime))
 }
 
 #' @title Mapeia o id da proposição
@@ -50,12 +49,11 @@ library(tidyverse)
 #' @param casa camara ou senado
 #' @return Temas da proposição separados por ';'.
 .get_temas <- function(id, casa) {
-  
   print(paste0("Extraindo temas da proposição ", id, " na casa ", casa, "..."))
   
   df <- rcongresso::fetch_temas_proposicao(id, casa)
   
-  if (nrow(df) > 0) {
+  if (!is.null(df) & nrow(df) > 0) {
     temas <- df %>% arrange(desc(relevancia)) %>%
       head(3) %>%
       pull(tema)
@@ -64,106 +62,189 @@ library(tidyverse)
     
     return(temas)
   } else {
-    return(NA)
+    return(as.character(NA))
   }
 }
 
-#' @title Processa dataframe intermediário de proposições em 
+#' @title Processa dataframe intermediário de proposições em
 #' formato esperado pelo Leggo
 #' @description Recebe um dataframe de proposições processados pela função
 #' mapeia_ids_proposicoes() e processa-o no formato aceito pelo leggo
 #' @param proposicoes Dataframe contendo colunas id, casa, nome e ementa
 #' @return Dataframe de proposições formatados.
 .formata_dataframe_proposicoes <- function(proposicoes) {
-  new_df <- tribble(~ proposicao,
-                    ~ id_camara,
-                    ~ id_senado,
-                    ~ apelido,
-                    ~ tema,
-                    ~ advocacy_link,
-                    ~ keywords,
-                    ~ tipo_agenda,
-                    ~ explicacao_projeto)
+  new_df <- tribble(
+    ~ proposicao,
+    ~ id_camara,
+    ~ id_senado,
+    ~ apelido,
+    ~ tema,
+    ~ advocacy_link,
+    ~ keywords,
+    ~ tipo_agenda,
+    ~ explicacao_projeto
+  )
   
-  proposicoes <- proposicoes %>% 
-    select(id, proposicao = nome, casa,
+  proposicoes <- proposicoes %>%
+    select(id,
+           proposicao = nome,
+           casa,
            explicacao_projeto = ementa)
   
-  new_df <- new_df %>% 
-    bind_rows(proposicoes) %>% 
-    mutate(id_camara = if_else(casa == "camara", id, as.character(NA)),
-           id_senado = if_else(casa == "senado", id, as.character(NA))) %>% 
-    rowwise(.) %>% 
-    mutate(tema = .get_temas(id, casa)) %>% 
+  new_df <- new_df %>%
+    bind_rows(proposicoes) %>%
+    mutate(
+      id_camara = if_else(casa == "camara", id, as.character(NA)),
+      id_senado = if_else(casa == "senado", id, as.character(NA))
+    ) %>%
     select(-c(id, casa))
   
   return(new_df)
   
 }
 
-#' @title Mapeia ids das proposições a partir do nome formal 
+#' @title Mapeia ids das proposições a partir do nome formal
 #' ou link da proposição
-#' @description Recebe uma url para um csv e retorna esse mesmo csv 
+#' @description Recebe uma url para um csv e retorna esse mesmo csv
 #' adicionada uma coluna id correspondente
 #' @param url URL do dataframe de proposições. Deve conter as colunas
 #' nome, casa, link_casa
 #' @param filter_by_regime_tramitacao Flag indicando se as proposições devem
 #' ser filtradas pelo regime de tramitação ou não.
 #' @return Mesmo csv de entrada contendo nova coluna id da proposição.
-.mapeia_ids_proposicoes <- function(url, filter_by_regime_tramitacao = T) {
-  source(here::here("scripts/proposicoes/fetcher_proposicao.R"))
-  
-  proposicoes <- read_csv(url) %>%
-    agoradigital::rename_table_to_underscore()
-  
-  if (filter_by_regime_tramitacao) {
-    proposicoes <- proposicoes %>%
-      select(nome,
-             casa,
-             link_casa = `link casa`,
-             regime_tramitacao = `regime de tramitação`,
-             ementa) %>% 
-      .filter_proposicoes_by_regime_tramitacao("URGENTE")
-  } else {
-    proposicoes <- proposicoes %>%
-      select(nome,
-             casa,
-             link_casa = `link casa`,
-             urgencia = `urgência`,
-             ementa) %>% 
-      .filter_proposicoes_by_texto_urgencia()
+.mapeia_ids_proposicoes <-
+  function(url, filter_by_regime_tramitacao = T) {
+    source(here::here("scripts/proposicoes/fetcher_proposicao.R"))
+    
+    proposicoes <- read_csv(url) %>%
+      agoradigital::rename_table_to_underscore()
+    
+    names(proposicoes) <- names(proposicoes) %>% 
+      iconv(to="ASCII//TRANSLIT") %>% 
+      gsub(" ", "_", .)
+    
+    if (filter_by_regime_tramitacao) {
+      proposicoes <- proposicoes %>%
+        select(nome,
+               casa,
+               link_casa,
+               regime_tramitacao = regime_de_tramitacao,
+               ementa) %>%
+        .filter_proposicoes_by_regime_tramitacao("URGENTE")
+    } else {
+      proposicoes <- proposicoes %>%
+        select(nome,
+               casa,
+               link_casa,
+               urgencia,
+               ementa) %>%
+        .filter_proposicoes_by_texto_urgencia()
+    }
+    
+    proposicoes_com_id <- proposicoes %>%
+      rowwise(.) %>%
+      mutate(id = .fetch_id(link_casa, nome, casa)) %>%
+      mutate(casa = .process_casa(casa))
+    
+    return(proposicoes_com_id)
+    
   }
-  
-  proposicoes_com_id <- proposicoes %>% 
-    rowwise(.) %>% 
-    mutate(id = .fetch_id(link_casa, nome, casa)) %>% 
-    mutate(casa = .process_casa(casa))
-  
-  return(proposicoes_com_id)
+
+#' @title Recupera os temas das proposições já processadas
+#' @description Recebe o id_camara e id_senado e recupera o tema preenchido pela
+#' Câmara (caso exista o id) ou no Senado.
+#' @param id_camara Id da proposição na Câmara
+#' @param id_senado Id da proposição no Senado
+#' @return Os temas de uma proposição.
+.get_temas_processed_proposicoes <- function(id_camara, id_senado) {
+  if (!is.na(id_camara)) {
+    return(.get_temas(id_camara, "camara"))
+    
+  } else if (!is.na(id_senado)) {
+    return(.get_temas(id_senado, "senado"))
+    
+  }
+  return (as.character(NA))
   
 }
 
+#' @title Recupera as ementas das proposições já processadas
+#' @description Recebe o id_camara e id_senado e recupera a ementa
+#' @param id_camara Id da proposição na Câmara
+#' @param id_senado Id da proposição no Senado
+#' @return A ementa de uma proposição.
+.fetch_ementa <- function(id_camara, id_senado) {
+  print(paste0("Extraindo ementa da proposição id_camara ", id_camara, " e id_senado ", id_senado, "..."))
+  
+  if (!is.na(id_camara)) {
+    return(rcongresso::fetch_proposicao_camara(id_camara) %>% 
+             pull(ementa))
+    
+  } else if (!is.na(id_senado)) {
+    return(rcongresso::fetch_proposicao_senado(id_senado) %>% 
+             pull(ementa_materia))
+    
+  }
+  return (as.character(NA))
+  
+}
+
+#' @title Processa o nome formal das proposições
+#' @description Recebe um nome formal e retira a sigla da casa, caso exista.
+#' @param nome_formal Nome formal da proposição
+#' @return Nome formal processado.
+.processa_nome_formal <- function(nome_formal) {
+  source(here::here("scripts/proposicoes/fetcher_proposicao.R"))
+  
+  campos <- .process_inputs(nome_formal)
+  
+  nome_processado <-
+    paste0(campos$sigla, " ", campos$numero, "/", campos$ano)
+  
+  return(nome_processado)
+}
+
 #' @title Une duas planilhas a partir de suas urls
-#' @description Recebe a url das proposições novas a serem adicionadas, executa o 
+#' @description Recebe a url das proposições novas a serem adicionadas, executa o
 #' processamento e as unem às proposições já existentes a partir de sua url.
-#' @param raw_proposicao_url URL do csv das proposições a serem processadas e 
-#' adicionadas
+#' @param raw_proposicao_url_camara URL do csv das proposições a serem processadas e
+#' adicionadas da Câmara
+#' @param raw_proposicao_url_senado URL do csv das proposições a serem processadas e
+#' adicionadas do Senado
 #' @param processed_proposicao_url URL do csv das proposições já existentes.
 #' @param filter_by_regime_tramitacao Flag indicando se as proposições devem
 #' ser filtradas pelo regime de tramitação ou não.
 #' @return Um só dataframe contendo todas as proposições, novas e existentes.
-processa_planilha_proposicoes <- function(raw_proposicao_url, 
+processa_planilha_proposicoes <- function(raw_proposicao_url_camara,
+                                          raw_proposicao_url_senado,
                                           processed_proposicao_url,
-                                          filter_by_regime_tramitacao = T) {
+                                          filter_by_regime_tramitacao = F) {
   old_proposicoes <-
     read_csv(processed_proposicao_url, col_types = cols(.default = "c"))
   
   new_proposicoes <-
-    .mapeia_ids_proposicoes(raw_proposicao_url, filter_by_regime_tramitacao) %>%
+    bind_rows(
+      .mapeia_ids_proposicoes(raw_proposicao_url_camara, filter_by_regime_tramitacao),
+      .mapeia_ids_proposicoes(raw_proposicao_url_senado, filter_by_regime_tramitacao)
+    ) %>%
     .formata_dataframe_proposicoes()
   
-  merged_proposicoes <- bind_rows(old_proposicoes, new_proposicoes) %>% 
-    distinct()
+  merged_proposicoes <-
+    bind_rows(old_proposicoes, new_proposicoes) %>%
+    distinct(id_camara, id_senado, .keep_all = T) %>% 
+    rowwise(.) %>%
+    mutate(
+      tema = if_else(
+        is.na(tema),
+        .get_temas_processed_proposicoes(id_camara, id_senado),
+        tema
+      ),
+      proposicao = .processa_nome_formal(proposicao),
+      explicacao_projeto = if_else(
+        is.na(explicacao_projeto),
+        .fetch_ementa(id_camara, id_senado),
+        explicacao_projeto)
+    ) 
   
   return(merged_proposicoes)
 }
