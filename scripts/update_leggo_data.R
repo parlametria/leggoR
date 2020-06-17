@@ -210,8 +210,10 @@ if (casa == 'senado') {
 
     print(paste("Adicionando ",nrow(new_docs_data)," novos documentos."))
     updated_docs <-
-      dplyr::bind_rows(current_docs, new_docs_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento)) %>%
-      dplyr::distinct(id_documento, .keep_all = TRUE)
+      dplyr::bind_rows(current_docs %>%
+                         dplyr::mutate_all(as.character),
+                       new_docs_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento)) %>%
+      dplyr::distinct(id_documento, id_principal, casa, .keep_all = TRUE)
 
     print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
 
@@ -223,14 +225,16 @@ if (casa == 'senado') {
     matched_autores_data <-
       merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id") %>%
       dplyr::mutate(nome = purrr::map_chr(ultimo_status_nome_eleitoral, ~ simpleCap(.x))) %>%
-      dplyr::select(id_autor, nome, tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor)
+      dplyr::select(id_autor, nome, tipo_autor, uri_autor, id_documento, casa, partido, uf, cod_tipo_autor)
 
     updated_autores_docs <-
-      dplyr::bind_rows(current_autores, matched_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento)) %>%
+      dplyr::bind_rows(current_autores %>%
+                         dplyr::mutate_all(as.character),
+                       matched_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento)) %>%
       dplyr::filter(tipo_autor == "Deputado" & casa == "camara") %>%
-      dplyr::distinct(id_autor, id_documento, .keep_all = TRUE) %>%
-      dplyr::left_join(updated_docs %>% distinct(id_documento, id_principal),
+      dplyr::left_join(updated_docs %>% dplyr::distinct(id_documento, id_principal),
                        by = c("id_documento")) %>%
+      dplyr::distinct(id_autor, id_documento, id_principal, .keep_all = TRUE) %>%
       dplyr::select(id_autor, id_documento, id_principal, dplyr::everything())
 
     print("Salvando documentos e autores.")
