@@ -216,11 +216,11 @@
   },
 
   "tipos_documentos": [
-    {"tipo": "Prop. Original / Apensada", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de convers.o|proposta de emenda . constitui..o|mpv|plc|pls|pl"},
-    {"tipo": "Emenda", "regex": "^emenda|^subemenda"},
-    {"tipo": "Parecer", "regex": "^parecer|^complementa..o de voto|^reda..o final|^substitutivo"},
-    {"tipo": "Requerimento", "regex": "^requerimento|rqe|rqs|rqj|rra"}, 
-    {"tipo": "Voto em Separado", "regex": "^voto em separado"}
+    {"tipo": "Prop. Original / Apensada", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de convers.o|proposta de emenda . constitui..o|mpv|plc|pls|pl", "peso": 1},
+    {"tipo": "Emenda", "regex": "^emenda|^subemenda", "peso": 2},
+    {"tipo": "Parecer", "regex": "^parecer|^complementa..o de voto|^reda..o final|^substitutivo", "peso": 3},
+    {"tipo": "Requerimento", "regex": "^requerimento|rqe|rqs|rqj|rra|req|rdh|rma", "peso": 4}, 
+    {"tipo": "Voto em Separado", "regex": "^voto em separado", "peso": 5}
     ],
     
   "tipos_documentos_scrap": [
