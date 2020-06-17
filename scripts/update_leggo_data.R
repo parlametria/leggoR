@@ -139,8 +139,8 @@ if (casa == 'senado') {
     dplyr::rename(
       id_documento = codigo_texto,
       id_principal = codigo_materia
-    ) %>% 
-    distinct(id_principal, id_documento, .keep_all = TRUE)
+    ) %>%
+    dplyr::distinct(id_principal, id_documento, .keep_all = TRUE)
 
   senado_autores <-
     senado_autores %>%
@@ -149,10 +149,10 @@ if (casa == 'senado') {
       id_principal = codigo_materia
     )
 
-  senado_autores_com_id_autor <- agoradigital::match_autores_senado_to_parlamentares(senado_autores, senadores, deputados) %>% 
+  senado_autores_com_id_autor <- agoradigital::match_autores_senado_to_parlamentares(senado_autores, senadores, deputados) %>%
     dplyr::filter(!is.na(id_autor)) %>% ## filtra apenas autores com id
     dplyr::distinct(id_autor, id_principal, id_documento, .keep_all = TRUE)
-  
+
   print(paste("Salvando",nrow(senado_docs), "documentos para o Senado."))
   readr::write_csv(senado_docs, docs_filepath)
   print(paste("Salvando",nrow(senado_autores_com_id_autor), "autores de documentos para o Senado."))
@@ -210,7 +210,7 @@ if (casa == 'senado') {
 
     print(paste("Adicionando ",nrow(new_docs_data)," novos documentos."))
     updated_docs <-
-      dplyr::bind_rows(current_docs, new_docs_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento)) %>% 
+      dplyr::bind_rows(current_docs, new_docs_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento)) %>%
       dplyr::distinct(id_documento, .keep_all = TRUE)
 
     print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
@@ -222,17 +222,17 @@ if (casa == 'senado') {
     }
     matched_autores_data <-
       merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id") %>%
-      dplyr::mutate(nome = purrr::map_chr(ultimo_status_nome_eleitoral, ~ simpleCap(.x))) %>% 
+      dplyr::mutate(nome = purrr::map_chr(ultimo_status_nome_eleitoral, ~ simpleCap(.x))) %>%
       dplyr::select(id_autor, nome, tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor)
-    
+
     updated_autores_docs <-
-      dplyr::bind_rows(current_autores, matched_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento)) %>% 
-      dplyr::filter(tipo_autor == "Deputado" & casa == "camara") %>% 
-      dplyr::distinct(id_autor, id_documento, .keep_all = TRUE) %>% 
+      dplyr::bind_rows(current_autores, matched_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento)) %>%
+      dplyr::filter(tipo_autor == "Deputado" & casa == "camara") %>%
+      dplyr::distinct(id_autor, id_documento, .keep_all = TRUE) %>%
       dplyr::left_join(updated_docs %>% distinct(id_documento, id_principal),
-                       by = c("id_documento")) %>% 
+                       by = c("id_documento")) %>%
       dplyr::select(id_autor, id_documento, id_principal, dplyr::everything())
-    
+
     print("Salvando documentos e autores.")
     readr::write_csv(updated_docs, docs_filepath)
     readr::write_csv(updated_autores_docs, autores_filepath)
