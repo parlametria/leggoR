@@ -60,6 +60,10 @@ library(tidyverse)
     
     temas <- paste(temas, collapse = ";")
     
+    if (temas == "Nao especificado") {
+      temas <- as.character(NA)
+    }
+    
     return(temas)
   } else {
     return(as.character(NA))
@@ -204,6 +208,99 @@ library(tidyverse)
   return(nome_processado)
 }
 
+#' @title Recupera o nome formal de uma proposição
+#' @description Recebe o id_camara e id_senado e recupera o nome formal
+#' @param id_camara Id da proposição na Câmara
+#' @param id_senado Id da proposição no Senado
+#' @return O nome formal de uma proposição.
+.fetch_nome_formal <- function(id_camara, id_senado) {
+  print(paste0("Extraindo nome formal da proposição id_camara ", id_camara, " e id_senado ", id_senado, "..."))
+  
+  if (!is.na(id_camara)) {
+    return(rcongresso::fetch_proposicao_camara(id_camara) %>% 
+             mutate(nome_formal = paste0(siglaTipo, " ", numero, "/", ano)) %>% 
+             pull(nome_formal))
+    
+  } else if (!is.na(id_senado)) {
+    return(rcongresso::fetch_proposicao_senado(id_senado) %>% 
+             pull(descricao_identificacao_materia))
+    
+  }
+  return (as.character(NA))
+  
+}
+
+#' @title Filtra as proposições com todas as informações necessárias
+#' @description Recebe um dataframe e retorna as proposições que possuem
+#' todos os campos preenchidos e processados.
+#' @param df Dataframe a ser filtrado
+#' @return Dataframe com proposições filtradas.
+.filtra_proposicoes_com_todas_as_infos <- function(df) {
+  return(df %>%
+           filter(
+             !is.na(tema),
+             !is.na(explicacao_projeto),
+             !str_detect(tolower(proposicao), "^(cn|sf|cd) .*")
+           ))
+}
+
+#' @title Adiciona informações faltantes às proposições
+#' @description Recebe um dataframe e retorna as proposições com os dados
+#' processados, como tema, nome formal ou explicação do projeto
+#' @param df Dataframe com as proposições
+#' @return Campos preenchidos das proposições.
+.preenche_proposicoes_info <- function(df) {
+  df_com_infos <- df %>%
+    filter(is.na(tema) |
+             is.na(explicacao_projeto) |
+             str_detect(tolower(proposicao), "^(cn|sf|cd) .*")) %>%
+    rowwise(.) %>%
+    mutate(
+      tema = ifelse(
+        !is.na(tema),
+        tema,
+        .get_temas_processed_proposicoes(id_camara, id_senado)
+      ),
+      proposicao = ifelse(
+        is.na(proposicao),
+        .fetch_nome_formal(id_camara, id_senado),
+        .processa_nome_formal(proposicao)
+      ),
+      explicacao_projeto = ifelse(
+        !is.na(explicacao_projeto),
+        explicacao_projeto,
+        .fetch_ementa(id_camara, id_senado)
+      )
+    )
+  
+  return(df_com_infos)
+}
+
+#' @title Adiciona informações às proposições 
+#' @description Recebe um dataframe e preenche os dados que
+#' estão faltando.
+#' @param df Dataframe com as proposições
+#' @return Campos preenchidos das proposições.
+.checa_proposicoes_infos <- function(df) {
+  if (!"proposicao" %in% names(df)) {
+    col_names <- names(df)
+    df$proposicao <- NA
+    df <- df %>% select(proposicao, tidyselect::all_of(col_names))
+  }
+  
+  proposicoes_with_infos <- df %>% 
+    .filtra_proposicoes_com_todas_as_infos()
+  
+  proposicoes_with_new_infos <- df %>%
+    .preenche_proposicoes_info()
+  
+  proposicoes <- bind_rows(proposicoes_with_infos,
+                           proposicoes_with_new_infos) %>% 
+    distinct()
+  
+  return(proposicoes)
+}
+
 #' @title Une duas planilhas a partir de suas urls
 #' @description Recebe a url das proposições novas a serem adicionadas, executa o
 #' processamento e as unem às proposições já existentes a partir de sua url.
@@ -232,19 +329,7 @@ processa_planilha_proposicoes <- function(raw_proposicao_url_camara,
   merged_proposicoes <-
     bind_rows(old_proposicoes, new_proposicoes) %>%
     distinct(id_camara, id_senado, .keep_all = T) %>% 
-    rowwise(.) %>%
-    mutate(
-      tema = if_else(
-        is.na(tema),
-        .get_temas_processed_proposicoes(id_camara, id_senado),
-        tema
-      ),
-      proposicao = .processa_nome_formal(proposicao),
-      explicacao_projeto = if_else(
-        is.na(explicacao_projeto),
-        .fetch_ementa(id_camara, id_senado),
-        explicacao_projeto)
-    ) 
+    .checa_proposicoes_infos()
   
   return(merged_proposicoes)
 }
