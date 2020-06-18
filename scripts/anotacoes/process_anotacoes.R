@@ -63,7 +63,8 @@ processa_anotacoes <- function(url, pls_interesses_datapath, proposicoes_datapat
   
   anotacoes <- anotacoes %>%
     dplyr::mutate_at(vars("data_criacao", "data_ultima_modificacao"),
-                     ~ lubridate::mdy_hms(.))
+                     ~ lubridate::mdy_hms(.)) %>% 
+    dplyr::mutate(peso = if_else(is.na(peso), 99, as.numeric(peso)))
   
   pls_interesses <- readr::read_csv(pls_interesses_datapath,
                                     col_types = cols(.default = "c")) %>%

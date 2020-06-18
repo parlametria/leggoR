@@ -227,6 +227,12 @@ if (casa == 'senado') {
       dplyr::mutate(nome = purrr::map_chr(ultimo_status_nome_eleitoral, ~ simpleCap(.x))) %>%
       dplyr::select(id_autor, nome, tipo_autor, uri_autor, id_documento, casa, partido, uf, cod_tipo_autor)
 
+    # remove id_principal para realizar novo join com documentos atualizados
+    if("id_principal" %in% (current_autores %>% names())) {
+      current_autores <- current_autores %>%
+        dplyr::select(-id_principal)
+    }
+
     updated_autores_docs <-
       dplyr::bind_rows(current_autores %>%
                          dplyr::mutate_all(as.character),
