@@ -15,9 +15,11 @@ setup <- function() {
                                     descricao_tipo_documento = c('Emenda na Comissão', 'Emenda na Comissão', 'Requerimento de Audiência Pública'),
                                     status_proposicao_sigla_orgao = c('PLEN', 'CCJ', 'CFT'))
 
-  autores_sample_df_camara <<- tibble::tibble(id_documento = c(11,11,12,21,21),
+  autores_sample_df_camara <<- tibble::tibble(id_principal = c(1, 1, 1, 2, 2),
+                                       id_documento = c(11,11,12,21,21),
                                        casa = c('camara','camara','camara','camara','camara'),
                                        id_autor = c(1,5,5,5,6),
+                                       tipo_autor = c("deputado", "deputado", "deputado", "deputado", "deputado"),
                                        partido = c('PSDB','PT','PT','PT', 'PSL'),
                                        uf = c('SP', "PB", "PB", "PB", "BA"),
                                        nome = c('Dep. A', 'Dep. C', 'Dep. C', 'Dep. C', 'Dep. D'))
@@ -76,6 +78,7 @@ setup <- function() {
                                        id_documento = c(11,11,12,21,21),
                                        casa = c('senado','senado','senado','senado','senado'),
                                        id_autor = c(1,5,5,5,6),
+                                       tipo_autor = c("senador", "senador", "senador", "senador", "senador"),
                                        partido = c('PSDB','PT','PT','PT', 'PSL'),
                                        uf = c('SP', "PB", "PB", "PB", "BA"),
                                        nome_autor = c('Sen. A', 'Sen. C', 'Sen. C', 'Sen. C', 'Sen. D'))
@@ -122,7 +125,8 @@ setup <- function() {
   
   autores_docs <<- tibble::tibble(id_principal = rep(123,6), 
                                   casa = c("camara",rep("senado",2),rep("camara",3)), 
-                                  id_documento = c(1,rep(2,2),rep(3,3)))
+                                  id_documento = c(1,rep(2,2),rep(3,3)),
+                                  id_autor = c(31, 31, 32, 31, 32, 33))
   
   pesos_docs <<- tibble::tibble(id_principal = rep(123,3), 
                                 casa = c("camara","senado","camara"), 

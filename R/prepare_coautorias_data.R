@@ -41,8 +41,10 @@ compute_nodes_size <- function(final_edges, final_nodes, smoothing = 1) {
 generate_nodes <- function(coautorias) {
   graph_nodes <-
       dplyr::bind_rows(
-      coautorias %>% dplyr::select(id_autor = id_autor.x, nome = nome.x, partido = partido.x, uf = uf.x, bancada = bancada.x),
-      coautorias %>% dplyr::select(id_autor = id_autor.y, nome = nome.y, partido = partido.y, uf = uf.y, bancada = bancada.y)) %>%
+      coautorias %>% dplyr::select(id_autor = id_autor.x, nome = nome.x, partido = partido.x, 
+                                   uf = uf.x, bancada = bancada.x, casa_autor = casa_autor.x),
+      coautorias %>% dplyr::select(id_autor = id_autor.y, nome = nome.y, partido = partido.y, 
+                                   uf = uf.y, bancada = bancada.y, casa_autor = casa_autor.y)) %>%
       dplyr::distinct()
 
   final_nodes <- graph_nodes %>%
@@ -67,7 +69,7 @@ get_unique_nodes <- function(coautorias) {
   
   unique_nodes <-
     nodes %>% 
-    dplyr::group_by(id_leggo, id_autor) %>% 
+    dplyr::group_by(id_leggo, id_autor, casa_autor) %>% 
     dplyr::summarise(nome = dplyr::first(nome),
                      partido = dplyr::first(partido),
                      uf = dplyr::first(uf),
@@ -75,7 +77,8 @@ get_unique_nodes <- function(coautorias) {
                      nome_eleitoral = dplyr::first(nome_eleitoral))
   
   nodes %>% 
-    dplyr::inner_join(unique_nodes, by = c("id_leggo", "id_autor", "nome", "partido", "uf", "bancada", "nome_eleitoral"))
+    dplyr::inner_join(unique_nodes, by = c("id_leggo", "id_autor", "casa_autor", "nome", "partido", 
+                                           "uf", "bancada", "nome_eleitoral"))
 }
 
 #' @title Gera os dataframe de arestas
@@ -209,13 +212,22 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao)
   
   if (casa == 'camara') {
     autorias <- agoradigital::prepare_autorias_df_camara(docs, autores)
-    parlamentares <- autores %>% dplyr::select(id_autor, nome, partido, uf) %>% 
-      dplyr::distinct()
   } else {
     autorias <- agoradigital::prepare_autorias_df_senado(docs, autores)
-    parlamentares <- autores %>% dplyr::select(id_autor, nome = nome_autor, partido, uf) %>% 
-      dplyr::distinct()
+    autores <- autores %>%
+      rename(nome = nome_autor)
   }
+  
+  parlamentares <- autores %>% 
+    mutate(casa_autor = if_else(tolower(tipo_autor) == "deputado",
+                                "camara",
+                                "senado")) %>% 
+    group_by(id_autor) %>% 
+    summarise(nome = first(nome),
+              partido = last(partido),
+              uf = first(uf),
+              casa_autor = first(casa_autor)) %>% 
+    ungroup()
   
   coautorias <- get_coautorias_raw(autorias, limiar, casa)
   
@@ -226,7 +238,7 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao)
       dplyr::distinct() %>% 
       dplyr::mutate(nome_eleitoral = purrr::pmap_chr(list(nome, partido, uf), 
                                                      ~ agoradigital::formata_nome_eleitoral(..1, ..2, ..3))) %>% 
-      dplyr::select(-c(nome, partido, uf, id_principal, casa))
+      dplyr::select(-c(nome, partido, uf))
     
     parlamentares <-
       parlamentares %>% 
@@ -252,7 +264,7 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao)
 #' @export
 prepare_autorias_df_camara <- function(docs_camara, autores_camara) {
   autores_docs <-
-    merge(docs_camara, autores_camara, by = c("id_documento", "casa")) %>%
+    merge(docs_camara, autores_camara, by = c("id_principal", "id_documento", "casa")) %>%
         dplyr::select(id_principal,
                       casa,
                       id_documento,
@@ -278,8 +290,8 @@ prepare_autorias_df_senado <- function(docs_senado, autores_senado) {
                   id_documento,
                   descricao_tipo_documento = descricao_texto,
                   id_autor,
-                  url_inteiro_teor = url_texto,
                   data = data_texto,
+                  url_inteiro_teor = url_texto,
                   id_leggo) %>%
     dplyr::distinct()
 }
