@@ -20,9 +20,11 @@ processa_lista_pls_interesses <- function(url) {
                                            interesses$url,
                                            interesses$nome),
                   function(interesse, url, nome) {
+                    source(here::here("scripts/proposicoes/process_proposicao.R"))
                     pls <- readr::read_csv(url, col_types = cols(.default = "c")) %>%
+                      .checa_proposicoes_infos() %>% 
                       dplyr::mutate(interesse = interesse) %>% 
-                      dplyr::mutate(nome_interesse = nome)
+                      dplyr::mutate(nome_interesse = nome)         
                     return(pls)
                   })
 
