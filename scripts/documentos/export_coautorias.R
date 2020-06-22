@@ -41,8 +41,8 @@
     coautorias <- tibble::tibble(~id_leggo, ~id_principal, ~casa, ~id_autor.x, ~id_autor.y, ~peso_arestas, ~num_coautorias,
                                  ~nome.x, ~partido.x, ~uf.x, ~casa_autor.x, ~bancada.x, ~nome.y, ~partido.y, ~uf.y, ~casa_autor.y,
                                  ~bancada.y)
-    autorias <- tibble::tribble(~id_principal, ~casa, ~id_documento, ~descricao_tipo_documento, ~id_autor, ~data,
-                                ~url_inteiro_teor, ~id_leggo, ~casa_autor, ~nome_eleitoral, ~autores)
+    autorias <- tibble::tribble(~id_principal, ~casa, ~id_documento, ~descricao_tipo_documento, ~tipo_documento_ext,
+                                ~id_autor, ~data, ~url_inteiro_teor, ~id_leggo, ~casa_autor, ~nome_eleitoral, ~autores)
   }
 
   readr::write_csv(coautorias, paste0(output_path, '/camara/coautorias.csv'))
@@ -92,8 +92,8 @@
     coautorias <- tibble::tibble(~id_leggo, ~id_principal, ~casa, ~id_autor.x, ~id_autor.y, ~peso_arestas, ~num_coautorias,
                                  ~nome.x, ~partido.x, ~uf.x, ~casa_autor.x, ~bancada.x, ~nome.y, ~partido.y, ~uf.y,
                                  ~casa_autor.y, ~bancada.y)
-    autorias <- tibble::tribble(~id_principal, ~casa, ~id_documento, ~descricao_tipo_documento, ~id_autor, ~data,
-                                ~url_inteiro_teor, ~id_leggo, ~casa_autor, ~nome_eleitoral, ~autores)
+    autorias <- tibble::tribble(~id_principal, ~casa, ~id_documento, ~descricao_tipo_documento, tipo_documento_ex,
+                                ~id_autor, ~data, ~url_inteiro_teor, ~id_leggo, ~casa_autor, ~nome_eleitoral, ~autores)
   }
 
   readr::write_csv(coautorias, paste0(output_path, '/senado/coautorias.csv'))
@@ -138,7 +138,8 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
       dplyr::distinct() %>%
       dplyr::mutate(id_autor_parlametria = paste0(dplyr::if_else(casa_autor == "camara", 1, 2),
                                                   id_autor)) %>%
-      agoradigital::classifica_tipo_documento_autorias()
+      agoradigital::classifica_tipo_documento_autorias() %>%
+      dplyr::select(-tipo_documento_ext)
 
     nodes <-
       agoradigital::get_unique_nodes(coautorias)

@@ -275,14 +275,17 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao,
 prepare_autorias_df_camara <- function(docs_camara, autores_camara) {
   autores_docs <-
     merge(docs_camara, autores_camara, by = c("id_principal", "id_documento", "casa")) %>%
-        dplyr::select(id_principal,
-                      casa,
-                      id_documento,
-                      descricao_tipo_documento,
-                      id_autor,
-                      data,
-                      url_inteiro_teor,
-                      id_leggo) %>%
+    dplyr::mutate(tipo_documento_ext = descricao_tipo_documento) %>% ## padroniza com dataframe do senado
+    dplyr::select(
+      id_principal,
+      casa,
+      id_documento,
+      descricao_tipo_documento,
+      tipo_documento_ext,
+      id_autor,
+      data,
+      url_inteiro_teor,
+      id_leggo) %>%
     dplyr::distinct()
 }
 
@@ -299,6 +302,7 @@ prepare_autorias_df_senado <- function(docs_senado, autores_senado) {
                   casa,
                   id_documento,
                   descricao_tipo_documento = descricao_texto,
+                  tipo_documento_ext = descricao_tipo_texto,
                   id_autor,
                   data,
                   url_inteiro_teor = url_texto,
