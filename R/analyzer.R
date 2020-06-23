@@ -395,14 +395,16 @@ fix_nomes_locais <- function(pautas_df) {
 extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
   regime <- extract_regime_tramitacao(tram, prop)
   apreciacao <- extract_forma_apreciacao(tram)
-  relator_nome <- get_last_relator_name(proposicao_id, casa)
+  relator <- get_last_relator(proposicao_id, casa)
 
   status_tram <-
     data.frame(
       prop_id = tram[1, ]$prop_id,
       regime_tramitacao = regime,
       forma_apreciacao = apreciacao,
-      relator_nome = relator_nome
+      id_relator = relator$id_relator,
+      relator_nome = relator$nome_relator,
+      relator_partido = relator$partido_relator
     )
 }
 

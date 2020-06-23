@@ -40,13 +40,14 @@ safe_process_etapa <- purrr::safely(
           ~ data_apresentacao,
           ~ casa,
           ~ casa_origem,
-          ~
-            autor_nome,
+          ~ autor_nome,
           ~ autor_uf,
           ~ autor_partido,
           ~ regime_tramitacao,
           ~ forma_apreciacao,
+          ~ id_relator,
           ~ relator_nome,
+          ~ relator_partido,
           ~ temperatura
         ),
         fases_eventos = tibble::tribble(
@@ -57,15 +58,13 @@ safe_process_etapa <- purrr::safely(
           ~ texto_tramitacao,
           ~ sigla_local,
           ~ id_situacao,
-          ~
-            descricao_situacao,
+          ~ descricao_situacao,
           ~ link_inteiro_teor,
           ~ evento,
           ~ local,
           ~ tipo_documento,
           ~ nivel,
-          ~
-            titulo_evento
+          ~ titulo_evento
         )
       )
 )
@@ -240,12 +239,32 @@ converte_tabela_geral_ids_casa <- function(pls) {
 #' @param export_path pasta para onde exportar dados.
 #' @export
 fetch_props <- function(pls, export_path) {
+  source(here::here("scripts/parlamentares/process_parlamentares.R"))
   pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
 
   tryCatch({
     pautas <- readr::read_csv(paste0(export_path, "pautas.csv"))
   },
   error = function(msg) {
+  })
+  
+  parlamentares <- tryCatch({
+    .bind_parlamentares(export_path)
+  },
+  error = function(msg) {
+    print("Erro ao importar dados de parlamentares em fetch_props:")
+    print(msg)
+    return(
+      tibble::tribble(
+        ~ casa,
+        ~ id_parlamentar,
+        ~ nome_completo,
+        ~ nome_eleitoral,
+        ~ genero,
+        ~ partido,
+        ~ uf
+      )
+    )
   })
   
   res <- list()
@@ -267,6 +286,8 @@ fetch_props <- function(pls, export_path) {
       dplyr::rename(id_ext = prop_id) %>%
       dplyr::select(-c(tema, apelido_materia)) %>%
       unique()
+    # %>% 
+    #   .mapeia_nome_relator_para_id(parlamentares)
 
     proposicoes_baixadas <- proposicoes %>%
       dplyr::select(id_leggo,
