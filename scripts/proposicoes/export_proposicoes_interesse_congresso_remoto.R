@@ -4,8 +4,9 @@ source(here::here("scripts/proposicoes/process_proposicao.R"))
 
 .HELP <- "
 Usage:
-Rscript export_proposicoes_interesse_congresso_remoto.R -u <url_lista_novas_proposicoes> -p <url_lista_proposicoes_atuais> -f <flag_filter_by_regime_tramitacao> -e <export_filepath>
-url_lista_novas_proposicoes: Link para o csv com as proposições enviadas pela Pulso
+Rscript export_proposicoes_interesse_congresso_remoto.R -c <url_lista_novas_proposicoes_camara> -s <url_lista_novas_proposicoes_senado> -p <url_lista_proposicoes_atuais> -f <flag_filter_by_regime_tramitacao> -e <export_filepath>
+url_lista_novas_proposicoes_camara: Link para o csv com as proposições da Câmara enviadas pela Pulso
+url_lista_novas_proposicoes_senado: Link para o csv com as proposições do Senado enviadas pela Pulso
 url_lista_proposicoes_atuais: Link para o csv com as proposições já existentes do Congresso Remoto
 flag_filter_by_regime_tramitacao: Flag indicando se as proposições devem ser filtradas pelo regime de tramitação urgente
 export_filepath: Caminho para exportação das anotação
@@ -17,7 +18,12 @@ get_args <- function() {
   args = commandArgs(trailingOnly=TRUE)
   
   option_list = list(
-    optparse::make_option(c("-u", "--url"),
+    optparse::make_option(c("-c", "--url_camara"),
+                          type="character",
+                          default="",
+                          help=.HELP,
+                          metavar="character"),
+    optparse::make_option(c("-s", "--url_senado"),
                           type="character",
                           default="",
                           help=.HELP,
@@ -48,7 +54,8 @@ get_args <- function() {
 args <- get_args()
 print(args)
 
-url_proposicoes_novas <- args$url
+url_proposicoes_novas_camara <- args$url_camara
+url_proposicoes_novas_senado <- args$url_senado
 url_proposicoes_atuais <- args$proposicoes_existentes_url
 filter_by_regime_tramitacao <- args$filter_by_regime_tramitacao
 saida <- args$export_filepath
@@ -58,7 +65,8 @@ flag_filter_by_regime_tramitacao <- if_else(filter_by_regime_tramitacao == 1,
                                             TRUE, 
                                             FALSE)
 
-proposicoes <- processa_planilha_proposicoes(url_proposicoes_novas, 
+proposicoes <- processa_planilha_proposicoes(url_proposicoes_novas_camara, 
+                                             url_proposicoes_novas_senado,
                                              url_proposicoes_atuais,
                                              flag_filter_by_regime_tramitacao)
 
