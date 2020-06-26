@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 library(magrittr)
+library(tidyverse)
 
 if(!require(optparse)){
   install.packages("optparse")
@@ -43,7 +44,11 @@ only_current_legislature_flag <- opt$flag
 ## Install local repository R package version
 devtools::install(upgrade = "never")
 
-dir.create(paste0(export_path, '/', casa), showWarnings = FALSE)
+if (!str_detect(export_path, "\\/$")) {
+  export_path <- paste0(export_path, "/") 
+}
+
+dir.create(paste0(export_path, casa), showWarnings = FALSE)
 
 update_deputados <- function(casa = "camara") {
   ids_deputados <- tibble::tibble()

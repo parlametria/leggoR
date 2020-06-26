@@ -70,9 +70,12 @@
 
 .bind_parlamentares <- function(export_path) {
   library(tidyverse)
+  if (!str_detect(export_path, "\\/$")) {
+    export_path <- paste0(export_path, "/") 
+  }
   
   deputados <-
-    read_csv(paste0(export_path, "/camara/parlamentares.csv"),
+    read_csv(paste0(export_path, "camara/parlamentares.csv"),
              col_types = cols(.default = "c")) %>%
     mutate(casa = "camara") %>%
     select(
@@ -86,7 +89,7 @@
     )
   
   senadores <-
-    read_csv(paste0(export_path, "/senado/parlamentares.csv"),
+    read_csv(paste0(export_path, "senado/parlamentares.csv"),
              col_types = cols(.default = "c"))
   
   parlamentares <- bind_rows(deputados, senadores)
