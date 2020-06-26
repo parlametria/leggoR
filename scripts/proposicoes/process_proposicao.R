@@ -292,24 +292,14 @@ library(tidyverse)
     ) %>%
     rowwise(.) %>%
     mutate(
-      tema = ifelse(
-        !is.na(tema),
-        tema,
-        .get_temas_processed_proposicoes(id_camara, id_senado)
-      ),
       proposicao = ifelse(
         is.na(proposicao),
         .fetch_nome_formal(id_camara, id_senado),
         .processa_nome_formal(proposicao)
-      ),
-      explicacao_projeto = ifelse(
-        !is.na(explicacao_projeto),
-        explicacao_projeto,
-        .fetch_ementa(id_camara, id_senado)
       )
     )
   
-  df_sem_ids <- df_com_infos %>%
+  df_com_ids <- df_com_infos %>%
     filter(is.na(id_camara) & is.na(id_senado)) %>% 
     rowwise(.) %>%
     mutate(
@@ -330,6 +320,23 @@ library(tidyverse)
           nome = proposicao,
           casa = "senado"
         )
+      )
+    )
+  
+  df_com_infos <- df_com_infos %>% 
+    filter(!is.na(id_camara) | !is.na(id_senado)) %>% 
+    bind_rows(df_com_ids) %>% 
+    rowwise(.) %>% 
+    mutate(
+      tema = ifelse(
+        !is.na(tema),
+        tema,
+        .get_temas_processed_proposicoes(id_camara, id_senado)
+      ),
+      explicacao_projeto = ifelse(
+        !is.na(explicacao_projeto),
+        explicacao_projeto,
+        .fetch_ementa(id_camara, id_senado)
       )
     )
   
