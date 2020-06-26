@@ -123,8 +123,8 @@ library(tidyverse)
     proposicoes <- read_csv(url) %>%
       agoradigital::rename_table_to_underscore()
     
-    names(proposicoes) <- names(proposicoes) %>% 
-      iconv(to="ASCII//TRANSLIT") %>% 
+    names(proposicoes) <- names(proposicoes) %>%
+      iconv(to = "ASCII//TRANSLIT") %>%
       gsub(" ", "_", .)
     
     if (filter_by_regime_tramitacao) {
@@ -161,15 +161,20 @@ library(tidyverse)
 #' @param id_senado Id da proposição no Senado
 #' @return Os temas de uma proposição.
 .get_temas_processed_proposicoes <- function(id_camara, id_senado) {
-  if (!is.na(id_camara)) {
-    return(.get_temas(id_camara, "camara"))
-    
-  } else if (!is.na(id_senado)) {
-    return(.get_temas(id_senado, "senado"))
-    
-  }
-  return (as.character(NA))
+  temas <- tryCatch({
+    if (!is.na(as.numeric(id_camara))) {
+      return(.get_temas(id_camara, "camara"))
+      
+    } else if (!is.na(as.numeric(id_senado))) {
+      return(.get_temas(id_senado, "senado"))
+      
+    }
+  }, error = function(e) {
+    print(e)
+    return (as.character(NA))
+  })
   
+  return (temas)
 }
 
 #' @title Recupera as ementas das proposições já processadas
@@ -178,14 +183,22 @@ library(tidyverse)
 #' @param id_senado Id da proposição no Senado
 #' @return A ementa de uma proposição.
 .fetch_ementa <- function(id_camara, id_senado) {
-  print(paste0("Extraindo ementa da proposição id_camara ", id_camara, " e id_senado ", id_senado, "..."))
+  print(
+    paste0(
+      "Extraindo ementa da proposição id_camara ",
+      id_camara,
+      " e id_senado ",
+      id_senado,
+      "..."
+    )
+  )
   
-  if (!is.na(id_camara)) {
-    return(rcongresso::fetch_proposicao_camara(id_camara) %>% 
+  if (!is.na(as.numeric(id_camara))) {
+    return(rcongresso::fetch_proposicao_camara(id_camara) %>%
              pull(ementa))
     
-  } else if (!is.na(id_senado)) {
-    return(rcongresso::fetch_proposicao_senado(id_senado) %>% 
+  } else if (!is.na(as.numeric(id_senado))) {
+    return(rcongresso::fetch_proposicao_senado(id_senado) %>%
              pull(ementa_materia))
     
   }
@@ -214,19 +227,37 @@ library(tidyverse)
 #' @param id_senado Id da proposição no Senado
 #' @return O nome formal de uma proposição.
 .fetch_nome_formal <- function(id_camara, id_senado) {
-  print(paste0("Extraindo nome formal da proposição id_camara ", id_camara, " e id_senado ", id_senado, "..."))
+  print(
+    paste0(
+      "Extraindo nome formal da proposição id_camara ",
+      id_camara,
+      " e id_senado ",
+      id_senado,
+      "..."
+    )
+  )
   
-  if (!is.na(id_camara)) {
-    return(rcongresso::fetch_proposicao_camara(id_camara) %>% 
-             mutate(nome_formal = paste0(siglaTipo, " ", numero, "/", ano)) %>% 
-             pull(nome_formal))
-    
-  } else if (!is.na(id_senado)) {
-    return(rcongresso::fetch_proposicao_senado(id_senado) %>% 
-             pull(descricao_identificacao_materia))
-    
-  }
-  return (as.character(NA))
+  nome <- tryCatch({
+    if (!is.na(as.numeric(id_camara))) {
+      return(
+        rcongresso::fetch_proposicao_camara(id_camara) %>%
+          mutate(nome_formal = paste0(siglaTipo, " ", numero, "/", ano)) %>%
+          pull(nome_formal)
+      )
+      
+    } else if (!is.na(as.numeric(id_senado))) {
+      return(
+        rcongresso::fetch_proposicao_senado(id_senado) %>%
+          pull(descricao_identificacao_materia)
+      )
+      
+    }
+  }, error = function(e) {
+    print(e)
+    return (as.character(NA))
+  })
+  
+  return(nome)
   
 }
 
@@ -240,7 +271,9 @@ library(tidyverse)
            filter(
              !is.na(tema),
              !is.na(explicacao_projeto),
-             !str_detect(tolower(proposicao), "^(cn|sf|cd) .*")
+             !str_detect(tolower(proposicao), "^(cn|sf|cd) .*"),
+             !is.na(id_camara) |
+               !is.na(id_senado)
            ))
 }
 
@@ -251,9 +284,12 @@ library(tidyverse)
 #' @return Campos preenchidos das proposições.
 .preenche_proposicoes_info <- function(df) {
   df_com_infos <- df %>%
-    filter(is.na(tema) |
-             is.na(explicacao_projeto) |
-             str_detect(tolower(proposicao), "^(cn|sf|cd) .*")) %>%
+    filter(
+      is.na(tema) |
+        is.na(explicacao_projeto) |
+        str_detect(tolower(proposicao), "^(cn|sf|cd) .*") |
+        is.na(id_camara) & is.na(id_senado)
+    ) %>%
     rowwise(.) %>%
     mutate(
       tema = ifelse(
@@ -273,10 +309,34 @@ library(tidyverse)
       )
     )
   
+  df_sem_ids <- df_com_infos %>%
+    filter(is.na(id_camara) & is.na(id_senado)) %>% 
+    rowwise(.) %>%
+    mutate(
+      id_camara = ifelse(
+        !is.na(id_camara),
+        id_camara,
+        .fetch_id(
+          link_casa = NA,
+          nome = proposicao,
+          casa = "camara"
+        )
+      ),
+      id_senado = ifelse(
+        !is.na(id_senado),
+        id_senado,
+        .fetch_id(
+          link_casa = NA,
+          nome = proposicao,
+          casa = "senado"
+        )
+      )
+    )
+  
   return(df_com_infos)
 }
 
-#' @title Adiciona informações às proposições 
+#' @title Adiciona informações às proposições
 #' @description Recebe um dataframe e preenche os dados que
 #' estão faltando.
 #' @param df Dataframe com as proposições
@@ -288,14 +348,14 @@ library(tidyverse)
     df <- df %>% select(proposicao, tidyselect::all_of(col_names))
   }
   
-  proposicoes_with_infos <- df %>% 
+  proposicoes_with_infos <- df %>%
     .filtra_proposicoes_com_todas_as_infos()
   
   proposicoes_with_new_infos <- df %>%
     .preenche_proposicoes_info()
   
   proposicoes <- bind_rows(proposicoes_with_infos,
-                           proposicoes_with_new_infos) %>% 
+                           proposicoes_with_new_infos) %>%
     distinct()
   
   return(proposicoes)
@@ -328,7 +388,7 @@ processa_planilha_proposicoes <- function(raw_proposicao_url_camara,
   
   merged_proposicoes <-
     bind_rows(old_proposicoes, new_proposicoes) %>%
-    distinct(id_camara, id_senado, .keep_all = T) %>% 
+    distinct(id_camara, id_senado, .keep_all = T) %>%
     .checa_proposicoes_infos()
   
   return(merged_proposicoes)
