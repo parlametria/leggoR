@@ -61,7 +61,14 @@ processa_anotacoes <-
            proposicoes_datapath) {
     library(tidyverse)
     
-    anotacoes <- .processa_lista_anotacoes(url)
+    anotacoes <- .processa_lista_anotacoes(url) %>%
+      dplyr::filter(
+        !is.na(anotacao),
+        !is.na(titulo),
+        !is.na(data_criacao),
+        !is.na(data_criacao),
+        !is.na(data_ultima_modificacao)
+      )
     
     anotacoes <- anotacoes %>%
       dplyr::mutate_at(vars("data_criacao", "data_ultima_modificacao"),
