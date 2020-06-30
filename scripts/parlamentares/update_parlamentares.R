@@ -66,26 +66,26 @@ update_deputados <- function(casa = "camara") {
 
   deputados <- rcongresso::fetch_all_deputados(ids_deputados)
 
-  deputados_alt <- deputados %>%
-    dplyr::mutate(nome_civil = tolower(nome_civil) %>% tools::toTitleCase()) %>%
-    dplyr::mutate(ultimo_status_nome = tolower(ultimo_status_nome) %>% tools::toTitleCase()) %>%
-    dplyr::mutate(
-      ultimo_status_nome_eleitoral = tolower(ultimo_status_nome_eleitoral) %>% tools::toTitleCase()
-    ) %>%
-    dplyr::mutate(em_exercicio = dplyr::if_else(ultimo_status_situacao == "Exercício", 1, 0)) %>%
-    dplyr::select(
-      id,
-      nome_eleitoral = ultimo_status_nome_eleitoral,
-      nome_civil,
-      cpf,
-      sexo,
-      partido = ultimo_status_sigla_partido,
-      uf = ultimo_status_sigla_uf,
-      situacao = ultimo_status_condicao_eleitoral,
-      em_exercicio
-    )
-  readr::write_csv(deputados_alt,
-                   paste0(export_path, '/', casa, "/deputados.csv"))
+  # deputados_alt <- deputados %>%
+  #   dplyr::mutate(nome_civil = tolower(nome_civil) %>% tools::toTitleCase()) %>%
+  #   dplyr::mutate(ultimo_status_nome = tolower(ultimo_status_nome) %>% tools::toTitleCase()) %>%
+  #   dplyr::mutate(
+  #     ultimo_status_nome_eleitoral = tolower(ultimo_status_nome_eleitoral) %>% tools::toTitleCase()
+  #   ) %>%
+  #   dplyr::mutate(em_exercicio = dplyr::if_else(ultimo_status_situacao == "Exercício", 1, 0)) %>%
+  #   dplyr::select(
+  #     id,
+  #     nome_eleitoral = ultimo_status_nome_eleitoral,
+  #     nome_civil,
+  #     cpf,
+  #     sexo,
+  #     partido = ultimo_status_sigla_partido,
+  #     uf = ultimo_status_sigla_uf,
+  #     situacao = ultimo_status_condicao_eleitoral,
+  #     em_exercicio
+  #   )
+  readr::write_csv(deputados,
+                   paste0(export_path, casa, "/parlamentares.csv"))
 }
 
 update_senadores <- function(casa = "senado") {
@@ -105,29 +105,29 @@ update_senadores <- function(casa = "senado") {
 
   senadores <- rcongresso::fetch_all_senadores(ids_senadores)
 
-  senadores_alt <- senadores %>%
-    dplyr::select(
-      id = id_parlamentar,
-      nome_eleitoral,
-      nome_civil = nome_completo,
-      sexo = genero,
-      partido,
-      uf,
-      situacao
-    ) %>%
-    dplyr::distinct()
+  # senadores_alt <- senadores %>%
+  #   dplyr::select(
+  #     id = id_parlamentar,
+  #     nome_eleitoral,
+  #     nome_civil = nome_completo,
+  #     sexo = genero,
+  #     partido,
+  #     uf,
+  #     situacao
+  #   ) %>%
+  #   dplyr::distinct()
+  # 
+  # senadores_em_exercicio <-
+  #   rcongresso::fetch_ids_senadores_em_exercicio() %>%
+  #   dplyr::mutate(em_exercicio = 1)
+  # 
+  # senadores_alt <- senadores_alt %>%
+  #   dplyr::left_join(senadores_em_exercicio,
+  #                    by = "id") %>%
+  #   dplyr::mutate(em_exercicio = dplyr::if_else(is.na(em_exercicio), 0, em_exercicio))
 
-  senadores_em_exercicio <-
-    rcongresso::fetch_ids_senadores_em_exercicio() %>%
-    dplyr::mutate(em_exercicio = 1)
-
-  senadores_alt <- senadores_alt %>%
-    dplyr::left_join(senadores_em_exercicio,
-                     by = "id") %>%
-    dplyr::mutate(em_exercicio = dplyr::if_else(is.na(em_exercicio), 0, em_exercicio))
-
-  readr::write_csv(senadores_alt,
-                   paste0(export_path, '/', casa, "/senadores.csv"))
+  readr::write_csv(senadores,
+                   paste0(export_path, casa, "/parlamentares.csv"))
 }
 
 if (is.na(casa)) {

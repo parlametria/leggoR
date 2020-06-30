@@ -1,34 +1,98 @@
+#' @title Faz o merge das relatorias pelo nome, casa, partido e uf do relator
+#' @description Realiza o merge das tabelas parlamentares e proposições, 
+#' recuperando o id do relator através do join de nome, casa, partido e uf do relator.
+#' @param proposicoes_df Dataframe de proposições
+#' @param parlamentares_df Dataframe de parlamentares
+#' @return Dataframe de proposições contendo o relator_id completo 
+#' e relator_nome processado.
+.merge_by_nome_casa_partido_uf <-
+  function(proposicoes_df, parlamentares_df) {
+    proposicoes_df <- proposicoes_df %>%
+      filter(is.na(relator_id))
+    
+    proposicoes_df <- proposicoes_df %>%
+      mutate(nome_relator_padronizado = .padroniza_nome(relator_nome)) %>%
+      left_join(
+        parlamentares_df,
+        by = c(
+          "nome_relator_padronizado" = "nome_parlamentar",
+          "casa",
+          "relator_partido" = "partido",
+          "relator_uf" = "uf"
+        )
+      ) %>%
+      mutate(relator_id = id_parlamentar,
+             relator_nome = nome_relator_padronizado) %>%
+      select(-c(id_parlamentar, nome_relator_padronizado))
+    
+    return(proposicoes_df)
+  }
+
+#' @title Faz o merge das relatorias pelo nome e casa do relator
+#' @description Realiza o merge das tabelas parlamentares e proposições, 
+#' recuperando o id do relator através do join de nome e casa do relator.
+#' @param proposicoes_df Dataframe de proposições
+#' @param parlamentares_df Dataframe de parlamentares
+#' @return Dataframe de proposições contendo o relator_id completo 
+#' e relator_nome processado.
+.merge_by_nome_casa <- function(proposicoes_df, parlamentares_df) {
+  proposicoes_df <- proposicoes_df %>%
+    filter(is.na(relator_id)) %>%
+    left_join(
+      parlamentares_df,
+      by = c("relator_nome" = "nome_parlamentar",
+             "casa"),
+      ignore_case = TRUE
+    ) %>%
+    mutate(
+      relator_id = id_parlamentar,
+      relator_partido = partido,
+      relator_uf = uf
+    ) %>%
+    select(-c(id_parlamentar, partido, uf))
+  
+  return(proposicoes_df)
+}
+
+#' @title Recupera o id do relator a partir de suas informações
+#' @description Realiza o merge das tabelas parlamentares e proposições, 
+#' recuperando o id do relator através do join de suas informações,
+#' como nome, casa, partido e uf.
+#' @param proposicoes_df Dataframe de proposições
+#' @param parlamentares_df Dataframe de parlamentares
+#' @return Dataframe de proposições contendo a coluna relator_id completa, 
+#' o relator_nome padronizado e o relator_id_parlametria.
 .mapeia_nome_autor_relator_para_id <-
   function(proposicoes_df, parlamentares_df) {
     library(tidyverse)
     
     parlamentares_df <- parlamentares_df %>%
       mutate(nome_parlamentar = .padroniza_nome(nome_eleitoral)) %>%
-      select(nome_parlamentar, id_parlamentar, casa)
+      select(nome_parlamentar, partido, uf, id_parlamentar, casa)
     
-    proposicoes_df <- proposicoes_df %>%
-      mutate(nome_relator_padronizado = .padroniza_nome(relator_nome)) %>%
-      left_join(parlamentares_df,
-                by = c("nome_relator_padronizado" = "nome_parlamentar", "casa")) %>%
-      rename(id_relator = id_parlamentar) %>%
+    proposicoes_com_relator_id <- proposicoes_df %>%
+      filter(!is.na(relator_id)) %>% 
+      mutate(relator_id = as.character(relator_id))
+    
+    proposicoes_full_merged <-
+      .merge_by_nome_casa_partido_uf(proposicoes_df, parlamentares_df)
+    
+    proposicoes_merged_by_nome_casa <-
+      .merge_by_nome_casa(proposicoes_full_merged, parlamentares_df)
+    
+    proposicoes_alt <-
+      proposicoes_full_merged %>% 
+      filter(!is.na(relator_id)) %>% 
+      bind_rows(
+        proposicoes_com_relator_id,
+        proposicoes_merged_by_nome_casa
+      ) %>%
       mutate(enum_casa = if_else(casa == "camara", 1, 2)) %>%
-      mutate(id_relator_parlametria = if_else(
-        !is.na(id_relator),
-        paste0(enum_casa, id_relator),
-        id_relator
-      ))
+      mutate(relator_id_parlametria = if_else(!is.na(relator_id),
+                                              paste0(enum_casa, relator_id),
+                                              relator_id))
     
-    
-    proposicoes_df <- proposicoes_df %>%
-      mutate(nome_autor_padronizado = .padroniza_nome(autor_nome)) %>%
-      left_join(parlamentares_df,
-                by = c("nome_autor_padronizado" = "nome_parlamentar", "casa")) %>%
-      rename(id_autor = id_parlamentar) %>%
-      mutate(id_autor_parlametria = if_else(!is.na(id_autor),
-                                            paste0(enum_casa, id_autor),
-                                            id_autor))
-    
-    proposicoes_df <- proposicoes_df %>%
+    proposicoes_alt <- proposicoes_alt %>%
       select(
         id_ext,
         sigla_tipo,
@@ -37,22 +101,28 @@
         data_apresentacao,
         casa,
         casa_origem,
-        id_autor,
-        id_autor_parlametria,
         autor_nome,
         autor_uf,
         autor_partido,
         regime_tramitacao,
         forma_apreciacao,
-        id_relator,
-        id_relator_parlametria,
+        relator_id,
+        relator_id_parlametria,
         relator_nome,
         id_leggo
-      )
+      ) %>% 
+      distinct()
     
     return(proposicoes_df)
   }
 
+#' @title Faz o merge das relatorias pelo nome, casa, partido e uf do relator
+#' @description Realiza o merge das tabelas parlamentares e proposições, 
+#' recuperando o id do relator através do join de nome, casa, partido e uf do relator.
+#' @param proposicoes_df Dataframe de proposições
+#' @param parlamentares_df Dataframe de parlamentares
+#' @return Dataframe de proposições contendo o relator_id completo 
+#' e relator_nome processado.
 .padroniza_nome <- function(nome) {
   nome_processado <- str_to_title(nome) %>%
     str_remove("Dep. |Sen. ") %>%
@@ -68,10 +138,17 @@
   return(nome_processado)
 }
 
+#' @title Faz o merge das relatorias pelo nome, casa, partido e uf do relator
+#' @description Realiza o merge das tabelas parlamentares e proposições, 
+#' recuperando o id do relator através do join de nome, casa, partido e uf do relator.
+#' @param proposicoes_df Dataframe de proposições
+#' @param parlamentares_df Dataframe de parlamentares
+#' @return Dataframe de proposições contendo o relator_id completo 
+#' e relator_nome processado.
 .bind_parlamentares <- function(export_path) {
   library(tidyverse)
   if (!str_detect(export_path, "\\/$")) {
-    export_path <- paste0(export_path, "/") 
+    export_path <- paste0(export_path, "/")
   }
   
   deputados <-
