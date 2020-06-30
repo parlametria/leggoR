@@ -1,4 +1,5 @@
-senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
+senado_env <-
+  jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 senado_constants <- senado_env$constants
 
 #' @title Recupera o histórico de relatorias de uma proposição
@@ -10,16 +11,16 @@ senado_constants <- senado_env$constants
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
 #' @examples get_relatorias(91341, 'senado', 3)
 #' @export
-get_relatorias <- function(proposicao_id, casa, last_n=NULL) {
+get_relatorias <- function(proposicao_id, casa, last_n = NULL) {
   relatorias <- data.frame()
-  if(tolower(casa) == 'senado'){
+  if (tolower(casa) == 'senado') {
     relatorias <- extract_relatorias_senado(proposicao_id)
   }
-  else if(tolower(casa) == 'camara') {
+  else if (tolower(casa) == 'camara') {
     relatorias <- extract_relatorias_camara(proposicao_id)
   }
   
-  if(!is.null(last_n)){
+  if (!is.null(last_n)) {
     relatorias <-
       relatorias %>%
       head(last_n)
@@ -36,37 +37,38 @@ get_relatorias <- function(proposicao_id, casa, last_n=NULL) {
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
 #' @examples fetch_relatorias_senado(91341)
 #' @export
-fetch_relatorias_senado <- function(proposicao_id, ultimo_relator = FALSE) {
-  url_relatorias <-
-    paste0(senado_env$endpoints_api$url_base, "relatorias/")
-  
-  url <- paste0(url_relatorias, proposicao_id)
-  json_relatorias <- jsonlite::fromJSON(url,flatten = T)
-  
-  relatorias <-
-    json_relatorias %>%
-    magrittr::extract2("RelatoriaMateria") %>%
-    magrittr::extract2("Materia")
-  
-  relatorias_data <- NULL
-  if (ultimo_relator) {
-    relatorias_data <-
-      relatorias %>%
-      magrittr::extract2("RelatoriaAtual")
+fetch_relatorias_senado <-
+  function(proposicao_id, ultimo_relator = FALSE) {
+    url_relatorias <-
+      paste0(senado_env$endpoints_api$url_base, "relatorias/")
+    
+    url <- paste0(url_relatorias, proposicao_id)
+    json_relatorias <- jsonlite::fromJSON(url, flatten = T)
+    
+    relatorias <-
+      json_relatorias %>%
+      magrittr::extract2("RelatoriaMateria") %>%
+      magrittr::extract2("Materia")
+    
+    relatorias_data <- NULL
+    if (ultimo_relator) {
+      relatorias_data <-
+        relatorias %>%
+        magrittr::extract2("RelatoriaAtual")
+    }
+    if (is.null(relatorias_data)) {
+      relatorias_data <-
+        relatorias %>%
+        magrittr::extract2("HistoricoRelatoria")
+    }
+    
+    relatorias_df <-
+      relatorias_data %>%
+      magrittr::extract2("Relator") %>%
+      as.data.frame() %>%
+      purrr::map_df( ~ .) %>%
+      tidyr::unnest()
   }
-  if (is.null(relatorias_data)) {
-    relatorias_data <-
-      relatorias %>%
-      magrittr::extract2("HistoricoRelatoria")
-  }
-  
-  relatorias_df <-
-    relatorias_data %>%
-    magrittr::extract2("Relator") %>%
-    as.data.frame() %>%
-    purrr::map_df( ~ .) %>%
-    tidyr::unnest()
-}
 
 #' @title Recupera o histórico de relatorias de uma proposição no Senado
 #' @description Retorna dataframe com o histórico de relatorias detalhado de uma proposição no Senado, incluindo a data
@@ -103,22 +105,32 @@ rename_relatorias_senado_columns <- function(df) {
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição na Camara
 extract_relatorias_camara <- function(proposicao_id) {
   fetch_tramitacao(proposicao_id, 'camara') %>%
-    dplyr::filter(stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r') | 
-                    stringr::str_detect(tolower(texto_tramitacao), 'o relator(.)* deixou de ser membro da comiss.o')) %>%
-    dplyr::select(
-      data_hora,
-      texto_tramitacao,
-      sigla_local
+    dplyr::filter(
+      stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r') |
+        stringr::str_detect(
+          tolower(texto_tramitacao),
+          'o relator(.)* deixou de ser membro da comiss.o'
+        )
     ) %>%
+    dplyr::select(data_hora,
+                  texto_tramitacao,
+                  sigla_local) %>%
     tibble::add_column() %>%
     dplyr::mutate(
-      nome_parlamentar = dplyr::if_else(stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r'), 
-                                        stringr::str_extract(texto_tramitacao, stringr::regex('dep.?([^,]*)', ignore_case=TRUE)),
-                                        "Relator não encontrado"),
-      partido = 
-        dplyr::if_else(stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r'),
-                       stringr::str_match(texto_tramitacao,'[(](.*?)[)]')[,2],
-                       "")
+      nome_parlamentar = dplyr::if_else(
+        stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r'),
+        stringr::str_extract(
+          texto_tramitacao,
+          stringr::regex('dep.?([^,]*)', ignore_case = TRUE)
+        ),
+        "Relator não encontrado"
+      ),
+      partido =
+        dplyr::if_else(
+          stringr::str_detect(tolower(texto_tramitacao), '^designad. relat.r'),
+          stringr::str_match(texto_tramitacao, '[(](.*?)[)]')[, 2],
+          ""
+        )
     ) %>%
     dplyr::select(-c(texto_tramitacao)) %>%
     dplyr::arrange(desc(data_hora))
@@ -153,7 +165,8 @@ get_last_relator <- function(proposicao_id, casa) {
       dplyr::mutate(
         id_relator = NA,
         partido_relator = partido_uf[[1]],
-        uf_relator = partido_uf[[2]]
+        uf_relator = partido_uf[[2]],
+        nome_parlamentar = stringr::str_remove(nome_parlamentar, " \\(.*")
       ) %>%
       dplyr::select(id_relator, nome_relator = nome_parlamentar, partido_relator, uf_relator)
   }

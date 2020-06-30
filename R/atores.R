@@ -3,7 +3,7 @@ senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 
 #' @title Cria tabela com atores os pesos dos documentos
 #' @description Os pesos são calculados através da conta 1/n
-#' onde n é a quantidade de documentos
+#' onde n é a quantidade de autores distintos para um documento
 #' @param autores_docs Dataframe com autores dos documentos
 #' @return Dataframe
 get_peso_documentos <- function(autores_docs) {
@@ -13,7 +13,7 @@ get_peso_documentos <- function(autores_docs) {
   
   autores_docs %>% 
     dplyr::group_by(id_principal, casa, id_documento) %>% 
-    dplyr::summarise(peso_documento = 1/dplyr::n())
+    dplyr::summarise(peso_documento = 1/dplyr::n_distinct(id_autor))
 }
 
 #' @title Cria tabela com atores de documentos com seus respectivos tipos de documentos
@@ -40,12 +40,13 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
     documentos_df <- documentos_df %>% dplyr::filter(data_apresentacao < data_fim)
   }
 
-  autores_docs <- merge(documentos_df, autores_df, by = c("id_documento", "casa")) %>%
+  autores_docs <- merge(documentos_df, autores_df, by = c("id_documento", "id_principal", "casa")) %>%
     dplyr::select(id_principal,
                   casa,
                   id_documento,
                   id_autor,
                   nome_autor = nome,
+                  tipo_autor,
                   sigla_tipo,
                   partido,
                   uf,
@@ -58,21 +59,20 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
   atores_df <-
     autores_docs %>%
     dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>% 
-    dplyr::filter(peso_documento >= limiar) %>% 
-    dplyr::mutate(tipo_autor = 'deputado') %>%
+    dplyr::filter(peso_documento >= limiar) %>%
     agoradigital::add_tipo_evento_documento() %>%
     dplyr::rename(tipo_generico = tipo) %>%
     dplyr::group_by(id_ext = id_principal,
                     casa,
                     id_autor,
-                    tipo_autor,
                     tipo_generico,
                     sigla_local) %>%
     dplyr::summarise(peso_total_documentos = sum(peso_documento),
-                     num_documentos = dplyr::n(),
+                     num_documentos = dplyr::n_distinct(id_documento),
                      partido = dplyr::first(partido),
                      uf = dplyr::first(uf),
-                     nome_autor = dplyr::first(nome_autor)) %>%
+                     nome_autor = dplyr::first(nome_autor),
+                     tipo_autor = dplyr::first(tipo_autor)) %>%
     dplyr::arrange(id_ext, -peso_total_documentos) %>%
     dplyr::ungroup()
 
@@ -131,22 +131,21 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
     atores_df <-
       autores_docs %>%
       dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>%
-      dplyr::filter(peso_documento >= limiar) %>% 
-      dplyr::mutate(tipo_autor = 'senador') %>% 
+      dplyr::filter(peso_documento >= limiar) %>%
       dplyr::mutate(id_principal = as.numeric(id_principal)) %>%
       agoradigital::add_tipo_evento_documento(T) %>%
       dplyr::rename(tipo_generico = tipo) %>%
       dplyr::group_by(id_ext = id_principal,
                       casa,
                       id_autor,
-                      tipo_autor,
-                      nome_autor,
-                      partido,
-                      uf,
                       tipo_generico,
                       sigla_local) %>%
       dplyr::summarise(peso_total_documentos = sum(peso_documento),
-                       num_documentos = dplyr::n()) %>%
+                       num_documentos = dplyr::n_distinct(id_documento),
+                       partido = dplyr::first(partido),
+                       uf = dplyr::first(uf),
+                       nome_autor = dplyr::first(nome_autor),
+                       tipo_autor = dplyr::first(tipo_autor)) %>%
       dplyr::arrange(id_ext, -peso_total_documentos) %>%
       dplyr::ungroup()
   

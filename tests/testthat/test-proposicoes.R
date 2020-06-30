@@ -10,12 +10,12 @@ setup <- function(){
 senado_autores <-
   tibble::tibble(id_principal = c(1,1,2),
                  id_documento = c(3, 4, 9),
-                 id_autor = c(31, 31, 31),
+                 id_autor = c(31, 31, 32),
                  casa = c("senado", "senado", "senado"),
                  nome_autor = c("Jair", "Guedes", "Romario"),
                  partido = c("p1", "p2", "p3"),
                  uf = c("PB", "PB", "PB"),
-                 tipo_autor = c("Deputado", "Deputado", "Deputado"))
+                 tipo_autor = c("Senador", "Senador", "Senador"))
 
 senado_docs <- 
   tibble::tibble(id_principal = c(1,1,2),
@@ -25,18 +25,18 @@ senado_docs <-
                  identificacao_comissao_nome_comissao = c("Comissão de Constituição, Justiça e Cidadania", "Comissão de Constituição, Justiça e Cidadania", "Comissão de Constituição, Justiça e Cidadania"))
 
 senado_atores_gabarito <-
-  tibble::tibble(id_ext = c(1, 1, 2),
-                 casa = c("senado", "senado", "senado"),
-                 id_autor = c(31, 31, 31),
-                 tipo_autor = c("senador", "senador", "senador"),
-                 nome_autor = c("Jair", "Guedes", "Romario"),
-                 partido = c("p1", "p2", "p3"),
-                 uf = c("PB", "PB", "PB"),
-                 tipo_generico = c("Emenda", "Emenda", "Emenda"),
-                 sigla_local = c("CCJ", "CCJ", "CCJ"),
-                 peso_total_documentos = c(1, 1, 1),
-                 num_documentos = as.integer(c(1,1,1)),
-                 is_important = c(TRUE, TRUE, TRUE))
+  tibble::tibble(id_ext = c(1, 2),
+                 casa = c("senado", "senado"),
+                 id_autor = c(31, 32),
+                 tipo_autor = c("Senador", "Senador"),
+                 nome_autor = c("Jair", "Romario"),
+                 partido = c("p1", "p3"),
+                 uf = c("PB", "PB"),
+                 tipo_generico = c("Emenda", "Emenda"),
+                 sigla_local = c("CCJ", "CCJ"),
+                 peso_total_documentos = c(2, 1),
+                 num_documentos = as.integer(c(2, 1)),
+                 is_important = c(TRUE, TRUE))
 
 pls_ids <- tibble::tibble(id_camara = c(257161,2088990),
                           id_senado = c(NA,91341),
