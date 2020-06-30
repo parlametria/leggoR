@@ -66,7 +66,6 @@ processa_anotacoes <-
         !is.na(anotacao),
         !is.na(titulo),
         !is.na(data_criacao),
-        !is.na(data_criacao),
         !is.na(data_ultima_modificacao)
       )
     
