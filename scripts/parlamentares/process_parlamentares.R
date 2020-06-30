@@ -116,13 +116,11 @@
     return(proposicoes_df)
   }
 
-#' @title Faz o merge das relatorias pelo nome, casa, partido e uf do relator
-#' @description Realiza o merge das tabelas parlamentares e proposições, 
-#' recuperando o id do relator através do join de nome, casa, partido e uf do relator.
-#' @param proposicoes_df Dataframe de proposições
-#' @param parlamentares_df Dataframe de parlamentares
-#' @return Dataframe de proposições contendo o relator_id completo 
-#' e relator_nome processado.
+#' @title Padroniza o nome do parlamentar
+#' @description Realiza o processamento no nome do relator, retirando
+#' Dep. ou Sen., informações sobre partido e uf e espaços desnecessários
+#' @param nome Nome a ser processado
+#' @return Nome processado
 .padroniza_nome <- function(nome) {
   nome_processado <- str_to_title(nome) %>%
     str_remove("Dep. |Sen. ") %>%
@@ -138,13 +136,12 @@
   return(nome_processado)
 }
 
-#' @title Faz o merge das relatorias pelo nome, casa, partido e uf do relator
-#' @description Realiza o merge das tabelas parlamentares e proposições, 
-#' recuperando o id do relator através do join de nome, casa, partido e uf do relator.
-#' @param proposicoes_df Dataframe de proposições
-#' @param parlamentares_df Dataframe de parlamentares
-#' @return Dataframe de proposições contendo o relator_id completo 
-#' e relator_nome processado.
+#' @title Padroniza e retorna os dados de todos os parlamentares
+#' @description Une os dados dos deputados e senadores em um dataframe único
+#' com as colunas padronizadas.
+#' @param export_path Caminho da pasta onde estão os diretórios camara/ e senado/,
+#' que possuem os dataframes parlamentares.csv
+#' @return Dataframe de parlamentares tanto da câmara quanto do senado.
 .bind_parlamentares <- function(export_path) {
   library(tidyverse)
   if (!str_detect(export_path, "\\/$")) {

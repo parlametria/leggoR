@@ -249,24 +249,24 @@ fetch_props <- function(pls, export_path) {
   error = function(msg) {
   })
   
-  # parlamentares <- tryCatch({
-  #   .bind_parlamentares(export_path)
-  # },
-  # error = function(msg) {
-  #   print("Erro ao importar dados de parlamentares em fetch_props:")
-  #   print(msg)
-  #   return(
-  #     tibble::tribble(
-  #       ~ casa,
-  #       ~ id_parlamentar,
-  #       ~ nome_completo,
-  #       ~ nome_eleitoral,
-  #       ~ genero,
-  #       ~ partido,
-  #       ~ uf
-  #     )
-  #   )
-  # })
+  parlamentares <- tryCatch({
+    .bind_parlamentares(export_path)
+  },
+  error = function(msg) {
+    print("Erro ao importar dados de parlamentares em fetch_props:")
+    print(msg)
+    return(
+      tibble::tribble(
+        ~ casa,
+        ~ id_parlamentar,
+        ~ nome_completo,
+        ~ nome_eleitoral,
+        ~ genero,
+        ~ partido,
+        ~ uf
+      )
+    )
+  })
   
   res <- list()
   count <- 0
@@ -286,9 +286,8 @@ fetch_props <- function(pls, export_path) {
       dplyr::select(-c(ano)) %>%
       dplyr::rename(id_ext = prop_id) %>%
       dplyr::select(-c(tema, apelido_materia)) %>%
-      unique()
-    # %>% 
-    #   .mapeia_nome_relator_para_id(parlamentares)
+      unique() %>% 
+      .mapeia_nome_relator_para_id(parlamentares)
 
     proposicoes_baixadas <- proposicoes %>%
       dplyr::select(id_leggo,

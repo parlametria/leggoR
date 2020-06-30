@@ -55,7 +55,7 @@ export_props <- function(pls_ids_filepath, export_path) {
   readr::read_csv(pls_ids_filepath) %>%
     dplyr::mutate(row_num = 1:nrow(.)) %>%
     dplyr::select(row_num,id_camara,id_senado) %>%
-    slice(1:30) %>% 
+    slide(1:100) %>% 
     agoradigital::fetch_props(export_path)
 }
 
