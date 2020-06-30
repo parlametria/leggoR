@@ -46,7 +46,10 @@ safe_process_etapa <- purrr::safely(
           ~ autor_partido,
           ~ regime_tramitacao,
           ~ forma_apreciacao,
+          ~ relator_id,
           ~ relator_nome,
+          ~ relator_partido,
+          ~ relator_uf,
           ~ temperatura
         ),
         fases_eventos = tibble::tribble(

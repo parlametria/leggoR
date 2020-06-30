@@ -124,16 +124,38 @@ extract_relatorias_camara <- function(proposicao_id) {
     dplyr::arrange(desc(data_hora))
 }
 
-#' @title Retorna nome do ultimo relator
+#' @title Retorna o ultimo relator
 #' @description Recebe id da proposicao e sua casa e retorna o ultimo relator registrado
 #' @param proposicao_id ID de uma proposição da Camara
 #' @param casa casa da proposicao
-#' @return String nome do relator
-#' @examples get_last_relator_name(91341, 'senado')
+#' @return Dataframe com dados do relator
+#' @examples get_last_relator(91341, 'senado')
 #' @export
-get_last_relator_name <- function(proposicao_id, casa) {
-  relatorias <- get_relatorias(proposicao_id, casa, 1)
-  if(nrow(relatorias) == 0)
-    return("Relator não encontrado")
-  return(relatorias$nome_parlamentar)
+get_last_relator <- function(proposicao_id, casa) {
+  df_relator <- tibble::tribble(~ id_relator, ~ nome_relator,  ~partido_relator, ~ uf_relator)
+  relatorias <- agoradigital::get_relatorias(proposicao_id, casa, 1)
+  
+  if(nrow(relatorias) == 0 | relatorias$nome_parlamentar == "Relator não encontrado")
+    return(df_relator)
+  
+  if (casa == "senado") {
+    df_relator <- relatorias %>%
+      dplyr::select(
+        id_relator = codigo_parlamentar,
+        nome_relator = nome_parlamentar,
+        partido_relator = sigla_partido_parlamentar,
+        uf_relator = uf_parlamentar
+      )
+  } else if (casa == "camara") {
+    partido_uf <- (relatorias$partido %>% stringr::str_split("-"))[[1]]
+    
+    df_relator <- relatorias %>%
+      dplyr::mutate(
+        id_relator = NA,
+        partido_relator = partido_uf[[1]],
+        uf_relator = partido_uf[[2]]
+      ) %>%
+      dplyr::select(id_relator, nome_relator = nome_parlamentar, partido_relator, uf_relator)
+  }
+  return(df_relator)
 }
