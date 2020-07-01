@@ -1,14 +1,13 @@
 #' @title Baixa as anotações dos interesses do leggo
-#' @description A partir de uma lista de anotações com interesses atrelados, 
+#' @description A partir de uma lista de anotações com interesses atrelados,
 #' baixa os dados de anotações e mapeia os interesses correspondentes.
 #' @param url URL para lista de anotações por interesse do leggo
 #' @return Dataframe com o mapeamento entre anotações e interesses
-#' contendo data_criacao, data_ultima_modificacao, proposicao, 
-#' autor, titulo, anotacao, interesse 
+#' contendo data_criacao, data_ultima_modificacao, proposicao,
+#' autor, titulo, anotacao, interesse
 #' @example
 #' anotacoes <- .processa_lista_anotacoes(url)
 .processa_lista_anotacoes <- function(url) {
-  
   if (is.null(url) | url == "") {
     stop("URL para planilha de anotações precisa ser diferente de vazio e não nula.")
   }
@@ -49,57 +48,79 @@
 #' @param url URL para lista de anotações por interesse do leggo
 #' @param pls_interesses_datapath Caminho do arquivo do dataframe que possui
 #' os identificadores, interesses e proposições mapeados.
-#' @param proposicoes_datapath Caminho do caminho do dataframe que possui 
+#' @param proposicoes_datapath Caminho do caminho do dataframe que possui
 #' o identificador do leggo para as proposições.
 #' @return Dataframe com o mapeamento entre anotações e interesses
-#' contendo data_criacao, data_ultima_modificacao, proposicao, 
-#' autor, titulo, anotacao, interesse, id_ext, casa, id_leggo. 
+#' contendo data_criacao, data_ultima_modificacao, proposicao,
+#' autor, titulo, anotacao, interesse, id_ext, casa, id_leggo.
 #' @example
 #' anotacoes <- processa_anotacoes(url, pls_interesses_datapath, proposicoes_datapath)
-processa_anotacoes <- function(url, pls_interesses_datapath, proposicoes_datapath) {
-  library(tidyverse)
-  
-  anotacoes <- .processa_lista_anotacoes(url)
-  
-  anotacoes <- anotacoes %>%
-    dplyr::mutate_at(vars("data_criacao", "data_ultima_modificacao"),
-                     ~ lubridate::mdy_hms(.)) %>% 
-    dplyr::mutate(peso = if_else(is.na(peso), 99, as.numeric(peso)))
-  
-  pls_interesses <- readr::read_csv(pls_interesses_datapath,
-                                    col_types = cols(.default = "c")) %>%
-    dplyr::select(proposicao, id_camara, id_senado)
-  
-  anotacoes_com_ids <- anotacoes %>% 
-    dplyr::left_join(pls_interesses, by = c("proposicao")) %>% 
-    dplyr::select(-proposicao)
-  
-  anotacoes_com_ids_camara <- anotacoes_com_ids %>%
-    dplyr::mutate(id_ext = id_camara) %>%
-    dplyr::filter(!is.na(id_ext)) %>%
-    dplyr::select(-c(id_senado, id_camara))
-  
-  anotacoes_com_ids_senado <- anotacoes_com_ids %>%
-    dplyr::mutate(id_ext = id_senado) %>%
-    dplyr::filter(!is.na(id_ext)) %>%
-    dplyr::select(-c(id_senado, id_camara))
-  
-  anotacoes_com_ids <- anotacoes_com_ids_camara %>%
-    dplyr::bind_rows(anotacoes_com_ids_senado)
-  
-  proposicoes <-
-    readr::read_csv(proposicoes_datapath, col_types = cols(.default = "c")) %>%
-    dplyr::select(id_leggo, id_ext)
-  
-  anotacoes_com_ids_processed <- proposicoes %>%
-    dplyr::inner_join(anotacoes_com_ids, by = "id_ext") %>% 
-    dplyr::select(-id_ext) %>% 
-    dplyr::distinct() %>% 
-    dplyr::mutate(
-      categoria = iconv(categoria, 
-                        from="UTF-8", 
-                        to="ASCII//TRANSLIT") %>% 
-        tolower())
-  
-  return(anotacoes_com_ids_processed)
-}
+processa_anotacoes <-
+  function(url,
+           pls_interesses_datapath,
+           proposicoes_datapath) {
+    library(tidyverse)
+    
+    anotacoes <- .processa_lista_anotacoes(url) %>%
+      dplyr::filter(
+        !is.na(anotacao),
+        !is.na(titulo),
+        !is.na(data_criacao),
+        !is.na(data_ultima_modificacao)
+      )
+    
+    anotacoes <- anotacoes %>%
+      dplyr::mutate_at(vars("data_criacao", "data_ultima_modificacao"),
+                       ~ lubridate::mdy_hms(.)) %>%
+      dplyr::mutate(
+        peso = if_else(is.na(peso), 99, as.numeric(peso)),
+        proposicao = str_remove(proposicao, "CD |SF |CN "),
+        categoria = iconv(categoria,
+                          from = "UTF-8",
+                          to = "ASCII//TRANSLIT") %>%
+          tolower(),
+        is_insight_geral = if_else(is.na(proposicao), 1, 0)
+      )
+    
+    pls_interesses <- readr::read_csv(pls_interesses_datapath,
+                                      col_types = cols(.default = "c")) %>%
+      dplyr::select(proposicao, id_camara, id_senado)
+    
+    anotacoes_com_ids <- anotacoes %>%
+      dplyr::left_join(pls_interesses, by = c("proposicao")) %>%
+      dplyr::select(-proposicao)
+    
+    anotacoes_com_ids_camara <- anotacoes_com_ids %>%
+      dplyr::mutate(id_ext = id_camara) %>%
+      dplyr::filter(!is.na(id_ext), is_insight_geral == 0) %>%
+      dplyr::select(-c(id_senado, id_camara, is_insight_geral))
+    
+    anotacoes_com_ids_senado <- anotacoes_com_ids %>%
+      dplyr::mutate(id_ext = id_senado) %>%
+      dplyr::filter(!is.na(id_ext), is_insight_geral == 0) %>%
+      dplyr::select(-c(id_senado, id_camara, is_insight_geral))
+    
+    anotacoes_gerais <- anotacoes %>%
+      dplyr::filter(is_insight_geral == 1) %>%
+      dplyr::select(-c(proposicao, is_insight_geral)) %>%
+      dplyr::distinct()
+    
+    anotacoes_com_ids <- anotacoes_com_ids_camara %>%
+      dplyr::bind_rows(anotacoes_com_ids_senado)
+    
+    proposicoes <-
+      readr::read_csv(proposicoes_datapath, col_types = cols(.default = "c")) %>%
+      dplyr::select(id_leggo, id_ext)
+    
+    anotacoes_com_ids_processed <- proposicoes %>%
+      dplyr::inner_join(anotacoes_com_ids, by = "id_ext") %>%
+      dplyr::select(-id_ext) %>%
+      dplyr::distinct()
+    
+    return(
+      list(
+        anotacoes_gerais = anotacoes_gerais,
+        anotacoes_especificas = anotacoes_com_ids_processed
+      )
+    )
+  }

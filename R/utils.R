@@ -191,21 +191,35 @@ formata_nome_eleitoral <- function(nome, partido, uf) {
 #' @description Recebe a string do senador retornada pela api do Seando
 #' e retorna Sen. nome.
 #' @param nome_autor Nome do parlamentar
+#' @param tipo_autor Tipo do Autor (deputado ou senador)
 #' @return String
 #' @export
-formata_nome_senadores <- function(nome_autor) {
-  stringr::str_replace(nome_autor,
-                       "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", "Sen. ")
+formata_nome_senadores <- function(nome_autor, tipo_autor) {
+  if (tolower(tipo_autor) == "senador") {
+    return(stringr::str_replace(nome_autor,
+                                "(\\()(.*?)(\\))|(^Senador(a)* )|(^Líder do ((.*?)(\\s)))|(^Presidente do Senado Federal: Senador )", "Sen. "))
+  } else if (tolower(tipo_autor) == "deputado") {
+    return(stringr::str_replace(nome_autor,
+                                "(\\()(.*?)(\\))|(^Deputad(o|a) Federal )|(^Deputad(o|a) )", "Dep. "))
+  } else {
+    return(nome_autor)
+  }
+
 }
 
 #' @title Formata o nome dos deputados
 #' @description Recebe o nome do deputado
 #' e retorna Dep. nome.
 #' @param nome_autor Nome do parlamentar
+#' @param tipo_autor Tipo do Autor (deputado ou senador)
 #' @return String
 #' @export
-formata_nome_deputados <- function(nome_autor) {
-  paste0('Dep. ', nome_autor)
+formata_nome_deputados <- function(nome_autor, tipo_autor) {
+  if (tolower(tipo_autor) == "deputado") {
+    return(paste0('Dep. ', nome_autor))
+  } else {
+    return(nome_autor)
+  }
 }
 
 #' @title Padroniza um texto

@@ -14,18 +14,20 @@ setup <- function() {
                                     url_inteiro_teor =c("google.com", "google.com", "google.com"),
                                     id_leggo = c(1, 1, 1))
   
-  autores_sample_df <<- tibble::tibble(id_documento = c(11,11,12,21,21),
+  autores_sample_df <<- tibble::tibble(id_principal = c(1, 1, 1, 2, 2),
+                                       id_documento = c(11,11,12,21,21),
                                        casa = c('camara','camara','camara','camara','camara'),
                                        id_autor = c(1,5,5,5,6),
+                                       tipo_autor = c("deputado", "deputado", "deputado", "deputado", "deputado"),
                                        partido = c('PSDB','PT','PT','PT', 'PSL'),
                                        uf = c('SP', "PB", "PB", "PB", "BA"),
                                        nome = c('Dep. A', 'Dep. C', 'Dep. C', 'Dep. C', 'Dep. D'))
   
   coautorias_sample <<-
-    tibble::tribble(~id_leggo, ~ id_principal, ~ casa, ~ id_autor.x, ~ id_autor.y, ~ peso_arestas, ~ num_coautorias, ~ nome.x, ~ partido.x, ~ uf.x, ~ bancada.x, ~ nome.y, ~ partido.y, ~ uf.y, ~ bancada.y,
-    1,            1, "camara",          1,          5,          0.5,              1, "Dep. A", "PSDB", "SP",    "governo",   "Dep. C", "PT", "PB",    "oposição",  
-    1,            1, "camara",          5,          5,          1,                1, "Dep. C", "PT", "PB",    "oposição",   "Dep. C", "PT", "PB",    "oposição",  
-    1,            2, "camara",          5,          6,          0.5,              1, "Dep. C", "PT", "PB",    "oposição",   "Dep. D", "PSL", "BA",    "governo" ) 
+    tibble::tribble(~id_leggo, ~ id_principal, ~ casa, ~ id_autor.x, ~ id_autor.y, ~ peso_arestas, ~ num_coautorias, ~ nome.x, ~ partido.x, ~ uf.x, ~casa_autor.x, ~ bancada.x, ~ nome.y, ~ partido.y, ~ uf.y, ~casa_autor.y, ~ bancada.y,
+    1,            1, "camara",          1,          5,          0.5,              1, "Dep. A", "PSDB", "SP", "camara",    "governo",   "Dep. C", "PT", "PB", "camara",    "oposição",  
+    1,            1, "camara",          5,          5,          1,                1, "Dep. C", "PT", "PB", "camara",    "oposição",   "Dep. C", "PT", "PB", "camara",    "oposição",  
+    1,            2, "camara",          5,          6,          0.5,              1, "Dep. C", "PT", "PB", "camara",    "oposição",   "Dep. D", "PSL", "BA", "camara",    "governo" ) 
   
   .OPOSICAO = c("PT")
     
@@ -35,10 +37,10 @@ setup <- function() {
     dplyr::mutate(num_coautorias = as.numeric(num_coautorias))
   
   nodes_sample <<-
-    tibble::tribble(~id_leggo, ~ id_autor, ~ nome, ~ partido, ~ uf, ~ bancada, ~ nome_eleitoral,        
-                    1,        1, "Dep. A", "PSDB", "SP",    "governo", "Dep. A (PSDB/SP)",
-                    1,        5, "Dep. C", "PT",    "PB",    "oposição", "Dep. C (PT/PB)", 
-                    1,        6, "Dep. D", "PSL",    "BA",    "governo", "Dep. D (PSL/BA)")
+    tibble::tribble(~id_leggo, ~ id_autor, ~ nome, ~ partido, ~ uf, ~ bancada, ~casa_autor, ~ nome_eleitoral,        
+                    1,        1, "Dep. A", "PSDB", "SP",    "governo", "camara", "Dep. A (PSDB/SP)",
+                    1,        5, "Dep. C", "PT",    "PB",    "oposição", "camara", "Dep. C (PT/PB)", 
+                    1,        6, "Dep. D", "PSL",    "BA",    "governo", "camara", "Dep. D (PSL/BA)")
   
   nodes <<-
     agoradigital::get_unique_nodes(coautorias_sample)
@@ -55,10 +57,10 @@ setup <- function() {
     dplyr::distinct()
   
   nodes_sample_with_size <<-
-    tibble::tribble(~id_leggo, ~ id_autor, ~ nome, ~ partido, ~ uf, ~ bancada, ~ nome_eleitoral, ~ node_size,        
-                    1,        1, "Dep. A", "PSDB", "SP",    "governo", "Dep. A (PSDB/SP)", 0.5,
-                    1,        5, "Dep. C", "PT",    "PB",    "oposição", "Dep. C (PT/PB)", 2,
-                    1,        6, "Dep. D", "PSL",    "BA",    "governo", "Dep. D (PSL/BA)", 0.5)
+    tibble::tribble(~id_leggo, ~ id_autor, ~ nome, ~ partido, ~ uf, ~ bancada, ~casa_autor, ~ nome_eleitoral, ~ node_size,        
+                    1,        1, "Dep. A", "PSDB", "SP",    "governo", "camara", "Dep. A (PSDB/SP)", 0.5,
+                    1,        5, "Dep. C", "PT",    "PB",    "oposição", "camara", "Dep. C (PT/PB)", 2,
+                    1,        6, "Dep. D", "PSL",    "BA",    "governo", "camara", "Dep. D (PSL/BA)", 0.5)
   
   nodes_with_size <<-
     agoradigital::compute_nodes_size(edges, nodes)
