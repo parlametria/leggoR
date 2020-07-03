@@ -537,10 +537,11 @@ match_autores_senado_scrap_to_deputados <- function(autores_senado_scrap_deputad
 }
 
 #' @title Classifica o tipo de documento com base na coluna com a descrição do tipo de documento.
-#' @description A partir da coluna descricao_tipo_documento, classifica o tipo do documento em grupos principais
+#' @description A partir da coluna descricao_tipo_documento ou tipo_documento_ext, classifica o tipo do documento em grupos principais
 #' como emendas, requerimentos, projetos de lei, etc.
 #' @param docs Dataframe com informação do tipo de documento a serem classificados.
 #' (é necessário ter as colunas casa, descricao_tipo_documento, id_principal, id_documento, id_autor).
+#' Para o Senado a coluna utilizada para classificar o tipo de documento é tipo_documento_ext.
 #' @return Dataframe contendo uma coluna a mais com o tipo_documento
 #' @examples classifica_tipo_documento_autorias(autorias)
 #' @export
@@ -553,7 +554,7 @@ classifica_tipo_documento_autorias <- function(docs) {
 
   docs_senado <- docs %>%
     filter(casa == "senado") %>%
-    fuzzyjoin::regex_left_join(senado_env$tipos_documentos, by = c(descricao_tipo_documento = "regex"), ignore_case = T) %>%
+    fuzzyjoin::regex_left_join(senado_env$tipos_documentos, by = c(tipo_documento_ext = "regex"), ignore_case = T) %>%
     dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo), # default para tipos não agrupados
                   tipo = dplyr::if_else(str_detect(tipo, "P.S"), "Outros", tipo), # Corrige casos de falsos positivos em matérias legislativas.
                   peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso))) %>% # Atribui peso default

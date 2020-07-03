@@ -91,22 +91,22 @@ adiciona_coluna_pulou <- function(progresso_df) {
 #' @return Dataframe
 adiciona_coluna_pulou_mpv <- function(progresso_df) {
   cong_remoto_inicio <- congresso_env$congresso_remoto$data_mudanca_mpvs
-  
-  data_fase_camara <- progresso_df %>% 
-    dplyr::filter(fase_global == "Câmara dos Deputados") %>% 
+
+  data_fase_camara <- progresso_df %>%
+    dplyr::filter(fase_global == "Câmara dos Deputados") %>%
     dplyr::pull(data_inicio)
-  
-  data_inicio_comissao_mista <- progresso_df %>% 
-    dplyr::filter(fase_global == "Comissão Mista") %>% 
+
+  data_inicio_comissao_mista <- progresso_df %>%
+    dplyr::filter(fase_global == "Comissão Mista") %>%
     dplyr::pull(data_inicio)
-  
-  # Uma MPV pula a fase de comissão mista quando a fase de início do Plenário tiver 
+
+  # Uma MPV pula a fase de comissão mista quando a fase de início do Plenário tiver
   # ocorrido durante a pandemia
   if (length(data_fase_camara) > 0) {
     if (data_fase_camara > cong_remoto_inicio) {
-      progresso_df <- progresso_df %>% 
+      progresso_df <- progresso_df %>%
         dplyr::mutate(pulou = dplyr::case_when(
-          fase_global == "Comissão Mista" & 
+          fase_global == "Comissão Mista" &
             (data_fase_camara >= cong_remoto_inicio &
             data_inicio >= cong_remoto_inicio) ~ TRUE,
           fase_global == "Comissão Mista" & is.na(data_inicio) ~ TRUE,
@@ -114,7 +114,7 @@ adiciona_coluna_pulou_mpv <- function(progresso_df) {
         ))
     }
   }
-  
+
   return(progresso_df)
 }
 
@@ -183,12 +183,18 @@ process_pl <- function(row_num, id_camara, id_senado, total_rows, pautas,
     }
   }
 
+  if(is.na(id_camara) & is.na(id_senado)) {
+    message("A proposição não foi processada!")
+    print("A proposição está preenchida com o id_camara e o id_senado como NA.")
+    return(etapas)
+  }
+
   etapas %<>% purrr::pmap(dplyr::bind_rows)
   if (nrow(etapas$proposicao) != 0) {
     if (tolower(etapas$proposicao$sigla_tipo) == 'mpv') {
       etapas[["progresso"]] <-
         agoradigital::generate_progresso_df_mpv(etapas$fases_eventos, etapas$proposicao) %>%
-        dplyr::mutate(local = "", local_casa = "") %>% 
+        dplyr::mutate(local = "", local_casa = "") %>%
         adiciona_coluna_pulou_mpv()
     }else {
       etapas[["progresso"]] <-
@@ -285,8 +291,8 @@ fetch_props <- function(pls, export_path) {
   while (count < 5 ) {
     cat(paste("\n--- Tentativa ", count + 1,"\n"))
     sleep_time = .DEF_REQ_SLEEP_TIME_IN_SECS^(count+1)
-    res <- append(res, proposicoes_que_nao_baixaram %>% 
-                    purrr::pmap(process_pl, nrow(proposicoes_que_nao_baixaram), 
+    res <- append(res, proposicoes_que_nao_baixaram %>%
+                    purrr::pmap(process_pl, nrow(proposicoes_que_nao_baixaram),
                                 pautas = pautas,
                                 sleep_time = sleep_time))
 
@@ -307,7 +313,7 @@ fetch_props <- function(pls, export_path) {
     proposicoes_que_nao_baixaram_temp <- dplyr::anti_join(proposicoes_individuais_a_baixar, proposicoes_baixadas)
     proposicoes_que_nao_baixaram <- proposicoes_que_nao_baixaram %>%
       dplyr::filter((id_camara %in% proposicoes_que_nao_baixaram_temp$id_casa) |
-                      (id_senado %in% proposicoes_que_nao_baixaram_temp$id_casa))
+                      (id_senado %in% proposicoes_que_nao_baixaram_temp$id_casa) | (is.na(id_camara) & is.na(id_senado)))
 
     if(nrow(proposicoes_que_nao_baixaram) == 0) {
       print("Downloaded all propositions! =)")
