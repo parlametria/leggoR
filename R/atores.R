@@ -10,9 +10,9 @@ get_peso_documentos <- function(autores_docs) {
   if (!(agoradigital::check_dataframe(autores_docs))) {
     return(tibble::tibble())
   }
-  
-  autores_docs %>% 
-    dplyr::group_by(id_principal, casa, id_documento) %>% 
+
+  autores_docs %>%
+    dplyr::group_by(id_principal, casa, id_documento) %>%
     dplyr::summarise(peso_documento = 1/dplyr::n_distinct(id_autor))
 }
 
@@ -52,13 +52,13 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
                   uf,
                   sigla_local = status_proposicao_sigla_orgao,
                   descricao_tipo_documento)
-  
+
   peso_documentos <-
     get_peso_documentos(autores_docs)
-  
+
   atores_df <-
     autores_docs %>%
-    dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>% 
+    dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>%
     dplyr::filter(peso_documento >= limiar) %>%
     agoradigital::add_tipo_evento_documento() %>%
     dplyr::rename(tipo_generico = tipo) %>%
@@ -92,7 +92,7 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
 #' @export
 create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL, limiar = 0.1) {
   atores_df <- tibble::tibble()
-  
+
   if (!(agoradigital::check_dataframe(documentos_df)) ||
       (!agoradigital::check_dataframe(autores_df))) {
     return(tibble::tibble())
@@ -123,7 +123,7 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
     fuzzyjoin::regex_left_join(autores_docs, senado_comissoes, by=c("identificacao_comissao_nome_comissao" = "comissoes_permanentes")) %>%
     dplyr::select(-c(identificacao_comissao_nome_comissao, comissoes_permanentes)) %>%
     dplyr::rename(sigla_local = siglas_comissoes)
-  
+
   peso_documentos <-
     get_peso_documentos(autores_docs)
 
@@ -148,7 +148,7 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
                        tipo_autor = dplyr::first(tipo_autor)) %>%
       dplyr::arrange(id_ext, -peso_total_documentos) %>%
       dplyr::ungroup()
-  
+
     atores_df <-
       .detect_sigla_local(atores_df, senado_env)
   }
@@ -170,4 +170,18 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
                                                                   stringr::str_detect(tolower(sigla_local), 'mpv')),TRUE,FALSE)))
 
   return(atores_df)
+}
+
+#' @title Remove atuação dos deputados na fase de comissão mista em medidas provisórias
+#' @description Já que a atuação dos deputados na fase de comissão mista já é recuperada pela API do senado, esta
+#' função remove da atuação dos deputados as ocorrências de apresentação de documentos na comissão mista retornadas
+#' pela API da Câmara, com o objetivo de evitar duplicações na atuação.
+#' @param atuacao_df_camara Dataframe com atuação dos deputados em documentos
+#' @return Dataframe com atuação dos deputados com exceção dos documentos assinados na fase de comissão mista para MPVs
+#' @export
+remove_atuacao_camara_comissao_mista <- function(atuacao_df_camara) {
+  atuacao_df_camara_alt <- atuacao_df_camara %>%
+    filter(!(casa == "camara" & stringr::str_detect(sigla_local, "MPV")))
+
+  return(atuacao_df_camara_alt)
 }
