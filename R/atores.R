@@ -25,7 +25,7 @@ get_peso_documentos <- function(autores_docs) {
 #' @param data_fim Data limite superior para documentos de interesse
 #' @return Dataframe
 #' @export
-create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL, limiar = 0.1) {
+create_tabela_atuacao_camara <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL, limiar = 0.1) {
 
   if (!(agoradigital::check_dataframe(documentos_df)) ||
       (!agoradigital::check_dataframe(autores_df))) {
@@ -56,7 +56,7 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
   peso_documentos <-
     get_peso_documentos(autores_docs)
 
-  atores_df <-
+  atuacao_df <-
     autores_docs %>%
     dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>%
     dplyr::filter(peso_documento >= limiar) %>%
@@ -76,9 +76,9 @@ create_tabela_atores_camara <- function(documentos_df, autores_df, data_inicio =
     dplyr::arrange(id_ext, -peso_total_documentos) %>%
     dplyr::ungroup()
 
-  atores_df <- .detect_sigla_local(atores_df, camara_env)
+  atuacao_df <- .detect_sigla_local(atuacao_df, camara_env)
 
-  return(atores_df)
+  return(atuacao_df)
 }
 
 #' @title Cria tabela com atores de documentos com seus respectivos tipos de documentos
@@ -158,18 +158,18 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
 
 #' @title Detecta comissoes importantes da Camara e Senado
 #' @description Retorna um dataframe contendo informacoes de importancia de comissoes
-#' @param atores_df Dataframe dos atores
+#' @param atuacao_df Dataframe dos atores
 #' @param casa_env Camara ou Senado
 #' @return Dataframe
-.detect_sigla_local <- function(atores_df, casa_env) {
-  atores_df <- atores_df %>%
+.detect_sigla_local <- function(atuacao_df, casa_env) {
+  atuacao_df <- atuacao_df %>%
     dplyr::mutate(is_important = dplyr::if_else(is.na(sigla_local),FALSE,
                                                 dplyr::if_else((sigla_local %in% c(casa_env$comissoes_nomes$siglas_comissoes) |
                                                                   stringr::str_detect(tolower(sigla_local), 'pl') |
                                                                   stringr::str_detect(tolower(sigla_local), 'pec') |
                                                                   stringr::str_detect(tolower(sigla_local), 'mpv')),TRUE,FALSE)))
 
-  return(atores_df)
+  return(atuacao_df)
 }
 
 #' @title Remove atuação dos deputados na fase de comissão mista em medidas provisórias

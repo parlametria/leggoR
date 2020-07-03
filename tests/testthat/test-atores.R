@@ -189,31 +189,31 @@ test <- function() {
     expect_true(nrow(autores_senado_empty) == 0)
   })
 
-  #Atores - Câmara
+  #Atuação - Câmara
   
-  test_that('create_tabela_atores() returns dataframe', {
-    expect_true(is.data.frame(create_tabela_atores_camara(docs_sample_df_camara, autores_sample_df_camara)))
-    expect_true(is.data.frame(create_tabela_atores_camara(docs_sample_df_camara, autores_sample_df_camara, data_inicio, data_fim)))
+  test_that('create_tabela_atuacao() returns dataframe', {
+    expect_true(is.data.frame(create_tabela_atuacao_camara(docs_sample_df_camara, autores_sample_df_camara)))
+    expect_true(is.data.frame(create_tabela_atuacao_camara(docs_sample_df_camara, autores_sample_df_camara, data_inicio, data_fim)))
   })
 
-  test_that('create_tabela_atores() returns warning with empty docs table', {
-    expect_warning(create_tabela_atores_camara(tibble::tibble(), autores_sample_df_camara))
+  test_that('create_tabela_atuacao() returns warning with empty docs table', {
+    expect_warning(create_tabela_atuacao_camara(tibble::tibble(), autores_sample_df_camara))
   })
 
-  test_that('create_tabela_atores() returns warning with empty authors table', {
-    expect_warning(create_tabela_atores_camara(docs_sample_df_camara, tibble::tibble()))
+  test_that('create_tabela_atuacao() returns warning with empty authors table', {
+    expect_warning(create_tabela_atuacao_camara(docs_sample_df_camara, tibble::tibble()))
   })
 
-  test_that('create_tabela_atores() returns correct atores table', {
-    expect_equal(create_tabela_atores_camara(docs_sample_df_camara, autores_sample_df_camara), atores_sample_df_camara)
+  test_that('create_tabela_atuacao() returns correct atores table', {
+    expect_equal(create_tabela_atuacao_camara(docs_sample_df_camara, autores_sample_df_camara), atores_sample_df_camara)
   })
 
-  test_that('create_tabela_atores() returns filtered dataframe', {
-    expect_equal(create_tabela_atores_camara(docs_sample_df_camara, autores_sample_df_camara, data_inicio, data_fim), atores_sample_df_camara_filtered)
+  test_that('create_tabela_atuacao() returns filtered dataframe', {
+    expect_equal(create_tabela_atuacao_camara(docs_sample_df_camara, autores_sample_df_camara, data_inicio, data_fim), atores_sample_df_camara_filtered)
   })
   
-  test_that('create_tabela_atores() returns filtered dataframe', {
-    expect_equal(create_tabela_atores_camara(docs_sample_df_camara, autores_sample_df_camara, limiar = 1), atores_sample_df_camara_filtered_limiar)
+  test_that('create_tabela_atuacao() returns filtered dataframe', {
+    expect_equal(create_tabela_atuacao_camara(docs_sample_df_camara, autores_sample_df_camara, limiar = 1), atores_sample_df_camara_filtered_limiar)
   })
   
   #Atores - Senado

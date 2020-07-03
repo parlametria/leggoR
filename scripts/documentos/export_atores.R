@@ -10,7 +10,7 @@
 export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicio, peso_minimo, props_leggo_id) {
   print(paste("Gerando tabela de atores a partir de dados atualizados de documentos e autores..."))
 
-  atores_camara <- agoradigital::create_tabela_atores_camara(camara_docs, camara_autores, data_inicio = data_inicio, limiar = peso_minimo) %>%
+  atores_camara <- agoradigital::create_tabela_atuacao_camara(camara_docs, camara_autores, data_inicio = data_inicio, limiar = peso_minimo) %>%
     select(id_ext, casa, id_autor, tipo_autor, tipo_generico, sigla_local, peso_total_documentos, num_documentos, partido, uf, nome_autor, is_important) %>%
     agoradigital::remove_atuacao_camara_comissao_mista()
 
