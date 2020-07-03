@@ -240,7 +240,6 @@ converte_tabela_geral_ids_casa <- function(pls) {
 #' @param export_path pasta para onde exportar dados.
 #' @export
 fetch_props <- function(pls, export_path) {
-  source(here::here("scripts/parlamentares/process_parlamentares.R"))
   pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
 
   tryCatch({
@@ -250,20 +249,30 @@ fetch_props <- function(pls, export_path) {
   })
   
   parlamentares <- tryCatch({
-    .bind_parlamentares(export_path)
+    export_path_parlamentares <- export_path
+    
+    if (!stringr::str_detect(export_path, "\\/$")) {
+      export_path_parlamentares <- paste0(export_path, "/")
+    }
+    
+    readr::read_csv(paste0(export_path_parlamentares, "parlamentares.csv"),
+                    col_types = readr::cols(.default = "c"))
   },
   error = function(msg) {
     print("Erro ao importar dados de parlamentares em fetch_props:")
     print(msg)
     return(
       tibble::tribble(
-        ~ casa,
         ~ id_parlamentar,
-        ~ nome_completo,
+        ~ casa,
         ~ nome_eleitoral,
-        ~ genero,
+        ~ nome_civil,
+        ~ cpf,
+        ~ sexo,
         ~ partido,
-        ~ uf
+        ~ uf,
+        ~ situacao,
+        ~ em_exercicio
       )
     )
   })
@@ -287,7 +296,7 @@ fetch_props <- function(pls, export_path) {
       dplyr::rename(id_ext = prop_id) %>%
       dplyr::select(-c(tema, apelido_materia)) %>%
       unique() %>% 
-      .mapeia_nome_relator_para_id(parlamentares)
+      agoradigital::mapeia_nome_relator_para_id(parlamentares)
 
     proposicoes_baixadas <- proposicoes %>%
       dplyr::select(id_leggo,
