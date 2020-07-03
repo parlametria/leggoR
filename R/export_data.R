@@ -315,6 +315,7 @@ fetch_props <- function(pls, export_path) {
     return(
       tibble::tribble(
         ~ id_parlamentar,
+        ~ id_parlamentar_parlametria,
         ~ casa,
         ~ nome_eleitoral,
         ~ nome_civil,

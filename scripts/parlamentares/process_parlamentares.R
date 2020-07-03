@@ -15,9 +15,11 @@ source(here::here("scripts/parlamentares/fetcher_parlamentares.R"))
       ultimo_status_nome_eleitoral = tolower(ultimo_status_nome_eleitoral) %>% tools::toTitleCase()
     ) %>%
     mutate(em_exercicio = if_else(ultimo_status_situacao == "Exercício", 1, 0),
-           casa = "camara") %>%
+           casa = "camara",
+           id_parlamentar_parlametria = paste0(1, id_parlamentar)) %>%
     select(
       id_parlamentar = id,
+      id_parlamentar_parlametria,
       casa,
       nome_eleitoral = ultimo_status_nome_eleitoral,
       nome_civil,
@@ -41,9 +43,11 @@ source(here::here("scripts/parlamentares/fetcher_parlamentares.R"))
   senadores <- .fetch_senadores(legislaturas)
   
   senadores_alt <- senadores %>%
-    mutate(casa = "senado") %>% 
+    mutate(casa = "senado",
+           id_parlamentar_parlametria = paste0(2, id_parlamentar)) %>% 
     select(
       id_parlamentar,
+      id_parlamentar_parlametria,
       casa,
       nome_eleitoral,
       nome_civil = nome_completo,
