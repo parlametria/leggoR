@@ -90,8 +90,8 @@ create_tabela_atuacao_camara <- function(documentos_df, autores_df, data_inicio 
 #' @param limiar Limiar para filtrar os documentos
 #' @return Dataframe
 #' @export
-create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL, limiar = 0.1) {
-  atores_df <- tibble::tibble()
+create_tabela_atuacao_senado <- function(documentos_df, autores_df, data_inicio = NULL, data_fim = NULL, limiar = 0.1) {
+  atuacao_df <- tibble::tibble()
 
   if (!(agoradigital::check_dataframe(documentos_df)) ||
       (!agoradigital::check_dataframe(autores_df))) {
@@ -109,7 +109,17 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
   autores_docs <-
     merge(documentos_df, autores_df %>% dplyr::filter(!is.na(id_autor)), by = c("id_principal", "id_documento", "casa")) %>%
     dplyr::mutate(identificacao = descricao_texto) %>%
-    dplyr::mutate(identificacao = stringr::str_trim(identificacao))
+    dplyr::mutate(identificacao = stringr::str_trim(identificacao)) %>%
+    dplyr::mutate(
+      identificacao_comissao_nome_comissao = dplyr::if_else(
+        str_detect(
+          identificacao_comissao_nome_comissao,
+          "Mesa Diretora do Congresso Nacional"
+        ) | is.na(identificacao_comissao_nome_comissao),
+        "Outros",
+        identificacao_comissao_nome_comissao
+      )
+    )
 
   senado_comissoes <-
     senado_env$comissoes_nomes %>%
@@ -117,7 +127,8 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
     dplyr::select(-comissoes_temporarias) %>%
     dplyr::mutate(comissoes_permanentes = paste0("Comissão ", comissoes_permanentes)) %>%
     rbind(list("Plenário", "Plen(á|a)rio")) %>%
-    rbind(list("Comissão Especial", "Especial"))
+    rbind(list("Comissão Especial", "Especial")) %>%
+    rbind(list("Outros", "Outros"))
 
   autores_docs <-
     fuzzyjoin::regex_left_join(autores_docs, senado_comissoes, by=c("identificacao_comissao_nome_comissao" = "comissoes_permanentes")) %>%
@@ -128,12 +139,12 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
     get_peso_documentos(autores_docs)
 
   if (nrow(autores_docs) > 0) {
-    atores_df <-
+    atuacao_df <-
       autores_docs %>%
       dplyr::left_join(peso_documentos, by = c('id_principal', 'casa', 'id_documento')) %>%
       dplyr::filter(peso_documento >= limiar) %>%
       dplyr::mutate(id_principal = as.numeric(id_principal)) %>%
-      agoradigital::add_tipo_evento_documento(T) %>%
+      agoradigital::add_tipo_evento_documento() %>%
       dplyr::rename(tipo_generico = tipo) %>%
       dplyr::group_by(id_ext = id_principal,
                       casa,
@@ -149,11 +160,11 @@ create_tabela_atores_senado <- function(documentos_df, autores_df, data_inicio =
       dplyr::arrange(id_ext, -peso_total_documentos) %>%
       dplyr::ungroup()
 
-    atores_df <-
-      .detect_sigla_local(atores_df, senado_env)
+    atuacao_df <-
+      .detect_sigla_local(atuacao_df, senado_env)
   }
 
-  return(atores_df)
+  return(atuacao_df)
 }
 
 #' @title Detecta comissoes importantes da Camara e Senado

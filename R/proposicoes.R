@@ -385,9 +385,16 @@ add_tipo_evento_documento <- function(docs_data, documentos_scrap = F) {
 
     } else if (casa_prop == 'senado') {
       docs <- docs_data %>%
-        fuzzyjoin::regex_left_join(senado_env$tipos_documentos, by = c(sigla_tipo = "regex"), ignore_case = T) %>%
-        dplyr::select(-regex, -peso) %>%
-        dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
+        fuzzyjoin::regex_left_join(senado_env$tipos_documentos, by = c(descricao_tipo_texto = "regex"), ignore_case = T) %>%
+        dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo), # default para tipos não agrupados
+                      tipo = dplyr::if_else(str_detect(tipo, "P.S"), "Outros", tipo), # Corrige casos de falsos positivos em matérias legislativas.
+                      peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso))) %>% # Atribui peso default
+        # Remove casos duplicados usando o peso do regex na ordem de precedência
+        dplyr::group_by(id_principal, casa, id_documento, id_autor) %>%
+        dplyr::mutate(max_peso = max(peso)) %>%
+        dplyr::ungroup() %>%
+        dplyr::filter(peso == max_peso) %>%
+        dplyr::select(-regex, -peso, -max_peso)
 
     } else {
       warning('Casa inválida')

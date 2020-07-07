@@ -318,26 +318,26 @@ test <- function(){
       match_autores_senado_scrap_to_senadores(autores_senado_scrapped_senadores_nome_clean, senadores), gabarito_autores_senado_scrapped_matched_senadores)
   })
   
-  test_that('create_tabela_atores_senado() works with empty/null input', {
+  test_that('create_tabela_atuacao_senado() works with empty/null input', {
     expect_warning(
-      create_tabela_atores_senado(tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+      create_tabela_atuacao_senado(tibble::tibble(), tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
     expect_warning(
-      create_tabela_atores_senado(senado_docs, tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+      create_tabela_atuacao_senado(senado_docs, tibble::tibble()), "Dataframe de entrada deve ser não-nulo e não-vazio.")
     expect_warning(
-      create_tabela_atores_senado(NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
+      create_tabela_atuacao_senado(NULL, NULL), "Dataframe de entrada deve ser não-nulo e não-vazio.")
     expect_equal(
-      create_tabela_atores_senado(tibble::tibble(), tibble::tibble()), tibble::tibble())
+      create_tabela_atuacao_senado(tibble::tibble(), tibble::tibble()), tibble::tibble())
     expect_equal(
-      create_tabela_atores_senado(NULL, NULL), tibble::tibble())
+      create_tabela_atuacao_senado(NULL, NULL), tibble::tibble())
   })
   
-  test_that('create_tabela_atores_senado() returns the correct output', {
+  test_that('create_tabela_atuacao_senado() returns the correct output', {
     expect_true(
-      is.data.frame(create_tabela_atores_senado(senado_docs, senado_autores)))
+      is.data.frame(create_tabela_atuacao_senado(senado_docs, senado_autores)))
     expect_true(
-      nrow(create_tabela_atores_senado(senado_docs, senado_autores)) > 0)
+      nrow(create_tabela_atuacao_senado(senado_docs, senado_autores)) > 0)
     expect_equal(
-      create_tabela_atores_senado(senado_docs, senado_autores) %>% 
+      create_tabela_atuacao_senado(senado_docs, senado_autores) %>% 
         dplyr::mutate(peso_total_documentos = as.numeric(peso_total_documentos)), senado_atores_gabarito)
   })
   

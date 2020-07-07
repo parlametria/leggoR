@@ -14,7 +14,7 @@ export_atores <- function(camara_docs, camara_autores, senado_docs, senado_autor
     select(id_ext, casa, id_autor, tipo_autor, tipo_generico, sigla_local, peso_total_documentos, num_documentos, partido, uf, nome_autor, is_important) %>%
     agoradigital::remove_atuacao_camara_comissao_mista()
 
-  atores_senado <- agoradigital::create_tabela_atores_senado(senado_docs, senado_autores, data_inicio = data_inicio, limiar = peso_minimo) %>%
+  atores_senado <- agoradigital::create_tabela_atuacao_senado(senado_docs, senado_autores, data_inicio = data_inicio, limiar = peso_minimo) %>%
     select(id_ext, casa, id_autor, tipo_autor, tipo_generico, sigla_local, peso_total_documentos, num_documentos, partido, uf, nome_autor, is_important)
 
   .PARTIDOS_OPOSICAO <-

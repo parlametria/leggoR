@@ -219,28 +219,28 @@ test <- function() {
   #Atores - Senado
   
   test_that('create_tabela_atores() returns dataframe', {
-    expect_true(is.data.frame(create_tabela_atores_senado(docs_sample_df_senado, autores_sample_df_senado)))
-    expect_true(is.data.frame(create_tabela_atores_senado(docs_sample_df_senado, autores_sample_df_senado, data_inicio, data_fim)))
+    expect_true(is.data.frame(create_tabela_atuacao_senado(docs_sample_df_senado, autores_sample_df_senado)))
+    expect_true(is.data.frame(create_tabela_atuacao_senado(docs_sample_df_senado, autores_sample_df_senado, data_inicio, data_fim)))
   })
   
   test_that('create_tabela_atores() returns warning with empty docs table', {
-    expect_warning(create_tabela_atores_senado(tibble::tibble(), autores_sample_df_senado))
+    expect_warning(create_tabela_atuacao_senado(tibble::tibble(), autores_sample_df_senado))
   })
   
   test_that('create_tabela_atores() returns warning with empty authors table', {
-    expect_warning(create_tabela_atores_senado(docs_sample_df_senado, tibble::tibble()))
+    expect_warning(create_tabela_atuacao_senado(docs_sample_df_senado, tibble::tibble()))
   })
   
   test_that('create_tabela_atores() returns correct atores table', {
-    expect_equal(create_tabela_atores_senado(docs_sample_df_senado, autores_sample_df_senado), atores_sample_df_senado)
+    expect_equal(create_tabela_atuacao_senado(docs_sample_df_senado, autores_sample_df_senado), atores_sample_df_senado)
   })
   
   test_that('create_tabela_atores() returns filtered dataframe', {
-    expect_equal(create_tabela_atores_senado(docs_sample_df_senado, autores_sample_df_senado, data_inicio, data_fim), atores_sample_df_senado_filtered)
+    expect_equal(create_tabela_atuacao_senado(docs_sample_df_senado, autores_sample_df_senado, data_inicio, data_fim), atores_sample_df_senado_filtered)
   })
   
   test_that('create_tabela_atores() returns filtered dataframe', {
-    expect_equal(create_tabela_atores_senado(docs_sample_df_senado, autores_sample_df_senado, limiar = 1), atores_sample_df_senado_filtered_limiar)
+    expect_equal(create_tabela_atuacao_senado(docs_sample_df_senado, autores_sample_df_senado, limiar = 1), atores_sample_df_senado_filtered_limiar)
   })
   
   test_that('get_peso_documentos returns correct pesos_docs dataframe', {
