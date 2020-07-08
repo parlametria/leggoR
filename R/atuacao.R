@@ -1,7 +1,7 @@
 camara_env <- jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
 senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 
-#' @title Cria tabela com atores os pesos dos documentos
+#' @title Cria tabela com atuacao os pesos dos documentos
 #' @description Os pesos são calculados através da conta 1/n
 #' onde n é a quantidade de autores distintos para um documento
 #' @param autores_docs Dataframe com autores dos documentos
@@ -16,7 +16,7 @@ get_peso_documentos <- function(autores_docs) {
     dplyr::summarise(peso_documento = 1/dplyr::n_distinct(id_autor))
 }
 
-#' @title Cria tabela com atores de documentos com seus respectivos tipos de documentos
+#' @title Cria tabela com atuacao de documentos com seus respectivos tipos de documentos
 #' @description Retorna um dataframe contendo informações com os autores dos documentos e seus tipos
 #' @param documentos_df Dataframe dos documentos
 #' @param autores_df Dataframe com autores dos documentos
@@ -81,7 +81,7 @@ create_tabela_atuacao_camara <- function(documentos_df, autores_df, data_inicio 
   return(atuacao_df)
 }
 
-#' @title Cria tabela com atores de documentos com seus respectivos tipos de documentos
+#' @title Cria tabela com atuacao de documentos com seus respectivos tipos de documentos
 #' @description Retorna um dataframe contendo informações com os autores dos documentos e seus tipos
 #' @param documentos_df Dataframe dos documentos
 #' @param autores_df Dataframe com autores dos documentos
@@ -169,7 +169,7 @@ create_tabela_atuacao_senado <- function(documentos_df, autores_df, data_inicio 
 
 #' @title Detecta comissoes importantes da Camara e Senado
 #' @description Retorna um dataframe contendo informacoes de importancia de comissoes
-#' @param atuacao_df Dataframe dos atores
+#' @param atuacao_df Dataframe dos atuacao
 #' @param casa_env Camara ou Senado
 #' @return Dataframe
 .detect_sigla_local <- function(atuacao_df, casa_env) {
