@@ -16,8 +16,9 @@ source(here::here("scripts/parlamentares/fetcher_parlamentares.R"))
     ) %>%
     mutate(em_exercicio = if_else(ultimo_status_situacao == "Exercício", 1, 0),
            casa = "camara",
-           id_parlamentar_parlametria = paste0(1, id_parlamentar)) %>%
+           id_parlamentar_parlametria = paste0(1, id)) %>%
     select(
+      legislatura, 
       id_parlamentar = id,
       id_parlamentar_parlametria,
       casa,
@@ -44,14 +45,16 @@ source(here::here("scripts/parlamentares/fetcher_parlamentares.R"))
   
   senadores_alt <- senadores %>%
     mutate(casa = "senado",
-           id_parlamentar_parlametria = paste0(2, id_parlamentar)) %>% 
+           id_parlamentar_parlametria = paste0(2, id_parlamentar),
+           sexo = if_else(str_detect(genero, "Feminino"), "F", "M")) %>% 
     select(
+      legislatura,
       id_parlamentar,
       id_parlamentar_parlametria,
       casa,
       nome_eleitoral,
       nome_civil = nome_completo,
-      sexo = genero,
+      sexo,
       partido,
       uf,
       situacao
@@ -82,6 +85,26 @@ source(here::here("scripts/parlamentares/fetcher_parlamentares.R"))
   
   parlamentares <- deputados %>%
     bind_rows(senadores) %>%
+    distinct() %>% 
+    arrange(legislatura)
+  
+  return(parlamentares)
+}
+
+#' @title Atualiza os dados dos parlamentares nas legs 55 e 56
+#' @description Recebe um caminho para o csv dos parlamentares com todas as legislaturas e 
+#' atualiza os dados dos parlamentares das últimas legislaturas (55 e 56).
+#' @param parlamentares_filepath Caminho para o arquivo de parlamentares.
+#' @return Dataframe contendo informações atualizadas.
+.update_parlamentares <- function(parlamentares_filepath) {
+  legs <- c(55, 56)
+  
+  current_parlamentares <- read_csv(parlamentares_filepath, col_types = cols(.default = "c")) %>% 
+    filter(!legislatura %in% legs)
+  
+  new_parlamentares <- .process_parlamentares(legs)
+  
+  parlamentares <- bind_rows(current_parlamentares, new_parlamentares) %>% 
     distinct()
   
   return(parlamentares)

@@ -31,7 +31,7 @@ option_list = list(
     c("-f", "--flag"),
     type = "character",
     default = 1,
-    help = "Flag para baixar somente os dados da legislatura atual. [default= %default]",
+    help = "Flag para baixar somente os dados das últimas legislaturas (55 e 56). [default= %default]",
     metavar = "character"
   )
 )
@@ -41,7 +41,7 @@ opt = parse_args(opt_parser)
 
 export_path <- opt$out
 casa <- opt$casa
-only_current_legislature_flag <- opt$flag
+only_lasts_legislatures_flag <- opt$flag
 
 ## Install local repository R package version
 devtools::install(upgrade = "never")
@@ -59,10 +59,10 @@ if (!is.na(casa)) {
   dir.create(paste0(export_path, 'senado'), showWarnings = FALSE)
 }
 
-if (only_current_legislature_flag == 1) {
-  legislaturas <- c(56)
-} else {
+if (only_lasts_legislatures_flag == 1) {
   legislaturas <- c(55, 56)
+} else {
+  legislaturas <- seq(51, 56)
 }
 
 update_deputados <- function(legislaturas) {
