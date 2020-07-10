@@ -99,11 +99,10 @@ source(here::here("scripts/parlamentares/fetcher_parlamentares.R"))
 .update_parlamentares <- function(parlamentares_filepath) {
   legs <- c(55, 56)
   
-  current_parlamentares <- read_csv(parlamentares_filepath, col_types = cols(.default = "c")) %>% 
+  current_parlamentares <- read_csv(parlamentares_filepath, col_types = cols(legislatura = "n", em_exercicio = "n", .default = "c")) %>% 
     filter(!legislatura %in% legs)
   
-  new_parlamentares <- .process_parlamentares(legs) %>% 
-    mutate(legislatura = as.character(legislatura))
+  new_parlamentares <- .process_parlamentares(legs)
   
   parlamentares <- bind_rows(current_parlamentares, new_parlamentares) %>% 
     distinct()
