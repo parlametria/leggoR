@@ -454,7 +454,7 @@ safe_fetch_autores <- purrr::safely(rcongresso::fetch_autores,otherwise = tibble
 #' @param casa casa onde o documento foi apresentado
 #' @param sigla_tipo Sigla do tipo do documento
 #' @return Dataframe contendo dados dos autores do documento
-fetch_autores_documento <- function(id_documento, casa, sigla_tipo) {
+fetch_autores_documento <- function(id_documento, casa, sigla_tipo = NA) {
   fetch_prop_output <- safe_fetch_autores(id_documento, casa, sigla_tipo)
   autores_result <- fetch_prop_output$result
   if (!is.null(fetch_prop_output$error)) {
