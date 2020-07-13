@@ -102,7 +102,7 @@ adiciona_coluna_pulou_mpv <- function(progresso_df) {
 
   # Uma MPV pula a fase de comissão mista quando a fase de início do Plenário tiver
   # ocorrido durante a pandemia
-  if (length(data_fase_camara) > 0) {
+  if (length(data_fase_camara) > 0 & !is.na(data_fase_camara)) {
     if (data_fase_camara > cong_remoto_inicio) {
       progresso_df <- progresso_df %>%
         dplyr::mutate(pulou = dplyr::case_when(
