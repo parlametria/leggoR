@@ -422,9 +422,20 @@ process_autores_props <- function(pls_ids_filepath, export_path) {
 
   autores_leggo <- pls %>%
     dplyr::select(id_leggo, id_camara, id_senado) %>%
-    dplyr::left_join(pls_autores %>%
+    dplyr::inner_join(pls_autores %>%
                        select(id_leggo, id_autor, nome_autor, tipo_autor),
-                     by = c("id_leggo"))
+                     by = c("id_leggo")) %>%
+    fuzzyjoin::regex_left_join(congresso_env$tipos_autores, by = c(nome_autor = "regex"), ignore_case = T) %>%
+    dplyr::mutate(id_autor = dplyr::if_else(!is.na(id_entidade),
+                                            as.character(id_entidade),
+                                            id_autor)) %>%
+    dplyr::select(-regex, -id_entidade) %>%
+    dplyr::mutate(id_autor_parlametria = dplyr::case_when(
+      tipo_autor == "Deputado" ~ paste0(1, id_autor),
+      tipo_autor == "Senador" ~ paste0(2, id_autor),
+      TRUE ~ paste0(3, id_autor)
+    )) %>%
+    dplyr::select(id_leggo, id_camara, id_senado, id_autor_parlametria, id_autor)
 
   readr::write_csv(autores_leggo, paste0(export_path, "/autores_leggo.csv"))
 }

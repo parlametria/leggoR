@@ -15,7 +15,7 @@
     {"evento_num" : "remetida_a_sancao_promulgacao1", "fase_global":"Sanção/Veto"},
     {"evento_num" : "apresentacao_pl4", "fase_global":"Avaliação dos Vetos"}
   ],
-  
+
   "eventos_fases_pec":[
     {"evento_num" : "primeiro_evento", "fase_global":"Pré-Construção"},
     {"evento_num" : "apresentacao_pl1", "fase_global":"Construção"},
@@ -48,7 +48,7 @@
     {"local": "Presidência da República", "fase_global": "Sanção/Veto"},
     {"local": "Congresso", "fase_global": "Avaliação dos Vetos"}
   ],
-  
+
     "fases_global_pec":[
     {"local": "", "fase_global": "Pré-Construção"},
     {"local": "Comissões", "fase_global": "Construção"},
@@ -129,5 +129,22 @@
     "congresso_remoto": {
       "data_inicio": "2020-03-17",
       "data_mudanca_mpvs": "2020-04-01"
-  }
+  },
+  "tipos_autores": [
+    {"id_entidade": 1, "regex": "Presidência da República|Poder Executivo"},
+    {"id_entidade": 2, "regex": "Mesa Diretora da Câmara dos Deputados"},
+    {"id_entidade": 4, "regex": "Iniciativa Popular"},
+    {"id_entidade": 5, "regex": "João Alberto Soares Neto - Advogado"},
+    {"id_entidade": 6, "regex": "CPI dos Maus-tratos"},
+    {"id_entidade": 7, "regex": "Comissão de Legislação Participativa"},
+    {"id_entidade": 8, "regex": "Comissão Parlamentar de Inquérito destinada a apurar denúncias de turismo sexual e exploração sexual de crianças e adolescentes, conforme diversas matérias publicadas pela imprensa"},
+    {"id_entidade": 9, "regex": "Comissão de Constituição, Justiça e Cidadania"},
+    {"id_entidade": 10, "regex": "Comissão de Direitos Humanos e Legislação Participativa"},
+    {"id_entidade": 11, "regex": "Comissão de Meio Ambiente"},
+    {"id_entidade": 12, "regex": "Comissão Especial do Extrateto"},
+    {"id_entidade": 13, "regex": "CPI - Pedofilia - 2008"},
+    {"id_entidade": 14, "regex": "CT - Modernização da Lei de Licitações e Contratos"},
+    {"id_entidade": 16, "regex": "^Câmara dos Deputados$"},
+    {"id_entidade": 78, "regex": "Senado Federal -"}
+  ]
 }
