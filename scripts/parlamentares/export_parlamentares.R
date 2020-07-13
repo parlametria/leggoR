@@ -3,6 +3,7 @@ library(magrittr)
 library(tidyverse)
 
 source(here::here("scripts/parlamentares/process_parlamentares.R"))
+source(here::here("scripts/entidades/process_entidades.R"))
 
 if (!require(optparse)) {
   install.packages("optparse")
@@ -80,9 +81,13 @@ update_senadores <- function(legislaturas, casa) {
 }
 
 if (is.na(casa)) {
+  parlamentares_filepath <- paste0(export_path, "parlamentares.csv")
   parlamentares <- .process_parlamentares(legislaturas)
   readr::write_csv(parlamentares,
-                   paste0(export_path, "parlamentares.csv"))
+                   parlamentares_filepath)
+  
+  entidades <- .process_entidades(parlamentares_filepath)
+  write_csv(entidades, paste0(export_path, "entidades.csv"))
   
 } else {
   if (casa == "camara") {
