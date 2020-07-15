@@ -18,7 +18,8 @@ library(tidyverse)
                     "56", "13", "313", 'senado', 'CPI - Pedofilia - 2008',
                     "56", "14", "314", 'senado', 'CT - Modernização da Lei de Licitações e Contratos',
                     "56", "16", "316", 'camara', 'Câmara dos Deputados',
-                    "56", "78", "378", 'senado', 'Senado Federal'
+                    "56", "78", "378", 'senado', 'Senado Federal',
+                    "56", "17", "317", 'senado', 'Programa e-Cidadania'
                     ) %>%
     mutate(sexo = NA,
            partido = NA,

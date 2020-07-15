@@ -328,25 +328,47 @@ fetch_props <- function(pls, export_path) {
 #' senado deva ser usado.
 get_casa_proposicao <- function(id_camara, id_senado) {
   if (is.na(id_camara)) {
-    casa_origem = "senado"
+    casa_proposicao = "senado"
   } else if (is.na(id_senado)) {
-    casa_origem = "camara"
+    casa_proposicao = "camara"
   } else {
-    prop_casa <- agoradigital::fetch_proposicao(id_senado, "senado") %>%
-      dplyr::pull(casa_origem)
+
+    # prop_casa <- agoradigital::fetch_proposicao(id_senado, "senado") %>%
+    #   dplyr::pull(casa_proposicao)
+
+    prop_casa <- tryCatch({
+      agoradigital::fetch_proposicao(id_senado, "senado") %>%
+        dplyr::pull(casa_origem)
+    }, error = function(e) {
+      message(e)
+      return(NA)
+    })
 
     if (is.na(prop_casa)) {
-      casa_origem = "camara"
+      prop_casa <- tryCatch({
+        agoradigital::fetch_proposicao(id_camara, "camara") %>%
+          dplyr::pull(casa_origem)
+      }, error = function(e) {
+        message(e)
+        return(NULL)
+      })
+
+      if(is.na(prop_casa) | prop_casa == "senado") {
+        casa_proposicao = "senado"
+      } else {
+        casa_proposicao = "camara"
+      }
+
     } else {
       if (prop_casa == "camara") {
-        casa_origem = "camara"
+        casa_proposicao = "camara"
       } else {
-        casa_origem = "senado"
+        casa_proposicao = "senado"
       }
     }
   }
 
-  return(casa_origem)
+  return(casa_proposicao)
 }
 
 #' @title Recupera autores a partir dos ids da proposição na Câmara e no Senado
@@ -360,7 +382,7 @@ process_autores_pl <- function(id_leggo, id_camara, id_senado, total_rows = 1) {
   print(paste("Recuperando atores para a proposição: câmara", id_camara, " senado", id_senado,
               "-", id_leggo, "/", total_rows))
 
-  casa_origem = get_casa_proposicao(id_camara, id_senado)
+  casa_origem <- get_casa_proposicao(id_camara, id_senado)
   print(paste0("Casa da proposição: ", casa_origem))
 
   autores <- tryCatch({
@@ -437,5 +459,13 @@ process_autores_props <- function(pls_ids_filepath, export_path) {
     )) %>%
     dplyr::select(id_leggo, id_camara, id_senado, id_autor_parlametria, id_autor)
 
-  readr::write_csv(autores_leggo, paste0(export_path, "/autores_leggo.csv"))
+  pls_sem_autores_baixados <- pls %>%
+    dplyr::filter(!id_leggo %in% (autores_leggo %>% dplyr::pull(id_leggo)))
+
+  if (pls_sem_autores_baixados %>% nrow() > 0) {
+    message("Não foram recuperados os Autores para as seguintes proposições")
+    print(pls_sem_autores_baixados)
+  }
+
+  readr::write_csv(autores_leggo, paste0(export_path, "/autores_leggo.csv"), na = "None")
 }
