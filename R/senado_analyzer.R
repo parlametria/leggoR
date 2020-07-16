@@ -353,7 +353,10 @@ extract_comissoes_Senado <- function(df) {
                              codigos_comissoes$regex_2_extract),
                       detect(texto_tramitacao,
                              codigos_comissoes$regex_3,
-                             codigos_comissoes$regex_3_extract)
+                             codigos_comissoes$regex_3_extract),
+                      detect(texto_tramitacao,
+                             codigos_comissoes$regex_4,
+                             codigos_comissoes$regex_4_extract)
                     )) %>%
     dplyr::filter(!is.na(comissoes))
   
@@ -581,7 +584,7 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
       phase_four,
       comissoes_phase$regex
     ) %>%
-    dplyr::mutate(data_hora = lubridate::ymd_hms(paste(data_hora, '12:00:00'))) %>%
+    dplyr::mutate(data_hora = lubridate::ymd_hms(data_hora)) %>%
     dplyr::arrange(data_hora, sequencia) %>%
     tidyr::fill(fase)
   

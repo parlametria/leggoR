@@ -8,7 +8,7 @@
 fetch_tramitacao_senado <- function(prop_id, isMPV = FALSE) {
     tramitacao <- 
       rcongresso::fetch_tramitacao_senado(prop_id) %>%
-      dplyr::mutate(data_hora = lubridate::ymd_hm(paste(data_hora, "00:00")),
+      dplyr::mutate(data_hora = lubridate::ymd_hms(data_hora),
                     prop_id = as.integer(codigo_materia),
                     sequencia = as.integer(sequencia),
                     id_situacao = as.integer(situacao_codigo_situacao),
@@ -23,13 +23,12 @@ fetch_tramitacao_senado <- function(prop_id, isMPV = FALSE) {
                     id_situacao,
                     descricao_situacao = situacao_descricao_situacao,
                     link_inteiro_teor,
-                    origem_tramitacao_local_nome_casa_local,
-                    destino_tramitacao_local_nome_casa_local)
+                    origem_tramitacao_local_nome_casa_local)
   
   if(!isMPV) {
     tramitacao <-
       tramitacao %>% 
-      dplyr::select(-c(origem_tramitacao_local_nome_casa_local, destino_tramitacao_local_nome_casa_local))
+      dplyr::select(-c(origem_tramitacao_local_nome_casa_local))
   }
     
     return (tramitacao)
