@@ -120,6 +120,7 @@ adiciona_coluna_pulou_mpv <- function(progresso_df) {
           T ~ FALSE
         )
       )
+    }
   }
   
   return(progresso_df)
