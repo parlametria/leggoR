@@ -7,7 +7,8 @@ Rscript fetch_updated_bills_data.R -p <pls_ids_filepath> -e <export_path> -f <fl
 flag = 1 Atualiza tudo (Proposições, emendas e comissões)
 flag = 2 Atualiza tudo referente as proposições
 flag = 3 Atualiza tudo sobre emendas
-flag = 4 Atualiza tuso sobre comissões
+flag = 4 Atualiza tudo sobre comissões
+flag = 5 Atualiza os dados de autores das matérias legislativas monitoradas
 "
 
 #' @title Get arguments from command line option parsing
@@ -21,15 +22,15 @@ get_args <- function() {
                           default=1,
                           help=.HELP,
                           metavar="character"),
-    optparse::make_option(c("-p", "--pls_ids_filepath"), 
-                          type="character", 
+    optparse::make_option(c("-p", "--pls_ids_filepath"),
+                          type="character",
                           default="../inst/extdata/tabela_geral_ids_casa.csv",
-                          help=.HELP, 
+                          help=.HELP,
                           metavar="character"),
-    optparse::make_option(c("-e", "--exporth_path"), 
-                          type="character", 
+    optparse::make_option(c("-e", "--exporth_path"),
+                          type="character",
                           default="../inst/extdata/",
-                          help=.HELP, 
+                          help=.HELP,
                           metavar="character")
   );
 
@@ -83,7 +84,7 @@ export_comissoes <- function(export_path) {
 #' @description Recebe uma flag e chama as funções correspondetes
 #' @param flag Inteiro que representa qual função o usuário desejar chamar
 export_dados<- function(flag) {
-  if (!(flag %in% c(1, 2, 3, 4))) {
+  if (!(flag %in% c(1, 2, 3, 4, 5))) {
     stop(paste("Wrong flag!", .HELP, sep = "\n"))
   }else {
     ## Install local repository R package version
@@ -91,6 +92,7 @@ export_dados<- function(flag) {
     if (flag == 1) {
       print("Atualizando tudo!")
       export_props(pls_ids_filepath, export_path)
+      agoradigital::process_autores_props(pls_ids_filepath, export_path)
       export_emendas(pls_ids_filepath, export_path)
       export_comissoes(export_path)
     } else if (flag == 2) {
@@ -99,9 +101,14 @@ export_dados<- function(flag) {
     } else if (flag == 3) {
       print("Atualizando emendas!")
       export_emendas(pls_ids_filepath, export_path)
-    } else {
-      print("Atualizando comissões!")
+    } else if (flag == 4) {
+      print("Atualizando Comissões!")
       export_comissoes(export_path)
+    } else if (flag == 5) {
+      print("Atualizando Autores das matérias legislativas!")
+      agoradigital::process_autores_props(pls_ids_filepath, export_path)
+    } else {
+      stop(paste("Wrong flag!", .HELP, sep = "\n"))
     }
   }
 }
