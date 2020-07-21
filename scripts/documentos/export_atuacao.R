@@ -7,7 +7,7 @@
 #' @param data_inicio data a partir da qual se considerará os documentos
 #' @param peso_minimo limiar para peso dos documentos
 #' @param output_path pasta para onde exportar os dados
-export_atuacao <- function(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicio, peso_minimo, props_leggo_id) {
+export_atuacao <- function(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicio, peso_minimo, props_leggo_id, entidades) {
   print(paste("Gerando tabela de atuação a partir de dados atualizados de documentos e autores..."))
 
   atuacao_camara <- agoradigital::create_tabela_atuacao_camara(camara_docs, camara_autores, data_inicio = data_inicio, limiar = peso_minimo) %>%
@@ -20,6 +20,15 @@ export_atuacao <- function(camara_docs, camara_autores, senado_docs, senado_auto
   .PARTIDOS_OPOSICAO <-
     c("PT", "PSOL", "PSB", "PCdoB", "PDT", "REDE")
 
+  entidades <- entidades %>%
+    dplyr::arrange(desc(legislatura)) %>%
+    dplyr::distinct(id_entidade_parlametria, .keep_all = T) %>%
+    dplyr::mutate(id_autor_parlametria = as.character(id_entidade_parlametria)) %>%
+    select(id_autor_parlametria,
+           nome,
+           partido,
+           uf)
+
   if ((nrow(atuacao_camara) > 0) | (nrow(atuacao_senado) > 0)) {
     atuacao_df <-
       dplyr::bind_rows(atuacao_camara, atuacao_senado) %>%
@@ -30,10 +39,15 @@ export_atuacao <- function(camara_docs, camara_autores, senado_docs, senado_auto
                                                 "senado")) %>%
       dplyr::mutate(id_autor_parlametria = paste0(dplyr::if_else(casa_autor == "camara", 1, 2),
                                            id_autor)) %>%
-      dplyr::select(id_leggo, id_autor_parlametria, id_ext, casa, id_autor, tipo_autor, casa_autor, tipo_generico, sigla_local,
+      dplyr::select(-nome_autor, -uf, -partido) %>%
+      dplyr::left_join(entidades,
+                       by = c("id_autor_parlametria")) %>%
+      dplyr::select(id_leggo, id_autor_parlametria, id_ext, casa, id_autor, nome_autor = nome, partido, uf,
+                    tipo_autor, casa_autor, tipo_generico, sigla_local,
                     peso_total_documentos, num_documentos, is_important, bancada)
   } else {
-    atuacao_df <- tibble::tribble(~id_leggo, ~id_autor_parlametria, ~id_ext, ~casa, ~id_autor, ~tipo_autor, ~casa_autor, ~tipo_generico,
+    atuacao_df <- tibble::tribble(~id_leggo, ~id_autor_parlametria, ~id_ext, ~casa, ~id_autor, ~nome_autor, ~partido, ~uf,
+                                  ~tipo_autor, ~casa_autor, ~tipo_generico,
                                  ~sigla_local, ~peso_total_documentos, ~num_documentos, ~is_important, ~bancada)
   }
 
