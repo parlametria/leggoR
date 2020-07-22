@@ -42,7 +42,8 @@
                                  ~nome.x, ~partido.x, ~uf.x, ~casa_autor.x, ~bancada.x, ~nome.y, ~partido.y, ~uf.y, ~casa_autor.y,
                                  ~bancada.y)
     autorias <- tibble::tribble(~id_principal, ~casa, ~id_documento, ~descricao_tipo_documento, ~tipo_documento_ext,
-                                ~id_autor, ~data, ~url_inteiro_teor, ~id_leggo, ~casa_autor, ~nome_eleitoral, ~autores)
+                                ~id_autor, ~data, ~url_inteiro_teor, ~id_leggo, ~peso_autor_documento, ~casa_autor, ~nome_eleitoral,
+                                ~autores)
   }
 
   readr::write_csv(coautorias, paste0(output_path, '/camara/coautorias.csv'))
@@ -93,7 +94,8 @@
                                  ~nome.x, ~partido.x, ~uf.x, ~casa_autor.x, ~bancada.x, ~nome.y, ~partido.y, ~uf.y,
                                  ~casa_autor.y, ~bancada.y)
     autorias <- tibble::tribble(~id_principal, ~casa, ~id_documento, ~descricao_tipo_documento, tipo_documento_ex,
-                                ~id_autor, ~data, ~url_inteiro_teor, ~id_leggo, ~casa_autor, ~nome_eleitoral, ~autores)
+                                ~id_autor, ~data, ~url_inteiro_teor, ~id_leggo, ~peso_autor_documento, ~casa_autor, ~nome_eleitoral,
+                                ~autores)
   }
 
   readr::write_csv(coautorias, paste0(output_path, '/senado/coautorias.csv'))
@@ -163,8 +165,8 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
                              ~node_size, ~id_autor_parlametria)
     edges <- tibble::tribble(~id_leggo, ~source, ~target, ~value)
     autorias <- tibble::tribble(~id_principal, ~casa, ~id_documento, ~descricao_tipo_documento, ~id_autor,
-                                ~data, ~url_inteiro_teor, ~id_leggo, ~casa_autor, ~nome_eleitoral, ~autores,
-                                ~id_autor_parlametria, ~tipo_documento)
+                                ~data, ~url_inteiro_teor, ~id_leggo, ~peso_autor_documento, ~casa_autor,
+                                ~nome_eleitoral, ~autores, ~id_autor_parlametria, ~tipo_documento)
   }
 
   readr::write_csv(nodes , paste0(output_path, '/coautorias_nodes.csv'), na = "")

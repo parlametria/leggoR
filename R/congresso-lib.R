@@ -178,7 +178,7 @@ generate_progresso_df_mpv <- function(tramitacao_df, proposicao_df) {
     dplyr::arrange(data_hora) %>%
     dplyr::mutate(fase_global =
                     dplyr::case_when(
-                      destino_tramitacao_local_nome_casa_local == "Câmara dos Deputados" ~ destino_tramitacao_local_nome_casa_local,
+                      stringr::str_detect(tolower(descricao_situacao), "enviada . câmara dos deputados") ~ "Câmara dos Deputados",
                       stringr::str_detect(tolower(texto_tramitacao), "encaminhad(.) ao senado federal") ~ "Senado Federal",
                       stringr::str_detect(tolower(texto_tramitacao), "sancionada") ~ "Sanção Presidencial/Promulgação",
                       dplyr::row_number() == 1 ~ "Comissão Mista")) %>%

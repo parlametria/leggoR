@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 library(tidyverse)
 library(magrittr)
-source(here::here("scripts/documentos/export_atores.R"))
+source(here::here("scripts/documentos/export_atuacao.R"))
 source(here::here("scripts/documentos/export_coautorias.R"))
 source(here::here("scripts/documentos/export_emendas.R"))
 
@@ -10,8 +10,8 @@ Rscript process_leggo_data.R -i <input_path> -o <output_path> -d <data_inicial_d
 "
 
 .FLAG_HELP <- "
-\t   flag = 1 Atualiza tudo (Atores, nodes e edges, emendas)
-\t   flag = 2 Atualiza tudo referente aos atores
+\t   flag = 1 Atualiza tudo (Atuacao, nodes e edges, emendas)
+\t   flag = 2 Atualiza tudo referente aos atuacao
 \t   flag = 3 Atualiza tudo sobre nodes e edges
 \t   flag = 4 Atualiza tudo sobre emendas
 "
@@ -63,6 +63,11 @@ get_args <- function() {
                           type="character",
                           default="../inst/extdata/",
                           help=.OUTPUT_HELP,
+                          metavar="character"),
+    optparse::make_option(c("-e", "--entidades_path"),
+                          type="character",
+                          default="../inst/extdata/entidades.csv",
+                          help=.OUTPUT_HELP,
                           metavar="character")
   );
 
@@ -81,6 +86,7 @@ output_path <- args$output_path
 data_inicial <- args$data_inicial_documentos
 peso_minimo <- as.numeric(args$peso_minimo_arestas)
 flag <- args$flag
+entidades_path <- args$entidades_path
 
 .PARTIDOS_OPOSICAO <-
   c("PT", "PSOL", "PSB", "PCdoB", "PDT", "REDE")
@@ -96,40 +102,42 @@ process_leggo_data <- function(flag) {
     devtools::install(upgrade = "never")
 
     # Read current data csvs
-    camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv")) %>% 
+    camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv")) %>%
       dplyr::mutate(casa = as.character(casa))
     camara_autores <-
       agoradigital::read_current_autores_camara(paste0(input_path, "/camara/autores.csv")) %>%
-      dplyr::mutate(id_documento = as.numeric(id_documento)) %>% 
-      rowwise() %>% 
-      dplyr::mutate(nome = agoradigital::formata_nome_deputados(nome, tipo_autor)) %>% 
+      dplyr::mutate(id_documento = as.numeric(id_documento)) %>%
+      rowwise() %>%
+      dplyr::mutate(nome = agoradigital::formata_nome_deputados(nome, tipo_autor)) %>%
       ungroup()
-    
+
     senado_docs <-
       agoradigital::read_current_docs_senado(paste0(input_path, "/senado/documentos.csv")) %>%
       dplyr::mutate(id_documento = as.numeric(id_documento),
                     id_principal = as.numeric(id_principal),
                     casa = as.character(casa))
-    senado_autores <- 
-      agoradigital::read_current_autores_senado(paste0(input_path, "/senado/autores.csv")) %>% 
-      rowwise() %>% 
+    senado_autores <-
+      agoradigital::read_current_autores_senado(paste0(input_path, "/senado/autores.csv")) %>%
+      rowwise() %>%
       dplyr::mutate(nome_autor =
-                      agoradigital::formata_nome_senadores(nome_autor, tipo_autor)) %>% 
+                      agoradigital::formata_nome_senadores(nome_autor, tipo_autor)) %>%
       ungroup()
 
     props_leggo_id <-
       agoradigital::read_props(paste0(input_path, "/proposicoes.csv")) %>%
       dplyr::select(id_leggo, id_principal = id_ext, casa)
 
+    entidades <- readr::read_csv(entidades_path)
+
     if (flag == 1) {
       print("Atualizando tudo!")
-      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id)
+      export_atuacao(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id, entidades)
       export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, props_leggo_id, output_path)
       novas_emendas = export_emendas(camara_docs, camara_autores, senado_docs, senado_autores, output_path)
       export_avulsos_iniciais(camara_docs, senado_docs, novas_emendas, output_path)
     } else if (flag == 2) {
-      print("Atualizando os atores!")
-      export_atores(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id)
+      print("Atualizando os atuação!")
+      export_atuacao(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id)
     } else if (flag == 3) {
       print("Atualizando nodes e edges!")
       export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, props_leggo_id, output_path)

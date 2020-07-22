@@ -9,7 +9,7 @@ setup <- function(){
   regex_documento_requerimento <<- tipos_documentos[4]
   regex_documento_voto_em_separado <<- tipos_documentos[5]
   regex_documento_outros <<- tipos_documentos[6]
-  
+
   docs_emendas <<- tibble::tibble(descricao_tipo_documento = c("Emenda",
                                                    "Emenda adotada pela comissão",
                                                    "Emenda adotada pela comissao",
@@ -24,10 +24,13 @@ setup <- function(){
                                                    "Subemenda de relator",
                                                    "Subemenda substitutiva de plenário",
                                                    "Subemenda substitutiva de plenario"),
+                                  id_principal = rep(1, 14),
+                                  id_autor = rep(31, 14),
+                                  id_documento = 1:14,
                                   casa = rep('camara',14))
-  
+
   docs_emendas_gt <<- dplyr::mutate(docs_emendas, tipo = rep(regex_documento_emenda,14))
-  
+
   docs_proposicoes <<- tibble::tibble(descricao_tipo_documento = c("Medida provisoria",
                                                           "Medida provisória",
                                                           "Projeto de lei",
@@ -36,10 +39,13 @@ setup <- function(){
                                                           "Projeto de lei de conversao",
                                                           "Proposta de Emenda a constituicao",
                                                           "Proposta de Emenda à constituição"),
+                                      id_principal = 1:8,
+                                      id_autor = rep(1, 8),
+                                      id_documento = 9:16,
                                       casa = rep('camara',8))
-  
+
   docs_proposicoes_gt <<- dplyr::mutate(docs_proposicoes, tipo = rep(regex_documento_proposicao,8))
-  
+
   docs_pareceres <<- tibble::tibble(descricao_tipo_documento = c("Parecer às Emendas apresentadas ao substitutivo do relator",
                                                      "Parecer às Emendas de plenário",
                                                      "Parecer às Emendas ou ao substitutivo do senado",
@@ -57,10 +63,13 @@ setup <- function(){
                                                      "Substitutivo",
                                                      "Substitutivo adotado pela Comissão",
                                                      "Substitutivo adotado pela comissao"),
+                                    id_principal = 1:17,
+                                    id_autor = rep(1, 17),
+                                    id_documento = 18:34,
                                     casa = rep('camara',17))
-  
+
   docs_pareceres_gt <<- dplyr::mutate(docs_pareceres, tipo = rep(regex_documento_parecer,17))
-  
+
   docs_requerimentos <<- tibble::tibble(descricao_tipo_documento = c("Requerimento",
                                                          "Requerimento de apensação",
                                                          "Requerimento de audiência pública",
@@ -85,23 +94,33 @@ setup <- function(){
                                                          "Requerimento de transformação de sessão plenaria em comissão geral",
                                                          "Requerimento de urgência (art. 154 do ricd)",
                                                          "Requerimento de urgência (art. 155 do ricd)"),
+                                        id_principal = rep(1, 24),
+                                        id_autor = 1:24,
+                                        id_documento = 1:24,
                                         casa = rep('camara',24))
-  
+
   docs_requerimentos_gt <<- dplyr::mutate(docs_requerimentos, tipo = rep(regex_documento_requerimento,24))
-  
-  docs_voto_em_separado <<- tibble::tibble(descricao_tipo_documento = c("Voto em Separado"), casa = c('camara'))
-  
+
+  docs_voto_em_separado <<- tibble::tibble(descricao_tipo_documento = c("Voto em Separado"),
+                                           id_principal = 1,
+                                           id_autor = 1,
+                                           id_documento = 1,
+                                           casa = c('camara'))
+
   docs_voto_em_separado_gt <<- dplyr::mutate(docs_voto_em_separado, tipo = c(regex_documento_voto_em_separado))
-  
+
   docs_outros <<- tibble::tibble(descricao_tipo_documento = c("Ata",
                                                   "Autógrafo",
                                                   "Mensagem",
                                                   "Reclamação",
                                                   "Recurso"),
+                                 id_principal = rep(1, 5),
+                                 id_autor = rep(1, 5),
+                                 id_documento = 1:5,
                                  casa = rep('camara',5))
-  
+
   docs_outros_gt <<- dplyr::mutate(docs_outros, tipo = rep(regex_documento_outros,5))
-  
+
   return(TRUE)
 }
 
@@ -113,27 +132,27 @@ test <- function(){
   test_that("Regex do tipo do documento funciona para as emendas", {
     expect_equal(add_tipo_evento_documento(docs_emendas),docs_emendas_gt)
   })
-  
+
   test_that("Regex do tipo do documento funciona para as proposicoes", {
     expect_equal(add_tipo_evento_documento(docs_proposicoes),docs_proposicoes_gt)
   })
-  
+
   test_that("Regex do tipo do documento funciona para os pareceres", {
     expect_equal(add_tipo_evento_documento(docs_pareceres),docs_pareceres_gt)
   })
-  
+
   test_that("Regex do tipo do documento funciona para os requerimentos", {
     expect_equal(add_tipo_evento_documento(docs_requerimentos),docs_requerimentos_gt)
   })
-  
+
   test_that("Regex do tipo do documento funciona para o voto em separado", {
     expect_equal(add_tipo_evento_documento(docs_voto_em_separado),docs_voto_em_separado_gt)
   })
-  
+
   test_that("Regex do tipo do documento funciona para Outros", {
     expect_equal(add_tipo_evento_documento(docs_outros),docs_outros_gt)
   })
-  
+
 }
 
 if(check_api()){
