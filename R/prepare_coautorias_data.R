@@ -274,8 +274,13 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao,
 #' @export
 prepare_autorias_df_camara <- function(docs_camara, autores_camara) {
   autores_docs <-
-    merge(docs_camara, autores_camara, by = c("id_principal", "id_documento", "casa")) %>%
+    merge(docs_camara,
+          autores_camara,
+          by = c("id_principal", "id_documento", "casa")) %>%
     dplyr::mutate(tipo_documento_ext = descricao_tipo_documento) %>% ## padroniza com dataframe do senado
+    dplyr::group_by(id_principal, casa, id_documento) %>%
+    dplyr::mutate(peso_autor_documento = 1/dplyr::n_distinct(id_autor)) %>%
+    dplyr::ungroup() %>%
     dplyr::select(
       id_principal,
       casa,
@@ -285,7 +290,9 @@ prepare_autorias_df_camara <- function(docs_camara, autores_camara) {
       id_autor,
       data,
       url_inteiro_teor,
-      id_leggo) %>%
+      id_leggo,
+      peso_autor_documento
+    ) %>%
     dplyr::distinct()
 }
 
@@ -296,17 +303,27 @@ prepare_autorias_df_camara <- function(docs_camara, autores_camara) {
 #' @return Dataframe
 #' @export
 prepare_autorias_df_senado <- function(docs_senado, autores_senado) {
-  autores_docs <- merge(docs_senado, autores_senado %>% dplyr::filter(!is.na(id_autor)),
-                        by = c("id_principal", "id_documento", "casa")) %>%
-    dplyr::select(id_principal,
-                  casa,
-                  id_documento,
-                  descricao_tipo_documento = descricao_texto,
-                  tipo_documento_ext = descricao_tipo_texto,
-                  id_autor,
-                  data,
-                  url_inteiro_teor = url_texto,
-                  id_leggo) %>%
+  autores_docs <-
+    merge(
+      docs_senado,
+      autores_senado %>% dplyr::filter(!is.na(id_autor)),
+      by = c("id_principal", "id_documento", "casa")
+    ) %>%
+    dplyr::group_by(id_principal, casa, id_documento) %>%
+    dplyr::mutate(peso_autor_documento = 1 / dplyr::n_distinct(id_autor)) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(
+      id_principal,
+      casa,
+      id_documento,
+      descricao_tipo_documento = descricao_texto,
+      tipo_documento_ext = descricao_tipo_texto,
+      id_autor,
+      data,
+      url_inteiro_teor = url_texto,
+      id_leggo,
+      peso_autor_documento
+    ) %>%
     dplyr::distinct()
 }
 

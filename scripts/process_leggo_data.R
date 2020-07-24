@@ -63,6 +63,11 @@ get_args <- function() {
                           type="character",
                           default="../inst/extdata/",
                           help=.OUTPUT_HELP,
+                          metavar="character"),
+    optparse::make_option(c("-e", "--entidades_path"),
+                          type="character",
+                          default="../inst/extdata/entidades.csv",
+                          help=.OUTPUT_HELP,
                           metavar="character")
   );
 
@@ -81,6 +86,7 @@ output_path <- args$output_path
 data_inicial <- args$data_inicial_documentos
 peso_minimo <- as.numeric(args$peso_minimo_arestas)
 flag <- args$flag
+entidades_path <- args$entidades_path
 
 .PARTIDOS_OPOSICAO <-
   c("PT", "PSOL", "PSB", "PCdoB", "PDT", "REDE")
@@ -121,9 +127,11 @@ process_leggo_data <- function(flag) {
       agoradigital::read_props(paste0(input_path, "/proposicoes.csv")) %>%
       dplyr::select(id_leggo, id_principal = id_ext, casa)
 
+    entidades <- readr::read_csv(entidades_path)
+
     if (flag == 1) {
       print("Atualizando tudo!")
-      export_atuacao(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id)
+      export_atuacao(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id, entidades)
       export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, props_leggo_id, output_path)
       novas_emendas = export_emendas(camara_docs, camara_autores, senado_docs, senado_autores, output_path)
       export_avulsos_iniciais(camara_docs, senado_docs, novas_emendas, output_path)

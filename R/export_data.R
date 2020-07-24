@@ -225,7 +225,11 @@ process_pl <-
     
     etapas %<>% purrr::pmap(dplyr::bind_rows)
     if (nrow(etapas$proposicao) != 0) {
-      if (tolower(etapas$proposicao$sigla_tipo) == 'mpv') {
+      sigla <- tolower(etapas$proposicao$sigla_tipo)
+      if (length(sigla) > 1) {
+        sigla <- sigla[1]
+      }
+      if (sigla == 'mpv') {
         etapas[["progresso"]] <-
           agoradigital::generate_progresso_df_mpv(etapas$fases_eventos, etapas$proposicao) %>%
           dplyr::mutate(local = "", local_casa = "") %>%
@@ -364,7 +368,11 @@ fetch_props <- function(pls, export_path) {
     
     
     proposicoes_que_nao_baixaram_temp <-
-      dplyr::anti_join(proposicoes_individuais_a_baixar, proposicoes_baixadas)
+      dplyr::anti_join(
+        proposicoes_individuais_a_baixar,
+        proposicoes_baixadas,
+        by = c("id_leggo", "casa", "id_casa")
+      )
     proposicoes_que_nao_baixaram <- proposicoes_que_nao_baixaram %>%
       dplyr::filter((id_camara %in% proposicoes_que_nao_baixaram_temp$id_casa) |
                       (id_senado %in% proposicoes_que_nao_baixaram_temp$id_casa) |
