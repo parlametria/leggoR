@@ -1,6 +1,7 @@
 #' @title Faz o merge das relatorias pelo nome, casa e uf do relator
 #' @description Realiza o merge das tabelas parlamentares e proposições,
-#' recuperando o id do relator através do join de nome, casa e uf do relator.
+#' recuperando o id do relator através do join de nome, casa, legislatura
+#' e uf do relator.
 #' @param proposicoes_df Dataframe de proposições
 #' @param parlamentares_df Dataframe de parlamentares
 #' @return Dataframe de proposições contendo o relator_id completo
@@ -33,7 +34,8 @@
 
 #' @title Faz o merge das relatorias pelo nome e casa do relator
 #' @description Realiza o merge das tabelas parlamentares e proposições,
-#' recuperando o id do relator através do join de nome e casa do relator.
+#' recuperando o id do relator através do join de nome, 
+#' legislatura e casa do relator.
 #' @param proposicoes_df Dataframe de proposições
 #' @param parlamentares_df Dataframe de parlamentares
 #' @return Dataframe de proposições contendo o relator_id completo
@@ -61,7 +63,7 @@
 #' @title Recupera o id do relator a partir de suas informações
 #' @description Realiza o merge das tabelas parlamentares e proposições,
 #' recuperando o id do relator através do join de suas informações,
-#' como nome, casa, partido e uf.
+#' como nome, casa, partido, uf e legislatura.
 #' @param proposicoes_df Dataframe de proposições
 #' @param parlamentares_df Dataframe de parlamentares
 #' @return Dataframe de proposições contendo a coluna relator_id completa,
@@ -124,7 +126,8 @@ mapeia_nome_relator_para_id <-
 
 #' @title Padroniza o nome do parlamentar
 #' @description Realiza o processamento no nome do relator, retirando
-#' Dep. ou Sen., informações sobre partido e uf e espaços desnecessários
+#' Dep. ou Sen., informações sobre partido e uf, espaços desnecessários e
+#' acentos.
 #' @param nome Nome a ser processado
 #' @return Nome processado
 .padroniza_nome <- function(nome) {
@@ -192,6 +195,11 @@ mapeia_nome_relator_para_id <-
   return(parlamentares)
 }
 
+#' @title Mapeia as datas das designações de relator para legislatura
+#' @description Mapeia as datas das designações de relator para a respectiva 
+#' legislatura.
+#' @param proposicoes_df Dataframe de proposições
+#' @return Dataframe de proposições contendo a legislatura
 .mapeia_data_para_legislatura <- function(proposicoes_df) {
   legislaturas <-
     (jsonlite::fromJSON(here::here(
