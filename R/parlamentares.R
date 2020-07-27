@@ -1,9 +1,9 @@
 #' @title Faz o merge das relatorias pelo nome, casa e uf do relator
-#' @description Realiza o merge das tabelas parlamentares e proposições, 
+#' @description Realiza o merge das tabelas parlamentares e proposições,
 #' recuperando o id do relator através do join de nome, casa e uf do relator.
 #' @param proposicoes_df Dataframe de proposições
 #' @param parlamentares_df Dataframe de parlamentares
-#' @return Dataframe de proposições contendo o relator_id completo 
+#' @return Dataframe de proposições contendo o relator_id completo
 #' e relator_nome processado.
 .merge_by_nome_casa_uf <-
   function(proposicoes_df, parlamentares_df) {
@@ -17,23 +17,26 @@
         by = c(
           "nome_relator_padronizado" = "nome_parlamentar",
           "casa",
-          "relator_uf" = "uf"
+          "relator_uf" = "uf",
+          "legislatura"
         )
       ) %>%
-      mutate(relator_id = id_parlamentar,
-             relator_nome = nome_relator_padronizado,
-             relaror_partido = partido) %>%
+      mutate(
+        relator_id = id_parlamentar,
+        relator_nome = nome_relator_padronizado,
+        relator_partido = partido
+      ) %>%
       select(-c(id_parlamentar, nome_relator_padronizado, partido))
     
     return(proposicoes_df)
   }
 
 #' @title Faz o merge das relatorias pelo nome e casa do relator
-#' @description Realiza o merge das tabelas parlamentares e proposições, 
+#' @description Realiza o merge das tabelas parlamentares e proposições,
 #' recuperando o id do relator através do join de nome e casa do relator.
 #' @param proposicoes_df Dataframe de proposições
 #' @param parlamentares_df Dataframe de parlamentares
-#' @return Dataframe de proposições contendo o relator_id completo 
+#' @return Dataframe de proposições contendo o relator_id completo
 #' e relator_nome processado.
 .merge_by_nome_casa <- function(proposicoes_df, parlamentares_df) {
   proposicoes_df <- proposicoes_df %>%
@@ -41,6 +44,7 @@
     left_join(
       parlamentares_df,
       by = c("relator_nome" = "nome_parlamentar",
+             "legislatura",
              "casa"),
       ignore_case = TRUE
     ) %>%
@@ -49,30 +53,32 @@
       relator_partido = partido,
       relator_uf = uf
     ) %>%
-    select(-c(id_parlamentar, partido, uf))
+    select(-c(id_parlamentar, partido, uf, legislatura))
   
   return(proposicoes_df)
 }
 
 #' @title Recupera o id do relator a partir de suas informações
-#' @description Realiza o merge das tabelas parlamentares e proposições, 
+#' @description Realiza o merge das tabelas parlamentares e proposições,
 #' recuperando o id do relator através do join de suas informações,
 #' como nome, casa, partido e uf.
 #' @param proposicoes_df Dataframe de proposições
 #' @param parlamentares_df Dataframe de parlamentares
-#' @return Dataframe de proposições contendo a coluna relator_id completa, 
+#' @return Dataframe de proposições contendo a coluna relator_id completa,
 #' o relator_nome padronizado e o relator_id_parlametria.
 #' @export
 mapeia_nome_relator_para_id <-
   function(proposicoes_df, parlamentares_df) {
     library(tidyverse)
     
+    proposicoes_df <- .mapeia_data_para_legislatura(proposicoes_df)
+    
     parlamentares_df <- parlamentares_df %>%
       mutate(nome_parlamentar = .padroniza_nome(nome_eleitoral)) %>%
-      select(nome_parlamentar, partido, uf, id_parlamentar, casa)
+      select(nome_parlamentar, partido, uf, id_parlamentar, casa, legislatura)
     
     proposicoes_com_relator_id <- proposicoes_df %>%
-      filter(!is.na(relator_id)) %>% 
+      filter(!is.na(relator_id)) %>%
       mutate(relator_id = as.character(relator_id))
     
     proposicoes_full_merged <-
@@ -82,16 +88,16 @@ mapeia_nome_relator_para_id <-
       .merge_by_nome_casa(proposicoes_full_merged, parlamentares_df)
     
     proposicoes_alt <-
-      proposicoes_full_merged %>% 
-      filter(!is.na(relator_id)) %>% 
-      bind_rows(
-        proposicoes_com_relator_id,
-        proposicoes_merged_by_nome_casa
-      ) %>%
+      proposicoes_full_merged %>%
+      filter(!is.na(relator_id)) %>%
+      bind_rows(proposicoes_com_relator_id,
+                proposicoes_merged_by_nome_casa) %>%
       mutate(enum_casa = if_else(casa == "camara", 1, 2)) %>%
-      mutate(relator_id_parlametria = if_else(!is.na(relator_id),
-                                              paste0(enum_casa, relator_id),
-                                              relator_id))
+      mutate(relator_id_parlametria = if_else(
+        !is.na(relator_id),
+        paste0(enum_casa, relator_id),
+        relator_id
+      ))
     
     proposicoes_alt <- proposicoes_alt %>%
       select(
@@ -110,7 +116,7 @@ mapeia_nome_relator_para_id <-
         relator_id,
         relator_id_parlametria,
         id_leggo
-      ) %>% 
+      ) %>%
       distinct()
     
     return(proposicoes_alt)
@@ -124,12 +130,27 @@ mapeia_nome_relator_para_id <-
 .padroniza_nome <- function(nome) {
   nome_processado <- str_to_title(nome) %>%
     str_remove("Dep. |Sen. ") %>%
-    str_remove(" \\(.*")
+    str_remove(" \\(.*") %>% 
+    iconv(., from="UTF-8", to="ASCII//TRANSLIT")
   
   nome_processado <- if_else(
     str_detect(nome_processado, "/"),
     str_remove(nome_processado, " /.*") %>%
       str_remove(" [^ ]+$"),
+    nome_processado
+  )
+  
+  # Trata caso de Evandro Roman (que possui nome eleitoral Roman)
+  nome_processado <- if_else(
+    str_detect(nome_processado, "Evandro Roman"),
+    "Roman",
+    nome_processado
+  )
+  
+  # Trata erro de digitação em nome de deputado
+  nome_processado <- if_else(
+    str_detect(nome_processado, "Lucas Vergiio"),
+    "Lucas Vergilio",
     nome_processado
   )
   
@@ -169,4 +190,25 @@ mapeia_nome_relator_para_id <-
   parlamentares <- bind_rows(deputados, senadores)
   
   return(parlamentares)
+}
+
+.mapeia_data_para_legislatura <- function(proposicoes_df) {
+  legislaturas <-
+    (jsonlite::fromJSON(here::here(
+      "R/config/environment_congresso.json"
+    )))$legislaturas
+  
+  df <- fuzzyjoin::fuzzy_left_join(
+    proposicoes_df, legislaturas,
+    by = c(
+      "relator_data" = "data_inicio",
+      "relator_data" = "data_fim"
+    ),
+    match_fun = list(`>=`, `<=`)
+  )
+  
+  df <- df %>% 
+    select(-c(relator_data, data_inicio, data_fim))
+  
+  return(df)
 }

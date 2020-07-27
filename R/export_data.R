@@ -49,6 +49,7 @@ safe_process_etapa <- purrr::safely(
         ~ relator_nome,
         ~ relator_partido,
         ~ relator_uf,
+        ~ relator_data,
         ~ temperatura
       ),
       fases_eventos = tibble::tribble(
@@ -310,7 +311,8 @@ fetch_props <- function(pls, export_path) {
     
     readr::read_csv(
       paste0(export_path_parlamentares, "parlamentares.csv"),
-      col_types = readr::cols(.default = "c")
+      col_types = readr::cols("legislatura"="i",
+                              .default = "c")
     )
   },
   error = function(msg) {
@@ -338,6 +340,7 @@ fetch_props <- function(pls, export_path) {
   proposicoes_que_nao_baixaram <- pls
   proposicoes_individuais_a_baixar <-
     converte_tabela_geral_ids_casa(pls)
+  
   
   while (count < 5) {
     cat(paste("\n--- Tentativa ", count + 1, "\n"))

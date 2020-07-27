@@ -144,7 +144,7 @@ extract_relatorias_camara <- function(proposicao_id) {
 #' @examples get_last_relator(91341, 'senado')
 #' @export
 get_last_relator <- function(proposicao_id, casa) {
-  df_relator <- tibble::tribble(~ id_relator, ~ nome_relator,  ~partido_relator, ~ uf_relator)
+  df_relator <- tibble::tribble(~ id_relator, ~ nome_relator,  ~partido_relator, ~ uf_relator, ~ data_relator)
   relatorias <- agoradigital::get_relatorias(proposicao_id, casa, 1)
   
   if(nrow(relatorias) == 0 | nrow(relatorias) > 0  && relatorias$nome_parlamentar == "Relator não encontrado")
@@ -152,11 +152,13 @@ get_last_relator <- function(proposicao_id, casa) {
   
   if (casa == "senado") {
     df_relator <- relatorias %>%
+      dplyr::mutate(data_relator = as.POSIXct(data_designacao)) %>% 
       dplyr::select(
         id_relator = codigo_parlamentar,
         nome_relator = nome_parlamentar,
         partido_relator = sigla_partido_parlamentar,
-        uf_relator = uf_parlamentar
+        uf_relator = uf_parlamentar,
+        data_relator
       )
   } else if (casa == "camara") {
     partido_uf <- (relatorias$partido %>% stringr::str_split("-"))[[1]]
@@ -168,7 +170,7 @@ get_last_relator <- function(proposicao_id, casa) {
         uf_relator = partido_uf[[2]],
         nome_parlamentar = stringr::str_remove(nome_parlamentar, " \\(.*")
       ) %>%
-      dplyr::select(id_relator, nome_relator = nome_parlamentar, partido_relator, uf_relator)
+      dplyr::select(id_relator, nome_relator = nome_parlamentar, partido_relator, uf_relator, data_relator = data_hora)
   }
   return(df_relator)
 }

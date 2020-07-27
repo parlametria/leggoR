@@ -405,7 +405,8 @@ extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
       relator_id = relator$id_relator,
       relator_nome = relator$nome_relator,
       relator_partido = relator$partido_relator,
-      relator_uf = relator$uf_relator
+      relator_uf = relator$uf_relator,
+      relator_data = relator$data_relator
     )
 }
 
