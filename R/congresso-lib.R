@@ -136,13 +136,8 @@ generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE)
       dplyr::arrange(data_inicio)
   }
 
-  ultimo_evento <- tramitacao_df %>%
-    tail(1) %>%
-    dplyr::pull(evento)
-
-  if (!stringr::str_detect(ultimo_evento, "virada_de_casa")) {
-    df$data_fim[nrow(df)] <- NA
-  }
+  df <- df %>%
+    .checa_data_ultima_fase_progresso(tramitacao_df)
 
   df <- df %>%
     .padroniza_fases_globais_tramitacao(sigla)
@@ -160,9 +155,11 @@ generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE)
 
   #Adding correct casa column value for phases: Sanção/Veto and Avaliação dos Vetos.
   df <- df %>%
-    dplyr::mutate(local_casa = dplyr::if_else(fase_global %in% c('Sanção/Veto','Avaliação dos Vetos', 'Promulgação/Veto'),
-                                             tolower(local),
-                                             casa)) %>%
+    dplyr::mutate(local_casa = dplyr::if_else(
+      fase_global %in% c('Sanção/Veto', 'Avaliação dos Vetos', 'Promulgação/Veto'),
+      tolower(local),
+      casa
+    )) %>%
     .corrige_data_inicial_camara(tramitacao_df = tramitacao_df)
 
   return(df)
@@ -512,4 +509,30 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
     dplyr::select(-ano)
 
   return(tramitacao_df)
+}
+
+#' @title Estebelece os critérios para que a data da última fase do dataframe de progresso seja considerada
+#' a atual (setada para NA).
+#' @description Seta para NA a data da última fase capturada para o progresso desde que a mesma
+#' não caia nos critérios de permanência da data final da fase.
+#' @param df Dataframe com o formato do progresso
+#' @param tramitacao_df Dataframe da tramitação processada da proposiçao
+#' @return Dataframe com o formato do progresso com a data da última fase correta
+#' @examples
+#'  .checa_data_ultima_fase_progresso(df, tramitacao_df)
+.checa_data_ultima_fase_progresso <- function(df, tramitacao_df) {
+  ultimo_evento <- tramitacao_df %>%
+    tail(1) %>%
+    dplyr::pull(evento)
+
+  evento_virada_de_casa_revisao <- tramitacao_df %>%
+    dplyr::filter(stringr::str_detect(situacao_descricao_situacao, "remetida_à_câmara_dos_deputados"),
+                  stringr::str_detect(fase_global, "Revisão I"))
+
+  if (!stringr::str_detect(ultimo_evento, "virada_de_casa") &&
+      !nrow(evento_virada_de_casa_revisao) != 0) {
+    df$data_fim[nrow(df)] <- NA
+  }
+
+  return(df)
 }

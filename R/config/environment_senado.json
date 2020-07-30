@@ -64,7 +64,7 @@
   },
 
   "eventos": [
-    {"evento": "apresentacao_pl", "regex": "^este process.*cont.*m|^leitura da mat.ria na sess.o do sf", "tipo":"serie_c"},
+    {"evento": "apresentacao_pl", "regex": "^este process.*cont.*m|^leitura da mat.ria na sess.o do sf|^encaminhado à publica..o.", "tipo":"serie_c"},
     {"evento": "requerimento_seminario", "regex": "a realização de seminário", "tipo":"serie_b"},
     {"evento": "recebimento_comissao", "regex": "recebido na|nesta comissao", "tipo":"serie_c"},
     {"evento": "devolvido", "regex": "devolvido pel.*redistribu.*", "tipo":"serie_c"},
