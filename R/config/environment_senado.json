@@ -64,7 +64,7 @@
   },
 
   "eventos": [
-    {"evento": "apresentacao_pl", "regex": "^este process.*cont.*m", "tipo":"serie_c"},
+    {"evento": "apresentacao_pl", "regex": "^este process.*cont.*m|^leitura da mat.ria na sess.o do sf", "tipo":"serie_c"},
     {"evento": "requerimento_seminario", "regex": "a realização de seminário", "tipo":"serie_b"},
     {"evento": "recebimento_comissao", "regex": "recebido na|nesta comissao", "tipo":"serie_c"},
     {"evento": "devolvido", "regex": "devolvido pel.*redistribu.*", "tipo":"serie_c"},
@@ -185,7 +185,7 @@
   },
 
   "fase_global_plenario":{
-    "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)|(à slsf, a pedido.)|(recebida, na secretaria-geral da mesa, a emenda.*)"
+    "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)|(à slsf, a pedido.)|(recebida., na secretaria-geral da mesa, a. emenda.*)"
   },
 
   "fase_global_sancao":{
