@@ -414,6 +414,7 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
   fase_comissoes <- df %>%
     dplyr::filter(casa == "camara",
                   local == "Comissões",
+                  fase_global != "Pré-Revisão II",
                   !is.na(data_fim))
 
   if (fase_comissoes %>% nrow() > 0) {
@@ -526,7 +527,8 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
     dplyr::pull(evento)
 
   evento_virada_de_casa_revisao <- tramitacao_df %>%
-    dplyr::filter(stringr::str_detect(situacao_descricao_situacao, "remetida_à_câmara_dos_deputados"),
+    dplyr::filter(stringr::str_detect(situacao_descricao_situacao, "remetida_à_câmara_dos_deputados") |
+                    stringr::str_detect(evento, "virada_de_casa"),
                   stringr::str_detect(fase_global, "Revisão I"))
 
 
