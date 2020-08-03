@@ -178,9 +178,10 @@ generate_progresso_df_mpv <- function(tramitacao_df, proposicao_df) {
     dplyr::arrange(data_hora) %>%
     dplyr::mutate(fase_global =
                     dplyr::case_when(
-                      stringr::str_detect(tolower(descricao_situacao), "enviada . câmara dos deputados") ~ "Câmara dos Deputados",
-                      stringr::str_detect(tolower(texto_tramitacao), "encaminhad(.) ao senado federal") ~ "Senado Federal",
-                      stringr::str_detect(tolower(texto_tramitacao), "sancionada") ~ "Sanção Presidencial/Promulgação",
+                      stringr::str_detect(tolower(descricao_situacao), "envi(ada|o) . câmara dos deputados") |
+                        stringr::str_detect(tolower(texto_tramitacao), "envio à câmara dos deputados") ~ "Câmara dos Deputados",
+                      stringr::str_detect(tolower(texto_tramitacao), "((encaminhad(.)|remetid(.)) ao|aguardando leitura no) senado federal") ~ "Senado Federal",
+                      stringr::str_detect(tolower(texto_tramitacao), "sancionada|(submet(.)|encaminha(.)) à sanção presidencial") ~ "Sanção Presidencial/Promulgação",
                       dplyr::row_number() == 1 ~ "Comissão Mista")) %>%
     tidyr::fill(fase_global) %>% 
     .corrige_eventos_mpv_cong_remoto()
