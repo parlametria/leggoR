@@ -185,7 +185,7 @@
   },
 
   "fase_global_plenario":{
-    "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)|(à slsf, a pedido.)|(recebida., na secretaria-geral da mesa, a. emenda.*)"
+    "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)|(à slsf, a pedido.)|(recebida.*, na secretaria-geral da mesa, a.* emenda.*)|(recebida.* a.* emenda.*)"
   },
 
   "fase_global_sancao":{

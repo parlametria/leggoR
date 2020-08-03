@@ -529,9 +529,11 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
     dplyr::filter(stringr::str_detect(situacao_descricao_situacao, "remetida_à_câmara_dos_deputados"),
                   stringr::str_detect(fase_global, "Revisão I"))
 
-  if (!stringr::str_detect(ultimo_evento, "virada_de_casa") &
-      nrow(evento_virada_de_casa_revisao) != 0) {
-    df$data_fim[nrow(df)] <- NA
+
+  if (nrow(evento_virada_de_casa_revisao) == 0) {
+    if (!stringr::str_detect(ultimo_evento, "virada_de_casa") | is.na(ultimo_evento)) {
+      df$data_fim[nrow(df)] <- NA
+    }
   }
 
   return(df)
