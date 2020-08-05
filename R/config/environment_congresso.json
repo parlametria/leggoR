@@ -147,5 +147,14 @@
     {"id_entidade": 16, "regex": "^Câmara dos Deputados$"},
     {"id_entidade": 78, "regex": "Senado Federal -"},
     {"id_entidade": 17, "regex": "Programa e-Cidadania"}
+  ],
+  
+  "legislaturas":[
+    {"data_inicio": "2019-02-01", "data_fim": "2023-01-31", "legislatura": 56},
+    {"data_inicio": "2015-02-01", "data_fim": "2019-01-31", "legislatura": 55},
+    {"data_inicio": "2011-02-01", "data_fim": "2015-01-31", "legislatura": 54},
+    {"data_inicio": "2007-02-01", "data_fim": "2011-01-31", "legislatura": 53},
+    {"data_inicio": "2003-02-01", "data_fim": "2007-01-31", "legislatura": 52},
+    {"data_inicio": "1999-02-01", "data_fim": "2003-01-31", "legislatura": 51}
   ]
 }

@@ -40,13 +40,16 @@ safe_process_etapa <- purrr::safely(
         ~ data_apresentacao,
         ~ casa,
         ~ casa_origem,
-        ~
-          autor_nome,
+        ~ autor_nome,
         ~ autor_uf,
         ~ autor_partido,
         ~ regime_tramitacao,
         ~ forma_apreciacao,
+        ~ relator_id,
         ~ relator_nome,
+        ~ relator_partido,
+        ~ relator_uf,
+        ~ relator_data,
         ~ temperatura
       ),
       fases_eventos = tibble::tribble(
@@ -57,15 +60,13 @@ safe_process_etapa <- purrr::safely(
         ~ texto_tramitacao,
         ~ sigla_local,
         ~ id_situacao,
-        ~
-          descricao_situacao,
+        ~ descricao_situacao,
         ~ link_inteiro_teor,
         ~ evento,
         ~ local,
         ~ tipo_documento,
         ~ nivel,
-        ~
-          titulo_evento
+        ~ titulo_evento
       )
     )
 )
@@ -109,17 +110,18 @@ adiciona_coluna_pulou_mpv <- function(progresso_df) {
   if (length(data_fase_camara) > 0 & !is.na(data_fase_camara)) {
     if (data_fase_camara > cong_remoto_inicio) {
       progresso_df <- progresso_df %>%
-        dplyr::mutate(pulou = dplyr::case_when(
-          fase_global == "Comissão Mista" &
-            (
-              data_fase_camara >= cong_remoto_inicio &
-                data_inicio >= cong_remoto_inicio
-            ) ~ TRUE,
-          fase_global == "Comissão Mista" &
-            is.na(data_inicio) ~ TRUE,
-          T ~ FALSE
+        dplyr::mutate(
+          pulou = dplyr::case_when(
+            fase_global == "Comissão Mista" &
+              (
+                data_fase_camara >= cong_remoto_inicio &
+                  data_inicio >= cong_remoto_inicio
+              ) ~ TRUE,
+            fase_global == "Comissão Mista" &
+              is.na(data_inicio) ~ TRUE,
+            T ~ FALSE
+          )
         )
-      )
     }
   }
   
@@ -290,8 +292,8 @@ converte_tabela_geral_ids_casa <- function(pls) {
 #' @export
 fetch_props <- function(pls, export_path) {
   pautas <-
-    tibble::tribble(~ data, ~ sigla, ~ id_ext, ~ local, ~ casa, ~ semana, ~
-                      ano)
+    tibble::tribble( ~ data, ~ sigla, ~ id_ext, ~ local, ~ casa, ~ semana, ~
+                       ano)
   
   tryCatch({
     pautas <- readr::read_csv(paste0(export_path, "pautas.csv"))
@@ -300,11 +302,45 @@ fetch_props <- function(pls, export_path) {
     
   })
   
+  parlamentares <- tryCatch({
+    export_path_parlamentares <- export_path
+    
+    if (!stringr::str_detect(export_path, "\\/$")) {
+      export_path_parlamentares <- paste0(export_path, "/")
+    }
+    
+    readr::read_csv(
+      paste0(export_path_parlamentares, "parlamentares.csv"),
+      col_types = readr::cols("legislatura"="i",
+                              .default = "c")
+    )
+  },
+  error = function(msg) {
+    print("Erro ao importar dados de parlamentares em fetch_props:")
+    print(msg)
+    return(
+      tibble::tribble(
+        ~ id_parlamentar,
+        ~ id_parlamentar_parlametria,
+        ~ casa,
+        ~ nome_eleitoral,
+        ~ nome_civil,
+        ~ cpf,
+        ~ sexo,
+        ~ partido,
+        ~ uf,
+        ~ situacao,
+        ~ em_exercicio
+      )
+    )
+  })
+  
   res <- list()
   count <- 0
   proposicoes_que_nao_baixaram <- pls
   proposicoes_individuais_a_baixar <-
     converte_tabela_geral_ids_casa(pls)
+  
   
   while (count < 5) {
     cat(paste("\n--- Tentativa ", count + 1, "\n"))
@@ -325,7 +361,8 @@ fetch_props <- function(pls, export_path) {
       dplyr::select(-c(ano)) %>%
       dplyr::rename(id_ext = prop_id) %>%
       dplyr::select(-c(tema, apelido_materia)) %>%
-      unique()
+      unique() %>%
+      agoradigital::mapeia_nome_relator_para_id(parlamentares)
     
     proposicoes_baixadas <- proposicoes %>%
       dplyr::select(id_leggo,
