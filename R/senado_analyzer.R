@@ -670,9 +670,20 @@ extract_local_global_in_senado <- function(data_tramitacao) {
             fase_global == 'Promulgação/Veto' ~ senado_constants$presidencia,
           (
             stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario) &
-              (sigla_local == "PLEN" | sigla_local == senado_constants$sigla_slsf)
+              (
+                sigla_local == "PLEN" | sigla_local == senado_constants$sigla_slsf
+              )
           ) ~ senado_constants$plenario,
-          (evento == "apresentacao_pl" & sigla_local == senado_constants$sigla_slsf) ~ senado_constants$plenario,
+          (
+            evento == "apresentacao_pl" &
+              sigla_local == senado_constants$sigla_slsf
+          ) ~ senado_constants$plenario,
+          (
+            stringr::str_detect(
+              situacao_descricao_situacao,
+              "pronto_para_deliberação_do_plenário"
+            )
+          ) ~ senado_constants$plenario,
           sigla_local %in% senado_env$comissoes_nomes$siglas_comissoes &
             (
               !stringr::str_detect(tolower(texto_tramitacao), fase_global_constants$plenario)

@@ -160,7 +160,8 @@ generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE)
       tolower(local),
       casa
     )) %>%
-    .corrige_data_inicial_camara(tramitacao_df = tramitacao_df)
+    .corrige_data_inicial_camara(tramitacao_df = tramitacao_df) %>%
+    .corrige_data_inicial_senado(tramitacao_df = tramitacao_df)
 
   return(df)
 }
@@ -347,6 +348,52 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
   return(df)
 }
 
+#' @description A partir da situação de pronta para deliberação em plenário altera a data inicial da
+#' fase de plenário no Senado
+#' @param df Dataframe com o formato do progresso
+#' @param tramitacao_df Dataframe da tramitação processada da proposiçao
+#' @return Dataframe de progresso com data inicial de plenário no Senado corrigida
+#' @examples
+#'  .corrige_data_inicial_senado(df, tramitacao_df)
+.corrige_data_inicial_senado <- function(df, tramitacao_df) {
+  if ("situacao_descricao_situacao" %in% names(tramitacao_df) &
+      "evento" %in% names(tramitacao_df)) {
+    situacao_pronta_deliberacao <- tramitacao_df %>%
+      dplyr::filter(casa == "senado") %>%
+      dplyr::filter(
+        stringr::str_detect(
+          situacao_descricao_situacao,
+          "pronto_para_deliberação_do_plenário"
+        )
+      ) %>%
+      dplyr::arrange(data_hora) %>%
+      head(1)
+
+    evento_inclusao_ordem_dia <- tramitacao_df %>%
+      dplyr::filter(casa == "senado") %>%
+      dplyr::filter(stringr::str_detect(evento, "incluida_ordem_dia")) %>%
+      dplyr::arrange(data_hora) %>%
+      head(1)
+
+    if (evento_inclusao_ordem_dia %>% nrow() > 0) {
+      data_inicio_plenario = evento_inclusao_ordem_dia$data_hora
+    } else if (situacao_pronta_deliberacao %>% nrow() > 0) {
+      data_inicio_plenario = situacao_pronta_deliberacao$data_hora
+    } else {
+      data_inicio_plenario = NA ## Não será substituída
+    }
+
+    if (!is.na(data_inicio_plenario)) {
+      df <- df %>%
+        dplyr::mutate(data_inicio = dplyr::if_else(casa == "senado" & local == "Plenário",
+                                                   data_inicio_plenario,
+                                                   data_inicio))
+    }
+  }
+  return(df)
+
+}
+
 #' @title Ignora eventos ocorridos em Comissões durante o período do Congresso Remoto (Pandemia Covid-19).
 #' @description Com a não instalação/utilização de comissões permanentes durante o período do Congresso Remoto esta função
 #' ignora do dataframe de tramitações os eventos com local classificado como Comissões.
@@ -414,7 +461,7 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
   fase_comissoes <- df %>%
     dplyr::filter(casa == "camara",
                   local == "Comissões",
-                  fase_global != "Pré-Revisão II",
+                  !fase_global %in% c("Pré-Revisão II", "Pré-Revisão I"),
                   !is.na(data_fim))
 
   if (fase_comissoes %>% nrow() > 0) {
