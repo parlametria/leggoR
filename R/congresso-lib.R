@@ -211,12 +211,18 @@ generate_progresso_df_mpv <- function(tramitacao_df, proposicao_df) {
       dplyr::mutate(data_fim = NA)
   }
 
-  df <-
+  df_completo <-
     df %>%
     dplyr::right_join(congresso_env$fases_global_mpv, by = c("fase_global")) %>%
     dplyr::ungroup()
+  
+  if (is.na(df_completo %>% head(1) %>% dplyr::pull(prop_id))) {
+    infos <- df %>% head(1)
+    df_completo$casa <- infos %>% dplyr::pull(casa) 
+    df_completo$prop_id <-infos %>% dplyr::pull(prop_id)
+  }
 
-  df %>%
+  df_completo %>%
     tidyr::fill(casa, prop_id, .direction = "downup") %>%
     unique() %>%
     dplyr::mutate(data_fim =

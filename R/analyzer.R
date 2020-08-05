@@ -402,11 +402,11 @@ extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
       prop_id = tram[1, ]$prop_id,
       regime_tramitacao = regime,
       forma_apreciacao = apreciacao,
-      relator_id = relator$id_relator,
-      relator_nome = relator$nome_relator,
-      relator_partido = relator$partido_relator,
-      relator_uf = relator$uf_relator,
-      relator_data = relator$data_relator
+      relator_id = agoradigital::check_is_logical(relator$id_relator),
+      relator_nome = agoradigital::check_is_logical(relator$nome_relator),
+      relator_partido = agoradigital::check_is_logical(relator$partido_relator),
+      relator_uf = agoradigital::check_is_logical(relator$uf_relator),
+      relator_data = agoradigital::check_is_logical(relator$data_relator)
     )
 }
 
