@@ -22,7 +22,7 @@ process_etapa <- function(id, casa, pautas) {
     agoradigital::extract_status_tramitacao(id, casa, prop, tram)
   extended_prop <-
     merge(prop, status, by = "prop_id")
-  
+
   list(proposicao = extended_prop,
        fases_eventos = proc_tram)
 }
@@ -80,7 +80,7 @@ adiciona_coluna_pulou <- function(progresso_df) {
   progresso_df$fases_faltantes_abaixo = rev(cumsum(is.na(rev(
     progresso_df$data_inicio
   ))))
-  
+
   progresso_df %>%
     dplyr::mutate(pulou = dplyr::if_else((
       is.na(data_inicio) &
@@ -96,15 +96,15 @@ adiciona_coluna_pulou <- function(progresso_df) {
 adiciona_coluna_pulou_mpv <- function(progresso_df) {
   cong_remoto_inicio <-
     congresso_env$congresso_remoto$data_mudanca_mpvs
-  
+
   data_fase_camara <- progresso_df %>%
     dplyr::filter(fase_global == "Câmara dos Deputados") %>%
     dplyr::pull(data_inicio)
-  
+
   data_inicio_comissao_mista <- progresso_df %>%
     dplyr::filter(fase_global == "Comissão Mista") %>%
     dplyr::pull(data_inicio)
-  
+
   # Uma MPV pula a fase de comissão mista quando a fase de início do Plenário tiver
   # ocorrido durante a pandemia
   if (length(data_fase_camara) > 0 & !is.na(data_fase_camara)) {
@@ -124,7 +124,7 @@ adiciona_coluna_pulou_mpv <- function(progresso_df) {
         )
     }
   }
-  
+
   return(progresso_df)
 }
 
@@ -197,7 +197,7 @@ process_pl <-
         "\n"
       )
     )
-    
+
     etapas <- list()
     if (!is.na(id_camara)) {
       etapa_processada <-
@@ -217,13 +217,13 @@ process_pl <-
         return(etapas)
       }
     }
-    
+
     if (is.na(id_camara) & is.na(id_senado)) {
       message("A proposição não foi processada!")
       print("A proposição está preenchida com o id_camara e o id_senado como NA.")
       return(etapas)
     }
-    
+
     etapas %<>% purrr::pmap(dplyr::bind_rows)
     if (nrow(etapas$proposicao) != 0) {
       sigla <- tolower(etapas$proposicao$sigla_tipo)
@@ -262,7 +262,7 @@ process_pl <-
 converte_tabela_geral_ids_casa <- function(pls) {
   pls_ids <- pls %>%
     dplyr::mutate(id_leggo = dplyr::row_number())
-  
+
   proposicoes_individuais_a_baixar_camara <-
     pls_ids %>%
     dplyr::mutate(casa = "camara") %>%
@@ -270,7 +270,7 @@ converte_tabela_geral_ids_casa <- function(pls) {
                   casa,
                   id_casa = id_camara) %>%
     dplyr::filter(!is.na(id_casa))
-  
+
   proposicoes_individuais_a_baixar_senado <-
     pls_ids %>%
     dplyr::mutate(casa = "senado") %>%
@@ -278,7 +278,7 @@ converte_tabela_geral_ids_casa <- function(pls) {
                   casa,
                   id_casa = id_senado) %>%
     dplyr::filter(!is.na(id_casa))
-  
+
   dplyr::bind_rows(
     proposicoes_individuais_a_baixar_camara,
     proposicoes_individuais_a_baixar_senado
@@ -292,26 +292,26 @@ converte_tabela_geral_ids_casa <- function(pls) {
 #' @export
 fetch_props <- function(pls, export_path) {
   pautas <-
-    tibble::tribble( ~ data, ~ sigla, ~ id_ext, ~ local, ~ casa, ~ semana, ~
-                       ano)
-  
+    tibble::tribble(~ data, ~ sigla, ~ id_ext, ~ local, ~ casa, ~ semana, ~
+                      ano)
+
   tryCatch({
     pautas <- readr::read_csv(paste0(export_path, "pautas.csv"))
   },
   error = function(msg) {
-    
+
   })
-  
+
   parlamentares <- tryCatch({
     export_path_parlamentares <- export_path
-    
+
     if (!stringr::str_detect(export_path, "\\/$")) {
       export_path_parlamentares <- paste0(export_path, "/")
     }
-    
+
     readr::read_csv(
       paste0(export_path_parlamentares, "parlamentares.csv"),
-      col_types = readr::cols("legislatura"="i",
+      col_types = readr::cols("legislatura" = "i",
                               .default = "c")
     )
   },
@@ -334,14 +334,14 @@ fetch_props <- function(pls, export_path) {
       )
     )
   })
-  
+
   res <- list()
   count <- 0
   proposicoes_que_nao_baixaram <- pls
   proposicoes_individuais_a_baixar <-
     converte_tabela_geral_ids_casa(pls)
-  
-  
+
+
   while (count < 5) {
     cat(paste("\n--- Tentativa ", count + 1, "\n"))
     sleep_time = .DEF_REQ_SLEEP_TIME_IN_SECS ^ (count + 1)
@@ -355,7 +355,7 @@ fetch_props <- function(pls, export_path) {
           sleep_time = sleep_time
         )
     )
-    
+
     proposicoes <-
       purrr::map_df(res, ~ .$proposicao) %>%
       dplyr::select(-c(ano)) %>%
@@ -363,13 +363,13 @@ fetch_props <- function(pls, export_path) {
       dplyr::select(-c(tema, apelido_materia)) %>%
       unique() %>%
       agoradigital::mapeia_nome_relator_para_id(parlamentares)
-    
+
     proposicoes_baixadas <- proposicoes %>%
       dplyr::select(id_leggo,
                     casa,
                     id_casa = id_ext)
-    
-    
+
+
     proposicoes_que_nao_baixaram_temp <-
       dplyr::anti_join(
         proposicoes_individuais_a_baixar,
@@ -381,20 +381,20 @@ fetch_props <- function(pls, export_path) {
                       (id_senado %in% proposicoes_que_nao_baixaram_temp$id_casa) |
                       (is.na(id_camara) & is.na(id_senado))
       )
-    
+
     if (nrow(proposicoes_que_nao_baixaram) == 0) {
       print("Downloaded all propositions! =)")
       break()
     }
     count <- count + 1
   }
-  
+
   if (nrow(proposicoes_que_nao_baixaram) > 0) {
     print("Could not download the following propositions:")
     print(proposicoes_que_nao_baixaram)
   }
-  
-  
+
+
   tramitacoes <-
     purrr::map_df(res, ~ .$fases_eventos) %>%
     dplyr::rename(id_ext = prop_id, data = data_hora) %>%
@@ -406,14 +406,14 @@ fetch_props <- function(pls, export_path) {
     purrr::map_df(res, ~ .$progresso) %>%
     dplyr::rename(id_ext = prop_id) %>%
     unique()
-  
+
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
   readr::write_csv(tramitacoes, paste0(export_path, "/trams.csv"))
   readr::write_csv(hists_temperatura,
                    paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
-  
+
 }
 
 #' @title Recupera a casa da proposição que será usada para recuperar os seus autores
@@ -429,7 +429,6 @@ get_casa_proposicao <- function(id_camara, id_senado) {
   } else if (is.na(id_senado)) {
     casa_proposicao = "camara"
   } else {
-
     # prop_casa <- agoradigital::fetch_proposicao(id_senado, "senado") %>%
     #   dplyr::pull(casa_proposicao)
 
@@ -450,7 +449,7 @@ get_casa_proposicao <- function(id_camara, id_senado) {
         return(NULL)
       })
 
-      if(is.na(prop_casa) | prop_casa == "senado") {
+      if (is.na(prop_casa) | prop_casa == "senado") {
         casa_proposicao = "senado"
       } else {
         casa_proposicao = "camara"
@@ -475,46 +474,66 @@ get_casa_proposicao <- function(id_camara, id_senado) {
 #' @param id_senado Id da proposição no Senado
 #' @param total_rows Número total de proposições para análise. Usada apenas no print do log de execução.
 #' @return Dataframe com os autores da proposição
-process_autores_pl <- function(id_leggo, id_camara, id_senado, total_rows = 1) {
-  print(paste("Recuperando atores para a proposição: câmara", id_camara, " senado", id_senado,
-              "-", id_leggo, "/", total_rows))
+process_autores_pl <-
+  function(id_leggo,
+           id_camara,
+           id_senado,
+           total_rows = 1) {
+    print(
+      paste(
+        "Recuperando atores para a proposição: câmara",
+        id_camara,
+        " senado",
+        id_senado,
+        "-",
+        id_leggo,
+        "/",
+        total_rows
+      )
+    )
 
-  casa_origem <- get_casa_proposicao(id_camara, id_senado)
-  print(paste0("Casa da proposição: ", casa_origem))
+    casa_origem <- get_casa_proposicao(id_camara, id_senado)
+    print(paste0("Casa da proposição: ", casa_origem))
 
-  autores <- tryCatch({
-    if (casa_origem == "camara") {
-      autores <- agoradigital::fetch_autores_documento(id_camara, "camara") %>%
-        dplyr::mutate(id_autor = as.character(id_autor),
-                      id_ext = id_camara,
-                      id_leggo = id_leggo
-                      ) %>%
-        dplyr::select(id_leggo,
-                      id_ext,
-                      id_autor,
-                      tipo_autor = tipo,
-                      nome_autor = nome)
+    autores <- tryCatch({
+      if (casa_origem == "camara") {
+        autores <-
+          agoradigital::fetch_autores_documento(id_camara, "camara") %>%
+          dplyr::mutate(
+            id_autor = as.character(id_autor),
+            id_ext = id_camara,
+            id_leggo = id_leggo
+          ) %>%
+          dplyr::select(id_leggo,
+                        id_ext,
+                        id_autor,
+                        tipo_autor = tipo,
+                        nome_autor = nome)
 
-    } else if (casa_origem == "senado") {
-      autores <- agoradigital::fetch_autores_documento(id_senado, "senado") %>%
-        dplyr::mutate(id_autor = as.character(id_parlamentar),
-                      id_ext = id_senado,
-                      id_leggo = id_leggo) %>%
-        dplyr::select(id_leggo,
-                      id_ext,
-                      id_autor,
-                      tipo_autor = descricao_tipo_autor,
-                      nome_autor = nome_autor)
-    } else {
-      stop("Casa inválida!")
-    }
-  }, error = function(e) {
-    message(e)
-    return(tibble::tribble(~id_leggo, ~id_ext, ~id_autor, ~tipo_autor, ~nome_autor))
-  })
+      } else if (casa_origem == "senado") {
+        autores <-
+          agoradigital::fetch_autores_documento(id_senado, "senado") %>%
+          dplyr::mutate(
+            id_autor = as.character(id_parlamentar),
+            id_ext = id_senado,
+            id_leggo = id_leggo
+          ) %>%
+          dplyr::select(id_leggo,
+                        id_ext,
+                        id_autor,
+                        tipo_autor = descricao_tipo_autor,
+                        nome_autor = nome_autor)
+      } else {
+        stop("Casa inválida!")
+      }
+    }, error = function(e) {
+      message(e)
+      return(tibble::tribble( ~ id_leggo, ~ id_ext, ~ id_autor, ~ tipo_autor, ~
+                                nome_autor))
+    })
 
-  return(autores)
-}
+    return(autores)
+  }
 
 #' @title Exporta dados dos autores das proposições (matérias legislativas) monitoradas pelo Leggo
 #' @description Exporta para uma pasta o CSV que liga uma proposição aos seus autores
@@ -530,31 +549,41 @@ process_autores_props <- function(pls_ids_filepath, export_path) {
   total_rows <- pls %>% nrow()
 
   pls_autores <- purrr::pmap_df(
-    list(
-      pls$id_leggo,
-      pls$id_camara,
-      pls$id_senado,
-      total_rows
-    ),
+    list(pls$id_leggo,
+         pls$id_camara,
+         pls$id_senado,
+         total_rows),
     ~ process_autores_pl(..1, ..2, ..3, total_rows = total_rows)
   )
 
   autores_leggo <- pls %>%
     dplyr::select(id_leggo, id_camara, id_senado) %>%
-    dplyr::inner_join(pls_autores %>%
-                       select(id_leggo, id_autor, nome_autor, tipo_autor),
-                     by = c("id_leggo")) %>%
-    fuzzyjoin::regex_left_join(congresso_env$tipos_autores, by = c(nome_autor = "regex"), ignore_case = T) %>%
+    dplyr::inner_join(
+      pls_autores %>%
+        select(id_leggo, id_autor, nome_autor, tipo_autor),
+      by = c("id_leggo")
+    ) %>%
+    fuzzyjoin::regex_left_join(
+      congresso_env$tipos_autores,
+      by = c(nome_autor = "regex"),
+      ignore_case = T
+    ) %>%
     dplyr::mutate(id_autor = dplyr::if_else(!is.na(id_entidade),
                                             as.character(id_entidade),
                                             id_autor)) %>%
-    dplyr::select(-regex, -id_entidade) %>%
-    dplyr::mutate(id_autor_parlametria = dplyr::case_when(
-      tipo_autor == "Deputado" ~ paste0(1, id_autor),
-      tipo_autor == "Senador" ~ paste0(2, id_autor),
-      TRUE ~ paste0(3, id_autor)
-    )) %>%
-    dplyr::select(id_leggo, id_camara, id_senado, id_autor_parlametria, id_autor)
+    dplyr::select(-regex,-id_entidade) %>%
+    dplyr::mutate(
+      id_autor_parlametria = dplyr::case_when(
+        tipo_autor == "Deputado" ~ paste0(1, id_autor),
+        tipo_autor == "Senador" ~ paste0(2, id_autor),
+        TRUE ~ paste0(3, id_autor)
+      )
+    ) %>%
+    dplyr::select(id_leggo,
+                  id_camara,
+                  id_senado,
+                  id_autor_parlametria,
+                  id_autor)
 
   pls_sem_autores_baixados <- pls %>%
     dplyr::filter(!id_leggo %in% (autores_leggo %>% dplyr::pull(id_leggo)))
@@ -564,5 +593,7 @@ process_autores_props <- function(pls_ids_filepath, export_path) {
     print(pls_sem_autores_baixados)
   }
 
-  readr::write_csv(autores_leggo, paste0(export_path, "/autores_leggo.csv"), na = "None")
+  readr::write_csv(autores_leggo,
+                   paste0(export_path, "/autores_leggo.csv"),
+                   na = "None")
 }
