@@ -178,9 +178,10 @@ generate_progresso_df_mpv <- function(tramitacao_df, proposicao_df) {
     dplyr::arrange(data_hora) %>%
     dplyr::mutate(fase_global =
                     dplyr::case_when(
-                      stringr::str_detect(tolower(descricao_situacao), "enviada . câmara dos deputados") ~ "Câmara dos Deputados",
-                      stringr::str_detect(tolower(texto_tramitacao), "encaminhad(.) ao senado federal") ~ "Senado Federal",
-                      stringr::str_detect(tolower(texto_tramitacao), "sancionada") ~ "Sanção Presidencial/Promulgação",
+                      stringr::str_detect(tolower(descricao_situacao), "envi(ada|o) . câmara dos deputados") |
+                        stringr::str_detect(tolower(texto_tramitacao), "envio à câmara dos deputados") ~ "Câmara dos Deputados",
+                      stringr::str_detect(tolower(texto_tramitacao), "((encaminhad(.)|remetid(.)) ao|aguardando leitura no) senado federal") ~ "Senado Federal",
+                      stringr::str_detect(tolower(texto_tramitacao), "sancionada|(submet(.)|encaminha(.)) à sanção presidencial") ~ "Sanção Presidencial/Promulgação",
                       dplyr::row_number() == 1 ~ "Comissão Mista")) %>%
     tidyr::fill(fase_global) %>% 
     .corrige_eventos_mpv_cong_remoto()
@@ -210,12 +211,18 @@ generate_progresso_df_mpv <- function(tramitacao_df, proposicao_df) {
       dplyr::mutate(data_fim = NA)
   }
 
-  df <-
+  df_completo <-
     df %>%
     dplyr::right_join(congresso_env$fases_global_mpv, by = c("fase_global")) %>%
     dplyr::ungroup()
+  
+  if (is.na(df_completo %>% head(1) %>% dplyr::pull(prop_id))) {
+    infos <- df %>% head(1)
+    df_completo$casa <- infos %>% dplyr::pull(casa) 
+    df_completo$prop_id <-infos %>% dplyr::pull(prop_id)
+  }
 
-  df %>%
+  df_completo %>%
     tidyr::fill(casa, prop_id, .direction = "downup") %>%
     unique() %>%
     dplyr::mutate(data_fim =
