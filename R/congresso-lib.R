@@ -219,10 +219,10 @@ generate_progresso_df_mpv <- function(tramitacao_df, proposicao_df) {
     df %>%
     dplyr::right_join(congresso_env$fases_global_mpv, by = c("fase_global")) %>%
     dplyr::ungroup()
-  
+
   if (is.na(df_completo %>% head(1) %>% dplyr::pull(prop_id))) {
     infos <- df %>% head(1)
-    df_completo$casa <- infos %>% dplyr::pull(casa) 
+    df_completo$casa <- infos %>% dplyr::pull(casa)
     df_completo$prop_id <-infos %>% dplyr::pull(prop_id)
   }
 
@@ -576,19 +576,29 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 #' @examples
 #'  .checa_data_ultima_fase_progresso(df, tramitacao_df)
 .checa_data_ultima_fase_progresso <- function(df, tramitacao_df) {
-  ultimo_evento <- tramitacao_df %>%
-    tail(1) %>%
-    dplyr::pull(evento)
-
-  evento_virada_de_casa_revisao <- tramitacao_df %>%
-    dplyr::filter(stringr::str_detect(situacao_descricao_situacao, "remetida_à_câmara_dos_deputados") |
-                    stringr::str_detect(evento, "virada_de_casa"),
-                  stringr::str_detect(fase_global, "Revisão I"))
+  if ("situacao_descricao_situacao" %in% names(tramitacao_df) &
+      "evento" %in% names(tramitacao_df)) {
+    ultimo_evento <- tramitacao_df %>%
+      tail(1) %>%
+      dplyr::pull(evento)
 
 
-  if (nrow(evento_virada_de_casa_revisao) == 0) {
-    if (!stringr::str_detect(ultimo_evento, "virada_de_casa") | is.na(ultimo_evento)) {
-      df$data_fim[nrow(df)] <- NA
+    evento_virada_de_casa_revisao <- tramitacao_df %>%
+      dplyr::filter(
+        stringr::str_detect(
+          situacao_descricao_situacao,
+          "remetida_à_câmara_dos_deputados"
+        ) |
+          stringr::str_detect(evento, "virada_de_casa"),
+        stringr::str_detect(fase_global, "Revisão I")
+      )
+
+
+    if (nrow(evento_virada_de_casa_revisao) == 0) {
+      if (!stringr::str_detect(ultimo_evento, "virada_de_casa") |
+          is.na(ultimo_evento)) {
+        df$data_fim[nrow(df)] <- NA
+      }
     }
   }
 
