@@ -23,9 +23,9 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df, sigla){
     eventos_fases <- congresso_env$eventos_fases
   }
 
-  full_ordered_tram <- full_tramitacao_df %>% 
-    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>% 
-    dplyr::arrange(data, sequencia) %>% 
+  full_ordered_tram <- full_tramitacao_df %>%
+    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>%
+    dplyr::arrange(data, sequencia) %>%
     .corrige_evento_inicial_senado()
 
   #number delimiting events
@@ -34,7 +34,7 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df, sigla){
     dplyr::mutate(evento_num = dplyr::if_else(evento %in% c('apresentacao_pl','virada_de_casa','remetida_a_sancao_promulgacao'),
                                               paste0(evento,dplyr::row_number()),
                                               '')) %>%
-    dplyr::ungroup() %>% 
+    dplyr::ungroup() %>%
     .corrige_evento_apresentacao_duplicado()
 
   #label first event when happened before the presentation
@@ -83,7 +83,7 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df, sigla){
   full_ordered_tram_fases <- dplyr::bind_rows(camara_ordered_tram,senado_ordered_tram) %>%
     dplyr::distinct() %>%
     dplyr::arrange(data, sequencia) %>%
-    dplyr::select(-data) %>% 
+    dplyr::select(-data) %>%
     dplyr::mutate(local_casa = dplyr::if_else(fase_global == 'Sanção/Veto' | fase_global == 'Promulgação/Veto','presidência da república',
                                               dplyr::if_else(fase_global == 'Avaliação dos Vetos','congresso',casa)))
 }
@@ -99,12 +99,12 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df, sigla){
 #' @examples
 #'  generate_progresso_df(tramitacao_df)
 generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE) {
-  
+
   if (flag_cong_remoto) {
-    tramitacao_df<- tramitacao_df %>% 
+    tramitacao_df <- tramitacao_df %>%
       .remove_eventos_comissao_cong_remoto()
   }
-  
+
   df <-
     tramitacao_df %>%
     dplyr::arrange(data_hora, fase_global)  %>%
@@ -120,14 +120,14 @@ generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE)
     dplyr::group_by(fase_global) %>%
     dplyr::mutate(data_fim_anterior = dplyr::lag(data_fim)) %>%
     dplyr::mutate(data_fim_proc = as.Date(data_fim, "UTC -3"),
-                  data_fim_anterior_proc = as.Date(data_fim_anterior, "UTC -3")) %>% 
+                  data_fim_anterior_proc = as.Date(data_fim_anterior, "UTC -3")) %>%
     dplyr::filter(is.na(data_fim_anterior) | data_fim_proc >= data_fim_anterior_proc) %>%
     dplyr::select(-data_fim_anterior, -data_fim_proc, -data_fim_anterior_proc) %>%
     dplyr::arrange(data_inicio)
-  
-  df <- df %>% 
+
+  df <- df %>%
     .altera_data_inicio_plenario_pos_comissao(tramitacao_df)
-  
+
   if (nrow(df %>% dplyr::group_by(fase_global, local) %>% dplyr::filter(dplyr::n() > 1)) > 0) {
     df %<>%
       dplyr::group_by(prop_id, casa, fase_global, local) %>%
@@ -136,11 +136,12 @@ generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE)
       dplyr::arrange(data_inicio)
   }
 
-  df$data_fim[nrow(df)] <- NA
+  df <- df %>%
+    .checa_data_ultima_fase_progresso(tramitacao_df)
 
-  df <- df %>% 
+  df <- df %>%
     .padroniza_fases_globais_tramitacao(sigla)
-  
+
   if (sum(is.na(df$casa)) == nrow(df)) {
     tramitacao_df <-
       tramitacao_df %>%
@@ -154,10 +155,13 @@ generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE)
 
   #Adding correct casa column value for phases: Sanção/Veto and Avaliação dos Vetos.
   df <- df %>%
-    dplyr::mutate(local_casa = dplyr::if_else(fase_global %in% c('Sanção/Veto','Avaliação dos Vetos', 'Promulgação/Veto'),
-                                             tolower(local),
-                                             casa)) %>% 
-    .corrige_data_inicial_camara(tramitacao_df = tramitacao_df)
+    dplyr::mutate(local_casa = dplyr::if_else(
+      fase_global %in% c('Sanção/Veto', 'Avaliação dos Vetos', 'Promulgação/Veto'),
+      tolower(local),
+      casa
+    )) %>%
+    .corrige_data_inicial_camara(tramitacao_df = tramitacao_df) %>%
+    .corrige_data_inicial_senado(tramitacao_df = tramitacao_df)
 
   return(df)
 }
@@ -170,11 +174,11 @@ generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE)
 #' @export
 generate_progresso_df_mpv <- function(tramitacao_df, proposicao_df) {
   ano_mpv <- proposicao_df %>% head(1) %>% dplyr::pull(ano)
-  
+
   tramitacao_df <-
     tramitacao_df %>%
-    .remove_eventos_anos_anteriores_mpv(ano_mpv) %>% 
-    dplyr::filter(casa == 'senado') %>% 
+    .remove_eventos_anos_anteriores_mpv(ano_mpv) %>%
+    dplyr::filter(casa == 'senado') %>%
     dplyr::arrange(data_hora) %>%
     dplyr::mutate(fase_global =
                     dplyr::case_when(
@@ -183,7 +187,7 @@ generate_progresso_df_mpv <- function(tramitacao_df, proposicao_df) {
                       stringr::str_detect(tolower(texto_tramitacao), "((encaminhad(.)|remetid(.)) ao|aguardando leitura no) senado federal") ~ "Senado Federal",
                       stringr::str_detect(tolower(texto_tramitacao), "sancionada|(submet(.)|encaminha(.)) à sanção presidencial") ~ "Sanção Presidencial/Promulgação",
                       dplyr::row_number() == 1 ~ "Comissão Mista")) %>%
-    tidyr::fill(fase_global) %>% 
+    tidyr::fill(fase_global) %>%
     .corrige_eventos_mpv_cong_remoto()
 
   df <-
@@ -215,10 +219,10 @@ generate_progresso_df_mpv <- function(tramitacao_df, proposicao_df) {
     df %>%
     dplyr::right_join(congresso_env$fases_global_mpv, by = c("fase_global")) %>%
     dplyr::ungroup()
-  
+
   if (is.na(df_completo %>% head(1) %>% dplyr::pull(prop_id))) {
     infos <- df %>% head(1)
-    df_completo$casa <- infos %>% dplyr::pull(casa) 
+    df_completo$casa <- infos %>% dplyr::pull(casa)
     df_completo$prop_id <-infos %>% dplyr::pull(prop_id)
   }
 
@@ -257,7 +261,7 @@ get_linha_remetida_a_sancao_promulgacao <- function(proc_tram_df) {
 #' @title Recupera o número de linha em que houve evento vetada_totalmente ou transformada_lei
 #' @description Recupera o número da linha em que houve evento vetada_totalmente ou transformada_lei
 #' @param full_tramitacao_df Dataframe da tramitação processada da proposiçao
-#' @return Dataframe de tramitação com o evento de tramitação 
+#' @return Dataframe de tramitação com o evento de tramitação
 #' @examples
 #'  get_linha_finalizacao_tramitacao(fetch_tramitacao(2121442, 'camara', T) %>% extract_events_in_camara())
 get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
@@ -274,30 +278,30 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 #' @examples
 #'  .corrige_evento_inicial_senado(tramitacao_df)
 .corrige_evento_inicial_senado <- function(tramitacao_df) {
-  
-  filtro_evento_apresentacao_pl <- tramitacao_df %>% 
-    dplyr::filter(casa == "senado", 
+
+  filtro_evento_apresentacao_pl <- tramitacao_df %>%
+    dplyr::filter(casa == "senado",
                   evento == "apresentacao_pl")
-  
+
   # Trata caso especial de apresentação no Senado
   if (filtro_evento_apresentacao_pl %>% nrow() == 0) {
-    
-    tramitacao_df <- tramitacao_df %>% 
-      dplyr::group_by(evento) %>% 
-      dplyr::mutate(n_row_event = dplyr::if_else(evento == "incluida_ordem_dia", 
-                                                 dplyr::row_number(), 
-                                                 NA_integer_)) %>% 
-      dplyr::ungroup() %>% 
-      dplyr::rowwise() %>% 
+
+    tramitacao_df <- tramitacao_df %>%
+      dplyr::group_by(evento) %>%
+      dplyr::mutate(n_row_event = dplyr::if_else(evento == "incluida_ordem_dia",
+                                                 dplyr::row_number(),
+                                                 NA_integer_)) %>%
+      dplyr::ungroup() %>%
+      dplyr::rowwise() %>%
       dplyr::mutate(evento = dplyr::if_else(evento == "incluida_ordem_dia" && n_row_event == 1,
                                             "apresentacao_pl",
-                                            evento)) %>% 
-      dplyr::ungroup() %>% 
+                                            evento)) %>%
+      dplyr::ungroup() %>%
       dplyr::select(-n_row_event)
-    
+
     return(tramitacao_df)
   }
-  
+
   return(tramitacao_df)
 }
 
@@ -308,47 +312,93 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 #' @examples
 #'  .corrige_evento_apresentacao_duplicado(tramitacao_df)
 .corrige_evento_apresentacao_duplicado <- function(tramitacao_df) {
-  casa_apresentacao_2 <- tramitacao_df %>% 
-    dplyr::filter(evento_num == "apresentacao_pl2") %>% 
+  casa_apresentacao_2 <- tramitacao_df %>%
+    dplyr::filter(evento_num == "apresentacao_pl2") %>%
     dplyr::pull(casa)
-  
-  casa_apresentacao_3 <- tramitacao_df %>% 
-    dplyr::filter(evento_num == "apresentacao_pl3") %>% 
+
+  casa_apresentacao_3 <- tramitacao_df %>%
+    dplyr::filter(evento_num == "apresentacao_pl3") %>%
     dplyr::pull(casa)
-  
+
   if (length(casa_apresentacao_2) != 0 & length(casa_apresentacao_3) != 0) {
     if (casa_apresentacao_2 == casa_apresentacao_3) {
-      tramitacao_df <- tramitacao_df %>% 
+      tramitacao_df <- tramitacao_df %>%
         dplyr::filter(evento_num != "apresentacao_pl3")
     }
   }
-  
+
   return(tramitacao_df)
 }
 
 #' @title Corrige data inicial de tramitação no plenário da Câmara
 #' @description A partir do evento de aprovação unânime do requerimento de urgência verbal do Presidente,
-#' corrige data inicial de tramitação em plenário. 
+#' corrige data inicial de tramitação em plenário.
 #' @param df Dataframe com o formato do progresso
 #' @param tramitacao_df Dataframe da tramitação processada da proposiçao
 #' @return Dataframe de progresso com data inicial de plenário da Câmara corrigida
 #' @examples
 #'  .corrige_data_inicial_camara(df, tramitacao_df)
 .corrige_data_inicial_camara <- function(df, tramitacao_df) {
-  
+
   if ("evento" %in% names(tramitacao_df)) {
-    evento_req_urgencia_verbal <- tramitacao_df %>% 
-      dplyr::filter(casa == "camara") %>% 
+    evento_req_urgencia_verbal <- tramitacao_df %>%
+      dplyr::filter(casa == "camara") %>%
       dplyr::filter(stringr::str_detect(evento, "req_urgencia_unanime_verbal"))
-    
+
     if (evento_req_urgencia_verbal %>% nrow() > 0) {
-      df <- df %>% 
+      df <- df %>%
         dplyr::mutate(data_inicio = dplyr::if_else(casa == "camara" & local == "Plenário",
                                               evento_req_urgencia_verbal$data_hora,
                                               data_inicio))
     }
   }
   return(df)
+}
+
+#' @description A partir da situação de pronta para deliberação em plenário altera a data inicial da
+#' fase de plenário no Senado
+#' @param df Dataframe com o formato do progresso
+#' @param tramitacao_df Dataframe da tramitação processada da proposiçao
+#' @return Dataframe de progresso com data inicial de plenário no Senado corrigida
+#' @examples
+#'  .corrige_data_inicial_senado(df, tramitacao_df)
+.corrige_data_inicial_senado <- function(df, tramitacao_df) {
+  if ("situacao_descricao_situacao" %in% names(tramitacao_df) &
+      "evento" %in% names(tramitacao_df)) {
+    situacao_pronta_deliberacao <- tramitacao_df %>%
+      dplyr::filter(casa == "senado") %>%
+      dplyr::filter(
+        stringr::str_detect(
+          situacao_descricao_situacao,
+          "pronto_para_deliberação_do_plenário"
+        )
+      ) %>%
+      dplyr::arrange(data_hora) %>%
+      head(1)
+
+    evento_inclusao_ordem_dia <- tramitacao_df %>%
+      dplyr::filter(casa == "senado") %>%
+      dplyr::filter(stringr::str_detect(evento, "incluida_ordem_dia")) %>%
+      dplyr::arrange(data_hora) %>%
+      head(1)
+
+    if (evento_inclusao_ordem_dia %>% nrow() > 0) {
+      data_inicio_plenario = evento_inclusao_ordem_dia$data_hora
+    } else if (situacao_pronta_deliberacao %>% nrow() > 0) {
+      data_inicio_plenario = situacao_pronta_deliberacao$data_hora
+    } else {
+      data_inicio_plenario = NA ## Não será substituída
+    }
+
+    if (!is.na(data_inicio_plenario)) {
+      df <- df %>%
+        dplyr::mutate(data_inicio = dplyr::if_else(casa == "senado" & local == "Plenário",
+                                                   data_inicio_plenario,
+                                                   data_inicio))
+    }
+  }
+  return(df)
+
 }
 
 #' @title Ignora eventos ocorridos em Comissões durante o período do Congresso Remoto (Pandemia Covid-19).
@@ -360,17 +410,17 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 #'  .remove_eventos_comissao_cong_remoto(tramitacao_df)
 .remove_eventos_comissao_cong_remoto <- function(tramitacao_df) {
   cong_remoto_inicio <- congresso_env$congresso_remoto$data_inicio
-  
-  tramitacao_df <- tramitacao_df %>% 
-    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>% 
+
+  tramitacao_df <- tramitacao_df %>%
+    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>%
     dplyr::mutate(fase_comissoes_remoto = dplyr::if_else(data > cong_remoto_inicio,
                                                          dplyr::if_else(!is.na(local) & local == "Comissões",
                                                                         TRUE,
                                                                         FALSE),
-                                                         FALSE)) %>% 
-    dplyr::filter(!fase_comissoes_remoto) %>% 
+                                                         FALSE)) %>%
+    dplyr::filter(!fase_comissoes_remoto) %>%
     dplyr::select(-data, -fase_comissoes_remoto)
-  
+
   return(tramitacao_df)
 }
 
@@ -383,31 +433,31 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 #'  .corrige_eventos_mpv_cong_remoto(tramitacao_df)
 .corrige_eventos_mpv_cong_remoto <- function(tramitacao_df) {
   inicio_novo_regime_mpvs <- congresso_env$congresso_remoto$data_mudanca_mpvs
-  
-  tem_eventos_pos_mudanca_regime <- tramitacao_df %>% 
-    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>% 
-    dplyr::filter(data >= inicio_novo_regime_mpvs) %>% 
-    nrow()
-  
-  comissao_instalada <- tramitacao_df %>% 
-    dplyr::filter(str_detect(evento, "comissao_instalada")) %>% 
+
+  tem_eventos_pos_mudanca_regime <- tramitacao_df %>%
+    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>%
+    dplyr::filter(data >= inicio_novo_regime_mpvs) %>%
     nrow()
 
-  tramitacao_df <- tramitacao_df %>% 
+  comissao_instalada <- tramitacao_df %>%
+    dplyr::filter(str_detect(evento, "comissao_instalada")) %>%
+    nrow()
+
+  tramitacao_df <- tramitacao_df %>%
     dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>%
-    dplyr::mutate(fase_global = dplyr::if_else(data >= inicio_novo_regime_mpvs | 
+    dplyr::mutate(fase_global = dplyr::if_else(data >= inicio_novo_regime_mpvs |
                                                  (tem_eventos_pos_mudanca_regime > 0 & comissao_instalada == 0),
                                                 dplyr::if_else(fase_global == "Comissão Mista",
                                                                "Congresso Nacional",
                                                                fase_global),
-                                                fase_global)) %>% 
+                                                fase_global)) %>%
     dplyr::select(-data)
-    
+
   return(tramitacao_df)
 }
 
 #' @title Corrige data inicial de tramitação no plenário da Câmara após a ocorrência da fase de comissões
-#' @description A partir dos eventos de alteração de regime e designação de relator, altera a data de início 
+#' @description A partir dos eventos de alteração de regime e designação de relator, altera a data de início
 #' da tramitação em plenário considerando o primeiro evento após a fase de comissões.
 #' @param df Dataframe com o formato do progresso
 #' @param tramitacao_df Dataframe da tramitação processada da proposiçao
@@ -418,30 +468,31 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
   fase_comissoes <- df %>%
     dplyr::filter(casa == "camara",
                   local == "Comissões",
+                  !fase_global %in% c("Pré-Revisão II", "Pré-Revisão I"),
                   !is.na(data_fim))
-  
+
   if (fase_comissoes %>% nrow() > 0) {
-    eventos_tramitacao_plenario <- tramitacao_df %>% 
+    eventos_tramitacao_plenario <- tramitacao_df %>%
       dplyr::filter(data_hora <= fase_comissoes$data_fim,
                     casa == "camara",
-                    local == "Plenário") %>% 
+                    local == "Plenário") %>%
       dplyr::filter(stringr::str_detect(evento, "alteracao_de_regime|designado_relator"))
-    
+
     if (eventos_tramitacao_plenario %>% nrow() == 0) {
-      primeiro_evento_plenario_pos_comissao <- tramitacao_df %>% 
+      primeiro_evento_plenario_pos_comissao <- tramitacao_df %>%
         dplyr::filter(data_hora >= fase_comissoes$data_fim,
                       casa == "camara",
-                      local == "Plenário") %>% 
-        head(1) %>% 
+                      local == "Plenário") %>%
+        head(1) %>%
         dplyr::pull(data_hora)
-      
+
       if (length(primeiro_evento_plenario_pos_comissao) != 0) {
-        df <- df %>% 
+        df <- df %>%
           dplyr::mutate(data_inicio = dplyr::if_else(casa == "camara" & local == "Plenário",
                                                      primeiro_evento_plenario_pos_comissao,
                                                      data_inicio))
       } else {
-        df <- df %>% 
+        df <- df %>%
           .corrige_fase_plenario_pre_comissoes()
       }
     }
@@ -470,7 +521,7 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 
 #' @title Ignora fase de plenário caso as comissões ainda não tenham sido encerradas/finalizadas
 #' @description Caso haja detecção de eventos de plenário anteriores a fase de comissões (ainda não encerrada), passa
-#' a ignorar as datas de plenário uma vez que efetivamente, em termos de progresso, essa fase ainda não iniciou. E 
+#' a ignorar as datas de plenário uma vez que efetivamente, em termos de progresso, essa fase ainda não iniciou. E
 #' só se iniciará após a fase de comissões.
 #' @param df Dataframe com o formato do progresso
 #' @return Dataframe do progresso a data da fase de plenário para a Câmara corrigida
@@ -479,7 +530,7 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 .corrige_fase_plenario_pre_comissoes <- function(df) {
   data_fim_plenario <- df %>% dplyr::filter(local == "Plenário", casa == "camara") %>% dplyr::pull(data_fim)
   data_fim_comissoes <- df %>% dplyr::filter(local == "Comissões", casa == "camara") %>% dplyr::pull(data_fim)
-  
+
   if ((length(data_fim_plenario) != 0) & (length(data_fim_comissoes) != 0)) {
     if (data_fim_plenario < data_fim_comissoes) {
       df <- df %>%
@@ -490,12 +541,12 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
           data_fim = ifelse(casa == "camara" & local == "Plenário",
                             NA,
                             data_fim)
-        ) %>% 
+        ) %>%
         dplyr::mutate(data_inicio = as.POSIXct(data_inicio, origin = "1970-01-01"),
                       data_fim = as.POSIXct(data_fim, origin = "1970-01-01"))
     }
   }
-  
+
   return(df)
 }
 
@@ -507,10 +558,49 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 #' @examples
 #'  .remove_eventos_anos_anteriores_mpv(tramitacao_df)
 .remove_eventos_anos_anteriores_mpv <- function(tramitacao_df, ano_mpv) {
-  tramitacao_df <- tramitacao_df %>% 
-    dplyr::mutate(ano = format(as.Date(data_hora), "%Y")) %>% 
-    dplyr::filter(ano >= ano_mpv) %>% 
+  tramitacao_df <- tramitacao_df %>%
+    dplyr::mutate(ano = format(as.Date(data_hora), "%Y")) %>%
+    dplyr::filter(ano >= ano_mpv) %>%
     dplyr::select(-ano)
-  
+
   return(tramitacao_df)
+}
+
+#' @title Estebelece os critérios para que a data da última fase do dataframe de progresso seja considerada
+#' a atual (setada para NA).
+#' @description Seta para NA a data da última fase capturada para o progresso desde que a mesma
+#' não caia nos critérios de permanência da data final da fase.
+#' @param df Dataframe com o formato do progresso
+#' @param tramitacao_df Dataframe da tramitação processada da proposiçao
+#' @return Dataframe com o formato do progresso com a data da última fase correta
+#' @examples
+#'  .checa_data_ultima_fase_progresso(df, tramitacao_df)
+.checa_data_ultima_fase_progresso <- function(df, tramitacao_df) {
+  if ("situacao_descricao_situacao" %in% names(tramitacao_df) &
+      "evento" %in% names(tramitacao_df)) {
+    ultimo_evento <- tramitacao_df %>%
+      tail(1) %>%
+      dplyr::pull(evento)
+
+
+    evento_virada_de_casa_revisao <- tramitacao_df %>%
+      dplyr::filter(
+        stringr::str_detect(
+          situacao_descricao_situacao,
+          "remetida_à_câmara_dos_deputados"
+        ) |
+          stringr::str_detect(evento, "virada_de_casa"),
+        stringr::str_detect(fase_global, "Revisão I")
+      )
+
+
+    if (nrow(evento_virada_de_casa_revisao) == 0) {
+      if (!stringr::str_detect(ultimo_evento, "virada_de_casa") |
+          is.na(ultimo_evento)) {
+        df$data_fim[nrow(df)] <- NA
+      }
+    }
+  }
+
+  return(df)
 }

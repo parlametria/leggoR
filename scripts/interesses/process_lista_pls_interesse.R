@@ -31,6 +31,21 @@ processa_lista_pls_interesses <- function(url) {
   return(pls_para_analise)
 }
 
+#' @title Processa temas
+#' @description Realiza o processamento de temas, criando um slug sem acentos, espaços, etc.
+#' @param tema Tema a ser processado
+#' @return Tema processado, sem acentos ou espaços.
+#' @example
+#' tema_slug <- .processa_tema("Primeira infância; Educação")
+.processa_tema <- function(tema) {
+  tema_processado <- tema %>% 
+    tolower() %>% 
+    iconv(., from="UTF-8", to="ASCII//TRANSLIT") %>% 
+    gsub(x = ., " ", "-")
+  
+  return(tema_processado)
+}
+
 #' @title Mapeia pls e interesses analisados pelo Leggo
 #' @description Realiza o mapeamento entre pls e interesses analisados pelo Leggo
 #' @param url URL para lista de interesses do leggo
@@ -41,12 +56,13 @@ processa_lista_pls_interesses <- function(url) {
 #' interesses <- processa_interesses_leggo(url, proposicoes_filepath)
 processa_interesses_leggo <- function(url, proposicoes_filepath) {
   colunas <- c("interesse", "nome_interesse", "apelido", "tema", 
-               "advocacy_link", "keywords", "tipo_agenda")
+               "tema_slug", "advocacy_link", "keywords", "tipo_agenda")
   
-  pls_interesse <- processa_lista_pls_interesses(url) %>%
-    dplyr::select(id_camara, id_senado, tidyselect::all_of(colunas)) %>% 
+  pls_interesse <- processa_lista_pls_interesses(url) %>% 
     dplyr::mutate(tema = trimws(tema, which = "both")) %>% 
-    dplyr::mutate(tema = gsub(pattern = "; ", replacement = ";", x = tema))
+    dplyr::mutate(tema = gsub(pattern = "; ", replacement = ";", x = tema)) %>% 
+    dplyr::mutate(tema_slug = .processa_tema(tema)) %>% 
+    dplyr::select(id_camara, id_senado, tidyselect::all_of(colunas))
 
   pls_interesse_camara <- pls_interesse %>%
     dplyr::mutate(id_ext = id_camara) %>%
@@ -65,7 +81,7 @@ processa_interesses_leggo <- function(url, proposicoes_filepath) {
                                             col_types = cols(id_ext = "c")) %>%
     dplyr::inner_join(pls_interesse_processed, by = "id_ext") %>%
     dplyr::select(id_ext, casa, id_leggo, tidyselect::all_of(colunas)) %>%
-    dplyr::distinct(id_leggo, interesse, nome_interesse, apelido, keywords, tema, advocacy_link, keywords, tipo_agenda)
+    dplyr::distinct(id_leggo, interesse, nome_interesse, apelido, keywords, tema, tema_slug, advocacy_link, keywords, tipo_agenda)
 
   return(proposicoes_capturadas)
 }
