@@ -235,3 +235,15 @@ padroniza_string <- function(string) {
     tolower())
   
 }
+
+#' @title Checa se um valor é logical e se sim, substitui por NA
+#' @description Recebe um valor e checa se é logical e se sim, substitui por NA. Se não, retorna o valor.
+#' @param valor Valor a ser checado
+#' @return NA ou o valor passado
+#' @export
+check_is_logical <- function(valor) {
+  if (is.logical(valor)) {
+    return(NA)
+  }
+  return(valor)
+}
