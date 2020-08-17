@@ -1,0 +1,11 @@
+Sobre os dados
+
+proposicoes_congresso_remoto.csv: Lista com as proposições monitoradas (lista até o dia 16 de Agosto) do Congresso Remoto. Cada linha do csv é uma proposição (id_ext) em tramitação em alguma casa (casa). A coluna id_leggo indica o id da proposição no sistema Leggo e pode estar duplicado se a proposição possuir tramitação na Câmara e no Senado. A coluna tema pode possuir mais de um valor para cada proposição (os valores diferentes estão separados por ; e foram preenchidos pela Pulso Público).
+
+atuacao_congresso_remoto.csv: Atuação dos parlamentares nas proposições do congresso remoto. Cada linha do csv contém o peso dos documentos (e a quantidade) apresentados por um parlamentar (id_autor) em uma proposição(id_ext, casa) num determinado local da tramitação (sigla_local) para um tipo de documento (tipo_generico), que pode ser emenda, requerimento, etc. Consideramos apenas atuações com peso maior que 0.1. O peso de um documento é medido pela fórmula: 1/(número de autores do documento). Para este CSV foi somado o peso dos documentos autorados pelo parlamentar em um local para uma proposição específica considerando o tipo do documento apresentado. A coluna id_autor_parlametria é o id do parlamentar na plataforma parlametria e pode ser usado para o cruzamento com os dados do peso político.
+
+atuacao_summary.csv: Agrupamento do atuacao_congresso_remoto.csv pelo parlamentar e pela proposição somando o peso dos documentos e também o número de documentos apresentados. Cada linha deste csv contém o peso dos documentos apresentados por um parlamentar em uma proposição do congresso remoto. Incluímos também o peso dos documentos entre 0 e 1 na coluna peso_total_normalizado.
+
+atuacao_summary_temas.csv: Join do atuacao_summary.csv com os temas das proposições. Cada linha deste csv contém o peso dos documentos de um parlamentar em uma proposição do congresso remoto para cada tema que a proposição tiver associada. Portanto, o peso dos documentos se repete para cada tema que a proposição possuir.
+
+peso_politico.csv: peso político dos parlamentares em exercício calculado pelo perfil parlamentar. A coluna id_autor_parlametria é o id do parlamentar na plataforma parlametria e pode ser usado para o cruzamento com os dados de atuação.
