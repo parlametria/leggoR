@@ -241,15 +241,19 @@ process_pl <-
           adiciona_coluna_pulou() %>%
           adiciona_locais_faltantes_progresso()
       }
+      id_leggo = id_leggo = digest::digest(paste0(id_camara , " ", id_senado), algo="md5", serialize=F)
       etapas[["hist_temperatura"]] <-
         agoradigital::get_historico_temperatura_recente_id_leggo(
           tram = etapas$fases_eventos,
-          id_leggo = row_num,
+          id_leggo = id_leggo,
           pautas = pautas
         )
     }
-    etapas$proposicao %<>%
-      dplyr::mutate(id_leggo = row_num)
+    etapas$proposicao <-
+      etapas$proposicao %>%
+      dplyr::mutate(concat_chave_leggo = paste0(id_camara , " ", id_senado)) %>%
+      dplyr::mutate(id_leggo = digest::digest(concat_chave_leggo, algo="md5", serialize=F)) %>%
+      dplyr::select(-concat_chave_leggo)
     Sys.sleep(5 * stats::runif(1))
     return(etapas)
   }
@@ -261,7 +265,9 @@ process_pl <-
 #' @export
 converte_tabela_geral_ids_casa <- function(pls) {
   pls_ids <- pls %>%
-    dplyr::mutate(id_leggo = dplyr::row_number())
+    dplyr::mutate(concat_chave_leggo = paste0(id_camara, " ", id_senado)) %>%
+    dplyr::mutate(id_leggo = digest::digest(concat_chave_leggo, algo="md5", serialize=F)) %>%
+    dplyr::select(-concat_chave_leggo)
 
   proposicoes_individuais_a_baixar_camara <-
     pls_ids %>%
@@ -543,7 +549,9 @@ process_autores_pl <-
 process_autores_props <- function(pls_ids_filepath, export_path) {
   set.seed(123)
   pls <- readr::read_csv(pls_ids_filepath) %>%
-    dplyr::mutate(id_leggo = 1:nrow(.)) %>%
+    dplyr::mutate(concat_chave_leggo = paste0(id_camara, " ", id_senado)) %>%
+    dplyr::mutate(id_leggo = digest::digest(concat_chave_leggo, algo="md5", serialize=F)) %>%
+    dplyr::select(-concat_chave_leggo) %>%
     dplyr::select(id_leggo, id_camara, id_senado)
 
   total_rows <- pls %>% nrow()

@@ -4,7 +4,9 @@ library(magrittr)
 pautas <- readr::read_csv('../inst/extdata/pautas.csv')
 
 pls_ids <- readr::read_csv('../inst/extdata/tabela_geral_ids_casa.csv') %>%
-  dplyr::mutate(id_leggo = dplyr::row_number())
+  dplyr::mutate(concat_chave_leggo = paste0(id_camara, " ", id_senado)) %>%
+  dplyr::mutate(id_leggo = digest::digest(concat_chave_leggo, algo="md5", serialize=F)) %>%
+  dplyr::select(-concat_chave_leggo)
 
 leggo_ids <- dplyr::bind_rows(dplyr::select(pls_ids, id_leggo, id_ext = id_camara, apelido, tema),
                    dplyr::select(pls_ids, id_leggo, id_ext = id_senado, apelido, tema)) %>%
@@ -39,7 +41,6 @@ temperatura_por_id_leggo <- eventos_por_leggo_id %>%
     ),
     .id = "id_leggo"
   ) %>%
-  dplyr::mutate(id_leggo = as.integer(id_leggo))
 
 test <- temperatura_por_id_leggo %>%
   dplyr::group_by(id_leggo, periodo) %>%

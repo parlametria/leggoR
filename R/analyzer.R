@@ -244,8 +244,7 @@ get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granulari
         pautas = pautas
       ),
       .id = "id_leggo"
-    ) %>%
-    dplyr::mutate(id_leggo = as.integer(id_leggo))
+    )
 
   if(nrow(temperatura_por_id_leggo) == 0) {
     temperatura_por_id_leggo <- tibble::tribble(
