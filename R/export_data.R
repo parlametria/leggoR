@@ -15,6 +15,9 @@ process_etapa <- function(id, casa, pautas) {
   } else {
     tram <- agoradigital::fetch_tramitacao(id, casa)
   }
+  tram <- tram %>% 
+    dplyr::distinct(data_hora, texto_tramitacao, .keep_all=TRUE)
+  
   proc_tram <-
     agoradigital::process_proposicao(prop, tram, casa) %>%
     dplyr::mutate(data_hora = as.POSIXct(data_hora))
