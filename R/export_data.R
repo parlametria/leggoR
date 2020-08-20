@@ -241,7 +241,7 @@ process_pl <-
           adiciona_coluna_pulou() %>%
           adiciona_locais_faltantes_progresso()
       }
-      id_leggo = id_leggo = digest::digest(paste0(id_camara , " ", id_senado), algo="md5", serialize=F)
+      id_leggo = digest::digest(paste0(id_camara , " ", id_senado), algo="md5", serialize=F)
       etapas[["hist_temperatura"]] <-
         agoradigital::get_historico_temperatura_recente_id_leggo(
           tram = etapas$fases_eventos,
