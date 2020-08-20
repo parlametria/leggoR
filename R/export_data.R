@@ -265,6 +265,7 @@ process_pl <-
 #' @export
 converte_tabela_geral_ids_casa <- function(pls) {
   pls_ids <- pls %>%
+    dplyr::rowwise(.) %>%
     dplyr::mutate(concat_chave_leggo = paste0(id_camara, " ", id_senado)) %>%
     dplyr::mutate(id_leggo = digest::digest(concat_chave_leggo, algo="md5", serialize=F)) %>%
     dplyr::select(-concat_chave_leggo)
