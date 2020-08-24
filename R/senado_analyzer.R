@@ -614,7 +614,9 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
     dplyr::count(evento) %>%
     dplyr::filter(str_detect(evento, "remetida_a_sancao_promulgacao|transformada_lei"))
 
-  if (nrow(virada_de_casa) == 1) {
+  sigla_proposicao <- proposicao_df %>% dplyr::pull(sigla_tipo)
+
+  if (nrow(virada_de_casa) == 1 && sigla_proposicao != "MPV") {
     index_of_camara <-
       get_linha_virada_de_casa(proc_tram_df)
 
