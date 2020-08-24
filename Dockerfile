@@ -7,7 +7,7 @@ RUN apt-get update
 RUN apt-get install libssl-dev libxml2-dev libcurl4-openssl-dev vim less git -y
 COPY DESCRIPTION .
 RUN Rscript -e 'update.packages(checkBuilt=TRUE, ask=FALSE)'
-RUN Rscript -e 'install.packages("devtools"); devtools::install_deps()'
+RUN Rscript -e 'install.packages(c("devtools", "digest")); devtools::install_deps()'
 COPY . .
 
 #Install rcongresso from local branch
