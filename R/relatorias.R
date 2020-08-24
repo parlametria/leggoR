@@ -19,7 +19,7 @@ get_relatorias <- function(proposicao_id, casa, last_n = NULL) {
   else if (tolower(casa) == 'camara') {
     relatorias <- extract_relatorias_camara(proposicao_id)
   }
-  
+
   if (!is.null(last_n)) {
     relatorias <-
       relatorias %>%
@@ -41,15 +41,15 @@ fetch_relatorias_senado <-
   function(proposicao_id, ultimo_relator = FALSE) {
     url_relatorias <-
       paste0(senado_env$endpoints_api$url_base, "relatorias/")
-    
+
     url <- paste0(url_relatorias, proposicao_id)
     json_relatorias <- jsonlite::fromJSON(url, flatten = T)
-    
+
     relatorias <-
       json_relatorias %>%
       magrittr::extract2("RelatoriaMateria") %>%
       magrittr::extract2("Materia")
-    
+
     relatorias_data <- NULL
     if (ultimo_relator) {
       relatorias_data <-
@@ -61,7 +61,7 @@ fetch_relatorias_senado <-
         relatorias %>%
         magrittr::extract2("HistoricoRelatoria")
     }
-    
+
     relatorias_df <-
       relatorias_data %>%
       magrittr::extract2("Relator") %>%
@@ -78,7 +78,7 @@ fetch_relatorias_senado <-
 #' @return Dataframe com as informações detalhadas do histórico de relatorias de uma proposição no Senado
 extract_relatorias_senado <- function(proposicao_id) {
   relatorias <- fetch_relatorias_senado(proposicao_id, T)
-  
+
   relatorias <-
     relatorias[,!sapply(relatorias, is.list)] %>%
     rename_relatorias_senado_columns
@@ -146,13 +146,13 @@ extract_relatorias_camara <- function(proposicao_id) {
 get_last_relator <- function(proposicao_id, casa) {
   df_relator <- tibble::tribble(~ id_relator, ~ nome_relator,  ~partido_relator, ~ uf_relator, ~ data_relator)
   relatorias <- agoradigital::get_relatorias(proposicao_id, casa, 1)
-  
+
   if(nrow(relatorias) == 0 | nrow(relatorias) > 0  && relatorias$nome_parlamentar == "Relator não encontrado")
     return(df_relator)
-  
+
   if (casa == "senado") {
     df_relator <- relatorias %>%
-      dplyr::mutate(data_relator = as.POSIXct(data_designacao)) %>% 
+      dplyr::mutate(data_relator = as.POSIXct(data_designacao)) %>%
       dplyr::select(
         id_relator = codigo_parlamentar,
         nome_relator = nome_parlamentar,
@@ -162,12 +162,20 @@ get_last_relator <- function(proposicao_id, casa) {
       )
   } else if (casa == "camara") {
     partido_uf <- (relatorias$partido %>% stringr::str_split("-"))[[1]]
-    
+
+    if (all(is.na(partido_uf))) {
+      partido_relator <- NA
+      uf_relator <- NA
+    } else {
+      partido_relator <- partido_uf[[1]]
+      uf_relator <- partido_uf[[2]]
+    }
+
     df_relator <- relatorias %>%
       dplyr::mutate(
         id_relator = NA,
-        partido_relator = partido_uf[[1]],
-        uf_relator = partido_uf[[2]],
+        partido_relator = partido_relator,
+        uf_relator = uf_relator,
         nome_parlamentar = stringr::str_remove(nome_parlamentar, " \\(.*")
       ) %>%
       dplyr::select(id_relator, nome_relator = nome_parlamentar, partido_relator, uf_relator, data_relator = data_hora)
