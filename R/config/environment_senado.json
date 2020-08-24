@@ -82,10 +82,10 @@
     {"evento": "aprovacao_materia", "regex": "aprovada a* reda(ç|c)(ã|a)o final da mat(é|e)ria", "tipo":"serie_c"},
     {"evento": "aprovacao_projeto", "regex": "aprovado o projeto", "tipo":"serie_c"},
     {"evento": "rejeicao_projeto", "regex": "(plc*|pec|mpv) rejeitad(o|a)|comunicando a rejei.(ã|a)o da medida provis(ó|o)ria|rejeitado os pressupostos constitucionais", "tipo":"serie_c"},
-    {"evento": "remetida_a_sancao_promulgacao", "regex": "projeto( foi|) encaminhado à sanção presidencial|(à promulga..o)", "tipo":"serie_c"},
+    {"evento": "remetida_a_sancao_promulgacao", "regex": "projeto( foi|) encaminhado à san.{2}o presidencial|(à promulga..o)", "tipo":"serie_c"},
     {"evento": "transformada_lei", "regex": "sancionada|promulgada(.)* emenda constitucional", "tipo":"serie_c"},
     {"evento": "vetada_totalmente", "regex": "vetada integralmente|vetado(,)* totalmente", "tipo":"serie_c"},
-    {"evento": "virada_de_casa", "regex": "(primeiro(-| )secret(a|á)rio.*da.*c(a|â)mara.*dos.*deputados.*encaminhando.*revis(a|ã)o|remetido of(í|i)cio .* c(â|a)mara dos deputados.*para revis.o)|(remetido of.cio .* c.mara dos deputados(?!.*(encaminhado.*sanção presidencial)|.*t.rmino.*prazo))", "tipo":"serie_c"},
+    {"evento": "virada_de_casa", "regex": "(primeiro(-| )secret(a|á)rio.*da.*c(a|â)mara.*dos.*deputados.*encaminhando.*revis(a|ã)o|remetido of(í|i)cio .* c(â|a)mara dos deputados.*para revis.o)|(remetido of.cio .* c.mara dos deputados(?!.*(encaminhado.*san.{2}o presidencial)|.*t.rmino.*prazo))", "tipo":"serie_c"},
     {"evento": "perda_da_eficacia", "regex": "t(é|e)rmino do prazo de vig(ê|e)ncia", "tipo":"serie_c"},
     {"evento": "incluida_ordem_dia", "regex": "inclu(í|i)da em ordem do dia", "tipo":"serie_a"},
     {"evento": "comissao_instalada", "regex": "comiss.o . instalada|(à|a).*recebimento de emendas", "tipo":"serie_c"}
