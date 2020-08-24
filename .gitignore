@@ -6,3 +6,5 @@ agoradigital.Rcheck/
 man/
 *.Rproj
 rcongresso/
+rstudio/
+.rstudio/

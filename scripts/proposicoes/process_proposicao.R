@@ -272,8 +272,9 @@ library(tidyverse)
              !is.na(tema),
              !is.na(explicacao_projeto),
              !str_detect(tolower(proposicao), "^(cn|sf|cd) .*"),
-             !is.na(id_camara) |
-               !is.na(id_senado)
+             (str_detect(tolower(proposicao), "mpv.*") & !is.na(id_camara) & !is.na(id_senado)) |
+             (!str_detect(tolower(proposicao), "mpv.*") & (!is.na(id_camara) | !is.na(id_senado)))
+             
            ))
 }
 
@@ -288,7 +289,8 @@ library(tidyverse)
       is.na(tema) |
         is.na(explicacao_projeto) |
         str_detect(tolower(proposicao), "^(cn|sf|cd) .*") |
-        is.na(id_camara) & is.na(id_senado)
+        is.na(id_camara) & is.na(id_senado) |
+        str_detect(tolower(proposicao), "mpv.*") & (is.na(id_camara) | (is.na(id_senado)))
     ) %>%
     rowwise(.) %>%
     mutate(
@@ -300,7 +302,8 @@ library(tidyverse)
     )
   
   df_com_ids <- df_com_infos %>%
-    filter(is.na(id_camara) & is.na(id_senado)) %>% 
+    filter(is.na(id_camara) & is.na(id_senado) |
+             (str_detect(tolower(proposicao), "mpv.*") & (is.na(id_camara) | (is.na(id_senado))))) %>% 
     rowwise(.) %>%
     mutate(
       id_camara = ifelse(
@@ -324,7 +327,8 @@ library(tidyverse)
     )
   
   df_com_infos <- df_com_infos %>% 
-    filter(!is.na(id_camara) | !is.na(id_senado)) %>% 
+    filter(!str_detect(tolower(proposicao), "mpv.*") & (!is.na(id_camara) | !is.na(id_senado)) |
+             (str_detect(tolower(proposicao), "mpv.*") & !is.na(id_camara) & !is.na(id_senado))) %>% 
     bind_rows(df_com_ids) %>% 
     rowwise(.) %>% 
     mutate(
