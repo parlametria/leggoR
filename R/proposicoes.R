@@ -379,7 +379,7 @@ add_tipo_evento_documento <- function(docs_data, documentos_scrap = F) {
                       peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso))) %>%
         dplyr::group_by(id_principal, casa, id_documento, id_autor) %>%
         mutate(max_peso = max(peso)) %>%
-        ungroup() %>%
+        dplyr::ungroup() %>%
         filter(peso == max_peso) %>%
         dplyr::select(-regex, -peso, -max_peso)
 

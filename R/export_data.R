@@ -166,6 +166,7 @@ adiciona_status <- function(tramitacao_df) {
       )
     ) %>%
     tidyr::fill(status, .direction = "up") %>%
+    tidyr::fill(status, .direction = "down") %>%
     dplyr::mutate(status = dplyr::case_when(is.na(status) ~ "Ativa",
                                             T ~ status))
 }

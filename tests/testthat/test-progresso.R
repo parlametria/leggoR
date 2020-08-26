@@ -63,11 +63,11 @@ test <- function() {
     
     progresso_134134 <- 
       tibble::tribble(~ casa, ~ prop_id, ~ fase_global, ~ data_inicio, ~ data_fim,
-                      'senado',134134,'Comissão Mista','2018-08-17 12:00:00','2018-09-17 12:00:00',
-                      'senado',134134,'Câmara dos Deputados','2018-09-17 12:00:00','2018-11-13 12:00:00',
-                      'senado',134134,'Senado Federal','2018-11-13 12:00:00','2018-11-21 12:00:00',
-                      'senado',134134,'Câmara dos Deputados - Revisão','2018-11-21 12:00:00','2018-12-27 12:00:00',
-                      'senado',134134,'Sanção Presidencial/Promulgação','2018-12-27 12:00:00','2018-12-27 12:00:00') %>% 
+                      'senado',134134,'Comissão Mista','2018-08-17 00:00:01','2018-09-11 00:00:04',
+                      'senado',134134,'Câmara dos Deputados','2018-09-11 00:00:04','2018-11-13 00:00:01',
+                      'senado',134134,'Senado Federal','2018-11-13 00:00:01','2018-11-21 00:00:03',
+                      'senado',134134,'Câmara dos Deputados - Revisão','2018-11-21 00:00:03','2018-12-27 00:00:00',
+                      'senado',134134,'Sanção Presidencial/Promulgação','2018-12-27 00:00:00','2018-12-27 00:00:00') %>% 
       dplyr::mutate(prop_id = as.integer(prop_id))
     
     expect_true(nrow(dplyr::anti_join(progresso_mpv_tramitacao_encerrada, progresso_134134)) == 0)
@@ -76,8 +76,8 @@ test <- function() {
       tibble::tribble(
         ~ casa, ~ prop_id, ~ fase_global,      ~ local,                     ~ data_inicio,        ~ data_fim,     ~ local_casa,
       "camara", 1198512, "Pré-Construção",      "",                         NA,                    NA,                  NA,        
-      "camara", 1198512, "Construção",          "Comissões",                "2015-04-23 17:14:00", NA,                  "camara",    
-      "camara", 1198512, "Construção",          "Plenário",                 NA,                    NA,                  NA,        
+      "camara", 1198512, "Construção",          "Comissões",                "2015-04-23 17:14:00", "2020-07-21 00:00:00", "camara", 
+      "camara", 1198512, "Construção",          "Plenário",                 "2020-07-21 16:18:00", "2020-08-10 11:08:00", "camara", 
       "camara", 1198512, "Pré-Revisão I",       "",                         NA,                    NA,                  NA,        
       "camara", 1198512, "Revisão I",           "Comissões",                NA,                    NA,                  NA,        
       "camara", 1198512, "Revisão I",           "Plenário",                 NA,                    NA,                  NA,        
