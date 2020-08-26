@@ -223,13 +223,13 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao,
     mutate(casa_autor = if_else(tolower(tipo_autor) == "deputado",
                                 "camara",
                                 "senado")) %>%
-    group_by(id_autor) %>%
-    summarise(nome = first(nome),
+    dplyr::group_by(id_autor) %>%
+    dplyr::summarise(nome = first(nome),
 
               partido = last(partido),
               uf = first(uf),
               casa_autor = first(casa_autor)) %>%
-    ungroup()
+    dplyr::ungroup()
 
   ## Filtra autorias passadas como parâmetro para coautorias com base na data_inicial
   if (!is.null(data_inicial)) {
