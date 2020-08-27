@@ -156,7 +156,7 @@ read_props <- function(file_path) {
       id_ext =  readr::col_double(),
       numero =  readr::col_double(),
       data_apresentacao =  readr::col_datetime(format = ""),
-      id_leggo =  readr::col_double()
+      id_leggo =  readr::col_character()
     ), file_path)
 }
 
