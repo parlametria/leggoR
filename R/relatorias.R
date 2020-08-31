@@ -147,8 +147,10 @@ get_last_relator <- function(proposicao_id, casa) {
   df_relator <- tibble::tribble(~ id_relator, ~ nome_relator,  ~partido_relator, ~ uf_relator, ~ data_relator)
   relatorias <- agoradigital::get_relatorias(proposicao_id, casa, 1)
 
-  if(nrow(relatorias) == 0 | nrow(relatorias) > 0  && relatorias$nome_parlamentar == "Relator não encontrado")
+  if (nrow(relatorias) == 0 |
+      nrow(relatorias) > 0 & (is.na(relatorias$nome_parlamentar) | relatorias$nome_parlamentar == "Relator não encontrado")) {
     return(df_relator)
+  }
 
   if (casa == "senado") {
     df_relator <- relatorias %>%
