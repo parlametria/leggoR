@@ -16,15 +16,18 @@ processa_lista_pls_interesses <- function(url) {
 
   interesses <- readr::read_csv(url)
 
-  pls_para_analise <- purrr::pmap_dfr(list(interesses$interesse, 
+  pls_para_analise <- purrr::pmap_dfr(list(interesses$interesse,
                                            interesses$url,
                                            interesses$nome),
                   function(interesse, url, nome) {
+                    print(interesse)
                     source(here::here("scripts/proposicoes/process_proposicao.R"))
                     pls <- readr::read_csv(url, col_types = cols(.default = "c")) %>%
-                      .checa_proposicoes_infos() %>% 
-                      dplyr::mutate(interesse = interesse) %>% 
-                      dplyr::mutate(nome_interesse = nome)         
+                      dplyr::select(proposicao, id_camara, id_senado, apelido, tema, advocacy_link,
+                                    keywords, tipo_agenda, explicacao_projeto) %>%
+                      .checa_proposicoes_infos() %>%
+                      dplyr::mutate(interesse = interesse) %>%
+                      dplyr::mutate(nome_interesse = nome)
                     return(pls)
                   })
 
@@ -38,11 +41,11 @@ processa_lista_pls_interesses <- function(url) {
 #' @example
 #' tema_slug <- .processa_tema("Primeira infância; Educação")
 .processa_tema <- function(tema) {
-  tema_processado <- tema %>% 
-    tolower() %>% 
-    iconv(., from="UTF-8", to="ASCII//TRANSLIT") %>% 
+  tema_processado <- tema %>%
+    tolower() %>%
+    iconv(., from="UTF-8", to="ASCII//TRANSLIT") %>%
     gsub(x = ., " ", "-")
-  
+
   return(tema_processado)
 }
 
@@ -55,13 +58,13 @@ processa_lista_pls_interesses <- function(url) {
 #' @example
 #' interesses <- processa_interesses_leggo(url, proposicoes_filepath)
 processa_interesses_leggo <- function(url, proposicoes_filepath) {
-  colunas <- c("interesse", "nome_interesse", "apelido", "tema", 
+  colunas <- c("interesse", "nome_interesse", "apelido", "tema",
                "tema_slug", "advocacy_link", "keywords", "tipo_agenda")
-  
-  pls_interesse <- processa_lista_pls_interesses(url) %>% 
-    dplyr::mutate(tema = trimws(tema, which = "both")) %>% 
-    dplyr::mutate(tema = gsub(pattern = "; ", replacement = ";", x = tema)) %>% 
-    dplyr::mutate(tema_slug = .processa_tema(tema)) %>% 
+
+  pls_interesse <- processa_lista_pls_interesses(url) %>%
+    dplyr::mutate(tema = trimws(tema, which = "both")) %>%
+    dplyr::mutate(tema = gsub(pattern = "; ", replacement = ";", x = tema)) %>%
+    dplyr::mutate(tema_slug = .processa_tema(tema)) %>%
     dplyr::select(id_camara, id_senado, tidyselect::all_of(colunas))
 
   pls_interesse_camara <- pls_interesse %>%
