@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 library(magrittr)
+library(dplyr)
 
 .HELP <- "
 Usage:

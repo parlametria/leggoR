@@ -26,7 +26,8 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df, sigla){
   full_ordered_tram <- full_tramitacao_df %>%
     dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>%
     dplyr::arrange(data, sequencia) %>%
-    .corrige_evento_inicial_senado()
+    .corrige_evento_inicial_senado() %>%
+    .corrige_eventos_apresentacao_duplicado()
 
   #number delimiting events
   full_ordered_tram <- full_ordered_tram %>%
@@ -590,7 +591,7 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
           "remetida_à_câmara_dos_deputados"
         ) |
           stringr::str_detect(evento, "virada_de_casa"),
-        stringr::str_detect(fase_global, "Revisão I")
+        fase_global == "Revisão I"
       )
 
 
@@ -603,4 +604,27 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
   }
 
   return(df)
+}
+
+#' @title Remove eventos de apresentação da proposição duplicados na câmara em uma mesma fase.
+#' @description Remove eventos de apresentação da proposição duplicados na câmara em uma mesma fase.
+#' @return Dataframe sem duplicações de apresentação de PL
+#' @examples
+#'  .corrige_eventos_apresentacao_duplicado(tramitacao_df)
+.corrige_eventos_apresentacao_duplicado <- function(tramitacao_df) {
+  data_evento_apresentacao <- tramitacao_df %>%
+    dplyr::filter(casa == "camara",
+                  evento == "apresentacao_pl") %>%
+    dplyr::pull(data_hora) %>%
+    head(1)
+
+  if (length(data_evento_apresentacao) > 0) {
+    tramitacao_df <- tramitacao_df %>%
+      dplyr::mutate(evento = ifelse(data_hora != data_evento_apresentacao &
+                                      casa == "camara" &
+                                      evento == "apresentacao_pl",
+                                    NA_character_,
+                                    evento))
+  }
+  return(tramitacao_df)
 }

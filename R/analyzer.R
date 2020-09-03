@@ -228,6 +228,10 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 #' @return Dataframe com o valor da temperatura recente para cada dia útil da tramitação de uma proposição.
 #' @export
 get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granularidade = 's', decaimento = 0.25, max_date = lubridate::now(), pautas = tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)) {
+  # Retira a mesma tramitação no mesmo dia nas duas casas
+  tram <- tram %>%
+    dplyr::distinct(data_hora, texto_tramitacao, .keep_all = TRUE)
+  
   eventos_por_leggo_id <-
     tram %>%
     dplyr::mutate(id_leggo = id_leggo)
@@ -244,8 +248,7 @@ get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granulari
         pautas = pautas
       ),
       .id = "id_leggo"
-    ) %>%
-    dplyr::mutate(id_leggo = as.integer(id_leggo))
+    )
 
   if(nrow(temperatura_por_id_leggo) == 0) {
     temperatura_por_id_leggo <- tibble::tribble(
