@@ -359,7 +359,7 @@ fetch_autores_relacionadas_senado <- function(relacionadas_docs) {
 
 #' @title Agrupa os tipos dos documentos
 #' @description Retorna um dataframe contendo dados dos documentos
-#' com uma coluna a mais (tipo)
+#' com uma coluna a mais (tipo de ação)
 #' @param docs_data Dataframe com os todos os dados dos documentos
 #' @return Dataframe
 #' @export
@@ -370,13 +370,15 @@ add_tipo_evento_documento <- function(docs_data, documentos_scrap = F) {
     docs <- docs_data %>%
       fuzzyjoin::regex_left_join(senado_env$tipos_documentos_scrap, by = c(identificacao = "regex"), ignore_case = T) %>%
       dplyr::select(-regex) %>%
-      dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo))
+      dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo),
+                    tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao))
   }else {
     if (casa_prop == 'camara') {
       docs <- docs_data %>%
         fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricao_tipo_documento = "regex"), ignore_case = T) %>%
         dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo),
-                      peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso))) %>%
+                      peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso)),
+                      tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>%
         dplyr::group_by(id_principal, casa, id_documento, id_autor) %>%
         mutate(max_peso = max(peso)) %>%
         dplyr::ungroup() %>%
@@ -386,9 +388,10 @@ add_tipo_evento_documento <- function(docs_data, documentos_scrap = F) {
     } else if (casa_prop == 'senado') {
       docs <- docs_data %>%
         fuzzyjoin::regex_left_join(senado_env$tipos_documentos, by = c(descricao_tipo_texto = "regex"), ignore_case = T) %>%
-        dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo), # default para tipos não agrupados
+        dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo),  # default para tipos não agrupados
                       tipo = dplyr::if_else(str_detect(tipo, "P.S"), "Outros", tipo), # Corrige casos de falsos positivos em matérias legislativas.
-                      peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso))) %>% # Atribui peso default
+                      peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso)),
+                      tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>% # Atribui peso default
         # Remove casos duplicados usando o peso do regex na ordem de precedência
         dplyr::group_by(id_principal, casa, id_documento, id_autor) %>%
         dplyr::mutate(max_peso = max(peso)) %>%

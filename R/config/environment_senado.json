@@ -219,17 +219,22 @@
 
   "tipos_documentos": [
     {"tipo": "Prop. Original / Apensada", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de convers.o|proposta de emenda . constitui..o|mpv|plc|pls|pl|projeto de decreto legislativo", "peso": 1},
-    {"tipo": "Emenda", "regex": "^emenda|^subemenda", "peso": 2},
+    {"tipo": "Emenda", "regex": "^emenda|^subemenda", "peso": 2, "tipo_acao": "Proposição"},
     {"tipo": "Parecer", "regex": "^parecer|^complementa..o de voto|^reda..o final|^substitutivo", "peso": 3},
-    {"tipo": "Requerimento", "regex": "^requerimento|rqe|rqs|rqj|rra|req|rdh|rma", "peso": 4},
-    {"tipo": "Voto em Separado", "regex": "^voto em separado", "peso": 5}
+    {"tipo": "Requerimento", "regex": "^requerimento|rqe|rqs|rqj|rra|req|rdh|rma", "peso": 4, "tipo_acao": "Proposição"},
+    {"tipo": "Voto em Separado", "regex": "^voto em separado", "peso": 5, "tipo_acao": "Recurso"},
+    {"regex": "^projeto", "peso": 6, "tipo_acao": "Proposição"},
+    {"regex": "^indicacao", "peso": 7, "tipo_acao": "Proposição"},
+    {"regex": "^destaque", "peso": 8, "tipo_acao": "Recurso"},
+    {"regex": "^recurso", "peso": 9, "tipo_acao": "Recurso"},
+    {"regex": "^pedido", "peso": 10, "tipo_acao": "Recurso"}
     ],
 
   "tipos_documentos_scrap": [
-    {"tipo": "Emenda", "regex": "emenda|subemenda"},
+    {"tipo": "Emenda", "regex": "emenda|subemenda", "tipo_acao": "Proposição"},
     {"tipo": "Parecer", "regex": "parecer|^complementa..o de voto|^reda..o final|^substitutivo|p\\.s|^relat(ó|o)rio|^par"},
-    {"tipo": "Requerimento", "regex": "requerimento|rqe|rqs|rqj|rra|req|rdh|rma"},
-    {"tipo": "Voto em Separado", "regex": "voto em separado"}
+    {"tipo": "Requerimento", "regex": "requerimento|rqe|rqs|rqj|rra|req|rdh|rma", "tipo_acao": "Proposição"},
+    {"tipo": "Voto em Separado", "regex": "voto em separado", "tipo_acao": "Recurso"}
     ],
 
   "tipos_autores_scrap": [

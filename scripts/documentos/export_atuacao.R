@@ -7,15 +7,16 @@
 #' @param data_inicio data a partir da qual se considerará os documentos
 #' @param peso_minimo limiar para peso dos documentos
 #' @param output_path pasta para onde exportar os dados
+#'  
 export_atuacao <- function(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicio, peso_minimo, props_leggo_id, entidades) {
   print(paste("Gerando tabela de atuação a partir de dados atualizados de documentos e autores..."))
 
-  atuacao_camara <- agoradigital::create_tabela_atuacao_camara(camara_docs, camara_autores, data_inicio = data_inicio, limiar = peso_minimo) %>%
-    select(id_ext, casa, id_autor, tipo_autor, tipo_generico, sigla_local, peso_total_documentos, num_documentos, partido, uf, nome_autor, is_important) %>%
+atuacao_camara <- agoradigital::create_tabela_atuacao_camara(camara_docs, camara_autores, data_inicio = data_inicio, limiar = peso_minimo) %>%
+    select(id_ext, casa, id_autor, tipo_autor, tipo_generico, sigla_local, peso_total_documentos, num_documentos, partido, uf, nome_autor, is_important, tipo_acao) %>%
     agoradigital::remove_atuacao_camara_comissao_mista()
 
   atuacao_senado <- agoradigital::create_tabela_atuacao_senado(senado_docs, senado_autores, data_inicio = data_inicio, limiar = peso_minimo) %>%
-    select(id_ext, casa, id_autor, tipo_autor, tipo_generico, sigla_local, peso_total_documentos, num_documentos, partido, uf, nome_autor, is_important)
+    select(id_ext, casa, id_autor, tipo_autor, tipo_generico, sigla_local, peso_total_documentos, num_documentos, partido, uf, nome_autor, is_important, tipo_acao)
 
   .PARTIDOS_OPOSICAO <-
     c("PT", "PSOL", "PSB", "PCdoB", "PDT", "REDE")
@@ -44,12 +45,11 @@ export_atuacao <- function(camara_docs, camara_autores, senado_docs, senado_auto
                        by = c("id_autor_parlametria")) %>%
       dplyr::select(id_leggo, id_autor_parlametria, id_ext, casa, id_autor, nome_autor = nome, partido, uf,
                     tipo_autor, casa_autor, tipo_generico, sigla_local,
-                    peso_total_documentos, num_documentos, is_important, bancada)
+                    peso_total_documentos, num_documentos, is_important, bancada, tipo_acao)
   } else {
     atuacao_df <- tibble::tribble(~id_leggo, ~id_autor_parlametria, ~id_ext, ~casa, ~id_autor, ~nome_autor, ~partido, ~uf,
                                   ~tipo_autor, ~casa_autor, ~tipo_generico,
-                                 ~sigla_local, ~peso_total_documentos, ~num_documentos, ~is_important, ~bancada)
+                                 ~sigla_local, ~peso_total_documentos, ~num_documentos, ~is_important, ~bancada, ~tipo_acao)
   }
-
   readr::write_csv(atuacao_df, paste0(output_path, '/atuacao.csv'), na = "")
 }
