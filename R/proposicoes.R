@@ -390,8 +390,8 @@ add_tipo_evento_documento <- function(docs_data, documentos_scrap = F) {
         fuzzyjoin::regex_left_join(senado_env$tipos_documentos, by = c(descricao_tipo_texto = "regex"), ignore_case = T) %>%
         dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo),  # default para tipos não agrupados
                       tipo = dplyr::if_else(str_detect(tipo, "P.S"), "Outros", tipo), # Corrige casos de falsos positivos em matérias legislativas.
-                      peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso)),
-                      tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>% # Atribui peso default
+                      peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso)), # Atribui peso default
+                      tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>% 
         # Remove casos duplicados usando o peso do regex na ordem de precedência
         dplyr::group_by(id_principal, casa, id_documento, id_autor) %>%
         dplyr::mutate(max_peso = max(peso)) %>%
@@ -566,7 +566,8 @@ classifica_tipo_documento_autorias <- function(docs) {
     filter(casa == "camara") %>%
     fuzzyjoin::regex_left_join(camara_env$tipos_documentos, by = c(descricao_tipo_documento = "regex"), ignore_case = T) %>%
     dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo),
-                  peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso))) %>%
+                  peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso)),
+                  tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>%
     dplyr::group_by(id_principal, casa, id_documento, id_autor) %>%
     mutate(max_peso = max(peso)) %>%
     ungroup() %>%
@@ -578,7 +579,8 @@ classifica_tipo_documento_autorias <- function(docs) {
     fuzzyjoin::regex_left_join(senado_env$tipos_documentos, by = c(tipo_documento_ext = "regex"), ignore_case = T) %>%
     dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo), # default para tipos não agrupados
                   tipo = dplyr::if_else(str_detect(tipo, "P.S"), "Outros", tipo), # Corrige casos de falsos positivos em matérias legislativas.
-                  peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso))) %>% # Atribui peso default
+                  peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso)), # Atribui peso default
+                  tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>% 
     # Remove casos duplicados usando o peso do regex na ordem de precedência
     dplyr::group_by(id_principal, casa, id_documento, id_autor) %>%
     mutate(max_peso = max(peso)) %>%

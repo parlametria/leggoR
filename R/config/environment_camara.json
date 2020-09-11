@@ -203,7 +203,7 @@
 
   "tipos_documentos": [
     {"tipo": "Emenda", "regex": "^emenda|^subemenda", "peso": 1, "tipo_acao": "Proposição"},
-    {"tipo": "Prop. Original / Apensada", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de convers.o|proposta de emenda . constitui..o|projeto de decreto legislativo", "peso": 2},
+    {"tipo": "Prop. Original / Apensada", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de convers.o|proposta de emenda . constitui..o|projeto de decreto legislativo", "peso": 2, "tipo_acao": "Proposição"},
     {"tipo": "Requerimento", "regex": "^requerimento", "peso": 4, "tipo_acao": "Proposição"},
     {"tipo": "Voto em Separado", "regex": "^voto em separado", "peso": 5, "tipo_acao": "Recurso"},
     {"regex": "^projeto", "peso": 6, "tipo_acao": "Proposição"},

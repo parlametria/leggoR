@@ -43,7 +43,7 @@
                                  ~bancada.y)
     autorias <- tibble::tribble(~id_principal, ~casa, ~id_documento, ~descricao_tipo_documento, ~tipo_documento_ext,
                                 ~id_autor, ~data, ~url_inteiro_teor, ~id_leggo, ~peso_autor_documento, ~casa_autor, ~nome_eleitoral,
-                                ~autores)
+                                ~autores, ~tipo_acao)
   }
 
   readr::write_csv(coautorias, paste0(output_path, '/camara/coautorias.csv'))
@@ -95,7 +95,7 @@
                                  ~casa_autor.y, ~bancada.y)
     autorias <- tibble::tribble(~id_principal, ~casa, ~id_documento, ~descricao_tipo_documento, tipo_documento_ex,
                                 ~id_autor, ~data, ~url_inteiro_teor, ~id_leggo, ~peso_autor_documento, ~casa_autor, ~nome_eleitoral,
-                                ~autores)
+                                ~autores, ~tipo_acao)
   }
 
   readr::write_csv(coautorias, paste0(output_path, '/senado/coautorias.csv'))
@@ -166,7 +166,7 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
     edges <- tibble::tribble(~id_leggo, ~source, ~target, ~value)
     autorias <- tibble::tribble(~id_principal, ~casa, ~id_documento, ~descricao_tipo_documento, ~id_autor,
                                 ~data, ~url_inteiro_teor, ~id_leggo, ~peso_autor_documento, ~casa_autor,
-                                ~nome_eleitoral, ~autores, ~id_autor_parlametria, ~tipo_documento)
+                                ~nome_eleitoral, ~autores, ~id_autor_parlametria, ~tipo_documento, ~tipo_acao)
   }
 
   readr::write_csv(nodes , paste0(output_path, '/coautorias_nodes.csv'), na = "")
