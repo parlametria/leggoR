@@ -5,8 +5,6 @@ source(here::here("scripts/documentos/export_atuacao.R"))
 source(here::here("scripts/documentos/export_coautorias.R"))
 source(here::here("scripts/documentos/export_emendas.R"))
 
-# input_path = '~/leggo_data'
-
 .HELP <- "
 Rscript process_leggo_data.R -i <input_path> -o <output_path> -d <data_inicial_documentos> -p <peso_minimo_arestas> -f <flag>
 "
@@ -103,7 +101,6 @@ process_leggo_data <- function(flag) {
     ## Install local repository R package version
     devtools::install(upgrade = "never")
     
-    
     # Read current data csvs
     camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv")) %>%
       dplyr::mutate(casa = as.character(casa))
@@ -130,7 +127,6 @@ process_leggo_data <- function(flag) {
       agoradigital::read_props(paste0(input_path, "/proposicoes.csv")) %>%
       dplyr::select(id_leggo, id_principal = id_ext, casa)
     
-    # entidades_path = '~/leggo_data/entidades.csv'
     entidades <- readr::read_csv(entidades_path)
 
     if (flag == 1) {
