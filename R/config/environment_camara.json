@@ -210,6 +210,6 @@
     {"regex": "^indicacao", "peso": 7, "tipo_acao": "Proposição"},
     {"regex": "^destaque", "peso": 8, "tipo_acao": "Recurso"},
     {"regex": "^recurso", "peso": 9, "tipo_acao": "Recurso"},
-    {"regex": "^pedido", "peso": 10, "tipo_acao": "Recurso"}
+    {"regex": "^vista|pedido de vista", "peso": 10, "tipo_acao": "Recurso"}
     ]
 }
