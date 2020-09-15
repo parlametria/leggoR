@@ -15,7 +15,9 @@
   camara_documentos <-
     camara_docs %>%
     dplyr::mutate(data = lubridate::floor_date(data_apresentacao, unit='day')) %>%
-    dplyr::left_join(props_leggo_id, by = c("id_principal", "casa"))
+    dplyr::left_join(props_leggo_id, by = c("id_principal", "casa")) %>% 
+    dplyr::rename(sigla_local = status_proposicao_sigla_orgao) %>% 
+    agoradigital::remove_atuacao_camara_comissao_mista()
 
   # Gerando dado de autorias de documentos
   if (nrow(camara_documentos) > 0) {

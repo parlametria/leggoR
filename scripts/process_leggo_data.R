@@ -137,7 +137,7 @@ process_leggo_data <- function(flag) {
       export_avulsos_iniciais(camara_docs, senado_docs, novas_emendas, output_path)
     } else if (flag == 2) {
       print("Atualizando os atuação!")
-      export_atuacao(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id)
+      export_atuacao(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id, entidades)
     } else if (flag == 3) {
       print("Atualizando nodes e edges!")
       export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, props_leggo_id, output_path)
