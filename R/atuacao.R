@@ -51,9 +51,7 @@ create_tabela_atuacao_camara <- function(documentos_df, autores_df, data_inicio 
                   partido,
                   uf,
                   sigla_local = status_proposicao_sigla_orgao,
-                  descricao_tipo_documento) %>% 
-    # Remove duplicação de documentos nas comissões mistas das MPVs, retirando estes documentos na Câmara
-    dplyr::filter(!stringr::str_detect(tolower(sigla_local), "mpv"))
+                  descricao_tipo_documento)
 
   peso_documentos <-
     get_peso_documentos(autores_docs)
