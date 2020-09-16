@@ -146,7 +146,8 @@
     {"id_entidade": 14, "regex": "CT - Modernização da Lei de Licitações e Contratos"},
     {"id_entidade": 16, "regex": "^Câmara dos Deputados$"},
     {"id_entidade": 78, "regex": "Senado Federal -"},
-    {"id_entidade": 17, "regex": "Programa e-Cidadania"}
+    {"id_entidade": 17, "regex": "Programa e-Cidadania"},
+    {"id_entidade": 18, "regex": "Comissão Mista de Planos, Orçamentos Públicos e Fiscalização"}
   ],
   
   "legislaturas":[
