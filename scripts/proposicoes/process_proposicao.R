@@ -270,7 +270,6 @@ library(tidyverse)
   return(df %>%
            filter(
              !is.na(tema),
-             !is.na(explicacao_projeto),
              !str_detect(tolower(proposicao), "^(cn|sf|cd) .*"),
              (str_detect(tolower(proposicao), "mpv.*") & !is.na(id_camara) & !is.na(id_senado)) |
              (!str_detect(tolower(proposicao), "mpv.*") & (!is.na(id_camara) | !is.na(id_senado)))
@@ -287,7 +286,6 @@ library(tidyverse)
   df_com_infos <- df %>%
     filter(
       is.na(tema) |
-        is.na(explicacao_projeto) |
         str_detect(tolower(proposicao), "^(cn|sf|cd) .*") |
         is.na(id_camara) & is.na(id_senado) |
         str_detect(tolower(proposicao), "mpv.*") & (is.na(id_camara) | (is.na(id_senado)))
@@ -336,11 +334,6 @@ library(tidyverse)
         !is.na(tema),
         tema,
         .get_temas_processed_proposicoes(id_camara, id_senado)
-      ),
-      explicacao_projeto = ifelse(
-        !is.na(explicacao_projeto),
-        explicacao_projeto,
-        .fetch_ementa(id_camara, id_senado)
       )
     )
   
@@ -357,6 +350,9 @@ library(tidyverse)
     col_names <- names(df)
     df$proposicao <- NA
     df <- df %>% select(proposicao, tidyselect::all_of(col_names))
+  } else {
+    df <- df %>%
+      mutate(proposicao = str_remove(proposicao, "\\.")) # Retira ponto dos números das proposições
   }
   
   proposicoes_with_infos <- df %>%
