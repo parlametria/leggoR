@@ -204,12 +204,11 @@
   "tipos_documentos": [
     {"tipo": "Emenda", "regex": "^emenda|^subemenda", "peso": 1, "tipo_acao": "Proposição"},
     {"tipo": "Prop. Original / Apensada", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de convers.o|proposta de emenda . constitui..o|projeto de decreto legislativo", "peso": 2, "tipo_acao": "Proposição"},
+    {"tipo": "Parecer", "regex": "^parecer|^complementa..o de voto|^reda..o final|^substitutivo", "peso": 3, "tipo_acao": "Outros"},
     {"tipo": "Requerimento", "regex": "^requerimento", "peso": 4, "tipo_acao": "Proposição"},
     {"tipo": "Voto em Separado", "regex": "^voto em separado", "peso": 5, "tipo_acao": "Recurso"},
-    {"regex": "^projeto", "peso": 6, "tipo_acao": "Proposição"},
-    {"regex": "^indicacao", "peso": 7, "tipo_acao": "Proposição"},
-    {"regex": "^destaque", "peso": 8, "tipo_acao": "Recurso"},
-    {"regex": "^recurso", "peso": 9, "tipo_acao": "Recurso"},
-    {"regex": "^vista|pedido de vista", "peso": 10, "tipo_acao": "Recurso"}
+    {"tipo": "Proposição", "regex": "^indicacao", "peso": 6, "tipo_acao": "Proposição"},
+    {"tipo": "Recurso", "regex": "^destaque", "peso": 7, "tipo_acao": "Recurso"},
+    {"tipo": "Recurso", "regex": "^vista|pedido de vista", "peso": 9, "tipo_acao": "Recurso"}
     ]
 }
