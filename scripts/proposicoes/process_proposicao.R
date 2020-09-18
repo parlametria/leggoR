@@ -173,7 +173,9 @@ library(tidyverse)
     print(e)
     return (as.character(NA))
   })
-  
+  if (is.null(temas)) {
+    return (as.character(NA))
+  }
   return (temas)
 }
 
