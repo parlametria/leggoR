@@ -120,14 +120,13 @@ setup <- function(){
   docs_outros <<- tibble::tibble(descricao_tipo_documento = c("Ata",
                                                   "Autógrafo",
                                                   "Mensagem",
-                                                  "Reclamação",
-                                                  "Recurso"),
-                                 id_principal = rep(1, 5),
-                                 id_autor = rep(1, 5),
-                                 id_documento = 1:5,
-                                 casa = rep('camara',5))
+                                                  "Reclamação"),
+                                 id_principal = rep(1, 4),
+                                 id_autor = rep(1, 4),
+                                 id_documento = 1:4,
+                                 casa = rep('camara',4))
 
-  docs_outros_gt <<- dplyr::mutate(docs_outros, tipo = rep(regex_documento_outros,5), tipo_acao = rep(regex_documento_outros_acao,5))
+  docs_outros_gt <<- dplyr::mutate(docs_outros, tipo = rep(regex_documento_outros,4), tipo_acao = rep(regex_documento_outros_acao,4))
 
   return(TRUE)
 }
