@@ -100,7 +100,7 @@ process_leggo_data <- function(flag) {
   } else {
     ## Install local repository R package version
     devtools::install(upgrade = "never")
-
+    
     # Read current data csvs
     camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv")) %>%
       dplyr::mutate(casa = as.character(casa))
@@ -126,7 +126,7 @@ process_leggo_data <- function(flag) {
     props_leggo_id <-
       agoradigital::read_props(paste0(input_path, "/proposicoes.csv")) %>%
       dplyr::select(id_leggo, id_principal = id_ext, casa)
-
+    
     entidades <- readr::read_csv(entidades_path)
 
     if (flag == 1) {
