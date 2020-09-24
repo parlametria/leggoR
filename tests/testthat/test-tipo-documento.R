@@ -3,6 +3,14 @@ context("Tipo de Documento")
 # Setup
 setup <- function(){
   tipos_documentos <- c("Emenda","Prop. Original / Apensada","Parecer","Requerimento","Voto em Separado","Outros")
+  tipos_acao <- c("Proposição", "Recurso", "Outros")
+  regex_documento_emenda_acao <<- tipos_acao[1]
+  regex_documento_proposicao_acao <<-tipos_acao[1]
+  regex_documento_requerimento_acao <<-tipos_acao[1]
+  regex_documento_voto_em_separado_acao <<-tipos_acao[2]
+  regex_documento_outros_acao <<-  tipos_acao[3]
+  regex_documento_parecer_acao <<- tipos_acao[3]
+  
   regex_documento_emenda <<- tipos_documentos[1]
   regex_documento_proposicao <<- tipos_documentos[2]
   regex_documento_parecer <<- tipos_documentos[3]
@@ -29,7 +37,7 @@ setup <- function(){
                                   id_documento = 1:14,
                                   casa = rep('camara',14))
 
-  docs_emendas_gt <<- dplyr::mutate(docs_emendas, tipo = rep(regex_documento_emenda,14))
+  docs_emendas_gt <<- dplyr::mutate(docs_emendas, tipo = rep(regex_documento_emenda,14), tipo_acao = rep(regex_documento_emenda_acao,14))
 
   docs_proposicoes <<- tibble::tibble(descricao_tipo_documento = c("Medida provisoria",
                                                           "Medida provisória",
@@ -44,7 +52,7 @@ setup <- function(){
                                       id_documento = 9:16,
                                       casa = rep('camara',8))
 
-  docs_proposicoes_gt <<- dplyr::mutate(docs_proposicoes, tipo = rep(regex_documento_proposicao,8))
+  docs_proposicoes_gt <<- dplyr::mutate(docs_proposicoes, tipo = rep(regex_documento_proposicao,8), tipo_acao= rep(regex_documento_proposicao_acao,8))
 
   docs_pareceres <<- tibble::tibble(descricao_tipo_documento = c("Parecer às Emendas apresentadas ao substitutivo do relator",
                                                      "Parecer às Emendas de plenário",
@@ -68,7 +76,7 @@ setup <- function(){
                                     id_documento = 18:34,
                                     casa = rep('camara',17))
 
-  docs_pareceres_gt <<- dplyr::mutate(docs_pareceres, tipo = rep(regex_documento_parecer,17))
+  docs_pareceres_gt <<- dplyr::mutate(docs_pareceres, tipo = rep(regex_documento_parecer,17), tipo_acao = rep(regex_documento_parecer_acao,17))
 
   docs_requerimentos <<- tibble::tibble(descricao_tipo_documento = c("Requerimento",
                                                          "Requerimento de apensação",
@@ -99,7 +107,7 @@ setup <- function(){
                                         id_documento = 1:24,
                                         casa = rep('camara',24))
 
-  docs_requerimentos_gt <<- dplyr::mutate(docs_requerimentos, tipo = rep(regex_documento_requerimento,24))
+  docs_requerimentos_gt <<- dplyr::mutate(docs_requerimentos, tipo = rep(regex_documento_requerimento,24), tipo_acao= rep(regex_documento_requerimento_acao,24))
 
   docs_voto_em_separado <<- tibble::tibble(descricao_tipo_documento = c("Voto em Separado"),
                                            id_principal = 1,
@@ -107,19 +115,18 @@ setup <- function(){
                                            id_documento = 1,
                                            casa = c('camara'))
 
-  docs_voto_em_separado_gt <<- dplyr::mutate(docs_voto_em_separado, tipo = c(regex_documento_voto_em_separado))
+  docs_voto_em_separado_gt <<- dplyr::mutate(docs_voto_em_separado, tipo = c(regex_documento_voto_em_separado), tipo_acao = c(regex_documento_voto_em_separado_acao))
 
   docs_outros <<- tibble::tibble(descricao_tipo_documento = c("Ata",
                                                   "Autógrafo",
                                                   "Mensagem",
-                                                  "Reclamação",
-                                                  "Recurso"),
-                                 id_principal = rep(1, 5),
-                                 id_autor = rep(1, 5),
-                                 id_documento = 1:5,
-                                 casa = rep('camara',5))
+                                                  "Reclamação"),
+                                 id_principal = rep(1, 4),
+                                 id_autor = rep(1, 4),
+                                 id_documento = 1:4,
+                                 casa = rep('camara',4))
 
-  docs_outros_gt <<- dplyr::mutate(docs_outros, tipo = rep(regex_documento_outros,5))
+  docs_outros_gt <<- dplyr::mutate(docs_outros, tipo = rep(regex_documento_outros,4), tipo_acao = rep(regex_documento_outros_acao,4))
 
   return(TRUE)
 }
@@ -130,7 +137,7 @@ check_api <- function(){
 
 test <- function(){
   test_that("Regex do tipo do documento funciona para as emendas", {
-    expect_equal(add_tipo_evento_documento(docs_emendas),docs_emendas_gt)
+    expect_equal(add_tipo_evento_documento(docs_emendas), docs_emendas_gt)
   })
 
   test_that("Regex do tipo do documento funciona para as proposicoes", {

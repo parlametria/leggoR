@@ -66,7 +66,8 @@ create_tabela_atuacao_camara <- function(documentos_df, autores_df, data_inicio 
                     casa,
                     id_autor,
                     tipo_generico,
-                    sigla_local) %>%
+                    sigla_local, 
+                    tipo_acao) %>%
     dplyr::summarise(peso_total_documentos = sum(peso_documento),
                      num_documentos = dplyr::n_distinct(id_documento),
                      partido = dplyr::first(partido),
@@ -150,6 +151,7 @@ create_tabela_atuacao_senado <- function(documentos_df, autores_df, data_inicio 
                       casa,
                       id_autor,
                       tipo_generico,
+                      tipo_acao,
                       sigla_local) %>%
       dplyr::summarise(peso_total_documentos = sum(peso_documento),
                        num_documentos = dplyr::n_distinct(id_documento),
