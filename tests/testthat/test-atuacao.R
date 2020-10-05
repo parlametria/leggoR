@@ -36,7 +36,8 @@ setup <- function() {
                                       sigla_local = c('CCJ', 'PLEN', 'PLEN', 'CFT', 'CFT'),
                                       peso_total_documentos = as.numeric(c(1,0.5,0.5,0.5,0.5)),
                                       num_documentos = as.integer(c(1,1,1,1,1)),
-                                      is_important = c(F, T, T, T, T))
+                                      is_important = c(F, T, T, T, T),
+                                      tipo_acao = c('Proposição', 'Proposição', 'Proposição', 'Proposição', 'Proposição'))
 
   atuacao_sample_df_camara_filtered <<- tibble::tibble(id_ext = c(1,1,1),
                                       casa = c('camara','camara','camara'),
@@ -49,7 +50,8 @@ setup <- function() {
                                       sigla_local = c('CCJ', 'PLEN', 'PLEN'),
                                       peso_total_documentos = as.numeric(c(1,0.5,0.5)),
                                       num_documentos = as.integer(c(1,1,1)),
-                                      is_important = c(F, T, T))
+                                      is_important = c(F, T, T),
+                                      tipo_acao = c('Proposição', 'Proposição', 'Proposição'))
 
   atuacao_sample_df_camara_filtered_limiar <<- tibble::tibble(id_ext = c(1),
                                                       casa = c('camara'),
@@ -62,7 +64,8 @@ setup <- function() {
                                                       sigla_local = c('CCJ'),
                                                       peso_total_documentos = as.numeric(c(1)),
                                                       num_documentos = as.integer(1),
-                                                      is_important = c(F))
+                                                      is_important = c(F),
+                                                      tipo_acao = c('Proposição'))
 
 
   #atuacao Senado
@@ -96,7 +99,8 @@ setup <- function() {
                                       sigla_local = c('CCJ', 'Plenário', 'Plenário', 'CAE', 'CAE'),
                                       peso_total_documentos = as.numeric(c(1,0.5,0.5,0.5,0.5)),
                                       num_documentos = as.integer(c(1,1,1,1,1)),
-                                      is_important = c(T, T, T, T, T))
+                                      is_important = c(T, T, T, T, T),
+                                      tipo_acao = c('Proposição', 'Proposição', 'Proposição', 'Proposição', 'Proposição'))
 
   atuacao_sample_df_senado_filtered <<- tibble::tibble(id_ext = c(1,1,1),
                                                casa = c('senado','senado','senado'),
@@ -109,7 +113,8 @@ setup <- function() {
                                                sigla_local = c('CCJ', 'Plenário', 'Plenário'),
                                                peso_total_documentos = as.numeric(c(1,0.5,0.5)),
                                                num_documentos = as.integer(c(1,1,1)),
-                                               is_important = c(T, T, T))
+                                               is_important = c(T, T, T),
+                                               tipo_acao = c('Proposição', 'Proposição', 'Proposição'))
 
   atuacao_sample_df_senado_filtered_limiar <<- tibble::tibble(id_ext = c(1),
                                                              casa = c('senado'),
@@ -122,7 +127,8 @@ setup <- function() {
                                                              sigla_local = c('CCJ'),
                                                              peso_total_documentos = as.numeric(c(1)),
                                                              num_documentos = as.integer(1),
-                                                             is_important = c(T))
+                                                             is_important = c(T),
+                                                             tipo_acao = c('Proposição'))
 
   autores_docs <<- tibble::tibble(id_principal = rep(123,6),
                                   casa = c("camara",rep("senado",2),rep("camara",3)),

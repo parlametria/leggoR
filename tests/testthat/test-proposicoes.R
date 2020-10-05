@@ -34,6 +34,7 @@ senado_atores_gabarito <-
                  partido = c("p1", "p3"),
                  uf = c("PB", "PB"),
                  tipo_generico = c("Emenda", "Emenda"),
+                 tipo_acao = c("Proposição", "Proposição"),
                  sigla_local = c("CCJ", "CCJ"),
                  peso_total_documentos = c(2, 1),
                  num_documentos = as.integer(c(2, 1)),
