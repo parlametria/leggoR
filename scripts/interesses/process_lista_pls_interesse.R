@@ -24,7 +24,7 @@ processa_lista_pls_interesses <- function(url) {
                     source(here::here("scripts/proposicoes/process_proposicao.R"))
                     pls <- readr::read_csv(url, col_types = cols(.default = "c")) %>%
                       dplyr::select(proposicao, id_camara, id_senado, apelido, tema, advocacy_link,
-                                    keywords, tipo_agenda, explicacao_projeto) %>%
+                                    keywords, tipo_agenda, explicacao_projeto, dplyr::contains("prioridade")) %>%
                       .checa_proposicoes_infos() %>%
                       dplyr::mutate(interesse = interesse) %>%
                       dplyr::mutate(nome_interesse = nome)
@@ -64,6 +64,12 @@ processa_interesses_leggo <- function(url, proposicoes_filepath) {
   pls_interesse <- processa_lista_pls_interesses(url) %>%
     dplyr::mutate(tema = trimws(tema, which = "both")) %>%
     dplyr::mutate(tema = gsub(pattern = "; ", replacement = ";", x = tema)) %>%
+    dplyr::mutate(tema = dplyr::case_when(
+      is.na(prioridade) ~ tema,
+      str_detect(prioridade, "^priorit.rio") & !is.na(tema) ~ paste(tema, "Prioritário", sep = ";"),
+      str_detect(prioridade, "^priorit.rio") & is.na(tema) ~ "Prioritário",
+      TRUE ~ tema
+    )) %>%
     dplyr::mutate(tema_slug = .processa_tema(tema)) %>%
     dplyr::select(id_camara, id_senado, tidyselect::all_of(colunas))
 
