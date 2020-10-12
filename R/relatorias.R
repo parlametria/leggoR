@@ -168,7 +168,7 @@ get_last_relator <- function(proposicao_id, casa) {
         data_relator
       )
   } else if (casa == "camara") {
-    partido_uf <- (relatorias$partido %>% stringr::str_split("-"))[[1]]
+    partido_uf <- (relatorias$partido %>% stringr::str_split("-|/"))[[1]]
 
     if (all(is.na(partido_uf))) {
       partido_relator <- NA
