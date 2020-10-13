@@ -15,7 +15,7 @@ process_etapa <- function(id, casa, pautas) {
   } else {
     tram <- agoradigital::fetch_tramitacao(id, casa)
   }
-  
+
   proc_tram <-
     agoradigital::process_proposicao(prop, tram, casa) %>%
     dplyr::mutate(data_hora = as.POSIXct(data_hora))
@@ -416,6 +416,16 @@ fetch_props <- function(pls, export_path) {
     dplyr::rename(id_ext = prop_id) %>%
     unique()
 
+  status_proposicoes <- tramitacoes %>%
+    dplyr::arrange(desc(data)) %>%
+    dplyr::group_by(id_ext, casa) %>%
+    dplyr::summarise(status = first(status)) %>%
+    dplyr::ungroup()
+
+  proposicoes <- proposicoes %>%
+    dplyr::left_join(status_proposicoes,
+                     by = c("id_ext", "casa"))
+
   ## export data to CSVs
   readr::write_csv(proposicoes, paste0(export_path, "/proposicoes.csv"))
   readr::write_csv(tramitacoes, paste0(export_path, "/trams.csv"))
@@ -552,7 +562,7 @@ process_autores_pl <-
 process_autores_props <- function(pls_ids_filepath, export_path) {
   set.seed(123)
   pls <- readr::read_csv(pls_ids_filepath) %>%
-    dplyr::rowwise(.) %>% 
+    dplyr::rowwise(.) %>%
     dplyr::mutate(concat_chave_leggo = paste0(id_camara, " ", id_senado)) %>%
     dplyr::mutate(id_leggo = digest::digest(concat_chave_leggo, algo="md5", serialize=F)) %>%
     dplyr::select(-concat_chave_leggo) %>%
