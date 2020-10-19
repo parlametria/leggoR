@@ -7,7 +7,8 @@ read_pls_ids <- function(pls_ids_filepath) {
                                id_camara = readr::col_double(),
                                id_senado = readr::col_double(),
                                apelido = readr::col_character(),
-                               tema = readr::col_character()
+                               tema = readr::col_character(),
+                               prioridade = readr::col_character()
                              ))
   pls_ids
 }
@@ -164,7 +165,7 @@ read_props <- function(file_path) {
 #' @param file_path caminho do arquivo
 #' @export
 read_emendas_raw <- function(file_path) {
-  
+
   if (file.exists(file_path)) {
     df <- readr::read_csv(
       file_path,
@@ -177,10 +178,10 @@ read_emendas_raw <- function(file_path) {
       )
     )
   } else {
-    df <- tibble::tribble(~id_ext, ~codigo_emenda, ~data_apresentacao, 
+    df <- tibble::tribble(~id_ext, ~codigo_emenda, ~data_apresentacao,
                           ~numero, ~local, ~autor, ~casa, ~tipo_documento, ~inteiro_teor)
   }
-  
+
   return(df)
 }
 
@@ -188,7 +189,7 @@ read_emendas_raw <- function(file_path) {
 #' @param file_path caminho do arquivo
 #' @export
 read_novas_emendas <- function(file_path) {
-  
+
   if (file.exists(file_path)) {
     df <- readr::read_csv(
       file_path,
@@ -201,10 +202,10 @@ read_novas_emendas <- function(file_path) {
       )
     )
   } else {
-    df <- tibble::tribble(~id_ext, ~codigo_emenda, ~data_apresentacao, 
+    df <- tibble::tribble(~id_ext, ~codigo_emenda, ~data_apresentacao,
                           ~numero, ~local, ~autor, ~casa, ~tipo_documento, ~inteiro_teor)
   }
-  
+
   return(df)
 }
 
@@ -212,7 +213,7 @@ read_novas_emendas <- function(file_path) {
 #' @param file_path caminho do arquivo
 #' @export
 read_emendas <- function(file_path) {
-  
+
   if (file.exists(file_path)) {
     df <- readr::read_csv(
       file_path,
@@ -226,11 +227,11 @@ read_emendas <- function(file_path) {
       )
     )
   } else {
-    df <- tibble::tribble(~id_ext, ~codigo_emenda, ~data_apresentacao, 
-                          ~numero, ~local, ~autor, ~casa, ~tipo_documento, 
+    df <- tibble::tribble(~id_ext, ~codigo_emenda, ~data_apresentacao,
+                          ~numero, ~local, ~autor, ~casa, ~tipo_documento,
                           ~inteiro_teor, ~distancia)
   }
-  
+
   return(df)
 }
 
@@ -238,7 +239,7 @@ read_emendas <- function(file_path) {
 #' @param file_path caminho do arquivo
 #' @export
 read_distance_file <- function(file_path) {
-  
+
   if (file.exists(file_path)) {
     df <- readr::read_csv(
       file_path,
@@ -251,9 +252,9 @@ read_distance_file <- function(file_path) {
       )
     )
   } else {
-    df <- tibble::tribble(~id_emenda, ~id_proposicao, 
+    df <- tibble::tribble(~id_emenda, ~id_proposicao,
                           ~casa, ~num_linha_proposicao, ~distancia)
   }
-  
+
   return(df)
 }
