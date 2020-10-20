@@ -189,3 +189,186 @@ get_last_relator <- function(proposicao_id, casa) {
   }
   return(df_relator)
 }
+
+#' @title Recupera lista de relatores de uma proposição do Leggo (composta por id_camara e id_senado)
+#' @description Recebe os ids das proposições na câmara e no senado e retorna a lista de relatores de
+#' forma padronizada
+#' @param rowid Número da linha que está executando (para controle de execução).
+#' @param id_leggo Id da proposição no Leggo
+#' @param id_camara Id da proposição na câmara.
+#' @param id_senado Id da proposição no senado.
+#' @param total_rows Número total de proposição para execução da captura dos relatores (para controle de execução).
+#' @return Dataframe com dados do relator
+#' @examples .get_relatorias_leggo(1, "d51d8c078dab1676b4c24b67fc66d4dd", 2192459, 137999, 1)
+.get_relatorias_leggo <- function(rowid,
+                                 id_leggo,
+                                 id_camara,
+                                 id_senado,
+                                 total_rows = 1) {
+
+  library(tidyverse)
+
+  print(
+    paste(
+      "Recuperando relatores para a proposição",
+      id_leggo,
+      "( câmara:",
+      id_camara,
+      "| senado",
+      id_senado,
+      ") -",
+      rowid,
+      "/",
+      total_rows
+    )
+  )
+  relatores_camara <- tibble()
+  if (!is.na(id_camara)) {
+    relatores_camara <- tryCatch({
+      relatorias <- get_relatorias(proposicao_id = id_camara,
+                                  casa = "camara")
+
+      partido_uf <-
+        (relatorias$partido %>% stringr::str_split("-|/"))[[1]]
+
+      if (all(is.na(partido_uf))) {
+        partido_relator <- NA
+        uf_relator <- NA
+      }
+      else {
+        partido_relator <- partido_uf[[1]]
+        uf_relator <- partido_uf[[2]]
+      }
+      df_relator <- relatorias %>% mutate(
+        id_relator = NA,
+        casa = "camara",
+        partido_relator = partido_relator,
+        uf_relator = uf_relator,
+        nome_parlamentar = str_remove(nome_parlamentar,
+                                               " \\(.*")
+      ) %>% select(
+        id_relator,
+        casa,
+        nome_relator = nome_parlamentar,
+        partido_relator,
+        uf_relator,
+        data_relator = data_hora
+      )
+    }, error = function(e) {
+      message(e)
+      return(
+        tibble::tribble(
+          ~ id_relator,
+          ~ casa,
+          ~ nome_relator,
+          ~ partido_relator,
+          ~ uf_relator,
+          ~ data_relator
+        )
+      )
+    })
+  }
+
+  relatores_senado <- tibble::tibble()
+  if (!is.na(id_senado)) {
+    relatores_senado <- tryCatch({
+      relatorias <- get_relatorias(proposicao_id = id_senado,
+                                  casa = "senado")
+
+      df_relator <- relatorias %>%
+        mutate(data_relator = as.POSIXct(data_designacao),
+               casa = "senado") %>%
+        select(
+          id_relator = codigo_parlamentar,
+          casa,
+          nome_relator = nome_parlamentar,
+          partido_relator = sigla_partido_parlamentar,
+          uf_relator = uf_parlamentar,
+          data_relator
+        )
+    }, error = function(e) {
+      message(e)
+      return(
+        tibble::tribble(
+          ~ id_relator,
+          ~ casa,
+          ~ nome_relator,
+          ~ partido_relator,
+          ~ uf_relator,
+          ~ data_relator
+        )
+      )
+    })
+  }
+
+  relatores <- relatores_camara %>% bind_rows(relatores_senado) %>%
+    mutate(id_leggo = id_leggo,
+           id_camara = id_camara,
+           id_senado = id_senado) %>%
+    select(id_leggo, id_camara, id_senado, id_relator, casa, nome_relator, partido_relator,
+           uf_relator, data_relator)
+
+  return(relatores)
+}
+
+#' @title Exporta dados dos relatores das proposições (matérias legislativas) monitoradas pelo Leggo
+#' @description Exporta para uma pasta o CSV que liga uma proposição aos seus relatores
+#' @param pls_ids_filepath Caminho para o csv com os pls para serem capturados.
+#' @param proposicoes_filepath Caminho para o csv com as proposições processadas (metadados).
+#' @param export_path pasta para onde exportar dados.
+#' @return Dataframe com informações do relatores das proposições
+#' @export
+process_relatores_props <- function(pls_ids_filepath, proposicoes_filepath, export_path) {
+  library(tidyverse)
+
+  pls <- read_csv(pls_ids_filepath, col_types = cols(prioridade = "c")) %>%
+    rowwise(.) %>%
+    mutate(concat_chave_leggo = paste0(id_camara, " ", id_senado)) %>%
+    mutate(id_leggo = digest::digest(concat_chave_leggo, algo="md5", serialize=F)) %>%
+    select(-concat_chave_leggo) %>%
+    rowid_to_column(var = "rowid") %>%
+    filter(!is.na(id_camara) | !is.na(id_senado)) %>%
+    select(rowid, id_leggo, id_camara, id_senado)
+
+  pls_relatorias <- purrr::pmap_df(
+    list(pls$rowid,
+         pls$id_leggo,
+         pls$id_camara,
+         pls$id_senado),
+    ~ .get_relatorias_leggo(..1, ..2, ..3, ..4, total_rows = pls %>% nrow())
+  )
+
+  pls_camara <- pls_relatorias %>%
+    filter(casa == "camara") %>%
+    select(id_leggo, id_ext = id_camara, casa, relator_id = id_relator, relator_nome = nome_relator,
+           relator_partido = partido_relator,
+           relator_uf = uf_relator, relator_data = data_relator)
+
+  pls_senado <- pls_relatorias %>%
+    filter(casa == "senado") %>%
+    select(id_leggo, id_ext = id_senado, casa, relator_id = id_relator, relator_nome = nome_relator,
+           relator_partido = partido_relator,
+           relator_uf = uf_relator, relator_data = data_relator)
+
+  pls_merge <- pls_camara %>%
+    bind_rows(pls_senado) %>%
+    mutate(id_ext = as.character(id_ext))
+
+  proposicoes_capturadas <- readr::read_csv(proposicoes_filepath,
+                                            col_types = cols(id_ext = "c")) %>%
+  select(id_ext, sigla_tipo, numero, ementa, data_apresentacao, casa, casa_origem,
+         autor_nome, autor_uf, autor_partido, regime_tramitacao, forma_apreciacao, id_leggo)
+
+  parlamentares <- agoradigital::read_parlamentares(export_path)
+
+  proposicoes_relatorias <- proposicoes_capturadas %>%
+    left_join(pls_merge, by = c("id_ext", "casa", "id_leggo"))
+
+  relatores <- proposicoes_relatorias %>%
+    agoradigital::mapeia_nome_relator_para_id(parlamentares, info_relatores = TRUE) %>%
+    select(id_leggo, id_ext, casa, relator_id, relator_id_parlametria, relator_nome) %>%
+    filter(!is.na(relator_id)) %>%
+    distinct()
+
+  return(relatores)
+}
