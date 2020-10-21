@@ -311,38 +311,7 @@ fetch_props <- function(pls, export_path) {
 
   })
 
-  parlamentares <- tryCatch({
-    export_path_parlamentares <- export_path
-
-    if (!stringr::str_detect(export_path, "\\/$")) {
-      export_path_parlamentares <- paste0(export_path, "/")
-    }
-
-    readr::read_csv(
-      paste0(export_path_parlamentares, "parlamentares.csv"),
-      col_types = readr::cols("legislatura" = "i",
-                              .default = "c")
-    )
-  },
-  error = function(msg) {
-    print("Erro ao importar dados de parlamentares em fetch_props:")
-    print(msg)
-    return(
-      tibble::tribble(
-        ~ id_parlamentar,
-        ~ id_parlamentar_parlametria,
-        ~ casa,
-        ~ nome_eleitoral,
-        ~ nome_civil,
-        ~ cpf,
-        ~ sexo,
-        ~ partido,
-        ~ uf,
-        ~ situacao,
-        ~ em_exercicio
-      )
-    )
-  })
+  parlamentares <- agoradigital::read_parlamentares(export_path)
 
   res <- list()
   count <- 0
