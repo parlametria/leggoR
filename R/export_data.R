@@ -530,7 +530,7 @@ process_autores_pl <-
 #' @export
 process_autores_props <- function(pls_ids_filepath, export_path) {
   set.seed(123)
-  pls <- readr::read_csv(pls_ids_filepath) %>%
+  pls <- readr::read_csv(pls_ids_filepath, col_types = readr::cols(prioridade = "c")) %>%
     dplyr::rowwise(.) %>%
     dplyr::mutate(concat_chave_leggo = paste0(id_camara, " ", id_senado)) %>%
     dplyr::mutate(id_leggo = digest::digest(concat_chave_leggo, algo="md5", serialize=F)) %>%
