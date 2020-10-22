@@ -61,7 +61,7 @@ flag <- args$flag
 #' @param export_path pasta para onde exportar dados.
 #' @export
 export_props <- function(pls_ids_filepath, export_path) {
-  readr::read_csv(pls_ids_filepath, col_types = cols(prioridade = "c")) %>%
+  readr::read_csv(pls_ids_filepath, col_types = readr::cols(prioridade = "c")) %>%
     dplyr::mutate(row_num = 1:nrow(.)) %>%
     dplyr::select(row_num,id_camara,id_senado) %>%
     agoradigital::fetch_props(export_path)
