@@ -73,7 +73,7 @@ export_props <- function(pls_ids_filepath, export_path) {
 #' @param export_path pasta para onde exportar dados.
 #' @export
 export_emendas <- function(pls_ids_filepath, export_path) {
-  readr::read_csv(pls_ids_filepath) %>%
+  readr::read_csv(pls_ids_filepath, col_types = readr::cols(prioridade = "c")) %>%
     agoradigital::fetch_emendas(export_path)
 }
 
