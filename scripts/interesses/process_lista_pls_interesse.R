@@ -68,6 +68,7 @@ processa_interesses_leggo <- function(url, proposicoes_filepath) {
       is.na(prioridade) ~ tema,
       str_detect(prioridade, "^priorit.rio") & !is.na(tema) ~ paste(tema, "Prioritário", sep = ";"),
       str_detect(prioridade, "^priorit.rio") & is.na(tema) ~ "Prioritário",
+      is.na(tema) ~ "Não especificado",
       TRUE ~ tema
     )) %>%
     dplyr::mutate(tema_slug = .processa_tema(tema)) %>%
