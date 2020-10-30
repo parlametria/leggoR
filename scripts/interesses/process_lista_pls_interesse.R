@@ -18,8 +18,9 @@ processa_lista_pls_interesses <- function(url) {
 
   pls_para_analise <- purrr::pmap_dfr(list(interesses$interesse,
                                            interesses$url,
-                                           interesses$nome),
-                  function(interesse, url, nome) {
+                                           interesses$nome,
+                                           interesses$descricao),
+                  function(interesse, url, nome, descricao) {
                     print(interesse)
                     source(here::here("scripts/proposicoes/process_proposicao.R"))
                     pls <- readr::read_csv(url, col_types = cols(.default = "c")) %>%
@@ -27,7 +28,8 @@ processa_lista_pls_interesses <- function(url) {
                                     keywords, tipo_agenda, explicacao_projeto, dplyr::contains("prioridade")) %>%
                       .checa_proposicoes_infos() %>%
                       dplyr::mutate(interesse = interesse) %>%
-                      dplyr::mutate(nome_interesse = nome)
+                      dplyr::mutate(nome_interesse = nome) %>%
+                      dplyr::mutate(descricao_interesse = descricao)
                     return(pls)
                   })
 
