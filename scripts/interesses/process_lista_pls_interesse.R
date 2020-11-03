@@ -61,7 +61,8 @@ processa_lista_pls_interesses <- function(url) {
 #' interesses <- processa_interesses_leggo(url, proposicoes_filepath)
 processa_interesses_leggo <- function(url, proposicoes_filepath) {
   colunas <- c("interesse", "nome_interesse", "apelido", "tema",
-               "tema_slug", "advocacy_link", "keywords", "tipo_agenda")
+               "tema_slug", "advocacy_link", "keywords",
+               "tipo_agenda", "descricao_interesse")
 
   pls_interesse <- processa_lista_pls_interesses(url) %>%
     dplyr::mutate(tema = trimws(tema, which = "both")) %>%
@@ -93,7 +94,7 @@ processa_interesses_leggo <- function(url, proposicoes_filepath) {
                                             col_types = cols(id_ext = "c")) %>%
     dplyr::inner_join(pls_interesse_processed, by = "id_ext") %>%
     dplyr::select(id_ext, casa, id_leggo, tidyselect::all_of(colunas)) %>%
-    dplyr::distinct(id_leggo, interesse, nome_interesse, apelido, keywords, tema, tema_slug, advocacy_link, keywords, tipo_agenda)
+    dplyr::distinct(id_leggo, interesse, nome_interesse, apelido, keywords, tema, tema_slug, advocacy_link, keywords, tipo_agenda, descricao_interesse)
 
   return(proposicoes_capturadas)
 }
