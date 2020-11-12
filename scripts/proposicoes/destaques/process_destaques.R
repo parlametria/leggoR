@@ -1,0 +1,1 @@
+#TODO: Adicionar função(ões) que exporta(m) os dados das proposições de destaque.

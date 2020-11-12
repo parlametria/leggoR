@@ -1,0 +1,1 @@
+#TODO: Adicionar export das proposições de destaque.
