@@ -579,6 +579,11 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 #' @examples
 #'  .checa_data_ultima_fase_progresso(df, tramitacao_df)
 .checa_data_ultima_fase_progresso <- function(df, tramitacao_df) {
+  if (nrow(df) == 1) {
+    df$data_fim[nrow(df)] <- NA
+    return(df)
+  }
+  
   if ("situacao_descricao_situacao" %in% names(tramitacao_df) &
       "evento" %in% names(tramitacao_df)) {
     ultimo_evento <- tramitacao_df %>%
