@@ -123,7 +123,9 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
   }
 
    data_tramitacao %>%
-   dplyr::mutate(global = dplyr::if_else(situacao_descricao_situacao == senado_env$fase_global_sancao$situacao_sancao, "- Sanção/Veto", global)) %>%
+   dplyr::mutate(global = dplyr::if_else(situacao_descricao_situacao == senado_env$fase_global_sancao$situacao_sancao |
+                                        stringr::str_detect(situacao_descricao_situacao, senado_env$fase_global_sancao$situacao_norma_juridica) |
+                                        stringr::str_detect(evento, "remetida_a_sancao_promulgacao"), "- Sanção/Veto", global)) %>%
    tidyr::fill(global, .direction = "down")
 }
 
