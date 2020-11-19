@@ -86,9 +86,7 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df, sigla){
     dplyr::arrange(data, sequencia) %>%
     dplyr::select(-data) %>%
     dplyr::mutate(local_casa = dplyr::if_else(fase_global == 'Sanção/Veto' | fase_global == 'Promulgação/Veto','presidência da república',
-                                              dplyr::if_else(fase_global == 'Avaliação dos Vetos', 'congresso', casa))) %>% 
-    dplyr::mutate(local = dplyr::if_else(fase_global == 'Sanção/Veto' | fase_global == 'Promulgação/Veto',
-                                         "Presidência da República", local))
+                                              dplyr::if_else(fase_global == 'Avaliação dos Vetos', 'congresso', casa)))
 }
 
 #' @title Recupera o progresso de um PL
@@ -579,11 +577,6 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
 #' @examples
 #'  .checa_data_ultima_fase_progresso(df, tramitacao_df)
 .checa_data_ultima_fase_progresso <- function(df, tramitacao_df) {
-  if (nrow(df) == 1) {
-    df$data_fim[nrow(df)] <- NA
-    return(df)
-  }
-  
   if ("situacao_descricao_situacao" %in% names(tramitacao_df) &
       "evento" %in% names(tramitacao_df)) {
     ultimo_evento <- tramitacao_df %>%
@@ -600,18 +593,9 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
           stringr::str_detect(evento, "virada_de_casa"),
         fase_global == "Revisão I"
       )
-    
-    evento_sancionada <- tramitacao_df %>%
-      dplyr::filter(
-        stringr::str_detect(
-          fase_global, "(Sanção|Promulgação)/Veto")
-      )
-
 
     if (nrow(evento_virada_de_casa_revisao) == 0) {
-      if (nrow(evento_sancionada) > 0) {
-        return(df)
-      } else if (!stringr::str_detect(ultimo_evento, "virada_de_casa") |
+      if (!stringr::str_detect(ultimo_evento, "virada_de_casa") |
           is.na(ultimo_evento)) {
         df$data_fim[nrow(df)] <- NA
       }

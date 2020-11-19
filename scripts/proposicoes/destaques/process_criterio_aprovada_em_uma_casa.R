@@ -22,11 +22,11 @@ process_criterio_aprovada_em_uma_casa <- function(
   progressos <- read_csv(progressos_datapath)
   
   proposicoes <- read_csv(proposicoes_datapath) %>%
-    select(id_ext, casa, id_leggo)
+    select(id_ext, casa, id_leggo, status)
   
   # Recupera as proposições que ainda não foram sancionadas ou vetadas
   proposicoes_sem_promulgacao <- progressos %>%
-    filter(fase_global %in% .fases_presidencia, is.na(data_fim)) %>%
+    filter(fase_global %in% .fases_presidencia, is.na(data_inicio)) %>%
     select(id_ext, casa) %>%
     distinct()
   
@@ -45,7 +45,9 @@ process_criterio_aprovada_em_uma_casa <- function(
     ungroup()
   
   proposicoes_em_revisao <- progresso_atual_proposicoes_em_revisao %>% 
-    inner_join(proposicoes, by = c("id_ext", "casa"))
+    inner_join(proposicoes, by = c("id_ext", "casa")) %>% 
+    filter(status == "Ativa") %>% 
+    select(id_leggo, fase_global, local, local_casa, data_inicio, data_fim)
   
   return(proposicoes_em_revisao)
 }
