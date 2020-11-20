@@ -9,8 +9,8 @@ library(here)
 #' @examples
 #' process_criterio_parecer_aprovado_comissao()
 process_criterio_parecer_aprovado_comissao <- function(
-  tramitacoes_datapath = here::here("leggo_data/trams.csv"),
-  proposicoes_datapath = here::here("leggo_data/proposicoes.csv")) {
+  proposicoes_datapath = here::here("leggo_data/proposicoes.csv"),
+  tramitacoes_datapath = here::here("leggo_data/trams.csv")) {
   # tramitacoes <- read_csv("~/leggo_data/trams.csv")
   # proposicoes <- read_csv("~/leggo_data/proposicoes.csv")
   tramitacoes <- read_csv(tramitacoes_datapath,
@@ -43,6 +43,9 @@ process_criterio_parecer_aprovado_comissao <- function(
     ungroup()
 
   proposicoes_alt <- proposicoes_aprovadas %>%
-    left_join(proposicoes, by = c("id_ext", "casa"))
+    left_join(proposicoes, by = c("id_ext", "casa")) %>%
+    distinct() %>%
+    select(id_leggo, id_ext, casa, comissoes_aprovadas)
 
+  return(proposicoes_alt)
 }
