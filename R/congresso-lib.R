@@ -86,7 +86,7 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df, sigla){
     dplyr::arrange(data, sequencia) %>%
     dplyr::select(-data) %>%
     dplyr::mutate(local_casa = dplyr::if_else(fase_global == 'Sanção/Veto' | fase_global == 'Promulgação/Veto','presidência da república',
-                                              dplyr::if_else(fase_global == 'Avaliação dos Vetos','congresso',casa)))
+                                              dplyr::if_else(fase_global == 'Avaliação dos Vetos', 'congresso', casa)))
 }
 
 #' @title Recupera o progresso de um PL
@@ -593,7 +593,6 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
           stringr::str_detect(evento, "virada_de_casa"),
         fase_global == "Revisão I"
       )
-
 
     if (nrow(evento_virada_de_casa_revisao) == 0) {
       if (!stringr::str_detect(ultimo_evento, "virada_de_casa") |
