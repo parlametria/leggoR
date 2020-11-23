@@ -1,5 +1,5 @@
 library(here)
-print(dr_here())
+
 source(here::here("scripts/proposicoes/destaques/process_destaques.R"))
 
 .HELP <- "

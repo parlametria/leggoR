@@ -46,7 +46,6 @@ process_criterio_aprovada_em_uma_casa <- function(
   
   proposicoes_em_revisao <- progresso_atual_proposicoes_em_revisao %>% 
     inner_join(proposicoes, by = c("id_ext", "casa")) %>% 
-    filter(status == "Ativa") %>% 
     select(id_leggo, fase_global, local, local_casa, data_inicio, data_fim)
   
   return(proposicoes_em_revisao)
