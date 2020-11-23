@@ -15,7 +15,7 @@
     },
 
   "eventos": [
-    {"evento": "aprovacao_parecer", "regex": "^(?!.*aprovado (o )*req)(?!aprovado o projeto).*(aprovado.*parecer|comiss.o aprova o relat.rio.*constituir o parecer|parecer.*aprovado pela comiss.o|comiss.o.*aprova o parecer|apresenta novo relat.rio.*comiss.o aprova|comiss.o aprova.*relat.rio|proferido.*o parecer.*aprovado o substitutivo|aprova..o do parecer d. relator.|aprovada a reda..o final assinada pel. relator).*$", "tipo":"serie_a"},
+    {"evento": "aprovacao_parecer", "regex": "^(?!.*aprovado (o )*req)(?!aprovado o projeto).*(aprovado.*parecer|comiss.o aprova o relat.rio.*constituir o parecer|parecer.*aprovado pela comiss.o|comiss.o.*aprova o parecer|apresenta novo relat.rio.*comiss.o aprova|comiss.o aprova.*relat.rio|proferido.*o parecer.*aprovado o substitutivo|aprova..o do parecer d. relator.|aprovada a reda..o final assinada pel. relator).*$", "tipo":"serie_c"},
     {"evento": "requerimento_redistribuicao", "regex": "^apresentação do requerimento de redistribuição", "tipo":"serie_b"},
     {"evento": "requerimento_apensacao", "regex": "^apresentação do requerimento de apensação", "tipo":"serie_b"},
     {"evento": "requerimento_urgencia", "regex": "^apresentação do requerimento de urgência", "tipo":"serie_b"},

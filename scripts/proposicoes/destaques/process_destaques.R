@@ -9,7 +9,8 @@ process_proposicoes_destaques <- function(
   source(here::here("scripts/proposicoes/destaques/process_criterio_aprovada_em_uma_casa.R"))
   source(here::here("scripts/proposicoes/destaques/process_criterio_parecer_aprovado_comissao.R"))
 
-  proposicoes <- read_csv(proposicoes_datapath) %>%
+  proposicoes <- read_csv(proposicoes_datapath,
+                          col_types = cols(id_ext = col_character())) %>%
     filter(status == "Ativa") %>%
     mutate(sigla = paste0(sigla_tipo, " ", numero, "/", year(ymd_hms(data_apresentacao)))) %>%
     select(id_leggo, id_ext, casa, sigla) %>%

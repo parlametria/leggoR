@@ -14,7 +14,7 @@ export_filepath: Caminho para o arquivo de destino.
 #' @description Get arguments from command line option parsing
 get_args <- function() {
   args = commandArgs(trailingOnly=TRUE)
-  
+
   option_list = list(
     optparse::make_option(c("-p", "--proposicoes_filepath"),
                           type="character",
@@ -26,13 +26,18 @@ get_args <- function() {
                           default="../../../data/progressos.csv",
                           help=.HELP,
                           metavar="character"),
+    optparse::make_option(c("-r", "--tramitacoes_filepath"),
+                          type="character",
+                          default="../../../data/trams.csv",
+                          help=.HELP,
+                          metavar="character"),
     optparse::make_option(c("-e", "--export_filepath"),
                           type="character",
                           default="../../../data/proposicoes_destaques.csv",
                           help=.HELP,
                           metavar="character")
   );
-  
+
   opt_parser <- optparse::OptionParser(option_list = option_list)
   opt <- optparse::parse_args(opt_parser)
   return(opt);
@@ -44,10 +49,11 @@ print(args)
 
 proposicoes_filepath <- args$proposicoes_filepath
 progressos_filepath <- args$progressos_filepath
+tramitacoes_filepath <- args$tramitacoes_filepath
 saida <- args$export_filepath
 
 print("Processando proposições destaques")
-proposicoes_destaques <- process_proposicoes_destaques(proposicoes_filepath, progressos_filepath)
+proposicoes_destaques <- process_proposicoes_destaques(proposicoes_filepath, progressos_filepath, tramitacoes_filepath)
 
 print("Salvando proposições destaques...")
 readr::write_csv(proposicoes_destaques, saida)
