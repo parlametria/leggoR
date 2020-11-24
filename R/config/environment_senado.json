@@ -64,12 +64,17 @@
   },
 
   "eventos": [
+    {"evento": "aprovacao_parecer", "regex": "^(?!.*aprovado (o )*req)(?!aprovado o projeto).*(aprovado.*parecer|comiss.o aprova o relat.rio.*constituir o parecer|parecer.*aprovado pela comiss.o|comiss.o.*aprova o parecer|apresenta novo relat.rio.*comiss.o aprova|comiss.o aprova.*relat.rio|proferido.*o parecer.*aprovado o substitutivo|aprova..o do parecer d. relator.|aprovada a reda..o final assinada pel. relator).*$", "tipo":"serie_c"},
     {"evento": "apresentacao_pl", "regex": "^este process.*cont.*m|^leitura da mat.ria na sess.o do sf|^encaminhado à publica..o.", "tipo":"serie_c"},
     {"evento": "requerimento_seminario", "regex": "a realização de seminário", "tipo":"serie_b"},
     {"evento": "recebimento_comissao", "regex": "recebido na|nesta comissao", "tipo":"serie_c"},
     {"evento": "devolvido", "regex": "devolvido pel.*redistribu.*", "tipo":"serie_c"},
+    {"evento": "distribuicao", "regex": "^(?!.*aprovado requerimento).*às* comiss..s*|despacho à.*$", "tipo":"serie_c"},
     {"evento": "apresentacao_parecer", "regex": "(proferido pel(a|o).* parecer)|(leitura dos?( seguinte(s)?)? parecer)|(encaminhados à publicação o(s) (seguinte(s)) parecer(es:|profere parecer.*))", "tipo":"serie_a"},
-    {"evento": "aprovacao_parecer", "regex": "a comissão aprova o relatório|aprovado o relatório", "tipo":"serie_c"},
+    {"evento": "parecer_pela_adequacao_financeira_e_orcamentaria",  "id_situacao": 322, "regex": "^.*(pela adequa..o financeira e or.ament.ria)(.*pela aprova..o)|(conclui pela adequa..o financeira e or.ament.ria(?!.*pela rejei..o))|(conclui pela adequa..o financeira e or.ament.ria das emendas(?!.*injuridicidade))|(pela (compatibilidade e )*adequa..o financeira e or.ament.ria (do projeto|deste|do pl)(?!.*e, no mérito, pela rejei..o)).*$", "tipo":"serie_a"},
+    {"evento": "parecer_pela_aprovacao_com_substitutivo", "id_situacao": 322, "regex": "^(?!.*pela adequa..o financeira e or.ament.ria)(?!leitura do parecer)(?!apresenta..o do parecer)(?!anunciada).*(parecer)(?!.*e, no m.rito, pela rejei..o).*(substitutivo).*$", "tipo":"serie_a"},
+    {"evento": "parecer_pela_aprovacao", "id_situacao": 322, "regex": "^(?!.*substitutivo)(?!.*aprovado requerimento)(?!.*vota..o do parecer)(?!.*anexei)(?!.*apresenta..o d. (requerimento|reclamacao))(?!.*no m.rito, pela rejei..o do projeto e das suas emendas)(?!aprovado.*o parecer)(?!.*rejei..o deste)(?!.*aprova..o de demarca..o)(?!.*a comiss.o aprova o relat.rio)(?!.*aprovado o relat.rio)(?!.*(pela|de sua) adequa..o financeira e or.ament.ria)(?!.*(invers.o de pauta|para fins de).*).*(parecer|relat.rio).*(aprova(?!.*(requerimento|destaque|emenda))|favor.vel ao projeto e .s emendas).*$", "tipo":"serie_a"},
+    {"evento": "parecer_pela_rejeicao", "id_situacao": 322, "regex": "^(?!.*aprova)(?!.*substitutivo)(?!.*emenda)(?!.*apresenta..o do recurso).*(parecer|relat.rio).*rejei..o.*$", "tipo":"serie_a"},
     {"evento": "pedido_de_vista", "regex": "concedida vista", "tipo":"serie_c"},
     {"evento": "designado_relator",
       "regex": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))|avocada a relatoria",
