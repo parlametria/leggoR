@@ -66,6 +66,8 @@
   "eventos": [
     {"evento": "apresentacao_pl", "regex": "^este process.*cont.*m|^leitura da mat.ria na sess.o do sf|^encaminhado à publica..o.", "tipo":"serie_c"},
     {"evento": "requerimento_seminario", "regex": "a realização de seminário", "tipo":"serie_b"},
+    {"evento": "requerimento_urgencia_apresentado", "regex": "apresentação de requerimento de urg.ncia", "tipo":"serie_b"},
+    {"evento": "requerimento_urgencia_aprovado", "regex": "^publicação e aprovado requerimento .*de urg.ncia|aprovado requerimento .*de urg.ncia", "tipo":"serie_b"},
     {"evento": "recebimento_comissao", "regex": "recebido na|nesta comissao", "tipo":"serie_c"},
     {"evento": "devolvido", "regex": "devolvido pel.*redistribu.*", "tipo":"serie_c"},
     {"evento": "apresentacao_parecer", "regex": "(proferido pel(a|o).* parecer)|(leitura dos?( seguinte(s)?)? parecer)|(encaminhados à publicação o(s) (seguinte(s)) parecer(es:|profere parecer.*))", "tipo":"serie_a"},
