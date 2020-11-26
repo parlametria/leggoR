@@ -9,8 +9,15 @@ process_proposicoes_destaques <- function(
 
   source(here::here("scripts/proposicoes/destaques/process_criterio_aprovada_em_uma_casa.R"))
   source(here::here("scripts/proposicoes/destaques/process_criterio_parecer_aprovado_comissao.R"))
+  source(here::here("scripts/proposicoes/destaques/fetcher_criterio_mais_comentadas_twitter.R"))
 
-  interesses <- read_csv(interesses_datapath) %>%
+  interesses <- read_csv(interesses_datapath)
+  
+  interesses_agendas <- interesses %>% 
+    distinct(interesse) %>% 
+    pull()
+    
+  interesses <- interesses %>%
     group_by(id_leggo) %>%
     summarise(agendas = paste(interesse, collapse = ";")) %>%
     ungroup()
@@ -33,6 +40,9 @@ process_proposicoes_destaques <- function(
                                                  tramitacoes_datapath) %>%
     mutate(criterio_parecer_aprovado_comissao = T) %>%
     select(id_leggo, id_ext, casa, criterio_parecer_aprovado_comissao, comissoes_aprovadas)
+  
+  proposicoes_criterio_mais_comentadas_twitter <- 
+    fetch_proposicoes_mais_comentadas_twitter(interesses = interesses_agendas)
 
   proposicoes_destaques <- proposicoes %>%
     left_join(proposicoes_criterio_aprovada_em_uma_casa,
