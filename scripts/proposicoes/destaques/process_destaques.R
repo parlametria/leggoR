@@ -3,11 +3,17 @@ library(tidyverse)
 process_proposicoes_destaques <- function(
   proposicoes_datapath = here::here("leggo_data/proposicoes.csv"),
   progressos_datapath = here::here("leggo_data/progressos.csv"),
-  tramitacoes_datapath = here::here("leggo_data/trams.csv")) {
+  tramitacoes_datapath = here::here("leggo_data/trams.csv"),
+  interesses_datapath = here::here("leggo_data/interesses.csv")) {
   library(lubridate)
 
   source(here::here("scripts/proposicoes/destaques/process_criterio_aprovada_em_uma_casa.R"))
   source(here::here("scripts/proposicoes/destaques/process_criterio_parecer_aprovado_comissao.R"))
+
+  interesses <- read_csv(interesses_datapath) %>%
+    group_by(id_leggo) %>%
+    summarise(agendas = paste(interesse, collapse = ";")) %>%
+    ungroup()
 
   proposicoes <- read_csv(proposicoes_datapath,
                           col_types = cols(id_ext = col_character())) %>%
@@ -34,7 +40,8 @@ process_proposicoes_destaques <- function(
     left_join(proposicoes_criterio_parecer_aprovado_comissao,
               by = c("id_leggo", "id_ext", "casa")) %>%
     mutate(criterio_aprovada_em_uma_casa = !is.na(criterio_aprovada_em_uma_casa),
-           criterio_parecer_aprovado_comissao = !is.na(criterio_parecer_aprovado_comissao))
+           criterio_parecer_aprovado_comissao = !is.na(criterio_parecer_aprovado_comissao)) %>%
+    left_join(interesses, by = c("id_leggo"))
 
   return(proposicoes_destaques)
 
