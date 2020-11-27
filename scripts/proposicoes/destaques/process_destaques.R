@@ -42,7 +42,20 @@ process_proposicoes_destaques <- function(
     select(id_leggo, id_ext, casa, criterio_parecer_aprovado_comissao, comissoes_aprovadas)
   
   proposicoes_criterio_mais_comentadas_twitter <- 
-    fetch_proposicoes_mais_comentadas_twitter(interesses = interesses_agendas)
+    fetch_proposicoes_mais_comentadas_twitter(interesses = interesses_agendas) %>% 
+    mutate(num_tweets = as.numeric(num_tweets)) %>% 
+    distinct()
+  
+  quartil_3 <- proposicoes_criterio_mais_comentadas_twitter %>% 
+    pull(num_tweets) %>% 
+    quantile() %>% 
+    getElement("75%")
+  
+  a = proposicoes_criterio_mais_comentadas_twitter %>% 
+    filter(num_tweets >= quartil_3)
+    
+    group_by(id_leggo) %>% 
+    mutate(ranker = quantile(num_tweets))
 
   proposicoes_destaques <- proposicoes %>%
     left_join(proposicoes_criterio_aprovada_em_uma_casa,

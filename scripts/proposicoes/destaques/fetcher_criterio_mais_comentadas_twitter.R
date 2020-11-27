@@ -26,8 +26,9 @@ library(tidyverse)
     )
     
     proposicoes <- RCurl::getURL(url) %>%
-      jsonlite::fromJSON() %>%
-      select(id_leggo = id_proposicao_leggo, num_tweets)
+      jsonlite::fromJSON() 
+    # %>%
+      # select(id_leggo = id_proposicao_leggo, num_tweets)
     
     return(proposicoes)
     
