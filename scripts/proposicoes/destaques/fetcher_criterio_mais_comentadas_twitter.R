@@ -26,9 +26,10 @@ library(tidyverse)
     )
     
     proposicoes <- RCurl::getURL(url) %>%
-      jsonlite::fromJSON() 
-    # %>%
-      # select(id_leggo = id_proposicao_leggo, num_tweets)
+      jsonlite::fromJSON() %>% 
+      select(id_leggo = id_proposicao_leggo, num_parlamentares_tweets) %>% 
+      mutate(num_parlamentares_tweets = as.numeric(num_parlamentares_tweets)) %>% 
+      filter(num_parlamentares_tweets > 1)
     
     return(proposicoes)
     

@@ -43,9 +43,7 @@ process_proposicoes_destaques <- function(
   
   proposicoes_criterio_mais_comentadas_twitter <- 
     fetch_proposicoes_mais_comentadas_twitter(interesses = interesses_agendas) %>% 
-    select(id_leggo = id_proposicao_leggo, num_tweets) %>% 
-    mutate(criterio_mais_comentadas_twitter = num_tweets > 1) %>%
-    filter(criterio_mais_comentadas_twitter) %>% 
+    mutate(criterio_mais_comentadas_twitter = T) %>%
     distinct()
 
   proposicoes_destaques <- proposicoes %>%
