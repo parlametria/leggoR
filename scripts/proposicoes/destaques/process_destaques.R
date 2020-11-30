@@ -43,27 +43,21 @@ process_proposicoes_destaques <- function(
   
   proposicoes_criterio_mais_comentadas_twitter <- 
     fetch_proposicoes_mais_comentadas_twitter(interesses = interesses_agendas) %>% 
-    mutate(num_tweets = as.numeric(num_tweets)) %>% 
+    select(id_leggo = id_proposicao_leggo, num_tweets) %>% 
+    mutate(criterio_mais_comentadas_twitter = num_tweets > 1) %>%
+    filter(criterio_mais_comentadas_twitter) %>% 
     distinct()
-  
-  quartil_3 <- proposicoes_criterio_mais_comentadas_twitter %>% 
-    pull(num_tweets) %>% 
-    quantile() %>% 
-    getElement("75%")
-  
-  a = proposicoes_criterio_mais_comentadas_twitter %>% 
-    filter(num_tweets >= quartil_3)
-    
-    group_by(id_leggo) %>% 
-    mutate(ranker = quantile(num_tweets))
 
   proposicoes_destaques <- proposicoes %>%
     left_join(proposicoes_criterio_aprovada_em_uma_casa,
                by = c("id_leggo")) %>%
     left_join(proposicoes_criterio_parecer_aprovado_comissao,
               by = c("id_leggo", "id_ext", "casa")) %>%
+    left_join(proposicoes_criterio_mais_comentadas_twitter,
+              by = c("id_leggo")) %>% 
     mutate(criterio_aprovada_em_uma_casa = !is.na(criterio_aprovada_em_uma_casa),
-           criterio_parecer_aprovado_comissao = !is.na(criterio_parecer_aprovado_comissao)) %>%
+           criterio_parecer_aprovado_comissao = !is.na(criterio_parecer_aprovado_comissao),
+           criterio_mais_comentadas_twitter = !is.na(criterio_mais_comentadas_twitter)) %>%
     left_join(interesses, by = c("id_leggo"))
 
   return(proposicoes_destaques)
