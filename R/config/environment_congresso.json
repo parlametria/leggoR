@@ -147,9 +147,11 @@
     {"id_entidade": 16, "regex": "^Câmara dos Deputados$"},
     {"id_entidade": 78, "regex": "Senado Federal -"},
     {"id_entidade": 17, "regex": "Programa e-Cidadania"},
-    {"id_entidade": 18, "regex": "Comissão Mista de Planos, Orçamentos Públicos e Fiscalização"}
+    {"id_entidade": 18, "regex": "Comissão Mista de Planos, Orçamentos Públicos e Fiscalização"},
+    {"id_entidade": 19, "regex": "CPI do Assassinato de Jovens - 2015"},
+    {"id_entidade": 20, "regex": "CPI do Futebol - 2015"}
   ],
-  
+
   "legislaturas":[
     {"data_inicio": "2019-02-01", "data_fim": "2023-01-31", "legislatura": 56},
     {"data_inicio": "2015-02-01", "data_fim": "2019-01-31", "legislatura": 55},
