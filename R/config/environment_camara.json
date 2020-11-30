@@ -47,7 +47,7 @@
     {"evento": "vetada_totalmente", "regex": "proposição vetada totalmente", "tipo": "serie_c"},
     {"evento": "parecer_comissao", "regex": "^encaminhada à publicação. parecer da comissão.*", "tipo": "serie_a"},
     {"evento": "req_apresentacao", "regex": "^apresentacao do requerimento", "tipo": "serie_b"},
-    {"evento": "req_deferido", "regex": "^^deferido(s)* o(s)* requerimento(s)*|deferido requerimento", "tipo": "serie_b"},
+    {"evento": "req_deferido", "regex": "^deferido(s)* o(s)* requerimento(s)*|deferido requerimento", "tipo": "serie_b"},
     {"evento": "req_indeferido", "regex": "^indeferido(s)* o(s)* requerimento(s)*|indeferido req", "tipo": "serie_b"},
     {"evento": "req_arquivado", "regex": "^requerimento .*arquivado|^arquivado o requerimento", "tipo": "serie_b"},
     {"evento": "req_urgencia_unanime_verbal", "regex": "^.*proposta verbal do presidente.* aprovado.* requerimento de urg.ncia.*$", "tipo": "serie_a"}
