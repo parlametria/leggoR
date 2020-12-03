@@ -15,12 +15,17 @@
     },
 
   "eventos": [
-    {"evento": "aprovacao_parecer", "regex": "^aprovado (?!.*requerimento).*parecer.*$", "tipo":"serie_c"},
+    {"evento": "aprovacao_parecer", "regex": "^(?!.*aprovado (o )*req)(?!aprovado o projeto).*(aprovado.*parecer|comiss.o aprova o relat.rio.*constituir o parecer|parecer.*aprovado pela comiss.o|comiss.o.*aprova o parecer|apresenta novo relat.rio.*comiss.o aprova|comiss.o aprova.*relat.rio|proferido.*o parecer.*aprovado o substitutivo|aprova..o do parecer d. relator.|aprovada a reda..o final assinada pel. relator).*$", "tipo":"serie_c"},
+    {"evento": "requerimento_redistribuicao", "regex": "^apresentação do requerimento de redistribuição", "tipo":"serie_b"},
+    {"evento": "requerimento_apensacao", "regex": "^apresentação do requerimento de apensação", "tipo":"serie_b"},
+    {"evento": "requerimento_urgencia", "regex": "^apresentação do requerimento de urgência", "tipo":"serie_b"},
+    {"evento": "requerimento_prorrogacao", "regex": "^apresentação do requerimento de prorrogação de prazo de comissão temporária", "tipo":"serie_b"},
+    {"evento": "aprovacao_requerimento_inversao_pauta", "regex": "^.*aprovado o requerimento.*invers.o de pauta.*$", "tipo":"serie_a"},
     {"evento": "projeto_reconstituido", "regex": "reconstituído", "tipo":"serie_c"},
     {"evento": "desarquivamento", "regex": "^desarquivad(o|a) nos termos do artigo", "tipo":"serie_c"},
     {"evento": "alteracao_de_regime", "regex": "^alteração do regime de tramitação desta proposição", "tipo":"serie_c"},
     {"evento": "redistribuicao", "regex": "^novo despacho|atualização do despacho|despacho à.*novo despacho", "tipo":"serie_c"},
-    {"evento": "distribuicao", "regex": "às* comiss..s*|despacho à", "tipo":"serie_c"},
+    {"evento": "distribuicao", "regex": "^(?!.*aprovado requerimento).*às* comiss..s*|despacho à.*$", "tipo":"serie_c"},
     {"evento": "comissao_especial", "regex": "recebimento pela p", "tipo":"serie_c"},
     {"evento": "designado_relator", "regex": "^designad(o|a) relator(a)*", "tipo":"serie_a"},
     {"evento": "voto_em_separado", "regex": "^apresentação do voto em separado", "tipo":"serie_c"},
@@ -30,13 +35,13 @@
     {"evento": "inicio_prazo_emendas", "regex": "^prazo para emendas|^abertura de prazo para emendas|^reabertura de prazo para emendas", "tipo":"serie_c"},
     {"evento": "fim_prazo_emendas", "regex": "^encerrado o prazo para emendas", "tipo":"serie_c"},
     {"evento": "arquivamento", "regex": "^arquivad(o|a) nos termos", "tipo":"serie_c"},
-    {"evento": "parecer_pela_adequacao_financeira_e_orcamentaria",  "id_situacao": 322, "regex": "pela adequa..o financeira e or.ament.ria", "tipo":"serie_a"},
-    {"evento": "parecer_pela_aprovacao_com_substitutivo", "id_situacao": 322, "regex": "^(?!.*pela adequa..o financeira e or.ament.ria).*substitutivo.*$", "tipo":"serie_a"},
-    {"evento": "parecer_pela_aprovacao", "id_situacao": 322, "regex": "^(?!.*substitutivo)(?!.*pela adequa..o financeira e or.ament.ria).*aprova.*$", "tipo":"serie_a"},
-    {"evento": "parecer_pela_rejeicao", "id_situacao": 322, "regex": "^(?!.*aprova)(?!.*substitutivo)(?!.*emenda).*rejei..o.*$", "tipo":"serie_a"},
+    {"evento": "parecer_pela_adequacao_financeira_e_orcamentaria",  "id_situacao": 322, "regex": "^.*(pela adequa..o financeira e or.ament.ria)(.*pela aprova..o)|(conclui pela adequa..o financeira e or.ament.ria(?!.*pela rejei..o))|(conclui pela adequa..o financeira e or.ament.ria das emendas(?!.*injuridicidade))|(pela (compatibilidade e )*adequa..o financeira e or.ament.ria (do projeto|deste|do pl)(?!.*e, no mérito, pela rejei..o)).*$", "tipo":"serie_a"},
+    {"evento": "parecer_pela_aprovacao_com_substitutivo", "id_situacao": 322, "regex": "^(?!.*pela adequa..o financeira e or.ament.ria)(?!leitura do parecer)(?!apresenta..o do parecer)(?!anunciada).*(parecer)(?!.*e, no m.rito, pela rejei..o).*(substitutivo).*$", "tipo":"serie_a"},
+    {"evento": "parecer_pela_aprovacao", "id_situacao": 322, "regex": "^(?!.*substitutivo)(?!.*aprovado requerimento)(?!.*vota..o do parecer)(?!.*anexei)(?!.*apresenta..o d. (requerimento|reclamacao))(?!.*no m.rito, pela rejei..o do projeto e das suas emendas)(?!aprovado.*o parecer)(?!.*rejei..o deste)(?!.*aprova..o de demarca..o)(?!.*a comiss.o aprova o relat.rio)(?!.*aprovado o relat.rio)(?!.*(pela|de sua) adequa..o financeira e or.ament.ria)(?!.*(invers.o de pauta|para fins de).*).*(parecer|relat.rio).*(aprova(?!.*(requerimento|destaque|emenda))|favor.vel ao projeto e .s emendas).*$", "tipo":"serie_a"},
+    {"evento": "parecer_pela_rejeicao", "id_situacao": 322, "regex": "^(?!.*aprova)(?!.*substitutivo)(?!.*emenda)(?!.*apresenta..o do recurso).*(parecer|relat.rio).*rejei..o.*$", "tipo":"serie_a"},
     {"evento": "parecer", "id_situacao": 322, "regex": "^(?!.*aprova)(?!.*rejei)(?!.*substitutivo) parecer.*$", "tipo":"serie_a"},
     {"evento": "virada_de_casa", "regex": "(^(remessa|remetido) ao senado federal.*)|(recebido o ofício.* do sf, que comunico que o senado federal aprovou, em revisão.*)", "tipo": "serie_c"},
-    {"evento": "remetida_a_sancao_promulgacao", "regex": "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)|(à promulga..o)", "tipo":"serie_c"},
+    {"evento": "remetida_a_sancao_promulgacao", "regex": "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)|(à promulga..o)|(remessa da mat(é|e)ria à sanção.*)", "tipo":"serie_c"},
     {"evento": "transformada_lei", "regex": "transformado na lei ordinária|promulgada(.)* emenda constitucional", "tipo": "serie_c"},
     {"evento": "vetada_totalmente", "regex": "proposição vetada totalmente", "tipo": "serie_c"},
     {"evento": "parecer_comissao", "regex": "^encaminhada à publicação. parecer da comissão.*", "tipo": "serie_a"},
@@ -50,7 +55,8 @@
     {"evento": "req_apresentacao", "regex": "", "tipo": "serie_b"},
     {"evento": "req_deferido", "regex": "", "tipo": "serie_b"},
     {"evento": "req_indeferido", "regex": "", "tipo": "serie_b"},
-    {"evento": "req_arquivado", "regex": "", "tipo": "serie_b"}
+    {"evento": "req_arquivado", "regex": "", "tipo": "serie_b"},
+    {"evento": "req_urgencia_unanime_verbal", "regex": "^.*proposta verbal do presidente.* aprovado.* requerimento de urg.ncia.*$", "tipo": "serie_a"}
   ],
 
   "autor_voto_separado": {
@@ -140,7 +146,8 @@
   },
 
    "plen_global":{
-    "plenario": "(sessão deliberativa extraordinária.*)|(matéria não apreciada em face do encerramento.*)|(discussão em turno único.*)"
+    "plenario": "(sessão deliberativa extraordinária.*)|(mat.ria n.o apreciad*)|(discussão em turno único.*)|(urgência.*poder executivo.*)|(proferir parecer em plenário.*)|(reformulada de plenário.*)|(a mat.ria vai ao senado.*)|(discutiram a mat.ria.*)",
+    "plenario_definitivo": "(submeta-se.*aprecia.ao do plen.rio)|(submeta-se ao plen.rio, excepcionalmente)"
   },
 
 "fases_global":[
@@ -202,10 +209,14 @@
   ],
 
   "tipos_documentos": [
-    {"tipo": "Emenda", "regex": "^emenda|^subemenda"},
-    {"tipo": "Proposição Apensada", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de conversão|proposta de emenda . constitui..o"},
-    {"tipo": "Parecer", "regex": "^parecer|^complementa..o de voto|^reda..o final|^substitutivo"},
-    {"tipo": "Requerimento", "regex": "^requerimento"},
-    {"tipo": "Voto em Separado", "regex": "^voto em separado"}
+    {"tipo": "Prop. Original / Apensada", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de convers.o|proposta de emenda . constitui..o|projeto de decreto legislativo", "peso": 1, "tipo_acao": "Proposição"},
+    {"tipo": "Emenda", "regex": "^emenda|^subemenda", "peso": 2, "tipo_acao": "Proposição"},
+    {"tipo": "Parecer", "regex": "^parecer|^complementa..o de voto|^reda..o final|^substitutivo", "peso": 3, "tipo_acao": "Outros"},
+    {"tipo": "Requerimento", "regex": "^requerimento", "peso": 4, "tipo_acao": "Proposição"},
+    {"tipo": "Voto em Separado", "regex": "^voto em separado", "peso": 5, "tipo_acao": "Recurso"},
+    {"tipo": "Indicação", "regex": "^indicacao", "peso": 6, "tipo_acao": "Proposição"},
+    {"tipo": "Destaque", "regex": "^destaque", "peso": 7, "tipo_acao": "Recurso"},
+    {"tipo": "Recurso", "regex": "^recurso", "peso": 9, "tipo_acao": "Recurso"},
+    {"tipo": "Vista", "regex": "^vista|pedido de vista", "peso": 10, "tipo_acao": "Recurso"}
     ]
 }

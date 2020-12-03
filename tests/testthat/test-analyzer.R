@@ -62,7 +62,7 @@ test_that('process_proposicao() retorna abertura e encerramento do prazo das eme
 test_that('extract_autor_in_camara() returns the right cols and author', {
   autor_camara <- agoradigital::extract_autor_in_camara(2121442)
   expect_true(all(sapply(autor_camara, class) %in% .COLNAMES_AUTOR_CAMARA))
-  expect_true(autor_camara$autor.nome == "Senado Federal - Comissão Especial do Extrateto SF ")
+  expect_true(autor_camara$autor.nome == "Senado Federal - Comissão Especial do Extrateto SF /")
   
 })
 

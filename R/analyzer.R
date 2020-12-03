@@ -1,3 +1,4 @@
+source(here::here("R/camara_analyzer.R"))
 source(here::here("R/senado_analyzer.R"))
 source(here::here("R/congresso-lib.R"))
 source(here::here("R/relatorias.R"))
@@ -6,6 +7,20 @@ source(here::here("R/proposicoes.R"))
 
 congresso_env <- jsonlite::fromJSON(here::here("R/config/environment_congresso.json"))
 congress_constants <- congresso_env$constants
+
+#' @title Retorna variáveis de ambiente da Câmara
+#' @description Retorna json com variáveis de ambiente da Câmara
+#' @export
+get_envvars_camara <- function() {
+  jsonlite::fromJSON(here::here("R/config/environment_camara.json"))
+}
+
+#' @title Retorna variáveis de ambiente do Senado
+#' @description Retorna json com variáveis de ambiente do Senado
+#' @export
+get_envvars_senado <- function() {
+  jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
+}
 
 #' @title Processa dados de uma proposição do congresso.
 #' @description Recebido um dataframe a função recupera informações sobre uma proposição
@@ -213,6 +228,10 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
 #' @return Dataframe com o valor da temperatura recente para cada dia útil da tramitação de uma proposição.
 #' @export
 get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granularidade = 's', decaimento = 0.25, max_date = lubridate::now(), pautas = tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)) {
+  # Retira a mesma tramitação no mesmo dia nas duas casas
+  tram <- tram %>%
+    dplyr::distinct(data_hora, texto_tramitacao, .keep_all = TRUE)
+  
   eventos_por_leggo_id <-
     tram %>%
     dplyr::mutate(id_leggo = id_leggo)
@@ -229,8 +248,7 @@ get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granulari
         pautas = pautas
       ),
       .id = "id_leggo"
-    ) %>%
-    dplyr::mutate(id_leggo = as.integer(id_leggo))
+    )
 
   if(nrow(temperatura_por_id_leggo) == 0) {
     temperatura_por_id_leggo <- tibble::tribble(
@@ -277,7 +295,6 @@ extract_regime_tramitacao <- function(tram_df, prop) {
 #' @examples
 #' extract_forma_apreciacao(fetch_tramitacao(91341, 'senado', TRUE))
 #' @export
-#' @importFrom stats filter
 extract_forma_apreciacao <- function(tram_df) {
   casa <- tram_df[1, "casa"]
   prop_id <- tram_df[1, "prop_id"]
@@ -351,15 +368,18 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path, pautas_df)
 #' @examples
 #' fix_nomes_locais(pauta_df)
 fix_nomes_locais <- function(pautas_df) {
-  pautas_locais_clean <-
-    pautas_df %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(local_clean = stringr::str_split(local, ' - ')[[1]][1]) %>%
-    dplyr::mutate(local_clean = dplyr::if_else(local_clean == 'Plenário da Câmara dos Deputados' || local_clean == 'PLEN', 'Plenário', local_clean)) %>%
-    dplyr::mutate(local_clean = dplyr::if_else(grepl("\\d",local_clean),'Comissão Especial', local_clean)) %>%
-    dplyr::mutate(local = local_clean) %>%
-    dplyr::ungroup() %>%
-    dplyr::select(-local_clean)
+  pautas_locais_clean <- pautas_df
+  if (nrow(pautas_df) > 0) {
+    pautas_locais_clean <-
+      pautas_df %>%
+      dplyr::rowwise() %>%
+      dplyr::mutate(local_clean = stringr::str_split(local, ' - ')[[1]][1]) %>%
+      dplyr::mutate(local_clean = dplyr::if_else(local_clean == 'Plenário da Câmara dos Deputados' || local_clean == 'PLEN', 'Plenário', local_clean)) %>%
+      dplyr::mutate(local_clean = dplyr::if_else(grepl("\\d",local_clean),'Comissão Especial', local_clean)) %>%
+      dplyr::mutate(local = local_clean) %>%
+      dplyr::ungroup() %>%
+      dplyr::select(-local_clean)
+  }
 
   return(pautas_locais_clean)
 
@@ -375,18 +395,21 @@ fix_nomes_locais <- function(pautas_df) {
 #' @examples
 #' extract_status_tramitacao(91341, 'senado', fetch_proposicao(91341, 'senado'), fetch_tramitacao(91341, 'senado'))
 #' @export
-#' @importFrom stats filter
 extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
   regime <- extract_regime_tramitacao(tram, prop)
   apreciacao <- extract_forma_apreciacao(tram)
-  relator_nome <- get_last_relator_name(proposicao_id, casa)
+  relator <- get_last_relator(proposicao_id, casa)
 
   status_tram <-
     data.frame(
       prop_id = tram[1, ]$prop_id,
       regime_tramitacao = regime,
       forma_apreciacao = apreciacao,
-      relator_nome = relator_nome
+      relator_id = agoradigital::check_is_logical(relator$id_relator),
+      relator_nome = agoradigital::check_is_logical(relator$nome_relator),
+      relator_partido = agoradigital::check_is_logical(relator$partido_relator),
+      relator_uf = agoradigital::check_is_logical(relator$uf_relator),
+      relator_data = agoradigital::check_is_logical(relator$data_relator)
     )
 }
 
@@ -411,7 +434,7 @@ get_progresso <- function(full_proposicao_df, full_tramitacao_df) {
   
   progresso_data <-
     extract_casas(full_proposicao_df, full_tramitacao_df, sigla[[1]]) %>%
-    generate_progresso_df(sigla[[1]]) %>%
+    generate_progresso_df(sigla[[1]], flag_cong_remoto = TRUE) %>%
     ## TODO: isso está ruim, deveria usar o id da proposição e não da etapa...
     tidyr::fill(prop_id, casa) %>%
     tidyr::fill(prop_id, casa, .direction = "up")
