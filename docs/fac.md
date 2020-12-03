@@ -55,7 +55,7 @@ Os tipos de proposição seguem uma espécie de hierarquia, a qual pode ser visu
 * **Ementa:** uma breve apresentação dos pontos relevantes de uma proposição
 * **Emenda:** destina-se a alterar o texto da proposição principal, seja suprimindo ou acrescentando disposições, seja modificando ou substituindo as já existentes. Emendas são também espécies do gênero "proposição", mas têm um caráter acessório, ficando sempre vinculadas a uma proposição de tipo principal
 
-#### 9. Quais os documentos utilizados em atores:
+#### 9. Quais são os documentos utilizados em atores?
 * **Requerimento:** tem como objetivo solicitar um pedido, necessidade ou interesse em algo.
 * **Parecer:** espécie de proposição legislativa acessória, na qual se expressa uma opinião favorável ou contrária à proposição à qual se refere.
 * **Proposição apensada:** anexação de uma proposição ao processo de outra da mesma espécie que trate de matéria análoga ou conexa, para que sejam apreciadas conjuntamente.
