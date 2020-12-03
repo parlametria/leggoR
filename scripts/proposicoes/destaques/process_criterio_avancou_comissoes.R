@@ -7,8 +7,8 @@ library(here)
 #' @param tramitacoes_datapath Caminho para o CSV de tramitações.
 #' @return Dataframe com informações de proposições com parecer aprovado em comissões.
 #' @examples
-#' process_criterio_parecer_aprovado_comissao()
-process_criterio_parecer_aprovado_comissao <- function(
+#' process_criterio_avancou_comissoes()
+process_criterio_avancou_comissoes <- function(
   proposicoes_datapath = here::here("leggo_data/proposicoes.csv"),
   tramitacoes_datapath = here::here("leggo_data/trams.csv")) {
   # tramitacoes <- read_csv("~/leggo_data/trams.csv")
