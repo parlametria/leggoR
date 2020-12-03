@@ -9,7 +9,8 @@
         "incluido_ordem_dia": "incluída_em_ordem_do_dia",
         "regex_comissoes_vector": ["matéria_com_a_relatoria","aguardando_designação_do_relator"],
         "comissoes": "Comissões",
-        "presidencia": "Presidência da República"
+        "presidencia": "Presidência da República",
+        "sigla_slsf": "SLSF"
   },
 
   "apreciacao": {
@@ -52,7 +53,7 @@
     "evento_abertura": "inicio_prazo_emendas",
     "evento_fim": "fim_prazo_emendas"
   },
-  
+
   "evento": {
     "realizacao_audiencia_publica": {
       "regex": "realizada(,)* (.)*audiência pública",
@@ -63,12 +64,17 @@
   },
 
   "eventos": [
-    {"evento": "apresentacao_pl", "regex": "^este process.*cont.*m", "tipo":"serie_c"},
+    {"evento": "aprovacao_parecer", "regex": "^(?!.*aprovado (o )*req)(?!aprovado o projeto).*(aprovado.*parecer|comiss.o aprova o relat.rio.*constituir o parecer|parecer.*aprovado pela comiss.o|comiss.o.*aprova o parecer|apresenta novo relat.rio.*comiss.o aprova|comiss.o aprova.*relat.rio|proferido.*o parecer.*aprovado o substitutivo|aprova..o do parecer d. relator.|aprovada a reda..o final assinada pel. relator).*$", "tipo":"serie_c"},
+    {"evento": "apresentacao_pl", "regex": "^este process.*cont.*m|^leitura da mat.ria na sess.o do sf|^encaminhado à publica..o.", "tipo":"serie_c"},
     {"evento": "requerimento_seminario", "regex": "a realização de seminário", "tipo":"serie_b"},
     {"evento": "recebimento_comissao", "regex": "recebido na|nesta comissao", "tipo":"serie_c"},
     {"evento": "devolvido", "regex": "devolvido pel.*redistribu.*", "tipo":"serie_c"},
+    {"evento": "distribuicao", "regex": "^(?!.*aprovado requerimento).*às* comiss..s*|despacho à.*$", "tipo":"serie_c"},
     {"evento": "apresentacao_parecer", "regex": "(proferido pel(a|o).* parecer)|(leitura dos?( seguinte(s)?)? parecer)|(encaminhados à publicação o(s) (seguinte(s)) parecer(es:|profere parecer.*))", "tipo":"serie_a"},
-    {"evento": "aprovacao_parecer", "regex": "a comissão aprova o relatório|aprovado o relatório", "tipo":"serie_c"},
+    {"evento": "parecer_pela_adequacao_financeira_e_orcamentaria",  "id_situacao": 322, "regex": "^.*(pela adequa..o financeira e or.ament.ria)(.*pela aprova..o)|(conclui pela adequa..o financeira e or.ament.ria(?!.*pela rejei..o))|(conclui pela adequa..o financeira e or.ament.ria das emendas(?!.*injuridicidade))|(pela (compatibilidade e )*adequa..o financeira e or.ament.ria (do projeto|deste|do pl)(?!.*e, no mérito, pela rejei..o)).*$", "tipo":"serie_a"},
+    {"evento": "parecer_pela_aprovacao_com_substitutivo", "id_situacao": 322, "regex": "^(?!.*pela adequa..o financeira e or.ament.ria)(?!leitura do parecer)(?!apresenta..o do parecer)(?!anunciada).*(parecer)(?!.*e, no m.rito, pela rejei..o).*(substitutivo).*$", "tipo":"serie_a"},
+    {"evento": "parecer_pela_aprovacao", "id_situacao": 322, "regex": "^(?!.*substitutivo)(?!.*aprovado requerimento)(?!.*vota..o do parecer)(?!.*anexei)(?!.*apresenta..o d. (requerimento|reclamacao))(?!.*no m.rito, pela rejei..o do projeto e das suas emendas)(?!aprovado.*o parecer)(?!.*rejei..o deste)(?!.*aprova..o de demarca..o)(?!.*a comiss.o aprova o relat.rio)(?!.*aprovado o relat.rio)(?!.*(pela|de sua) adequa..o financeira e or.ament.ria)(?!.*(invers.o de pauta|para fins de).*).*(parecer|relat.rio).*(aprova(?!.*(requerimento|destaque|emenda))|favor.vel ao projeto e .s emendas).*$", "tipo":"serie_a"},
+    {"evento": "parecer_pela_rejeicao", "id_situacao": 322, "regex": "^(?!.*aprova)(?!.*substitutivo)(?!.*emenda)(?!.*apresenta..o do recurso).*(parecer|relat.rio).*rejei..o.*$", "tipo":"serie_a"},
     {"evento": "pedido_de_vista", "regex": "concedida vista", "tipo":"serie_c"},
     {"evento": "designado_relator",
       "regex": "(designa.*relator(a|) da matéria)|((à|ao|a).* senador(a|).*para ((emitir|emissão de) relatório|relatar a (presente |)matéria(.*|)$))|avocada a relatoria",
@@ -81,11 +87,13 @@
     {"evento": "aprovacao_materia", "regex": "aprovada a* reda(ç|c)(ã|a)o final da mat(é|e)ria", "tipo":"serie_c"},
     {"evento": "aprovacao_projeto", "regex": "aprovado o projeto", "tipo":"serie_c"},
     {"evento": "rejeicao_projeto", "regex": "(plc*|pec|mpv) rejeitad(o|a)|comunicando a rejei.(ã|a)o da medida provis(ó|o)ria|rejeitado os pressupostos constitucionais", "tipo":"serie_c"},
-    {"evento": "remetida_a_sancao_promulgacao", "regex": "projeto( foi|) encaminhado à sanção presidencial|(à promulga..o)", "tipo":"serie_c"},
+    {"evento": "remetida_a_sancao_promulgacao", "regex": "projeto( foi|) encaminhado à san.{2}o presidencial|(à promulga..o)|envi(ada|o).* à san..o", "tipo":"serie_c"},
     {"evento": "transformada_lei", "regex": "sancionada|promulgada(.)* emenda constitucional", "tipo":"serie_c"},
     {"evento": "vetada_totalmente", "regex": "vetada integralmente|vetado(,)* totalmente", "tipo":"serie_c"},
-    {"evento": "virada_de_casa", "regex": "primeiro(-| )secret(a|á)rio.*da.*c(a|â)mara.*dos.*deputados.*encaminhando.*revis(a|ã)o", "tipo":"serie_c"},
+    {"evento": "virada_de_casa", "regex": "(primeiro(-| )secret(a|á)rio.*da.*c(a|â)mara.*dos.*deputados.*encaminhando.*revis(a|ã)o|remetido of(í|i)cio .* c(â|a)mara dos deputados.*para revis.o)|(remetido of.cio .* c.mara dos deputados(?!.*(encaminhado.*san.{2}o presidencial)|.*t.rmino.*prazo))", "tipo":"serie_c"},
     {"evento": "perda_da_eficacia", "regex": "t(é|e)rmino do prazo de vig(ê|e)ncia", "tipo":"serie_c"},
+    {"evento": "incluida_ordem_dia", "regex": "inclu(í|i)da em ordem do dia", "tipo":"serie_a"},
+    {"evento": "comissao_instalada", "regex": "comiss.o . instalada|(à|a).*recebimento de emendas", "tipo":"serie_c"},
     {"evento": "retirada_de_pauta", "regex": "retirada de pauta", "tipo":"serie_a"}
   ],
 
@@ -109,7 +117,9 @@
     "regex_2": "à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo",
     "regex_2_extract": "à c.+, em decisão terminativa, onde poderá receber emendas pelo prazo",
     "regex_3": "(à|a)s? comiss..s*",
-    "regex_3_extract": "comiss..s*.+"
+    "regex_3_extract": "comiss..s*.+",
+    "regex_4":"(à|a).*recebimento de emendas",
+    "regex_4_extract": "(à|a).*recebimento de emendas"
   },
 
   "comissoes_nomes": {
@@ -119,7 +129,6 @@
       "CCJ",
       "CCT",
       "CDH",
-      "CDIR",
       "CDR",
       "CE",
       "CI",
@@ -143,7 +152,6 @@
       "de Constituição, Justiça e Cidadania",
       "de Ciência, Tecnologia, Inovação, Comunicação e Informática",
       "de Direitos Humanos e Legislação Participativa",
-      "Diretora",
       "de Desenvolvimento Regional e Turismo",
       "de Educação, Cultura e Esporte",
       "de Serviços de Infraestrutura",
@@ -183,7 +191,7 @@
   },
 
   "fase_global_plenario":{
-    "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)|(à slsf, a pedido.)"
+    "plenario": "(incluíd(a|o) (em|na) ordem do dia da sessão deliberativa.*)|((aprovada|rejeitada) a redação final da matéria.*)|(encaminhado à seadi)|(aprovado o projeto.*)|(à slsf, a pedido.)|(recebida.* a.* emenda.*)"
   },
 
   "fase_global_sancao":{
@@ -216,23 +224,35 @@
   },
 
   "tipos_documentos": [
-    {"tipo": "Proposição Apensada", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de convers.o|proposta de emenda . constitui..o|mpv|plc|pls|pl"},
-    {"tipo": "Emenda", "regex": "^emenda|^subemenda"},
-    {"tipo": "Parecer", "regex": "^parecer|^complementa..o de voto|^reda..o final|^substitutivo"},
-    {"tipo": "Requerimento", "regex": "^requerimento|rqe|rqs|rqj|rra"}, 
-    {"tipo": "Voto em Separado", "regex": "^voto em separado"}
+    {"tipo": "Prop. Original / Apensada", "regex": "medida provis.ria|projeto de lei|projeto de lei complementar|projeto de lei de convers.o|proposta de emenda . constitui..o|mpv|plc|pls|pl|projeto de decreto legislativo", "peso": 1, "tipo_acao": "Proposição"},
+    {"tipo": "Emenda", "regex": "^emenda|^subemenda", "peso": 2, "tipo_acao": "Proposição"},
+    {"tipo": "Parecer", "regex": "^parecer|^complementa..o de voto|^reda..o final|^substitutivo", "peso": 3, "tipo_acao": "Outros" },
+    {"tipo": "Requerimento", "regex": "^requerimento|rqe|rqs|rqj|rra|req|rdh|rma", "peso": 4, "tipo_acao": "Proposição"},
+    {"tipo": "Voto em Separado", "regex": "^voto em separado", "peso": 5, "tipo_acao": "Recurso"},
+    {"tipo":"Indicação", "regex": "^indicacao", "peso": 7, "tipo_acao": "Proposição"},
+    {"tipo":"Destaque", "regex": "^destaque", "peso": 8, "tipo_acao": "Recurso"},
+    {"tipo":"Recurso", "regex": "^recurso", "peso": 9, "tipo_acao": "Recurso"},
+    {"tipo":"Vista", "regex": "^vista|pedido de vista", "peso": 10, "tipo_acao": "Recurso"}
     ],
-    
+
   "tipos_documentos_scrap": [
-    {"tipo": "Emenda", "regex": "emenda|subemenda"},
+    {"tipo": "Emenda", "regex": "emenda|subemenda", "tipo_acao": "Proposição"},
     {"tipo": "Parecer", "regex": "parecer|^complementa..o de voto|^reda..o final|^substitutivo|p\\.s|^relat(ó|o)rio|^par"},
-    {"tipo": "Requerimento", "regex": "requerimento|rqe|rqs|rqj|rra|req|rdh|rma"}, 
-    {"tipo": "Voto em Separado", "regex": "voto em separado"}
+    {"tipo": "Requerimento", "regex": "requerimento|rqe|rqs|rqj|rra|req|rdh|rma", "tipo_acao": "Proposição"},
+    {"tipo": "Voto em Separado", "regex": "voto em separado", "tipo_acao": "Recurso"}
     ],
-    
+
   "tipos_autores_scrap": [
     {"tipo_autor": "senador", "regex": "^Senador(a)*|^Líder do ((.*?)(\\s))|^Presidente do Senado Federal: Senador"},
     {"tipo_autor": "deputado", "regex": "^Deputad(o|a)|^Deputad(o|a) Federal"}
+  ],
+
+  "tipos_emendas": [
+    {"descricao_tipo_texto": "Emenda"},
+    {"descricao_tipo_texto": "Subemenda"},
+    {"descricao_tipo_texto": "Emenda Parcial"},
+    {"descricao_tipo_texto": "Emenda Total"},
+    {"descricao_tipo_texto": "Avulso de emendas"}
   ]
 
 }

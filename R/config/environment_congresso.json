@@ -1,7 +1,8 @@
 {
   "constants": {
       "camara_label": "camara",
-      "senado_label": "senado"
+      "senado_label": "senado",
+      "congresso_label": "congresso"
   },
 
   "eventos_fases":[
@@ -14,7 +15,7 @@
     {"evento_num" : "remetida_a_sancao_promulgacao1", "fase_global":"Sanção/Veto"},
     {"evento_num" : "apresentacao_pl4", "fase_global":"Avaliação dos Vetos"}
   ],
-  
+
   "eventos_fases_pec":[
     {"evento_num" : "primeiro_evento", "fase_global":"Pré-Construção"},
     {"evento_num" : "apresentacao_pl1", "fase_global":"Construção"},
@@ -47,7 +48,7 @@
     {"local": "Presidência da República", "fase_global": "Sanção/Veto"},
     {"local": "Congresso", "fase_global": "Avaliação dos Vetos"}
   ],
-  
+
     "fases_global_pec":[
     {"local": "", "fase_global": "Pré-Construção"},
     {"local": "Comissões", "fase_global": "Construção"},
@@ -87,6 +88,7 @@
     {"evento": "requerimento_apensacao", "titulo_evento": "Requerimento de Apensação" , "nivel": 1},
     {"evento": "requerimento_urgencia", "titulo_evento": "Requerimento de Urgência" , "nivel": 1},
     {"evento": "requerimento_prorrogacao", "titulo_evento": "Requerimento de Prorrogação" , "nivel": 1},
+    {"evento": "aprovacao_requerimento_inversao_pauta", "titulo_evento": "Aprovação de Requerimento para Inversão de Pauta" , "nivel": 1},
     {"evento": "projeto_reconstituido", "titulo_evento": "Projeto Reconstituído" , "nivel": 2},
     {"evento": "desarquivamento", "titulo_evento": "Desarquivamento" , "nivel": 1},
     {"evento": "alteracao_de_regime", "titulo_evento": "Alteração de Regime de Tramitação" , "nivel": 1},
@@ -124,5 +126,39 @@
     {"evento": "rejeicao_projeto", "titulo_evento": "Rejeição do Projeto" , "nivel": 1},
     {"evento": "aprovacao_materia", "titulo_evento": "Aprovação da Matéria" , "nivel": 1},
     {"evento": "aprovacao_requerimento_retirada_de_pauta", "titulo_evento": "Aprovação Requerimento de Retirada de Pauta", "nivel":1}
+  ],
+    "congresso_remoto": {
+      "data_inicio": "2020-03-17",
+      "data_mudanca_mpvs": "2020-04-01"
+  },
+  "tipos_autores": [
+    {"id_entidade": 1, "regex": "Presidência da República|Poder Executivo"},
+    {"id_entidade": 2, "regex": "Mesa Diretora da Câmara dos Deputados"},
+    {"id_entidade": 4, "regex": "Iniciativa Popular"},
+    {"id_entidade": 5, "regex": "João Alberto Soares Neto - Advogado"},
+    {"id_entidade": 6, "regex": "CPI dos Maus-tratos"},
+    {"id_entidade": 7, "regex": "Comissão de Legislação Participativa"},
+    {"id_entidade": 8, "regex": "Comissão Parlamentar de Inquérito destinada a apurar denúncias de turismo sexual e exploração sexual de crianças e adolescentes, conforme diversas matérias publicadas pela imprensa"},
+    {"id_entidade": 9, "regex": "Comissão de Constituição, Justiça e Cidadania"},
+    {"id_entidade": 10, "regex": "Comissão de Direitos Humanos e Legislação Participativa"},
+    {"id_entidade": 11, "regex": "Comissão de Meio Ambiente"},
+    {"id_entidade": 12, "regex": "Comissão Especial do Extrateto"},
+    {"id_entidade": 13, "regex": "CPI - Pedofilia - 2008"},
+    {"id_entidade": 14, "regex": "CT - Modernização da Lei de Licitações e Contratos"},
+    {"id_entidade": 16, "regex": "^Câmara dos Deputados$"},
+    {"id_entidade": 78, "regex": "Senado Federal -"},
+    {"id_entidade": 17, "regex": "Programa e-Cidadania"},
+    {"id_entidade": 18, "regex": "Comissão Mista de Planos, Orçamentos Públicos e Fiscalização"},
+    {"id_entidade": 19, "regex": "CPI do Assassinato de Jovens - 2015"},
+    {"id_entidade": 20, "regex": "CPI do Futebol - 2015"}
+  ],
+
+  "legislaturas":[
+    {"data_inicio": "2019-02-01", "data_fim": "2023-01-31", "legislatura": 56},
+    {"data_inicio": "2015-02-01", "data_fim": "2019-01-31", "legislatura": 55},
+    {"data_inicio": "2011-02-01", "data_fim": "2015-01-31", "legislatura": 54},
+    {"data_inicio": "2007-02-01", "data_fim": "2011-01-31", "legislatura": 53},
+    {"data_inicio": "2003-02-01", "data_fim": "2007-01-31", "legislatura": 52},
+    {"data_inicio": "1999-02-01", "data_fim": "2003-01-31", "legislatura": 51}
   ]
 }

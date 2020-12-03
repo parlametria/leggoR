@@ -7,17 +7,7 @@ get_emendas <- function(id, casa) {
   cat(paste(
     "\n--- Processando: ", "\nid:", id,
     "\ncasa", casa, "\n"))
-  prop <- agoradigital::fetch_proposicao(id, casa)
-  emendas <- 
-    rcongresso::fetch_emendas(id, casa, prop$sigla_tipo, prop$numero, prop$ano)
-  
-  if (casa == 'camara') {
-      emendas %>% 
-      dplyr::mutate(inteiro_teor = agoradigital::get_emendas_links(codigo_emenda))
-  }
-  
-  emendas
-  
+  rcongresso::fetch_emendas(id, casa)
 }
 
 #' @title Safe get Emendas
@@ -42,10 +32,16 @@ safe_get_emendas <- purrr::safely(
 #' @param emendas DataFrame das emendas
 #' @param export_path pasta para onde exportar dados
 #' @export
-write_emendas <- function(emendas, export_path) {
-  emendas_raw_old <- readr::read_csv(paste0(export_path, "/emendas_raw.csv"))
-  readr::write_csv(emendas_raw_old, paste0(export_path, "/emendas_raw_old.csv"))
+update_emendas_files <- function(emendas, export_path) {
+  #Salva emendas antigas e computa quais são as emendas novas
+  analyzed_emendas <- agoradigital::read_emendas(paste0(export_path, "/emendas.csv"))
+  novas_emendas <- dplyr::anti_join(emendas, analyzed_emendas, by = c("codigo_emenda", "casa"))
+  
+  #Atualiza arquivos para processamento das emendas
   readr::write_csv(emendas, paste0(export_path, "/emendas_raw.csv"))
+  readr::write_csv(novas_emendas, paste0(export_path, "/novas_emendas.csv"))
+  
+  return(novas_emendas)
 }
 
 #' @title Processa e escre as emendas

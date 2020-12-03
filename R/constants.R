@@ -149,3 +149,5 @@ COMISSOES_CAMARA <-
     "data_audiencia",
     "link_inteiro_teor"
   )
+
+.DEF_REQ_SLEEP_TIME_IN_SECS <- 2

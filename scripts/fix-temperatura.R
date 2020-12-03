@@ -1,10 +1,12 @@
-devtools::install()
+devtools::install(upgrade = "never")
 library(magrittr)
 
-pautas <- readr::read_csv('data/pautas.csv')
+pautas <- readr::read_csv('../inst/extdata/pautas.csv')
 
-pls_ids <- readr::read_csv('data/tabela_geral_ids_casa.csv') %>%
-  dplyr::mutate(id_leggo = dplyr::row_number())
+pls_ids <- readr::read_csv('../inst/extdata/tabela_geral_ids_casa.csv') %>%
+  dplyr::mutate(concat_chave_leggo = paste0(id_camara, " ", id_senado)) %>%
+  dplyr::mutate(id_leggo = digest::digest(concat_chave_leggo, algo="md5", serialize=F)) %>%
+  dplyr::select(-concat_chave_leggo)
 
 leggo_ids <- dplyr::bind_rows(dplyr::select(pls_ids, id_leggo, id_ext = id_camara, apelido, tema),
                    dplyr::select(pls_ids, id_leggo, id_ext = id_senado, apelido, tema)) %>%
@@ -13,7 +15,7 @@ leggo_ids <- dplyr::bind_rows(dplyr::select(pls_ids, id_leggo, id_ext = id_camar
   dplyr::distinct()
 
 eventos_por_leggo_id <-
-  readr::read_csv('data/trams.csv',
+  readr::read_csv('../inst/extdata/trams.csv',
                   col_types = list(
                     .default = readr::col_character(),
                     id_ext = readr::col_double(),
@@ -39,12 +41,11 @@ temperatura_por_id_leggo <- eventos_por_leggo_id %>%
     ),
     .id = "id_leggo"
   ) %>%
-  dplyr::mutate(id_leggo = as.integer(id_leggo))
 
 test <- temperatura_por_id_leggo %>%
   dplyr::group_by(id_leggo, periodo) %>%
   dplyr::summarise(count = dplyr::n()) %>%
   dplyr::filter(count > 1)
 
-readr::write_csv(temperatura_por_id_leggo, 'data/novo_historico_temperatura.csv')
-readr::write_csv(leggo_ids, 'data/leggo_ids.csv')
+readr::write_csv(temperatura_por_id_leggo, '../inst/extdata/novo_historico_temperatura.csv')
+readr::write_csv(leggo_ids, '../inst/extdata/leggo_ids.csv')

@@ -18,10 +18,8 @@ Imports: magrittr,
     plyr,
     purrr,
     purrrlyr,
-    dplyr,
     tibble,
     tidyr,
-    tidyverse,
     stringr,
     jsonlite,
     rvest,
@@ -36,7 +34,9 @@ Imports: magrittr,
     optparse,
     DT,
     ellipsis,
-    data.table
+    data.table,
+    tidyverse,
+    dplyr (== 0.8.5)
 Suggests: testthat,
     knitr,
     vistime,
@@ -44,4 +44,4 @@ Suggests: testthat,
     rcmdcheck,
     lintr
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1

@@ -1,56 +1,45 @@
+#image: agoradigital/r-scrapper-cicd:latest
+image: docker:latest
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+  - deploy
+
 variables:
-  _R_CHECK_CRAN_INCOMING_: "false"
-  _R_CHECK_FORCE_SUGGESTS_: "true"
-  APT_PKGS: "libcurl4-openssl-dev libssh2-1-dev libssl-dev libxml2-dev zlib1g-dev git"
-  DOCKER_TLS_CERTDIR: ""
-
-#cache:
-#  paths:
-#    - cache/
-
+  DOCKER_HOST: tcp://docker:2375/
+  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:gitlab-ci-dev	
+  COMPOSE_CMD: docker-compose -f docker-compose.yml
+  
 before_script:
-#  - mkdir -p cache
-#  - echo cache >>.Rbuildignore
-  - apt-get update
-  - apt-get install -y --no-install-recommends ${APT_PKGS}
-  - apt-get install -y --no-install-recommends qpdf pandoc pandoc-citeproc
-  - export PATH="/usr/local/lib/R/site-library/littler/examples/:${PATH}"
-  - echo "options(Ncpus = $(nproc --all))" >> /usr/local/lib/R/etc/Rprofile.site
-#  - echo ".libPaths(\"$PWD/cache\")" >> /usr/local/lib/R/etc/Rprofile.site
-  - install2.r devtools
-  - r -e 'devtools::install_dev_deps()'
+  - apk add python3-dev py3-pip docker-cli libffi-dev openssl-dev gcc libc-dev make && pip3 --no-cache install python-dotenv docker-compose
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  - export PKG_IMAGE_TAG=$CONTAINER_TEST_IMAGE
 
-r-release:
-  stage: test
-  tags:
-    - docker
-  image: rocker/tidyverse:3.6.1
+build:
+  stage: build
   script:
-    - Rscript -e 'devtools::install_github("r-lib/rlang")'
-    - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
-    - Rscript -e 'packageVersion("rcongresso")'
-    - Rscript -e 'tryCatch(stopifnot(length(devtools::check(check_dir = ".", args = c("--no-examples", "--as-cran", "--no-manual", "--no-tests"))$errors) == 0),error = function(error_message) {print(paste("Exception when checking code:",error_message))})'
-    - Rscript -e 'res=devtools::test(reporter="summary");df=as.data.frame(res);if(sum(df$failed) > 0 || any(df$error)) {q(status=1)}'
-    - Rscript -e 'library(covr);codecov()'
-  artifacts:
-    paths:
-      - "*.Rcheck"
-    name: logs
-  when: always
+    - $COMPOSE_CMD pull || true
+    - $COMPOSE_CMD build
+    - $COMPOSE_CMD push
+
+tests:
+  stage: test
+  script:
+    - $COMPOSE_CMD pull
+    - $COMPOSE_CMD run rmod sh -c 'Rscript -e "tryCatch(stopifnot(length(devtools::check(check_dir = \".\", args = c(\"--no-examples\", \"--as-cran\", \"--no-manual\", \"--no-tests\"))$errors) == 0),error = function(error_message) {print(paste(\"Exception when checking code:\",error_message))})"'
+    - $COMPOSE_CMD run rmod sh -c 'Rscript -e "devtools::test()"'
+    - $COMPOSE_CMD run -e CODECOV_TOKEN=$CODECOV_TOKEN rmod sh -c 'Rscript -e "library(covr);codecov()"'
 
 pages:
   stage: deploy
-  tags:
-    - docker
-  image: rocker/tidyverse:3.6.1
   script:
-    - install2.r pkgdown
-    - Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'
-    - Rscript -e 'devtools::install()'
-    - Rscript -e 'devtools::document()'
-    - Rscript -e 'pkgdown::build_site(override = list(destination = "public"))'
-    # - ./scripts/build_all.R
-    - mv docs public/
+    - $COMPOSE_CMD pull
+    - $COMPOSE_CMD run rmod sh -c 'Rscript -e "install.packages(\"pkgdown\"); devtools::document(); pkgdown::build_site(override = list(destination = \"public\"))"; mv docs public/'
+    - $COMPOSE_CMD push
   artifacts:
     paths:
       - public

@@ -1,6 +1,0 @@
-prop_id,casa,data_hora,sequencia,texto_tramitacao,sigla_local,id_situacao,descricao_situacao,link_inteiro_teor,id_principal
-2147779,camara,2017-08-15T00:00:00Z,4,Relatório de Conferência de Assinaturas,PLEN,1042,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1636293,2147779
-2147779,camara,2017-08-15T16:49:00Z,1,"Apresentação do Requerimento de Urgência (Art. 155 do RICD) n. 7015/2017, pelo Deputado Rubens Bueno (PPS-PR), que: ""Requer regime de urgência para apreciação do Projeto de Lei nº 6726, de 2016, que 'Regulamenta o limite remuneratório de que tratam o inciso XI e os §§ 9º e 11 da Constituição Federal' - extrateto"".",PLEN,100,Pronta para Pauta,http://www.camara.gov.br/proposicoesWeb/prop_mostrarintegra?codteor=1586530,2147779
-2147779,camara,2017-08-15T16:49:00Z,2,Realizar o Encaminhamento para COAPP(SGM),SEPRO,910,NA,NA,2147779
-2147779,camara,2017-08-15T16:58:00Z,3,Encaminhado à(ao) COAPP(SGM) através da guia de Remessa (GR/SEPRO) nº 4680/2017.,SEPRO,180,NA,NA,2147779
-2147779,camara,2018-05-18T12:15:00Z,5,Recebimento pela COAPP(SGM).,COAPP(SGM),500,Aguardando Encaminhamento,NA,2147779

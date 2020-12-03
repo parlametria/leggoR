@@ -127,8 +127,7 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
   
   tipos_emendas <- camara_env$tipos_emendas
   
-  emendas <- rcongresso::fetch_emendas(proposicao_df$id, casa, proposicao_df$siglaTipo, 
-                                       proposicao_df$numero, proposicao_df$ano) %>% 
+  emendas <- rcongresso::fetch_emendas(proposicao_df$id, casa) %>% 
     
     dplyr::mutate(prop_id = proposicao_df$id,
                   casa = "camara")  %>% 
