@@ -31,6 +31,7 @@
     {"evento": "voto_em_separado", "regex": "^apresentação do voto em separado", "tipo":"serie_c"},
     {"evento": "apresentacao_pl", "regex": "^apresentação do projeto de lei|^apresentação da proposta de emenda à constituição", "tipo":"serie_c"},
     {"evento": "retirada_de_pauta", "regex": "^retirado de pauta", "tipo":"serie_a"},
+    {"evento": "aprovacao_requerimento_retirada_de_pauta", "regex": "aprovado o* requerimento de retirada de pauta", "tipo":"serie_a"},
     {"evento": "pedido_de_vista", "regex": "^(vista conjunta aos|vista ao)", "tipo":"serie_c"},
     {"evento": "inicio_prazo_emendas", "regex": "^prazo para emendas|^abertura de prazo para emendas|^reabertura de prazo para emendas", "tipo":"serie_c"},
     {"evento": "fim_prazo_emendas", "regex": "^encerrado o prazo para emendas", "tipo":"serie_c"},

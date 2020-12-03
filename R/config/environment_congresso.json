@@ -124,7 +124,8 @@
     {"evento": "recebimento_comissao", "titulo_evento": "Recebimento na Comissão" , "nivel": 2},
     {"evento": "aprovacao_projeto", "titulo_evento": "Aprovação do Projeto" , "nivel": 1},
     {"evento": "rejeicao_projeto", "titulo_evento": "Rejeição do Projeto" , "nivel": 1},
-    {"evento": "aprovacao_materia", "titulo_evento": "Aprovação da Matéria" , "nivel": 1}
+    {"evento": "aprovacao_materia", "titulo_evento": "Aprovação da Matéria" , "nivel": 1},
+    {"evento": "aprovacao_requerimento_retirada_de_pauta", "titulo_evento": "Aprovação Requerimento de Retirada de Pauta", "nivel":1}
   ],
     "congresso_remoto": {
       "data_inicio": "2020-03-17",
