@@ -9,3 +9,8 @@
 ^view$
 ^scripts$
 ^\.lintr$
+rcongresso
+data/.rstudio
+data/rstudio
+.rstudio
+rstudio

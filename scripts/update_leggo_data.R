@@ -1,10 +1,59 @@
 #!/usr/bin/env Rscript
 library(magrittr)
 
-help <- "
+.HELP <- "
 Usage:
 Rscript update_leggo_data.R <pls_ids_filepath> <export_path> <casa>
 "
+
+.FILEPATH_HELP <- "
+\t   Ex: \"../inst/extdata/tabela_geral_ids_casa.csv\"
+\t   PS: Deve conter a pasta referente a casa a ser atualizada no mesmo nível
+\t   desse arquivo. Ex: \"../inst/extdata/camara\"
+"
+
+.EXPORT_PATH_HELP <- "
+\t   Ex: \"../inst/extdata/\"
+"
+
+.CASA_HELP <- "
+\t   Ex: \"camara\"
+"
+
+
+#' @title Get arguments from command line option parsing
+#' @description Get arguments from command line option parsing
+get_args <- function() {
+  args = commandArgs(trailingOnly=TRUE)
+
+  option_list = list(
+    optparse::make_option(c("-p", "--pls_ids_filepath"),
+                          type="character",
+                          default="../inst/extdata/tabela_geral_ids_casa.csv",
+                          help=.FILEPATH_HELP,
+                          metavar="character"),
+    optparse::make_option(c("-e", "--export_path"),
+                          type="character",
+                          default="../inst/extdata/",
+                          help=.EXPORT_PATH_HELP,
+                          metavar="character"),
+    optparse::make_option(c("-c", "--casa"),
+                          type="character",
+                          default="camara",
+                          help=.CASA_HELP,
+                          metavar="character")
+  );
+
+  opt_parser <- optparse::OptionParser(option_list = option_list, usage = .HELP)
+  opt <- optparse::parse_args(opt_parser)
+  return(opt);
+}
+
+## Process args
+## Process args
+args <- get_args()
+print(args)
+
 
 #Functions
 
@@ -38,21 +87,20 @@ get_fetch_status <- function(docs_ids, docs_data, authors_data) {
 }
 
 ## Process args
-args <- commandArgs(trailingOnly = TRUE)
 min_num_args <- 3
 if (length(args) < min_num_args) {
     stop(paste("Wrong number of arguments!", help, sep = "\n"))
 }
-pls_ids_filepath <- args[1]
-export_path <- args[2]
-casa <- tolower(args[3])
+pls_ids_filepath <- args$pls_ids_filepath
+export_path <- args$export_path
+casa <- tolower(args$casa)
 
 if (!(casa %in% c("camara", "senado"))) {
   stop("Casa deve ser ou camara ou senado!")
 }
 
 ## Install local repository R package version
-devtools::install()
+devtools::install(upgrade = "never")
 
 #current_docs <- tibble::tibble()
 current_autores <- tibble::tibble()
@@ -62,6 +110,8 @@ senadores <- tibble::tibble()
 # Read current data csvs
 print("Lendo csvs com dados atuais...")
 pls_ids <- agoradigital::read_pls_ids(pls_ids_filepath)
+
+dir.create(paste0(export_path, '/', casa), showWarnings = FALSE)
 
 docs_filepath <- paste0(export_path, '/', casa, '/documentos.csv')
 autores_filepath <- paste0(export_path, '/', casa, '/autores.csv')
@@ -75,6 +125,12 @@ if (casa == 'senado') {
   print("Realizando atualização dos dados do Senado")
 
   pls_senado <- all_pls_ids %>%  dplyr::filter(casa == 'senado')
+
+  if (nrow(pls_senado) == 0) {
+    warning("Não existe ID para a proposição no Senado")
+    quit(save='no')
+  }
+
   senado_docs <- agoradigital::fetch_documentos_relacionados_senado(pls_senado)
   senado_autores <- agoradigital::fetch_autores_relacionadas_senado(senado_docs)
 
@@ -83,7 +139,8 @@ if (casa == 'senado') {
     dplyr::rename(
       id_documento = codigo_texto,
       id_principal = codigo_materia
-    )
+    ) %>%
+    dplyr::distinct(id_principal, id_documento, .keep_all = TRUE)
 
   senado_autores <-
     senado_autores %>%
@@ -92,22 +149,32 @@ if (casa == 'senado') {
       id_principal = codigo_materia
     )
 
-  senado_autores_com_id_autor <- agoradigital::match_autores_senado_to_parlamentares(senado_autores, senadores, deputados)
-  readr::write_csv(senado_docs, docs_filepath)
-  readr::write_csv(senado_autores_com_id_autor, autores_filepath)
+  senado_autores_com_id_autor <- agoradigital::match_autores_senado_to_parlamentares(senado_autores, senadores, deputados) %>%
+    dplyr::filter(!is.na(id_autor)) %>% ## filtra apenas autores com id
+    dplyr::distinct(id_autor, id_principal, id_documento, .keep_all = TRUE)
 
-}else {
+  print(paste("Salvando",nrow(senado_docs), "documentos para o Senado."))
+  readr::write_csv(senado_docs, docs_filepath)
+  print(paste("Salvando",nrow(senado_autores_com_id_autor), "autores de documentos para o Senado."))
+  readr::write_csv(senado_autores_com_id_autor, autores_filepath)
+  print("Salvos :)")
+
+} else {
   current_docs <- agoradigital::read_current_docs_camara(docs_filepath)
   current_autores <- agoradigital::read_current_autores_camara(autores_filepath)
+
   current_docs_ids <-
     current_docs %>%
     dplyr::select(id_documento,
                   id_principal,
-                  casa)
+                  casa) %>%
+    dplyr::mutate(id_documento = as.numeric(id_documento),
+                  id_principal = as.numeric(id_principal),
+                  casa = as.character(casa))
 
   print(paste("Verificando se há novos documentos..."))
 
-  new_docs_ids <- agoradigital::find_new_documentos(all_pls_ids, current_docs, casa)
+  new_docs_ids <- agoradigital::find_new_documentos(all_pls_ids, current_docs_ids, casa)
 
   print(paste("Foram encontrados",nrow(new_docs_ids), "novos documentos."))
 
@@ -138,22 +205,49 @@ if (casa == 'senado') {
 
     if (nrow(complete_docs) == 0) {
       print("Não foi possível baixar dados completos (proposição e autores) para nenhum dos novos documentos =(")
-      quit(save = "no", status=1)
+      quit(save = "no", status=0)
     }
 
     print(paste("Adicionando ",nrow(new_docs_data)," novos documentos."))
-
     updated_docs <-
-      rbind(current_docs, new_docs_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
-    readr::write_csv(updated_docs, docs_filepath)
+      dplyr::bind_rows(current_docs %>%
+                         dplyr::mutate_all(as.character),
+                       new_docs_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento)) %>%
+      dplyr::distinct(id_documento, id_principal, casa, .keep_all = TRUE)
 
     print(paste("Adicionando ",nrow(new_autores_data)," autores de novos documentos."))
 
-    new_autores_data <-
+    simpleCap <- function(x) {
+       s <- strsplit(tolower(x), " ")[[1]]
+       paste(toupper(substring(s, 1,1)), substring(s, 2),
+                     sep="", collapse=" ")
+    }
+    matched_autores_data <-
       merge(new_autores_data, deputados, by.x = "id_autor", by.y = "id") %>%
-      dplyr::select(id_autor,nome,tipo_autor,uri_autor,id_documento,casa,partido,uf,cod_tipo_autor)
+      dplyr::mutate(nome = purrr::map_chr(ultimo_status_nome_eleitoral, ~ simpleCap(.x))) %>%
+      dplyr::select(id_autor, nome, tipo_autor, uri_autor, id_documento, casa, partido, uf, cod_tipo_autor)
+
+    # remove id_principal para realizar novo join com documentos atualizados
+    if("id_principal" %in% (current_autores %>% names())) {
+      current_autores <- current_autores %>%
+        dplyr::select(-id_principal)
+    }
+
     updated_autores_docs <-
-      rbind(current_autores, new_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento))
+      dplyr::bind_rows(current_autores %>%
+                         dplyr::mutate_all(as.character),
+                       matched_autores_data %>% dplyr::filter(id_documento %in% complete_docs$id_documento)) %>%
+      dplyr::filter(tipo_autor == "Deputado" & casa == "camara") %>%
+      dplyr::left_join(updated_docs %>% dplyr::distinct(id_documento, id_principal),
+                       by = c("id_documento")) %>%
+      dplyr::distinct(id_autor, id_documento, id_principal, .keep_all = TRUE) %>%
+      dplyr::select(id_autor, id_documento, id_principal, dplyr::everything())
+
+    print("Salvando documentos e autores.")
+    readr::write_csv(updated_docs, docs_filepath)
     readr::write_csv(updated_autores_docs, autores_filepath)
+    print("Salvo.")
+  } else {
+    print("Não há documentos novos para essa proposição na Câmara.")
   }
 }

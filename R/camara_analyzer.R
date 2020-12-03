@@ -31,9 +31,9 @@ rename_df_columns <- function(df) {
 #' @return Dataframe com a coluna "evento" adicionada.
 extract_events_in_camara <- function(tramitacao_df) {
   eventos_camara <- camara_env$eventos %>% dplyr::select(evento, regex)
-  df <- tramitacao_df %>% 
+  df <- tramitacao_df %>%
     dplyr::mutate(texto_lower = tolower(stringr::str_trim(
-      stringr::str_replace_all(texto_tramitacao,'[\r\n]', '')))) %>% 
+      stringr::str_replace_all(texto_tramitacao,'[\r\n]', '')))) %>%
     fuzzyjoin::regex_left_join(eventos_camara, by = c(texto_lower = "regex")) %>%
     dplyr::select(-texto_lower, -regex)
 }
@@ -87,15 +87,19 @@ extract_locais_in_camara <- function(df) {
     c('votação', 'pronta para pauta', 'apresentação de proposição',
       'sessão deliberativa')
   descricoes_comissoes <- c('recebimento pela')
-
+  
   df %<>%
     dplyr::arrange(data_hora, sequencia) %>%
     dplyr::mutate(
       local =
         dplyr::case_when(
-          (stringr::str_detect(tolower(texto_tramitacao), '(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)')) ~ 'Presidência da República',
+          (stringr::str_detect(
+            tolower(texto_tramitacao), 
+            '(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)')) ~ 
+            'Presidência da República',
           (tolower(texto_tramitacao) %in% descricoes_plenario |
-             stringr::str_detect(tolower(texto_tramitacao), '^votação')) & sigla_local == 'PLEN' ~ 'Plenário',
+             stringr::str_detect(tolower(texto_tramitacao), '^votação')
+             ) & sigla_local == 'PLEN' ~ 'Plenário',
           (stringr::str_detect(tolower(texto_tramitacao), '^recebimento pela') |
              tolower(texto_tramitacao) %in% descricoes_comissoes |
              stringr::str_detect(tolower(texto_tramitacao), 'designad(o|a) relator(a)*')) &
@@ -201,27 +205,34 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   virada_de_casa <-
     proc_tram_df %>%
     dplyr::filter(evento == 'virada_de_casa')
+  
+  remetida_sancao <- 
+    proc_tram_df %>% 
+    dplyr::filter(evento == 'remetida_a_sancao_promulgacao')
 
-  if(nrow(virada_de_casa) == 1){
+  if(nrow(virada_de_casa) == 1 & nrow(remetida_sancao) != 1){
     proc_tram_df <-
     proc_tram_df[1:get_linha_virada_de_casa(proc_tram_df),]
-  }else {
+  } else if (nrow(remetida_sancao) == 1) {
+    proc_tram_df <-
+      proc_tram_df[1:get_linha_remetida_a_sancao_promulgacao(proc_tram_df),]
+  } else {
     index_of_sancao <-
       get_linha_finalizacao_tramitacao(proc_tram_df)
     proc_tram_df <-
       proc_tram_df[1:index_of_sancao,]
   }
-  
+
   eventos_reqs <- fetch_eventos_reqs_prop(proposicao_df$prop_id, proposicao_df$casa)
 
-  proc_tram_df <-
+  proc_tram_final <-
     proc_tram_df %>%
     extract_locais_in_camara() %>%
     dplyr::bind_rows(eventos_reqs) %>%
     refact_date() %>%
     sort_by_date()
 
-  return(proc_tram_df)
+  return(proc_tram_final)
 }
 
 #Fetch a bill with renamed columns
@@ -240,7 +251,6 @@ fetch_proposicao_renamed <- function(id) {
 #' @examples
 #' extract_forma_apreciacao_camara(217161)
 #' @export
-#' @importFrom stats filter
 extract_forma_apreciacao_camara <- function(prop_id) {
   regex_apreciacao <-
     tibble::tribble(
@@ -251,11 +261,11 @@ extract_forma_apreciacao_camara <- function(prop_id) {
       'Plenário',
       'Sujeita à Apreciação do Plenário'
     )
-  
+
   base_url <-
     'https://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID?IdProp='
 
-  apreciacao_df <- 
+  apreciacao_df <-
     XML::xmlToDataFrame(nodes = XML::getNodeSet(XML::xmlParse(RCurl::getURL(paste0(base_url, prop_id))),
                                                 "//Apreciacao"))  %>%
     fuzzyjoin::regex_left_join(regex_apreciacao, by = c(text = "regex"))
@@ -290,8 +300,11 @@ extract_local_global_in_camara <- function(tramitacao_com_fases) {
     dplyr::mutate(
       local =
         dplyr::case_when(
-          (stringr::str_detect(tolower(texto_tramitacao), "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)")) ~ 'Presidência da República',
-          (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario) & sigla_local == "PLEN") ~ "Plenário",
+          (stringr::str_detect(tolower(texto_tramitacao), "(projeto( foi|) encaminhado à sanção presidencial)|(remessa à sanção.*)") |
+             stringr::str_detect(tolower(evento), "remetida_a_sancao_promulgacao")) ~ 'Presidência da República',
+          (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario) & sigla_local == "PLEN" |
+             (stringr::str_detect(tolower(texto_tramitacao), camara_env$plen_global$plenario_definitivo))) ~ "Plenário",
+          (evento == "apresentacao_pl" & sigla_local == "PLEN") ~ "Plenário",
           sigla_local != "PLEN" & (sigla_local %in% camara_env$comissoes$siglas_comissoes_antigas | sigla_local %in% camara_env$comissoes$siglas_comissoes | stringr::str_detect(tolower(sigla_local), "^pl"))  ~ "Comissões"))
 }
 
@@ -303,44 +316,44 @@ extract_local_global_in_camara <- function(tramitacao_com_fases) {
 #'  extract_fase_global_in_camara(fetch_tramitacao(2121442, 'camara', T) %>% extract_events_in_camara() %>% extract_locais_in_camara(), fetch_proposicao(2121442, 'camara', '', '', normalized=T))
 extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
   fase_global_constants <- camara_env$fase_global
-  
+
   casa_origem <-
-    dplyr::if_else((!is.null(proposicao_df$casa_origem) & !is.na(proposicao_df$casa_origem)) & 
+    dplyr::if_else((!is.null(proposicao_df$casa_origem) & !is.na(proposicao_df$casa_origem)) &
                      (proposicao_df$casa_origem == "senado"),
                    fase_global_constants$revisao_camara,
                    fase_global_constants$origem_camara
     )
-  
+
   virada_de_casa <-
     data_tramitacao %>%
     dplyr::filter(evento == 'virada_de_casa') %>%
     dplyr::arrange(data_hora) %>%
     dplyr::select(data_hora)
-  
+
   casa_atual <-
     dplyr::if_else(
       casa_origem == fase_global_constants$origem_camara,
       fase_global_constants$revisao_senado,
       fase_global_constants$origem_camara
     )
-  
+
   casa_revisao2 <-
     dplyr::if_else(
       casa_origem == fase_global_constants$origem_camara,
       fase_global_constants$revisao2_camara,
       fase_global_constants$revisao2_senado
     )
-  
+
   data_apresentacao <- proposicao_df$data_apresentacao
-  
+
   if (nrow(virada_de_casa) == 0) { #não virou de casa
     data_tramitacao <- data_tramitacao %>%
       # Tratando eventos de apensadas que ocorreram antes da apresentação
-      dplyr::mutate(global = dplyr::if_else(data_hora < data_apresentacao,paste0("Pre",casa_origem), 
+      dplyr::mutate(global = dplyr::if_else(data_hora < data_apresentacao,paste0("Pre",casa_origem),
                                             casa_origem))
-    
+
   } else { #virou de casa pelo menos uma vez
-    
+
     data_tramitacao <-
       data_tramitacao %>%
       dplyr::mutate(global = dplyr::if_else(
@@ -348,9 +361,9 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
         casa_origem,
         casa_atual
       ))
-    
+
   }
-  
+
   if(nrow(virada_de_casa) > 1) { #virou de casa duas vezes
     data_tramitacao <-
       data_tramitacao %>%
@@ -360,12 +373,12 @@ extract_fase_global_in_camara <- function(data_tramitacao, proposicao_df) {
         global
       ))
   }
-  
+
   data_tramitacao <-
     data_tramitacao %>%
     dplyr::mutate(global = dplyr::if_else(evento == "remetida_a_sancao_promulgacao", "- Sanção/Veto", global)) %>%
     tidyr::fill(global, .direction = "down")
-  
+
   return(data_tramitacao)
 }
 

@@ -44,7 +44,7 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
   reqs_tipos <- reqs %>%
     dplyr::select(id_req, tipo_documento = descricaoTipo)
 
-  eventos_reqs <- purrr::map_df(reqs$id_req, ~rcongresso::fetch_events_requerimento_camara(.x))
+  eventos_reqs <- purrr::map_df(reqs$id_req, ~ rcongresso::fetch_events_requerimento_camara(.x))
 
   if(nrow(eventos_reqs) != 0) {
     eventos_reqs <-
@@ -60,6 +60,7 @@ fetch_eventos_reqs_prop_camara <- function(prop_id) {
                     prop_id = prop_id,
                     casa = congresso_constants$camara_label,
                     id_situacao = as.integer(id_situacao),
+                    sequencia = as.integer(sequencia),
                     tipo_documento = dplyr::if_else(tipo_documento == 'Requerimento', 'Requerimento (tipo não especificado)', tipo_documento))
   }
 

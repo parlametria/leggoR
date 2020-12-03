@@ -7,7 +7,7 @@
 read_distances_files <- function(distancias_datapath) {
   list.files(path = distancias_datapath,
              pattern = "*.csv", full.names = T) %>% 
-  purrr::map_df(~ readr::read_csv(., col_types = "ncc")) %>% 
+  purrr::map_df(~ agoradigital::read_distance_file(.)) %>% 
   return()
 }
 
@@ -27,10 +27,10 @@ format_table_distances_to_emendas <- function(distancias_datapath, write_datapat
                   col_types = list(readr::col_integer(),
                                    readr::col_character(),
                                    readr::col_double())) %>% 
-      dplyr::mutate(array = strsplit(comparacao, "_")) %>% 
-      dplyr::mutate(id_emenda = sapply(array, head, 1),
-                    num_linha_proposicao = sapply(array, tail, 1)) %>% 
-      dplyr::select(id_emenda, num_linha_proposicao, Distance = distancia)
+      tidyr::separate(col = comparacao, 
+                      into=c('id_emenda','id_proposicao','casa','rest','num_linha_proposicao'),
+                      sep="_") %>% 
+      dplyr::select(id_emenda, id_proposicao, casa, num_linha_proposicao, distancia)
   
   print(paste("Saving distances file:",out_file_name))
   
@@ -38,27 +38,44 @@ format_table_distances_to_emendas <- function(distancias_datapath, write_datapat
 }
 
 #' @title Adiciona a distância às emendas
-#' @description Recebe o dataframe de emendas e o caminho para os arquivos csv das distancias calculadas
-#' @param emendas_df Dataframe das emendas das proposições
+#' @description Recebe o dataframe de novas emendas, o das emendas já analisadas e o caminho para os arquivos csv das distancias calculadas
+#' @param novas_emendas_df Dataframe das novas emendas das proposições
+#' @param emendas_analisadas_df Dataframe das emendas das proposições que já foram analisadas
 #' @param distancias_datapath Caminho da pasta contendo os arquivos
-#' @return Dataframe contendo todas a união de todos os csv's do caminho informado
+#' @return Dataframe contendo a análise (distância calculada) para todas as emendas (antigas e novas)
 #' @importFrom magrittr %>% 
 #' @export
 #' @examples
-#' add_distances_to_emendas(emendas_df, here::here("data/distancias/"))
+#' add_distances_to_emendas(novas_emendas_df, emendas_analisadas_df, here::here("data/distancias/"))
 #' @export
-add_distances_to_emendas <- function(emendas_df, distancias_datapath = here::here("data/distancias/")) {
-  distances_df <- read_distances_files(distancias_datapath) %>% 
-    dplyr::group_by(id_emenda) %>% 
-    dplyr::summarise(distancia = min(Distance)) 
+add_distances_to_emendas <- function(novas_emendas_df, emendas_analisadas_df, distancias_datapath) {
+  distances_df <- read_distances_files(distancias_datapath)
+  novas_emendas_com_distancias <- tibble::tibble()
   
-  emendas_with_distances <- 
-    dplyr::left_join(
-      emendas_df,
-      distances_df, 
-      by=c("codigo_emenda"="id_emenda")) %>%
-    dplyr::mutate(distancia = as.numeric(distancia),
-                  distancia = dplyr::if_else(is.na(distancia),-1,distancia))
+  if (nrow(distances_df) > 0) {
+    summarised_distances_df <- distances_df %>% 
+      dplyr::group_by(id_emenda, id_proposicao, casa) %>% 
+      dplyr::summarise(distancia = min(distancia)) %>% 
+      dplyr::ungroup()
+    
+    novas_emendas_com_distancias <- 
+      dplyr::left_join(
+        novas_emendas_df,
+        summarised_distances_df, 
+        by=c("codigo_emenda"="id_emenda", "id_ext"="id_proposicao", "casa")) %>%
+      dplyr::mutate(distancia = as.numeric(distancia),
+                    distancia = dplyr::if_else(is.na(distancia),-1,distancia))
+  } else {
+    novas_emendas_com_distancias <- novas_emendas_df %>%
+      dplyr::mutate(distancia = -1)
+  }
   
-  return(emendas_with_distances)
+  emendas_sem_novas_analises <- emendas_analisadas_df %>% 
+    dplyr::anti_join(novas_emendas_df %>% 
+                       dplyr::select(id_ext, codigo_emenda, casa),
+                     by = c('id_ext','codigo_emenda','casa'))
+  
+  new_emendas_analisadas <- dplyr::bind_rows(emendas_sem_novas_analises, novas_emendas_com_distancias)
+  
+  return(new_emendas_analisadas)
 }

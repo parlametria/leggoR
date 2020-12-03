@@ -150,5 +150,4 @@ COMISSOES_CAMARA <-
     "link_inteiro_teor"
   )
 
-.PARTIDOS_OPOSICAO <-
-  c("PT", "PSOL", "PSB", "PCdoB", "PDT", "REDE")
+.DEF_REQ_SLEEP_TIME_IN_SECS <- 2
