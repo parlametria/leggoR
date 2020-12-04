@@ -81,10 +81,12 @@ process_criterio_avancou_comissoes <- function(
                                            sequencia = col_integer(),
                                            .default = col_character()))
 
-  ano_atual <- lubridate::year(Sys.time())
   ## Filtra eventos dos últimos 4 anos
+  hoje <- Sys.time()
   tramitacoes <- tramitacoes %>%
-    dplyr::filter(lubridate::year(data) > (ano_atual - 4))
+    mutate(idade = lubridate::interval(data, hoje) %>%
+             as.numeric('years')) %>%
+    dplyr::filter(idade <= 4)
 
   proposicoes <- read_csv(proposicoes_datapath,
                           col_types = cols(id_ext = col_character())) %>%
