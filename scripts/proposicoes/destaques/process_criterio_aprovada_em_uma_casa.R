@@ -19,6 +19,12 @@ process_criterio_aprovada_em_uma_casa <- function(
   
   .fases_revisao <- c("Revisão I", "Pré-Revisão I")
   
+  .limite_anos <- 4
+  
+  .ano_minimo <- Sys.Date() %>% 
+    lubridate::ymd() %>% 
+    lubridate::year() - .limite_anos
+  
   progressos <- read_csv(progressos_datapath)
   
   proposicoes <- read_csv(proposicoes_datapath) %>%
@@ -46,7 +52,8 @@ process_criterio_aprovada_em_uma_casa <- function(
   
   proposicoes_em_revisao <- progresso_atual_proposicoes_em_revisao %>% 
     inner_join(proposicoes, by = c("id_ext", "casa")) %>% 
-    select(id_leggo, fase_global, local, local_casa, data_inicio, data_fim)
+    select(id_leggo, fase_global, local, local_casa, data_inicio, data_fim) %>% 
+    filter(lubridate::year(data_inicio) >= .ano_minimo)
   
   return(proposicoes_em_revisao)
 }
