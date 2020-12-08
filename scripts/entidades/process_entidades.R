@@ -22,7 +22,10 @@ library(tidyverse)
                     "56", "17", "317", 'senado', 'Programa e-Cidadania',
                     "56", "18", "318", 'senado', 'Comissão Mista de Planos, Orçamentos Públicos e Fiscalização',
                     "56", "19", "319", 'senado', 'CPI do Assassinato de Jovens - 2015',
-                    "56", "20", "320", 'senado', 'CPI do Futebol - 2015'
+                    "56", "20", "320", 'senado', 'CPI do Futebol - 2015',
+                    "56", "21", "321", 'senado', 'CPI de Brumadinho',
+                    "56", "22", "322", 'senado', 'Comissão de Agricultura e Reforma Agrária',
+                    "56", "23", "323", 'senado', 'Subcomissão Temporária de Resíduos Sólidos'
                     ) %>%
     mutate(sexo = NA,
            partido = NA,

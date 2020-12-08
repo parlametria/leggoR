@@ -153,7 +153,10 @@
     {"id_entidade": 17, "regex": "Programa e-Cidadania"},
     {"id_entidade": 18, "regex": "Comissão Mista de Planos, Orçamentos Públicos e Fiscalização"},
     {"id_entidade": 19, "regex": "CPI do Assassinato de Jovens - 2015"},
-    {"id_entidade": 20, "regex": "CPI do Futebol - 2015"}
+    {"id_entidade": 20, "regex": "CPI do Futebol - 2015"},
+    {"id_entidade": 21, "regex": "CPI de Brumadinho"},
+    {"id_entidade": 22, "regex": "Comissão de Agricultura e Reforma Agrária"},
+    {"id_entidade": 23, "regex": "Subcomissão Temporária de Resíduos Sólidos"}
   ],
 
   "legislaturas":[
