@@ -506,6 +506,9 @@ process_autores_pl <-
             id_ext = id_senado,
             id_leggo = id_leggo
           ) %>%
+          dplyr::mutate(descricao_tipo_autor = dplyr::if_else(descricao_tipo_autor == "Líder",
+                                                              "Líder Senado",
+                                                              descricao_tipo_autor)) %>%
           dplyr::select(id_leggo,
                         id_ext,
                         id_autor,
@@ -567,6 +570,7 @@ process_autores_props <- function(pls_ids_filepath, export_path) {
       id_autor_parlametria = dplyr::case_when(
         tipo_autor == "Deputado" ~ paste0(1, id_autor),
         tipo_autor == "Senador" ~ paste0(2, id_autor),
+        tipo_autor == "Líder Senado" ~ paste0(2, id_autor),
         TRUE ~ paste0(3, id_autor)
       )
     ) %>%
