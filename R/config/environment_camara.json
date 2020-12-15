@@ -32,6 +32,7 @@
     {"evento": "voto_em_separado", "regex": "^apresentação do voto em separado", "tipo":"serie_c"},
     {"evento": "apresentacao_pl", "regex": "^apresentação do projeto de lei|^apresentação da proposta de emenda à constituição", "tipo":"serie_c"},
     {"evento": "retirada_de_pauta", "regex": "^retirado de pauta", "tipo":"serie_a"},
+    {"evento": "aprovacao_requerimento_retirada_de_pauta", "regex": "aprovado o* requerimento de retirada de pauta", "tipo":"serie_a"},
     {"evento": "pedido_de_vista", "regex": "^(vista conjunta aos|vista ao)", "tipo":"serie_c"},
     {"evento": "inicio_prazo_emendas", "regex": "^prazo para emendas|^abertura de prazo para emendas|^reabertura de prazo para emendas", "tipo":"serie_c"},
     {"evento": "fim_prazo_emendas", "regex": "^encerrado o prazo para emendas", "tipo":"serie_c"},
@@ -50,6 +51,13 @@
     {"evento": "req_deferido", "regex": "^deferido(s)* o(s)* requerimento(s)*|deferido requerimento", "tipo": "serie_b"},
     {"evento": "req_indeferido", "regex": "^indeferido(s)* o(s)* requerimento(s)*|indeferido req", "tipo": "serie_b"},
     {"evento": "req_arquivado", "regex": "^requerimento .*arquivado|^arquivado o requerimento", "tipo": "serie_b"},
+    {"evento": "requerimento_redistribuicao", "regex": "^apresentação do requerimento de redistribuição", "tipo":"serie_b"},
+    {"evento": "requerimento_apensacao", "regex": "^apresentação do requerimento de apensação", "tipo":"serie_b"},
+    {"evento": "requerimento_urgencia", "regex": "^apresentação do requerimento de urgência", "tipo":"serie_b"},
+    {"evento": "requerimento_prorrogacao", "regex": "^apresentação do requerimento de prorrogação de prazo de comissão temporária", "tipo":"serie_b"},
+    {"evento": "requerimento_adiamento_discussao", "regex": "requerimento(s)* (.)* adiamento d(e|a) discuss(ã|a)o", "tipo":"serie_b"},
+    {"evento": "requerimento_encerramento_discussao", "regex": "requerimento(s)* (.)* encerramento da discuss(a|ã)o", "tipo":"serie_b"},
+    {"evento": "requerimento_comissao_especial", "regex": "requerimento(s)* de constitui(c|ç)(a|ã)o de comiss(a|ã)o especial", "tipo":"serie_b"},
     {"evento": "req_urgencia_unanime_verbal", "regex": "^.*proposta verbal do presidente.* aprovado.* requerimento de urg.ncia.*$", "tipo": "serie_a"}
   ],
 

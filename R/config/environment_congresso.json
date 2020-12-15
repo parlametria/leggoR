@@ -115,6 +115,9 @@
     {"evento": "vetada_totalmente", "titulo_evento": "Vetada Totalmente" , "nivel": 1},
     {"evento": "parecer_comissao", "titulo_evento": "Parecer emitido na Comissão" , "nivel": 1},
     {"evento": "req_apresentacao", "titulo_evento": "Apresentação de" , "nivel": 1},
+    {"evento": "requerimento_adiamento_discussao", "titulo_evento": "Requerimento de Adiamento de Discussão" , "nivel": 1},
+    {"evento": "requerimento_encerramento_discussao", "titulo_evento": "Requerimento de Encerramento de Discussão" , "nivel": 1},
+    {"evento": "requerimento_comissao_especial", "titulo_evento": "Requerimento de Comissão Especial" , "nivel": 1},
     {"evento": "req_deferido", "titulo_evento": "Deferimento de" , "nivel": 1},
     {"evento": "req_indeferido", "titulo_evento": "Indeferimento de" , "nivel": 1},
     {"evento": "req_arquivado", "titulo_evento": "Arquivamento de" , "nivel": 3},
@@ -125,7 +128,8 @@
     {"evento": "recebimento_comissao", "titulo_evento": "Recebimento na Comissão" , "nivel": 2},
     {"evento": "aprovacao_projeto", "titulo_evento": "Aprovação do Projeto" , "nivel": 1},
     {"evento": "rejeicao_projeto", "titulo_evento": "Rejeição do Projeto" , "nivel": 1},
-    {"evento": "aprovacao_materia", "titulo_evento": "Aprovação da Matéria" , "nivel": 1}
+    {"evento": "aprovacao_materia", "titulo_evento": "Aprovação da Matéria" , "nivel": 1},
+    {"evento": "aprovacao_requerimento_retirada_de_pauta", "titulo_evento": "Aprovação Requerimento de Retirada de Pauta", "nivel":1}
   ],
     "congresso_remoto": {
       "data_inicio": "2020-03-17",
@@ -148,9 +152,11 @@
     {"id_entidade": 16, "regex": "^Câmara dos Deputados$"},
     {"id_entidade": 78, "regex": "Senado Federal -"},
     {"id_entidade": 17, "regex": "Programa e-Cidadania"},
-    {"id_entidade": 18, "regex": "Comissão Mista de Planos, Orçamentos Públicos e Fiscalização"}
+    {"id_entidade": 18, "regex": "Comissão Mista de Planos, Orçamentos Públicos e Fiscalização"},
+    {"id_entidade": 19, "regex": "CPI do Assassinato de Jovens - 2015"},
+    {"id_entidade": 20, "regex": "CPI do Futebol - 2015"}
   ],
-  
+
   "legislaturas":[
     {"data_inicio": "2019-02-01", "data_fim": "2023-01-31", "legislatura": 56},
     {"data_inicio": "2015-02-01", "data_fim": "2019-01-31", "legislatura": 55},

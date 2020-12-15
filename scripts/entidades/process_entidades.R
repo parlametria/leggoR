@@ -19,7 +19,10 @@ library(tidyverse)
                     "56", "14", "314", 'senado', 'CT - Modernização da Lei de Licitações e Contratos',
                     "56", "16", "316", 'camara', 'Câmara dos Deputados',
                     "56", "78", "378", 'senado', 'Senado Federal',
-                    "56", "17", "317", 'senado', 'Programa e-Cidadania'
+                    "56", "17", "317", 'senado', 'Programa e-Cidadania',
+                    "56", "18", "318", 'senado', 'Comissão Mista de Planos, Orçamentos Públicos e Fiscalização',
+                    "56", "19", "319", 'senado', 'CPI do Assassinato de Jovens - 2015',
+                    "56", "20", "320", 'senado', 'CPI do Futebol - 2015'
                     ) %>%
     mutate(sexo = NA,
            partido = NA,
