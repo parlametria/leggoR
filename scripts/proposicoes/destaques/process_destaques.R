@@ -9,7 +9,7 @@ process_proposicoes_destaques <- function(
   library(lubridate)
 
   source(here::here("scripts/proposicoes/destaques/process_criterio_aprovada_em_uma_casa.R"))
-  source(here::here("scripts/proposicoes/destaques/process_criterio_parecer_aprovado_comissao.R"))
+  source(here::here("scripts/proposicoes/destaques/process_criterio_avancou_comissoes.R"))
   source(here::here("scripts/proposicoes/destaques/process_criterio_pressao_alta.R"))
   source(here::here("scripts/proposicoes/destaques/fetcher_criterio_mais_comentadas_twitter.R"))
 
@@ -37,11 +37,12 @@ process_proposicoes_destaques <- function(
     mutate(criterio_aprovada_em_uma_casa = T) %>%
     select(id_leggo, criterio_aprovada_em_uma_casa, fase_global, local, local_casa, data_inicio, data_fim)
 
-  proposicoes_criterio_parecer_aprovado_comissao <-
-    process_criterio_parecer_aprovado_comissao(proposicoes_datapath,
+  proposicoes_criterio_avancou_comissoes <-
+    process_criterio_avancou_comissoes(proposicoes_datapath,
                                                  tramitacoes_datapath) %>%
-    mutate(criterio_parecer_aprovado_comissao = T) %>%
-    select(id_leggo, id_ext, casa, criterio_parecer_aprovado_comissao, comissoes_aprovadas)
+    mutate(criterio_avancou_comissoes = ccj_camara | parecer_aprovado_comissao) %>%
+    filter(criterio_avancou_comissoes) %>%
+    select(id_leggo, criterio_avancou_comissoes, ccj_camara, parecer_aprovado_comissao)
 
   proposicoes_pressao_alta <-
     process_criterio_pressao_alta(pressao_datapath) %>%
@@ -56,14 +57,14 @@ process_proposicoes_destaques <- function(
   proposicoes_destaques <- proposicoes %>%
     left_join(proposicoes_criterio_aprovada_em_uma_casa,
                by = c("id_leggo")) %>%
-    left_join(proposicoes_criterio_parecer_aprovado_comissao,
-              by = c("id_leggo", "id_ext", "casa")) %>%
+    left_join(proposicoes_criterio_avancou_comissoes,
+              by = c("id_leggo")) %>%
     left_join(proposicoes_pressao_alta,
               by = c("id_leggo")) %>%
     left_join(proposicoes_criterio_mais_comentadas_twitter,
               by = c("id_leggo")) %>%
     mutate(criterio_aprovada_em_uma_casa = !is.na(criterio_aprovada_em_uma_casa),
-           criterio_parecer_aprovado_comissao = !is.na(criterio_parecer_aprovado_comissao),
+           criterio_avancou_comissoes = !is.na(criterio_avancou_comissoes),
            criterio_pressao_alta = !is.na(criterio_pressao_alta),
            criterio_mais_comentadas_twitter = !is.na(criterio_mais_comentadas_twitter)) %>%
     left_join(interesses, by = c("id_leggo"))
