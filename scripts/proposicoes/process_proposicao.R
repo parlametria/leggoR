@@ -1,5 +1,5 @@
 library(tidyverse)
-
+source(here::here("scripts/proposicoes/fetcher_proposicao.R"))
 
 #' @title Filtra as proposições pelo texto da coluna Urgência
 #' @description Recebe um dataframe e o regime de tramitação de interesse e
@@ -9,7 +9,7 @@ library(tidyverse)
 .filter_proposicoes_by_texto_urgencia <- function(df) {
   urgencia_texto_regex <-
     "(urgência (– (despacho|requerimento)|urgentíssima)|transformad.* lei.* 14006/2020|requerimento pendente de aprovação)"
-  
+
   return(df %>%
            filter(str_detect(
              tolower(urgencia), urgencia_texto_regex
@@ -50,20 +50,20 @@ library(tidyverse)
 #' @return Temas da proposição separados por ';'.
 .get_temas <- function(id, casa) {
   print(paste0("Extraindo temas da proposição ", id, " na casa ", casa, "..."))
-  
+
   df <- rcongresso::fetch_temas_proposicao(id, casa)
-  
+
   if (!is.null(df) & nrow(df) > 0) {
     temas <- df %>% arrange(desc(relevancia)) %>%
       head(3) %>%
       pull(tema)
-    
+
     temas <- paste(temas, collapse = ";")
-    
+
     if (temas == "Nao especificado") {
       temas <- as.character(NA)
     }
-    
+
     return(temas)
   } else {
     return(as.character(NA))
@@ -88,13 +88,13 @@ library(tidyverse)
     ~ tipo_agenda,
     ~ explicacao_projeto
   )
-  
+
   proposicoes <- proposicoes %>%
     select(id,
            proposicao = nome,
            casa,
            explicacao_projeto = ementa)
-  
+
   new_df <- new_df %>%
     bind_rows(proposicoes) %>%
     mutate(
@@ -102,9 +102,9 @@ library(tidyverse)
       id_senado = if_else(casa == "senado", id, as.character(NA))
     ) %>%
     select(-c(id, casa))
-  
+
   return(new_df)
-  
+
 }
 
 #' @title Mapeia ids das proposições a partir do nome formal
@@ -119,14 +119,14 @@ library(tidyverse)
 .mapeia_ids_proposicoes <-
   function(url, filter_by_regime_tramitacao = T) {
     source(here::here("scripts/proposicoes/fetcher_proposicao.R"))
-    
+
     proposicoes <- read_csv(url) %>%
       agoradigital::rename_table_to_underscore()
-    
+
     names(proposicoes) <- names(proposicoes) %>%
       iconv(to = "ASCII//TRANSLIT") %>%
       gsub(" ", "_", .)
-    
+
     if (filter_by_regime_tramitacao) {
       proposicoes <- proposicoes %>%
         select(nome,
@@ -144,14 +144,14 @@ library(tidyverse)
                ementa) %>%
         .filter_proposicoes_by_texto_urgencia()
     }
-    
+
     proposicoes_com_id <- proposicoes %>%
       rowwise(.) %>%
       mutate(id = .fetch_id(link_casa, nome, casa)) %>%
       mutate(casa = .process_casa(casa))
-    
+
     return(proposicoes_com_id)
-    
+
   }
 
 #' @title Recupera os temas das proposições já processadas
@@ -164,10 +164,10 @@ library(tidyverse)
   temas <- tryCatch({
     if (!is.na(as.numeric(id_camara))) {
       return(.get_temas(id_camara, "camara"))
-      
+
     } else if (!is.na(as.numeric(id_senado))) {
       return(.get_temas(id_senado, "senado"))
-      
+
     }
   }, error = function(e) {
     print(e)
@@ -194,18 +194,18 @@ library(tidyverse)
       "..."
     )
   )
-  
+
   if (!is.na(as.numeric(id_camara))) {
     return(rcongresso::fetch_proposicao_camara(id_camara) %>%
              pull(ementa))
-    
+
   } else if (!is.na(as.numeric(id_senado))) {
     return(rcongresso::fetch_proposicao_senado(id_senado) %>%
              pull(ementa_materia))
-    
+
   }
   return (as.character(NA))
-  
+
 }
 
 #' @title Processa o nome formal das proposições
@@ -214,12 +214,12 @@ library(tidyverse)
 #' @return Nome formal processado.
 .processa_nome_formal <- function(nome_formal) {
   source(here::here("scripts/proposicoes/fetcher_proposicao.R"))
-  
+
   campos <- .process_inputs(nome_formal)
-  
+
   nome_processado <-
     paste0(campos$sigla, " ", campos$numero, "/", campos$ano)
-  
+
   return(nome_processado)
 }
 
@@ -238,7 +238,7 @@ library(tidyverse)
       "..."
     )
   )
-  
+
   nome <- tryCatch({
     if (!is.na(as.numeric(id_camara))) {
       return(
@@ -246,21 +246,21 @@ library(tidyverse)
           mutate(nome_formal = paste0(siglaTipo, " ", numero, "/", ano)) %>%
           pull(nome_formal)
       )
-      
+
     } else if (!is.na(as.numeric(id_senado))) {
       return(
         rcongresso::fetch_proposicao_senado(id_senado) %>%
           pull(descricao_identificacao_materia)
       )
-      
+
     }
   }, error = function(e) {
     print(e)
     return (as.character(NA))
   })
-  
+
   return(nome)
-  
+
 }
 
 #' @title Filtra as proposições com todas as informações necessárias
@@ -275,7 +275,7 @@ library(tidyverse)
              !str_detect(tolower(proposicao), "^(cn|sf|cd) .*"),
              (str_detect(tolower(proposicao), "mpv.*") & !is.na(id_camara) & !is.na(id_senado)) |
              (!str_detect(tolower(proposicao), "mpv.*") & (!is.na(id_camara) | !is.na(id_senado)))
-             
+
            ))
 }
 
@@ -300,10 +300,10 @@ library(tidyverse)
         .processa_nome_formal(proposicao)
       )
     )
-  
+
   df_com_ids <- df_com_infos %>%
     filter(is.na(id_camara) & is.na(id_senado) |
-             (str_detect(tolower(proposicao), "mpv.*") & (is.na(id_camara) | (is.na(id_senado))))) %>% 
+             (str_detect(tolower(proposicao), "mpv.*") & (is.na(id_camara) | (is.na(id_senado))))) %>%
     rowwise(.) %>%
     mutate(
       id_camara = ifelse(
@@ -325,12 +325,12 @@ library(tidyverse)
         )
       )
     )
-  
-  df_com_infos <- df_com_infos %>% 
+
+  df_com_infos <- df_com_infos %>%
     filter(!str_detect(tolower(proposicao), "mpv.*") & (!is.na(id_camara) | !is.na(id_senado)) |
-             (str_detect(tolower(proposicao), "mpv.*") & !is.na(id_camara) & !is.na(id_senado))) %>% 
-    bind_rows(df_com_ids) %>% 
-    rowwise(.) %>% 
+             (str_detect(tolower(proposicao), "mpv.*") & !is.na(id_camara) & !is.na(id_senado))) %>%
+    bind_rows(df_com_ids) %>%
+    rowwise(.) %>%
     mutate(
       tema = ifelse(
         !is.na(tema),
@@ -338,7 +338,7 @@ library(tidyverse)
         .get_temas_processed_proposicoes(id_camara, id_senado)
       )
     )
-  
+
   return(df_com_infos)
 }
 
@@ -356,17 +356,17 @@ library(tidyverse)
     df <- df %>%
       mutate(proposicao = str_remove(proposicao, "\\.")) # Retira ponto dos números das proposições
   }
-  
+
   proposicoes_with_infos <- df %>%
     .filtra_proposicoes_com_todas_as_infos()
-  
+
   proposicoes_with_new_infos <- df %>%
     .preenche_proposicoes_info()
-  
+
   proposicoes <- bind_rows(proposicoes_with_infos,
                            proposicoes_with_new_infos) %>%
     distinct()
-  
+
   return(proposicoes)
 }
 
@@ -387,18 +387,18 @@ processa_planilha_proposicoes <- function(raw_proposicao_url_camara,
                                           filter_by_regime_tramitacao = F) {
   old_proposicoes <-
     read_csv(processed_proposicao_url, col_types = cols(.default = "c"))
-  
+
   new_proposicoes <-
     bind_rows(
       .mapeia_ids_proposicoes(raw_proposicao_url_camara, filter_by_regime_tramitacao),
       .mapeia_ids_proposicoes(raw_proposicao_url_senado, filter_by_regime_tramitacao)
     ) %>%
     .formata_dataframe_proposicoes()
-  
+
   merged_proposicoes <-
     bind_rows(old_proposicoes, new_proposicoes) %>%
     distinct(id_camara, id_senado, .keep_all = T) %>%
     .checa_proposicoes_infos()
-  
+
   return(merged_proposicoes)
 }
