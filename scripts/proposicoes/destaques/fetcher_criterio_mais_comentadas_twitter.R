@@ -24,15 +24,22 @@ library(tidyverse)
       "&data_final=",
       data_final
     )
-    
+
     proposicoes <- RCurl::getURL(url) %>%
-      jsonlite::fromJSON() %>% 
-      select(id_leggo = id_proposicao_leggo, num_parlamentares_tweets) %>% 
-      mutate(num_parlamentares_tweets = as.numeric(num_parlamentares_tweets)) %>% 
-      filter(num_parlamentares_tweets > 1)
-    
-    return(proposicoes)
-    
+      jsonlite::fromJSON()
+
+    if (!is.null(nrow(proposicoes))) {
+      proposicoes <- proposicoes %>%
+        select(id_leggo = id_proposicao_leggo, num_parlamentares_tweets) %>%
+        mutate(num_parlamentares_tweets = as.numeric(num_parlamentares_tweets)) %>%
+        filter(num_parlamentares_tweets > 1)
+
+      return(proposicoes)
+
+    } else {
+      return(tibble())
+    }
+
   }
 
 #' @title Retorna o critério de proposições mais comentadas no twitter
@@ -50,6 +57,6 @@ fetch_proposicoes_mais_comentadas_twitter <-
         interesses,
         ~ .fetch_proposicoes_mais_comentadas_twitter(.x, data_inicial, data_final)
       )
-    
+
     return(df)
   }
