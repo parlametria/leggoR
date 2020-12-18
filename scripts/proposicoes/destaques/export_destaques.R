@@ -31,6 +31,16 @@ get_args <- function() {
                           default="../../../data/trams.csv",
                           help=.HELP,
                           metavar="character"),
+    optparse::make_option(c("-i", "--interesses_filepath"),
+                          type="character",
+                          default="../../../data/interesses.csv",
+                          help=.HELP,
+                          metavar="character"),
+    optparse::make_option(c("-a", "--pressao_filepath"),
+                          type="character",
+                          default="../../../data/pressao.csv",
+                          help=.HELP,
+                          metavar="character"),
     optparse::make_option(c("-e", "--export_filepath"),
                           type="character",
                           default="../../../data/proposicoes_destaques.csv",
@@ -50,10 +60,12 @@ print(args)
 proposicoes_filepath <- args$proposicoes_filepath
 progressos_filepath <- args$progressos_filepath
 tramitacoes_filepath <- args$tramitacoes_filepath
+interesses_filepath <- args$interesses_filepath
+pressao_filepath <- args$pressao_filepath
 saida <- args$export_filepath
 
 print("Processando proposições destaques")
-proposicoes_destaques <- process_proposicoes_destaques(proposicoes_filepath, progressos_filepath, tramitacoes_filepath)
+proposicoes_destaques <- process_proposicoes_destaques(proposicoes_filepath, progressos_filepath, tramitacoes_filepath, interesses_filepath, pressao_filepath)
 
 print("Salvando proposições destaques...")
 readr::write_csv(proposicoes_destaques, saida)
