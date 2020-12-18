@@ -42,7 +42,7 @@ process_proposicoes_destaques <- function(
                                                  tramitacoes_datapath) %>%
     mutate(criterio_avancou_comissoes = ccj_camara | parecer_aprovado_comissao) %>%
     filter(criterio_avancou_comissoes) %>%
-    select(id_leggo, criterio_avancou_comissoes, ccj_camara, parecer_aprovado_comissao)
+    select(id_leggo, criterio_avancou_comissoes, ccj_camara, sigla_local, parecer_aprovado_comissao, comissoes_aprovadas)
 
   proposicoes_pressao_alta <-
     process_criterio_pressao_alta(pressao_datapath) %>%
@@ -71,4 +71,23 @@ process_proposicoes_destaques <- function(
 
   return(proposicoes_destaques)
 
+}
+
+process_proposicoes_destaques_limpo = function(
+  proposicoes_datapath = here::here("leggo_data/proposicoes.csv"),
+  progressos_datapath = here::here("leggo_data/progressos.csv"),
+  tramitacoes_datapath = here::here("leggo_data/trams.csv"),
+  interesses_datapath = here::here("leggo_data/interesses.csv"),
+  pressao_datapath = here::here("leggo_data/pressao.csv")) {
+  
+  proposicoes_destaques = process_proposicoes_destaques(proposicoes_datapath, progressos_datapath, tramitacoes_datapath, interesses_datapath, pressao_datapath) %>% 
+    select(id_leggo,
+           criterio_aprovada_em_uma_casa,
+           casa_aprovacao = local_casa,
+           data_aprovacao = data_fim,
+           criterio_avancou_comissoes,
+           comissoes_camara = sigla_local,
+           comissoes_senado = comissoes_aprovadas)
+  
+  return(proposicoes_destaques)
 }

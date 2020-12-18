@@ -53,7 +53,7 @@ tramitacoes_filepath <- args$tramitacoes_filepath
 saida <- args$export_filepath
 
 print("Processando proposições destaques")
-proposicoes_destaques <- process_proposicoes_destaques(proposicoes_filepath, progressos_filepath, tramitacoes_filepath)
+proposicoes_destaques <- process_proposicoes_destaques_limpo(proposicoes_filepath, progressos_filepath, tramitacoes_filepath)
 
 print("Salvando proposições destaques...")
 readr::write_csv(proposicoes_destaques, saida)
