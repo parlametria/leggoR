@@ -75,12 +75,22 @@ process_proposicoes_destaques <- function(
            criterio_avancou_comissoes = !is.na(criterio_avancou_comissoes),
            criterio_pressao_alta = !is.na(criterio_pressao_alta),
            criterio_mais_comentadas_twitter = !is.na(criterio_mais_comentadas_twitter)) %>%
-    left_join(interesses, by = c("id_leggo"))
+    left_join(interesses, by = c("id_leggo")) %>%
+    distinct(id_leggo, .keep_all = TRUE) %>% 
+    select(-c(id_ext, casa, sigla))
 
   return(proposicoes_destaques)
 
 }
 
+#' @title Define critérios de destaque para proposições e prepara o dataframe removendo atributos desnecessários
+#' @description A partir de vários critérios das proposições, define atributos que as tornam destaque
+#' @param proposicoes_datapath Caminho para o arquivo de proposições
+#' @param progressos_datapath Caminho para o arquivo de progressos das proposições
+#' @param tramitacoes_datapath Caminho para o arquivo de tramitações das proposições
+#' @param interesses_datapath Caminho para o arquivo de interesses
+#' @param pressao_datapath: Caminho para o arquivo de pressão das proposições
+#' @return Um só dataframe contendo todas as proposições com seus atributos mínimos de destaque.
 process_proposicoes_destaques_limpo = function(
   proposicoes_datapath = here::here("leggo_data/proposicoes.csv"),
   progressos_datapath = here::here("leggo_data/progressos.csv"),

@@ -108,6 +108,10 @@ process_criterio_avancou_comissoes <- function(
   proposicoes_alt <- proposicoes_merge %>%
     mutate_at(.funs = list(~replace_na(., FALSE)),
               .vars = vars(ccj_camara, parecer_aprovado_comissao)) %>%
+    group_by(id_leggo) %>%
+    fill(sigla_local, .direction = "downup") %>%
+    fill(comissoes_aprovadas, .direction = "downup") %>%
+    ungroup() %>% 
     mutate_at(.funs = list(~replace_na(., "")),
               .vars = vars(sigla_local, comissoes_aprovadas)) %>%
     group_by(id_leggo) %>%
