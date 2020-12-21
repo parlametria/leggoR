@@ -23,7 +23,7 @@ library(lubridate)
   proposicoes_ccj <- proposicoes_df %>%
     left_join(tram_ccj, by = c("id_ext", "casa")) %>%
     mutate(ccj = !is.na(sigla_local)) %>%
-    select(id_ext, casa, id_leggo, ccj)
+    select(id_ext, casa, id_leggo, ccj, sigla_local)
 
   return(proposicoes_ccj)
 }
@@ -59,7 +59,7 @@ library(lubridate)
   proposicoes_parecer_aprovado <- proposicoes_df %>%
     left_join(proposicoes_aprovadas, by = c("id_ext", "casa")) %>%
     mutate(parecer_aprovado = !is.na(comissoes_aprovadas)) %>%
-    select(id_ext, casa, id_leggo, parecer_aprovado)
+    select(id_ext, casa, id_leggo, parecer_aprovado, comissoes_aprovadas)
 
   return(proposicoes_parecer_aprovado)
 }
@@ -102,15 +102,23 @@ process_criterio_avancou_comissoes <- function(
 
   proposicoes_merge <- proposicoes_destaque_camara %>%
     bind_rows(proposicoes_destaque_senado) %>%
-    select(id_leggo, id_ext, casa, ccj_camara = ccj, parecer_aprovado_comissao = parecer_aprovado) %>%
+    select(id_leggo, id_ext, casa, ccj_camara = ccj, sigla_local, parecer_aprovado_comissao = parecer_aprovado, comissoes_aprovadas) %>%
     distinct(id_leggo, id_ext, casa, .keep_all = T)
 
   proposicoes_alt <- proposicoes_merge %>%
     mutate_at(.funs = list(~replace_na(., FALSE)),
               .vars = vars(ccj_camara, parecer_aprovado_comissao)) %>%
     group_by(id_leggo) %>%
+    fill(sigla_local, .direction = "downup") %>%
+    fill(comissoes_aprovadas, .direction = "downup") %>%
+    ungroup() %>% 
+    mutate_at(.funs = list(~replace_na(., "")),
+              .vars = vars(sigla_local, comissoes_aprovadas)) %>%
+    group_by(id_leggo) %>%
     summarise(ccj_camara = sum(ccj_camara),
-              parecer_aprovado_comissao = max(parecer_aprovado_comissao)) %>%
+              parecer_aprovado_comissao = max(parecer_aprovado_comissao),
+              sigla_local = first(sigla_local),
+              comissoes_aprovadas  = first(comissoes_aprovadas)) %>%
     ungroup() %>%
     distinct(id_leggo, .keep_all = T) %>%
     mutate(ccj_camara = as.logical(ccj_camara),

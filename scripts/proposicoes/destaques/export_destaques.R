@@ -4,9 +4,12 @@ source(here::here("scripts/proposicoes/destaques/process_destaques.R"))
 
 .HELP <- "
 Usage:
-Rscript export_destaques.R -p <proposicoes_filepath> -t <progressos_filepath> -e <export_filepath>
-proposicoes_filepath: Caminho para o arquivos de proposições
-progressos_filepath: Caminho para o arquivos de progressos
+Rscript export_destaques.R -p <proposicoes_filepath> -t <progressos_filepath> -r <tramitacoes_filepath> -i <interesses_filepath> -s <pressao_filepath> -e <export_filepath>
+proposicoes_filepath: Caminho para o arquivo de proposições
+progressos_filepath: Caminho para o arquivo de progressos das proposições
+tramitacoes_filepath: Caminho para o arquivo de tramitações das proposições
+interesses_filepath: Caminho para o arquivo de interesses
+pressao_filepath: Caminho para o arquivo de pressão das proposições
 export_filepath: Caminho para o arquivo de destino.
 "
 
@@ -31,6 +34,16 @@ get_args <- function() {
                           default="../../../data/trams.csv",
                           help=.HELP,
                           metavar="character"),
+    optparse::make_option(c("-i", "--interesses_filepath"),
+                          type="character",
+                          default="../../../data/interesses.csv",
+                          help=.HELP,
+                          metavar="character"),
+    optparse::make_option(c("-s", "--pressao_filepath"),
+                          type="character",
+                          default="../../../data/pressao.csv",
+                          help=.HELP,
+                          metavar="character"),
     optparse::make_option(c("-e", "--export_filepath"),
                           type="character",
                           default="../../../data/proposicoes_destaques.csv",
@@ -50,10 +63,12 @@ print(args)
 proposicoes_filepath <- args$proposicoes_filepath
 progressos_filepath <- args$progressos_filepath
 tramitacoes_filepath <- args$tramitacoes_filepath
+interesses_filepath <- args$interesses_filepath
+pressao_filepath <- args$pressao_filepath
 saida <- args$export_filepath
 
 print("Processando proposições destaques")
-proposicoes_destaques <- process_proposicoes_destaques(proposicoes_filepath, progressos_filepath, tramitacoes_filepath)
+proposicoes_destaques <- process_proposicoes_destaques_limpo(proposicoes_filepath, progressos_filepath, tramitacoes_filepath, interesses_filepath, pressao_filepath)
 
 print("Salvando proposições destaques...")
 readr::write_csv(proposicoes_destaques, saida)

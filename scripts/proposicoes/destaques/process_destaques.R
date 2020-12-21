@@ -1,5 +1,13 @@
 library(tidyverse)
 
+#' @title Define critérios de destaque para proposições
+#' @description A partir de vários critérios das proposições, define atributos que as tornam destaque
+#' @param proposicoes_datapath Caminho para o arquivo de proposições
+#' @param progressos_datapath Caminho para o arquivo de progressos das proposições
+#' @param tramitacoes_datapath Caminho para o arquivo de tramitações das proposições
+#' @param interesses_datapath Caminho para o arquivo de interesses
+#' @param pressao_datapath: Caminho para o arquivo de pressão das proposições
+#' @return Um só dataframe contendo todas as proposições com seus atributos de destaque.
 process_proposicoes_destaques <- function(
   proposicoes_datapath = here::here("leggo_data/proposicoes.csv"),
   progressos_datapath = here::here("leggo_data/progressos.csv"),
@@ -40,18 +48,15 @@ process_proposicoes_destaques <- function(
 
   proposicoes_criterio_avancou_comissoes <-
     process_criterio_avancou_comissoes(proposicoes_datapath,
-                                                 tramitacoes_datapath) %>% 
+                                                 tramitacoes_datapath) %>%
     mutate(criterio_avancou_comissoes = ccj_camara | parecer_aprovado_comissao) %>%
     filter(criterio_avancou_comissoes) %>%
-    select(id_leggo, criterio_avancou_comissoes, ccj_camara, parecer_aprovado_comissao)
-    
-    mutate(criterio_parecer_aprovado_comissao = T) %>%
-    select(id_leggo, id_ext, casa, criterio_parecer_aprovado_comissao, comissoes_aprovadas)
-  
-  proposicoes_criterio_requerimento_urgencia <- 
-    process_criterio_requerimento_urgencia(tramitacoes_datapath, 
-                                      proposicoes_datapath) %>% 
-    mutate(requerimento_urgencia_apresentado = ifelse(!is.na(requerimento_urgencia_apresentado), T , F), 
+    select(id_leggo, criterio_avancou_comissoes, ccj_camara, sigla_local, parecer_aprovado_comissao, comissoes_aprovadas)
+
+ proposicoes_criterio_requerimento_urgencia <-
+    process_criterio_requerimento_urgencia(tramitacoes_datapath,
+                                      proposicoes_datapath) %>%
+    mutate(requerimento_urgencia_apresentado = ifelse(!is.na(requerimento_urgencia_apresentado), T , F),
            requerimento_urgencia_aprovado = ifelse(!is.na(requerimento_urgencia_aprovado), T , F)) %>%
     select(id_leggo, id_ext, casa, requerimento_urgencia_apresentado, requerimento_urgencia_aprovado)
 
@@ -75,14 +80,43 @@ process_proposicoes_destaques <- function(
     left_join(proposicoes_criterio_mais_comentadas_twitter,
               by = c("id_leggo")) %>%
     left_join(proposicoes_criterio_requerimento_urgencia,
-              by = c("id_leggo")) %>% 
+              by = c("id_leggo")) %>%
     mutate(criterio_aprovada_em_uma_casa = !is.na(criterio_aprovada_em_uma_casa),
            criterio_avancou_comissoes = !is.na(criterio_avancou_comissoes),
            criterio_pressao_alta = !is.na(criterio_pressao_alta),
            requerimento_urgencia_apresentado = !is.na(requerimento_urgencia_apresentado, requerimento_urgencia_aprovado),
            criterio_mais_comentadas_twitter = !is.na(criterio_mais_comentadas_twitter)) %>%
-    left_join(interesses, by = c("id_leggo"))
+    left_join(interesses, by = c("id_leggo")) %>%
+    distinct(id_leggo, .keep_all = TRUE) %>%
+    select(-c(id_ext, casa, sigla))
 
   return(proposicoes_destaques)
 
+}
+
+#' @title Define critérios de destaque para proposições e prepara o dataframe removendo atributos desnecessários
+#' @description A partir de vários critérios das proposições, define atributos que as tornam destaque
+#' @param proposicoes_datapath Caminho para o arquivo de proposições
+#' @param progressos_datapath Caminho para o arquivo de progressos das proposições
+#' @param tramitacoes_datapath Caminho para o arquivo de tramitações das proposições
+#' @param interesses_datapath Caminho para o arquivo de interesses
+#' @param pressao_datapath: Caminho para o arquivo de pressão das proposições
+#' @return Um só dataframe contendo todas as proposições com seus atributos mínimos de destaque.
+process_proposicoes_destaques_limpo = function(
+  proposicoes_datapath = here::here("leggo_data/proposicoes.csv"),
+  progressos_datapath = here::here("leggo_data/progressos.csv"),
+  tramitacoes_datapath = here::here("leggo_data/trams.csv"),
+  interesses_datapath = here::here("leggo_data/interesses.csv"),
+  pressao_datapath = here::here("leggo_data/pressao.csv")) {
+
+  proposicoes_destaques = process_proposicoes_destaques(proposicoes_datapath, progressos_datapath, tramitacoes_datapath, interesses_datapath, pressao_datapath) %>%
+    select(id_leggo,
+           criterio_aprovada_em_uma_casa,
+           casa_aprovacao = local_casa,
+           data_aprovacao = data_fim,
+           criterio_avancou_comissoes,
+           comissoes_camara = sigla_local,
+           comissoes_senado = comissoes_aprovadas)
+
+  return(proposicoes_destaques)
 }
