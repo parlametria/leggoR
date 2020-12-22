@@ -9,7 +9,7 @@
 process_criterio_requerimento_urgencia <- function(trams_datapath = here::here("leggo_data/trams.csv"),
                                                    props_datapath = here::here("leggo_data/proposicoes.csv") ){
   
-  trams <- read_csv(trams_datapath, col_types = cols(id_ext = col_character())) %>%  
+  trams <- read_csv(trams_datapath, col_types = cols(id_ext = col_character(), data_audiencia = col_character())) %>%  
     select(evento, id_ext, casa, data)
   
   props <- read_csv(props_datapath, col_types = cols(id_ext = col_character())) %>%
