@@ -1,3 +1,6 @@
+library(tidyverse)
+library(here)
+library(lubridate)
 
 #' @title Processa o critério de proposições com requerimento de urgência apresentado e/ou aprovado;
 #' @description Processa o critério que retorna informações de proposições com requerimento de 
@@ -14,6 +17,13 @@ process_criterio_requerimento_urgencia <- function(trams_datapath = here::here("
   
   props <- read_csv(props_datapath, col_types = cols(id_ext = col_character())) %>%
     select(id_ext, casa, id_leggo)
+  
+ # Filtra eventos dos últimos 4 anos 
+  hoje <- Sys.time()
+  trams <- trams %>%
+    mutate(idade = lubridate::interval(data, hoje) %>%
+             as.numeric('years')) %>%
+    dplyr::filter(idade <= 4)
   
   proposicoes_requerimento_urgencia <- trams %>% 
   left_join(props, by = c("id_ext", "casa")) %>%  
