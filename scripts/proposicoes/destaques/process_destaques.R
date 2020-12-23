@@ -52,16 +52,13 @@ process_proposicoes_destaques <- function(
     mutate(criterio_avancou_comissoes = ccj_camara | parecer_aprovado_comissao) %>%
     filter(criterio_avancou_comissoes) %>%
     select(id_leggo, criterio_avancou_comissoes, ccj_camara, sigla_local, parecer_aprovado_comissao, comissoes_aprovadas)
-<<<<<<< HEAD
-  
-  proposicoes_criterio_requerimento_urgencia <- 
-    process_criterio_requerimento_urgencia(tramitacoes_datapath, 
-                                      proposicoes_datapath) %>% 
-    mutate(requerimento_urgencia_apresentado = ifelse(!is.na(requerimento_urgencia_apresentado), T , F), 
+
+  proposicoes_criterio_requerimento_urgencia <-
+    process_criterio_requerimento_urgencia(tramitacoes_datapath,
+                                      proposicoes_datapath) %>%
+    mutate(requerimento_urgencia_apresentado = ifelse(!is.na(requerimento_urgencia_apresentado), T , F),
            requerimento_urgencia_aprovado = ifelse(!is.na(requerimento_urgencia_aprovado), T , F)) %>%
     select(id_leggo, id_ext, casa, requerimento_urgencia_apresentado, requerimento_urgencia_aprovado)
-=======
->>>>>>> sprint-41
 
   proposicoes_pressao_alta <-
     process_criterio_pressao_alta(pressao_datapath) %>%
@@ -83,7 +80,7 @@ process_proposicoes_destaques <- function(
     left_join(proposicoes_criterio_mais_comentadas_twitter,
               by = c("id_leggo")) %>%
     left_join(proposicoes_criterio_requerimento_urgencia,
-              by = c("id_leggo")) %>% 
+              by = c("id_leggo")) %>%
     mutate(criterio_aprovada_em_uma_casa = !is.na(criterio_aprovada_em_uma_casa),
            criterio_avancou_comissoes = !is.na(criterio_avancou_comissoes),
            criterio_pressao_alta = !is.na(criterio_pressao_alta),
@@ -91,7 +88,7 @@ process_proposicoes_destaques <- function(
            requerimento_urgencia_aprovado = !is.na(requerimento_urgencia_aprovado),
            criterio_mais_comentadas_twitter = !is.na(criterio_mais_comentadas_twitter)) %>%
     left_join(interesses, by = c("id_leggo")) %>%
-    distinct(id_leggo, .keep_all = TRUE) %>% 
+    distinct(id_leggo, .keep_all = TRUE) %>%
     select(-c(id_ext, casa, sigla))
 
   return(proposicoes_destaques)
@@ -112,8 +109,8 @@ process_proposicoes_destaques_limpo = function(
   tramitacoes_datapath = here::here("leggo_data/trams.csv"),
   interesses_datapath = here::here("leggo_data/interesses.csv"),
   pressao_datapath = here::here("leggo_data/pressao.csv")) {
-  
-  proposicoes_destaques = process_proposicoes_destaques(proposicoes_datapath, progressos_datapath, tramitacoes_datapath, interesses_datapath, pressao_datapath) %>% 
+
+  proposicoes_destaques = process_proposicoes_destaques(proposicoes_datapath, progressos_datapath, tramitacoes_datapath, interesses_datapath, pressao_datapath) %>%
     select(id_leggo,
            criterio_aprovada_em_uma_casa,
            casa_aprovacao = local_casa,
@@ -121,6 +118,6 @@ process_proposicoes_destaques_limpo = function(
            criterio_avancou_comissoes,
            comissoes_camara = sigla_local,
            comissoes_senado = comissoes_aprovadas)
-  
+
   return(proposicoes_destaques)
 }
