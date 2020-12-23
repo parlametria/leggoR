@@ -56,9 +56,15 @@ process_proposicoes_destaques <- function(
  proposicoes_criterio_requerimento_urgencia <-
     process_criterio_requerimento_urgencia(tramitacoes_datapath,
                                       proposicoes_datapath) %>%
-    mutate(requerimento_urgencia_apresentado = ifelse(!is.na(requerimento_urgencia_apresentado), T , F),
-           requerimento_urgencia_aprovado = ifelse(!is.na(requerimento_urgencia_aprovado), T , F)) %>%
-    select(id_leggo, id_ext, casa, requerimento_urgencia_apresentado, requerimento_urgencia_aprovado)
+    mutate(criterio_req_urgencia_apresentado = !is.na(data_req_urgencia_apresentacao),
+           criterio_req_urgencia_aprovado = !is.na(data_req_urgencia_aprovacao)) %>%
+    select(id_leggo, 
+           criterio_req_urgencia_apresentado, 
+           criterio_req_urgencia_aprovado,
+           data_req_urgencia_apresentacao, 
+           data_req_urgencia_aprovacao,  
+           casa_req_urgencia_apresentacao, 
+           casa_req_urgencia_aprovacao)
 
   proposicoes_pressao_alta <-
     process_criterio_pressao_alta(pressao_datapath) %>%
@@ -84,11 +90,12 @@ process_proposicoes_destaques <- function(
     mutate(criterio_aprovada_em_uma_casa = !is.na(criterio_aprovada_em_uma_casa),
            criterio_avancou_comissoes = !is.na(criterio_avancou_comissoes),
            criterio_pressao_alta = !is.na(criterio_pressao_alta),
-           requerimento_urgencia_apresentado = !is.na(requerimento_urgencia_apresentado, requerimento_urgencia_aprovado),
+           criterio_req_urgencia_apresentado = if_else(is.na(criterio_req_urgencia_apresentado), FALSE, criterio_req_urgencia_apresentado),
+           criterio_req_urgencia_aprovado = if_else(is.na(criterio_req_urgencia_aprovado), FALSE, criterio_req_urgencia_aprovado),
            criterio_mais_comentadas_twitter = !is.na(criterio_mais_comentadas_twitter)) %>%
     left_join(interesses, by = c("id_leggo")) %>%
     distinct(id_leggo, .keep_all = TRUE) %>%
-    select(-c(id_ext, casa, sigla))
+    select(-c(id_ext))
 
   return(proposicoes_destaques)
 
