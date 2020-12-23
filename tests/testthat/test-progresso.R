@@ -40,8 +40,8 @@ test <- function() {
   test_that("Test regular PL in Comissões phase", {
     etapa_comissoes_construcao <- tibble::tibble(fase_global = 'Construção', local = 'Comissões')
     
-    expect_true(nrow(progresso_pls_plenario_1 %>%
-                       dplyr::inner_join(etapa_plenario_construcao, by=c("fase_global", "local")) %>%
+    expect_true(nrow(progresso_pls_plenario_2 %>%
+                       dplyr::inner_join(etapa_comissoes_construcao, by=c("fase_global", "local")) %>%
                        dplyr::filter(!is.na(data_inicio))) > 0)
   })
   
