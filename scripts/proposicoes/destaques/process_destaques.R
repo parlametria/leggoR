@@ -37,7 +37,9 @@ process_proposicoes_destaques <- function(
                           col_types = cols(id_ext = col_character())) %>%
     filter(status == "Ativa") %>%
     mutate(sigla = paste0(sigla_tipo, " ", numero, "/", year(ymd_hms(data_apresentacao)))) %>%
-    select(id_leggo, id_ext, casa, sigla) %>%
+    mutate(casa_origem = if_else(is.na(casa_origem), "camara", casa_origem),
+           casa_revisora = if_else(casa_origem == "camara", "senado", "camara")) %>%
+    select(id_leggo, id_ext, casa, sigla, casa_origem, casa_revisora) %>%
     distinct()
 
   proposicoes_criterio_aprovada_em_uma_casa <-
@@ -116,14 +118,29 @@ process_proposicoes_destaques_limpo = function(
   interesses_datapath = here::here("leggo_data/interesses.csv"),
   pressao_datapath = here::here("leggo_data/pressao.csv")) {
 
-  proposicoes_destaques = process_proposicoes_destaques(proposicoes_datapath, progressos_datapath, tramitacoes_datapath, interesses_datapath, pressao_datapath) %>%
+  proposicoes_destaques = process_proposicoes_destaques(
+    proposicoes_datapath,
+    progressos_datapath,
+    tramitacoes_datapath,
+    interesses_datapath,
+    pressao_datapath
+  ) %>%
     select(id_leggo,
+           casa_origem,
+           casa_revisora,
            criterio_aprovada_em_uma_casa,
            casa_aprovacao = local_casa,
            data_aprovacao = data_fim,
            criterio_avancou_comissoes,
            comissoes_camara = sigla_local,
-           comissoes_senado = comissoes_aprovadas)
+           comissoes_senado = comissoes_aprovadas,
+           criterio_req_urgencia_apresentado,
+           casa_req_urgencia_apresentado = casa_req_urgencia_apresentacao,
+           data_req_urgencia_apresentado = data_req_urgencia_apresentacao,
+           criterio_req_urgencia_aprovado,
+           casa_req_urgencia_aprovado = casa_req_urgencia_aprovacao,
+           data_req_urgencia_aprovado = data_req_urgencia_aprovacao
+           )
 
   return(proposicoes_destaques)
 }
