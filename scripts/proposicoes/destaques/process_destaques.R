@@ -125,11 +125,12 @@ process_proposicoes_destaques_limpo = function(
     interesses_datapath,
     pressao_datapath
   ) %>%
+    mutate(casa_aprovacao = if_else(local_casa == "camara", "senado", "camara")) %>%
     select(id_leggo,
            casa_origem,
            casa_revisora,
            criterio_aprovada_em_uma_casa,
-           casa_aprovacao = local_casa,
+           casa_aprovacao,
            data_aprovacao = data_fim,
            criterio_avancou_comissoes,
            comissoes_camara = sigla_local,
