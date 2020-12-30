@@ -35,7 +35,10 @@ process_proposicoes_destaques <- function(
 
   proposicoes <- read_csv(proposicoes_datapath,
                           col_types = cols(id_ext = col_character())) %>%
-    filter(status == "Ativa") %>%
+    group_by(id_leggo) %>%
+    mutate(estado = paste(status, collapse = ";")) %>%
+    ungroup() %>%
+    filter(estado %in% c("Ativa", "Ativa;Ativa")) %>%
     mutate(sigla = paste0(sigla_tipo, " ", numero, "/", year(ymd_hms(data_apresentacao)))) %>%
     mutate(casa_origem = if_else(is.na(casa_origem), "camara", casa_origem),
            casa_revisora = if_else(casa_origem == "camara", "senado", "camara")) %>%
