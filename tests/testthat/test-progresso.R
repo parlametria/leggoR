@@ -36,13 +36,18 @@ test <- function() {
     expect_true(nrow(progresso) != 0)
     expect_true(nrow(progresso_pec) != 0)
   })
-
+  
+  test_that("Test regular PL in Comissões phase", {
+    etapa_comissoes_construcao <- tibble::tibble(fase_global = 'Construção', local = 'Comissões')
+    
+    expect_true(nrow(progresso_pls_plenario_2 %>%
+                       dplyr::inner_join(etapa_comissoes_construcao, by=c("fase_global", "local")) %>%
+                       dplyr::filter(!is.na(data_inicio))) > 0)
+  })
+  
   test_that("PLs which have special Plenário events have their progresso correctly inferred", {
     etapa_plenario_construcao <- tibble::tibble(fase_global = 'Construção', local = 'Plenário')
 
-    expect_true(nrow(progresso_pls_plenario_2 %>%
-                       dplyr::inner_join(etapa_plenario_construcao, by=c("fase_global", "local")) %>%
-                       dplyr::filter(!is.na(data_inicio))) > 0)
     expect_true(nrow(progresso_pls_plenario_1 %>%
                        dplyr::inner_join(etapa_plenario_construcao, by=c("fase_global", "local")) %>%
                        dplyr::filter(!is.na(data_inicio))) > 0)
