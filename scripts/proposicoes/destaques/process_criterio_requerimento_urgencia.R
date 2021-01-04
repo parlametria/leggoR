@@ -27,12 +27,13 @@ process_criterio_requerimento_urgencia <- function(trams_datapath = here::here("
     dplyr::filter(idade <= 4)
 
   proposicoes_requerimento_urgencia <- trams %>%
-  left_join(props, by = c("id_ext", "casa")) %>%
-  filter(str_detect(evento, "requerimento_urgencia_apresentado|requerimento_urgencia_aprovado"))
+    left_join(props, by = c("id_ext", "casa")) %>%
+    filter(str_detect(evento, "requerimento_urgencia_apresentado|requerimento_urgencia_aprovado"))
 
   # remove as repetições de proposições
-  proposicoes_sem_repetidos <- proposicoes_requerimento_urgencia %>% arrange(id_leggo, id_ext, casa, data) %>%
-    distinct(id_leggo, id_ext, casa, .keep_all = TRUE)
+  proposicoes_sem_repetidos <- proposicoes_requerimento_urgencia %>%
+    arrange(id_leggo, id_ext, casa, evento, data) %>%
+    distinct(id_leggo, id_ext, casa, evento, .keep_all = TRUE)
 
   proposicoes_requerimento_urgencia_final <-
     proposicoes_sem_repetidos %>%
@@ -54,10 +55,6 @@ process_criterio_requerimento_urgencia <- function(trams_datapath = here::here("
     fill(requerimento_urgencia_aprovado, .direction = "downup") %>%
     fill(casa_req_urgencia_apresentacao, .direction = "downup") %>%
     fill(casa_req_urgencia_aprovacao, .direction = "downup") %>%
-    mutate(
-      requerimento_urgencia_apresentado = max(requerimento_urgencia_apresentado),
-      requerimento_urgencia_aprovado = max(requerimento_urgencia_aprovado)
-    ) %>%
     ungroup() %>%
     select(
       id_leggo,
@@ -66,7 +63,8 @@ process_criterio_requerimento_urgencia <- function(trams_datapath = here::here("
       casa_req_urgencia_apresentacao,
       casa_req_urgencia_aprovacao
     ) %>%
-    distinct()
+    arrange(desc(data_req_urgencia_aprovacao), desc(data_req_urgencia_apresentacao)) %>%
+    distinct(id_leggo, .keep_all = TRUE)
 
   return(proposicoes_requerimento_urgencia_final)
 
