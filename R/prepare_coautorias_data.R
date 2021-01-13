@@ -281,7 +281,7 @@ prepare_autorias_df_camara <- function(docs_camara, autores_camara) {
     dplyr::group_by(id_principal, casa, id_documento) %>%
     dplyr::mutate(peso_autor_documento = 1/dplyr::n_distinct(id_autor)) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(sigla = stringr::str_glue("{sigla_tipo} {numero}/{ano}")) %>% 
+    dplyr::mutate(sigla = stringr::str_glue("{sigla_tipo} {numero}/{ano}")) %>%
     dplyr::select(
       id_principal,
       casa,
