@@ -281,10 +281,12 @@ prepare_autorias_df_camara <- function(docs_camara, autores_camara) {
     dplyr::group_by(id_principal, casa, id_documento) %>%
     dplyr::mutate(peso_autor_documento = 1/dplyr::n_distinct(id_autor)) %>%
     dplyr::ungroup() %>%
+    dplyr::mutate(sigla = stringr::str_glue("{sigla_tipo} {numero}/{ano}")) %>% 
     dplyr::select(
       id_principal,
       casa,
       id_documento,
+      sigla,
       descricao_tipo_documento,
       tipo_documento_ext,
       id_autor,
@@ -316,6 +318,7 @@ prepare_autorias_df_senado <- function(docs_senado, autores_senado) {
       id_principal,
       casa,
       id_documento,
+      sigla = descricao_identificacao_materia,
       descricao_tipo_documento = descricao_texto,
       tipo_documento_ext = descricao_tipo_texto,
       id_autor,
