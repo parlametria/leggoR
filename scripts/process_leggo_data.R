@@ -101,12 +101,20 @@ process_leggo_data <- function(flag) {
     ## Install local repository R package version
     devtools::install(upgrade = "never")
     
+    props_leggo_id <-
+      agoradigital::read_props(paste0(input_path, "/proposicoes.csv")) %>%
+      dplyr::select(id_leggo, id_principal = id_ext, casa)
+    
     # Read current data csvs
     camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv")) %>%
-      dplyr::mutate(casa = as.character(casa))
+      dplyr::mutate(casa = as.character(casa)) %>% 
+      dplyr::inner_join(props_leggo_id, by = c("id_principal", "casa"))
+    
     camara_autores <-
       agoradigital::read_current_autores_camara(paste0(input_path, "/camara/autores.csv")) %>%
-      dplyr::mutate(id_documento = as.numeric(id_documento)) %>%
+      dplyr::mutate(id_documento = as.numeric(id_documento),
+                    id_principal = as.numeric(id_principal)) %>%
+      dplyr::inner_join(props_leggo_id, by = c("id_principal", "casa")) %>% 
       rowwise() %>%
       dplyr::mutate(nome = agoradigital::formata_nome_deputados(nome, tipo_autor)) %>%
       ungroup()
@@ -115,17 +123,16 @@ process_leggo_data <- function(flag) {
       agoradigital::read_current_docs_senado(paste0(input_path, "/senado/documentos.csv")) %>%
       dplyr::mutate(id_documento = as.numeric(id_documento),
                     id_principal = as.numeric(id_principal),
-                    casa = as.character(casa))
+                    casa = as.character(casa)) %>% 
+      dplyr::inner_join(props_leggo_id, by = c("id_principal", "casa"))
+    
     senado_autores <-
       agoradigital::read_current_autores_senado(paste0(input_path, "/senado/autores.csv")) %>%
+      dplyr::inner_join(props_leggo_id, by = c("id_principal", "casa")) %>% 
       rowwise() %>%
       dplyr::mutate(nome_autor =
                       agoradigital::formata_nome_senadores(nome_autor, tipo_autor)) %>%
       ungroup()
-
-    props_leggo_id <-
-      agoradigital::read_props(paste0(input_path, "/proposicoes.csv")) %>%
-      dplyr::select(id_leggo, id_principal = id_ext, casa)
     
     entidades <- readr::read_csv(entidades_path)
 
