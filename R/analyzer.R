@@ -144,8 +144,8 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     get_pesos_locais() %>%
     dplyr::select(-tipo, -label) %>%
     dplyr::rename(peso_local = peso)
-  eventos_extendidos <- 
-    merge(full_dates, eventos_sem_horario, by="data", all.x = TRUE) %>% 
+  eventos_extendidos <-
+    merge(full_dates, eventos_sem_horario, by="data", all.x = TRUE) %>%
     dplyr::mutate(peso_base = dplyr::if_else(is.na(prop_id),0,1)) %>%
     dplyr::left_join(pesos_eventos, by="evento") %>%
     dplyr::left_join(pesos_locais, by="local") %>%
@@ -173,7 +173,7 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     temperatura_periodo <- eventos_extendidos %>%
       dplyr::mutate(periodo = lubridate::floor_date(data, "months"))
   }
-  
+
   data_arquivamento <-
     temperatura_periodo %>%
     get_arquivamento(c("periodo"))
@@ -189,15 +189,15 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
     dplyr::mutate(temperatura_periodo = dplyr::if_else(!is.na(dummy), 0, temperatura_periodo)) %>%
     dplyr::select(periodo, temperatura_periodo) %>%
     dplyr::arrange(periodo)
-  
+
   semanas_uteis <- filtra_dias_nao_uteis_congresso(temperatura_periodo)
-  semanas_nao_uteis <- dplyr::anti_join(temperatura_periodo, semanas_uteis, by = c("periodo", "temperatura_periodo")) 
-  semanas_com_temp <-  semanas_uteis %>% 
-    dplyr::bind_rows(semanas_nao_uteis %>% dplyr::filter(temperatura_periodo > 0)) %>% 
+  semanas_nao_uteis <- dplyr::anti_join(temperatura_periodo, semanas_uteis, by = c("periodo", "temperatura_periodo"))
+  semanas_com_temp <-  semanas_uteis %>%
+    dplyr::bind_rows(semanas_nao_uteis %>% dplyr::filter(temperatura_periodo > 0)) %>%
     dplyr::arrange(periodo)
   semanas_nao_uteis <-
-    semanas_nao_uteis %>% 
-    dplyr::filter(temperatura_periodo == 0) %>% 
+    semanas_nao_uteis %>%
+    dplyr::filter(temperatura_periodo == 0) %>%
     dplyr::mutate(temperatura_recente = NA)
 
   #Computa soma deslizante com decaimento exponencial
@@ -207,9 +207,9 @@ get_historico_temperatura_recente <- function(eventos_df, granularidade = 's', d
   historico_temperatura <- dplyr::bind_cols(semanas_com_temp, temperatura_recente) %>%
     dplyr::select(periodo,
                   temperatura_periodo,
-                  temperatura_recente) %>% 
-    dplyr::bind_rows(semanas_nao_uteis) %>% 
-    dplyr::arrange(periodo) %>% 
+                  temperatura_recente) %>%
+    dplyr::bind_rows(semanas_nao_uteis) %>%
+    dplyr::arrange(periodo) %>%
     tidyr::fill(temperatura_recente)
 
   return(historico_temperatura)
@@ -231,7 +231,7 @@ get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granulari
   # Retira a mesma tramitação no mesmo dia nas duas casas
   tram <- tram %>%
     dplyr::distinct(data_hora, texto_tramitacao, .keep_all = TRUE)
-  
+
   eventos_por_leggo_id <-
     tram %>%
     dplyr::mutate(id_leggo = id_leggo)
@@ -346,7 +346,8 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path, pautas_df)
     fix_nomes_locais() %>%
     dplyr::select(-em_pauta) %>%
     dplyr::mutate(id_ext = as.numeric(id_ext),
-                  data = as.character(data))
+                  data = as.character(data),
+                  local = as.character(local))
 
   old_pautas_df <- pautas_df %>%
     dplyr::mutate(semana = lubridate::epiweek(data)) %>%
@@ -427,11 +428,11 @@ extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
 #' get_progresso(etapas$proposicao, etapas$fases_eventos)
 #' @export
 get_progresso <- function(full_proposicao_df, full_tramitacao_df) {
-  sigla <- 
-    full_proposicao_df %>% 
-    dplyr::select(sigla_tipo) %>% 
+  sigla <-
+    full_proposicao_df %>%
+    dplyr::select(sigla_tipo) %>%
     head(1)
-  
+
   progresso_data <-
     extract_casas(full_proposicao_df, full_tramitacao_df, sigla[[1]]) %>%
     generate_progresso_df(sigla[[1]], flag_cong_remoto = TRUE) %>%
