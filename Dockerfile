@@ -9,6 +9,7 @@ COPY DESCRIPTION .
 RUN Rscript -e 'update.packages(checkBuilt=TRUE, ask=FALSE)'
 RUN Rscript -e 'install.packages(c("devtools", "digest")); devtools::install_deps()'
 RUN Rscript -e 'devtools::install_version("dplyr", version = "1.0.3", repos = "http://cran.us.r-project.org")'
+RUN Rscript -e 'devtools::install_version("testthat", version = "3.0.1", repos = "http://cran.us.r-project.org")'
 COPY . .
 
 #Install rcongresso from local branch

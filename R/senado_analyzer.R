@@ -554,7 +554,7 @@ extract_forma_apreciacao_senado <- function(proposicao_id) {
         tramitacao_data %>%
         magrittr::extract2("ComissoesDespacho") %>%
         magrittr::extract2("ComissaoDespacho") %>%
-        tibble::as.tibble()
+        tibble::as_tibble()
     } else {
       tramitacao_data <-
         tramitacao_data %>%

@@ -30,11 +30,11 @@ check_api <- function(){
 }
 
 test <- function(){
-  
+
   test_that('fetch_tramitacao()', {
     expect_true(all(names(tramitacao_data) %in% .COLNAMES_TRAMI_SEN))
   })
-  
+
   test_that('Regime de apreciacao', {
     expect_equal(extract_forma_apreciacao_senado(PROPOSICOES_ID), APRECIACAO_91341)
   })

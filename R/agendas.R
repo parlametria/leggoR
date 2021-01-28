@@ -11,7 +11,7 @@ get_data_frame_agenda_senado <- function(initial_date, end_date) {
   json_proposicao <- fetch_json_try(url)
 
   json_proposicao$Reunioes$Reuniao %>%
-    tibble::as.tibble() %>%
+    tibble::as_tibble() %>%
     rename_table_to_underscore() %>%
     dplyr::filter(situacao != 'Cancelada')
 }

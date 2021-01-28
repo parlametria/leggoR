@@ -10,7 +10,7 @@ setup <- function(){
   regex_documento_voto_em_separado_acao <<-tipos_acao[2]
   regex_documento_outros_acao <<-  tipos_acao[3]
   regex_documento_parecer_acao <<- tipos_acao[3]
-  
+
   regex_documento_emenda <<- tipos_documentos[1]
   regex_documento_proposicao <<- tipos_documentos[2]
   regex_documento_parecer <<- tipos_documentos[3]

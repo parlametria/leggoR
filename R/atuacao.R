@@ -6,6 +6,7 @@ senado_env <- jsonlite::fromJSON(here::here("R/config/environment_senado.json"))
 #' onde n é a quantidade de autores distintos para um documento
 #' @param autores_docs Dataframe com autores dos documentos
 #' @return Dataframe
+#' @export
 get_peso_documentos <- function(autores_docs) {
   if (!(agoradigital::check_dataframe(autores_docs))) {
     return(tibble::tibble())
@@ -66,7 +67,7 @@ create_tabela_atuacao_camara <- function(documentos_df, autores_df, data_inicio 
                     casa,
                     id_autor,
                     tipo_generico,
-                    sigla_local, 
+                    sigla_local,
                     tipo_acao) %>%
     dplyr::summarise(peso_total_documentos = sum(peso_documento),
                      num_documentos = dplyr::n_distinct(id_documento),
