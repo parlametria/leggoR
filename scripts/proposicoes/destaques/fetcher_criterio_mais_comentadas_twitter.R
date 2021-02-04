@@ -58,5 +58,11 @@ fetch_proposicoes_mais_comentadas_twitter <-
         ~ .fetch_proposicoes_mais_comentadas_twitter(.x, data_inicial, data_final)
       )
 
+    if (is_empty(names(df))) {
+      df <- tibble(
+        id_leggo = character()
+      )
+    }
+
     return(df)
   }
