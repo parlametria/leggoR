@@ -37,7 +37,9 @@ setup <- function() {
                                       peso_total_documentos = as.numeric(c(1,0.5,0.5,0.5,0.5)),
                                       num_documentos = as.integer(c(1,1,1,1,1)),
                                       is_important = c(F, T, T, T, T),
-                                      tipo_acao = c('Proposição', 'Proposição', 'Proposição', 'Proposição', 'Proposição'))
+                                      tipo_acao = c('Proposição', 'Proposição', 'Proposição', 'Proposição', 'Proposição')) %>%
+    dplyr::select(id_ext, casa, id_autor, tipo_generico, sigla_local, tipo_acao, peso_total_documentos,
+                  num_documentos, partido, uf, nome_autor, tipo_autor, is_important)
 
   atuacao_sample_df_camara_filtered <<- tibble::tibble(id_ext = c(1,1,1),
                                       casa = c('camara','camara','camara'),
@@ -51,7 +53,9 @@ setup <- function() {
                                       peso_total_documentos = as.numeric(c(1,0.5,0.5)),
                                       num_documentos = as.integer(c(1,1,1)),
                                       is_important = c(F, T, T),
-                                      tipo_acao = c('Proposição', 'Proposição', 'Proposição'))
+                                      tipo_acao = c('Proposição', 'Proposição', 'Proposição')) %>%
+    dplyr::select(id_ext, casa, id_autor, tipo_generico, sigla_local, tipo_acao, peso_total_documentos, num_documentos,
+                  partido, uf, nome_autor, tipo_autor, is_important)
 
   atuacao_sample_df_camara_filtered_limiar <<- tibble::tibble(id_ext = c(1),
                                                       casa = c('camara'),
@@ -65,7 +69,9 @@ setup <- function() {
                                                       peso_total_documentos = as.numeric(c(1)),
                                                       num_documentos = as.integer(1),
                                                       is_important = c(F),
-                                                      tipo_acao = c('Proposição'))
+                                                      tipo_acao = c('Proposição')) %>%
+    dplyr::select(id_ext, casa, id_autor, tipo_generico, sigla_local, tipo_acao, peso_total_documentos, num_documentos,
+                  partido, uf, nome_autor, tipo_autor, is_important)
 
 
   #atuacao Senado
@@ -100,7 +106,9 @@ setup <- function() {
                                       peso_total_documentos = as.numeric(c(1,0.5,0.5,0.5,0.5)),
                                       num_documentos = as.integer(c(1,1,1,1,1)),
                                       is_important = c(T, T, T, T, T),
-                                      tipo_acao = c('Proposição', 'Proposição', 'Proposição', 'Proposição', 'Proposição'))
+                                      tipo_acao = c('Proposição', 'Proposição', 'Proposição', 'Proposição', 'Proposição')) %>%
+    dplyr::select(id_ext, casa, id_autor, tipo_generico, tipo_acao, sigla_local, peso_total_documentos, num_documentos,
+                  partido, uf, nome_autor, tipo_autor, is_important)
 
   atuacao_sample_df_senado_filtered <<- tibble::tibble(id_ext = c(1,1,1),
                                                casa = c('senado','senado','senado'),
@@ -114,7 +122,9 @@ setup <- function() {
                                                peso_total_documentos = as.numeric(c(1,0.5,0.5)),
                                                num_documentos = as.integer(c(1,1,1)),
                                                is_important = c(T, T, T),
-                                               tipo_acao = c('Proposição', 'Proposição', 'Proposição'))
+                                               tipo_acao = c('Proposição', 'Proposição', 'Proposição')) %>%
+    dplyr::select(id_ext, casa, id_autor, tipo_generico, tipo_acao, sigla_local, peso_total_documentos, num_documentos,
+                  partido, uf, nome_autor, tipo_autor, is_important)
 
   atuacao_sample_df_senado_filtered_limiar <<- tibble::tibble(id_ext = c(1),
                                                              casa = c('senado'),
@@ -128,7 +138,9 @@ setup <- function() {
                                                              peso_total_documentos = as.numeric(c(1)),
                                                              num_documentos = as.integer(1),
                                                              is_important = c(T),
-                                                             tipo_acao = c('Proposição'))
+                                                             tipo_acao = c('Proposição')) %>%
+    dplyr::select(id_ext, casa, id_autor, tipo_generico, tipo_acao, sigla_local, peso_total_documentos, num_documentos,
+                  partido, uf, nome_autor, tipo_autor, is_important)
 
   autores_docs <<- tibble::tibble(id_principal = rep(123,6),
                                   casa = c("camara",rep("senado",2),rep("camara",3)),
@@ -136,9 +148,9 @@ setup <- function() {
                                   id_autor = c(31, 31, 32, 31, 32, 33))
 
   pesos_docs <<- tibble::tibble(id_principal = rep(123,3),
-                                casa = c("camara","senado","camara"),
-                                id_documento = c(1,2,3),
-                                peso_documento = c(1,1/2,1/3)
+                                casa = c("camara","camara","senado"),
+                                id_documento = c(1,3,2),
+                                peso_documento = c(1,1/3,1/2)
                                 )
 
   return(TRUE)
@@ -251,7 +263,7 @@ test <- function() {
   })
 
   test_that('get_peso_documentos returns correct pesos_docs dataframe', {
-    expect_equal(get_peso_documentos(autores_docs), pesos_docs)
+    expect_equal(get_peso_documentos(autores_docs) %>% dplyr::ungroup(), pesos_docs)
   })
 
   test_that('get_peso_documentos returns warning when autores_docs is NULL', {

@@ -13,7 +13,7 @@ test <- function(){
   test_that('get_relatorias() is dataframe', {
     expect_true(is.data.frame(get_relatorias(PROPOSICOES_ID, 'senado')))
   })
-  
+
   test_that('get_relatorias() gets last relator', {
     expect_true(is.data.frame(get_relatorias(PROPOSICOES_ID, 'senado', 1)))
   })

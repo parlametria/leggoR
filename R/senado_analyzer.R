@@ -39,8 +39,14 @@ extract_fase_Senado <-
 #' @export
 get_comissoes_faltantes_senado <- function(data_tramitacao) {
   comissoes <-
-    extract_comissoes_Senado(data_tramitacao) %>%
-    dplyr::filter(data_hora == .$data_hora[[1]]) %>%
+    extract_comissoes_Senado(data_tramitacao)
+
+  if (nrow(comissoes) > 0) {
+    comissoes <- comissoes %>%
+    dplyr::filter(data_hora == .$data_hora[[1]])
+  }
+
+  comissoes <- comissoes %>%
     dplyr::select(comissoes) %>%
     tidyr::unnest()
 
@@ -123,7 +129,7 @@ extract_fase_global <- function(data_tramitacao, proposicao_df) {
   }
 
    data_tramitacao %>%
-     dplyr::mutate(global = dplyr::if_else(situacao_descricao_situacao == senado_env$fase_global_sancao$situacao_sancao, "- Sanção/Veto", global)) %>% 
+     dplyr::mutate(global = dplyr::if_else(situacao_descricao_situacao == senado_env$fase_global_sancao$situacao_sancao, "- Sanção/Veto", global)) %>%
    tidyr::fill(global, .direction = "down")
 }
 
@@ -220,7 +226,7 @@ extract_periodo_emendas_senado <- function(tramitacao_df) {
                                             orders = c("%d.%m.%Y", "%d.%m.%Y"))) %>%
     dplyr::arrange(emendas) %>%
     dplyr::group_by(data_hora, sequencia) %>%
-    dplyr::mutate(id = row_number()) %>%
+    dplyr::mutate(id = dplyr::row_number()) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(data_hora = dplyr::if_else(!is.na(emendas), emendas, data_hora),
                   evento = dplyr::case_when(!is.na(emendas) & id == 1 ~ senado_env$evento_emendas$evento_abertura,
@@ -368,11 +374,15 @@ extract_comissoes_Senado <- function(df) {
       dplyr::select(comissoes, data_hora) %>%
       dplyr::rowwise() %>%
       dplyr::mutate(comissoes = stringr::str_extract_all(comissoes, comissoes_permanentes_especiais)) %>%
-      tidyr::unnest() %>%
+      tidyr::unnest(cols = c(comissoes)) %>%
       unique() %>%
       dplyr::mutate(comissoes = sapply(comissoes, fix_names)) %>%
-      dplyr::rowwise() %>%
-      dplyr::filter(length(comissoes) != 0)
+      dplyr::rowwise()
+
+    if (nrow(df) > 0) {
+      df <- df %>%
+        dplyr::filter(length(comissoes) != 0)
+    }
   }
 
   return(df)
@@ -544,16 +554,19 @@ extract_forma_apreciacao_senado <- function(proposicao_id) {
         tramitacao_data %>%
         magrittr::extract2("ComissoesDespacho") %>%
         magrittr::extract2("ComissaoDespacho") %>%
-        tibble::as.tibble()
+        tibble::as_tibble()
     } else {
       tramitacao_data <-
         tramitacao_data %>%
         tidyr::unnest(ComissoesDespacho.ComissaoDespacho)
     }
 
-    tramitacao_data <-
-      tramitacao_data %>%
-      dplyr::filter(IndicadorDespachoTerminativo == "Sim")
+    if ("IndicadorDespachoTerminativo" %in% names(tramitacao_data)) {
+      tramitacao_data <-
+        tramitacao_data %>%
+        dplyr::filter(IndicadorDespachoTerminativo == "Sim")
+    }
+
     dplyr::if_else(nrow(tramitacao_data) != 0,
                    apreciacao$conclusiva,
                    apreciacao$plenario)
@@ -612,7 +625,7 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
 
   evento_sancao_promulgacao <- proc_tram_df %>%
     dplyr::count(evento) %>%
-    dplyr::filter(str_detect(evento, "remetida_a_sancao_promulgacao|transformada_lei"))
+    dplyr::filter(stringr::str_detect(evento, "remetida_a_sancao_promulgacao|transformada_lei"))
 
   sigla_proposicao <- proposicao_df %>% dplyr::pull(sigla_tipo)
 

@@ -16,15 +16,15 @@ check_api <- function(){
 }
 
 test <- function(){
-  
+
   test_that("extract_evento_Senado() returns dataframe", {
     expect_true(is.data.frame(SENADO_EVENTOS))
   })
-  
+
   test_that('extract_evento_Senado() colnames', {
     expect_true(all(names(SENADO_EVENTOS) %in% .COLNAMES_EVENTO_SEN))
   })
-  
+
   # test_that('extract_evento_Senado() requerimento de audiência', {
   #   IDS_REQ_AUDIENCIA <- c(103831, 120768, 102721, 91341)
   #   expect_true(
@@ -36,7 +36,7 @@ test <- function(){
   #       )
   #     )
   # })
-  
+
   test_that('extract_evento_Senado() apresentação parecer', {
     IDS_APRESENTACAO_PARECER <- c(127753, 111048, 121572, 91341, 106330, 96813)
     expect_true(
@@ -47,7 +47,7 @@ test <- function(){
         )
       )
     )})
-    
+
   # Garante que eventos de apresentação de parecer sem terem ocorrido
   # sejam capturados
   test_that('extract_evento_Senado() não apresentação de parecer', {
@@ -61,11 +61,11 @@ test <- function(){
       )
     )
   })
-  
+
   test_that('extract_forma_apreciacao_senado() is getting right', {
     expect_equal(extract_forma_apreciacao_senado(91341), 'Plenário')
   })
-  
+
   test_that('extract_casas_in_senado() is dataframe and is not empty', {
     processed_prop <- process_proposicao_senado_df(prop_91341, tram_91341)
     expect_true(is.data.frame(processed_prop))

@@ -36,15 +36,15 @@ test <- function() {
     expect_true(nrow(progresso) != 0)
     expect_true(nrow(progresso_pec) != 0)
   })
-  
+
   test_that("Test regular PL in Comissões phase", {
     etapa_comissoes_construcao <- tibble::tibble(fase_global = 'Construção', local = 'Comissões')
-    
+
     expect_true(nrow(progresso_pls_plenario_2 %>%
                        dplyr::inner_join(etapa_comissoes_construcao, by=c("fase_global", "local")) %>%
                        dplyr::filter(!is.na(data_inicio))) > 0)
   })
-  
+
   test_that("PLs which have special Plenário events have their progresso correctly inferred", {
     etapa_plenario_construcao <- tibble::tibble(fase_global = 'Construção', local = 'Plenário')
 
@@ -80,9 +80,9 @@ test <- function() {
     progresso_pec_gabarito <-
       tibble::tribble(
         ~ casa, ~ prop_id, ~ fase_global,      ~ local,                     ~ data_inicio,        ~ data_fim,     ~ local_casa,
-      "camara", 1198512, "Pré-Construção",      "",                         NA,                    NA,                  NA,
-      "camara", 1198512, "Construção",          "Comissões",                "2015-04-23 17:14:00", "2020-07-21 00:00:00", "camara",
       "camara", 1198512, "Construção",          "Plenário",                 "2020-07-21 16:18:00", "2020-08-26 00:00:00", "camara",
+      "camara", 1198512, "Construção",          "Comissões",                "2015-04-23 17:14:00", "2020-07-21 00:00:00", "camara",
+      "camara", 1198512, "Pré-Construção",      "",                         NA,                    NA,                  NA,
       "camara", 1198512, "Pré-Revisão I",       "",                         NA,                    NA,                  NA,
       "camara", 1198512, "Revisão I",           "Comissões",                NA,                    NA,                  NA,
       "camara", 1198512, "Revisão I",           "Plenário",                 NA,                    NA,                  NA,

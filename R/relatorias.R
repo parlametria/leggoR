@@ -159,9 +159,10 @@ get_last_relator <- function(proposicao_id, casa) {
 
   if (casa == "senado") {
     df_relator <- relatorias %>%
-      dplyr::mutate(data_relator = as.POSIXct(data_designacao)) %>%
+      dplyr::mutate(data_relator = as.POSIXct(data_designacao),
+                    id_relator = as.character(codigo_parlamentar)) %>%
       dplyr::select(
-        id_relator = codigo_parlamentar,
+        id_relator,
         nome_relator = nome_parlamentar,
         partido_relator = sigla_partido_parlamentar,
         uf_relator = uf_parlamentar,
@@ -180,7 +181,7 @@ get_last_relator <- function(proposicao_id, casa) {
 
     df_relator <- relatorias %>%
       dplyr::mutate(
-        id_relator = NA,
+        id_relator = NA_character_,
         partido_relator = partido_relator,
         uf_relator = uf_relator,
         nome_parlamentar = stringr::str_remove(nome_parlamentar, " \\(.*")
@@ -240,7 +241,7 @@ get_last_relator <- function(proposicao_id, casa) {
         uf_relator <- partido_uf[[2]]
       }
       df_relator <- relatorias %>% mutate(
-        id_relator = NA,
+        id_relator = NA_character_,
         casa = "camara",
         partido_relator = partido_relator,
         uf_relator = uf_relator,
@@ -257,13 +258,13 @@ get_last_relator <- function(proposicao_id, casa) {
     }, error = function(e) {
       message(e)
       return(
-        tibble::tribble(
-          ~ id_relator,
-          ~ casa,
-          ~ nome_relator,
-          ~ partido_relator,
-          ~ uf_relator,
-          ~ data_relator
+        tibble::tibble(
+          id_relator = character(),
+          casa = character(),
+          nome_relator = character(),
+          partido_relator = character(),
+          uf_relator = character(),
+          data_relator = as.POSIXct(character())
         )
       )
     })
@@ -275,27 +276,32 @@ get_last_relator <- function(proposicao_id, casa) {
       relatorias <- get_relatorias(proposicao_id = id_senado,
                                   casa = "senado")
 
-      df_relator <- relatorias %>%
-        mutate(data_relator = as.POSIXct(data_designacao),
-               casa = "senado") %>%
-        select(
-          id_relator = codigo_parlamentar,
-          casa,
-          nome_relator = nome_parlamentar,
-          partido_relator = sigla_partido_parlamentar,
-          uf_relator = uf_parlamentar,
-          data_relator
-        )
+      if (nrow(relatorias) > 0) {
+        df_relator <- relatorias %>%
+          mutate(data_relator = as.POSIXct(data_designacao),
+                 casa = "senado",
+                 id_relator = as.character(codigo_parlamentar)) %>%
+          select(
+            id_relator,
+            casa,
+            nome_relator = nome_parlamentar,
+            partido_relator = sigla_partido_parlamentar,
+            uf_relator = uf_parlamentar,
+            data_relator
+          )
+      } else {
+        stop("Nenhum relator encontrado")
+      }
     }, error = function(e) {
       message(e)
       return(
-        tibble::tribble(
-          ~ id_relator,
-          ~ casa,
-          ~ nome_relator,
-          ~ partido_relator,
-          ~ uf_relator,
-          ~ data_relator
+        tibble::tibble(
+          id_relator = character(),
+          casa = character(),
+          nome_relator = character(),
+          partido_relator = character(),
+          uf_relator = character(),
+          data_relator = as.POSIXct(character())
         )
       )
     })

@@ -298,7 +298,8 @@ source(here::here("scripts/proposicoes/fetcher_proposicao.R"))
         is.na(proposicao),
         .fetch_nome_formal(id_camara, id_senado),
         .processa_nome_formal(proposicao)
-      )
+      ),
+      proposicao = as.character(proposicao)
     )
 
   df_com_ids <- df_com_infos %>%
@@ -324,7 +325,10 @@ source(here::here("scripts/proposicoes/fetcher_proposicao.R"))
           casa = "senado"
         )
       )
-    )
+    ) %>%
+    ungroup() %>%
+    mutate(id_camara = as.character(id_camara),
+           id_senado = as.character(id_senado))
 
   df_com_infos <- df_com_infos %>%
     filter(!str_detect(tolower(proposicao), "mpv.*") & (!is.na(id_camara) | !is.na(id_senado)) |
@@ -336,8 +340,10 @@ source(here::here("scripts/proposicoes/fetcher_proposicao.R"))
         !is.na(tema),
         tema,
         .get_temas_processed_proposicoes(id_camara, id_senado)
-      )
-    )
+      ),
+      tema = as.character(tema)
+    ) %>%
+    ungroup()
 
   return(df_com_infos)
 }
