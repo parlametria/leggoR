@@ -155,7 +155,7 @@ adiciona_locais_faltantes_progresso <- function(progresso_df) {
 #' @export
 adiciona_status <- function(tramitacao_df) {
   tramitacao_df %>%
-    dplyr::group_by(prop_id, casa) %>%
+    dplyr::group_by(id_ext, casa) %>%
     dplyr::mutate(evento = dplyr::case_when(
       descricao_situacao == "TRANSFORMADA EM NORMA JURÍDICA" ~ "transformada_em_norma_juridica",
       TRUE ~ evento
