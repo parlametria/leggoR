@@ -15,8 +15,8 @@
   camara_documentos <-
     camara_docs %>%
     dplyr::mutate(data = lubridate::floor_date(data_apresentacao, unit='day')) %>%
-    dplyr::left_join(props_leggo_id, by = c("id_principal", "casa")) %>% 
-    dplyr::rename(sigla_local = status_proposicao_sigla_orgao) %>% 
+    dplyr::left_join(props_leggo_id, by = c("id_principal", "casa")) %>%
+    dplyr::rename(sigla_local = status_proposicao_sigla_orgao) %>%
     agoradigital::remove_atuacao_camara_comissao_mista()
 
   # Gerando dado de autorias de documentos
@@ -151,7 +151,7 @@ export_nodes_edges <- function(input_path, camara_docs, data_inicial, senado_doc
     edges <-
       coautorias %>%
       dplyr::group_by(id_leggo) %>%
-      dplyr::group_modify(~ agoradigital::generate_edges(., graph_nodes = nodes, edges_weight = 1), keep = T) %>%
+      dplyr::group_modify(~ agoradigital::generate_edges(., graph_nodes = nodes, edges_weight = 1), .keep = T) %>%
       dplyr::distinct()
 
     nodes <-
