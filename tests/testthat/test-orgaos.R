@@ -16,7 +16,7 @@ test <- function(){
     expect_true(is.data.frame(COMISSOES_CAMARA))
     expect_true(is.data.frame(COMISSOES_SENADO))
   })
-  
+
   test_that("fetch_orgaos_camara() and fetch_orgaos_senado() are not empty", {
     expect_true(nrow(COMISSOES_CAMARA) != 0)
     expect_true(nrow(COMISSOES_SENADO) != 0)

@@ -38,7 +38,9 @@ senado_atores_gabarito <-
                  sigla_local = c("CCJ", "CCJ"),
                  peso_total_documentos = c(2, 1),
                  num_documentos = as.integer(c(2, 1)),
-                 is_important = c(TRUE, TRUE))
+                 is_important = c(TRUE, TRUE)) %>%
+  dplyr::select(id_ext, casa, id_autor, tipo_generico, tipo_acao, sigla_local, peso_total_documentos, num_documentos,
+                partido, uf, nome_autor, tipo_autor, is_important)
 
 pls_ids <- tibble::tibble(id_camara = c(257161,2088990),
                           id_senado = c(NA,91341),

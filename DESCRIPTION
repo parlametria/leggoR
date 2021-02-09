@@ -36,7 +36,7 @@ Imports: magrittr,
     ellipsis,
     data.table,
     tidyverse,
-    dplyr (== 0.8.5)
+    dplyr
 Suggests: testthat,
     knitr,
     vistime,

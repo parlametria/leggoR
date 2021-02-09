@@ -96,7 +96,7 @@ fetch_audiencias_publicas_by_orgao_camara <- function(initial_date, end_date, fa
     if(purrr::is_list(df)){
       df <- df %>%
         purrr::list_modify(".attrs" = NULL) %>%
-        tibble::as.tibble() %>%
+        tibble::as_tibble() %>%
         t() %>%
         as.data.frame()
 

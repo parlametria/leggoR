@@ -64,7 +64,7 @@ get_unique_nodes <- function(coautorias) {
   nodes <-
     coautorias %>%
     dplyr::group_by(id_leggo) %>%
-    dplyr::group_modify(~ agoradigital::generate_nodes(.), keep = T) %>%
+    dplyr::group_modify(~ agoradigital::generate_nodes(.), .keep = T) %>%
     dplyr::ungroup()
 
   unique_nodes <-
