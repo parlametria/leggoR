@@ -64,7 +64,7 @@ get_unique_nodes <- function(coautorias) {
   nodes <-
     coautorias %>%
     dplyr::group_by(id_leggo) %>%
-    dplyr::group_modify(~ agoradigital::generate_nodes(.), keep = T) %>%
+    dplyr::group_modify(~ agoradigital::generate_nodes(.), .keep = T) %>%
     dplyr::ungroup()
 
   unique_nodes <-
@@ -224,11 +224,11 @@ get_coautorias <- function(docs, autores, casa, limiar = 0.1, partidos_oposicao,
                                 "camara",
                                 "senado")) %>%
     dplyr::group_by(id_autor) %>%
-    dplyr::summarise(nome = first(nome),
+    dplyr::summarise(nome = dplyr::first(nome),
 
-              partido = last(partido),
-              uf = first(uf),
-              casa_autor = first(casa_autor)) %>%
+              partido = dplyr::last(partido),
+              uf = dplyr::first(uf),
+              casa_autor = dplyr::first(casa_autor)) %>%
     dplyr::ungroup()
 
   ## Filtra autorias passadas como parâmetro para coautorias com base na data_inicial

@@ -14,3 +14,4 @@ data/.rstudio
 data/rstudio
 .rstudio
 rstudio
+^leggo_data$
