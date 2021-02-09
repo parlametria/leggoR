@@ -11,10 +11,11 @@ stages:
 
 variables:
   DOCKER_HOST: tcp://docker:2375/
-  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:gitlab-ci-dev	
+  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:gitlab-ci-dev
   COMPOSE_CMD: docker-compose -f docker-compose.yml
-  
+
 before_script:
+  - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   - apk add python3-dev py3-pip docker-cli libffi-dev openssl-dev gcc libc-dev make && pip3 --no-cache install python-dotenv docker-compose
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
   - export PKG_IMAGE_TAG=$CONTAINER_TEST_IMAGE
