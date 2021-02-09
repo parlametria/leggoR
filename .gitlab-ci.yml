@@ -16,7 +16,7 @@ variables:
 
 before_script:
   - apk --no-cache add curl
-  - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -y
+  - curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- --default-toolchain=nightly
   - apk add python3-dev py3-pip docker-cli libffi-dev openssl-dev gcc libc-dev make && pip3 --no-cache install python-dotenv docker-compose
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
   - export PKG_IMAGE_TAG=$CONTAINER_TEST_IMAGE
