@@ -156,13 +156,19 @@ adiciona_locais_faltantes_progresso <- function(progresso_df) {
 adiciona_status <- function(tramitacao_df) {
   tramitacao_df %>%
     dplyr::group_by(id_ext, casa) %>%
+    dplyr::mutate(evento = dplyr::case_when(
+      descricao_situacao == "TRANSFORMADA EM NORMA JURÍDICA" ~ "transformada_em_norma_juridica",
+      TRUE ~ evento
+      )
+    ) %>%
     dplyr::mutate(
       status = dplyr::case_when(
         evento == "arquivamento" ~ "Arquivada",
         evento == "desarquivamento" ~ "Ativa",
         evento == "perda_da_eficacia" ~ "Caducou",
         evento == "rejeicao_projeto" ~ "Rejeitada",
-        evento == "transformada_lei" ~ "Lei"
+        evento == "transformada_lei" ~ "Lei",
+        evento == "transformada_em_norma_juridica" ~ "Aprovada"
       )
     ) %>%
     tidyr::fill(status, .direction = "up") %>%
