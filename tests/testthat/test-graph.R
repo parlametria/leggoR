@@ -9,6 +9,8 @@ setup <- function() {
                                     data_apresentacao = c("2019-09-21", "2019-09-01", "2019-10-07"),
                                     data = c("2019-09-21", "2019-09-01", "2019-10-07"),
                                     sigla_tipo = c('EMC','EMC','REQ'),
+                                    numero = c(1, 2, 3),
+                                    ano = c(2019, 2019, 2019),
                                     descricao_tipo_documento = c('Emenda na Comissão', 'Emenda na Comissão', 'Requerimento de Audiência Pública'),
                                     status_proposicao_sigla_orgao = c('PLEN', 'CCJ', 'CFT'),
                                     url_inteiro_teor =c("google.com", "google.com", "google.com"),
@@ -53,7 +55,7 @@ setup <- function() {
   edges <<-
     coautorias_sample %>%
     dplyr::group_by(id_leggo) %>%
-    dplyr::group_modify(~ agoradigital::generate_edges(., graph_nodes = nodes, edges_weight = 1), keep = T) %>%
+    dplyr::group_modify(~ agoradigital::generate_edges(., graph_nodes = nodes, edges_weight = 1), .keep = T) %>%
     dplyr::distinct()
 
   nodes_sample_with_size <<-
@@ -91,7 +93,7 @@ test <- function() {
   test_that("generate_edges() ", {
     expect_true(is.data.frame(edges))
     expect_true(nrow(edges) > 0)
-    expect_equal(edges_sample, edges)
+    expect_equal(edges_sample, edges %>% dplyr::ungroup())
   })
 
   test_that("compute_nodes_size() ", {
