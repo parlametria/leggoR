@@ -66,13 +66,13 @@ processa_votos <- function(anos = c(2019, 2020),
   
   if (nrow(votacoes_a_processar_camara) > 0) {
     votos_camara <-
-      fetch_votos_camara(anos, votacoes_a_processar_camara %>% head(10))
+      fetch_votos_camara(anos, votacoes_a_processar_camara)
   }
   
   if (nrow(votacoes_a_processar_senado) > 0) {
     votos_senado <-
       fetch_votos_senado(anos, votacoes_a_processar_senado) %>% 
-      mutate(id_parlamentar = as.integer(id_parlamentar) %>% head(10)) %>% 
+      mutate(id_parlamentar = as.integer(id_parlamentar)) %>% 
       select(-id_proposicao)
   }
   
