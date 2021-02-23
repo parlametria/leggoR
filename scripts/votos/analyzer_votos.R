@@ -77,14 +77,16 @@ processa_votos <- function(anos = c(2019, 2020),
   
   if (nrow(votacoes_a_processar_camara) > 0) {
     votos_camara <-
-      fetch_votos_camara(anos, votacoes_a_processar_camara)
+      fetch_votos_camara(anos, votacoes_a_processar_camara) %>% 
+      perfilparlamentar::enumera_voto()
   }
   
   if (nrow(votacoes_a_processar_senado) > 0) {
     votos_senado <-
       fetch_votos_senado(anos, votacoes_a_processar_senado) %>% 
       mutate(id_parlamentar = as.integer(id_parlamentar)) %>% 
-      select(-id_proposicao)
+      select(-id_proposicao) %>% 
+      perfilparlamentar::enumera_voto()
   }
   
   votacoes_camara <-
@@ -116,7 +118,7 @@ processa_votos <- function(anos = c(2019, 2020),
       id_parlamentar = integer(),
       id_parlamentar_parlametria = integer(),
       partido = character(),
-      voto = character(),
+      voto = integer(),
       casa = character()
     )
   }
