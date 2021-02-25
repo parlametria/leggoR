@@ -9,7 +9,8 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
                      evento = c("apresentacao_pl","distribuicao","designado_relator","evento_x",
                                 "fim_prazo_emendas","voto_em_separado",
                                 "evento_y",
-                                "designado_relator","evento_z","parecer","parecer_pela_aprovacao","aprovacao_parecer",
+                                "designado_relator","evento_z","parecer_pela_adequacao_financeira_e_orcamentaria",
+                                "parecer_pela_aprovacao","aprovacao_parecer",
                                 "designado_relator","parecer_pela_rejeicao","aprovacao_parecer",
                                 "designado_relator","parecer_pela_aprovacao","evento_w"),
                      local = "Plenário",
@@ -36,11 +37,11 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   # 2018-09-12
   p_dia3 <- 1 + (peso_locais)
   # 2018-09-13
-  p_dia4 <- 5 + peso_serie_c + (3 * peso_serie_a) + (5 * peso_locais)
+  p_dia4 <- 5 + (2 * peso_serie_b) + (2 * peso_serie_a) + (5 * peso_locais)
   # 2018-09-14
-  p_dia5 <- 3 + peso_serie_c +  (2 * peso_serie_a) + (3 * peso_locais)
+  p_dia5 <- 3 + (2 * peso_serie_a) +  (peso_serie_b) + (3 * peso_locais)
   # 2018-09-17
-  p_dia6 <- 4 + (3 * peso_serie_a) + (3 * peso_locais)
+  p_dia6 <- 4 + (2 * peso_serie_a) + (peso_serie_b) + (3 * peso_locais)
   # 2018-09-18
   p_dia7 <- 0
 
@@ -102,9 +103,9 @@ test_that('get_historico_temperatura_recente() has correct function passing the 
   peso_locais <- congresso_env$tipos_locais$peso[1]
 
   p_week1 <- 4 + peso_serie_c + peso_locais + (2 * peso_serie_a)
-  p_week2 <- 5 + (2 * peso_serie_c) + peso_serie_a + (3 * peso_locais)
-  p_week3 <- 6 + peso_serie_a + (2 * peso_serie_c) + (3 * peso_locais) + peso_serie_a
-  p_week4 <- 5 + peso_serie_c + peso_serie_a + (2 * peso_locais)
+  p_week2 <- 5 + (2 * peso_serie_a) + peso_serie_c + (3 * peso_locais)
+  p_week3 <- 6 + (2 * peso_serie_a) + (2 * peso_serie_c) + (3 * peso_locais)
+  p_week4 <- 5 + (2 * peso_serie_a) + (2 * peso_locais)
   result <- c(
     # semana 1
     sum(p_week1 * r^0),
@@ -155,8 +156,8 @@ test_that('get_historico_temperatura_recente() quando arquiva', {
   peso_locais <- congresso_env$tipos_locais$peso[1]
 
   p_week1 <- 0
-  p_week2 <- 5 + (2 * peso_serie_c) + peso_serie_a + (3 * peso_locais)
-  p_week3 <- 6 + (2 * peso_serie_c) + (3 * peso_locais) + (2 * peso_serie_a)
+  p_week2 <- 5 + (2 * peso_serie_a) + peso_serie_c + (3 * peso_locais)
+  p_week3 <- 6 + (2 * peso_serie_c) + (2 * peso_serie_a) + (3 * peso_locais)
   p_week4 <- 0
   result <- c(
     # semana 1
@@ -210,9 +211,9 @@ test_that('get_historico_temperatura_recente_id_leggo() has correct function pas
   peso_locais <- congresso_env$tipos_locais$peso[1]
 
   p_week1 <- 4 + peso_serie_c + peso_locais + (2 * peso_serie_a)
-  p_week2 <- 5 + (2 * peso_serie_c) + peso_serie_a + (3 * peso_locais)
+  p_week2 <- 5 + (2 * peso_serie_a) + peso_serie_c + (3 * peso_locais)
   p_week3 <- 6 + (2 * peso_serie_c) + (3 * peso_locais) + (2 * peso_serie_a)
-  p_week4 <- 5 + peso_serie_c + peso_serie_a + (2 * peso_locais)
+  p_week4 <- 5 + (2 * peso_serie_a) + (2 * peso_locais)
   result <- c(
     # semana 1
     sum(p_week1 * r^0),
@@ -246,3 +247,4 @@ test_that('get_historico_temperatura_recente_id_leggo() return empty df when the
 
   expect_equal(energy_df, temperatura_por_id_leggo)
 })
+
