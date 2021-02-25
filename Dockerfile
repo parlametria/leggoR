@@ -5,11 +5,14 @@ WORKDIR /agora-digital
 #Prepare environment and copy files
 RUN apt-get update
 RUN apt-get install libssl-dev libxml2-dev libcurl4-openssl-dev libgit2-dev vim less git -y
+RUN apt-get update
+RUN apt-get install -y libjpeg-dev libpoppler-cpp-dev
 COPY DESCRIPTION .
 RUN Rscript -e 'update.packages(checkBuilt=TRUE, ask=FALSE)'
 RUN Rscript -e 'install.packages(c("devtools", "digest")); devtools::install_deps()'
 RUN Rscript -e 'devtools::install_version("dplyr", version = "1.0.3", repos = "http://cran.us.r-project.org")'
 RUN Rscript -e 'devtools::install_version("testthat", version = "3.0.1", repos = "http://cran.us.r-project.org")'
+RUN Rscript -e 'install.packages(c("futile.logger", "pscl", "pdftools", "eeptools"))'
 COPY . .
 
 #Install rcongresso from local branch
@@ -22,3 +25,6 @@ RUN rm -rf rcongresso
 
 #Install leggoR package
 RUN Rscript -e 'devtools::install(upgrade = "never")'
+
+#Install perfilparlamentar package
+RUN Rscript -e 'devtools::install_github("parlametria/perfil-parlamentarR@main")'
