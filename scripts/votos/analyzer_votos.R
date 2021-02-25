@@ -13,11 +13,11 @@ processa_votos <- function(anos = c(2019, 2020),
                            votacoes_datapath = NULL,
                            votos_datapath = NULL,
                            proposicoes_datapath = here::here("leggo_data/proposicoes.csv")) {
-  
+
   new_votacoes_camara <- processa_votacoes_camara_anos(anos) %>%
     mutate(casa = "camara",
            id_proposicao = as.character(id_proposicao))
-  
+
   new_votacoes_senado <- processa_votacoes_senado_anos(anos) %>%
     mutate(casa = "senado") %>%
     select(
@@ -27,14 +27,14 @@ processa_votos <- function(anos = c(2019, 2020),
       obj_votacao = objeto_votacao,
       casa
     )
-  
+
   votos_camara <- NULL
   votos_senado <- NULL
-  
+
   if (!is.null(votacoes_datapath) && file.exists(votacoes_datapath)) {
     votacoes_atuais <-
       read_csv(votacoes_datapath, col_types = cols(.default = "c"))
-    
+
     votacoes_a_processar_camara <-
       anti_join(
         new_votacoes_camara,
@@ -42,8 +42,8 @@ processa_votos <- function(anos = c(2019, 2020),
           filter(casa == "camara"),
         by = c("id_proposicao", "id_votacao")
       )
-    
-    
+
+
     votacoes_a_processar_senado <-
       anti_join(
         new_votacoes_senado,
@@ -51,7 +51,7 @@ processa_votos <- function(anos = c(2019, 2020),
           filter(casa == "senado"),
         by = c("id_proposicao", "id_votacao")
       )
-    
+
   } else {
     votacoes_atuais <- tibble(
       id_leggo = character(),
@@ -61,57 +61,58 @@ processa_votos <- function(anos = c(2019, 2020),
       obj_votacao = character(),
       casa = character()
     )
-    
+
     votacoes_a_processar_camara <- new_votacoes_camara
     votacoes_a_processar_senado <- new_votacoes_senado
   }
-  
-  proposicoes <- read_csv(proposicoes_datapath, col_types = cols(.default = "c")) %>% 
+
+  proposicoes <- read_csv(proposicoes_datapath, col_types = cols(.default = "c")) %>%
     select(id_leggo, id_proposicao = id_ext, casa)
-  
-  votacoes_a_processar_camara <- 
+
+  votacoes_a_processar_camara <-
     left_join(votacoes_a_processar_camara, proposicoes, by = c("id_proposicao", "casa"))
-  
-  votacoes_a_processar_senado <- 
+
+  votacoes_a_processar_senado <-
     left_join(votacoes_a_processar_senado, proposicoes, by = c("id_proposicao", "casa"))
-  
+
   if (nrow(votacoes_a_processar_camara) > 0) {
     votos_camara <-
-      fetch_votos_camara(anos, votacoes_a_processar_camara) %>% 
+      fetch_votos_camara(anos, votacoes_a_processar_camara) %>%
       perfilparlamentar::enumera_voto()
   }
-  
+
   if (nrow(votacoes_a_processar_senado) > 0) {
     votos_senado <-
-      fetch_votos_senado(anos, votacoes_a_processar_senado) %>% 
-      mutate(id_parlamentar = as.integer(id_parlamentar)) %>% 
-      select(-id_proposicao) %>% 
+      fetch_votos_senado(anos, votacoes_a_processar_senado) %>%
+      mutate(id_parlamentar = as.integer(id_parlamentar)) %>%
+      select(-id_proposicao) %>%
       perfilparlamentar::enumera_voto()
   }
-  
+
   votacoes_camara <-
     bind_rows(votacoes_atuais %>%
                 filter(casa == "camara"),
               votacoes_a_processar_camara)
-  
+
   votacoes_senado <-
     bind_rows(votacoes_atuais %>%
                 filter(casa == "senado"),
               votacoes_a_processar_senado)
-  
+
   votacoes <- votacoes_camara %>%
     bind_rows(votacoes_senado)
-  
-  votacoes <- votacoes %>% 
-    mutate(data = gsub("T", " ", data)) %>% 
+
+  votacoes <- votacoes %>%
+    mutate(data = gsub("T", " ", data)) %>%
     distinct()
-  
+
   if (!is.null(votos_datapath) && file.exists(votos_datapath)) {
     votos_atuais <-
       read_csv(votos_datapath, col_types = cols(id_parlamentar="i",
                                                 id_parlamentar_parlametria="i",
+                                                voto="i",
                                                 .default = "c"))
-    
+
   } else {
     votos_atuais <- tibble(
       id_votacao = character(),
@@ -122,21 +123,21 @@ processa_votos <- function(anos = c(2019, 2020),
       casa = character()
     )
   }
-  
+
   if (!is.null(votos_camara)) {
     votos_atuais <- votos_atuais %>% bind_rows(votos_camara)
   }
-  
+
   if (!is.null(votos_senado)) {
     votos_atuais <- votos_atuais %>% bind_rows(votos_senado)
   }
-  
-  votos_atuais <- votos_atuais %>% 
-    mutate(casa_enum = if_else(casa == "camara", 1, 2)) %>% 
-    mutate(id_parlamentar_parlametria = paste0(casa_enum, id_parlamentar)) %>% 
-    select(id_votacao, id_parlamentar, id_parlamentar_parlametria, partido, voto, casa) %>% 
+
+  votos_atuais <- votos_atuais %>%
+    mutate(casa_enum = if_else(casa == "camara", 1, 2)) %>%
+    mutate(id_parlamentar_parlametria = paste0(casa_enum, id_parlamentar)) %>%
+    select(id_votacao, id_parlamentar, id_parlamentar_parlametria, partido, voto, casa) %>%
     distinct()
-  
+
   write_csv(votacoes, votacoes_datapath)
   write_csv(votos_atuais, votos_datapath)
 }
