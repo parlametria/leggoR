@@ -33,7 +33,8 @@ processa_votos <- function(anos = c(2019, 2020),
 
   if (!is.null(votacoes_datapath) && file.exists(votacoes_datapath)) {
     votacoes_atuais <-
-      read_csv(votacoes_datapath, col_types = cols(.default = "c"))
+      read_csv(votacoes_datapath, col_types = cols(is_nominal="i",
+                                                   .default = "c"))
 
     votacoes_a_processar_camara <-
       anti_join(
@@ -59,7 +60,8 @@ processa_votos <- function(anos = c(2019, 2020),
       id_proposicao = character(),
       data = character(),
       obj_votacao = character(),
-      casa = character()
+      casa = character(),
+      is_nominal = integer()
     )
 
     votacoes_a_processar_camara <- new_votacoes_camara
@@ -104,7 +106,7 @@ processa_votos <- function(anos = c(2019, 2020),
 
   votacoes <- votacoes %>%
     mutate(data = gsub("T", " ", data)) %>%
-    distinct()
+    distinct(id_votacao, .keep_all=T)
 
   if (!is.null(votos_datapath) && file.exists(votos_datapath)) {
     votos_atuais <-
@@ -137,6 +139,9 @@ processa_votos <- function(anos = c(2019, 2020),
     mutate(id_parlamentar_parlametria = paste0(casa_enum, id_parlamentar)) %>%
     select(id_votacao, id_parlamentar, id_parlamentar_parlametria, partido, voto, casa) %>%
     distinct()
+  
+  votacoes <- votacoes %>% 
+    mutate(is_nominal = if_else(id_votacao %in% votos_atuais$id_votacao, 1, 0))
 
   write_csv(votacoes, votacoes_datapath)
   write_csv(votos_atuais, votos_datapath)
