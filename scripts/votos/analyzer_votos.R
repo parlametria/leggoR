@@ -141,7 +141,7 @@ processa_votos <- function(anos = c(2019, 2020),
     distinct()
   
   votacoes <- votacoes %>% 
-    mutate(is_nominal = if_else(id_votacao %in% votos_atuais$id_votacao, 1, 0))
+    mutate(is_nominal = if_else(id_votacao %in% votos_atuais$id_votacao, TRUE, FALSE))
 
   write_csv(votacoes, votacoes_datapath)
   write_csv(votos_atuais, votos_datapath)
