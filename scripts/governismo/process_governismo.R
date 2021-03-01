@@ -16,11 +16,19 @@ processa_governismo <- function(votos_datapath) {
                       voto = col_number()
                     ))
 
-  governismo_camara <- perfilparlamentar::processa_governismo(votos %>% filter(casa == "camara")) %>%
+  votos_camara <- votos %>%
+    filter(casa == "camara") %>%
+    distinct(id_votacao, id_parlamentar, .keep_all = TRUE)
+
+  governismo_camara <- perfilparlamentar::processa_governismo(votos_camara) %>%
     select(id_parlamentar, governismo = D1) %>%
     mutate(casa = "camara", governismo = -governismo)
 
-  governismo_senado <- perfilparlamentar::processa_governismo(votos %>% filter(casa == "senado")) %>%
+  votos_senado <- votos %>%
+    filter(casa == "senado") %>%
+    distinct(id_votacao, id_parlamentar, .keep_all = TRUE)
+
+  governismo_senado <- perfilparlamentar::processa_governismo(votos_senado) %>%
     select(id_parlamentar, governismo = D1) %>%
     mutate(casa = "senado", governismo = -governismo)
 
