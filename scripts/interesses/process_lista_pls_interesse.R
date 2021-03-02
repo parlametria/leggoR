@@ -32,6 +32,9 @@ processa_lista_pls_interesses <- function(url) {
                       dplyr::mutate(descricao_interesse = descricao)
                     return(pls)
                   })
+  
+  pls_para_analise <- pls_para_analise %>% 
+    dplyr::distinct(id_camara, id_senado, interesse, .keep_all=TRUE)
 
   return(pls_para_analise)
 }
