@@ -32,9 +32,6 @@ processa_lista_pls_interesses <- function(url) {
                       dplyr::mutate(descricao_interesse = descricao)
                     return(pls)
                   })
-  
-  pls_para_analise <- pls_para_analise %>% 
-    dplyr::distinct(id_camara, id_senado, interesse, .keep_all=TRUE)
 
   return(pls_para_analise)
 }
@@ -97,7 +94,7 @@ processa_interesses_leggo <- function(url, proposicoes_filepath) {
                                             col_types = cols(id_ext = "c")) %>%
     dplyr::inner_join(pls_interesse_processed, by = "id_ext") %>%
     dplyr::select(id_ext, casa, id_leggo, tidyselect::all_of(colunas)) %>%
-    dplyr::distinct(id_leggo, interesse, nome_interesse, apelido, keywords, tema, tema_slug, advocacy_link, keywords, tipo_agenda, descricao_interesse)
+    dplyr::distinct(id_leggo, id_ext, casa, interesse, .keep_all = TRUE)
 
   return(proposicoes_capturadas)
 }
