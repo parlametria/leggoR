@@ -93,8 +93,8 @@ processa_interesses_leggo <- function(url, proposicoes_filepath) {
   proposicoes_capturadas <- readr::read_csv(proposicoes_filepath,
                                             col_types = cols(id_ext = "c")) %>%
     dplyr::inner_join(pls_interesse_processed, by = "id_ext") %>%
-    dplyr::select(id_ext, casa, id_leggo, tidyselect::all_of(colunas)) %>%
-    dplyr::distinct(id_leggo, interesse, nome_interesse, apelido, keywords, tema, tema_slug, advocacy_link, keywords, tipo_agenda, descricao_interesse)
+    dplyr::select(id_leggo, tidyselect::all_of(colunas)) %>%
+    dplyr::distinct(id_leggo, interesse, .keep_all = TRUE)
 
   return(proposicoes_capturadas)
 }
