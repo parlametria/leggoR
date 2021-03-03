@@ -41,3 +41,27 @@ fetch_orientacoes_camara <-
     
     return(orientacoes)
   }
+
+
+
+#' @title Baixa os orientacoes no Senado
+#' @description Se receber um dataframe de votações, retorna as orientações para aquele conjunto de
+#' votações. Caso contrário, baixa tudo dos anos passados como parâmetro.
+#' @param anos Anos de interesse
+#' @param votacoes Dataframe de votações
+#' @return Dataframe com orientacoes da câmara
+# fetch_orientacoes_senado(votos)
+#' 
+
+fetch_orientacoes_senado <-
+  function(votos = NULL){
+    orientacoes <- process_orientacao_votos_senado(votos)
+    
+    orientacoes <- orientacoes %>%
+      mutate(casa = "senado")
+    return(orientacoes)
+  }
+
+
+
+
