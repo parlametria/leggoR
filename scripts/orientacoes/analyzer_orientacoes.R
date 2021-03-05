@@ -11,7 +11,7 @@ source(here::here("scripts/orientacoes/fetcher_orientacoes.R"))
 #' @param orientacoes_datapath Caminho para dataframe de orientacoes
 #' @param votos_datapath Caminho para dataframe de votos
 
-process_orientacoes_2 <- function(anos = c(2019, 2020),
+process_orientacoes <- function(anos = c(2019, 2020),
                                   votacoes_datapath = NULL,
                                   orientacoes_datapath = NULL){
   
