@@ -69,7 +69,7 @@ safe_process_etapa <- purrr::safely(
         ~ tipo_documento,
         ~ titulo_evento,
         ~ nivel,
-        ~ temperatura_evento,
+        ~ temperatura_local,
         ~ temperatura_evento
       )
     )
