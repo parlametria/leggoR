@@ -13,23 +13,23 @@ source(here::here("scripts/orientacoes/utils.R"))
 .process_orientacoes_camara <-
   function(votacoes_atuais, orientacoes_atuais) {
     votacoes_a_processar_camara <- votacoes_atuais %>%
-      filter(casa == "camara") %>% 
+      filter(casa == "camara") %>%
       anti_join(orientacoes_atuais %>%
                   filter(casa == "camara") %>%
                   distinct(id_votacao),
                 by = "id_votacao") %>%
       filter(is_nominal == T)
-    
+
     new_orientacoes_camara <- purrr::map_df(
       votacoes_a_processar_camara$id_votacao,
       ~ perfilparlamentar::fetch_orientacoes_votacao_camara(.x)
     ) %>%
       mutate(casa = "camara") %>%
       rename(voto = orientacao) %>%
-      enumera_voto() %>% 
+      enumera_voto() %>%
       rename(orientacao = voto)
-      
-    
+
+
     return(new_orientacoes_camara)
   }
 
@@ -47,11 +47,11 @@ source(here::here("scripts/orientacoes/utils.R"))
                   filter(casa == "senado") %>%
                   distinct(id_votacao),
                 by = "id_votacao")
-    
-    
+
+
     votacoes_a_processar_senado <- votos_senado %>%
       distinct(id_votacao)
-    
+
     new_orientacoes_senado <-
       purrr::map_df(votacoes_a_processar_senado$id_votacao,
                     function(x) {
@@ -59,11 +59,11 @@ source(here::here("scripts/orientacoes/utils.R"))
                         filter(id_votacao == x)
                       return(process_orientacao_votos_senado(votos_votacao))
                     })
-    
-    new_orientacoes_senado <- new_orientacoes_senado %>% 
-      mutate(casa = "senado") %>% 
+
+    new_orientacoes_senado <- new_orientacoes_senado %>%
+      mutate(casa = "senado") %>%
       rename(orientacao = voto)
-    
+
     return(new_orientacoes_senado)
   }
 
@@ -81,23 +81,23 @@ process_orientacoes <- function(anos = c(2019, 2020, 2021),
   if (is.null(votacoes_datapath) & is.null(votos_datapath)) {
     new_orientacoes_camara <- process_orientacao_anos_camara(anos)
     new_orientacoes_senado <- fetch_orientacoes_senado(anos)
-    
+
   } else {
     votacoes_atuais <- read_votacoes(votacoes_datapath)
     votos_atuais <- read_votos(votos_datapath)
     orientacoes_atuais <- read_orientacoes(orientacoes_datapath)
-    
+
     new_orientacoes_camara <-
       .process_orientacoes_camara(votacoes_atuais %>% filter(casa == "camara", is_nominal == T) %>%  head(3), orientacoes_atuais)
-    
+
     new_orientacoes_senado <-
       .process_orientacoes_votos_senado(votos_atuais %>% filter(id_votacao %in% c("5948", "5946", "5947")), orientacoes_atuais)
   }
-  
+
   orientacoes <- orientacoes_atuais %>%
     bind_rows(new_orientacoes_camara) %>%
     bind_rows(new_orientacoes_senado)
-  
+
   write_csv(orientacoes, orientacoes_datapath)
-  
+
 }
