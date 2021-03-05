@@ -87,7 +87,7 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
     dplyr::left_join(pesos_locais, by = "local") %>%
     # Substiui NA por 0 nas colunas de temperatura
     dplyr::mutate_at(.funs = list(~ tidyr::replace_na(., 0)),
-                     .vars = vars(temperatura_local, temperatura_tipo_evento)) %>%
+                     .vars = dplyr::vars(temperatura_local, temperatura_tipo_evento)) %>%
     # Subtitui NA por 4 na coluna de nível (4 é o nível de menor impacto a temperatura)
     dplyr::mutate(nivel = dplyr::if_else(is.na(nivel), 4, nivel)) %>%
     #Adiciona peso base (o peso base é 1 para qualquer evento)
