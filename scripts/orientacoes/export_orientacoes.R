@@ -20,7 +20,12 @@ get_args <- function() {
                           default=here::here("leggo_data/votacoes.csv"),
                           help=.HELP,
                           metavar="character"),
-    optparse::make_option(c("-u", "--orientacoes_filepath"),
+    optparse::make_option(c("-u", "--votos_filepath"),
+                          type="character",
+                          default=here::here("leggo_data/votos.csv"),
+                          help=.HELP,
+                          metavar="character"),
+    optparse::make_option(c("-o", "--orientacoes_filepath"),
                           type="character",
                           default=here::here("leggo_data/orientacoes.csv"),
                           help=.HELP,
@@ -37,9 +42,10 @@ args <- get_args()
 print(args)
 
 votacoes_datapath <- args$votacoes_filepath
+votos_datapath <- args$votos_filepath
 orientacoes_datapath <- args$orientacoes_filepath
 
 print("Processando dados de orientações...")
-processa_orientacoes(c(2019, 2020, 2021), orientacoes_datapath)
+process_orientacoes(c(2019, 2020, 2021), votacoes_datapath, votos_datapath, orientacoes_datapath)
 
 print("Salvo")
