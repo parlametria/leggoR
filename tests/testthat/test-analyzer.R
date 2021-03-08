@@ -122,3 +122,106 @@ test_that('testa_status()', {
   expect_true(
     (mpv_sem_eficacia_868 %>% dplyr::rename(id_ext = prop_id) %>% agoradigital::adiciona_status() %>% dplyr::arrange(data_hora) %>% tail(1))$status == "Caducou")
 })
+
+test_that('Checa detecção de eventos de parecer', {
+  id <- 541857
+  casa <- "camara"
+  prop <- agoradigital::fetch_proposicao(id, casa)
+  tram <- agoradigital::fetch_tramitacao(id, casa)
+  proc_tram <-
+    agoradigital::process_proposicao(prop, tram, casa) %>%
+    dplyr::mutate(data_hora = as.POSIXct(data_hora))
+
+  expect_true(all(
+    c(
+      "parecer_pela_adequacao_financeira_e_orcamentaria",
+      "parecer_pela_aprovacao_com_substitutivo",
+      "parecer_pela_aprovacao"
+    ) %in% proc_tram$evento
+  ))
+})
+
+test_that('Checa detecção de evento de parecer pela rejeição', {
+  id <- 606722
+  casa <- "camara"
+  prop <- agoradigital::fetch_proposicao(id, casa)
+  tram <- agoradigital::fetch_tramitacao(id, casa)
+  proc_tram <-
+    agoradigital::process_proposicao(prop, tram, casa) %>%
+    dplyr::mutate(data_hora = as.POSIXct(data_hora))
+
+  expect_true(all(
+    c(
+      "parecer_pela_rejeicao"
+    ) %in% proc_tram$evento
+  ))
+})
+
+test_that('Checa detecção de evento de virada de casa e remetida à sanção', {
+  id <- 2249891
+  casa <- "camara"
+  prop <- agoradigital::fetch_proposicao(id, casa)
+  tram <- agoradigital::fetch_tramitacao(id, casa)
+  proc_tram <-
+    agoradigital::process_proposicao(prop, tram, casa) %>%
+    dplyr::mutate(data_hora = as.POSIXct(data_hora))
+
+  expect_true(all(
+    c(
+      "virada_de_casa",
+      "remetida_a_sancao_promulgacao"
+    ) %in% proc_tram$evento
+  ))
+})
+
+test_that('Checa detecção de evento aprovação de parecer', {
+  id <- 2120019
+  casa <- "camara"
+  prop <- agoradigital::fetch_proposicao(id, casa)
+  tram <- agoradigital::fetch_tramitacao(id, casa)
+  proc_tram <-
+    agoradigital::process_proposicao(prop, tram, casa) %>%
+    dplyr::mutate(data_hora = as.POSIXct(data_hora))
+
+  expect_true(all(
+    c(
+      "aprovacao_parecer"
+    ) %in% proc_tram$evento
+  ))
+})
+
+test_that('Checa detecção de evento de alteração de regime da proposição', {
+  id <- 2158425
+  casa <- "camara"
+  prop <- agoradigital::fetch_proposicao(id, casa)
+  tram <- agoradigital::fetch_tramitacao(id, casa)
+  proc_tram <-
+    agoradigital::process_proposicao(prop, tram, casa) %>%
+    dplyr::mutate(data_hora = as.POSIXct(data_hora))
+
+  expect_true(all(
+    c(
+      "alteracao_de_regime"
+    ) %in% proc_tram$evento
+  ))
+})
+
+test_that('Checa detecção de evento de designado relator', {
+  id <- 2180392
+  casa <- "camara"
+  prop <- agoradigital::fetch_proposicao(id, casa)
+  tram <- agoradigital::fetch_tramitacao(id, casa)
+  proc_tram <-
+    agoradigital::process_proposicao(prop, tram, casa) %>%
+    dplyr::mutate(data_hora = as.POSIXct(data_hora))
+
+  expect_true(all(
+    c(
+      "designado_relator"
+    ) %in% proc_tram$evento
+  ))
+})
+
+
+
+

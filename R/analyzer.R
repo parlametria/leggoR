@@ -59,12 +59,41 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
       dplyr::mutate(tipo_documento = NA)
   }
 
-  # Adiciona colunas com nível de importância e título dos eventos
+  tipos_eventos <- (congresso_env$eventos) %>%
+    dplyr::distinct(evento, .keep_all = TRUE)
+
+  pesos_eventos <- get_pesos_eventos() %>%
+    dplyr::distinct(evento, .keep_all = TRUE) %>%
+    dplyr::mutate(nivel = dplyr::case_when(
+      tipo == "serie_a" ~ 1,
+      tipo == "serie_b" ~ 2,
+      tipo == "serie_c" ~ 3
+    )) %>%
+    dplyr::select(evento, nivel, temperatura_tipo_evento = peso)
+
+  pesos_locais <- get_pesos_locais() %>%
+    dplyr::select(local, temperatura_local = peso)
+
   proc_tram_data <- proc_tram_data %>%
-    dplyr::left_join(congresso_env$eventos, by="evento") %>%
+    # Adiciona colunas com nível de importância e título dos eventos
+    dplyr::left_join(tipos_eventos, by = "evento") %>%
     # Corrige título dos documentos relacionados
-    dplyr::mutate(titulo_evento = dplyr::if_else(startsWith(evento, "req_"),
-                                                 paste(titulo_evento,tipo_documento),titulo_evento))
+    dplyr::mutate(titulo_evento = dplyr::if_else(
+      startsWith(evento, "req_"),
+      paste(titulo_evento, tipo_documento),
+      titulo_evento
+    )) %>%
+    dplyr::left_join(pesos_eventos, by = "evento") %>%
+    dplyr::left_join(pesos_locais, by = "local") %>%
+    # Substiui NA por 0 nas colunas de temperatura
+    dplyr::mutate_at(.funs = list(~ tidyr::replace_na(., 0)),
+                     .vars = dplyr::vars(temperatura_local, temperatura_tipo_evento)) %>%
+    # Subtitui NA por 4 na coluna de nível (4 é o nível de menor impacto a temperatura)
+    dplyr::mutate(nivel = dplyr::if_else(is.na(nivel), 4, nivel)) %>%
+    #Adiciona peso base (o peso base é 1 para qualquer evento)
+    dplyr::mutate(temperatura_evento = temperatura_tipo_evento + 1) %>%
+    select(-temperatura_tipo_evento)
+
 }
 
 #' @title Retorna temperatura de uma proposição no congresso.

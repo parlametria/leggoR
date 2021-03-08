@@ -80,7 +80,7 @@ test <- function() {
     progresso_pec_gabarito <-
       tibble::tribble(
         ~ casa, ~ prop_id, ~ fase_global,      ~ local,                     ~ data_inicio,        ~ data_fim,     ~ local_casa,
-      "camara", 1198512, "Construção",          "Plenário",                 "2020-07-21 16:18:00", "2020-08-26 00:00:00", "camara",
+      "camara", 1198512, "Construção",          "Plenário",                 "2020-07-21 16:18:00", "2020-07-22 00:00:00", "camara",
       "camara", 1198512, "Construção",          "Comissões",                "2015-04-23 17:14:00", "2020-07-21 00:00:00", "camara",
       "camara", 1198512, "Pré-Construção",      "",                         NA,                    NA,                  NA,
       "camara", 1198512, "Pré-Revisão I",       "",                         NA,                    NA,                  NA,
