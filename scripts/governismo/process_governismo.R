@@ -5,16 +5,29 @@ library(pscl)
 #' @title Processa o Governimo para o Parlametria
 #' @description Recupera informações de governimo para o parlametria usando o pacote perfilparlamentar
 #' @param votos_datapath Caminho para o csv de votos.
+#' @param votacoes_datapath Caminho para o csv de votações.
+#' @param data_inicio Data de limite inferior para filtro das votações. Formato: YYYY-MM-DD
+#' @param data_final Data de limite superior para filtro das votações. Formato: YYYY-MM-DD
 #' Deve ter pelo menos 4 colunas: id_votacao, casa, id_parlamentar, voto.
 #' @return Dataframe de parlamentares e o governismo calculado.
 #' @example
 #' governismo <- processa_governismo(votos_datapath)
-processa_governismo <- function(votos_datapath) {
+processa_governismo <-
+  function(votos_datapath, votacoes_datapath, data_inicio = "2019-02-01", data_final = "2022-12-31") {
+  votacoes <- read_csv(votacoes_datapath,
+                       col_types = cols(
+                         .default = col_character(),
+                         data = col_datetime(),
+                         is_nominal = col_logical()
+                       )) %>%
+    filter(data >= data_inicio, data <= data_final)
+
   votos <- read_csv(votos_datapath,
                     col_types = cols(
                       .default = col_character(),
                       voto = col_number()
-                    ))
+                    )) %>%
+    filter(id_votacao %in% (votacoes %>% pull(id_votacao)))
 
   votos_camara <- votos %>%
     filter(casa == "camara") %>%
