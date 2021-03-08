@@ -13,12 +13,11 @@ source(here::here("scripts/orientacoes/utils.R"))
 .process_orientacoes_camara <-
   function(votacoes_atuais, orientacoes_atuais) {
     votacoes_a_processar_camara <- votacoes_atuais %>%
-      filter(casa == "camara") %>%
+      filter(casa == "camara", is_nominal == T) %>%
       anti_join(orientacoes_atuais %>%
                   filter(casa == "camara") %>%
                   distinct(id_votacao),
-                by = "id_votacao") %>%
-      filter(is_nominal == T)
+                by = "id_votacao")
 
     new_orientacoes_camara <- purrr::map_df(
       votacoes_a_processar_camara$id_votacao,
@@ -88,10 +87,10 @@ process_orientacoes <- function(anos = c(2019, 2020, 2021),
     orientacoes_atuais <- read_orientacoes(orientacoes_datapath)
 
     new_orientacoes_camara <-
-      .process_orientacoes_camara(votacoes_atuais %>% filter(casa == "camara", is_nominal == T) %>%  head(3), orientacoes_atuais)
+      .process_orientacoes_camara(votacoes_atuais, orientacoes_atuais)
 
     new_orientacoes_senado <-
-      .process_orientacoes_votos_senado(votos_atuais %>% filter(id_votacao %in% c("5948", "5946", "5947")), orientacoes_atuais)
+      .process_orientacoes_votos_senado(votos_atuais, orientacoes_atuais)
   }
 
   orientacoes <- orientacoes_atuais %>%
