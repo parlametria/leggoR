@@ -97,7 +97,7 @@
   },
   {
    "evento": "retirada_de_pauta",
-   "regex": "^retirad[oa] d[ea] pauta|aprova.*retirad[oa] d[ea] pauta",
+   "regex": "^retirad[oa] (?:o item )?d[ea] pauta|aprova.*retirad[oa] d[ea] pauta",
    "tipo": "serie_b"
   },
   {
@@ -243,6 +243,21 @@
    "evento": "cria_comissao_especial",
    "regex": "(?:criar?|constituir?|pela criação de) comissão especial",
    "tipo": "serie_a"
+  },
+  {
+   "evento": "recebido_por_comissao",
+   "regex": "^recebi.{2,10}pel(?!.*(?:[a-z]{2,7}\\(sgm\\)|ccp[.,;: ]|cedenun|secap|najur|natec|seaut|secod|sgm|coap|arquivo|serco|mesa|aplen|1secm|secad|sexpe|sindinfo|serau|seram|sepro|1vipr|secav|serad|coetica|compi|par|gtcl|cpc[\\.,;: ]|mercosul|sedhi))",
+   "tipo": "serie_b"
+  },
+  {
+   "evento": "requerimento_inclusao_em_pauta",
+   "regex": "^apresent.*(?:inclusão|incluir?).{1,30}(?:pauta|ordem)",
+   "tipo": "serie_b"
+  },
+  {
+   "evento": "retirada_pelo_autor",
+   "regex": "^retirad[ao] (?! ?o voto| ?o pedido de verificação| ?a verificação| ?[ao] (?:matéria|item)  ?de pauta| ?de pauta| ?os? destaques?| ?o dtq| ?a chancela| ?a emenda| ?o +requerimento|.{1,20},.{1,70}, o requerimento)",
+   "tipo": "serie_b"
   }
  ],
  "autor_voto_separado": {
