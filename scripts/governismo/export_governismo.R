@@ -21,6 +21,21 @@ get_args <- function() {
                           default=here::here("inst/extdata/votos.csv"),
                           help=.HELP,
                           metavar="character"),
+    optparse::make_option(c("-p", "--votacoes_filepath"),
+                          type="character",
+                          default=here::here("inst/extdata/votacoes.csv"),
+                          help=.HELP,
+                          metavar="character"),
+    optparse::make_option(c("-i", "--data_inicio"),
+                          type="character",
+                          default="2019-02-01",
+                          help=.HELP,
+                          metavar="character"),
+    optparse::make_option(c("-f", "--data_final"),
+                          type="character",
+                          default="2022-12-31",
+                          help=.HELP,
+                          metavar="character"),
     optparse::make_option(c("-e", "--export_filepath"),
                           type="character",
                           default=here::here("inst/extdata/governismo.csv"),
@@ -37,10 +52,13 @@ args <- get_args()
 print(args)
 
 votos <- args$votos_filepath
+votacoes <- args$votacoes_filepath
+data_inicio <- args$data_inicio
+data_final <- args$data_final
 saida <- args$export_filepath
 
 flog.info("Processando Governismo...")
-governismo <- processa_governismo(votos)
+governismo <- processa_governismo(votos, votacoes, data_inicio, data_final)
 
 flog.info("Salvando dados de Governismo...")
 readr::write_csv(governismo, saida)
