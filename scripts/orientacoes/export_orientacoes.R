@@ -4,8 +4,9 @@ source(here::here("scripts/orientacoes/analyzer_orientacoes.R"))
 
 .HELP <- "
 Usage:
-Rscript export_mapeamento_interesses.R -v <votacoes_filepath> -u <orientacoes_filepath>
+Rscript export_orientacoes.R -v <votacoes_filepath> -u <votos_filepath> -o <orientacoes_filepath>
 votacoes_filepath: Caminho para o csv de votacoes
+votos_filepath: Caminho para o csv de votos
 orientacoes_filepath: Caminho para o csv de orientacoes
 "
 
