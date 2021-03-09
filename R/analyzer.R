@@ -268,6 +268,17 @@ get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granulari
     tram %>%
     dplyr::mutate(id_leggo = id_leggo)
 
+  temperatura_vazia <- tibble::tibble(
+    id_leggo = character(),
+    periodo = as.POSIXct(character()),
+    temperatura_periodo = numeric(),
+    temperatura_recente = numeric()
+  )
+
+  if (eventos_por_leggo_id %>% pull(data_hora) %>% is.na() %>% all()) {
+    return(temperatura_vazia)
+  }
+
   temperatura_por_id_leggo <-
     eventos_por_leggo_id %>%
     split(.$id_leggo) %>%
@@ -283,12 +294,7 @@ get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granulari
     )
 
   if(nrow(temperatura_por_id_leggo) == 0) {
-    temperatura_por_id_leggo <- tibble::tribble(
-      ~ id_leggo,
-      ~ periodo,
-      ~ temperatura_periodo,
-      ~ temperatura_recente
-    )
+    temperatura_por_id_leggo <- temperatura_vazia
   }
 
   return(temperatura_por_id_leggo)
