@@ -12,6 +12,7 @@ read_votacoes <- function(votacoes_datapath) {
       id_proposicao = character(),
       data = character(),
       obj_votacao = character(),
+      resumo = character(),
       casa = character(),
       is_nominal = logical()
     )
