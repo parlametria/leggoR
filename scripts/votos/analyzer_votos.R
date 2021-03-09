@@ -2,6 +2,7 @@ library(perfilparlamentar)
 library(tidyverse)
 
 source(here::here("scripts/votos/fetcher_votos.R"))
+source(here::here("scripts/votos/utils.R"))
 
 #' @title Baixa os votos na Câmara
 #' @description Se receber um dataframe de votações, retorna os votos para aquele conjunto de
@@ -31,11 +32,11 @@ processa_votos <- function(anos = c(2019, 2020),
   votos_camara <- NULL
   votos_senado <- NULL
 
-  if (!is.null(votacoes_datapath) && file.exists(votacoes_datapath)) {
-    votacoes_atuais <-
-      read_csv(votacoes_datapath, col_types = cols(is_nominal="i",
-                                                   .default = "c"))
-
+  
+  votacoes_atuais <- read_votacoes(votacoes_datapath)
+  
+  if (nrow(votacoes_atuais) > 0) {
+      
     votacoes_a_processar_camara <-
       anti_join(
         new_votacoes_camara,
@@ -43,7 +44,6 @@ processa_votos <- function(anos = c(2019, 2020),
           filter(casa == "camara"),
         by = c("id_proposicao", "id_votacao")
       )
-
 
     votacoes_a_processar_senado <-
       anti_join(
@@ -54,16 +54,7 @@ processa_votos <- function(anos = c(2019, 2020),
       )
 
   } else {
-    votacoes_atuais <- tibble(
-      id_leggo = character(),
-      id_votacao = character(),
-      id_proposicao = character(),
-      data = character(),
-      obj_votacao = character(),
-      casa = character(),
-      is_nominal = integer()
-    )
-
+    
     votacoes_a_processar_camara <- new_votacoes_camara
     votacoes_a_processar_senado <- new_votacoes_senado
   }
@@ -108,23 +99,7 @@ processa_votos <- function(anos = c(2019, 2020),
     mutate(data = gsub("T", " ", data)) %>%
     distinct(id_votacao, .keep_all=T)
 
-  if (!is.null(votos_datapath) && file.exists(votos_datapath)) {
-    votos_atuais <-
-      read_csv(votos_datapath, col_types = cols(id_parlamentar="i",
-                                                id_parlamentar_parlametria="i",
-                                                voto="i",
-                                                .default = "c"))
-
-  } else {
-    votos_atuais <- tibble(
-      id_votacao = character(),
-      id_parlamentar = integer(),
-      id_parlamentar_parlametria = integer(),
-      partido = character(),
-      voto = integer(),
-      casa = character()
-    )
-  }
+  votos_atuais <- read_votos(votos_datapath)
 
   if (!is.null(votos_camara)) {
     votos_atuais <- votos_atuais %>% bind_rows(votos_camara)
