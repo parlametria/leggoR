@@ -65,9 +65,12 @@ safe_process_etapa <- purrr::safely(
         ~ link_inteiro_teor,
         ~ evento,
         ~ local,
+        ~ uri_ultimo_relator,
         ~ tipo_documento,
+        ~ titulo_evento,
         ~ nivel,
-        ~ titulo_evento
+        ~ temperatura_local,
+        ~ temperatura_evento
       )
     )
 )
