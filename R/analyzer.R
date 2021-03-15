@@ -275,7 +275,8 @@ get_historico_temperatura_recente_id_leggo <- function(tram, id_leggo, granulari
     temperatura_recente = numeric()
   )
 
-  if (eventos_por_leggo_id %>% pull(data_hora) %>% is.na() %>% all()) {
+  if ("data_hora" %in% names(eventos_por_leggo_id) &&
+      (eventos_por_leggo_id %>% dplyr::pull(data_hora) %>% is.na() %>% all())) {
     return(temperatura_vazia)
   }
 
