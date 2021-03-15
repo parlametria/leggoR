@@ -128,7 +128,21 @@
     {"evento": "aprovacao_projeto", "titulo_evento": "Aprovação do Projeto"},
     {"evento": "rejeicao_projeto", "titulo_evento": "Rejeição do Projeto"},
     {"evento": "aprovacao_materia", "titulo_evento": "Aprovação da Matéria"},
-    {"evento": "aprovacao_requerimento_retirada_de_pauta", "titulo_evento": "Aprovação Requerimento de Retirada de Pauta"}
+    {"evento": "aprovacao_requerimento_retirada_de_pauta", "titulo_evento": "Aprovação Requerimento de Retirada de Pauta"},
+    {"evento": "aprovacao_redacao_final", "titulo_evento": "Aprovação da Redação Final"},
+    {"evento": "comissao_instalada", "titulo_evento": "Comissão Instalada"},
+    {"evento": "cria_comissao_especial", "titulo_evento": "Criação de Comissão Especial"},
+    {"evento": "designado_presidente_comissao", "titulo_evento": "Designado Presidente da Comissão"},
+    {"evento": "incluida_ordem_dia", "titulo_evento": "Incluída em Ordem do Dia"},
+    {"evento": "nao_requer_avaliacao_financeira", "titulo_evento": "Sem necessidade de Avaliação Financeira"},
+    {"evento": "parecer_pela_aprovacao_com_emenda", "titulo_evento": "Parecer pela Aprovação com Emenda"},
+    {"evento": "parecer_pela_constitucionalidade", "titulo_evento": "Parecer pela Constitucionalidade"},
+    {"evento": "parecer_pela_inadequacao_financeira_e_orcamentaria", "titulo_evento": "Parecer pela Inadequação Financeira e Orçamentária"},
+    {"evento": "perda_da_eficacia", "titulo_evento": "Perda da Eficácia"},
+    {"evento": "recebido_por_comissao", "titulo_evento": "Recebido por Comissão"},
+    {"evento": "requerimento_inclusao_em_pauta", "titulo_evento": "Requerimento de Inclusão em Pauta"},
+    {"evento": "retirada_pelo_autor", "titulo_evento": "Retirada pelo Autor"},
+    {"evento": "na_pauta", "titulo_evento": "Em Pauta"}
   ],
     "congresso_remoto": {
       "data_inicio": "2020-03-17",
