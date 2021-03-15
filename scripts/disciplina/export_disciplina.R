@@ -5,9 +5,10 @@ source(here::here("scripts/disciplina/process_disciplina.R"))
 
 .HELP <- "
 Usage:
-Rscript export_disciplina -v <votos_filepath> -o <orientacoes_datapath> -e <export_filepath>
+Rscript export_disciplina -v <votos_filepath> -o <orientacoes_datapath> -p <votacoes_datapath> -e <export_filepath>
 votos_filepath: Caminho para o csv de votos usados no cálculo da disciplina
-orientacoes_datapath: Caminho para o csv de oreintações usadas no cálculo da disciplina
+orientacoes_datapath: Caminho para o csv de orientações usadas no cálculo da disciplina
+votacoes_datapath: Caminho para o csv de votações usadas para filtragem da legislatura atual
 export_filepath: Caminho para exportação dos dados de disciplina
 "
 
