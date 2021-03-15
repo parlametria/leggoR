@@ -7,9 +7,11 @@ library(perfilparlamentar)
 #' @param votos_datapath Caminho para o csv de votos.
 #' @param orientacoes_datapath Caminho para o csv de orientações.
 #' @param votacoes_datapath Caminho para o csv de votações.
+#' @param data_inicio Data inicial do recorte de tempo.
+#' @param data_final Data final do recorte de tempo.
 #' @return Dataframe de parlamentares e a disciplina calculada.
 #' @example
-#' disciplina <- processa_disciplina(votos_datapath, orientacoes_datapath, votacoes_datapath)
+#' disciplina <- processa_disciplina(votos_datapath, orientacoes_datapath, votacoes_datapath, data_inicio, data_final)
 processa_disciplina <-
   function(votos_datapath,
            orientacoes_datapath,
