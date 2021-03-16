@@ -5,8 +5,7 @@ library(perfilparlamentar)
 #' @description Recupera informações de disciplina partidária
 #' para o parlametria usando o pacote perfilparlamentar
 #' @param votos_datapath Caminho para o csv de votos.
-#' @param orientacoes_datapath Caminho para o csv de orientações.
-#' @param votacoes_datapath Caminho para o csv de votações.
+#' @param orientacoes_datapath Caminho para o csv de orientações
 #' @return Dataframe de parlamentares e a disciplina calculada.
 #' @example
 #' disciplina <- processa_disciplina(votos_datapath, orientacoes_datapath, votacoes_datapath)
@@ -22,9 +21,26 @@ processa_disciplina <-
   votos <- read_csv(votos_datapath) %>% 
     filter(id_votacao %in% (votacoes %>% pull(id_votacao)))
   
-  orientacoes <- read_csv(orientacoes_datapath)
+  orientacoes <- read_csv(orientacoes_datapath) %>% 
+    filter(id_votacao %in% (votacoes %>% pull(id_votacao)))
   
-  disciplina <- perfilparlamentar::processa_disciplina_partidaria(votos, orientacoes)
+  if (nrow(votos) > 0 && nrow(orientacoes) > 0) {
+    disciplina <- perfilparlamentar::processa_disciplina_partidaria(votos, orientacoes, FALSE)
+  
+  } else {
+    disciplina <- tibble(
+      id_parlamentar = integer(),
+      id_parlamentar_parlametria = integer(),
+      partido_disciplina = character(),
+      partido_atual = character(),
+      casa = character(),
+      votos_validos = integer(),
+      num_seguiu = integer(),
+      disciplina = double(),
+      bancada_suficiente = logical()
+    )
+  }
+  
   
   return(disciplina)
 }
