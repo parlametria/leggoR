@@ -20,13 +20,30 @@ processa_disciplina <-
            data_final = "2022-12-31") {
   votacoes <- read_csv(votacoes_datapath) %>%
     filter(data >= data_inicio, data <= data_final)
-  
-  votos <- read_csv(votos_datapath) %>% 
+
+  votos <- read_csv(votos_datapath) %>%
     filter(id_votacao %in% (votacoes %>% pull(id_votacao)))
-  
-  orientacoes <- read_csv(orientacoes_datapath)
-  
-  disciplina <- perfilparlamentar::processa_disciplina_partidaria(votos, orientacoes)
-  
+
+  orientacoes <- read_csv(orientacoes_datapath) %>%
+    filter(id_votacao %in% (votacoes %>% pull(id_votacao)))
+
+  if (nrow(votos) > 0 && nrow(orientacoes) > 0) {
+    disciplina <- perfilparlamentar::processa_disciplina_partidaria(votos, orientacoes, FALSE)
+
+  } else {
+    disciplina <- tibble(
+      id_parlamentar = integer(),
+      id_parlamentar_parlametria = integer(),
+      partido_disciplina = character(),
+      partido_atual = character(),
+      casa = character(),
+      votos_validos = integer(),
+      num_seguiu = integer(),
+      disciplina = double(),
+      bancada_suficiente = logical()
+    )
+  }
+
+
   return(disciplina)
 }
