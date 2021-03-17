@@ -98,12 +98,12 @@ fetch_membros_comissao_camara_with_backoff <- function(orgao_id, sigla_comissao,
     tibble::as_tibble(.name_repair = c("universal")) %>% 
     dplyr::pull(`...2`)
   
-  if (is_empty(last_page)) {
+  if (rlang::is_empty(last_page)) {
     last_page <- 1
   } 
   
   membros <- tibble::tibble(page = 1:as.numeric(last_page)) %>%
-    dplyr::mutate(data = map(
+    dplyr::mutate(data = purrr::map(
       page,
       fetch_membros_comissao_camara_by_page,
       url,
@@ -137,7 +137,7 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao, orgaos_camara, dat
   df <-
     fetch_membros_comissao_camara_with_backoff(orgaos_camara %>%
                                                  head(1) %>%
-                                                 pull(orgao_id),
+                                                 dplyr::pull(orgao_id),
                                                sigla_comissao,
                                                data_inicio_arg)
   
