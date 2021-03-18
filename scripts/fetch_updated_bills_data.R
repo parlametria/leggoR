@@ -84,6 +84,7 @@ export_emendas <- function(pls_ids_filepath, export_path) {
 export_comissoes <- function(export_path) {
   comissoes <-
     agoradigital::fetch_all_composicao_comissao() %>%
+    dplyr::select(cargo, id, partido, uf, situacao, nome, foto, sigla, casa) %>% 
     dplyr::rename(id_parlamentar = id)
   readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
 }
