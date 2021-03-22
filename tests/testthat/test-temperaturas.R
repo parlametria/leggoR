@@ -238,11 +238,11 @@ test_that('get_historico_temperatura_recente_id_leggo() return empty df when the
   energy_df <-
     get_historico_temperatura_recente_id_leggo(
       tibble::tibble(), 1, granularidade = 's', decaimento = decaimento, max_date = lubridate::ymd_hms("2018-09-28 12:00:00"), pautas)
-  temperatura_por_id_leggo <- tibble::tribble(
-    ~ id_leggo,
-    ~ periodo,
-    ~ temperatura_periodo,
-    ~ temperatura_recente
+  temperatura_por_id_leggo <- tibble::tibble(
+    id_leggo = character(),
+    periodo = as.POSIXct(character()),
+    temperatura_periodo = numeric(),
+    temperatura_recente = numeric()
   )
 
   expect_equal(energy_df, temperatura_por_id_leggo)

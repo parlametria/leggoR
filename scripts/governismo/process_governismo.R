@@ -32,18 +32,26 @@ processa_governismo <-
   votos_camara <- votos %>%
     filter(casa == "camara") %>%
     distinct(id_votacao, id_parlamentar, .keep_all = TRUE)
-
-  governismo_camara <- perfilparlamentar::processa_governismo(votos_camara) %>%
-    select(id_parlamentar, governismo = D1) %>%
-    mutate(casa = "camara", governismo = -governismo)
+  
+  if (nrow(votos_camara) > 0) {
+    governismo_camara <- perfilparlamentar::processa_governismo(votos_camara) %>%
+      select(id_parlamentar, governismo = D1) %>%
+      mutate(casa = "camara", governismo = -governismo)
+  } else {
+    governismo_camara <- tibble()
+  }
 
   votos_senado <- votos %>%
     filter(casa == "senado") %>%
     distinct(id_votacao, id_parlamentar, .keep_all = TRUE)
-
-  governismo_senado <- perfilparlamentar::processa_governismo(votos_senado) %>%
-    select(id_parlamentar, governismo = D1) %>%
-    mutate(casa = "senado", governismo = -governismo)
+  
+  if(nrow(votos_senado) > 0) {
+    governismo_senado <- perfilparlamentar::processa_governismo(votos_senado) %>%
+      select(id_parlamentar, governismo = D1) %>%
+      mutate(casa = "senado", governismo = -governismo)
+  } else {
+    governismo_senado <- tibble()
+  }
 
   governismo_alt <- bind_rows(governismo_camara, governismo_senado) %>%
     group_by(casa) %>%
