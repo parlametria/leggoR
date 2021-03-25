@@ -135,8 +135,7 @@ test_that('Checa detecção de eventos de parecer', {
   expect_true(all(
     c(
       "parecer_pela_adequacao_financeira_e_orcamentaria",
-      "parecer_pela_aprovacao_com_substitutivo",
-      "parecer_pela_aprovacao"
+      "parecer_pela_aprovacao_com_substitutivo"
     ) %in% proc_tram$evento
   ))
 })
