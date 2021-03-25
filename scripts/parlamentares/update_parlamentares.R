@@ -36,5 +36,6 @@ print("Atualizando informações dos parlamentares das últimas legislaturas..."
 
 parlamentares <- .update_parlamentares(parlamentares_filepath)
 write_csv(parlamentares, parlamentares_filepath)
+write_csv(parlamentares, here::here("inst/extdata/parlamentares.csv"))
 
 print("Feito!")

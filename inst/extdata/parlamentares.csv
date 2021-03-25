@@ -2926,7 +2926,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,133374,1133374,camara,Ademir Camilo,Ademir Camilo Prates Rodrigues,48704300610,M,MDB,MG,Suplente,0
 55,196359,1196359,camara,Adérmis Marini,Adermis Marini Junior,07168601806,M,PSDB,SP,Suplente,0
 55,178903,1178903,camara,Adilton Sachetti,Adilton Domingos Sachetti,45360707968,M,PRB,MT,Titular,0
-55,141372,1141372,camara,Aelton Freitas,Aelton José De Freitas,36179140634,M,PR,MG,Titular,0
+55,141372,1141372,camara,Aelton Freitas,Aelton José De Freitas,36179140634,M,PL,MG,Efetivado,1
 55,160508,1160508,camara,Afonso Florence,Afonso Bandeira Florence,17734150500,M,PT,BA,Titular,1
 55,136811,1136811,camara,Afonso Hamm,José Alfonso Ebert Hamm,37040642034,M,PP,RS,Titular,1
 55,178835,1178835,camara,Afonso Motta,Afonso Antunes Da Motta,10777296004,M,PDT,RS,Titular,1
@@ -2940,13 +2940,13 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,178972,1178972,camara,Alex Manente,Alex Spinelli Manente,26838194805,M,CIDADANIA,SP,Titular,1
 55,178875,1178875,camara,Alexandre Baldy,Alexandre Baldy De Sant'anna Braga,87342235172,M,PP,GO,Titular,0
 55,160545,1160545,camara,Alexandre Leite,Alexandre Leite Da Silva,22970812860,M,DEM,SP,Titular,1
-55,178833,1178833,camara,Alexandre Serfiotis,Alexandre Augustus Serfiotis,02440200786,M,PSD,RJ,Titular,1
+55,178833,1178833,camara,Alexandre Serfiotis,Alexandre Augustus Serfiotis,02440200786,M,PSD,RJ,Titular,0
 55,178936,1178936,camara,Alexandre Valle,Alexandre Valle Cardoso,01486095704,M,PR,RJ,Titular,0
 55,141454,1141454,camara,Alfredo Kaefer,Jacob Alfredo Stoffels Kaefer,24106305968,M,PP,PR,Titular,0
 55,178846,1178846,camara,Alfredo Nascimento,Alfredo Pereira Do Nascimento,05727600430,M,PR,AM,Titular,0
 55,74057,174057,camara,Alice Portugal,Alice Mazzuco Portugal,12377392504,F,PCdoB,BA,Titular,1
 55,178927,1178927,camara,Aliel Machado,Aliel Machado Bark,06908052923,M,PSB,PR,Titular,1
-55,178937,1178937,camara,Altineu Côrtes,Altineu Côrtes Freitas Coutinho,00007487738,M,PL,RJ,Titular,0
+55,178937,1178937,camara,Altineu Côrtes,Altineu Côrtes Freitas Coutinho,00007487738,M,PL,RJ,Titular,1
 55,178881,1178881,camara,Aluisio Mendes,Aluisio Guimaraes Mendes Filho,66746485749,M,PSC,MA,Titular,1
 55,178973,1178973,camara,Ana Perugini,Ana Lucia Lippaus Perugini,07542896806,F,PT,SP,Titular,0
 55,160551,1160551,camara,Anderson Ferreira,Anderson Ferreira Rodrigues,82501173449,M,PR,PE,Titular,0
@@ -2960,7 +2960,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,178974,1178974,camara,Andres Sanchez,Andres Navarro Sanchez,07078570820,M,PT,SP,Titular,0
 55,192120,1192120,camara,Angela Albino,Angela Albino,67442048900,F,PCdoB,SC,Suplente,0
 55,178837,1178837,camara,Angelim,Raimundo Angelim Vasconcelos,02820935249,M,PT,AC,Titular,0
-55,74212,174212,camara,Aníbal Gomes,Aníbal Ferreira Gomes,04240952387,M,DEM,CE,Suplente,0
+55,74212,174212,camara,Aníbal Gomes,Aníbal Ferreira Gomes,04240952387,M,DEM,CE,Suplente,1
 55,74213,174213,camara,Antonio Balhmann,Antonio Balhmann Cardoso Nunes Filho,05993601353,M,PDT,CE,Titular,0
 55,160553,1160553,camara,Antonio Brito,Antonio Luiz Paranhos Ribeiro Leite De Brito,51488868549,M,PSD,BA,Titular,1
 55,141383,1141383,camara,Antonio Bulhões,Antonio Carlos Martins De Bulhões,00335868703,M,PRB,SP,Titular,0
@@ -3037,7 +3037,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,73720,173720,camara,Cesar Souza,César Antonio De Souza,28951107949,M,PSD,SC,Titular,0
 55,74171,174171,camara,Chico Alencar,Francisco Rodrigues De Alencar Filho,26451379700,M,PSOL,RJ,Titular,0
 55,141439,1141439,camara,Chico D'angelo,Francisco José D'angelo Pinto,47247436700,M,PDT,RJ,Titular,1
-55,141440,1141440,camara,Chico Lopes,Francisco Lopes Da Silva,02810905304,M,PCdoB,CE,Titular,0
+55,141440,1141440,camara,Chico Lopes,Francisco Lopes Da Silva,02810905304,M,PCdoB,CE,Suplente,0
 55,178928,1178928,camara,Christiane De Souza Yared,Christiane De Souza Yared,49156470991,F,PL,PR,Titular,1
 55,178841,1178841,camara,Cícero Almeida,José Cícero Soares De Almeida,12941514449,M,PHS,AL,Titular,0
 55,178939,1178939,camara,Clarissa Garotinho,Clarissa Barros Assed Matheus De Oliveira,09598289745,F,PROS,RJ,Titular,1
@@ -3056,7 +3056,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,178916,1178916,camara,Daniel Coelho,Daniel Pires Coelho,02513878442,M,CIDADANIA,PE,Titular,1
 55,144523,1144523,camara,Daniel Vilela,Daniel Elias Carvalho Vilela,98166638134,M,MDB,GO,Titular,0
 55,160528,1160528,camara,Danilo Cabral,Danilo Jorge De Barros Cabral,50903691434,M,PSB,PE,Titular,1
-55,62881,162881,camara,Danilo Forte,Francisco Danilo Bastos Forte,12133728368,M,PSDB,CE,Suplente,1
+55,62881,162881,camara,Danilo Forte,Francisco Danilo Bastos Forte,12133728368,M,PSDB,CE,Efetivado,1
 55,160552,1160552,camara,Danrlei De Deus Hinterholz,Danrlei De Deus Hinterholz,70157324087,M,PSD,RS,Titular,1
 55,73891,173891,camara,Darcísio Perondi,Darcísio Paulo Perondi,08262748034,M,MDB,RS,Suplente,0
 55,141412,1141412,camara,Davi Alves Silva Júnior,Davi Alves Silva Júnior,52295982391,M,PR,MA,Suplente,0
@@ -3077,14 +3077,14 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,160758,1160758,camara,Domingos Sávio,Domingos Sávio Campos Resende,22275150668,M,PSDB,MG,Titular,1
 55,178940,1178940,camara,Dr. João,Joao Ferreira Neto,26144735704,M,PR,RJ,Titular,0
 55,160643,1160643,camara,Dr. Jorge Silva,Jorge Silva,36406341791,M,SOLIDARIEDADE,ES,Titular,0
-55,178830,1178830,camara,Dr. Sinval Malheiros,Sinval Malheiros Pinto Júnior,88779254853,M,PODE,SP,Suplente,1
+55,178830,1178830,camara,Dr. Sinval Malheiros,Sinval Malheiros Pinto Júnior,88779254853,M,PODE,SP,Suplente,0
 55,141385,1141385,camara,Duarte Nogueira,Antonio Duarte Nogueira Júnior,04804881859,M,PSDB,SP,Titular,0
 55,178994,1178994,camara,Dulce Miranda,Dulce Ferreira Pagani Miranda,30217865100,F,MDB,TO,Titular,1
 55,73447,173447,camara,Edinho Araújo,Edson Edinho Coelho Araújo,49663003804,M,MDB,SP,Titular,0
 55,73793,173793,camara,Edinho Bez,Edson Bez De Oliveira,09629734915,M,MDB,SC,Suplente,0
 55,141417,1141417,camara,Edio Lopes,Édio Vieira Lopes,77548981872,M,PL,RR,Titular,1
 55,160578,1160578,camara,Edmar Arruda,Edmar De Souza Arruda,32563914949,M,PSD,PR,Titular,0
-55,134812,1134812,camara,Edmilson Rodrigues,Edmilson Brito Rodrigues,09006826200,M,PSOL,PA,Titular,1
+55,134812,1134812,camara,Edmilson Rodrigues,Edmilson Brito Rodrigues,09006826200,M,PSOL,PA,Titular,0
 55,74655,174655,camara,Eduardo Barbosa,Eduardo Luiz Barros Barbosa,27582400682,M,PSDB,MG,Titular,1
 55,92346,192346,camara,Eduardo Bolsonaro,Eduardo Nantes Bolsonaro,10655365770,M,PSL,SP,Titular,1
 55,74173,174173,camara,Eduardo Cunha,Eduardo Cosentino Da Cunha,50447971700,M,MDB,RJ,Titular,0
@@ -3155,7 +3155,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,178872,1178872,camara,Givaldo Vieira,Givaldo Vieira Da Silva,98767232787,M,PCdoB,ES,Titular,0
 55,152605,1152605,camara,Glauber Braga,Glauber De Medeiros Braga,09740756719,M,PSOL,RJ,Titular,1
 55,74419,174419,camara,Gonzaga Patriota,Luiz Gonzaga Patriota,01960970453,M,PSB,PE,Titular,1
-55,129618,1129618,camara,Gorete Pereira,Maria Gorete Pereira,08187452315,F,PR,CE,Titular,0
+55,129618,1129618,camara,Gorete Pereira,Maria Gorete Pereira,08187452315,F,PL,CE,Suplente,1
 55,178980,1178980,camara,Goulart,Antonio Goulart Dos Reis,76026329820,M,PSD,SP,Titular,0
 55,194259,1194259,camara,Guilherme Coelho,Guilherme Cruz De Souza Coelho,26178494149,M,PSDB,PE,Suplente,0
 55,160667,1160667,camara,Guilherme Mussi,Guilherme Mussi Ferreira,31812472862,M,PP,SP,Titular,1
@@ -3191,7 +3191,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,74273,174273,camara,Jefferson Campos,Jefferson Alves De Campos,02684165831,M,PSB,SP,Titular,1
 55,160570,1160570,camara,Jerônimo Goergen,Jerônimo Pizzolotto Goergen,73441040082,M,PP,RS,Titular,1
 55,178839,1178839,camara,Jéssica Sales,Jessica Rojas Sales,65595564253,F,MDB,AC,Titular,1
-55,178842,1178842,camara,Jhc,Joao Henrique Holanda  Caldas,01117690199,M,PSB,AL,Titular,1
+55,178842,1178842,camara,Jhc,Joao Henrique Holanda  Caldas,01117690199,M,PSB,AL,Titular,0
 55,160531,1160531,camara,Jhonatan De Jesus,Johnathan Pereira De Jesus,74274112268,M,REPUBLICANOS,RR,Titular,1
 55,141503,1141503,camara,Jô Moraes,Maria Do Socorro Jô Moraes,51243946687,F,PCdoB,MG,Titular,0
 55,160573,1160573,camara,João Arruda,João José De Arruda Júnior,02105687989,M,MDB,PR,Titular,0
@@ -3251,7 +3251,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,141480,1141480,camara,Lázaro Botelho,Lázaro Botelho Martins,04984846100,M,PP,TO,Titular,0
 55,178832,1178832,camara,Leandre,Leandre Dal Ponte,80635083949,F,PV,PR,Titular,1
 55,141562,1141562,camara,Lelo Coimbra,Welington Coimbra,34318100715,M,MDB,ES,Titular,0
-55,178825,1178825,camara,Leo De Brito,Leonardo Cunha De Brito,63182246291,M,PT,AC,Titular,0
+55,178825,1178825,camara,Leo De Brito,Leonardo Cunha De Brito,63182246291,M,PT,AC,Titular,1
 55,74156,174156,camara,Leonardo Monteiro,José Leonardo Costa Monteiro,20811845672,M,PT,MG,Titular,1
 55,74254,174254,camara,Leonardo Picciani,Leonardo Carneiro Monteiro Picciani,08436066731,M,MDB,RJ,Titular,0
 55,141482,1141482,camara,Leonardo Quintão,Leonardo Lemos Barros Quintão,79043607649,M,MDB,MG,Titular,0
@@ -3282,7 +3282,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,162332,1162332,camara,Luiz Nishimori,Luiz Hiloshi Nishimori,08781460910,M,PL,PR,Titular,1
 55,74688,174688,camara,Luiz Sérgio,Luiz Sérgio Nóbrega De Oliveira,44910614753,M,PT,RJ,Titular,0
 55,74784,174784,camara,Luiza Erundina,Luiza Erundina De Sousa,00480584400,F,PSOL,SP,Titular,1
-55,178866,1178866,camara,Luizianne Lins,Luizianne De Oliveira Lins,38208563315,F,PT,CE,Titular,1
+55,178866,1178866,camara,Luizianne Lins,Luizianne De Oliveira Lins,38208563315,F,PT,CE,Titular,0
 55,198198,1198198,camara,Luzia Ferreira,Luzia Maria Ferreira,29690617672,F,PPS,MG,Suplente,0
 55,178867,1178867,camara,Macedo,Jose Maria Macedo Junior,19705786453,M,PP,CE,Titular,0
 55,166402,1166402,camara,Magda Mofatto,Magda Mofatto Hon,13205285115,F,PL,GO,Titular,1
@@ -3293,7 +3293,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,160565,1160565,camara,Mara Gabrilli,Mara Cristina Gabrilli,24731270855,F,PSDB,SP,Titular,0
 55,74124,174124,camara,Marçal Filho,Marçal Gonçalves Leite Filho,35640014172,M,MDB,MS,Suplente,0
 55,160660,1160660,camara,Marcelo Aguiar,Marcelo Theodoro De Aguiar,19522116890,M,DEM,SP,Efetivado,0
-55,179000,1179000,camara,Marcelo Álvaro Antônio,Marcelo Henrique Teixeira Dias,00649039661,M,PSL,MG,Titular,0
+55,179000,1179000,camara,Marcelo Álvaro Antônio,Marcelo Henrique Teixeira Dias,00649039661,M,PSL,MG,Titular,1
 55,146788,1146788,camara,Marcelo Aro,Marcelo Guilherme De Aro Ferreira,06305588686,M,PP,MG,Titular,1
 55,178932,1178932,camara,Marcelo Belinati,Marcelo Belinati Martins,87120313991,M,PP,PR,Titular,0
 55,74460,174460,camara,Marcelo Castro,Marcelo Costa e Castro,02382091304,M,MDB,PI,Titular,0
@@ -3316,18 +3316,18 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,178852,1178852,camara,Marcos Reategui,Marcos Jose Reategui Souza,10744096200,M,PSD,AP,Titular,0
 55,167722,1167722,camara,Marcos Rogério,Marcos Rogério Da Silva Brito,60232064253,M,DEM,RO,Titular,0
 55,178850,1178850,camara,Marcos Rotta,Marcos Sergio Rotta,49274350910,M,MDB,AM,Titular,0
-55,178943,1178943,camara,Marcos Soares,Marcos Bezerra Ribeiro Soares,05217856777,M,DEM,RJ,Suplente,0
+55,178943,1178943,camara,Marcos Soares,Marcos Bezerra Ribeiro Soares,05217856777,M,DEM,RJ,Suplente,1
 55,159238,1159238,camara,Marcus Pestana,Marcus Vinícius Caetano Pestana Da Silva,38194350697,M,PSDB,MG,Suplente,0
 55,74235,174235,camara,Marcus Vicente,Marcus Antônio Vicente,31693113791,M,PP,ES,Titular,0
 55,205297,1205297,camara,Marfiza Galvão,Marfiza De Lima Galvão,65851099291,F,PSD,AC,Efetivado,0
-55,171619,1171619,camara,Margarida Salomão,Maria Margarida Martins Salomão,13521039668,F,PT,MG,Titular,1
+55,171619,1171619,camara,Margarida Salomão,Maria Margarida Martins Salomão,13521039668,F,PT,MG,Titular,0
 55,74398,174398,camara,Maria Do Rosário,Maria Do Rosário Nunes,48989371015,F,PT,RS,Titular,1
 55,64960,164960,camara,Maria Helena,Maria Helena Veronese Rodrigues,11251778291,F,MDB,RR,Titular,0
 55,178956,1178956,camara,Mariana Carvalho,Mariana Fonseca Ribeiro Carvalho De Moraes,83577572272,F,PSDB,RO,Titular,1
 55,178919,1178919,camara,Marinaldo Rosendo,Marinaldo Rosendo De Albuquerque,40806022434,M,PP,PE,Titular,0
 55,74177,174177,camara,Marinha Raupp,Marinha Célia Rocha Raupp De Matos,03279216842,F,MDB,RO,Titular,0
 55,74158,174158,camara,Mário Heringer,Mário Lúcio Heringer,28539249634,M,PDT,MG,Titular,1
-55,178858,1178858,camara,Mário Negromonte Jr.,Mario Silvio Mendes Negromonte Junior,00031226540,M,PP,BA,Titular,1
+55,178858,1178858,camara,Mário Negromonte Jr.,Mario S. M. Negromonte Jr.,00031226540,M,PP,BA,Titular,1
 55,181315,1181315,camara,Marquinho Mendes,Marcos Da Rocha Mendes,50395653720,M,MDB,RJ,Efetivado,0
 55,178843,1178843,camara,Marx Beltrão,Marx Beltrão Lima Siqueira,02696564485,M,PSD,AL,Titular,1
 55,74050,174050,camara,Maurício Quintella Lessa,Maurício Quintella Malta Lessa,80355633434,M,PR,AL,Titular,0
@@ -3373,7 +3373,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,73463,173463,camara,Osmar Serraglio,Osmar José Serraglio,01773852949,M,PP,PR,Titular,0
 55,73692,173692,camara,Osmar Terra,Osmar Gasparini Terra,19971478072,M,MDB,RS,Titular,1
 55,202063,1202063,camara,Osvaldo Mafra,Osvaldo Olavio Mafra,50946170959,M,SOLIDARIEDADE,SC,Suplente,0
-55,141515,1141515,camara,Otavio Leite,Otavio Santos Silva Leite,20163452504,M,PSDB,RJ,Titular,0
+55,141515,1141515,camara,Otavio Leite,Otavio Santos Silva Leite,20163452504,M,PSDB,RJ,Suplente,1
 55,160556,1160556,camara,Padre João,João Carlos Siqueira,72425610600,M,PT,MG,Titular,1
 55,74319,174319,camara,Paes Landim,José Francisco Paes Landim,00309745187,M,PTB,PI,Suplente,0
 55,160642,1160642,camara,Pastor Eurico,Francisco Eurico Da Silva,23340541434,M,PATRIOTA,PE,Titular,1
@@ -3396,9 +3396,9 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,74812,174812,camara,Pedro Chaves,Pedro Pinheiro Chaves,16692454115,M,MDB,GO,Titular,0
 55,178912,1178912,camara,Pedro Cunha Lima,Pedro Oliveira Cunha Lima,08430005463,M,PSDB,PB,Titular,1
 55,74449,174449,camara,Pedro Fernandes,Pedro Fernandes Ribeiro,06235760310,M,PTB,MA,Titular,0
-55,122158,1122158,camara,Pedro Paulo,Pedro Paulo Carvalho Teixeira,00262905701,M,DEM,RJ,Titular,1
+55,122158,1122158,camara,Pedro Paulo,Pedro Paulo Carvalho Teixeira,00262905701,M,DEM,RJ,Titular,0
 55,160604,1160604,camara,Pedro Uczai,Pedro Francisco Uczai,47721855934,M,PT,SC,Titular,1
-55,178844,1178844,camara,Pedro Vilela,Pedro Torres Brandão Vilela,01055737448,M,PSDB,AL,Titular,0
+55,178844,1178844,camara,Pedro Vilela,Pedro Torres Brandão Vilela,01055737448,M,PSDB,AL,Efetivado,1
 55,80920,180920,camara,Penna,José Luiz De França Penna,50192400878,M,PV,SP,Suplente,0
 55,141445,1141445,camara,Pepe Vargas,Gilberto José Spier Vargas,27905799034,M,PT,RS,Titular,0
 55,162174,1162174,camara,Policarpo,Roberto Policarpo Fagundes,51279983434,M,PT,DF,Suplente,0
@@ -3419,7 +3419,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,73786,173786,camara,Reinhold Stephanes,Reinhold Stephanes,00207098115,M,PSD,PR,Suplente,0
 55,178925,1178925,camara,Rejane Dias,Rejane Ribeiro Sousa Dias,42105560334,F,PT,PI,Titular,1
 55,178960,1178960,camara,Remídio Monai,Remidio Monai Montessi,28624114268,M,PR,RR,Titular,0
-55,178989,1178989,camara,Renata Abreu,Renata Hellmeister De Abreu,30669688800,F,PODE,SP,Titular,0
+55,178989,1178989,camara,Renata Abreu,Renata Hellmeister De Abreu,30669688800,F,PODE,SP,Titular,1
 55,171620,1171620,camara,Renato Andrade,Renato Barbosa De Andrade,71808191668,M,PP,MG,Efetivado,0
 55,141527,1141527,camara,Renato Molling,Renato Delmar Molling,32091206091,M,PP,RS,Titular,0
 55,160654,1160654,camara,Renzo Braz,Renzo Do Amaral Braz,04524796657,M,PP,MG,Titular,0
@@ -3429,7 +3429,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,178920,1178920,camara,Ricardo Teobaldo,Ricardo Teobaldo Cavalcanti,47329980463,M,PODE,PE,Titular,1
 55,141472,1141472,camara,Ricardo Tripoli,José Ricardo Alvarenga Tripoli,47796278853,M,PSDB,SP,Titular,0
 55,152610,1152610,camara,Roberto Alves,Benedito Roberto Alves Ferreira,02621206824,M,REPUBLICANOS,SP,Titular,1
-55,73674,173674,camara,Roberto Balestra,Roberto Egídio Balestra,01611500125,M,PP,GO,Titular,0
+55,73674,173674,camara,Roberto Balestra,Roberto Egídio Balestra,01611500125,M,PP,GO,Suplente,0
 55,141529,1141529,camara,Roberto Britto,Roberto Pereira De Britto,11257741500,M,PP,BA,Titular,0
 55,160653,1160653,camara,Roberto De Lucena,Roberto Alves De Lucena,05781727809,M,PODE,SP,Titular,1
 55,73805,173805,camara,Roberto Freire,Roberto João Pereira Freire,00235369420,M,PPS,SP,Suplente,0
@@ -3470,12 +3470,12 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,160621,1160621,camara,Sandro Alex,Sandro Alex Cruz De Oliveira,77535405991,M,PSD,PR,Titular,0
 55,74762,174762,camara,Saraiva Felipe,José Saraiva Felipe,27018938600,M,MDB,MG,Titular,0
 55,74210,174210,camara,Sarney Filho,José Sarney Filho,14737418315,M,PV,MA,Titular,0
-55,178921,1178921,camara,Sebastião Oliveira,Sebastiao Ignacio De Oliveira Junior,73387789491,M,PL,PE,Titular,1
+55,178921,1178921,camara,Sebastião Oliveira,Sebastiao Ignacio De Oliveira Junior,73387789491,M,AVANTE,PE,Titular,1
 55,73808,173808,camara,Sérgio Brito,Sérgio Luís Lacerda Brito,18635458591,M,PSD,BA,Titular,1
 55,141542,1141542,camara,Sérgio Moraes,Sérgio Ivan Moraes,20504225049,M,PTB,RS,Titular,0
 55,178991,1178991,camara,Sérgio Reis,Sergio Bavini,06976140859,M,PRB,SP,Titular,0
 55,178933,1178933,camara,Sergio Souza,Sergio De Souza,75687658904,M,MDB,PR,Titular,1
-55,178874,1178874,camara,Sergio Vidigal,Antonio Sergio Alves Vidigal,52549810759,M,PDT,ES,Titular,1
+55,178874,1178874,camara,Sergio Vidigal,Antonio Sergio Alves Vidigal,52549810759,M,PDT,ES,Titular,0
 55,160612,1160612,camara,Sergio Zveiter,Sergio Zveiter,51813440700,M,DEM,RJ,Titular,0
 55,167614,1167614,camara,Severino Ninho,Severino De Souza Silva,12581909404,M,PSB,PE,Suplente,0
 55,178961,1178961,camara,Shéridan,Shéridan Estérfany Oliveira,75096102220,F,PSDB,RR,Titular,1
@@ -3497,15 +3497,15 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,178898,1178898,camara,Tenente Lúcio,Sergio Lucio De Almeida,46230165600,M,PR,MG,Titular,0
 55,178901,1178901,camara,Tereza Cristina,Tereza Cristina Correa Da Costa Dias,20969430604,F,DEM,MS,Titular,0
 55,160617,1160617,camara,Thiago Peixoto,Thiago Mello Peixoto Da Silveira,63353385134,M,PSD,GO,Titular,0
-55,178862,1178862,camara,Tia Eron,Eronildes Vasconcelos Carvalho,66858933549,F,PRB,BA,Titular,0
+55,178862,1178862,camara,Tia Eron,Eronildes Vasconcelos Carvalho,66858933549,F,REPUBLICANOS,BA,Suplente,1
 55,160976,1160976,camara,Tiririca,Francisco Everardo Tiririca Oliveira Silva,44833881349,M,PL,SP,Titular,1
 55,160611,1160611,camara,Toninho Pinheiro,Antônio Pinheiro Júnior,37031074649,M,PP,MG,Titular,0
 55,178934,1178934,camara,Toninho Wandscheer,Antonio Wandscheer,18591035968,M,PROS,PR,Titular,1
 55,178863,1178863,camara,Uldurico Junior,Uldurico Alencar Pinto,03746803101,M,PROS,BA,Titular,1
-55,195866,1195866,camara,Vaidon Oliveira,Francisco Vaidon Oliveira,56571739291,M,PROS,CE,Titular,0
+55,195866,1195866,camara,Vaidon Oliveira,Francisco Vaidon Oliveira,56571739291,M,PROS,CE,Titular,1
 55,194340,1194340,camara,Val Amélio,Audival Amélio Da Silva Neto,10516186493,M,PRTB,AL,Suplente,0
 55,141384,1141384,camara,Valadares Filho,Antônio Carlos Valadares Filho,80616291515,M,PSB,SE,Titular,0
-55,74010,174010,camara,Valdir Colatto,Valdir Colatto,16261577900,M,MDB,SC,Titular,0
+55,74010,174010,camara,Valdir Colatto,Valdir Colatto,16261577900,M,MDB,SC,Suplente,0
 55,160610,1160610,camara,Valmir Assunção,Valmir Carlos Da Assunção,02333314842,M,PT,BA,Titular,1
 55,113247,1113247,camara,Valmir Prascidelli,Valmir Prascidelli,05194942885,M,PT,SP,Titular,0
 55,141552,1141552,camara,Valtenir Pereira,Valtenir Luiz Pereira,34358099149,M,MDB,MT,Suplente,0
@@ -3551,92 +3551,256 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 55,178902,1178902,camara,Zeca Do Pt,Jose Orcirio Miranda Dos Santos,04064992172,M,PT,MS,Titular,0
 55,178949,1178949,camara,Zenaide Maia,Zenaide Maia Calado Pereira Dos Santos,12352993415,F,PHS,RN,Titular,0
 55,74392,174392,camara,Zonta,Odacir Zonta,10536744904,M,PSB,SC,Suplente,0
+55,5573,25573,senado,Abel Rebouças,Abel Rebouças São José,NA,M,PDT,BA,1º Suplente,0
+55,5154,25154,senado,Abiancy Cadoso Rosa,Abiancy Cadoso Rosa,NA,M,CIDADANIA,PA,2º Suplente,0
 55,4981,24981,senado,Acir Gurgacz,Acir Marcos Gurgacz,NA,M,PDT,RO,Titular,1
+55,5625,25625,senado,Adilson Silva dos Santos,Adilson Silva dos Santos,NA,M,PEN,RS,2º Suplente,0
+55,5170,25170,senado,Agimiro Dias da Costa,Agimiro Dias da Costa,NA,M,PSDB,TO,2º Suplente,0
+55,5140,25140,senado,Airton Sandoval,Airton Sandoval Santana,NA,M,MDB,SP,1º Suplente,0
+55,4610,24610,senado,Alexandre Silveira,Alexandre Silveira de Oliveira,NA,M,PSD,MG,1º Suplente,0
 55,846,2846,senado,Aloysio Nunes Ferreira,Aloysio Nunes Ferreira Filho,NA,M,PSDB,SP,Titular,0
 55,945,2945,senado,Alvaro Dias,Alvaro Fernandes Dias,NA,M,PODEMOS,PR,Titular,1
+55,5607,25607,senado,Alzenir Porto,Maria Alzenir Porto da Costa,NA,F,PTB,PI,2º Suplente,0
+55,5042,25042,senado,Alzira Ferreira Barros,Alzira Ferreira Barros,NA,M,PCdoB,AM,2º Suplente,0
 55,4988,24988,senado,Ana Amélia,Ana Amélia de Lemos,NA,F,PP,RS,Titular,0
+55,5046,25046,senado,Andrelina Barbosa da Cunha,Andrelina Barbosa da Cunha,NA,M,PSOL,AP,2º Suplente,0
 55,5529,25529,senado,Antonio Anastasia,Antonio Augusto Junho Anastasia,NA,M,PSD,MG,Titular,1
+55,5150,25150,senado,Antonio Carlos Rodrigues,Antonio Carlos Rodrigues,NA,M,PL,SP,1º Suplente,0
 55,3,23,senado,Antonio Carlos Valadares,Antonio Carlos Valadares,NA,M,PSB,SE,Titular,0
+55,5134,25134,senado,Antônio Marcos Gavazzoni,Antônio Marcos Gavazzoni,NA,M,DEM,SC,2º Suplente,0
+55,5032,25032,senado,Antônio Milton Pessoa Falcão Filho,Antônio Milton Pessoa Falcão Filho,NA,M,PP,AL,2º Suplente,0
+55,5168,25168,senado,Aristavora de Souza Santos,Aristavora de Souza Santos,NA,M,PTB,PB,2º Suplente,0
+55,5028,25028,senado,Armando José de Oliveira,Armando José de Oliveira,NA,M,PSC,AC,2º Suplente,0
 55,715,2715,senado,Armando Monteiro,Armando de Queiroz Monteiro Neto,NA,M,PTB,PE,Titular,0
+55,5164,25164,senado,Ataídes Oliveira,Ataídes de Oliveira,NA,M,PSDB,TO,1º Suplente,0
+55,5138,25138,senado,Athos de Almeida Lopes,Athos de Almeida Lopes,NA,M,MDB,SC,2º Suplente,0
+55,5633,25633,senado,Atilio Francisco,Atilio Francisco da Silva,NA,M,REPUBLICANOS,SP,2º Suplente,0
+55,5631,25631,senado,Ayres Marchetti,Genésio Ayres Marchetti,NA,M,PSD,SC,2º Suplente,0
 55,391,2391,senado,Aécio Neves,Aécio Neves da Cunha,NA,M,PSDB,MG,Titular,0
 55,3823,23823,senado,Benedito de Lira,Benedito de Lira,NA,M,PP,AL,Titular,0
+55,5559,25559,senado,Bispo José,José Afonso Teixeira,NA,M,PSC,AC,2º Suplente,0
 55,111,2111,senado,Blairo Maggi,Blairo Borges Maggi,NA,M,PL,MT,Titular,0
+55,5603,25603,senado,Carlos Augusto Costa,Carlos Augusto Lopes da Costa,NA,M,PV,PE,1º Suplente,0
+55,5593,25593,senado,Celso Dal Lago Rodrigues,Celso Dal Lago Rodrigues,NA,M,MDB,MS,1º Suplente,0
+55,5136,25136,senado,Cesar Antonio de Souza,Cesar Antonio de Souza,NA,M,DEM,SC,1º Suplente,0
+55,611,2611,senado,Chiquinho Feitosa,Francisco Feitosa de Albuquerque Lima,NA,M,PSDB,CE,1º Suplente,0
+55,5623,25623,senado,Christopher Goulart,Christopher Belchior Goulart,NA,M,PDT,RS,1º Suplente,0
+55,5108,25108,senado,Cidinho Santos,José Aparecido dos Santos,NA,M,PL,MT,1º Suplente,0
 55,739,2739,senado,Ciro Nogueira,Ciro Nogueira Lima Filho,NA,M,PP,PI,Titular,1
+55,3881,23881,senado,Clovis Fecury,Clovis Antônio Chaves Fecury,NA,M,DEM,MA,1º Suplente,0
+55,5044,25044,senado,Clécio Luis Vilhena Vieira,Clécio Luis Vilhena Vieira,NA,M,PSOL,AP,1º Suplente,0
 55,3398,23398,senado,Cristovam Buarque,Cristovam Ricardo Cavalcanti Buarque,NA,M,CIDADANIA,DF,Titular,0
+55,1757,21757,senado,Cunha Lima,Ivandro Moura Cunha Lima,NA,M,NA,PB,2º Suplente,0
 55,5197,25197,senado,Cássio Cunha Lima,Cássio Rodrigues da Cunha Lima,NA,M,PSDB,PB,Titular,0
+55,5132,25132,senado,Dalirio Beber,Dalírio José Beber,NA,M,PSDB,SC,1º Suplente,0
 55,3830,23830,senado,Davi Alcolumbre,David Samuel Alcolumbre Tobelem,NA,M,DEM,AP,Titular,1
+55,5199,25199,senado,Deca,José Gonzaga Sobrinho,NA,M,PSDB,PB,1º Suplente,0
 55,3360,23360,senado,Delcídio do Amaral,Delcídio do Amaral Gomez,NA,M,S/Partido,MS,Titular,0
 55,3399,23399,senado,Demóstenes Torres,Demóstenes Lazaro Xavier Torres,NA,M,S/Partido,GO,Titular,0
+55,5637,25637,senado,Donizeti Nogueira,Divino Donizeti Borges Nogueira,NA,M,PT,TO,1º Suplente,0
+55,5178,25178,senado,Douglas Cintra,Douglas Mauricio Ramos Cintra,NA,M,PTB,PE,1º Suplente,0
+55,5565,25565,senado,Dr. Helder Cavalcante,Francisco Helder Cavalcante Sousa,NA,M,PL,AM,1º Suplente,0
 55,5537,25537,senado,Dário Berger,Dário Elias Berger,NA,M,MDB,SC,Titular,1
 55,16,216,senado,Edison Lobão,Edison Lobão,NA,M,MDB,MA,Titular,0
+55,5160,25160,senado,Edivaldo Edilson Pantoja da Silva,Edivaldo Edilson Pantoja da Silva,NA,M,PSOL,PA,1º Suplente,0
 55,4721,24721,senado,Eduardo Amorim,Eduardo Alves do Amorim,NA,M,PSDB,SE,Titular,0
 55,4994,24994,senado,Eduardo Braga,Carlos Eduardo de Souza Braga,NA,M,MDB,AM,Titular,1
-55,5531,25531,senado,Elmano Férrer,Elmano Férrer de Almeida,NA,M,PODEMOS,PI,Titular,1
+55,4767,24767,senado,Eduardo Lopes,Eduardo Benedito Lopes,NA,M,REPUBLICANOS,RJ,1º Suplente,0
+55,5587,25587,senado,Eladio Carneiro,Eladio Barbosa Carneiro,NA,M,MDB,GO,2º Suplente,0
+55,5146,25146,senado,Elaine Matozinhos Ribeiro,Elaine Matozinhos Ribeiro,NA,M,PTB,MG,2º Suplente,0
+55,4969,24969,senado,Elber Batalha,Elber Batalha de Goes,NA,M,PSB,SE,2º Suplente,0
+55,5605,25605,senado,Eliane Rodrigues,Eliane Rodrigues de Andrade Ferreira,NA,F,PSB,PE,2º Suplente,0
+55,5531,25531,senado,Elmano Férrer,Elmano Férrer de Almeida,NA,M,PP,PI,Titular,1
+55,5148,25148,senado,Elmiro Alves do Nascimento,Elmiro Alves do Nascimento,NA,M,DEM,MG,1º Suplente,0
+55,5064,25064,senado,Emir Simão Sader,Emir Simão Sader,NA,M,PT,RJ,2º Suplente,0
+55,5126,25126,senado,Enivaldo Euzébio dos Anjos,Enivaldo Euzébio dos Anjos,NA,M,PDT,ES,2º Suplente,0
 55,612,2612,senado,Eunício Oliveira,Eunício Lopes de Oliveira,NA,M,MDB,CE,Titular,0
+55,5581,25581,senado,Fadi Faraj,Fadi Fayez Faraj,NA,M,SOLIDARIEDADE,DF,2º Suplente,0
 55,5540,25540,senado,Fernando Bezerra Coelho,Fernando Bezerra de Souza Coelho,NA,M,MDB,PE,Titular,1
+55,5026,25026,senado,Fernando Carvalho Lage,Fernando Carvalho Lage,NA,M,DEM,AC,1º Suplente,0
 55,4525,24525,senado,Fernando Collor,Fernando Affonso Collor de Mello,NA,M,PROS,AL,Titular,1
+55,5577,25577,senado,Fernando Façanha,Fernando Antonio Mendes Façanha Filho,NA,M,PSDB,CE,2º Suplente,0
+55,2632,22632,senado,Fernando Ribeiro,Fernando de Castro Ribeiro,NA,M,MDB,PA,1º Suplente,0
+55,4873,24873,senado,Fleury,José Eduardo Fleury Fernandes Costa,NA,M,DEM,GO,2º Suplente,0
 55,3634,23634,senado,Flexa Ribeiro,Fernando de Souza Flexa Ribeiro,NA,M,PSDB,PA,Titular,0
+55,553,2553,senado,Francisco Garcia,Francisco Garcia Rodrigues,NA,M,NA,AM,1º Suplente,0
+55,5054,25054,senado,Francisco Simeão Rodrigues Neto,Francisco Simeão Rodrigues Neto,NA,M,MDB,PR,1º Suplente,0
+55,5416,25416,senado,Francisco Wilson Ribeiro,Francisco Wilson Ribeiro,NA,M,NA,PA,2º Suplente,0
+55,5034,25034,senado,Fábio Luiz Araújo Lopes de Farias,Fábio Luiz Araújo Lopes de Farias,NA,M,MDB,AL,1º Suplente,0
 55,3713,23713,senado,Fátima Bezerra,Maria de Fátima Bezerra,NA,F,PT,RN,Titular,0
+55,5162,25162,senado,Félix Urano Gama de Souza,Félix Urano Gama de Souza,NA,M,PSOL,PA,2º Suplente,0
+55,5024,25024,senado,Gabriel Maia Gelpke,Gabriel Maia Gelpke,NA,M,PSB,AC,2º Suplente,0
 55,87,287,senado,Garibaldi Alves Filho,Garibaldi Alves Filho,NA,M,MDB,RN,Titular,0
+55,4522,24522,senado,Geovani Borges,Geovani Pinheiro Borges,NA,M,MDB,AP,1º Suplente,0
+55,5088,25088,senado,Gilberto Corazza,Gilberto Corazza,NA,M,PT,RS,2º Suplente,0
+55,5615,25615,senado,Gilberto Piselo,Gilberto Piselo do Nascimento,NA,M,PDT,RO,1º Suplente,0
 55,30,230,senado,Gilvam Borges,Gilvam Pinheiro Borges,NA,M,MDB,AP,Titular,0
+55,5128,25128,senado,Gino Jose Ferreira,Gino Jose Ferreira,NA,M,DEM,MS,2º Suplente,0
+55,5030,25030,senado,Givago Tenório,José Givago Raposo Tenório,NA,M,PP,AL,1º Suplente,0
 55,4558,24558,senado,Gladson Cameli,Gladson de Lima Cameli,NA,M,PP,AC,Titular,0
 55,5006,25006,senado,Gleisi Hoffmann,Gleisi Helena Hoffmann,NA,F,PT,PR,Titular,0
+55,5639,25639,senado,Guaracy Silveira,Guaracy Batista da Silveira,NA,M,PSL,TO,2º Suplente,0
 55,5008,25008,senado,Humberto Costa,Humberto Sérgio Costa Lima,NA,M,PT,PE,Titular,1
+55,5100,25100,senado,Hélio José,Hélio José da Silva Lima,NA,M,PROS,DF,1º Suplente,0
+55,5076,25076,senado,Ione Guimarães,Ione Borges Ribeiro Guimarães,NA,F,PTB,GO,1º Suplente,0
 55,1754,21754,senado,Itamar Franco,Itamar Augusto Cautiero Franco,NA,M,NA,MG,Titular,0
+55,5418,25418,senado,Ivanci Magno,Ivanci Magno,NA,M,NA,AP,1º Suplente,0
 55,5004,25004,senado,Ivo Cassol,Ivo Narciso Cassol,NA,M,PP,RO,Titular,0
 55,35,235,senado,Jader Barbalho,Jader Fontenelle Barbalho,NA,M,MDB,PA,Titular,1
+55,5022,25022,senado,Janduhy Max Freire de Andrade,Janduhy Max Freire de Andrade,NA,M,PL,RN,2º Suplente,0
+55,5627,25627,senado,Jean Paul Prates,Jean Paul Terra Prates,NA,M,PT,RN,1º Suplente,1
+55,724,2724,senado,Joaquim Francisco,Joaquim Francisco de Freitas Cavalcanti,NA,M,PSB,PE,1º Suplente,0
+55,5609,25609,senado,Joel Malucelli,Joel Malucelli,NA,M,PSD,PR,1º Suplente,0
 55,4990,24990,senado,Jorge Viana,Jorge Ney Viana Macedo Neves,NA,M,PT,AC,Titular,0
+55,4885,24885,senado,Jorge Yanai,Jorge Yoshiaki Yanai,NA,M,DEM,MT,1º Suplente,0
+55,5078,25078,senado,Jose Nagib da Silva Lima,Jose Nagib da Silva Lima,NA,M,PT,RR,1º Suplente,0
+55,5569,25569,senado,Josiel,Jose Samuel Alcolumbre Tobelem,NA,M,DEM,AP,1º Suplente,0
 55,40,240,senado,José Agripino,José Agripino Maia,NA,M,DEM,RN,Titular,0
+55,5090,25090,senado,José Alberto Wenzel,José Alberto Wenzel,NA,M,PSDB,RS,1º Suplente,0
+55,5849,25849,senado,José Amauri,Jose Amauri P. de Araújo,NA,M,PODEMOS,PI,1º Suplente,0
+55,5120,25120,senado,José Antonio Guidoni,José Antonio Guidoni,NA,M,PSB,ES,2º Suplente,0
+55,878,2878,senado,José Aníbal,José Aníbal Peres de Pontes,NA,M,PSDB,SP,1º Suplente,0
+55,5579,25579,senado,José Carlos Vasconcellos,José Carlos de Moraes Vasconcellos Filho,NA,M,PDT,DF,1º Suplente,0
 55,43,243,senado,José Eduardo Dutra,José Eduardo de Barros Dutra,NA,M,PT,SE,1º Suplente,0
-55,3361,23361,senado,José Maranhão,José Targino Maranhão,NA,M,MDB,PB,Titular,1
+55,3361,23361,senado,José Maranhão,José Targino Maranhão,NA,M,MDB,PB,Titular,0
+55,5112,25112,senado,José Medeiros,José Antônio Medeiros,NA,M,PODEMOS,MT,1º Suplente,0
 55,615,2615,senado,José Pimentel,José Barroso Pimentel,NA,M,PT,CE,Titular,0
+55,5180,25180,senado,José Rodrigues da Silva,José Rodrigues da Silva,NA,M,PSB,PE,2º Suplente,0
 55,90,290,senado,José Serra,José Serra,NA,M,PSDB,SP,Titular,1
+55,5036,25036,senado,José de Macedo Ferreira,José de Macedo Ferreira,NA,M,MDB,AL,2º Suplente,0
 55,950,2950,senado,João Alberto Souza,João Alberto de Souza,NA,M,MDB,MA,Titular,0
+55,5613,25613,senado,João Batista Lemos,João Batista da Rocha Lemos,NA,M,PCB,RJ,1º Suplente,0
 55,3394,23394,senado,João Capiberibe,João Alberto Rodrigues Capiberibe,NA,M,PSB,AP,Titular,0
+55,5186,25186,senado,João Claudino Fernandes,João Claudino Fernandes,NA,M,PRTB,PI,1º Suplente,0
+55,5166,25166,senado,João Costa,João Costa Ribeiro Filho,NA,M,PPL,TO,1º Suplente,0
+55,3593,23593,senado,João Faustino,João Faustino Ferreira Neto,NA,M,PSDB,RN,1º Suplente,0
 55,916,2916,senado,João Ribeiro,João Batista de Jesus Ribeiro,NA,M,PL,TO,Titular,0
+55,5066,25066,senado,Juçara Feitosa de Oliveira,Juçara Feitosa de Oliveira,NA,M,PT,BA,2º Suplente,0
+55,5158,25158,senado,Kaká Andrade,Antonio Carlos Porto de Andrade,NA,M,PDT,SE,2º Suplente,0
 55,1249,21249,senado,Kátia Abreu,Kátia Regina de Abreu,NA,F,PP,TO,Titular,1
+55,415,2415,senado,Lael Varella,Lael Vieira Varella,NA,M,DEM,MG,2º Suplente,0
 55,5533,25533,senado,Lasier Martins,Lasier Costa Martins,NA,M,PODEMOS,RS,Titular,1
+55,5156,25156,senado,Lauro Antonio,Lauro Antonio Texeira Menezes,NA,M,PL,SE,1º Suplente,0
 55,3695,23695,senado,Lindbergh Farias,Luiz Lindbergh Farias Filho,NA,M,PT,RJ,Titular,0
+55,5040,25040,senado,Lirio Albino Parisotto,Lirio Albino Parisotto,NA,M,MDB,AM,2º Suplente,0
+55,3579,23579,senado,Lobão Filho,Edison Lobão Filho,NA,M,MDB,MA,1º Suplente,0
+55,5092,25092,senado,Luis Carlos Paes de Castro,Luis Carlos Paes de Castro,NA,M,PCdoB,CE,2º Suplente,0
+55,5104,25104,senado,Luis Cláudio da Costa Avelar,Luis Cláudio da Costa Avelar,NA,M,PCdoB,DF,2º Suplente,0
+55,5567,25567,senado,Luis Mitoso,Luis Augusto Mitoso Junior,NA,M,PSD,AM,2º Suplente,0
 55,5002,25002,senado,Luiz Henrique,Luiz Henrique da Silveira,NA,M,MDB,SC,Titular,0
+55,151,2151,senado,Luiz Pastore,Luiz Osvaldo Pastore,NA,M,MDB,ES,1º Suplente,0
+55,5585,25585,senado,Luiz do Carmo,Luiz Carlos do Carmo,NA,M,MDB,GO,1º Suplente,1
+55,5058,25058,senado,Luís Guilherme Gomes Mussi,Luís Guilherme Gomes Mussi,NA,M,MDB,PR,2º Suplente,0
 55,4575,24575,senado,Lídice da Mata,Lídice da Mata e Souza,NA,F,PSB,BA,Titular,0
 55,643,2643,senado,Lúcia Vânia,Lúcia Vânia Abrão,NA,F,PSB,GO,Titular,0
 55,631,2631,senado,Magno Malta,Magno Pereira Malta,NA,M,PL,ES,Titular,0
+55,5557,25557,senado,Mailza Gomes,Mailza Assis da Silva,NA,F,PP,AC,1º Suplente,1
+55,4951,24951,senado,Manoel Angelo Chagas,Manoel Angelo Chagas,NA,M,MDB,RO,2º Suplente,0
+55,5591,25591,senado,Manoel Motta,Manoel Francisco de Vasconcelos Motta,NA,M,PCB,MT,2º Suplente,0
 55,3366,23366,senado,Marcelo Crivella,Marcelo Bezerra Crivella,NA,M,REPUBLICANOS,RJ,Titular,0
+55,710,2710,senado,Marcondes Gadelha,Marcondes Iran Benevides Gadelha,NA,M,PSC,PB,1º Suplente,0
+55,5124,25124,senado,Maria Antonieta Amorim dos Santos,Maria Antonieta Amorim dos Santos,NA,M,MDB,MS,1º Suplente,0
+55,5190,25190,senado,Maria Luza de Aquino Machado,Maria Luza de Aquino Machado,NA,M,PTB,GO,2º Suplente,0
+55,5174,25174,senado,Maria de Pompeia Lins Pessoa,Maria de Pompeia Lins Pessoa,NA,M,PT,PE,2º Suplente,0
 55,1023,21023,senado,Maria do Carmo Alves,Maria do Carmo do Nascimento Alves,NA,F,DEM,SE,Titular,1
 55,4998,24998,senado,Marinor Brito,Marinor Jorge Brito,NA,F,PSOL,PA,Titular,0
+55,5575,25575,senado,Marizete,Marizete Lisboa Fernandes Pereira,NA,F,PT,BA,2º Suplente,0
+55,5571,25571,senado,Marquinho,Marco Jeovano Soares Ribas,NA,M,DEM,AP,2º Suplente,0
+55,5142,25142,senado,Marta Maria Freire da Costa,Marta Maria Freire da Costa,NA,M,DEM,SP,2º Suplente,0
 55,5000,25000,senado,Marta Suplicy,Marta Teresa Suplicy,NA,F,MDB,SP,Titular,0
+55,670,2670,senado,Mauro Fecury,Mauro de Alencar Fecury,NA,M,MDB,MA,2º Suplente,0
+55,5086,25086,senado,Miguel Dias de Souza,Miguel Dias de Souza,NA,M,REPUBLICANOS,CE,2º Suplente,0
+55,5595,25595,senado,Moacir Kohl,Moacir Kohl,NA,M,PSB,MS,2º Suplente,0
+55,5094,25094,senado,Márcio Bergonsi Turra,Márcio Bergonsi Turra,NA,M,PP,RS,2º Suplente,0
+55,5176,25176,senado,Nestor Duarte Guimarães Neto,Nestor Duarte Guimarães Neto,NA,M,PDT,BA,1º Suplente,0
+55,380,2380,senado,Nicias Ribeiro,Nicias Lopes Ribeiro,NA,M,PSDB,PA,1º Suplente,0
+55,5281,25281,senado,Nilda Gondim,Ozanilda Gondim Vital do Rego,NA,F,MDB,PB,1º Suplente,1
+55,288,2288,senado,Nilson Mourão,Nilson Moura Leite Mourão,NA,M,PT,AC,1º Suplente,0
 55,64,264,senado,Odacir Soares,Odacir Soares Rodrigues,NA,M,PP,RO,2º Suplente,0
+55,5060,25060,senado,Olney Ribeiro Botelho,Olney Ribeiro Botelho,NA,M,PDT,RJ,1º Suplente,0
 55,5525,25525,senado,Omar Aziz,Omar José Abdel Aziz,NA,M,PSD,AM,Titular,1
 55,5523,25523,senado,Otto Alencar,Otto Roberto Mendonça de Alencar,NA,M,PSD,BA,Titular,1
+55,5080,25080,senado,Pablo Sergio Souza Bezerra,Pablo Sergio Souza Bezerra,NA,M,PT,RR,2º Suplente,0
+55,918,2918,senado,Pastor Amarildo,Amarildo Martins da Silva,NA,M,PSC,TO,2º Suplente,0
+55,5018,25018,senado,Pastor Bel,Heber Waldo Silva Costa,NA,M,PRTB,MA,2º Suplente,0
+55,5599,25599,senado,Pastor Ibanes Taveira,Ibanes Taveira da Silva,NA,M,PDT,PA,2º Suplente,0
+55,5617,25617,senado,Pastor Valadares,Sebastião Valadares Neto,NA,M,PDT,RO,2º Suplente,0
+55,5122,25122,senado,Paulo Antenor de Oliveira,Paulo Antenor de Oliveira,NA,M,PL,ES,1º Suplente,0
 55,3741,23741,senado,Paulo Bauer,Paulo Roberto Bauer,NA,M,PSDB,SC,Titular,0
+55,5020,25020,senado,Paulo Davim,Paulo Roberto Davim,NA,M,PV,RN,1º Suplente,0
+55,5152,25152,senado,Paulo Frateschi,Paulo Frateschi,NA,M,PT,SP,2º Suplente,0
+55,336,2336,senado,Paulo Gouvêa,Paulo Gilberto Gouvêa da Costa,NA,M,DEM,SC,1º Suplente,0
+55,5589,25589,senado,Paulo Matos,Paulo Henrique Campos Matos,NA,M,CIDADANIA,MA,2º Suplente,0
 55,825,2825,senado,Paulo Paim,Paulo Renato Paim,NA,M,PT,RS,Titular,1
+55,5114,25114,senado,Paulo Pereira Fíuza Filho,Paulo Pereira Fíuza Filho,NA,M,PV,MT,2º Suplente,0
 55,374,2374,senado,Paulo Rocha,Paulo Roberto Galvão da Rocha,NA,M,PT,PA,Titular,1
+55,5116,25116,senado,Pedro Chaves,Pedro Chaves dos Santos Filho,NA,M,REPUBLICANOS,MS,1º Suplente,0
+55,5050,25050,senado,Pedro Irno Tonelli,Pedro Irno Tonelli,NA,M,PT,PR,2º Suplente,0
 55,5010,25010,senado,Pedro Taques,José Pedro Gonçalves Taques,NA,M,PDT,MT,Titular,0
+55,4606,24606,senado,Pinto Itamaraty,José Eleonildo Soares,NA,M,PSDB,MA,1º Suplente,0
 55,2207,22207,senado,Raimundo Lira,Raimundo Lira,NA,M,PSD,PB,1º Suplente,0
 55,5012,25012,senado,Randolfe Rodrigues,Randolph Frederich Rodrigues Alves,NA,M,REDE,AP,Titular,1
+55,5072,25072,senado,Reditario Cassol,Reditario Cassol,NA,M,PP,RO,1º Suplente,0
+55,5182,25182,senado,Regina Sousa,Maria Regina Sousa,NA,F,PT,PI,1º Suplente,0
 55,5236,25236,senado,Reguffe,José Antônio Machado Reguffe,NA,M,PODEMOS,DF,Titular,1
 55,70,270,senado,Renan Calheiros,José Renan Vasconcelos Calheiros,NA,M,MDB,AL,Titular,1
+55,5561,25561,senado,Renilde Bulhões,Renilde Silva Bulhões Barros,NA,F,PROS,AL,1º Suplente,0
 55,635,2635,senado,Ricardo Ferraço,Ricardo de Rezende Ferraço,NA,M,PSDB,ES,Titular,0
+55,5635,25635,senado,Ricardo Franco,Ricardo Barreto Franco,NA,M,DEM,SE,1º Suplente,0
+55,5052,25052,senado,Roberto Muniz,Roberto de Oliveira Muniz,NA,M,PP,BA,1º Suplente,0
 55,72,272,senado,Roberto Requião,Roberto Requião de Mello e Silva,NA,M,MDB,PR,Titular,0
 55,677,2677,senado,Roberto Rocha,Roberto Coelho Rocha,NA,M,PSDB,MA,Titular,1
+55,5098,25098,senado,Roberto Wagner Monteiro,Roberto Wagner Monteiro,NA,M,REPUBLICANOS,DF,2º Suplente,0
 55,4593,24593,senado,Rodrigo Rollemberg,Rodrigo Sobral Rollemberg,NA,M,PSB,DF,Titular,0
+55,5110,25110,senado,Rodrigues Palma,Manoel Antônio Rodrigues Palma,NA,M,PL,MT,2º Suplente,0
 55,73,273,senado,Romero Jucá,Romero Jucá Filho,NA,M,MDB,RR,Titular,0
 55,5322,25322,senado,Romário,Romario de Souza Faria,NA,M,PODEMOS,RJ,Titular,1
 55,456,2456,senado,Ronaldo Caiado,Ronaldo Ramos Caiado,NA,M,DEM,GO,Titular,0
-55,2331,22331,senado,Rose de Freitas,Rosilda de Freitas,NA,F,PODEMOS,ES,Titular,1
+55,5601,25601,senado,Roosevelt Vita,Roosevelt Vita,NA,M,MDB,PB,2º Suplente,0
+55,2331,22331,senado,Rose de Freitas,Rosilda de Freitas,NA,F,MDB,ES,Titular,1
+55,5621,25621,senado,Rudson Leite,Rudson Leite da Silva,NA,M,PV,RR,2º Suplente,0
+55,4847,24847,senado,Salomão Alcolumbre Júnior,Salomão Alcolumbre Júnior,NA,M,MDB,AP,2º Suplente,0
+55,5074,25074,senado,Sander Fraxe Salomao,Sander Fraxe Salomao,NA,M,MDB,RR,2º Suplente,0
+55,5038,25038,senado,Sandra Braga,Sandra Backsmann Braga,NA,F,MDB,AM,1º Suplente,0
+55,5172,25172,senado,Sanny Japiassú dos Santos,Sanny Japiassú dos Santos,NA,M,MDB,PB,2º Suplente,0
+55,5583,25583,senado,Schariff Moyses,Schariff Moyses,NA,M,PSDB,ES,2º Suplente,0
+55,5048,25048,senado,Sergio Souza,Sergio de Souza,NA,M,MDB,PR,1º Suplente,0
+55,5611,25611,senado,Severino Araujo,Severino Nunes de Araujo,NA,M,PSB,PR,2º Suplente,0
+55,5563,25563,senado,Severino Leão,Severino Barboza Leão,NA,M,PTB,AL,2º Suplente,0
+55,5056,25056,senado,Silvia Nascimento Cardoso dos Santos Cerqueira,Silvia Nascimento Cardoso dos Santos Cerqueira,NA,M,REPUBLICANOS,BA,2º Suplente,0
 55,5527,25527,senado,Simone Tebet,Simone Nassar Tebet,NA,F,MDB,MS,Titular,1
+55,624,2624,senado,Sérgio Novais,Aluísio Sérgio Novais Eleutério,NA,M,PSB,CE,1º Suplente,0
 55,4560,24560,senado,Sérgio Petecão,Sérgio de Oliveira Cunha,NA,M,PSD,AC,Titular,1
+55,5106,25106,senado,Sérgio de Castro,Sérgio Rogério de Castro,NA,M,PDT,ES,1º Suplente,0
 55,3396,23396,senado,Tasso Jereissati,Tasso Ribeiro Jereissati,NA,M,PSDB,CE,Titular,1
 55,5535,25535,senado,Telmário Mota,Telmário Mota de Oliveira,NA,M,PROS,RR,Titular,1
+55,5629,25629,senado,Theodorico Netto,Theodorico Bezerra Netto,NA,M,PT,RN,2º Suplente,0
+55,5619,25619,senado,Thieres Pinto,Thieres Pinto de Mesquita Filho,NA,M,PTB,RR,1º Suplente,0
+55,438,2438,senado,Tilden Santiago,Tilden José Santiago,NA,M,PSB,MG,2º Suplente,0
+55,4949,24949,senado,Tomás Correia,Tomás Guilherme Correia,NA,M,MDB,RO,1º Suplente,0
+55,5068,25068,senado,Tânia Cristina Magalhães Bastos e Silva,Tânia Cristina Magalhães Bastos e Silva,NA,M,REPUBLICANOS,RJ,2º Suplente,0
+55,5420,25420,senado,Ubiraci Picanço,Ubiraci Picanço,NA,M,NA,AP,2º Suplente,0
+55,375,2375,senado,Valdir Ganzer,Valdir Ganzer,NA,M,PT,PA,1º Suplente,0
 55,3372,23372,senado,Valdir Raupp,Valdir Raupp de Matos,NA,M,MDB,RO,Titular,0
+55,5130,25130,senado,Valério Djalma Cavalcanti Marinho,Valério Djalma Cavalcanti Marinho,NA,M,PSDB,RN,2º Suplente,0
 55,558,2558,senado,Vanessa Grazziotin,Vanessa Grazziotin,NA,F,PCdoB,AM,Titular,0
+55,5084,25084,senado,Veridiana Maria Tonini,Veridiana Maria Tonini,NA,M,PT,RS,1º Suplente,0
 55,4763,24763,senado,Vicentinho Alves,Vicente Alves de Oliveira,NA,M,PL,TO,Titular,0
+55,4786,24786,senado,Virginio de Carvalho,Virginio José de Carvalho Neto,NA,M,PSC,SE,2º Suplente,0
 55,4645,24645,senado,Vital do Rêgo,Vital do Rêgo Filho,NA,M,MDB,PB,Titular,0
+55,791,2791,senado,Vivaldo Barbosa,Vivaldo Vieira Barbosa,NA,M,PSB,RJ,2º Suplente,0
+55,5082,25082,senado,Waldemir Catanho de Sena Júnior,Waldemir Catanho de Sena Júnior,NA,M,PT,CE,1º Suplente,0
 55,1176,21176,senado,Waldemir Moka,Waldemir Moka Miranda de Britto,NA,M,MDB,MS,Titular,0
 55,604,2604,senado,Walter Pinheiro,Walter de Freitas Pinheiro,NA,M,S/Partido,BA,Titular,0
 55,5016,25016,senado,Wellington Dias,José Wellington Barroso de Araujo Dias,NA,M,PT,PI,Titular,0
 55,1173,21173,senado,Wellington Fagundes,Wellington Antonio Fagundes,NA,M,PL,MT,Titular,1
+55,5070,25070,senado,Wilder Morais,Wilder Pedro de Morais,NA,M,DEM,GO,1º Suplente,0
+55,5096,25096,senado,Wilmar Lacerda,Wilmar Lacerda,NA,M,PDT,DF,1º Suplente,0
 55,3811,23811,senado,Wilson Santiago,José Wilson Santiago,NA,M,PTB,PB,Titular,0
+55,3597,23597,senado,Wirlande da Luz,Wirlande Santos da Luz,NA,M,MDB,RR,1º Suplente,0
+55,5144,25144,senado,Zeze Perrella,José Perrella de Oliveira Costa,NA,M,MDB,MG,1º Suplente,0
+55,5118,25118,senado,Zonir Freitas Tetila,Zonir Freitas Tetila,NA,M,PT,MS,2º Suplente,0
+55,5184,25184,senado,Zé Santana,José Ribamar Noleto de Santana,NA,M,MDB,PI,2º Suplente,0
 55,4697,24697,senado,Ângela Portela,Ângela Maria Gomes Portela,NA,F,PDT,RR,Titular,0
 56,204554,1204554,camara,Abílio Santana,Jose Abilio Silva De Santana,36607606504,M,PL,BA,Titular,1
 56,204521,1204521,camara,Abou Anni,Paulo Sergio Abou Anni,08496582841,M,PSL,SP,Titular,1
@@ -3645,6 +3809,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,204528,1204528,camara,Adriana Ventura,Adriana Miguel Ventura,12519851813,F,NOVO,SP,Titular,1
 56,121948,1121948,camara,Adriano Do Baldy,Adriano Antônio Avelar,50746553153,M,PP,GO,Titular,1
 56,74646,174646,camara,Aécio Neves,Aécio Neves Da Cunha,66728983791,M,PSDB,MG,Titular,1
+56,141372,1141372,camara,Aelton Freitas,Aelton José De Freitas,36179140634,M,PL,MG,Efetivado,1
 56,160508,1160508,camara,Afonso Florence,Afonso Bandeira Florence,17734150500,M,PT,BA,Titular,1
 56,136811,1136811,camara,Afonso Hamm,José Alfonso Ebert Hamm,37040642034,M,PP,RS,Titular,1
 56,178835,1178835,camara,Afonso Motta,Afonso Antunes Da Motta,10777296004,M,PDT,RS,Titular,1
@@ -3662,13 +3827,13 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,204544,1204544,camara,Alexandre Frota,Alexandre Frota De Andrade,75199270753,M,PSDB,SP,Titular,1
 56,160545,1160545,camara,Alexandre Leite,Alexandre Leite Da Silva,22970812860,M,DEM,SP,Titular,1
 56,204503,1204503,camara,Alexandre Padilha,Alexandre Rocha Santos Padilha,13192679808,M,PT,SP,Titular,1
-56,178833,1178833,camara,Alexandre Serfiotis,Alexandre Augustus Serfiotis,02440200786,M,PSD,RJ,Titular,1
+56,178833,1178833,camara,Alexandre Serfiotis,Alexandre Augustus Serfiotis,02440200786,M,PSD,RJ,Titular,0
 56,204516,1204516,camara,Alexis Fonteyne,Alexis Joseph Steverlynck Fonteyne,06630660854,M,NOVO,SP,Titular,1
 56,74057,174057,camara,Alice Portugal,Alice Mazzuco Portugal,12377392504,F,PCdoB,BA,Titular,1
 56,178927,1178927,camara,Aliel Machado,Aliel Machado Bark,06908052923,M,PSB,PR,Titular,1
 56,204353,1204353,camara,Aline Gurgel,Aline Paranhos Varonil Gurgel,51150670215,F,REPUBLICANOS,AP,Titular,1
 56,204400,1204400,camara,Aline Sleutjes,Aline Sleutjes,00506342913,F,PSL,PR,Titular,1
-56,178937,1178937,camara,Altineu Côrtes,Altineu Côrtes Freitas Coutinho,00007487738,M,PL,RJ,Titular,0
+56,178937,1178937,camara,Altineu Côrtes,Altineu Côrtes Freitas Coutinho,00007487738,M,PL,RJ,Titular,1
 56,178881,1178881,camara,Aluisio Mendes,Aluisio Guimaraes Mendes Filho,66746485749,M,PSC,MA,Titular,1
 56,204356,1204356,camara,Amaro Neto,Amaro Rocha Nascimento Neto,06893749767,M,REPUBLICANOS,ES,Titular,1
 56,178831,1178831,camara,André Abdon,Andre Dos Santos Abdon,31601928220,M,PP,AP,Titular,1
@@ -3678,7 +3843,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,178882,1178882,camara,André Fufuca,Andre Luiz Carvalho Ribeiro,03950788301,M,PP,MA,Titular,1
 56,204515,1204515,camara,André Janones,Andre Luis Gaspar Janones,06630008669,M,AVANTE,MG,Titular,1
 56,73696,173696,camara,Angela Amin,Angela Regina Heinzen Amin Helou,29316715920,F,PP,SC,Titular,1
-56,74212,174212,camara,Aníbal Gomes,Aníbal Ferreira Gomes,04240952387,M,DEM,CE,Suplente,0
+56,74212,174212,camara,Aníbal Gomes,Aníbal Ferreira Gomes,04240952387,M,DEM,CE,Suplente,1
 56,160553,1160553,camara,Antonio Brito,Antonio Luiz Paranhos Ribeiro Leite De Brito,51488868549,M,PSD,BA,Titular,1
 56,73433,173433,camara,Arlindo Chinaglia,Arlindo Chignalia Junior,06821146187,M,PT,SP,Titular,1
 56,141391,1141391,camara,Arnaldo Jardim,Arnaldo Calil Pereira Jardim,04197807856,M,CIDADANIA,SP,Titular,1
@@ -3707,6 +3872,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,160538,1160538,camara,Bohn Gass,Elvino José Bohn Gass,12558206249,M,PT,RS,Titular,1
 56,74052,174052,camara,Bosco Costa,João Bosco Da Costa,02235080553,M,PL,SE,Titular,1
 56,204551,1204551,camara,Bosco Saraiva,João Bosco Gomes Saraiva,13717820249,M,SOLIDARIEDADE,AM,Titular,1
+56,204502,1204502,camara,Bozzella,Nicolino Bozzella Junior,21883547881,M,PSL,SP,Titular,1
 56,160589,1160589,camara,Bruna Furlan,Bruna Dias Furlan,31516410831,F,PSDB,SP,Titular,1
 56,93083,193083,camara,Cacá Leão,Carlos Felipe Vazquez De Souza Leão,79753566549,M,PP,BA,Titular,1
 56,178853,1178853,camara,Caetano,Luiz Carlos Caetano,07409419504,M,PT,BA,Não Eleito,NA
@@ -3716,7 +3882,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,178924,1178924,camara,Capitão Fábio Abreu,Fabio Abreu Costa,48140597368,M,PL,PI,Titular,1
 56,204487,1204487,camara,Capitão Wagner,Wagner Sousa Gomes,61496880382,M,PROS,CE,Titular,1
 56,213762,1213762,camara,Carla Dickson,Hilkea Carla De Souza Medeiros Lima,02336272431,F,PROS,RN,Suplente,1
-56,204507,1204507,camara,Carla Zambelli,Carla Zambelli Salgado,01335594671,F,PSL,SP,Titular,1
+56,204507,1204507,camara,Carla Zambelli,Carla Zambelli Salgado De Oliveira,01335594671,F,PSL,SP,Titular,1
 56,141401,1141401,camara,Carlos Bezerra,Carlos Gomes Bezerra,00834939134,M,MDB,MT,Titular,1
 56,204361,1204361,camara,Carlos Chiodini,Carlos Alberto Chiodini,00503190942,M,MDB,SC,Titular,1
 56,178962,1178962,camara,Carlos Gomes,Antonio Carlos Gomes Da Silva,02142743730,M,REPUBLICANOS,RS,Titular,1
@@ -3728,7 +3894,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,164360,1164360,camara,Carmen Zanotto,Carmen Emília Bonfá Zanotto,51434245934,F,CIDADANIA,SC,Titular,1
 56,204369,1204369,camara,Caroline De Toni,Caroline Rodrigues De Toni,05858392989,F,PSL,SC,Titular,1
 56,204499,1204499,camara,Cássio Andrade,Cassio Coelho Andrade,68490151253,M,PSB,PA,Titular,1
-56,204380,1204380,camara,Celina Leão,Celina Leao Hizim Ferreira,79981488100,F,PP,DF,Titular,0
+56,204380,1204380,camara,Celina Leão,Celina Leao Hizim Ferreira,79981488100,F,PP,DF,Titular,1
 56,204370,1204370,camara,Célio Moura,Celio Alves De Moura,12364983134,M,PT,TO,Titular,1
 56,178876,1178876,camara,Célio Silveira,Celio Antonio Da Silveira,24453706120,M,PSDB,GO,Titular,1
 56,204488,1204488,camara,Célio Studart,Celio Studart Barbosa,01420754343,M,PV,CE,Titular,1
@@ -3739,6 +3905,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,205476,1205476,camara,Charles Fernandes,Charles Fernandes Silveira Santana,33938903520,M,PSD,BA,Titular,1
 56,204490,1204490,camara,Charlles Evangelista,Charlles Thomacelli Evangelista,06872337630,M,PSL,MG,Titular,1
 56,141439,1141439,camara,Chico D'angelo,Francisco José D'angelo Pinto,47247436700,M,PDT,RJ,Titular,1
+56,141440,1141440,camara,Chico Lopes,Francisco Lopes Da Silva,02810905304,M,PCdoB,CE,Suplente,0
 56,204476,1204476,camara,Chiquinho Brazão,João Francisco Inácio Brazão,75010020700,M,AVANTE,RJ,Titular,1
 56,204462,1204462,camara,Chris Tonietto,Christine Nogueira Dos Reis Tonietto,10448771705,F,PSL,RJ,Titular,1
 56,178928,1178928,camara,Christiane De Souza Yared,Christiane De Souza Yared,49156470991,F,PL,PR,Titular,1
@@ -3761,7 +3928,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,204409,1204409,camara,Daniel Trzeciak,Daniel Trzeciak Duarte,01297812077,M,PSDB,RS,Titular,1
 56,204459,1204459,camara,Daniela Do Waguinho,Daniela Mote De Souza Carneiro,07973687793,F,MDB,RJ,Titular,1
 56,160528,1160528,camara,Danilo Cabral,Danilo Jorge De Barros Cabral,50903691434,M,PSB,PE,Titular,1
-56,62881,162881,camara,Danilo Forte,Francisco Danilo Bastos Forte,12133728368,M,PSDB,CE,Suplente,1
+56,62881,162881,camara,Danilo Forte,Francisco Danilo Bastos Forte,12133728368,M,PSDB,CE,Efetivado,1
 56,160552,1160552,camara,Danrlei De Deus Hinterholz,Danrlei De Deus Hinterholz,70157324087,M,PSD,RS,Titular,1
 56,116379,1116379,camara,Darci De Matos,Darci De Matos,44828624953,M,PSD,SC,Titular,1
 56,73891,173891,camara,Darcísio Perondi,Darcísio Paulo Perondi,08262748034,M,MDB,RS,Suplente,0
@@ -3773,32 +3940,33 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,204569,1204569,camara,Delegado Pablo,Pablo Oliva Souza,55926169291,M,PSL,AM,Titular,1
 56,164359,1164359,camara,Delegado Waldir,Waldir Soares De Oliveira,46228357972,M,PSL,GO,Titular,1
 56,204542,1204542,camara,Denis Bezerra,Denis Anderson Da Rocha Bezerra,62156047391,M,PSB,CE,Titular,1
-56,213856,1213856,camara,Deuzinho Filho,Francisco Deuzinho De Oliveira Filho,50243950349,M,REPUBLICANOS,CE,Suplente,1
+56,213856,1213856,camara,Deuzinho Filho,Francisco Deuzinho De Oliveira Filho,50243950349,M,REPUBLICANOS,CE,Suplente,0
 56,160588,1160588,camara,Diego Andrade,Diego Leonardo De Andrade Carvalho,99316552672,M,PSD,MG,Titular,1
 56,178929,1178929,camara,Diego Garcia,Diego Alexsander Goncalo Paula Garcia,04702291955,M,PODE,PR,Titular,1
 56,160599,1160599,camara,Dimas Fabiano,Dimas Fabiano Toledo Júnior,03694339639,M,PP,MG,Titular,1
 56,143632,1143632,camara,Domingos Neto,Domingos Gomes De Aguiar Neto,02827898390,M,PSD,CE,Titular,1
 56,160758,1160758,camara,Domingos Sávio,Domingos Sávio Campos Resende,22275150668,M,PSDB,MG,Titular,1
+56,213854,1213854,camara,Dr. Agripino Magalhães,Agripino Rodrigues Gomes Magalhães,09111638320,M,PROS,CE,Suplente,0
 56,204518,1204518,camara,Dr. Frederico,Frederico De Castro Escaleira,07422257717,M,PATRIOTA,MG,Titular,1
-56,212625,1212625,camara,Dr. Gonçalo,Antonio Elizabeth Gonçalo De Sousa,05461154387,M,REPUBLICANOS,MA,Suplente,0
+56,212625,1212625,camara,Dr. Gonçalo,Antonio Elizabeth Gonçalo De Sousa,05461154387,M,REPUBLICANOS,MA,Suplente,1
 56,204481,1204481,camara,Dr. Jaziel,Jaziel Pereira De Sousa,35761113368,M,PL,CE,Titular,1
-56,213679,1213679,camara,Dr. João,João Antonio Holanda Caldas,01117612120,M,PROS,BA,Suplente,1
+56,213679,1213679,camara,Dr. João,João Antonio Holanda Caldas,01117612120,M,PROS,BA,Suplente,0
 56,204439,1204439,camara,Dr. Leonardo,Leonardo Ribeiro Albuquerque,02309274917,M,SOLIDARIEDADE,MT,Titular,1
 56,204450,1204450,camara,Dr. Luiz Antonio Teixeira Jr.,Luiz Antonio De Souza Teixeira Júnior,02319953779,M,PP,RJ,Titular,1
 56,204351,1204351,camara,Dr. Luiz Ovando,Luiz Alberto Ovando,05134552134,M,PSL,MS,Titular,1
-56,178830,1178830,camara,Dr. Sinval Malheiros,Sinval Malheiros Pinto Júnior,88779254853,M,PODE,SP,Suplente,1
+56,178830,1178830,camara,Dr. Sinval Malheiros,Sinval Malheiros Pinto Júnior,88779254853,M,PODE,SP,Suplente,0
 56,204412,1204412,camara,Dr. Zacharias Calil,Zacarias Calil Hamu,11833050100,M,DEM,GO,Titular,1
 56,81297,181297,camara,Dra. Soraya Manato,Soraya De Souza Mannato,82837147753,F,PSL,ES,Titular,1
 56,204434,1204434,camara,Dra. Vanda Milani,Vanda Denir Milani Nogueira,78581850804,F,SOLIDARIEDADE,AC,Titular,1
 56,178994,1178994,camara,Dulce Miranda,Dulce Ferreira Pagani Miranda,30217865100,F,MDB,TO,Titular,1
 56,204562,1204562,camara,Edilázio Júnior,Edilazio Gomes Da Silva Junior,83762116334,M,PSD,MA,Titular,1
 56,141417,1141417,camara,Edio Lopes,Édio Vieira Lopes,77548981872,M,PL,RR,Titular,1
-56,134812,1134812,camara,Edmilson Rodrigues,Edmilson Brito Rodrigues,09006826200,M,PSOL,PA,Titular,1
+56,134812,1134812,camara,Edmilson Rodrigues,Edmilson Brito Rodrigues,09006826200,M,PSOL,PA,Titular,0
 56,204421,1204421,camara,Edna Henrique,Ednace Alves Silvestre Henrique,80482856491,F,PSDB,PB,Titular,1
 56,74655,174655,camara,Eduardo Barbosa,Eduardo Luiz Barros Barbosa,27582400682,M,PSDB,MG,Titular,1
 56,204541,1204541,camara,Eduardo Bismarck,Eduardo Henrique Maia Bismarck,61882577353,M,PDT,CE,Titular,1
 56,92346,192346,camara,Eduardo Bolsonaro,Eduardo Nantes Bolsonaro,10655365770,M,PSL,SP,Titular,1
-56,204552,1204552,camara,Eduardo Braide,Eduardo Salim Braide,55068480304,M,PODE,MA,Titular,1
+56,204552,1204552,camara,Eduardo Braide,Eduardo Salim Braide,55068480304,M,PODE,MA,Titular,0
 56,204500,1204500,camara,Eduardo Costa,Jose Eduardo Pereira Da Costa,26757184249,M,PTB,PA,Titular,1
 56,178977,1178977,camara,Eduardo Cury,Eduardo Pedrosa Cury,04909670866,M,PSDB,SP,Titular,1
 56,141421,1141421,camara,Eduardo Da Fonte,Eduardo Henrique Da Fonte De Albuquerque Silva,53467108415,M,PP,PE,Titular,1
@@ -3810,7 +3978,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,178854,1178854,camara,Elmar Nascimento,Elmar Jose Vieira Nascimento,49465589500,M,DEM,BA,Titular,1
 56,198783,1198783,camara,Emanuel Pinheiro Neto,Emanuel Pinheiro Da Silva Primo,00558574181,M,PTB,MT,Titular,1
 56,161550,1161550,camara,Emidinho Madeira,Emidio Alves Madeira Junior,60433086653,M,PSB,MG,Titular,1
-56,207309,1207309,camara,Enéias Reis,Eneias José Dos Reis,94505810615,M,PSL,MG,Suplente,1
+56,207309,1207309,camara,Enéias Reis,Eneias José Dos Reis,94505810615,M,PSL,MG,Suplente,0
 56,132504,1132504,camara,Enio Verri,Enio José Verri,39737705904,M,PT,PR,Titular,1
 56,204537,1204537,camara,Enrico Misasi,Enrico Van Blarcum De Graaff Misasi,43274524832,M,PV,SP,Titular,1
 56,160575,1160575,camara,Erika Kokay,Érika Jucá Kokay,22441107100,F,PT,DF,Titular,1
@@ -3861,14 +4029,14 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,204575,1204575,camara,Gil Cutrim,Gilliano Fred Nascimento Cutrim,80405878320,M,PDT,MA,Titular,1
 56,204491,1204491,camara,Gilberto Abramo,Gilberto Aparecido Abramo,08567392861,M,REPUBLICANOS,MG,Titular,1
 56,74270,174270,camara,Gilberto Nascimento,Gilberto Nascimento Silva,64817407891,M,PSC,SP,Titular,1
-56,204570,1204570,camara,Gildenemyr,Gildenemir De Lima Sousa,57088071304,M,PL,MA,Titular,1
 56,204365,1204365,camara,Gilson Marques,Gilson Marques Vieira,00824207939,M,NOVO,SC,Titular,1
 56,160673,1160673,camara,Giovani Cherini,Giovani Cherini,31050778049,M,PL,RS,Titular,1
 56,178996,1178996,camara,Giovani Feltes,Giovani Batista Feltes,26586568072,M,MDB,RS,Titular,1
 56,152605,1152605,camara,Glauber Braga,Glauber De Medeiros Braga,09740756719,M,PSOL,RJ,Titular,1
-56,204419,1204419,camara,Glaustin Fokus,Glauskston Batista Rios,60751266191,M,PSC,GO,Titular,1
+56,204419,1204419,camara,Glaustin Da Fokus,Glauskston Batista Rios,60751266191,M,PSC,GO,Titular,1
 56,107283,1107283,camara,Gleisi Hoffmann,Gleisi Helena Hoffmann,67677061915,F,PT,PR,Titular,1
 56,74419,174419,camara,Gonzaga Patriota,Luiz Gonzaga Patriota,01960970453,M,PSB,PE,Titular,1
+56,129618,1129618,camara,Gorete Pereira,Maria Gorete Pereira,08187452315,F,PL,CE,Suplente,1
 56,198197,1198197,camara,Greyce Elias,Greyce De Queiroz Elias,05132597670,F,AVANTE,MG,Titular,1
 56,204513,1204513,camara,Guiga Peixoto,José Guilherme Negrão Peixoto,04434956884,M,PSL,SP,Titular,1
 56,204531,1204531,camara,Guilherme Derrite,Guilherme Muraro Derrite,31200606825,M,PP,SP,Titular,1
@@ -3905,19 +4073,20 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,160570,1160570,camara,Jerônimo Goergen,Jerônimo Pizzolotto Goergen,73441040082,M,PP,RS,Titular,1
 56,178839,1178839,camara,Jéssica Sales,Jessica Rojas Sales,65595564253,F,MDB,AC,Titular,1
 56,204435,1204435,camara,Jesus Sérgio,Jesus Sergio De Menezes,58065083234,M,PDT,AC,Titular,1
-56,178842,1178842,camara,Jhc,Joao Henrique Holanda  Caldas,01117690199,M,PSB,AL,Titular,1
+56,178842,1178842,camara,Jhc,Joao Henrique Holanda  Caldas,01117690199,M,PSB,AL,Titular,0
 56,160531,1160531,camara,Jhonatan De Jesus,Johnathan Pereira De Jesus,74274112268,M,REPUBLICANOS,RR,Titular,1
 56,74366,174366,camara,João Campos,João Campos De Araújo,24254401191,M,REPUBLICANOS,GO,Titular,1
 56,141458,1141458,camara,João Carlos Bacelar,João Carlos Paolilo Bacelar Filho,15345931879,M,PL,BA,Titular,1
 56,178970,1178970,camara,João Daniel,Joao Somariva Daniel,51625091591,M,PT,SE,Titular,1
-56,204429,1204429,camara,João H. Campos,João Henrique De Andrade Lima Campos,10230720412,M,PSB,PE,Titular,1
+56,204429,1204429,camara,João H. Campos,João Henrique De Andrade Lima Campos,10230720412,M,PSB,PE,Titular,0
 56,141459,1141459,camara,João Maia,João Da Silva Maia,06662978191,M,PL,RN,Titular,1
 56,112437,1112437,camara,João Marcelo Souza,João Marcelo Santos Souza,61956384120,M,MDB,MA,Titular,1
-56,204576,1204576,camara,João Roma,João Inácio Ribeiro Roma Neto,81968442472,M,REPUBLICANOS,BA,Titular,1
+56,204576,1204576,camara,João Roma,João Inácio Ribeiro Roma Neto,81968442472,M,REPUBLICANOS,BA,Titular,0
 56,178910,1178910,camara,Joaquim Passarinho,Joaquim Passarinho Pinto De Souza Porto,13606328249,M,PSD,PA,Titular,1
 56,204468,1204468,camara,Joenia Wapichana,Joenia Batista De Carvalho,32326998200,F,REDE,RR,Titular,1
 56,204546,1204546,camara,Joice Hasselmann,Joice Cristina Hasselmann,85655732149,F,PSL,SP,Titular,1
 56,205550,1205550,camara,Jorge Braz,Jorge Braz De Oliveira,35201487734,M,REPUBLICANOS,RJ,Efetivado,1
+56,214694,1214694,camara,Jorge Goetten,Jorge Goetten De Lima,43927998915,M,PL,SC,Suplente,0
 56,178857,1178857,camara,Jorge Solla,Jorge Jose Santos Pereira Solla,19530773587,M,PT,BA,Titular,1
 56,141464,1141464,camara,José Airton Félix Cirilo,José Airton Félix Cirilo Da Silva,09257357368,M,PT,CE,Titular,1
 56,141470,1141470,camara,José Guimarães,José Nobre Guimarães,09324577387,M,PT,CE,Titular,1
@@ -3931,6 +4100,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,209189,1209189,camara,Joseildo Ramos,Joseildo Ribeiro Ramos,15963330572,M,PT,BA,Suplente,1
 56,74141,174141,camara,Josias Gomes,Josias Gomes Da Silva,10452001404,M,PT,BA,Titular,0
 56,204563,1204563,camara,Josimar Maranhãozinho,Josimar Cunha Rodrigues,50980351200,M,PL,MA,Titular,1
+56,215043,1215043,camara,Josivaldo Jp,Josivaldo Dos Santos Melo,63253313387,M,PODE,MA,Efetivado,1
 56,204474,1204474,camara,Juarez Costa,Juarez Alves Da Costa,47843080910,M,MDB,MT,Titular,1
 56,204420,1204420,camara,Julian Lemos,Gulliem Charles Bezerra Lemos,61927686172,M,PSL,PB,Titular,1
 56,74317,174317,camara,Júlio Cesar,Júlio César De Carvalho Lima,01102125334,M,PSD,PI,Titular,1
@@ -3938,17 +4108,17 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,73586,173586,camara,Júlio Delgado,Júlio César Delgado,81993358668,M,PSB,MG,Titular,1
 56,204457,1204457,camara,Juninho Do Pneu,Rogerio Teixeira Junior,07845799700,M,DEM,RJ,Titular,1
 56,204520,1204520,camara,Junio Amaral,Geraldo Junio Do Amaral,07554049631,M,PSL,MG,Titular,1
-56,204502,1204502,camara,Júnior Bozzella,Nicolino Bozzella Junior,21883547881,M,PSL,SP,Titular,1
 56,204497,1204497,camara,Júnior Ferrari,João Ferrari Júnior,23211253220,M,PSD,PA,Titular,1
-56,204574,1204574,camara,Junior Lourenço,Jose Lourenço Bomfim Junior,78247128349,M,PL,MA,Titular,0
+56,204574,1204574,camara,Junior Lourenço,Jose Lourenço Bomfim Junior,78247128349,M,PL,MA,Titular,1
 56,204550,1204550,camara,Júnior Mano,Antônio Luiz Rodrigues Mano Júnior,97891231320,M,PL,CE,Titular,1
 56,178886,1178886,camara,Juscelino Filho,Jose Juscelino Dos Santos Rezende Filho,85290211349,M,DEM,MA,Titular,1
 56,204536,1204536,camara,Kim Kataguiri,Kim Patroca Kataguiri,39313495864,M,DEM,SP,Titular,1
 56,151208,1151208,camara,Laercio Oliveira,Laercio José De Oliveira,16853881400,M,PP,SE,Titular,1
 56,98057,198057,camara,Lafayette De Andrada,Lafayette Luiz Doorgal De Andrada,38105195100,M,REPUBLICANOS,MG,Titular,1
-56,160534,1160534,camara,Lauriete,Lauriete Rodrigues De Jesus,00974976733,F,PL,ES,Titular,1
+56,160534,1160534,camara,Lauriete,Lauriete Rodrigues De Jesus,00974976733,F,PSC,ES,Titular,1
 56,178832,1178832,camara,Leandre,Leandre Dal Ponte,80635083949,F,PV,PR,Titular,1
 56,204375,1204375,camara,Leda Sadala,Leda Maria Sadala Brito,43025900253,F,AVANTE,AP,Titular,1
+56,178825,1178825,camara,Leo De Brito,Leonardo Cunha De Brito,63182246291,M,PT,AC,Titular,1
 56,204359,1204359,camara,Léo Moraes,Leonardo Barreto De Moraes,04333073901,M,PODE,RO,Titular,1
 56,204547,1204547,camara,Léo Motta,Eliel Márcio Do Carmo,85702609620,M,PSL,MG,Titular,1
 56,74156,174156,camara,Leonardo Monteiro,José Leonardo Costa Monteiro,20811845672,M,PT,MG,Titular,1
@@ -3968,7 +4138,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,204381,1204381,camara,Luis Miranda,Luis Claudio Fernandes Miranda,90218647115,M,DEM,DF,Titular,1
 56,160510,1160510,camara,Luis Tibé,Luis Henrique De Oliveira Resende,81460910672,M,AVANTE,MG,Titular,1
 56,204410,1204410,camara,Luisa Canziani,Luisa Canziani Dos Santos Silveira,05823529910,F,PTB,PR,Titular,1
-56,204448,1204448,camara,Luiz Antônio Corrêa,Luiz Antonio Da Costa Carvalho Correa Da Silva,01563114704,M,PL,RJ,Titular,1
+56,204448,1204448,camara,Luiz Antônio Corrêa,Luiz Antonio C. C. Corrêa Da Silva,01563114704,M,PL,RJ,Titular,1
 56,160645,1160645,camara,Luiz Carlos,Luiz Carlos Gomes Dos Santos Junior,63223228268,M,PSDB,AP,Titular,1
 56,204485,1204485,camara,Luiz Carlos Motta,Luiz Carlos Motta,03035521824,M,PL,SP,Titular,1
 56,204543,1204543,camara,Luiz Flávio Gomes,Luiz Flavio Gomes,70641218834,M,PSB,SP,Titular,0
@@ -3978,51 +4148,52 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,204526,1204526,camara,Luiz Philippe De Orleans e Bragança,Luiz Philippe De Orleans Bragança,11844856828,M,PSL,SP,Titular,1
 56,74784,174784,camara,Luiza Erundina,Luiza Erundina De Sousa,00480584400,F,PSOL,SP,Titular,1
 56,204418,1204418,camara,Luizão Goulart,Luiz Goularte Alves,53601106949,M,REPUBLICANOS,PR,Titular,1
-56,178866,1178866,camara,Luizianne Lins,Luizianne De Oliveira Lins,38208563315,F,PT,CE,Titular,1
+56,178866,1178866,camara,Luizianne Lins,Luizianne De Oliveira Lins,38208563315,F,PT,CE,Titular,0
 56,166402,1166402,camara,Magda Mofatto,Magda Mofatto Hon,13205285115,F,PL,GO,Titular,1
 56,204458,1204458,camara,Major Fabiana,Fabiana Silva De Souza Poubel,07862227786,F,PSL,RJ,Titular,1
-56,204469,1204469,camara,Manuel Marcos,Manuel Marcos Carvalho De Mesquita,36089427268,M,REPUBLICANOS,AC,Titular,1
+56,204469,1204469,camara,Manuel Marcos,Manuel Marcos Carvalho De Mesquita,36089427268,M,REPUBLICANOS,AC,Não Eleito,0
 56,204471,1204471,camara,Mara Rocha,Cylmara Fernandes Da Rocha Gripp,41186273291,F,PSDB,AC,Titular,1
-56,212749,1212749,camara,Marcão Gomes,Marcus Welber Gomes Da Silva,09300885731,M,PL,RJ,Suplente,1
+56,212749,1212749,camara,Marcão Gomes,Marcus Welber Gomes Da Silva,09300885731,M,PL,RJ,Suplente,0
 56,156190,1156190,camara,Marcel Van Hattem,Marcel Van Hattem,00731302060,M,NOVO,RS,Titular,1
-56,179000,1179000,camara,Marcelo Álvaro Antônio,Marcelo Henrique Teixeira Dias,00649039661,M,PSL,MG,Titular,0
+56,179000,1179000,camara,Marcelo Álvaro Antônio,Marcelo Henrique Teixeira Dias,00649039661,M,PSL,MG,Titular,1
 56,146788,1146788,camara,Marcelo Aro,Marcelo Guilherme De Aro Ferreira,06305588686,M,PP,MG,Titular,1
 56,205863,1205863,camara,Marcelo Brum,Marcelo De Brum Da Costa,73324507049,M,PSL,RS,Suplente,1
-56,204433,1204433,camara,Marcelo Calero,Marcelo Calero Faria Garcia,08868429721,M,CIDADANIA,RJ,Titular,1
+56,204433,1204433,camara,Marcelo Calero,Marcelo Calero Faria Garcia,08868429721,M,CIDADANIA,RJ,Titular,0
 56,76874,176874,camara,Marcelo Freixo,Marcelo Ribeiro Freixo,95622780772,M,PSOL,RJ,Titular,1
 56,133810,1133810,camara,Marcelo Moraes,Marcelo Pires Moraes,96520418072,M,PTB,RS,Titular,1
 56,204558,1204558,camara,Marcelo Nilo,José Marcelo Do Nascimento Nilo,11875194568,M,PSB,BA,Titular,1
 56,204556,1204556,camara,Marcelo Ramos,Marcelo Ramos Rodrigues,43634745215,M,PL,AM,Titular,1
 56,178983,1178983,camara,Marcio Alvino,Marcio Luiz Alvino De Souza,10115711880,M,PL,SP,Titular,1
 56,179001,1179001,camara,Márcio Biolchi,Marcio Della Valle Biolchi,80686958004,M,MDB,RS,Titular,1
-56,81055,181055,camara,Márcio Jerry,Márcio Jerry Saraiva Barroso,29246830334,M,PCdoB,MA,Titular,1
+56,81055,181055,camara,Márcio Jerry,Márcio Jerry Saraiva Barroso,29246830334,M,PCdoB,MA,Titular,0
 56,204452,1204452,camara,Márcio Labre,Márcio Da Silveira Labre,03394588790,M,PSL,RJ,Titular,1
 56,150418,1150418,camara,Márcio Marinho,Márcio Carlos Marinho,01895263786,M,REPUBLICANOS,BA,Titular,1
 56,204522,1204522,camara,Marco Bertaiolli,Marco Aurelio Bertaiolli,09420275825,M,PSD,SP,Titular,1
 56,160535,1160535,camara,Marcon,Dionilso Mateus Marcon,43434339000,M,PT,RS,Titular,1
 56,204431,1204431,camara,Marcos Aurélio Sampaio,Marcos Aurélio  Pádua Ribeiro Gonçalves De Sampaio,01742564348,M,MDB,PI,Titular,1
 56,204506,1204506,camara,Marcos Pereira,Marcos Antonio Pereira,00963578782,M,REPUBLICANOS,SP,Titular,1
-56,178943,1178943,camara,Marcos Soares,Marcos Bezerra Ribeiro Soares,05217856777,M,DEM,RJ,Suplente,0
+56,178943,1178943,camara,Marcos Soares,Marcos Bezerra Ribeiro Soares,05217856777,M,DEM,RJ,Suplente,1
 56,159238,1159238,camara,Marcus Pestana,Marcus Vinícius Caetano Pestana Da Silva,38194350697,M,PSDB,MG,Suplente,0
 56,204430,1204430,camara,Margarete Coelho,Margarete De Castro Coelho,18341160315,F,PP,PI,Titular,1
-56,171619,1171619,camara,Margarida Salomão,Maria Margarida Martins Salomão,13521039668,F,PT,MG,Titular,1
+56,171619,1171619,camara,Margarida Salomão,Maria Margarida Martins Salomão,13521039668,F,PT,MG,Titular,0
 56,74398,174398,camara,Maria Do Rosário,Maria Do Rosário Nunes,48989371015,F,PT,RS,Titular,1
 56,204540,1204540,camara,Maria Rosas,Maria Do Parto Mendes Rosas,61433934787,F,REPUBLICANOS,SP,Titular,1
 56,178956,1178956,camara,Mariana Carvalho,Mariana Fonseca Ribeiro Carvalho De Moraes,83577572272,F,PSDB,RO,Titular,1
 56,204428,1204428,camara,Marília Arraes,Marília Valença Rocha Arraes De Alencar,05161704497,F,PT,PE,Titular,1
 56,204432,1204432,camara,Marina Santos,Marina Santos Batista Dias,03258745498,F,SOLIDARIEDADE,PI,Titular,1
 56,74158,174158,camara,Mário Heringer,Mário Lúcio Heringer,28539249634,M,PDT,MG,Titular,1
-56,178858,1178858,camara,Mário Negromonte Jr.,Mario Silvio Mendes Negromonte Junior,00031226540,M,PP,BA,Titular,1
+56,178858,1178858,camara,Mário Negromonte Jr.,Mario S. M. Negromonte Jr.,00031226540,M,PP,BA,Titular,1
 56,204403,1204403,camara,Marlon Santos,Marlon Arator Santos Da Rosa,89718925015,M,PDT,RS,Titular,1
 56,204566,1204566,camara,Marreca Filho,Antonio Da Cruz Filgueira Neto,04168850390,M,PATRIOTA,MA,Titular,1
 56,178843,1178843,camara,Marx Beltrão,Marx Beltrão Lima Siqueira,02696564485,M,PSD,AL,Titular,1
 56,75431,175431,camara,Maurício Dziedricki,Maurício Alexandre Dziedricki,95887105020,M,PTB,RS,Titular,1
-56,204486,1204486,camara,Mauro Benevides Filho,Carlos Mauro Benevides Filho,15336735191,M,PDT,CE,Titular,1
+56,204486,1204486,camara,Mauro Benevides Filho,Carlos Mauro Benevides Filho,15336735191,M,PDT,CE,Titular,0
 56,74749,174749,camara,Mauro Lopes,Mauro Ribeiro Lopes,10901906620,M,MDB,MG,Titular,1
 56,141508,1141508,camara,Mauro Nazif,Mauro Nazif Rasul,70162000782,M,PSB,RO,Titular,1
 56,188097,1188097,camara,Merlong Solano,Merlong Solano Nogueira,13891820372,M,PT,PI,Efetivado,1
 56,178984,1178984,camara,Miguel Haddad,Miguel Moubadda Haddad,96476850849,M,PSDB,SP,Suplente,0
 56,178985,1178985,camara,Miguel Lombardi,Miguel Lombardi,05209979806,M,PL,SP,Titular,1
+56,92172,192172,camara,Milton Coelho,Milton Coelho Da Silva Neto,42003270400,M,PSB,PE,Efetivado,1
 56,154178,1154178,camara,Milton Vieira,Milton Vieira Pinto,04976912809,M,REPUBLICANOS,SP,Titular,1
 56,178895,1178895,camara,Misael Varella,Misael Artur Ferreira Varella,28492803649,M,PSD,MG,Titular,1
 56,178997,1178997,camara,Moses Rodrigues,Moses Haendel Melo Rodrigues,47721740363,M,MDB,CE,Titular,1
@@ -4031,9 +4202,11 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,74571,174571,camara,Nelson Pellegrino,Nelson Vicente Portela Pellegrino,24289612504,M,PT,BA,Titular,0
 56,204415,1204415,camara,Nereu Crispim,Nereu Crispim,36247740000,M,PSL,RS,Titular,1
 56,146307,1146307,camara,Neri Geller,Neri Geller,41190335115,M,PP,MT,Titular,1
+56,74165,174165,camara,Neucimar Fraga,Neucimar Ferreira Fraga,81824726791,M,PSD,ES,Efetivado,1
 56,178896,1178896,camara,Newton Cardoso Jr,Newton Cardoso Junior,01266637699,M,MDB,MG,Titular,1
-56,204384,1204384,camara,Ney Leprevost,Ney Leprevost Neto,98451278949,M,PSD,PR,Titular,1
+56,204384,1204384,camara,Ney Leprevost,Ney Leprevost Neto,98451278949,M,PSD,PR,Titular,0
 56,204479,1204479,camara,Nicoletti,Antonio Carlos Nicoletti,99445700015,M,PSL,RR,Titular,1
+56,214445,1214445,camara,Nilson F. Stainsack,Nilson Francisco Stainsack,45816530968,M,PP,SC,Suplente,0
 56,74352,174352,camara,Nilson Pinto,Nilson Pinto De Oliveira,02875900200,M,PSDB,PA,Titular,1
 56,178986,1178986,camara,Nilto Tatto,Nilto Ignacio Tatto,03380916889,M,PT,SP,Titular,1
 56,194260,1194260,camara,Nivaldo Albuquerque,Nivaldo Ferreira De Albuquerque Neto,06923503493,M,PTB,AL,Titular,1
@@ -4045,12 +4218,14 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,204363,1204363,camara,Osires Damaso,Osires Rodrigues Damaso,27848280187,M,PSC,TO,Titular,1
 56,73692,173692,camara,Osmar Terra,Osmar Gasparini Terra,19971478072,M,MDB,RS,Titular,1
 56,204422,1204422,camara,Ossesio Silva,Ossesio Jose Da Silva,39806464753,M,REPUBLICANOS,PE,Titular,1
+56,141515,1141515,camara,Otavio Leite,Otavio Santos Silva Leite,20163452504,M,PSDB,RJ,Suplente,1
 56,204441,1204441,camara,Otoni De Paula,Otoni Moura De Paulo Junior,07217877709,M,PSC,RJ,Titular,1
 56,204475,1204475,camara,Ottaci Nascimento,Jose Otaci Barroso Do Nascimento,63445557268,M,SOLIDARIEDADE,RR,Titular,1
 56,204573,1204573,camara,Otto Alencar Filho,Otto Roberto Mendonça De Alencar Filho,67871224549,M,PSD,BA,Titular,1
 56,160556,1160556,camara,Padre João,João Carlos Siqueira,72425610600,M,PT,MG,Titular,1
 56,74319,174319,camara,Paes Landim,José Francisco Paes Landim,00309745187,M,PTB,PI,Suplente,0
 56,160642,1160642,camara,Pastor Eurico,Francisco Eurico Da Silva,23340541434,M,PATRIOTA,PE,Titular,1
+56,204570,1204570,camara,Pastor Gil,Gildenemir De Lima Sousa,57088071304,M,PL,MA,Titular,1
 56,204553,1204553,camara,Pastor Sargento Isidório,Manoel Isidorio De Santana Junior,22977040544,M,AVANTE,BA,Titular,1
 56,205535,1205535,camara,Patricia Ferraz,Patricia Lima Ferraz,69305617115,F,PODE,AP,Suplente,0
 56,74160,174160,camara,Patrus Ananias,Patrus Ananias De Sousa,17486440687,M,PT,MG,Titular,1
@@ -4065,17 +4240,19 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,204461,1204461,camara,Paulo Ganime,Paulo Gustavo Ganime Alves Teixeira,09911967751,M,NOVO,RJ,Titular,1
 56,204492,1204492,camara,Paulo Guedes,Paulo Jose Carlos Guedes,86753991620,M,PT,MG,Titular,1
 56,74574,174574,camara,Paulo Magalhães,Paulo Sérgio Paranhos De Magalhães,06015530553,M,PSD,BA,Suplente,1
-56,128760,1128760,camara,Paulo Marinho Jr,Paulo Celso Fonseca Marinho Júnior,66488737368,M,PL,MA,Suplente,1
+56,128760,1128760,camara,Paulo Marinho Jr,Paulo Celso Fonseca Marinho Júnior,66488737368,M,PL,MA,Suplente,0
 56,141518,1141518,camara,Paulo Pereira Da Silva,Paulo Pereira Da Silva,21006768904,M,SOLIDARIEDADE,SP,Titular,1
 56,74400,174400,camara,Paulo Pimenta,Paulo Roberto Severo Pimenta,42844924034,M,PT,RS,Titular,1
 56,133968,1133968,camara,Paulo Ramos,Paulo Sérgio Ramos Barboza,03273970715,M,PDT,RJ,Titular,1
 56,141488,1141488,camara,Paulo Teixeira,Luiz Paulo Teixeira Ferreira,02441369806,M,PT,SP,Titular,1
 56,90201,190201,camara,Pedro Augusto Bezerra,Pedro Augusto Geromel Bezerra De Menezes,87850885368,M,PTB,CE,Titular,1
+56,215045,1215045,camara,Pedro Augusto Palareti,Pedro Augusto Palareti,04547437858,M,PSD,RJ,Efetivado,1
 56,178912,1178912,camara,Pedro Cunha Lima,Pedro Oliveira Cunha Lima,08430005463,M,PSDB,PB,Titular,1
 56,122974,1122974,camara,Pedro Lucas Fernandes,Pedro Lucas Andrade Fernandes Ribeiro,82994684349,M,PTB,MA,Titular,1
 56,204395,1204395,camara,Pedro Lupion,Pedro Deboni Lupion Mello,04328943901,M,DEM,PR,Titular,1
-56,122158,1122158,camara,Pedro Paulo,Pedro Paulo Carvalho Teixeira,00262905701,M,DEM,RJ,Titular,1
+56,122158,1122158,camara,Pedro Paulo,Pedro Paulo Carvalho Teixeira,00262905701,M,DEM,RJ,Titular,0
 56,160604,1160604,camara,Pedro Uczai,Pedro Francisco Uczai,47721855934,M,PT,SC,Titular,1
+56,178844,1178844,camara,Pedro Vilela,Pedro Torres Brandão Vilela,01055737448,M,PSDB,AL,Efetivado,1
 56,204406,1204406,camara,Pedro Westphalen,Pedro Bandarra Westphalen,20040954072,M,PP,RS,Titular,1
 56,73943,173943,camara,Perpétua Almeida,Maria Perpétua De Almeida,21644063204,F,PCdoB,AC,Titular,1
 56,204524,1204524,camara,Pinheirinho,Antônio Pinheiro Neto,10627817670,M,PP,MG,Titular,1
@@ -4089,15 +4266,18 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,160639,1160639,camara,Professora Dorinha Seabra Rezende,Maria Auxiliadora Seabra Rezende,43196926168,F,DEM,TO,Titular,1
 56,160641,1160641,camara,Professora Marcivania,Marcivania Do Socorro Da Rocha Flexa,32770553291,F,PCdoB,AP,Titular,1
 56,204467,1204467,camara,Professora Rosa Neide,Rosa Neide Sandes De Almeida,29586372120,F,PT,MT,Titular,1
+56,215361,1215361,camara,Rachel Marques,Rachel Ximenes Marques,21348464372,F,PT,CE,Suplente,0
 56,178951,1178951,camara,Rafael Motta,Rafael Huete Da Motta,05582056408,M,PSB,RN,Titular,1
 56,204567,1204567,camara,Raimundo Costa,Raimundo Magalhães Costa,17672538500,M,PL,BA,Titular,1
 56,141523,1141523,camara,Raul Henry,Raul Jean Louis Henry Júnior,45877475487,M,MDB,PE,Titular,1
 56,74161,174161,camara,Reginaldo Lopes,Reginaldo Lázaro De Oliveira Lopes,90330862634,M,PT,MG,Titular,1
-56,205865,1205865,camara,Reinhold Stephanes Junior,Reinhold Stephanes Junior,55194770944,M,PSD,PR,Suplente,0
+56,205865,1205865,camara,Reinhold Stephanes Junior,Reinhold Stephanes Junior,55194770944,M,PSD,PR,Suplente,1
 56,178925,1178925,camara,Rejane Dias,Rejane Ribeiro Sousa Dias,42105560334,F,PT,PI,Titular,1
-56,178989,1178989,camara,Renata Abreu,Renata Hellmeister De Abreu,30669688800,F,PODE,SP,Titular,0
+56,178989,1178989,camara,Renata Abreu,Renata Hellmeister De Abreu,30669688800,F,PODE,SP,Titular,1
+56,214477,1214477,camara,Renato Queiroz,Renato Andrade Queiroz,78826942234,M,MDB,RR,Suplente,0
 56,73801,173801,camara,Renildo Calheiros,Renildo Vasconcelos Calheiros,20936079487,M,PCdoB,PE,Titular,1
 56,73788,173788,camara,Ricardo Barros,Ricardo José Magalhães Barros,42478979934,M,PP,PR,Titular,1
+56,215042,1215042,camara,Ricardo Da Karol,Ricardo Correa De Barros,59611456700,M,PSC,RJ,Efetivado,1
 56,204362,1204362,camara,Ricardo Guidi,Ricardo Zanatta Guidi,95128140997,M,PSD,SC,Titular,1
 56,160655,1160655,camara,Ricardo Izar,Ricardo Izar Junior,10553705873,M,PP,SP,Titular,1
 56,211649,1211649,camara,Ricardo Pericar,Ricardo De Souza Costa,86487957704,M,PSL,RJ,Suplente,0
@@ -4105,6 +4285,7 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,178920,1178920,camara,Ricardo Teobaldo,Ricardo Teobaldo Cavalcanti,47329980463,M,PODE,PE,Titular,1
 56,204489,1204489,camara,Robério Monteiro,Marcos Roberio Ribeiro Monteiro,37788566349,M,PDT,CE,Titular,1
 56,152610,1152610,camara,Roberto Alves,Benedito Roberto Alves Ferreira,02621206824,M,REPUBLICANOS,SP,Titular,1
+56,73674,173674,camara,Roberto Balestra,Roberto Egídio Balestra,01611500125,M,PP,GO,Suplente,0
 56,160653,1160653,camara,Roberto De Lucena,Roberto Alves De Lucena,05781727809,M,PODE,SP,Titular,1
 56,74305,174305,camara,Roberto Pessoa,Roberto Soares Pessoa,00113735391,M,PSDB,CE,Titular,0
 56,204530,1204530,camara,Rodrigo Agostinho,Rodrigo Antonio De Agostinho Mendonça,26742283858,M,PSB,SP,Titular,1
@@ -4131,11 +4312,11 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,90842,190842,camara,Santini,Ronaldo Santini,62281038068,M,PTB,RS,Suplente,1
 56,204387,1204387,camara,Sargento Fahur,Gilson Cardoso Fahur,53447468904,M,PSD,PR,Titular,1
 56,204399,1204399,camara,Schiavinato,Jose Carlos Schiavinato,27696090925,M,PP,PR,Titular,1
-56,178921,1178921,camara,Sebastião Oliveira,Sebastiao Ignacio De Oliveira Junior,73387789491,M,PL,PE,Titular,1
+56,178921,1178921,camara,Sebastião Oliveira,Sebastiao Ignacio De Oliveira Junior,73387789491,M,AVANTE,PE,Titular,1
 56,73808,173808,camara,Sérgio Brito,Sérgio Luís Lacerda Brito,18635458591,M,PSD,BA,Titular,1
 56,178933,1178933,camara,Sergio Souza,Sergio De Souza,75687658904,M,MDB,PR,Titular,1
 56,204438,1204438,camara,Sergio Toledo,Sergio Toledo De Albuquerque,33205302400,M,PL,AL,Titular,1
-56,178874,1178874,camara,Sergio Vidigal,Antonio Sergio Alves Vidigal,52549810759,M,PDT,ES,Titular,1
+56,178874,1178874,camara,Sergio Vidigal,Antonio Sergio Alves Vidigal,52549810759,M,PDT,ES,Titular,0
 56,204437,1204437,camara,Severino Pessoa,Severino De Lira Pessôa,66256070453,M,REPUBLICANOS,AL,Titular,1
 56,178961,1178961,camara,Shéridan,Shéridan Estérfany Oliveira,75096102220,F,PSDB,RR,Titular,1
 56,204557,1204557,camara,Sidney Leite,Sidney Ricardo De Oliveira Leite,24067857268,M,PSD,AM,Titular,1
@@ -4149,20 +4330,22 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,177282,1177282,camara,Subtenente Gonzaga,Luiz Gonzaga Ribeiro,41864883634,M,PDT,MG,Titular,1
 56,204534,1204534,camara,Tabata Amaral,Tabata Claudia Amaral De Pontes,38848319840,F,PDT,SP,Titular,1
 56,178922,1178922,camara,Tadeu Alencar,Francisco Tadeu Barbosa De Alencar,35284420420,M,PSB,PE,Titular,1
-56,74806,174806,camara,Tadeu Filippelli,Nelson Tadeu Filippelli,04251091191,M,MDB,DF,Suplente,1
+56,74806,174806,camara,Tadeu Filippelli,Nelson Tadeu Filippelli,04251091191,M,MDB,DF,Suplente,0
 56,204464,1204464,camara,Talíria Petrone,Taliria Petrone Soares,11138295752,F,PSOL,RJ,Titular,1
 56,206231,1206231,camara,Ted Conti,João Batista Conti,81336357720,M,PSB,ES,Suplente,1
 56,178901,1178901,camara,Tereza Cristina,Tereza Cristina Correa Da Costa Dias,20969430604,F,DEM,MS,Titular,0
 56,204466,1204466,camara,Tereza Nelma,Tereza Nelma Da Silva Porto Viana Soares,13626167453,F,PSDB,AL,Titular,1
-56,143084,1143084,camara,Tiago Dimas,Tiago Braga Pereira,01657051161,M,SOLIDARIEDADE,TO,Titular,1
+56,178862,1178862,camara,Tia Eron,Eronildes Vasconcelos Carvalho,66858933549,F,REPUBLICANOS,BA,Suplente,1
+56,143084,1143084,camara,Tiago Dimas,Tiago Dimas Braga Pereira,01657051161,M,SOLIDARIEDADE,TO,Titular,1
 56,204519,1204519,camara,Tiago Mitraud,Tiago Lima Mitraud De Castro Leite,07529510681,M,NOVO,MG,Titular,1
 56,160976,1160976,camara,Tiririca,Francisco Everardo Tiririca Oliveira Silva,44833881349,M,PL,SP,Titular,1
-56,197438,1197438,camara,Tito,Carlos Tito Marques Cordeiro,71762477572,M,AVANTE,BA,Titular,0
+56,197438,1197438,camara,Tito,Carlos Tito Marques Cordeiro,71762477572,M,AVANTE,BA,Titular,1
 56,178934,1178934,camara,Toninho Wandscheer,Antonio Wandscheer,18591035968,M,PROS,PR,Titular,1
 56,157130,1157130,camara,Túlio Gadêlha,Túlio Gadêlha Sales De Melo,06016298417,M,PDT,PE,Titular,1
 56,178863,1178863,camara,Uldurico Junior,Uldurico Alencar Pinto,03746803101,M,PROS,BA,Titular,1
-56,195866,1195866,camara,Vaidon Oliveira,Francisco Vaidon Oliveira,56571739291,M,PROS,CE,Titular,0
+56,195866,1195866,camara,Vaidon Oliveira,Francisco Vaidon Oliveira,56571739291,M,PROS,CE,Titular,1
 56,204385,1204385,camara,Valdevan Noventa,José Valdevan De Jesus Santos,51752840534,M,PL,SE,Titular,1
+56,74010,174010,camara,Valdir Colatto,Valdir Colatto,16261577900,M,MDB,SC,Suplente,0
 56,160610,1160610,camara,Valmir Assunção,Valmir Carlos Da Assunção,02333314842,M,PT,BA,Titular,1
 56,141552,1141552,camara,Valtenir Pereira,Valtenir Luiz Pereira,34358099149,M,MDB,MT,Suplente,0
 56,74376,174376,camara,Vander Loubet,Vander Luiz Dos Santos Loubet,32247753191,M,PT,MS,Titular,1
@@ -4178,98 +4361,262 @@ legislatura,id_parlamentar,id_parlamentar_parlametria,casa,nome_eleitoral,nome_c
 56,204532,1204532,camara,Vinicius Poit,Vinicius Lazzer Poit,34806872881,M,NOVO,SP,Titular,1
 56,179587,1179587,camara,Vitor Hugo,Vitor Hugo De Araujo Almeida,07063842706,M,PSL,GO,Titular,1
 56,178992,1178992,camara,Vitor Lippi,Vitor Lippi,00168780860,M,PSDB,SP,Titular,1
+56,215044,1215044,camara,Vivi Reis,Viviane Da Costa Reis,01141871262,F,PSOL,PA,Efetivado,1
 56,204443,1204443,camara,Wagner Montes,Wagner Montes Dos Santos,26820510730,M,REPUBLICANOS,RJ,Eleito,0
 56,160569,1160569,camara,Waldenor Pereira,Waldenor Alves Pereira Filho,10866655549,M,PT,BA,Titular,1
 56,178952,1178952,camara,Walter Alves,Walter Pereira Alves,03200380411,M,MDB,RN,Titular,1
 56,160518,1160518,camara,Weliton Prado,Weliton Fernandes Prado,84719850634,M,PROS,MG,Titular,1
 56,74043,174043,camara,Wellington Roberto,José Wellington Roberto,26254166453,M,PL,PB,Titular,1
 56,74044,174044,camara,Wilson Santiago,José Wilson Santiago,16159977415,M,PTB,PB,Titular,1
-56,204463,1204463,camara,Wladimir Garotinho,Wladimir Barros Assed Matheus De Oliveira,10855834730,M,PSD,RJ,Titular,1
+56,204463,1204463,camara,Wladimir Garotinho,Wladimir Barros Assed Matheus De Oliveira,10855834730,M,PSD,RJ,Titular,0
 56,74439,174439,camara,Wolney Queiroz,Wolney Queiroz Maciel,74989910478,M,PDT,PE,Titular,1
 56,178889,1178889,camara,Zé Carlos,José Carlos Nunes Júnior,10009728368,M,PT,MA,Titular,1
 56,204559,1204559,camara,Zé Neto,José Cerqueira De Santana Neto,38247186500,M,PT,BA,Titular,1
 56,160632,1160632,camara,Zé Silva,José Silva Soares,43422780653,M,SOLIDARIEDADE,MG,Titular,1
 56,204517,1204517,camara,Zé Vitor,Jose Vitor De Resende Aguiar,07284044608,M,PL,MG,Titular,1
 56,160592,1160592,camara,Zeca Dirceu,José Carlos Becker De Oliveira e Silva,03098871946,M,PT,PR,Titular,1
+56,5573,25573,senado,Abel Rebouças,Abel Rebouças São José,NA,M,PDT,BA,1º Suplente,0
 56,4981,24981,senado,Acir Gurgacz,Acir Marcos Gurgacz,NA,M,PDT,RO,Titular,1
+56,5918,25918,senado,Adilson Gomes,Adilson Gomes Silva,NA,M,NA,PE,2º Suplente,0
+56,5625,25625,senado,Adilson Silva dos Santos,Adilson Silva dos Santos,NA,M,PEN,RS,2º Suplente,0
+56,6026,26026,senado,Afonso Parente,Afonso Valter Parente Pinto,NA,M,NA,RR,2º Suplente,0
+56,5923,25923,senado,Alberto David,Alberto da Silva David,NA,M,NA,AP,1º Suplente,0
 56,5982,25982,senado,Alessandro Vieira,Alessandro Vieira,NA,M,CIDADANIA,SE,Titular,1
+56,4610,24610,senado,Alexandre Silveira,Alexandre Silveira de Oliveira,NA,M,PSD,MG,1º Suplente,0
+56,3651,23651,senado,Alfredo Cotait Neto,Alfredo Cotait Neto,NA,M,DEM,SP,1º Suplente,0
+56,5962,25962,senado,Alisson Taveira,Alisson Taveira Rocha Leal,NA,M,NA,RN,1º Suplente,0
 56,945,2945,senado,Alvaro Dias,Alvaro Fernandes Dias,NA,M,PODEMOS,PR,Titular,1
+56,5607,25607,senado,Alzenir Porto,Maria Alzenir Porto da Costa,NA,F,PTB,PI,2º Suplente,0
+56,5989,25989,senado,Ana Maria,Ana Maria de Resende Vieira,NA,F,NA,MG,2º Suplente,0
+56,5950,25950,senado,Ana Paula Tongo,Ana Paula Tongo da Silva,NA,F,NA,ES,1º Suplente,0
+56,5969,25969,senado,Andre Filipe,Andre Felipe de Oliveira da Silva,NA,M,NA,DF,2º Suplente,0
 56,5967,25967,senado,Angelo Coronel,Angelo Mario Coronel de Azevedo Martins,NA,M,PSD,BA,Titular,1
 56,5529,25529,senado,Antonio Anastasia,Antonio Augusto Junho Anastasia,NA,M,PSD,MG,Titular,1
-56,751,2751,senado,Arolde de Oliveira,Arolde de Oliveira,NA,M,PSD,RJ,Titular,1
+56,6001,26001,senado,Arlindo Silva,Arlindo Penha da Silva,NA,M,NA,PA,1º Suplente,0
+56,751,2751,senado,Arolde de Oliveira,Arolde de Oliveira,NA,M,PSD,RJ,Titular,0
+56,6009,26009,senado,Astronauta Marcos Pontes,Marcos Cesar Pontes,NA,M,NA,SP,2º Suplente,0
+56,5633,25633,senado,Atilio Francisco,Atilio Francisco da Silva,NA,M,REPUBLICANOS,SP,2º Suplente,0
+56,5631,25631,senado,Ayres Marchetti,Genésio Ayres Marchetti,NA,M,PSD,SC,2º Suplente,0
+56,5554,25554,senado,Bebeto,Adalberto Souza Galvão,NA,M,PSB,BA,1º Suplente,0
+56,4979,24979,senado,Bene Camacho,Bene André Camacho Araújo,NA,M,PTB,MA,2º Suplente,0
+56,5896,25896,senado,Benjamin Beze Junior,Benjamin Beze Junior,NA,M,NA,GO,1º Suplente,0
+56,5952,25952,senado,Bento,Bento Adeodato Porto,NA,M,NA,ES,2º Suplente,0
+56,6011,26011,senado,Beto Martins,Jose Roberto Martins,NA,M,NA,SC,2º Suplente,0
+56,5932,25932,senado,Beto Possamai,Gilberto Eglair Possamai,NA,M,NA,MT,1º Suplente,0
+56,5559,25559,senado,Bispo José,José Afonso Teixeira,NA,M,PSC,AC,2º Suplente,0
+56,6013,26013,senado,Carlos Alberto,Carlos Alberto de Castro Almeida,NA,M,NA,AM,1º Suplente,0
+56,5603,25603,senado,Carlos Augusto Costa,Carlos Augusto Lopes da Costa,NA,M,PV,PE,1º Suplente,0
 56,6295,26295,senado,Carlos Fávaro,Carlos Henrique Baqueta Fávaro,NA,M,PSD,MT,Titular,1
+56,6020,26020,senado,Carlos Milton Morais,Carlos Milton Morais,NA,M,NA,RO,2º Suplente,0
+56,5936,25936,senado,Carlos Portinho,Carlos Francisco Portinho,NA,M,PL,RJ,1º Suplente,1
 56,5990,25990,senado,Carlos Viana,Carlos Alberto Dias Viana,NA,M,PSD,MG,Titular,1
+56,5991,25991,senado,Castellar Guimarães Neto,Castellar Modesto Guimarães Neto,NA,M,NA,MG,1º Suplente,0
+56,5593,25593,senado,Celso Dal Lago Rodrigues,Celso Dal Lago Rodrigues,NA,M,MDB,MS,1º Suplente,0
+56,6000,26000,senado,Chamon,João Chamon Neto,NA,M,NA,PA,2º Suplente,0
 56,470,2470,senado,Chico Rodrigues,Francisco de Assis Rodrigues,NA,M,DEM,RR,Titular,1
+56,611,2611,senado,Chiquinho Feitosa,Francisco Feitosa de Albuquerque Lima,NA,M,PSDB,CE,1º Suplente,0
+56,5623,25623,senado,Christopher Goulart,Christopher Belchior Goulart,NA,M,PDT,RS,1º Suplente,0
 56,5973,25973,senado,Cid Gomes,Cid Ferreira Gomes,NA,M,PDT,CE,Titular,1
 56,739,2739,senado,Ciro Nogueira,Ciro Nogueira Lima Filho,NA,M,PP,PI,Titular,1
+56,6017,26017,senado,Cleonice Back,Cleonice Fabiane Back,NA,F,NA,RS,1º Suplente,0
+56,5933,25933,senado,Clerie Fabiana,Clérie Fabiana Mendes,NA,M,NA,MT,2º Suplente,0
 56,475,2475,senado,Confúcio Moura,Confúcio Aires Moura,NA,M,MDB,RO,Titular,1
+56,5963,25963,senado,Coronel Margarida,Margarida Brandão Fernandes de Araújo,NA,M,NA,RN,2º Suplente,0
+56,5960,25960,senado,Cândida Farias,Cândida dos Santos Farias,NA,M,NA,MT,2º Suplente,0
 56,5998,25998,senado,Daniella Ribeiro,Daniella Velloso Borges Ribeiro,NA,F,PP,PB,Titular,1
+56,5992,25992,senado,Danilo Martins de Oliveira,Danilo Martins de Oliveira,NA,M,NA,MG,2º Suplente,0
+56,5987,25987,senado,Danny Fabricio,Danny Fabricio Cabral Gomes,NA,M,NA,MS,2º Suplente,0
 56,3830,23830,senado,Davi Alcolumbre,David Samuel Alcolumbre Tobelem,NA,M,DEM,AP,Titular,1
+56,5837,25837,senado,Davidson Magalhães,Davidson de Magalhães Santos,NA,M,PCdoB,BA,1º Suplente,0
+56,6012,26012,senado,Denise dos Santos,Denise Antunes dos Santos,NA,F,NA,SC,2º Suplente,0
+56,5996,25996,senado,Diego Tavares,Marcio Diego Fernandes Tavares de Albuquerque,NA,M,PP,PB,1º Suplente,0
+56,5637,25637,senado,Donizeti Nogueira,Divino Donizeti Borges Nogueira,NA,M,PT,TO,1º Suplente,0
+56,5975,25975,senado,Dr. Guimarães,Francisco José Alves Guimaraes,NA,M,NA,CE,2º Suplente,0
+56,5565,25565,senado,Dr. Helder Cavalcante,Francisco Helder Cavalcante Sousa,NA,M,PL,AM,1º Suplente,0
+56,6016,26016,senado,Drica de Lucena,Adriana de Lucena Francisco,NA,F,NA,RS,2º Suplente,0
 56,5537,25537,senado,Dário Berger,Dário Elias Berger,NA,M,MDB,SC,Titular,1
 56,4994,24994,senado,Eduardo Braga,Carlos Eduardo de Souza Braga,NA,M,MDB,AM,Titular,1
 56,5976,25976,senado,Eduardo Girão,Luis Eduardo Grangeiro Girão,NA,M,PODEMOS,CE,Titular,1
 56,3777,23777,senado,Eduardo Gomes,Carlos Eduardo Torres Gomes,NA,M,MDB,TO,Titular,1
+56,5902,25902,senado,Eduardo Velloso,Eduardo Ovídio Borges de Velloso Vianna,NA,M,NA,AC,1º Suplente,0
+56,5587,25587,senado,Eladio Carneiro,Eladio Barbosa Carneiro,NA,M,MDB,GO,2º Suplente,0
+56,5898,25898,senado,Eliane Nogueira,Eliane e Silva Nogueira Lima,NA,F,NA,PI,1º Suplente,0
+56,5605,25605,senado,Eliane Rodrigues,Eliane Rodrigues de Andrade Ferreira,NA,F,PSB,PE,2º Suplente,0
 56,5718,25718,senado,Eliziane Gama,Eliziane Pereira Gama Melo,NA,F,CIDADANIA,MA,Titular,1
-56,5531,25531,senado,Elmano Férrer,Elmano Férrer de Almeida,NA,M,PODEMOS,PI,Titular,1
+56,5531,25531,senado,Elmano Férrer,Elmano Férrer de Almeida,NA,M,PP,PI,Titular,1
+56,6025,26025,senado,Enfermeira Roberta,Roberta Leontina Xisto Acioly,NA,F,NA,RR,1º Suplente,0
 56,22,222,senado,Esperidião Amin,Esperidião Amin Helou Filho,NA,M,PP,SC,Titular,1
+56,5906,25906,senado,Eudócia Caldas,Eudocia Maria Holanda de Araujo Caldas,NA,F,NA,AL,1º Suplente,0
 56,5953,25953,senado,Fabiano Contarato,Fabiano Contarato,NA,M,REDE,ES,Titular,1
+56,5740,25740,senado,Fabio Garcia,Fabio Paulino Garcia,NA,M,DEM,MT,1º Suplente,0
+56,5581,25581,senado,Fadi Faraj,Fadi Fayez Faraj,NA,M,SOLIDARIEDADE,DF,2º Suplente,0
 56,5540,25540,senado,Fernando Bezerra Coelho,Fernando Bezerra de Souza Coelho,NA,M,MDB,PE,Titular,1
+56,5980,25980,senado,Fernando Carvalho,Fernando Luiz Prado Carvalho Junior,NA,M,NA,SE,1º Suplente,0
 56,4525,24525,senado,Fernando Collor,Fernando Affonso Collor de Mello,NA,M,PROS,AL,Titular,1
-56,345,2345,senado,Flávio Arns,Flávio José Arns,NA,M,REDE,PR,Titular,1
+56,5917,25917,senado,Fernando Dueire,Fernando Antonio Caminha Dueire,NA,M,NA,PE,1º Suplente,0
+56,5577,25577,senado,Fernando Façanha,Fernando Antonio Mendes Façanha Filho,NA,M,PSDB,CE,2º Suplente,0
+56,5920,25920,senado,Flavio Vicente,Flavio Marcelo Gonçalves Vicente,NA,M,NA,PR,2º Suplente,0
+56,345,2345,senado,Flávio Arns,Flávio José Arns,NA,M,PODEMOS,PR,Titular,1
 56,5894,25894,senado,Flávio Bolsonaro,Flávio Nantes Bolsonaro,NA,M,REPUBLICANOS,RJ,Titular,1
 56,3713,23713,senado,Fátima Bezerra,Maria de Fátima Bezerra,NA,F,PT,RN,Titular,0
+56,196,2196,senado,Geraldo Althoff,Geraldo César Althoff,NA,M,NA,SC,1º Suplente,0
+56,5900,25900,senado,Gil Paraibano,Gil Marques de Medeiros,NA,M,NA,PI,2º Suplente,0
+56,5615,25615,senado,Gilberto Piselo,Gilberto Piselo do Nascimento,NA,M,PDT,RO,1º Suplente,0
+56,6008,26008,senado,Giordano,Alexandre Luiz Giordano,NA,M,NA,SP,1º Suplente,0
 56,4558,24558,senado,Gladson Cameli,Gladson de Lima Cameli,NA,M,PP,AC,Titular,0
+56,5639,25639,senado,Guaracy Silveira,Guaracy Batista da Silveira,NA,M,PSL,TO,2º Suplente,0
+56,5999,25999,senado,Helenilson Pontes,Helenilson Cunha Pontes,NA,M,NA,PA,1º Suplente,0
+56,5907,25907,senado,Henrique Arruda,Henrique Arruda Guimarães,NA,M,NA,AL,2º Suplente,0
 56,5008,25008,senado,Humberto Costa,Humberto Sérgio Costa Lima,NA,M,PT,PE,Titular,1
 56,5385,25385,senado,Irajá,Irajá Silvestre Filho,NA,M,PSD,TO,Titular,1
+56,6015,26015,senado,Ireneu Orth,Ireneu Orth,NA,M,NA,RS,1º Suplente,0
+56,6007,26007,senado,Ivani Boscolo,Ivani Perrone Boscolo,NA,F,NA,SP,2º Suplente,0
+56,6010,26010,senado,Ivete da Silveira,Ivete Marli Appel da Silveira,NA,F,NA,SC,1º Suplente,0
+56,5978,25978,senado,Ivonete Nascimento,Maria Ivonete Gomes do Nascimento,NA,F,NA,DF,2º Suplente,0
 56,4770,24770,senado,Izalci Lucas,Izalci Lucas Ferreira,NA,M,PSDB,DF,Titular,1
+56,5931,25931,senado,Jacira Souza,Jacira Maria Alves de Souza,NA,F,NA,AM,2º Suplente,0
 56,35,235,senado,Jader Barbalho,Jader Fontenelle Barbalho,NA,M,MDB,PA,Titular,1
+56,5912,25912,senado,Jader Melo,Jader Paiva de Melo,NA,M,NA,GO,2º Suplente,0
 56,581,2581,senado,Jaques Wagner,Jaques Wagner,NA,M,PT,BA,Titular,1
 56,4545,24545,senado,Jarbas Vasconcelos,Jarbas de Andrade Vasconcelos,NA,M,MDB,PE,Titular,1
 56,4531,24531,senado,Jayme Campos,Jayme Veríssimo de Campos,NA,M,DEM,MT,Titular,1
+56,5627,25627,senado,Jean Paul Prates,Jean Paul Terra Prates,NA,M,PT,RN,1º Suplente,1
+56,5609,25609,senado,Joel Malucelli,Joel Malucelli,NA,M,PSD,PR,1º Suplente,0
 56,5895,25895,senado,Jorge Kajuru,Jorge Kajuru Reis da Costa Nasser,NA,M,CIDADANIA,GO,Titular,1
+56,5993,25993,senado,Jorge Mitidieri,Jorge Mitidieri,NA,M,NA,SE,1º Suplente,0
+56,4885,24885,senado,Jorge Yanai,Jorge Yoshiaki Yanai,NA,M,DEM,MT,1º Suplente,0
 56,5350,25350,senado,Jorginho Mello,Jorginho dos Santos Mello,NA,M,PL,SC,Titular,1
-56,3361,23361,senado,José Maranhão,José Targino Maranhão,NA,M,MDB,PB,Titular,1
+56,5569,25569,senado,Josiel,Jose Samuel Alcolumbre Tobelem,NA,M,DEM,AP,1º Suplente,0
+56,5849,25849,senado,José Amauri,Jose Amauri P. de Araújo,NA,M,PODEMOS,PI,1º Suplente,0
+56,878,2878,senado,José Aníbal,José Aníbal Peres de Pontes,NA,M,PSDB,SP,1º Suplente,0
+56,5579,25579,senado,José Carlos Vasconcellos,José Carlos de Moraes Vasconcellos Filho,NA,M,PDT,DF,1º Suplente,0
+56,5983,25983,senado,José Chagas,José Chagas dos Santos,NA,M,NA,MS,1º Suplente,0
+56,6305,26305,senado,José Esteves de Lacerda Filho,José Esteves de Lacerda Filho,NA,M,NA,MT,2º Suplente,0
+56,5910,25910,senado,José Hamilton,José Hamilton Furtado Castelo Branco,NA,M,NA,PI,1º Suplente,0
+56,3361,23361,senado,José Maranhão,José Targino Maranhão,NA,M,MDB,PB,Titular,0
 56,90,290,senado,José Serra,José Serra,NA,M,PSDB,SP,Titular,1
+56,5613,25613,senado,João Batista Lemos,João Batista da Rocha Lemos,NA,M,PCB,RJ,1º Suplente,0
+56,5972,25972,senado,Julio Ventura,Julio Ventura Neto,NA,M,NA,CE,2º Suplente,0
 56,5929,25929,senado,Juíza Selma,Selma Rosane Santos Arruda,NA,F,PODEMOS,MT,Titular,0
+56,5965,25965,senado,Júnior Souto,Manoel Junior Souto de Souza,NA,M,NA,RN,1º Suplente,0
 56,1249,21249,senado,Kátia Abreu,Kátia Regina de Abreu,NA,F,PP,TO,Titular,1
+56,415,2415,senado,Lael Varella,Lael Vieira Varella,NA,M,DEM,MG,2º Suplente,0
 56,5533,25533,senado,Lasier Martins,Lasier Costa Martins,NA,M,PODEMOS,RS,Titular,1
+56,5977,25977,senado,Leany Lemos,Leany Barreiro de Sousa Lemos,NA,F,NA,DF,1º Suplente,0
 56,5979,25979,senado,Leila Barros,Leila Gomes de Barros Rêgo,NA,F,PSB,DF,Titular,1
+56,5903,25903,senado,Leonardo Rodrigues,Leonardo Rodrigues,NA,M,NA,RJ,2º Suplente,0
 56,5926,25926,senado,Lucas Barreto,Luiz Cantuária Barreto,NA,M,PSD,AP,Titular,1
+56,6014,26014,senado,Luciana Leão Muniz,Luciana Leão Muniz,NA,F,NA,BA,2º Suplente,0
 56,1186,21186,senado,Luis Carlos Heinze,Luis Carlos Heinze,NA,M,PP,RS,Titular,1
-56,5666,25666,senado,Major Olimpio,Sergio Olimpio Gomes,NA,M,PSL,SP,Titular,1
+56,5968,25968,senado,Luis Felipe Belmonte,Luis Felipe Belmonte dos Santos,NA,M,NA,DF,1º Suplente,0
+56,5567,25567,senado,Luis Mitoso,Luis Augusto Mitoso Junior,NA,M,PSD,AM,2º Suplente,0
+56,151,2151,senado,Luiz Pastore,Luiz Osvaldo Pastore,NA,M,MDB,ES,1º Suplente,0
+56,5585,25585,senado,Luiz do Carmo,Luiz Carlos do Carmo,NA,M,MDB,GO,1º Suplente,1
+56,5904,25904,senado,Macapá,José Eugênio de Leão Braga,NA,M,NA,AC,2º Suplente,0
+56,5557,25557,senado,Mailza Gomes,Mailza Assis da Silva,NA,F,PP,AC,1º Suplente,1
+56,5981,25981,senado,Major Ildomario,Ildomario Santos Gomes,NA,M,NA,SE,2º Suplente,0
+56,5666,25666,senado,Major Olimpio,Sergio Olimpio Gomes,NA,M,PSL,SP,Titular,0
+56,5591,25591,senado,Manoel Motta,Manoel Francisco de Vasconcelos Motta,NA,M,PCB,MT,2º Suplente,0
 56,5376,25376,senado,Mara Gabrilli,Mara Cristina Gabrilli,NA,F,PSDB,SP,Titular,1
 56,742,2742,senado,Marcelo Castro,Marcelo Costa e Castro,NA,M,MDB,PI,Titular,1
+56,5915,25915,senado,Marcia do Angico,Maria Márcia Rodrigues de Almeida,NA,F,NA,PE,2º Suplente,0
 56,285,2285,senado,Marcio Bittar,Márcio Miguel Bittar,NA,M,MDB,AC,Titular,1
 56,5422,25422,senado,Marcos Rogério,Marcos Rogério da Silva Brito,NA,M,DEM,RO,Titular,1
+56,6287,26287,senado,Marcos de Souza Costa,Marcos de Souza Costa,NA,M,NA,TO,1º Suplente,0
 56,5942,25942,senado,Marcos do Val,Marcos Ribeiro do Val,NA,M,PODEMOS,ES,Titular,1
+56,6304,26304,senado,Margareth Gettert Busetti,Margareth Gettert Busetti,NA,F,NA,MT,1º Suplente,0
+56,5909,25909,senado,Maria Alice,Maria Alice Melo de Araújo,NA,F,NA,AC,2º Suplente,0
+56,6019,26019,senado,Maria Eliza,Maria Eliza de Aguiar e Silva,NA,F,NA,RO,1º Suplente,0
+56,5994,25994,senado,Maria da Taiçoca,Maria da Conceição dos Anjos,NA,F,NA,SE,2º Suplente,0
+56,5908,25908,senado,Maria das Vitórias,Maria das Vitórias Soares de Medeiros,NA,F,NA,AC,1º Suplente,0
 56,1023,21023,senado,Maria do Carmo Alves,Maria do Carmo do Nascimento Alves,NA,F,DEM,SE,Titular,1
+56,6002,26002,senado,Marinho Cunha,Marcos Antônio Marinho da Cunha,NA,M,NA,PA,2º Suplente,0
+56,5575,25575,senado,Marizete,Marizete Lisboa Fernandes Pereira,NA,F,PT,BA,2º Suplente,0
+56,5571,25571,senado,Marquinho,Marco Jeovano Soares Ribas,NA,M,DEM,AP,2º Suplente,0
 56,6027,26027,senado,Mecias de Jesus,Antônio Mecias Pereira de Jesus,NA,M,REPUBLICANOS,RR,Titular,1
+56,5935,25935,senado,Miguel Biango,Miguel Capobiango Neto,NA,M,NA,AM,2º Suplente,0
+56,5897,25897,senado,Milton Mercêz,Milton Jose das Mercêz,NA,M,NA,GO,2º Suplente,0
+56,5595,25595,senado,Moacir Kohl,Moacir Kohl,NA,M,PSB,MS,2º Suplente,0
+56,5997,25997,senado,Nailde Panta,Nailde Fernandes Panta da Silva,NA,F,PP,PB,2º Suplente,0
 56,5985,25985,senado,Nelsinho Trad,Nelson Trad Filho,NA,M,PSD,MS,Titular,1
-56,63,263,senado,Ney Suassuna,Ney Robinson Suassuna,NA,M,MDB,PB,1º Suplente,0
+56,63,263,senado,Ney Suassuna,Ney Robinson Suassuna,NA,M,REPUBLICANOS,PB,1º Suplente,0
+56,5281,25281,senado,Nilda Gondim,Ozanilda Gondim Vital do Rego,NA,F,MDB,PB,1º Suplente,1
+56,6006,26006,senado,Ogari Pacheco,Ogari de Castro Pacheco,NA,M,NA,TO,2º Suplente,0
 56,5525,25525,senado,Omar Aziz,Omar José Abdel Aziz,NA,M,PSD,AM,Titular,1
+56,6024,26024,senado,Onésimo Cruz,Onésimo de Souza Cruz Netto,NA,M,NA,RR,2º Suplente,0
 56,5924,25924,senado,Oriovisto Guimarães,Oriovisto Guimaraes,NA,M,PODEMOS,PR,Titular,1
 56,5523,25523,senado,Otto Alencar,Otto Roberto Mendonça de Alencar,NA,M,PSD,BA,Titular,1
+56,5925,25925,senado,Pastor Gaia,Orlando Moura Gaia,NA,M,NA,AP,2º Suplente,0
+56,5599,25599,senado,Pastor Ibanes Taveira,Ibanes Taveira da Silva,NA,M,PDT,PA,2º Suplente,0
+56,5966,25966,senado,Pastor Manoel Roberto,Manoel Roberto Silva do Rego,NA,M,NA,RN,2º Suplente,0
+56,6022,26022,senado,Pastor Severino,Severino dos Ramos Marcelino da Silva,NA,M,NA,RO,2º Suplente,0
+56,5617,25617,senado,Pastor Valadares,Sebastião Valadares Neto,NA,M,PDT,RO,2º Suplente,0
+56,5928,25928,senado,Patricia Costa,Ana Patricia de Carvalho Ribeiro Costa,NA,F,NA,AP,2º Suplente,0
+56,5927,25927,senado,Paulo Albuquerque,Paulo José de Brito Silva Albuquerque,NA,M,PSD,AP,1º Suplente,0
+56,336,2336,senado,Paulo Gouvêa,Paulo Gilberto Gouvêa da Costa,NA,M,DEM,SC,1º Suplente,0
+56,5901,25901,senado,Paulo Marinho,Paulo Roberto Franco Marinho,NA,M,NA,RJ,1º Suplente,0
+56,5589,25589,senado,Paulo Matos,Paulo Henrique Campos Matos,NA,M,CIDADANIA,MA,2º Suplente,0
 56,825,2825,senado,Paulo Paim,Paulo Renato Paim,NA,M,PT,RS,Titular,1
 56,374,2374,senado,Paulo Rocha,Paulo Roberto Galvão da Rocha,NA,M,PT,PA,Titular,1
+56,5921,25921,senado,Paulo Salamuni,Paulo Salamuni,NA,M,NA,PR,1º Suplente,0
+56,6023,26023,senado,Pedro Arthur,Pedro Arthur Ferreira Rodrigues,NA,M,NA,RR,1º Suplente,0
+56,453,2453,senado,Pedro Chaves,Pedro Pinheiro Chaves,NA,M,MDB,GO,1º Suplente,0
+56,674,2674,senado,Pedro Fernandes,Pedro Fernandes Ribeiro,NA,M,PTB,MA,1º Suplente,0
+56,4606,24606,senado,Pinto Itamaraty,José Eleonildo Soares,NA,M,PSDB,MA,1º Suplente,0
+56,5922,25922,senado,Plinio Destro,Plinio Destro,NA,M,NA,PR,2º Suplente,0
 56,5502,25502,senado,Plínio Valério,Francisco Plínio Valério Tomaz,NA,M,PSDB,AM,Titular,1
+56,5971,25971,senado,Prisco Bezerra,Prisco Rodrigues Bezerra,NA,M,PDT,CE,1º Suplente,0
+56,5984,25984,senado,Professora Bazé,Terezinha Bazé de Lima,NA,F,NA,MS,2º Suplente,0
+56,5913,25913,senado,Rafael Tenorio,Cicero Rafael Tenorio da Silva,NA,M,NA,AL,1º Suplente,0
 56,5012,25012,senado,Randolfe Rodrigues,Randolph Frederich Rodrigues Alves,NA,M,REDE,AP,Titular,1
+56,6018,26018,senado,Reginete Bispo,Reginete Souza Bispo,NA,F,NA,RS,2º Suplente,0
 56,5236,25236,senado,Reguffe,José Antônio Machado Reguffe,NA,M,PODEMOS,DF,Titular,1
 56,70,270,senado,Renan Calheiros,José Renan Vasconcelos Calheiros,NA,M,MDB,AL,Titular,1
+56,5934,25934,senado,Renata Guerra,Renata Cordeiro Guerra,NA,F,NA,RJ,2º Suplente,0
+56,5561,25561,senado,Renilde Bulhões,Renilde Silva Bulhões Barros,NA,F,PROS,AL,1º Suplente,0
+56,5257,25257,senado,Renzo Braz,Renzo do Amaral Braz,NA,M,PP,MG,1º Suplente,0
+56,5635,25635,senado,Ricardo Franco,Ricardo Barreto Franco,NA,M,DEM,SE,1º Suplente,0
+56,5892,25892,senado,Roberth Bringel,Raimundo Roberth Bringel Martins,NA,M,DEM,MA,1º Suplente,0
 56,677,2677,senado,Roberto Rocha,Roberto Coelho Rocha,NA,M,PSDB,MA,Titular,1
+56,5986,25986,senado,Rodolfo Nogueira,Rodolfo Oliveira Nogueira,NA,M,NA,MS,1º Suplente,0
 56,5905,25905,senado,Rodrigo Cunha,Rodrigo Santos Cunha,NA,M,PSDB,AL,Titular,1
 56,5732,25732,senado,Rodrigo Pacheco,Rodrigo Otavio Soares Pacheco,NA,M,DEM,MG,Titular,1
 56,5352,25352,senado,Rogério Carvalho,Rogério Carvalho Santos,NA,M,PT,SE,Titular,1
 56,5322,25322,senado,Romário,Romario de Souza Faria,NA,M,PODEMOS,RJ,Titular,1
 56,456,2456,senado,Ronaldo Caiado,Ronaldo Ramos Caiado,NA,M,DEM,GO,Titular,0
-56,2331,22331,senado,Rose de Freitas,Rosilda de Freitas,NA,F,PODEMOS,ES,Titular,1
+56,5945,25945,senado,Ronaldo Libardi,Ronaldo Libardi,NA,M,NA,ES,2º Suplente,0
+56,5601,25601,senado,Roosevelt Vita,Roosevelt Vita,NA,M,MDB,PB,2º Suplente,0
+56,5944,25944,senado,Rosana Foerst,Rosana Marcia Foerste da Silva,NA,F,NA,ES,1º Suplente,0
+56,2331,22331,senado,Rose de Freitas,Rosilda de Freitas,NA,F,MDB,ES,Titular,1
+56,5911,25911,senado,Rosário Bezerra,Maria do Rosário de Fátima Biserra Rodrigues,NA,F,NA,PI,2º Suplente,0
+56,5621,25621,senado,Rudson Leite,Rudson Leite da Silva,NA,M,PV,RR,2º Suplente,0
+56,6021,26021,senado,Samuel Araujo,Samuel Pereira de Araujo,NA,M,NA,RO,1º Suplente,0
+56,5038,25038,senado,Sandra Braga,Sandra Backsmann Braga,NA,F,MDB,AM,1º Suplente,0
+56,5974,25974,senado,Sargento Reginaldo,Reginauro Sousa Nascimento,NA,M,NA,CE,1º Suplente,0
+56,5583,25583,senado,Schariff Moyses,Schariff Moyses,NA,M,PSDB,ES,2º Suplente,0
+56,5611,25611,senado,Severino Araujo,Severino Nunes de Araujo,NA,M,PSB,PR,2º Suplente,0
+56,5563,25563,senado,Severino Leão,Severino Barboza Leão,NA,M,PTB,AL,2º Suplente,0
+56,5916,25916,senado,Silvania Barbosa,Silvania Batinga de Oliveira Barbosa,NA,F,NA,AL,2º Suplente,0
+56,5056,25056,senado,Silvia Nascimento Cardoso dos Santos Cerqueira,Silvia Nascimento Cardoso dos Santos Cerqueira,NA,M,REPUBLICANOS,BA,2º Suplente,0
 56,5527,25527,senado,Simone Tebet,Simone Nassar Tebet,NA,F,MDB,MS,Titular,1
+56,6005,26005,senado,Siqueira Campos,Jose Wilson Siqueira Campos,NA,M,DEM,TO,1º Suplente,0
 56,5988,25988,senado,Soraya Thronicke,Soraya Vieira Thronicke,NA,F,PSL,MS,Titular,1
 56,5959,25959,senado,Styvenson Valentim,Eann Styvenson Valentim Mendes,NA,M,PODEMOS,RN,Titular,1
+56,5893,25893,senado,Suely Pereira,Suely Torres e Silva,NA,M,NA,MA,2º Suplente,0
+56,5995,25995,senado,Suely Santiago,Maria Suely Alves de Oliveira Santiago,NA,F,NA,PB,2º Suplente,0
 56,4560,24560,senado,Sérgio Petecão,Sérgio de Oliveira Cunha,NA,M,PSD,AC,Titular,1
 56,3396,23396,senado,Tasso Jereissati,Tasso Ribeiro Jereissati,NA,M,PSDB,CE,Titular,1
 56,5535,25535,senado,Telmário Mota,Telmário Mota de Oliveira,NA,M,PROS,RR,Titular,1
+56,6004,26004,senado,Terciliano Gomes,Terciliano Gomes Araujo,NA,M,NA,TO,2º Suplente,0
+56,5629,25629,senado,Theodorico Netto,Theodorico Bezerra Netto,NA,M,PT,RN,2º Suplente,0
+56,5619,25619,senado,Thieres Pinto,Thieres Pinto de Mesquita Filho,NA,M,PTB,RR,1º Suplente,0
+56,375,2375,senado,Valdir Ganzer,Valdir Ganzer,NA,M,PT,PA,1º Suplente,0
 56,5899,25899,senado,Vanderlan Cardoso,Vanderlan Vieira Cardoso,NA,M,PSD,GO,Titular,1
-56,5748,25748,senado,Veneziano Vital do Rêgo,Veneziano Vital do Rêgo Segundo Neto,NA,M,PSB,PB,Titular,1
+56,5748,25748,senado,Veneziano Vital do Rêgo,Veneziano Vital do Rêgo Segundo Neto,NA,M,MDB,PB,Titular,1
+56,5919,25919,senado,Vilson Basso,Vilson Vilmar Basso,NA,M,NA,PR,1º Suplente,0
+56,4786,24786,senado,Virginio de Carvalho,Virginio José de Carvalho Neto,NA,M,PSC,SE,2º Suplente,0
+56,791,2791,senado,Vivaldo Barbosa,Vivaldo Vieira Barbosa,NA,M,PSB,RJ,2º Suplente,0
+56,5914,25914,senado,Waldemar Oliveira,Waldemar de Andrada Ignácio de Oliveira,NA,M,NA,PE,1º Suplente,0
 56,1173,21173,senado,Wellington Fagundes,Wellington Antonio Fagundes,NA,M,PL,MT,Titular,1
 56,5411,25411,senado,Weverton,Weverton Rocha Marques de Sousa,NA,M,PDT,MA,Titular,1
 56,5783,25783,senado,Zenaide Maia,Zenaide Maia Calado Pereira dos Santos,NA,F,PROS,RN,Titular,1
