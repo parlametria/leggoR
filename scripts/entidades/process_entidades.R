@@ -25,7 +25,8 @@ library(tidyverse)
                     "56", "20", "320", 'senado', 'CPI do Futebol - 2015',
                     "56", "21", "321", 'senado', 'CPI de Brumadinho',
                     "56", "22", "322", 'senado', 'Comissão de Agricultura e Reforma Agrária',
-                    "56", "23", "323", 'senado', 'Subcomissão Temporária de Resíduos Sólidos'
+                    "56", "23", "323", 'senado', 'Subcomissão Temporária de Resíduos Sólidos',
+                    "56", "24", "324", 'senado', 'Comissão de Assuntos Econômicos'
                     ) %>%
     mutate(sexo = NA,
            partido = NA,
