@@ -13,7 +13,7 @@ fetch_votos_camara <-
     if (is.null(votacoes)) {
       votos <- perfilparlamentar::processa_votos_camara_anos(anos)
     } else {
-      votos <- 
+      votos <-
         purrr::map_df(votacoes$id_votacao,
                       function(x) {
                         data <- tryCatch({
@@ -33,10 +33,10 @@ fetch_votos_camara <-
                         return(data)
                       })
     }
-    
+
     votos <- votos %>%
       mutate(casa = "camara")
-    
+
     return(votos)
   }
 
@@ -48,7 +48,8 @@ fetch_votos_camara <-
 #' @return Dataframe com votos do senado
 fetch_votos_senado <-
   function(anos = c(2019, 2020),
-           votacoes = NULL) {
+           votacoes = NULL,
+           entidades_filepath = here::here("leggo_data/entidades.csv")) {
     if (is.null(votacoes)) {
       votos <- perfilparlamentar::processa_votos_senado_anos(anos)
     } else {
@@ -58,17 +59,17 @@ fetch_votos_senado <-
         ~ fetch_votos_por_proposicao_votacao_senado(.x, .y)
       )
     }
-    
-    senadores_df <- read_csv(here::here("leggo_data/entidades.csv"), col_types = cols(.default = "c")) %>% 
-      filter(casa == 'senado', is_parlamentar == 1) %>% 
-      select(id_parlamentar = id_entidade, nome_eleitoral = nome) %>% 
+
+    senadores_df <- read_csv(entidades_filepath, col_types = cols(.default = "c")) %>%
+      filter(casa == 'senado', is_parlamentar == 1) %>%
+      select(id_parlamentar = id_entidade, nome_eleitoral = nome) %>%
       distinct()
-    
+
     votos <- processa_votos_senado(votos, senadores_df)
-    
+
     votos <- votos %>%
       mutate(casa = "senado")
-    
+
     return(votos)
   }
 
