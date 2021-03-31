@@ -85,15 +85,13 @@ source(here::here("scripts/proposicoes/fetcher_proposicao.R"))
     ~ tema,
     ~ advocacy_link,
     ~ keywords,
-    ~ tipo_agenda,
-    ~ explicacao_projeto
+    ~ tipo_agenda
   )
 
   proposicoes <- proposicoes %>%
     select(id,
            proposicao = nome,
-           casa,
-           explicacao_projeto = ementa)
+           casa)
 
   new_df <- new_df %>%
     bind_rows(proposicoes) %>%

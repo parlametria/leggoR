@@ -25,7 +25,7 @@ processa_lista_pls_interesses <- function(url) {
                     source(here::here("scripts/proposicoes/process_proposicao.R"))
                     pls <- readr::read_csv(url, col_types = cols(.default = "c")) %>%
                       dplyr::select(proposicao, id_camara, id_senado, apelido, tema, advocacy_link,
-                                    keywords, tipo_agenda, explicacao_projeto, dplyr::contains("prioridade")) %>%
+                                    keywords, tipo_agenda, dplyr::contains("prioridade")) %>%
                       .checa_proposicoes_infos() %>%
                       dplyr::mutate(interesse = interesse) %>%
                       dplyr::mutate(nome_interesse = nome) %>%
