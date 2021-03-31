@@ -76,9 +76,9 @@ process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpat
 
   # Remove eventos duplicados dentro da mesma hora
   proc_tram_data <- proc_tram_data %>%
-    mutate(dia_e_hora = paste(lubridate::date(data_hora), lubridate::hour(data_hora))) %>%
-    distinct(dia_e_hora, texto_tramitacao, .keep_all = TRUE) %>%
-    select(-dia_e_hora)
+    dplyr::mutate(dia_e_hora = paste(lubridate::date(data_hora), lubridate::hour(data_hora))) %>%
+    dplyr::distinct(dia_e_hora, texto_tramitacao, .keep_all = TRUE) %>%
+    dplyr::select(-dia_e_hora)
 
   proc_tram_data <- proc_tram_data %>%
     # Adiciona colunas com nível de importância e título dos eventos

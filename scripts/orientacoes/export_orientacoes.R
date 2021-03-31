@@ -1,5 +1,5 @@
 library(here)
-print(dr_here())
+dr_here()
 source(here::here("scripts/orientacoes/analyzer_orientacoes.R"))
 
 .HELP <- "
@@ -14,7 +14,7 @@ orientacoes_filepath: Caminho para o csv de orientacoes
 #' @description Get arguments from command line option parsing
 get_args <- function() {
   args = commandArgs(trailingOnly=TRUE)
-  
+
   option_list = list(
     optparse::make_option(c("-v", "--votacoes_filepath"),
                           type="character",
@@ -32,7 +32,7 @@ get_args <- function() {
                           help=.HELP,
                           metavar="character")
   );
-  
+
   opt_parser <- optparse::OptionParser(option_list = option_list)
   opt <- optparse::parse_args(opt_parser)
   return(opt);
@@ -47,6 +47,6 @@ votos_datapath <- args$votos_filepath
 orientacoes_datapath <- args$orientacoes_filepath
 
 print("Processando dados de orientações...")
-process_orientacoes(c(2019, 2020, 2021), votacoes_datapath, votos_datapath, orientacoes_datapath)
+process_orientacoes(c(2021), votacoes_datapath, votos_datapath, orientacoes_datapath)
 
 print("Salvo")
