@@ -130,7 +130,17 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao, orgaos_camara, dat
 
   if (nrow(orgaos_camara) == 0) {
     warning("Comissão não encontrada")
-    n <- tibble::tribble(~ cargo, ~ id, ~ partido, ~ uf, ~ situacao, ~ nome, ~ sigla, ~ casa, ~ data_inicio, ~ data_fim)
+    n <- tibble::tibble(
+      cargo = character(), 
+      id = integer(),
+      partido = character(),
+      uf = character(),
+      situacao = character(),
+      nome = character(),
+      sigla = character(),
+      casa = character(),
+      data_inicio = character(),
+      data_fim= character())
     return(n)
   }
 
