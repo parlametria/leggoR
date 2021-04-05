@@ -176,12 +176,12 @@
   },
 
   "endpoints_api": {
-    "url_base": "http://legis.senado.leg.br/dadosabertos/materia/",
-    "votacao": "http://legis.senado.leg.br/dadosabertos/materia/votacoes",
-    "movimentacoes": "http://legis.senado.leg.br/dadosabertos/materia/movimentacoes",
-    "relatorias": "http://legis.senado.leg.br/dadosabertos/materia/relatorias",
-    "glossario": "http://legis.senado.leg.br/dadosabertos/materia/glossario/lista?v=4",
-    "situacoes": "http://legis.senado.leg.br/dadosabertos/materia/situacoes",
+    "url_base": "https://legis.senado.leg.br/dadosabertos/materia/",
+    "votacao": "https://legis.senado.leg.br/dadosabertos/materia/votacoes",
+    "movimentacoes": "https://legis.senado.leg.br/dadosabertos/materia/movimentacoes",
+    "relatorias": "https://legis.senado.leg.br/dadosabertos/materia/relatorias",
+    "glossario": "https://legis.senado.leg.br/dadosabertos/materia/glossario/lista?v=4",
+    "situacoes": "https://legis.senado.leg.br/dadosabertos/materia/situacoes",
     "page_url_senado": "https://www25.senado.leg.br/web/atividade/materias/-/materia/"
   },
 
