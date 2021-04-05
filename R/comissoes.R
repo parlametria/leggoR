@@ -201,7 +201,7 @@ fetch_composicao_comissao <- function(sigla, casa, orgaos_camara, data_inicio_ar
 #' @param sigla Sigla da comissão do Senado
 #' @return Dataframes
 fetch_composicao_comissoes_senado <- function(sigla) {
-  url <- paste0('http://legis.senado.leg.br/dadosabertos/comissao/', sigla)
+  url <- paste0('https://legis.senado.leg.br/dadosabertos/comissao/', sigla)
   tryCatch(
     {
       json_sessions <- jsonlite::fromJSON(url, flatten = T)
@@ -298,25 +298,35 @@ fetch_composicao_comissoes_senado <- function(sigla) {
 fetch_all_composicao_comissao <- function(data_inicio = "2019-02-01") {
   orgaos_camara <- fetch_orgaos_camara()
   
-  siglas_camara <- 
+  siglas_camara <- tryCatch({
     orgaos_camara %>% 
-    dplyr::filter(tipo_orgao_id == 2 |
-                    (tipo_orgao_id == 3 & dataFim == "")) %>%
+      dplyr::filter(tipo_orgao_id == 2 |
+                      (tipo_orgao_id == 3 & dataFim == "")) %>%
       dplyr::mutate_all(as.character) %>%
       dplyr::select(sigla) %>%
       dplyr::mutate(casa = 'camara',
                     sigla = trimws(sigla)) %>%
       dplyr::filter(sigla != 'PLEN')
+  }, error=function(e){
+    return(tibble::tibble(sigla = character(), casa = character()))
+  })
+   
   
-  siglas_senado <- 
+  siglas_senado <- tryCatch({
     fetch_orgaos_senado() %>% 
-    dplyr::mutate(casa = 'senado', 
-                  sigla = stringr::str_replace_all(sigla, " ", ""))
-  
-  siglas_cong_nacional <- 
+      dplyr::mutate(casa = 'senado', 
+                    sigla = stringr::str_replace_all(sigla, " ", ""))
+  }, error=function(e){
+    return(tibble::tibble(sigla = character(), casa = character()))
+  })
+    
+  siglas_cong_nacional <- tryCatch({
     fetch_orgaos_congresso_nacional() %>%
-    dplyr::mutate(casa = 'congresso_nacional', 
-                  sigla = stringr::str_replace_all(sigla, " ", ""))
+      dplyr::mutate(casa = 'congresso_nacional', 
+                    sigla = stringr::str_replace_all(sigla, " ", ""))
+  }, error=function(e){
+    return(tibble::tibble(sigla = character(), casa = character()))
+  })
 
   siglas_comissoes <- 
     rbind(siglas_camara, siglas_senado, siglas_cong_nacional) %>%
