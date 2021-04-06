@@ -599,3 +599,103 @@ get_comissoes_faltantes <- function(df, casa) {
     get_comissoes_faltantes_senado(df)
   }
 }
+
+#' @title Processa tabela de situação atual das proposições monitoradas
+#' @description Recupera tabela que mapeia proposições e sua situação atual (locais atuais)
+#' @param proposicao_df Dataframe das etapas da proposição (Câmara e/ou Senado)
+#' @param id_leggo Id da proposição no sistema do Leggo
+#' @return Dataframe com a situação atual das proposições (locais atuais)
+#' @export
+processa_local_atual <- function(proposicao_df, id_leggo) {
+  if ("sigla_ultimo_local" %in% names(proposicao_df)) {
+    proposicao_df <- proposicao_df %>%
+      # Processa o nome do último local
+      dplyr::mutate(
+        nome_ultimo_local = dplyr::case_when(
+          stringr::str_detect(toupper(sigla_ultimo_local), "^SAC")
+          ~ stringr::str_remove(tolower(nome_ultimo_local), "^secretaria de apoio à ") %>% stringr::str_to_title(),
+          TRUE ~ nome_ultimo_local
+        )
+      ) %>%
+      # Processa a sigla do último local
+      dplyr::mutate(
+        sigla_ultimo_local = dplyr::case_when(
+          stringr::str_detect(toupper(sigla_ultimo_local), "^SAC")
+          ~ stringr::str_remove(toupper(sigla_ultimo_local), "^SA"),
+          TRUE ~ sigla_ultimo_local
+        )
+      ) %>%
+      # Processa a casa do último local
+      dplyr::mutate(
+        casa_ultimo_local = dplyr::case_when(
+          toupper(sigla_casa_ultimo_local) == "SF" ~ "senado",
+          toupper(sigla_casa_ultimo_local) == "CD" ~ "camara",
+          TRUE ~ "indefinida" # Flag usada para monitorar exceção
+        )
+      )
+  } else {
+    # Cria colunas vazias quando não foi possível recuperar o último local
+    proposicao_df <- proposicao_df %>%
+      dplyr::mutate(sigla_ultimo_local = NA_character_,
+                    sigla_casa_ultimo_local = NA_character_,
+                    casa_ultimo_local = NA_character_,
+                    nome_ultimo_local = NA_character_,
+                    data_ultima_situacao = NA_character_)
+  }
+
+  # Processa Dataframe de locais atuais filtrando apenas as proposições com
+  # local capturado
+  proposicao_local_atual <- proposicao_df %>%
+    dplyr::filter(!is.na(sigla_ultimo_local)) %>%
+    dplyr::distinct(sigla_ultimo_local, .keep_all = TRUE) %>%
+    dplyr::mutate(id_leggo = id_leggo,
+                  data_ultima_situacao = as.POSIXct(data_ultima_situacao)) %>%
+    dplyr::select(id_leggo, sigla_ultimo_local, casa_ultimo_local, nome_ultimo_local,
+                  data_ultima_situacao) %>%
+    # Adiciona informação do tipo de local
+    .classifica_local(column_sigla = "sigla_ultimo_local")
+
+  return(proposicao_local_atual)
+}
+
+
+#' @title Classifica o local da situação de uma proposição
+#' @description Classifica o local em comissão permanente, comissão especial ou administrativo
+#' @param proposicao_df Dataframe com coluna de local para classificação
+#' @param column_sigla Nome da coluna que contém a sigla do local
+#' @return Dataframe proposicao_df com uma coluna a mais: tipo_local
+.classifica_local <- function(proposicao_df, column_sigla) {
+  comissoes_camara <- get_envvars_camara()$comissoes$siglas_comissoes
+  comissoes_senado <- get_envvars_senado()$comissoes_nomes$siglas_comissoes
+  comissoes_permanentes <- tibble::tibble(sigla = c(comissoes_camara, comissoes_senado))
+
+  df <- proposicao_df %>%
+    dplyr::mutate(tipo_local = dplyr::case_when(
+      tolower(!!sym(column_sigla)) %in% tolower(comissoes_permanentes %>% pull(sigla)) ~ "comissao_permanente",
+      stringr::str_detect(tolower(!!sym(column_sigla)), "plen.rio|plen") ~ "plenario",
+      stringr::str_detect(tolower(!!sym(column_sigla)), "mesa") ~ "mesa",
+      stringr::str_detect(tolower(!!sym(column_sigla)), "mpv|pec|pl") ~ "comissao_especial",
+      TRUE ~ "outros"
+    ))
+}
+
+#' @title Exibe log sobre proposições monitoradas com local detectado
+#' @description Identifica quantas proposições não tiveram o local atual detectado
+#' @param proposicoes_df Dataframe das proposições
+#' @param locais_atuais_df Dataframe com o local atual das proposições
+#' @return Dataframe com proposições que não tiveram o local atual detectado
+#' @export
+verifica_proposicoes_com_local_detectado <- function(proposicoes_df, locais_atuais) {
+  proposicoes_com_local_atual <- proposicoes_df %>%
+    dplyr::inner_join(locais_atuais, by = c("id_leggo")) %>%
+    dplyr::distinct(id_leggo, .keep_all = TRUE)
+
+  futile.logger::flog.info(stringr::str_glue("{proposicoes_com_local_atual %>% nrow()} proposições com local atual detectado!"))
+
+  proposicoes_sem_local_detectado <- proposicoes_df %>%
+    dplyr::anti_join(locais_atuais, by = c("id_leggo"))
+
+  futile.logger::flog.info(stringr::str_glue("{proposicoes_sem_local_detectado %>% distinct(id_leggo) %>% nrow()} proposições sem local atual detectado!"))
+
+  return(proposicoes_sem_local_detectado)
+}

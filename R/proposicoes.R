@@ -90,6 +90,10 @@ fetch_proposicao_senado <- function(id, apelido, tema) {
                            "senado",
                            "camara"),
       autor_nome,
+      sigla_ultimo_local = sigla_local,
+      sigla_casa_ultimo_local = sigla_casa_local,
+      nome_ultimo_local = nome_local,
+      data_ultima_situacao = data_situacao,
       apelido_materia = ifelse(
         "apelido_materia" %in% names(.),
         apelido_materia,
@@ -391,7 +395,7 @@ add_tipo_evento_documento <- function(docs_data, documentos_scrap = F) {
         dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo),  # default para tipos não agrupados
                       tipo = dplyr::if_else(str_detect(tipo, "P.S"), "Outros", tipo), # Corrige casos de falsos positivos em matérias legislativas.
                       peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso)), # Atribui peso default
-                      tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>% 
+                      tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>%
         # Remove casos duplicados usando o peso do regex na ordem de precedência
         dplyr::group_by(id_principal, casa, id_documento, id_autor) %>%
         dplyr::mutate(max_peso = max(peso)) %>%
@@ -580,7 +584,7 @@ classifica_tipo_documento_autorias <- function(docs) {
     dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo), # default para tipos não agrupados
                   tipo = dplyr::if_else(str_detect(tipo, "P.S"), "Outros", tipo), # Corrige casos de falsos positivos em matérias legislativas.
                   peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso)), # Atribui peso default
-                  tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>% 
+                  tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>%
     # Remove casos duplicados usando o peso do regex na ordem de precedência
     dplyr::group_by(id_principal, casa, id_documento, id_autor) %>%
     mutate(max_peso = max(peso)) %>%
