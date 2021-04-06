@@ -20,9 +20,17 @@ processa_votacoes_sumarizadas <-
       filter(data >= data_inicio, data <= data_final)
     
     votos <- read_csv(votos_datapath) %>% 
-      filter(id_votacao %in% (votacoes %>% pull(id_votacao)))
+      filter(id_votacao %in% (votacoes %>% pull(id_votacao))) 
     
     votacoes_sumarizadas <- perfilparlamentar::processa_votacoes_sumarizadas(votos)
+   
+    data_votacoes <- votacoes %>%
+      mutate(ultima_data = max(data)) %>% 
+      select(ultima_data) %>%
+      head(1)
+
+    votacoes_sumarizadas <- votacoes_sumarizadas %>% 
+      mutate(ultima_data_votacao = data_votacoes$ultima_data)
     
     return(votacoes_sumarizadas)
   }

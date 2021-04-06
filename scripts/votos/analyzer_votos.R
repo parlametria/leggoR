@@ -10,10 +10,13 @@ source(here::here("scripts/votos/utils.R"))
 #' @param anos Anos de interesse
 #' @param votacoes_datapath Caminho para dataframe de votações
 #' @param votos_datapath Caminho para dataframe de votos
+#' @param proposicoes_datapath Caminho para dataframe de proposições
+#' @param entidades_datapath Caminho para dataframe de entidades
 processa_votos <- function(anos = c(2019, 2020),
                            votacoes_datapath = NULL,
                            votos_datapath = NULL,
-                           proposicoes_datapath = here::here("leggo_data/proposicoes.csv")) {
+                           proposicoes_datapath = here::here("leggo_data/proposicoes.csv"),
+                           entidades_datapath = here::here("leggo_data/entidades.csv")) {
 
   new_votacoes_camara <- processa_votacoes_camara_anos(anos) %>%
     mutate(casa = "camara",
@@ -32,11 +35,11 @@ processa_votos <- function(anos = c(2019, 2020),
   votos_camara <- NULL
   votos_senado <- NULL
 
-  
+
   votacoes_atuais <- read_votacoes(votacoes_datapath)
-  
+
   if (nrow(votacoes_atuais) > 0) {
-      
+
     votacoes_a_processar_camara <-
       anti_join(
         new_votacoes_camara,
@@ -54,7 +57,7 @@ processa_votos <- function(anos = c(2019, 2020),
       )
 
   } else {
-    
+
     votacoes_a_processar_camara <- new_votacoes_camara
     votacoes_a_processar_senado <- new_votacoes_senado
   }
@@ -76,7 +79,7 @@ processa_votos <- function(anos = c(2019, 2020),
 
   if (nrow(votacoes_a_processar_senado) > 0) {
     votos_senado <-
-      fetch_votos_senado(anos, votacoes_a_processar_senado) %>%
+      fetch_votos_senado(anos, votacoes_a_processar_senado, entidades_datapath) %>%
       mutate(id_parlamentar = as.integer(id_parlamentar)) %>%
       select(-id_proposicao) %>%
       perfilparlamentar::enumera_voto()
@@ -114,8 +117,8 @@ processa_votos <- function(anos = c(2019, 2020),
     mutate(id_parlamentar_parlametria = paste0(casa_enum, id_parlamentar)) %>%
     select(id_votacao, id_parlamentar, id_parlamentar_parlametria, partido, voto, casa) %>%
     distinct()
-  
-  votacoes <- votacoes %>% 
+
+  votacoes <- votacoes %>%
     mutate(is_nominal = if_else(id_votacao %in% votos_atuais$id_votacao, TRUE, FALSE))
 
   write_csv(votacoes, votacoes_datapath)

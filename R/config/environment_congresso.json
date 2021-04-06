@@ -170,7 +170,8 @@
     {"id_entidade": 20, "regex": "CPI do Futebol - 2015"},
     {"id_entidade": 21, "regex": "CPI de Brumadinho"},
     {"id_entidade": 22, "regex": "Comissão de Agricultura e Reforma Agrária"},
-    {"id_entidade": 23, "regex": "Subcomissão Temporária de Resíduos Sólidos"}
+    {"id_entidade": 23, "regex": "Subcomissão Temporária de Resíduos Sólidos"},
+    {"id_entidade": 24, "regex": "Comissão de Assuntos Econômicos"}
   ],
 
   "legislaturas":[
