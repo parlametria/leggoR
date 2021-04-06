@@ -405,8 +405,8 @@ fetch_props <- function(pls, export_path) {
     purrr::map_df(res, ~ .$progresso) %>%
     dplyr::rename(id_ext = prop_id) %>%
     unique()
-  locais_atuais <- purrr::map_df(res, ~ .$local_atual)
-  proposicoes_sem_local_atual <- agoradigital::verifica_proposicoes_com_local_detectado(proposicoes, locais_atuais)
+  props_locais_atuais <- purrr::map_df(res, ~ .$local_atual)
+  proposicoes_sem_local_atual <- agoradigital::verifica_proposicoes_com_local_detectado(proposicoes, props_locais_atuais)
 
   status_proposicoes <- tramitacoes %>%
     dplyr::arrange(desc(data)) %>%
@@ -424,7 +424,7 @@ fetch_props <- function(pls, export_path) {
   readr::write_csv(hists_temperatura,
                    paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
-  readr::write_csv(locais_atuais, paste0(export_path, "/locais_atuais.csv"))
+  readr::write_csv(props_locais_atuais, paste0(export_path, "/props_locais_atuais.csv"))
 
 }
 
