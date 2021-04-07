@@ -630,11 +630,13 @@ processa_local_atual <- function(proposicao_df, id_leggo) {
         casa_ultimo_local = dplyr::case_when(
           toupper(sigla_casa_ultimo_local) == "SF" ~ "senado",
           toupper(sigla_casa_ultimo_local) == "CD" ~ "camara",
+          sigla_casa_ultimo_local == "camara" ~ "camara",
+          sigla_casa_ultimo_local == "senado" ~ "senado",
           TRUE ~ "indefinida" # Flag usada para monitorar exceção
         )
       )
   } else {
-    # Cria colunas vazias quando não foi possível recuperar o último local
+    # Cria colunas vazias quando não for possível recuperar o último local
     proposicao_df <- proposicao_df %>%
       dplyr::mutate(sigla_ultimo_local = NA_character_,
                     sigla_casa_ultimo_local = NA_character_,
@@ -643,6 +645,10 @@ processa_local_atual <- function(proposicao_df, id_leggo) {
                     data_ultima_situacao = NA_character_)
   }
 
+  comissoes_camara <- tibble::tibble(sigla_comissao = get_envvars_camara()$comissoes$siglas_comissoes,
+                                     nome_comissao = get_envvars_camara()$comissoes$comissoes_permanentes,
+                                     casa = "camara")
+
   # Processa Dataframe de locais atuais filtrando apenas as proposições com
   # local capturado
   proposicao_local_atual <- proposicao_df %>%
@@ -650,10 +656,15 @@ processa_local_atual <- function(proposicao_df, id_leggo) {
     dplyr::distinct(sigla_ultimo_local, .keep_all = TRUE) %>%
     dplyr::mutate(id_leggo = id_leggo,
                   data_ultima_situacao = as.POSIXct(data_ultima_situacao)) %>%
-    dplyr::select(id_leggo, sigla_ultimo_local, casa_ultimo_local, nome_ultimo_local,
-                  data_ultima_situacao) %>%
     # Adiciona informação do tipo de local
-    .classifica_local(column_sigla = "sigla_ultimo_local")
+    .classifica_local(column_sigla = "sigla_ultimo_local") %>%
+    # Adiciona nome das comissões na câmara
+    dplyr::left_join(comissoes_camara, by = c("sigla_ultimo_local" = "sigla_comissao", "casa")) %>%
+    dplyr::mutate(nome_ultimo_local = dplyr::if_else(is.na(nome_ultimo_local),
+                                                     nome_comissao,
+                                                     nome_ultimo_local)) %>%
+    dplyr::select(id_leggo, sigla_ultimo_local, casa_ultimo_local, nome_ultimo_local,
+                  data_ultima_situacao, tipo_local)
 
   return(proposicao_local_atual)
 }

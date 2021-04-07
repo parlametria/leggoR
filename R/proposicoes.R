@@ -154,6 +154,10 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
                      autor_partido = ifelse(length(autor_df) > 1 && autor_df$codTipo == 10000,
                                             get_partido_autores(autor_df),
                                             NA),
+                     sigla_ultimo_local = status_proposicao_sigla_orgao,
+                     sigla_casa_ultimo_local = "camara",
+                     nome_ultimo_local = NA_character_,
+                     data_ultima_situacao = status_proposicao_data_hora,
                      apelido_materia = apelido,
                      tema = tema)
   proposicao
