@@ -37,16 +37,17 @@ import_proposicao <- function(prop_id, casa, apelido, tema, out_folderpath=NULL)
 #' @param casa casa de onde a proposição esta
 #' @param apelido Apelido da proposição
 #' @param tema Tema da proposição
+#' @param retry Flag indicando se é necessário tentar novamente ao se deparar com erro.
 #' @return Dataframe com as informações detalhadas de uma proposição
 #' @examples
 #' fetch_proposicao(129808, 'senado', 'Cadastro Positivo', 'Agenda Nacional', F)
 #' @export
-fetch_proposicao <- function(id, casa, apelido="", tema="") {
+fetch_proposicao <- function(id, casa, apelido="", tema="", retry=FALSE) {
   casa <- tolower(casa)
   if (casa == "camara") {
     fetch_proposicao_camara(id, apelido, tema)
   } else if (casa == "senado") {
-    fetch_proposicao_senado(id, apelido, tema)
+    fetch_proposicao_senado(id, apelido, tema, retry)
   } else {
     return("Parâmetro 'casa' não identificado.")
   }
@@ -71,31 +72,60 @@ fetch_proposicoes <- function(pls_ids) {
 #' @param normalized whether or not the output dataframe should be normalized (have the same format and column names for every house)
 #' @param apelido apelido da proposição
 #' @param tema tema da proposição
+#' @param retry Flag indicando se é necessário tentar novamente caso dê erro
 #' @return Dataframe com as informações detalhadas de uma proposição no Senado
 #' @examples
 #' fetch_proposicao_senado(91341, 'Cadastro Positivo', 'Agenda Nacional')
-fetch_proposicao_senado <- function(id, apelido, tema) {
-
-  proposicao <-
-    rcongresso::fetch_proposicao_senado(id) %>%
-    dplyr::transmute(
-      prop_id = as.integer(codigo_materia),
-      sigla_tipo = sigla_subtipo_materia,
-      numero = as.integer(numero_materia),
-      ano = as.integer(ano_materia),
-      ementa = ementa_materia,
-      data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao, "00:00")),
-      casa = "senado",
-      casa_origem = ifelse(tolower(nome_casa_origem) == "senado federal",
-                           "senado",
-                           "camara"),
-      autor_nome,
-      apelido_materia = ifelse(
-        "apelido_materia" %in% names(.),
-        apelido_materia,
-        apelido),
-      tema = tema
-    )
+fetch_proposicao_senado <- function(id, apelido, tema, retry=FALSE) {
+  proposicao <- NULL
+  if (retry) {
+    count <- 0
+    while (is.null(proposicao) && count < 5) {
+      cat(paste("\n--- Tentativa ", count + 1, "\n"))
+      proposicao <- try(rcongresso::fetch_proposicao_senado(id))
+      count <- count + 1
+    }
+  } else {
+    proposicao <- rcongresso::fetch_proposicao_senado(id)
+  }
+  
+  if (!is.null(proposicao)) {
+    proposicao <- proposicao %>% 
+      dplyr::transmute(
+        prop_id = as.integer(codigo_materia),
+        sigla_tipo = sigla_subtipo_materia,
+        numero = as.integer(numero_materia),
+        ano = as.integer(ano_materia),
+        ementa = ementa_materia,
+        data_apresentacao = lubridate::ymd_hm(paste(data_apresentacao, "00:00")),
+        casa = "senado",
+        casa_origem = ifelse(
+          tolower(nome_casa_origem) == "senado federal",
+          "senado",
+          "camara"
+        ),
+        autor_nome,
+        apelido_materia = ifelse(
+          "apelido_materia" %in% names(.),
+          apelido_materia,
+          apelido),
+        tema = tema)
+  } else {
+    proposicao <- tibble::tibble(
+      prop_id = integer(),
+      sigla_tipo = character(),
+      numero = integer(),
+      ano = integer(),
+      ementa = character(),
+      data_apresentacao = character(),
+      casa = character(),
+      casa_origem = character(),
+      autor_nome = character(),
+      apelido_materia = character(),
+      tema= character())
+  }
+  
+  return(proposicao)
 }
 
 #' @title Baixa dados sobre uma proposição

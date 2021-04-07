@@ -59,7 +59,7 @@ test <- function() {
     id_mpv_tramitacao_encerrada <- 134134
 
     etapas <- list()
-    etapas %<>% append(list(process_etapa(id_mpv_tramitacao_encerrada, "senado", pautas = pautas)))
+    etapas %<>% append(list(process_etapa(id_mpv_tramitacao_encerrada, "senado", pautas = pautas, retry = T)))
     etapas %<>% purrr::pmap(dplyr::bind_rows)
     progresso_mpv_tramitacao_encerrada <-
       agoradigital::generate_progresso_df_mpv(etapas$fases_eventos, etapas$proposicao) %>%

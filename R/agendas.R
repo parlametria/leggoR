@@ -252,6 +252,29 @@ junta_agendas <- function(initial_date, end_date) {
     tibble::as_tibble() %>%
     dplyr::mutate(fim_semana = as.Date(cut(value, "week")) + 4)
 
-  materia <- purrr::map2_df(semanas$value, semanas$fim_semana, ~ fetch_agenda_geral(.x, .y))
+  materia <-
+    purrr::map2_df(semanas$value, semanas$fim_semana,
+                   function(x, y) {
+                     agenda <- NULL
+                     count <- 0
+                     
+                     while (is.null(agenda) && count < 5) {
+                       cat(paste("\n--- Tentativa ", count + 1, "\n"))
+                       try(agenda <- fetch_agenda_geral(x, y))
+                       count <- count + 1
+                     }
+                     
+                     if (is.null(agenda))
+                       agenda <- tibble::tibble(
+                         data = character(),
+                         sigla = character(),
+                         id_ext = integer(),
+                         local = character(),
+                         casa = character()
+                         
+                       )
+                     return(agenda)
+                   })
+  return(materia) 
 }
 
