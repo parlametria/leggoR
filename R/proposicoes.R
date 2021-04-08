@@ -81,8 +81,16 @@ fetch_proposicao_senado <- function(id, apelido, tema, retry=FALSE) {
   if (retry) {
     count <- 0
     while (is.null(proposicao) && count < 5) {
-      cat(paste("\n--- Tentativa ", count + 1, "\n"))
-      proposicao <- try(rcongresso::fetch_proposicao_senado(id))
+      cat(
+        paste(
+          "\n--- Tentativa",
+          count + 1,
+          "de gerar dados de proposições para a proposição",
+          id,
+          "\n"
+        )
+      )
+      try(proposicao <- rcongresso::fetch_proposicao_senado(id))
       count <- count + 1
     }
   } else {
@@ -180,7 +188,7 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
                      autor_partido = ifelse(length(autor_df) > 1 && autor_df$codTipo == 10000,
                                             get_partido_autores(autor_df),
                                             NA),
-                     apelido_materia = apelido,
+                     apelido_materia = as.character(apelido),
                      tema = tema)
   proposicao
 }

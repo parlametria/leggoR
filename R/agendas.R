@@ -259,7 +259,7 @@ junta_agendas <- function(initial_date, end_date) {
                      count <- 0
                      
                      while (is.null(agenda) && count < 5) {
-                       cat(paste("\n--- Tentativa ", count + 1, "\n"))
+                       cat(paste("\n--- Tentativa", count + 1, "de gerar dados de agenda \n"))
                        try(agenda <- fetch_agenda_geral(x, y))
                        count <- count + 1
                      }

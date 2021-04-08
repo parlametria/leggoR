@@ -11,11 +11,11 @@ congresso_env <-
 #' @return list com os dataframes: proposicao, fases_eventos,
 #' hist_temperatura
 process_etapa <- function(id, casa, pautas, retry=FALSE) {
-  prop <- agoradigital::fetch_proposicao(id, casa, retry)
+  prop <- agoradigital::fetch_proposicao(id, casa, retry = retry)
   if (tolower(prop$sigla_tipo) == 'mpv') {
-    tram <- agoradigital::fetch_tramitacao(id, casa, TRUE)
+    tram <- agoradigital::fetch_tramitacao(id, casa, TRUE, retry = retry)
   } else {
-    tram <- agoradigital::fetch_tramitacao(id, casa)
+    tram <- agoradigital::fetch_tramitacao(id, casa, retry = retry)
   }
 
   proc_tram <-

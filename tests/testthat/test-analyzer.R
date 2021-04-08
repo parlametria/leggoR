@@ -2,17 +2,17 @@ testthat::context('test-analyzer.R')
 
 library(magrittr)
 
-tram_91341 <<- fetch_tramitacao(91341, 'senado')
-prop_91341 <<- fetch_proposicao(91341, 'senado')
+tram_91341 <<- fetch_tramitacao(91341, 'senado', retry = T)
+prop_91341 <<- fetch_proposicao(91341, 'senado', retry = T)
 tram_257161 <<- fetch_tramitacao(257161, 'camara')
 prop_257161 <<- fetch_proposicao(257161, 'camara')
-tram_mpv_868 <<- fetch_tramitacao(135061, 'senado')
-prop_mpv_868 <<- fetch_proposicao(135061, 'senado')
-mpv_sem_eficacia_867 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(135060, 'senado', T))
-mpv_sem_eficacia_868 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(135061, 'senado', T))
-mpv_rejeitada_850 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(134245, 'senado', T))
-mpv_rejeitada_816 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(132070, 'senado', T))
-mpv_aprovada_870 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(135064, 'senado', T))
+tram_mpv_868 <<- fetch_tramitacao(135061, 'senado', retry = T)
+prop_mpv_868 <<- fetch_proposicao(135061, 'senado', retry = T)
+mpv_sem_eficacia_867 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(135060, 'senado', T, retry = T))
+mpv_sem_eficacia_868 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(135061, 'senado', T, retry = T))
+mpv_rejeitada_850 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(134245, 'senado', T, retry = T))
+mpv_rejeitada_816 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(132070, 'senado', T, retry = T))
+mpv_aprovada_870 <<- agoradigital::extract_evento_Senado(agoradigital::fetch_tramitacao(135064, 'senado', T, retry = T))
 
 
 test_that('get_pesos_eventos() returns all events from both houses', {
