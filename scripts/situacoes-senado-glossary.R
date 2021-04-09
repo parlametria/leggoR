@@ -1,7 +1,7 @@
 library(jsonlite)
 require(magrittr)
 
-url_situacoes_glossary <- "http://legis.senado.leg.br/dadosabertos/materia/situacoes.json"
+url_situacoes_glossary <- "https://legis.senado.leg.br/dadosabertos/materia/situacoes.json"
 
 json_situacoes <- fromJSON(url_situacoes_glossary, flatten = T)
 

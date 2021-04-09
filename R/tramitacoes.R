@@ -2,35 +2,71 @@
 #' @description Retorna dataframe com os dados da movimentação da proposição, incluindo tramitação, prazos, despachos e situação
 #' Ao fim, a função retira todos as colunas que tenham tipo lista para uniformizar o dataframe.
 #' @param prop_id ID de uma proposição do Senado
+#' @param isMPV Flag indicando se a proposição é MPV
+#' @param retry Flag indicando se tenta novamente obter o dado após erro.
 #' @return Dataframe normalizado com as informações sobre a movimentação de uma proposição no Senado
 #' @examples
 #' fetch_tramitacao_senado(91341)
-fetch_tramitacao_senado <- function(prop_id, isMPV = FALSE) {
-    tramitacao <- 
-      rcongresso::fetch_tramitacao_senado(prop_id) %>%
-      dplyr::mutate(data_hora = lubridate::ymd_hms(data_hora),
-                    prop_id = as.integer(codigo_materia),
-                    sequencia = as.integer(sequencia),
-                    id_situacao = as.integer(situacao_codigo_situacao),
-                    casa = "senado",
-                    link_inteiro_teor = "") %>%
-      dplyr::select(prop_id,
-                    casa,
-                    data_hora,
-                    sequencia,
-                    texto_tramitacao,
-                    sigla_local = origem_tramitacao_local_sigla_local,
-                    id_situacao,
-                    descricao_situacao = situacao_descricao_situacao,
-                    link_inteiro_teor,
-                    origem_tramitacao_local_nome_casa_local)
+fetch_tramitacao_senado <- function(prop_id, isMPV = FALSE, retry = FALSE) {
+  tramitacao <- NULL
+  if (retry) {
+    count <- 0
+    while (is.null(tramitacao) && count < 5) {
+      cat(paste(
+        "\n--- Tentativa",
+        count + 1,
+        "de gerar dados de tramitação para proposição",
+        prop_id,
+        "\n"
+      ))
+      try(tramitacao <- rcongresso::fetch_tramitacao_senado(prop_id))
+      count <- count + 1
+    }
+  } else {
+    tramitacao <- rcongresso::fetch_tramitacao_senado(prop_id)
+  }
   
-  if(!isMPV) {
+  if (!is.null(tramitacao)) {
     tramitacao <-
-      tramitacao %>% 
+      tramitacao %>%
+      dplyr::mutate(
+        data_hora = lubridate::ymd_hms(data_hora),
+        prop_id = as.integer(codigo_materia),
+        sequencia = as.integer(sequencia),
+        id_situacao = as.integer(situacao_codigo_situacao),
+        casa = "senado",
+        link_inteiro_teor = ""
+      ) %>%
+      dplyr::select(
+        prop_id,
+        casa,
+        data_hora,
+        sequencia,
+        texto_tramitacao,
+        sigla_local = origem_tramitacao_local_sigla_local,
+        id_situacao,
+        descricao_situacao = situacao_descricao_situacao,
+        link_inteiro_teor,
+        origem_tramitacao_local_nome_casa_local
+      )
+  } else {
+    tramitacao <- tibble::tibble(prop_id = integer(),
+                                 casa = character(),
+                                 data_hora = character(),
+                                 sequencia = integer(),
+                                 texto_tramitacao = character(),
+                                 sigla_local = character(),
+                                 id_situacao = integer(),
+                                 descricao_situacao = character(),
+                                 link_inteiro_teor = character(),
+                                 origem_tramitacao_local_nome_casa_local = character())
+  }
+  
+  if (!isMPV) {
+    tramitacao <-
+      tramitacao %>%
       dplyr::select(-c(origem_tramitacao_local_nome_casa_local))
   }
-    
     return (tramitacao)
 }
 
@@ -38,16 +74,18 @@ fetch_tramitacao_senado <- function(prop_id, isMPV = FALSE) {
 #' @description Retorna dataframe com os dados da tramitação de uma proposição no Congresso
 #' @param id ID de uma proposição na sua respectiva casa
 #' @param casa Casa onde a proposição está tramitando
+#' @param isMPV Flag indicando se a proposição é MPV
+#' @param retry Flag indicando se tenta novamente obter o dado após erro
 #' @return Dataframe normalizado com os dados da tramitação de uma proposição no Congresso
 #' @examples
 #' fetch_tramitacao(91341, "senado")
 #' @export
-fetch_tramitacao <- function(id, casa, isMPV = FALSE) {
+fetch_tramitacao <- function(id, casa, isMPV = FALSE, retry = FALSE) {
   casa <- tolower(casa)
   if (casa == "camara") {
     fetch_tramitacao_camara(id)
   } else if (casa == "senado") {
-    fetch_tramitacao_senado(id, isMPV)
+    fetch_tramitacao_senado(id, isMPV, retry)
   } else {
     return("Parâmetro 'casa' não identificado.")
   }
