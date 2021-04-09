@@ -46,14 +46,17 @@ safe_process_etapa <- purrr::safely(
         ~ autor_nome,
         ~ autor_uf,
         ~ autor_partido,
+        ~ sigla_ultimo_local,
+        ~ sigla_casa_ultimo_local,
+        ~ nome_ultimo_local,
+        ~ data_ultima_situacao,
         ~ regime_tramitacao,
         ~ forma_apreciacao,
         ~ relator_id,
         ~ relator_nome,
         ~ relator_partido,
         ~ relator_uf,
-        ~ relator_data,
-        ~ temperatura
+        ~ relator_data
       ),
       fases_eventos = tibble::tribble(
         ~ prop_id,
@@ -238,11 +241,14 @@ process_pl <-
     }
 
     etapas %<>% purrr::pmap(dplyr::bind_rows)
+
     if (nrow(etapas$proposicao) != 0) {
       sigla <- tolower(etapas$proposicao$sigla_tipo)
       if (length(sigla) > 1) {
         sigla <- sigla[1]
       }
+
+      ## Processa dados do progresso
       if (sigla == 'mpv') {
         etapas[["progresso"]] <-
           agoradigital::generate_progresso_df_mpv(etapas$fases_eventos, etapas$proposicao) %>%
@@ -255,11 +261,19 @@ process_pl <-
           adiciona_locais_faltantes_progresso()
       }
       id_leggo = digest::digest(paste0(id_camara , " ", id_senado), algo="md5", serialize=F)
+
+      ## Processa dados de temperatura
       etapas[["hist_temperatura"]] <-
         agoradigital::get_historico_temperatura_recente_id_leggo(
           tram = etapas$fases_eventos,
           id_leggo = id_leggo,
           pautas = pautas
+        )
+      ## Processa dados de Locais Atuais da proposição
+      etapas[["local_atual"]] <-
+        agoradigital::processa_local_atual(
+          proposicao_df = etapas$proposicao,
+          id_leggo = id_leggo
         )
     }
     etapas$proposicao <-
@@ -330,7 +344,6 @@ fetch_props <- function(pls, export_path) {
   proposicoes_individuais_a_baixar <-
     converte_tabela_geral_ids_casa(pls)
 
-
   while (count < 5) {
     cat(paste("\n--- Tentativa ", count + 1, "\n"))
     sleep_time = .DEF_REQ_SLEEP_TIME_IN_SECS ^ (count + 1)
@@ -383,7 +396,6 @@ fetch_props <- function(pls, export_path) {
     print(proposicoes_que_nao_baixaram)
   }
 
-
   tramitacoes <-
     purrr::map_df(res, ~ .$fases_eventos) %>%
     dplyr::rename(id_ext = prop_id, data = data_hora) %>%
@@ -395,6 +407,8 @@ fetch_props <- function(pls, export_path) {
     purrr::map_df(res, ~ .$progresso) %>%
     dplyr::rename(id_ext = prop_id) %>%
     unique()
+  props_locais_atuais <- purrr::map_df(res, ~ .$local_atual)
+  proposicoes_sem_local_atual <- agoradigital::verifica_proposicoes_com_local_detectado(proposicoes, props_locais_atuais)
 
   status_proposicoes <- tramitacoes %>%
     dplyr::arrange(desc(data)) %>%
@@ -412,6 +426,7 @@ fetch_props <- function(pls, export_path) {
   readr::write_csv(hists_temperatura,
                    paste0(export_path, "/hists_temperatura.csv"))
   readr::write_csv(progressos, paste0(export_path, "/progressos.csv"))
+  readr::write_csv(props_locais_atuais, paste0(export_path, "/props_locais_atuais.csv"))
 
 }
 
@@ -428,8 +443,6 @@ get_casa_proposicao <- function(id_camara, id_senado) {
   } else if (is.na(id_senado)) {
     casa_proposicao = "camara"
   } else {
-    # prop_casa <- agoradigital::fetch_proposicao(id_senado, "senado") %>%
-    #   dplyr::pull(casa_proposicao)
 
     prop_casa <- tryCatch({
       agoradigital::fetch_proposicao(id_senado, "senado") %>%
@@ -480,7 +493,7 @@ process_autores_pl <-
            total_rows = 1) {
     print(
       paste(
-        "Recuperando atores para a proposição: câmara",
+        "Recuperando autores para a proposição: câmara",
         id_camara,
         " senado",
         id_senado,

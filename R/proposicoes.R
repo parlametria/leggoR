@@ -96,9 +96,9 @@ fetch_proposicao_senado <- function(id, apelido, tema, retry=FALSE) {
   } else {
     proposicao <- rcongresso::fetch_proposicao_senado(id)
   }
-  
+
   if (!is.null(proposicao)) {
-    proposicao <- proposicao %>% 
+    proposicao <- proposicao %>%
       dplyr::transmute(
         prop_id = as.integer(codigo_materia),
         sigla_tipo = sigla_subtipo_materia,
@@ -113,6 +113,10 @@ fetch_proposicao_senado <- function(id, apelido, tema, retry=FALSE) {
           "camara"
         ),
         autor_nome,
+        sigla_ultimo_local = sigla_local,
+        sigla_casa_ultimo_local = sigla_casa_local,
+        nome_ultimo_local = nome_local,
+        data_ultima_situacao = data_situacao,
         apelido_materia = ifelse(
           "apelido_materia" %in% names(.),
           apelido_materia,
@@ -129,10 +133,14 @@ fetch_proposicao_senado <- function(id, apelido, tema, retry=FALSE) {
       casa = character(),
       casa_origem = character(),
       autor_nome = character(),
+      sigla_ultimo_local = character(),
+      sigla_casa_ultimo_local = character(),
+      nome_ultimo_local = character(),
+      data_ultima_situacao = character(),
       apelido_materia = character(),
       tema= character())
   }
-  
+
   return(proposicao)
 }
 
@@ -188,6 +196,10 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
                      autor_partido = ifelse(length(autor_df) > 1 && autor_df$codTipo == 10000,
                                             get_partido_autores(autor_df),
                                             NA),
+                     sigla_ultimo_local = status_proposicao_sigla_orgao,
+                     sigla_casa_ultimo_local = "camara",
+                     nome_ultimo_local = NA_character_,
+                     data_ultima_situacao = status_proposicao_data_hora,
                      apelido_materia = as.character(apelido),
                      tema = tema)
   proposicao
@@ -429,7 +441,7 @@ add_tipo_evento_documento <- function(docs_data, documentos_scrap = F) {
         dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo),  # default para tipos não agrupados
                       tipo = dplyr::if_else(str_detect(tipo, "P.S"), "Outros", tipo), # Corrige casos de falsos positivos em matérias legislativas.
                       peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso)), # Atribui peso default
-                      tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>% 
+                      tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>%
         # Remove casos duplicados usando o peso do regex na ordem de precedência
         dplyr::group_by(id_principal, casa, id_documento, id_autor) %>%
         dplyr::mutate(max_peso = max(peso)) %>%
@@ -618,7 +630,7 @@ classifica_tipo_documento_autorias <- function(docs) {
     dplyr::mutate(tipo = dplyr::if_else(is.na(tipo), "Outros", tipo), # default para tipos não agrupados
                   tipo = dplyr::if_else(str_detect(tipo, "P.S"), "Outros", tipo), # Corrige casos de falsos positivos em matérias legislativas.
                   peso = dplyr::if_else(is.na(peso), 0, as.numeric(peso)), # Atribui peso default
-                  tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>% 
+                  tipo_acao = dplyr::if_else(is.na(tipo_acao), "Outros", tipo_acao)) %>%
     # Remove casos duplicados usando o peso do regex na ordem de precedência
     dplyr::group_by(id_principal, casa, id_documento, id_autor) %>%
     mutate(max_peso = max(peso)) %>%

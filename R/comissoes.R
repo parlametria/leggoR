@@ -8,32 +8,32 @@ source(here::here("R/utils.R"))
 #' @return Dataframe com informações dos membros da Comissão para uma data de início
 fetch_membros_comissao_camara_by_page <- function(page = 1,  url, sigla_comissao, max_tentativas = 10) {
   library(tidyverse)
-  
+
   url_paginada <- paste0(url, '&pagina=', page)
-  
+
   for (tentativa in seq_len(max_tentativas)) {
-    
+
     membros <- tryCatch(
       {
         membros <-
           (RCurl::getURL(url_paginada) %>%
              jsonlite::fromJSON())$dados %>%
           tibble::as_tibble()
-        
+
         if (nrow(membros) == 0) {
-          return(tibble::tibble(cargo = character(), 
+          return(tibble::tibble(cargo = character(),
                                 id = character(),
-                                nome = character(), 
+                                nome = character(),
                                 partido = character(),
-                                uf = character(), 
-                                situacao = character(), 
+                                uf = character(),
+                                situacao = character(),
                                 data_inicio = character(),
                                 data_fim = character()))
         } else {
-          
-          membros <- membros %>% 
+
+          membros <- membros %>%
             dplyr::select(cargo = titulo, id, nome, partido = siglaPartido, uf = siglaUf, data_inicio = dataInicio, data_fim = dataFim) %>%
-            dplyr::mutate(sigla = sigla_comissao, 
+            dplyr::mutate(sigla = sigla_comissao,
                           id = as.character(id),
                           casa = "camara",
                           cargo = dplyr::case_when(
@@ -45,23 +45,23 @@ fetch_membros_comissao_camara_by_page <- function(page = 1,  url, sigla_comissao
                             startsWith(cargo, "3º Vice-Presidente") ~ "TERCEIRO VICE-PRESIDENTE"
                           ),
                           situacao = dplyr::if_else(cargo == 'SUPLENTE', 'Suplente', 'Titular'))
-          membros <- membros[!duplicated(membros$id) | membros$cargo %in% 
+          membros <- membros[!duplicated(membros$id) | membros$cargo %in%
                                c("PRESIDENTE", "VICE-PRESIDENTE", "SEGUNDO VICE-PRESIDENTE", "TERCEIRO VICE-PRESIDENTE"),,drop=FALSE]
         }
         return(membros)
       }, error = function(e) {
         print(e)
-        return(tibble::tibble(cargo = character(), 
+        return(tibble::tibble(cargo = character(),
                               id = character(),
-                              nome = character(), 
+                              nome = character(),
                               partido = character(),
-                              uf = character(), 
-                              situacao = character(), 
+                              uf = character(),
+                              situacao = character(),
                               data_inicio = character(),
                               data_fim = character()))
       }
     )
-    
+
     if (nrow(membros) == 0) {
       backoff <- runif(n = 1, min = 0, max = 2 ^ tentativa - 1)
       message("Backing off for ", backoff, " seconds.")
@@ -81,27 +81,27 @@ fetch_membros_comissao_camara_by_page <- function(page = 1,  url, sigla_comissao
 #' @param max_tentativas Número máximo de tentativas
 #' @return Dataframe com informações dos membros da Comissão para uma data de início
 fetch_membros_comissao_camara_with_backoff <- function(orgao_id, sigla_comissao, data_inicio_arg = '2019-02-01', max_tentativas = 10) {
-  
+
   print(paste0('Baixando informações dos membros da comissão ', sigla_comissao, ' na casa camara'))
   url <- paste0('https://dadosabertos.camara.leg.br/api/v2/orgaos/',
-                orgao_id, 
-                '/membros?dataInicio=', 
-                data_inicio_arg, 
+                orgao_id,
+                '/membros?dataInicio=',
+                data_inicio_arg,
                 '&itens=100')
-  
+
   links <- (RCurl::getURL(url) %>% jsonlite::fromJSON())$links
-  
-  last_page <- links %>% 
-    dplyr::filter(rel == "last") %>% 
-    dplyr::pull(href) %>% 
-    stringr::str_match("pagina=(.*?)&") %>% 
-    tibble::as_tibble(.name_repair = c("universal")) %>% 
+
+  last_page <- links %>%
+    dplyr::filter(rel == "last") %>%
+    dplyr::pull(href) %>%
+    stringr::str_match("pagina=(.*?)&") %>%
+    tibble::as_tibble(.name_repair = c("universal")) %>%
     dplyr::pull(`...2`)
-  
+
   if (rlang::is_empty(last_page)) {
     last_page <- 1
-  } 
-  
+  }
+
   membros <- tibble::tibble(page = 1:as.numeric(last_page)) %>%
     dplyr::mutate(data = purrr::map(
       page,
@@ -109,9 +109,9 @@ fetch_membros_comissao_camara_with_backoff <- function(orgao_id, sigla_comissao,
       url,
       sigla_comissao,
       max_tentativas
-    )) %>% 
+    )) %>%
     tidyr::unnest(data)
-  
+
   return(membros)
 }
 
@@ -131,7 +131,7 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao, orgaos_camara, dat
   if (nrow(orgaos_camara) == 0) {
     warning("Comissão não encontrada")
     n <- tibble::tibble(
-      cargo = character(), 
+      cargo = character(),
       id = integer(),
       partido = character(),
       uf = character(),
@@ -150,7 +150,7 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao, orgaos_camara, dat
                                                  dplyr::pull(orgao_id),
                                                sigla_comissao,
                                                data_inicio_arg)
-  
+
   df <- df %>%
     dplyr::mutate(sigla = sigla_comissao, casa = "camara") %>%
     dplyr::rowwise(.) %>%
@@ -159,7 +159,7 @@ fetch_composicao_comissoes_camara <- function(sigla_comissao, orgaos_camara, dat
       id,
       '.jpg'
     )) %>%
-    dplyr::ungroup() %>% 
+    dplyr::ungroup() %>%
     dplyr::select(cargo,
                   id,
                   partido,
@@ -186,9 +186,9 @@ fetch_composicao_comissao <- function(sigla, casa, orgaos_camara, data_inicio_ar
   casa <- tolower(casa)
 
   if (casa == 'camara') {
-    comissao <- 
-      fetch_composicao_comissoes_camara(sigla, orgaos_camara, data_inicio_arg) 
-      
+    comissao <-
+      fetch_composicao_comissoes_camara(sigla, orgaos_camara, data_inicio_arg)
+
   } else if (casa == 'senado' || casa == 'congresso_nacional') {
     new_name <- c("cargo", "id", "partido", "uf", "situacao", "nome", "foto", "sigla", "casa")
     comissao <-
@@ -197,12 +197,12 @@ fetch_composicao_comissao <- function(sigla, casa, orgaos_camara, data_inicio_ar
                     casa = casa)
     names(comissao) <- new_name
     comissao <-
-      comissao %>% 
+      comissao %>%
       dplyr::filter(!is.na(id))
   } else {
     return('Parâmetro "casa" não identificado.')
   }
-  
+
   return(comissao)
 }
 
@@ -280,7 +280,7 @@ fetch_composicao_comissoes_senado <- function(sigla) {
           FOTO = character()
         )
       }
-    }, 
+    },
     error=function(cond) {
       return(
         tibble::tibble(
@@ -307,9 +307,9 @@ fetch_composicao_comissoes_senado <- function(sigla) {
 #' @export
 fetch_all_composicao_comissao <- function(data_inicio = "2019-02-01") {
   orgaos_camara <- fetch_orgaos_camara()
-  
+
   siglas_camara <- tryCatch({
-    orgaos_camara %>% 
+    orgaos_camara %>%
       dplyr::filter(tipo_orgao_id == 2 |
                       (tipo_orgao_id == 3 & dataFim == "")) %>%
       dplyr::mutate_all(as.character) %>%
@@ -320,29 +320,29 @@ fetch_all_composicao_comissao <- function(data_inicio = "2019-02-01") {
   }, error=function(e){
     return(tibble::tibble(sigla = character(), casa = character()))
   })
-   
-  
+
+
   siglas_senado <- tryCatch({
-    fetch_orgaos_senado() %>% 
-      dplyr::mutate(casa = 'senado', 
-                    sigla = stringr::str_replace_all(sigla, " ", ""))
-  }, error=function(e){
-    return(tibble::tibble(sigla = character(), casa = character()))
-  })
-    
-  siglas_cong_nacional <- tryCatch({
-    fetch_orgaos_congresso_nacional() %>%
-      dplyr::mutate(casa = 'congresso_nacional', 
+    fetch_orgaos_senado() %>%
+      dplyr::mutate(casa = 'senado',
                     sigla = stringr::str_replace_all(sigla, " ", ""))
   }, error=function(e){
     return(tibble::tibble(sigla = character(), casa = character()))
   })
 
-  siglas_comissoes <- 
+  siglas_cong_nacional <- tryCatch({
+    fetch_orgaos_congresso_nacional() %>%
+      dplyr::mutate(casa = 'congresso_nacional',
+                    sigla = stringr::str_replace_all(sigla, " ", ""))
+  }, error=function(e){
+    return(tibble::tibble(sigla = character(), casa = character()))
+  })
+
+  siglas_comissoes <-
     rbind(siglas_camara, siglas_senado, siglas_cong_nacional) %>%
     dplyr::distinct() %>%
     dplyr::arrange(casa,sigla)
-  
+
   composicao_comissoes <-
     purrr::map2_df(siglas_comissoes$sigla, siglas_comissoes$casa, ~ fetch_composicao_comissao(.x, .y, orgaos_camara, data_inicio)) %>%
     dplyr::mutate(partido = trimws(partido))

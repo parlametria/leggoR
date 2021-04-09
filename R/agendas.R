@@ -257,13 +257,13 @@ junta_agendas <- function(initial_date, end_date) {
                    function(x, y) {
                      agenda <- NULL
                      count <- 0
-                     
+
                      while (is.null(agenda) && count < 5) {
                        cat(paste("\n--- Tentativa", count + 1, "de gerar dados de agenda \n"))
                        try(agenda <- fetch_agenda_geral(x, y))
                        count <- count + 1
                      }
-                     
+
                      if (is.null(agenda))
                        agenda <- tibble::tibble(
                          data = character(),
@@ -271,10 +271,10 @@ junta_agendas <- function(initial_date, end_date) {
                          id_ext = integer(),
                          local = character(),
                          casa = character()
-                         
+
                        )
                      return(agenda)
                    })
-  return(materia) 
+  return(materia)
 }
 

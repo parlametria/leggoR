@@ -20,7 +20,7 @@ extract_links_proposicao <- function(id, casa) {
     } else if(casa == 'senado') {
       df <- extract_links_proposicao_senado(id)
     }
-    
+
     return(df %>% extract_initial_page_from_link())
   },
   error = function(msg) {
@@ -59,19 +59,19 @@ has_redirect_url <- function(content) {
 get_redirected_url <- function(url) {
   content <- httr::GET(url) %>%
     httr::content()
-  
+
   if(has_redirect_url(content)) {
     content_list <- content %>%
       xml2::as_list()
     attribute <- lapply(content_list$html$head, attributes)
     new_url <- stringr::str_extract(attribute$meta$content, "http.*") %>%
       stringr::str_remove("&altura=.*")
-    
+
     if(length(new_url) > 0) {
       url <- new_url
     }
   }
-  
+
   return(url)
 }
 
@@ -82,11 +82,11 @@ get_redirected_url <- function(url) {
 #' @importFrom magrittr %>%
 process_proposicao_camara <- function(tramitacao_df) {
   proc_tram_df <- tramitacao_df %>%
-    extract_events_in_camara() %>% 
+    extract_events_in_camara() %>%
     extract_locais_in_camara() %>%
     refact_date() %>%
     sort_by_date()
-  
+
   return(proc_tram_df)
 }
 
@@ -98,9 +98,9 @@ process_proposicao_camara <- function(tramitacao_df) {
 #' extract_links_proposicao_camara(rcongresso::fetch_proposicao(46249), rcongresso::fetch_tramitacao(46249, 'camara'))
 extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
   casa <- "camara"
-  tramitacao_df <- 
-    tramitacao_df %>% 
-    dplyr::filter(!is.na(url)) %>% 
+  tramitacao_df <-
+    tramitacao_df %>%
+    dplyr::filter(!is.na(url)) %>%
     dplyr::mutate(data_hora = lubridate::ymd_hm(stringr::str_replace(data_hora,'T',' ')),
                   casa = casa,
                   id_situacao = as.integer(cod_tipo_tramitacao)) %>%
@@ -113,10 +113,10 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                   id_situacao,
                   descricao_tramitacao,
                   link_inteiro_teor = url)
-  df <- 
-    process_proposicao_camara(tramitacao_df) %>%  
-    dplyr::filter(stringr::str_detect(evento, camara_env$versoes_texto_proposicao$eventos_regex)) %>% 
-    dplyr::mutate(codigo_texto = stringr::str_extract(tolower(link_inteiro_teor), '\\d.*')) %>% 
+  df <-
+    process_proposicao_camara(tramitacao_df) %>%
+    dplyr::filter(stringr::str_detect(evento, camara_env$versoes_texto_proposicao$eventos_regex)) %>%
+    dplyr::mutate(codigo_texto = stringr::str_extract(tolower(link_inteiro_teor), '\\d.*')) %>%
     dplyr::select(prop_id,
                   casa,
                   codigo_texto,
@@ -124,29 +124,29 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
                   tipo_texto = descricao_tramitacao,
                   texto_tramitacao,
                   link_inteiro_teor)
-  
+
   tipos_emendas <- camara_env$tipos_emendas
-  
-  emendas <- rcongresso::fetch_emendas(proposicao_df$id, casa) %>% 
-    
+
+  emendas <- rcongresso::fetch_emendas(proposicao_df$id, casa) %>%
+
     dplyr::mutate(prop_id = proposicao_df$id,
-                  casa = "camara")  %>% 
-    dplyr::left_join(tipos_emendas, by=(c("tipo_documento" = "sigla"))) %>% 
+                  casa = "camara")  %>%
+    dplyr::left_join(tipos_emendas, by=(c("tipo_documento" = "sigla"))) %>%
     dplyr::select(prop_id,
                   casa,
                   codigo_texto = codigo_emenda,
                   data_hora = data_apresentacao,
                   tipo_texto,
                   texto_tramitacao = inteiro_teor)
-  
+
   if(nrow(emendas) > 0) {
     links_inteiro_teor <- purrr::map_chr(emendas$codigo_texto, ~get_emendas_links(.x))
     emendas$link_inteiro_teor <- links_inteiro_teor
-    
+
     df <- df %>%
       rbind(emendas)
   }
-  
+
   if(nrow(df) > 0) {
     df <- df %>%
       dplyr::select(id_proposicao = prop_id,
@@ -166,10 +166,10 @@ extract_links_proposicao_camara <- function(proposicao_df, tramitacao_df) {
     df <- dplyr::tribble(
       ~ id_proposicao, ~ casa, ~codigo_texto,  ~ data, ~ tipo_texto, ~ descricao, ~ link_inteiro_teor)
   }
-  
+
   df <- df %>%
     dplyr::mutate(data = as.character(data))
-  
+
   return(df)
 }
 
@@ -194,7 +194,7 @@ mutate_links <- function(df) {
     df <- df %>%
       dplyr::mutate(DescricaoTexto = "")
   }
-  
+
   return(df)
 }
 
@@ -230,7 +230,7 @@ filter_links <- function(df) {
 #' extract_links_proposicao_senado(127753)
 extract_links_proposicao_senado <- function(id) {
   url = paste0('https://legis.senado.leg.br/dadosabertos/materia/textos/', id)
-  
+
   textos_df <-
     XML::xmlToDataFrame(nodes = XML::getNodeSet(XML::xmlParse(RCurl::getURL(url)),
                                                 "//Texto")) %>%
@@ -239,11 +239,11 @@ extract_links_proposicao_senado <- function(id) {
                   casa = "senado") %>%
     mutate_links() %>%
     filter_links()
-  
+
   if(nrow(textos_df) == 0) {
     return(dplyr::tribble(
       ~ id_votacao, ~ casa, ~ codigo_texto, ~ data, ~ tipo_texto, ~ descricao, ~ link_inteiro_teor))
-    
+
   } else{
     textos_df <- textos_df %>%
       dplyr::select(id_proposicao,

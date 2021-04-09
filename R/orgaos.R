@@ -23,11 +23,11 @@ fetch_orgaos_camara <- function() {
 fetch_orgaos_senado <- function() {
   url_base <- 'https://legis.senado.leg.br/dadosabertos/comissao/lista/'
   no_xml <- '//colegiado'
-  
+
   comissoes_permanentes_df <- parse_senado_comissoes_xml(url_base,'permanente',no_xml)
   comissoes_temporarias_df <- parse_senado_comissoes_xml(url_base,'temporaria',no_xml)
   cpis_df <- parse_senado_comissoes_xml(url_base,'cpi',no_xml)
-  
+
   df <-
     rbind(comissoes_permanentes_df, comissoes_temporarias_df, cpis_df) %>%
     dplyr::distinct()
@@ -45,17 +45,17 @@ fetch_orgaos_senado <- function() {
 fetch_orgaos_congresso_nacional <- function() {
   url_base <- 'https://www.congressonacional.leg.br/dados/comissao/lista/'
   no_xml <- '//Colegiado'
-  
+
   comissoes_permanentes_df <- parse_senado_comissoes_xml(url_base,'permanente',no_xml)
   comissoes_mpvs_df <- parse_senado_comissoes_xml(url_base,'mpv',no_xml)
   comissoes_mistas_especiais_df <- parse_senado_comissoes_xml(url_base,'mistaEspecial',no_xml)
   comissoes_analise_veto_df <- parse_senado_comissoes_xml(url_base,'veto',no_xml)
-  
+
   df <-
-    rbind(comissoes_permanentes_df, comissoes_mpvs_df, 
+    rbind(comissoes_permanentes_df, comissoes_mpvs_df,
           comissoes_mistas_especiais_df, comissoes_analise_veto_df) %>%
     dplyr::distinct()
-  
+
   return(df)
 }
 
@@ -71,19 +71,19 @@ fetch_orgaos_congresso_nacional <- function() {
 #' @importFrom dplyr %>%
 parse_senado_comissoes_xml <- function(url_base, tipo_comissao, nome_no_xml) {
   comissoes_df <- tibble::tibble()
-  
+
   xml_response <- RCurl::getURL(paste0(url_base, tipo_comissao))
-  
+
   comissoes_tmp_df <-
     XML::xmlToDataFrame(nodes = XML::getNodeSet(
       XML::xmlParse(xml_response),
       nome_no_xml))
-  
+
   if (ncol(comissoes_tmp_df) > 1) {
-    comissoes_df <- comissoes_tmp_df %>% 
+    comissoes_df <- comissoes_tmp_df %>%
       dplyr::select(sigla = SiglaColegiado) %>%
       dplyr::filter(!is.na(sigla))
   }
-  
+
   return(comissoes_df)
 }
