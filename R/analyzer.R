@@ -682,10 +682,10 @@ processa_local_atual <- function(proposicao_df, id_leggo) {
 
   df <- proposicao_df %>%
     dplyr::mutate(tipo_local = dplyr::case_when(
-      tolower(!!sym(column_sigla)) %in% tolower(comissoes_permanentes %>% pull(sigla)) ~ "comissao_permanente",
-      stringr::str_detect(tolower(!!sym(column_sigla)), "plen.rio|plen") ~ "plenario",
-      stringr::str_detect(tolower(!!sym(column_sigla)), "mesa") ~ "mesa",
-      stringr::str_detect(tolower(!!sym(column_sigla)), "mpv|pec|pl") ~ "comissao_especial",
+      tolower(!!rlang::sym(column_sigla)) %in% tolower(comissoes_permanentes %>% dplyr::pull(sigla)) ~ "comissao_permanente",
+      stringr::str_detect(tolower(!!rlang::sym(column_sigla)), "plen.rio|plen") ~ "plenario",
+      stringr::str_detect(tolower(!!rlang::sym(column_sigla)), "mesa") ~ "mesa",
+      stringr::str_detect(tolower(!!rlang::sym(column_sigla)), "mpv|pec|pl") ~ "comissao_especial",
       TRUE ~ "outros"
     ))
 }
