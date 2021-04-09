@@ -21,7 +21,7 @@ fetch_orgaos_camara <- function() {
 #' @importFrom RCurl getURL
 #' @importFrom dplyr %>%
 fetch_orgaos_senado <- function() {
-  url_base <- 'http://legis.senado.leg.br/dadosabertos/comissao/lista/'
+  url_base <- 'https://legis.senado.leg.br/dadosabertos/comissao/lista/'
   no_xml <- '//colegiado'
   
   comissoes_permanentes_df <- parse_senado_comissoes_xml(url_base,'permanente',no_xml)

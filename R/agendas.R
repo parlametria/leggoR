@@ -7,10 +7,10 @@
 #' get_data_frame_agenda_senado('2016-05-15', '2016-05-25')
 get_data_frame_agenda_senado <- function(initial_date, end_date) {
   url <-
-    paste0("http://legis.senado.leg.br/dadosabertos/agenda/", gsub('-','', initial_date), "/", gsub('-','', end_date), "/detalhe")
+    paste0("https://legis.senado.leg.br/dadosabertos/agendareuniao/", gsub('-','', initial_date), "/", gsub('-','', end_date))
   json_proposicao <- fetch_json_try(url)
 
-  json_proposicao$Reunioes$Reuniao %>%
+  json_proposicao$AgendaReuniao$reunioes$reuniao %>%
     tibble::as_tibble() %>%
     rename_table_to_underscore() %>%
     dplyr::filter(situacao != 'Cancelada')
@@ -151,7 +151,7 @@ fetch_agenda_geral <- function(initial_date, end_date) {
 fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_date){
 
   content <- httr::GET(paste0(
-    'http://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=',
+    'https://www.camara.leg.br/SitCamaraWS/Orgaos.asmx/ObterPauta?IDOrgao=',
     orgao_id, '&datIni=', initial_date, '&datFim=', end_date)) %>%
     httr::content()
 
@@ -252,6 +252,29 @@ junta_agendas <- function(initial_date, end_date) {
     tibble::as_tibble() %>%
     dplyr::mutate(fim_semana = as.Date(cut(value, "week")) + 4)
 
-  materia <- purrr::map2_df(semanas$value, semanas$fim_semana, ~ fetch_agenda_geral(.x, .y))
+  materia <-
+    purrr::map2_df(semanas$value, semanas$fim_semana,
+                   function(x, y) {
+                     agenda <- NULL
+                     count <- 0
+                     
+                     while (is.null(agenda) && count < 5) {
+                       cat(paste("\n--- Tentativa", count + 1, "de gerar dados de agenda \n"))
+                       try(agenda <- fetch_agenda_geral(x, y))
+                       count <- count + 1
+                     }
+                     
+                     if (is.null(agenda))
+                       agenda <- tibble::tibble(
+                         data = character(),
+                         sigla = character(),
+                         id_ext = integer(),
+                         local = character(),
+                         casa = character()
+                         
+                       )
+                     return(agenda)
+                   })
+  return(materia) 
 }
 

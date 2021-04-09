@@ -6,14 +6,16 @@ congresso_env <-
 #' as tabelas para uma proposição
 #' @param id Id da proposição
 #' @param casa senado ou camara
+#' @param retry Flag indicando se é necessário tentar novamente em caso de
+#' erro.
 #' @return list com os dataframes: proposicao, fases_eventos,
 #' hist_temperatura
-process_etapa <- function(id, casa, pautas) {
-  prop <- agoradigital::fetch_proposicao(id, casa)
+process_etapa <- function(id, casa, pautas, retry=FALSE) {
+  prop <- agoradigital::fetch_proposicao(id, casa, retry = retry)
   if (tolower(prop$sigla_tipo) == 'mpv') {
-    tram <- agoradigital::fetch_tramitacao(id, casa, TRUE)
+    tram <- agoradigital::fetch_tramitacao(id, casa, TRUE, retry = retry)
   } else {
-    tram <- agoradigital::fetch_tramitacao(id, casa)
+    tram <- agoradigital::fetch_tramitacao(id, casa, retry = retry)
   }
 
   proc_tram <-

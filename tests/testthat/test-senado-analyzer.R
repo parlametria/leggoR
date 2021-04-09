@@ -5,9 +5,9 @@ setup <- function(){
   SENADO_ID <<- c(103831, 120768)
   SENADO_EVENTOS <<- as.data.frame(SENADO_ID) %>%
       dplyr::rowwise() %>%
-      dplyr::do(agoradigital::extract_evento_Senado(fetch_tramitacao(.$SENADO_ID, 'senado')))
-  prop_91341 <<- fetch_proposicao(91341, 'senado')
-  tram_91341 <<- fetch_tramitacao(91341, 'senado')
+      dplyr::do(agoradigital::extract_evento_Senado(fetch_tramitacao(.$SENADO_ID, 'senado', retry = T)))
+  prop_91341 <<- fetch_proposicao(91341, 'senado', retry = T)
+  tram_91341 <<- fetch_tramitacao(91341, 'senado', retry = T)
   return(TRUE)
 }
 

@@ -229,7 +229,7 @@ filter_links <- function(df) {
 #' @examples
 #' extract_links_proposicao_senado(127753)
 extract_links_proposicao_senado <- function(id) {
-  url = paste0('http://legis.senado.leg.br/dadosabertos/materia/textos/', id)
+  url = paste0('https://legis.senado.leg.br/dadosabertos/materia/textos/', id)
   
   textos_df <-
     XML::xmlToDataFrame(nodes = XML::getNodeSet(XML::xmlParse(RCurl::getURL(url)),
