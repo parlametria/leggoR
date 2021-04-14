@@ -4,7 +4,7 @@ library(dplyr)
 
 .HELP <- "
 Usage:
-Rscript fetch_updated_bills_data.R -p <pls_ids_filepath> -e <export_path> -f <flag>
+Rscript fetch_updated_bills_data.R -a <autores_filepath> -p <pls_ids_filepath> -e <export_path> -f <flag>
 flag = 1 Atualiza tudo (Proposições, emendas e comissões)
 flag = 2 Atualiza tudo referente as proposições
 flag = 3 Atualiza tudo sobre emendas
@@ -32,6 +32,11 @@ get_args <- function() {
     optparse::make_option(c("-o", "--proposicoes_filepath"),
                           type="character",
                           default="../inst/extdata/proposicoes.csv",
+                          help=.HELP,
+                          metavar="character"),
+    optparse::make_option(c("-a", "--autores_filepath"),
+                          type="character",
+                          default=NULL,
                           help=.HELP,
                           metavar="character"),
     optparse::make_option(c("-e", "--exporth_path"),
@@ -109,7 +114,7 @@ export_dados<- function(flag) {
     if (flag == 1) {
       print("Atualizando tudo!")
       export_props(pls_ids_filepath, export_path)
-      agoradigital::process_autores_props(pls_ids_filepath, export_path)
+      agoradigital::process_autores_props(pls_ids_filepath, autores_filepath)
       export_relatorias(pls_ids_filepath, proposicoes_filepath, export_path)
       export_emendas(pls_ids_filepath, export_path)
       export_comissoes(export_path)
@@ -124,7 +129,7 @@ export_dados<- function(flag) {
       export_comissoes(export_path)
     } else if (flag == 5) {
       print("Atualizando Autores das matérias legislativas!")
-      agoradigital::process_autores_props(pls_ids_filepath, export_path)
+      agoradigital::process_autores_props(pls_ids_filepath, autores_filepath)
     } else if (flag == 6) {
       print("Atualizando Relatores das matérias legislativas!")
       export_relatorias(pls_ids_filepath, proposicoes_filepath, export_path)
