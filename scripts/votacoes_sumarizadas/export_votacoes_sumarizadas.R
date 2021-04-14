@@ -17,11 +17,16 @@ export_filepath: Caminho para exportação dos dados de votações sumarizadas
 #' @description Get arguments from command line option parsing
 get_args <- function() {
   args = commandArgs(trailingOnly=TRUE)
-  
+
   option_list = list(
     optparse::make_option(c("-v", "--votos_filepath"),
                           type="character",
                           default=here::here("inst/extdata/votos.csv"),
+                          help=.HELP,
+                          metavar="character"),
+    optparse::make_option(c("-o", "--orientacoes_filepath"),
+                          type="character",
+                          default=here::here("inst/extdata/orientacoes.csv"),
                           help=.HELP,
                           metavar="character"),
     optparse::make_option(c("-p", "--votacoes_filepath"),
@@ -45,7 +50,7 @@ get_args <- function() {
                           help=.HELP,
                           metavar="character")
   );
-  
+
   opt_parser <- optparse::OptionParser(option_list = option_list)
   opt <- optparse::parse_args(opt_parser)
   return(opt);
@@ -55,13 +60,14 @@ args <- get_args()
 print(args)
 
 votos <- args$votos_filepath
+ orientacoes <- args$orientacoes_filepath
 votacoes <- args$votacoes_filepath
 data_inicio <- args$data_inicio
 data_final <- args$data_final
 saida <- args$export_filepath
 
 flog.info("Processando votações sumarizadas...")
-votacoes_sumarizadas <- processa_votacoes_sumarizadas(votos, votacoes, data_inicio, data_final)
+votacoes_sumarizadas <- processa_votacoes_sumarizadas(votos, orientacoes, votacoes, data_inicio, data_final)
 
 flog.info("Salvando dados de votações sumarizadas")
 readr::write_csv(votacoes_sumarizadas, saida)

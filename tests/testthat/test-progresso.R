@@ -3,8 +3,8 @@ context("progresso")
 # Setup
 setup <- function(){
   etapas <<- list()
-  etapas %<>% append(list(process_etapa(1635730, "camara", as.data.frame())))
-  etapas %<>% append(list(process_etapa(126084, "senado", as.data.frame())))
+  etapas %<>% append(list(process_etapa(2088990, "camara", as.data.frame())))
+  etapas %<>% append(list(process_etapa(91341, "senado", as.data.frame(), T)))
   etapas %<>% purrr::pmap(dplyr::bind_rows)
   progresso <<- get_progresso(etapas$proposicao, etapas$fases_eventos)
 
@@ -59,7 +59,7 @@ test <- function() {
     id_mpv_tramitacao_encerrada <- 134134
 
     etapas <- list()
-    etapas %<>% append(list(process_etapa(id_mpv_tramitacao_encerrada, "senado", pautas = pautas)))
+    etapas %<>% append(list(process_etapa(id_mpv_tramitacao_encerrada, "senado", pautas = pautas, retry = T)))
     etapas %<>% purrr::pmap(dplyr::bind_rows)
     progresso_mpv_tramitacao_encerrada <-
       agoradigital::generate_progresso_df_mpv(etapas$fases_eventos, etapas$proposicao) %>%
@@ -101,7 +101,7 @@ test <- function() {
 
   })
 }
-check_api <- function(){
+check_api <- function() {
   tryCatch(setup(), error = function(e){return(FALSE)})
 }
 

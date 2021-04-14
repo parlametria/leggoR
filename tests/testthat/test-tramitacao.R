@@ -17,7 +17,7 @@ test <- function(){
   test_that('fetch_tramitacao() in senado returns dataframe', {
     proposicoes_fetch_tramitacao <- as.data.frame(SENADO_ID) %>%
       dplyr::rowwise() %>%
-      dplyr::do(fetch_tramitacao(.$SENADO_ID, 'senado'))
+      dplyr::do(fetch_tramitacao(.$SENADO_ID, 'senado', T))
 
     expect_true(is.data.frame(proposicoes_fetch_tramitacao))
   })
