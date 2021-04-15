@@ -57,6 +57,7 @@ print(args)
 
 pls_ids_filepath <- args$pls_ids_filepath
 proposicoes_filepath <- args$proposicoes_filepath
+autores_filepath <- args$autores_filepath
 export_path <- args$exporth_path
 flag <- args$flag
 
