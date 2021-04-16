@@ -50,6 +50,7 @@ safe_process_etapa <- purrr::safely(
         ~ sigla_casa_ultimo_local,
         ~ nome_ultimo_local,
         ~ data_ultima_situacao,
+        ~ uri_prop_principal,
         ~ regime_tramitacao,
         ~ forma_apreciacao,
         ~ relator_id,
