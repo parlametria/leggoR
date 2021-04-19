@@ -1,7 +1,7 @@
 library(tidyverse)
 library(futile.logger)
 
-source(here::here("scripts/apensadas/process_apensadas.R"))
+source(here::here("scripts/proposicoes/apensadas/process_apensadas.R"))
 
 if (!require(optparse)) {
   install.packages("optparse")
