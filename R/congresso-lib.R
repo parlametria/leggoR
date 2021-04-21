@@ -99,7 +99,7 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df, sigla){
 #' @return Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
 #' @examples
 #'  generate_progresso_df(tramitacao_df)
-generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE) {
+generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = FALSE) {
 
   if (flag_cong_remoto) {
     tramitacao_df <- tramitacao_df %>%
