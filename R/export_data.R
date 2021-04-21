@@ -280,7 +280,8 @@ process_pl <-
       etapas$proposicao %>%
       dplyr::mutate(concat_chave_leggo = paste0(id_camara , " ", id_senado)) %>%
       dplyr::mutate(id_leggo = digest::digest(concat_chave_leggo, algo="md5", serialize=F)) %>%
-      dplyr::select(-concat_chave_leggo)
+      dplyr::select(-concat_chave_leggo) %>%
+      dplyr::mutate(sigla = stringr::str_glue("{sigla_tipo} {numero}/{ano}"))
     Sys.sleep(5 * stats::runif(1))
     return(etapas)
   }
