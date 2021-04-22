@@ -13,7 +13,6 @@ setup <- function(){
   etapas_pec %<>% purrr::pmap(dplyr::bind_rows)
   progresso_pec <<- get_progresso(etapas_pec$proposicao, etapas_pec$fases_eventos)
 
-
   etapas_pls_plenario_1 <<- list()
   etapas_pls_plenario_1 %<>% append(list(process_etapa(2209381, "camara", as.data.frame())))
   etapas_pls_plenario_1 %<>% purrr::pmap(dplyr::bind_rows)
@@ -81,7 +80,7 @@ test <- function() {
       tibble::tribble(
         ~ casa, ~ prop_id, ~ fase_global,      ~ local,                     ~ data_inicio,        ~ data_fim,     ~ local_casa,
       "camara", 1198512, "Construção",          "Plenário",                 "2020-07-21 16:18:00", "2020-07-22 00:00:00", "camara",
-      "camara", 1198512, "Construção",          "Comissões",                "2015-04-23 17:14:00", "2020-07-21 00:00:00", "camara",
+      "camara", 1198512, "Construção",          "Comissões",                "2015-04-23 17:14:00", "2020-07-21 18:47:00", "camara",
       "camara", 1198512, "Pré-Construção",      "",                         NA,                    NA,                  NA,
       "camara", 1198512, "Pré-Revisão I",       "",                         NA,                    NA,                  NA,
       "camara", 1198512, "Revisão I",           "Comissões",                NA,                    NA,                  NA,
@@ -93,16 +92,13 @@ test <- function() {
       "camara", 1198512, "Avaliação dos Vetos", "Congresso",                NA,                    NA,                  "congresso" )
 
     progresso_pec_gabarito <-
-      progresso_pec_gabarito %>% dplyr::mutate(prop_id = as.integer(prop_id),
-                                         data_fim = as.POSIXct(data_fim))
+      progresso_pec_gabarito %>% dplyr::mutate(prop_id = as.integer(prop_id))
 
     expect_equal(progresso_pec %>% dplyr::mutate(data_inicio = as.character(data_inicio)), progresso_pec_gabarito)
-
-
   })
 }
 check_api <- function() {
-  tryCatch(setup(), error = function(e){return(FALSE)})
+  tryCatch(setup(), error = function(e){ message(e); return(FALSE)})
 }
 
 if(check_api()){

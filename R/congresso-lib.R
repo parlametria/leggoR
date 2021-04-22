@@ -496,6 +496,20 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
         df <- df %>%
           .corrige_fase_plenario_pre_comissoes()
       }
+    } else {
+      data_inicio_plenario <-
+        eventos_tramitacao_plenario %>% dplyr::pull(data_hora)
+
+      df <- df %>%
+        dplyr::mutate(
+          data_inicio = ifelse(
+            casa == "camara" & local == "Plenário",
+            data_inicio_plenario,
+            data_inicio
+          )
+        ) %>%
+        dplyr::mutate(data_inicio = as.POSIXct(data_inicio, origin = "1970-01-01")
+        )
     }
   }
   return(df)
