@@ -121,6 +121,7 @@ mapeia_nome_relator_para_id <-
           relator_id,
           relator_id_parlametria,
           id_leggo,
+          uri_prop_principal,
           sigla
         ) %>%
         distinct()
