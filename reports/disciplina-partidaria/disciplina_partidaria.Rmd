@@ -1,0 +1,145 @@
+---
+title: "Disciplina partidária"
+output: 
+  html_document:
+    css: styles.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.cap = '',
+  fig.align = 'center',
+  fig.width = 10,
+  fig.height = 8
+)
+```
+
+```{r}
+library(tidyverse)
+library(here)
+library(ggplot2)
+library(hrbrthemes)
+library(ggbeeswarm)
+theme_set(theme_minimal())
+
+source(here::here("reports/disciplina-partidaria/lib.R"))
+```
+
+```{r}
+disciplina <- read_disciplina_partidaria()
+```
+
+<br>
+
+## *Resumo*
+
+Este relatório tem como objetivo explorar os dados de **Disciplina Partidária** em busca de definir possibilidades de visualizações que possam comunicar o valor da disciplina no Parlametria.
+
+### Sobre disciplina partidária
+A **Disciplina partidária** mede a obediência de um/a parlamentar ao seu partido. É medida como % dos votos feitos seguindo a orientação do partido, quando havia orientação do partido.
+
+Para o cálculo da disciplina, usamos apenas as votações onde não há consenso (há pelo menos 10% de discordância). 
+Além disso, calculamos a disciplina apenas de parlamentares que participaram de pelo menos 10 votações que consideramos e que façam parte de partidos que têm ao menos D deputados na Câmara e S no senado. Usamos inicialmente D = 5 e S = 3.
+
+### Por partido
+
+O destaque (traço preto) é um exemplo de parlamentar que foi selecionado(a) para exibição da tela de detalhes do parlamentria.
+
+```{r}
+id <- 192102
+
+disciplina_vis <- disciplina %>% 
+  filter(em_exercicio == 1, bancada_suficiente, partido_disciplina == partido_atual) %>% 
+  group_by(partido_disciplina) %>% 
+  mutate(media = mean(disciplina)) %>% 
+  ungroup() %>% 
+  filter(casa == "camara") %>% 
+  mutate(parlamentar_marcado = id_parlamentar_parlametria == id) %>% 
+  mutate(marcado_partido = partido_atual == "DEM")
+```
+
+```{r}
+set_theme_and_title <- function(plot) {
+  plot +
+    labs(x = "Disciplina",
+         y = "",
+         title = "") +
+    guides(size = F) +
+    theme_ipsum_ps() +
+    theme(panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank())
+}
+```
+
+
+```{r fig.height=10}
+p <- disciplina_vis %>% 
+  ggplot(aes(x = disciplina, y = reorder(partido_atual, media))) +
+  geom_point(aes(x = disciplina, color = parlamentar_marcado, size = parlamentar_marcado), 
+             alpha = 0.7, shape = 124) +
+  scale_color_manual(
+    name = "", values = c("#adb5bd", "black"), guide = FALSE
+  ) +
+  scale_size_manual(values = c(6, 8)) +
+  scale_x_continuous(limits = c(0, 1))
+
+p %>% 
+  set_theme_and_title()
+```
+
+
+### No partido do parlamentar selecionado
+
+```{r fig.height=2}
+p <- disciplina_vis %>% 
+  filter(partido_atual == "DEM") %>% 
+  ggplot(aes(x = disciplina, y = reorder(partido_atual, media))) +
+  geom_point(aes(x = disciplina, color = parlamentar_marcado, size = parlamentar_marcado), alpha = 0.7, shape = 124) +
+  scale_color_manual(
+    name = "", values = c("#adb5bd", "black"), guide = FALSE
+  ) +
+  scale_size_manual(values = c(6, 8)) +
+  scale_x_continuous(limits = c(0, 1))
+
+p %>% 
+  set_theme_and_title()
+```
+
+### Com beeswarm
+
+Destacando o partido pela cor e e o parlamentar selecionado pelo raio do círculo
+
+```{r fig.height=10}
+p <- disciplina_vis %>% 
+  ggplot(aes(x = disciplina, y = "")) +
+  geom_beeswarm(aes(x = disciplina, color = marcado_partido, size = parlamentar_marcado), alpha = 0.7, groupOnX=FALSE) +
+  scale_color_manual(
+    name = "", values = c("#adb5bd", "black"), guide = FALSE
+  ) +
+  scale_size_manual(values = c(2, 4)) +
+  scale_x_continuous(limits = c(0, 1))
+
+p %>% 
+  set_theme_and_title()
+```
+
+### Apenas um partido
+
+```{r fig.height=4}
+p <- disciplina_vis %>% 
+  filter(partido_atual == "DEM") %>%
+  ggplot(aes(x = disciplina, y = reorder(partido_atual, media))) +
+  geom_beeswarm(aes(x = disciplina, color = parlamentar_marcado, size = parlamentar_marcado), alpha = 0.7, groupOnX=FALSE) +
+  scale_color_manual(
+    name = "", values = c("#adb5bd", "black"), guide = FALSE
+  ) +
+  scale_size_manual(values = c(4, 5)) +
+  scale_x_continuous(limits = c(0, 1))
+
+p %>% 
+  set_theme_and_title()
+```
+

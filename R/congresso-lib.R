@@ -99,7 +99,7 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df, sigla){
 #' @return Dataframe contendo o id da PL, as fases globais, data de inicio, data de fim
 #' @examples
 #'  generate_progresso_df(tramitacao_df)
-generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = TRUE) {
+generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = FALSE) {
 
   if (flag_cong_remoto) {
     tramitacao_df <- tramitacao_df %>%
@@ -496,6 +496,20 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
         df <- df %>%
           .corrige_fase_plenario_pre_comissoes()
       }
+    } else {
+      data_inicio_plenario <-
+        eventos_tramitacao_plenario %>% dplyr::pull(data_hora)
+
+      df <- df %>%
+        dplyr::mutate(
+          data_inicio = ifelse(
+            casa == "camara" & local == "Plenário",
+            data_inicio_plenario,
+            data_inicio
+          )
+        ) %>%
+        dplyr::mutate(data_inicio = as.POSIXct(data_inicio, origin = "1970-01-01")
+        )
     }
   }
   return(df)
