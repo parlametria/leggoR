@@ -120,7 +120,9 @@ mapeia_nome_relator_para_id <-
           forma_apreciacao,
           relator_id,
           relator_id_parlametria,
-          id_leggo
+          id_leggo,
+          uri_prop_principal,
+          sigla
         ) %>%
         distinct()
     }

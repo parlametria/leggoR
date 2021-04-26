@@ -117,6 +117,9 @@ fetch_proposicao_senado <- function(id, apelido, tema, retry=FALSE) {
         sigla_casa_ultimo_local = sigla_casa_local,
         nome_ultimo_local = nome_local,
         data_ultima_situacao = data_situacao,
+        uri_prop_principal = ifelse(!"uri_prop_principal" %in% names(.),
+                                    NA_character_,
+                                    uri_prop_principal),
         apelido_materia = ifelse(
           "apelido_materia" %in% names(.),
           apelido_materia,
@@ -200,6 +203,9 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
                      sigla_casa_ultimo_local = "camara",
                      nome_ultimo_local = NA_character_,
                      data_ultima_situacao = status_proposicao_data_hora,
+                     uri_prop_principal = ifelse(!"uri_prop_principal" %in% names(.),
+                                                         NA_character_,
+                                                         uri_prop_principal),
                      apelido_materia = as.character(apelido),
                      tema = tema)
   proposicao
