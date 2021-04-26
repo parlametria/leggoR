@@ -112,7 +112,6 @@ fetch_proposicao_senado <- function(id, apelido, tema, retry=FALSE) {
           "senado",
           "camara"
         ),
-        autor_nome,
         sigla_ultimo_local = sigla_local,
         sigla_casa_ultimo_local = sigla_casa_local,
         nome_ultimo_local = nome_local,
@@ -135,7 +134,6 @@ fetch_proposicao_senado <- function(id, apelido, tema, retry=FALSE) {
       data_apresentacao = character(),
       casa = character(),
       casa_origem = character(),
-      autor_nome = character(),
       sigla_ultimo_local = character(),
       sigla_casa_ultimo_local = character(),
       nome_ultimo_local = character(),
@@ -192,13 +190,6 @@ fetch_proposicao_camara <- function(id, apelido, tema) {
                            "camara"
                          )
                        ),
-                     autor_nome = paste(unlist(t(autor_df$nome)),collapse="+"),
-                     autor_uf = ifelse(length(autor_df) > 1 && autor_df$codTipo == 10000,
-                                       get_uf_autores(autor_df),
-                                       NA),
-                     autor_partido = ifelse(length(autor_df) > 1 && autor_df$codTipo == 10000,
-                                            get_partido_autores(autor_df),
-                                            NA),
                      sigla_ultimo_local = status_proposicao_sigla_orgao,
                      sigla_casa_ultimo_local = "camara",
                      nome_ultimo_local = NA_character_,
