@@ -45,6 +45,7 @@ get_args <- function() {
 }
 
 ## Process args
+futile.logger::flog.info('Início do processamento dos dados de Anotações')
 args <- get_args()
 print(args)
 
@@ -60,3 +61,4 @@ print("Salvando anotacoes...")
 readr::write_csv(anotacoes$anotacoes_gerais, paste0(export_path, "/anotacoes_gerais.csv"))
 readr::write_csv(anotacoes$anotacoes_especificas, paste0(export_path, "/anotacoes_especificas.csv"))
 print("Salvo")
+futile.logger::flog.info('Termino do processamento dos dados de Anotações')

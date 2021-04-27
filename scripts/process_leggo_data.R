@@ -77,7 +77,7 @@ get_args <- function() {
 }
 
 ## Process args
-## Process args
+futile.logger::flog.info('Início do processamento das Atuações, Coautorias e Emendas')
 args <- get_args()
 print(args)
 
@@ -106,6 +106,7 @@ process_leggo_data <- function(flag) {
       dplyr::select(id_leggo, id_principal = id_ext, casa)
     
     # Read current data csvs
+    futile.logger::flog.info('Início da leitura dos csvs atuais para Câmara e Senado')
     camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv")) %>%
       dplyr::mutate(casa = as.character(casa)) %>% 
       dplyr::inner_join(props_leggo_id, by = c("id_principal", "casa"))
@@ -135,6 +136,7 @@ process_leggo_data <- function(flag) {
       ungroup()
     
     entidades <- readr::read_csv(entidades_path)
+    futile.logger::flog.info('Termino da leitura dos csvs atuais para Câmara e Senado')
 
     if (flag == 1) {
       print("Atualizando tudo!")
@@ -144,14 +146,20 @@ process_leggo_data <- function(flag) {
       export_avulsos_iniciais(camara_docs, senado_docs, novas_emendas, output_path)
     } else if (flag == 2) {
       print("Atualizando os atuação!")
+      futile.logger::flog.info('Início do processamento somente de Atuações')
       export_atuacao(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id, entidades)
+      futile.logger::flog.info('Termino do processamento somente de Atuações')
     } else if (flag == 3) {
       print("Atualizando nodes e edges!")
+      futile.logger::flog.info('Início do processamento somente de Nodes e Edges')
       export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, props_leggo_id, output_path)
+      futile.logger::flog.info('Termino do processamento somente de Nodes e Edges')
     } else if (flag == 4) {
       print("Atualizando dados de emendas e avulsos iniciais")
+      futile.logger::flog.info('Início do processamento somente de Emendas e Avulsos Iniciais')
       novas_emendas = export_emendas(camara_docs, camara_autores, senado_docs, senado_autores, output_path)
       export_avulsos_iniciais(camara_docs, senado_docs, novas_emendas, output_path)
+      futile.logger::flog.info('Termino do processamento somente de Emendas e Avulsos Iniciais')
     } else {
       print(paste("Flag inexistente:",flag))
       print(.HELP)
@@ -161,3 +169,4 @@ process_leggo_data <- function(flag) {
 }
 
 process_leggo_data(flag)
+futile.logger::flog.info('Termino do processamento das Atuações, Coautorias e Emendas')

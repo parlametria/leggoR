@@ -33,6 +33,7 @@ get_args <- function() {
 }
 
 ## Process args
+futile.logger::flog.info('Início do processamento de Interesses')
 args <- get_args()
 print(args)
 
@@ -46,3 +47,4 @@ pls <- processa_lista_pls_interesses(url_interesses) %>%
 print("Salvando pls de interesse...")
 readr::write_csv(pls, saida)
 print("Salvo")
+futile.logger::flog.info('Termino do processamento de Interesses')

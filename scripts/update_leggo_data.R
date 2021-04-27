@@ -87,6 +87,7 @@ get_fetch_status <- function(docs_ids, docs_data, authors_data) {
 }
 
 ## Process args
+futile.logger::flog.info('Início da atualização dos dados da Câmara e Senado')
 min_num_args <- 3
 if (length(args) < min_num_args) {
     stop(paste("Wrong number of arguments!", help, sep = "\n"))
@@ -123,6 +124,7 @@ all_pls_ids <- agoradigital::get_all_leggo_props_ids(pls_ids)
 
 if (casa == 'senado') {
   print("Realizando atualização dos dados do Senado")
+  futile.logger::flog.info('Início da atualização dos dados do Senado')
 
   pls_senado <- all_pls_ids %>%  dplyr::filter(casa == 'senado')
 
@@ -158,8 +160,10 @@ if (casa == 'senado') {
   print(paste("Salvando",nrow(senado_autores_com_id_autor), "autores de documentos para o Senado."))
   readr::write_csv(senado_autores_com_id_autor, autores_filepath)
   print("Salvos :)")
+  futile.logger::flog.info('Termino da atualização dos dados do Senado')
 
 } else {
+  futile.logger::flog.info('Início da atualização dos dados da Câmara')
   current_docs <- agoradigital::read_current_docs_camara(docs_filepath)
   current_autores <- agoradigital::read_current_autores_camara(autores_filepath)
 
@@ -250,4 +254,6 @@ if (casa == 'senado') {
   } else {
     print("Não há documentos novos para essa proposição na Câmara.")
   }
+  futile.logger::flog.info('Termino da atualização dos dados da Câmara')
 }
+futile.logger::flog.info('Termino da atualização dos dados da Câmara e Senado')

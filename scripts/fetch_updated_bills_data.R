@@ -52,6 +52,7 @@ get_args <- function() {
 }
 
 ## Process args
+futile.logger::flog.info('Início do processamento de dados para Proposições')
 args <- get_args()
 print(args)
 
@@ -67,10 +68,12 @@ flag <- args$flag
 #' @param export_path pasta para onde exportar dados.
 #' @export
 export_props <- function(pls_ids_filepath, export_path) {
+  futile.logger::flog.info('Início do export de dados para Proposições')
   readr::read_csv(pls_ids_filepath, col_types = readr::cols(prioridade = "c")) %>%
     dplyr::mutate(row_num = 1:nrow(.)) %>%
     dplyr::select(row_num,id_camara,id_senado) %>%
     agoradigital::fetch_props(export_path)
+  futile.logger::flog.info('Termino do export de dados para Proposições')
 }
 
 #' @title Exporta dados de Emendas
@@ -79,8 +82,10 @@ export_props <- function(pls_ids_filepath, export_path) {
 #' @param export_path pasta para onde exportar dados.
 #' @export
 export_emendas <- function(pls_ids_filepath, export_path) {
+  futile.logger::flog.info('Início do export de dados para Emendas')
   readr::read_csv(pls_ids_filepath, col_types = readr::cols(prioridade = "c")) %>%
     agoradigital::fetch_emendas(export_path)
+  futile.logger::flog.info('Termino do export de dados para Emendas')
 }
 
 #' @title Exporta dados de Comissões
@@ -88,19 +93,23 @@ export_emendas <- function(pls_ids_filepath, export_path) {
 #' @param export_path pasta para onde exportar dados.
 #' @export
 export_comissoes <- function(export_path) {
+  futile.logger::flog.info('Início do export de dados para Comissões')
   comissoes <-
     agoradigital::fetch_all_composicao_comissao() %>%
     dplyr::select(cargo, id, partido, uf, situacao, nome, foto, sigla, casa) %>% 
     dplyr::rename(id_parlamentar = id)
   readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
+  futile.logger::flog.info('Termino do export de dados para Comissões')
 }
 
 #' @title Exporta dados de Relatorias
 #' @description Captura e escreve as relatorias
 #' @param export_path pasta para onde exportar dados.
 export_relatorias <- function(pls_ids_filepath, proposicoes_filepath, export_path) {
+  futile.logger::flog.info('Início do export de dados para Relatorias')
   relatorias <- agoradigital::process_relatores_props(pls_ids_filepath, proposicoes_filepath, export_path)
   readr::write_csv(relatorias, paste0(export_path, "/relatores_leggo.csv"))
+  futile.logger::flog.info('Termino do export de dados para Relatorias')
 }
 
 #' @title Chama as funções corretas
@@ -130,7 +139,9 @@ export_dados<- function(flag) {
       export_comissoes(export_path)
     } else if (flag == 5) {
       print("Atualizando Autores das matérias legislativas!")
+      futile.logger::flog.info('Início da atualização das matérias de autores')
       agoradigital::process_autores_props(pls_ids_filepath, autores_filepath)
+      futile.logger::flog.info('Termino da atualização das matérias de autores')
     } else if (flag == 6) {
       print("Atualizando Relatores das matérias legislativas!")
       export_relatorias(pls_ids_filepath, proposicoes_filepath, export_path)
@@ -142,4 +153,5 @@ export_dados<- function(flag) {
 
 export_dados(flag)
 
+futile.logger::flog.info('Início do processamento de dados para Proposições')
 
