@@ -52,5 +52,4 @@ interesses <- processa_interesses_leggo(url_interesses, proposicoes)
 
 print("Salvando interesses...")
 readr::write_csv(interesses, saida)
-print("Salvo")
 futile.logger::flog.info('Termino do processamento de Interesses')

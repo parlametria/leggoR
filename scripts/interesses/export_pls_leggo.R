@@ -46,5 +46,4 @@ pls <- processa_lista_pls_interesses(url_interesses) %>%
 
 print("Salvando pls de interesse...")
 readr::write_csv(pls, saida)
-print("Salvo")
 futile.logger::flog.info('Termino do processamento de Interesses')

@@ -60,5 +60,4 @@ anotacoes <- processa_anotacoes(url_lista_anotacoes, pls_interesses, proposicoes
 print("Salvando anotacoes...")
 readr::write_csv(anotacoes$anotacoes_gerais, paste0(export_path, "/anotacoes_gerais.csv"))
 readr::write_csv(anotacoes$anotacoes_especificas, paste0(export_path, "/anotacoes_especificas.csv"))
-print("Salvo")
 futile.logger::flog.info('Termino do processamento dos dados de Anotações')

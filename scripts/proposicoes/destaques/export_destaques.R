@@ -73,5 +73,4 @@ proposicoes_destaques <- process_proposicoes_destaques_limpo(proposicoes_filepat
 
 print("Salvando proposições destaques...")
 readr::write_csv(proposicoes_destaques, saida)
-print("Salvo")
 futile.logger::flog.info('Termino do processamento das Proposições de Destaque')
