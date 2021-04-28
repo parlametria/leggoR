@@ -153,5 +153,5 @@ export_dados<- function(flag) {
 
 export_dados(flag)
 
-futile.logger::flog.info('Início do processamento de dados para Proposições')
+futile.logger::flog.info('Termino do processamento de dados para Proposições')
 
