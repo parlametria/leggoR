@@ -1,14 +1,16 @@
 library(tidyverse)
 library(futile.logger)
+library(agoradigital)
 
 #' @title Processa proposições apensadas
 #' @description Realiza o processamento das proposições apensadas para o formato usado pelo Parlametria
 #' @param proposicoes_filepath Caminho para o CSV de proposições
 #' @param interesses_filepath Caminho para o CSV de interesses
+#' @param export_folder Folder para exportar lista da árvore de apensadas
 #' @return Lista com dois dataframes:
 #' Dataframe com mapeamento entre  as proposições apensadas e as proposições principais
 #' Dataframe com a lista de proposições apensadas que não são monitoradas pelo Parlametria
-process_apensadas <- function(proposicoes_filepath, interesses_filepath) {
+process_apensadas <- function(proposicoes_filepath, interesses_filepath, export_folder) {
 
   proposicoes <- read_csv(proposicoes_filepath, col_types = cols(id_ext = "c"))
 
@@ -16,9 +18,16 @@ process_apensadas <- function(proposicoes_filepath, interesses_filepath) {
     distinct(id_leggo, interesse)
 
   proposicoes_apensadas <- proposicoes %>%
-    filter(!is.na(uri_prop_principal)) %>%
     select(id_ext, casa, id_leggo, uri_prop_principal) %>%
     .extract_id_from_uri()
+
+  process_lista_apensadas(proposicoes_apensadas, fresh_execution = FALSE, export_folder)
+
+  proposicoes_apensadas <- proposicoes %>%
+    filter(!is.na(uri_prop_principal)) %>%
+    select(id_ext, casa, id_leggo, uri_prop_principal) %>%
+    .extract_id_from_uri() %>%
+    get_proposicao_principal_raiz()
 
   flog.info(str_glue("{proposicoes_apensadas %>% nrow()} proposições monitoradas são proposições apensadas."))
 
@@ -70,3 +79,12 @@ process_apensadas <- function(proposicoes_filepath, interesses_filepath) {
   return(proposicoes_com_id)
 }
 
+#' @title Recupera o id da proposição que é a raiz da árvore de apensados da proposição de interesse
+#' @param proposicoes Dataframe de proposições com pelo menos uma coluna: id_prop_principal
+#' @return Dataframe com as mesmas colunas originais e uma coluna a mais com o id da proposição raiz (id_prop_principal_raiz)
+get_proposicao_principal_raiz <- function(proposicoes) {
+  proposicoes_processadas <- proposicoes %>%
+    mutate(id_prop_principal_raiz = id_prop_principal)
+
+  return(proposicoes_processadas)
+}

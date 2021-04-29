@@ -49,7 +49,7 @@ if (!str_detect(export_path, "\\/$")) {
 }
 
 flog.info("Processando dados de proposições apensadas")
-list_props_apensadas <- process_apensadas(proposicoes_filepath, interesses_filepath)
+list_props_apensadas <- process_apensadas(proposicoes_filepath, interesses_filepath, export_path)
 
 props_apensadas <- list_props_apensadas[[1]]
 props_apensadas_nao_monitoradas <- list_props_apensadas[[2]]
