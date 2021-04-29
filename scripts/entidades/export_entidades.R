@@ -9,7 +9,10 @@ if (!require(optparse)) {
   suppressWarnings(suppressMessages(library(optparse)))
 }
 
+print('===============================')
+time_init <- Sys.time()
 futile.logger::flog.info('Início do processamento de Entidades')
+print('===============================')
 args = commandArgs(trailingOnly = TRUE)
 
 option_list = list(
@@ -45,4 +48,4 @@ if (!str_detect(export_path, "\\/$")) {
 entidades <- .process_entidades(parlamentares_filepath)
 
 write_csv(entidades, paste0(export_path, "entidades.csv"))
-futile.logger::flog.info('Termino do processamento de Entidades')
+futile.logger::flog.info('Termino do processamento de Entidades: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))

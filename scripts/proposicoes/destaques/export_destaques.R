@@ -57,7 +57,10 @@ get_args <- function() {
 }
 
 ## Process args
+print('===============================')
+time_init <- Sys.time()
 futile.logger::flog.info('Início do processamento das Proposições de Destaque')
+print('===============================')
 args <- get_args()
 print(args)
 
@@ -73,4 +76,4 @@ proposicoes_destaques <- process_proposicoes_destaques_limpo(proposicoes_filepat
 
 print("Salvando proposições destaques...")
 readr::write_csv(proposicoes_destaques, saida)
-futile.logger::flog.info('Termino do processamento das Proposições de Destaque')
+futile.logger::flog.info('Termino do processamento das Proposições de Destaque: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))

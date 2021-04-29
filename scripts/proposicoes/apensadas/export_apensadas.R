@@ -47,8 +47,10 @@ devtools::install(upgrade = "never")
 if (!str_detect(export_path, "\\/$")) {
   export_path <- paste0(export_path, "/")
 }
-
+print('===============================')
+time_init <- Sys.time()
 flog.info("Início do processamento de dados de proposições apensadas")
+print('===============================')
 list_props_apensadas <- process_apensadas(proposicoes_filepath, interesses_filepath)
 
 props_apensadas <- list_props_apensadas[[1]]
@@ -60,4 +62,4 @@ write_csv(props_apensadas, paste0(export_path, "props_apensadas.csv"))
 flog.info(str_glue("Salvando dados de proposições apensadas não monitoradas em {export_path}props_apensadas.csv"))
 write_csv(props_apensadas_nao_monitoradas, paste0(export_path, "props_apensadas_nao_monitoradas.csv"))
 
-flog.info("Termino do processamento de dados de proposições apensadas")
+flog.info("Termino do processamento de dados de proposições apensadas: %g segundos", difftime(Sys.time(), time_init, units = 'secs'))

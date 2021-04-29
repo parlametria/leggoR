@@ -33,7 +33,10 @@ get_args <- function() {
 }
 
 ## Process args
+print('===============================')
+time_init <- Sys.time()
 futile.logger::flog.info('Início do processamento de Interesses')
+print('===============================')
 args <- get_args()
 print(args)
 
@@ -46,4 +49,4 @@ pls <- processa_lista_pls_interesses(url_interesses) %>%
 
 print("Salvando pls de interesse...")
 readr::write_csv(pls, saida)
-futile.logger::flog.info('Termino do processamento de Interesses')
+futile.logger::flog.info('Termino do processamento de Interesses: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
