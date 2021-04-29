@@ -13,6 +13,7 @@ RUN Rscript -e 'install.packages(c("devtools", "digest")); devtools::install_dep
 RUN Rscript -e 'devtools::install_version("dplyr", version = "1.0.3", repos = "http://cran.us.r-project.org")'
 RUN Rscript -e 'devtools::install_version("testthat", version = "3.0.1", repos = "http://cran.us.r-project.org")'
 RUN Rscript -e 'install.packages(c("futile.logger", "pscl", "pdftools", "eeptools"))'
+RUN Rscript -e 'Sys.setenv(TZ="America/Sao_Paulo")'
 COPY . .
 
 #Install rcongresso from local branch
