@@ -1,6 +1,7 @@
 library(here)
 print(dr_here())
 source(here::here("scripts/interesses/process_lista_pls_interesse.R"))
+source(here::here("scripts/utils-hora.R"))
 
 .HELP <- "
 Usage:
@@ -49,4 +50,4 @@ pls <- processa_lista_pls_interesses(url_interesses) %>%
 
 print("Salvando pls de interesse...")
 readr::write_csv(pls, saida)
-futile.logger::flog.info('Termino do processamento de Interesses: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+futile.logger::flog.info('Termino do processamento de Interesses: %s', calcula_hora(time_init, Sys.time()))

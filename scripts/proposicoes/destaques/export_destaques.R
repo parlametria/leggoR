@@ -1,6 +1,7 @@
 library(here)
 
 source(here::here("scripts/proposicoes/destaques/process_destaques.R"))
+source(here::here("scripts/utils-hora.R"))
 
 .HELP <- "
 Usage:
@@ -76,4 +77,4 @@ proposicoes_destaques <- process_proposicoes_destaques_limpo(proposicoes_filepat
 
 print("Salvando proposições destaques...")
 readr::write_csv(proposicoes_destaques, saida)
-futile.logger::flog.info('Termino do processamento das Proposições de Destaque: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+futile.logger::flog.info('Termino do processamento das Proposições de Destaque: %s', calcula_hora(time_init, Sys.time()))

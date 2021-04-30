@@ -2,6 +2,7 @@ library(tidyverse)
 library(futile.logger)
 
 source(here::here("scripts/proposicoes/apensadas/process_apensadas.R"))
+source(here::here("scripts/utils-hora.R"))
 
 if (!require(optparse)) {
   install.packages("optparse")
@@ -62,4 +63,4 @@ write_csv(props_apensadas, paste0(export_path, "props_apensadas.csv"))
 flog.info(str_glue("Salvando dados de proposições apensadas não monitoradas em {export_path}props_apensadas.csv"))
 write_csv(props_apensadas_nao_monitoradas, paste0(export_path, "props_apensadas_nao_monitoradas.csv"))
 
-flog.info("Termino do processamento de dados de proposições apensadas: %g segundos", difftime(Sys.time(), time_init, units = 'secs'))
+flog.info('Termino do processamento de dados de proposições apensadas:  %s', calcula_hora(time_init, Sys.time()))

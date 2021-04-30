@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 library(magrittr)
 library(dplyr)
+source(here::here("scripts/utils-hora.R"))
 
 .HELP <- "
 Usage:
@@ -79,7 +80,7 @@ export_props <- function(pls_ids_filepath, export_path) {
     dplyr::mutate(row_num = 1:nrow(.)) %>%
     dplyr::select(row_num,id_camara,id_senado) %>%
     agoradigital::fetch_props(export_path)
-  futile.logger::flog.info('Termino do export de dados para Proposições: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+  futile.logger::flog.info('Termino do export de dados para Proposições: %s', calcula_hora(time_init, Sys.time()))
 }
 
 #' @title Exporta dados de Emendas
@@ -94,7 +95,7 @@ export_emendas <- function(pls_ids_filepath, export_path) {
   print('===============================')
   readr::read_csv(pls_ids_filepath, col_types = readr::cols(prioridade = "c")) %>%
     agoradigital::fetch_emendas(export_path)
-  futile.logger::flog.info('Termino do export de dados para Emendas: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+  futile.logger::flog.info('Termino do export de dados para Emendas: %s', calcula_hora(time_init, Sys.time()))
 }
 
 #' @title Exporta dados de Comissões
@@ -111,7 +112,7 @@ export_comissoes <- function(export_path) {
     dplyr::select(cargo, id, partido, uf, situacao, nome, foto, sigla, casa) %>% 
     dplyr::rename(id_parlamentar = id)
   readr::write_csv(comissoes, paste0(export_path, "/comissoes.csv"))
-  futile.logger::flog.info('Termino do export de dados para Comissões: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+  futile.logger::flog.info('Termino do export de dados para Comissões: %s', calcula_hora(time_init, Sys.time()))
 }
 
 #' @title Exporta dados de Relatorias
@@ -124,7 +125,7 @@ export_relatorias <- function(pls_ids_filepath, proposicoes_filepath, export_pat
   print('===============================')
   relatorias <- agoradigital::process_relatores_props(pls_ids_filepath, proposicoes_filepath, export_path)
   readr::write_csv(relatorias, paste0(export_path, "/relatores_leggo.csv"))
-  futile.logger::flog.info('Termino do export de dados para Relatorias: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+  futile.logger::flog.info('Termino do export de dados para Relatorias: %s', calcula_hora(time_init, Sys.time()))
 }
 
 #' @title Chama as funções corretas
@@ -144,22 +145,40 @@ export_dados<- function(flag) {
       export_emendas(pls_ids_filepath, export_path)
       export_comissoes(export_path)
     } else if (flag == 2) {
-      print("Atualizando as proposições!")
+      print('===============================')
+      time_init <- Sys.time()
+      futile.logger::flog.info('Início da atualização das Proposições')
+      print('===============================')
       export_props(pls_ids_filepath, export_path)
+      futile.logger::flog.info('Termino da atualização das Proposições %s', calcula_hora(time_init, Sys.time()))
     } else if (flag == 3) {
-      print("Atualizando emendas!")
+      print('===============================')
+      time_init <- Sys.time()
+      futile.logger::flog.info('Início da atualização das Emendas')
+      print('===============================')
       export_emendas(pls_ids_filepath, export_path)
+      futile.logger::flog.info('Termino da atualização das Emendas: %s', calcula_hora(time_init, Sys.time()))
     } else if (flag == 4) {
-      print("Atualizando Comissões!")
+      print('===============================')
+      time_init <- Sys.time()
+      futile.logger::flog.info('Início da atualização das Comissões')
+      print('===============================')
       export_comissoes(export_path)
+      futile.logger::flog.info('Termino da atualização das Comissões: %s', calcula_hora(time_init, Sys.time()))
     } else if (flag == 5) {
-      print("Atualizando Autores das matérias legislativas!")
+      print('===============================')
+      time_init <- Sys.time()
       futile.logger::flog.info('Início da atualização das matérias de autores')
+      print('===============================')
       agoradigital::process_autores_props(pls_ids_filepath, autores_filepath)
-      futile.logger::flog.info('Termino da atualização das matérias de autores')
+      futile.logger::flog.info('Termino da atualização das matérias de autores: %s', calcula_hora(time_init, Sys.time()))
     } else if (flag == 6) {
-      print("Atualizando Relatores das matérias legislativas!")
+      print('===============================')
+      time_init <- Sys.time()
+      futile.logger::flog.info('Início da atualização dos Relatores de matérias legislativas')
+      print('===============================')
       export_relatorias(pls_ids_filepath, proposicoes_filepath, export_path)
+      futile.logger::flog.info('Termino da atualização dos Relatores de matérias legislativas: %s', calcula_hora(time_init, Sys.time()))
     } else {
       stop(paste("Wrong flag!", .HELP, sep = "\n"))
     }
@@ -168,5 +187,5 @@ export_dados<- function(flag) {
 
 export_dados(flag)
 
-futile.logger::flog.info('Termino do processamento de dados para Proposições: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+futile.logger::flog.info('Termino do processamento de dados para Proposições: %s', calcula_hora(time_init, Sys.time()))
 

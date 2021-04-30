@@ -3,6 +3,7 @@ library(magrittr)
 library(tidyverse)
 
 source(here::here("scripts/entidades/process_entidades.R"))
+source(here::here("scripts/utils-hora.R"))
 
 if (!require(optparse)) {
   install.packages("optparse")
@@ -48,4 +49,4 @@ if (!str_detect(export_path, "\\/$")) {
 entidades <- .process_entidades(parlamentares_filepath)
 
 write_csv(entidades, paste0(export_path, "entidades.csv"))
-futile.logger::flog.info('Termino do processamento de Entidades: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+futile.logger::flog.info('Termino do processamento de Entidades: %s', calcula_hora(time_init, Sys.time()))

@@ -4,6 +4,7 @@ library(magrittr)
 source(here::here("scripts/documentos/export_atuacao.R"))
 source(here::here("scripts/documentos/export_coautorias.R"))
 source(here::here("scripts/documentos/export_emendas.R"))
+source(here::here("scripts/utils-hora.R"))
 
 .HELP <- "
 Rscript process_leggo_data.R -i <input_path> -o <output_path> -d <data_inicial_documentos> -p <peso_minimo_arestas> -f <flag>
@@ -142,7 +143,7 @@ process_leggo_data <- function(flag) {
       ungroup()
     
     entidades <- readr::read_csv(entidades_path)
-    futile.logger::flog.info('Termino da leitura dos csvs atuais para Câmara e Senado: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+    futile.logger::flog.info('Termino da leitura dos csvs atuais para Câmara e Senado: %s', calcula_hora(time_init, Sys.time()))
 
     if (flag == 1) {
       export_atuacao(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id, entidades)
@@ -155,14 +156,14 @@ process_leggo_data <- function(flag) {
       futile.logger::flog.info('Início do processamento somente de Atuações')
       print('===============================')
       export_atuacao(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id, entidades)
-      futile.logger::flog.info('Termino do processamento somente de Atuações: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+      futile.logger::flog.info('Termino do processamento somente de Atuações: %s', calcula_hora(time_init, Sys.time()))
     } else if (flag == 3) {
       print('===============================')
       time_init <- Sys.time()
       futile.logger::flog.info('Início do processamento somente de Nodes e Edges')
       print('===============================')
       export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, props_leggo_id, output_path)
-      futile.logger::flog.info('Termino do processamento somente de Nodes e Edges: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+      futile.logger::flog.info('Termino do processamento somente de Nodes e Edges: %s', calcula_hora(time_init, Sys.time()))
     } else if (flag == 4) {
       print('===============================')
       time_init <- Sys.time()
@@ -170,7 +171,7 @@ process_leggo_data <- function(flag) {
       print('===============================')
       novas_emendas = export_emendas(camara_docs, camara_autores, senado_docs, senado_autores, output_path)
       export_avulsos_iniciais(camara_docs, senado_docs, novas_emendas, output_path)
-      futile.logger::flog.info('Termino do processamento somente de Emendas e Avulsos Iniciais: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+      futile.logger::flog.info('Termino do processamento somente de Emendas e Avulsos Iniciais: %s', calcula_hora(time_init, Sys.time()))
     } else {
       print(paste("Flag inexistente:",flag))
       print(.HELP)
@@ -180,4 +181,4 @@ process_leggo_data <- function(flag) {
 }
 
 process_leggo_data(flag)
-futile.logger::flog.info('Termino do processamento das Atuações, Coautorias e Emendas: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+futile.logger::flog.info('Termino do processamento das Atuações, Coautorias e Emendas: %s', calcula_hora(time_init, Sys.time()))

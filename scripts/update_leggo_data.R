@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 library(magrittr)
+source(here::here("scripts/utils-hora.R"))
 
 .HELP <- "
 Usage:
@@ -164,7 +165,7 @@ if (casa == 'senado') {
   readr::write_csv(senado_docs, docs_filepath)
   print(paste("Salvando",nrow(senado_autores_com_id_autor), "autores de documentos para o Senado."))
   readr::write_csv(senado_autores_com_id_autor, autores_filepath)
-  futile.logger::flog.info('Termino da atualização dos dados do Senado: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+  futile.logger::flog.info('Termino da atualização dos dados do Senado: %s', calcula_hora(time_init, Sys.time()))
 
 
 } else {
@@ -261,6 +262,6 @@ if (casa == 'senado') {
   } else {
     print("Não há documentos novos para essa proposição na Câmara.")
   }
-  futile.logger::flog.info('Termino da atualização dos dados da Câmara: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+  futile.logger::flog.info('Termino da atualização dos dados da Câmara: %s', calcula_hora(time_init, Sys.time()))
 }
-futile.logger::flog.info('Termino da atualização dos dados da Câmara e Senado: %g segundos', difftime(Sys.time(), time_init, units = 'secs'))
+futile.logger::flog.info('Termino da atualização dos dados da Câmara e Senado: %s', calcula_hora(time_init, Sys.time()))
