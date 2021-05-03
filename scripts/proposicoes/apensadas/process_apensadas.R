@@ -21,7 +21,7 @@ process_apensadas <- function(proposicoes_filepath, interesses_filepath, export_
 
   proposicoes_apensadas <- proposicoes %>%
     select(id_ext, casa, id_leggo, uri_prop_principal) %>%
-    extract_id_from_uri()
+    agoradigital::extract_id_from_uri()
 
   listas <- process_lista_apensadas(proposicoes_apensadas, fresh_execution = FALSE, export_folder)
 
@@ -59,23 +59,6 @@ process_apensadas <- function(proposicoes_filepath, interesses_filepath, export_
   flog.info(str_glue("{props_apensadas_nao_monitoradas %>% nrow()} proposições monitoradas não têm a proposição principal raiz monitorada"))
 
   return(list(props_apensadas_alt, props_apensadas_nao_monitoradas))
-}
-
-#' @title Extrai id da URI da proposição na API da respectiva casa
-#' @param proposicoes Dataframe de proposições com pelo menos uma coluna: uri_prop_principal
-#' @return Dataframe com as mesmas colunas originais e uma coluna a mais com o id da proposição
-extract_id_from_uri <- function(proposicoes) {
-  proposicoes_com_id <- proposicoes %>%
-    mutate(
-      id_prop_principal = case_when(
-        str_detect(uri_prop_principal, "dadosabertos.camara.leg.br") ~
-          uri_prop_principal %>% str_extract("proposicoes/[0-9]+") %>% str_extract("[0-9]+"),
-        str_detect(uri_prop_principal, "legis.senado.leg.br") ~
-          uri_prop_principal %>% str_extract("materia/[0-9]+") %>% str_extract("[0-9]+")
-      )
-    )
-
-  return(proposicoes_com_id)
 }
 
 #' @title Recupera os ids das proposições que são as raizes das árvores de apensados da proposição apensada monitorada

@@ -2,8 +2,6 @@ testthat::context('test-apensadas.R')
 
 library(tidyverse)
 library(testthat)
-source(here::here("scripts/proposicoes/apensadas/process_lista_apensadas.R"))
-source(here::here("scripts/proposicoes/apensadas/process_apensadas.R"))
 
 #' @title Recupera proposição apensada no formato do dataframe usado para teste
 setup_prop_apensada <- function(id_prop, casa) {
@@ -12,7 +10,7 @@ setup_prop_apensada <- function(id_prop, casa) {
 
   proposicao_apensada <- prop %>%
     select(id_ext = prop_id, casa, id_leggo, uri_prop_principal) %>%
-    extract_id_from_uri()
+    agoradigital::extract_id_from_uri()
 
   return(proposicao_apensada)
 }
