@@ -43,11 +43,13 @@ process_lista_apensadas <- function(proposicoes_apensadas, fresh_execution = FAL
 #' @param fresh_execution Se FALSE então um arquivo com a lista de apensadas executada anteriormente será utilizada.
 #' TRUE caso uma execução nova seja o objetivo.
 #' @param export_filepath Caminho para salvar lista de apensadas
+#' @param save_result TRUE se o resultado da lista deve ser salvo em csv no caminho do export_filepath
 #' @return Lista com árvore de apensados.
 process_lista_apensadas_por_casa <- function(proposicoes_apensadas,
                                              casa_origem = "camara",
                                              fresh_execution = FALSE,
-                                             export_filepath = "lista_apensadas.csv") {
+                                             export_filepath = "lista_apensadas.csv",
+                                             save_result = TRUE) {
 
   if (!fresh_execution) {
     if (file.exists(export_filepath)) {
@@ -81,7 +83,9 @@ process_lista_apensadas_por_casa <- function(proposicoes_apensadas,
   lista_asdataframe <- stack(lista) %>%
     select(key = ind, value = values)
 
-  write_csv(lista_asdataframe, export_filepath)
+  if (save_result) {
+    write_csv(lista_asdataframe, export_filepath)
+  }
 
   return(lista)
 }
@@ -95,9 +99,12 @@ process_lista_apensadas_por_casa <- function(proposicoes_apensadas,
 #' Para o caso de proposições já monitoradas que não são apensadas o value é 'raiz'.
 #' @param x Lista de um elemento (ou string) com o id da proposição para pesquisar
 #' @param casa Casa de origem da proposição
+#' @param verbose TRUE para exibir mensagens sobre a execução da proposição atual, FALSE caso contrário.
 #' @return Elemento x passado como parâmetro
-fetch_proposicao_raiz <- function(x, casa) {
-  print(str_glue("key: {names(x)} value: {x[[1]]} casa: {casa}"))
+fetch_proposicao_raiz <- function(x, casa, verbose = TRUE) {
+  if (verbose) {
+    print(str_glue("key: {names(x)} value: {x[[1]]} casa: {casa}"))
+  }
 
   id <- x[[1]]
   if (is.null(lista[[id]]) && id != "raiz") {

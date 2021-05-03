@@ -21,7 +21,7 @@ process_apensadas <- function(proposicoes_filepath, interesses_filepath, export_
 
   proposicoes_apensadas <- proposicoes %>%
     select(id_ext, casa, id_leggo, uri_prop_principal) %>%
-    .extract_id_from_uri()
+    extract_id_from_uri()
 
   listas <- process_lista_apensadas(proposicoes_apensadas, fresh_execution = FALSE, export_folder)
 
@@ -64,7 +64,7 @@ process_apensadas <- function(proposicoes_filepath, interesses_filepath, export_
 #' @title Extrai id da URI da proposição na API da respectiva casa
 #' @param proposicoes Dataframe de proposições com pelo menos uma coluna: uri_prop_principal
 #' @return Dataframe com as mesmas colunas originais e uma coluna a mais com o id da proposição
-.extract_id_from_uri <- function(proposicoes) {
+extract_id_from_uri <- function(proposicoes) {
   proposicoes_com_id <- proposicoes %>%
     mutate(
       id_prop_principal = case_when(
