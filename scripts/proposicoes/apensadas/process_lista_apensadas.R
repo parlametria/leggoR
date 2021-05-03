@@ -4,7 +4,7 @@ library(futile.logger)
 
 #' @title Processa lista de apensadas com árvore partindo das apensadas monitoradas até chegar na proposição raiz.
 #' @description Recupera uma lista que contém as ligações entre as proposições apensadas monitoradas e suas
-#' proposições principais
+#' proposições principais para as duas casas: câmara e senado.
 #' @param proposicoes_apensadas Dataframe com lista de proposições apensadas e suas proposições principais.
 #' É necessário pelo menos 3 colunas: id_ext, casa, id_prop_principal.
 #' @param fresh_execution Se FALSE então um arquivo com a lista de apensadas executada anteriormente será utilizada.
@@ -31,12 +31,12 @@ process_lista_apensadas <- function(proposicoes_apensadas, fresh_execution = FAL
     )
 
   flog.info("Processamento de árvore de apensadas concluído!")
-  return(list(lista_proposicoes_apensadas_camara, lista_senado))
+  return(list(lista_proposicoes_apensadas_camara, lista_proposicoes_apensadas_senado))
 }
 
 #' @title Processa lista de apensadas com árvore partindo das apensadas monitoradas até chegar na proposição raiz.
 #' @description Recupera uma lista que contém as ligações entre as proposições apensadas monitoradas e suas
-#' proposições principais
+#' proposições principais para uma casa de origem.
 #' @param proposicoes_apensadas Dataframe com lista de proposições apensadas e suas proposições principais.
 #' É necessário pelo menos 3 colunas: id_ext, casa, id_prop_principal.
 #' @param casa_origem Casa de origem das proposições. Parâmetro usado para recuperar dados da uriPrincipal.
@@ -49,7 +49,6 @@ process_lista_apensadas_por_casa <- function(proposicoes_apensadas,
                                              fresh_execution = FALSE,
                                              export_filepath = "lista_apensadas.csv") {
 
-  ##TODO leitura de lista de apensadas já usadas
   if (!fresh_execution) {
     if (file.exists(export_filepath)) {
       execucao_anterior_lista <- read_csv(export_filepath, col_types = cols(.default = "c")) %>%
@@ -92,10 +91,13 @@ process_lista_apensadas_por_casa <- function(proposicoes_apensadas,
 #' até chegar na proposição raiz. Salva na lista (objeto no environment global) as proposições apensadas (chave) e
 #' as prosições principais (valor). Este código não considera outras subárvores da árvore de apensadas da proposição
 #' passada como parâmetro.
+#' Na lista usada como estrutura de entrada: key é a proposição possivelmente apensada e value é a proposição principal
+#' Para o caso de proposições já monitoradas que não são apensadas o value é 'raiz'.
 #' @param x Lista de um elemento (ou string) com o id da proposição para pesquisar
+#' @param casa Casa de origem da proposição
 #' @return Elemento x passado como parâmetro
 fetch_proposicao_raiz <- function(x, casa) {
-  print(str_glue("k: {names(x)} v: {x[[1]]} casa: {casa}"))
+  print(str_glue("key: {names(x)} value: {x[[1]]} casa: {casa}"))
 
   id <- x[[1]]
   if (is.null(lista[[id]]) && id != "raiz") {
