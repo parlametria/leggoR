@@ -135,8 +135,6 @@ export_dados<- function(flag) {
   if (!(flag %in% c(1, 2, 3, 4, 5, 6))) {
     stop(paste("Wrong flag!", .HELP, sep = "\n"))
   }else {
-    ## Install local repository R package version
-    devtools::install(upgrade = "never")
     if (flag == 1) {
       print("Atualizando tudo!")
       export_props(pls_ids_filepath, export_path)

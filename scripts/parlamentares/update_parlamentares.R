@@ -3,11 +3,6 @@ library(tidyverse)
 
 source(here::here("scripts/parlamentares/process_parlamentares.R"))
 
-if (!require(optparse)) {
-  install.packages("optparse")
-  suppressWarnings(suppressMessages(library(optparse)))
-}
-
 args = commandArgs(trailingOnly = TRUE)
 
 message("Use --help para mais informações\n")

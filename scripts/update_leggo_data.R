@@ -104,9 +104,6 @@ if (!(casa %in% c("camara", "senado"))) {
   stop("Casa deve ser ou camara ou senado!")
 }
 
-## Install local repository R package version
-devtools::install(upgrade = "never")
-
 #current_docs <- tibble::tibble()
 current_autores <- tibble::tibble()
 deputados <- tibble::tibble()

@@ -4,11 +4,6 @@ library(futile.logger)
 source(here::here("scripts/proposicoes/apensadas/process_apensadas.R"))
 source(here::here("scripts/utils-hora.R"))
 
-if (!require(optparse)) {
-  install.packages("optparse")
-  suppressWarnings(suppressMessages(library(optparse)))
-}
-
 args = commandArgs(trailingOnly = TRUE)
 
 option_list = list(
@@ -41,9 +36,6 @@ opt = parse_args(opt_parser)
 proposicoes_filepath <- opt$proposicoes_filepath
 interesses_filepath <- opt$interesses_filepath
 export_path <- opt$out
-
-## Install local repository R package version
-devtools::install(upgrade = "never")
 
 if (!str_detect(export_path, "\\/$")) {
   export_path <- paste0(export_path, "/")

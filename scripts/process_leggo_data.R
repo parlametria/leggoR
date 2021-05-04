@@ -102,9 +102,6 @@ process_leggo_data <- function(flag) {
   if (!(flag %in% c(1, 2, 3,4))) {
     stop(paste("Wrong flag!", .HELP, sep = "\n"))
   } else {
-    ## Install local repository R package version
-    devtools::install(upgrade = "never")
-    
     props_leggo_id <-
       agoradigital::read_props(paste0(input_path, "/proposicoes.csv")) %>%
       dplyr::select(id_leggo, id_principal = id_ext, casa)
