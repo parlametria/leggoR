@@ -4,6 +4,11 @@ library(futile.logger)
 source(here::here("scripts/proposicoes/apensadas/process_apensadas.R"))
 source(here::here("scripts/utils-hora.R"))
 
+if (!require(optparse)) {
+  install.packages("optparse")
+  suppressWarnings(suppressMessages(library(optparse)))
+}
+
 args = commandArgs(trailingOnly = TRUE)
 
 option_list = list(

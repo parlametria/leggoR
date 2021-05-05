@@ -5,6 +5,11 @@ library(tidyverse)
 source(here::here("scripts/entidades/process_entidades.R"))
 source(here::here("scripts/utils-hora.R"))
 
+if (!require(optparse)) {
+  install.packages("optparse")
+  suppressWarnings(suppressMessages(library(optparse)))
+}
+
 print('===============================')
 time_init <- Sys.time()
 futile.logger::flog.info('Início do processamento de Entidades')
