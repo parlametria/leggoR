@@ -148,7 +148,7 @@ export_dados<- function(flag) {
       futile.logger::flog.info('Início da atualização das Proposições')
       print('===============================')
       export_props(pls_ids_filepath, export_path)
-      futile.logger::flog.info('Termino da atualização das Proposições %s', calcula_hora(time_init, Sys.time()))
+      futile.logger::flog.info('Termino da atualização das Proposições: %s', calcula_hora(time_init, Sys.time()))
     } else if (flag == 3) {
       print('===============================')
       time_init <- Sys.time()
