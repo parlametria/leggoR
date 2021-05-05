@@ -363,7 +363,7 @@ process_relatores_props <- function(pls_ids_filepath, proposicoes_filepath, expo
   proposicoes_capturadas <- readr::read_csv(proposicoes_filepath,
                                             col_types = cols(id_ext = "c")) %>%
   select(id_ext, sigla_tipo, numero, ementa, data_apresentacao, casa, casa_origem,
-         autor_nome, autor_uf, autor_partido, regime_tramitacao, forma_apreciacao, id_leggo)
+         regime_tramitacao, forma_apreciacao, id_leggo)
 
   parlamentares <- agoradigital::read_parlamentares(export_path)
 
