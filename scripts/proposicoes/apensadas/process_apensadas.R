@@ -53,8 +53,15 @@ process_apensadas <- function(proposicoes_filepath, interesses_filepath, export_
   props_apensadas_nao_monitoradas <- props_apensadas_alt %>%
     filter(is.na(id_leggo_prop_principal)) %>%
     left_join(proposicoes %>% distinct(id_ext, casa, id_leggo), by = c("id_leggo", "casa_prop_principal" = "casa")) %>%
+    mutate(uri_prop_principal_raiz = case_when(
+      casa_prop_principal == "camara" ~ str_glue(
+        "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao={id_ext_prop_principal_raiz}"),
+      casa_prop_principal == "senado" ~ str_glue(
+        "https://www25.senado.leg.br/web/atividade/materias/-/materia/{id_ext_prop_principal_raiz}"
+      )
+    )) %>%
     select(id_leggo, id_ext, casa = casa_prop_principal, id_leggo_prop_principal, id_ext_prop_principal,
-           id_ext_prop_principal_raiz)
+           id_ext_prop_principal_raiz, uri_prop_principal_raiz)
 
   flog.info(str_glue("{props_apensadas_nao_monitoradas %>% nrow()} proposições monitoradas não têm a proposição principal raiz monitorada"))
 
