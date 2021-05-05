@@ -94,7 +94,7 @@ test <- function() {
     progresso_pec_gabarito <-
       progresso_pec_gabarito %>% dplyr::mutate(prop_id = as.integer(prop_id))
 
-    expect_equal(progresso_pec %>% dplyr::mutate(data_inicio = as.character(data_inicio)), progresso_pec_gabarito)
+    expect_equal(progresso_pec %>% dplyr::mutate(data_inicio = as.character(data_inicio)) %>% dplyr::mutate(data_fim = as.character(data_fim)), progresso_pec_gabarito)
   })
 }
 check_api <- function() {
