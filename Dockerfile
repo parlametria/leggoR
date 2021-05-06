@@ -19,14 +19,14 @@ COPY . .
 
 #Install rcongresso from local branch
 ARG clone_rcongresso=true
-RUN if [ "$clone_rcongresso" = "false" ] ;  then Rscript -e 'devtools::install("rcongresso/", quiet=TRUE)'; else Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso", quiet=TRUE)'; fi
+RUN if [ "$clone_rcongresso" = "false" ] ;  then Rscript -e 'devtools::install("rcongresso/")'; else Rscript -e 'devtools::install_github("analytics-ufcg/rcongresso")'; fi
 
 
 #Remove rcongresso files to avoid including in leggoR package
 RUN rm -rf rcongresso
 
 #Install leggoR package
-RUN Rscript -e 'devtools::install(upgrade = "never", quiet=TRUE)'
+RUN Rscript -e 'devtools::install(upgrade = "never")'
 
 #Install perfilparlamentar package
-RUN Rscript -e 'devtools::install_github("parlametria/perfil-parlamentarR@main", quiet=TRUE)'
+RUN Rscript -e 'devtools::install_github("parlametria/perfil-parlamentarR@main")'
