@@ -451,7 +451,7 @@ extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
   relator <- get_last_relator(proposicao_id, casa)
 
   status_tram <-
-    tibble::tibble(
+    data.frame(
       prop_id = tram[1, ]$prop_id,
       regime_tramitacao = regime,
       forma_apreciacao = apreciacao,

@@ -4,7 +4,7 @@ context("progresso")
 setup <- function(){
   etapas <<- list()
   etapas %<>% append(list(process_etapa(2088990, "camara", as.data.frame())))
-  etapas %<>% append(list(process_etapa(91341, "senado", as.data.frame(), T)))
+  etapas %<>% append(list(process_etapa(91341, "senado", as.data.frame(), retry=T)))
   etapas %<>% purrr::pmap(dplyr::bind_rows)
   progresso <<- get_progresso(etapas$proposicao, etapas$fases_eventos)
 
