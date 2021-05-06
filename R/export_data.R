@@ -103,6 +103,10 @@ process_etapa <-
       extended_prop <-
         merge(prop, status, by = "prop_id")
 
+      extended_prop <- extended_prop %>%
+        dplyr::mutate(
+          sigla = stringr::str_glue("{sigla_tipo} {numero}/{ano}"))
+
       return(list(
         proposicao = extended_prop,
         fases_eventos = proc_tram,
@@ -316,9 +320,6 @@ process_pl <-
     tramitacoes_camara <- NULL
     tramitacoes_senado <- NULL
 
-    ultima_tramitacao_camara <- NULL
-    ultima_tramitacao_senado <- NULL
-
     if (!is.null(proposicoes) && !is.null(tramitacoes)) {
       ultima_tramitacao_data <- tramitacoes %>%
         dplyr::filter((casa == "camara" &
@@ -363,10 +364,6 @@ process_pl <-
           .monta_etapa_processada_nao_modificada(proposicao_camara, tramitacoes_camara)
         houve_modificacao <- FALSE
 
-      } else {
-        etapa_processada$result$proposicao <-
-          etapa_processada$result$proposicao %>%
-          dplyr::mutate(sigla = stringr::str_glue("{sigla_tipo} {numero}/{ano}"))
       }
       etapa_processada$result$foi_modificada <- NULL
 
@@ -377,12 +374,12 @@ process_pl <-
       }
     }
     if (!is.na(id_senado)) {
-      
+
       # Checa se houve modificação na Câmara. Se sim, é necessário gerar todo o dado para o Senado também.
       if (houve_modificacao) {
         ultima_tramitacao_data <- NULL
       }
-      
+
       etapa_processada <-
         safe_process_etapa(id_senado,
                            "senado",
@@ -395,9 +392,6 @@ process_pl <-
         houve_modificacao <- houve_modificacao | FALSE
 
       } else {
-        etapa_processada$result$proposicao <-
-          etapa_processada$result$proposicao %>%
-          dplyr::mutate(sigla = stringr::str_glue("{sigla_tipo} {numero}/{ano}"))
         houve_modificacao <- TRUE
       }
 
@@ -440,8 +434,8 @@ process_pl <-
             adiciona_coluna_pulou() %>%
             adiciona_locais_faltantes_progresso()
         }
-        
-        etapas$proposicao <- etapas$proposicao %>% 
+
+        etapas$proposicao <- etapas$proposicao %>%
           dplyr::mutate(id_leggo = id_leggo_key)
 
         ## Processa dados de Locais Atuais da proposição
