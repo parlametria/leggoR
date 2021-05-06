@@ -17,7 +17,7 @@ setup_prop_apensada <- function(id_prop, casa) {
 
 test_that('setup_prop_apensada() retorna a proposição principal corretamente para a câmara', {
   prop <- setup_prop_apensada("2250675", "camara")
-  expect_equal(prop$id_prop_principal, "2123222")
+  expect_equal(prop$id_prop_principal, "2228151")
 })
 
 test_that('setup_prop_apensada() retorna NA quando não houver proposição principal', {
@@ -38,8 +38,8 @@ test_that('process_lista_apensadas_por_casa() retorna a lista correta de apensam
 
   lista_apensadas <- process_lista_apensadas_por_casa(prop, "camara", fresh_execution = TRUE, save_result = FALSE)
 
-  lista_gabarito <- tibble(key = c("2250675", "2123222", "1203380", "517167"),
-                           value = c("2123222", "1203380", "517167", "2190084")) %>%
+  lista_gabarito <- tibble(key = c("2250675"),
+                           value = c("2228151")) %>%
     as.data.frame()
 
   lista_dataframe <- stack(lista) %>%
