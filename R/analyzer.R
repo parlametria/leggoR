@@ -454,13 +454,19 @@ extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
     data.frame(
       prop_id = tram[1, ]$prop_id,
       regime_tramitacao = regime,
-      forma_apreciacao = apreciacao,
-      relator_id = agoradigital::check_is_logical(relator$id_relator),
-      relator_nome = agoradigital::check_is_logical(relator$nome_relator),
-      relator_partido = agoradigital::check_is_logical(relator$partido_relator),
-      relator_uf = agoradigital::check_is_logical(relator$uf_relator),
-      relator_data = agoradigital::check_is_logical(relator$data_relator)
-    )
+      forma_apreciacao = apreciacao
+    ) %>%
+    dplyr::bind_cols(relator) %>%
+    dplyr::rename(
+      relator_id = id_relator,
+      relator_nome = nome_relator,
+      relator_partido = partido_relator,
+      relator_uf = uf_relator,
+      relator_data = data_relator
+    ) %>%
+    dplyr::mutate(relator_id = dplyr::if_else(is.na(relator_id),
+                                              NA_integer_,
+                                              as.integer(relator_id)))
 }
 
 #' @title Extrai o progresso de um PL

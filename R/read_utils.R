@@ -258,3 +258,179 @@ read_distance_file <- function(file_path) {
 
   return(df)
 }
+
+
+#' @title Ler arquivo de proposições
+#' @param file_path caminho do arquivo
+#' @export
+read_proposicoes <- function(file_path) {
+  if (file.exists(file_path)) {
+    df <- readr::read_csv(
+      file_path,
+      col_types = readr::cols(
+          id_ext = readr::col_double(),
+          sigla_tipo = readr::col_character(),
+          numero = readr::col_integer(),
+          ementa = readr::col_character(),
+          data_apresentacao = readr::col_datetime(format = ""),
+          casa = readr::col_character(),
+          casa_origem = readr::col_character(),
+          autor_nome = readr::col_character(),
+          autor_uf = readr::col_character(),
+          autor_partido = readr::col_character(),
+          regime_tramitacao = readr::col_character(),
+          forma_apreciacao = readr::col_character(),
+          relator_id = readr::col_integer(),
+          relator_id_parlametria = readr::col_integer(),
+          id_leggo = readr::col_character(),
+          uri_prop_principal = readr::col_character(),
+          sigla = readr::col_character(),
+          status = readr::col_character()
+        )
+    )
+  } else {
+    df <- tibble::tibble(
+      id_ext = double(),
+      sigla_tipo = character(),
+      numero = double(),
+      ementa = character(),
+      data_apresentacao = date(),
+      casa = character(),
+      casa_origem = character(),
+      autor_nome = character(),
+      autor_uf = character(),
+      autor_partido = character(),
+      regime_tramitacao = character(),
+      forma_apreciacao = character(),
+      relator_id = double(),
+      relator_id_parlametria = double(),
+      id_leggo = character(),
+      uri_prop_principal = character(),
+      sigla = character(),
+      status = character()
+    )
+  }
+
+  return(df)
+}
+
+#' @title Ler arquivo de tramitações
+#' @param file_path caminho do arquivo
+#' @export
+read_tramitacoes <- function(file_path) {
+  if (file.exists(file_path)) {
+    df <- readr::read_csv(
+      file_path,
+      col_types = readr::cols(
+        .default = readr::col_character(),
+        id_ext = readr::col_double(),
+        data = readr::col_datetime(format = ""),
+        sequencia = readr::col_integer(),
+        id_situacao = readr::col_integer(),
+        ambito = readr::col_logical(),
+        uri_ultimo_relator = readr::col_logical(),
+        nivel = readr::col_integer(),
+        temperatura_local = readr::col_double(),
+        temperatura_evento = readr::col_double(),
+        data_audiencia = readr::col_date(format = ""),
+        origem_tramitacao_local_nome_casa_local = readr::col_character()
+      )
+    )
+  } else {
+    df <- tibble::tibble(
+      id_ext = double(),
+      casa = character(),
+      data = date(),
+      sequencia = integer(),
+      texto_tramitacao = character(),
+      sigla_local = character(),
+      id_situacao = integer(),
+      descricao_situacao = character(),
+      link_inteiro_teor = character(),
+      evento = character(),
+      local = character(),
+      ambito = character(),
+      uri_ultimo_relator = character(),
+      tipo_documento = character(),
+      titulo_evento = character(),
+      nivel = integer(),
+      temperatura_local = double(),
+      temperatura_evento = double(),
+      fase = character(),
+      situacao_descricao_situacao = character(),
+      data_audiencia = date(),
+      global = character(),
+      origem_tramitacao_local_nome_casa_local = character(),
+      status = character()
+    )
+  }
+
+  return(df)
+}
+
+
+#' @title Ler arquivo de progressos
+#' @param file_path caminho do arquivo
+#' @export
+read_progressos <- function(file_path) {
+  if (file.exists(file_path)) {
+    df <- readr::read_csv(
+      file_path,
+      col_types = readr::cols(
+        casa = readr::col_character(),
+        id_ext = readr::col_double(),
+        fase_global = readr::col_character(),
+        local = readr::col_character(),
+        data_inicio = readr::col_datetime(format = ""),
+        data_fim = readr::col_datetime(format = ""),
+        local_casa = readr::col_character(),
+        pulou = readr::col_logical()
+      )
+    )
+  } else {
+    df <- tibble::tibble(
+      casa = character(),
+      id_ext = double(),
+      fase_global = character(),
+      local = character(),
+      data_inicio = date(),
+      data_fim = date(),
+      local_casa = character(),
+      pulou = logical()
+    )
+  }
+
+  return(df)
+}
+
+
+#' @title Ler arquivo de locais atuais das proposições
+#' @param file_path caminho do arquivo
+#' @export
+read_locais_atuais <- function(file_path) {
+  if (file.exists(file_path)) {
+    df <- readr::read_csv(
+      file_path,
+      col_types = readr::cols(
+        id_leggo = readr::col_character(),
+        sigla_ultimo_local = readr::col_character(),
+        casa_ultimo_local = readr::col_character(),
+        nome_ultimo_local = readr::col_character(),
+        data_ultima_situacao = readr::col_datetime(format = ""),
+        tipo_local = readr::col_character()
+      )
+    )
+
+  } else {
+    df <- tibble::tibble(
+      id_leggo = character(),
+      sigla_ultimo_local = character(),
+      casa_ultimo_local = character(),
+      nome_ultimo_local = character(),
+      data_ultima_situacao = date(),
+      tipo_local = character()
+    )
+  }
+
+  return(df)
+}
