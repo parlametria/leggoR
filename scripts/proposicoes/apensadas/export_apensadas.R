@@ -60,8 +60,8 @@ write_csv(props_apensadas, paste0(export_path, "props_apensadas.csv"))
 flog.info(str_glue("Salvando dados de proposições apensadas não monitoradas em {export_path}props_apensadas.csv"))
 write_csv(props_apensadas_nao_monitoradas, paste0(export_path, "props_apensadas_nao_monitoradas.csv"))
 
-if (length(grep("ROLLBACK", readLines(props_apensadas_nao_monitoradas), value = TRUE)) > 0) {
-  success <- paste0('Existem proposições apensadas a proposições principais pendentes de monitoramento:', export_path)
+if (nrow(props_apensadas_nao_monitoradas) > 0) {
+  success <- paste0('Existem ', nrow(props_apensadas_nao_monitoradas), ' proposições apensadas a proposições principais pendentes de monitoramento:', export_path)
   send_log_to_bot(success)
   print(success)
 } else {
