@@ -379,7 +379,7 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path, pautas_df)
   proposicao_id_senado <- proposicao_id_senado[!is.na(proposicao_id_senado)]
   pautas <-
     agenda %>%
-    dplyr::mutate(data = lubridate::ymd_hms(as.character(data), tz = "America/Sao_Paulo")) %>%
+    dplyr::mutate(data = lubridate::ymd_hms(as.character(data))) %>%
     dplyr::mutate(em_pauta = (casa == "camara" & id_ext %in% proposicao_id_camara) |
                             ((casa == "senado" & id_ext %in% proposicao_id_senado))) %>%
     dplyr::filter(em_pauta) %>%
@@ -406,7 +406,7 @@ extract_pauta <- function(agenda, tabela_geral_ids_casa, export_path, pautas_df)
   new_pautas <- dplyr::bind_rows(pautas, old_pautas_df) %>%
     unique() %>%
     dplyr::arrange(data) %>%
-    dplyr::mutate(data = as.POSIXct(data, tz="UTC"))
+    dplyr::mutate(data = as.POSIXct(data))
   readr::write_csv(new_pautas, paste0(export_path, "/pautas.csv"))
 }
 

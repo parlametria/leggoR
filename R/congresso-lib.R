@@ -24,7 +24,7 @@ extract_casas <- function(full_proposicao_df, full_tramitacao_df, sigla){
   }
 
   full_ordered_tram <- full_tramitacao_df %>%
-    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>%
+    dplyr::mutate(data = as.Date(data_hora)) %>%
     dplyr::arrange(data, sequencia) %>%
     .corrige_evento_inicial_senado() %>%
     .corrige_eventos_apresentacao_duplicado()
@@ -120,8 +120,8 @@ generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = FALSE
     dplyr::filter(!is.na(local)) %>%
     dplyr::group_by(fase_global) %>%
     dplyr::mutate(data_fim_anterior = dplyr::lag(data_fim)) %>%
-    dplyr::mutate(data_fim_proc = as.Date(data_fim, "UTC -3"),
-                  data_fim_anterior_proc = as.Date(data_fim_anterior, "UTC -3")) %>%
+    dplyr::mutate(data_fim_proc = as.Date(data_fim),
+                  data_fim_anterior_proc = as.Date(data_fim_anterior)) %>%
     dplyr::filter(is.na(data_fim_anterior) | data_fim_proc >= data_fim_anterior_proc) %>%
     dplyr::select(-data_fim_anterior, -data_fim_proc, -data_fim_anterior_proc) %>%
     dplyr::arrange(data_inicio)
@@ -413,7 +413,7 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
   cong_remoto_inicio <- congresso_env$congresso_remoto$data_inicio
 
   tramitacao_df <- tramitacao_df %>%
-    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>%
+    dplyr::mutate(data = as.Date(data_hora)) %>%
     dplyr::mutate(fase_comissoes_remoto = dplyr::if_else(!is.na(data) & data > cong_remoto_inicio,
                                                          dplyr::if_else(!is.na(local) & local == "Comissões",
                                                                         TRUE,
@@ -436,7 +436,7 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
   inicio_novo_regime_mpvs <- congresso_env$congresso_remoto$data_mudanca_mpvs
 
   tem_eventos_pos_mudanca_regime <- tramitacao_df %>%
-    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>%
+    dplyr::mutate(data = as.Date(data_hora)) %>%
     dplyr::filter(data >= inicio_novo_regime_mpvs) %>%
     nrow()
 
@@ -445,7 +445,7 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
     nrow()
 
   tramitacao_df <- tramitacao_df %>%
-    dplyr::mutate(data = as.Date(data_hora, "UTC -3")) %>%
+    dplyr::mutate(data = as.Date(data_hora)) %>%
     dplyr::mutate(fase_global = dplyr::if_else(data >= inicio_novo_regime_mpvs |
                                                  (tem_eventos_pos_mudanca_regime > 0 & comissao_instalada == 0),
                                                 dplyr::if_else(fase_global == "Comissão Mista",
