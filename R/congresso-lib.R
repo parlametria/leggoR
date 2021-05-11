@@ -498,14 +498,21 @@ get_linha_finalizacao_tramitacao <- function(proc_tram_df) {
       }
     } else {
       data_inicio_plenario <-
-        eventos_tramitacao_plenario %>% dplyr::pull(data_hora)
+        eventos_tramitacao_plenario %>% 
+        dplyr::pull(data_hora) %>% 
+        as.character() %>% 
+        lubridate::ymd_hms() %>% 
+        lubridate::force_tz("America/Sao_Paulo")
 
       df <- df %>%
         dplyr::mutate(
           data_inicio = ifelse(
             casa == "camara" & local == "Plenário",
             data_inicio_plenario,
-            data_inicio
+            data_inicio %>% 
+            as.character() %>% 
+            lubridate::ymd_hms() %>% 
+            lubridate::force_tz("America/Sao_Paulo")
           )
         ) %>%
         dplyr::mutate(data_inicio = as.POSIXct(data_inicio, origin = "1970-01-01")
