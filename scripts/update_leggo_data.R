@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 library(magrittr)
+source(here::here("scripts/utils-hora.R"))
 
 .HELP <- "
 Usage:
@@ -87,6 +88,10 @@ get_fetch_status <- function(docs_ids, docs_data, authors_data) {
 }
 
 ## Process args
+print('===============================')
+time_init <- Sys.time()
+futile.logger::flog.info('Início da atualização dos dados da Câmara e Senado')
+print('===============================')
 min_num_args <- 3
 if (length(args) < min_num_args) {
     stop(paste("Wrong number of arguments!", help, sep = "\n"))
@@ -98,9 +103,6 @@ casa <- tolower(args$casa)
 if (!(casa %in% c("camara", "senado"))) {
   stop("Casa deve ser ou camara ou senado!")
 }
-
-## Install local repository R package version
-devtools::install(upgrade = "never")
 
 #current_docs <- tibble::tibble()
 current_autores <- tibble::tibble()
@@ -122,7 +124,10 @@ deputados <- agoradigital::read_deputados(paste0(export_path, '/camara/parlament
 all_pls_ids <- agoradigital::get_all_leggo_props_ids(pls_ids)
 
 if (casa == 'senado') {
-  print("Realizando atualização dos dados do Senado")
+  print('===============================')
+  time_init <- Sys.time()
+  futile.logger::flog.info('Início da atualização dos dados do Senado')
+  print('===============================')
 
   pls_senado <- all_pls_ids %>%  dplyr::filter(casa == 'senado')
 
@@ -157,9 +162,14 @@ if (casa == 'senado') {
   readr::write_csv(senado_docs, docs_filepath)
   print(paste("Salvando",nrow(senado_autores_com_id_autor), "autores de documentos para o Senado."))
   readr::write_csv(senado_autores_com_id_autor, autores_filepath)
-  print("Salvos :)")
+  futile.logger::flog.info('Termino da atualização dos dados do Senado: %s', calcula_hora(time_init, Sys.time()))
+
 
 } else {
+  print('===============================')
+  time_init <- Sys.time()
+  futile.logger::flog.info('Início da atualização dos dados da Câmara')
+  print('===============================')
   current_docs <- agoradigital::read_current_docs_camara(docs_filepath)
   current_autores <- agoradigital::read_current_autores_camara(autores_filepath)
 
@@ -246,8 +256,9 @@ if (casa == 'senado') {
     print("Salvando documentos e autores.")
     readr::write_csv(updated_docs, docs_filepath)
     readr::write_csv(updated_autores_docs, autores_filepath)
-    print("Salvo.")
   } else {
     print("Não há documentos novos para essa proposição na Câmara.")
   }
+  futile.logger::flog.info('Termino da atualização dos dados da Câmara: %s', calcula_hora(time_init, Sys.time()))
 }
+futile.logger::flog.info('Termino da atualização dos dados da Câmara e Senado: %s', calcula_hora(time_init, Sys.time()))
