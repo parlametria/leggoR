@@ -44,9 +44,6 @@ export_path <- opt$out
 casa <- opt$casa
 only_lasts_legislatures_flag <- opt$flag
 
-## Install local repository R package version
-devtools::install(upgrade = "never")
-
 if (!str_detect(export_path, "\\/$")) {
   export_path <- paste0(export_path, "/")
 }

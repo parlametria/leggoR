@@ -3,7 +3,7 @@ library(futile.logger)
 
 source(here::here("scripts/proposicoes/apensadas/process_apensadas.R"))
 source(here::here("scripts/logs/bot_parlametria.R"))
-
+source(here::here("scripts/utils-hora.R"))
 
 if (!require(optparse)) {
   install.packages("optparse")
@@ -43,15 +43,14 @@ proposicoes_filepath <- opt$proposicoes_filepath
 interesses_filepath <- opt$interesses_filepath
 export_path <- opt$out
 
-## Install local repository R package version
-devtools::install(upgrade = "never")
-
 if (!str_detect(export_path, "\\/$")) {
   export_path <- paste0(export_path, "/")
 }
-
-flog.info("Processando dados de proposições apensadas")
-list_props_apensadas <- process_apensadas(proposicoes_filepath, interesses_filepath)
+print('===============================')
+time_init <- Sys.time()
+flog.info("Início do processamento de dados de proposições apensadas")
+print('===============================')
+list_props_apensadas <- process_apensadas(proposicoes_filepath, interesses_filepath, export_path)
 
 props_apensadas <- list_props_apensadas[[1]]
 props_apensadas_nao_monitoradas <- list_props_apensadas[[2]]
@@ -72,5 +71,4 @@ if (nrow(props_apensadas_nao_monitoradas) > 0) {
   print(error)
 }
 
-flog.info("Concluído")
-
+flog.info('Termino do processamento de dados de proposições apensadas:  %s', calcula_hora(time_init, Sys.time()))

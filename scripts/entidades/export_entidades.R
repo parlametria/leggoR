@@ -3,12 +3,17 @@ library(magrittr)
 library(tidyverse)
 
 source(here::here("scripts/entidades/process_entidades.R"))
+source(here::here("scripts/utils-hora.R"))
 
 if (!require(optparse)) {
   install.packages("optparse")
   suppressWarnings(suppressMessages(library(optparse)))
 }
 
+print('===============================')
+time_init <- Sys.time()
+futile.logger::flog.info('Início do processamento de Entidades')
+print('===============================')
 args = commandArgs(trailingOnly = TRUE)
 
 option_list = list(
@@ -34,9 +39,6 @@ opt = parse_args(opt_parser)
 parlamentares_filepath <- opt$parlamentares_filepath
 export_path <- opt$out
 
-## Install local repository R package version
-devtools::install(upgrade = "never")
-
 if (!str_detect(export_path, "\\/$")) {
   export_path <- paste0(export_path, "/")
 }
@@ -44,3 +46,4 @@ if (!str_detect(export_path, "\\/$")) {
 entidades <- .process_entidades(parlamentares_filepath)
 
 write_csv(entidades, paste0(export_path, "entidades.csv"))
+futile.logger::flog.info('Termino do processamento de Entidades: %s', calcula_hora(time_init, Sys.time()))
