@@ -77,7 +77,7 @@ adiciona_locais_faltantes_progresso <- function(progresso_df) {
 }
 
 #' @title Retorna o progresso baseado do tipo da proposição
-#' @description Retorna o progresso dependendo do tipo da proposição. 
+#' @description Retorna o progresso dependendo do tipo da proposição.
 #' Para MPVs, ele é gerado diferente.
 #' @param proposicao Dataframe contendo os metadados de proposição
 #' @param fases_eventos Dataframe com a tramitação já processada
@@ -87,21 +87,21 @@ adiciona_locais_faltantes_progresso <- function(progresso_df) {
   if (length(sigla) > 1) {
     sigla <- sigla[1]
   }
-  
+
   ## Processa dados do progresso
   if (sigla == 'mpv') {
     progresso <-
       agoradigital::generate_progresso_df_mpv(fases_eventos, proposicao) %>%
       dplyr::mutate(local = "", local_casa = "") %>%
       adiciona_coluna_pulou_mpv()
-    
+
   } else {
     progresso <-
       agoradigital::get_progresso(proposicao, fases_eventos) %>%
       adiciona_coluna_pulou() %>%
       adiciona_locais_faltantes_progresso()
   }
-  
+
   return(progresso)
 }
 
@@ -169,13 +169,19 @@ process_pl <-
 
     ultima_tramitacao_data <- NULL
     if (!is.null(proposicoes) && !is.null(tramitacoes)) {
-      ultima_tramitacao_data <- tramitacoes %>%
+      ultima_tramitacao_data_df <- tramitacoes %>%
         dplyr::filter((casa == "camara" &
                   id_ext == id_camara) |
                  (casa == "senado" & id_ext == id_senado)) %>%
-        dplyr::distinct(data) %>%
-        dplyr::filter(data == max(data)) %>%
-        dplyr::pull(data)
+        dplyr::distinct(data)
+      if (nrow(ultima_tramitacao_data_df) > 0) {
+        ultima_tramitacao_data <- ultima_tramitacao_data_df %>%
+          dplyr::arrange(dplyr::desc(data)) %>%
+          head(1) %>%
+          dplyr::pull(data) %>%
+          as.Date() %>%
+          as.character()
+      }
     }
 
     etapas <- list()
@@ -189,12 +195,12 @@ process_pl <-
                            data_ultima_tramitacao = ultima_tramitacao_data,
                            return_modified_tag = T)
 
-      if (!etapa_processada$result$foi_modificada) {
+      if ("foi_modificada" %in% names(etapa_processada$result) & !etapa_processada$result$foi_modificada) {
         etapa_processada <- etapa_processada %>%
           .build_etapa_processada_nao_modificada(id_camara, "camara", proposicoes, tramitacoes)
-        houve_modificacao <- FALSE
 
       }
+      houve_modificacao <- etapa_processada$result$foi_modificada
       etapa_processada$result$foi_modificada <- NULL
 
       etapas %<>% append(list(etapa_processada$result))
@@ -217,7 +223,7 @@ process_pl <-
                            data_ultima_tramitacao = ultima_tramitacao_data,
                            return_modified_tag = T)
 
-      if (!etapa_processada$result$foi_modificada) {
+      if ("foi_modificada" %in% names(etapa_processada$result) & !etapa_processada$result$foi_modificada) {
         etapa_processada <- etapa_processada %>%
           .build_etapa_processada_nao_modificada(id_senado, "senado", proposicoes, tramitacoes)
 
@@ -246,7 +252,7 @@ process_pl <-
 
     if (houve_modificacao) {
       if (nrow(etapas$proposicao) != 0) {
-        
+
         ## Processa dados de Progresso
         etapas[["progresso"]] <-
           .get_progresso_etapas(etapas$proposicao, etapas$fases_eventos)
@@ -380,11 +386,54 @@ fetch_props <- function(pls, export_path) {
 
     proposicoes <-
       purrr::map_df(res, ~ .$proposicao) %>%
-      dplyr::select(-c(ano)) %>%
       dplyr::rename(id_ext = prop_id) %>%
-      dplyr::select(-c(tema, apelido_materia)) %>%
-      unique() %>%
-      agoradigital::mapeia_nome_relator_para_id(parlamentares)
+      unique()
+
+    if ("relator_data" %in% names(proposicoes)) {
+      proposicoes_sem_relator_mapeado <- proposicoes %>%
+        dplyr::filter(!is.na(relator_data)) %>%
+        agoradigital::mapeia_nome_relator_para_id(parlamentares)
+
+      proposicoes <- proposicoes %>%
+        dplyr::filter(is.na(relator_data)) %>%
+        dplyr::select(
+          id_ext,
+          sigla_tipo,
+          numero,
+          ementa,
+          data_apresentacao,
+          casa,
+          casa_origem,
+          regime_tramitacao,
+          forma_apreciacao,
+          relator_id,
+          relator_id_parlametria,
+          id_leggo,
+          uri_prop_principal,
+          sigla
+        ) %>%
+        dplyr::bind_rows(proposicoes_sem_relator_mapeado) %>%
+        dplyr::distinct()
+
+    } else {
+      proposicoes <- proposicoes %>%
+        dplyr::select(
+          id_ext,
+          sigla_tipo,
+          numero,
+          ementa,
+          data_apresentacao,
+          casa,
+          casa_origem,
+          regime_tramitacao,
+          forma_apreciacao,
+          relator_id,
+          relator_id_parlametria,
+          id_leggo,
+          uri_prop_principal,
+          sigla
+        )
+    }
 
     proposicoes_baixadas <- proposicoes %>%
       dplyr::select(id_leggo,
@@ -431,7 +480,7 @@ fetch_props <- function(pls, export_path) {
   proposicoes_sem_local_atual <- agoradigital::verifica_proposicoes_com_local_detectado(proposicoes, props_locais_atuais)
 
   status_proposicoes <- tramitacoes %>%
-    dplyr::arrange(desc(data)) %>%
+    dplyr::arrange(dplyr::desc(data)) %>%
     dplyr::group_by(id_ext, casa) %>%
     dplyr::summarise(status = first(status)) %>%
     dplyr::ungroup()

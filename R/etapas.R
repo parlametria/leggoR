@@ -57,8 +57,11 @@
 
     ultima_data_tram <- tram %>%
       dplyr::distinct(data_hora) %>%
-      dplyr::filter(data_hora == max(data_hora)) %>%
-      dplyr::pull(data_hora)
+      dplyr::arrange(dplyr::desc(data_hora)) %>%
+      head(1) %>%
+      dplyr::pull(data_hora) %>%
+      as.Date() %>%
+      as.character()
 
     if (ultima_data_tram > data_ultima_tramitacao) {
       return(TRUE)
