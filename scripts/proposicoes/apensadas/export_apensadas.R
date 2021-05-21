@@ -2,6 +2,8 @@ library(tidyverse)
 library(futile.logger)
 
 source(here::here("scripts/proposicoes/apensadas/process_apensadas.R"))
+source(here::here("scripts/logs/bot_parlametria.R"))
+
 
 if (!require(optparse)) {
   install.packages("optparse")
