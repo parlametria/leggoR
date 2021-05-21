@@ -48,7 +48,7 @@ pls_ids <- tibble::tibble(id_camara = c(257161,2088990),
                                       'Lei da Qualidade Fiscal'),
                           tema = c('Meio Ambiente','Agenda Nacional'))
 
-current_docs <- tibble::tibble(id_documento = c(260606,257161),
+current_docs <- tibble::tibble(id_documento = c(615270,257161),
                                id_principal = c(257161,257161),
                                casa = c('camara','camara'))
 
