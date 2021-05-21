@@ -11,6 +11,8 @@ services:
         - ${PKG_IMAGE_TAG:-agoradigital/r-scrapper}
     image: ${PKG_IMAGE_TAG:-agoradigital/r-scrapper}
     container_name: rmod
+    environment:
+      - APP_SECRET=${APP_SECRET:-secret}
     env_file: 
       - .env
     volumes:
