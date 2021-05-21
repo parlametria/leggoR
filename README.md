@@ -155,3 +155,8 @@ Depois faça os testes necessários para garantir que o pacote está funcionando
   Se encontrou algum problema ou deseja fazer alguma melhoria. Por favor, abra uma [issue](https://github.com/parlametria/leggoR/issues) e descreva o problema com clareza, se possível com exemplos que possamos reproduzir.
   
   Toda ajuda é bem vinda e de grande importância :) sinta-se à vontade.
+  
+## Configuração de variáveis de ambiente 
+
+Para executá-lo é preciso configurar as variáveis de ambiente por ele utilizadas. Para isto, crie uma cópia do arquivo .env.sample e o renomeie para .env. Em seguida preencha as variáveis com os valores adequados para execução.
+*APP_SECRET* = hash da url do bot Voz Ativa.
