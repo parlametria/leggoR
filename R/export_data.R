@@ -195,13 +195,18 @@ process_pl <-
                            data_ultima_tramitacao = ultima_tramitacao_data,
                            return_modified_tag = T)
 
-      if ("foi_modificada" %in% names(etapa_processada$result) & !etapa_processada$result$foi_modificada) {
-        etapa_processada <- etapa_processada %>%
-          .build_etapa_processada_nao_modificada(id_camara, "camara", proposicoes, tramitacoes)
-
-      }
-      houve_modificacao <- etapa_processada$result$foi_modificada
-      etapa_processada$result$foi_modificada <- NULL
+      houve_modificacao <- tryCatch({
+        houve_modificacao <- etapa_processada$result$foi_modificada
+        etapa_processada$result$foi_modificada <- NULL
+        houve_modificacao
+      }, error = function(e) {
+        return(TRUE)
+      })
+     
+     if (!houve_modificacao) {
+       etapa_processada <- etapa_processada %>%
+         .build_etapa_processada_nao_modificada(id_camara, "camara", proposicoes, tramitacoes)
+     }
 
       etapas %<>% append(list(etapa_processada$result))
       if (!is.null(etapa_processada$error)) {
@@ -222,16 +227,20 @@ process_pl <-
                            pautas = pautas,
                            data_ultima_tramitacao = ultima_tramitacao_data,
                            return_modified_tag = T)
-
-      if ("foi_modificada" %in% names(etapa_processada$result) & !etapa_processada$result$foi_modificada) {
+      
+      houve_modificacao <- tryCatch({
+        houve_modificacao <- etapa_processada$result$foi_modificada
+        etapa_processada$result$foi_modificada <- NULL
+        houve_modificacao
+      }, error = function(e) {
+        return(TRUE)
+      })
+      
+      if (!houve_modificacao) {
         etapa_processada <- etapa_processada %>%
           .build_etapa_processada_nao_modificada(id_senado, "senado", proposicoes, tramitacoes)
-
-      } else {
-        houve_modificacao <- TRUE
       }
-
-      etapa_processada$result$foi_modificada <- NULL
+      
       etapas %<>% append(list(etapa_processada$result))
       if (!is.null(etapa_processada$error)) {
         print(etapa_processada$error)
@@ -447,6 +456,7 @@ fetch_props <- function(pls, export_path) {
         proposicoes_baixadas,
         by = c("id_leggo", "casa", "id_casa")
       )
+    
     proposicoes_que_nao_baixaram <- proposicoes_que_nao_baixaram %>%
       dplyr::filter((id_camara %in% proposicoes_que_nao_baixaram_temp$id_casa) |
                       (id_senado %in% proposicoes_que_nao_baixaram_temp$id_casa) |
