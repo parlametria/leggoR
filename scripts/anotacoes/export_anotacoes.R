@@ -1,6 +1,7 @@
 library(here)
 print(dr_here())
 source(here::here("scripts/anotacoes/process_anotacoes.R"))
+source(here::here("scripts/utils-hora.R"))
 
 .HELP <- "
 Usage:
@@ -44,7 +45,11 @@ get_args <- function() {
   return(opt);
 }
 
-## Process args
+## Process args      
+print('===============================')
+time_init <- Sys.time()
+futile.logger::flog.info('Início do processamento dos dados de Anotações')
+print('===============================')
 args <- get_args()
 print(args)
 
@@ -59,4 +64,4 @@ anotacoes <- processa_anotacoes(url_lista_anotacoes, pls_interesses, proposicoes
 print("Salvando anotacoes...")
 readr::write_csv(anotacoes$anotacoes_gerais, paste0(export_path, "/anotacoes_gerais.csv"))
 readr::write_csv(anotacoes$anotacoes_especificas, paste0(export_path, "/anotacoes_especificas.csv"))
-print("Salvo")
+futile.logger::flog.info('Termino do processamento dos dados de Anotações: %s', calcula_hora(time_init, Sys.time()))

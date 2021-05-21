@@ -7,6 +7,8 @@ RUN apt-get update
 RUN apt-get install libssl-dev libxml2-dev libcurl4-openssl-dev libgit2-dev vim less git -y
 RUN apt-get update
 RUN apt-get install -y libjpeg-dev libpoppler-cpp-dev
+ENV TZ=America/Sao_Paulo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY DESCRIPTION .
 RUN Rscript -e 'update.packages(checkBuilt=TRUE, ask=FALSE)'
 RUN Rscript -e 'install.packages(c("devtools", "digest")); devtools::install_deps()'
