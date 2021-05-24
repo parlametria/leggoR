@@ -157,50 +157,116 @@ process_etapa <- function(id,
   }
 }
 
+#' @title Processa a proposição considerado modificação
+#' @description Realiza todas os processamentos necessários para criar
+#' as tabelas para uma proposição considerado flag de modificação
+#' @param id Id da proposição
+#' @param casa senado ou camara
+#' @param pautas Pautas
+#' @param proposicoes Proposições
+#' @param tramitacoes Tramitações
+#' @param ultima_tramitacao_data ùltima data de tramitação
+#' @param return_modified_tag Flag indicando se é necessário retornar a informação
+#' de que os dados da proposição foram modificados.
+#' @param houve_modificacao Flag indicando se houve modificação na etapa anterior
+#' @return list com os dataframes: proposicao, fases_eventos, e se foi modificada
+process_etapa_otimizada <- function(id,
+                                    casa,
+                                    pautas,
+                                    proposicoes,
+                                    tramitacoes,
+                                    ultima_tramitacao_data,
+                                    return_modified_tag,
+                                    houve_modificacao) {
+  
+  ## Checa se houve modificação na Câmara. Se sim, é necessário gerar todo o dado para o Senado também.
+  if (houve_modificacao && casa == "senado") {
+    ultima_tramitacao_data <- NULL
+  }
+  
+  etapa_processada <-
+    safe_process_etapa(
+      id,
+      casa,
+      pautas = pautas,
+      data_ultima_tramitacao = ultima_tramitacao_data,
+      return_modified_tag = T
+    )
+  
+  if ("foi_modificada" %in% names(etapa_processada$result)) {
+    houve_modificacao <- etapa_processada$result$foi_modificada
+    houve_modificacao <-
+      dplyr::if_else(is.null(houve_modificacao), TRUE, houve_modificacao)
+  }
+  
+  if (!houve_modificacao) {
+    etapa_processada <- etapa_processada %>%
+      .build_etapa_processada_nao_modificada(id, casa, proposicoes, tramitacoes)
+  }
+  
+  return(etapa_processada)
+}
+
+#' @title Retorna flag de modificação de etapa processada e remove esse atributo da lista
+#' @description Retorna flag de modificação de etapa processada e 
+#' remove esse atributo da lista
+#' @param etapa_processada Lista da etapa processada
+#' @param ultimo_estado ùltimo estado de modificação
+.get_foi_modificada <- function(etapa_processada, ultimo_estado) {
+  houve_modificacao <- ultimo_estado
+  if ("foi_modificada" %in% names(etapa_processada$result) &&
+      !is.null(etapa_processada$result$foi_modificada)) {
+    houve_modificacao <- etapa_processada$result$foi_modificada
+  }
+  
+  return(houve_modificacao)
+}
+
+
 safe_process_etapa <- purrr::safely(
   process_etapa,
   otherwise =
     list(
-      proposicao = tibble::tribble(
-        ~ prop_id,
-        ~ sigla_tipo,
-        ~ numero,
-        ~ ano,
-        ~ ementa,
-        ~ data_apresentacao,
-        ~ casa,
-        ~ casa_origem,
-        ~ sigla_ultimo_local,
-        ~ sigla_casa_ultimo_local,
-        ~ nome_ultimo_local,
-        ~ data_ultima_situacao,
-        ~ uri_prop_principal,
-        ~ regime_tramitacao,
-        ~ forma_apreciacao,
-        ~ relator_id,
-        ~ relator_nome,
-        ~ relator_partido,
-        ~ relator_uf,
-        ~ relator_data
+      proposicao = tibble::tibble(
+        prop_id = integer(),
+        sigla_tipo = character(),
+        numero = integer(),
+        ano = integer(),
+        ementa = character(),
+        data_apresentacao = as.Date(character()),
+        casa = character(),
+        casa_origem = character(),
+        sigla_ultimo_local = character(),
+        sigla_casa_ultimo_local = character(),
+        nome_ultimo_local = character(),
+        data_ultima_situacao = character(),
+        uri_prop_principal = character(),
+        regime_tramitacao = character(),
+        forma_apreciacao = character(),
+        relator_id = integer(),
+        relator_nome = character(),
+        relator_partido = character(),
+        relator_uf = character(),
+        relator_data = as.Date(character())
       ),
-      fases_eventos = tibble::tribble(
-        ~ prop_id,
-        ~ casa,
-        ~ data_hora,
-        ~ sequencia,
-        ~ texto_tramitacao,
-        ~ sigla_local,
-        ~ id_situacao,
-        ~ descricao_situacao,
-        ~ link_inteiro_teor,
-        ~ evento,
-        ~ local,
-        ~ uri_ultimo_relator,
-        ~ tipo_documento,
-        ~ titulo_evento,
-        ~ nivel,
-        ~ temperatura_local,
-        ~ temperatura_evento
+      fases_eventos = tibble::tibble(
+        prop_id = integer(),
+        casa = character(),
+        data_hora = as.Date(character()),
+        sequencia = integer(),
+        texto_tramitacao = character(),
+        sigla_local = character(),
+        id_situacao = integer(),
+        descricao_situacao = character(),
+        link_inteiro_teor = character(),
+        evento = character(),
+        local = character(),
+        uri_ultimo_relator = character(),
+        tipo_documento = character(),
+        titulo_evento = character(),
+        nivel = integer(),
+        temperatura_local = double(),
+        temperatura_evento = double()
       )
     )
 )
