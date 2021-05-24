@@ -13,8 +13,6 @@ services:
     container_name: rmod
     environment:
       - APP_SECRET=${APP_SECRET:-secret}
-    env_file: 
-      - .env
     volumes:
       - leggo_data:/agora-digital/leggo_data
     
