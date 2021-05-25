@@ -461,6 +461,18 @@ extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
       relator_uf = agoradigital::check_is_logical(relator$uf_relator),
       relator_data = agoradigital::check_is_logical(relator$data_relator)
     )
+  
+  status_tram <- status_tram %>%
+    mutate(
+      relator_id = dplyr::if_else(is.na(relator_id),
+                                  NA_integer_,
+                                  as.integer(relator_id)),
+      relator_data = dplyr::if_else(
+        is.na(relator_data),
+        as.POSIXct(NA),
+        as.POSIXct(relator_data)
+      )
+    )
 }
 
 #' @title Extrai o progresso de um PL

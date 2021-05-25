@@ -641,3 +641,67 @@ classifica_tipo_documento_autorias <- function(docs) {
 
   return(docs_alt)
 }
+
+#' @title Processa dataframe de proposições usando lógica de otimização
+#' @description A partir do csv de proposições, adiciona relator para as proposições que tiveram modificações e 
+#' une com as que não modificaram.
+#' @param proposicoes Dataframe de proposições que mudaram e que não mudaram
+#' @param parlamentares Dataframe com os parlamentares
+#' @return Dataframe com relator_id e relator_id_parlametria mapeados.
+process_proposicoes <- function(proposicoes, parlamentares) {
+  if (nrow(proposicoes) > 0) {
+    
+    if (!"relator_id_parlametria" %in% names(proposicoes)) {
+      proposicoes <- proposicoes %>%
+        dplyr::mutate(relator_id_parlametria = NA_integer_)
+    }
+    
+    if ("relator_data" %in% names(proposicoes)) {
+      proposicoes_sem_relator_mapeado <- proposicoes %>%
+        dplyr::filter(!is.na(relator_data)) %>%
+        agoradigital::mapeia_nome_relator_para_id(parlamentares)
+      
+      proposicoes <- proposicoes %>%
+        dplyr::filter(is.na(relator_data)) %>%
+        dplyr::select(
+          id_ext,
+          sigla_tipo,
+          numero,
+          ementa,
+          data_apresentacao,
+          casa,
+          casa_origem,
+          regime_tramitacao,
+          forma_apreciacao,
+          relator_id,
+          relator_id_parlametria,
+          id_leggo,
+          uri_prop_principal,
+          sigla
+        ) %>%
+        dplyr::bind_rows(proposicoes_sem_relator_mapeado) %>%
+        dplyr::distinct()
+      
+    } else {
+      proposicoes <- proposicoes %>%
+        dplyr::select(
+          id_ext,
+          sigla_tipo,
+          numero,
+          ementa,
+          data_apresentacao,
+          casa,
+          casa_origem,
+          regime_tramitacao,
+          forma_apreciacao,
+          relator_id,
+          relator_id_parlametria,
+          id_leggo,
+          uri_prop_principal,
+          sigla
+        )
+    }
+  }
+  
+  return(proposicoes)
+}
