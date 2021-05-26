@@ -273,10 +273,14 @@ process_pl <- function(row_num,
       return(etapas)
     }
     
+    etapas$tramitacoes_etapas_atuais <-
+      .filter_tramitacoes_etapa_atual(etapas$fases_eventos,
+                                      etapas$proposicao)
+    
     if (houve_modificacao) {
       ## Processa dados de Progresso
       etapas[["progresso"]] <-
-        .get_progresso_etapas(etapas$proposicao, etapas$fases_eventos)
+        .get_progresso_etapas(etapas$proposicao, etapas$tramitacoes_etapas_atuais)
       
       ## Adiciona id_leggo às proposições
       etapas$proposicao <- etapas$proposicao %>%
@@ -307,9 +311,11 @@ process_pl <- function(row_num,
     
     ## Processa dados de temperatura
     etapas[["hist_temperatura"]] <-
-      agoradigital::get_historico_temperatura_recente_id_leggo(tram = etapas$fases_eventos,
-                                                               id_leggo = id_leggo_key,
-                                                               pautas = pautas)
+      agoradigital::get_historico_temperatura_recente_id_leggo(
+        tram = etapas$tramitacoes_etapas_atuais,
+        id_leggo = id_leggo_key,
+        pautas = pautas
+      )
     
     return(etapas)
   }

@@ -29,20 +29,28 @@ get_envvars_senado <- function() {
 #' @param tramitacao_df Dataframe com tramitação da proposição
 #' @param casa Casa onde o PL está tramitando ('camara'/'senado').
 #' @param out_folderpath Pasta onde o resultado deve ser salvo
+#' @param filter_etapa_atual_tramitacao Flag indicando se devem ser filtrados apenas as
+#' tramitações que ocorreram na etapa atual.
 #' @importFrom magrittr '%>%'
 #' @export
-process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpath=NULL) {
+process_proposicao <- function(proposicao_df, tramitacao_df, casa, out_folderpath=NULL, filter_etapa_atual_tramitacao = TRUE) {
   proc_tram_data <- NULL
   prop_id <- NULL
   if (tolower(casa) == congress_constants$camara_label) {
     proc_tram_data <-
       process_proposicao_camara_df(
-        proposicao_df = proposicao_df, tramitacao_df = tramitacao_df)
+        proposicao_df = proposicao_df,
+        tramitacao_df = tramitacao_df,
+        filter_etapa_atual = filter_etapa_atual_tramitacao
+      )
     prop_id <- proc_tram_data[1, "prop_id"]
   } else if (tolower(casa) == congress_constants$senado_label) {
     proc_tram_data <-
       process_proposicao_senado_df(
-        proposicao_df = proposicao_df, tramitacao_df = tramitacao_df)
+        proposicao_df = proposicao_df,
+        tramitacao_df = tramitacao_df,
+        filter_etapa_atual = filter_etapa_atual_tramitacao
+      )
     prop_id <- proc_tram_data[1, "prop_id"]
   }
 
@@ -461,7 +469,7 @@ extract_status_tramitacao <- function(proposicao_id, casa, prop, tram) {
       relator_uf = agoradigital::check_is_logical(relator$uf_relator),
       relator_data = agoradigital::check_is_logical(relator$data_relator)
     )
-  
+
   status_tram <- status_tram %>%
     mutate(
       relator_id = dplyr::if_else(is.na(relator_id),
@@ -721,4 +729,35 @@ verifica_proposicoes_com_local_detectado <- function(proposicoes_df, locais_atua
   futile.logger::flog.info(stringr::str_glue("{proposicoes_sem_local_detectado %>% distinct(id_leggo) %>% nrow()} proposições sem local atual detectado!"))
 
   return(proposicoes_sem_local_detectado)
+}
+
+#' @title Retira eventos de tramitação de cada casa após virada de casa ou remetida à sanção
+#' @description Retira as tramitações de cada casa após virada de casa ou remetida à sanção
+#' @param fases_eventos Dataframe de tramitações (com fases e eventos detectados)
+#' @param proposicao Dataframe de proposições
+#' @return Dataframe pronto para gerar o progresso
+.filter_tramitacoes_etapa_atual <- function(fases_eventos, proposicao) {
+  trams_camara <- fases_eventos %>%
+    dplyr::filter(casa == "camara")
+
+  if (nrow(trams_camara) > 0) {
+    trams_camara <- trams_camara %>%
+      .filter_tramitacoes_etapa_atual_camara()
+  }
+
+  proposicao_senado <- proposicao %>%
+    dplyr::filter(casa == "senado")
+
+  trams_senado <- fases_eventos %>%
+    dplyr::filter(casa == "senado")
+
+  if (nrow(proposicao_senado) > 0 && nrow(trams_senado) > 0) {
+    trams_senado <- trams_senado %>%
+      .filter_tramitacoes_etapa_atual_senado(proposicao_senado)
+  }
+
+  trams_df <- dplyr::bind_rows(trams_camara, trams_senado)
+
+  return(trams_df)
+
 }
