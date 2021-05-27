@@ -66,6 +66,8 @@ autores_filepath <- args$autores_filepath
 export_path <- args$exporth_path
 flag <- args$flag
 
+if (!export_path %>% endsWith("/")) export_path <- paste0(export_path, "/")
+
 #' @title Exporta dados de Proposições
 #' @description Captura e escreve todos os dados referentes a proposiçoes
 #' @param pls_ids_filepath Tabela com os ids das proposições
