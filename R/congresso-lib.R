@@ -174,7 +174,7 @@ generate_progresso_df <- function(tramitacao_df, sigla, flag_cong_remoto = FALSE
 #' @return Dataframe contendo o progresso
 #' @export
 generate_progresso_df_mpv <- function(tramitacao_df, proposicao_df) {
-  ano_mpv <- proposicao_df %>% head(1) %>% dplyr::pull(ano)
+  ano_mpv <- proposicao_df %>% dplyr::filter(!is.na(ano)) %>% head(1) %>% dplyr::pull(ano)
 
   tramitacao_df <-
     tramitacao_df %>%
