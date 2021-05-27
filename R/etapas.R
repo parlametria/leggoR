@@ -116,7 +116,8 @@ process_etapa <- function(id,
                           pautas,
                           data_ultima_tramitacao = NULL,
                           return_modified_tag = FALSE,
-                          retry = FALSE) {
+                          retry = FALSE,
+                          filter_etapa_atual_tramitacao = TRUE) {
   prop <- agoradigital::fetch_proposicao(id, casa, retry = retry)
 
   if (tolower(prop$sigla_tipo) == 'mpv') {
@@ -136,9 +137,9 @@ process_etapa <- function(id,
     )
 
     proc_tram <-
-      agoradigital::process_proposicao(prop, tram, casa) %>%
+      agoradigital::process_proposicao(prop, tram, casa, filter_etapa_atual_tramitacao = filter_etapa_atual_tramitacao) %>%
       dplyr::mutate(data_hora = as.POSIXct(data_hora))
-
+    
     status <-
       agoradigital::extract_status_tramitacao(id, casa, prop, tram)
 
@@ -190,7 +191,8 @@ process_etapa_otimizada <- function(id,
       casa,
       pautas = pautas,
       data_ultima_tramitacao = ultima_tramitacao_data,
-      return_modified_tag = T
+      return_modified_tag = T,
+      filter_etapa_atual_tramitacao = FALSE
     )
   
   if ("foi_modificada" %in% names(etapa_processada$result)) {

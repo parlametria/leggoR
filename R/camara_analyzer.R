@@ -192,16 +192,11 @@ extract_situacao_comissao <- function(df) {
     tidyr::fill(situacao_comissao)
 }
 
-
-#' @title Processa dados de um proposição da câmara.
-#' @description Recebido um dataframe com a tramitação, a função recupera informações sobre uma proposição
-#' e sua tramitação e as salva em data/camara.
-#' @param tramitacao_df Dataframe com tramitação da proposição
-#' @importFrom magrittr %>%
-process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
-  proc_tram_df <- tramitacao_df %>%
-    extract_events_in_camara()
-
+#' @title Retira eventos de tramitação da Câmara após virada de casa ou remetida à sanção
+#' @description Retira as tramitações da Câmara após virada de casa ou remetida à sanção
+#' @param proc_tram_df Dataframe de tramitações (com fases e eventos detectados)
+#' @return Dataframe sem tramitações após eventos específicos
+.filter_tramitacoes_etapa_atual_camara <- function(proc_tram_df) {
   virada_de_casa <-
     proc_tram_df %>%
     dplyr::filter(evento == 'virada_de_casa')
@@ -209,10 +204,10 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
   remetida_sancao <- 
     proc_tram_df %>% 
     dplyr::filter(evento == 'remetida_a_sancao_promulgacao')
-
+  
   if(nrow(virada_de_casa) == 1 & nrow(remetida_sancao) != 1){
     proc_tram_df <-
-    proc_tram_df[1:get_linha_virada_de_casa(proc_tram_df),]
+      proc_tram_df[1:get_linha_virada_de_casa(proc_tram_df),]
   } else if (nrow(remetida_sancao) == 1) {
     proc_tram_df <-
       proc_tram_df[1:get_linha_remetida_a_sancao_promulgacao(proc_tram_df),]
@@ -222,7 +217,24 @@ process_proposicao_camara_df <- function(proposicao_df, tramitacao_df) {
     proc_tram_df <-
       proc_tram_df[1:index_of_sancao,]
   }
+  
+  return(proc_tram_df)
+}
 
+#' @title Processa dados de um proposição da câmara.
+#' @description Recebido um dataframe com a tramitação, a função recupera informações sobre uma proposição
+#' e sua tramitação e as salva em data/camara.
+#' @param tramitacao_df Dataframe com tramitação da proposição
+#' @importFrom magrittr %>%
+process_proposicao_camara_df <- function(proposicao_df, tramitacao_df, filter_etapa_atual = T) {
+  proc_tram_df <- tramitacao_df %>%
+    extract_events_in_camara()
+
+  if (filter_etapa_atual) {
+    proc_tram_df <- proc_tram_df %>%
+      .filter_tramitacoes_etapa_atual_camara()
+  }
+  
   eventos_reqs <- fetch_eventos_reqs_prop(proposicao_df$prop_id, proposicao_df$casa)
 
   proc_tram_final <-
