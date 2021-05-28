@@ -1,6 +1,7 @@
 library(here)
 print(dr_here())
 source(here::here("scripts/interesses/process_lista_pls_interesse.R"))
+source(here::here("scripts/utils-hora.R"))
 
 .HELP <- "
 Usage:
@@ -39,6 +40,10 @@ get_args <- function() {
 }
 
 ## Process args
+print('===============================')
+time_init <- Sys.time()
+futile.logger::flog.info('Início do processamento de Interesses')
+print('===============================')
 args <- get_args()
 print(args)
 
@@ -51,4 +56,4 @@ interesses <- processa_interesses_leggo(url_interesses, proposicoes)
 
 print("Salvando interesses...")
 readr::write_csv(interesses, saida)
-print("Salvo")
+futile.logger::flog.info('Termino do processamento de Interesses: %s', calcula_hora(time_init, Sys.time()))

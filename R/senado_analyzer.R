@@ -575,11 +575,54 @@ extract_forma_apreciacao_senado <- function(proposicao_id) {
   }
 }
 
+#' @title Retira tramitação no Senado
+#' @description Recebe um dataframe e retira os eventos de tramitação após
+#' virada de casa ou remetida à sanção.
+#' @param proc_tram_df Dataframe da tramitação da proposição
+#' @param proposicao_df Dataframe de proposição
+#' @return Dataframe de tramitação
+.filter_tramitacoes_etapa_atual_senado <- function(proc_tram_df, proposicao_df) {
+  virada_de_casa <-
+    proc_tram_df %>%
+    dplyr::filter(evento == 'virada_de_casa')
+  
+  index_of_final <-
+    get_linha_finalizacao_tramitacao(proc_tram_df)
+  
+  evento_sancao_promulgacao <- proc_tram_df %>%
+    dplyr::count(evento) %>%
+    dplyr::filter(stringr::str_detect(evento, "remetida_a_sancao_promulgacao|transformada_lei"))
+  
+  sigla_proposicao <- proposicao_df %>% dplyr::pull(sigla_tipo)
+  
+  if (nrow(virada_de_casa) == 1 && sigla_proposicao != "MPV") {
+    index_of_camara <-
+      get_linha_virada_de_casa(proc_tram_df)
+    
+    if(index_of_camara > index_of_final) {
+      proc_tram_df <-
+        proc_tram_df[1:index_of_final,]
+      
+    } else {
+      if (evento_sancao_promulgacao %>% nrow() == 0) {
+        proc_tram_df <-
+          proc_tram_df[1:index_of_camara,]
+      }
+    }
+    
+  } else{
+    proc_tram_df <-
+      proc_tram_df[1:index_of_final,]
+  }
+  
+  return(proc_tram_df)
+}
+
 #' @title Processa dados de uma proposição do senado.
 #' @description Recebido um dataframe da tramitação de um PL, a função recupera informações sobre uma proposição
 #' e sua tramitação e as salva em data/Senado.
 #' @param tramitacao_df Dataframe da tramitação da proposição
-process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
+process_proposicao_senado_df <- function(proposicao_df, tramitacao_df, filter_etapa_atual = T) {
   phase_one <- c('^Este processo contém')
   recebimento_phase <- 'recebido na|nesta comissão'
   phase_three <- c(42, 14, 78, 90)
@@ -616,37 +659,9 @@ process_proposicao_senado_df <- function(proposicao_df, tramitacao_df) {
     extract_periodo_emendas_senado() %>%
     dplyr::mutate(data_audiencia = lubridate::dmy(data_audiencia))
 
-  virada_de_casa <-
-    proc_tram_df %>%
-    dplyr::filter(evento == 'virada_de_casa')
-
-  index_of_final <-
-    get_linha_finalizacao_tramitacao(proc_tram_df)
-
-  evento_sancao_promulgacao <- proc_tram_df %>%
-    dplyr::count(evento) %>%
-    dplyr::filter(stringr::str_detect(evento, "remetida_a_sancao_promulgacao|transformada_lei"))
-
-  sigla_proposicao <- proposicao_df %>% dplyr::pull(sigla_tipo)
-
-  if (nrow(virada_de_casa) == 1 && sigla_proposicao != "MPV") {
-    index_of_camara <-
-      get_linha_virada_de_casa(proc_tram_df)
-
-    if(index_of_camara > index_of_final) {
-      proc_tram_df <-
-        proc_tram_df[1:index_of_final,]
-
-    } else {
-      if (evento_sancao_promulgacao %>% nrow() == 0) {
-        proc_tram_df <-
-          proc_tram_df[1:index_of_camara,]
-      }
-    }
-
-  } else{
-    proc_tram_df <-
-      proc_tram_df[1:index_of_final,]
+  if (filter_etapa_atual) {
+    proc_tram_df <- proc_tram_df %>% 
+      .filter_tramitacoes_etapa_atual_senado(proposicao_df)
   }
 
   proc_tram_df <-

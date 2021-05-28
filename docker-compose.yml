@@ -11,9 +11,11 @@ services:
         - ${PKG_IMAGE_TAG:-agoradigital/r-scrapper}
     image: ${PKG_IMAGE_TAG:-agoradigital/r-scrapper}
     container_name: rmod
+    environment:
+      - APP_SECRET=${APP_SECRET:-secret}
     volumes:
       - leggo_data:/agora-digital/leggo_data
-
+    
 volumes:
   leggo_data:
       name: leggo_data

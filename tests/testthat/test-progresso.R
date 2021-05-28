@@ -4,7 +4,7 @@ context("progresso")
 setup <- function(){
   etapas <<- list()
   etapas %<>% append(list(process_etapa(2088990, "camara", as.data.frame())))
-  etapas %<>% append(list(process_etapa(91341, "senado", as.data.frame(), T)))
+  etapas %<>% append(list(process_etapa(91341, "senado", as.data.frame(), retry=T)))
   etapas %<>% purrr::pmap(dplyr::bind_rows)
   progresso <<- get_progresso(etapas$proposicao, etapas$fases_eventos)
 
@@ -94,7 +94,7 @@ test <- function() {
     progresso_pec_gabarito <-
       progresso_pec_gabarito %>% dplyr::mutate(prop_id = as.integer(prop_id))
 
-    expect_equal(progresso_pec %>% dplyr::mutate(data_inicio = as.character(data_inicio)), progresso_pec_gabarito)
+    expect_equal(progresso_pec %>% dplyr::mutate(data_inicio = as.character(data_inicio)) %>% dplyr::mutate(data_fim = as.character(data_fim)), progresso_pec_gabarito)
   })
 }
 check_api <- function() {

@@ -1,7 +1,7 @@
 context('test-export-data.R')
 
 pautas <- tibble::tribble(~data, ~sigla, ~id_ext, ~local, ~casa, ~semana, ~ano)
-process_etapa_data <- process_etapa(137999, 'senado', pautas, T)
+process_etapa_data <- process_etapa(137999, 'senado', pautas, retry = T)
 proposicao <- process_etapa_data$proposicao
 tram <<- process_etapa_data$fases_eventos
 

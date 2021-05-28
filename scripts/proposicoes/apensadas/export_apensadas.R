@@ -2,6 +2,8 @@ library(tidyverse)
 library(futile.logger)
 
 source(here::here("scripts/proposicoes/apensadas/process_apensadas.R"))
+source(here::here("scripts/logs/bot_parlametria.R"))
+source(here::here("scripts/utils-hora.R"))
 
 if (!require(optparse)) {
   install.packages("optparse")
@@ -41,14 +43,13 @@ proposicoes_filepath <- opt$proposicoes_filepath
 interesses_filepath <- opt$interesses_filepath
 export_path <- opt$out
 
-## Install local repository R package version
-devtools::install(upgrade = "never")
-
 if (!str_detect(export_path, "\\/$")) {
   export_path <- paste0(export_path, "/")
 }
-
-flog.info("Processando dados de proposições apensadas")
+print('===============================')
+time_init <- Sys.time()
+flog.info("Início do processamento de dados de proposições apensadas")
+print('===============================')
 list_props_apensadas <- process_apensadas(proposicoes_filepath, interesses_filepath, export_path)
 
 props_apensadas <- list_props_apensadas[[1]]
@@ -60,4 +61,14 @@ write_csv(props_apensadas, paste0(export_path, "props_apensadas.csv"))
 flog.info(str_glue("Salvando dados de proposições apensadas não monitoradas em {export_path}props_apensadas.csv"))
 write_csv(props_apensadas_nao_monitoradas, paste0(export_path, "props_apensadas_nao_monitoradas.csv"))
 
-flog.info("Concluído")
+if (nrow(props_apensadas_nao_monitoradas) > 0) {
+  success <- paste0('Existem ', nrow(props_apensadas_nao_monitoradas), ' proposições apensadas a proposições principais pendentes de monitoramento:', export_path)
+  send_log_to_bot(success)
+  print(success)
+} else {
+  error <- paste0('Não existem proposições apensadas com proposições principais pendentes de monitoramento')
+  send_log_to_bot(error)
+  print(error)
+}
+
+flog.info('Termino do processamento de dados de proposições apensadas:  %s', calcula_hora(time_init, Sys.time()))

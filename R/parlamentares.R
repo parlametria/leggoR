@@ -101,7 +101,9 @@ mapeia_nome_relator_para_id <-
         !is.na(relator_id),
         paste0(enum_casa, relator_id),
         relator_id
-      ))
+      )) %>% 
+      mutate(relator_id = as.integer(relator_id),
+               relator_id_parlametria = as.integer(relator_id_parlametria))
 
     if (!info_relatores) {
       proposicoes_alt <- proposicoes_alt %>%

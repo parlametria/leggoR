@@ -243,7 +243,7 @@ padroniza_string <- function(string) {
 #' @export
 check_is_logical <- function(valor) {
   if (is.logical(valor)) {
-    return(NA)
+    return(as.character(NA))
   }
   return(valor)
 }

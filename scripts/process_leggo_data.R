@@ -4,6 +4,7 @@ library(magrittr)
 source(here::here("scripts/documentos/export_atuacao.R"))
 source(here::here("scripts/documentos/export_coautorias.R"))
 source(here::here("scripts/documentos/export_emendas.R"))
+source(here::here("scripts/utils-hora.R"))
 
 .HELP <- "
 Rscript process_leggo_data.R -i <input_path> -o <output_path> -d <data_inicial_documentos> -p <peso_minimo_arestas> -f <flag>
@@ -77,7 +78,10 @@ get_args <- function() {
 }
 
 ## Process args
-## Process args
+print('===============================')
+time_init <- Sys.time()
+futile.logger::flog.info('Início do processamento das Atuações, Coautorias e Emendas')
+print('===============================')
 args <- get_args()
 print(args)
 
@@ -98,14 +102,15 @@ process_leggo_data <- function(flag) {
   if (!(flag %in% c(1, 2, 3,4))) {
     stop(paste("Wrong flag!", .HELP, sep = "\n"))
   } else {
-    ## Install local repository R package version
-    devtools::install(upgrade = "never")
-    
     props_leggo_id <-
       agoradigital::read_props(paste0(input_path, "/proposicoes.csv")) %>%
       dplyr::select(id_leggo, id_principal = id_ext, casa)
     
     # Read current data csvs
+    print('===============================')
+    time_init <- Sys.time()
+    futile.logger::flog.info('Início da leitura dos csvs atuais para Câmara e Senado')
+    print('===============================')
     camara_docs <- agoradigital::read_current_docs_camara(paste0(input_path, "/camara/documentos.csv")) %>%
       dplyr::mutate(casa = as.character(casa)) %>% 
       dplyr::inner_join(props_leggo_id, by = c("id_principal", "casa"))
@@ -135,23 +140,35 @@ process_leggo_data <- function(flag) {
       ungroup()
     
     entidades <- readr::read_csv(entidades_path)
+    futile.logger::flog.info('Termino da leitura dos csvs atuais para Câmara e Senado: %s', calcula_hora(time_init, Sys.time()))
 
     if (flag == 1) {
-      print("Atualizando tudo!")
       export_atuacao(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id, entidades)
       export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, props_leggo_id, output_path)
       novas_emendas = export_emendas(camara_docs, camara_autores, senado_docs, senado_autores, output_path)
       export_avulsos_iniciais(camara_docs, senado_docs, novas_emendas, output_path)
     } else if (flag == 2) {
-      print("Atualizando os atuação!")
+      print('===============================')
+      time_init <- Sys.time()
+      futile.logger::flog.info('Início do processamento somente de Atuações')
+      print('===============================')
       export_atuacao(camara_docs, camara_autores, senado_docs, senado_autores, output_path, data_inicial, peso_minimo, props_leggo_id, entidades)
+      futile.logger::flog.info('Termino do processamento somente de Atuações: %s', calcula_hora(time_init, Sys.time()))
     } else if (flag == 3) {
-      print("Atualizando nodes e edges!")
+      print('===============================')
+      time_init <- Sys.time()
+      futile.logger::flog.info('Início do processamento somente de Nodes e Edges')
+      print('===============================')
       export_nodes_edges(input_path, camara_docs, data_inicial, senado_docs, camara_autores, peso_minimo, senado_autores, props_leggo_id, output_path)
+      futile.logger::flog.info('Termino do processamento somente de Nodes e Edges: %s', calcula_hora(time_init, Sys.time()))
     } else if (flag == 4) {
-      print("Atualizando dados de emendas e avulsos iniciais")
+      print('===============================')
+      time_init <- Sys.time()
+      futile.logger::flog.info('Início do processamento somente de Emendas e Avulsos Iniciais')
+      print('===============================')
       novas_emendas = export_emendas(camara_docs, camara_autores, senado_docs, senado_autores, output_path)
       export_avulsos_iniciais(camara_docs, senado_docs, novas_emendas, output_path)
+      futile.logger::flog.info('Termino do processamento somente de Emendas e Avulsos Iniciais: %s', calcula_hora(time_init, Sys.time()))
     } else {
       print(paste("Flag inexistente:",flag))
       print(.HELP)
@@ -161,3 +178,4 @@ process_leggo_data <- function(flag) {
 }
 
 process_leggo_data(flag)
+futile.logger::flog.info('Termino do processamento das Atuações, Coautorias e Emendas: %s', calcula_hora(time_init, Sys.time()))
