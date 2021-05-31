@@ -26,7 +26,7 @@ send_log_to_bot <- function(message_log) {
 #' create_log('props_apensadas_nao_monitoradas.csv')
 create_log <- function(props_apensadas_nao_monitoradas_filepath){
   
-  props <- read.csv(props_apensadas_nao_monitoradas_filepath)
+  props <- read_csv(props_apensadas_nao_monitoradas_filepath)
   
   df <- props %>% 
     mutate(original = id_ext_prop_principal_raiz) %>% 
