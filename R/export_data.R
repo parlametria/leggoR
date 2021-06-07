@@ -137,7 +137,7 @@ adiciona_status <- function(tramitacao_df) {
 #' @title Extrai a última data de tramitação
 #' @description Recebe um dataframe e retorna a última data de uma proposição, independente da
 #' casa
-#' @param tramitacao_df DataFrame com a tramitacao 
+#' @param tramitacao_df DataFrame com a tramitacao
 #' @param id_camara ID da Câmara
 #' @param id_senado ID do Senado
 #' @return Data da última tramitação, se existir. Caso contrário, retorna NULL.
@@ -159,7 +159,7 @@ adiciona_status <- function(tramitacao_df) {
         as.character()
     }
   }
-  
+
   return(ultima_tramitacao_data)
 }
 #' @title Gera etapas
@@ -179,7 +179,7 @@ process_pl <- function(row_num,
                        progressos = NULL,
                        locais_atuais = NULL,
                        sleep_time = .DEF_REQ_SLEEP_TIME_IN_SECS) {
-  
+
     # Sys.sleep(sleep_time)
     cat(
       paste(
@@ -194,7 +194,7 @@ process_pl <- function(row_num,
         "\n"
       )
     )
-    
+
     etapas <- list()
     houve_modificacao <- TRUE
     ultima_tramitacao_data <-
@@ -202,6 +202,26 @@ process_pl <- function(row_num,
     id_leggo_key = digest::digest(paste0(id_camara , " ", id_senado),
                                   algo = "md5",
                                   serialize = F)
+    if (!is.null(progressos)) {
+      progressos <- progressos %>%
+        dplyr::filter((casa == 'camara' &
+                         id_ext == id_camara) |
+                        (casa == "senado" &
+                           id_ext == id_senado))
+
+      if (nrow(progressos) == 0) {
+        ultima_tramitacao_data <- NULL
+      }
+    }
+
+    if (!is.null(locais_atuais)) {
+      locais_atuais <- locais_atuais %>%
+        dplyr::filter(id_leggo == id_leggo_key)
+
+      if (nrow(locais_atuais) == 0) {
+        ultima_tramitacao_data <- NULL
+      }
+    }
 
     if (!is.na(id_camara)) {
       etapa_processada_camara <- process_etapa_otimizada(
@@ -214,25 +234,25 @@ process_pl <- function(row_num,
         return_modified_tag = T,
         houve_modificacao = houve_modificacao
       )
-      
+
       houve_modificacao <-
         .get_foi_modificada(etapa_processada_camara, houve_modificacao)
-      
+
       if(!is.null(etapa_processada_camara$result$foi_modificada)) {
         etapa_processada_camara$result$foi_modificada <- NULL
       }
-      
+
       if (!is.null(etapa_processada_camara$error)) {
         print(etapa_processada_camara$error)
         return(etapa_processada_camara$result)
       }
-    
+
       etapas %<>% append(list(etapa_processada_camara$result))
-      
+
     } else {
       houve_modificacao <- FALSE
     }
-    
+
     if (!is.na(id_senado)) {
 
       etapa_processada_senado <- process_etapa_otimizada(
@@ -245,19 +265,19 @@ process_pl <- function(row_num,
         return_modified_tag = T,
         houve_modificacao = houve_modificacao
       )
-      
+
       houve_modificacao <-
         .get_foi_modificada(etapa_processada_senado, houve_modificacao)
-      
+
       if(!is.null(etapa_processada_senado$result$foi_modificada)) {
         etapa_processada_senado$result$foi_modificada <- NULL
       }
-      
+
       if (!is.null(etapa_processada_senado$error)) {
         print(etapa_processada_senado$error)
         return(etapa_processada_senado$result)
       }
-      
+
       etapas %<>% append(list(etapa_processada_senado$result))
     }
 
@@ -268,47 +288,42 @@ process_pl <- function(row_num,
     }
 
     etapas %<>% purrr::pmap(dplyr::bind_rows)
-    
+
     if (is.null(etapas$proposicao) || nrow(etapas$proposicao) == 0) {
       return(etapas)
     }
-    
+
     etapas$tramitacoes_etapas_atuais <-
       .filter_tramitacoes_etapa_atual(etapas$fases_eventos,
                                       etapas$proposicao)
-    
+
     if (houve_modificacao) {
       ## Processa dados de Progresso
       etapas[["progresso"]] <-
         .get_progresso_etapas(etapas$proposicao, etapas$tramitacoes_etapas_atuais)
-      
+
       ## Adiciona id_leggo às proposições
       etapas$proposicao <- etapas$proposicao %>%
         dplyr::mutate(id_leggo = id_leggo_key)
-      
+
       ## Processa dados de Locais Atuais da proposição
       etapas[["local_atual"]] <-
         agoradigital::processa_local_atual(proposicao_df = etapas$proposicao,
                                            id_leggo = id_leggo_key)
-      
+
       Sys.sleep(5 * stats::runif(1))
-      
+
     } else {
       if (!is.null(progressos)) {
         etapas[["progresso"]] <- progressos %>%
-          dplyr::filter((casa == 'camara' &
-                           id_ext == id_camara) |
-                          (casa == "senado" &
-                             id_ext == id_senado)) %>%
           dplyr::rename(prop_id = id_ext)
       }
-      
+
       if (!is.null(locais_atuais)) {
-        etapas[["local_atual"]] <- locais_atuais %>%
-          dplyr::filter(id_leggo == id_leggo_key)
+        etapas[["local_atual"]] <- locais_atuais
       }
     }
-    
+
     ## Processa dados de temperatura
     etapas[["hist_temperatura"]] <-
       agoradigital::get_historico_temperatura_recente_id_leggo(
@@ -316,7 +331,7 @@ process_pl <- function(row_num,
         id_leggo = id_leggo_key,
         pautas = pautas
       )
-    
+
     return(etapas)
   }
 
@@ -411,9 +426,9 @@ fetch_props <- function(pls, export_path) {
     proposicoes <-
       purrr::map_df(res, ~ .$proposicao) %>%
       dplyr::rename(id_ext = prop_id) %>%
-      unique() %>% 
+      unique() %>%
       process_proposicoes(parlamentares)
-    
+
     proposicoes_baixadas <- proposicoes %>%
       dplyr::select(id_leggo,
                     casa,
@@ -426,7 +441,7 @@ fetch_props <- function(pls, export_path) {
         proposicoes_baixadas,
         by = c("id_leggo", "casa", "id_casa")
       )
-    
+
     proposicoes_que_nao_baixaram <- proposicoes_que_nao_baixaram %>%
       dplyr::filter((id_camara %in% proposicoes_que_nao_baixaram_temp$id_casa) |
                       (id_senado %in% proposicoes_que_nao_baixaram_temp$id_casa) |
