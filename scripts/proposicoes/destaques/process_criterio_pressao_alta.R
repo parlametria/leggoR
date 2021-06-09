@@ -18,9 +18,9 @@ process_criterio_pressao_alta <- function(
 
   proposicoes_com_pressao <- pressao %>%
     mutate(dias = lubridate::interval(date, .hoje) %>% as.numeric('days')) %>%
-    filter(dias <= .limite_dias, trends_max_pressao_principal > .pressao_minima) %>%
+    filter(dias <= .limite_dias, popularity > .pressao_minima) %>%
     group_by(id_leggo) %>%
-    summarise(maximo_pressao_periodo = max(trends_max_pressao_principal)) %>%
+    summarise(maximo_pressao_periodo = max(popularity)) %>%
     ungroup()
 
   return(proposicoes_com_pressao)
