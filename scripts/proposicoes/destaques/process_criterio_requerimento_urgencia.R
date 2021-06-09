@@ -10,10 +10,10 @@ library(lubridate)
 #' @return Dataframe contendo as proposições que passam no critério.
 
 process_criterio_requerimento_urgencia <- function(trams_datapath = here::here("leggo_data/trams.csv"),
-                                                   props_datapath = here::here("leggo_data/proposicoes.csv") ){
+                                                   props_datapath = here::here("leggo_data/proposicoes.csv")){
 
-  trams <- read_csv(trams_datapath, col_types = cols(id_ext = col_character(),
-                                                     origem_tramitacao_local_nome_casa_local = col_character())) %>%
+  trams <- read_csv(trams_datapath, col_types = cols(data = col_datetime(),
+                                                     .default = col_character())) %>%
     select(evento, id_ext, casa, data)
 
   props <- read_csv(props_datapath, col_types = cols(id_ext = col_character())) %>%
