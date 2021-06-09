@@ -61,7 +61,7 @@ process_apensadas <- function(proposicoes_filepath, interesses_filepath, export_
       )
     )) %>%
     select(id_leggo, id_ext, casa = casa_prop_principal, id_leggo_prop_principal, id_ext_prop_principal,
-           id_ext_prop_principal_raiz, uri_prop_principal_raiz)
+           id_ext_prop_principal_raiz, uri_prop_principal_raiz, interesse)
 
   flog.info(str_glue("{props_apensadas_nao_monitoradas %>% nrow()} proposições monitoradas não têm a proposição principal raiz monitorada"))
 
