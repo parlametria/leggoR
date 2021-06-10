@@ -6,7 +6,7 @@
 #' send_log_to_bot('processamento completo')
 send_log_to_bot <- function(message_log) {
   library(httr)
-  
+
   log <- list(
     message = message_log
   )
@@ -14,6 +14,31 @@ send_log_to_bot <- function(message_log) {
   endpoint <- Sys.getenv("APP_SECRET")
 
   res <- POST(paste0("https://voz-ativa-bot.herokuapp.com/", endpoint), body = log, encode = "json", verbose())
-  
+
   return("Mensagem Enviada!")
+}
+
+#' @title Cria log de mensagem das apensadas
+#' @description Cria mensagem das apensadas que será enviado do bot
+#' @param props_apensadas_nao_monitoradas_filepath caminho para csv das props apensadas
+#' @return Mensagem de log
+#' @examples
+#' create_log('props_apensadas_nao_monitoradas.csv')
+create_log <- function(props_apensadas_nao_monitoradas_filepath){
+
+  props <- read_csv(props_apensadas_nao_monitoradas_filepath)
+
+  df <- props %>%
+    mutate(original = id_ext_prop_principal_raiz) %>%
+    mutate(apensada=id_ext_prop_principal) %>%
+    mutate(log = paste0("casa: ", casa,
+                        "; principal: ", original,
+                        "; apensada: ", apensada,
+                        "; interesse: ", interesse)) %>%
+    select(log)
+
+  string_log <- paste0(df$log, collapse = " |\n")
+
+  return (string_log)
+
 }
