@@ -65,7 +65,7 @@ props_apensadas_nao_monitoradas_filepath <- paste0(export_path, "props_apensadas
 
 if (nrow(props_apensadas_nao_monitoradas) > 0) {
   log <- create_log(props_apensadas_nao_monitoradas_filepath)
-  success <- paste0('Existem ', nrow(props_apensadas_nao_monitoradas), ' proposições apensadas a proposições principais pendentes de monitoramento:', log)
+  success <- paste0('Existem ', nrow(props_apensadas_nao_monitoradas), ' proposições apensadas a proposições principais pendentes de monitoramento:\n', log)
   send_log_to_bot(success)
   print(success)
 } else {
