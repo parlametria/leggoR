@@ -26,7 +26,11 @@ get_data_frame_agenda_senado <- function(initial_date, end_date) {
 normalize_agendas <- function(agenda, house) {
   if (tolower(house) == 'senado') {
     if (is.null(agenda) | nrow(agenda$materias) == 0) {
-      return(tibble::tribble(~ data, ~ sigla, ~ id_proposicao, ~ local, ~ casa))
+      return(tibble::tibble(data = as.POSIXct(character()),
+                            sigla = character(),
+                            id_proposicao = character(),
+                            local = character(),
+                            casa = character()))
     }
     materias <- agenda$materias
     agenda <- agenda$agenda
@@ -46,7 +50,10 @@ normalize_agendas <- function(agenda, house) {
       dplyr::select(c(data, sigla, codigo_materia, local_sessao))
 
   }else {
-    if (nrow(agenda) == 0) {return(tibble::frame_data(~ data, ~ sigla, ~ id_proposicao, ~ local))}
+    if (nrow(agenda) == 0) {return(tibble::tibble(data = as.POSIXct(character()),
+                                                  sigla = character(),
+                                                  id_proposicao = character(),
+                                                  local = character()))}
     agenda <-
       agenda %>%
       dplyr::mutate(sigla = paste0(proposicao_.siglaTipo, " ", proposicao_.numero, "/", proposicao_.ano)) %>%
@@ -220,7 +227,7 @@ fetch_agendas_comissoes_camara_auxiliar <- function(orgao_id, initial_date, end_
 #' fetch_agenda_comissoes_camara('12/05/2018', '26/05/2018')
 fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
   orgaos <-
-    fetch_orgaos_camara() %>%
+    agoradigital::fetch_orgaos_camara() %>%
     dplyr::filter(casa == 'Câmara dos Deputados',
                   (tipo_orgao_id == 1 & orgao_id == 180) |
                   (tipo_orgao_id == 2 & orgao_id > 1999) |

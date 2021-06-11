@@ -306,7 +306,7 @@ fetch_composicao_comissoes_senado <- function(sigla) {
 #' @importFrom dplyr %>%
 #' @export
 fetch_all_composicao_comissao <- function(data_inicio = "2019-02-01") {
-  orgaos_camara <- fetch_orgaos_camara()
+  orgaos_camara <- agoradigital::fetch_orgaos_camara()
 
   siglas_camara <- tryCatch({
     orgaos_camara %>%
