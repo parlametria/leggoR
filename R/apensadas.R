@@ -66,7 +66,7 @@ process_lista_apensadas_por_casa <- function(proposicoes_apensadas,
 #' @param casa Casa de origem da proposição
 #' @param verbose TRUE para exibir mensagens sobre a execução da proposição atual, FALSE caso contrário.
 #' @return Elemento x passado como parâmetro
-fetch_proposicao_raiz <- function(x, casa, verbose = TRUE) {
+fetch_proposicao_raiz <- function(x, casa, verbose = FALSE) {
   if (verbose) {
     print(str_glue("key: {names(x)} value: {x[[1]]} casa: {casa}"))
   }
