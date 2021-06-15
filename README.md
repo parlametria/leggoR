@@ -1,5 +1,5 @@
 [![pipeline status](https://gitlab.com/analytics-ufcg/agora-digital/badges/master/pipeline.svg)](https://gitlab.com/parlametria/leggoR/commits/master)
-[![codecov](https://codecov.io/gh/parlametria/leggoR/branch/master/graph/badge.svg)](https://codecov.io/gh/parlametria/leggoR)
+[![codecov](https://codecov.io/gh/parlametria/leggoR/branch/master/graph/badge.svg?token=wktXOtRlEI)](https://codecov.io/gh/parlametria/leggoR)
 
 # leggoR
 Acesso, tradução e modelos usando dados do congresso nacional.
