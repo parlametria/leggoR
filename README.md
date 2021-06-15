@@ -103,6 +103,10 @@ Rodar o linter:
     
     > devtools::lint()
 
+Para regerar o site da documentação:
+    
+    > pkgdown::build_site(override = list(destination = "public"))
+
 Gerar csvs de Comissões:
     
     Certifique-se que você está na raiz do repositório do leggoR
