@@ -116,7 +116,7 @@ Gerar csvs de Comissões:
     
     E por fim rodar o script
     $ Rscript scripts/fetch_updated_bills_data.R -e <export_path> -f 4    
-    O <export_path> é o caminho onde oos csvs do resultado serão salvos
+    O <export_path> é o caminho onde os csvs do resultado serão salvos
     
 ## Como verificar o package localmente
 
@@ -145,7 +145,7 @@ Para usar o docker será necessário:
 
 1. Instale o [docker](https://docs.docker.com/install/) e o [docker-compose](https://docs.docker.com/compose/install/). 
 
-2. Configure as variáveis de ambiente: crie uma cópia do arquivo .env.sample e o renomeie para .env. Em seguida preencha as variáveis com os valores adequados para execução.
+2. Configure as variáveis de ambiente: crie uma cópia do arquivo .`env.sample` e o renomeie para `.env`. Em seguida preencha as variáveis com os valores adequados para execução.
 *APP_SECRET* = hash da url do *bot Voz Ativa*.
 
 3. Realize o build da imagem (na primeira vez esse passo pode demorar bastante dependendo da sua conexão com a internet).
@@ -160,7 +160,7 @@ Exemplo:
 ```
 docker-compose run --rm rmod Rscript scripts/fetch_updated_bills_data.R -e <export_path> -f 4
 ```
-O <export_path> é o caminho onde oos csvs do resultado serão salvos.
+O <export_path> é o caminho onde os csvs do resultado serão salvos.
 
 Sempre que o código do repositório for alterado é necessário realizar um novo build da imagem docker para que as mudanças sejam refletidas quando o container estiver em execução.
 
