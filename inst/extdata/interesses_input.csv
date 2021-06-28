@@ -1,0 +1,2 @@
+interesse,url,nome,descricao
+painel,./inst/extdata/proposicoes_input.csv,Proposições,Lista de proposições
