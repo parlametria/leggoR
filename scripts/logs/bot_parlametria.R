@@ -30,7 +30,7 @@ create_log <- function(props_apensadas_nao_monitoradas_filepath){
 
   df <- props %>%
     mutate(original = id_ext_prop_principal_raiz) %>%
-    mutate(apensada=id_ext_prop_principal) %>%
+    mutate(apensada = id_ext) %>%
     mutate(log = paste0("casa: ", casa,
                         "; principal: ", original,
                         "; apensada: ", apensada,
