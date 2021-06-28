@@ -14,7 +14,8 @@
            tramitacao) {
     etapa_processada$result$proposicao <- proposicao %>%
       dplyr::filter(id_ext == id, casa == casa_arg) %>%
-      dplyr::rename(prop_id = id_ext)
+      dplyr::rename(prop_id = id_ext) %>%
+      distinct()
 
     etapa_processada$result$fases_eventos <- tramitacao %>%
       dplyr::filter(id_ext == id, casa == casa_arg) %>%
@@ -37,7 +38,8 @@
         nivel,
         temperatura_local,
         temperatura_evento
-      )
+      ) %>%
+      distinct()
 
     return(etapa_processada)
   }
@@ -80,15 +82,18 @@
 #' deve ser retornada
 #' @param return_modified_tag Flag indicando se é necessário retornar a informação
 #' de que a proposição foi modificada.
+#' @param force_process TRUE se os dados de proposição e tramitação devem ser processados
+#' independente se houve ou não modificação. FALSE caso contrário.
 #' @return Flag indicando se houve mudança na tramitação de uma proposição
 .build_list_etapa_processada <-
   function(prop,
            tram,
            modified = TRUE,
-           return_modified_tag = FALSE) {
+           return_modified_tag = FALSE,
+           force_process = FALSE) {
     etapa = list()
 
-    if (modified) {
+    if (modified || force_process) {
       etapa$proposicao = prop
       etapa$fases_eventos = tram
     }
@@ -109,6 +114,10 @@
 #' erro.
 #' @param return_modified_tag Flag indicando se é necessário retornar a informação
 #' de que os dados da proposição foram modificados.
+#' @param filter_etapa_atual_tramitacao Flag indicando se devem ser filtrados apenas as
+#' tramitações que ocorreram na etapa atual.
+#' @param force_process TRUE se os dados de proposição e tramitação devem ser processados
+#' independente se houve ou não modificação. FALSE caso contrário.
 #' @return list com os dataframes: proposicao, fases_eventos,
 #' hist_temperatura
 process_etapa <- function(id,
@@ -117,7 +126,8 @@ process_etapa <- function(id,
                           data_ultima_tramitacao = NULL,
                           return_modified_tag = FALSE,
                           retry = FALSE,
-                          filter_etapa_atual_tramitacao = TRUE) {
+                          filter_etapa_atual_tramitacao = TRUE,
+                          force_process = FALSE) {
   prop <- agoradigital::fetch_proposicao(id, casa, retry = retry)
 
   if (tolower(prop$sigla_tipo) == 'mpv') {
@@ -129,7 +139,7 @@ process_etapa <- function(id,
 
   modified <- .checa_novas_tramitacoes(data_ultima_tramitacao, tram)
 
-  if (modified) {
+  if (modified || force_process) {
     futile.logger::flog.info(
       stringr::str_glue(
         "Houve modificação na proposição de id {id} na(o) {casa}. Processando dados para essa proposição...\n"
@@ -139,7 +149,7 @@ process_etapa <- function(id,
     proc_tram <-
       agoradigital::process_proposicao(prop, tram, casa, filter_etapa_atual_tramitacao = filter_etapa_atual_tramitacao) %>%
       dplyr::mutate(data_hora = as.POSIXct(data_hora))
-    
+
     status <-
       agoradigital::extract_status_tramitacao(id, casa, prop, tram)
 
@@ -148,7 +158,7 @@ process_etapa <- function(id,
       dplyr::mutate(sigla = stringr::str_glue("{sigla_tipo} {numero}/{ano}"))
 
     return(
-      .build_list_etapa_processada(extended_prop, proc_tram, modified, return_modified_tag)
+      .build_list_etapa_processada(extended_prop, proc_tram, modified, return_modified_tag, force_process)
     )
 
   } else {
@@ -179,12 +189,21 @@ process_etapa_otimizada <- function(id,
                                     ultima_tramitacao_data,
                                     return_modified_tag,
                                     houve_modificacao) {
-  
+
   ## Checa se houve modificação na Câmara. Se sim, é necessário gerar todo o dado para o Senado também.
   if (houve_modificacao && casa == "senado") {
     ultima_tramitacao_data <- NULL
   }
-  
+
+  if (!is.null(proposicoes)) {
+    casa_param <- casa
+    filtered_prop <- proposicoes %>%
+      filter(id == id_ext, casa_param == casa)
+    force_process <- nrow(filtered_prop) == 0
+  } else {
+    force_process <- FALSE
+  }
+
   etapa_processada <-
     safe_process_etapa(
       id,
@@ -192,25 +211,26 @@ process_etapa_otimizada <- function(id,
       pautas = pautas,
       data_ultima_tramitacao = ultima_tramitacao_data,
       return_modified_tag = T,
-      filter_etapa_atual_tramitacao = FALSE
+      filter_etapa_atual_tramitacao = FALSE,
+      force_process = force_process
     )
-  
+
   if ("foi_modificada" %in% names(etapa_processada$result)) {
     houve_modificacao <- etapa_processada$result$foi_modificada
     houve_modificacao <-
       dplyr::if_else(is.null(houve_modificacao), TRUE, houve_modificacao)
   }
-  
-  if (!houve_modificacao) {
+
+  if (!houve_modificacao && !force_process) {
     etapa_processada <- etapa_processada %>%
       .build_etapa_processada_nao_modificada(id, casa, proposicoes, tramitacoes)
   }
-  
+
   return(etapa_processada)
 }
 
 #' @title Retorna flag de modificação de etapa processada e remove esse atributo da lista
-#' @description Retorna flag de modificação de etapa processada e 
+#' @description Retorna flag de modificação de etapa processada e
 #' remove esse atributo da lista
 #' @param etapa_processada Lista da etapa processada
 #' @param ultimo_estado ùltimo estado de modificação
@@ -220,7 +240,7 @@ process_etapa_otimizada <- function(id,
       !is.null(etapa_processada$result$foi_modificada)) {
     houve_modificacao <- etapa_processada$result$foi_modificada
   }
-  
+
   return(houve_modificacao)
 }
 
