@@ -297,14 +297,14 @@ process_pl <- function(row_num,
       .filter_tramitacoes_etapa_atual(etapas$fases_eventos,
                                       etapas$proposicao)
 
+    ## Adiciona id_leggo às proposições
+    etapas$proposicao <- etapas$proposicao %>%
+      dplyr::mutate(id_leggo = id_leggo_key)
+
     if (houve_modificacao) {
       ## Processa dados de Progresso
       etapas[["progresso"]] <-
         .get_progresso_etapas(etapas$proposicao, etapas$tramitacoes_etapas_atuais)
-
-      ## Adiciona id_leggo às proposições
-      etapas$proposicao <- etapas$proposicao %>%
-        dplyr::mutate(id_leggo = id_leggo_key)
 
       ## Processa dados de Locais Atuais da proposição
       etapas[["local_atual"]] <-
@@ -398,7 +398,6 @@ fetch_props <- function(pls, export_path) {
   progressos <- agoradigital::read_progressos(progs_filepath)
   locais_atuais <- agoradigital::read_locais_atuais(locais_props_filepath)
 
-
   res <- list()
   count <- 0
   proposicoes_que_nao_baixaram <- pls
@@ -482,7 +481,8 @@ fetch_props <- function(pls, export_path) {
 
   proposicoes <- proposicoes %>%
     dplyr::left_join(status_proposicoes,
-                     by = c("id_ext", "casa"))
+                     by = c("id_ext", "casa")) %>%
+    distinct()
 
   ## export data to CSVs
   readr::write_csv(proposicoes, props_filepath)
