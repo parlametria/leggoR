@@ -7,18 +7,33 @@ Acesso, tradução e modelos usando dados do congresso nacional.
 - [Site com documentação](https://parlametria.github.io/leggoR/public/)
 - [Descrição dos dados gerados](docs/dados/Sobre.md) e usados pelo [Parlametria](https://painel.parlametria.org.br/paineis).
 
-## Objetivo
+## Objetivo e módulos principais
 
-Este repositório tem por objetivo principal prover o conjunto de funções e serviços que permitem capturar e processar dados de proposições e parlamentares do congresso nacional. Para isto existem dois módulos principais: o **pacote agoradigital** que exporta funções que acessam e processam dados do Congresso e o **módulo scripts** que executa e salva os dados caputarados e processados.
+Este repositório tem por objetivo principal prover o conjunto de funções e serviços que permitem capturar e processar dados de proposições e parlamentares do congresso nacional. Para isto existem dois módulos principais:
+ -  O **pacote agoradigital** que exporta funções que acessam e processam dados do Congresso;
 
-## Instalação
+ -  O **módulo scripts de atualização dos dados do painel** que executa e salva os dados capturados e processados.
+
+### Estrutura do repositório
+
+* O código principal do pacote você pode encontrar em [R/](https://github.com/parlametria/leggoR/tree/master/R)
+* Em [scripts/](https://github.com/parlametria/leggoR/tree/master/scripts) se encontram alguns submódulos responsávels por orquestrar a execução do processamento de dados do repositório e salvar em CSV.
+* Em [docs/reports/](https://github.com/parlametria/leggoR/tree/master/docs/reports) pode se visualizar reports de Pls já testadas (podem existir informações desatualizadas).
+* [tests/](https://github.com/parlametria/leggoR/tree/master/tests) contém testes de uso.
+* [view/](https://github.com/parlametria/leggoR/tree/master/view) contém alguns exemplos de visualizações que utilizam o agoradigital
+
+
+## O pacote agoradigital
+
+O pacote agoradigital exporta várias funções que extraem e processam os dados do Congresso Nacional.
+
+### Instalação
 
 Antes de instalar nosso pacote, é necessário que você tenha o [R](https://www.r-project.org/) instalado.
 
-  - **Aviso:** Os comandos desta seção devem ser executados dentro do interpretador de R. Mas você também pode executar qualquer código R direto no terminal usando o comando `Rscript -e`. Exemplo: 
-      ```
-      Rscript -e 'agoradigital::fetch_proposicao(82051, "senado")'
-      ```
+  > **Aviso:** Os comandos desta seção devem ser executados dentro do interpretador de R. Mas você também pode executar qualquer código R direto no terminal usando o comando `Rscript -e`. Exemplo: 
+    ```Rscript -e 'agoradigital::fetch_proposicao(82051, "senado")'
+    ```
 
 Recomendamos que você instale o pacote [devtools](https://github.com/r-lib/devtools) que é uma ferramenta que irá te ajudar no processo de instalação e desenvolvimento.
 
@@ -44,11 +59,10 @@ Para verificar se toda a instalação foi feita de maneira correta, use o exempl
 agoradigital::fetch_proposicao(82051, "senado")
 ```
 
-## Uso
+### Uso
 Exemplos básicos de uso.
 
-
-### Como capturar ids de proposições:
+#### Como capturar ids de proposições:
 A maioria de nossos métodos necessita do id da proposição que você deseja extrair informações,
 há várias formas de capturar esse id, serão mostradas as mais básicas:
     
@@ -67,75 +81,46 @@ há várias formas de capturar esse id, serão mostradas as mais básicas:
     ```R
     agoradigital::fetch_proposicao(82051, "senado")
     ```
-    
 
-## Estrutura do projeto
+### Para contribuir com o pacote
 
-* O código principal do pacote você pode encontrar em [R/](https://github.com/parlametria/leggoR/tree/master/R)
-* Em [docs/reports/](https://github.com/parlametria/leggoR/tree/master/docs/reports) pode se visualizar reports de Pls já testadas (podem existir informações desatualizadas).
-* Em [scripts/](https://github.com/parlametria/leggoR/tree/master/scripts) se encontram alguns submódulos responsávels por orquestrar a execução do processamento de dados do repositório e salvar em CSV.
-* [tests/](https://github.com/parlametria/leggoR/tree/master/tests) contém testes de uso.
-* [view/](https://github.com/parlametria/leggoR/tree/master/view) contém alguns exemplos de visualizações que utilizam o agoradigital
- 
-## Comandos úteis
+É necessário garantir que todas as suas funções estejam documentadas e disponíveis. Para isso, você precisa adicionar `@export` a documentação da função para garantir que essa função será exportada, como em qualquer pacote R. Após isso:
 
-Baixar dados e gerar relatórios:
-
-    $ ./scripts/build_all.R
-
-Gerar documentação:
-
-    > devtools::document()
-
-Rodar testes:
-
-    > devtools::test()
-
-Mostrar cobertura do código:
-
-    > library(covr);package_coverage()
-
-Fazer verificações gerais um pouco mais bonitinhas:
-
-    > rcmdcheck::rcmdcheck()
-
-Rodar o linter:
-    
-    > devtools::lint()
-
-Para regerar o site da documentação:
-    
-    > pkgdown::build_site(override = list(destination = "public"))
-
-Gerar csvs de Comissões:
-    
-    Certifique-se que você está na raiz do repositório do leggoR
-    
-    Caso tenha feito alguma alteração no código e queira que esta alteração se reflita nos csvs gerados rode (no seu Rstudio local):
-    > devtools::install(upgrade = "never")
-    
-    E por fim rodar o script
-    $ Rscript scripts/fetch_updated_bills_data.R -e <export_path> -f 4    
-    O <export_path> é o caminho onde os csvs do resultado serão salvos
-    
-## Como verificar o package localmente
-
-1. É necessário garantir que todas as suas funções estão documentadas e disponíveis para isso, para isso, você precisa adicionar `@export` a documentação da função para garantir que essa função será exportada, apois isso, gere a documentação do package.
+1. Gere a documentação do package.
   
-  > devtools::document()
+  > ```devtools::document()```
   
 Para rodar os testes: 
 
 2. Teste o pacote
  
- > devtools::test()
+ > ```devtools::test()```
   
 3. Instale o pacote a partir da branch que deseja:
 
- > devtools::install_github('parlametria/leggoR@nome_da_branch')
+ > ```devtools::install_github('parlametria/leggoR@nome_da_branch')```
  
-Depois faça os testes necessários para garantir que o pacote está funcionando conforme esperado.
+Depois faça os testes necessários para garantir que o pacote está funcionando conforme esperado. 
+
+Abaixo temos alguns comandos extras que podem ser úteis no desenvolvimento do pacote:
+
+ - Mostrar cobertura do código:
+> ```library(covr);package_coverage()```
+
+ - Fazer verificações gerais um pouco mais bonitinhas:
+
+> ```rcmdcheck::rcmdcheck()```
+
+ - Rodar o linter:
+  > ```devtools::lint()```
+
+ - Para regerar o site da documentação:
+  > ```pkgdown::build_site(override = list(destination = "public"))```
   
+## Scripts de atualização dos dados do Painel
+
+O módulo scripts é responsável por englobar diversos submódulos responsáveis por executar a atualização dos dados utilizados pelo Painel Parlametria e geralmente chamados pelo orquestrador [leggo-geral](https://github.com/parlametria/leggo-geral). Explicamos mais detalhes no [README deste diretório](https://github.com/parlametria/leggoR/tree/master/scripts).
+    
 
 # Docker
 
@@ -145,13 +130,12 @@ Para usar o docker será necessário:
 
 1. Instale o [docker](https://docs.docker.com/install/) e o [docker-compose](https://docs.docker.com/compose/install/). 
 
-2. Configure as variáveis de ambiente: crie uma cópia do arquivo .`env.sample` e o renomeie para `.env`. Em seguida preencha as variáveis com os valores adequados para execução.
-*APP_SECRET* = hash da url do *bot Voz Ativa*.
+2. Configure as variáveis de ambiente: crie uma cópia do arquivo .`env.sample` e o renomeie para `.env`. Em seguida preencha as variáveis com os valores adequados para execução. Atualmente temos a seguinte variável de ambiente:
+
+> **APP_SECRET** = hash da url do *bot Voz Ativa* para onde mandamos os resultados das atualizações e mensagens de novas proposições apensadas.
 
 3. Realize o build da imagem (na primeira vez esse passo pode demorar bastante dependendo da sua conexão com a internet).
-```
-docker-compose build
-```
+  > ```docker-compose build```
 
 Agora é possível usar o rmod (nome do serviço levantado pelo docker-compose) para executar o código do leggoR:
 
@@ -160,7 +144,7 @@ Exemplo:
 ```
 docker-compose run --rm rmod Rscript scripts/fetch_updated_bills_data.R -e <export_path> -f 4
 ```
-O <export_path> é o caminho onde os csvs do resultado serão salvos.
+O `<export_path>` é o caminho onde os csvs do resultado serão salvos.
 
 Sempre que o código do repositório for alterado é necessário realizar um novo build da imagem docker para que as mudanças sejam refletidas quando o container estiver em execução.
 
