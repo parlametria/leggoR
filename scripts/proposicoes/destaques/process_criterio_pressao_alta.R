@@ -37,12 +37,13 @@ check_and_process_criterio_pressao_alta <-
   function(pressao_filepath) {
     if (file.exists(pressao_filepath)) {
       proposicoes_pressao_alta <-
-        process_criterio_pressao_alta(pressao_datapath) %>%
+        process_criterio_pressao_alta(pressao_filepath) %>%
         mutate(criterio_pressao_alta = T) %>%
         select(id_leggo, criterio_pressao_alta, maximo_pressao_periodo)
       
       return(proposicoes_pressao_alta)
     } else {
+      print("O csv de pressão não existe. Veja como gerá-lo no leggo-geral.")
       return(
         tibble(
           id_leggo = character(),
