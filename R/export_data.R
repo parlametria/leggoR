@@ -375,6 +375,8 @@ converte_tabela_geral_ids_casa <- function(pls) {
 #' @param export_path pasta para onde exportar dados.
 #' @export
 fetch_props <- function(pls, export_path) {
+  MAX_TENTATIVAS <- 2
+  
   pautas <-
     tibble::tribble(~ data, ~ sigla, ~ id_ext, ~ local, ~ casa, ~ semana, ~
                       ano)
@@ -404,7 +406,7 @@ fetch_props <- function(pls, export_path) {
   proposicoes_individuais_a_baixar <-
     converte_tabela_geral_ids_casa(pls)
 
-  while (count < 5) {
+  while (count < MAX_TENTATIVAS) {
     cat(paste("\n--- Tentativa ", count + 1, "\n"))
     sleep_time = .DEF_REQ_SLEEP_TIME_IN_SECS ^ (count + 1)
     res <- append(
