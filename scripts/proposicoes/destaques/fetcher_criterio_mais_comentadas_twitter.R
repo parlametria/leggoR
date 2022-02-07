@@ -17,7 +17,7 @@ library(tidyverse)
       "..."
     ))
     url <- paste0(
-      "https://leggo-twitter-validacao.herokuapp.com/api/proposicoes/mais-comentadas?interesse=",
+      "https://twitter-api.parlametria.org.br/api/proposicoes/mais-comentadas?interesse=",
       interesse,
       "&data_inicial=",
       data_inicial,
