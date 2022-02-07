@@ -20,6 +20,7 @@ fetch_orgaos_camara <- function() {
 #' fetch_orgaos_senado()
 #' @importFrom RCurl getURL
 #' @importFrom dplyr %>%
+#' @export
 fetch_orgaos_senado <- function() {
   url_base <- 'https://legis.senado.leg.br/dadosabertos/comissao/lista/'
   no_xml <- '//colegiado'
@@ -81,8 +82,9 @@ parse_senado_comissoes_xml <- function(url_base, tipo_comissao, nome_no_xml) {
 
   if (ncol(comissoes_tmp_df) > 1) {
     comissoes_df <- comissoes_tmp_df %>%
-      dplyr::select(sigla = SiglaColegiado) %>%
-      dplyr::filter(!is.na(sigla))
+      dplyr::select(id = CodigoColegiado,
+                    sigla = SiglaColegiado) %>%
+      dplyr::filter(!is.na(sigla), !is.na(id))
   }
 
   return(comissoes_df)
