@@ -25,3 +25,31 @@ process_criterio_pressao_alta <- function(
 
   return(proposicoes_com_pressao)
 }
+
+#' @title Checa e processa o critério com pressão alta
+#' @description Checa se o arquivo de pressão existe antes
+#' de processar o critério de pressão alta das proposições
+#' @param pressao_datapath Datapath de pressão
+#' @return Dataframe contendo as proposições que passam no critério,
+#' com a informação da pressão em cada uma. Caso o csv de pressão não exista,
+#' será retornado um dataframe vazio.
+check_and_process_criterio_pressao_alta <-
+  function(pressao_datapath) {
+    if (file.exists(pressao_datapath)) {
+      proposicoes_pressao_alta <-
+        process_criterio_pressao_alta(pressao_datapath) %>%
+        mutate(criterio_pressao_alta = T) %>%
+        select(id_leggo, criterio_pressao_alta, maximo_pressao_periodo)
+
+      return(proposicoes_pressao_alta)
+    } else {
+      print("O csv de pressão não existe. Veja como gerá-lo no leggo-geral.")
+      return(
+        tibble(
+          id_leggo = character(),
+          criterio_pressao_alta = logical(),
+          maximo_pressao_periodo = numeric()
+        )
+      )
+    }
+  }

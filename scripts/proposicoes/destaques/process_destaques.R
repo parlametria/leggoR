@@ -72,9 +72,7 @@ process_proposicoes_destaques <- function(
            casa_req_urgencia_aprovacao)
 
   proposicoes_pressao_alta <-
-    process_criterio_pressao_alta(pressao_datapath) %>%
-    mutate(criterio_pressao_alta = T) %>%
-    select(id_leggo, criterio_pressao_alta, maximo_pressao_periodo)
+    check_and_process_criterio_pressao_alta(pressao_datapath)
 
   proposicoes_criterio_mais_comentadas_twitter <-
     fetch_proposicoes_mais_comentadas_twitter(interesses = interesses_agendas) %>%
