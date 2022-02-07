@@ -1,5 +1,67 @@
 library(tidyverse)
 library(here)
+library(rlang)
+
+#' @title Preenche o id na outra casa caso já tenha sido previamente preenchido (por outro interesse)
+#' @description Esta função lida com proposições repetidas, onde em um dos casos há o preenchimento de 
+#' id na câmara e no sendo e outra somente em uma das casas (em diferentes interesses ou não).
+#' @param df Dataframe com todas as proposições preenchidas
+#' @param col_casa Quo do nome da coluna a ser checada se foi preenchida
+#' @param col_segunda_casa Quo do nome da coluna da segunda casa que será preenchida
+#' @return Dataframe com proposições id_camara e id_senado mapeadas caso tenham sido 
+#' preenchidos em outro interesse.
+.preenche_id_casa_repetido <-
+  function(df, col_casa, col_segunda_casa) {
+    df_com_ids <- df %>%
+      distinct(id_camara, id_senado) %>%
+      count(!!col_casa) %>%
+      filter(!is.na(!!col_casa), n > 1)
+    
+    if (nrow(df_com_ids) > 0) {
+      df_filtrado <- df %>%
+        filter(!!col_casa %in% (df_com_ids %>% pull(!!col_casa)))
+      
+      df_preenchido <- df_filtrado %>%
+        filter(!is.na(!!col_segunda_casa)) %>%
+        distinct(id_camara, id_senado)
+      
+      df_para_preencher <- df_filtrado %>%
+        filter(is.na(!!col_segunda_casa))
+      
+      df_sem_repeticoes <-
+        df %>% anti_join(df_para_preencher, by = c("id_camara", "id_senado"))
+      
+      df_para_preencher <- df_para_preencher %>%
+        select(-!!col_segunda_casa) %>%
+        inner_join(df_preenchido, by = quo_name(col_casa)) %>%
+        select(all_of(names(df)))
+      
+      df_sem_repeticoes <- df_sem_repeticoes %>%
+        bind_rows(df_para_preencher)
+      
+      return(df_sem_repeticoes)
+      
+    } else {
+      return(df)
+    }
+  }
+
+#' @title Checa se há repetição de ids em alguma das casas.
+#' @description Esta função lida com proposições repetidas, onde em um dos casos há o preenchimento de 
+#' id na câmara e no sendo e outra somente em uma das casas (em diferentes interesses ou não).
+#' Checa se há alguma proposição preenchida em somente uma das casas e, em outro interesse, em ambas.
+#' @param df Dataframe com todas as proposições preenchidas
+#' @return Dataframe com proposições id_camara e id_senado mapeadas caso tenham sido 
+#' preenchidos em outro interesse.
+.checa_id_casa_repetidos <- function(df) {
+  df_alt <-
+    .preenche_id_casa_repetido(df, quo(id_camara), quo(id_senado))
+  
+  df_alt_completo <-
+    .preenche_id_casa_repetido(df_alt, quo(id_senado), quo(id_camara))
+  
+  return(df_alt_completo)
+}
 
 #' @title Processa todas as PLs de diversos interesses e que são analisadas pelo LEGGO
 #' @description Junta todos as PL's listadas para os interesses analisados pelo LEGGO
@@ -32,8 +94,10 @@ processa_lista_pls_interesses <- function(url) {
                       dplyr::mutate(descricao_interesse = descricao)
                     return(pls)
                   })
+  
+  pls_para_analise_completo <- .checa_id_casa_repetidos(pls_para_analise)
 
-  return(pls_para_analise)
+  return(pls_para_analise_completo)
 }
 
 #' @title Processa temas
