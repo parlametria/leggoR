@@ -7,7 +7,7 @@
 #' get_data_frame_agenda_senado('2016-05-15', '2016-05-25')
 get_data_frame_agenda_senado <- function(initial_date, end_date) {
   url <-
-    paste0("https://legis.senado.leg.br/dadosabertos/agendareuniao/", gsub('-','', initial_date), "/", gsub('-','', end_date))
+    paste0("https://legis.senado.leg.br/dadosabertos/agendareuniao/mes/", gsub('([0-9]{4})-([0-9]{2})-[0-9]{2}','\\1\\2', initial_date))
   json_proposicao <- fetch_json_try(url)
 
   json_proposicao$AgendaReuniao$reunioes$reuniao %>%
