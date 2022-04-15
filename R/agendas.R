@@ -115,9 +115,8 @@ fetch_agenda <- function(initial_date, end_date, house, orgao) {
 #' @export
 fetch_agenda_geral <- function(initial_date, end_date) {
   try(if(as.Date(end_date) < as.Date(initial_date)) stop("A data inicial é depois da final!"))
-  cat("\nObtendo pautas para a semana: ",
-      strftime(initial_date, "%d/%m/%Y"), "-",
-      strftime(end_date, "%d/%m/%Y"),
+  cat("\nObtendo pautas para o mês: ",
+      strftime(initial_date, "%m/%Y"),
       "\n")
 
   agenda_plenario_senado <-
@@ -254,13 +253,13 @@ fetch_agenda_comissoes_camara <- function(initial_date, end_date) {
 #' junta_agendas('2018-11-05', '2018-11-12')
 #' @export
 junta_agendas <- function(initial_date, end_date) {
-  semanas <-
-    seq(lubridate::floor_date(as.Date(initial_date), unit="week") + 1, as.Date(end_date), by = "week") %>%
+  meses <-
+    seq(lubridate::floor_date(as.Date(initial_date), unit="month"), as.Date(end_date), by = "month") %>%
     tibble::as_tibble() %>%
-    dplyr::mutate(fim_semana = as.Date(cut(value, "week")) + 4)
+    dplyr::mutate(fim_mes = as.Date(cut(value, "month")) + 1)
 
   materia <-
-    purrr::map2_df(semanas$value, semanas$fim_semana,
+    purrr::map2_df(meses$value, meses$fim_mes,
                    function(x, y) {
                      agenda <- NULL
                      count <- 0
